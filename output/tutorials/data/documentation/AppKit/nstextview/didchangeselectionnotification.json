@@ -1,0 +1,1308 @@
+{
+  "abstract": [
+    {
+      "text": "Posted when the selected range of characters changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextView"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSTextView/didChangeSelectionNotification"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "AppKit",
+    "externalID": "c:@NSTextViewDidChangeSelectionNotification",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "let"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "didChangeSelectionNotification"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)NSNotification",
+        "text": "NSNotification"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@NSNotificationName",
+        "text": "Name"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSTextViewDidChangeSelectionNotification"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "property",
+    "title": "didChangeSelectionNotification"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didChangeSelectionNotification"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSNotification",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSNotification",
+              "text": "NSNotification"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@NSNotificationName",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "Name"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSTextView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " posts this notification whenever ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView/setSelectedRange(_:affinity:stillSelecting:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is invoked, either directly or through the many methods (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseDown(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSText/selectAll(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and so on) that invoke it indirectly. When the user is selecting text, this notification is posted only once, at the end of the selection operation. The text view’s delegate receives a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextViewDelegate/textViewDidChangeSelection(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " message when this notification is posted.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The notification object is the notifying text view. The ",
+              "type": "text"
+            },
+            {
+              "code": "userInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary contains the following information:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "@\"NSOldSelectedCharacterRange\"",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSValue",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object containing an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSRange",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " structure with the originally selected range.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseDown(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the receiver that the user has pressed the left mouse button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseDown"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseDown(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mouseDown:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mouseDown(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsresponder/mousedown(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSText/selectAll(_:)": {
+      "abstract": [
+        {
+          "text": "This action method selects all of the receiver’s text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectAll"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSText/selectAll(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectAll:"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectAll(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstext/selectall(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextView": {
+      "abstract": [
+        {
+          "text": "A view that draws text and handles user interactions with that text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextView",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextView/didChangeSelectionNotification": {
+      "abstract": [
+        {
+          "text": "Posted when the selected range of characters changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didChangeSelectionNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView/didChangeSelectionNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextViewDidChangeSelectionNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "didChangeSelectionNotification",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextview/didchangeselectionnotification"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextView/didChangeTypingAttributesNotification": {
+      "abstract": [
+        {
+          "text": "Posted when there is a change in the typing attributes within a text view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didChangeTypingAttributesNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView/didChangeTypingAttributesNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextViewDidChangeTypingAttributesNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "didChangeTypingAttributesNotification",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextview/didchangetypingattributesnotification"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextView/didSwitchToNSLayoutManagerNotification": {
+      "abstract": [
+        {
+          "text": "Posted by the framework after switching to using the compatibility mode layout manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didSwitchToNSLayoutManagerNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView/didSwitchToNSLayoutManagerNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextViewDidSwitchToNSLayoutManagerNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "didSwitchToNSLayoutManagerNotification",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextview/didswitchtonslayoutmanagernotification"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextView/setSelectedRange(_:affinity:stillSelecting:)": {
+      "abstract": [
+        {
+          "text": "Sets the selection to a range of characters in response to user action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSelectedRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "affinity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSSelectionAffinity",
+          "text": "NSSelectionAffinity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stillSelecting"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView/setSelectedRange(_:affinity:stillSelecting:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setSelectedRange:affinity:stillSelecting:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setSelectedRange(_:affinity:stillSelecting:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextview/setselectedrange(_:affinity:stillselecting:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextView/willChangeNotifyingTextViewNotification": {
+      "abstract": [
+        {
+          "text": "Posted when a new text view is established as the text view that sends notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willChangeNotifyingTextViewNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView/willChangeNotifyingTextViewNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextViewWillChangeNotifyingTextViewNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "willChangeNotifyingTextViewNotification",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextview/willchangenotifyingtextviewnotification"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextView/willSwitchToNSLayoutManagerNotification": {
+      "abstract": [
+        {
+          "text": "Posted by the framework before switching to the compatibility mode layout manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willSwitchToNSLayoutManagerNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView/willSwitchToNSLayoutManagerNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextViewWillSwitchToNSLayoutManagerNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "willSwitchToNSLayoutManagerNotification",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextview/willswitchtonslayoutmanagernotification"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextViewDelegate/textViewDidChangeSelection(_:)": {
+      "abstract": [
+        {
+          "text": "Sent when the selection changes in the text view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textViewDidChangeSelection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation12NotificationV",
+          "text": "Notification"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextViewDelegate/textViewDidChangeSelection(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textViewDidChangeSelection:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textViewDidChangeSelection(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextviewdelegate/textviewdidchangeselection(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@NSNotificationName": {
+      "abstract": [
+        {
+          "text": "A structure that defines the name of a notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@NSNotificationName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification.Name",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSNotification": {
+      "abstract": [
+        {
+          "text": "An object containing information broadcast to registered observers that bridges to ; use  when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNotification"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Notifications",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextView/willChangeNotifyingTextViewNotification",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextView/didChangeTypingAttributesNotification",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextView/didSwitchToNSLayoutManagerNotification",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextView/willSwitchToNSLayoutManagerNotification"
+      ],
+      "title": "Notifications"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Global Variable"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSTextViewDidChangeSelectionNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "var"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextViewDidChangeSelectionNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Notifications",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextView/willChangeNotifyingTextViewNotification",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextView/didChangeTypingAttributesNotification",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextView/didSwitchToNSLayoutManagerNotification",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextView/willSwitchToNSLayoutManagerNotification"
+              ],
+              "title": "Notifications"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "extern"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@NSNotificationName",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@NSNotificationName",
+                    "text": "NSNotificationName"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSTextViewDidChangeSelectionNotification"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView~1setSelectedRange(_:affinity:stillSelecting:)/title",
+          "value": "setSelectedRange:affinity:stillSelecting:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView~1setSelectedRange(_:affinity:stillSelecting:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setSelectedRange:affinity:stillSelecting:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSText~1selectAll(_:)/title",
+          "value": "selectAll:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSText~1selectAll(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "selectAll:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/title",
+          "value": "NSTextView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView~1didSwitchToNSLayoutManagerNotification/title",
+          "value": "NSTextViewDidSwitchToNSLayoutManagerNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView~1didSwitchToNSLayoutManagerNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextViewDidSwitchToNSLayoutManagerNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView~1didChangeTypingAttributesNotification/title",
+          "value": "NSTextViewDidChangeTypingAttributesNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView~1didChangeTypingAttributesNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextViewDidChangeTypingAttributesNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView~1willSwitchToNSLayoutManagerNotification/title",
+          "value": "NSTextViewWillSwitchToNSLayoutManagerNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView~1willSwitchToNSLayoutManagerNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextViewWillSwitchToNSLayoutManagerNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1mouseDown(with:)/title",
+          "value": "mouseDown:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1mouseDown(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mouseDown:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@NSNotificationName/title",
+          "value": "NSNotificationName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView~1didChangeSelectionNotification/title",
+          "value": "NSTextViewDidChangeSelectionNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView~1didChangeSelectionNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextViewDidChangeSelectionNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextViewDelegate~1textViewDidChangeSelection(_:)/title",
+          "value": "textViewDidChangeSelection:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextViewDelegate~1textViewDidChangeSelection(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textViewDidChangeSelection:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView~1willChangeNotifyingTextViewNotification/title",
+          "value": "NSTextViewWillChangeNotifyingTextViewNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView~1willChangeNotifyingTextViewNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextViewWillChangeNotifyingTextViewNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)NSNotification/abstract",
+          "value": [
+            {
+              "text": "A container for information broadcast through a notification center to all registered observers.",
+              "type": "text"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nstextview/didchangeselectionnotification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nstextview/didchangeselectionnotification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

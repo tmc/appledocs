@@ -1,0 +1,1389 @@
+{
+  "abstract": [
+    {
+      "text": "Create, configure, and run actions in SpriteKit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKAction"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKNode"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-actions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Getting Started with Actions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You tell nodes to run an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when you want to animate contents of your scene. When the scene processes frames of animation, the actions are executed. Some actions are completed in a single frame of animation, while other actions apply changes over multiple frames of animation before completing. The most common use for actions is to animate changes to a node’s properties. For example, you can create actions that move a node, scale or rotate it, or fade its transparency. However, actions can also change the node tree, play sounds, or even execute custom code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-and-Run-an-Action",
+          "level": 3,
+          "text": "Create and Run an Action",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an action by calling the desired factory method; for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/fade(withDuration:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optionally configure additional properties, like ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/speed",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/timingFunction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pass the action as an argument to a node’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/run(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function to execute it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Control-Action-Timing",
+          "level": 3,
+          "text": "Control Action Timing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/run(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " an action, SpriteKit manages the interpolation. That means that SpriteKit changes the properties of the node over more than one frame rendered by the scene automatically for you. As a result, you control the timing of the animation by configuring:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/duration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", which states how long that action takes to complete in seconds",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/timingMode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", which defines the rate at which the animation executes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/speed",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", which allows you to adjust the timing of the animation by increasing or decreasing its playback speed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Create-a-Reverse-Action",
+          "level": 3,
+          "text": "Create a Reverse Action",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many actions can be reversed, allowing you to create another action object that reverses the effect of that action. For example, if an action object moves a node ",
+              "type": "text"
+            },
+            {
+              "code": "20",
+              "type": "codeVoice"
+            },
+            {
+              "text": " points to the right of its current position, the reversed action moves the node ",
+              "type": "text"
+            },
+            {
+              "code": "20",
+              "type": "codeVoice"
+            },
+            {
+              "text": " points to the left. To create a reversed action object, call an action object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/reversed()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Run-Code-when-an-Action-Completes",
+          "level": 3,
+          "text": "Run Code when an Action Completes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/run(_:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method is identical to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/run(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, but after the action completes, your block is called, but only if the action runs to completion. If the action is removed before it completes, the completion handler is never called. The following code fades out a sprite by running a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/fadeOut(withDuration:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " action on it and, after the action completes, presents a new scene:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let fadeOut = SKAction.fadeOut(withDuration:2)",
+            "node.run(fadeOut) {",
+            "    skView.presentScene(newScene)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Reuse-Actions",
+          "level": 3,
+          "text": "Reuse Actions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you create an action, its type cannot be changed, and you have a limited ability to change its properties. SpriteKit takes advantage of this immutable nature to execute the actions efficiently. Because actions are effectively immutable objects, you can run the same action safely on multiple nodes in the tree at the same time. For this reason, if you have an action that is used repeatedly in your game, create a single instance of the action and then reuse it whenever you need a node to execute it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Drive-Game-Logic",
+          "level": 3,
+          "text": "Drive Game Logic",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because actions can be chained and can wrap custom code, it’s possible to drive most of your app’s logic using a complex system of actions. But where actions leave more sophisticated behavior to be desired, you might need to override the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " callbacks and drive node behavior from there. For example, if a node needs to be moved in a wholly custom manner, you can adjust its ",
+              "type": "text"
+            },
+            {
+              "code": "position",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/update(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead of using an action to do so.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKAction": {
+      "abstract": [
+        {
+          "text": "An object that is run by a node to change its structure or content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAction"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAction",
+      "type": "topic",
+      "url": "/documentation/spritekit/skaction"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/duration": {
+      "abstract": [
+        {
+          "text": "The duration required to complete an action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/duration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "duration"
+        }
+      ],
+      "role": "symbol",
+      "title": "duration",
+      "type": "topic",
+      "url": "/documentation/spritekit/skaction/duration"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/fadeOut(withDuration:)": {
+      "abstract": [
+        {
+          "text": "Creates an action that changes the alpha value of the node to ",
+          "type": "text"
+        },
+        {
+          "code": "0.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fadeOut"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKAction",
+          "text": "SKAction"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/fadeOut(withDuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fadeOutWithDuration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fadeOut(withDuration:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skaction/fadeout(withduration:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/reversed()": {
+      "abstract": [
+        {
+          "text": "Creates an action that reverses the behavior of another action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reversed"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKAction",
+          "text": "SKAction"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/reversed()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reversedAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "reversed()",
+      "type": "topic",
+      "url": "/documentation/spritekit/skaction/reversed()"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/speed": {
+      "abstract": [
+        {
+          "text": "A speed factor that modifies how fast an action runs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "speed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/speed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "speed"
+        }
+      ],
+      "role": "symbol",
+      "title": "speed",
+      "type": "topic",
+      "url": "/documentation/spritekit/skaction/speed"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/timingFunction": {
+      "abstract": [
+        {
+          "text": "A block used to customize the timing function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timingFunction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SKActionTimingFunction",
+          "text": "SKActionTimingFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/timingFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timingFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "timingFunction",
+      "type": "topic",
+      "url": "/documentation/spritekit/skaction/timingfunction"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/timingMode": {
+      "abstract": [
+        {
+          "text": "A setting that controls the speed curve of an animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timingMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SKActionTimingMode",
+          "text": "SKActionTimingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/timingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "timingMode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skaction/timingmode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode": {
+      "abstract": [
+        {
+          "text": "The base class of all SpriteKit nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/run(_:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to the list of actions executed by the node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "run"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKAction",
+          "text": "SKAction"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/run(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "runAction:"
+        }
+      ],
+      "role": "symbol",
+      "title": "run(_:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/run(_:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/run(_:completion:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to the list of actions executed by the node and schedules the argument block to be run upon completion of the action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "run"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKAction",
+          "text": "SKAction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/run(_:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "runAction:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "run(_:completion:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/run(_:completion:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/update(_:)": {
+      "abstract": [
+        {
+          "text": "Tells your app to perform any app-specific logic to update your scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/update(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "update:"
+        }
+      ],
+      "role": "symbol",
+      "title": "update(_:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/update(_:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate": {
+      "abstract": [
+        {
+          "text": "Methods that, when implemented, allow any class to participate in the SpriteKit render loop callbacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKSceneDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKSceneDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKSceneDelegate",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscenedelegate"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/fade(withDuration:)": {
+      "abstract": [
+        {
+          "text": "Creates a transition that first fades to black and then fades to the new scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fade"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTransition",
+          "text": "SKTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTransition/fade(withDuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fadeWithDuration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fade(withDuration:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktransition/fade(withduration:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building": {
+      "abstract": [
+        {
+          "text": "Define the appearance or layout of scene content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Nodes for Scene Building",
+      "type": "topic",
+      "url": "/documentation/spritekit/nodes-for-scene-building"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Animation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKAction"
+      ],
+      "title": "Animation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Animation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKAction"
+              ],
+              "title": "Animation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/title",
+          "value": "SKNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1duration/title",
+          "value": "duration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1duration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "duration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1timingFunction/title",
+          "value": "timingFunction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1timingFunction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "timingFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1fade(withDuration:)/title",
+          "value": "fadeWithDuration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTransition~1fade(withDuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "fadeWithDuration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction/title",
+          "value": "SKAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1timingMode/title",
+          "value": "timingMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1timingMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "timingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1run(_:)/title",
+          "value": "runAction:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1run(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "runAction:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1speed/title",
+          "value": "speed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1speed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "speed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1run(_:completion:)/title",
+          "value": "runAction:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1run(_:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "runAction:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneDelegate/title",
+          "value": "SKSceneDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1fadeOut(withDuration:)/title",
+          "value": "fadeOutWithDuration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1fadeOut(withDuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "fadeOutWithDuration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1update(_:)/title",
+          "value": "update:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1update(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "update:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1reversed()/title",
+          "value": "reversedAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1reversed()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reversedAction"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/getting-started-with-actions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/getting-started-with-actions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

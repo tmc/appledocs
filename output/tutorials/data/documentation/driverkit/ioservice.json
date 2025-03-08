@@ -1,0 +1,1635 @@
+{
+  "abstract": [
+    {
+      "text": "The base class for managing the setup and registration of your driver.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/driverkit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/driverkit/ioservice"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3180624,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOService",
+    "modules": [
+      {
+        "name": "DriverKit"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "24.4",
+        "introducedAt": "19.0",
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOService"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "DriverKit"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOService"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/osobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSObject",
+              "text": "OSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object is the base class the system uses to represent all devices and device-related interfaces. When the user plugs in a device, the system creates one or more service objects to manage interactions with that device. One service object represents the device itself, and additional service objects represent the interfaces or communication protocols that the device supports. For example, the driver for a USB camera that supports multiple video and audio protocols might define different service objects for each protocol. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user plugs in a device, the system looks for the service objects that best match the device's capabilities. Apple's built-in driver families support most device types and a large array of standard interfaces. You provide custom service objects to support your device's custom behaviors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In most cases, you subclass a child of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", instead of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " itself. Use the methods of this class to do the following:  ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Handle the initialization, setup, and teardown of your driver.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "View and manage the I/O Registry entry for the device or interface.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configure the dispatch queue on which to execute your code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Respond to power-level changes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information about how to implement services for a particular type of device, see the service subclasses in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.serialdriverkit/documentation/SerialDriverKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3515441",
+          "level": 3,
+          "text": "Adding Member Variables to Your Custom Subclass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don't declare custom member variables directly in your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " subclass. Instead, DriverKit requires you to define all variables in a separate structure. During initialization, allocate a block of memory for that structure and assign that block to the system-provided ",
+              "type": "text"
+            },
+            {
+              "code": "ivars",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable of your service class. The following code example shows you how to define the structure and allocate it in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180717-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of your service class. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyCustomKeyboardDriver_IVars",
+            "{",
+            "    OSArray *elements;",
+            "    ",
+            "    struct {",
+            "        OSArray *elements;",
+            "    } keyboard;",
+            "};",
+            "",
+            "bool MyCustomKeyboardDriver::init()",
+            "{",
+            "   if (!super::init()) {return false;}",
+            "    ",
+            "   // Allocate memory for the instance variables.",
+            "   ivars = IONewZero(MyCustomKeyboardDriver_IVars, 1);",
+            "   if (!ivars) {return false;}",
+            "    ",
+            "exit:",
+            "   return true;",
+            "}",
+            ""
+          ],
+          "metadata": {
+            "anchor": "3515440",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Deallocate any memory that you allocate for your custom variables in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180716-free",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of your class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/driverkit": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DriverKit",
+      "type": "topic",
+      "url": "/documentation/driverkit"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/3325571-service_power_capabilities": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the power state of a device. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/3325571-service_power_capabilities",
+      "kind": "symbol",
+      "role": "containerSymbol",
+      "title": "Service Power Capabilities",
+      "type": "topic",
+      "url": "/documentation/driverkit/3325571-service_power_capabilities"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/3325572-search_options": {
+      "abstract": [
+        {
+          "text": "Options to apply when searching for registry properties. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/3325572-search_options",
+      "kind": "symbol",
+      "role": "containerSymbol",
+      "title": "Search Options",
+      "type": "topic",
+      "url": "/documentation/driverkit/3325572-search_options"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk": {
+      "abstract": [
+        {
+          "text": "Create a driver that supports proprietary features of your company’s hardware devices. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Driver Using the DriverKit SDK",
+      "type": "topic",
+      "url": "/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions": {
+      "abstract": [
+        {
+          "text": "Debug your system extensions by temporarily disabling the security checks that macOS performs during the installation process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging and testing system extensions",
+      "type": "topic",
+      "url": "/documentation/driverkit/debugging_and_testing_system_extensions"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iopropertyname": {
+      "abstract": [
+        {
+          "text": "A string type for specifying the name of a property in the system's registry. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iopropertyname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOPropertyName",
+      "type": "topic",
+      "url": "/documentation/driverkit/iopropertyname"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioregistryplanename": {
+      "abstract": [
+        {
+          "text": "A string type for specifying the name of a plane in the system's registry. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioregistryplanename",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryPlaneName",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioregistryplanename"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice": {
+      "abstract": [
+        {
+          "text": "The base class for managing the setup and registration of your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice#3515440": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice#3515440",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/driverkit/ioservice#3515440"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3180707-setproperties": {
+      "abstract": [
+        {
+          "text": "Sends the dictionary of properties to the current service object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3180707-setproperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetProperties",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3180707-setproperties"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3325579-create": {
+      "abstract": [
+        {
+          "text": "Requests the creation of a new service object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "Create"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3325579-create",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Create",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3325579-create"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3325581-newuserclient": {
+      "abstract": [
+        {
+          "text": "Requests the creation of a new user client for the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "NewUserClient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3325581-newuserclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NewUserClient",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3325581-newuserclient"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3325583-searchproperty": {
+      "abstract": [
+        {
+          "text": "Searches for a property with the specified name in the current service or one of its parent services, and returns the corresponding value. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SearchProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3325583-searchproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SearchProperty",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3325583-searchproperty"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3325585-setname": {
+      "abstract": [
+        {
+          "text": "Sets the name of the service in the system's registry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetName"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3325585-setname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetName",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3325585-setname"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3433735-copydispatchqueue": {
+      "abstract": [
+        {
+          "text": "Gets the dispatch queue with the specified name from the current service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "CopyDispatchQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3433735-copydispatchqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopyDispatchQueue",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3433735-copydispatchqueue"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3433736-setdispatchqueue": {
+      "abstract": [
+        {
+          "text": "Associates a custom dispatch queue with the service and assigns the specified name to it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetDispatchQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3433736-setdispatchqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetDispatchQueue",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3433736-setdispatchqueue"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3538741-copyproviderproperties": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "CopyProviderProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3538741-copyproviderproperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopyProviderProperties",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3538741-copyproviderproperties"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3538742-terminate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "Terminate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3538742-terminate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Terminate",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3538742-terminate"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3685162-stop_async": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "Stop_async"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3685162-stop_async",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Stop_async",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3685162-stop_async"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3689565-requiremaxbusstall": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "RequireMaxBusStall"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3689565-requiremaxbusstall",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RequireMaxBusStall",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3689565-requiremaxbusstall"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3728211-clientcrashed": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ClientCrashed"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3728211-clientcrashed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ClientCrashed",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3728211-clientcrashed"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3758314-adjustbusy": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdjustBusy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3758314-adjustbusy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AdjustBusy",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3758314-adjustbusy"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3758315-configurereport": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConfigureReport"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3758315-configurereport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConfigureReport",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3758315-configurereport"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3758316-copyname": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "CopyName"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3758316-copyname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopyName",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3758316-copyname"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3758317-copysystemstatenotificationservi": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "CopySystemStateNotificationService"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3758317-copysystemstatenotificationservi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopySystemStateNotificationService",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3758317-copysystemstatenotificationservi"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3758318-coreanalyticssendevent": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "CoreAnalyticsSendEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3758318-coreanalyticssendevent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CoreAnalyticsSendEvent",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3758318-coreanalyticssendevent"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3758319-createdefaultdispatchqueue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreateDefaultDispatchQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3758319-createdefaultdispatchqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateDefaultDispatchQueue",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3758319-createdefaultdispatchqueue"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3758320-getbusystate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetBusyState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3758320-getbusystate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetBusyState",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3758320-getbusystate"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3758321-removeproperty": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "RemoveProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3758321-removeproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RemoveProperty",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3758321-removeproperty"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3758322-setlegend": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetLegend"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3758322-setlegend",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetLegend",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3758322-setlegend"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3758323-statenotificationitemcopy": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "StateNotificationItemCopy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3758323-statenotificationitemcopy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StateNotificationItemCopy",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3758323-statenotificationitemcopy"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3758324-statenotificationitemcreate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "StateNotificationItemCreate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3758324-statenotificationitemcreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StateNotificationItemCreate",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3758324-statenotificationitemcreate"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3758325-statenotificationitemset": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "StateNotificationItemSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3758325-statenotificationitemset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StateNotificationItemSet",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3758325-statenotificationitemset"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3758326-stringfromreturn": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "StringFromReturn"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3758326-stringfromreturn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StringFromReturn",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3758326-stringfromreturn"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3758327-updatereport": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateReport"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3758327-updatereport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UpdateReport",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3758327-updatereport"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/4057233-joinpmtree": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "JoinPMTree"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/4057233-joinpmtree",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JoinPMTree",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/4057233-joinpmtree"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/4488185-setpoweroverride": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetPowerOverride"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/4488185-setpoweroverride",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetPowerOverride",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/4488185-setpoweroverride"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservicename": {
+      "abstract": [
+        {
+          "text": "A string type for setting the name of the service in the system's registry. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservicename",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOServiceName",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservicename"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osobject": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/driverkit/osobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180692-changepowerstate": {
+      "abstract": [
+        {
+          "text": "Changes the device's power state to the specified level.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChangePowerState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180692-changepowerstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ChangePowerState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180692-changepowerstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180694-copyproperties": {
+      "abstract": [
+        {
+          "text": "Returns the registry properties associated with the current service. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "CopyProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180694-copyproperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopyProperties",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180694-copyproperties"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180698-getregistryentryid": {
+      "abstract": [
+        {
+          "text": "Returns the registry ID for the current service. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetRegistryEntryID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180698-getregistryentryid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetRegistryEntryID",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180698-getregistryentryid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180701-registerservice": {
+      "abstract": [
+        {
+          "text": "Starts the registration process for the service and performs any additional matching.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "RegisterService"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180701-registerservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RegisterService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180701-registerservice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180704-setpowerstate": {
+      "abstract": [
+        {
+          "text": "Updates the service in response to power-related changes for a provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetPowerState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180704-setpowerstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetPowerState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180704-setpowerstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start": {
+      "abstract": [
+        {
+          "text": "Starts the current service and associates it with the specified provider.  ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "Start"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Start",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180710-start"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180713-stop": {
+      "abstract": [
+        {
+          "text": "Stops the service associated with the specified provider. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "Stop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180713-stop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Stop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180713-stop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180716-free": {
+      "abstract": [
+        {
+          "text": "Performs any final cleanup for the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180716-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180716-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180717-init": {
+      "abstract": [
+        {
+          "text": "Handles the basic initialization of the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180717-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180717-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3538562-createkernelclassmatchingdiction": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreateKernelClassMatchingDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3538562-createkernelclassmatchingdiction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateKernelClassMatchingDictionary",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3538562-createkernelclassmatchingdiction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3538563-createkernelclassmatchingdiction": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreateKernelClassMatchingDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3538563-createkernelclassmatchingdiction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateKernelClassMatchingDictionary",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3538563-createkernelclassmatchingdiction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3538564-createnamematchingdictionary": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreateNameMatchingDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3538564-createnamematchingdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateNameMatchingDictionary",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3538564-createnamematchingdictionary"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3538565-createnamematchingdictionary": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreateNameMatchingDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3538565-createnamematchingdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateNameMatchingDictionary",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3538565-createnamematchingdictionary"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3538566-createpropertymatchingdictionary": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreatePropertyMatchingDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3538566-createpropertymatchingdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreatePropertyMatchingDictionary",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3538566-createpropertymatchingdictionary"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3538567-createpropertymatchingdictionary": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreatePropertyMatchingDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3538567-createpropertymatchingdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreatePropertyMatchingDictionary",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3538567-createpropertymatchingdictionary"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3538568-createuserclassmatchingdictionar": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreateUserClassMatchingDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3538568-createuserclassmatchingdictionar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateUserClassMatchingDictionary",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3538568-createuserclassmatchingdictionar"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3538569-createuserclassmatchingdictionar": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreateUserClassMatchingDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3538569-createuserclassmatchingdictionar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateUserClassMatchingDictionary",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3538569-createuserclassmatchingdictionar"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3753479-getprovider": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3753479-getprovider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetProvider",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3753479-getprovider"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit": {
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "HIDDriverKit",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit": {
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "NetworkingDriverKit",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit"
+    },
+    "doc://com.apple.serialdriverkit/documentation/SerialDriverKit": {
+      "identifier": "doc://com.apple.serialdriverkit/documentation/SerialDriverKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "SerialDriverKit",
+      "type": "topic",
+      "url": "/documentation/serialdriverkit"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit": {
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "USBDriverKit",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface": {
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUSBHostInterface",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostinterface"
+    },
+    "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit": {
+      "identifier": "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "USBSerialDriverKit",
+      "type": "topic",
+      "url": "/documentation/usbserialdriverkit"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/osobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk",
+        "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions"
+      ],
+      "title": "Services"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3458180",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice/3180717-init",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/3180713-stop",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/3180716-free"
+      ],
+      "kind": "taskGroup",
+      "title": "Running the Service"
+    },
+    {
+      "anchor": "3458178",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice/3180701-registerservice",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3325585-setname",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/3180698-getregistryentryid",
+        "doc://com.apple.documentation/documentation/driverkit/ioservicename"
+      ],
+      "kind": "taskGroup",
+      "title": "Registering the Service with IOKit"
+    },
+    {
+      "anchor": "3458181",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice/3180694-copyproperties",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3180707-setproperties",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3325583-searchproperty",
+        "doc://com.apple.documentation/documentation/driverkit/iopropertyname",
+        "doc://com.apple.documentation/documentation/driverkit/ioregistryplanename",
+        "doc://com.apple.documentation/documentation/driverkit/3325572-search_options"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing the Registry Properties"
+    },
+    {
+      "anchor": "3458176",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3433736-setdispatchqueue",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3433735-copydispatchqueue"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring Additional Dispatch Queues"
+    },
+    {
+      "anchor": "3458177",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice/3180704-setpowerstate",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/3180692-changepowerstate",
+        "doc://com.apple.documentation/documentation/driverkit/3325571-service_power_capabilities"
+      ],
+      "kind": "taskGroup",
+      "title": "Responding to Power-Level Changes"
+    },
+    {
+      "anchor": "3458179",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3325581-newuserclient",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3325579-create"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a New Service"
+    },
+    {
+      "anchor": "3538912",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3758314-adjustbusy",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3728211-clientcrashed",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3758315-configurereport",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3758316-copyname",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3538741-copyproviderproperties",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3758317-copysystemstatenotificationservi",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3758318-coreanalyticssendevent",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3758319-createdefaultdispatchqueue",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3758320-getbusystate",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/3753479-getprovider",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/4057233-joinpmtree",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3758321-removeproperty",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3689565-requiremaxbusstall",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3758322-setlegend",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/4488185-setpoweroverride",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3758323-statenotificationitemcopy",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3758324-statenotificationitemcreate",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3758325-statenotificationitemset",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3685162-stop_async",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3758326-stringfromreturn",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3538742-terminate",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice/3758327-updatereport"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "3538913",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice/3538562-createkernelclassmatchingdiction",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/3538563-createkernelclassmatchingdiction",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/3538564-createnamematchingdictionary",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/3538565-createnamematchingdictionary",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/3538566-createpropertymatchingdictionary",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/3538567-createpropertymatchingdictionary",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/3538568-createuserclassmatchingdictionar",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/3538569-createuserclassmatchingdictionar"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/driverkit/ioservice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1984 @@
+{
+  "abstract": [
+    {
+      "text": "Inspect your app to isolate bugs, locate crashes, identify excess system-resource usage, visualize memory bugs, and investigate problems in its appearance.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-and-resolving-bugs-in-your-running-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Diagnosing and resolving bugs in your running app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unit testing determines whether your code delivers results that meet your expectations, but it doesn’t explain the cause when it doesn’t. To diagnose an error, attach the debugger, reproduce the error, and then narrow down its root cause by inspecting your variables at key points in your code while the app is running with breakpoints. If you configure a scheme’s run action for debugging by using the Debug executable checkbox in Info settings, the app will attach to the debugger automatically when the app uses the scheme. To attach the debugger to a process that is already running, choose Debug → Attach to Process, and select your app’s process from the list. Follow this same process to diagnose and resolve errors in your code, crashes, memory leaks, and layout problems.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Pause-the-app-to-inspect-variables-and-isolate-bugs",
+          "level": 3,
+          "text": "Pause the app to inspect variables and isolate bugs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To fix a bug, you first need to understand what is causing it. To narrow down",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the cause of a bug, develop a set of steps to reliably reproduce it:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Determine where the bug happens in your source code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pause your app with a breakpoint in your source code before",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the point at which you believe the bug occurs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Look at your variables and confirm they have the values you expect. If they don’t,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "begin again with step 1.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Step through your code and watch your variables change. Note where your variables",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "have unexpected values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Analyze your code to determine a fix.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After determining a potential fix for the bug, confirm the diagnosis by changing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your code and retesting to reproduce it. If the change addresses the problem, you’ve",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "resolved the bug. If your change doesn’t resolve it, reconsider where the bug might",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "be occurring, and repeat the steps to isolate and fix it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on setting breakpoints and inspecting variables, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/setting-breakpoints-to-pause-your-running-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/stepping-through-code-and-inspecting-variables-to-isolate-bugs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Locate-crashes-exceptions-and-runtime-issues",
+          "level": 3,
+          "text": "Locate crashes, exceptions, and runtime issues",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app experiences a crash, exception, or runtime issue, it can be challenging",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to pinpoint the code causing the problem because the stack trace for the crash doesn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "always point to the line of code that causes the crash. Use the rubric below to identify",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the problem characteristics and then set the correct type of breakpoint:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A crash that stops at ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "main",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or highlights ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AppDelegate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is frequently an Objective-C",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "exception.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A crash that is the result of a runtime issue also stops at ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "main",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or highlights",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AppDelegate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and may have a message similar to: “Thread 8: EXC_BAD_INSTRUCTION",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(code=…)”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A crash that stops at an uncaught or unhandled Swift error displays a fatal error",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "message and indicates a Swift error.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a breakpoint to your code in a location based on problem characteristics, then when your app stops at the breakpoint, check the state of the code execution. For more information on setting breakpoints and identifying crashes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/setting-breakpoints-to-pause-your-running-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Your Swift code can receive an Objective-C exception when it uses code from",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "a module that uses Objective-C.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Inspect-variables-and-execution-sequence-without-pausing",
+          "level": 3,
+          "text": "Inspect variables and execution sequence without pausing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you develop code, it’s helpful to log actions and variable values so you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "understand how your code runs and what values your variables have at different points",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your app. This is especially true when you develop ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "concurrent code",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", or code that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "executes simultaneously across multiple queues or threads, because bugs can be intermittent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and difficult to reproduce. Often, you reproduce a bug in normal execution, but not",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when stepping through the debugger, because the timing is different between normal execution",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and debugging. The debugger provides tools to inspect variables",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "without pausing and disturbing the timing of your concurrent code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Developers commonly add ",
+              "type": "text"
+            },
+            {
+              "code": "print",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "NSLog",
+              "type": "codeVoice"
+            },
+            {
+              "text": " statements to see variable values. While",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this technique works, it adds extra code that isn’t useful after you finish development,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and leaves your app with a noisy console that makes diagnosing subsequent bugs more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "difficult. Instead, use breakpoint actions to know when events in your app take place,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and inspect variable values without pausing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine whether your code executes with minimal effect to timing, use a breakpoint",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "action to play a sound and continue executing. If the debugger reaches the breakpoint",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when you run the app, it plays the sound and confirms execution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To log a variable value to the console without pausing, add a breakpoint with a Debugger",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Command action using ",
+              "type": "text"
+            },
+            {
+              "code": "po",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to print out the evaluation of an object, or ",
+              "type": "text"
+            },
+            {
+              "code": "v",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to print",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the value of a variable to the console. Select the Automatically continue after",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "evaluating actions option for the breakpoint to prevent pausing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "diagnosing-and-resolving-bugs-in-your-running-app-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To log custom text to the console and add context to variable values, add a breakpoint",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with a Log Message action. Specify your custom text, and include expressions, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "breakpoint name, or the breakpoint hit count to provide more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Because ",
+                  "type": "text"
+                },
+                {
+                  "code": "po",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " compiles code dynamically to evaluate expressions, it takes more",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "time to evaluate your variable and log it to the console. To reduce timing issues,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "use ",
+                  "type": "text"
+                },
+                {
+                  "code": "v",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to log variable values instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use other breakpoint actions to execute an AppleScript or a shell script, or to capture",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a GPU frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on inspecting variables, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/setting-breakpoints-to-pause-your-running-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/stepping-through-code-and-inspecting-variables-to-isolate-bugs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-potential-overuse-of-CPU-and-memory",
+          "level": 3,
+          "text": "Identify potential overuse of CPU and memory",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An easily overlooked and common problem in development and testing is the overuse of CPU and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "memory. Xcode’s debugger provides gauges in the Debug navigator to help investigate potential problems. Monitor the gauges while",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you’re testing your app to uncover unusual usage. Click a gauge for a more detailed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "diagnosing-and-resolving-bugs-in-your-running-app-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The CPU gauge shows the amount of CPU the app requires to process instructions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "over time. When your app is drawing the user interface, processing data it retrieves",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from the network, or performing calculations, it‘s normal to see CPU usage increase",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to fairly high numbers for a short period of time. When those tasks are",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "complete and your app is idle and waiting for the user to perform an action, CPU",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "usage should be zero or very low. Do additional analysis if CPU usage is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Persistent at a level above zero when the app appears to be idle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Over 100% for more than very short periods of time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Very high and you see hitches in your user interface.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on improving performance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/improving-your-app-s-performance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Memory gauge shows how much memory your app uses over time. It starts at a fairly",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "small number, less than 10 MB, when you first launch your app, and then increases",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as people navigate through your user interface. It may also increase if you fetch,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "process, and store data from the network, or perform complex calculations. It then",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "decreases when processing is complete. Watch the gauge as you navigate through your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app, and note when memory usage goes up and down. Memory usage increases when you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "present modal views or add a view to a navigation controller, and decreases when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you dismiss or navigate away from those views. If your usage continues to increase",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and doesn’t ever decrease, investigate whether you have a memory leak or abandoned",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "memory. For more information on reducing memory use and resolving memory leaks, see the section below ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-and-resolving-bugs-in-your-running-app#Visualize-and-diagnose-increasing-memory-usage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-memory-use",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Detect-high-disk-access-and-network-use",
+          "level": 3,
+          "text": "Detect high disk access and network use",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Be aware of issues resulting from frequent access to resources on disk and over the network. You can monitor these resources using the gauges in Xcode’s debugger as well. The Disk I/O gauge shows how much data your app reads and writes from disk over time. The gauge shows if you:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Store data that the user generates in your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Store data in user preferences.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fetch data from the network and store it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Read data from your app bundle or the app’s directories.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Storing and reading data frequently from disk uses more power than doing so from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "memory, and it adds wear and tear to the user’s device. To know whether disk usage",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is unusual, you need to understand the size of data you’re storing and reading,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and compare that to what you observe in the gauge.  For example, if you download",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and store a 5 MB graphic file for display in a view that you use frequently and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it writes over 50 MB of data, investigate whether the remote image changes frequently,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or whether you need to configure networking to prevent redownloading the same",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "image. If you’re reading more data from disk than you expect, investigate whether",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a memory-caching solution might help, or whether you’re initiating a data read from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the wrong point in your app or view life cycle, and reading it too often. For more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information on reducing disk writes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-disk-writes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Network I/O gauge shows how much data your app reads from and writes to the network",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "over time. If your app only uses local resources, your app may not read or write",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "any data from the network. Communicating data over the network uses energy and reduces",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the device’s battery life, so minimize data transfer wherever possible. To understand",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app’s network usage, watch the Network I/O gauge when your app is sending or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "receiving data from the network. For example, if you implement a cache system for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "downloaded images and your network usage increases when accessing them, confirm",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that your cache settings are correct in the app and on the server. If you’re uploading",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "user-generated content and frequent upload failures during poor networking conditions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "lead to high network usage, implement a system to recover and restart failed uploads",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at the point of failure, rather than reuploading the entire file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Visualize-and-diagnose-increasing-memory-usage",
+          "level": 3,
+          "text": "Visualize and diagnose increasing memory usage",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Diagnose the cause of memory leaks and abandoned memory with the memory graph. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "observable symptom of a memory leak is memory usage that continues to increase over",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "time, even when conditions in the app indicate that memory usage is decreasing.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A memory leak can occur in a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "retain cycle",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which is when objects maintain strong",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "references to each other, but the app no longer references them. These objects remain",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in memory and the app can’t remove them. ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Abandoned memory",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " occurs when you create",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "objects and your code still references them, but your app no longer needs them or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "uses them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "diagnosing-and-resolving-bugs-in-your-running-app-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see the memory graph in the debugger, pause your app at a breakpoint and click",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Debug Memory Graph button in the debug bar. Alternatively, click the Debug Memory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Graph button when the app is running to pause the app and show the memory graph.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The memory graph view replaces the stack trace in the Debug navigator with a list",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of types, organized by library, each with a list of instances called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "nodes",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". Select",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a node to view its memory graph.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A node’s memory graph shows all the memory references to that node, and highlights",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "strong references. Control-click any node in the graph to perform more actions, such",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as accessing Quick Look or printing the description to the console. Choose Focus",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on Node to show the graph for the selected node. Click a reference to see its details,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including the name of the variable, the type of reference, and the source and destination",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "objects in memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "diagnosing-and-resolving-bugs-in-your-running-app-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To resolve a memory leak for a retain cycle:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Observe the Memory gauge while you navigate the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Note when memory usage increases when your app instantiates an object, but doesn’t",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "decrease when you expect the system to deallocate the object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Examine the memory graph to see if there are an unexpected number of instances",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of the object or inappropriate strong references to it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If there is a strong reference to the object, Control-click the node with the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "strong reference and choose Focus on Node to view its graph. If the node also has",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "a strong reference from the object, this is a retain cycle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolve the retain cycle by changing one side of the relationship to use a weak",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "declaration for the reference to the other object, or remove the reference altogether",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "by removing any dependencies on the other object. Retest to confirm that the change fixes",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the issue.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To resolve abandoned memory issues, identify the time in your app’s life cycle that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it no longer needs the abandoned object and remove any references to it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspect-and-resolve-appearance-and-layout-issues",
+          "level": 3,
+          "text": "Inspect and resolve appearance and layout issues",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some issues in the appearance or layout of your app only appear when you configure the system with a particular interface style, dynamic text size or when your app uses particular accessibility features. Use environmental overrides when targeting iOS, iPadOS, macOS, and tvOS apps to test your interface in these environments. To understand issues that involve the position or size of your view, you might need to inspect them within the context of views in other layers. Use the view debugger when targeting iOS, iPadOS, macOS, tvOS, and watchOS apps, which displays a 3D representation of the view hierarchy in layers, to help diagnose these issue. Entities within a visionOS app and their surroundings sometimes interact with each other in ways you don’t expect. Enable visualizations to represent coordinate axes, bounding boxes, and other information that is normally invisible, to help understand these interactions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on using these features to debug the appearance of your app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-in-the-appearance-of-your-running-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "diagnosing-and-resolving-bugs-in-your-running-app-1": {
+      "alt": "Xcode displaying a breakpoint with a debugger command action. The debugger command is “po indexPath”.",
+      "identifier": "diagnosing-and-resolving-bugs-in-your-running-app-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f6ac0431871e13b8fe9ede7c698b989b/diagnosing-and-resolving-bugs-in-your-running-app-1@2x.png"
+        }
+      ]
+    },
+    "diagnosing-and-resolving-bugs-in-your-running-app-2": {
+      "alt": "Xcode displaying the CPU, Memory, Disk, and Network gauges in the debug navigator for a running app.",
+      "identifier": "diagnosing-and-resolving-bugs-in-your-running-app-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0bd53b098c7e8d44c54160d4f318e68c/diagnosing-and-resolving-bugs-in-your-running-app-2@2x.png"
+        }
+      ]
+    },
+    "diagnosing-and-resolving-bugs-in-your-running-app-3": {
+      "alt": "The Xcode debugger toolbar for a running app, highlighting the Debug Memory Graph button.",
+      "identifier": "diagnosing-and-resolving-bugs-in-your-running-app-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/298aadf579ae724a68e5cb8051662624/diagnosing-and-resolving-bugs-in-your-running-app-3@2x.png"
+        }
+      ]
+    },
+    "diagnosing-and-resolving-bugs-in-your-running-app-4": {
+      "alt": "Xcode displaying the memory graph, with an instance of DetailViewController highlighted. The debug navigator shows there are seven instances of DetailViewController and seven instances of FruitDetailView. The graph shows that one instance of FruitDetailView has a strong reference to DetailViewController. The memory inspector shows details about the reference from FruitDetailView to DetailViewController.",
+      "identifier": "diagnosing-and-resolving-bugs-in-your-running-app-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6fb1a393aef960969e4b0f56c3fcc176/diagnosing-and-resolving-bugs-in-your-running-app-4@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-and-resolving-bugs-in-your-running-app#Visualize-and-diagnose-increasing-memory-usage": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-and-resolving-bugs-in-your-running-app#Visualize-and-diagnose-increasing-memory-usage",
+      "kind": "section",
+      "title": "Visualize and diagnose increasing memory usage",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-and-resolving-bugs-in-your-running-app#Visualize-and-diagnose-increasing-memory-usage"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-in-the-appearance-of-your-running-app": {
+      "abstract": [
+        {
+          "text": "Inspect your running app to investigate issues in the appearance and placement of the content it displays.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-in-the-appearance-of-your-running-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Diagnosing issues in the appearance of a running app",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-issues-in-the-appearance-of-your-running-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes": {
+      "abstract": [
+        {
+          "text": "Find patterns in crash reports that identify common problems, and investigate the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "issue based on the pattern.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Identifying the cause of common crashes",
+      "type": "topic",
+      "url": "/documentation/xcode/identifying-the-cause-of-common-crashes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reducing-disk-writes": {
+      "abstract": [
+        {
+          "text": "Improve your app’s responsiveness by optimizing how it writes data to permanent storage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-disk-writes",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing disk writes",
+      "type": "topic",
+      "url": "/documentation/xcode/reducing-disk-writes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-memory-use": {
+      "abstract": [
+        {
+          "text": "Improve your app’s performance by analyzing memory-use metrics and making changes",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to maximize memory efficiency.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-memory-use",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Reducing your app’s memory use",
+      "type": "topic",
+      "url": "/documentation/xcode/reducing-your-app-s-memory-use"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/stepping-through-code-and-inspecting-variables-to-isolate-bugs": {
+      "abstract": [
+        {
+          "text": "Find the cause of your bugs by watching variables change as you step through your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "source code in the debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/stepping-through-code-and-inspecting-variables-to-isolate-bugs",
+      "kind": "article",
+      "role": "article",
+      "title": "Stepping through code and inspecting variables to isolate bugs",
+      "type": "topic",
+      "url": "/documentation/xcode/stepping-through-code-and-inspecting-variables-to-isolate-bugs"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/improving-your-app-s-performance": {
+      "abstract": [
+        {
+          "text": "Model, measure, and boost the performance of your app by using a continuous-improvement cycle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/improving-your-app-s-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving your app’s performance",
+      "type": "topic",
+      "url": "/documentation/Xcode/improving-your-app-s-performance"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/setting-breakpoints-to-pause-your-running-app": {
+      "abstract": [
+        {
+          "text": "Specify where your app pauses when running the debugger to investigate bugs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/setting-breakpoints-to-pause-your-running-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting breakpoints to pause your running app",
+      "type": "topic",
+      "url": "/documentation/Xcode/setting-breakpoints-to-pause-your-running-app"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/stepping-through-code-and-inspecting-variables-to-isolate-bugs": {
+      "abstract": [
+        {
+          "text": "Find the cause of your bugs by watching variables change as you step through your source code in the debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/stepping-through-code-and-inspecting-variables-to-isolate-bugs",
+      "kind": "article",
+      "role": "article",
+      "title": "Stepping through code and inspecting variables to isolate bugs",
+      "type": "topic",
+      "url": "/documentation/Xcode/stepping-through-code-and-inspecting-variables-to-isolate-bugs"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": []
+}

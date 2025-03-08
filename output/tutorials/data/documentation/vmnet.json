@@ -1,0 +1,1572 @@
+{
+  "abstract": [
+    {
+      "text": "Connect with network interfaces to read and write packets on guest operating systems.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.vmnet/documentation/vmnet"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "vmnet",
+    "modules": [
+      {
+        "name": "vmnet"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.10",
+        "name": "macOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "vmnet"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vmnet framework is an API for virtual machines to read and write packets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The API allows a Guest OS interface to be in host mode or shared mode. Interfaces in host mode can communicate with the native host system and other interfaces running in host mode. In shared mode, the network interface can send and receive packets to the Internet, the native host, and other interfaces running in sharing mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For more information about virtualization technologies, see the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/hypervisor",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " framework.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Requirements",
+          "level": 3,
+          "text": "Requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vmnet framework has the following requirements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Entitlements",
+          "level": 4,
+          "text": "Entitlements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A sandboxed user space process must have the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.vm.networking",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement in order to use vmnet API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Architecture",
+          "level": 3,
+          "text": "Architecture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2557515",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The VM Network API provides support for an interface in the guest operating system. The API provides the MAC address and MTU that needs to be configured on the guest OS interface. The interface receives a private IPv4 address via DHCP. IPv4 traffic originating from the guest operating system must use the private IPv4 address. Packets sent from a different IPv4 address are dropped by the system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create a maximum of 32 interfaces with a limit of 4 per guest operating system. Each read/write call allows up to 200 packets to be read or written for a maximum of 256KB. Each packet written should be a complete ethernet frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.vm.networking": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the app manages virtual network interfaces without escalating privileges to the root user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.vm.networking",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.vm.networking",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.vm.networking"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor": {
+      "abstract": [
+        {
+          "text": "Build virtualization solutions on top of a lightweight hypervisor, without third-party kernel extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Hypervisor",
+      "type": "topic",
+      "url": "/documentation/hypervisor"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.vmnet/documentation/vmnet": {
+      "abstract": [
+        {
+          "text": "Connect with network interfaces to read and write packets on guest operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vmnet/documentation/vmnet",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "vmnet",
+      "type": "topic",
+      "url": "/documentation/vmnet"
+    },
+    "doc://com.apple.vmnet/documentation/vmnet/event_xpc_dictionary": {
+      "abstract": [
+        {
+          "text": "XPC dictionary keys used by the ",
+          "type": "text"
+        },
+        {
+          "code": "event",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value returned to the client in the ",
+          "type": "text"
+        },
+        {
+          "code": "handler",
+          "type": "codeVoice"
+        },
+        {
+          "text": " callback specified by the ",
+          "type": "text"
+        },
+        {
+          "code": "vmnet",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function that provides information about the callback event.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vmnet/documentation/vmnet/event_xpc_dictionary",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "event XPC Dictionary",
+      "type": "topic",
+      "url": "/documentation/vmnet/event_xpc_dictionary"
+    },
+    "doc://com.apple.vmnet/documentation/vmnet/interface_desc_xpc_dictionary_keys": {
+      "abstract": [
+        {
+          "text": "XPC dictionary keys supported by the ",
+          "type": "text"
+        },
+        {
+          "code": "interface_desc",
+          "type": "codeVoice"
+        },
+        {
+          "text": " parameter passed to the ",
+          "type": "text"
+        },
+        {
+          "code": "vmnet",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function to describe the parameters of the network interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vmnet/documentation/vmnet/interface_desc_xpc_dictionary_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "interface_desc XPC Dictionary Keys",
+      "type": "topic",
+      "url": "/documentation/vmnet/interface_desc_xpc_dictionary_keys"
+    },
+    "doc://com.apple.vmnet/documentation/vmnet/interface_event_t": {
+      "abstract": [
+        {
+          "text": "Interface event types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interface_event_t"
+        }
+      ],
+      "identifier": "doc://com.apple.vmnet/documentation/vmnet/interface_event_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "interface_event_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "interface_event_t",
+      "type": "topic",
+      "url": "/documentation/vmnet/interface_event_t"
+    },
+    "doc://com.apple.vmnet/documentation/vmnet/interface_param_xpc_dictionary_keys": {
+      "abstract": [
+        {
+          "text": "XPC dictionary keys used by the ",
+          "type": "text"
+        },
+        {
+          "code": "interface_param",
+          "type": "codeVoice"
+        },
+        {
+          "text": " argument returned by the completion handler of the ",
+          "type": "text"
+        },
+        {
+          "code": "vmnet",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function that describes the parameters that should be used to configure the network interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vmnet/documentation/vmnet/interface_param_xpc_dictionary_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "interface_param XPC Dictionary Keys",
+      "type": "topic",
+      "url": "/documentation/vmnet/interface_param_xpc_dictionary_keys"
+    },
+    "doc://com.apple.vmnet/documentation/vmnet/interface_ref": {
+      "abstract": [
+        {
+          "text": "A virtual network interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interface_ref"
+        }
+      ],
+      "identifier": "doc://com.apple.vmnet/documentation/vmnet/interface_ref",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "interface_ref"
+        }
+      ],
+      "role": "symbol",
+      "title": "interface_ref",
+      "type": "topic",
+      "url": "/documentation/vmnet/interface_ref"
+    },
+    "doc://com.apple.vmnet/documentation/vmnet/operating_modes_t": {
+      "abstract": [
+        {
+          "text": "The operating modes for an interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "operating_modes_t"
+        }
+      ],
+      "identifier": "doc://com.apple.vmnet/documentation/vmnet/operating_modes_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "operating_modes_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "operating_modes_t",
+      "type": "topic",
+      "url": "/documentation/vmnet/operating_modes_t"
+    },
+    "doc://com.apple.vmnet/documentation/vmnet/vmnet_constants": {
+      "abstract": [],
+      "identifier": "doc://com.apple.vmnet/documentation/vmnet/vmnet_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vmnet Constants",
+      "type": "topic",
+      "url": "/documentation/vmnet/vmnet_constants"
+    },
+    "doc://com.apple.vmnet/documentation/vmnet/vmnet_data_types": {
+      "abstract": [],
+      "identifier": "doc://com.apple.vmnet/documentation/vmnet/vmnet_data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vmnet Data Types",
+      "type": "topic",
+      "url": "/documentation/vmnet/vmnet_data_types"
+    },
+    "doc://com.apple.vmnet/documentation/vmnet/vmnet_enable_virtio_header_key-c.macro": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vmnet_enable_virtio_header_key"
+        }
+      ],
+      "identifier": "doc://com.apple.vmnet/documentation/vmnet/vmnet_enable_virtio_header_key-c.macro",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vmnet_enable_virtio_header_key",
+      "type": "topic",
+      "url": "/documentation/vmnet/vmnet_enable_virtio_header_key-c.macro"
+    },
+    "doc://com.apple.vmnet/documentation/vmnet/vmnet_enable_virtio_header_key-swift.var": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vmnet_enable_virtio_header_key"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.vmnet/documentation/vmnet/vmnet_enable_virtio_header_key-swift.var",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vmnet_enable_virtio_header_key"
+        }
+      ],
+      "role": "symbol",
+      "title": "vmnet_enable_virtio_header_key",
+      "type": "topic",
+      "url": "/documentation/vmnet/vmnet_enable_virtio_header_key-swift.var"
+    },
+    "doc://com.apple.vmnet/documentation/vmnet/vmnet_functions": {
+      "abstract": [],
+      "identifier": "doc://com.apple.vmnet/documentation/vmnet/vmnet_functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vmnet Functions",
+      "type": "topic",
+      "url": "/documentation/vmnet/vmnet_functions"
+    },
+    "doc://com.apple.vmnet/documentation/vmnet/vmnet_interface_set_event_callback(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Schedules a callback to be executed when events for the specified interface are received.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vmnet_interface_set_event_callback"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@interface_ref",
+          "text": "interface_ref"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@interface_event_t",
+          "text": "interface_event_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vmnet_interface_event_callback_t",
+          "text": "vmnet_interface_event_callback_t"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@vmnet_return_t",
+          "text": "vmnet_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.vmnet/documentation/vmnet/vmnet_interface_set_event_callback(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vmnet_interface_set_event_callback"
+        }
+      ],
+      "role": "symbol",
+      "title": "vmnet_interface_set_event_callback(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/vmnet/vmnet_interface_set_event_callback(_:_:_:_:)"
+    },
+    "doc://com.apple.vmnet/documentation/vmnet/vmnet_read(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Attempts to read a specified number of packets from an interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vmnet_read"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@interface_ref",
+          "text": "interface_ref"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vmpktdesc",
+          "text": "vmpktdesc"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@vmnet_return_t",
+          "text": "vmnet_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.vmnet/documentation/vmnet/vmnet_read(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vmnet_read"
+        }
+      ],
+      "role": "symbol",
+      "title": "vmnet_read(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/vmnet/vmnet_read(_:_:_:)"
+    },
+    "doc://com.apple.vmnet/documentation/vmnet/vmnet_read_max_packets_key": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vmnet_read_max_packets_key"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.vmnet/documentation/vmnet/vmnet_read_max_packets_key",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vmnet_read_max_packets_key"
+        }
+      ],
+      "role": "symbol",
+      "title": "vmnet_read_max_packets_key",
+      "type": "topic",
+      "url": "/documentation/vmnet/vmnet_read_max_packets_key"
+    },
+    "doc://com.apple.vmnet/documentation/vmnet/vmnet_return_t": {
+      "abstract": [
+        {
+          "text": "Values returned by functions in the vmnet Framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vmnet_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.vmnet/documentation/vmnet/vmnet_return_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vmnet_return_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "vmnet_return_t",
+      "type": "topic",
+      "url": "/documentation/vmnet/vmnet_return_t"
+    },
+    "doc://com.apple.vmnet/documentation/vmnet/vmnet_start_interface(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Starts host or shared mode on an interface with a specified configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vmnet_start_interface"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@xpc_object_t",
+          "text": "xpc_object_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vmnet_start_interface_completion_handler_t",
+          "text": "vmnet_start_interface_completion_handler_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@interface_ref",
+          "text": "interface_ref"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.vmnet/documentation/vmnet/vmnet_start_interface(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vmnet_start_interface"
+        }
+      ],
+      "role": "symbol",
+      "title": "vmnet_start_interface(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/vmnet/vmnet_start_interface(_:_:_:)"
+    },
+    "doc://com.apple.vmnet/documentation/vmnet/vmnet_stop_interface(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Stops the interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vmnet_stop_interface"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@interface_ref",
+          "text": "interface_ref"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vmnet_interface_completion_handler_t",
+          "text": "vmnet_interface_completion_handler_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@vmnet_return_t",
+          "text": "vmnet_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.vmnet/documentation/vmnet/vmnet_stop_interface(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vmnet_stop_interface"
+        }
+      ],
+      "role": "symbol",
+      "title": "vmnet_stop_interface(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/vmnet/vmnet_stop_interface(_:_:_:)"
+    },
+    "doc://com.apple.vmnet/documentation/vmnet/vmnet_write(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Attempts to write specified packets to an interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vmnet_write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@interface_ref",
+          "text": "interface_ref"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vmpktdesc",
+          "text": "vmpktdesc"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@vmnet_return_t",
+          "text": "vmnet_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.vmnet/documentation/vmnet/vmnet_write(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vmnet_write"
+        }
+      ],
+      "role": "symbol",
+      "title": "vmnet_write(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/vmnet/vmnet_write(_:_:_:)"
+    },
+    "doc://com.apple.vmnet/documentation/vmnet/vmnet_write_max_packets_key": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vmnet_write_max_packets_key"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.vmnet/documentation/vmnet/vmnet_write_max_packets_key",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vmnet_write_max_packets_key"
+        }
+      ],
+      "role": "symbol",
+      "title": "vmnet_write_max_packets_key",
+      "type": "topic",
+      "url": "/documentation/vmnet/vmnet_write_max_packets_key"
+    },
+    "doc://com.apple.vmnet/documentation/vmnet/vmpktdesc": {
+      "abstract": [
+        {
+          "text": "Describes a packet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vmpktdesc"
+        }
+      ],
+      "identifier": "doc://com.apple.vmnet/documentation/vmnet/vmpktdesc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vmpktdesc"
+        }
+      ],
+      "role": "symbol",
+      "title": "vmpktdesc",
+      "type": "topic",
+      "url": "/documentation/vmnet/vmpktdesc"
+    },
+    "media-2557515": {
+      "alt": null,
+      "identifier": "media-2557515",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f44bf3214239dd313122f60d6de7c4a8/media-2557515@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.vm.networking"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Starting-and-Stopping-Interfaces",
+      "identifiers": [
+        "doc://com.apple.vmnet/documentation/vmnet/vmnet_start_interface(_:_:_:)",
+        "doc://com.apple.vmnet/documentation/vmnet/vmnet_interface_set_event_callback(_:_:_:_:)",
+        "doc://com.apple.vmnet/documentation/vmnet/vmnet_stop_interface(_:_:_:)"
+      ],
+      "title": "Starting and Stopping Interfaces"
+    },
+    {
+      "anchor": "Reading-and-Writing-Packets",
+      "identifiers": [
+        "doc://com.apple.vmnet/documentation/vmnet/vmnet_read(_:_:_:)",
+        "doc://com.apple.vmnet/documentation/vmnet/vmnet_write(_:_:_:)"
+      ],
+      "title": "Reading and Writing Packets"
+    },
+    {
+      "anchor": "Data-Types",
+      "identifiers": [
+        "doc://com.apple.vmnet/documentation/vmnet/vmnet_return_t",
+        "doc://com.apple.vmnet/documentation/vmnet/vmpktdesc",
+        "doc://com.apple.vmnet/documentation/vmnet/interface_ref",
+        "doc://com.apple.vmnet/documentation/vmnet/interface_event_t",
+        "doc://com.apple.vmnet/documentation/vmnet/operating_modes_t"
+      ],
+      "title": "Data Types"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.vmnet/documentation/vmnet/interface_desc_xpc_dictionary_keys",
+        "doc://com.apple.vmnet/documentation/vmnet/interface_param_xpc_dictionary_keys",
+        "doc://com.apple.vmnet/documentation/vmnet/event_xpc_dictionary"
+      ],
+      "title": "Constants"
+    },
+    {
+      "anchor": "Reference",
+      "identifiers": [
+        "doc://com.apple.vmnet/documentation/vmnet/vmnet_constants",
+        "doc://com.apple.vmnet/documentation/vmnet/vmnet_functions",
+        "doc://com.apple.vmnet/documentation/vmnet/vmnet_data_types"
+      ],
+      "title": "Reference"
+    },
+    {
+      "anchor": "Variables",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.vmnet/documentation/vmnet/vmnet_enable_virtio_header_key-swift.var",
+        "doc://com.apple.vmnet/documentation/vmnet/vmnet_read_max_packets_key",
+        "doc://com.apple.vmnet/documentation/vmnet/vmnet_write_max_packets_key"
+      ],
+      "title": "Variables"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.vm.networking"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Starting-and-Stopping-Interfaces",
+              "identifiers": [
+                "doc://com.apple.vmnet/documentation/vmnet/vmnet_start_interface(_:_:_:)",
+                "doc://com.apple.vmnet/documentation/vmnet/vmnet_interface_set_event_callback(_:_:_:_:)",
+                "doc://com.apple.vmnet/documentation/vmnet/vmnet_stop_interface(_:_:_:)"
+              ],
+              "title": "Starting and Stopping Interfaces"
+            },
+            {
+              "anchor": "Reading-and-Writing-Packets",
+              "identifiers": [
+                "doc://com.apple.vmnet/documentation/vmnet/vmnet_read(_:_:_:)",
+                "doc://com.apple.vmnet/documentation/vmnet/vmnet_write(_:_:_:)"
+              ],
+              "title": "Reading and Writing Packets"
+            },
+            {
+              "anchor": "Data-Types",
+              "identifiers": [
+                "doc://com.apple.vmnet/documentation/vmnet/vmnet_return_t",
+                "doc://com.apple.vmnet/documentation/vmnet/vmpktdesc",
+                "doc://com.apple.vmnet/documentation/vmnet/interface_ref",
+                "doc://com.apple.vmnet/documentation/vmnet/interface_event_t",
+                "doc://com.apple.vmnet/documentation/vmnet/operating_modes_t"
+              ],
+              "title": "Data Types"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.vmnet/documentation/vmnet/interface_desc_xpc_dictionary_keys",
+                "doc://com.apple.vmnet/documentation/vmnet/interface_param_xpc_dictionary_keys",
+                "doc://com.apple.vmnet/documentation/vmnet/event_xpc_dictionary"
+              ],
+              "title": "Constants"
+            },
+            {
+              "anchor": "Reference",
+              "identifiers": [
+                "doc://com.apple.vmnet/documentation/vmnet/vmnet_constants",
+                "doc://com.apple.vmnet/documentation/vmnet/vmnet_functions",
+                "doc://com.apple.vmnet/documentation/vmnet/vmnet_data_types"
+              ],
+              "title": "Reference"
+            },
+            {
+              "anchor": "Variables",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.vmnet/documentation/vmnet/vmnet_enable_virtio_header_key-swift.var",
+                "doc://com.apple.vmnet/documentation/vmnet/vmnet_read_max_packets_key",
+                "doc://com.apple.vmnet/documentation/vmnet/vmnet_write_max_packets_key"
+              ],
+              "title": "Variables"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.vmnet/documentation/vmnet/vmnet_enable_virtio_header_key-c.macro"
+              ],
+              "title": "Macros"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1interface_event_t/title",
+          "value": "interface_event_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1interface_event_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "interface_event_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1interface_event_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "interface_event_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1vmnet_enable_virtio_header_key-swift.var/title",
+          "value": "vmnet_enable_virtio_header_key"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1vmnet_enable_virtio_header_key-swift.var/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vmnet_enable_virtio_header_key"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1interface_ref/title",
+          "value": "interface_ref"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1interface_ref/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "interface_ref"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1interface_ref/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "interface_ref"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1vmnet_start_interface(_:_:_:)/title",
+          "value": "vmnet_start_interface"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1vmnet_start_interface(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vmnet_start_interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1operating_modes_t/title",
+          "value": "operating_modes_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1operating_modes_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "operating_modes_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1operating_modes_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "operating_modes_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1vmnet_write_max_packets_key/title",
+          "value": "vmnet_write_max_packets_key"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1vmnet_write_max_packets_key/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vmnet_write_max_packets_key"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1vmnet_write(_:_:_:)/title",
+          "value": "vmnet_write"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1vmnet_write(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vmnet_write"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1vmnet_stop_interface(_:_:_:)/title",
+          "value": "vmnet_stop_interface"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1vmnet_stop_interface(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vmnet_stop_interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1vmnet_return_t/title",
+          "value": "vmnet_return_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1vmnet_return_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vmnet_return_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1vmnet_return_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vmnet_return_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1vmnet_read(_:_:_:)/title",
+          "value": "vmnet_read"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1vmnet_read(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vmnet_read"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1vmnet_interface_set_event_callback(_:_:_:_:)/title",
+          "value": "vmnet_interface_set_event_callback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1vmnet_interface_set_event_callback(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vmnet_interface_set_event_callback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1vmpktdesc/title",
+          "value": "vmpktdesc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1vmpktdesc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vmpktdesc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1vmpktdesc/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vmpktdesc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1vmnet_read_max_packets_key/title",
+          "value": "vmnet_read_max_packets_key"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vmnet~1documentation~1vmnet~1vmnet_read_max_packets_key/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vmnet_read_max_packets_key"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/vmnet"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/vmnet"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

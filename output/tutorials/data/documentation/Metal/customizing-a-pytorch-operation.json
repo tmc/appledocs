@@ -1,0 +1,379 @@
+{
+  "abstract": [
+    {
+      "text": "Implement a custom operation in PyTorch that uses Metal kernels to improve performance.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/customizing-a-pytorch-operation"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Customizing a PyTorch operation"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC23 session 10050: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc23/10050",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the sample code project:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Follow the instructions in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/metal/pytorch/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Install PyTorch nightly (Python 3.7 or later is required).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "pip3 install --pre torch --index-url https://download.pytorch.org/whl/nightly/cpu"
+                  ],
+                  "syntax": "shell",
+                  "type": "codeListing"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Install Ninja",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "pip3 install Ninja"
+                  ],
+                  "syntax": "shell",
+                  "type": "codeListing"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run the sample.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "python3 run_sample.py"
+                  ],
+                  "syntax": "shell",
+                  "type": "codeListing"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "6b82559cf644/CustomizingAPyTorchOperation.zip": {
+      "checksum": "6b82559cf644aa458b713523ff3143a205a62358194e67f2e51f9c47c4900a35f2a8680b4225a63a732dd8f51f9a9e2d3290a8e81d4f4b7fd9877fe848ab65de",
+      "identifier": "6b82559cf644/CustomizingAPyTorchOperation.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/6b82559cf644/CustomizingAPyTorchOperation.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/customizing-a-tensorflow-operation": {
+      "abstract": [
+        {
+          "text": "Implement a custom operation that uses Metal kernels to accelerate neural-network training performance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/customizing-a-tensorflow-operation",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Customizing a TensorFlow operation",
+      "type": "topic",
+      "url": "/documentation/metal/customizing-a-tensorflow-operation"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/performing-calculations-on-a-gpu": {
+      "abstract": [
+        {
+          "text": "Use Metal to find GPUs and perform calculations on them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/performing-calculations-on-a-gpu",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Performing Calculations on a GPU",
+      "type": "topic",
+      "url": "/documentation/metal/performing-calculations-on-a-gpu"
+    },
+    "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-compute-processing": {
+      "abstract": [
+        {
+          "text": "Switch dynamically between multiple GPUs to efficiently execute a compute-intensive simulation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-compute-processing",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Selecting Device Objects for Compute Processing",
+      "type": "topic",
+      "url": "/documentation/metal/selecting-device-objects-for-compute-processing"
+    },
+    "https://developer.apple.com/metal/pytorch/": {
+      "identifier": "https://developer.apple.com/metal/pytorch/",
+      "title": "Accelerated PyTorch training on Mac",
+      "titleInlineContent": [
+        {
+          "text": "Accelerated PyTorch training on Mac",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/metal/pytorch/"
+    },
+    "https://developer.apple.com/wwdc23/10050": {
+      "identifier": "https://developer.apple.com/wwdc23/10050",
+      "title": "Optimize machine learning for Metal apps",
+      "titleInlineContent": [
+        {
+          "text": "Optimize machine learning for Metal apps",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc23/10050"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "6b82559cf644/CustomizingAPyTorchOperation.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Compute-Workflows",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/performing-calculations-on-a-gpu",
+        "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-compute-processing",
+        "doc://com.apple.metal/documentation/Metal/customizing-a-tensorflow-operation"
+      ],
+      "title": "Compute Workflows"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Compute-Workflows",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/performing-calculations-on-a-gpu",
+                "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-compute-processing",
+                "doc://com.apple.metal/documentation/Metal/customizing-a-tensorflow-operation"
+              ],
+              "title": "Compute Workflows"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/customizing-a-pytorch-operation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/customizing-a-pytorch-operation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

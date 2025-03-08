@@ -1,0 +1,1622 @@
+{
+  "abstract": [
+    {
+      "text": "The component values defining a color in a specific color space.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/cicolor"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1437972,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CIColor",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "CIColor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "CIColor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CIColor"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects in conjunction with other Core Image classes, such as  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to take advantage of the built-in Core Image filters when processing images.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A color space defines a one-, two-, three-, or four-dimensional environment whose color components represent intensity values. A color component is also referred to as a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "color channel",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". An RGB color space, for example, is a three-dimensional color space whose stimuli are the red, green, and blue intensities that make up a given color. Regardless of the color space, in Core Image, color values range from ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", with ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " representing an absence of that component (0 percent) and ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " representing 100 percent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Colors also have an alpha component, which represents the opacity of the color, with ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " meaning completely transparent and ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " meaning completely opaque. If a color does not have an explicit alpha component, Core Image paints the color as if the alpha component equals ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You always provide unpremultiplied color components to Core Image, and Core Image then provides unpremultiplied color components to you. Core Image premultiplies each color component with the alpha value in order to optimize calculations. For more information on premultiplied alpha values, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1720743",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1720743": {
+      "identifier": "devLink-1720743",
+      "title": "Core Image Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_intro/ci_intro.html#//apple_ref/doc/uid/TP30001185"
+    },
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor": {
+      "abstract": [
+        {
+          "text": "The component values defining a color in a specific color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIColor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIColor",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1437607-green": {
+      "abstract": [
+        {
+          "text": "The unpremultiplied green component of the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "green"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1437607-green",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "green",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1437607-green"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1437821-init": {
+      "abstract": [
+        {
+          "text": "Initializes a Core Image color object with a Core Graphics color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "cgColor"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColor)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1437821-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cgColor:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1437821-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1437862-components": {
+      "abstract": [
+        {
+          "text": "The color components of the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "components"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<CGFloat>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1437862-components",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "components",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1437862-components"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1437910-stringrepresentation": {
+      "abstract": [
+        {
+          "text": "A formatted string that specifies the components of the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1437910-stringrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stringRepresentation",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1437910-stringrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1437917-colorspace": {
+      "abstract": [
+        {
+          "text": "The Quartz 2D color space associated with the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1437917-colorspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "colorSpace",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1437917-colorspace"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1437941-init": {
+      "abstract": [
+        {
+          "text": "Creates a color object using the specified RGB color component values",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "red"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "green"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "blue"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1437941-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(red:green:blue:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1437941-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1437969-red": {
+      "abstract": [
+        {
+          "text": "The unpremultiplied red component of the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "red"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1437969-red",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "red",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1437969-red"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1437981-alpha": {
+      "abstract": [
+        {
+          "text": "The alpha value of the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1437981-alpha",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alpha",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1437981-alpha"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1438033-blue": {
+      "abstract": [
+        {
+          "text": "The unpremultiplied blue component of the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "blue"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1438033-blue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "blue",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1438033-blue"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1438059-init": {
+      "abstract": [
+        {
+          "text": "Creates a color object using the RGBA color component values specified by a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1438059-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(string:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1438059-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1438084-init": {
+      "abstract": [
+        {
+          "text": "Initializes a Core Image color object with the specified red, green, blue, and alpha component values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "red"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "green"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "blue"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1438084-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(red:green:blue:alpha:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1438084-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1438151-numberofcomponents": {
+      "abstract": [
+        {
+          "text": "Returns the number of color components in the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfComponents"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1438151-numberofcomponents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "numberOfComponents",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1438151-numberofcomponents"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1528762-init": {
+      "abstract": [
+        {
+          "text": "Initializes a Core Image color object using a UIKit (or AppKit) color object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "color"
+        },
+        {
+          "kind": "text",
+          "text": ": UIColor)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1528762-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(color:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1528762-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1643569-blue": {
+      "abstract": [
+        {
+          "text": "Returns a color object whose RGB values are ",
+          "type": "text"
+        },
+        {
+          "code": "0.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": "0.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", and ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and whose alpha value is ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "blue"
+        },
+        {
+          "kind": "text",
+          "text": ": CIColor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1643569-blue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "blue",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1643569-blue"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1643570-red": {
+      "abstract": [
+        {
+          "text": "Returns a color object whose RGB values are ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": "0.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", and ",
+          "type": "text"
+        },
+        {
+          "code": "0.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and whose alpha value is ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "red"
+        },
+        {
+          "kind": "text",
+          "text": ": CIColor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1643570-red",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "red",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1643570-red"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1643571-white": {
+      "abstract": [
+        {
+          "text": "Returns a color object whose RGB values are all ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and whose alpha value is ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "white"
+        },
+        {
+          "kind": "text",
+          "text": ": CIColor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1643571-white",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "white",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1643571-white"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1643572-init": {
+      "abstract": [
+        {
+          "text": "Initializes a Core Image color object with the specified red, green, blue, and alpha component values as measured in the specified color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "red"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "green"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "blue"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1643572-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(red:green:blue:alpha:colorSpace:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1643572-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1643573-gray": {
+      "abstract": [
+        {
+          "text": "Returns a color object whose RGB values are all ",
+          "type": "text"
+        },
+        {
+          "code": "0.5",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and whose alpha value is ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "gray"
+        },
+        {
+          "kind": "text",
+          "text": ": CIColor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1643573-gray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gray",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1643573-gray"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1643574-magenta": {
+      "abstract": [
+        {
+          "text": "Returns a color object whose RGB values are ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": "0.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", and ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and whose alpha value is ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "magenta"
+        },
+        {
+          "kind": "text",
+          "text": ": CIColor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1643574-magenta",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "magenta",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1643574-magenta"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1643576-init": {
+      "abstract": [
+        {
+          "text": "Initializes a Core Image color object with the specified red, green, and blue component values as measured in the specified color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "red"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "green"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "blue"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1643576-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(red:green:blue:colorSpace:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1643576-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1643577-clear": {
+      "abstract": [
+        {
+          "text": "Returns a color object whose RGB and alpha values are all ",
+          "type": "text"
+        },
+        {
+          "code": "0.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "clear"
+        },
+        {
+          "kind": "text",
+          "text": ": CIColor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1643577-clear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clear",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1643577-clear"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1643578-black": {
+      "abstract": [
+        {
+          "text": "Returns a color object whose RGB values are all ",
+          "type": "text"
+        },
+        {
+          "code": "0.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and whose alpha value is ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "black"
+        },
+        {
+          "kind": "text",
+          "text": ": CIColor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1643578-black",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "black",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1643578-black"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1643580-green": {
+      "abstract": [
+        {
+          "text": "Returns a color object whose RGB values are ",
+          "type": "text"
+        },
+        {
+          "code": "0.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", and ",
+          "type": "text"
+        },
+        {
+          "code": "0.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and whose alpha value is ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "green"
+        },
+        {
+          "kind": "text",
+          "text": ": CIColor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1643580-green",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "green",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1643580-green"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1643581-cyan": {
+      "abstract": [
+        {
+          "text": "Returns a color object whose RGB values are ",
+          "type": "text"
+        },
+        {
+          "code": "0.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", and ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and whose alpha value is ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cyan"
+        },
+        {
+          "kind": "text",
+          "text": ": CIColor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1643581-cyan",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cyan",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1643581-cyan"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor/1643582-yellow": {
+      "abstract": [
+        {
+          "text": "Returns a color object whose RGB values are ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", and ",
+          "type": "text"
+        },
+        {
+          "code": "0.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and whose alpha value is ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "yellow"
+        },
+        {
+          "kind": "text",
+          "text": ": CIColor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor/1643582-yellow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "yellow",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor/1643582-yellow"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIContext",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter": {
+      "abstract": [
+        {
+          "text": "An image processor that produces an image by manipulating one or more input images or by generating new image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFilter",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImage",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirawfilter": {
+      "abstract": [
+        {
+          "text": "A filter subclass that produces an image by manipulating RAW image sensor data from a digital camera or scanner.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIRAWFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirawfilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIRAWFilter",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirawfilter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/civector": {
+      "abstract": [
+        {
+          "text": "A container for coordinate values, direction vectors, matrices, and other non-scalar values, typically used in Core Image for filter parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIVector"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/civector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIVector",
+      "type": "topic",
+      "url": "/documentation/coreimage/civector"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifilter",
+        "doc://com.apple.documentation/documentation/coreimage/cirawfilter",
+        "doc://com.apple.documentation/documentation/coreimage/civector"
+      ],
+      "title": "Filters"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1651788",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1437821-init",
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1528762-init",
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1438084-init",
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1643576-init",
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1643572-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializing Color Objects"
+    },
+    {
+      "anchor": "1651841",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1437941-init",
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1438059-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Color Objects"
+    },
+    {
+      "anchor": "1651898",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1437917-colorspace",
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1437862-components",
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1438151-numberofcomponents",
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1437969-red",
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1437607-green",
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1438033-blue",
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1437981-alpha",
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1437910-stringrepresentation"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Color Components"
+    },
+    {
+      "anchor": "1919297",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1643578-black",
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1643569-blue",
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1643577-clear",
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1643581-cyan",
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1643573-gray",
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1643580-green",
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1643574-magenta",
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1643570-red",
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1643571-white",
+        "doc://com.apple.documentation/documentation/coreimage/cicolor/1643582-yellow"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a CIColor Object with Preset Components"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/cicolor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/cicolor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

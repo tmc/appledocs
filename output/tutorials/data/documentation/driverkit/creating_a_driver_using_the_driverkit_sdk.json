@@ -1,0 +1,2080 @@
+{
+  "abstract": [
+    {
+      "text": "Create a driver that supports proprietary features of your company’s hardware devices. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk"
+  },
+  "kind": "article",
+  "legacy_identifier": 3557191,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "DriverKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a Driver Using the DriverKit SDK"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Drivers act as a bridge between computer peripherals and the rest of the system. A driver is a collection of software-based services that communicate with a hardware device. For example, a keyboard service converts the raw state of the keyboard into keystroke events for the system to deliver to apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user plugs in a hardware device, the system loads an initial service to communicate with the device and get basic information from it. After it establishes communication, the system loads additional services to handle device-specific interactions. For example, the system might load a service to communicate with a USB device using a specific protocol. Each new service becomes a client of the previous service, which is known as the provider for the client. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3572086",
+              "metadata": {
+                "anchor": "3572086",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple supplies drivers and services for all standard hardware devices and communication protocols, including USB, Thunderbolt, Peripheral Component Interconnect (PCI), and more. Apple also provides drivers and services for the most common human interface device (HID) types, including mice and keyboards. You create custom drivers and services to support proprietary features or unique behaviors for your devices. You package your custom driver services inside a DriverKit extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the DriverKit SDK to create custom drivers and services for the following types of devices and interfaces:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Most USB devices ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "HID devices",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "PCI cards and devices",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Devices with serial communication interfaces",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "DriverKit doesn’t support USB devices that manipulate audio or that communicate wirelessly over Bluetooth or Wi-Fi. For those types of devices, create a kernel extension using ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/iokit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "3557192",
+          "level": 3,
+          "text": "Add a DriverKit Extension Target to Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The delivery of a DriverKit extension requires a macOS app. You use the app to deliver the driver to your users. The app also registers the driver with the system. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode provides a template for DriverKit extensions. To add one to your existing app, do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your app project in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select File > New > Target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Navigate to the DriverKit section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select DriverKit Driver.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify the driver’s name and configure other details about your driver.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode adds the driver to your project and configures the build settings to install that driver inside the ",
+              "type": "text"
+            },
+            {
+              "code": "Contents/Library/SystemExtensions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " folder of your app’s bundle. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The system requires all DriverKit drivers to be in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Contents/Library/SystemExtensions",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " folder of your app's bundle, and fails to load drivers that aren’t there. If you create your driver separately from your app, be sure to configure your build scripts to place the driver in that specific location.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default DriverKit template contains a C++ source file and an IOKit interface generator (",
+              "type": "text"
+            },
+            {
+              "code": ".iig",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") header file to use as the starting point for your service. The template also contains a default entitlements file for you to populate with the entitlements your driver requires. For information on how to configure your driver's entitlements, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3557182",
+          "level": 3,
+          "text": "Select an Appropriate Service to Customize",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The DriverKit template provides a default subclass of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, which is the base class for all driver services. Although you can subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " directly, typically you build off of a class that is more specific to your needs. For example, when developing drivers for USB devices, you build off one of the classes in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The services you create embody one of two roles: ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "interface service",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " manages information moving to and from the device. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "device service",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " supports communication with the hardware.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create interface services for devices that communicate using standards-based protocols, such as USB, but which require interpretation or management of the resulting data. An interface service reads and writes data, processes that data, and does something useful with it. For example, a HID interface service processes input reports from a HID device and dispatches events to the system. Interface classes include ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.serialdriverkit/documentation/SerialDriverKit/IOUserSerial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create device services to support custom communication protocols or custom hardware features. Apple provides device services for all standard protocols and hardware types. For example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class reads and writes data from any USB device. You create device services to support custom devices or to configure devices so that the system can use them. Device classes include ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your project's ",
+              "type": "text"
+            },
+            {
+              "code": ".iig",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, change the superclass of your custom service to your preferred service class. For example, to define a custom interface for a USB networking device, subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " as shown in the following code. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class MyCustomDriver: public IOUserNetworkEthernet",
+            "{",
+            "public:",
+            "    virtual kern_return_t",
+            "    Start(IOService * provider) override;",
+            "};"
+          ],
+          "metadata": {
+            "anchor": "3557183",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3557187",
+          "level": 3,
+          "text": "Initialize Your Driver",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system needs your driver, it instantiates your service class and calls its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180717-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Keep the implementation of that method as simple as possible. Typically, the only thing you do at initialization time is allocate space for your driver’s variables.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your service subclass must not contain any member variables. Instead, define a structure containing the variables your driver requires, and allocate that structure at initialization time. The following code example shows the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180717-init",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method for a HID keyboard driver, which is a subclass of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class. The driver stores a subset of the event services elements in a custom array that it then stores in the ",
+              "type": "text"
+            },
+            {
+              "code": "HIDKeyboardDriver_IVars",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure. At initialization time, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180717-init",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method allocates space for this structure and assigns it to the inherited ",
+              "type": "text"
+            },
+            {
+              "code": "ivars",
+              "type": "codeVoice"
+            },
+            {
+              "text": " member variable.  ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct HIDKeyboardDriver_IVars",
+            "{",
+            "    OSArray *elements;",
+            "    ",
+            "    struct {",
+            "        OSArray *elements;",
+            "    } keyboard;",
+            "};",
+            "",
+            "bool HIDKeyboardDriver::init()",
+            "{",
+            "    if (!super::init()) {",
+            "        return false;",
+            "    }",
+            "    ",
+            "    ivars = IONewZero(HIDKeyboardDriver_IVars, 1);",
+            "    if (!ivars) {",
+            "        return false;",
+            "    }",
+            "    ",
+            "exit:",
+            "    return true;",
+            "}",
+            ""
+          ],
+          "metadata": {
+            "anchor": "3557185",
+            "title": "Listing 2"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before unloading your service, the system calls its free method to release any memory that it holds. Use that method to deallocate any data structures you created during initialization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3557193",
+          "level": 3,
+          "text": "Start and Stop Your Service",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system is ready for your driver to begin processing information from the hardware device, it calls your service’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method is where you perform the actual startup tasks your driver requires, such as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Initialize your custom instance variables structure.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fetch the device’s configuration and change any settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set up pipes and other communication channels with the device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Store a reference to the provider object that the system passed to your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allocate memory for data buffers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fetch the initial set of data. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create and register callback methods.  ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Upon the succesful completion of your service’s startup tasks, call the inherited ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180701-registerservice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to let the system know that your service is running. The following code shows a template ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method for you to use for your own services. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "IMPL(HIDKeyboardDriver, Start)",
+            "{",
+            "   kern_return_t ret;",
+            "    ",
+            "   // Call the superclass implementation of Start.",
+            "   ret = Start(provider, SUPERDISPATCH);",
+            "   if (ret != kIOReturnSuccess) {",
+            "      Stop(provider, SUPERDISPATCH);",
+            "      return ret;",
+            "   }",
+            "",
+            "   // Perform startup tasks...",
+            "   ",
+            "   // Register the service with the system.",
+            "   RegisterService();",
+            "    ",
+            "   return ret;",
+            "}",
+            ""
+          ],
+          "metadata": {
+            "anchor": "3557189",
+            "title": "Listing 3"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the preceding code, notice that the definition of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/impl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro. DriverKit services run in separate user processes, but communicate with the kernel. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/impl",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " macro provides the kernel with the bridging code it needs to call into your driver’s process. Similarly, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/superdispatch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro provides the reverse bridging that you need to call the inherited ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method, which runs in the kernel. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system no longer needs your service, it calls its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180713-stop",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Use that method to undo all of the setup work from your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method. If your service has any in-progress asynchronous tasks, cancel them and wait for DriverKit to report their successful cancellation before calling the inherited ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180713-stop",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Don’t use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180713-stop",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method to release your ",
+              "type": "text"
+            },
+            {
+              "code": "ivars",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure; use your service’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180716-free",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method instead. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3557190",
+          "level": 3,
+          "text": "Define Asynchronous Callback Functions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Whenever you request information from DriverKit or a device, the system APIs process that request and deliver the results asynchronously to your service class. All asynchronous requests require an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/osaction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, which tells the system which method of your service class to call. To create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/osaction",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Define a custom method in your service class, and give the method the same signature as a DriverKit asynchronous callback function.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/driverkit/type",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " macro to the end of your custom method, specifying the DriverKit class and method name as the macro’s parameter.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/driverkit/osaction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CreateAction",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " method the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/driverkit/type",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " macro generates.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To illustrate the process, consider the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource/3180477-dataavailable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " callback function of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ". The system calls this method when new data appears on the specified queue object. To implement your own version of this method, create a definition in your ",
+              "type": "text"
+            },
+            {
+              "code": ".iig",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file similar to the following: ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "virtual void TxPacketsAvailable (OSAction *action)",
+            "               TYPE(IODataQueueDispatchSource::DataAvailable);"
+          ],
+          "metadata": {
+            "anchor": "3557184",
+            "title": "Listing 4"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use any name you want for your method, but make sure its return type and parameters match those of the original method—the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource/3180477-dataavailable",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method in this example. Add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/type",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " macro to the end of the declaration, passing the DriverKit class and method name as shown. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/type",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " macro generates a function whose name is the prefix “CreateAction” followed by your custom method name. For the ",
+              "type": "text"
+            },
+            {
+              "code": "TxPacketsAvailable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, the macro creates the ",
+              "type": "text"
+            },
+            {
+              "code": "CreateActionTxPacketsAvailable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function. Use this function to create the corresponding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/osaction",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object, as shown in the following code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "status = CreateActionTxPacketsAvailable(sizeof(void *), &ivars->tx_packet);",
+            "if (status != kIOReturnSuccess)",
+            "   goto exit;"
+          ],
+          "metadata": {
+            "anchor": "3557186",
+            "title": "Listing 5"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first parameter to the ",
+              "type": "text"
+            },
+            {
+              "code": "CreateAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function is the amount of additional memory you want the system to allocate on your behalf. Use this memory to store additional state information, and access the memory by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/osaction/3438207-getreference",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of the action object. The second parameter is a pointer for storing the newly created ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/osaction",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object.  ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3557181",
+          "level": 3,
+          "text": "Provide Version and Description Information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system requires specific information to support the loading and installation of your driver. Specifically, installation of your driver fails if any of the following keys aren’t in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file of your driver extension:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleShortVersionString",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleVersion",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions/OSBundleUsageDescriptionKey",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system uses the version information to determine when to install a new version of your driver. Increment the version number whenever you change your driver’s behavior and want to install a new version. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3557188",
+          "level": 3,
+          "text": "Specify Criteria for Matching Your Services Against Devices",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system maintains a registry of installed drivers, and each driver contains information about the types of devices it supports. At boot time, and whenever a new hardware device appears, the system searches for drivers to support that device. In particular, it searches for drivers that meet the following criteria:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supports the appropriate class of hardware (USB, PCI, Thunderbolt)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supports the vendor that created the device",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supports the protocols or interfaces (HID, Mass Storage) listed in the device’s configuration data",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During its search for drivers, the system uses information from the ",
+              "type": "text"
+            },
+            {
+              "code": "IOKitPersonalities",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key of each driver’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to identify potential matches. This key contains a dictionary of the driver’s ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "personalities",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "—that is, the types of devices it supports. Each key in the dictionary is a descriptive name of the personality, and the value is another dictionary of keys that describe the specific personality. Include the following minimum set of keys for each personality:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "—The bundle ID of your driver",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "IOClass",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "—The Apple class containing the base behavior",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "IOUserClass",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "—The name of your custom service class",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "IOUserServerName",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "—The bundle identifier of your driver",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "IOProviderClass",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "—The class that your service requires as its provider object",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the minimum set of keys, include additional keys in the personality dictionary that are specific to your IOService subclasses. For example, a personality for an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass include the ",
+              "type": "text"
+            },
+            {
+              "code": "VendorID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "ProductID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "PrimaryUsagePage",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "PrimaryUsage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keys to indicate the device type and manufacturer information. This information helps the system find the most appropriate match for a specific device. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the matching process identifies an appropriate driver, it loads the driver, initializes it, and calls its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Typically, the system instantiates multiple services for a single device, with each new service becoming a client of the previous service. This chain of services allows each service to handle specific tasks and rely on its provider object for lower-level tasks. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3557194",
+          "level": 3,
+          "text": "Install Your Driver Using the System Extensions Framework",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "DriverKit extensions reside inside your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Contents/Library/SystemExtensions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " folder, and you register them using the Systems Extension framework. You must register drivers before the system can use them. During the registration process, the system validates the driver and reports back to your app about whether registration was successful.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about how to install your driver, see ",
+              "type": "text"
+            },
+            {
+              "code": "Installing System Extensions and Drivers",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIdentifier": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleIdentifier",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/cfbundleidentifier"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleShortVersionString": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleShortVersionString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleShortVersionString",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/cfbundleshortversionstring"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleVersion": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleVersion",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/cfbundleversion"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk": {
+      "abstract": [
+        {
+          "text": "Create a driver that supports proprietary features of your company’s hardware devices. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Driver Using the DriverKit SDK",
+      "type": "topic",
+      "url": "/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk#3557183": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk#3557183",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk#3557183"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk#3557184": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk#3557184",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk#3557184"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk#3557185": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk#3557185",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk#3557185"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk#3557186": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk#3557186",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk#3557186"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk#3557189": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk#3557189",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk#3557189"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions": {
+      "abstract": [
+        {
+          "text": "Debug your system extensions by temporarily disabling the security checks that macOS performs during the installation process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging and testing system extensions",
+      "type": "topic",
+      "url": "/documentation/driverkit/debugging_and_testing_system_extensions"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/impl": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/impl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IMPL",
+      "type": "topic",
+      "url": "/documentation/driverkit/impl"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODataQueueDispatchSource",
+      "type": "topic",
+      "url": "/documentation/driverkit/iodataqueuedispatchsource"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource/3180477-dataavailable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataAvailable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iodataqueuedispatchsource/3180477-dataavailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DataAvailable",
+      "type": "topic",
+      "url": "/documentation/driverkit/iodataqueuedispatchsource/3180477-dataavailable"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osaction": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSAction",
+      "type": "topic",
+      "url": "/documentation/driverkit/osaction"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting Entitlements for DriverKit Development",
+      "type": "topic",
+      "url": "/documentation/driverkit/requesting_entitlements_for_driverkit_development"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/superdispatch": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/superdispatch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SUPERDISPATCH",
+      "type": "topic",
+      "url": "/documentation/driverkit/superdispatch"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/type": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/type",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TYPE",
+      "type": "topic",
+      "url": "/documentation/driverkit/type"
+    },
+    "doc://com.apple.documentation/documentation/iokit": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit",
+      "kind": "article",
+      "role": "collection",
+      "title": "IOKit",
+      "type": "topic",
+      "url": "/documentation/iokit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180701-registerservice": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "RegisterService"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180701-registerservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RegisterService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180701-registerservice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "Start"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Start",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180710-start"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180713-stop": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "Stop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180713-stop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Stop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180713-stop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180716-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180716-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180716-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180717-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180717-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180717-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osaction/3438207-getreference": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetReference"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osaction/3438207-getreference",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetReference",
+      "type": "topic",
+      "url": "/documentation/kernel/osaction/3438207-getreference"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDevice": {
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDDevice",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohiddevice"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface": {
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDInterface",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidinterface"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService": {
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserHIDEventService",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet": {
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkEthernet",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice": {
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOPCIDevice",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice"
+    },
+    "doc://com.apple.serialdriverkit/documentation/SerialDriverKit/IOUserSerial": {
+      "identifier": "doc://com.apple.serialdriverkit/documentation/SerialDriverKit/IOUserSerial",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserSerial",
+      "type": "topic",
+      "url": "/documentation/serialdriverkit/iouserserial"
+    },
+    "doc://com.apple.systemextensions/documentation/SystemExtensions/OSBundleUsageDescriptionKey": {
+      "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions/OSBundleUsageDescriptionKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSBundleUsageDescriptionKey",
+      "type": "topic",
+      "url": "/documentation/systemextensions/osbundleusagedescriptionkey"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit": {
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "USBDriverKit",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice": {
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUSBHostDevice",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostdevice"
+    },
+    "link-media-3572086": {
+      "identifier": "link-media-3572086",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk#3572086"
+    },
+    "media-3572086": {
+      "alt": "An illustration of the interactions between kernel objects and DriverKit objects to communicate with a hardware device. ",
+      "identifier": "media-3572086",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2718db7512/rendered2x-1585937445.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions"
+      ],
+      "title": "Services"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/driverkit/creating_a_driver_using_the_driverkit_sdk"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/driverkit/creating_a_driver_using_the_driverkit_sdk"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

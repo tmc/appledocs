@@ -1,0 +1,1335 @@
+{
+  "abstract": [
+    {
+      "text": "Add text, button, and choice widgets to a PDF document.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.pdfkit/documentation/PDFKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.pdfkit/documentation/PDFKit/adding-widgets-to-a-pdf-document"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "PDFKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding Widgets to a PDF Document"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Widgets are interactive form elements that you can add to a PDF to make it easier to enter and submit information. Widgets are a special annotation subtype. To learn more about non-interactive custom annotations, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/adding-custom-graphics-to-a-pdf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each widget type has several variations. A button can be a radio button, a check box, or a push button. A choice widget can be a list box, which is a table of options, or a combo box, which is like a dropdown.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3039567",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Widget-Annotation",
+          "level": 3,
+          "text": "Create a Widget Annotation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a PDF annotation of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationSubtype/widget",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This example initializes a widget annotation with rectangular bounds:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let radioButton = PDFAnnotation(bounds: CGRect(x: 135, y: 200, width: 24, height: 24), forType: .widget, withProperties: nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Specify-a-Field-Type-and-a-Control-Type",
+          "level": 3,
+          "text": "Specify a Field Type and a Control Type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation/widgetFieldType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that is a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationWidgetSubtype",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The three different subtypes are ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationWidgetSubtype/text",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationWidgetSubtype/button",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationWidgetSubtype/choice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Here you will create a button widget for the radio button:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "radioButton.widgetFieldType = .button",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the widget control type. For a button widget, there are three possible control types: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFWidgetControlType/radioButtonControl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFWidgetControlType/checkBoxControl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFWidgetControlType/pushButtonControl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "radioButton.widgetControlType = .radioButtonControl",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Adjust-Widget-Properties",
+          "level": 3,
+          "text": "Adjust Widget Properties",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adjust properties to highlight the widget so it is more visible. The following example adds a blue background to a radio button widget.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "radioButton.backgroundColor = UIColor.blue",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Properties will be different depending on the field type. If you have multiple radio buttons and want to group them together, specify the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation/fieldName",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Specify different ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation/buttonWidgetStateString",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties for each button if you should only select one at a time. For a text field, you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation/widgetStringValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to specify placeholder text and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation/font",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to specify the font of the field’s text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-Annotation-to-Your-PDF",
+          "level": 3,
+          "text": "Add the Annotation to Your PDF",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the annotation to the page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "page.addAnnotation(radioButton)",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can combine many different kinds of widgets on your PDF. Using a combination of widgets can help you turn a PDF document into an interactive form. For more details on widget options, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit": {
+      "abstract": [
+        {
+          "text": "Display and manipulate PDF documents in your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PDFKit",
+      "type": "topic",
+      "url": "/documentation/pdfkit"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation": {
+      "abstract": [
+        {
+          "text": "An annotation in a PDF document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PDFAnnotation"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PDFAnnotation"
+        }
+      ],
+      "role": "symbol",
+      "title": "PDFAnnotation",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfannotation"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation/buttonWidgetStateString": {
+      "abstract": [
+        {
+          "text": "A string value that differentiates button widgets in the same group, such as to identify mutually exclusive radio buttons from each other.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buttonWidgetStateString"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation/buttonWidgetStateString",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "buttonWidgetStateString"
+        }
+      ],
+      "role": "symbol",
+      "title": "buttonWidgetStateString",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfannotation/buttonwidgetstatestring"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation/fieldName": {
+      "abstract": [
+        {
+          "text": "The widget identifier for form annotation actions and behaviors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fieldName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation/fieldName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fieldName"
+        }
+      ],
+      "role": "symbol",
+      "title": "fieldName",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfannotation/fieldname"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation/font": {
+      "abstract": [
+        {
+          "text": "The font the annotation uses to display text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "font"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFont",
+          "text": "UIFont"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation/font",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "font"
+        }
+      ],
+      "role": "symbol",
+      "title": "font",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfannotation/font"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation/widgetFieldType": {
+      "abstract": [
+        {
+          "text": "The type of widget annotation, such as button, choice, or text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "widgetFieldType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@PDFAnnotationWidgetSubtype",
+          "text": "PDFAnnotationWidgetSubtype"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation/widgetFieldType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "widgetFieldType"
+        }
+      ],
+      "role": "symbol",
+      "title": "widgetFieldType",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfannotation/widgetfieldtype"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation/widgetStringValue": {
+      "abstract": [
+        {
+          "text": "The string value of the widget annotation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "widgetStringValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation/widgetStringValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "widgetStringValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "widgetStringValue",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfannotation/widgetstringvalue"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationSubtype/widget": {
+      "abstract": [
+        {
+          "text": "An annotation that displays interactive form elements, including text or signature fields, radio buttons, checkboxes, push buttons, pop-ups, and tables.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "widget"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@PDFAnnotationSubtype",
+          "text": "PDFAnnotationSubtype"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationSubtype/widget",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PDFAnnotationSubtypeWidget"
+        }
+      ],
+      "role": "symbol",
+      "title": "widget",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfannotationsubtype/widget"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationWidgetSubtype": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PDFAnnotationWidgetSubtype"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationWidgetSubtype",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PDFAnnotationWidgetSubtype"
+        }
+      ],
+      "role": "symbol",
+      "title": "PDFAnnotationWidgetSubtype",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfannotationwidgetsubtype"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationWidgetSubtype/button": {
+      "abstract": [
+        {
+          "text": "A button widget type, including push buttons, checkboxes, and radio buttons.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "button"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@PDFAnnotationWidgetSubtype",
+          "text": "PDFAnnotationWidgetSubtype"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationWidgetSubtype/button",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PDFAnnotationWidgetSubtypeButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "button",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfannotationwidgetsubtype/button"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationWidgetSubtype/choice": {
+      "abstract": [
+        {
+          "text": "A type that presents a list of choices the user can choose from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "choice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@PDFAnnotationWidgetSubtype",
+          "text": "PDFAnnotationWidgetSubtype"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationWidgetSubtype/choice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PDFAnnotationWidgetSubtypeChoice"
+        }
+      ],
+      "role": "symbol",
+      "title": "choice",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfannotationwidgetsubtype/choice"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationWidgetSubtype/text": {
+      "abstract": [
+        {
+          "text": "A text field the user can type text in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "text"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@PDFAnnotationWidgetSubtype",
+          "text": "PDFAnnotationWidgetSubtype"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationWidgetSubtype/text",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PDFAnnotationWidgetSubtypeText"
+        }
+      ],
+      "role": "symbol",
+      "title": "text",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfannotationwidgetsubtype/text"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFWidgetControlType/checkBoxControl": {
+      "abstract": [
+        {
+          "text": "Check box control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "checkBoxControl"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFWidgetControlType/checkBoxControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kPDFWidgetCheckBoxControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "PDFWidgetControlType.checkBoxControl",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfwidgetcontroltype/checkboxcontrol"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFWidgetControlType/pushButtonControl": {
+      "abstract": [
+        {
+          "text": "Push button control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pushButtonControl"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFWidgetControlType/pushButtonControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kPDFWidgetPushButtonControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "PDFWidgetControlType.pushButtonControl",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfwidgetcontroltype/pushbuttoncontrol"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFWidgetControlType/radioButtonControl": {
+      "abstract": [
+        {
+          "text": "Radio button control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "radioButtonControl"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFWidgetControlType/radioButtonControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kPDFWidgetRadioButtonControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "PDFWidgetControlType.radioButtonControl",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfwidgetcontroltype/radiobuttoncontrol"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/adding-custom-graphics-to-a-pdf": {
+      "abstract": [
+        {
+          "text": "Create and add custom annotation and page graphics to your PDF document.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/adding-custom-graphics-to-a-pdf",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Custom Graphics to a PDF",
+      "type": "topic",
+      "url": "/documentation/pdfkit/adding-custom-graphics-to-a-pdf"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/custom-graphics": {
+      "abstract": [
+        {
+          "text": "Demonstrates adding a watermark to a PDF page.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/custom-graphics",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Custom Graphics",
+      "type": "topic",
+      "url": "/documentation/pdfkit/custom-graphics"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/pdf-widgets": {
+      "abstract": [
+        {
+          "text": "Demonstrates adding widgets—interactive form elements—to a PDF document.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/pdf-widgets",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "PDF Widgets",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdf-widgets"
+    },
+    "media-3039567": {
+      "alt": "Add widgets to create a form in a PDF.",
+      "identifier": "media-3039567",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5e2cf8f257a11f3a8193f4c25133a9ee/media-3039567@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5e2cf8f257a11f3a8193f4c25133a9ee/media-3039567~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Annotations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.pdfkit/documentation/PDFKit/adding-custom-graphics-to-a-pdf",
+        "doc://com.apple.pdfkit/documentation/PDFKit/custom-graphics",
+        "doc://com.apple.pdfkit/documentation/PDFKit/pdf-widgets",
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation"
+      ],
+      "title": "Annotations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Annotations",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.pdfkit/documentation/PDFKit/adding-custom-graphics-to-a-pdf",
+                "doc://com.apple.pdfkit/documentation/PDFKit/custom-graphics",
+                "doc://com.apple.pdfkit/documentation/PDFKit/pdf-widgets",
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation"
+              ],
+              "title": "Annotations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotationSubtype~1widget/title",
+          "value": "PDFAnnotationSubtypeWidget"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotationSubtype~1widget/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFAnnotationSubtypeWidget"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotationWidgetSubtype~1text/title",
+          "value": "PDFAnnotationWidgetSubtypeText"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotationWidgetSubtype~1text/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFAnnotationWidgetSubtypeText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotation~1font/title",
+          "value": "font"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotation~1font/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "font"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotationWidgetSubtype~1button/title",
+          "value": "PDFAnnotationWidgetSubtypeButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotationWidgetSubtype~1button/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFAnnotationWidgetSubtypeButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotationWidgetSubtype~1choice/title",
+          "value": "PDFAnnotationWidgetSubtypeChoice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotationWidgetSubtype~1choice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFAnnotationWidgetSubtypeChoice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotation/title",
+          "value": "PDFAnnotation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFAnnotation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFAnnotation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFWidgetControlType~1pushButtonControl/title",
+          "value": "kPDFWidgetPushButtonControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFWidgetControlType~1pushButtonControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kPDFWidgetPushButtonControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotation~1widgetStringValue/title",
+          "value": "widgetStringValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotation~1widgetStringValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "widgetStringValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotation~1buttonWidgetStateString/title",
+          "value": "buttonWidgetStateString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotation~1buttonWidgetStateString/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "buttonWidgetStateString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotation~1fieldName/title",
+          "value": "fieldName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotation~1fieldName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fieldName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFWidgetControlType~1checkBoxControl/title",
+          "value": "kPDFWidgetCheckBoxControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFWidgetControlType~1checkBoxControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kPDFWidgetCheckBoxControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFWidgetControlType~1radioButtonControl/title",
+          "value": "kPDFWidgetRadioButtonControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFWidgetControlType~1radioButtonControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kPDFWidgetRadioButtonControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotationWidgetSubtype/title",
+          "value": "PDFAnnotationWidgetSubtype"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotationWidgetSubtype/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFAnnotationWidgetSubtype"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotationWidgetSubtype/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFAnnotationWidgetSubtype"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotation~1widgetFieldType/title",
+          "value": "widgetFieldType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotation~1widgetFieldType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "widgetFieldType"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/pdfkit/adding-widgets-to-a-pdf-document"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/pdfkit/adding-widgets-to-a-pdf-document"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,381 @@
+{
+  "abstract": [],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/mass_storage",
+        "doc://com.apple.documentation/documentation/kernel/iocdmedia"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811376-read"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1811376,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "IOCDMedia"
+    },
+    "role": "pseudoSymbol",
+    "symbolKind": "instm",
+    "title": "read"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "virtual void read("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " IOService *client, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " UInt64byteStart, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " IOMemoryDescriptor *buffer, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " IOStorageAttributes *attributes, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " IOStorageCompletion *completion); "
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Client requesting the read.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "client"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Starting byte offset for the data transfer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "byteStart"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Buffer for the data transfer. The size of the buffer implies the size of the data transfer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "buffer"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Attributes of the data transfer. See IOStorageAttributes. It is the responsibility of the callee to maintain the information for the duration of the data transfer, as necessary.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "attributes"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Completion routine to call once the data transfer is complete. It is the responsibility of the callee to maintain the information for the duration of the data transfer, as necessary.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "completion"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Read data from the storage object at the specified byte offset into the specified buffer, asynchronously. When the read completes, the caller will be notified via the specified completion action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The buffer will be retained for the duration of the read.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/mass_storage": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/mass_storage",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Mass Storage",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/mass_storage"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocdmedia": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocdmedia",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOCDMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/iocdmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811353-getspeed": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811353-getspeed",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getSpeed",
+      "type": "topic",
+      "url": "/documentation/kernel/iocdmedia/1811353-getspeed"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811363-gettoc": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811363-gettoc",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getTOC",
+      "type": "topic",
+      "url": "/documentation/kernel/iocdmedia/1811363-gettoc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811376-read": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811376-read",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "read",
+      "type": "topic",
+      "url": "/documentation/kernel/iocdmedia/1811376-read"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811386-readcd": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811386-readcd",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "readCD()",
+      "type": "topic",
+      "url": "/documentation/kernel/iocdmedia/1811386-readcd"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811393-readcd": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811393-readcd",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "readCD()",
+      "type": "topic",
+      "url": "/documentation/kernel/iocdmedia/1811393-readcd"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811402-readdiscinfo": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811402-readdiscinfo",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "readDiscInfo",
+      "type": "topic",
+      "url": "/documentation/kernel/iocdmedia/1811402-readdiscinfo"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811412-readisrc": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811412-readisrc",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "readISRC",
+      "type": "topic",
+      "url": "/documentation/kernel/iocdmedia/1811412-readisrc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811424-readmcn": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811424-readmcn",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "readMCN",
+      "type": "topic",
+      "url": "/documentation/kernel/iocdmedia/1811424-readmcn"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811431-readtoc": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811431-readtoc",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "readTOC",
+      "type": "topic",
+      "url": "/documentation/kernel/iocdmedia/1811431-readtoc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811438-readtrackinfo": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811438-readtrackinfo",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "readTrackInfo",
+      "type": "topic",
+      "url": "/documentation/kernel/iocdmedia/1811438-readtrackinfo"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811448-setspeed": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811448-setspeed",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setSpeed",
+      "type": "topic",
+      "url": "/documentation/kernel/iocdmedia/1811448-setspeed"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811353-getspeed",
+        "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811363-gettoc",
+        "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811386-readcd",
+        "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811393-readcd",
+        "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811402-readdiscinfo",
+        "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811412-readisrc",
+        "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811424-readmcn",
+        "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811431-readtoc",
+        "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811438-readtrackinfo",
+        "doc://com.apple.documentation/documentation/kernel/iocdmedia/1811448-setspeed"
+      ],
+      "title": "Miscellaneous"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iocdmedia/1811376-read"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

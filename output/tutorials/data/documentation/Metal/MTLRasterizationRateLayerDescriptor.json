@@ -1,0 +1,1456 @@
+{
+  "abstract": [
+    {
+      "text": "The minimum rasterization rates to apply to sections of a layer in the render target.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MTLRasterizationRateLayerDescriptor",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MTLRasterizationRateLayerDescriptor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MTLRasterizationRateLayerDescriptor"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.4",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15.4",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "MTLRasterizationRateLayerDescriptor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLRasterizationRateLayerDescriptor"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a layer map to divide the logical viewport coordinate system into a 2D grid of equal-sized rectangles, and choose different rasterization rates for each cell.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify rasterization rates using floating-point numbers between ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", inclusive. A rate of ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents the normal rasterization rate, where each logical unit is equal to a physical pixel; a rate of ",
+              "type": "text"
+            },
+            {
+              "code": "0.5",
+              "type": "codeVoice"
+            },
+            {
+              "text": " means that two logical units equate to one physical pixel, and so on. A value of ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " means that the GPU renders at its lowest quality level. When you create the map, the device object chooses the nearest rasterization rate supported by the GPU that meets or exceeds the rate you specified.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the layer map, you provide separate rasterization rates for the grid’s rows and columns. The horizontal rates specify a horizontal rasterization rate for each column, and the vertical rates specify a vertical rasterization rate for each row. Each cell calculates its physical size in pixels by using the logical size of cells in the map, the horizontal rate from the cell’s column, and the vertical rate from its row.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerArray/setObject:atIndexedSubscript:": {
+      "abstract": [
+        {
+          "text": "Stores a sample value at the specified index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObject:atIndexedSubscript:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerArray/setObject:atIndexedSubscript:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setObject:atIndexedSubscript:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setObject:atIndexedSubscript:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratelayerarray/setobject:atindexedsubscript:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerArray/subscript(_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the sample value at the specified index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLRasterizationRateLayerDescriptor",
+          "text": "MTLRasterizationRateLayerDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerArray/subscript(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "objectAtIndexedSubscript:"
+        }
+      ],
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratelayerarray/subscript(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor": {
+      "abstract": [
+        {
+          "text": "The minimum rasterization rates to apply to sections of a layer in the render target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRasterizationRateLayerDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRasterizationRateLayerDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRasterizationRateLayerDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratelayerdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/horizontal": {
+      "abstract": [
+        {
+          "text": "The horizontal rasterization rates for the layer map’s rows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "horizontal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLRasterizationRateSampleArray",
+          "text": "MTLRasterizationRateSampleArray"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/horizontal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "horizontal"
+        }
+      ],
+      "role": "symbol",
+      "title": "horizontal",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratelayerdescriptor/horizontal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/horizontalSampleStorage": {
+      "abstract": [
+        {
+          "text": "A pointer to the storage for the layer map’s horizontal rasterization rates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "horizontalSampleStorage"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/horizontalSampleStorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "horizontalSampleStorage",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratelayerdescriptor/horizontalsamplestorage"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/init": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/init",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratelayerdescriptor/init"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/init(horizontal:vertical:)": {
+      "abstract": [
+        {
+          "text": "Initializes a layer rate map with a set of horizontal and vertical rasterization rates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "horizontal"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "vertical"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/init(horizontal:vertical:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(horizontal:vertical:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratelayerdescriptor/init(horizontal:vertical:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/init(sampleCount:)": {
+      "abstract": [
+        {
+          "text": "Initializes the layer map with an empty grid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "sampleCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/init(sampleCount:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithSampleCount:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(sampleCount:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratelayerdescriptor/init(samplecount:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/initWithSampleCount:horizontal:vertical:": {
+      "abstract": [
+        {
+          "text": "Initializes the layer map with the provided grid size and rasterization rates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithSampleCount:horizontal:vertical:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/initWithSampleCount:horizontal:vertical:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithSampleCount:horizontal:vertical:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithSampleCount:horizontal:vertical:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratelayerdescriptor/initwithsamplecount:horizontal:vertical:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/maxSampleCount": {
+      "abstract": [
+        {
+          "text": "The maximum number of rows and columns in the layer map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxSampleCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/maxSampleCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maxSampleCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "maxSampleCount",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratelayerdescriptor/maxsamplecount"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/sampleCount": {
+      "abstract": [
+        {
+          "text": "The number of rows and columns in the layer map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sampleCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/sampleCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sampleCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "sampleCount",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratelayerdescriptor/samplecount"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/vertical": {
+      "abstract": [
+        {
+          "text": "The vertical rasterization rates for the layer map’s rows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vertical"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLRasterizationRateSampleArray",
+          "text": "MTLRasterizationRateSampleArray"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/vertical",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vertical"
+        }
+      ],
+      "role": "symbol",
+      "title": "vertical",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratelayerdescriptor/vertical"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/verticalSampleStorage": {
+      "abstract": [
+        {
+          "text": "A pointer to the storage for the layer map’s vertical rasterization rates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "verticalSampleStorage"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/verticalSampleStorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "verticalSampleStorage",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratelayerdescriptor/verticalsamplestorage"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateSampleArray": {
+      "abstract": [
+        {
+          "text": "An array object that contains rasterization rates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRasterizationRateSampleArray"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateSampleArray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRasterizationRateSampleArray"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRasterizationRateSampleArray",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratesamplearray"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Accessing-Members-of-the-Array",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerArray/subscript(_:)"
+      ],
+      "title": "Accessing Members of the Array"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Layer-Rasterization-Rate-Descriptor",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/init(sampleCount:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/init(horizontal:vertical:)"
+      ],
+      "title": "Creating a Layer Rasterization Rate Descriptor"
+    },
+    {
+      "anchor": "Inspecting-the-Layer-Rate-Function-Parameters",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/sampleCount",
+        "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/maxSampleCount",
+        "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/horizontal",
+        "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/vertical",
+        "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateSampleArray"
+      ],
+      "title": "Inspecting the Layer Rate Function Parameters"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.4",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15.4",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MTLRasterizationRateLayerDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRasterizationRateLayerDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRasterizationRateLayerDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Layer-Rasterization-Rate-Descriptor",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/initWithSampleCount:horizontal:vertical:",
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/init(sampleCount:)"
+              ],
+              "title": "Creating a Layer Rasterization Rate Descriptor"
+            },
+            {
+              "anchor": "Inspecting-the-Layer-Rate-Function-Parameters",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/sampleCount",
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/maxSampleCount",
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/horizontal",
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/vertical",
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/horizontalSampleStorage",
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/verticalSampleStorage",
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateSampleArray"
+              ],
+              "title": "Inspecting the Layer Rate Function Parameters"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerDescriptor/init"
+              ],
+              "title": "Instance Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Accessing-Members-of-the-Array",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerArray/subscript(_:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateLayerArray/setObject:atIndexedSubscript:"
+              ],
+              "title": "Accessing Members of the Array"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MTLRasterizationRateLayerDescriptor"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateLayerDescriptor/title",
+          "value": "MTLRasterizationRateLayerDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateLayerDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRasterizationRateLayerDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateLayerDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRasterizationRateLayerDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateLayerDescriptor~1horizontal/title",
+          "value": "horizontal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateLayerDescriptor~1horizontal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "horizontal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateLayerDescriptor~1sampleCount/title",
+          "value": "sampleCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateLayerDescriptor~1sampleCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sampleCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateLayerDescriptor~1maxSampleCount/title",
+          "value": "maxSampleCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateLayerDescriptor~1maxSampleCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maxSampleCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateLayerArray~1subscript(_:)/title",
+          "value": "objectAtIndexedSubscript:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateLayerArray~1subscript(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "objectAtIndexedSubscript:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateSampleArray/title",
+          "value": "MTLRasterizationRateSampleArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateSampleArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRasterizationRateSampleArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateSampleArray/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRasterizationRateSampleArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateLayerDescriptor~1init(sampleCount:)/title",
+          "value": "initWithSampleCount:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateLayerDescriptor~1init(sampleCount:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithSampleCount:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateLayerDescriptor~1vertical/title",
+          "value": "vertical"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateLayerDescriptor~1vertical/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vertical"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtlrasterizationratelayerdescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtlrasterizationratelayerdescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

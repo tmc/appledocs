@@ -1,0 +1,1196 @@
+{
+  "abstract": [
+    {
+      "text": "Make it easy for teachers to guide students to specific content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.classkit/documentation/ClassKit",
+        "doc://com.apple.classkit/documentation/ClassKit/CLSContext"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.classkit/documentation/ClassKit",
+        "doc://com.apple.classkit/documentation/ClassKit/advertising-your-app-s-assignable-content"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.classkit/documentation/ClassKit/linking-directly-to-assignments"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ClassKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Linking directly to assignments"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ClassKit lets you deep link to assignable content so that when a student taps an assigned activity in the Schoolwork app, they go directly to the corresponding content in your app. This helps teachers guide students to an activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can implement this kind of linking through URL requests or user activity. Your choice may depend on what your app already does.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you change the structure of your context hierarchy in an app update, be sure to account for the old structure in your link handling so that legacy links continue to produce meaningful behavior.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Reuse-existing-URL-support",
+          "level": 3,
+          "text": "Reuse existing URL support",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app supports custom URLs to provide deep links to specific content—for example, because you already support linking from push notifications—you can easily reuse that infrastructure with your contexts. Briefly, supporting custom URLs means that you’ve defined a URL type in your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file with a custom URL scheme, and have implemented the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:open:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method in your app delegate to handle incoming requests with this scheme.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To reuse this scheme with ClassKit, when you create contexts, assign the corresponding URL of each context’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext/universalLinkURL",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. The Schoolwork app uses one of these URLs to issue a request to your app when the student taps an assignment in Schoolwork. The request activates your app and gives you the chance to load the appropriate view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As an example, consider a play reader that provides links to individual scenes with a URL of the form ",
+              "type": "text"
+            },
+            {
+              "code": "play-reader://{play}/{act}/{scene}",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When creating the context for Hamlet, Act 3, Scene 1, you simply include the assignment:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Act 3, Scene 1: To be, or not to be...",
+            "context.universalLinkURL = URL(string: \"play-reader://Hamlet/3/1\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You add similar URLs to each assignable context, including parent contexts, such as the one for the play as a whole (",
+              "type": "text"
+            },
+            {
+              "code": "play-reader://Hamlet",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). Support a link to any task that the teacher might assign as a unit (which typically means each context that you define).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you support universal links, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/content/documentation/General/Conceptual/AppSearch/UniversalLinks.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can assign those URLs to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext/universalLinkURL",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-incoming-user-activity",
+          "level": 3,
+          "text": "Handle incoming user activity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t already handle custom URL requests or universal links in your app, you can alternatively support deep links by handling incoming user activities, represented by instances of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class. You do this by implementing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:continue:restorationHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method in your app delegate, much like you would to support handoff. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/content/documentation/General/Conceptual/AppSearch/Activities.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for a general discussion.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ClassKit extends the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class with two properties that help you manage the activity in your handler. First, it adds the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/2953056-isclasskitdeeplink",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " Boolean to indicate if the user activity is related to ClassKit. Second, it provides the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/2866826-contextidentifierpath",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array to indicate the context that the user selected, which you use to decide what view to show.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {",
+            "",
+            "    // Get the identifier path",
+            "    if userActivity.isClassKitDeepLink,",
+            "        let identifierPath = userActivity.contextIdentifierPath {",
+            "",
+            "        // Navigate to the given location in the view hierarchy",
+            "        // ...",
+            "",
+            "        // Indicate that we handled the continuation",
+            "        return true",
+            "    }",
+            "",
+            "    // We did not handle the continuation",
+            "    return false",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Supporting deep links this way is actually simpler than using custom URL requests, because you don’t have to define a custom URL scheme, and you don’t have to set any properties on the context itself. As long as a context’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext/universalLinkURL",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": "—which it is by default—then instead of generating a URL request, the Schoolwork app automatically sends your app an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance when the student taps an assigned activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.classkit/documentation/ClassKit": {
+      "abstract": [
+        {
+          "text": "Enable teachers to assign activities from your app’s content and to view student progress.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClassKit",
+      "type": "topic",
+      "url": "/documentation/classkit"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSContext": {
+      "abstract": [
+        {
+          "text": "An area of your app that represents an assignable task, like a quiz or a chapter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLSContext"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLSContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLSContext",
+      "type": "topic",
+      "url": "/documentation/classkit/clscontext"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSContext/universalLinkURL": {
+      "abstract": [
+        {
+          "text": "A URL that leads to the content in your app associated with the current context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "universalLinkURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext/universalLinkURL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "universalLinkURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "universalLinkURL",
+      "type": "topic",
+      "url": "/documentation/classkit/clscontext/universallinkurl"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/advertising-your-app-s-assignable-content": {
+      "abstract": [
+        {
+          "text": "Assemble a hierarchy of contexts and declare your app’s assignable content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/advertising-your-app-s-assignable-content",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Advertising your app’s assignable content",
+      "type": "topic",
+      "url": "/documentation/classkit/advertising-your-app-s-assignable-content"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:continue:restorationHandler:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the data for continuing an activity is available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "continue"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "userActivity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserActivity",
+          "text": "NSUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "restorationHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ([any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIUserActivityRestoring",
+          "text": "UIUserActivityRestoring"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:continue:restorationHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:continue:restorationHandler:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/application(_:continue:restorationHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:open:options:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to open a resource specified by a URL, and provides a dictionary of launch options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "app"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "open"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIApplicationOpenURLOptionsKey",
+          "text": "OpenURLOptionsKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "] = [:]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:open:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:open:options:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/application(_:open:options:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity": {
+      "abstract": [
+        {
+          "text": "A representation of the state of your app at a moment in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity/2866826-contextidentifierpath": {
+      "abstract": [
+        {
+          "text": "The identifier path associated with a user activity generated by an app that adopts ClassKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "contextIdentifierPath"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/2866826-contextidentifierpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contextIdentifierPath",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity/2866826-contextidentifierpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity/2953056-isclasskitdeeplink": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a user activity represents a ClassKit context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isClassKitDeepLink"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/2953056-isclasskitdeeplink",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isClassKitDeepLink",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity/2953056-isclasskitdeeplink"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/content/documentation/General/Conceptual/AppSearch/Activities.html": {
+      "identifier": "https://developer.apple.com/library/content/documentation/General/Conceptual/AppSearch/Activities.html",
+      "title": "Index Activities and Navigation Points",
+      "titleInlineContent": [
+        {
+          "text": "Index Activities and Navigation Points",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/content/documentation/General/Conceptual/AppSearch/Activities.html"
+    },
+    "https://developer.apple.com/library/content/documentation/General/Conceptual/AppSearch/UniversalLinks.html": {
+      "identifier": "https://developer.apple.com/library/content/documentation/General/Conceptual/AppSearch/UniversalLinks.html",
+      "title": "Support Universal Links",
+      "titleInlineContent": [
+        {
+          "text": "Support Universal Links",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/content/documentation/General/Conceptual/AppSearch/UniversalLinks.html"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-deep-links",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.classkit/documentation/ClassKit/CLSContext/universalLinkURL",
+        "doc://com.apple.documentation/documentation/foundation/nsuseractivity/2953056-isclasskitdeeplink",
+        "doc://com.apple.documentation/documentation/foundation/nsuseractivity/2866826-contextidentifierpath"
+      ],
+      "title": "Configuring deep links"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configuring-deep-links",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.classkit/documentation/ClassKit/CLSContext/universalLinkURL",
+                "doc://com.apple.documentation/documentation/foundation/nsuseractivity/2953056-isclasskitdeeplink",
+                "doc://com.apple.documentation/documentation/foundation/nsuseractivity/2866826-contextidentifierpath"
+              ],
+              "title": "Configuring deep links"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext~1universalLinkURL/title",
+          "value": "universalLinkURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext~1universalLinkURL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "universalLinkURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:open:options:)/title",
+          "value": "application:openURL:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:open:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "app"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "openURL:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURL",
+              "text": "NSURL"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "url"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "options:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext/title",
+          "value": "CLSContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:continue:restorationHandler:)/title",
+          "value": "application:continueUserActivity:restorationHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:continue:restorationHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "continueUserActivity:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSUserActivity",
+              "text": "NSUserActivity"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "userActivity"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "restorationHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<id<UIUserActivityRestoring>>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "restorableObjects"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "restorationHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/classkit/linking-directly-to-assignments"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/classkit/linking-directly-to-assignments"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

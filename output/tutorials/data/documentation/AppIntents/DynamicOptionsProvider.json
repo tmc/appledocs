@@ -1,0 +1,1155 @@
+{
+  "abstract": [
+    {
+      "text": "An interface for providing a dynamic list of options for a parameter of your app intent.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppIntents/documentation/AppIntents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10AppIntents22DynamicOptionsProviderP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "DynamicOptionsProvider"
+      }
+    ],
+    "modules": [
+      {
+        "name": "App Intents"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "DynamicOptionsProvider"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "DynamicOptionsProvider"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "DynamicOptionsProvider"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "_SupportsAppDependencies"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/Adding-parameters-to-an-app-intent"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement this protocol in a type that provides a set of possible",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "values for an intent parameter. When configuring the parameter, specify",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your custom type as the options provider for that parameter. The type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of result you return determines how the system displays the information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Return an array of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " types to display a list of values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Return an array of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentItem",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " types to divide values",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "into sections or configure other presentation options.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows the configuration of a custom parameter that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contains the author name of a book. The options provider offers two possible",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "suggestions for the author name. For brevity, it omits the rest of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "implementation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct CreateBook: AppIntent {",
+            "    @Parameter(title: \"Author Name\",",
+            "               optionsProvider: AuthorNamesOptionsProvider())",
+            "    var authorName: String",
+            "",
+            "    // Other properties and the perform() implementation.",
+            "",
+            "    private struct AuthorNamesOptionsProvider: DynamicOptionsProvider {",
+            "        func results() async throws -> [String] {",
+            "            [\"Juan Chavez\", \"Anne Johnson\"]",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.AppIntents/documentation/AppIntents": {
+      "abstract": [
+        {
+          "text": "Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and enhanced action capabilities of Siri, powered by Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/appintents"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/Adding-parameters-to-an-app-intent": {
+      "abstract": [
+        {
+          "text": "Enable people to configure app intents with their custom input values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Adding-parameters-to-an-app-intent",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding parameters to an app intent",
+      "type": "topic",
+      "url": "/documentation/appintents/adding-parameters-to-an-app-intent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppEnum": {
+      "abstract": [
+        {
+          "text": "An interface to express that a custom type has a predefined, static set of valid values to display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEnum"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEnum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppEnum"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppEnum",
+      "type": "topic",
+      "url": "/documentation/appintents/appenum"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentable": {
+      "abstract": [
+        {
+          "text": "An interface for providing a dynamic visual representation of a specific type and instances of that type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DisplayRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DisplayRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DisplayRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "DisplayRepresentable",
+      "type": "topic",
+      "url": "/documentation/appintents/displayrepresentable"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider": {
+      "abstract": [
+        {
+          "text": "An interface for providing a dynamic list of options for a parameter of your app intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DynamicOptionsProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DynamicOptionsProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "DynamicOptionsProvider",
+      "type": "topic",
+      "url": "/documentation/appintents/dynamicoptionsprovider"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/DefaultValue": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DefaultValue"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "_IntentValue"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents22DynamicOptionsProviderP6ResultQa",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents17ResultsCollectionP6ResultQa",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/DefaultValue",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "DefaultValue",
+      "type": "topic",
+      "url": "/documentation/appintents/dynamicoptionsprovider/defaultvalue"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/Item": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Item"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/Item",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Item"
+        }
+      ],
+      "role": "symbol",
+      "title": "DynamicOptionsProvider.Item",
+      "type": "topic",
+      "url": "/documentation/appintents/dynamicoptionsprovider/item"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/ItemCollection": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ItemCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/ItemCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ItemCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "DynamicOptionsProvider.ItemCollection",
+      "type": "topic",
+      "url": "/documentation/appintents/dynamicoptionsprovider/itemcollection"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/ItemSection": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ItemSection"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/ItemSection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ItemSection"
+        }
+      ],
+      "role": "symbol",
+      "title": "DynamicOptionsProvider.ItemSection",
+      "type": "topic",
+      "url": "/documentation/appintents/dynamicoptionsprovider/itemsection"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/ParameterDependency": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ParameterDependency"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/ParameterDependency",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ParameterDependency"
+        }
+      ],
+      "role": "symbol",
+      "title": "DynamicOptionsProvider.ParameterDependency",
+      "type": "topic",
+      "url": "/documentation/appintents/dynamicoptionsprovider/parameterdependency"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/Result": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents17ResultsCollectionP",
+          "text": "ResultsCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/Result",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Result",
+      "type": "topic",
+      "url": "/documentation/appintents/dynamicoptionsprovider/result"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/defaultResult()": {
+      "abstract": [
+        {
+          "text": "The default value for parameters using this provider when no value is provided by the user.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultResult"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents22DynamicOptionsProviderP12DefaultValueQa",
+          "text": "DefaultValue"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/defaultResult()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "defaultResult()",
+      "type": "topic",
+      "url": "/documentation/appintents/dynamicoptionsprovider/defaultresult()"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/results()": {
+      "abstract": [],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "results"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents22DynamicOptionsProviderP6ResultQa",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/results()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "results()",
+      "type": "topic",
+      "url": "/documentation/appintents/dynamicoptionsprovider/results()"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery": {
+      "abstract": [
+        {
+          "text": "An interface for locating entities by matching values against one or more of their properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityPropertyQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityPropertyQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityPropertyQuery",
+      "type": "topic",
+      "url": "/documentation/appintents/entitypropertyquery"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuery": {
+      "abstract": [
+        {
+          "text": "An interface for locating entities using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityQuery",
+      "type": "topic",
+      "url": "/documentation/appintents/entityquery"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityStringQuery": {
+      "abstract": [
+        {
+          "text": "An interface that locates entities using arbitrary string input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityStringQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityStringQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityStringQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityStringQuery",
+      "type": "topic",
+      "url": "/documentation/appintents/entitystringquery"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EnumerableEntityQuery": {
+      "abstract": [
+        {
+          "text": "An interface you use to provide a short list of entities that are relatively small in size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnumerableEntityQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EnumerableEntityQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EnumerableEntityQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "EnumerableEntityQuery",
+      "type": "topic",
+      "url": "/documentation/appintents/enumerableentityquery"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentItem": {
+      "abstract": [
+        {
+          "text": "A type describing a value returned from a dynamic options provider, plus information about how",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to display it to users.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntentItem"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IntentItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "IntentItem",
+      "type": "topic",
+      "url": "/documentation/appintents/intentitem"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/UniqueAppEntityProvider": {
+      "abstract": [
+        {
+          "text": "A simplified query type conforming to ",
+          "type": "text"
+        },
+        {
+          "code": "UniqueAppEntityQuery",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".  Use this as the value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of the ",
+          "type": "text"
+        },
+        {
+          "code": "defaultQuery",
+          "type": "codeVoice"
+        },
+        {
+          "text": " of an entity conforming to ",
+          "type": "text"
+        },
+        {
+          "code": "UniqueAppEntity",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UniqueAppEntityProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/UniqueAppEntityProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UniqueAppEntityProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "UniqueAppEntityProvider",
+      "type": "topic",
+      "url": "/documentation/appintents/uniqueappentityprovider"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/UniqueAppEntityQuery": {
+      "abstract": [
+        {
+          "text": "A query designed for only returning a single possible value, provided by ",
+          "type": "text"
+        },
+        {
+          "code": "uniqueEntity",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Protocol extensions will provide the other required query methods based on that.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UniqueAppEntityQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/UniqueAppEntityQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UniqueAppEntityQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "UniqueAppEntityQuery",
+      "type": "topic",
+      "url": "/documentation/appintents/uniqueappentityquery"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuery",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityStringQuery",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EnumerableEntityQuery",
+        "doc://com.apple.AppIntents/documentation/AppIntents/UniqueAppEntityQuery"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/UniqueAppEntityProvider"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Parameter-choices",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppEnum"
+      ],
+      "title": "Parameter choices"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Returning-the-parameter-options",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/results()",
+        "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/defaultResult()",
+        "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/Result"
+      ],
+      "title": "Returning the parameter options"
+    },
+    {
+      "anchor": "Associated-Types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/DefaultValue"
+      ],
+      "title": "Associated Types"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/Item",
+        "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/ItemCollection",
+        "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/ItemSection",
+        "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider/ParameterDependency"
+      ],
+      "title": "Type Aliases"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appintents/dynamicoptionsprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,640 @@
+{
+  "abstract": [
+    {
+      "text": "Add lighting and shadows to your scene with light nodes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKLightNode"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/lighting-a-sprite-with-light-nodes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Lighting a Sprite with Light Nodes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use a sprite’s lighting properties, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode/lightingBitMask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode/shadowCastBitMask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode/shadowedBitMask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to apply effects such as illumination and shadow casting and receiving. These can be used in conjunction with normal mapping to simulate 3D lighting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows a normal mapped sprite node acting as background and two shadow casting sprite nodes (each with a rabbit texture).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKLightNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKLightNode/categoryBitMask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " matches the lighting bit mask of the background, and the lighting and shadow bit masks of the two rabbits:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create the background sprite node",
+            "let background = SKSpriteNode(texture: noiseTexture,",
+            "                              normalMap: noiseTexture.generatingNormalMap())",
+            "background.position = spriteKitViewController.center",
+            "background.lightingBitMask = 0b0001",
+            "scene.addChild(background)",
+            "     ",
+            "let x: CGFloat = 150",
+            "let y = spriteKitViewController.scene.size.width - 150",
+            "     ",
+            "// Create a light",
+            "let lightNode = SKLightNode()",
+            "lightNode.position = CGPoint(x: scene.size.width / 2, y: y)",
+            "lightNode.categoryBitMask = 0b0001",
+            "lightNode.lightColor = .white",
+            "scene.addChild(lightNode)",
+            "     ",
+            "// Create two rabbit sprite nodes and assign them with both a lighting and a shadow cast bit mask.",
+            "for position in [CGPoint(x: x, y: y), CGPoint(x: y, y: y)] {",
+            "                    let rabbit = SKSpriteNode(imageNamed: \"rabbit\")",
+            "                    rabbit.position = position",
+            "                    spriteKitViewController.scene.addChild(rabbit)",
+            "                    rabbit.lightingBitMask = 0b0001",
+            "                    rabbit.shadowCastBitMask = 0b0001",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resulting scene shows the two rabbits casting shadows over the background (the light is rendered as a white circle). The noise texture gains a 3D look from the normal mapping:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2983060",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKLightNode": {
+      "abstract": [
+        {
+          "text": "A node that lights surrounding nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKLightNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKLightNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKLightNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKLightNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/sklightnode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKLightNode/categoryBitMask": {
+      "abstract": [
+        {
+          "text": "A mask that defines which categories this light belongs to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "categoryBitMask"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKLightNode/categoryBitMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "categoryBitMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "categoryBitMask",
+      "type": "topic",
+      "url": "/documentation/spritekit/sklightnode/categorybitmask"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode": {
+      "abstract": [
+        {
+          "text": "An image or solid color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKSpriteNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKSpriteNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKSpriteNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skspritenode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode/lightingBitMask": {
+      "abstract": [
+        {
+          "text": "A mask that defines how this sprite is lit by light nodes in the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lightingBitMask"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode/lightingBitMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lightingBitMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "lightingBitMask",
+      "type": "topic",
+      "url": "/documentation/spritekit/skspritenode/lightingbitmask"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode/shadowCastBitMask": {
+      "abstract": [
+        {
+          "text": "A mask that defines which lights are occluded by this sprite.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shadowCastBitMask"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode/shadowCastBitMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shadowCastBitMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "shadowCastBitMask",
+      "type": "topic",
+      "url": "/documentation/spritekit/skspritenode/shadowcastbitmask"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode/shadowedBitMask": {
+      "abstract": [
+        {
+          "text": "A mask that defines which lights add shadows to the sprite.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shadowedBitMask"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode/shadowedBitMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shadowedBitMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "shadowedBitMask",
+      "type": "topic",
+      "url": "/documentation/spritekit/skspritenode/shadowedbitmask"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building": {
+      "abstract": [
+        {
+          "text": "Define the appearance or layout of scene content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Nodes for Scene Building",
+      "type": "topic",
+      "url": "/documentation/spritekit/nodes-for-scene-building"
+    },
+    "media-2983060": {
+      "alt": "Shadow casting and normal mapping",
+      "identifier": "media-2983060",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/261e62e59e1061db0683dbf9c6d3e2ef/media-2983060@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode~1shadowCastBitMask/title",
+          "value": "shadowCastBitMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode~1shadowCastBitMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shadowCastBitMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode/title",
+          "value": "SKSpriteNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSpriteNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSpriteNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKLightNode/title",
+          "value": "SKLightNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKLightNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKLightNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKLightNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKLightNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKLightNode~1categoryBitMask/title",
+          "value": "categoryBitMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKLightNode~1categoryBitMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "categoryBitMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode~1shadowedBitMask/title",
+          "value": "shadowedBitMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode~1shadowedBitMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shadowedBitMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode~1lightingBitMask/title",
+          "value": "lightingBitMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode~1lightingBitMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lightingBitMask"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/lighting-a-sprite-with-light-nodes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/lighting-a-sprite-with-light-nodes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

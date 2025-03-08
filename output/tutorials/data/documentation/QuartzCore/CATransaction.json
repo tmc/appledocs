@@ -1,0 +1,2142 @@
+{
+  "abstract": [
+    {
+      "text": "A mechanism for grouping multiple layer-tree operations into atomic updates to the render tree.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.quartzcore/documentation/QuartzCore"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CATransaction",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CATransaction"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Animation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CATransaction"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.5",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CATransaction"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CATransaction"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "CATransaction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the Core Animation mechanism for batching multiple layer-tree operations into atomic updates to the render tree. Every modification to a layer tree must be part of a transaction. Nested transactions are supported.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Animation supports two types of transactions: ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "implicit",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " transactions and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "explicit",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " transactions. Implicit transactions are created automatically when the layer tree is modified by a thread without an active transaction and are committed automatically when the thread’s runloop next iterates. Explicit transactions occur when the the application sends the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/begin()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " message before modifying the layer tree, and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/commit()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " message afterwards.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " allows you to override default animation properties that are set for animatable properties. You can customize duration, timing function, whether changes to properties trigger animations, and provide a handler that informs you when all animations from the transaction group are completed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During a transaction you can temporarily acquire a recursive spin lock for managing property atomicity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " supports nested transactions. The following code shows how you can fade out a layer (named ",
+              "type": "text"
+            },
+            {
+              "code": "transitioningLayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") over a 2 second duration while scaling it to three times its original size. The scale animation is within a nested transaction with its own duration of 1 second. After the outer transaction completes, a completion block removes ",
+              "type": "text"
+            },
+            {
+              "code": "transitioningLayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from its parent layer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let transitioningLayer = CALayer()",
+            "     ",
+            "// Outer transaction animates `opacity` to 0 over 2 seconds",
+            "CATransaction.begin()",
+            "CATransaction.setAnimationDuration(2)",
+            "CATransaction.setCompletionBlock {",
+            "    transitioningLayer.removeFromSuperlayer()",
+            "}",
+            "    ",
+            "transitioningLayer.opacity = 0",
+            "     ",
+            "// Inner transaction animates scale to (3, 3, 3) over 1 second",
+            "CATransaction.begin()",
+            "CATransaction.setAnimationDuration(1)",
+            "     ",
+            "transitioningLayer.transform = CATransform3DMakeScale(3, 3, 3)",
+            "     ",
+            "CATransaction.commit() // Commits inner transaction",
+            "CATransaction.commit() // Commits outer transaction"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore": {
+      "abstract": [
+        {
+          "text": "Render, compose, and animate visual elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Animation",
+      "type": "topic",
+      "url": "/documentation/quartzcore"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationGroup": {
+      "abstract": [
+        {
+          "text": "An object that allows multiple animations to be grouped and run concurrently.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAAnimationGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAAnimationGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAAnimationGroup",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caanimationgroup"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction": {
+      "abstract": [
+        {
+          "text": "A mechanism for grouping multiple layer-tree operations into atomic updates to the render tree.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CATransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CATransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "CATransaction",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransaction"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/animationDuration()": {
+      "abstract": [
+        {
+          "text": "Returns the animation duration used by all animations within this transaction group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animationDuration"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTimeInterval",
+          "text": "CFTimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/animationDuration()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "animationDuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "animationDuration()",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransaction/animationduration()"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/animationTimingFunction()": {
+      "abstract": [
+        {
+          "text": "Returns the timing function used for all animations within this transaction group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animationTimingFunction"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CAMediaTimingFunction",
+          "text": "CAMediaTimingFunction"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/animationTimingFunction()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "animationTimingFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "animationTimingFunction()",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransaction/animationtimingfunction()"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/begin()": {
+      "abstract": [
+        {
+          "text": "Begin a new transaction for the current thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "begin"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/begin()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "begin"
+        }
+      ],
+      "role": "symbol",
+      "title": "begin()",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransaction/begin()"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/commit()": {
+      "abstract": [
+        {
+          "text": "Commit all changes made during the current transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commit"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/commit()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "commit"
+        }
+      ],
+      "role": "symbol",
+      "title": "commit()",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransaction/commit()"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/completionBlock()": {
+      "abstract": [
+        {
+          "text": "Returns the completion block object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionBlock"
+        },
+        {
+          "kind": "text",
+          "text": "() -> (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/completionBlock()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "completionBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "completionBlock()",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransaction/completionblock()"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/disableActions()": {
+      "abstract": [
+        {
+          "text": "Returns whether actions triggered as a result of property changes made within this transaction group are suppressed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "disableActions"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/disableActions()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "disableActions"
+        }
+      ],
+      "role": "symbol",
+      "title": "disableActions()",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransaction/disableactions()"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/flush()": {
+      "abstract": [
+        {
+          "text": "Flushes any extant implicit transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "flush"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/flush()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "flush"
+        }
+      ],
+      "role": "symbol",
+      "title": "flush()",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransaction/flush()"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/lock()": {
+      "abstract": [
+        {
+          "text": "Attempts to acquire a recursive spin-lock lock, ensuring that returned layer values are valid until unlocked.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lock"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/lock()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lock"
+        }
+      ],
+      "role": "symbol",
+      "title": "lock()",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransaction/lock()"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/setAnimationDuration(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the animation duration used by all animations within this transaction group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAnimationDuration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTimeInterval",
+          "text": "CFTimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/setAnimationDuration(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setAnimationDuration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setAnimationDuration(_:)",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransaction/setanimationduration(_:)"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/setAnimationTimingFunction(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the timing function used for all animations within this transaction group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAnimationTimingFunction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CAMediaTimingFunction",
+          "text": "CAMediaTimingFunction"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/setAnimationTimingFunction(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setAnimationTimingFunction:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setAnimationTimingFunction(_:)",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransaction/setanimationtimingfunction(_:)"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/setCompletionBlock(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the completion block object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCompletionBlock"
+        },
+        {
+          "kind": "text",
+          "text": "((() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/setCompletionBlock(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setCompletionBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setCompletionBlock(_:)",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransaction/setcompletionblock(_:)"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/setDisableActions(_:)": {
+      "abstract": [
+        {
+          "text": "Sets whether actions triggered as a result of property changes made within this transaction group are suppressed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDisableActions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/setDisableActions(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setDisableActions:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setDisableActions(_:)",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransaction/setdisableactions(_:)"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/setValue(_:forKey:)": {
+      "abstract": [
+        {
+          "text": "Sets the arbitrary keyed-data for the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/setValue(_:forKey:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setValue:forKey:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setValue(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransaction/setvalue(_:forkey:)"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/unlock()": {
+      "abstract": [
+        {
+          "text": "Relinquishes a previously acquired transaction lock.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unlock"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/unlock()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "unlock()",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransaction/unlock()"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/value(forKey:)": {
+      "abstract": [
+        {
+          "text": "Returns the arbitrary keyed-data specified by the given key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/value(forKey:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "valueForKey:"
+        }
+      ],
+      "role": "symbol",
+      "title": "value(forKey:)",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransaction/value(forkey:)"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/transaction-properties": {
+      "abstract": [
+        {
+          "text": "These constants define the property keys used by ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/value(forKey:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/setValue(_:forKey:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/transaction-properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Transaction properties",
+      "type": "topic",
+      "url": "/documentation/quartzcore/transaction-properties"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Animation-Groups",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationGroup"
+      ],
+      "title": "Animation Groups"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-and-Committing-Transactions",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/begin()",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/commit()",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/flush()"
+      ],
+      "title": "Creating and Committing Transactions"
+    },
+    {
+      "anchor": "Overriding-Animation-Duration-and-Timing",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/animationDuration()",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/setAnimationDuration(_:)",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/animationTimingFunction()",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/setAnimationTimingFunction(_:)"
+      ],
+      "title": "Overriding Animation Duration and Timing"
+    },
+    {
+      "anchor": "Temporarily-Disabling-Property-Animations",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/disableActions()",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/setDisableActions(_:)"
+      ],
+      "title": "Temporarily Disabling Property Animations"
+    },
+    {
+      "anchor": "Getting-and-Setting-Completion-Block-Objects",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/completionBlock()",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/setCompletionBlock(_:)"
+      ],
+      "title": "Getting and Setting Completion Block Objects"
+    },
+    {
+      "anchor": "Managing-Concurrency",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/lock()",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/unlock()"
+      ],
+      "title": "Managing Concurrency"
+    },
+    {
+      "anchor": "Getting-and-Setting-Transaction-Properties",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/setValue(_:forKey:)",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/value(forKey:)"
+      ],
+      "title": "Getting and Setting Transaction Properties"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/transaction-properties"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.5",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CATransaction"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CATransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CATransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.quartzcore/documentation/QuartzCore"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-and-Committing-Transactions",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/begin()",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/commit()",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/flush()"
+              ],
+              "title": "Creating and Committing Transactions"
+            },
+            {
+              "anchor": "Overriding-Animation-Duration-and-Timing",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/animationDuration()",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/setAnimationDuration(_:)",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/animationTimingFunction()",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/setAnimationTimingFunction(_:)"
+              ],
+              "title": "Overriding Animation Duration and Timing"
+            },
+            {
+              "anchor": "Temporarily-Disabling-Property-Animations",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/disableActions()",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/setDisableActions(_:)"
+              ],
+              "title": "Temporarily Disabling Property Animations"
+            },
+            {
+              "anchor": "Getting-and-Setting-Completion-Block-Objects",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/completionBlock()",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/setCompletionBlock(_:)"
+              ],
+              "title": "Getting and Setting Completion Block Objects"
+            },
+            {
+              "anchor": "Managing-Concurrency",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/lock()",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/unlock()"
+              ],
+              "title": "Managing Concurrency"
+            },
+            {
+              "anchor": "Getting-and-Setting-Transaction-Properties",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/setValue(_:forKey:)",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CATransaction/value(forKey:)"
+              ],
+              "title": "Getting and Setting Transaction Properties"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/transaction-properties"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Animation-Groups",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationGroup"
+              ],
+              "title": "Animation Groups"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CATransaction"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1completionBlock()/title",
+          "value": "completionBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1completionBlock()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "completionBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1setCompletionBlock(_:)/title",
+          "value": "setCompletionBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1setCompletionBlock(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "setCompletionBlock:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1disableActions()/title",
+          "value": "disableActions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1disableActions()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "disableActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimationGroup/title",
+          "value": "CAAnimationGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimationGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAAnimationGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimationGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAAnimationGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1lock()/title",
+          "value": "lock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1lock()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "lock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1setValue(_:forKey:)/title",
+          "value": "setValue:forKey:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1setValue(_:forKey:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "setValue:forKey:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1flush()/title",
+          "value": "flush"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1flush()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "flush"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1setAnimationTimingFunction(_:)/title",
+          "value": "setAnimationTimingFunction:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1setAnimationTimingFunction(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "setAnimationTimingFunction:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1setDisableActions(_:)/title",
+          "value": "setDisableActions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1setDisableActions(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "setDisableActions:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1value(forKey:)/title",
+          "value": "valueForKey:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1value(forKey:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "valueForKey:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1setAnimationDuration(_:)/title",
+          "value": "setAnimationDuration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1setAnimationDuration(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "setAnimationDuration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1commit()/title",
+          "value": "commit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1commit()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "commit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction/title",
+          "value": "CATransaction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CATransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CATransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1animationTimingFunction()/title",
+          "value": "animationTimingFunction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1animationTimingFunction()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "animationTimingFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1begin()/title",
+          "value": "begin"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1begin()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "begin"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1unlock()/title",
+          "value": "unlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1unlock()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "unlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1animationDuration()/title",
+          "value": "animationDuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransaction~1animationDuration()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "animationDuration"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quartzcore/catransaction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/quartzcore/catransaction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

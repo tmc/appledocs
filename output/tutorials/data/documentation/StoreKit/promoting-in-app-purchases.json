@@ -1,0 +1,1611 @@
+{
+  "abstract": [
+    {
+      "text": "Show promoted In-App Purchases on your product page and handle purchases that customers initiate on the App Store.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/promoting-in-app-purchases"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Promoting In-App Purchases"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting in iOS 11, you can promote in-app purchases on the App Store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To support promoted in-app purchases in apps with a minimum version of iOS 16.4 and later, use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/PurchaseIntent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/supporting-promoted-in-app-purchases-in-your-app",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Promoted in-app purchases appear on your product page, can appear in search results, and can appear as featured items on an appropriate tab on the App Store. Users can start an in-app purchase on the App Store and then transition to your app to continue the transaction. If your app isn’t installed, they receive a prompt to download it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Promoting in-app purchases requires two steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In App Store Connect, set up promotions by uploading promotional images. Use the App Store Promotions feature in App Store Connect to manage their order and visibility. For more information about the setup, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/promote-in-app-purchases",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your app, implement the delegate method ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver/paymentQueue(_:shouldAddStorePayment:for:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " from the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol to handle the purchase.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To enable promoted in-app purchases, your app needs to use either ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/PurchaseIntent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " (starting in iOS 16.4) or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver/paymentQueue(_:shouldAddStorePayment:for:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " (starting in iOS 11). Don’t use both at the same time. If necessary, use conditional compilation to identify the OS version the app is running in. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Xcode/running-code-on-a-specific-version",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To customize the list of promoted in-app purchases for users, you can override their default order and visibility using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProductStorePromotionController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Use overrides to show promotions that are relevant to the user. Overrides are specific to a device, and take effect after the user launches the app at least once. Using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProductStorePromotionController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is optional and isn’t required for your in-app purchases to appear on the App Store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For marketing guidance on this feature, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store/promoting-in-app-purchases/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Promoted in-app purchases aren’t available to compatible iPad or iPhone apps running in visionOS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Complete-the-purchase-in-the-app",
+          "level": 3,
+          "text": "Complete the purchase in the app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user selects an in-app product to purchase on the App Store, StoreKit automatically opens your app and sends the transaction information to the delegate in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. Your app needs to complete the purchase transaction and any related actions that are specific to it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the delegate method, return ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to continue the transaction, or ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to defer or cancel it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app isn’t installed when the user selects to purchase the in-app product, the App Store automatically downloads the app or prompts the user to purchase it. If the installed version of your app is an older version that doesn’t support in-app purchase promotions, the App Store prompts the user to upgrade the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Continue-the-transaction",
+          "level": 3,
+          "text": "Continue the transaction",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To continue an in-app purchase transaction, implement the delegate method in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and return ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". StoreKit then displays the payment sheet, and the user can complete the transaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "//Continuing a transaction from the App Store.",
+            "",
+            "//MARK: - SKPaymentTransactionObserver",
+            "",
+            "func paymentQueue(_ queue: SKPaymentQueue, shouldAddStorePayment payment: SKPayment,",
+            "        for product: SKProduct) -> Bool {",
+            "    // Check to see if you can complete the transaction.",
+            "    // Return true if you can.",
+            "    return true",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Defer-or-cancel-the-transaction",
+          "level": 3,
+          "text": "Defer or cancel the transaction",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app needs to defer or cancel a transaction, return ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, you may need to defer a transaction if the user is in the middle of onboarding, and continue it after they complete the onboarding. Or, you may need to cancel a transaction if the user has already unlocked the product they’re trying to buy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To defer a transaction:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Save the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "payment",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to use when the app is ready. The payment already contains information about the product. Don’t create a new ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPayment",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " with the same product.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Return ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "false",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "After the user finishes the onboarding or other actions that require a deferral, send the saved payment to the payment queue as you do with a typical in-app purchase.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To cancel a transaction:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Return ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "false",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide feedback to the user. Although this step is optional, if you don’t provide feedback, the app’s lack of action after the user selects to purchase an in-app product in the App Store may seem like a bug.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "//Handling a transaction from the App Store.",
+            "",
+            "//MARK: - SKPaymentTransactionObserver",
+            "",
+            "func paymentQueue(_ queue: SKPaymentQueue, shouldAddStorePayment payment: SKPayment,",
+            "        for product: SKProduct) -> Bool {",
+            "",
+            "    // Add code here to check if your app needs to defer the transaction.",
+            "    let shouldDeferPayment = ...",
+            "    // If you need to defer until onboarding is complete, save the payment and return false.",
+            "    if shouldDeferPayment {",
+            "        self.savedPayment = payment",
+            "        return false",
+            "    }",
+            "",
+            "    // Add code here to check if your app needs to cancel the transaction.",
+            "    let shouldCancelPayment = ...",
+            "    // If you need to cancel the transaction, then return false:",
+            "    if shouldCancelPayment {",
+            "        return false",
+            "    }",
+            "}",
+            "",
+            "// If you cancel the transaction, provide feedback to the user.",
+            "",
+            "// Continuing a previously deferred payment.",
+            "SKPaymentQueue.default().add(savedPayment)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Get-visibility-settings",
+          "level": 3,
+          "text": "Get visibility settings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get the visibility settings for a promoted product, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProductStorePromotionController/fetchStorePromotionVisibility(for:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", providing the product information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Reading visibility override of a promoted in-app purchase.",
+            "",
+            "// Fetch product info for \"Hidden Beaches pack.\"",
+            "",
+            "let storePromotionController = SKProductStorePromotionController.default()",
+            "storePromotionController.fetchStorePromotionVisibility(forProduct: hiddenBeaches,",
+            "    completionHandler: { visibility: SKProductSTorePromotionVisiblity, error: Error?) in",
+            "        // visibility == .default",
+            "})"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Override-visibility-settings",
+          "level": 3,
+          "text": "Override visibility settings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each device, you can decide whether to make in-app purchases visible or hidden. For example, you may want to hide products the customer already purchased, and show only the products they can buy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to hide the Pro Subscription product after a user purchases it, fetch the product information and update the store promotion controller with the ",
+              "type": "text"
+            },
+            {
+              "code": ".hide",
+              "type": "codeVoice"
+            },
+            {
+              "text": " setting, as the following code example shows. The Pro Subscription promoted in-app purchase no longer appears in the App Store on the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Hide the promoted product Pro Subscription after the user purchases it.",
+            "",
+            "let storePromotionController = SKProductStorePromotionController.default()",
+            "storePromotionController.update(storePromotionVisibility: .hide, for: proSubscription,",
+            "    completionHandler: { (error: Error?) in",
+            "        // Completion.",
+            "    })"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Override-the-order-of-promoted-products",
+          "level": 3,
+          "text": "Override the order of promoted products",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can customize the promoted in-app purchases on each device by overriding their default order. Use overrides to show promotions that are relevant to the user. For example, you can override the order to promote an in-app purchase that unlocks a level in your game when a user reaches the preceding level.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To override the promotion order, add the product information to an array in the order they are to appear. Pass the array to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProductStorePromotionController/update(storePromotionOrder:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. The App Store displays the products in the array, followed by the remaining promoted products, which appear in the same relative order that you set in App Store Connect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Overriding the order of promoted in-app purchases.",
+            "",
+            "// Fetch product information for three products: Pro Subscription, Fishing Hot Spots, and Hidden Beaches.",
+            "let storePromotionController = SKProductStorePromotionController.default()",
+            "",
+            "// Update the order.",
+            "let newProductsOrder = [hiddenBeaches, proSubscription, fishingHotSpots]",
+            "storePromotionController.updateStorePromotionOrder(newProductsOrder,",
+            "    completionHandler: { (error: Error?) in",
+            "        // Complete.",
+            "    })"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Cancel-order-overrides",
+          "level": 3,
+          "text": "Cancel order overrides",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To remove overrides and use the default promotion order, send an empty product array to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProductStorePromotionController/update(storePromotionOrder:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. The App Store then displays the promoted in-app purchase products in the default order that you set in App Store Connect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Fetch-order-overrides",
+          "level": 3,
+          "text": "Fetch order overrides",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get the product promotion order for the device, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProductStorePromotionController/fetchStorePromotionOrder(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This method returns an array of products that have an overridden order. If you get an empty array, there aren’t any overrides and the products are in the default order.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Getting the order override of promoted in-app purchases.",
+            "",
+            "let storePromotionController = SKProductStorePromotionController.default()",
+            "storePromotionController.fetchStorePromotionOrder(completionHandler: {",
+            "    (products: [SKProduct], error: Error?) in",
+            "        // products == [hiddenBeaches, proSubscription, fishingHotSpots]",
+            "    })"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Xcode/running-code-on-a-specific-version": {
+      "abstract": [
+        {
+          "text": "Add conditional compilation markers around code that requires a particular family of devices or minimum operating system version to run.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/running-code-on-a-specific-version",
+      "kind": "article",
+      "role": "article",
+      "title": "Running code on a specific platform or OS version",
+      "type": "topic",
+      "url": "/documentation/Xcode/running-code-on-a-specific-version"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/PurchaseIntent": {
+      "abstract": [
+        {
+          "text": "An instance that emits purchase intents, which indicate that the customer initiated a purchase outside of your app, for your app to complete.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PurchaseIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/PurchaseIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PurchaseIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PurchaseIntent",
+      "type": "topic",
+      "url": "/documentation/storekit/purchaseintent"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPayment": {
+      "abstract": [
+        {
+          "text": "A request to the App Store to process payment for additional functionality that your app offers.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPayment"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPayment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPayment"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPayment",
+      "type": "topic",
+      "url": "/documentation/storekit/skpayment"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver": {
+      "abstract": [
+        {
+          "text": "A set of methods that process transactions, unlock purchased functionality, and continue promoted In-App Purchases.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPaymentTransactionObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPaymentTransactionObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPaymentTransactionObserver",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymenttransactionobserver"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver/paymentQueue(_:shouldAddStorePayment:for:)": {
+      "abstract": [
+        {
+          "text": "Tells the observer when a user initiates an in-app purchase from the App Store.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentQueue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKPaymentQueue",
+          "text": "SKPaymentQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shouldAddStorePayment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKPayment",
+          "text": "SKPayment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKProduct",
+          "text": "SKProduct"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver/paymentQueue(_:shouldAddStorePayment:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentQueue:shouldAddStorePayment:forProduct:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentQueue(_:shouldAddStorePayment:for:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymenttransactionobserver/paymentqueue(_:shouldaddstorepayment:for:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKProductStorePromotionController": {
+      "abstract": [
+        {
+          "text": "A product promotion controller for customizing the order and visibility of In-App Purchases per device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKProductStorePromotionController"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProductStorePromotionController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKProductStorePromotionController"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKProductStorePromotionController",
+      "type": "topic",
+      "url": "/documentation/storekit/skproductstorepromotioncontroller"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKProductStorePromotionController/fetchStorePromotionOrder(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Reads the product order override that determines the promoted product order on this device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchStorePromotionOrder"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKProduct",
+          "text": "SKProduct"
+        },
+        {
+          "kind": "text",
+          "text": "], (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProductStorePromotionController/fetchStorePromotionOrder(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchStorePromotionOrderWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchStorePromotionOrder(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skproductstorepromotioncontroller/fetchstorepromotionorder(completionhandler:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKProductStorePromotionController/fetchStorePromotionVisibility(for:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Reads the visibility setting of a promoted product in the App Store for this device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchStorePromotionVisibility"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKProduct",
+          "text": "SKProduct"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SKProductStorePromotionVisibility",
+          "text": "SKProductStorePromotionVisibility"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProductStorePromotionController/fetchStorePromotionVisibility(for:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchStorePromotionVisibilityForProduct:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchStorePromotionVisibility(for:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skproductstorepromotioncontroller/fetchstorepromotionvisibility(for:completionhandler:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKProductStorePromotionController/update(storePromotionOrder:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Overrides the promoted product order on this device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "storePromotionOrder"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKProduct",
+          "text": "SKProduct"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProductStorePromotionController/update(storePromotionOrder:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateStorePromotionOrder:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "update(storePromotionOrder:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skproductstorepromotioncontroller/update(storepromotionorder:completionhandler:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/original-api-for-in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/supporting-promoted-in-app-purchases-in-your-app": {
+      "abstract": [
+        {
+          "text": "Display promoted In-App Purchases on your product page and handle purchases that users initiate on the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/supporting-promoted-in-app-purchases-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting promoted In-App Purchases in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/supporting-promoted-in-app-purchases-in-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-promoted-in-app-purchases": {
+      "abstract": [
+        {
+          "text": "Test your In-App Purchases before making your app available in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-promoted-in-app-purchases",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing promoted In-App Purchases",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-promoted-in-app-purchases"
+    },
+    "https://developer.apple.com/app-store/promoting-in-app-purchases/": {
+      "identifier": "https://developer.apple.com/app-store/promoting-in-app-purchases/",
+      "title": "Promoting Your In-App Purchases",
+      "titleInlineContent": [
+        {
+          "text": "Promoting Your In-App Purchases",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/promoting-in-app-purchases/"
+    },
+    "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/promote-in-app-purchases": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/promote-in-app-purchases",
+      "title": "Promote in-app purchases",
+      "titleInlineContent": [
+        {
+          "text": "Promote in-app purchases",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/promote-in-app-purchases"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Promotions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/testing-promoted-in-app-purchases",
+        "doc://com.apple.storekit/documentation/StoreKit/SKProductStorePromotionController"
+      ],
+      "title": "Promotions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Promotions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/testing-promoted-in-app-purchases",
+                "doc://com.apple.storekit/documentation/StoreKit/SKProductStorePromotionController"
+              ],
+              "title": "Promotions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionObserver~1paymentQueue(_:shouldAddStorePayment:for:)/title",
+          "value": "paymentQueue:shouldAddStorePayment:forProduct:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionObserver~1paymentQueue(_:shouldAddStorePayment:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentQueue:shouldAddStorePayment:forProduct:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductStorePromotionController~1fetchStorePromotionOrder(completionHandler:)/title",
+          "value": "fetchStorePromotionOrderWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductStorePromotionController~1fetchStorePromotionOrder(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchStorePromotionOrderWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductStorePromotionController~1fetchStorePromotionVisibility(for:completionHandler:)/title",
+          "value": "fetchStorePromotionVisibilityForProduct:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductStorePromotionController~1fetchStorePromotionVisibility(for:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchStorePromotionVisibilityForProduct:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductStorePromotionController/title",
+          "value": "SKProductStorePromotionController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductStorePromotionController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKProductStorePromotionController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductStorePromotionController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKProductStorePromotionController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPayment/title",
+          "value": "SKPayment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPayment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPayment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPayment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPayment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductStorePromotionController~1update(storePromotionOrder:completionHandler:)/title",
+          "value": "updateStorePromotionOrder:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductStorePromotionController~1update(storePromotionOrder:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateStorePromotionOrder:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionObserver/title",
+          "value": "SKPaymentTransactionObserver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionObserver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentTransactionObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionObserver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentTransactionObserver"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/promoting-in-app-purchases"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/promoting-in-app-purchases"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,580 @@
+{
+  "abstract": [
+    {
+      "text": "Obtains the element tag and data size of an element by index from the specified profile. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804996-cmgetindprofileelementinfo"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1804996,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "pseudoSymbol",
+    "symbolKind": "func",
+    "title": "CMGetIndProfileElementInfo"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "CMError CMGetIndProfileElementInfo ("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   CMProfileRef prof,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   UInt32 index,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   OSType *tag,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   UInt32 *elementSize,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   Boolean *refs"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A profile reference of type ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmprofileref",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to the profile containing the element. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "prof"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A one-based element index within the range returned by the ",
+                  "type": "text"
+                },
+                {
+                  "code": "elementCount",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "CMCountProfileElements",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " function. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "index"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to an element signature. On return, the tag signature of the element corresponding to the index. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "tag"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to an element size. On return, the size in bytes of the element data corresponding to the tag.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "elementSize"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a reference count flag. On return, set to ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if more than one tag in the profile refers to element data associated with the tag corresponding to the index. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "refs"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "CMError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The index order of elements is determined internally by the ColorSync Manager and is not publicly defined.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before calling the ",
+              "type": "text"
+            },
+            {
+              "code": "CMGetIndProfileElementInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function, you should call the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804963-cmcountprofileelements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which returns the total number of elements in the profile in the ",
+              "type": "text"
+            },
+            {
+              "code": "elementCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. The number you specify for the ",
+              "type": "text"
+            },
+            {
+              "code": "index",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter when calling ",
+              "type": "text"
+            },
+            {
+              "code": "CMGetIndProfileElementInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " should be in the range of 1 to ",
+              "type": "text"
+            },
+            {
+              "code": "elementCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; otherwise the function will return a result code of ",
+              "type": "text"
+            },
+            {
+              "code": "cmIndexRangeErr",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You might want to call this function, for example, to print out the contents of a profile. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmprofileref": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmprofileref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMProfileRef",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmprofileref"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ColorSync Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/applicationservices/colorsync_manager#1670295"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804963-cmcountprofileelements": {
+      "abstract": [
+        {
+          "text": "Counts the number of elements in the specified profile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804963-cmcountprofileelements",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMCountProfileElements",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804963-cmcountprofileelements"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804967-cmprofileelementexists": {
+      "abstract": [
+        {
+          "text": "Tests whether the specified profile contains a specific element based on the element’s tag signature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804967-cmprofileelementexists",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMProfileElementExists",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804967-cmprofileelementexists"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804973-cmgetprofileelement": {
+      "abstract": [
+        {
+          "text": "Obtains element data from the specified profile based on the specified element tag signature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804973-cmgetprofileelement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetProfileElement",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804973-cmgetprofileelement"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804977-cmsetprofileelement": {
+      "abstract": [
+        {
+          "text": "Sets or replaces the element data for a specific tag in the specified profile. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804977-cmsetprofileelement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMSetProfileElement",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804977-cmsetprofileelement"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804980-cmsetprofileelementsize": {
+      "abstract": [
+        {
+          "text": "Reserves the element data size for a specific tag in the specified profile before setting the element data. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804980-cmsetprofileelementsize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMSetProfileElementSize",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804980-cmsetprofileelementsize"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804984-cmgetpartialprofileelement": {
+      "abstract": [
+        {
+          "text": "Obtains a portion of the element data from the specified profile based on the specified element tag signature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804984-cmgetpartialprofileelement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetPartialProfileElement",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804984-cmgetpartialprofileelement"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804989-cmsetpartialprofileelement": {
+      "abstract": [
+        {
+          "text": "Sets part of the element data for a specific tag in the specified profile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804989-cmsetpartialprofileelement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMSetPartialProfileElement",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804989-cmsetpartialprofileelement"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804996-cmgetindprofileelementinfo": {
+      "abstract": [
+        {
+          "text": "Obtains the element tag and data size of an element by index from the specified profile. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804996-cmgetindprofileelementinfo",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetIndProfileElementInfo",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804996-cmgetindprofileelementinfo"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805002-cmgetindprofileelement": {
+      "abstract": [
+        {
+          "text": "Obtains the element data corresponding to a particular index from the specified profile. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805002-cmgetindprofileelement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetIndProfileElement",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805002-cmgetindprofileelement"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805005-cmsetprofileelementreference": {
+      "abstract": [
+        {
+          "text": "Adds a tag to the specified profile to refer to data corresponding to a previously set element. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805005-cmsetprofileelementreference",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMSetProfileElementReference",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805005-cmsetprofileelementreference"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805008-cmremoveprofileelement": {
+      "abstract": [
+        {
+          "text": "Removes an element corresponding to a specific tag from the specified profile. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805008-cmremoveprofileelement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMRemoveProfileElement",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805008-cmremoveprofileelement"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804963-cmcountprofileelements",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804967-cmprofileelementexists",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804973-cmgetprofileelement",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804977-cmsetprofileelement",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804980-cmsetprofileelementsize",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804984-cmgetpartialprofileelement",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804989-cmsetpartialprofileelement",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805002-cmgetindprofileelement",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805005-cmsetprofileelementreference",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805008-cmremoveprofileelement"
+      ],
+      "title": "Accessing Profile Elements"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/colorsync_manager/1804996-cmgetindprofileelementinfo"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

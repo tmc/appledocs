@@ -1,0 +1,3822 @@
+{
+  "abstract": [
+    {
+      "text": "A representation of an image to be processed or produced by Core Image filters.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/ciimage"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1437635,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CIImage",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "CIImage"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "CIImage"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CIImage"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects in conjunction with other Core Image classes—such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/civector",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "—to take advantage of the built-in Core Image filters when processing images. You can create ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects with data supplied from a variety of sources, including Quartz 2D images, Core Video image buffers (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVImageBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), URL-based objects, and ",
+              "type": "text"
+            },
+            {
+              "code": "NSData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object has image data associated with it, it is not an image. You can think of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object as an image “recipe.” A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object has all the information necessary to produce an image, but Core Image doesn’t actually render an image until it is told to do so. This lazy evaluation allows Core Image to operate as efficiently as possible. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects are immutable, which means each can be shared safely among threads. Multiple threads can use the same GPU or CPU ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object to render ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects.  However, this is not the case for ",
+              "type": "text"
+            },
+            {
+              "code": "CIFilter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects, which are mutable. A ",
+              "type": "text"
+            },
+            {
+              "code": "CIFilter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object cannot be shared safely among threads.  If you app is multithreaded, each thread must create its own ",
+              "type": "text"
+            },
+            {
+              "code": "CIFilter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects. Otherwise, your app could behave unexpectedly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Image also provides auto-adjustment methods. These methods analyze an image for common deficiencies and return a set of filters to correct those deficiencies. The filters are preset with values for improving image quality by altering values for skin tones, saturation, contrast, and shadows and for removing red-eye or other artifacts caused by flash. (See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage#1652741",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a discussion of all the methods you can use to create ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects on iOS and macOS, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1720743",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1720743": {
+      "identifier": "devLink-1720743",
+      "title": "Core Image Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_intro/ci_intro.html#//apple_ref/doc/uid/TP30001185"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData": {
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVDepthData",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPortraitEffectsMatte": {
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPortraitEffectsMatte",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPortraitEffectsMatte",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avportraiteffectsmatte"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVImageBuffer": {
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVImageBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVImageBuffer",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvimagebuffer"
+    },
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIColor",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext": {
+      "abstract": [
+        {
+          "text": "An evaluation context for rendering image processing results and performing image analysis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIContext",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFilter",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage": {
+      "abstract": [
+        {
+          "text": "A representation of an image to be processed or produced by Core Image filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImage",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage#1652741": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage#1652741",
+      "kind": "article",
+      "role": "task",
+      "title": "Getting Autoadjustment Filters",
+      "type": "section",
+      "url": "/documentation/coreimage/ciimage#1652741"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437589-applyingfilter": {
+      "abstract": [
+        {
+          "text": "Returns a new image created by applying a filter to the original image with the specified name and parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyingFilter"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : Any]) -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437589-applyingfilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applyingFilter(_:parameters:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437589-applyingfilter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437617-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image object from the contents of a Core Video image buffer, using the specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "cvImageBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": CVImageBuffer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageOption : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437617-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cvImageBuffer:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437617-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437628-clampedtoextent": {
+      "abstract": [
+        {
+          "text": "Returns a new image created by making the pixel colors along its edges extend infinitely in all directions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "clampedToExtent"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437628-clampedtoextent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clampedToExtent()",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437628-clampedtoextent"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437670-init": {
+      "abstract": [
+        {
+          "text": "Initializes, using the specified format and options, an image with the contents of a specific data plane in an IOSurface.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "ioSurface"
+        },
+        {
+          "kind": "text",
+          "text": ": IOSurfaceRef, "
+        },
+        {
+          "kind": "identifier",
+          "text": "plane"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFormat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageOption : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437670-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(ioSurface:plane:format:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437670-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437687-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image object  from the contents supplied by a CGLayer object, using the  specified options.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "cgLayer"
+        },
+        {
+          "kind": "text",
+          "text": ": CGLayer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageOption : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437687-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cgLayer:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437687-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437733-properties": {
+      "abstract": [
+        {
+          "text": "A dictionary containing metadata about the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "properties"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437733-properties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "properties",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437733-properties"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437750-colorspace": {
+      "abstract": [
+        {
+          "text": "The color space of the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437750-colorspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "colorSpace",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437750-colorspace"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437764-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image object with a Quartz 2D image, using the specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "cgImage"
+        },
+        {
+          "kind": "text",
+          "text": ": CGImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageOption : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437764-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cgImage:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437764-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437792-autoadjustmentfilters": {
+      "abstract": [
+        {
+          "text": "Returns a subset of automatically selected and configured filters for adjusting the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "autoAdjustmentFilters"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageAutoAdjustmentOption : Any]?) -> [CIFilter]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437792-autoadjustmentfilters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "autoAdjustmentFilters(options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437792-autoadjustmentfilters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437804-definition": {
+      "abstract": [
+        {
+          "text": "Returns a filter shape object that represents the domain of definition of the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "definition"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFilterShape"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437804-definition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "definition",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437804-definition"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437833-cropped": {
+      "abstract": [
+        {
+          "text": "Returns a new image with a cropped portion of the original image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "cropped"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect) -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437833-cropped",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cropped(to:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437833-cropped"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437837-composited": {
+      "abstract": [
+        {
+          "text": "Returns a new image created by compositing the original image over the specified destination image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "composited"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "over"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage) -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437837-composited",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "composited(over:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437837-composited"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437857-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image object with bitmap data. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "bitmapData"
+        },
+        {
+          "kind": "text",
+          "text": ": Data, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bytesPerRow"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": CGSize, "
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFormat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437857-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(bitmapData:bytesPerRow:size:format:colorSpace:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437857-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437867-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image object by reading an image from a URL, using the specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageOption : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437867-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOf:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437867-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437868-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image object with  data provided by an image provider, using the specified options. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "imageProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFormat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageOption : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437868-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(imageProvider:size:_:format:colorSpace:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437868-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437880-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image object with data supplied by an OpenGL texture.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "texture"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt32, "
+        },
+        {
+          "kind": "identifier",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": CGSize, "
+        },
+        {
+          "kind": "identifier",
+          "text": "flipped"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageOption : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437880-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(texture:size:flipped:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437880-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437890-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image object with data supplied by a Metal texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "mtlTexture"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLTexture, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageOption : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437890-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(mtlTexture:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437890-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437908-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image object by reading an image from a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437908-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOf:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437908-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437925-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image object with the supplied image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": Data)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437925-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(data:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437925-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437930-orientationtransform": {
+      "abstract": [
+        {
+          "text": "Returns the transformation needed to reorient the image to the specified orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "orientationTransform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forExifOrientation"
+        },
+        {
+          "kind": "text",
+          "text": ": Int32) -> CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437930-orientationtransform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "orientationTransform(forExifOrientation:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437930-orientationtransform"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437947-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image of infinite extent whose entire content is the specified color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "color"
+        },
+        {
+          "kind": "text",
+          "text": ": CIColor)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437947-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(color:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437947-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437986-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image object with a Quartz 2D image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "cgImage"
+        },
+        {
+          "kind": "text",
+          "text": ": CGImage)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437986-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cgImage:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437986-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437994-regionofinterest": {
+      "abstract": [
+        {
+          "text": "Returns the region of interest for the filter chain that generates the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "regionOfInterest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect) -> CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437994-regionofinterest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "regionOfInterest(for:in:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437994-regionofinterest"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1437996-extent": {
+      "abstract": [
+        {
+          "text": "A rectangle that specifies the extent of the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "extent"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437996-extent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "extent",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1437996-extent"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1438012-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image object from the contents of a Core Video image buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "cvImageBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": CVImageBuffer)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1438012-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cvImageBuffer:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1438012-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1438015-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image object with data supplied by an OpenGL texture.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "texture"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt32, "
+        },
+        {
+          "kind": "identifier",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": CGSize, "
+        },
+        {
+          "kind": "identifier",
+          "text": "flipped"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1438015-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(texture:size:flipped:colorSpace:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1438015-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1438023-empty": {
+      "abstract": [
+        {
+          "text": "Creates and returns an empty image object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "empty"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1438023-empty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "empty()",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1438023-empty"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1438030-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image with the contents of an IOSurface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "ioSurface"
+        },
+        {
+          "kind": "text",
+          "text": ": IOSurfaceRef)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1438030-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(ioSurface:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1438030-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1438032-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image object with the supplied image data, using the specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": Data, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageOption : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1438032-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(data:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1438032-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1438065-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image object  from the contents supplied by a CGLayer object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "cgLayer"
+        },
+        {
+          "kind": "text",
+          "text": ": CGLayer)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1438065-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cgLayer:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1438065-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1438072-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image object from the contents of a Core Video pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "cvPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": CVPixelBuffer)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1438072-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cvPixelBuffer:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1438072-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1438181-init": {
+      "abstract": [
+        {
+          "text": "Initializes, using the specified options, an image with the contents of an IOSurface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "ioSurface"
+        },
+        {
+          "kind": "text",
+          "text": ": IOSurfaceRef, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageOption : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1438181-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(ioSurface:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1438181-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1438195-url": {
+      "abstract": [
+        {
+          "text": "The URL from which the image was loaded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1438195-url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1438195-url"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1438203-transformed": {
+      "abstract": [
+        {
+          "text": "Returns a new image that represents the original image after applying an affine transform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "transformed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": CGAffineTransform) -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1438203-transformed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transformed(by:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1438203-transformed"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1438209-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image object from the contents of a Core Video pixel buffer using the specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "cvPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": CVPixelBuffer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageOption : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1438209-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cvPixelBuffer:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1438209-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1438223-oriented": {
+      "abstract": [
+        {
+          "text": "Returns a new image created by transforming the original image to the specified EXIF orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "oriented"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forExifOrientation"
+        },
+        {
+          "kind": "text",
+          "text": ": Int32) -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1438223-oriented",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "oriented(forExifOrientation:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1438223-oriented"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1534407-draw": {
+      "abstract": [
+        {
+          "text": "Draws all or part of the image in the specified rectangle in the current coordinate system",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "draw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRect, "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRect, "
+        },
+        {
+          "kind": "identifier",
+          "text": "operation"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCompositingOperation, "
+        },
+        {
+          "kind": "identifier",
+          "text": "fraction"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1534407-draw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draw(in:from:operation:fraction:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1534407-draw"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1534432-draw": {
+      "abstract": [
+        {
+          "text": "Draws all or part of the image at the specified point in the current coordinate system. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "draw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPoint, "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRect, "
+        },
+        {
+          "kind": "identifier",
+          "text": "operation"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCompositingOperation, "
+        },
+        {
+          "kind": "identifier",
+          "text": "fraction"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1534432-draw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draw(at:from:operation:fraction:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1534432-draw"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1535335-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image object with the specified bitmap image representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "bitmapImageRep"
+        },
+        {
+          "kind": "text",
+          "text": ": NSBitmapImageRep)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1535335-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(bitmapImageRep:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1535335-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1624098-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image object with the specified UIKit image object, using the specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": UIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageOption : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1624098-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(image:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1624098-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1624119-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image object with the specified UIKit image object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": UIImage)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1624119-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(image:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1624119-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1645889-autoadjustmentfilters": {
+      "abstract": [
+        {
+          "text": "Returns all possible automatically selected and configured filters for adjusting the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "autoAdjustmentFilters"
+        },
+        {
+          "kind": "text",
+          "text": "() -> [CIFilter]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1645889-autoadjustmentfilters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "autoAdjustmentFilters()",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1645889-autoadjustmentfilters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1645891-settingalphaone": {
+      "abstract": [
+        {
+          "text": "Returns a new image created by setting all alpha values to 1.0 within the specified rectangle and to 0.0 outside of that area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "settingAlphaOne"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect) -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1645891-settingalphaone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "settingAlphaOne(in:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1645891-settingalphaone"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1645892-unpremultiplyingalpha": {
+      "abstract": [
+        {
+          "text": "Returns a new image created by dividing the image’s RGB values by its alpha values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "unpremultiplyingAlpha"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1645892-unpremultiplyingalpha",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unpremultiplyingAlpha()",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1645892-unpremultiplyingalpha"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1645893-clamped": {
+      "abstract": [
+        {
+          "text": "Returns a new image created by cropping to a specified area, then making the pixel colors along the edges of the cropped image extend infinitely in all directions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "clamped"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect) -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1645893-clamped",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clamped(to:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1645893-clamped"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1645894-premultiplyingalpha": {
+      "abstract": [
+        {
+          "text": "Returns a new image created by multiplying the image’s RGB values by its alpha values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "premultiplyingAlpha"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1645894-premultiplyingalpha",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "premultiplyingAlpha()",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1645894-premultiplyingalpha"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1645895-settingproperties": {
+      "abstract": [
+        {
+          "text": "Returns a new image created by adding the specified metadata properties to the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "settingProperties"
+        },
+        {
+          "kind": "text",
+          "text": "([AnyHashable : Any]) -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1645895-settingproperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "settingProperties(_:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1645895-settingproperties"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1645896-matchedtoworkingspace": {
+      "abstract": [
+        {
+          "text": "Returns a new image created by color matching from the specified color space to the context’s working color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchedToWorkingSpace"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace) -> CIImage?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1645896-matchedtoworkingspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matchedToWorkingSpace(from:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1645896-matchedtoworkingspace"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1645897-applyinggaussianblur": {
+      "abstract": [
+        {
+          "text": "Returns a new image created by applying a Gaussian Blur filter to the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyingGaussianBlur"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "sigma"
+        },
+        {
+          "kind": "text",
+          "text": ": Double) -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1645897-applyinggaussianblur",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applyingGaussianBlur(sigma:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1645897-applyinggaussianblur"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1645898-matchedfromworkingspace": {
+      "abstract": [
+        {
+          "text": "Returns a new image created by color matching from the context’s working color space to the specified color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchedFromWorkingSpace"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace) -> CIImage?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1645898-matchedfromworkingspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matchedFromWorkingSpace(to:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1645898-matchedfromworkingspace"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1687603-cgimage": {
+      "abstract": [
+        {
+          "text": "The CoreGraphics image object this image was created from, if applicable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cgImage"
+        },
+        {
+          "kind": "text",
+          "text": ": CGImage?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1687603-cgimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cgImage",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1687603-cgimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1687604-pixelbuffer": {
+      "abstract": [
+        {
+          "text": "The CoreVideo pixel buffer this image was created from, if applicable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": CVPixelBuffer?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1687604-pixelbuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pixelBuffer",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1687604-pixelbuffer"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/2867346-samplinglinear": {
+      "abstract": [
+        {
+          "text": "Samples the image using bilinear interpolation and returns the result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "samplingLinear"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/2867346-samplinglinear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "samplingLinear()",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/2867346-samplinglinear"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/2867429-samplingnearest": {
+      "abstract": [
+        {
+          "text": "Samples the image using nearest-neighbor and returns the result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "samplingNearest"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/2867429-samplingnearest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "samplingNearest()",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/2867429-samplingnearest"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/2902251-depthdata": {
+      "abstract": [
+        {
+          "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " representation of the depth image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthData"
+        },
+        {
+          "kind": "text",
+          "text": ": AVDepthData?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/2902251-depthdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "depthData",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/2902251-depthdata"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/2915368-applyingfilter": {
+      "abstract": [
+        {
+          "text": "Applies the filter to an image and returns the output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyingFilter"
+        },
+        {
+          "kind": "text",
+          "text": "(String) -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/2915368-applyingfilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applyingFilter(_:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/2915368-applyingfilter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/2919726-orientationtransform": {
+      "abstract": [
+        {
+          "text": "The affine transform for changing the image to the given orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "orientationTransform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": CGImagePropertyOrientation) -> CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/2919726-orientationtransform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "orientationTransform(for:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/2919726-orientationtransform"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/2919727-oriented": {
+      "abstract": [
+        {
+          "text": "Transforms the original image by a given ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.imageio/documentation/ImageIO/CGImagePropertyOrientation",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and returns the result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "oriented"
+        },
+        {
+          "kind": "text",
+          "text": "(CGImagePropertyOrientation) -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/2919727-oriented",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "oriented(_:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/2919727-oriented"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/2966521-insertingintermediate": {
+      "abstract": [
+        {
+          "text": "Returns a new image created by inserting an intermediate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertingIntermediate"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/2966521-insertingintermediate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insertingIntermediate()",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/2966521-insertingintermediate"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/2966522-insertingintermediate": {
+      "abstract": [
+        {
+          "text": "Returns a new image created by inserting a cacheable intermediate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertingIntermediate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "cache"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool) -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/2966522-insertingintermediate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insertingIntermediate(cache:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/2966522-insertingintermediate"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/2976440-portraiteffectsmatte": {
+      "abstract": [
+        {
+          "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPortraitEffectsMatte",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " representation of portrait effects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "portraitEffectsMatte"
+        },
+        {
+          "kind": "text",
+          "text": ": AVPortraitEffectsMatte?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/2976440-portraiteffectsmatte",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "portraitEffectsMatte",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/2976440-portraiteffectsmatte"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/2998421-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "depthData"
+        },
+        {
+          "kind": "text",
+          "text": ": AVDepthData)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/2998421-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(depthData:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/2998421-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/2998422-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "depthData"
+        },
+        {
+          "kind": "text",
+          "text": ": AVDepthData, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/2998422-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(depthData:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/2998422-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/2998423-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "portaitEffectsMatte"
+        },
+        {
+          "kind": "text",
+          "text": ": AVPortraitEffectsMatte)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/2998423-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(portaitEffectsMatte:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/2998423-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/2998424-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "portaitEffectsMatte"
+        },
+        {
+          "kind": "text",
+          "text": ": AVPortraitEffectsMatte, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageOption : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/2998424-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(portaitEffectsMatte:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/2998424-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/3074421-black": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "black"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/3074421-black",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "black",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/3074421-black"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/3074422-blue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "blue"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/3074422-blue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "blue",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/3074422-blue"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/3074423-clear": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "clear"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/3074423-clear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clear",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/3074423-clear"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/3074424-cyan": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cyan"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/3074424-cyan",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cyan",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/3074424-cyan"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/3074425-gray": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "gray"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/3074425-gray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gray",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/3074425-gray"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/3074426-green": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "green"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/3074426-green",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "green",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/3074426-green"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/3074427-magenta": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "magenta"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/3074427-magenta",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "magenta",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/3074427-magenta"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/3074428-red": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "red"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/3074428-red",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "red",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/3074428-red"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/3074429-white": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "white"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/3074429-white",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "white",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/3074429-white"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/3074430-yellow": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "yellow"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/3074430-yellow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "yellow",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/3074430-yellow"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/3152399-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "cgImageSource"
+        },
+        {
+          "kind": "text",
+          "text": ": CGImageSource, "
+        },
+        {
+          "kind": "identifier",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageOption : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/3152399-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cgImageSource:index:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/3152399-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/3242779-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "semanticSegmentationMatte"
+        },
+        {
+          "kind": "text",
+          "text": ": AVSemanticSegmentationMatte)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/3242779-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(semanticSegmentationMatte:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/3242779-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/3242780-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "semanticSegmentationMatte"
+        },
+        {
+          "kind": "text",
+          "text": ": AVSemanticSegmentationMatte, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageOption : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/3242780-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(semanticSegmentationMatte:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/3242780-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/3242781-semanticsegmentationmatte": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "semanticSegmentationMatte"
+        },
+        {
+          "kind": "text",
+          "text": ": AVSemanticSegmentationMatte?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/3242781-semanticsegmentationmatte",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "semanticSegmentationMatte",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/3242781-semanticsegmentationmatte"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/3334939-transformed": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "transformed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": CGAffineTransform, "
+        },
+        {
+          "kind": "identifier",
+          "text": "highQualityDownsample"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool) -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/3334939-transformed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transformed(by:highQualityDownsample:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/3334939-transformed"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/3975703-convertinglabtoworkingspace": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertingLabToWorkingSpace"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/3975703-convertinglabtoworkingspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convertingLabToWorkingSpace()",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/3975703-convertinglabtoworkingspace"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/3975704-convertingworkingspacetolab": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertingWorkingSpaceToLab"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/3975704-convertingworkingspacetolab",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convertingWorkingSpaceToLab()",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/3975704-convertingworkingspacetolab"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/4354029-applyinggainmap": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyingGainMap"
+        },
+        {
+          "kind": "text",
+          "text": "(CIImage) -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/4354029-applyinggainmap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applyingGainMap(_:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/4354029-applyinggainmap"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/4354030-applyinggainmap": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyingGainMap"
+        },
+        {
+          "kind": "text",
+          "text": "(CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "headroom"
+        },
+        {
+          "kind": "text",
+          "text": ": Float) -> CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/4354030-applyinggainmap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applyingGainMap(_:headroom:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/4354030-applyinggainmap"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/4354031-isopaque": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isOpaque"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/4354031-isopaque",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isOpaque",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/4354031-isopaque"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/4430013-metaltexture": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "metalTexture"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MTLTexture)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/4430013-metaltexture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "metalTexture",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/4430013-metaltexture"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/4438508-contentheadroom": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentHeadroom"
+        },
+        {
+          "kind": "text",
+          "text": ": Float"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/4438508-contentheadroom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentHeadroom",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/4438508-contentheadroom"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/autoadjustment_keys": {
+      "abstract": [
+        {
+          "text": "Constants used as keys in the options dictionary for the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437792-autoadjustmentfilters",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/autoadjustment_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Autoadjustment Keys",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/autoadjustment_keys"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageautoadjustmentoption": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIImageAutoAdjustmentOption"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageautoadjustmentoption",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImageAutoAdjustmentOption",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageautoadjustmentoption"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageoption": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIImageOption"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageoption",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImageOption",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageoption"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageoption/1437613-texturetarget": {
+      "abstract": [
+        {
+          "text": "The key for an OpenGL texture target.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureTarget"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImageOption"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageoption/1437613-texturetarget",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textureTarget",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageoption/1437613-texturetarget"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageoption/1437934-textureformat": {
+      "abstract": [
+        {
+          "text": "The key for an OpenGL texture format.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImageOption"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageoption/1437934-textureformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textureFormat",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageoption/1437934-textureformat"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/civector": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/civector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIVector",
+      "type": "topic",
+      "url": "/documentation/coreimage/civector"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters": {
+      "abstract": [
+        {
+          "text": "Apply effects such as sepia tint, highlight strengthening, and scaling to images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters",
+      "kind": "article",
+      "role": "article",
+      "title": "Processing an Image Using Built-in Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/processing_an_image_using_built-in_filters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.imageio/documentation/ImageIO/CGImagePropertyOrientation": {
+      "identifier": "doc://com.apple.imageio/documentation/ImageIO/CGImagePropertyOrientation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImagePropertyOrientation",
+      "type": "topic",
+      "url": "/documentation/imageio/cgimagepropertyorientation"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1651772",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1438023-empty",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1624119-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1624098-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437908-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437867-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437986-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437764-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/3152399-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437925-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1438032-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437857-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1535335-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437868-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/2998421-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/2998422-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/2998423-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/2998424-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/3242779-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/3242780-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1438012-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437617-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1438072-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1438209-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437890-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1438030-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1438181-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating an Image"
+    },
+    {
+      "anchor": "1651964",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437589-applyingfilter",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/2915368-applyingfilter",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1438203-transformed",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/3334939-transformed",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437833-cropped",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1438223-oriented",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437628-clampedtoextent",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1645893-clamped",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437837-composited",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/3975704-convertingworkingspacetolab",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/3975703-convertinglabtoworkingspace",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1645896-matchedtoworkingspace",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1645898-matchedfromworkingspace",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1645894-premultiplyingalpha",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1645892-unpremultiplyingalpha",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1645891-settingalphaone",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1645897-applyinggaussianblur",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1645895-settingproperties",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/2966521-insertingintermediate",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/2966522-insertingintermediate"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating an Image by Modifying an Existing Image"
+    },
+    {
+      "anchor": "4360326",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437947-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/3074421-black",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/3074422-blue",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/3074423-clear",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/3074424-cyan",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/3074425-gray",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/3074426-green",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/3074427-magenta",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/3074428-red",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/3074429-white",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/3074430-yellow"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Solid Colors"
+    },
+    {
+      "anchor": "1652572",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437804-definition",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437996-extent",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437733-properties",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1438195-url",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437750-colorspace",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437930-orientationtransform"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Image Information"
+    },
+    {
+      "anchor": "1680944",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1534432-draw",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1534407-draw"
+      ],
+      "kind": "taskGroup",
+      "title": "Drawing Images"
+    },
+    {
+      "anchor": "1652741",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1645889-autoadjustmentfilters",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437792-autoadjustmentfilters",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/autoadjustment_keys"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Autoadjustment Filters"
+    },
+    {
+      "anchor": "1652792",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437994-regionofinterest"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Filter Regions of Interest"
+    },
+    {
+      "anchor": "2938968",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/2919727-oriented",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/2919726-orientationtransform"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Orientation"
+    },
+    {
+      "anchor": "2938969",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/2867429-samplingnearest",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/2867346-samplinglinear"
+      ],
+      "kind": "taskGroup",
+      "title": "Sampling the Image"
+    },
+    {
+      "anchor": "1844516",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1687603-cgimage",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1687604-pixelbuffer",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/2902251-depthdata",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/2976440-portraiteffectsmatte",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/3242781-semanticsegmentationmatte"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Original Image Content"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Constants used as keys in the options dictionary when initializing an image.",
+          "type": "text"
+        }
+      ],
+      "anchor": "1681058",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/ciimageoption"
+      ],
+      "kind": "taskGroup",
+      "title": "Image Dictionary Keys"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Constants used as keys in the options dictionary for the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1437792-autoadjustmentfilters",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method.",
+          "type": "text"
+        }
+      ],
+      "anchor": "1681090",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/ciimageautoadjustmentoption"
+      ],
+      "kind": "taskGroup",
+      "title": "AutoAdjustment Keys"
+    },
+    {
+      "anchor": "4360247",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1438065-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437687-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1438015-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437880-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/1437670-init",
+        "doc://com.apple.documentation/documentation/coreimage/ciimageoption/1437613-texturetarget",
+        "doc://com.apple.documentation/documentation/coreimage/ciimageoption/1437934-textureformat"
+      ],
+      "kind": "taskGroup",
+      "title": "Deprecated"
+    },
+    {
+      "anchor": "4402450",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/4438508-contentheadroom",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/4354031-isopaque",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/4430013-metaltexture"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "4402451",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/4354029-applyinggainmap",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage/4354030-applyinggainmap"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/ciimage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/ciimage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

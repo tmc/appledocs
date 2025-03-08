@@ -1,0 +1,1107 @@
+{
+  "abstract": [
+    {
+      "text": "Configure devices that share directories from the host into the guest system.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.virtualization/documentation/Virtualization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.virtualization/documentation/Virtualization/shared-directories"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Virtualization"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Shared directories"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Shared directories allow you expose specific directories in the macOS file system to the guest operating system running in a VM, this allows your user to share files between the host and guest operating system. To enable shared directory device support in Linux, configure the Linux guest kernel to enable the ",
+              "type": "text"
+            },
+            {
+              "code": "CONFIG_VIRTIO_FS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " support.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure a VIRTIO file system device using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The guest can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/tag",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " label to mount and access the host resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZDirectoryShare",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the configuration defines the host directories to expose to the guest. To limit or expose new directories to the guest while the VM is running, you can update the directory share with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZSingleDirectoryShare",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to share the immediate contents of a single directory on the host, or use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMultipleDirectoryShare",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to share multiple directories from the host and include a specific name for each shared directory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Shared directories in macOS VMs are only available in macOS 13 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization": {
+      "abstract": [
+        {
+          "text": "Create virtual machines and run macOS and Linux-based operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Virtualization",
+      "type": "topic",
+      "url": "/documentation/virtualization"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZDirectoryShare": {
+      "abstract": [
+        {
+          "text": "The base class for a directory share.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZDirectoryShare"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZDirectoryShare",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZDirectoryShare"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZDirectoryShare",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzdirectoryshare"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZDirectorySharingDevice": {
+      "abstract": [
+        {
+          "text": "The base class that represents a directory sharing device in a VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZDirectorySharingDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZDirectorySharingDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZDirectorySharingDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZDirectorySharingDevice",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzdirectorysharingdevice"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZDirectorySharingDeviceConfiguration": {
+      "abstract": [
+        {
+          "text": "The base class for a directory sharing device configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZDirectorySharingDeviceConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZDirectorySharingDeviceConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZDirectorySharingDeviceConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZDirectorySharingDeviceConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzdirectorysharingdeviceconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxRosettaDirectoryShare": {
+      "abstract": [
+        {
+          "text": "The Linux directory share for Rosetta.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZLinuxRosettaDirectoryShare"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxRosettaDirectoryShare",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZLinuxRosettaDirectoryShare"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZLinuxRosettaDirectoryShare",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzlinuxrosettadirectoryshare"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZMultipleDirectoryShare": {
+      "abstract": [
+        {
+          "text": "An object that describes a directory share for multiple directories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZMultipleDirectoryShare"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMultipleDirectoryShare",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZMultipleDirectoryShare"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZMultipleDirectoryShare",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzmultipledirectoryshare"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZSharedDirectory": {
+      "abstract": [
+        {
+          "text": "A directory on the host that you can expose to a guest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZSharedDirectory"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZSharedDirectory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZSharedDirectory"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZSharedDirectory",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzshareddirectory"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZSingleDirectoryShare": {
+      "abstract": [
+        {
+          "text": "An object that defines the directory share for a single directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZSingleDirectoryShare"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZSingleDirectoryShare",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZSingleDirectoryShare"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZSingleDirectoryShare",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzsingledirectoryshare"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDevice": {
+      "abstract": [
+        {
+          "text": "An object the defines a VIRTIO file system device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtioFileSystemDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtioFileSystemDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtioFileSystemDevice",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtiofilesystemdevice"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration": {
+      "abstract": [
+        {
+          "text": "An object that represents the configuration of a Virtio file system device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtioFileSystemDeviceConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtioFileSystemDeviceConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtioFileSystemDeviceConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtiofilesystemdeviceconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/tag": {
+      "abstract": [
+        {
+          "text": "A label that identifies this device in the guest VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tag"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/tag",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tag"
+        }
+      ],
+      "role": "symbol",
+      "title": "tag",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtiofilesystemdeviceconfiguration/tag"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/audio": {
+      "abstract": [
+        {
+          "text": "Configure audio devices that enable the guest operating system to perform audio playback and capture through the host’s audio devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/audio",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio",
+      "type": "topic",
+      "url": "/documentation/virtualization/audio"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/clipboard-sharing": {
+      "abstract": [
+        {
+          "text": "Share the pasteboard between the host and guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/clipboard-sharing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Clipboard sharing",
+      "type": "topic",
+      "url": "/documentation/virtualization/clipboard-sharing"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/consoles": {
+      "abstract": [
+        {
+          "text": "Configure a device that manages multiport console communication with the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/consoles",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Consoles",
+      "type": "topic",
+      "url": "/documentation/virtualization/consoles"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/graphics": {
+      "abstract": [
+        {
+          "text": "Configure a device for a guest to display its UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/graphics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Graphics",
+      "type": "topic",
+      "url": "/documentation/virtualization/graphics"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/keyboards-and-pointing-devices": {
+      "abstract": [
+        {
+          "text": "Configure devices that connect a mouse and keyboard to the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/keyboards-and-pointing-devices",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keyboards and pointing devices",
+      "type": "topic",
+      "url": "/documentation/virtualization/keyboards-and-pointing-devices"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/memory": {
+      "abstract": [
+        {
+          "text": "Configure a memory balloon device to change the allocated memory for the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/memory",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory",
+      "type": "topic",
+      "url": "/documentation/virtualization/memory"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/network": {
+      "abstract": [
+        {
+          "text": "Configure the devices that connect the guest system to the network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/network",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/virtualization/network"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/randomization": {
+      "abstract": [
+        {
+          "text": "Configure a device for the guest system to use to generate random numbers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/randomization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Randomization",
+      "type": "topic",
+      "url": "/documentation/virtualization/randomization"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/serial-ports": {
+      "abstract": [
+        {
+          "text": "Configure the serial devices that you use to communicate with the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/serial-ports",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Serial ports",
+      "type": "topic",
+      "url": "/documentation/virtualization/serial-ports"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/sockets": {
+      "abstract": [
+        {
+          "text": "Configure a device that manages port-based communication with the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/sockets",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sockets",
+      "type": "topic",
+      "url": "/documentation/virtualization/sockets"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/storage": {
+      "abstract": [
+        {
+          "text": "Configure the block-storage devices that represent the disks of the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/storage",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Storage",
+      "type": "topic",
+      "url": "/documentation/virtualization/storage"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/usb-devices": {
+      "abstract": [],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/usb-devices",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USB Devices",
+      "type": "topic",
+      "url": "/documentation/virtualization/usb-devices"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Devices",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/audio",
+        "doc://com.apple.virtualization/documentation/Virtualization/graphics",
+        "doc://com.apple.virtualization/documentation/Virtualization/keyboards-and-pointing-devices",
+        "doc://com.apple.virtualization/documentation/Virtualization/memory",
+        "doc://com.apple.virtualization/documentation/Virtualization/network",
+        "doc://com.apple.virtualization/documentation/Virtualization/randomization",
+        "doc://com.apple.virtualization/documentation/Virtualization/serial-ports",
+        "doc://com.apple.virtualization/documentation/Virtualization/sockets",
+        "doc://com.apple.virtualization/documentation/Virtualization/storage",
+        "doc://com.apple.virtualization/documentation/Virtualization/consoles",
+        "doc://com.apple.virtualization/documentation/Virtualization/clipboard-sharing",
+        "doc://com.apple.virtualization/documentation/Virtualization/usb-devices"
+      ],
+      "title": "Devices"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configurations",
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZDirectorySharingDeviceConfiguration",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxRosettaDirectoryShare"
+      ],
+      "title": "Configurations"
+    },
+    {
+      "anchor": "Shared-directory-devices",
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDevice",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZDirectorySharingDevice"
+      ],
+      "title": "Shared directory devices"
+    },
+    {
+      "anchor": "Directory-Shares",
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/VZMultipleDirectoryShare",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZSingleDirectoryShare",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZSharedDirectory",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZDirectoryShare",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxRosettaDirectoryShare"
+      ],
+      "title": "Directory Shares"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Configurations",
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZDirectorySharingDeviceConfiguration",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxRosettaDirectoryShare"
+              ],
+              "title": "Configurations"
+            },
+            {
+              "anchor": "Shared-directory-devices",
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioFileSystemDevice",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZDirectorySharingDevice"
+              ],
+              "title": "Shared directory devices"
+            },
+            {
+              "anchor": "Directory-Shares",
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/VZMultipleDirectoryShare",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZSingleDirectoryShare",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZSharedDirectory",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZDirectoryShare",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxRosettaDirectoryShare"
+              ],
+              "title": "Directory Shares"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Devices",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/audio",
+                "doc://com.apple.virtualization/documentation/Virtualization/graphics",
+                "doc://com.apple.virtualization/documentation/Virtualization/keyboards-and-pointing-devices",
+                "doc://com.apple.virtualization/documentation/Virtualization/memory",
+                "doc://com.apple.virtualization/documentation/Virtualization/network",
+                "doc://com.apple.virtualization/documentation/Virtualization/randomization",
+                "doc://com.apple.virtualization/documentation/Virtualization/serial-ports",
+                "doc://com.apple.virtualization/documentation/Virtualization/sockets",
+                "doc://com.apple.virtualization/documentation/Virtualization/storage",
+                "doc://com.apple.virtualization/documentation/Virtualization/consoles",
+                "doc://com.apple.virtualization/documentation/Virtualization/clipboard-sharing",
+                "doc://com.apple.virtualization/documentation/Virtualization/usb-devices"
+              ],
+              "title": "Devices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZSingleDirectoryShare/title",
+          "value": "VZSingleDirectoryShare"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZSingleDirectoryShare/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZSingleDirectoryShare"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZSingleDirectoryShare/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZSingleDirectoryShare"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZSharedDirectory/title",
+          "value": "VZSharedDirectory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZSharedDirectory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZSharedDirectory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZSharedDirectory/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZSharedDirectory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioFileSystemDeviceConfiguration/title",
+          "value": "VZVirtioFileSystemDeviceConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioFileSystemDeviceConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioFileSystemDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioFileSystemDeviceConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioFileSystemDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZDirectorySharingDeviceConfiguration/title",
+          "value": "VZDirectorySharingDeviceConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZDirectorySharingDeviceConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZDirectorySharingDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZDirectorySharingDeviceConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZDirectorySharingDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZLinuxRosettaDirectoryShare/title",
+          "value": "VZLinuxRosettaDirectoryShare"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZLinuxRosettaDirectoryShare/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZLinuxRosettaDirectoryShare"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZLinuxRosettaDirectoryShare/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZLinuxRosettaDirectoryShare"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMultipleDirectoryShare/title",
+          "value": "VZMultipleDirectoryShare"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMultipleDirectoryShare/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMultipleDirectoryShare"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMultipleDirectoryShare/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMultipleDirectoryShare"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioFileSystemDevice/title",
+          "value": "VZVirtioFileSystemDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioFileSystemDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioFileSystemDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioFileSystemDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioFileSystemDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioFileSystemDeviceConfiguration~1tag/title",
+          "value": "tag"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioFileSystemDeviceConfiguration~1tag/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZDirectorySharingDevice/title",
+          "value": "VZDirectorySharingDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZDirectorySharingDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZDirectorySharingDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZDirectorySharingDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZDirectorySharingDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZDirectoryShare/title",
+          "value": "VZDirectoryShare"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZDirectoryShare/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZDirectoryShare"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZDirectoryShare/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZDirectoryShare"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/virtualization/shared-directories"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/virtualization/shared-directories"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

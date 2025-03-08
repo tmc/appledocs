@@ -1,0 +1,1535 @@
+{
+  "abstract": [
+    {
+      "text": "Adjust the size and shape of images in your app’s user interface by applying view modifiers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Images"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Fitting-Images-into-Available-Space"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Fitting images into available space"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Image sizes vary widely, from single-pixel PNG files to digital photography images with millions of pixels. Because device sizes also vary, apps commonly need to make runtime adjustments to image sizes so they fit within the visible user interface. SwiftUI provides modifiers to scale, clip, and transform images to fit your interface perfectly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Scale-a-large-image-to-fit-its-container-using-resizing",
+          "level": 3,
+          "text": "Scale a large image to fit its container using resizing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider the image ",
+              "type": "text"
+            },
+            {
+              "code": "Landscape_4.jpg",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", a photograph with the dimensions 4032 x 3024, showing a water wheel, the surrounding building, and the sky above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "SwiftUI-FIIAS-Landscape_4-original.jpg",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example loads the image directly into an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view, and then places it in a 300 x 400 point frame, with a blue border:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    Image(\"Landscape_4\")",
+            "        .frame(width: 300, height: 400, alignment: .topLeading)",
+            "        .border(.blue)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As seen in the following screenshot, the image data loads at full size into the view, so only the clouds from the upper left of the original image are visible. Because the image renders at full size, and the blue frame is smaller than the original image, the image displays beyond the area bounded by the frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "SwiftUI-FIIAS-unscaled.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To fix this, you need to apply two modifiers to the ",
+              "type": "text"
+            },
+            {
+              "code": "Image",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/resizable(capInsets:resizingMode:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " tells the image view to adjust the image representation to match the size of the view. By default, this modifier scales the image by reducing the size of larger images and enlarges images smaller than the view. By itself, this modifier scales each axis of the image independently.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/aspectRatio(_:contentMode:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " corrects the behavior where the image scaling is different for each axis. This preserves the image’s original aspect ratio, using one of two strategies defined by the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ContentMode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " enumeration. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ContentMode/fit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " scales the image to fit the view size along one axis, possibly leaving empty space along the other axis. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ContentMode/fill",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " scales the image to fill the entire view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "  Image(\"Landscape_4\")",
+                    "      .resizable()",
+                    "      .aspectRatio(contentMode: .fit)",
+                    "      .frame(width: 300, height: 400, alignment: .topLeading)",
+                    "      .border(.blue)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "SwiftUI-FIIAS-resizeToFit.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Keep-image-data-inside-the-views-bounds-using-clipping",
+          "level": 3,
+          "text": "Keep image data inside the view’s bounds using clipping",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ContentMode/fill",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when scaling an image, a portion of an image may extend beyond the view’s bounds, unless the view matches the image’s aspect ratio exactly. The following example illustrates this problem:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    Image(\"Landscape_4\")",
+            "        .resizable()",
+            "        .aspectRatio(contentMode: .fill)",
+            "        .frame(width: 300, height: 400, alignment: .topLeading)",
+            "        .border(.blue)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "SwiftUI-FIIAS-resizeToFill-noClip.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To prevent this problem, add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/clipped(antialiased:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier. This modifier simply cuts off excess image rendering at the bounding frame of the view. Optionally, you can add an antialiasing behavior to apply smoothing to the edges of the clipping rectangle; this parameter defaults to ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The following example shows the effect of adding clipping to the previous fill-mode example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    Image(\"Landscape_4\")",
+            "        .resizable()",
+            "        .aspectRatio(contentMode: .fill)",
+            "        .frame(width: 300, height: 400, alignment: .topLeading)",
+            "        .border(.blue)",
+            "        .clipped()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "SwiftUI-FIIAS-resizeToFill-clipped.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-interpolation-flags-to-adjust-rendered-image-quality",
+          "level": 3,
+          "text": "Use interpolation flags to adjust rendered image quality",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Rendering an image at anything other than its original size requires ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "interpolation",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ": using the existing image data to approximate a representation at a different size. Different approaches to performing interpolation have different trade-offs between computational complexity and visual quality of the rendered image. You can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/interpolation(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to provide a hint for SwiftUI rendering behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s easier to see the effect of interpolation when scaling a smaller image into a larger space, because the rendered image requires more image data than is available. Consider the following example, which renders a 34 x 34 image named ",
+              "type": "text"
+            },
+            {
+              "code": "dot_green",
+              "type": "codeVoice"
+            },
+            {
+              "text": " into the same 300 x 400 container frame as before:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    Image(\"dot_green\")",
+            "        .resizable()",
+            "        .interpolation(.none)",
+            "        .aspectRatio(contentMode: .fit)",
+            "        .frame(width: 300, height: 400, alignment: .topLeading)",
+            "        .border(.blue)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Passing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Interpolation/none",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/interpolation(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " produces a highly pixelated image when rendered.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "SwiftUI-FIIAS-smallImage-interpolation-none.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you change the interpolation value to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Interpolation/medium",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", SwiftUI smoothes out the pixel data to produce an image that isn’t as pixelated:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "SwiftUI-FIIAS-smallImage-interpolation-medium.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can also specify interpolation behavior when scaling images down, to ensure the highest quality image possible, fastest rendering time, or a behavior in between.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Fill-a-space-with-a-repeating-image-using-tiling",
+          "level": 3,
+          "text": "Fill a space with a repeating image using tiling",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you have an image that’s much smaller than the space you want to render it into, another option  to fill the space is ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "tiling",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ": repeating the same image over and over again. To tile an image, pass the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/ResizingMode/tile",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " parameter to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/resizable(capInsets:resizingMode:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    Image(\"dot_green\")",
+            "        .resizable(resizingMode: .tile)",
+            "        .frame(width: 300, height: 400, alignment: .topLeading)",
+            "        .border(.blue)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "SwiftUI-FIIAS-smallImage-tile.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tiling can be particuarly useful when using an image that, when placed end-to-end with copies of itself, creates a larger pattern with no visual discontinuities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-FIIAS-Landscape_4-original.jpg": {
+      "alt": "A photo looking up at a water wheel and its surrounding building, with the sky and clouds above.",
+      "identifier": "SwiftUI-FIIAS-Landscape_4-original.jpg",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9171798f66624fb18c9f216d85d85ad3/SwiftUI-FIIAS-Landscape_4-original.jpg"
+        }
+      ]
+    },
+    "SwiftUI-FIIAS-resizeToFill-clipped.png": {
+      "alt": "An image that shows a frame with a blue border overlaid on an image of a water wheel. The water wheel image fills the entire frame vertically and horizontally. The right side of the image is cut off at the right side of the rectangle.",
+      "identifier": "SwiftUI-FIIAS-resizeToFill-clipped.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/677c185016ebecdd1c2a9aec138aa828/SwiftUI-FIIAS-resizeToFill-clipped@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fd81a7715f2054b148146a1ef2fa9b0b/SwiftUI-FIIAS-resizeToFill-clipped~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-FIIAS-resizeToFill-noClip.png": {
+      "alt": "An image that shows a frame with a blue border overlaid on an image of a water wheel. The water wheel image fills its entire space vertically, and extends past the right edge of the frame horizontally.",
+      "identifier": "SwiftUI-FIIAS-resizeToFill-noClip.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ddb655ddd8af262670b93b990ec5226d/SwiftUI-FIIAS-resizeToFill-noClip@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/276498ad26c63ff8d1ac2c5725ec0dea/SwiftUI-FIIAS-resizeToFill-noClip~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-FIIAS-resizeToFit.png": {
+      "alt": "An image that shows a frame with a blue border overlaid on an image of a water wheel. The water wheel image is scaled to fit the width of the containing rectangle. Empty space extends from the bottom of the image to the bottom of the rectangle.",
+      "identifier": "SwiftUI-FIIAS-resizeToFit.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/366e823084f58a2b5a02ca34a6139afa/SwiftUI-FIIAS-resizeToFit@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7d653552f43905893a4c7c1b1f680d35/SwiftUI-FIIAS-resizeToFit~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-FIIAS-smallImage-interpolation-medium.png": {
+      "alt": "A green dot with a darker green border, scaled to many times its original size, but with its edges smoothed.",
+      "identifier": "SwiftUI-FIIAS-smallImage-interpolation-medium.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0b5ba6711c01bc4324ee89397fb1798b/SwiftUI-FIIAS-smallImage-interpolation-medium@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/efdc2475bfe734c2b340a001d654febb/SwiftUI-FIIAS-smallImage-interpolation-medium~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-FIIAS-smallImage-interpolation-none.png": {
+      "alt": "A green dot with a darker green border, scaled to many times its original size and highly pixelated.",
+      "identifier": "SwiftUI-FIIAS-smallImage-interpolation-none.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/daad34a379a26fb3aa4a2727cd3530b9/SwiftUI-FIIAS-smallImage-interpolation-none@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5418fcc518a533b69ef3d22be30e490f/SwiftUI-FIIAS-smallImage-interpolation-none~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-FIIAS-smallImage-tile.png": {
+      "alt": "A rectangular blue outline, 300 by 400. The repeated green dot image fills its entire space horizontally and vertically.",
+      "identifier": "SwiftUI-FIIAS-smallImage-tile.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/eddc5cef6d4b0fd479272e0d25df8d7c/SwiftUI-FIIAS-smallImage-tile@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a3944ccd6788e58ea611908825ca5589/SwiftUI-FIIAS-smallImage-tile~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-FIIAS-unscaled.png": {
+      "alt": "An image that shows a frame with a blue border overlaid on an image of a water wheel. The image is so much larger than the available space that only a portion of the sky and clouds from the upper left of the original image is visible. The image goes beyond the borders of the outline.",
+      "identifier": "SwiftUI-FIIAS-unscaled.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3f9b1cd8d9d65f9ffba1dcba86eca2a7/SwiftUI-FIIAS-unscaled@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f76a4987c38feac928cd1cece7848bf7/SwiftUI-FIIAS-unscaled~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ContentMode": {
+      "abstract": [
+        {
+          "text": "Constants that define how a view’s content fills the available space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentMode"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ContentMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContentMode",
+      "type": "topic",
+      "url": "/documentation/swiftui/contentmode"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ContentMode/fill": {
+      "abstract": [
+        {
+          "text": "An option that resizes the content so it occupies all available space,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "both vertically and horizontally.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fill"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ContentMode/fill",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ContentMode.fill",
+      "type": "topic",
+      "url": "/documentation/swiftui/contentmode/fill"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ContentMode/fit": {
+      "abstract": [
+        {
+          "text": "An option that resizes the content so it’s all within the available space,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "both vertically and horizontally.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fit"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ContentMode/fit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ContentMode.fit",
+      "type": "topic",
+      "url": "/documentation/swiftui/contentmode/fit"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/imageScale": {
+      "abstract": [
+        {
+          "text": "The image scale for this environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageScale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV5ScaleO",
+          "text": "Scale"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/imageScale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "imageScale",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/imagescale"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image": {
+      "abstract": [
+        {
+          "text": "A view that displays an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Image"
+        }
+      ],
+      "role": "symbol",
+      "title": "Image",
+      "type": "topic",
+      "url": "/documentation/swiftui/image"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Interpolation/medium": {
+      "abstract": [
+        {
+          "text": "A value that indicates a medium level of interpolation quality,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "between the low- and high-quality values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "medium"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Interpolation/medium",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Image.Interpolation.medium",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/interpolation/medium"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Interpolation/none": {
+      "abstract": [
+        {
+          "text": "A value that indicates SwiftUI doesn’t interpolate image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "none"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Interpolation/none",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Image.Interpolation.none",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/interpolation/none"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Orientation": {
+      "abstract": [
+        {
+          "text": "The orientation of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Orientation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Orientation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Orientation"
+        }
+      ],
+      "role": "symbol",
+      "title": "Image.Orientation",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/orientation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/ResizingMode": {
+      "abstract": [
+        {
+          "text": "The modes that SwiftUI uses to resize an image to fit within",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "its containing view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ResizingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/ResizingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ResizingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "Image.ResizingMode",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/resizingmode"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/ResizingMode/tile": {
+      "abstract": [
+        {
+          "text": "A mode to repeat the image at its original size, as many",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "times as necessary to fill the available space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tile"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/ResizingMode/tile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Image.ResizingMode.tile",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/resizingmode/tile"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Scale": {
+      "abstract": [
+        {
+          "text": "A scale to apply to vector images relative to text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Scale"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Scale",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Scale"
+        }
+      ],
+      "role": "symbol",
+      "title": "Image.Scale",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/scale"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/interpolation(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies the current level of quality for rendering an",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "image that requires interpolation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV13InterpolationO",
+          "text": "Interpolation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/interpolation(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interpolation(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/interpolation(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/resizable(capInsets:resizingMode:)": {
+      "abstract": [
+        {
+          "text": "Sets the mode by which SwiftUI resizes an image to fit its space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resizable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "capInsets"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10EdgeInsetsV",
+          "text": "EdgeInsets"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "resizingMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV12ResizingModeO",
+          "text": "ResizingMode"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/resizable(capInsets:resizingMode:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resizable(capInsets:resizingMode:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/image/resizable(capinsets:resizingmode:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Images": {
+      "abstract": [
+        {
+          "text": "Add images and symbols to your app’s user interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Images",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Images",
+      "type": "topic",
+      "url": "/documentation/swiftui/images"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/aspectRatio(_:contentMode:)": {
+      "abstract": [
+        {
+          "text": "Constrains this view’s dimensions to the specified aspect ratio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "aspectRatio"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentMode"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/aspectRatio(_:contentMode:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aspectRatio(_:contentMode:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/aspectratio(_:contentmode:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/clipped(antialiased:)": {
+      "abstract": [
+        {
+          "text": "Clips this view to its bounding rectangular frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clipped"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "antialiased"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/clipped(antialiased:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clipped(antialiased:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/clipped(antialiased:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/imageScale(_:)": {
+      "abstract": [
+        {
+          "text": "Scales images within the view according to one of the relative sizes",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "available including small, medium, and large images sizes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageScale"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV5ScaleO",
+          "text": "Scale"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/imageScale(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "imageScale(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/imagescale(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-an-image",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/imageScale(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/imageScale",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Scale",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/Orientation",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Image/ResizingMode"
+      ],
+      "title": "Configuring an image"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/fitting-images-into-available-space"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,290 @@
+{
+  "abstract": [
+    {
+      "text": "Verify that your app handles a subscription lapse properly using the accelerated time rates within the sandbox environment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/testing-an-auto-renewable-subscription"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Testing an auto-renewable subscription"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Auto-renewable subscriptions behave differently in the sandbox environment and the production environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the sandbox environment, subscription renewals happen at an accelerated rate, and auto-renewable subscriptions renew up to 12 times after the initial purchase. This enables you to test how your app handles a subscription renewal, a subscription lapse, and a subscription history that includes gaps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can choose a subscription renewal speed for each Sandbox Apple ID account in App Store Connect. For a complete list of subscription durations within the sandbox environment and more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/manage-sandbox-apple-id-settings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The accelerated expiration and renewal rates in the sandbox environment make it possible for subscriptions to expire before the system tries to renew them. When a subscription expires before the system tries to renew it, it results in a short lapse in the subscription period. These lapses are possible in production; verify that your app handles them appropriately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/original-api-for-in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-disabling-auto-renew": {
+      "abstract": [
+        {
+          "text": "Verify that your app receives subscription updates when a user cancels a subscription by verifying the receipt or receiving a notification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-disabling-auto-renew",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing disabling auto-renew",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-disabling-auto-renew"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox": {
+      "abstract": [
+        {
+          "text": "Test your implementation of In-App Purchases using real product information and server-to-server transactions in the sandbox environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing In-App Purchases with sandbox",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-in-app-purchases-with-sandbox"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-resubscribing-from-the-subscriptions-page": {
+      "abstract": [
+        {
+          "text": "Verify that your app can reactivate an expired subscription by receiving a transaction callback or inspecting an updated receipt.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-resubscribing-from-the-subscriptions-page",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing resubscribing from the subscriptions page",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-resubscribing-from-the-subscriptions-page"
+    },
+    "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/manage-sandbox-apple-id-settings": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/manage-sandbox-apple-id-settings",
+      "title": "Manage Sandbox Apple ID settings",
+      "titleInlineContent": [
+        {
+          "text": "Manage Sandbox Apple ID settings",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/manage-sandbox-apple-id-settings"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Subscriptions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/testing-resubscribing-from-the-subscriptions-page",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-disabling-auto-renew"
+      ],
+      "title": "Subscriptions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Subscriptions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/testing-resubscribing-from-the-subscriptions-page",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-disabling-auto-renew"
+              ],
+              "title": "Subscriptions"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/testing-an-auto-renewable-subscription"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/testing-an-auto-renewable-subscription"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

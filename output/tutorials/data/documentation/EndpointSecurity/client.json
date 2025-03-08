@@ -1,0 +1,3487 @@
+{
+  "abstract": [
+    {
+      "text": "An opaque type that maintains Endpoint Security client state, and functions related to this type.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/client"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Endpoint Security"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Client"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an Endpoint Security client with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_new_client(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", then use this client to subscribe to event types of interest to your app or system extension. When Endpoint Security monitors an event your client subscribes to, it sends a message that describes the event to your client. When you no longer need the client, remove it with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_delete_client(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates a client and handles any errors returned by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_new_client(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If client creation succeeds, the code subscribes the client to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/ES_EVENT_TYPE_AUTH_EXEC",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " event. The handler passed to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_new_client(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " allows any such event to proceed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create the client.",
+            "es_client_t *client = NULL;",
+            "es_new_client_result_t newClientResult =",
+            "es_new_client(&client,",
+            "              ^(es_client_t * client, const es_message_t * message) {",
+            "    switch (message->event_type) {",
+            "        case ES_EVENT_TYPE_AUTH_EXEC:",
+            "            es_respond_auth_result(client, message, ES_AUTH_RESULT_ALLOW, true);",
+            "            break;",
+            "        default:",
+            "            panic(\"Found unexpected event type: %i\", message->event_type);",
+            "            break;",
+            "    }",
+            "});",
+            "",
+            "// Handle any errors encountered while creating the client.",
+            "switch (newClientResult) {",
+            "    case ES_NEW_CLIENT_RESULT_SUCCESS:",
+            "        // Client created successfully; continue.",
+            "        break;",
+            "    case ES_NEW_CLIENT_RESULT_ERR_NOT_ENTITLED:",
+            "        panic(\"Extension is missing entitlement.\");",
+            "        break;",
+            "    case ES_NEW_CLIENT_RESULT_ERR_NOT_PRIVILEGED:",
+            "        panic (\"Extension is not running as root.\");",
+            "        break;",
+            "    case ES_NEW_CLIENT_RESULT_ERR_NOT_PERMITTED:",
+            "        // Prompt user to perform Transparency, Consent,",
+            "        // and Control (TCC) approval.",
+            "        // This error is recoverable; the user can try again after",
+            "        // approving the TCC prompt.",
+            "        return YOUR_NEW_CLIENT_ERROR_CODE_PROMPT_TCC;",
+            "        break;",
+            "    case ES_NEW_CLIENT_RESULT_ERR_INVALID_ARGUMENT:",
+            "        panic (\"Invalid argument to es_new_client(); client or handler was null.\");",
+            "        break;",
+            "    case ES_NEW_CLIENT_RESULT_ERR_TOO_MANY_CLIENTS:",
+            "        panic (\"Exceeded maximum number of simultaneously-connected ES clients.\");",
+            "        break;",
+            "    case ES_NEW_CLIENT_RESULT_ERR_INTERNAL:",
+            "        panic (\"Failed to connect to the Endpoint Security subsystem.\");",
+            "        break;",
+            "}",
+            "",
+            "// Subscribe the client to the ES_EVENT_TYPE_AUTH_EXEC event.",
+            "// When the client receives a message with this event type, it must authorize",
+            "// (allow or deny) the event.",
+            "es_event_type_t eventTypes[1] = { ES_EVENT_TYPE_AUTH_EXEC };",
+            "es_return_t subscribeResult = es_subscribe(client, eventTypes, sizeof(eventTypes));",
+            "if (subscribeResult != ES_RETURN_SUCCESS) {",
+            "    panic (\"Client failed to subscribe to event.\"); ",
+            "}",
+            ""
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity": {
+      "abstract": [
+        {
+          "text": "Develop system extensions that enhance user security.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Endpoint Security",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/ES_EVENT_TYPE_AUTH_EXEC": {
+      "abstract": [
+        {
+          "text": "An identifier for a process that requests permission from the operating system to execute another image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ES_EVENT_TYPE_AUTH_EXEC"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_event_type_t",
+          "text": "es_event_type_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/ES_EVENT_TYPE_AUTH_EXEC",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ES_EVENT_TYPE_AUTH_EXEC"
+        }
+      ],
+      "role": "symbol",
+      "title": "ES_EVENT_TYPE_AUTH_EXEC",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_event_type_auth_exec"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_auth_result_t": {
+      "abstract": [
+        {
+          "text": "Values used when responding to an authorization event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_auth_result_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_auth_result_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_auth_result_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_auth_result_t",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_auth_result_t"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_clear_cache(_:)": {
+      "abstract": [
+        {
+          "text": "Clears all cached results for all clients.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_clear_cache"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_clear_cache_result_t",
+          "text": "es_clear_cache_result_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_clear_cache(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_clear_cache"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_clear_cache(_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_clear_cache(_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_clear_cache_result_t": {
+      "abstract": [
+        {
+          "text": "Values that indicate the result of clearing a cache.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_clear_cache_result_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_clear_cache_result_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_clear_cache_result_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_clear_cache_result_t",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_clear_cache_result_t"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_client_t": {
+      "abstract": [
+        {
+          "text": "An opaque type that stores the Endpoint Security client state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "es_client_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_client_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "es_client_t",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_client_t"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_delete_client(_:)": {
+      "abstract": [
+        {
+          "text": "Destroys and disconnects a client instance from the Endpoint Security system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_delete_client"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_return_t",
+          "text": "es_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_delete_client(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_delete_client"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_delete_client(_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_delete_client(_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_event_type_t": {
+      "abstract": [
+        {
+          "text": "A type used to identify a message’s event type and subscribe to events of that type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_event_type_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_event_type_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_event_type_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_event_type_t",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_event_type_t"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_handler_block_t": {
+      "abstract": [
+        {
+          "text": "A block that handles a message received from Endpoint Security.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_handler_block_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_handler_block_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_handler_block_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_handler_block_t",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_handler_block_t"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_path(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Suppresses events from executables that match a given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_mute_path"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_mute_path_type_t",
+          "text": "es_mute_path_type_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_return_t",
+          "text": "es_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_path(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_mute_path"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_mute_path(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_mute_path(_:_:_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_path_events(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Suppresses a subset of events from executables that match a given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_mute_path_events"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_mute_path_type_t",
+          "text": "es_mute_path_type_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_event_type_t",
+          "text": "es_event_type_t"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_return_t",
+          "text": "es_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_path_events(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_mute_path_events"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_mute_path_events(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_mute_path_events(_:_:_:_:_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_path_literal(_:_:)": {
+      "abstract": [
+        {
+          "text": "Suppresses events from executables matching a path literal.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_mute_path_literal"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_return_t",
+          "text": "es_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_path_literal(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_mute_path_literal"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_mute_path_literal(_:_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_mute_path_literal(_:_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_path_prefix(_:_:)": {
+      "abstract": [
+        {
+          "text": "Suppresses events from executables matching a path prefix.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_mute_path_prefix"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_return_t",
+          "text": "es_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_path_prefix(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_mute_path_prefix"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_mute_path_prefix(_:_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_mute_path_prefix(_:_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_path_type_t": {
+      "abstract": [
+        {
+          "text": "The type of a path argument, such as a prefix or a path literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_mute_path_type_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_path_type_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_mute_path_type_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_mute_path_type_t",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_mute_path_type_t"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_process(_:_:)": {
+      "abstract": [
+        {
+          "text": "Suppresses events from a given process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_mute_process"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@audit_token_t",
+          "text": "audit_token_t"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_return_t",
+          "text": "es_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_process(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_mute_process"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_mute_process(_:_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_mute_process(_:_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_process_events(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Suppresses a subset of events from a given process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_mute_process_events"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@audit_token_t",
+          "text": "audit_token_t"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_event_type_t",
+          "text": "es_event_type_t"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_return_t",
+          "text": "es_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_process_events(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_mute_process_events"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_mute_process_events(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_mute_process_events(_:_:_:_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_muted_paths_events(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieve a list of all muted paths.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_muted_paths_events"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@es_muted_paths_t",
+          "text": "es_muted_paths_t"
+        },
+        {
+          "kind": "text",
+          "text": ">>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_return_t",
+          "text": "es_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_muted_paths_events(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_muted_paths_events"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_muted_paths_events(_:_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_muted_paths_events(_:_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_muted_paths_t": {
+      "abstract": [
+        {
+          "text": "A structure for a set of muted paths.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_muted_paths_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_muted_paths_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_muted_paths_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_muted_paths_t",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_muted_paths_t"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_muted_processes(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Generates a list of muted processes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_muted_processes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@audit_token_t",
+          "text": "audit_token_t"
+        },
+        {
+          "kind": "text",
+          "text": ">>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_return_t",
+          "text": "es_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_muted_processes(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_muted_processes"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_muted_processes(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_muted_processes(_:_:_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_muted_processes_events(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieve a list of all muted processes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_muted_processes_events"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@es_muted_processes_t",
+          "text": "es_muted_processes_t"
+        },
+        {
+          "kind": "text",
+          "text": ">?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_return_t",
+          "text": "es_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_muted_processes_events(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_muted_processes_events"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_muted_processes_events(_:_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_muted_processes_events(_:_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_muted_processes_t": {
+      "abstract": [
+        {
+          "text": "A structure for a set of muted processes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_muted_processes_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_muted_processes_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_muted_processes_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_muted_processes_t",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_muted_processes_t"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_new_client(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new client instance and connects it to the Endpoint Security system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_new_client"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": "?>, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@es_handler_block_t",
+          "text": "es_handler_block_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_new_client_result_t",
+          "text": "es_new_client_result_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_new_client(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_new_client"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_new_client(_:_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_new_client(_:_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_new_client_result_t": {
+      "abstract": [
+        {
+          "text": "The result of an attempt to create a new client.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_new_client_result_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_new_client_result_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_new_client_result_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_new_client_result_t",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_new_client_result_t"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_release_muted_paths(_:)": {
+      "abstract": [
+        {
+          "text": "Frees resources associated with a set of previously-retrieved muted paths.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_release_muted_paths"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@es_muted_paths_t",
+          "text": "es_muted_paths_t"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_release_muted_paths(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_release_muted_paths"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_release_muted_paths(_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_release_muted_paths(_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_release_muted_processes(_:)": {
+      "abstract": [
+        {
+          "text": "Frees resources associated with a set of previously-retrieved muted processes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_release_muted_processes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@es_muted_processes_t",
+          "text": "es_muted_processes_t"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_release_muted_processes(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_release_muted_processes"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_release_muted_processes(_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_release_muted_processes(_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_respond_auth_result(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Responds to an event that requires an authorization response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_respond_auth_result"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@es_message_t",
+          "text": "es_message_t"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_auth_result_t",
+          "text": "es_auth_result_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_respond_result_t",
+          "text": "es_respond_result_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_respond_auth_result(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_respond_auth_result"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_respond_auth_result(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_respond_auth_result(_:_:_:_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_respond_flags_result(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Responds to an event that requires authorization flags as a response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_respond_flags_result"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@es_message_t",
+          "text": "es_message_t"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_respond_result_t",
+          "text": "es_respond_result_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_respond_flags_result(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_respond_flags_result"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_respond_flags_result(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_respond_flags_result(_:_:_:_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_respond_result_t": {
+      "abstract": [
+        {
+          "text": "Values that indicate the result of responding to a message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_respond_result_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_respond_result_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_respond_result_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_respond_result_t",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_respond_result_t"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_return_t": {
+      "abstract": [
+        {
+          "text": "Values that indicate the result of an Endpoint Security action that can only succeed or fail.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_return_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_return_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_return_t",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_return_t"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_subscribe(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Subscribes a client to a set of events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_subscribe"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_event_type_t",
+          "text": "es_event_type_t"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_return_t",
+          "text": "es_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_subscribe(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_subscribe"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_subscribe(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_subscribe(_:_:_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_subscriptions(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a list of the client’s subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_subscriptions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_event_type_t",
+          "text": "es_event_type_t"
+        },
+        {
+          "kind": "text",
+          "text": ">>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_return_t",
+          "text": "es_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_subscriptions(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_subscriptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_subscriptions(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_subscriptions(_:_:_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unmute_all_paths(_:)": {
+      "abstract": [
+        {
+          "text": "Restores event delivery from previously-muted paths.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_unmute_all_paths"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_return_t",
+          "text": "es_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unmute_all_paths(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_unmute_all_paths"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_unmute_all_paths(_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_unmute_all_paths(_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unmute_path(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Restores event delivery from a previously-muted path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_unmute_path"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_mute_path_type_t",
+          "text": "es_mute_path_type_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_return_t",
+          "text": "es_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unmute_path(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_unmute_path"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_unmute_path(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_unmute_path(_:_:_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unmute_path_events(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Restores event delivery of a subset of events from a previously-muted path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_unmute_path_events"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_mute_path_type_t",
+          "text": "es_mute_path_type_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_event_type_t",
+          "text": "es_event_type_t"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_return_t",
+          "text": "es_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unmute_path_events(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_unmute_path_events"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_unmute_path_events(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_unmute_path_events(_:_:_:_:_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unmute_process(_:_:)": {
+      "abstract": [
+        {
+          "text": "Restores event delivery from a previously-muted process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_unmute_process"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@audit_token_t",
+          "text": "audit_token_t"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_return_t",
+          "text": "es_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unmute_process(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_unmute_process"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_unmute_process(_:_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_unmute_process(_:_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unmute_process_events(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Restores event delivery of a subset of events from a previously-muted process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_unmute_process_events"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@audit_token_t",
+          "text": "audit_token_t"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_event_type_t",
+          "text": "es_event_type_t"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_return_t",
+          "text": "es_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unmute_process_events(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_unmute_process_events"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_unmute_process_events(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_unmute_process_events(_:_:_:_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unsubscribe(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Unsubscribes the provided client from a set of events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_unsubscribe"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_event_type_t",
+          "text": "es_event_type_t"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_return_t",
+          "text": "es_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unsubscribe(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_unsubscribe"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_unsubscribe(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_unsubscribe(_:_:_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unsubscribe_all(_:)": {
+      "abstract": [
+        {
+          "text": "Unsubscribes a client from all events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_unsubscribe_all"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_return_t",
+          "text": "es_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unsubscribe_all(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_unsubscribe_all"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_unsubscribe_all(_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_unsubscribe_all(_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/event-types": {
+      "abstract": [
+        {
+          "text": "Types used by messages to deliver details specific to different kinds of Endpoint Security events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/event-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Event Types",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/event-types"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/message": {
+      "abstract": [
+        {
+          "text": "A type used by Endpoint Security to notify your client when a monitored action occurs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/message",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Message",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/message"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/monitoring-system-events-with-endpoint-security": {
+      "abstract": [
+        {
+          "text": "Receive notifications and authorization requests for sensitive operations by creating an Endpoint Security client for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/monitoring-system-events-with-endpoint-security",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Monitoring System Events with Endpoint Security",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/monitoring-system-events-with-endpoint-security"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Event-Monitoring",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/message",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/event-types"
+      ],
+      "title": "Event Monitoring"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Client",
+      "identifiers": [
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_new_client(_:_:)",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_handler_block_t",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_new_client_result_t"
+      ],
+      "title": "Creating a Client"
+    },
+    {
+      "anchor": "Destroying-a-Client",
+      "identifiers": [
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_delete_client(_:)"
+      ],
+      "title": "Destroying a Client"
+    },
+    {
+      "anchor": "Subscribing-to-Events",
+      "identifiers": [
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_subscribe(_:_:_:)",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_subscriptions(_:_:_:)",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unsubscribe(_:_:_:)",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_event_type_t",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unsubscribe_all(_:)"
+      ],
+      "title": "Subscribing to Events"
+    },
+    {
+      "anchor": "Responding-to-Events",
+      "identifiers": [
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_respond_auth_result(_:_:_:_:)",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_auth_result_t",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_respond_flags_result(_:_:_:_:)",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_respond_result_t"
+      ],
+      "title": "Responding to Events"
+    },
+    {
+      "anchor": "Managing-Cached-Results",
+      "identifiers": [
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_clear_cache(_:)",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_clear_cache_result_t"
+      ],
+      "title": "Managing Cached Results"
+    },
+    {
+      "anchor": "Muting-Events",
+      "identifiers": [
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_process(_:_:)",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_process_events(_:_:_:_:)",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_muted_processes_t",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_release_muted_processes(_:)",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_muted_processes_events(_:_:)",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_path(_:_:_:)",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_path_events(_:_:_:_:_:)",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_path_type_t",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_muted_paths_events(_:_:)",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_muted_paths_t",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_release_muted_paths(_:)"
+      ],
+      "title": "Muting Events"
+    },
+    {
+      "anchor": "Unmuting-Events",
+      "identifiers": [
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unmute_process(_:_:)",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unmute_process_events(_:_:_:_:)",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unmute_path(_:_:_:)",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unmute_path_events(_:_:_:_:_:)",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_path_type_t",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unmute_all_paths(_:)"
+      ],
+      "title": "Unmuting Events"
+    },
+    {
+      "anchor": "Deprecated-Functions",
+      "identifiers": [
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_muted_processes(_:_:_:)",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_path_literal(_:_:)",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_path_prefix(_:_:)"
+      ],
+      "title": "Deprecated Functions"
+    },
+    {
+      "anchor": "Supporting-Types",
+      "identifiers": [
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_return_t"
+      ],
+      "title": "Supporting Types"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Client",
+              "identifiers": [
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_client_t",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_new_client(_:_:)",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_handler_block_t",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_new_client_result_t"
+              ],
+              "title": "Creating a Client"
+            },
+            {
+              "anchor": "Destroying-a-Client",
+              "identifiers": [
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_delete_client(_:)"
+              ],
+              "title": "Destroying a Client"
+            },
+            {
+              "anchor": "Subscribing-to-Events",
+              "identifiers": [
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_subscribe(_:_:_:)",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_subscriptions(_:_:_:)",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unsubscribe(_:_:_:)",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_event_type_t",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unsubscribe_all(_:)"
+              ],
+              "title": "Subscribing to Events"
+            },
+            {
+              "anchor": "Responding-to-Events",
+              "identifiers": [
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_respond_auth_result(_:_:_:_:)",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_auth_result_t",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_respond_flags_result(_:_:_:_:)",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_respond_result_t"
+              ],
+              "title": "Responding to Events"
+            },
+            {
+              "anchor": "Managing-Cached-Results",
+              "identifiers": [
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_clear_cache(_:)",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_clear_cache_result_t"
+              ],
+              "title": "Managing Cached Results"
+            },
+            {
+              "anchor": "Muting-Events",
+              "identifiers": [
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_process(_:_:)",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_process_events(_:_:_:_:)",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_muted_processes_t",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_release_muted_processes(_:)",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_muted_processes_events(_:_:)",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_path(_:_:_:)",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_path_events(_:_:_:_:_:)",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_path_type_t",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_muted_paths_events(_:_:)",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_muted_paths_t",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_release_muted_paths(_:)"
+              ],
+              "title": "Muting Events"
+            },
+            {
+              "anchor": "Unmuting-Events",
+              "identifiers": [
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unmute_process(_:_:)",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unmute_process_events(_:_:_:_:)",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unmute_path(_:_:_:)",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unmute_path_events(_:_:_:_:_:)",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_path_type_t",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_unmute_all_paths(_:)"
+              ],
+              "title": "Unmuting Events"
+            },
+            {
+              "anchor": "Deprecated-Functions",
+              "identifiers": [
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_muted_processes(_:_:_:)",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_path_literal(_:_:)",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_mute_path_prefix(_:_:)"
+              ],
+              "title": "Deprecated Functions"
+            },
+            {
+              "anchor": "Supporting-Types",
+              "identifiers": [
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_return_t"
+              ],
+              "title": "Supporting Types"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Event-Monitoring",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/message",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/event-types",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/monitoring-system-events-with-endpoint-security"
+              ],
+              "title": "Event Monitoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_mute_path(_:_:_:)/title",
+          "value": "es_mute_path"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_mute_path(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_mute_path"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_respond_auth_result(_:_:_:_:)/title",
+          "value": "es_respond_auth_result"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_respond_auth_result(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_respond_auth_result"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_subscribe(_:_:_:)/title",
+          "value": "es_subscribe"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_subscribe(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_subscribe"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_mute_path_literal(_:_:)/title",
+          "value": "es_mute_path_literal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_mute_path_literal(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_mute_path_literal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_release_muted_processes(_:)/title",
+          "value": "es_release_muted_processes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_release_muted_processes(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_release_muted_processes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_return_t/title",
+          "value": "es_return_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_return_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_return_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_return_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_return_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_muted_paths_t/title",
+          "value": "es_muted_paths_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_muted_paths_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_muted_paths_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_muted_paths_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_muted_paths_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_new_client_result_t/title",
+          "value": "es_new_client_result_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_new_client_result_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_new_client_result_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_new_client_result_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_new_client_result_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_respond_result_t/title",
+          "value": "es_respond_result_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_respond_result_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_respond_result_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_respond_result_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_respond_result_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_clear_cache_result_t/title",
+          "value": "es_clear_cache_result_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_clear_cache_result_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_clear_cache_result_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_clear_cache_result_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_clear_cache_result_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_new_client(_:_:)/title",
+          "value": "es_new_client"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_new_client(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_new_client"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1ES_EVENT_TYPE_AUTH_EXEC/title",
+          "value": "ES_EVENT_TYPE_AUTH_EXEC"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1ES_EVENT_TYPE_AUTH_EXEC/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ES_EVENT_TYPE_AUTH_EXEC"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_mute_process(_:_:)/title",
+          "value": "es_mute_process"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_mute_process(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_mute_process"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_mute_path_events(_:_:_:_:_:)/title",
+          "value": "es_mute_path_events"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_mute_path_events(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_mute_path_events"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_unsubscribe(_:_:_:)/title",
+          "value": "es_unsubscribe"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_unsubscribe(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_unsubscribe"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_subscriptions(_:_:_:)/title",
+          "value": "es_subscriptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_subscriptions(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_subscriptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_unmute_process(_:_:)/title",
+          "value": "es_unmute_process"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_unmute_process(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_unmute_process"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_event_type_t/title",
+          "value": "es_event_type_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_event_type_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_event_type_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_event_type_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_event_type_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_auth_result_t/title",
+          "value": "es_auth_result_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_auth_result_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_auth_result_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_auth_result_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_auth_result_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_unsubscribe_all(_:)/title",
+          "value": "es_unsubscribe_all"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_unsubscribe_all(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_unsubscribe_all"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_handler_block_t/title",
+          "value": "es_handler_block_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_handler_block_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_handler_block_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_handler_block_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_handler_block_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_unmute_path_events(_:_:_:_:_:)/title",
+          "value": "es_unmute_path_events"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_unmute_path_events(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_unmute_path_events"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_muted_processes_t/title",
+          "value": "es_muted_processes_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_muted_processes_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_muted_processes_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_muted_processes_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_muted_processes_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_muted_paths_events(_:_:)/title",
+          "value": "es_muted_paths_events"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_muted_paths_events(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_muted_paths_events"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_muted_processes_events(_:_:)/title",
+          "value": "es_muted_processes_events"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_muted_processes_events(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_muted_processes_events"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_mute_path_prefix(_:_:)/title",
+          "value": "es_mute_path_prefix"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_mute_path_prefix(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_mute_path_prefix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_delete_client(_:)/title",
+          "value": "es_delete_client"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_delete_client(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_delete_client"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_respond_flags_result(_:_:_:_:)/title",
+          "value": "es_respond_flags_result"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_respond_flags_result(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_respond_flags_result"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_unmute_all_paths(_:)/title",
+          "value": "es_unmute_all_paths"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_unmute_all_paths(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_unmute_all_paths"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_clear_cache(_:)/title",
+          "value": "es_clear_cache"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_clear_cache(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_clear_cache"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_mute_process_events(_:_:_:_:)/title",
+          "value": "es_mute_process_events"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_mute_process_events(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_mute_process_events"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_unmute_path(_:_:_:)/title",
+          "value": "es_unmute_path"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_unmute_path(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_unmute_path"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_release_muted_paths(_:)/title",
+          "value": "es_release_muted_paths"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_release_muted_paths(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_release_muted_paths"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_mute_path_type_t/title",
+          "value": "es_mute_path_type_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_mute_path_type_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_mute_path_type_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_mute_path_type_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_mute_path_type_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_muted_processes(_:_:_:)/title",
+          "value": "es_muted_processes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_muted_processes(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_muted_processes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_unmute_process_events(_:_:_:_:)/title",
+          "value": "es_unmute_process_events"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_unmute_process_events(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_unmute_process_events"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/endpointsecurity/client"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/endpointsecurity/client"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

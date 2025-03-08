@@ -1,0 +1,1027 @@
+{
+  "abstract": [
+    {
+      "text": "Access the user’s route for a workout.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit",
+        "doc://com.apple.healthkit/documentation/HealthKit/workouts-and-activity-rings"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/reading-route-data"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Reading route data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can read the route associated with any workout in HealthKit (for example, the path that the user took while walking, running, or cycling). However, the size and nature of route data presents two challenges:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Route samples aren’t static.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "After you have the route sample, you still need to perform a second query to access the underlying location data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike most HealthKit data, apps can add or update route data over time. For example, an app must save a workout before associating route data with it. This means there is a brief period when the workout exists in the HealthKit store, but it doesn’t yet have a route sample associated with it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, apps often post-process the route data. For example, an app may generate and save the initial route sample on Apple Watch, but then perform additional smoothing on iPhone or a remote server. After the smoothing completes, the app updates the route sample using a sync identifier, replacing the original sample with the new, updated version.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a result, a query that just returns the current route sample for a given workout may return an outdated copy of the route, or may not return anything at all. To guarantee that your app receives the most up-to-date route sample, use an anchored object query to both get the current route, and to track any additions or updates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you have the route sample, you still need to make a second query to access the underlying location data. For performance reasons, the system returns the locations asynchronously in batches. As each new batch of location data arrives, your app can process the locations and, for example, plot the locations on a map or analyze and visualize the data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-the-Route-Sample-Object",
+          "level": 3,
+          "text": "Get the Route Sample Object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To guarantee that your app receives the most up-to-date route information, use an anchored object query to access the route and track any updates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let runningObjectQuery = HKQuery.predicateForObjects(from: myWorkout)",
+            "",
+            "let routeQuery = HKAnchoredObjectQuery(type: HKSeriesType.workoutRoute(), predicate: runningObjectQuery, anchor: nil, limit: HKObjectQueryNoLimit) { (query, samples, deletedObjects, anchor, error) in",
+            "    ",
+            "    guard error == nil else {",
+            "        // Handle any errors here.",
+            "        fatalError(\"The initial query failed.\")",
+            "    }",
+            "    ",
+            "    // Process the initial route data here.",
+            "}",
+            "",
+            "routeQuery.updateHandler = { (query, samples, deleted, anchor, error) in",
+            "    ",
+            "    guard error == nil else {",
+            "        // Handle any errors here.",
+            "        fatalError(\"The update failed.\")",
+            "    }",
+            "    ",
+            "    // Process updates or additions here.",
+            "}",
+            "",
+            "store.execute(routeQuery)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The query’s update handler receives any additions or changes to the route data. This lets your app process the most up-to-date version of the route, as soon as it becomes available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Access-a-Route-Samples-Location-Data",
+          "level": 3,
+          "text": "Access a Route Sample’s Location Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After receiving an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRoute",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample, you can access its location data using an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRouteQuery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Because a route sample can contain thousands of locations, you may not receive all of the location data at once. Instead, the system returns the location data in small batches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To process the locations associated with a route:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Create a query object.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Provide a block to receive the locations.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Run the query.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Call the HealthKit store’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/execute(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to run the query.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Receive the route data.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Your block receives one or more batches of location data. When the block’s done parameter is ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", you have received all the data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Optionally:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Call the HealthKit store’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/stop(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to stop the query from receiving additional data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "// Create the route query.",
+            "let query = HKWorkoutRouteQuery(route: myRoute) { (query, locationsOrNil, done, errorOrNil) in",
+            "    ",
+            "    // This block may be called multiple times.",
+            "    ",
+            "    if let error = errorOrNil {",
+            "        // Handle any errors here.",
+            "        return",
+            "    }",
+            "    ",
+            "    guard let locations = locationsOrNil else {",
+            "        fatalError(\"*** Invalid State: This can only fail if there was an error. ***\")",
+            "    }",
+            "    ",
+            "    // Do something with this batch of location data.",
+            "        ",
+            "    if done {",
+            "        // The query returned all the location data associated with the route.",
+            "        // Do something with the complete data set.",
+            "    }",
+            "    ",
+            "    // You can stop the query by calling:",
+            "    // store.stop(query)",
+            "    ",
+            "}",
+            "store.execute(query)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Locations from the HealthKit store are accurate within 50 meters or fewer, but they may need additional smoothing before you can use them (for example, to produce clean lines when plotting the route on a map).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/execute(_:)": {
+      "abstract": [
+        {
+          "text": "Starts executing the provided query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "execute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuery",
+          "text": "HKQuery"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/execute(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "executeQuery:"
+        }
+      ],
+      "role": "symbol",
+      "title": "execute(_:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkhealthstore/execute(_:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/stop(_:)": {
+      "abstract": [
+        {
+          "text": "Stops a long-running query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stop"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuery",
+          "text": "HKQuery"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/stop(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopQuery:"
+        }
+      ],
+      "role": "symbol",
+      "title": "stop(_:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkhealthstore/stop(_:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSeriesBuilder": {
+      "abstract": [
+        {
+          "text": "An abstract base class for building series samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKSeriesBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSeriesBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKSeriesBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKSeriesBuilder",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkseriesbuilder"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSeriesSample": {
+      "abstract": [
+        {
+          "text": "An abstract base class that defines samples that contain a series of items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKSeriesSample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSeriesSample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKSeriesSample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKSeriesSample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkseriessample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRoute": {
+      "abstract": [
+        {
+          "text": "A sample that contains a workout’s route data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutRoute"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRoute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutRoute"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutRoute",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutroute"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRouteBuilder": {
+      "abstract": [
+        {
+          "text": "A builder object that incrementally constructs a workout route.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutRouteBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRouteBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutRouteBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutRouteBuilder",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutroutebuilder"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRouteQuery": {
+      "abstract": [
+        {
+          "text": "A query to access the location data stored in a workout route.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutRouteQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRouteQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutRouteQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutRouteQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutroutequery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRouteQueryDescriptor": {
+      "abstract": [
+        {
+          "text": "A query interface that reads the location data stored in a workout route using Swift concurrency.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutRouteQueryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRouteQueryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutRouteQueryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutRouteQueryDescriptor",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutroutequerydescriptor"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRouteTypeIdentifier": {
+      "abstract": [
+        {
+          "text": "A series sample containing location data that defines the route the user took during a workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutRouteTypeIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRouteTypeIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutRouteTypeIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutRouteTypeIdentifier",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutroutetypeidentifier"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/creating-a-workout-route": {
+      "abstract": [
+        {
+          "text": "Record the user’s route during a workout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/creating-a-workout-route",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a workout route",
+      "type": "topic",
+      "url": "/documentation/healthkit/creating-a-workout-route"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/workouts-and-activity-rings": {
+      "abstract": [
+        {
+          "text": "Manage workouts, workout sessions, and activity summaries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/workouts-and-activity-rings",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workouts and activity rings",
+      "type": "topic",
+      "url": "/documentation/healthkit/workouts-and-activity-rings"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Route-data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/creating-a-workout-route",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRouteBuilder",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRoute",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRouteQueryDescriptor",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRouteQuery",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRouteTypeIdentifier",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSeriesBuilder",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSeriesSample"
+      ],
+      "title": "Route data"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutRouteQuery/title",
+          "value": "HKWorkoutRouteQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutRouteQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutRouteQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutRouteQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutRouteQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSeriesBuilder/title",
+          "value": "HKSeriesBuilder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSeriesBuilder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSeriesBuilder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSeriesBuilder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSeriesBuilder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore~1stop(_:)/title",
+          "value": "stopQuery:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore~1stop(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopQuery:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSeriesSample/title",
+          "value": "HKSeriesSample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSeriesSample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSeriesSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSeriesSample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSeriesSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutRouteTypeIdentifier/title",
+          "value": "HKWorkoutRouteTypeIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutRouteTypeIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutRouteTypeIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutRoute/title",
+          "value": "HKWorkoutRoute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutRoute/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutRoute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutRoute/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutRoute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutRouteBuilder/title",
+          "value": "HKWorkoutRouteBuilder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutRouteBuilder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutRouteBuilder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutRouteBuilder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutRouteBuilder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore~1execute(_:)/title",
+          "value": "executeQuery:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore~1execute(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "executeQuery:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

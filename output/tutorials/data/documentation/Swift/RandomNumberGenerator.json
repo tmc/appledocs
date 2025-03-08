@@ -1,0 +1,664 @@
+{
+  "abstract": [
+    {
+      "text": "A type that provides uniformly distributed random data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/RandomNumberGenerator"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:SG",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "RandomNumberGenerator"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "RandomNumberGenerator"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "RandomNumberGenerator"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "RandomNumberGenerator"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you call methods that use random data, such as creating new random",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "values or shuffling a collection, you can pass a ",
+              "type": "text"
+            },
+            {
+              "code": "RandomNumberGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type to be used as the source for randomness. When you don’t pass a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "generator, the default ",
+              "type": "text"
+            },
+            {
+              "code": "SystemRandomNumberGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type is used.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When providing new APIs that use randomness, provide a version that accepts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a generator conforming to the ",
+              "type": "text"
+            },
+            {
+              "code": "RandomNumberGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol as well as a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "version that uses the default system generator. For example, this ",
+              "type": "text"
+            },
+            {
+              "code": "Weekday",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "enumeration provides static methods that return a random day of the week:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "enum Weekday: CaseIterable {",
+            "    case sunday, monday, tuesday, wednesday, thursday, friday, saturday",
+            "",
+            "    static func random<G: RandomNumberGenerator>(using generator: inout G) -> Weekday {",
+            "        return Weekday.allCases.randomElement(using: &generator)!",
+            "    }",
+            "",
+            "    static func random() -> Weekday {",
+            "        var g = SystemRandomNumberGenerator()",
+            "        return Weekday.random(using: &g)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Conforming-to-the-RandomNumberGenerator-Protocol",
+          "level": 1,
+          "text": "Conforming to the RandomNumberGenerator Protocol",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A custom ",
+              "type": "text"
+            },
+            {
+              "code": "RandomNumberGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type can have different characteristics",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "than the default ",
+              "type": "text"
+            },
+            {
+              "code": "SystemRandomNumberGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type. For example, a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "seedable generator can be used to generate a repeatable sequence of random",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "values for testing purposes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make a custom type conform to the ",
+              "type": "text"
+            },
+            {
+              "code": "RandomNumberGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "implement the required ",
+              "type": "text"
+            },
+            {
+              "code": "next()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. Each call to ",
+              "type": "text"
+            },
+            {
+              "code": "next()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " must produce",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a uniform and independent random value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Types that conform to ",
+              "type": "text"
+            },
+            {
+              "code": "RandomNumberGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " should specifically document",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the thread safety and quality of the generator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RandomNumberGenerator": {
+      "abstract": [
+        {
+          "text": "A type that provides uniformly distributed random data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RandomNumberGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RandomNumberGenerator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RandomNumberGenerator"
+        }
+      ],
+      "role": "symbol",
+      "title": "RandomNumberGenerator",
+      "type": "topic",
+      "url": "/documentation/swift/randomnumbergenerator"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RandomNumberGenerator/next()": {
+      "abstract": [
+        {
+          "text": "Returns a value from a uniform, independent distribution of binary data.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "next"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RandomNumberGenerator/next()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "next()",
+      "type": "topic",
+      "url": "/documentation/swift/randomnumbergenerator/next()"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RandomNumberGenerator/next(upperBound:)": {
+      "abstract": [
+        {
+          "text": "Returns a random value that is less than the given upper bound.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "next"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "upperBound"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RandomNumberGenerator/next(upperBound:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "next(upperBound:)",
+      "type": "topic",
+      "url": "/documentation/swift/randomnumbergenerator/next(upperbound:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/SystemRandomNumberGenerator": {
+      "abstract": [
+        {
+          "text": "The system’s default source of random data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SystemRandomNumberGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/SystemRandomNumberGenerator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SystemRandomNumberGenerator"
+        }
+      ],
+      "role": "symbol",
+      "title": "SystemRandomNumberGenerator",
+      "type": "topic",
+      "url": "/documentation/swift/systemrandomnumbergenerator"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/SystemRandomNumberGenerator"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Random-Number-Generators",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/SystemRandomNumberGenerator"
+      ],
+      "title": "Random Number Generators"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Generating-Random-Binary-Data",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/RandomNumberGenerator/next()",
+        "doc://com.apple.Swift/documentation/Swift/RandomNumberGenerator/next(upperBound:)"
+      ],
+      "title": "Generating Random Binary Data"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/randomnumbergenerator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

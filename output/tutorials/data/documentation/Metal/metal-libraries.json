@@ -1,0 +1,469 @@
+{
+  "abstract": [
+    {
+      "text": "Compile and manage Metal libraries from the command line.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/shader-libraries"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/metal-libraries"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Metal Libraries"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, your Metal shaders compile as a format called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Metal intermediate representation",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (Metal IR), a GPU-independent bytecode. At your app’s runtime, Metal compiles this bytecode to a GPU-specific binary for the host device. If you provide your shader functions as strings, they first compile to Metal IR on device, and then go through a secondary compilation for GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metal source files you add to an app’s source compilation Build Phase compile to a Metal IR library named ",
+              "type": "text"
+            },
+            {
+              "code": "default.metallib",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Load this library at runtime by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeDefaultLibrary()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in your app. For more complicated projects, you may want to create individual targets for Metal libraries, modify them in build scripts, or perform other optimizations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Compilation of Metal IR completes before executing a shader function call. When your library consists of utility functions that other shaders use, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/metal-dynamic-libraries",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To distribute GPU-specific binaries and avoid runtime shader compilation, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/metal-binary-archives",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeDefaultLibrary()": {
+      "abstract": [
+        {
+          "text": "Creates a Metal library instance that contains the functions from your app’s default Metal library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeDefaultLibrary"
+        },
+        {
+          "kind": "text",
+          "text": "() -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLLibrary",
+          "text": "MTLLibrary"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeDefaultLibrary()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newDefaultLibrary"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeDefaultLibrary()",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makedefaultlibrary()"
+    },
+    "doc://com.apple.metal/documentation/Metal/building-a-shader-library-by-precompiling-source-files": {
+      "abstract": [
+        {
+          "text": "Create a shader library that you can add to an Xcode project with the Metal compiler tools in a command-line environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/building-a-shader-library-by-precompiling-source-files",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a Shader Library by Precompiling Source Files",
+      "type": "topic",
+      "url": "/documentation/metal/building-a-shader-library-by-precompiling-source-files"
+    },
+    "doc://com.apple.metal/documentation/Metal/generating-and-loading-a-metal-library-symbol-file": {
+      "abstract": [
+        {
+          "text": "Debug your Metal shaders from your production apps by creating companion symbol files at compile time and loading them at debug time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/generating-and-loading-a-metal-library-symbol-file",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating and Loading a Metal Library Symbol File",
+      "type": "topic",
+      "url": "/documentation/metal/generating-and-loading-a-metal-library-symbol-file"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-binary-archives": {
+      "abstract": [
+        {
+          "text": "Distribute precompiled GPU-specific binaries as part of your app to avoid runtime compilation of Metal shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-binary-archives",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Binary Archives",
+      "type": "topic",
+      "url": "/documentation/metal/metal-binary-archives"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-dynamic-libraries": {
+      "abstract": [
+        {
+          "text": "Create a single Metal library containing reusable code to reduce library size and avoid repeated shader compilation at runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-dynamic-libraries",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Dynamic Libraries",
+      "type": "topic",
+      "url": "/documentation/metal/metal-dynamic-libraries"
+    },
+    "doc://com.apple.metal/documentation/Metal/minimizing-the-binary-size-of-a-shader-library": {
+      "abstract": [
+        {
+          "text": "Reduce the storage footprint of your shaders, and potentially reduce their compile time, by selecting the Metal compiler’s size optimization option.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/minimizing-the-binary-size-of-a-shader-library",
+      "kind": "article",
+      "role": "article",
+      "title": "Minimizing the Binary Size of a Shader Library",
+      "type": "topic",
+      "url": "/documentation/metal/minimizing-the-binary-size-of-a-shader-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/shader-libraries": {
+      "abstract": [
+        {
+          "text": "Manage and load your app’s Metal shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/shader-libraries",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Shader Libraries",
+      "type": "topic",
+      "url": "/documentation/metal/shader-libraries"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Shader-Compilation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/metal-dynamic-libraries",
+        "doc://com.apple.metal/documentation/Metal/metal-binary-archives"
+      ],
+      "title": "Shader Compilation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Working-with-Metal-Intermediate-Representation-Libraries",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/building-a-shader-library-by-precompiling-source-files",
+        "doc://com.apple.metal/documentation/Metal/minimizing-the-binary-size-of-a-shader-library",
+        "doc://com.apple.metal/documentation/Metal/generating-and-loading-a-metal-library-symbol-file"
+      ],
+      "title": "Working with Metal Intermediate Representation Libraries"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Working-with-Metal-Intermediate-Representation-Libraries",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/building-a-shader-library-by-precompiling-source-files",
+                "doc://com.apple.metal/documentation/Metal/minimizing-the-binary-size-of-a-shader-library",
+                "doc://com.apple.metal/documentation/Metal/generating-and-loading-a-metal-library-symbol-file"
+              ],
+              "title": "Working with Metal Intermediate Representation Libraries"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Shader-Compilation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/metal-dynamic-libraries",
+                "doc://com.apple.metal/documentation/Metal/metal-binary-archives"
+              ],
+              "title": "Shader Compilation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeDefaultLibrary()/title",
+          "value": "newDefaultLibrary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeDefaultLibrary()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newDefaultLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/metal-libraries"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/metal-libraries"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

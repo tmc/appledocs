@@ -1,0 +1,1540 @@
+{
+  "abstract": [
+    {
+      "text": "The language of a body of text.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NLLanguageRecognizer",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NLLanguageRecognizer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Natural Language"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NLLanguageRecognizer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.14",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NLLanguageRecognizer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NLLanguageRecognizer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/identifying-the-language-in-text"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object automatically detects the language of a piece of text. It performs language identification by:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Identifying the dominant script of a piece of text. Some languages have a unique script (like Greek), but others share the same script (like English, French, and German, which all share the Latin script).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Identifying the language itself.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The identification obtained from an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object can be either a single most likely language, access through ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/dominantLanguage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or a set of language candidates with probabilities, using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/languageHypothesesWithMaximum:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can reset the recognizer to its initial state, to be reused for new analysis.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the convenience method, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/dominantLanguage(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to get the most likely language without creating an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Don’t use an instance of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " from more than one thread simultaneously.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage": {
+      "abstract": [
+        {
+          "text": "Analyze natural language text and deduce its language-specific metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Natural Language",
+      "type": "topic",
+      "url": "/documentation/naturallanguage"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguage": {
+      "abstract": [
+        {
+          "text": "The languages that the Natural Language framework supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NLLanguage"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NLLanguage"
+        }
+      ],
+      "role": "symbol",
+      "title": "NLLanguage",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nllanguage"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer": {
+      "abstract": [
+        {
+          "text": "The language of a body of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NLLanguageRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NLLanguageRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NLLanguageRecognizer",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nllanguagerecognizer"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/dominantLanguage": {
+      "abstract": [
+        {
+          "text": "The most likely language for the processed text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dominantLanguage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLLanguage",
+          "text": "NLLanguage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/dominantLanguage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dominantLanguage"
+        }
+      ],
+      "role": "symbol",
+      "title": "dominantLanguage",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nllanguagerecognizer/dominantlanguage"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/dominantLanguage(for:)": {
+      "abstract": [
+        {
+          "text": "Finds the most likely language of a piece of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dominantLanguage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLLanguage",
+          "text": "NLLanguage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/dominantLanguage(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dominantLanguageForString:"
+        }
+      ],
+      "role": "symbol",
+      "title": "dominantLanguage(for:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nllanguagerecognizer/dominantlanguage(for:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/init()": {
+      "abstract": [
+        {
+          "text": "Creates a recognizer that you can customize.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/init()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nllanguagerecognizer/init()"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/languageConstraints": {
+      "abstract": [
+        {
+          "text": "Limits the set of possible languages that the recognizer will return.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "languageConstraints"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLLanguage",
+          "text": "NLLanguage"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/languageConstraints",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "languageConstraints"
+        }
+      ],
+      "role": "symbol",
+      "title": "languageConstraints",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nllanguagerecognizer/languageconstraints"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/languageHints-3gy00": {
+      "abstract": [
+        {
+          "text": "A dictionary that maps languages to their probabilities in the language identification process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "languageHints"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/languageHints-3gy00",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "languageHints",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nllanguagerecognizer/languagehints-3gy00"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/languageHints-7dwgv": {
+      "abstract": [
+        {
+          "text": "A dictionary that maps languages to their probabilities in the language identification process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "languageHints"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLLanguage",
+          "text": "NLLanguage"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/languageHints-7dwgv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "languageHints",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nllanguagerecognizer/languagehints-7dwgv"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/languageHypotheses(withMaximum:)": {
+      "abstract": [
+        {
+          "text": "Generates the probabilities of possible languages for the processed text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "languageHypotheses"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withMaximum"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLLanguage",
+          "text": "NLLanguage"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/languageHypotheses(withMaximum:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "languageHypotheses(withMaximum:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nllanguagerecognizer/languagehypotheses(withmaximum:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/languageHypothesesWithMaximum:": {
+      "abstract": [
+        {
+          "text": "Generates the probabilities of possible languages for the processed text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "languageHypothesesWithMaximum:"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/languageHypothesesWithMaximum:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "languageHypothesesWithMaximum:"
+        }
+      ],
+      "role": "symbol",
+      "title": "languageHypothesesWithMaximum:",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nllanguagerecognizer/languagehypotheseswithmaximum:"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/processString(_:)": {
+      "abstract": [
+        {
+          "text": "Analyzes the piece of text to determine its dominant language.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "processString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/processString(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "processString:"
+        }
+      ],
+      "role": "symbol",
+      "title": "processString(_:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nllanguagerecognizer/processstring(_:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/reset()": {
+      "abstract": [
+        {
+          "text": "Resets the recognizer to its initial state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reset"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/reset()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reset"
+        }
+      ],
+      "role": "symbol",
+      "title": "reset()",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nllanguagerecognizer/reset()"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/identifying-the-language-in-text": {
+      "abstract": [
+        {
+          "text": "Detect the language in a piece of text by using a language recognizer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/identifying-the-language-in-text",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying the language in text",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/identifying-the-language-in-text"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Language-identification",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/identifying-the-language-in-text",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguage"
+      ],
+      "title": "Language identification"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-recognizer",
+      "identifiers": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/init()"
+      ],
+      "title": "Creating a recognizer"
+    },
+    {
+      "anchor": "Determining-the-language",
+      "identifiers": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/dominantLanguage(for:)",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/processString(_:)",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/dominantLanguage",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/languageHypotheses(withMaximum:)",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/reset()"
+      ],
+      "title": "Determining the language"
+    },
+    {
+      "anchor": "Guiding-the-recognizer",
+      "identifiers": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/languageHints-7dwgv",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/languageConstraints"
+      ],
+      "title": "Guiding the recognizer"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.14",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NLLanguageRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLLanguageRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLLanguageRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-recognizer",
+              "identifiers": [
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/init()"
+              ],
+              "title": "Creating a recognizer"
+            },
+            {
+              "anchor": "Determining-the-language",
+              "identifiers": [
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/dominantLanguage(for:)",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/processString(_:)",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/dominantLanguage",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/languageHypothesesWithMaximum:",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/reset()"
+              ],
+              "title": "Determining the language"
+            },
+            {
+              "anchor": "Guiding-the-recognizer",
+              "identifiers": [
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/languageHints-3gy00",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/languageConstraints"
+              ],
+              "title": "Guiding the recognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Language-identification",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/identifying-the-language-in-text",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguage"
+              ],
+              "title": "Language identification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NLLanguageRecognizer"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguageRecognizer~1languageConstraints/title",
+          "value": "languageConstraints"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguageRecognizer~1languageConstraints/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "languageConstraints"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguageRecognizer~1dominantLanguage/title",
+          "value": "dominantLanguage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguageRecognizer~1dominantLanguage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dominantLanguage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguageRecognizer/title",
+          "value": "NLLanguageRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguageRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLLanguageRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguageRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLLanguageRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguage/title",
+          "value": "NLLanguage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLLanguage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLLanguage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguageRecognizer~1init()/title",
+          "value": "init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguageRecognizer~1init()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "init"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguageRecognizer~1reset()/title",
+          "value": "reset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguageRecognizer~1reset()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguageRecognizer~1dominantLanguage(for:)/title",
+          "value": "dominantLanguageForString:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguageRecognizer~1dominantLanguage(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "dominantLanguageForString:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguageRecognizer~1processString(_:)/title",
+          "value": "processString:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguageRecognizer~1processString(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "processString:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/naturallanguage/nllanguagerecognizer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/naturallanguage/nllanguagerecognizer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

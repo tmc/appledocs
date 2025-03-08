@@ -1,0 +1,267 @@
+{
+  "abstract": [
+    {
+      "text": "Passes error information to the Component Manager which sets the current error value for the appropriate connection.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coreservices/1516663-setcomponentinstanceerror"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1516663,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SetComponentInstanceError",
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "10.8",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SetComponentInstanceError"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SetComponentInstanceError"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/componentinstance",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ComponentInstance",
+              "text": "ComponentInstance"
+            },
+            {
+              "kind": "text",
+              "text": " aComponentInstance, "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSErr",
+              "text": "OSErr"
+            },
+            {
+              "kind": "text",
+              "text": " theError);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The connection for which to set the error. The Component Manager provides a component instance to your component when the connection is opened. The Component Manager also provides a component instance to your component as the first parameter in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "params",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " field of the parameters structure. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "aComponentInstance"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The new value for the current error. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "theError"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In general, your component returns error information in its function result a nonzero function result indicates an error occurred, and a function result of 0 indicates the request was successful. However, some requests require that your component return other information as its function result. In these cases, your component can use this function to report its latest error state to the Component Manager. You can also use this function at any time during your component’s execution to report an error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Applications retrieve this error information by calling the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1516618-getcomponentinstanceerror",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  function. The documentation for your component should specify how the component indicates errors. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516618-getcomponentinstanceerror": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516618-getcomponentinstanceerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetComponentInstanceError",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516618-getcomponentinstanceerror"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516663-setcomponentinstanceerror": {
+      "abstract": [
+        {
+          "text": "Passes error information to the Component Manager which sets the current error value for the appropriate connection.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516663-setcomponentinstanceerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetComponentInstanceError",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516663-setcomponentinstanceerror"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Component Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/component_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentinstance": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentinstance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ComponentInstance",
+      "type": "topic",
+      "url": "/documentation/coreservices/componentinstance"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/1516663-setcomponentinstanceerror"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

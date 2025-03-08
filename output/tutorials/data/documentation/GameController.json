@@ -1,0 +1,2308 @@
+{
+  "abstract": [
+    {
+      "text": "Support hardware game controllers in your game.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamecontroller/documentation/GameController"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "GameController",
+    "modules": [
+      {
+        "name": "Game Controller"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "7.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "7.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.9",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Game Controller"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use Game Controller to support users interacting with your app using a physical or virtual game controller. Game controllers include third-party products, such as the DualShock 4, DualSense, and Xbox, as well as the mouse, keyboard, Siri Remote, and racing wheels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4083651",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support game controllers, add the Game Controller capability (the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportsControllerUserInteraction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property) to your project, and Xcode adds the Game Controller framework automatically. Then, choose the types of controllers your app supports (the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportedGameControllers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property) under the Game Controllers capability on the Signing & Capabilities pane.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For controllers other than the racing wheel, follow these steps to process the game controller input in your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To get a physical game controller object, register for specific notifications when users connect and disconnect game controllers. Alternatively, you can display a virtual controller for the user to interact with.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Then get a profile object from the physical or virtual controller to access its input elements, such as buttons, triggers, thumbsticks, and directional pads. Profiles encapsulate the hardware details and layout of the input elements on the controller from your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To process the input, either get the values directly from the elements or register callbacks for when the user changes their values. Apps running in visionOS receive input events only when the person is looking at the app’s window.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For controllers that support haptics, you can provide feedback to the user by creating an engine that manipulates the controller’s actuators.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users may remap game controller elements in Settings and Preferences, so be sure to display the correct input element in your interface. If the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCPhysicalInputProfile/hasRemappedElements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the user remapped elements and you can get the mapping between the actual and alias elements using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCPhysicalInputProfile/mappedElementAlias(forPhysicalInputName:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCPhysicalInputProfile/mappedPhysicalInputNames(forElementAlias:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support racing wheel devices in your macOS app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/racing-wheel-device-support",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportedGameControllers": {
+      "abstract": [
+        {
+          "text": "The types of game controller profiles that the app supports or requires.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportedGameControllers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCSupportedGameControllers",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/GCSupportedGameControllers"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportsControllerUserInteraction": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the app supports a game controller.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportsControllerUserInteraction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCSupportsControllerUserInteraction",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/GCSupportsControllerUserInteraction"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportsMultipleMicroGamepads": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the physical Apple TV Remote and the Apple TV Remote app operate as separate game controllers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportsMultipleMicroGamepads",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCSupportsMultipleMicroGamepads",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/GCSupportsMultipleMicroGamepads"
+    },
+    "doc://com.apple.documentation/documentation/Updates/GameController": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Game Controller.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Updates/GameController",
+      "kind": "article",
+      "role": "article",
+      "title": "Game Controller updates",
+      "type": "topic",
+      "url": "/documentation/Updates/GameController"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController": {
+      "abstract": [
+        {
+          "text": "Support hardware game controllers in your game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Game Controller",
+      "type": "topic",
+      "url": "/documentation/gamecontroller"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GAMECONTROLLER_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GAMECONTROLLER_EXPORT"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GAMECONTROLLER_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GAMECONTROLLER_EXPORT",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gamecontroller_export"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GAMECONTROLLER_EXTERN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GAMECONTROLLER_EXTERN"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GAMECONTROLLER_EXTERN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GAMECONTROLLER_EXTERN",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gamecontroller_extern"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCController": {
+      "abstract": [
+        {
+          "text": "A representation of a real game controller, a virtual controller, or a snapshot of a controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCController",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gccontroller"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDevice": {
+      "abstract": [
+        {
+          "text": "A protocol that defines a common interface for game input devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCDevice",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevice"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceAxisInput": {
+      "abstract": [
+        {
+          "text": "An alias for a symbol name for backward compatibility with a previous SDK version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCDeviceAxisInput"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceAxisInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCDeviceAxisInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCDeviceAxisInput",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdeviceaxisinput"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceBattery": {
+      "abstract": [
+        {
+          "text": "The charge level and state of a device’s battery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCDeviceBattery"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceBattery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCDeviceBattery"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCDeviceBattery",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevicebattery"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceButtonInput": {
+      "abstract": [
+        {
+          "text": "An alias for a symbol name for backward compatibility with a previous SDK version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCDeviceButtonInput"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceButtonInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCDeviceButtonInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCDeviceButtonInput",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevicebuttoninput"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceDirectionPad": {
+      "abstract": [
+        {
+          "text": "An alias for a symbol name for backward compatibility with a previous SDK version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCDeviceDirectionPad"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceDirectionPad",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCDeviceDirectionPad"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCDeviceDirectionPad",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevicedirectionpad"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceElement": {
+      "abstract": [
+        {
+          "text": "An alias for a symbol name for backward compatibility with a previous SDK version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCDeviceElement"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCDeviceElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCDeviceElement",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdeviceelement"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceHaptics": {
+      "abstract": [
+        {
+          "text": "The locations of haptic actuators on a game controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCDeviceHaptics"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceHaptics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCDeviceHaptics"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCDeviceHaptics",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevicehaptics"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceLight": {
+      "abstract": [
+        {
+          "text": "The colored light on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCDeviceLight"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCDeviceLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCDeviceLight",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevicelight"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceTouchpad": {
+      "abstract": [
+        {
+          "text": "An alias for a symbol name for backward compatibility with a previous SDK version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCDeviceTouchpad"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceTouchpad",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCDeviceTouchpad"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCDeviceTouchpad",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevicetouchpad"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCEventInteraction": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCEventInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCEventInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCEventInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCEventInteraction",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gceventinteraction"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCEventViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that delivers input either from the responder chain to views, or from game controllers to profiles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCEventViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCEventViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCEventViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCEventViewController",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gceventviewcontroller"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCGameControllerActivationContext": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCGameControllerActivationContext"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCGameControllerActivationContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCGameControllerActivationContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCGameControllerActivationContext",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcgamecontrolleractivationcontext"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCGameControllerSceneDelegate": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCGameControllerSceneDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCGameControllerSceneDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCGameControllerSceneDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCGameControllerSceneDelegate",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcgamecontrollerscenedelegate"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCInputButtonName": {
+      "abstract": [
+        {
+          "text": "The Objective-C type for an input button name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GCInputButtonName"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCInputButtonName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCInputButtonName",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcinputbuttonname"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCKeyboard": {
+      "abstract": [
+        {
+          "text": "An object that represents a physical keyboard connected to a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCKeyboard"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCKeyboard",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCKeyboard"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCKeyboard",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gckeyboard"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCMotion": {
+      "abstract": [
+        {
+          "text": "A controller profile that supports orientation and motion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCMotion"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCMotion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCMotion"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCMotion",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcmotion"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCMouse": {
+      "abstract": [
+        {
+          "text": "An object that represents a physical mouse connected to a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCMouse"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCMouse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCMouse"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCMouse",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcmouse"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCPhysicalInputProfile/hasRemappedElements": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the user remaps elements in this profile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasRemappedElements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCPhysicalInputProfile/hasRemappedElements",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hasRemappedElements"
+        }
+      ],
+      "role": "symbol",
+      "title": "hasRemappedElements",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcphysicalinputprofile/hasremappedelements"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCPhysicalInputProfile/mappedElementAlias(forPhysicalInputName:)": {
+      "abstract": [
+        {
+          "text": "Returns the name of the input element to which the user remaps the given physical element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mappedElementAlias"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forPhysicalInputName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCPhysicalInputProfile/mappedElementAlias(forPhysicalInputName:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mappedElementAliasForPhysicalInputName:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mappedElementAlias(forPhysicalInputName:)",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcphysicalinputprofile/mappedelementalias(forphysicalinputname:)"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCPhysicalInputProfile/mappedPhysicalInputNames(forElementAlias:)": {
+      "abstract": [
+        {
+          "text": "Returns the physical input elements to which the user remaps the given input element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mappedPhysicalInputNames"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forElementAlias"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCPhysicalInputProfile/mappedPhysicalInputNames(forElementAlias:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mappedPhysicalInputNamesForElementAlias:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mappedPhysicalInputNames(forElementAlias:)",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcphysicalinputprofile/mappedphysicalinputnames(forelementalias:)"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCPressedStateInput": {
+      "abstract": [
+        {
+          "text": "The common properties for an element that has press state input, such as input from a button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCPressedStateInput"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCPressedStateInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCPressedStateInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCPressedStateInput",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcpressedstateinput"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel": {
+      "abstract": [
+        {
+          "text": "An object that represents a physical racing wheel controller connected to a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCRacingWheel"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCRacingWheel"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCRacingWheel",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcracingwheel"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCTouchedStateInput": {
+      "abstract": [
+        {
+          "text": "The common properties for an element that has touch state input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCTouchedStateInput"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCTouchedStateInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCTouchedStateInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCTouchedStateInput",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gctouchedstateinput"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCUIEventTypes": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCUIEventTypes"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCUIEventTypes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCUIEventTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCUIEventTypes",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcuieventtypes"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController": {
+      "abstract": [
+        {
+          "text": "A software emulation of a real controller that you configure specifically for your game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCVirtualController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCVirtualController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCVirtualController",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcvirtualcontroller"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/adding-touch-controls-to-games-that-support-game-controllers-in-ios": {
+      "abstract": [
+        {
+          "text": "Use touch input and virtual controllers to make your game available to players without controllers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/adding-touch-controls-to-games-that-support-game-controllers-in-ios",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding touch controls to games that support game controllers in iOS",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/adding-touch-controls-to-games-that-support-game-controllers-in-ios"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/deprecated-symbols": {
+      "abstract": [],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/deprecated-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated symbols",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/deprecated-symbols"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/handling-input-events": {
+      "abstract": [
+        {
+          "text": "Receive controller input using either polling or callbacks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/handling-input-events",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling input events",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/handling-input-events"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/input": {
+      "abstract": [
+        {
+          "text": "Receive controller input in the way that best integrates with the flow of your game or game engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/input",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Input",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/input"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/kIOHIDGCSyntheticDeviceKey": {
+      "abstract": [
+        {
+          "text": "A key that specifies whether the device is a game controller synthetic HID device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kIOHIDGCSyntheticDeviceKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/kIOHIDGCSyntheticDeviceKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kIOHIDGCSyntheticDeviceKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "kIOHIDGCSyntheticDeviceKey",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/kiohidgcsyntheticdevicekey"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/letting-players-use-their-second-generation-siri-remote-as-a-game-controller": {
+      "abstract": [
+        {
+          "text": "Support the second-generation Siri Remote as a game controller in your Apple TV game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/letting-players-use-their-second-generation-siri-remote-as-a-game-controller",
+      "kind": "article",
+      "role": "article",
+      "title": "Letting players use their second-generation Siri Remote as a game controller",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/letting-players-use-their-second-generation-siri-remote-as-a-game-controller"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/racing-wheel-device-support": {
+      "abstract": [
+        {
+          "text": "Add support for racing wheel devices in macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/racing-wheel-device-support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Racing wheel device support",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/racing-wheel-device-support"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/supporting-game-controllers": {
+      "abstract": [
+        {
+          "text": "Support a physical controller or add a virtual controller to enhance how people interact with your game through haptics, lighting, and motion sensing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/supporting-game-controllers",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Game Controllers",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/supporting-game-controllers"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/understanding-game-controller-backward-compatibility": {
+      "abstract": [
+        {
+          "text": "Learn how macOS brings support for the latest game controllers to software that predates the introduction of the Game Controller framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/understanding-game-controller-backward-compatibility",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding game controller backward compatibility",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/understanding-game-controller-backward-compatibility"
+    },
+    "media-4083651": {
+      "alt": "An illustration of a laptop displaying a game that shows a car driving on the road toward a country landscape. On the left is an overlay of a steering wheel controller.",
+      "identifier": "media-4083651",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/99ea4875edb8bfa1d668e34753abfabb/media-4083651@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4a373153aac2a5ec0a1f03d9a75e473f/media-4083651~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Updates/GameController",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportsControllerUserInteraction",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportedGameControllers",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportsMultipleMicroGamepads",
+        "doc://com.apple.gamecontroller/documentation/GameController/handling-input-events"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "View-controller",
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/GCEventViewController"
+      ],
+      "title": "View controller"
+    },
+    {
+      "anchor": "Game-controllers",
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/supporting-game-controllers",
+        "doc://com.apple.gamecontroller/documentation/GameController/letting-players-use-their-second-generation-siri-remote-as-a-game-controller",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCDevice",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCController",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCKeyboard",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCMouse"
+      ],
+      "title": "Game controllers"
+    },
+    {
+      "anchor": "Game-controller-profiles",
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/input",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCMotion",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceBattery",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceHaptics",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceLight"
+      ],
+      "title": "Game controller profiles"
+    },
+    {
+      "anchor": "Touch-controller",
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/adding-touch-controls-to-games-that-support-game-controllers-in-ios",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController"
+      ],
+      "title": "Touch controller"
+    },
+    {
+      "anchor": "Button-elements-and-names",
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/GCTouchedStateInput",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCPressedStateInput"
+      ],
+      "title": "Button elements and names"
+    },
+    {
+      "anchor": "Racing-wheels",
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/racing-wheel-device-support"
+      ],
+      "title": "Racing wheels"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Deploy an app that takes advantage of advanced game controller features using the Game Controller framework, while supporting game controllers on older macOS releases using IOKit.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Game-Controller-framework-migration-from-IOKit",
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/understanding-game-controller-backward-compatibility",
+        "doc://com.apple.gamecontroller/documentation/GameController/kIOHIDGCSyntheticDeviceKey"
+      ],
+      "title": "Game Controller framework migration from IOKit"
+    },
+    {
+      "anchor": "Aliases-for-backward-compatibility",
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceElement",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceAxisInput",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceButtonInput",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceTouchpad",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceDirectionPad"
+      ],
+      "title": "Aliases for backward compatibility"
+    },
+    {
+      "anchor": "Deprecated-symbols",
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/deprecated-symbols"
+      ],
+      "title": "Deprecated symbols"
+    },
+    {
+      "anchor": "Classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/GCEventInteraction",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCGameControllerActivationContext"
+      ],
+      "title": "Classes"
+    },
+    {
+      "anchor": "Protocols",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/GCGameControllerSceneDelegate"
+      ],
+      "title": "Protocols"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/GCUIEventTypes"
+      ],
+      "title": "Structures"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/Updates/GameController",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportsControllerUserInteraction",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportedGameControllers",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportsMultipleMicroGamepads",
+                "doc://com.apple.gamecontroller/documentation/GameController/handling-input-events"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "View-controller",
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/GCEventViewController"
+              ],
+              "title": "View controller"
+            },
+            {
+              "anchor": "Game-controllers",
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/supporting-game-controllers",
+                "doc://com.apple.gamecontroller/documentation/GameController/letting-players-use-their-second-generation-siri-remote-as-a-game-controller",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCDevice",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCController",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCKeyboard",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCMouse"
+              ],
+              "title": "Game controllers"
+            },
+            {
+              "anchor": "Game-controller-profiles",
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/input",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCMotion",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceBattery",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceHaptics",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCDeviceLight"
+              ],
+              "title": "Game controller profiles"
+            },
+            {
+              "anchor": "Touch-controller",
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/adding-touch-controls-to-games-that-support-game-controllers-in-ios",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController"
+              ],
+              "title": "Touch controller"
+            },
+            {
+              "anchor": "Button-elements-and-names",
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/GCTouchedStateInput",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCPressedStateInput",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCInputButtonName"
+              ],
+              "title": "Button elements and names"
+            },
+            {
+              "anchor": "Racing-wheels",
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/racing-wheel-device-support"
+              ],
+              "title": "Racing wheels"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Deploy an app that takes advantage of advanced game controller features using the Game Controller framework, while supporting game controllers on older macOS releases using IOKit.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Game-Controller-framework-migration-from-IOKit",
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/understanding-game-controller-backward-compatibility",
+                "doc://com.apple.gamecontroller/documentation/GameController/kIOHIDGCSyntheticDeviceKey"
+              ],
+              "title": "Game Controller framework migration from IOKit"
+            },
+            {
+              "anchor": "Deprecated-symbols",
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/deprecated-symbols"
+              ],
+              "title": "Deprecated symbols"
+            },
+            {
+              "anchor": "Classes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/GCEventInteraction",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCGameControllerActivationContext"
+              ],
+              "title": "Classes"
+            },
+            {
+              "anchor": "Protocols",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/GCGameControllerSceneDelegate"
+              ],
+              "title": "Protocols"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/GAMECONTROLLER_EXPORT",
+                "doc://com.apple.gamecontroller/documentation/GameController/GAMECONTROLLER_EXTERN"
+              ],
+              "title": "Macros"
+            },
+            {
+              "anchor": "Enumerations",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/GCUIEventTypes"
+              ],
+              "title": "Enumerations"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCKeyboard/title",
+          "value": "GCKeyboard"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCKeyboard/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCKeyboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCKeyboard/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCKeyboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCMouse/title",
+          "value": "GCMouse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCMouse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCMouse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCMouse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCMouse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDeviceLight/title",
+          "value": "GCDeviceLight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDeviceLight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDeviceLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDeviceLight/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDeviceLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDeviceHaptics/title",
+          "value": "GCDeviceHaptics"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDeviceHaptics/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDeviceHaptics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDeviceHaptics/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDeviceHaptics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCTouchedStateInput/title",
+          "value": "GCTouchedStateInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCTouchedStateInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCTouchedStateInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCTouchedStateInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCTouchedStateInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCPressedStateInput/title",
+          "value": "GCPressedStateInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCPressedStateInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCPressedStateInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCPressedStateInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCPressedStateInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCMotion/title",
+          "value": "GCMotion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCMotion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCMotion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCMotion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCMotion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCEventViewController/title",
+          "value": "GCEventViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCEventViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCEventViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCEventViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCEventViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheel/title",
+          "value": "GCRacingWheel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCRacingWheel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCRacingWheel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1kIOHIDGCSyntheticDeviceKey/title",
+          "value": "kIOHIDGCSyntheticDeviceKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1kIOHIDGCSyntheticDeviceKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kIOHIDGCSyntheticDeviceKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCEventInteraction/title",
+          "value": "GCEventInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCEventInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCEventInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCEventInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCEventInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCPhysicalInputProfile~1mappedElementAlias(forPhysicalInputName:)/title",
+          "value": "mappedElementAliasForPhysicalInputName:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCPhysicalInputProfile~1mappedElementAlias(forPhysicalInputName:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mappedElementAliasForPhysicalInputName:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController/title",
+          "value": "GCController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCUIEventTypes/title",
+          "value": "GCUIEventTypes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCUIEventTypes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCUIEventTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCUIEventTypes/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCUIEventTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCGameControllerSceneDelegate/title",
+          "value": "GCGameControllerSceneDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCGameControllerSceneDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCGameControllerSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCGameControllerSceneDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCGameControllerSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController/title",
+          "value": "GCVirtualController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCVirtualController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCVirtualController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCGameControllerActivationContext/title",
+          "value": "GCGameControllerActivationContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCGameControllerActivationContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCGameControllerActivationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCGameControllerActivationContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCGameControllerActivationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDeviceBattery/title",
+          "value": "GCDeviceBattery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDeviceBattery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDeviceBattery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDeviceBattery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDeviceBattery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevice/title",
+          "value": "GCDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCPhysicalInputProfile~1mappedPhysicalInputNames(forElementAlias:)/title",
+          "value": "mappedPhysicalInputNamesForElementAlias:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCPhysicalInputProfile~1mappedPhysicalInputNames(forElementAlias:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mappedPhysicalInputNamesForElementAlias:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCPhysicalInputProfile~1hasRemappedElements/title",
+          "value": "hasRemappedElements"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCPhysicalInputProfile~1hasRemappedElements/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hasRemappedElements"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamecontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamecontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

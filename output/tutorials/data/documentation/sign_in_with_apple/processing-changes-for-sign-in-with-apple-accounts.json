@@ -1,0 +1,1028 @@
+{
+  "abstract": [
+    {
+      "text": "Manage user-initiated modifications to maintain privacy with server-to-server notifications.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.signinwithapple/documentation/SigninwithApple"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/processing-changes-for-sign-in-with-apple-accounts"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Processing changes for Sign in with Apple accounts"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sign in with Apple users can modify their accounts, including deleting or disabling their Apple IDs. If your app or website hosts such an account, Apple can alert you when these changes occur by delivering developer notifications to your server. To learn how your users manage their account preferences for your app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-us/HT210426",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-up-your-server",
+          "level": 3,
+          "text": "Set up your server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To receive server notifications for Sign in with Apple, your server must support the Transport Layer Security (TLS) 1.2 protocol or later. When determining the endpoint URL on your server to receive notifications, you may use the same URL for multiple developer teams and apps. To configure your Sign in with Apple service to receive notifications, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/configure-app-capabilities/enabling-server-to-server-notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Decode-and-validate-the-notifications",
+          "level": 3,
+          "text": "Decode and validate the notifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These notifications contain a cryptographically signed payload, in JSON Web Signature (JWS) format, signed by Apple’s private key. After your server receives a notification, examine the JWS payload and use the algorithm specified in the header’s ",
+              "type": "text"
+            },
+            {
+              "code": "alg",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to validate the signature. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Fetch-Apple's-public-key-for-verifying-token-signature",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After validating the token signature, your server performs work according to the ",
+              "type": "text"
+            },
+            {
+              "code": "type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value in the ",
+              "type": "text"
+            },
+            {
+              "code": "events",
+              "type": "codeVoice"
+            },
+            {
+              "text": " claim of the token. The notification payload object contains information about user-initiated account modification events. The event types include the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The user disables email forwarding to their personal email address using ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "https://support.apple.com/en-us/HT210425",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "email-disabled",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The user enables email forwarding to their personal email address using Hide My Email.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "email-enabled",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The user revokes consent for your app to use their Apple ID and their credentials become invalid.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "consent-revoked",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The user requests that Apple permanently delete their Apple ID.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "account-delete",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Expect an HTTP POST response similar to the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "HTTP/1.1 200 OK",
+            "Content-Type: application/json;charset=UTF-8",
+            "Cache-Control: no-store",
+            "Pragma: no-cache",
+            "",
+            "{",
+            "    \"payload\": \"<SERVER_TO_SERVER_NOTIFICATION_JWT>\"",
+            "}"
+          ],
+          "syntax": "console",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Process-a-users-email-forwarding-change",
+          "level": 3,
+          "text": "Process a user’s email forwarding change",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users can enable or disable email forwarding to your app or website. When a user enables email forwarding, Apple sends a JWT to your registered endpoint URL with the ",
+              "type": "text"
+            },
+            {
+              "code": "type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value of ",
+              "type": "text"
+            },
+            {
+              "code": "email-enabled",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "events",
+              "type": "codeVoice"
+            },
+            {
+              "text": " claim. A decoded payload for an email-enabled notification has the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"iss\": \"https://appleid.apple.com\",",
+            "    \"aud\": \"com.mytest.app\",",
+            "    \"iat\": 1508184845,",
+            "    \"jti\": \"abede...67890\",",
+            "    \"events\": {",
+            "        \"type\": \"email-enabled\",",
+            "        \"sub\": \"820417.faa325acbc78e1be1668ba852d492d8a.0219\",",
+            "        \"email\": \"ep9ks2tnph@privaterelay.appleid.com\",",
+            "        \"is_private_email\": \"true\"",
+            "        \"event_time\": 1508184845",
+            "    }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user disables email forwarding, Apple sends a JWT to your registered endpoint URL with the ",
+              "type": "text"
+            },
+            {
+              "code": "type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value of ",
+              "type": "text"
+            },
+            {
+              "code": "email-disabled",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "events",
+              "type": "codeVoice"
+            },
+            {
+              "text": " claim. A decoded payload for an email-disabled notification has the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"iss\": \"https://appleid.apple.com\",",
+            "    \"aud\": \"com.mytest.app\",",
+            "    \"iat\": 1508184845,",
+            "    \"jti\": \"abede...67890\",",
+            "    \"events\": {",
+            "        \"type\": \"email-disabled\",",
+            "        \"sub\": \"820417.faa325acbc78e1be1668ba852d492d8a.0219\",",
+            "        \"email\": \"ep9ks2tnph@privaterelay.appleid.com\",",
+            "        \"is_private_email\": \"true\"",
+            "        \"event_time\": 1508184845",
+            "    }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To allow or prevent sending emails to the email address, be sure to update your server’s records according to your process. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/communicating-using-the-private-email-relay-service",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Process-disabling-and-deleting-a-users-Apple-ID",
+          "level": 3,
+          "text": "Process disabling and deleting a user’s Apple ID",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users can disable their Apple ID for a specific primary app ID, or delete their Apple ID account entirely. When a user disables their Apple ID for an app or app group, Apple sends a JWT to your registered endpoint URL with the ",
+              "type": "text"
+            },
+            {
+              "code": "type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value of ",
+              "type": "text"
+            },
+            {
+              "code": "consent-revoked",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "events",
+              "type": "codeVoice"
+            },
+            {
+              "text": " claim. A decoded payload for a consent-revoked notification has the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"iss\": \"https://appleid.apple.com\",",
+            "    \"aud\": \"com.mytest.app\",",
+            "    \"iat\": 1508184845,",
+            "    \"jti\": \"abede...67890\",",
+            "    \"events\": {",
+            "        \"type\": \"consent-revoked\",",
+            "        \"sub\": \"820417.faa325acbc78e1be1668ba852d492d8a.0219\",",
+            "        \"event_time\": 1508184845",
+            "    }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user requests for Apple to permanently delete their Apple ID, Apple sends a JWT to your registered endpoint URL with the ",
+              "type": "text"
+            },
+            {
+              "code": "type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value of ",
+              "type": "text"
+            },
+            {
+              "code": "account-delete",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "events",
+              "type": "codeVoice"
+            },
+            {
+              "text": " claim. A decoded payload for an account-delete notification has the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"iss\": \"https://appleid.apple.com\",",
+            "    \"aud\": \"com.mytest.app\",",
+            "    \"iat\": 1508184845,",
+            "    \"jti\": \"abede...67890\",",
+            "    \"events\": {",
+            "        \"type\": \"account-delete\",",
+            "        \"sub\": \"820417.faa325acbc78e1be1668ba852d492d8a.0219\",",
+            "        \"event_time\": 1508184845",
+            "    }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When a user permanently deletes their Apple ID, Sign in with Apple invalidates all user tokens and disables email forwarding for all associated apps. For native apps, the system doesn’t send a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/credentialRevokedNotification",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/getCredentialState(forUserID:completion:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to respond to account deletion events.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To indicate when the user disables or permanently deletes their Apple ID, be sure to update your server’s records according to your process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/credentialRevokedNotification": {
+      "abstract": [
+        {
+          "text": "A notification that indicates the user’s credentials have been revoked and they should be signed out.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "credentialRevokedNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/credentialRevokedNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "credentialRevokedNotification",
+      "type": "topic",
+      "url": "/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/credentialRevokedNotification"
+    },
+    "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/getCredentialState(forUserID:completion:)": {
+      "abstract": [
+        {
+          "text": "Returns the credential state for the given user in a completion handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCredentialState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forUserID"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "userID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationAppleIDProvider",
+          "text": "ASAuthorizationAppleIDProvider"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ASAuthorizationAppleIDProviderCredentialState",
+          "text": "CredentialState"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/getCredentialState(forUserID:completion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCredentialState(forUserID:completion:)",
+      "type": "topic",
+      "url": "/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/getCredentialState(forUserID:completion:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithApple": {
+      "abstract": [
+        {
+          "text": "Provide users the ability to sign in to your apps and websites using their Apple ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithApple",
+      "kind": "article",
+      "role": "collection",
+      "title": "Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/signinwithapple"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Fetch-Apple's-public-key-for-verifying-token-signature": {
+      "abstract": [
+        {
+          "text": "Fetch Apple’s public key to verify the ID token signature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Fetch-Apple's-public-key-for-verifying-token-signature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Fetch Apple's public key for verifying token signature"
+        }
+      ],
+      "role": "symbol",
+      "title": "Fetch Apple’s public key for verifying token signature",
+      "type": "topic",
+      "url": "/documentation/signinwithapplerestapi/fetch-apple's-public-key-for-verifying-token-signature"
+    },
+    "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/communicating-using-the-private-email-relay-service": {
+      "abstract": [
+        {
+          "text": "Stay in touch with users who opt for an anonymous email address with Sign in with Apple.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/communicating-using-the-private-email-relay-service",
+      "kind": "article",
+      "role": "article",
+      "title": "Communicating using the private email relay service",
+      "type": "topic",
+      "url": "/documentation/sign_in_with_apple/communicating-using-the-private-email-relay-service"
+    },
+    "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/configuring-your-environment-for-sign-in-with-apple": {
+      "abstract": [
+        {
+          "text": "Authenticate users with your web service by associating an existing app with a Services ID and private key.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/configuring-your-environment-for-sign-in-with-apple",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your environment for Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/sign_in_with_apple/configuring-your-environment-for-sign-in-with-apple"
+    },
+    "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/displaying-sign-in-with-apple-buttons-on-the-web": {
+      "abstract": [
+        {
+          "text": "Configure the appearance of Sign in with Apple buttons with CSS styles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/displaying-sign-in-with-apple-buttons-on-the-web",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying Sign in with Apple buttons on the web",
+      "type": "topic",
+      "url": "/documentation/sign_in_with_apple/displaying-sign-in-with-apple-buttons-on-the-web"
+    },
+    "https://developer.apple.com/help/account/configure-app-capabilities/enabling-server-to-server-notifications": {
+      "identifier": "https://developer.apple.com/help/account/configure-app-capabilities/enabling-server-to-server-notifications",
+      "title": "Enabling server-to-server notifications",
+      "titleInlineContent": [
+        {
+          "text": "Enabling server-to-server notifications",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/configure-app-capabilities/enabling-server-to-server-notifications"
+    },
+    "https://support.apple.com/en-us/HT210425": {
+      "identifier": "https://support.apple.com/en-us/HT210425",
+      "title": "Hide My Email",
+      "titleInlineContent": [
+        {
+          "text": "Hide My Email",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/HT210425"
+    },
+    "https://support.apple.com/en-us/HT210426": {
+      "identifier": "https://support.apple.com/en-us/HT210426",
+      "title": "Manage the apps that you use with Sign in with Apple",
+      "titleInlineContent": [
+        {
+          "text": "Manage the apps that you use with Sign in with Apple",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/HT210426"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Web-support",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/displaying-sign-in-with-apple-buttons-on-the-web",
+        "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/configuring-your-environment-for-sign-in-with-apple"
+      ],
+      "title": "Web support"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider~1getCredentialState(forUserID:completion:)/title",
+          "value": "getCredentialStateForUserID:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider~1getCredentialState(forUserID:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "getCredentialStateForUserID:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "userID"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completion:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@ASAuthorizationAppleIDProviderCredentialState",
+              "text": "ASAuthorizationAppleIDProviderCredentialState"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "credentialState"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completion"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider~1credentialRevokedNotification/title",
+          "value": "ASAuthorizationAppleIDProviderCredentialRevokedNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider~1credentialRevokedNotification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "NSNotificationName"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDProviderCredentialRevokedNotification"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

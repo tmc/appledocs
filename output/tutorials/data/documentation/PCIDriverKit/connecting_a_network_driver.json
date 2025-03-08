@@ -1,0 +1,2078 @@
+{
+  "abstract": [
+    {
+      "text": "Create an Ethernet driver that interfaces with the system’s network protocol stack.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/networkingdriverkit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/serialdriverkit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/usbserialdriverkit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/pcidriverkit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/scsicontrollerdriverkit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/hiddriverkit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/usbdriverkit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/driverkit",
+        "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/hiddriverkit",
+        "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/usbdriverkit",
+        "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/scsicontrollerdriverkit",
+        "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/usbserialdriverkit",
+        "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/serialdriverkit",
+        "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/pcidriverkit",
+        "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver"
+  },
+  "kind": "article",
+  "legacy_identifier": 3780597,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "NetworkingDriverKit"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "14.3",
+        "name": "Xcode"
+      },
+      {
+        "current": "24.4",
+        "introducedAt": "20.2",
+        "name": "DriverKit"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Connecting a network driver"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NetworkingDriverKitSample",
+              "type": "codeVoice"
+            },
+            {
+              "text": " project provides an example of how to write a driver with the NetworkingDriverKit APIs. Once installed and started, it appears like any other networking driver, viewable in IORegistry, System Settings, and the command-line interface ",
+              "type": "text"
+            },
+            {
+              "code": "ifconfig",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this sample as a guide for developing drivers for your own networking hardware. This sample is not hardware-dependent, and instead uses an internal timer to simulate receiving new packets. In a real-world driver, you’d connect the RX/TX submission and completion queues to real hardware transmit/receive descriptor rings supported by PCIDriverKit and USBDriverKit drivers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Keep in mind that NetworkingDriverKit currently only supports developing Ethernet drivers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The project contains two targets:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "NetworkingDriverKitSample — The sample driver, written in C++.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "NetworkingDriverKitSampleApp — A SwiftUI-based app that uses the SystemExtensions framework to install the driver.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "4266113",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the sample code project, you first need to build and run ",
+              "type": "text"
+            },
+            {
+              "code": "NetworkingDriverKitSampleApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which installs the dexts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by choosing new bundle IDs for the app and driver. The bundle IDs included with the project are already associated with specific App IDs, so you need unique identifiers to create your own App IDs. Use a reverse-DNS format for your identifier (for more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/preparing-your-app-for-distribution",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Then, in ",
+              "type": "text"
+            },
+            {
+              "code": "DriverLoadingViewModel.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", edit the definition of ",
+              "type": "text"
+            },
+            {
+              "code": "dextIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to use the string you chose for your driver’s bundle ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The installer and driver both need specific entitlements to run. For ",
+              "type": "text"
+            },
+            {
+              "code": "NetworkingDriverKitSampleApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", request the following entitlements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.system-extension.install",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.security.app-sandbox",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.security.files.user-selected.read-only",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the ",
+              "type": "text"
+            },
+            {
+              "code": "NetworkingDriverKitSample",
+              "type": "codeVoice"
+            },
+            {
+              "text": " target, request the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.networking",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on requesting entitlements, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, log in to your Apple Developer account and navigate to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3680797",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " list in the Certificates, IDs & Profiles section. From here, create new App IDs for ",
+              "type": "text"
+            },
+            {
+              "code": "NetworkingDriverKitSampleApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "NetworkingDriverKitSample",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the Bundle ID field, choose Explicit, and use the bundle IDs you chose earlier. Then, for ",
+              "type": "text"
+            },
+            {
+              "code": "NetworkingDriverKitSampleApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", request the System Extension capability. For ",
+              "type": "text"
+            },
+            {
+              "code": "NetworkingDriverKitSample",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", request the DriverKit and DriverKit Family Networking capabilities (under Additional Capabilities).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, visit the ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3680799",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " section of the site to create new provisioning profiles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NetworkingDriverKitSampleApp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", press the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "+",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " icon to create a new profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the Register a New Provisioning Profile page, choose macOS App Development and then Mac for the profile type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the next two pages, add any certificates and devices you want to include in the profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the Additional Entitlements page, accept the default entitlements and click Continue.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide a name for the profile, click Generate, and download the profile to your computer. Drag and drop the file to Xcode to add it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Repeat these same steps to create a profile for ",
+              "type": "text"
+            },
+            {
+              "code": "NetworkingDriverKitSample",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", with one key difference: on the Register a New Provisioning Profile page, choose DriverKit App Development.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Back in Xcode, do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Project navigator’s Signing & Capabilities tab, disable “Automatically manage signing,” so that you can manually assign the provisioning profile. For each target, enter the unique bundle ID you chose earlier in the Bundle Identifier field, and use the Provisioning Profile popup to select the profile you downloaded in the previous two steps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you want to run ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NetworkingDriverKitSampleApp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " directly from Xcode, enter dext development mode with the Terminal command ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "systemextensionsctl developer on",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (for more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "). Alternately, you can drag the built ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DriverKitSample.app",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from the build directory into the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/Applications",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " directory and run it from there.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "4266114",
+          "level": 3,
+          "text": "Use the System Extensions framework to install the driver extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NetworkingDriverKitSampleApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " target declares ",
+              "type": "text"
+            },
+            {
+              "code": "NetworkingDriverKitSample",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a dependency, so building the app target builds the dext and its installer together. When it’s running, ",
+              "type": "text"
+            },
+            {
+              "code": "NetworkingDriverKitSampleApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " shows a single window with an Install Dext button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework to install and activate the dext. For more information, see ",
+              "type": "text"
+            },
+            {
+              "code": "Installing System Extensions and Drivers",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let request = OSSystemExtensionRequest",
+            "    .activationRequest(forExtensionWithIdentifier: dextIdentifier,",
+            "                       queue: .main)",
+            "request.delegate = self",
+            "OSSystemExtensionManager.shared.submitRequest(request)"
+          ],
+          "metadata": {
+            "anchor": "4266096",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This call may prompt a System Extension Blocked dialog, which explains that ",
+                  "type": "text"
+                },
+                {
+                  "code": "DriverKitSampleApp",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " tried to install a new system extension. To complete the installation, open System Settings and go to the Privacy & Security section. Find the section that explains that the system blocked ",
+                  "type": "text"
+                },
+                {
+                  "code": "NetworkingDriverKitSampleApp",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and click Allow to complete the installation. To confirm installation of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "NullDriver",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " extension, run ",
+                  "type": "text"
+                },
+                {
+                  "code": "systemextensionsctl list",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in Terminal.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After installation, the driver appears in System Settings as Ethernet Adapter (enXX), where ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "XX",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a number, like ",
+              "type": "text"
+            },
+            {
+              "code": "en17",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You can also see the extension in Terminal with the command ",
+              "type": "text"
+            },
+            {
+              "code": "systemextensionsctl list",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which lists all running system extensions. When the driver is running, it has an entry like the following, but with a different ",
+              "type": "text"
+            },
+            {
+              "code": "teamID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "~ % systemextensionsctl list",
+            "1 extension(s)",
+            "--- com.apple.system_extension.driver_extension",
+            "enabled    active    teamID    bundleID (version)    name    [state]",
+            "*    *    A123456789    com.example.apple-samplecode.NetworkingDriverKitSample (1.0/1)    com.example.apple-samplecode.NetworkingDriverKitSample    [activated enabled]",
+            ""
+          ],
+          "metadata": {
+            "anchor": "4266097",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also inspect its entry in the I/O Registry with the Terminal command ",
+              "type": "text"
+            },
+            {
+              "code": "ioreg",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". It appears in the registry tree with an entry like the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    | +-o NetworkingDriverKitSample  <class IOUserNetworkEthernet, id 0x100028cee, registered, matched, active, busy 0 (4 ms), retain 16>"
+          ],
+          "metadata": {
+            "anchor": "4266098",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "4266115",
+          "level": 3,
+          "text": "Start the driver by creating transmit and receive queues",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At startup, NetworkingDriverKit calls the following methods on a driver as part of its lifecycle:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/init",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " — The object initializer, which a driver uses to allocate and initialize its instance variables.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " — The message that indicates NetworkingDriverKit matched a provider for the driver. Drivers use this method to reset hardware and pepare it for operation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180704-setpowerstate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " — An indication that the provider’s power state is changing. Drivers can use the first call to the method for setup, but typically do so in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Start()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Instead, use this callback to get into and out of a safe state given the power setting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetInterfaceEnable-3v24g",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " — This call enables or disables the Ethernet service. A hardware driver uses this callback to bring the hardware up or down based on the Boolean ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "isEnable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample driver does its setup work in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. The driver uses this opportunity to set up queues to ensure that calls to and from NetworkingDriverKit are thread-safe. First, the sample creates a primary dispatch queue, which it calls ",
+              "type": "text"
+            },
+            {
+              "code": "Default",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ret = CopyDispatchQueue(\"Default\", &ivars->dsQueue);",
+            "if (ret != kIOReturnSuccess)",
+            "    goto fail;"
+          ],
+          "metadata": {
+            "anchor": "4266100",
+            "title": "Listing 4"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method then uses this dispatch queue, stored in ",
+              "type": "text"
+            },
+            {
+              "code": "ivars->dsQueue",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", to create the transmit submission queue. Since the ",
+              "type": "text"
+            },
+            {
+              "code": ".iig",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file declares a method named ",
+              "type": "text"
+            },
+            {
+              "code": "TxPacketAvailable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", DriverKit creates a method called ",
+              "type": "text"
+            },
+            {
+              "code": "CreateActionTxPacketAvailable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This method creates the action that DriverKit calls when packets are available to transmit. The following setup in ",
+              "type": "text"
+            },
+            {
+              "code": "Start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates a queue and calls ",
+              "type": "text"
+            },
+            {
+              "code": "SetDataAvailableHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to tell the queue to use the newly created action. The actual implementation of ",
+              "type": "text"
+            },
+            {
+              "code": "TxPacketAvailable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " appears later in this article.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ret = CreateActionTxPacketAvailable(0, &ivars->txPacketAction);",
+            "if (ret != kIOReturnSuccess)",
+            "    goto fail;",
+            "",
+            "ret = IOUserNetworkTxSubmissionQueue::Create(",
+            "    ivars->pool, this, 8, 0, ivars->dsQueue, &ivars->txsQueue);",
+            "if (ret != kIOReturnSuccess)",
+            "    goto fail;",
+            "",
+            "DLOG(\"==> %p (%p)\", this, provider);",
+            "",
+            "ret = ivars->txsQueue->CopyDataQueue(&dataQueue);",
+            "if (ret != kIOReturnSuccess)",
+            "    goto fail;",
+            "",
+            "DLOG(\"==> %p (%p)\", this, provider);",
+            "",
+            "ret = dataQueue->SetDataAvailableHandler(ivars->txPacketAction);",
+            "if (ret != kIOReturnSuccess)",
+            "    goto fail;"
+          ],
+          "metadata": {
+            "anchor": "4266101",
+            "title": "Listing 5"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, the ",
+              "type": "text"
+            },
+            {
+              "code": "Start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method creates three queues — one for transmit completion, one for receive submission, and one for receive completion — and associates each of them with the dispatch queue, ",
+              "type": "text"
+            },
+            {
+              "code": "ivars->dsQueue",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ret = IOUserNetworkTxCompletionQueue::Create(",
+            "    ivars->pool, this, 8, 0, ivars->dsQueue, &ivars->txcQueue);",
+            "if (ret != kIOReturnSuccess)",
+            "    goto fail;",
+            "",
+            "DLOG(\"==> %p (%p)\", this, provider);",
+            "",
+            "ret = IOUserNetworkRxSubmissionQueue::Create(",
+            "    ivars->pool, this, 8, 0, ivars->dsQueue, &ivars->rxsQueue);",
+            "if (ret != kIOReturnSuccess)",
+            "    goto fail;",
+            "",
+            "DLOG(\"==> %p (%p)\", this, provider);",
+            "",
+            "ret = IOUserNetworkRxCompletionQueue::Create(",
+            "    ivars->pool, this, 8, 0, ivars->dsQueue, &ivars->rxcQueue);",
+            "if (ret != kIOReturnSuccess)",
+            "    goto fail;"
+          ],
+          "metadata": {
+            "anchor": "4266102",
+            "title": "Listing 6"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To mimic reception of data from the network, the sample creates a timer. Since the timer needs a callback action, the ",
+              "type": "text"
+            },
+            {
+              "code": ".iig",
+              "type": "codeVoice"
+            },
+            {
+              "text": " declares a ",
+              "type": "text"
+            },
+            {
+              "code": "RecieveTimer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, which prompts DriverKit to provide a ",
+              "type": "text"
+            },
+            {
+              "code": "CreateActionReceiveTimer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. The following listing calls that method to create the action, then sets it as the handler for an ",
+              "type": "text"
+            },
+            {
+              "code": "IOTimerDispatchSource",
+              "type": "codeVoice"
+            },
+            {
+              "text": " stored in ",
+              "type": "text"
+            },
+            {
+              "code": "ivars->receiveTimerSource",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ret = IOTimerDispatchSource::Create(ivars->dsQueue, &ivars->receiveTimerSource);",
+            "if (ret != kIOReturnSuccess)",
+            "    goto fail;",
+            "",
+            "status = CreateActionReceiveTimer(sizeof(void *), &ivars->receiveTimer);",
+            "if (ret != kIOReturnSuccess)",
+            "    goto fail;",
+            "",
+            "status = ivars->receiveTimerSource->SetHandler(ivars->receiveTimer);",
+            "if (ret != kIOReturnSuccess)",
+            "    goto fail;"
+          ],
+          "metadata": {
+            "anchor": "4266103",
+            "title": "Listing 7"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The timer actually starts later, in ",
+              "type": "text"
+            },
+            {
+              "code": "SetInterfaceEnable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", after enabling the transmit and receive queues seen earlier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "now = clock_gettime_nsec_np(CLOCK_UPTIME_RAW);",
+            "deadline = now + 1000 * kMillisecondScale;",
+            "ret = ivars->receiveTimerSource->WakeAtTime(kIOTimerClockUptimeRaw, deadline, 0);",
+            "if (ret != kIOReturnSuccess)",
+            "    goto disable;"
+          ],
+          "metadata": {
+            "anchor": "4266104",
+            "title": "Listing 8"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4266116",
+          "level": 3,
+          "text": "Receive packets in an action callback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the timer fires, it calls the sample’s ",
+              "type": "text"
+            },
+            {
+              "code": "ReceiveTimer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " callback. For the purposes of the sample project, this creates a fake ICMP request packet that it can submit to the receive-completion queue. For each packet dequeued from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkRxSubmissionQueue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", this method performs the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copies in a block of static data called ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "echoRequest",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sets the packet’s data offset, data length, and link header length",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enqueues the packet in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkRxCompletionQueue",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Deallocates the packet",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resets the timer for the next simulated receive-packets event",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If any of the mutations to the packet fail, the sample deallocates the packet without enqueueing it. The timer update occurs in either case.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "dequeueCount = ivars->rxsQueue->DequeuePackets(packets, 8);",
+            "",
+            "linkHeaderLength = 0;",
+            "for (i = 0; i < dequeueCount; i++) {",
+            "    packet = packets[i];",
+            "    good_packet = true;",
+            "    dataAddr = (uint8_t *)packet->getDataVirtualAddress();",
+            "    dataOffset = packet->getDataOffset();",
+            "    ",
+            "    DLOG(\"dataAddr = %p dataOffset = %llu\", dataAddr, dataOffset);",
+            "    ",
+            "    pktBuffer = (decltype(pktBuffer))(uintptr_t)(dataAddr + dataOffset);",
+            "    ",
+            "    bcopy(echoRequest, pktBuffer, sizeof(echoRequest));",
+            "",
+            "    ret = packet->setDataOffset(dataOffset);",
+            "    good_packet &= (ret == kIOReturnSuccess);",
+            "",
+            "    ret = packet->SetLinkHeaderLength(linkHeaderLength);",
+            "    good_packet &= (ret == kIOReturnSuccess);",
+            "",
+            "    ret = packet->setDataLength(sizeof(echoRequest));",
+            "    good_packet &= (ret == kIOReturnSuccess);",
+            "",
+            "    if (good_packet) {",
+            "        DLOG(\"enqueue - packet[%d] = %p\", i, packet);",
+            "",
+            "        ret = ivars->rxcQueue->EnqueuePacket(packet);",
+            "        if (ret != kIOReturnSuccess) {",
+            "            ivars->pool->DeallocatePacket(packet);",
+            "            LOG(\"Enqueue failed dropping pkt\\n\");",
+            "        }",
+            "    } else {",
+            "        ivars->pool->DeallocatePacket(packet);",
+            "        LOG(\"Packet setup failed dropping pkt\\n\");",
+            "    }",
+            "}",
+            "",
+            "now = clock_gettime_nsec_np(CLOCK_UPTIME_RAW);",
+            "deadline = now + 5ULL * kSecondScale;",
+            "ret = ivars->receiveTimerSource->WakeAtTime(kIOTimerClockUptimeRaw, deadline, 0);",
+            "if (ret != kIOReturnSuccess) {",
+            "    DLOG(\"error setting interrupt read timer 0x%08x\\n\", ret);",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4266106",
+            "title": "Listing 9"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4266117",
+          "level": 3,
+          "text": "Transmit packets in an action callback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method created the action ",
+              "type": "text"
+            },
+            {
+              "code": "TxPacketAvailable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to handle callbacks when the networking stack places packets on the transmit-submssion queue. Like the packet-receive handler, this method dequeues available packets, this time from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkTxSubmissionQueue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and loops over them. For the purposes of the sample, this method implementation just logs the data address, data offset, and link header length of each packet, and enqueues it in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkTxCompletionQueue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "dequeueCount = ivars->txsQueue->DequeuePackets(packets, 8);",
+            "",
+            "linkHeaderLength = 0;",
+            "",
+            "if (dequeueCount) {",
+            "    for (i = 0; i < dequeueCount; i++) {",
+            "        packet = packets[i];",
+            "",
+            "        DLOG(\"dequeue - TX packet[%d] = %p\", i, packet);",
+            "",
+            "        dataAddr = (uint8_t *)packet->getDataVirtualAddress();",
+            "        dataOffset = packet->getDataOffset();",
+            "        ",
+            "        ret = packet->GetLinkHeaderLength(&linkHeaderLength);",
+            "        ",
+            "        DLOG(\"dataAddr = %p dataOffset = %llu linkHeaderLength = %d\", dataAddr, dataOffset, linkHeaderLength);",
+            "",
+            "        ret = ivars->txcQueue->EnqueuePacket(packet);",
+            "        if (ret != kIOReturnSuccess) {",
+            "            ivars->pool->DeallocatePacket(packet);",
+            "            LOG(\"Returning Tx Packet failed just return to pool\\n\");",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4266108",
+            "title": "Listing 10"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4266118",
+          "level": 3,
+          "text": "Remove the running driver",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When shipping a DriverKit driver, people delete the driver by removing the parent app from their ",
+              "type": "text"
+            },
+            {
+              "code": "/Applications",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory. If you’re using dext developer mode to build and run the driver from Xcode, then you need to remove the driver manually.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To remove the driver, use the ",
+              "type": "text"
+            },
+            {
+              "code": "systemextensionsctl uninstall",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command, passing the team ID and the driver’s bundle ID. To look up these identifiers, use the ",
+              "type": "text"
+            },
+            {
+              "code": "systemextensionsctl list",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command to return both of these values. Invoke the ",
+              "type": "text"
+            },
+            {
+              "code": "uninstall",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "~ % systemextensionsctl uninstall A123456789 com.example.apple-samplecode.NetworkingDriverKitSample"
+          ],
+          "metadata": {
+            "anchor": "4266110",
+            "title": "Listing 11"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After authorization – via password, Touch ID, or an equivalent – the driver disappears from the System Settings network pane, and will no longer appear in the I/O Registry.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Xcode/documentation/Xcode/preparing-your-app-for-distribution": {
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/preparing-your-app-for-distribution",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your app for distribution",
+      "type": "topic",
+      "url": "/documentation/xcode/preparing-your-app-for-distribution"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.networking": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.networking",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.family.networking",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.family.networking"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.system-extension.install": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.system-extension.install",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "System Extension Entitlement",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.system-extension.install"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.security.app-sandbox": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.security.app-sandbox",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App Sandbox Entitlement",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.security.app-sandbox"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.security.files.user-selected.read-only": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.security.files.user-selected.read-only",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.security.files.user-selected.read-only",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.security.files.user-selected.read-only"
+    },
+    "doc://com.apple.documentation/documentation/driverkit": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DriverKit",
+      "type": "topic",
+      "url": "/documentation/driverkit"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging and testing system extensions",
+      "type": "topic",
+      "url": "/documentation/driverkit/debugging_and_testing_system_extensions"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "DriverKit sample code",
+      "type": "topic",
+      "url": "/documentation/driverkit/driverkit_sample_code"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting Entitlements for DriverKit Development",
+      "type": "topic",
+      "url": "/documentation/driverkit/requesting_entitlements_for_driverkit_development"
+    },
+    "doc://com.apple.documentation/documentation/hiddriverkit": {
+      "identifier": "doc://com.apple.documentation/documentation/hiddriverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HIDDriverKit",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180704-setpowerstate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetPowerState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180704-setpowerstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetPowerState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180704-setpowerstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "Start"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Start",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180710-start"
+    },
+    "doc://com.apple.documentation/documentation/networkingdriverkit": {
+      "identifier": "doc://com.apple.documentation/documentation/networkingdriverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "NetworkingDriverKit",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit": {
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PCIDriverKit",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver": {
+      "abstract": [
+        {
+          "text": "Create an Ethernet driver that interfaces with the system’s network protocol stack.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Connecting a network driver",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/connecting_a_network_driver"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver#4266096": {
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver#4266096",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/pcidriverkit/connecting_a_network_driver#4266096"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver#4266097": {
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver#4266097",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/pcidriverkit/connecting_a_network_driver#4266097"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver#4266098": {
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver#4266098",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/pcidriverkit/connecting_a_network_driver#4266098"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver#4266100": {
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver#4266100",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/pcidriverkit/connecting_a_network_driver#4266100"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver#4266101": {
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver#4266101",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/pcidriverkit/connecting_a_network_driver#4266101"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver#4266102": {
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver#4266102",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 6",
+      "type": "section",
+      "url": "/documentation/pcidriverkit/connecting_a_network_driver#4266102"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver#4266103": {
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver#4266103",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 7",
+      "type": "section",
+      "url": "/documentation/pcidriverkit/connecting_a_network_driver#4266103"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver#4266104": {
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver#4266104",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 8",
+      "type": "section",
+      "url": "/documentation/pcidriverkit/connecting_a_network_driver#4266104"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver#4266106": {
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver#4266106",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 9",
+      "type": "section",
+      "url": "/documentation/pcidriverkit/connecting_a_network_driver#4266106"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver#4266108": {
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver#4266108",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 10",
+      "type": "section",
+      "url": "/documentation/pcidriverkit/connecting_a_network_driver#4266108"
+    },
+    "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver#4266110": {
+      "identifier": "doc://com.apple.documentation/documentation/pcidriverkit/connecting_a_network_driver#4266110",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 11",
+      "type": "section",
+      "url": "/documentation/pcidriverkit/connecting_a_network_driver#4266110"
+    },
+    "doc://com.apple.documentation/documentation/scsicontrollerdriverkit": {
+      "identifier": "doc://com.apple.documentation/documentation/scsicontrollerdriverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SCSIControllerDriverKit",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit"
+    },
+    "doc://com.apple.documentation/documentation/serialdriverkit": {
+      "identifier": "doc://com.apple.documentation/documentation/serialdriverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SerialDriverKit",
+      "type": "topic",
+      "url": "/documentation/serialdriverkit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/usbdriverkit": {
+      "identifier": "doc://com.apple.documentation/documentation/usbdriverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "USBDriverKit",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit"
+    },
+    "doc://com.apple.documentation/documentation/usbserialdriverkit": {
+      "identifier": "doc://com.apple.documentation/documentation/usbserialdriverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "USBSerialDriverKit",
+      "type": "topic",
+      "url": "/documentation/usbserialdriverkit"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetInterfaceEnable-3v24g": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetInterfaceEnable"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetInterfaceEnable-3v24g",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetInterfaceEnable",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/setinterfaceenable-3v24g"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/init"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkRxCompletionQueue": {
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkRxCompletionQueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkRxCompletionQueue",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkrxcompletionqueue"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkRxSubmissionQueue": {
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkRxSubmissionQueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkRxSubmissionQueue",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkrxsubmissionqueue"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkTxCompletionQueue": {
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkTxCompletionQueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkTxCompletionQueue",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworktxcompletionqueue"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkTxSubmissionQueue": {
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkTxSubmissionQueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkTxSubmissionQueue",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworktxsubmissionqueue"
+    },
+    "doc://com.apple.systemextensions/documentation/SystemExtensions": {
+      "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions",
+      "kind": "article",
+      "role": "collection",
+      "title": "System Extensions",
+      "type": "topic",
+      "url": "/documentation/systemextensions"
+    },
+    "https://docs-assets.developer.apple.com/published/14a55c0df9/ConnectingANetworkDriver.zip": {
+      "checksum": "01492c40b2c7a04bf6000c7708c74123b2c6351a1b08dd8518291722fbfa2687cb5e85a938cc773e3da1fcd2afb81a3d663f80e0758f06f09f504a5df6d1041a",
+      "identifier": "https://docs-assets.developer.apple.com/published/14a55c0df9/ConnectingANetworkDriver.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/14a55c0df9/ConnectingANetworkDriver.zip"
+    },
+    "link-3680797": {
+      "identifier": "link-3680797",
+      "kind": "article",
+      "role": "link",
+      "title": "Identifiers",
+      "type": "topic",
+      "url": "https://developer.apple.com/account/resources/identifiers/list"
+    },
+    "link-3680799": {
+      "identifier": "link-3680799",
+      "kind": "article",
+      "role": "link",
+      "title": "Profiles",
+      "type": "topic",
+      "url": "https://developer.apple.com/account/resources/profiles/list"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/14a55c0df9/ConnectingANetworkDriver.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/pcidriverkit/connecting_a_network_driver",
+        "documentation/hiddriverkit/connecting_a_network_driver",
+        "documentation/usbdriverkit/connecting_a_network_driver",
+        "documentation/serialdriverkit/connecting_a_network_driver",
+        "documentation/usbserialdriverkit/connecting_a_network_driver",
+        "documentation/networkingdriverkit/connecting_a_network_driver",
+        "documentation/scsicontrollerdriverkit/connecting_a_network_driver",
+        "documentation/driverkit/driverkit_sample_code/connecting_a_network_driver",
+        "documentation/hiddriverkit/driverkit_sample_code/connecting_a_network_driver",
+        "documentation/usbdriverkit/driverkit_sample_code/connecting_a_network_driver",
+        "documentation/pcidriverkit/driverkit_sample_code/connecting_a_network_driver",
+        "documentation/serialdriverkit/driverkit_sample_code/connecting_a_network_driver",
+        "documentation/usbserialdriverkit/driverkit_sample_code/connecting_a_network_driver",
+        "documentation/scsicontrollerdriverkit/driverkit_sample_code/connecting_a_network_driver"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/driverkit/driverkit_sample_code/connecting_a_network_driver"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

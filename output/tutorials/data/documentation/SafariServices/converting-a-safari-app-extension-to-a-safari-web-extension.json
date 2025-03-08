@@ -1,0 +1,394 @@
+{
+  "abstract": [
+    {
+      "text": "Unify your web extensions and simplify development by sharing code with a Safari web extension.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/converting-a-safari-app-extension-to-a-safari-web-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Converting a Safari app extension to a Safari web extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Safari 14 and later in macOS and Safari 15 and later in iOS include support for Safari web extensions, which support the same JavaScript APIs that other browsers use in their extensions. If you have an extension for other browsers and a Safari app extension that offer the same features, you can replace your Safari app extension with a Safari web extension and share code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You must use the same developer account to create the Safari web extension that you used to create the Safari app extension.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To convert your Safari app extension to a Safari web extension:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add new Safari web extension target(s) for macOS, iOS, or both to your project. Update the target(s) to include the icons, assets, and files you need from your Safari app extension. Link code and assets that you want to use from your extension for other browsers in your new Safari web extension target. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/updating-a-safari-web-extension",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for more information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Update the JavaScript APIs from your Safari app extension that are specific to Safari to use the Safari web extensions JavaScript APIs. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/assessing-your-safari-web-extension-s-browser-compatibility",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Update your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file to migrate your users (see details below).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Migrate-your-users-to-your-Safari-web-extension",
+          "level": 3,
+          "text": "Migrate your users to your Safari web extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To replace your Safari app extension with a Safari web extension, you just need to update your ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to migrate your users from one to the other.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the ",
+              "type": "text"
+            },
+            {
+              "code": "SFSafariAppExtensionBundleIdentifiersToReplace",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to the ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtension",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element inside your Safari web extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. Then specify the Safari app extensions that you want to replace when your Safari web extension loads. The value for this key is an array of strings, each of which is the bundle identifier for a Safari app extension that you want to replace.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app installs, the Safari web extension installs with it, and Safari removes the Safari app extensions you specified in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. If any of the Safari app extensions are in the enabled state when the installation occurs, Safari also enables the Safari web extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/assessing-your-safari-web-extension-s-browser-compatibility": {
+      "abstract": [
+        {
+          "text": "Review your Safari web extension implementation plan, manifest keys, and JavaScript API usage for compatibility with other browsers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/assessing-your-safari-web-extension-s-browser-compatibility",
+      "kind": "article",
+      "role": "article",
+      "title": "Assessing your Safari web extension’s browser compatibility",
+      "type": "topic",
+      "url": "/documentation/safariservices/assessing-your-safari-web-extension-s-browser-compatibility"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/converting-a-web-extension-for-safari": {
+      "abstract": [
+        {
+          "text": "Convert your existing extension to a Safari web extension using Xcode’s command-line tool.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/converting-a-web-extension-for-safari",
+      "kind": "article",
+      "role": "article",
+      "title": "Converting a web extension for Safari",
+      "type": "topic",
+      "url": "/documentation/safariservices/converting-a-web-extension-for-safari"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions": {
+      "abstract": [
+        {
+          "text": "Create web extensions that work in Safari and other browsers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari web extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-web-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/updating-a-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Add new features and fix bugs in your Safari web extension using Xcode tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/updating-a-safari-web-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Updating a Safari web extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/updating-a-safari-web-extension"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Extension-conversions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/converting-a-web-extension-for-safari"
+      ],
+      "title": "Extension conversions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Extension-conversions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/converting-a-web-extension-for-safari"
+              ],
+              "title": "Extension conversions"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/converting-a-safari-app-extension-to-a-safari-web-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/converting-a-safari-app-extension-to-a-safari-web-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

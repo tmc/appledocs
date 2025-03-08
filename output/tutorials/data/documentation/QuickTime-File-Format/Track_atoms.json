@@ -1,0 +1,555 @@
+{
+  "abstract": [
+    {
+      "text": "Atoms that define a single track of a movie.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_atoms"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Track atoms"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Track atoms define a single track of a movie. A movie may consist of one or more tracks. Each track is independent of the other tracks in the movie and carries its own temporal and spatial information. Each track atom contains its associated media atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tracks are used specifically for the following purposes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To contain media data references and descriptions (media tracks).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To contain modifier tracks (tweens, and so forth).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To contain packetization information for streaming protocols (hint tracks). Hint tracks may contain references to media sample data or copies of media sample data. For more information about hint tracks, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Hint_media",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A QuickTime movie cannot consist solely of hint tracks or modifier tracks; there must be at least one media track. Furthermore, media tracks cannot be deleted from a hinted movie, even if the hint tracks contain copies of the media sample data—in addition to the hint tracks, the entire unhinted movie must remain.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Hint_media": {
+      "abstract": [
+        {
+          "text": "Provide information about data units to stream in hint tracks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Hint_media",
+      "kind": "article",
+      "role": "article",
+      "title": "Hint media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/hint_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_atoms": {
+      "abstract": [
+        {
+          "text": "Atoms that describe and define a track’s media type and sample data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/media_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Movie_atoms": {
+      "abstract": [
+        {
+          "text": "Atoms that act as a container for the information that describes a movie’s data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Movie_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Movie atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/movie_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Playing_with_edit_lists": {
+      "abstract": [
+        {
+          "text": "Repeat a segment of a movie without copying media with edit lists.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Playing_with_edit_lists",
+      "kind": "article",
+      "role": "article",
+      "title": "Playing with edit lists",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/playing_with_edit_lists"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sample_atoms": {
+      "abstract": [
+        {
+          "text": "Atoms that describe samples, which are single elements in a sequence of time-ordered data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sample_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sample atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structuring_movie_data_and_features": {
+      "abstract": [
+        {
+          "text": "Build movies with compressed or reference data, and add features like effect descriptions and alternate subtitle tracks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structuring_movie_data_and_features",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Structuring movie data and features",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/structuring_movie_data_and_features"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_aperture_mode_dimension_atoms": {
+      "abstract": [
+        {
+          "text": "Atoms that store information for each of the track aperture presentation modes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_aperture_mode_dimension_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Track aperture mode dimension atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_aperture_mode_dimension_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_input_map_atoms": {
+      "abstract": [
+        {
+          "text": "Atoms that define how data being sent to this track from its nonprimary sources is to be interpreted.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_input_map_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Track input map atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_input_map_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_reference_atoms": {
+      "abstract": [
+        {
+          "text": "Atoms that defines relationships between tracks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_reference_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Track reference atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_reference_atoms"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Clipping_atom": {
+      "abstract": [
+        {
+          "text": "An atom that specifies the clipping regions for movies and for tracks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Clipping_atom",
+          "text": "Clipping atom ('clip')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Clipping_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Clipping atom ('clip')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/clipping_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Clipping_region_atom": {
+      "abstract": [
+        {
+          "text": "An atom that specifies the clipping region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Clipping_region_atom",
+          "text": "Clipping region atom ('crgn')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Clipping_region_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Clipping region atom ('crgn')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/clipping_region_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Compressed_matte_atom": {
+      "abstract": [
+        {
+          "text": "An atom that specifies the image description structure and the matte data associated with a particular matte atom.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Compressed_matte_atom",
+          "text": "Compressed matte atom ('kmat')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Compressed_matte_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Compressed matte atom ('kmat')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/compressed_matte_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_atom": {
+      "abstract": [
+        {
+          "text": "An atom that defines the portions of the media that are to be used to build up a track for a movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Edit_atom",
+          "text": "Edit atom ('edts')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Edit atom ('edts')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/edit_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_list_atom": {
+      "abstract": [
+        {
+          "text": "An atom that maps from a time in a movie to a time in a media, and ultimately to media data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Edit_list_atom",
+          "text": "Edit list atom ('elst')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_list_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Edit list atom ('elst')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/edit_list_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Track_atom": {
+      "abstract": [
+        {
+          "text": "An atom that defines a single track of a movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Track_atom",
+          "text": "Track atom ('trak')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Track atom ('trak')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Track_exclude_from_autoselection_atom": {
+      "abstract": [
+        {
+          "text": "An atom that indicates not to automatically select this track.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Track_exclude_from_autoselection_atom",
+          "text": "Track exclude from autoselection atom ('txas')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_exclude_from_autoselection_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Track exclude from autoselection atom ('txas')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_exclude_from_autoselection_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Track_header_atom": {
+      "abstract": [
+        {
+          "text": "An atom that specifies the characteristics of a single track within a movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Track_header_atom",
+          "text": "Track header atom ('tkhd')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_header_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Track header atom ('tkhd')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_header_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Track_load_settings_atom": {
+      "abstract": [
+        {
+          "text": "An atom that indicates how the track is to be used in its movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Track_load_settings_atom",
+          "text": "Track load settings atom ('load')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_load_settings_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Track load settings atom ('load')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_load_settings_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Track_matte_atom": {
+      "abstract": [
+        {
+          "text": "An atom you use to visually blend the track’s image when it is displayed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Track_matte_atom",
+          "text": "Track matte atom ('matt')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_matte_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Track matte atom ('matt')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_matte_atom"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Movies",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Movie_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sample_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structuring_movie_data_and_features"
+      ],
+      "title": "Movies"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Describing-tracks",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Track_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Track_header_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Track_exclude_from_autoselection_atom",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_aperture_mode_dimension_atoms",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Clipping_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Clipping_region_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Track_matte_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Compressed_matte_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_list_atom",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Playing_with_edit_lists",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Track_load_settings_atom",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_reference_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_input_map_atoms"
+      ],
+      "title": "Describing tracks"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/track_atoms"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

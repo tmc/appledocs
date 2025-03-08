@@ -1,0 +1,845 @@
+{
+  "abstract": [
+    {
+      "text": "Returns the result of an authorization operation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/AuthorizationCallbacks"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetResult"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@AuthorizationCallbacks@FI@SetResult",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "SetResult"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SetResult"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "10.4",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "SetResult"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:*FI(#*$@S@__OpaqueAuthorizationEngine#$@E@AuthorizationResult)",
+              "text": "int (*)(struct __OpaqueAuthorizationEngine *, enum AuthorizationResult)"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SetResult"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An opaque handle that is passed to your plug-in when the authorization engine calls your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismCreate",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "inEngine"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The result of the authorization attempt. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/AuthorizationResult",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for possible values.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "inResult"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. Possible results are ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationSuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (no error) and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationInternal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (Security Server internal error).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.security/documentation/Security/extending-authorization-services-with-plug-ins"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an application calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCopyRights(_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to request a specific authorization right, the Security Agent looks for that right in the authorization policy database. If that right corresponds to your plug-in, the authorization engine calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismInvoke",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function for each mechanism listed in the policy database for your plug-in.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the authorization engine calls your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismInvoke",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function, your plug-in should invoke the specified mechanism to attempt an authorization operation. You use the ",
+              "type": "text"
+            },
+            {
+              "code": "SetResult",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to return the results of this operation. If the mechanism returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationResult/kAuthorizationResultAllow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", then the authorization engine calls the next mechanism (if any) specified in the authorization policy database for the policy. If any of the mechanisms report a result other than ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationResult/kAuthorizationResultAllow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the authorization attempt fails. If all of the mechanisms report results of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationResult/kAuthorizationResultAllow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the authorization is considered to have succeeded.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that you can spin off a separate process and return from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismInvoke",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before calling ",
+              "type": "text"
+            },
+            {
+              "code": "SetResult",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, you might do so to avoid blocking the Security Server if your mechanism takes a significant amount of time to complete or if you want to be able to cancel the operation by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/RequestInterrupt",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function (if, for example, the user has clicked Cancel).In that case, your separate process must call the ",
+              "type": "text"
+            },
+            {
+              "code": "SetResult",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to report the result; the authorization engine does not call the next mechanism until you do so.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The authorization engine sends you the entry point to the ",
+              "type": "text"
+            },
+            {
+              "code": "SetResult",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure when you call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginCreate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks": {
+      "abstract": [
+        {
+          "text": "The interface implemented by the Security Server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCallbacks"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationCallbacks",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/RequestInterrupt": {
+      "abstract": [
+        {
+          "text": "Requests the authorization engine to interrupt the currently active authorization mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "RequestInterrupt"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/RequestInterrupt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RequestInterrupt",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks/requestinterrupt"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetResult": {
+      "abstract": [
+        {
+          "text": "Returns the result of an authorization operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetResult"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetResult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetResult",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks/setresult"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCopyRights(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Authorizes and preauthorizes rights synchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCopyRights"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRef",
+          "text": "AuthorizationRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRights",
+          "text": "AuthorizationRights"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationEnvironment",
+          "text": "AuthorizationEnvironment"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AuthorizationFlags",
+          "text": "AuthorizationFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRights",
+          "text": "AuthorizationRights"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCopyRights(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCopyRights"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationCopyRights(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcopyrights(_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationPluginCreate": {
+      "abstract": [
+        {
+          "text": "Initializes the plug-in and exchanges interfaces with the authorization engine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationPluginCreate"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginCreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationPluginCreate",
+      "type": "topic",
+      "url": "/documentation/security/authorizationplugincreate"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismCreate": {
+      "abstract": [
+        {
+          "text": "Creates an authorization mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MechanismCreate"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismCreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MechanismCreate",
+      "type": "topic",
+      "url": "/documentation/security/authorizationplugininterface/mechanismcreate"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismInvoke": {
+      "abstract": [
+        {
+          "text": "Invokes an authorization mechanism to perform an authorization operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MechanismInvoke"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismInvoke",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MechanismInvoke",
+      "type": "topic",
+      "url": "/documentation/security/authorizationplugininterface/mechanisminvoke"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationResult": {
+      "abstract": [
+        {
+          "text": "The permissible values for an authorization evaluation result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationResult"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationResult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationResult",
+      "type": "topic",
+      "url": "/documentation/security/authorizationresult"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationResult/kAuthorizationResultAllow": {
+      "abstract": [
+        {
+          "text": "The authorization operation succeeded and authorization should be granted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "kAuthorizationResultAllow"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationResult/kAuthorizationResultAllow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAuthorizationResultAllow",
+      "type": "topic",
+      "url": "/documentation/security/authorizationresult/kauthorizationresultallow"
+    },
+    "doc://com.apple.security/documentation/Security/errAuthorizationInternal": {
+      "abstract": [
+        {
+          "text": "An unrecognized internal error occurred.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errAuthorizationInternal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationInternal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "errAuthorizationInternal"
+        }
+      ],
+      "role": "symbol",
+      "title": "errAuthorizationInternal",
+      "type": "topic",
+      "url": "/documentation/security/errauthorizationinternal"
+    },
+    "doc://com.apple.security/documentation/Security/errAuthorizationSuccess": {
+      "abstract": [
+        {
+          "text": "The operation completed successfully.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errAuthorizationSuccess"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationSuccess",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "errAuthorizationSuccess"
+        }
+      ],
+      "role": "symbol",
+      "title": "errAuthorizationSuccess",
+      "type": "topic",
+      "url": "/documentation/security/errauthorizationsuccess"
+    },
+    "doc://com.apple.security/documentation/Security/extending-authorization-services-with-plug-ins": {
+      "abstract": [
+        {
+          "text": "Modify the system’s authorization policy with custom code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/extending-authorization-services-with-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Extending authorization services with plug-ins",
+      "type": "topic",
+      "url": "/documentation/security/extending-authorization-services-with-plug-ins"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errAuthorizationInternal/title",
+          "value": "errAuthorizationInternal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errAuthorizationInternal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "errAuthorizationInternal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errAuthorizationSuccess/title",
+          "value": "errAuthorizationSuccess"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errAuthorizationSuccess/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "errAuthorizationSuccess"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationCopyRights(_:_:_:_:_:)/title",
+          "value": "AuthorizationCopyRights"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationCopyRights(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationCopyRights"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/authorizationcallbacks/setresult"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

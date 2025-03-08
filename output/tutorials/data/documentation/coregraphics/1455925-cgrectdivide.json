@@ -1,0 +1,551 @@
+{
+  "abstract": [
+    {
+      "text": "Divides a source rectangle into two component rectangles.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coregraphics",
+        "doc://com.apple.documentation/documentation/coregraphics/cggeometry"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coregraphics/1455925-cgrectdivide"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1455925,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@CGRectDivide",
+    "modules": [
+      {
+        "name": "Core Graphics"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "CGRectDivide"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGRectDivide"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGRect",
+              "text": "CGRect"
+            },
+            {
+              "kind": "text",
+              "text": " rect, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGRect",
+              "text": "CGRect"
+            },
+            {
+              "kind": "text",
+              "text": " *slice, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGRect",
+              "text": "CGRect"
+            },
+            {
+              "kind": "text",
+              "text": " *remainder, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGFloat",
+              "text": "CGFloat"
+            },
+            {
+              "kind": "text",
+              "text": " amount, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrectedge",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGRectEdge",
+              "text": "CGRectEdge"
+            },
+            {
+              "kind": "text",
+              "text": " edge);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The source rectangle. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "rect"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On input, a pointer to an uninitialized rectangle. On return, the rectangle is filled in with the specified edge and values that extends the distance beyond the edge specified by the ",
+                  "type": "text"
+                },
+                {
+                  "code": "amount",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter. Must not be ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "slice"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On input, a pointer to an uninitialized rectangle. On return, the rectangle contains the portion of the source rectangle that remains after ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrectedge",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " produces the “slice” rectangle. Must not be ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "remainder"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A distance from the rectangle side that is specified in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "edge",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter. This distance defines the line, parallel to the specified side, that Core Graphics uses to divide the source rectangle.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "amount"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An edge value that specifies the side of the rectangle from which the distance passed in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "amount",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter is measured. ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455925-cgrectdivide",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " produces a “slice” rectangle that contains the specified edge and extends ",
+                  "type": "text"
+                },
+                {
+                  "code": "amount",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " distance beyond it. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "edge"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If ",
+              "type": "text"
+            },
+            {
+              "code": "rect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a null rectangle, this function outputs ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgrectnull",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for both the ",
+              "type": "text"
+            },
+            {
+              "code": "slice",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "remainder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " rectangles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/cgfloat": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGFloat",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgfloat"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgrect": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRect",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgrect"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgrectedge": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrectedge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectEdge",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgrectedge"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Graphics",
+      "type": "topic",
+      "url": "/documentation/coregraphics"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1454218-cgrectinset": {
+      "abstract": [
+        {
+          "text": "Returns a rectangle that is smaller or larger than the source rectangle, with the same center point.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454218-cgrectinset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectInset",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1454218-cgrectinset"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1454841-cgrectoffset": {
+      "abstract": [
+        {
+          "text": "Returns a rectangle with an origin that is offset from that of the source rectangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454841-cgrectoffset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectOffset",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1454841-cgrectoffset"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455346-cgrectintersection": {
+      "abstract": [
+        {
+          "text": "Returns the intersection of two rectangles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455346-cgrectintersection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectIntersection",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455346-cgrectintersection"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455837-cgrectunion": {
+      "abstract": [
+        {
+          "text": "Returns the smallest rectangle that contains the two source rectangles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455837-cgrectunion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectUnion",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455837-cgrectunion"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455925-cgrectdivide": {
+      "abstract": [
+        {
+          "text": "Divides a source rectangle into two component rectangles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455925-cgrectdivide",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectDivide",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455925-cgrectdivide"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1456348-cgrectintegral": {
+      "abstract": [
+        {
+          "text": "Returns the smallest rectangle that results from converting the source rectangle values to integers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1456348-cgrectintegral",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectIntegral",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1456348-cgrectintegral"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1456432-cgrectstandardize": {
+      "abstract": [
+        {
+          "text": "Returns a rectangle with a positive width and height.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1456432-cgrectstandardize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectStandardize",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1456432-cgrectstandardize"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cggeometry": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cggeometry",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CGGeometry",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cggeometry"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgrectnull": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgrectnull",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectNull",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgrectnull"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/1454218-cgrectinset",
+        "doc://com.apple.documentation/documentation/coregraphics/1456348-cgrectintegral",
+        "doc://com.apple.documentation/documentation/coregraphics/1455346-cgrectintersection",
+        "doc://com.apple.documentation/documentation/coregraphics/1454841-cgrectoffset",
+        "doc://com.apple.documentation/documentation/coregraphics/1456432-cgrectstandardize",
+        "doc://com.apple.documentation/documentation/coregraphics/1455837-cgrectunion"
+      ],
+      "title": "Modifying Rectangles"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coregraphics/1455925-cgrectdivide"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

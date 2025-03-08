@@ -1,0 +1,1036 @@
+{
+  "abstract": [
+    {
+      "text": "Use an expressive domain-specific language to build regular expressions,",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "for operations like searching and replacing in text.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/RegexBuilder"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "RegexBuilder",
+    "modules": [
+      {
+        "name": "RegexBuilder"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "RegexBuilder"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Regular expressions, also known as regexes,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are a powerful tool for matching patterns in text.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Swift supports several ways to create a regular expression,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including from a string, as a literal, and using this DSL.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let word = OneOrMore(.word)",
+            "let emailPattern = Regex {",
+            "    Capture {",
+            "        ZeroOrMore {",
+            "            word",
+            "            \".\"",
+            "        }",
+            "        word",
+            "    }",
+            "    \"@\"",
+            "    Capture {",
+            "        word",
+            "        OneOrMore {",
+            "            \".\"",
+            "            word",
+            "        }",
+            "    }",
+            "}",
+            "",
+            "let text = \"My email is my.name@example.com.\"",
+            "if let match = text.firstMatch(of: emailPattern) {",
+            "    let (wholeMatch, name, domain) = match.output",
+            "    // wholeMatch is \"my.name@example.com\"",
+            "    // name is \"my.name\"",
+            "    // domain is \"example.com\"",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/RegexBuilder": {
+      "abstract": [
+        {
+          "text": "Use an expressive domain-specific language to build regular expressions,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for operations like searching and replacing in text.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RegexBuilder",
+      "type": "topic",
+      "url": "/documentation/regexbuilder"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/...(_:_:)-16g2a": {
+      "abstract": [
+        {
+          "text": "Returns a character class that includes the characters in the given range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "..."
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SJ",
+          "text": "Character"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SJ",
+          "text": "Character"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12RegexBuilder14CharacterClassV",
+          "text": "CharacterClass"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/...(_:_:)-16g2a",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "...(_:_:)",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/'...(_:_:)-16g2a"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/...(_:_:)-629xh": {
+      "abstract": [
+        {
+          "text": "Returns a character class that includes the Unicode scalars in the given range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "..."
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13UnicodeScalara",
+          "text": "UnicodeScalar"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13UnicodeScalara",
+          "text": "UnicodeScalar"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12RegexBuilder14CharacterClassV",
+          "text": "CharacterClass"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/...(_:_:)-629xh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "...(_:_:)",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/'...(_:_:)-629xh"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/AlternationBuilder": {
+      "abstract": [
+        {
+          "text": "A custom parameter attribute that constructs regular expression alternations",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from closures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AlternationBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/AlternationBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AlternationBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "AlternationBuilder",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/alternationbuilder"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/Anchor": {
+      "abstract": [
+        {
+          "text": "A regex component that matches a specific condition at a particular position",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in an input string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Anchor"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/Anchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Anchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "Anchor",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/anchor"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/Capture": {
+      "abstract": [
+        {
+          "text": "A regex component that saves the matched substring, or a transformed result,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for access in a regex match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Capture"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/Capture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Capture"
+        }
+      ],
+      "role": "symbol",
+      "title": "Capture",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/capture"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/CharacterClass": {
+      "abstract": [
+        {
+          "text": "A class of characters that match in a regex.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CharacterClass"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/CharacterClass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CharacterClass"
+        }
+      ],
+      "role": "symbol",
+      "title": "CharacterClass",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/characterclass"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/ChoiceOf": {
+      "abstract": [
+        {
+          "text": "A regex component that chooses exactly one of its constituent regex",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "components when matching.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChoiceOf"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/ChoiceOf",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChoiceOf"
+        }
+      ],
+      "role": "symbol",
+      "title": "ChoiceOf",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/choiceof"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/Local": {
+      "abstract": [
+        {
+          "text": "A regex component that represents an atomic group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Local"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/Local",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Local"
+        }
+      ],
+      "role": "symbol",
+      "title": "Local",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/local"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/Lookahead": {
+      "abstract": [
+        {
+          "text": "A regex component that allows a match to continue only if its contents",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "match at the given location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Lookahead"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/Lookahead",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Lookahead"
+        }
+      ],
+      "role": "symbol",
+      "title": "Lookahead",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/lookahead"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/NegativeLookahead": {
+      "abstract": [
+        {
+          "text": "A regex component that allows a match to continue only if its contents",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "do not match at the given location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NegativeLookahead"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/NegativeLookahead",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NegativeLookahead"
+        }
+      ],
+      "role": "symbol",
+      "title": "NegativeLookahead",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/negativelookahead"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/One": {
+      "abstract": [
+        {
+          "text": "A regex component that matches exactly one occurrence of its underlying",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "One"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/One",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "One"
+        }
+      ],
+      "role": "symbol",
+      "title": "One",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/one"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/OneOrMore": {
+      "abstract": [
+        {
+          "text": "A regex component that matches one or more occurrences of its underlying",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OneOrMore"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/OneOrMore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OneOrMore"
+        }
+      ],
+      "role": "symbol",
+      "title": "OneOrMore",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/oneormore"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/Optionally": {
+      "abstract": [
+        {
+          "text": "A regex component that matches zero or one occurrences of its underlying",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Optionally"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/Optionally",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Optionally"
+        }
+      ],
+      "role": "symbol",
+      "title": "Optionally",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/optionally"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/Reference": {
+      "abstract": [
+        {
+          "text": "A reference to a captured portion of a regular expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Reference"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/Reference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Reference"
+        }
+      ],
+      "role": "symbol",
+      "title": "Reference",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/reference"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/RegexComponentBuilder": {
+      "abstract": [
+        {
+          "text": "A custom parameter attribute that constructs regular expressions from",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "closures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RegexComponentBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/RegexComponentBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RegexComponentBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "RegexComponentBuilder",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/regexcomponentbuilder"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/Repeat": {
+      "abstract": [
+        {
+          "text": "A regex component that matches a selectable number of occurrences of its",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "underlying component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Repeat"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/Repeat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Repeat"
+        }
+      ],
+      "role": "symbol",
+      "title": "Repeat",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/repeat"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/TryCapture": {
+      "abstract": [
+        {
+          "text": "A regex component that attempts to transform a matched substring, saving",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the result if successful and backtracking if the transformation fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TryCapture"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/TryCapture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TryCapture"
+        }
+      ],
+      "role": "symbol",
+      "title": "TryCapture",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/trycapture"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/ZeroOrMore": {
+      "abstract": [
+        {
+          "text": "A regex component that matches zero or more occurrences of its underlying",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ZeroOrMore"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/ZeroOrMore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ZeroOrMore"
+        }
+      ],
+      "role": "symbol",
+      "title": "ZeroOrMore",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/zeroormore"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Components",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/RegexBuilder/CharacterClass",
+        "doc://com.apple.Swift/documentation/RegexBuilder/Anchor",
+        "doc://com.apple.Swift/documentation/RegexBuilder/Lookahead",
+        "doc://com.apple.Swift/documentation/RegexBuilder/NegativeLookahead",
+        "doc://com.apple.Swift/documentation/RegexBuilder/ChoiceOf"
+      ],
+      "title": "Components"
+    },
+    {
+      "anchor": "Quantifiers",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/RegexBuilder/One",
+        "doc://com.apple.Swift/documentation/RegexBuilder/Optionally",
+        "doc://com.apple.Swift/documentation/RegexBuilder/ZeroOrMore",
+        "doc://com.apple.Swift/documentation/RegexBuilder/OneOrMore",
+        "doc://com.apple.Swift/documentation/RegexBuilder/Repeat",
+        "doc://com.apple.Swift/documentation/RegexBuilder/Local"
+      ],
+      "title": "Quantifiers"
+    },
+    {
+      "anchor": "Captures",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/RegexBuilder/Capture",
+        "doc://com.apple.Swift/documentation/RegexBuilder/TryCapture",
+        "doc://com.apple.Swift/documentation/RegexBuilder/Reference"
+      ],
+      "title": "Captures"
+    },
+    {
+      "anchor": "Builders",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/RegexBuilder/RegexComponentBuilder",
+        "doc://com.apple.Swift/documentation/RegexBuilder/AlternationBuilder"
+      ],
+      "title": "Builders"
+    },
+    {
+      "anchor": "Operators",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/RegexBuilder/...(_:_:)-16g2a",
+        "doc://com.apple.Swift/documentation/RegexBuilder/...(_:_:)-629xh"
+      ],
+      "title": "Operators"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/regexbuilder"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

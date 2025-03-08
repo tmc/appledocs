@@ -1,0 +1,783 @@
+{
+  "abstract": [
+    {
+      "text": "A type-erased scroll target behavior.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyScrollTargetBehavior"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI23AnyScrollTargetBehaviorV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AnyScrollTargetBehavior"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AnyScrollTargetBehavior"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "AnyScrollTargetBehavior"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AnyScrollTargetBehavior"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide this to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTargetBehavior(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier. When the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "underlying behavior changes, the scroll view to which this behavior applies",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "will be updated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this to dynamically control the scroll target behavior at runtime.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, you could provide a paging behavior in compact size classes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and a view aligned behavior otherwise.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Environment(\\.horizontalSizeClass) var sizeClass",
+            "",
+            "var body: some View {",
+            "    ScrollView { ... }",
+            "        .scrollTargetBehavior(scrollTargetBehavior)",
+            "}",
+            "",
+            " var scrollTargetBehavior: some ScrollTargetBehavior {",
+            "    sizeClass == .compact",
+            "        ? AnyScrollTargetBehavior(.paging)",
+            "        : AnyScrollTargetBehavior(.viewAligned)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyScrollTargetBehavior": {
+      "abstract": [
+        {
+          "text": "A type-erased scroll target behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnyScrollTargetBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyScrollTargetBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnyScrollTargetBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnyScrollTargetBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/anyscrolltargetbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyScrollTargetBehavior/base": {
+      "abstract": [
+        {
+          "text": "The type-erased scroll target behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "base"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ScrollTargetBehaviorP",
+          "text": "ScrollTargetBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyScrollTargetBehavior/base",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "base",
+      "type": "topic",
+      "url": "/documentation/swiftui/anyscrolltargetbehavior/base"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyScrollTargetBehavior/init(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new type-erase scroll target behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ScrollTargetBehaviorP",
+          "text": "ScrollTargetBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyScrollTargetBehavior/init(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/anyscrolltargetbehavior/init(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PagingScrollTargetBehavior": {
+      "abstract": [
+        {
+          "text": "The scroll behavior that aligns scroll targets to container-based geometry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PagingScrollTargetBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PagingScrollTargetBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PagingScrollTargetBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "PagingScrollTargetBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/pagingscrolltargetbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTarget": {
+      "abstract": [
+        {
+          "text": "A type defining the target in which a scroll view should try and scroll to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollTarget"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTarget",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollTarget"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollTarget",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrolltarget"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior": {
+      "abstract": [
+        {
+          "text": "A type that defines the scroll behavior of a scrollable view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollTargetBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollTargetBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollTargetBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrolltargetbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehaviorContext": {
+      "abstract": [
+        {
+          "text": "The context in which a scroll target behavior updates its scroll target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollTargetBehaviorContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehaviorContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollTargetBehaviorContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollTargetBehaviorContext",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrolltargetbehaviorcontext"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTargetBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the scroll behavior of views scrollable in the provided axes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollTargetBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ScrollTargetBehaviorP",
+          "text": "ScrollTargetBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTargetBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scrollTargetBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/scrolltargetbehavior(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTargetLayout(isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Configures the outermost layout as a scroll target layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollTargetLayout"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTargetLayout(isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scrollTargetLayout(isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/scrolltargetlayout(isenabled:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ViewAlignedScrollTargetBehavior": {
+      "abstract": [
+        {
+          "text": "The scroll behavior that aligns scroll targets to view-based geometry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ViewAlignedScrollTargetBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ViewAlignedScrollTargetBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ViewAlignedScrollTargetBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "ViewAlignedScrollTargetBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/viewalignedscrolltargetbehavior"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Defining-scroll-targets",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTargetBehavior(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTargetLayout(isEnabled:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTarget",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehaviorContext",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PagingScrollTargetBehavior",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ViewAlignedScrollTargetBehavior"
+      ],
+      "title": "Defining scroll targets"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyScrollTargetBehavior/init(_:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyScrollTargetBehavior/base"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/anyscrolltargetbehavior"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

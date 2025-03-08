@@ -1,0 +1,2346 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "collectionGroup",
+    "title": "macOS Mojave 10.14 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The macOS 10.14 SDK provides support for developing apps for Macs running macOS Mojave. The SDK comes bundled with Xcode 10 available from the Mac App Store. For information about Xcode 10, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-10-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "General",
+          "level": 3,
+          "text": "General",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Mac Pro (mid 2010 and mid 2012 models) must first be updated to macOS High Sierra 10.13.6 before updating to macOS Mojave. (41798700)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ink APIs in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Ink.framework",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and associated ink events in Carbon are deprecated. (29008562)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Using Carbon File Manager APIs and other APIs based on the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsref",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " structure might slow system performance when using APFS-formatted volumes. File Manager is deprecated in macOS 10.8 and later. For improved performance, switch to URL-based replacements such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "32-bit-Deprecation",
+          "level": 3,
+          "text": "32-bit Deprecation",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "32-bit processes now trigger an alert on launch.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can review 32-bit apps in System Information. The Software > Legacy Software report in System Information provides an overview of impacted software.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "32-bit system services such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "mdworker32",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "quicklookd32",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "inkserver",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "QTKitserver",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " remain for compatibility purposes and will be deprecated in a future release of macOS. If your app is using one of these services, migrate to the equivalent 64-bit framework.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "QTKit",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "QTMovieModernizer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " depend on the deprecated 32-bit QuickTime framework which remains present in macOS Mojave for compatibility purposes. When future versions of macOS no longer support 32-bit processes, these APIs will become unavailable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Administrators are encouraged to review root-owned daemons and processes on behalf of non-administrator users, as these users might lack permissions required to resolve previously-installed 32-bit dependencies.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Apple-File-System-APFS",
+          "level": 3,
+          "text": "Apple File System (APFS)",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "After enabling or disabling FileVault on a volume, the volume will become invisible to pre-macOS Mojave systems until the encryption or decryption process completes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "AppleScript",
+          "level": 3,
+          "text": "AppleScript",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sending Apple events from an app—including script applets—now requires user approval. The list of currently approved apps can be viewed and edited in the Automation category in the Privacy tab in System Preferences > Security & Privacy. If an event is blocked because the user didn’t approve that app, the event will fail with the error code: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-1743 (\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": ": Not authorized to send Apple events to ",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": "\")",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". An event can be preflighted using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/coreservices/3025784-aedeterminepermissiontoautomatet",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Scripting additions can no longer be globally installed. The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/Library/ScriptingAdditions",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/Network/Library/ScriptingAdditions",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "~/Library/ScriptingAdditions",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " directories are effectively ignored.Distribute scripting additions as part of a specific app by embedding the scripting addition in the app’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Contents/Resources/Scripting Additions",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " directory and signing both the addition and the app with the same team identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "AppKit",
+          "level": 3,
+          "text": "AppKit",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/appkit-release-notes-for-macos-10_14",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Core-ML",
+          "level": 3,
+          "text": "Core ML",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Support for quantized models (≤ 8-bit linear and/or lookup table)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Support for flexible image sizes and multi-array shapes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Batch prediction API",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Support for custom models",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Support for Create ML models (Vision Feature Print, Text Classifier, Word Tagger)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Disk-Utility",
+          "level": 3,
+          "text": "Disk Utility",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Important:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Don’t use Disk Utility while booted from Internet Recovery to erase an APFS Fusion container. (40565698)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Use Disk Utility while booted into macOS 10.13.6 or newer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "eGPU",
+          "level": 3,
+          "text": "eGPU",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now request to use an external GPU (eGPU) when an app’s window is located on a display connected directly to your Mac, including the built-in display on iMac or MacBook Pro. To enable this option in an app, choose File > Get Info and check the ’Prefer External GPU’ checkbox. (39888124)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "FaceTime-and-Messages",
+          "level": 3,
+          "text": "FaceTime and Messages",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Group FaceTime has been removed from the initial release of macOS Mojave and will ship in a future software update later this fall.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Foundation",
+          "level": 3,
+          "text": "Foundation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/foundation-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Grab",
+          "level": 3,
+          "text": "Grab",
+          "type": "heading"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Grab is superseded by the Screenshot app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "HomeKit",
+          "level": 3,
+          "text": "HomeKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Inviting iOS 11 users who have multiple email addresses associated with their Apple ID to a home might not succeed. (41033550)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Send the invitation to a different email address or phone number associated with the Apple ID of the iOS 11 user.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Localization",
+          "level": 3,
+          "text": "Localization",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "British English, Australian English, Canadian French, and Hong Kong Chinese (Traditional) localization is new in macOS Mojave.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You might experience difficulty logging into your account because the keyboard layout may change unexpectedly at the Login window. (40821875)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Log in to your account, launch Terminal, and execute the following command:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "sudo rm -rf /var/db/securityagent/Library/Preferences/com.apple.HIToolbox.plist"
+                  ],
+                  "syntax": "bash",
+                  "type": "codeListing"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Mail",
+          "level": 3,
+          "text": "Mail",
+          "type": "heading"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Stationery feature has been removed. (38725777)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Maps",
+          "level": 3,
+          "text": "Maps",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapSnapshotter",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " are updated to support the new Dark Map style. MapKit  automatically switches to the Dark Map appearance when Dark Mode is enabled, the user hasn’t disabled the Dark Map in the Maps app, and your app has been compiled for macOS 10.14 Mojave. As a result, most apps using MapKit don’t require code changes to adopt the correct behavior. Both ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapSnapshotter",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " support overriding this behavior through their respective appearance property. If your app overlays custom controls on top of the map view or the snapshot, you might want to react to changes of the map appearance using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAppearance",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (39003102)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Networking",
+          "level": 3,
+          "text": "Networking",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " HTTP/2 implementation is updated to support HTTP/2 connection reuse per RFC 7540 Section 9.1.1. This requires an HTTP/2 server to present a certificate which covers more than one server hostname. The certificate may use the Subject Alternative Name extension or wildcarded domain names. In addition, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " requires name resolution to resolve the different hostnames to the same IP address. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " may reuse HTTP/2 connections across different domain names when these conditions are satisfied. (37507838)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ftp://",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "file://",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " URL schemes for Proxy Automatic Configuration (PAC) are deprecated. HTTP and HTTPS are the only supported URL schemes for PAC. This affects all PAC configurations including, but not limited to, configurations set via Settings, System Preferences, profiles, and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " APIs such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411499-connectionproxydictionary",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (37811761)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Open-GL-and-Open-CL",
+          "level": 3,
+          "text": "Open GL and Open CL",
+          "type": "heading"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The APIs in the OpenGL and OpenCL frameworks are deprecated and remain present for compatibility purposes. Transition to Metal if your app is using OpenGL or OpenCL.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Privacy",
+          "level": 3,
+          "text": "Privacy",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apps that call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreWLAN/CWInterface/scanForNetworks(withName:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method can no longer obtain the MAC address (BSSID) of nearby Wi-Fi access points when Location Services is disabled. If broadcasted, the network name (SSID) remains included in the scan results. (37427543)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apps can’t access protected storage unless they’re added to the Application Data category located in the Privacy tab of System Preferences > Security & Privacy. (39798760)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Safari-and-WebKit",
+          "level": 3,
+          "text": "Safari and WebKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Safari Extension ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safaricontentbrowsertabproxy/1635506-canload",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " API is deprecated. Safari deactivates these extensions and notifies users upon first launch. You can reenable affected extensions using the Extensions pane in Safari preferences. Extensions using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safaricontentbrowsertabproxy/1635506-canload",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " should switch to the Content Blocker model. (33726891)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Legacy NPAPI browser plug-ins are no longer supported in Safari, with the exception of Adobe Flash. These plug-ins won’t load and can’t be reenabled. (34213078)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Safari no longer supports developer-signed ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".safariextz",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " packaged legacy Safari Extensions. When you first launch Safari on macOS Mojave, if you have any legacy developer-signed extensions installed, you’ll see a notification that such extensions are no longer supported. These extensions can’t be reenabled. Safari Extension Gallery extensions remain supported; however, this support will be removed in an upcoming macOS release. Adopt the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SafariServices/safari-app-extensions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " programming model instead. (39007695)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Social-Network-Integrations",
+          "level": 3,
+          "text": "Social Network Integrations",
+          "type": "heading"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS no longer includes built-in integrations with social networking and media sites. Use share extensions if this functionality is desired. For design guidance, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/design/human-interface-guidelines/macos/extensions/share-extensions/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Terminal",
+          "level": 3,
+          "text": "Terminal",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The shell command ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "link",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " takes two arguments, neither of which is permitted to be the name of a directory. Prior to macOS Mojave, the command ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "link F D",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", where ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "F",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is a file and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "D",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is a directory, created the hard link ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "D/F",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". In macOS Mojave this behavior now conforms to the documented behavior. The error message ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "link: D is a directory",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is displayed and the command exits with a failure status (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").  (42901913)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSAppearance": {
+      "abstract": [
+        {
+          "text": "An object that manages standard appearance attributes for UI elements in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAppearance"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAppearance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAppearance",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAppearance"
+    },
+    "doc://com.apple.documentation/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Downloads a proxy autoconfiguration script and executes it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFNetworkExecuteProxyAutoConfigurationURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "proxyAutoConfigURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "targetURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "cb"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFProxyAutoConfigurationResultCallback",
+          "text": "CFProxyAutoConfigurationResultCallback"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "clientContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CFStreamClientContext",
+          "text": "CFStreamClientContext"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFRunLoopSourceRef",
+          "text": "CFRunLoopSource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreWLAN/CWInterface/scanForNetworks(withName:)": {
+      "abstract": [
+        {
+          "text": "Scans for networks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanForNetworks"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "networkName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CWNetwork",
+          "text": "CWNetwork"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreWLAN/CWInterface/scanForNetworks(withName:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanForNetworks(withName:)",
+      "type": "topic",
+      "url": "/documentation/CoreWLAN/CWInterface/scanForNetworks(withName:)"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKMapSnapshotter": {
+      "abstract": [
+        {
+          "text": "A utility class for capturing a map and its content into an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMapSnapshotter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapSnapshotter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKMapSnapshotter",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKMapSnapshotter"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKMapView": {
+      "abstract": [
+        {
+          "text": "An embeddable map interface, similar to the one that the Maps app provides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMapView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKMapView",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKMapView"
+    },
+    "doc://com.apple.documentation/documentation/SafariServices/safari-app-extensions": {
+      "abstract": [
+        {
+          "text": "Learn how Safari app extensions extend the web-browsing experience in Safari by leveraging web technologies and native code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SafariServices/safari-app-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Safari app extensions",
+      "type": "topic",
+      "url": "/documentation/SafariServices/safari-app-extensions"
+    },
+    "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-10-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-10-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 10 Release Notes",
+      "type": "topic",
+      "url": "/documentation/Xcode-Release-Notes/xcode-10-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/3025784-aedeterminepermissiontoautomatet": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEDeterminePermissionToAutomateTarget"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AEAddressDesc>!, AEEventClass, AEEventID, Bool) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/3025784-aedeterminepermissiontoautomatet",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEDeterminePermissionToAutomateTarget(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/3025784-aedeterminepermissiontoautomatet"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsref": {
+      "abstract": [
+        {
+          "text": "Identifies a directory or file, including a volume’s root directory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSRef",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsref"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager": {
+      "abstract": [
+        {
+          "text": "A convenient interface to the contents of the file system, and the primary means of interacting with it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManager",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl": {
+      "abstract": [
+        {
+          "text": "An object representing the location of a resource that bridges to ; use  when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411499-connectionproxydictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary containing information about the proxy to use within this session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "connectionProxyDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411499-connectionproxydictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "connectionProxyDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration/1411499-connectionproxydictionary"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safaricontentbrowsertabproxy/1635506-canload": {
+      "abstract": [
+        {
+          "text": "Dispatches a `canLoad` message to the browser window tab.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safaricontentbrowsertabproxy/1635506-canload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canLoad",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safaricontentbrowsertabproxy/1635506-canload"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/appkit-release-notes-for-macos-10_14": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/appkit-release-notes-for-macos-10_14",
+      "kind": "article",
+      "role": "article",
+      "title": "AppKit Release Notes for macOS 10.14",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/appkit-release-notes-for-macos-10_14"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/foundation-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/foundation-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Foundation Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/foundation-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Mojave 10.14.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-mojave-10_14_2-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Mojave 10.14.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-mojave-10_14_3-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14_5-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14_5-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Mojave 10.14.5 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-mojave-10_14_5-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14_6-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14_6-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Mojave 10.14.6 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-mojave-10_14_6-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave_10_14_4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave_10_14_4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Mojave 10.14.4 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-mojave_10_14_4-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the macOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "macOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/macos/extensions/share-extensions/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/macos/extensions/share-extensions/",
+      "title": "Human Interface Guidelines > Share Extensions",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines > Share Extensions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/macos/extensions/share-extensions/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "macOS-1014",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14_6-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14_5-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave_10_14_4-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14_3-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14_2-release-notes"
+      ],
+      "title": "macOS 10.14"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "AppKit",
+      "identifiers": [
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/appkit-release-notes-for-macos-10_14"
+      ],
+      "title": "AppKit"
+    },
+    {
+      "anchor": "Foundation",
+      "identifiers": [
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/foundation-release-notes"
+      ],
+      "title": "Foundation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKMapSnapshotter/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKMapSnapshotter"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coreservices~13025784-aedeterminepermissiontoautomatet/title",
+          "value": "AEDeterminePermissionToAutomateTarget"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreWLAN~1CWInterface~1scanForNetworks(withName:)/title",
+          "value": "scanForNetworksWithName:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreWLAN~1CWInterface~1scanForNetworks(withName:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSSet",
+              "text": "NSSet<CWNetwork *>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "scanForNetworksWithName:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "networkName"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "error:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsurl/abstract",
+          "value": [
+            {
+              "text": "An object that represents the location of a resource, such as an item on a remote server or the path to a local file. ",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CFNetwork~1CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)/title",
+          "value": "CFNetworkExecuteProxyAutoConfigurationURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CFNetwork~1CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFRunLoopSourceRef",
+              "text": "CFRunLoopSourceRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CFNetworkExecuteProxyAutoConfigurationURL"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFURLRef",
+              "text": "CFURLRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "proxyAutoConfigURL"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFURLRef",
+              "text": "CFURLRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "targetURL"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFProxyAutoConfigurationResultCallback",
+              "text": "CFProxyAutoConfigurationResultCallback"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "cb"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@CFStreamClientContext",
+              "text": "CFStreamClientContext"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "clientContext"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1filemanager/title",
+          "value": "NSFileManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSAppearance/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAppearance"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKMapView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKMapView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6342 @@
+{
+  "abstract": [
+    {
+      "text": "A specification for augmenting or postprocessing SceneKit’s rendering of a scene using additional drawing passes with custom Metal or OpenGL shaders.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.scenekit/documentation/SceneKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SCNTechnique",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SCNTechnique"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SceneKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SCNTechnique"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SCNTechnique"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCNTechnique"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Examples of multipass rendering techniques include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Postprocessing rendered pixels. To create effects such as color grading and displacement mapping, define techniques that use as input the color buffer rendered by SceneKit and process that buffer with a fragment shader.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Deferred shading. To create effects such as motion blur and screen-space ambient occlusion (SSAO), define techniques that capture information about the scene into an intermediary buffer during the main rendering pass and then perform additional drawing passes using that buffer to create the final output image. The figure below illustrates the rendering process for an SSAO technique.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2929792",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, you supply a technique definition that specifies the input and output image buffers, shader programs, shader input variables, and rendering options for each drawing pass in the technique. Defining a technique does not require Metal or OpenGL client code, but you should be familiar with the terminology and conventions of GPU rendering.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a technique, assign it to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechniqueSupport/technique",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of a view (or other SceneKit renderer object) or a camera.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Defining-a-Technique",
+          "level": 3,
+          "text": "Defining a Technique",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SceneKit treats rendering techniques—along with shaders, 3D models, and 2D art assets—as resources rather than as part of your application code. Because the effects you create with techniques are highly visual, this approach allows you to separate design efforts from development efforts and quickly iterate on creating the visual content of your app or game.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a technique object using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/init(dictionary:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, providing a dictionary that defines the technique as a series of drawing passes, each with its own shader program, inputs and outputs, and rendering options. Typically, you obtain this dictionary from a property list file included in your app’s bundle resources. Table 1 and the additional tables and sections that follow specify the format of this dictionary’s contents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "passes",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A dictionary of drawing pass definitions. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " Each key is a unique string you provide to identify the pass, and the corresponding value is a dictionary defining that drawing pass. See Table 2.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "sequence",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array of strings, each of which names a drawing pass from the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "passes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " dictionary. SceneKit performs the drawing passes in the order specified by this array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "symbols",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A dictionary defining the bindings for GLSL attributes and uniform variables used in the technique’s shader programs. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " Each key matches the name of a symbol used in the shader source code, and the corresponding value is a dictionary describing how that symbol should be used. See Table 4.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "targets",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (optional)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A dictionary defining intermediary rendering targets. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " Each key is a unique string you provide to identify the target (used in the inputs and outputs dictionaries of a drawing pass definition), and the corresponding value is a dictionary defining the rendering target. See Table 5.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "draw",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "What to render for the drawing pass: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DRAW_SCENE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": Render the entire scene. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DRAW_NODE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": Render only the node specified by the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "node",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key (and its hierarchy of child nodes). ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DRAW_QUAD",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": Render only a rectangle covering the entire bounds of the view. Use this option for drawing passes that process image buffers output by earlier passes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "program",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The GLSL shader program to use for the drawing pass. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " Shader source code files in the app’s bundle resources directory must have the same base name and the extensions ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".vsh",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (vertex shader) and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".fsh",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (fragment shader). For example, if the program name is “invert”, the files “invert.fsh” and “invert.vsh” must exist.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "metalVertexShader",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "metalFragmentShader",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The names of the Metal vertex and fragment shader functions to use for the drawing pass. These functions must exist in the app’s default Metal library. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " You must specify both fragment and vertex shaders, and you must specify either a GLSL shader program, a pair of Metal functions, or both. If both are specified, SceneKit uses whichever shader is appropriate for the current renderer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "inputs",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dictionary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Definitions of input variables for the drawing pass. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " Each key is the name of a uniform variable used in the GLSL shader source code referenced by the program key. The corresponding value may be any of: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " A symbol name from the technique’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "symbols",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " dictionary ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " A render target name (see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique#Render-Targets-Inputs-and-Outputs",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " A dictionary describing a texture sampler (see Table 6)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "outputs",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dictionary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Definitions of output image buffers for the drawing pass. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " Each key is one of the strings ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "color",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "depth",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stencil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ",  and the corresponding value is a string identifying a render target. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique#Render-Targets-Inputs-and-Outputs",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "node",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (optional)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNNode/name",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property of the node to render, or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "self",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to reference the node the technique is attached to. Applies only if the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "draw",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key specifies ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DRAW_NODE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "colorStates",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (optional)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dictionary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Options for the color output; one or more of these keys and values: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clear",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (Boolean, defaults to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in macOS and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on iOS): Whether to clear the rendering target before drawing. If ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", you must specify one of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clearColor",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clearWithSceneBackgroundColor",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " options. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clearColor",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (string): The color to fill the render target with when clearing, specified in floating-point RGBA format. (For example, “0.5 0.5 0.5 1.0” is a fully opaque gray color.) Alternatively, the string ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sceneBackground",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " specifies to use the scene’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNScene/background",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property when clearing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "depthStates",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (optional)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dictionary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Options for the depth output; one or more of these keys and values: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clear",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (Boolean, default ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "): Whether to clear the depth buffer before drawing. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "enableWrite",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (Boolean, default ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "): Whether to write to the depth buffer when drawing. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "enableRead",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (Boolean, default ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "): Whether to read from the depth buffer when drawing. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "func",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (string): The depth test function: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "never",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "always",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "equal",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "notEqual",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "less",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "lessEqual",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "greater",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "greaterEqual",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "stencilStates",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (optional)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dictionary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Options for the stencil output; one or more of these keys and values: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clear",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (Boolean, default ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "): Whether to clear the stencil buffer before drawing. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "enable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (Boolean, default ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "): Whether the drawing pass should write to the stencil buffer. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "behavior",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": A dictionary specifying how to use the stencil buffer when rendering front faces (or both faces, if nothing is specified for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "backFaceBehavior",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key). See Table 3. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "backFaceBehavior",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": A dictionary specifying how to use the stencil buffer when rendering back faces. See Table 3.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "cullMode",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (optional)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The faces of scene geometry to be rendered: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "back",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (default): Cull back faces, rendering front faces only. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "front",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": Cull front faces, rendering back faces only. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "none",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": Render both front- and back-facing polygons.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "blendStates",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (optional)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dictionary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Options for color blending; one or more of these keys and values: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "enable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (Boolean): Whether to use color blending. If ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", the other blending options have no effect. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "colorSrc",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (string): The blend mode for source colors. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "colorDst",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (string): The blend mode for destination colors. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "alphaSrc",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (string): The blend mode for source alpha values. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "alphaDst",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (string): The blend mode for destination alpha values. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "colorOp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (string): The blend operation for color components. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "alphaOp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (string): The blend operation for alpha values. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique#Blending",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "viewport",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (optional)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A custom viewport rectangle in view coordinates, formatted as four numbers (origin x, origin y, width, and height). By default, a drawing pass covers the entire bounds of the view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "pointOfView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (optional)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of a node in the scene to use as the viewer’s position for rendering; equivalent to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRenderer/pointOfView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property on a renderer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "samples",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (optional)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number (unsigned integer)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The number of samples per pixel for enabling multisampled rendering for the drawing pass. Defaults to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "includeCategoryMask",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (optional)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number (8-bit unsigned integer)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A bitfield used for including nodes in the drawing pass if the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "draw",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key specifies ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DRAW_SCENE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DRAW_NODE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Defaults to all bits set. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique#Category-Masks",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "excludeCategoryMask",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (optional)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number (8-bit unsigned integer)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A bitfield used for excluding nodes from the drawing pass if the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "draw",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key specifies ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DRAW_SCENE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DRAW_NODE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Defaults to no bits set. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique#Category-Masks",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "depthFail",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The stencil operation to use if the depth test fails: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "keep",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "zero",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "replace",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "increment",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "decrement",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "invert",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "incrementWrap",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "decrementWrap",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "fail",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The stencil operation to use if the depth test succeeds and the stencil test fails: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "keep",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "zero",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "replace",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "increment",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "decrement",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "invert",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "incrementWrap",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "decrementWrap",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "pass",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The stencil operation to use if the depth and stencil tests succeed: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "keep",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "zero",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "replace",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "increment",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "decrement",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "invert",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "incrementWrap",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "decrementWrap",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "function",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The stencil test function: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "never",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "always",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "equal",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "notEqual",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "less",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "lessEqual",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "greater",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "greaterEqual",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "readMask",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number (8-bit unsigned integer)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A bitmask for selecting the bit plane of the stencil buffer to be tested.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "writeMask",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number (8-bit unsigned integer)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A bitmask for selecting the bit plane of the stencil buffer to write to.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "referenceValue",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number (8-bit unsigned integer)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The reference value for stencil tests. Defaults to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "semantic",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use this option to bind shader symbols to data supplied by SceneKit: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " The values ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "vertex",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "normal",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "color",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "texcoord",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " bind to geometry source semantics. See Geometry Semantic Identifiers. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " The values ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "modelViewProjectionTransform",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "modelViewTransform",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "modelTransform",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "viewTransform",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "projectionTransform",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "normalTransform",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "modelViewProjectionInverseTransform",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "modelViewInverseTransform",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "modelInverseTransform",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "viewInverseTransform",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "projectionInverseTransform",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "normalInverseTransform",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " bind to rendering transformation matrices. See Rendering Transform Keys. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " The value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "time",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " binds the system time elapsed since rendering began. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " If you set a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "semantic",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value for a symbol, no ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "type",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value is required.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "type",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The GLSL type of the input variable: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "float",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "vec2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "vec3",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "vec4",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "mat4",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "int",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ivec2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ivec3",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ivec4",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "mat3",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sampler2D",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "none",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " Use this option when providing custom values to shader programs (see Handling Parameters for a Technique’s Shader Programs).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "image",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (optional)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the symbol’s type is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sampler2D",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the name of an image file in the app’s bundle resources directory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Category-Masks",
+          "level": 4,
+          "text": "Category Masks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When SceneKit performs a rendering pass whose ",
+              "type": "text"
+            },
+            {
+              "code": "draw",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option is ",
+              "type": "text"
+            },
+            {
+              "code": "DRAW_SCENE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "DRAW_NODE",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you can use category masks to filter the set of nodes drawn during that pass. For each node in the scene (or for ",
+              "type": "text"
+            },
+            {
+              "code": "DRAW_NODE",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", in the node subtree), SceneKit compares the node’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNNode/categoryBitMask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property and the ",
+              "type": "text"
+            },
+            {
+              "code": "includeCategoryMask",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "excludeCategoryMask",
+              "type": "codeVoice"
+            },
+            {
+              "text": " options in the pass definition using bitwise AND operations. If the node’s category mask and the include mask overlap (that is, the bitwise AND results in a nonzero value) and the node’s category mask and the exclude mask do not overlap, SceneKit includes the node in the drawing pass. Otherwise the node is not rendered in the pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Render-Targets-Inputs-and-Outputs",
+          "level": 4,
+          "text": "Render Targets, Inputs and Outputs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A drawing pass renders pixel data into one or more target image buffer (or framebuffer). In SceneKit’s main drawing pass, the color render target is the screen (or rather, a view or layer for screen display), and a depth render target temporarily stores the information needed to ensure that rendered surfaces appear in the correct depth order.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A pass in a custom rendering technique may postprocess the pixel data in SceneKit’s render target, generate its own pixel data for display, or render to an intermediate target to be used as input in a later pass. You specify render targets using the following identifiers in the ",
+              "type": "text"
+            },
+            {
+              "code": "inputs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "outputs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionaries of a pass definition:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "COLOR",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DEPTH",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " targets as inputs to identify the color and depth buffers rendered to in SceneKit’s main drawing pass.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "COLOR",
+              "type": "codeVoice"
+            },
+            {
+              "text": " target as an output to identify the image buffer displayed as the end result of a technique.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To create an intermediate target, define your own identifier as a key in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "targets",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " dictionary of a technique definition. For the corresponding value, provide a dictionary defining the render target using the keys and values in Table 5. Intermediate targets may be color, depth, or combined depth and stencil buffers. After you define a target, you can use its identifier in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "inputs",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "outputs",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " dictionaries of a pass definition.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To use an image as an input texture for a pass, define a symbol of type ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sampler2D",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the technique’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "symbols",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " dictionary.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To specify a render target or image sampler in the ",
+              "type": "text"
+            },
+            {
+              "code": "inputs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary of a pass definition, you can provide either an identifier string or a dictionary with the format described in Table 6. The options for samplers correspond to similar properties for SceneKit material textures. For more details on each, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterialProperty",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "type",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The type of render target: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "color",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "depth",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stencil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "format",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (optional)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The render target’s pixel format; one of the following: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " Color: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "rgba",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (default), ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "rgb32f",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "r8",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "r16",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " Depth/stencil: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "depth24",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (default) or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "depth24stencil8",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "size",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The size of the render target image, in points, specified in a string of format “WxH”. For example, the string “320x480” specifies an image buffer 320 points wide by 480 points tall.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "scaleFactor",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (optional)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number (floating-point)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The scale factor of the render target. Defaults to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". For example, a value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "2.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " specifies 2 pixels per point, so a target whose size is “320x480” is 640 by 960 pixels.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "target",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "COLOR",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DEPTH",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", a key from the technique’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "targets",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " dictionary, or a key from the technique’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "symbols",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " dictionary identifying a texture sampler.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "magnificationFilter",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (optional) ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "minificationFilter",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (optional)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "linear",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nearest",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "mipFilter",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (optional)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "linear",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nearest",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "none",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "wrapS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (optional) ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "wrapT",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (optional) ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "wrapP",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (optional)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "clamp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "repeat",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clampToBorder",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "mirror",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Blending",
+          "level": 4,
+          "text": "Blending",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "blendStates",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key of a pass definition defines color blending options. Blending is disabled by default for faster rendering performance. Including a dictionary for this key enables blending (unless the dictionary’s ",
+              "type": "text"
+            },
+            {
+              "code": "enable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key specifies ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Color blending combines a source color (the color output by the drawing pass’s shader program) with a destination color (the existing contents of the output buffer) using specified modes and operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Available blend modes (for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "colorSrc",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "colorDst",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "alphaSrc",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "alphaDst",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " keys): ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "zero",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "one",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "srcColor",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "oneMinusSrcColor",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "srcAlpha",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "oneMinusSrcAlpha",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "dstColor",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "oneMinusDstColor",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "dstAlpha",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "oneMinusDstAlpha",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "constantColor",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "oneMinusConstantColor",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "constantAlpha",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "oneMinusConstantAlpha",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "alphaSaturate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Available blend operations (for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "colorOp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "alphaOp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " keys): ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "add",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "subtract",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "reverseSubtract",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "min",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "max",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These values correspond to blending options defined by the OpenGL specification. For further details, consult the ",
+              "type": "text"
+            },
+            {
+              "identifier": "http://www.opengl.org/registry/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "http://www.khronos.org/registry/gles/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example-Technique-Definition",
+          "level": 3,
+          "text": "Example Technique Definition",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1 shows an example definition dictionary for a technique that uses displacement mapping with a noise texture to postprocess a rendered scene. For ease of reading, the dictionary is formatted in JSON syntax. (To load an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object from text in this format, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/jsonserialization",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class.) Listing 2 and Listing 3 show the GLSL source code for the technique’s vertex and fragment shaders.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1. JSON definition dictionary for a technique",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"passes\" : {",
+            "    \"displacement\" : {",
+            "      \"outputs\" : {",
+            "        \"color\" : \"COLOR\"",
+            "      },",
+            "      \"inputs\" : {",
+            "        \"colorSampler\" : \"COLOR\",",
+            "        \"noiseSampler\" : \"noiseSymbol\",",
+            "        \"a_position\" : \"a_position-symbol\"",
+            "      },",
+            "      \"program\" : \"displacement\",",
+            "      \"draw\" : \"DRAW_QUAD\"",
+            "    }",
+            "  },",
+            "  \"sequence\" : [",
+            "    \"displacement\"",
+            "  ],",
+            "  \"symbols\" : {",
+            "    \"a_position-symbol\" : {",
+            "      \"semantic\" : \"vertex\"",
+            "    },",
+            "    \"noiseSymbol\" : {",
+            "      \"image\" : \"noise.png\",",
+            "      \"type\" : \"sampler2D\"",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 2. GLSL Vertex shader source code for displacement mapping technique",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "attribute vec4 a_position;",
+            "varying vec2 uv;",
+            " ",
+            "void main() {",
+            "    gl_Position = a_position;",
+            "    uv = (a_position.xy + 1.0) * 0.5;",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 3. GLSL Fragment shader source code for displacement mapping technique",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "uniform sampler2D colorSampler;",
+            "uniform sampler2D noiseSampler;",
+            " ",
+            "varying vec2 uv;",
+            " ",
+            "void main() {",
+            "    vec2 displacement = texture2D(noiseSampler, uv).rg - vec2(0.5, 0.5);",
+            "    gl_FragColor = texture2D(colorSampler, uv + displacement * vec2(0.1,0.1));",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/jsonserialization": {
+      "abstract": [
+        {
+          "text": "An object that converts between JSON and the equivalent Foundation objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "JSONSerialization"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/jsonserialization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JSONSerialization",
+      "type": "topic",
+      "url": "/documentation/foundation/jsonserialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary": {
+      "abstract": [
+        {
+          "text": "An object representing a static collection of key-value pairs, for use instead of a  constant in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit": {
+      "abstract": [
+        {
+          "text": "Create 3D games and add 3D content to apps using high-level scene descriptions, and easily add animations, physics simulation, particle effects, and realistic physically based rendering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SceneKit",
+      "type": "topic",
+      "url": "/documentation/scenekit"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable": {
+      "abstract": [
+        {
+          "text": "The common interface for attaching animations to nodes, geometries, materials, and other SceneKit objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNAnimatable"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNAnimatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNAnimatable",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimatable"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNBufferStream": {
+      "abstract": [
+        {
+          "text": "An object that manages a Metal buffer used by a custom shader program.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNBufferStream"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNBufferStream",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNBufferStream"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNBufferStream",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnbufferstream"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterialProperty": {
+      "abstract": [
+        {
+          "text": "A container for the color or texture of one of a material’s visual properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNMaterialProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterialProperty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNMaterialProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNMaterialProperty",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterialproperty"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNNode/categoryBitMask": {
+      "abstract": [
+        {
+          "text": "A mask that defines which categories the node belongs to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "categoryBitMask"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNNode/categoryBitMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "categoryBitMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "categoryBitMask",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnnode/categorybitmask"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNNode/name": {
+      "abstract": [
+        {
+          "text": "A name associated with the node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNNode/name",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "name"
+        }
+      ],
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnnode/name"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNNodeRendererDelegate": {
+      "abstract": [
+        {
+          "text": "Methods you can implement to use your own custom Metal or OpenGL drawing code to render content for a node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNNodeRendererDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNNodeRendererDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNNodeRendererDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNNodeRendererDelegate",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnnoderendererdelegate"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNProgram": {
+      "abstract": [
+        {
+          "text": "A complete Metal or OpenGL shader program that replaces SceneKit’s rendering of a geometry or material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNProgram"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNProgram",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNProgram"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNProgram",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnprogram"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNScene/background": {
+      "abstract": [
+        {
+          "text": "A background to be rendered before the rest of the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "background"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNMaterialProperty",
+          "text": "SCNMaterialProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNScene/background",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "background"
+        }
+      ],
+      "role": "symbol",
+      "title": "background",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscene/background"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRenderer/pointOfView": {
+      "abstract": [
+        {
+          "text": "The node from which the scene’s contents are viewed for rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pointOfView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNNode",
+          "text": "SCNNode"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRenderer/pointOfView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pointOfView"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "pointOfView",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenerenderer/pointofview"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNShadable": {
+      "abstract": [
+        {
+          "text": "Methods for customizing SceneKit’s rendering of geometry and materials using Metal or OpenGL shader programs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNShadable"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNShadable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNShadable"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNShadable",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnshadable"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique": {
+      "abstract": [
+        {
+          "text": "A specification for augmenting or postprocessing SceneKit’s rendering of a scene using additional drawing passes with custom Metal or OpenGL shaders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNTechnique"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNTechnique"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNTechnique",
+      "type": "topic",
+      "url": "/documentation/scenekit/scntechnique"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique#Blending": {
+      "abstract": [],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique#Blending",
+      "kind": "section",
+      "title": "Blending",
+      "type": "topic",
+      "url": "/documentation/scenekit/scntechnique#Blending"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique#Category-Masks": {
+      "abstract": [],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique#Category-Masks",
+      "kind": "section",
+      "title": "Category Masks",
+      "type": "topic",
+      "url": "/documentation/scenekit/scntechnique#Category-Masks"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique#Render-Targets-Inputs-and-Outputs": {
+      "abstract": [],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique#Render-Targets-Inputs-and-Outputs",
+      "kind": "section",
+      "title": "Render Targets, Inputs and Outputs",
+      "type": "topic",
+      "url": "/documentation/scenekit/scntechnique#Render-Targets-Inputs-and-Outputs"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/dictionaryRepresentation": {
+      "abstract": [
+        {
+          "text": "The dictionary defining the rendering technique.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dictionaryRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/dictionaryRepresentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dictionaryRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "dictionaryRepresentation",
+      "type": "topic",
+      "url": "/documentation/scenekit/scntechnique/dictionaryrepresentation"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/handleBinding(ofSymbol:using:)": {
+      "abstract": [
+        {
+          "text": "Specifies a block to be called before rendering using programs with the specified GLSL uniform variable or attribute name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleBinding"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofSymbol"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNBindingBlock",
+          "text": "SCNBindingBlock"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/handleBinding(ofSymbol:using:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleBindingOfSymbol:usingBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "handleBinding(ofSymbol:using:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scntechnique/handlebinding(ofsymbol:using:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/init(bySequencingTechniques:)": {
+      "abstract": [
+        {
+          "text": "Creates a new rendering technique that combines a series of techniques.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "bySequencingTechniques"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNTechnique",
+          "text": "SCNTechnique"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/init(bySequencingTechniques:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "techniqueBySequencingTechniques:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(bySequencingTechniques:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scntechnique/init(bysequencingtechniques:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/init(dictionary:)": {
+      "abstract": [
+        {
+          "text": "Creates a technique from a technique definition dictionary.,",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "dictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/init(dictionary:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "techniqueWithDictionary:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(dictionary:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scntechnique/init(dictionary:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/library": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "library"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLLibrary",
+          "text": "MTLLibrary"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/library",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "library"
+        }
+      ],
+      "role": "symbol",
+      "title": "library",
+      "type": "topic",
+      "url": "/documentation/scenekit/scntechnique/library"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/setObject(_:forKeyedSubscript:)": {
+      "abstract": [
+        {
+          "text": "Sets a value for the specified shader  variable or attribute name, using subscript syntax.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKeyedSubscript"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSCopying",
+          "text": "NSCopying"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/setObject(_:forKeyedSubscript:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setObject:forKeyedSubscript:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setObject(_:forKeyedSubscript:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scntechnique/setobject(_:forkeyedsubscript:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/subscript(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the value associated with the specified GLSL uniform variable or attribute name, using subscript syntax.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/subscript(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "objectForKeyedSubscript:"
+        }
+      ],
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scntechnique/subscript(_:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNTechniqueSupport": {
+      "abstract": [
+        {
+          "text": "The common interface for SceneKit objects that support multipass rendering using ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNTechniqueSupport"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechniqueSupport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNTechniqueSupport"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNTechniqueSupport",
+      "type": "topic",
+      "url": "/documentation/scenekit/scntechniquesupport"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNTechniqueSupport/technique": {
+      "abstract": [
+        {
+          "text": "The technique SceneKit uses when rendering the object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "technique"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNTechnique",
+          "text": "SCNTechnique"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNTechniqueSupport/technique",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "technique"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "technique",
+      "type": "topic",
+      "url": "/documentation/scenekit/scntechniquesupport/technique"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/postprocessing-a-scene-with-custom-symbols": {
+      "abstract": [
+        {
+          "text": "Create visual effects in a scene by defining a rendering technique with custom symbols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/postprocessing-a-scene-with-custom-symbols",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Postprocessing a Scene With Custom Symbols",
+      "type": "topic",
+      "url": "/documentation/scenekit/postprocessing-a-scene-with-custom-symbols"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "http://www.khronos.org/registry/gles/": {
+      "identifier": "http://www.khronos.org/registry/gles/",
+      "title": "OpenGL ES API Registry",
+      "titleInlineContent": [
+        {
+          "text": "OpenGL ES API Registry",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://www.khronos.org/registry/gles/"
+    },
+    "http://www.opengl.org/registry/": {
+      "identifier": "http://www.opengl.org/registry/",
+      "title": "OpenGL API Registry",
+      "titleInlineContent": [
+        {
+          "text": "OpenGL API Registry",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://www.opengl.org/registry/"
+    },
+    "media-2929792": {
+      "alt": null,
+      "identifier": "media-2929792",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2fb4cf9f24e6d70b088647cbafefad95/media-2929792@2x.png"
+        }
+      ]
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Renderer-Customization",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNShadable",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNProgram",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNBufferStream",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNTechniqueSupport",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNNodeRendererDelegate",
+        "doc://com.apple.scenekit/documentation/SceneKit/postprocessing-a-scene-with-custom-symbols"
+      ],
+      "title": "Renderer Customization"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Technique",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/init(dictionary:)"
+      ],
+      "title": "Creating a Technique"
+    },
+    {
+      "anchor": "Combining-Techniques",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/init(bySequencingTechniques:)"
+      ],
+      "title": "Combining Techniques"
+    },
+    {
+      "anchor": "Retrieving-a-Techniques-Definition",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/dictionaryRepresentation"
+      ],
+      "title": "Retrieving a Technique’s Definition"
+    },
+    {
+      "anchor": "Handling-Parameters-for-a-Techniques-Shader-Programs",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/handleBinding(ofSymbol:using:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/setObject(_:forKeyedSubscript:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/subscript(_:)"
+      ],
+      "title": "Handling Parameters for a Technique’s Shader Programs"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/library"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.10",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SCNTechnique"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNTechnique"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNTechnique"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.scenekit/documentation/SceneKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Technique",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/init(dictionary:)"
+              ],
+              "title": "Creating a Technique"
+            },
+            {
+              "anchor": "Combining-Techniques",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/init(bySequencingTechniques:)"
+              ],
+              "title": "Combining Techniques"
+            },
+            {
+              "anchor": "Retrieving-a-Techniques-Definition",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/dictionaryRepresentation"
+              ],
+              "title": "Retrieving a Technique’s Definition"
+            },
+            {
+              "anchor": "Handling-Parameters-for-a-Techniques-Shader-Programs",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/handleBinding(ofSymbol:using:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/setObject(_:forKeyedSubscript:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/subscript(_:)"
+              ],
+              "title": "Handling Parameters for a Technique’s Shader Programs"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique/library"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Renderer-Customization",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNShadable",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNProgram",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNBufferStream",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNTechniqueSupport",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNNodeRendererDelegate",
+                "doc://com.apple.scenekit/documentation/SceneKit/postprocessing-a-scene-with-custom-symbols"
+              ],
+              "title": "Renderer Customization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SCNTechnique"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNScene~1background/title",
+          "value": "background"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNScene~1background/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "background"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRenderer~1pointOfView/title",
+          "value": "pointOfView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRenderer~1pointOfView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pointOfView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechnique/title",
+          "value": "SCNTechnique"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechnique/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNTechnique"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechnique/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNTechnique"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterialProperty/title",
+          "value": "SCNMaterialProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterialProperty/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMaterialProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterialProperty/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMaterialProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable/title",
+          "value": "SCNAnimatable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAnimatable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAnimatable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechnique~1subscript(_:)/title",
+          "value": "objectForKeyedSubscript:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechnique~1subscript(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "objectForKeyedSubscript:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShadable/title",
+          "value": "SCNShadable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShadable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNShadable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShadable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNShadable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNode~1categoryBitMask/title",
+          "value": "categoryBitMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNode~1categoryBitMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "categoryBitMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNBufferStream/title",
+          "value": "SCNBufferStream"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNBufferStream/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNBufferStream"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNBufferStream/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNBufferStream"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechniqueSupport/title",
+          "value": "SCNTechniqueSupport"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechniqueSupport/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNTechniqueSupport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechniqueSupport/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNTechniqueSupport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechnique~1setObject(_:forKeyedSubscript:)/title",
+          "value": "setObject:forKeyedSubscript:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechnique~1setObject(_:forKeyedSubscript:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setObject:forKeyedSubscript:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechnique~1init(dictionary:)/title",
+          "value": "techniqueWithDictionary:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechnique~1init(dictionary:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "techniqueWithDictionary:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNode~1name/title",
+          "value": "name"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNode~1name/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "name"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNProgram/title",
+          "value": "SCNProgram"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNProgram/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNProgram"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNProgram/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNProgram"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechnique~1handleBinding(ofSymbol:using:)/title",
+          "value": "handleBindingOfSymbol:usingBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechnique~1handleBinding(ofSymbol:using:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleBindingOfSymbol:usingBlock:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechnique~1init(bySequencingTechniques:)/title",
+          "value": "techniqueBySequencingTechniques:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechnique~1init(bySequencingTechniques:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "techniqueBySequencingTechniques:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechnique~1dictionaryRepresentation/title",
+          "value": "dictionaryRepresentation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechnique~1dictionaryRepresentation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dictionaryRepresentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsdictionary/abstract",
+          "value": [
+            {
+              "text": "A static collection of objects associated with unique keys.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNodeRendererDelegate/title",
+          "value": "SCNNodeRendererDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNodeRendererDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNNodeRendererDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNodeRendererDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNNodeRendererDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechniqueSupport~1technique/title",
+          "value": "technique"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechniqueSupport~1technique/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "technique"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1jsonserialization/title",
+          "value": "NSJSONSerialization"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechnique~1library/title",
+          "value": "library"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNTechnique~1library/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "library"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/scenekit/scntechnique"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/scenekit/scntechnique"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

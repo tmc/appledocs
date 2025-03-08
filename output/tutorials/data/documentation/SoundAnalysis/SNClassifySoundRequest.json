@@ -1,0 +1,1697 @@
+{
+  "abstract": [
+    {
+      "text": "A request that classifies sound using a Core ML model.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.soundanalysis/documentation/SoundAnalysis"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SNClassifySoundRequest",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SNClassifySoundRequest"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Sound Analysis"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SNClassifySoundRequest"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SNClassifySoundRequest"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SNClassifySoundRequest"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-sounds-in-an-audio-file",
+        "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-sounds-in-an-audio-stream"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "SNClassifySoundRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents a specific sound classification model. Analyze audio data with a sound classification model by:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Creating an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SNClassifySoundRequest",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", either with the Sound Analysis model, or by providing your custom Core ML model.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Adding the sound request to an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioStreamAnalyzer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to process an audio file or stream, respectively.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "func makeRequest(_ customModel: MLModel? = nil) throws -> SNClassifySoundRequest {",
+            "    // If applicable, create a request with a custom sound classification model.",
+            "    if let model = customModel {",
+            "        let customRequest = try SNClassifySoundRequest(mlModel: model)",
+            "        return customRequest",
+            "    }",
+            "",
+            "    // Create a request with the Sound Analysis model.",
+            "    let version1 = SNClassifierIdentifier.version1",
+            "    let request = try SNClassifySoundRequest(classifierIdentifier: version1)",
+            "",
+            "    return request",
+            "}",
+            "",
+            "let classifySoundRequest = try makeRequest()",
+            "",
+            "// Prints every label in the request's sound classification model.",
+            "print(classifySoundRequest.knownClassifications)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about creating and using classify sound requests, see:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-sounds-in-an-audio-file",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-sounds-in-an-audio-stream",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis": {
+      "abstract": [
+        {
+          "text": "Classify various sounds by analyzing audio files or streams.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Sound Analysis",
+      "type": "topic",
+      "url": "/documentation/soundanalysis"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer": {
+      "abstract": [
+        {
+          "text": "An analyzer that runs sound classification requests on an audio file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SNAudioFileAnalyzer"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SNAudioFileAnalyzer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SNAudioFileAnalyzer",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snaudiofileanalyzer"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioStreamAnalyzer": {
+      "abstract": [
+        {
+          "text": "An object you create to analyze a stream of audio data and provide the results to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SNAudioStreamAnalyzer"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioStreamAnalyzer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SNAudioStreamAnalyzer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SNAudioStreamAnalyzer",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snaudiostreamanalyzer"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassificationResult": {
+      "abstract": [
+        {
+          "text": "A result that contains the highest-ranking classifications in a time range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SNClassificationResult"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassificationResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SNClassificationResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "SNClassificationResult",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snclassificationresult"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifierIdentifier": {
+      "abstract": [
+        {
+          "text": "An identifier that represents the versions of the framework’s sound classifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SNClassifierIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifierIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SNClassifierIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "SNClassifierIdentifier",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snclassifieridentifier"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest": {
+      "abstract": [
+        {
+          "text": "A request that classifies sound using a Core ML model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SNClassifySoundRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SNClassifySoundRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "SNClassifySoundRequest",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snclassifysoundrequest"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/init(classifierIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Creates a request that uses the framework’s built-in sound classification model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "classifierIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SNClassifierIdentifier",
+          "text": "SNClassifierIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/init(classifierIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithClassifierIdentifier:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(classifierIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snclassifysoundrequest/init(classifieridentifier:)"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/init(mlModel:)": {
+      "abstract": [
+        {
+          "text": "Creates a request that uses a custom sound classification model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "mlModel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLModel",
+          "text": "MLModel"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/init(mlModel:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithMLModel:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(mlModel:)",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snclassifysoundrequest/init(mlmodel:)"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/knownClassifications": {
+      "abstract": [
+        {
+          "text": "A string array that contains every prediction label in the request’s underlying sound classifier model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "knownClassifications"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/knownClassifications",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "knownClassifications"
+        }
+      ],
+      "role": "symbol",
+      "title": "knownClassifications",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snclassifysoundrequest/knownclassifications"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/overlapFactor": {
+      "abstract": [
+        {
+          "text": "The amount of overlap between successive analysis windows when the model operates on a fixed-size audio block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "overlapFactor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/overlapFactor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "overlapFactor"
+        }
+      ],
+      "role": "symbol",
+      "title": "overlapFactor",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snclassifysoundrequest/overlapfactor"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/windowDuration": {
+      "abstract": [
+        {
+          "text": "The duration of the audio buffer the request sends to the underlying sound classifier for each prediction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/windowDuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "windowDuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "windowDuration",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snclassifysoundrequest/windowduration"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/windowDurationConstraint-5aqvx": {
+      "abstract": [
+        {
+          "text": "A range or list of sound duration times the request’s underlying sound classifier supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "windowDurationConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/windowDurationConstraint-5aqvx",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowDurationConstraint",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snclassifysoundrequest/windowdurationconstraint-5aqvx"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/windowDurationConstraint-5no60": {
+      "abstract": [
+        {
+          "text": "A range or list of sound duration times the request’s underlying sound classifier supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowDurationConstraint"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:13SoundAnalysis24SNTimeDurationConstraintO",
+          "text": "SNTimeDurationConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/windowDurationConstraint-5no60",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowDurationConstraint",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snclassifysoundrequest/windowdurationconstraint-5no60"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNRequest": {
+      "abstract": [
+        {
+          "text": "A protocol that represents sound analysis requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SNRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SNRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "SNRequest",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snrequest"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNTimeDurationConstraint-c.class": {
+      "abstract": [
+        {
+          "text": "Defines the time duration windows the request’s underlying sound classifier accepts with a range, or an array, of durations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SNTimeDurationConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNTimeDurationConstraint-c.class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SNTimeDurationConstraint",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/sntimedurationconstraint-c.class"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNTimeDurationConstraint-swift.enum": {
+      "abstract": [
+        {
+          "text": "Defines the time duration windows the request’s underlying sound classifier accepts with a range, or an array, of durations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SNTimeDurationConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNTimeDurationConstraint-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SNTimeDurationConstraint"
+        }
+      ],
+      "role": "symbol",
+      "title": "SNTimeDurationConstraint",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/sntimedurationconstraint-swift.enum"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-live-audio-input-with-a-built-in-sound-classifier": {
+      "abstract": [
+        {
+          "text": "Detect and identify hundreds of sounds by using a trained classifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-live-audio-input-with-a-built-in-sound-classifier",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Classifying Live Audio Input with a Built-in Sound Classifier",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/classifying-live-audio-input-with-a-built-in-sound-classifier"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-sounds-in-an-audio-file": {
+      "abstract": [
+        {
+          "text": "Identify individual sounds in a file, such as a recording, with an audio file analyzer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-sounds-in-an-audio-file",
+      "kind": "article",
+      "role": "article",
+      "title": "Classifying Sounds in an Audio File",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/classifying-sounds-in-an-audio-file"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-sounds-in-an-audio-stream": {
+      "abstract": [
+        {
+          "text": "Identify individual sounds in an audio data stream, such as from a microphone, with an audio stream analyzer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-sounds-in-an-audio-stream",
+      "kind": "article",
+      "role": "article",
+      "title": "Classifying Sounds in an Audio Stream",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/classifying-sounds-in-an-audio-stream"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNRequest"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sound-classification-requests",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-live-audio-input-with-a-built-in-sound-classifier",
+        "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassificationResult"
+      ],
+      "title": "Sound classification requests"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Request",
+      "identifiers": [
+        "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/init(mlModel:)",
+        "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/init(classifierIdentifier:)",
+        "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifierIdentifier"
+      ],
+      "title": "Creating a Request"
+    },
+    {
+      "anchor": "Configuring-a-Request",
+      "identifiers": [
+        "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/overlapFactor",
+        "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/windowDuration"
+      ],
+      "title": "Configuring a Request"
+    },
+    {
+      "anchor": "Inspecting-a-Request",
+      "identifiers": [
+        "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/knownClassifications",
+        "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNTimeDurationConstraint-swift.enum"
+      ],
+      "title": "Inspecting a Request"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "identifiers": [
+        "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/windowDurationConstraint-5no60"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SNClassifySoundRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNClassifySoundRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNClassifySoundRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.soundanalysis/documentation/SoundAnalysis"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Request",
+              "identifiers": [
+                "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/init(mlModel:)",
+                "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/init(classifierIdentifier:)",
+                "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifierIdentifier"
+              ],
+              "title": "Creating a Request"
+            },
+            {
+              "anchor": "Configuring-a-Request",
+              "identifiers": [
+                "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/overlapFactor",
+                "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/windowDuration"
+              ],
+              "title": "Configuring a Request"
+            },
+            {
+              "anchor": "Inspecting-a-Request",
+              "identifiers": [
+                "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/knownClassifications",
+                "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNTimeDurationConstraint-c.class"
+              ],
+              "title": "Inspecting a Request"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "identifiers": [
+                "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/windowDurationConstraint-5aqvx",
+                "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNTimeDurationConstraint-c.class"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNRequest"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Sound-classification-requests",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-live-audio-input-with-a-built-in-sound-classifier",
+                "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassificationResult"
+              ],
+              "title": "Sound classification requests"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SNClassifySoundRequest"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNRequest/title",
+          "value": "SNRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifySoundRequest/title",
+          "value": "SNClassifySoundRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifySoundRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNClassifySoundRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifySoundRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNClassifySoundRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassificationResult/title",
+          "value": "SNClassificationResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassificationResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNClassificationResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassificationResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNClassificationResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifierIdentifier/title",
+          "value": "SNClassifierIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifierIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNClassifierIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifierIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNClassifierIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifySoundRequest~1init(classifierIdentifier:)/title",
+          "value": "initWithClassifierIdentifier:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifySoundRequest~1init(classifierIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithClassifierIdentifier:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifySoundRequest~1overlapFactor/title",
+          "value": "overlapFactor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifySoundRequest~1overlapFactor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "overlapFactor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifySoundRequest~1windowDuration/title",
+          "value": "windowDuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifySoundRequest~1windowDuration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "windowDuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioFileAnalyzer/title",
+          "value": "SNAudioFileAnalyzer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioFileAnalyzer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNAudioFileAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioFileAnalyzer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNAudioFileAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifySoundRequest~1knownClassifications/title",
+          "value": "knownClassifications"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifySoundRequest~1knownClassifications/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "knownClassifications"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioStreamAnalyzer/title",
+          "value": "SNAudioStreamAnalyzer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioStreamAnalyzer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNAudioStreamAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioStreamAnalyzer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNAudioStreamAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifySoundRequest~1init(mlModel:)/title",
+          "value": "initWithMLModel:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifySoundRequest~1init(mlModel:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithMLModel:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/soundanalysis/snclassifysoundrequest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/soundanalysis/snclassifysoundrequest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

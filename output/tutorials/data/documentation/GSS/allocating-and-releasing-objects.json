@@ -1,0 +1,1216 @@
+{
+  "abstract": [
+    {
+      "text": "Manage memory and object lifetimes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gss/documentation/GSS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gss/documentation/GSS/allocating-and-releasing-objects"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "GSS"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Allocating and Releasing Objects"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The GSS-API defines certain objects as C data structures containing elements using dynamically allocated memory. These include names, buffers, contexts, and credentials, as well as the collection objects that hold buffer sets and Object Identifier (OID) sets. The API provides functions for both allocating and freeing the memory associated with these objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many GSS-API functions create structures on your behalf and return them to you with pointer parameters. You then become responsible for managing the associated memory. When you’re done with such objects, you use one of the release or destroy functions to return its memory to the system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Allocate-and-Release-an-Empty-Buffer",
+          "level": 3,
+          "text": "Allocate and Release an Empty Buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Prepare an empty buffer set with a call to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gss/documentation/GSS/gss_create_empty_buffer_set(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function, and release it with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gss/documentation/GSS/gss_release_buffer_set(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when done.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import GSS",
+            "",
+            "let minor_status = UnsafeMutablePointer<OM_uint32>.allocate(capacity: 1)",
+            "let gss_buffer_set = UnsafeMutablePointer<gss_buffer_set_t>.allocate(capacity: 1)",
+            "if gss_create_empty_buffer_set(minor_status, gss_buffer_set) == GSS_S_COMPLETE {",
+            "    // buffer has been created.",
+            "    // use it and release it when done.",
+            "    gss_release_buffer_set(minor_status, gss_buffer_set)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Acquire-and-Release-Credential-Memory",
+          "level": 3,
+          "text": "Acquire and Release Credential Memory",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When releasing the memory associated with a credential returned to you by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gss/documentation/GSS/gss_acquire_cred(_:_:_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function,  use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gss/documentation/GSS/gss_release_cred(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. This only releases the memory back to the heap, however, potentially leaving traces of the data behind. To actively purge the credential and only then release the memory, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gss/documentation/GSS/gss_destroy_cred(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function instead. This function is more secure for objects that might contain sensitive information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-OID-Objects-as-Static-Memory",
+          "level": 3,
+          "text": "Handle OID Objects as Static Memory",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An exception to the memory management rule is the OID object ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gss/documentation/GSS/gss_OID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (not the same as a set of OID objects, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gss/documentation/GSS/gss_OID_set",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). While an implementation of GSS-API could theoretically allocate memory for OID objects dynamically, Apple’s implementation always returns statically allocated OID objects to you. You use these as-is, and never need to explicitly create or release them. As a result, in practice you never need to call the functions ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gss/documentation/GSS/gss_duplicate_oid(_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gss/documentation/GSS/gss_release_oid(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gss/documentation/GSS": {
+      "abstract": [
+        {
+          "text": "Conduct secure, authenticated network transactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GSS",
+      "type": "topic",
+      "url": "/documentation/gss"
+    },
+    "doc://com.apple.gss/documentation/GSS/buffer-management": {
+      "abstract": [
+        {
+          "text": "Allocate and deallocate buffers with structures that hold a variety of data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/buffer-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Buffer Management",
+      "type": "topic",
+      "url": "/documentation/gss/buffer-management"
+    },
+    "doc://com.apple.gss/documentation/GSS/context-services": {
+      "abstract": [
+        {
+          "text": "Use context services to manage secure operations between endpoints.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/context-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Context Services",
+      "type": "topic",
+      "url": "/documentation/gss/context-services"
+    },
+    "doc://com.apple.gss/documentation/GSS/function-status": {
+      "abstract": [
+        {
+          "text": "Evaluate return values that most GSS-API functions use to indicate the outcome of an operation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/function-status",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Function Status",
+      "type": "topic",
+      "url": "/documentation/gss/function-status"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_OID": {
+      "abstract": [
+        {
+          "text": "A pointer to the OID descriptor that exchanges object identifiers with many GSS-API functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_OID"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_OID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_OID"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_OID",
+      "type": "topic",
+      "url": "/documentation/gss/gss_oid"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_OID_set": {
+      "abstract": [
+        {
+          "text": "A pointer to a descriptor that manages an array of OID descriptors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_OID_set"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_OID_set",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_OID_set"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_OID_set",
+      "type": "topic",
+      "url": "/documentation/gss/gss_oid_set"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_acquire_cred(_:_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Acquires a credential for use in establishing a security context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_acquire_cred"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_name_t",
+          "text": "gss_name_t"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_OID_set",
+          "text": "gss_OID_set"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_cred_usage_t",
+          "text": "gss_cred_usage_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_cred_id_t",
+          "text": "gss_cred_id_t"
+        },
+        {
+          "kind": "text",
+          "text": "?>, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_OID_set",
+          "text": "gss_OID_set"
+        },
+        {
+          "kind": "text",
+          "text": "?>?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_acquire_cred(_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_acquire_cred"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_acquire_cred(_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/gss/gss_acquire_cred(_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_create_empty_buffer_set(_:_:)": {
+      "abstract": [
+        {
+          "text": "Allocates an empty buffer set descriptor that you use to manage an array of buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_create_empty_buffer_set"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_buffer_set_t",
+          "text": "gss_buffer_set_t"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_create_empty_buffer_set(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_create_empty_buffer_set"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_create_empty_buffer_set(_:_:)",
+      "type": "topic",
+      "url": "/documentation/gss/gss_create_empty_buffer_set(_:_:)"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_destroy_cred(_:_:)": {
+      "abstract": [
+        {
+          "text": "Purges a credential from memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_destroy_cred"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_cred_id_t",
+          "text": "gss_cred_id_t"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_destroy_cred(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_destroy_cred"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_destroy_cred(_:_:)",
+      "type": "topic",
+      "url": "/documentation/gss/gss_destroy_cred(_:_:)"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_duplicate_oid(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Copies an OID into a new object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_duplicate_oid"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_OID",
+          "text": "gss_OID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_OID",
+          "text": "gss_OID"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_duplicate_oid(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_duplicate_oid"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_duplicate_oid(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/gss/gss_duplicate_oid(_:_:_:)"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_release_buffer_set(_:_:)": {
+      "abstract": [
+        {
+          "text": "Frees the memory associated with a buffer set descriptor and all the buffers it contains.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_release_buffer_set"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_buffer_set_t",
+          "text": "gss_buffer_set_t"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_release_buffer_set(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_release_buffer_set"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_release_buffer_set(_:_:)",
+      "type": "topic",
+      "url": "/documentation/gss/gss_release_buffer_set(_:_:)"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_release_cred(_:_:)": {
+      "abstract": [
+        {
+          "text": "Releases the memory of a credential.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_release_cred"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_cred_id_t",
+          "text": "gss_cred_id_t"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_release_cred(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_release_cred"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_release_cred(_:_:)",
+      "type": "topic",
+      "url": "/documentation/gss/gss_release_cred(_:_:)"
+    },
+    "doc://com.apple.gss/documentation/GSS/gss_release_oid(_:_:)": {
+      "abstract": [
+        {
+          "text": "Releases the memory associated with an object identifier.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gss_release_oid"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@gss_OID",
+          "text": "gss_OID"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OM_uint32",
+          "text": "OM_uint32"
+        }
+      ],
+      "identifier": "doc://com.apple.gss/documentation/GSS/gss_release_oid(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gss_release_oid"
+        }
+      ],
+      "role": "symbol",
+      "title": "gss_release_oid(_:_:)",
+      "type": "topic",
+      "url": "/documentation/gss/gss_release_oid(_:_:)"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Memory-and-Context",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gss/documentation/GSS/function-status",
+        "doc://com.apple.gss/documentation/GSS/buffer-management",
+        "doc://com.apple.gss/documentation/GSS/context-services"
+      ],
+      "title": "Memory and Context"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Memory-and-Context",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gss/documentation/GSS/function-status",
+                "doc://com.apple.gss/documentation/GSS/buffer-management",
+                "doc://com.apple.gss/documentation/GSS/context-services"
+              ],
+              "title": "Memory and Context"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_destroy_cred(_:_:)/title",
+          "value": "gss_destroy_cred"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_destroy_cred(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_destroy_cred"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_OID_set/title",
+          "value": "gss_OID_set"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_OID_set/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_OID_set"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_OID_set/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_OID_set"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_create_empty_buffer_set(_:_:)/title",
+          "value": "gss_create_empty_buffer_set"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_create_empty_buffer_set(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_create_empty_buffer_set"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_release_buffer_set(_:_:)/title",
+          "value": "gss_release_buffer_set"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_release_buffer_set(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_release_buffer_set"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_release_cred(_:_:)/title",
+          "value": "gss_release_cred"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_release_cred(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_release_cred"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_duplicate_oid(_:_:_:)/title",
+          "value": "gss_duplicate_oid"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_duplicate_oid(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_duplicate_oid"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_OID/title",
+          "value": "gss_OID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_OID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_OID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_OID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_OID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_acquire_cred(_:_:_:_:_:_:_:_:)/title",
+          "value": "gss_acquire_cred"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_acquire_cred(_:_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_acquire_cred"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_release_oid(_:_:)/title",
+          "value": "gss_release_oid"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gss~1documentation~1GSS~1gss_release_oid(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gss_release_oid"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gss/allocating-and-releasing-objects"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gss/allocating-and-releasing-objects"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

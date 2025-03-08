@@ -1,0 +1,3116 @@
+{
+  "abstract": [
+    {
+      "text": "Continually update a MapKit overlay displaying the path a user travels.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mapkit/documentation/MapKit",
+        "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit",
+        "doc://com.apple.mapkit/documentation/MapKit/mapkit-overlays"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mapkit/documentation/MapKit/displaying-an-updating-path-of-a-user-s-location-history"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "MapKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Displaying an updating path of a user’s location history"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Travel History is a sample app that allows a user to track their location history, and displays a live-updating path of that history on a map.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app combines location updates from Core Location with a custom MapKit overlay for the location history.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "MapKit draws the user’s path using a custom MapKit overlay renderer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For this sample app to show a path, it needs to receive a stream of location updates.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Install the app on a device, and take a walk with it recording locations.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Alternately, use one of the routes in the iOS simulator, such as Freeway Drive or City Bicycle Ride.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To set a route in the iOS simulator, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/simulator/mac/current/#/devc6eac95d6",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-a-location-manager-to-receive-location-updates",
+          "level": 3,
+          "text": "Configure a location manager to receive location updates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before recording the user’s path, the app asks the user for permission to access location data while the app is running.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After the user grants location authorization, a ",
+              "type": "text"
+            },
+            {
+              "code": "CLLocationManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": " receives a stream of location updates as the user travels.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app also receives location updates while in the background by setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/allowsBackgroundLocationUpdates",
+              "isActive": true,
+              "overridingTitle": "allowsBackgroundLocationUpdates",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "allowsBackgroundLocationUpdates",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager",
+              "isActive": true,
+              "overridingTitle": "CLLocationManager",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CLLocationManager",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This combination of when-in-use authorization and background updates allows the app to receive location updates while in the background, and the system displays a location service indicator when the app isn’t in the foreground.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "locationManager.requestWhenInUseAuthorization()",
+            "",
+            "/// Enable the app to collect location updates while it's in the background.",
+            "locationManager.allowsBackgroundLocationUpdates = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app sets a default value for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/desiredAccuracy",
+              "isActive": true,
+              "overridingTitle": "desiredAccuracy",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "desiredAccuracy",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property on the location manager.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This value is customizable in a menu to demonstrate how the value of this property affects the accuracy of the recorded data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Lower accuracy values allow the device to conserve power and have less impact on the device’s battery life.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, if this app is for hiking, it needs high-accuracy data to capture a detailed path for the user’s hiking route, requiring ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/kCLLocationAccuracyBest",
+              "isActive": true,
+              "overridingTitle": "kCLLocationAccuracyBest",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "kCLLocationAccuracyBest",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to facilitate the required detail.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In contrast, if the app tracks overall progress between a start and end point without needing the exact path taken, using a lower accuracy value, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/kCLLocationAccuracyKilometer",
+              "isActive": true,
+              "overridingTitle": "kCLLocationAccuracyKilometer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "kCLLocationAccuracyKilometer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/kCLLocationAccuracyThreeKilometers",
+              "isActive": true,
+              "overridingTitle": "kCLLocationAccuracyThreeKilometers",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "kCLLocationAccuracyThreeKilometers",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", is a better choice because it conserves power.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app also sets a default value for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/activityType",
+              "isActive": true,
+              "overridingTitle": "activityType",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "activityType",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property, and is configurable in a menu.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This property provides a hint to Core Location about the type of travel the device encounters while monitoring location.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, if someone uses this app often while running, it sets ",
+              "type": "text"
+            },
+            {
+              "code": "activityType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLActivityType/fitness",
+              "isActive": true,
+              "overridingTitle": "fitness",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "fitness",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If they use it for providing driving directions, it sets ",
+              "type": "text"
+            },
+            {
+              "code": "activityType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLActivityType/automotiveNavigation",
+              "isActive": true,
+              "overridingTitle": "automotiveNavigation",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "automotiveNavigation",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " so that Core Location makes small adjustments to the reported location to match known roads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "locationManager.requestWhenInUseAuthorization()",
+            "",
+            "/// Enable the app to collect location updates while it's in the background.",
+            "locationManager.allowsBackgroundLocationUpdates = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/startUpdatingLocation()",
+              "isActive": true,
+              "overridingTitle": "startUpdatingLocation",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "startUpdatingLocation",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " on the location manager, Core Location provides location updates to the location manager’s delegate.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then the app forwards the location updates to other functions in the app responsible for maintaining the user’s location history.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {",
+            "    ",
+            "    // Play a sound so it's easy to tell when a location update occurs while the app is in the background.",
+            "    if chimeOnLocationUpdate && !locations.isEmpty {",
+            "        setSessionActiveWithMixing(true) // Ducks the audio of other apps when playing the chime.",
+            "        playSound()",
+            "    }",
+            "    ",
+            "    // Always process all of the provided locations. Don't assume the array only contains a single location.",
+            "    for location in locations {",
+            "        displayNewBreadcrumbOnMap(location)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-a-custom-map-overlay-data-object",
+          "level": 3,
+          "text": "Define a custom map overlay data object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MapKit treats overlay data as static when using the system-provided overlay classes, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKPolyline",
+              "isActive": true,
+              "overridingTitle": "MKPolyline",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKPolyline",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, apps that only need to show a path with a static set of coordinates, such as the path a user took in the distant past, can use ",
+              "type": "text"
+            },
+            {
+              "code": "MKPolyline",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because this app continually updates with new data, it implements its own data class, called ",
+              "type": "text"
+            },
+            {
+              "code": "BreadcrumbPath",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", conforming to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlay",
+              "isActive": true,
+              "overridingTitle": "MKOverlay",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKOverlay",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " protocol, rather than using ",
+              "type": "text"
+            },
+            {
+              "code": "MKPolyline",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            },
+            {
+              "code": "BreadcrumbPath",
+              "type": "codeVoice"
+            },
+            {
+              "text": " maintains an array of location ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "crumbs",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " comprising the user’s location history.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When drawing an overlay on the map, MapKit uses the overlay’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlay/boundingMapRect",
+              "isActive": true,
+              "overridingTitle": "boundingMapRect",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "boundingMapRect",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to determine when the overlay is visible.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because this app can’t determine the extent of the path the user might track on the map, ",
+              "type": "text"
+            },
+            {
+              "code": "BreadcrumbPath",
+              "type": "codeVoice"
+            },
+            {
+              "text": " declares its ",
+              "type": "text"
+            },
+            {
+              "code": "boundingMapRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapRect/world",
+              "isActive": true,
+              "overridingTitle": "world",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "world",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In an app that has well-defined usage patterns, such as a hiking app for use within a national park, the ",
+              "type": "text"
+            },
+            {
+              "code": "boundingMapRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " might consist of a large area the path is likely to remain within, such as the bounds of the national park.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app adds a new location, ",
+              "type": "text"
+            },
+            {
+              "code": "BreadcrumbPath",
+              "type": "codeVoice"
+            },
+            {
+              "text": " validates that the information in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocation",
+              "isActive": true,
+              "overridingTitle": "CLLocation",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CLLocation",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " is usable for its purposes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each app that maintains a location history needs to define criteria for ensuring a location update is usable based on the app’s specific needs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func isNewLocationUsable(_ newLocation: CLLocation, breadcrumbData: BreadcrumbData) -> Bool {",
+            "    /**",
+            "     Always check the timestamp of a location value to ensure the location is recent, such as within the last 60 seconds. When starting",
+            "     location updates, the values that return may reflect cached values while the device works to acquire updated locations according to",
+            "     the accuracy level of the location manager. For some apps, the cached values may be sufficient, but in an app that draws a map of",
+            "     a user's travel path, values that are too old may deviate too far from the user's actual path.",
+            "     */",
+            "    let now = Date()",
+            "    let locationAge = now.timeIntervalSince(newLocation.timestamp)",
+            "    guard locationAge < 60 else { return false }",
+            "    ",
+            "    /**",
+            "     An app might keep the first few updates before applying any further filtering, such as to ensure there is an intial set of",
+            "     locations while waiting for the location accuracy to increase to the requested level.",
+            "     */",
+            "    guard breadcrumbData.locations.count > 10 else { return true }",
+            "    ",
+            "    /**",
+            "     Identify locations that shouldn't be part of the breadcrumb data, such as locations that are too close together.",
+            "     Get the distance between this new location and the previous location, and use a minimum threshold",
+            "     to determine if keeping the location is useful. For example, a location update that is just a few meters from the",
+            "     prior location might represent a user that hasn't moved.",
+            "     ",
+            "     Your app may apply other criteria. For example, an app tracking a user at walking speed may discard updates that show the user",
+            "     moving at car speeds because that might indicate the user forgot to stop recording their location after completing the walk.",
+            "     Consider comparing an average value over the last several location updates, such as the user's average speed.",
+            "     ",
+            "     If using the location accuracy properties as criteria for determining a usable location, expect the values to vary, and don't",
+            "     throw away low-accuracy values by expecting only high-accuracy values. Discarding locations due to lower than expected accuracy",
+            "     can cause the user's location to appear to jump if the user is moving.",
+            "     */",
+            "    let minimumDistanceBetweenLocationsInMeters = 10.0",
+            "    let previousLocation = breadcrumbData.locations.last!",
+            "    let metersApart = newLocation.distance(from: previousLocation)",
+            "    return metersApart > minimumDistanceBetweenLocationsInMeters",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After ",
+              "type": "text"
+            },
+            {
+              "code": "BreadcrumbPath",
+              "type": "codeVoice"
+            },
+            {
+              "text": " validates that a location is usable, it updates its data structures to include the new location.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "One of the properties of ",
+              "type": "text"
+            },
+            {
+              "code": "BreadcrumbPath",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "pathBounds",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the bounding rectangle containing all of the locations for the overlay.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Unlike ",
+              "type": "text"
+            },
+            {
+              "code": "boundingMapRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "pathBounds",
+              "type": "codeVoice"
+            },
+            {
+              "text": " changes its value as the app adds locations to the overlay.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A custom overlay renderer reads the value of ",
+              "type": "text"
+            },
+            {
+              "code": "pathBounds",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from multiple threads concurrently, so ",
+              "type": "text"
+            },
+            {
+              "code": "BreadcrumbPath",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/os/OSAllocatedUnfairLock",
+              "isActive": true,
+              "overridingTitle": "OSAllocatedUnfairLock",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "OSAllocatedUnfairLock",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to protect reading of this property from data races.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// This is a lock protecting the `locations` and `bounds` properties that define the breadcrumb path from data races.",
+            "private let protectedBreadcrumbData = OSAllocatedUnfairLock(initialState: BreadcrumbData())",
+            "",
+            "/**",
+            " This is a rectangle encompassing the breadcrumb path, including a reasonable amount of padding. The value of this property changes",
+            " when adding a new location to the breadcrumb path that’s outside of the existing `pathBounds`.",
+            " */",
+            "var pathBounds: MKMapRect {",
+            "    /**",
+            "     The app accesses this property from the main thread in `BreadcrumbViewController`, and multiple",
+            "     background threads running in parallel, through the `canDraw(_:zoomScale)` method.",
+            "     Using a lock for access avoids data races.",
+            "     */",
+            "    return protectedBreadcrumbData.withLock { breadcrumbData in",
+            "        return breadcrumbData.bounds",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Implement-a-custom-overlay-renderer-to-display-the-path",
+          "level": 3,
+          "text": "Implement a custom overlay renderer to display the path",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To implement a custom overlay renderer object that complements the custom overlay data object, the app subclasses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer",
+              "isActive": true,
+              "overridingTitle": "MKOverlayRenderer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKOverlayRenderer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To determine whether an overlay has content to draw, MapKit queries the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer/canDraw(_:zoomScale:)",
+              "isActive": true,
+              "overridingTitle": "canDraw(_:zoomScale:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "canDraw(_:zoomScale:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method of an overlay renderer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "BreadcrumbPathRenderer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class in this sample overrides this method to check whether the provided ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapRect",
+              "isActive": true,
+              "overridingTitle": "MKMapRect",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKMapRect",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " intersects the ",
+              "type": "text"
+            },
+            {
+              "code": "pathBounds",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "code": "BreadcrumbPath",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func canDraw(_ mapRect: MKMapRect, zoomScale: MKZoomScale) -> Bool {",
+            "    return crumbs.pathBounds.intersects(mapRect)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A custom overlay renderer also needs to implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer/draw(_:zoomScale:in:)",
+              "isActive": true,
+              "overridingTitle": "draw(_:zoomScale:in:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "draw(_:zoomScale:in:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method to draw the requested section of the overlay.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app draws only the portion of the overlay within the bounds of the provided ",
+              "type": "text"
+            },
+            {
+              "code": "MKMapRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " into the provided ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcontext",
+              "isActive": true,
+              "overridingTitle": "CGContext",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CGContext",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func draw(_ mapRect: MKMapRect, zoomScale: MKZoomScale, in context: CGContext) {",
+            "    /// Scale the width of the line to match the width of a road.",
+            "    let lineWidth = MKRoadWidthAtZoomScale(zoomScale)",
+            "    ",
+            "    /// Outset `mapRect` by the line width to include points just outside of the current rectangle in the generated path.",
+            "    let clipRect = mapRect.insetBy(dx: -lineWidth, dy: -lineWidth)",
+            "    ",
+            "    /**",
+            "     Because the system might call this function on multiple background threads simultaneously,",
+            "     and the `locations` property of the `BreadcrumbPath` updates frequently,",
+            "     `locations` needs to guard against data races. See the comments in `BreadcrumbPath` for details.",
+            "     */",
+            "    let points = crumbs.locations.map { MKMapPoint($0.coordinate) }",
+            "    if let path = pathForPoints(points, mapRect: clipRect, zoomScale: zoomScale) {",
+            "        context.addPath(path)",
+            "        context.setStrokeColor(UIColor.systemBlue.withAlphaComponent(0.5).cgColor)",
+            "        context.setLineJoin(.round)",
+            "        context.setLineCap(.round)",
+            "        context.setLineWidth(lineWidth)",
+            "        context.strokePath()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Request-that-the-map-update-the-overlay",
+          "level": 3,
+          "text": "Request that the map update the overlay",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the sample app receives a location update, it adds the location to the custom overlay by calling a method that ",
+              "type": "text"
+            },
+            {
+              "code": "BreadcrumbPath",
+              "type": "codeVoice"
+            },
+            {
+              "text": " defines.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This method returns information indicating the result of adding the location to the overlay.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When successful, the app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer/setNeedsDisplay(_:)",
+              "isActive": true,
+              "overridingTitle": "setNeedsDisplay(_:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "setNeedsDisplay(_:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " on the custom overlay renderer to trigger a redraw of the overlay within the region of the map where the user traveled.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/**",
+            " If the `BreadcrumbPath` model object determines that the current location moves far enough from the previous location,",
+            " use the returned updateRect to redraw just the changed area.",
+            "*/",
+            "let result = breadcrumbs.addLocation(newLocation)",
+            "",
+            "/**",
+            " If the `BreadcrumbPath` model object sucessfully adds the location to the path,",
+            " update the rendering of the path to include the new location.",
+            " */",
+            " if result.locationAdded {",
+            "    // Compute the currently visible map zoom scale.",
+            "    let currentZoomScale = mapView.bounds.size.width / mapView.visibleMapRect.size.width",
+            "    ",
+            "    /**",
+            "     Find out the line width at this zoom scale and outset the `pathBounds` by that amount to ensure the full line width draws.",
+            "     This covers situations where the new location is right on the edge of the provided `pathBounds`, and only part of the line width",
+            "     is within the bounds.",
+            "    */",
+            "    let lineWidth = MKRoadWidthAtZoomScale(currentZoomScale)",
+            "    var areaToRedisplay = breadcrumbs.pathBounds",
+            "    areaToRedisplay = areaToRedisplay.insetBy(dx: -lineWidth, dy: -lineWidth)",
+            "    ",
+            "    /**",
+            "     Tell the overlay view to update just the changed area, including the area that the line width covers.",
+            "     Use `setNeedsDisplay(_:)` to only redraw the changed area of a breadcrumb overlay. For this sample,",
+            "     the changed area includes the entire overlay because if the app was recently in the background, the breadcrumb path",
+            "     that's visible when the app returns to the foreground might change significantly.",
+            "",
+            "     In general, avoid calling `setNeedsDisplay()` on the overlay renderer without a map rectangle, as that may cause a render",
+            "     pass for the entire visible map, only some of which may contain updated data in the overlay.",
+            "     ",
+            "     To avoid an expensive operation, call `setNeedsDisplay(_:)` instead of removing the overlay from the map and then immediately",
+            "     adding it back to trigger a render pass when the data is changing often. The rendering of an overlay after adding it to the",
+            "     map is not instantaneous, so removing and adding an overlay may cause a visual flicker as the system updates the map view",
+            "     without the overlay, and then updates it again with the overlay. This is especially true if the map is displaying more than",
+            "     one overlay or updating the overlay data often, such as on each location update.",
+            "    */",
+            "    breadcrumbPathRenderer?.setNeedsDisplay(areaToRedisplay)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "c00f1c04d71b/DisplayingAnUpdatingPathOfAUsersLocationHistory.zip": {
+      "checksum": "c00f1c04d71b975629cca3b670183357f49f4eca6dc4e6ec47920a3e95ff4084748ea18e269d14c0b44b68b9501a7b6c95f0dcf0436c44115c5d2df49e250777",
+      "identifier": "c00f1c04d71b/DisplayingAnUpdatingPathOfAUsersLocationHistory.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/c00f1c04d71b/DisplayingAnUpdatingPathOfAUsersLocationHistory.zip"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/CLActivityType/automotiveNavigation": {
+      "abstract": [
+        {
+          "text": "The value that indicates positioning in an automobile following a road network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automotiveNavigation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLActivityType/automotiveNavigation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLActivityType.automotiveNavigation",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLActivityType/automotiveNavigation"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/CLActivityType/fitness": {
+      "abstract": [
+        {
+          "text": "The value that indicates positioning during dedicated fitness sessions, such as walking workouts, running workouts, cycling workouts, and so on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fitness"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLActivityType/fitness",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLActivityType.fitness",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLActivityType/fitness"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/CLLocation": {
+      "abstract": [
+        {
+          "text": "The latitude, longitude, and course information reported by the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLLocation",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLLocation"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager": {
+      "abstract": [
+        {
+          "text": "The object you use to start and stop the delivery of location-related events to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLLocationManager",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLLocationManager"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/activityType": {
+      "abstract": [
+        {
+          "text": "The type of activity the app expects the user to typically perform while in the app’s location session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CLActivityType",
+          "text": "CLActivityType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/activityType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "activityType",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLLocationManager/activityType"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/allowsBackgroundLocationUpdates": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app receives location updates when running in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsBackgroundLocationUpdates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/allowsBackgroundLocationUpdates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowsBackgroundLocationUpdates",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLLocationManager/allowsBackgroundLocationUpdates"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/desiredAccuracy": {
+      "abstract": [
+        {
+          "text": "The accuracy of the location data that your app wants to receive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "desiredAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationAccuracy",
+          "text": "CLLocationAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/desiredAccuracy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "desiredAccuracy",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLLocationManager/desiredAccuracy"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/startUpdatingLocation()": {
+      "abstract": [
+        {
+          "text": "Starts the generation of updates that report the user’s current location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startUpdatingLocation"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/startUpdatingLocation()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startUpdatingLocation()",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLLocationManager/startUpdatingLocation()"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/kCLLocationAccuracyBest": {
+      "abstract": [
+        {
+          "text": "The best level of accuracy available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCLLocationAccuracyBest"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationAccuracy",
+          "text": "CLLocationAccuracy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/kCLLocationAccuracyBest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCLLocationAccuracyBest",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/kCLLocationAccuracyBest"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/kCLLocationAccuracyKilometer": {
+      "abstract": [
+        {
+          "text": "Accurate to the nearest kilometer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCLLocationAccuracyKilometer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationAccuracy",
+          "text": "CLLocationAccuracy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/kCLLocationAccuracyKilometer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCLLocationAccuracyKilometer",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/kCLLocationAccuracyKilometer"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/kCLLocationAccuracyThreeKilometers": {
+      "abstract": [
+        {
+          "text": "Accurate to the nearest three kilometers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCLLocationAccuracyThreeKilometers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationAccuracy",
+          "text": "CLLocationAccuracy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/kCLLocationAccuracyThreeKilometers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCLLocationAccuracyThreeKilometers",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/kCLLocationAccuracyThreeKilometers"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKMapRect": {
+      "abstract": [
+        {
+          "text": "A rectangular area on a two-dimensional map projection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMapRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapRect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKMapRect",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKMapRect"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKMapRect/world": {
+      "abstract": [
+        {
+          "text": "The map rectangle that represents the world in the two-dimensional map projection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "world"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MKMapRect",
+          "text": "MKMapRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapRect/world",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "world",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKMapRect/world"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKOverlay": {
+      "abstract": [
+        {
+          "text": "An interface for associating content with a specific map region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKOverlay"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MKAnnotation",
+          "text": "MKAnnotation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKOverlay",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKOverlay"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKOverlay/boundingMapRect": {
+      "abstract": [
+        {
+          "text": "The projected rectangle that encompasses the overlay.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "boundingMapRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MKMapRect",
+          "text": "MKMapRect"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlay/boundingMapRect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "boundingMapRect",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKOverlay/boundingMapRect"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer": {
+      "abstract": [
+        {
+          "text": "The shared infrastructure for drawing overlays on the map surface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKOverlayRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKOverlayRenderer",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKOverlayRenderer"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer/canDraw(_:zoomScale:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the overlay view is ready to draw its content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canDraw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "mapRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MKMapRect",
+          "text": "MKMapRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "zoomScale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MKZoomScale",
+          "text": "MKZoomScale"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer/canDraw(_:zoomScale:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canDraw(_:zoomScale:)",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKOverlayRenderer/canDraw(_:zoomScale:)"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer/draw(_:zoomScale:in:)": {
+      "abstract": [
+        {
+          "text": "Draws the overlay’s contents at the specified location on the map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "draw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "mapRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MKMapRect",
+          "text": "MKMapRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "zoomScale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MKZoomScale",
+          "text": "MKZoomScale"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGContextRef",
+          "text": "CGContext"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer/draw(_:zoomScale:in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draw(_:zoomScale:in:)",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKOverlayRenderer/draw(_:zoomScale:in:)"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer/setNeedsDisplay(_:)": {
+      "abstract": [
+        {
+          "text": "Invalidates the specified portion of the overlay at all zoom scales.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setNeedsDisplay"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "mapRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MKMapRect",
+          "text": "MKMapRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer/setNeedsDisplay(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setNeedsDisplay(_:)",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKOverlayRenderer/setNeedsDisplay(_:)"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKPolyline": {
+      "abstract": [
+        {
+          "text": "An open polygon overlay consisting of one or more connected line segments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKPolyline"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKPolyline",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKPolyline",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKPolyline"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgcontext": {
+      "abstract": [
+        {
+          "text": "A Quartz 2D drawing environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGContext",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcontext"
+    },
+    "doc://com.apple.documentation/documentation/os/OSAllocatedUnfairLock": {
+      "abstract": [
+        {
+          "text": "A structure that creates an unfair lock.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSAllocatedUnfairLock"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "State"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os/OSAllocatedUnfairLock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSAllocatedUnfairLock",
+      "type": "topic",
+      "url": "/documentation/os/OSAllocatedUnfairLock"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit": {
+      "abstract": [
+        {
+          "text": "Display map or satellite imagery within your app, call out points of interest, and determine placemark information for map coordinates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MapKit",
+      "type": "topic",
+      "url": "/documentation/mapkit"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/displaying-overlays-on-a-map": {
+      "abstract": [
+        {
+          "text": "Add regions of layered content to a map view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/displaying-overlays-on-a-map",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Displaying overlays on a map",
+      "type": "topic",
+      "url": "/documentation/mapkit/displaying-overlays-on-a-map"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit": {
+      "abstract": [],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MapKit for AppKit and UIKit",
+      "type": "topic",
+      "url": "/documentation/mapkit/mapkit-for-appkit-and-uikit"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/mapkit-overlays": {
+      "abstract": [
+        {
+          "text": "Create overlays to highlight geographic regions or paths.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/mapkit-overlays",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MapKit overlays",
+      "type": "topic",
+      "url": "/documentation/mapkit/mapkit-overlays"
+    },
+    "https://help.apple.com/simulator/mac/current/#/devc6eac95d6": {
+      "identifier": "https://help.apple.com/simulator/mac/current/#/devc6eac95d6",
+      "title": "Set a location or route",
+      "titleInlineContent": [
+        {
+          "text": "Set a location or route",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/simulator/mac/current/#/devc6eac95d6"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "c00f1c04d71b/DisplayingAnUpdatingPathOfAUsersLocationHistory.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Samples",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/displaying-overlays-on-a-map"
+      ],
+      "title": "Samples"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Samples",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/displaying-overlays-on-a-map"
+              ],
+              "title": "Samples"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1kCLLocationAccuracyKilometer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CLLocationAccuracy",
+              "text": "CLLocationAccuracy"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCLLocationAccuracyKilometer"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKOverlayRenderer~1draw(_:zoomScale:in:)/title",
+          "value": "drawMapRect:zoomScale:inContext:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKOverlayRenderer~1draw(_:zoomScale:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawMapRect:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@MKMapRect",
+              "text": "MKMapRect"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "mapRect"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "zoomScale:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@MKZoomScale",
+              "text": "MKZoomScale"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "zoomScale"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "inContext:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGContextRef",
+              "text": "CGContextRef"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "context"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKMapRect~1world/title",
+          "value": "MKMapRectWorld"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKMapRect~1world/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@MKMapRect",
+              "text": "MKMapRect"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKMapRectWorld"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLLocationManager~1activityType/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "assign"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@CLActivityType",
+              "text": "CLActivityType"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "activityType"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLLocationManager~1startUpdatingLocation()/title",
+          "value": "startUpdatingLocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLLocationManager~1startUpdatingLocation()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "startUpdatingLocation"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1kCLLocationAccuracyThreeKilometers/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CLLocationAccuracy",
+              "text": "CLLocationAccuracy"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCLLocationAccuracyThreeKilometers"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKOverlayRenderer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKOverlayRenderer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKOverlay/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKOverlay"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)MKAnnotation",
+              "text": "MKAnnotation"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKOverlay~1boundingMapRect/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@MKMapRect",
+              "text": "MKMapRect"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "boundingMapRect"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLActivityType~1automotiveNavigation/title",
+          "value": "CLActivityTypeAutomotiveNavigation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLActivityType~1automotiveNavigation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLActivityTypeAutomotiveNavigation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKOverlayRenderer~1setNeedsDisplay(_:)/title",
+          "value": "setNeedsDisplayInMapRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKOverlayRenderer~1setNeedsDisplay(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "setNeedsDisplayInMapRect:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@MKMapRect",
+              "text": "MKMapRect"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "mapRect"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLActivityType~1fitness/title",
+          "value": "CLActivityTypeFitness"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLActivityType~1fitness/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLActivityTypeFitness"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLLocationManager~1allowsBackgroundLocationUpdates/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "assign"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "allowsBackgroundLocationUpdates"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKMapRect/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " { ... } "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKMapRect"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLLocation/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CLLocation"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLLocationManager/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CLLocationManager"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1kCLLocationAccuracyBest/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CLLocationAccuracy",
+              "text": "CLLocationAccuracy"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCLLocationAccuracyBest"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKOverlayRenderer~1canDraw(_:zoomScale:)/title",
+          "value": "canDrawMapRect:zoomScale:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKOverlayRenderer~1canDraw(_:zoomScale:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "canDrawMapRect:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@MKMapRect",
+              "text": "MKMapRect"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "mapRect"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "zoomScale:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@MKZoomScale",
+              "text": "MKZoomScale"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "zoomScale"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLLocationManager~1desiredAccuracy/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "assign"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CLLocationAccuracy",
+              "text": "CLLocationAccuracy"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "desiredAccuracy"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKPolyline/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKPolyline"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MKMultiPoint",
+              "text": "MKMultiPoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgcontext/title",
+          "value": "CGContextRef"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mapkit/displaying-an-updating-path-of-a-user-s-location-history"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mapkit/displaying-an-updating-path-of-a-user-s-location-history"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

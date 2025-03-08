@@ -1,0 +1,519 @@
+{
+  "abstract": [
+    {
+      "text": "Obtain a reference to a dock accessory and receive notifications about its state.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.DockKit/documentation/DockKit",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessoryManager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.DockKit/documentation/DockKit/DockAccessoryManager/accessoryStateChanges"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7DockKit0A16AccessoryManagerC21accessoryStateChangesAA0aC0C0fG0Vvp",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "accessoryStateChanges"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+        "text": "DockAccessory"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:7DockKit0A9AccessoryC12StateChangesV",
+        "text": "StateChanges"
+      }
+    ],
+    "modules": [
+      {
+        "name": "DockKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "accessoryStateChanges"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "accessoryStateChanges"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+              "text": "DockAccessory"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/StateChanges",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7DockKit0A9AccessoryC12StateChangesV",
+              "text": "StateChanges"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A value that indicates the dock accessory that changed and its new state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.DockKit/documentation/DockKit/Modify-rotation-and-positioning-behavior-programmatically"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A docking or undocking notification occurs when a person docks or removes a device such as iPhone from a compatible dock accessory. The notification is a prequisite for modifying the tracking behavior of a dock accessory. For more information on controlling a dock accessory, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code demonstrates how to iterate through the accessory state changes to obtain the dock accessory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do {",
+            "   for await accessory in try DockAccessoryManager.shared.accessoryStateChanges {",
+            "       // If this is an accessory you’re interested in, save it for later use.",
+            "   }",
+            "} catch {",
+            "   log(“Failed fetching state changes, \\(error)“)",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockKitError/notSupported",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " if called on macOS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Throws",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.DockKit/documentation/DockKit": {
+      "abstract": [
+        {
+          "text": "Interact with accessories that track subjects on camera as they move around.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DockKit",
+      "type": "topic",
+      "url": "/documentation/dockkit"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory": {
+      "abstract": [
+        {
+          "text": "Obtain accessory information and control tracking behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DockAccessory"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DockAccessory"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/StateChanges": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence of dock accessory state changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StateChanges"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/StateChanges",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StateChanges"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.StateChanges",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/statechanges"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessoryManager": {
+      "abstract": [
+        {
+          "text": "Observe the state of dock accessories and enable or disable system tracking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DockAccessoryManager"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessoryManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DockAccessoryManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessoryManager",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessorymanager"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessoryManager/accessoryStateChanges": {
+      "abstract": [
+        {
+          "text": "Obtain a reference to a dock accessory and receive notifications about its state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryStateChanges"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC12StateChangesV",
+          "text": "StateChanges"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessoryManager/accessoryStateChanges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessoryStateChanges",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessorymanager/accessorystatechanges"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockKitError/notSupported": {
+      "abstract": [
+        {
+          "text": "The method isn’t supported on a specific platform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notSupported"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockKitError/notSupported",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DockKitError.notSupported",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockkiterror/notsupported"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/Modify-rotation-and-positioning-behavior-programmatically": {
+      "abstract": [
+        {
+          "text": "Perform custom control of the dock accessory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/Modify-rotation-and-positioning-behavior-programmatically",
+      "kind": "article",
+      "role": "article",
+      "title": "Modify rotation and positioning programmatically",
+      "type": "topic",
+      "url": "/documentation/dockkit/modify-rotation-and-positioning-behavior-programmatically"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/dockkit/dockaccessorymanager/accessorystatechanges"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,409 @@
+{
+  "abstract": [
+    {
+      "text": "Add alternate app icons to your app, and let people choose which icon to display.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/xcode"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/xcode/configuring_your_app_to_use_alternate_app_icons"
+  },
+  "kind": "article",
+  "legacy_identifier": 3906132,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Configuring Your App to Use Alternate App Icons"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code project demonstrates how to configure your app so that people can change the icon that appears on the Home screen, in Spotlight, and elsewhere in the system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People select an alternate icon in the app interface from a collection that you provide.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4047495",
+          "level": 3,
+          "text": "Add Icon Assets for the Alternate Icons",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each alternate app icon, the project requires multiple image files that vary in size. The project organizes these files through icon assets under the asset catalog.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system picks the correct icon image for the current context and target device from the set of options under each icon asset. This ensures that the appearance of the alternate icon remains consistent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on configuring app icons in the asset catalog, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-your-app-icon",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3915115",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4047496",
+          "level": 3,
+          "text": "Configure the Asset Catalog Compiler",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system gathers information about the app’s icons from the app’s information property list file under the top-level key ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Xcode adds entries to this file for the icons the project specifies through build settings under Asset Catalog Compiler - Options.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each icon asset that the project specifies by name in the build setting Alternate App Icon Sets, Xcode adds an entry under the key ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons/CFBundleAlternateIcons",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode enters the name of the primary app icon asset specified in the build setting Primary App Icon Set Name under the key ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons/CFBundlePrimaryIcon",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This setting is also available through the App Icons and Launch Images section of the General pane.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on build settings, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4047497",
+          "level": 3,
+          "text": "Change the App’s Icon",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When people select an alternate icon in the app interface, the app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/setAlternateIconName(_:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the name of the new icon. This tells the system to display the new icon for this app. The system automatically displays an alert notifying people of the change. Passing ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " displays the app’s primary icon.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "UIApplication.shared.setAlternateIconName(iconName) { (error) in",
+            "    if let error = error {",
+            "        print(\"Failed request to update the app’s icon: \\(error)\")",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4047492",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The current icon’s name is available through the property ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/alternateIconName",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference": {
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference",
+      "kind": "article",
+      "role": "article",
+      "title": "Build settings reference",
+      "type": "topic",
+      "url": "/documentation/xcode/build-settings-reference"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-your-app-icon": {
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-your-app-icon",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your app icon",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-your-app-icon"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "CFBundleIcons",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/cfbundleicons"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons/CFBundleAlternateIcons": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons/CFBundleAlternateIcons",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "CFBundleAlternateIcons",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/cfbundleicons/cfbundlealternateicons"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons/CFBundlePrimaryIcon": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIcons/CFBundlePrimaryIcon",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "CFBundlePrimaryIcon",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/cfbundleicons/cfbundleprimaryicon"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/xcode": {
+      "identifier": "doc://com.apple.documentation/documentation/xcode",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.documentation/documentation/xcode/configuring_your_app_to_use_alternate_app_icons#4047492": {
+      "identifier": "doc://com.apple.documentation/documentation/xcode/configuring_your_app_to_use_alternate_app_icons#4047492",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/xcode/configuring_your_app_to_use_alternate_app_icons#4047492"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplication/alternateIconName": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/alternateIconName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alternateIconName",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplication/alternateiconname"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplication/setAlternateIconName(_:completionHandler:)": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/setAlternateIconName(_:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAlternateIconName(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplication/setalternateiconname(_:completionhandler:)"
+    },
+    "https://docs-assets.developer.apple.com/published/ba6fbde5c8/ConfiguringYourAppToUseAlternateAppIcons.zip": {
+      "checksum": "6dc8031f24f93ca83cf11ea37b3a3d4307fa7abd9fe2117c6b2068247b531331e2311888dbfd82cf8c36b2b014425ddd4451effe0db5c90f0395c56efb9b1aa0",
+      "identifier": "https://docs-assets.developer.apple.com/published/ba6fbde5c8/ConfiguringYourAppToUseAlternateAppIcons.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/ba6fbde5c8/ConfiguringYourAppToUseAlternateAppIcons.zip"
+    },
+    "link-3915115": {
+      "identifier": "link-3915115",
+      "kind": "article",
+      "role": "link",
+      "title": "Human Interface Guidelines > App Icon",
+      "type": "topic",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/app-icon"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/ba6fbde5c8/ConfiguringYourAppToUseAlternateAppIcons.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/xcode/configuring_your_app_to_use_alternate_app_icons"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

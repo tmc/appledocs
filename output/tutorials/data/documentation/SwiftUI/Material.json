@@ -1,0 +1,2154 @@
+{
+  "abstract": [
+    {
+      "text": "A background material type.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Material"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI8MaterialV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Material"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Material"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Material"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Material"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can apply a blur effect to a view that appears behind another view by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "adding a material with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/background(_:ignoresSafeAreaEdges:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ZStack {",
+            "    Color.teal",
+            "    Label(\"Flag\", systemImage: \"flag.fill\")",
+            "        .padding()",
+            "        .background(.regularMaterial)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the example above, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ZStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " layers a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Label",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on top of the color",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle/teal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The background modifier inserts the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "regular material below the label, blurring the part of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the background that the label — including its padding — covers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Material-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A material isn’t a view, but adding a material is like inserting a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "translucent layer between the modified view and its background:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Material-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The blurring effect provided by the material isn’t simple opacity. Instead,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it uses a platform-specific blending that produces an effect that resembles",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "heavily frosted glass. You can see this more easily with a complex",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "background, like an image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ZStack {",
+            "    Image(\"chili_peppers\")",
+            "        .resizable()",
+            "        .aspectRatio(contentMode: .fit)",
+            "    Label(\"Flag\", systemImage: \"flag.fill\")",
+            "        .padding()",
+            "        .background(.regularMaterial)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Material-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For physical materials, the degree to which the background colors pass",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "through depends on the thickness. The effect also varies with light and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dark appearance:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Material-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need a material to have a particular shape, you can use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/background(_:in:fillStyle:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier. For example, you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "create a material with rounded corners:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ZStack {",
+            "    Color.teal",
+            "    Label(\"Flag\", systemImage: \"flag.fill\")",
+            "        .padding()",
+            "        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 8))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Material-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you add a material, foreground elements exhibit vibrancy,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a context-specific blend of the foreground and background colors",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that improves contrast. However using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/foregroundStyle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to set a custom foreground style — excluding the hierarchical styles,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle/secondary-swift.type.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " — disables vibrancy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A material blurs a background that’s part of your app, but not",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "what appears behind your app on the screen.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For example, the content on the Home Screen doesn’t affect the appearance",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "of a widget.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Material-1": {
+      "alt": "A screenshot of a label on a teal background, where the area behind",
+      "identifier": "Material-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ec52cb3477c1a5d9010255e4b9a0471c/Material-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/74579f2cf7a8dfc566f282e0ceb405a4/Material-1~dark@2x.png"
+        }
+      ]
+    },
+    "Material-2": {
+      "alt": "An illustration that shows a background layer below a material layer,",
+      "identifier": "Material-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ed7c89d0a28ecc2dc6fde740b26d8c16/Material-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bb5a57048ddea75e0e2925b0d5a613da/Material-2~dark@2x.png"
+        }
+      ]
+    },
+    "Material-3": {
+      "alt": "A screenshot of a label on an image background, where the area behind",
+      "identifier": "Material-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/258a1d722beb2f0f3fcea8da8e586d81/Material-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/59a02520c1ec6ae0c51b2b3852a30678/Material-3~dark@2x.png"
+        }
+      ]
+    },
+    "Material-4": {
+      "alt": "An array of labels on a teal background. The first column, labeled light",
+      "identifier": "Material-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1968a1a6b1ac0e4648274c39838f0cfc/Material-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c05b1d346013946445ae5f3c5b56541f/Material-4~dark@2x.png"
+        }
+      ]
+    },
+    "Material-5": {
+      "alt": "A screenshot of a label on a teal background, where the area behind",
+      "identifier": "Material-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc2fb03f54a0c65238963b18f70d2cfb/Material-5@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6b2af1e4097d59fd3c539dd395883559/Material-5~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient": {
+      "abstract": [
+        {
+          "text": "An angular gradient.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AngularGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AngularGradient"
+        }
+      ],
+      "role": "symbol",
+      "title": "AngularGradient",
+      "type": "topic",
+      "url": "/documentation/swiftui/angulargradient"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/BackgroundStyle": {
+      "abstract": [
+        {
+          "text": "The background style in the current context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BackgroundStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/BackgroundStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BackgroundStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "BackgroundStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/backgroundstyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EllipticalGradient": {
+      "abstract": [
+        {
+          "text": "A radial gradient that draws an ellipse.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EllipticalGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EllipticalGradient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EllipticalGradient"
+        }
+      ],
+      "role": "symbol",
+      "title": "EllipticalGradient",
+      "type": "topic",
+      "url": "/documentation/swiftui/ellipticalgradient"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/FillShapeStyle": {
+      "abstract": [
+        {
+          "text": "A shape style that displays one of the overlay fills.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FillShapeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FillShapeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FillShapeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "FillShapeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/fillshapestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ForegroundStyle": {
+      "abstract": [
+        {
+          "text": "The foreground style in the current context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ForegroundStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ForegroundStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ForegroundStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ForegroundStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/foregroundstyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/HierarchicalShapeStyle": {
+      "abstract": [
+        {
+          "text": "A shape style that maps to one of the numbered content styles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HierarchicalShapeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HierarchicalShapeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HierarchicalShapeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "HierarchicalShapeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/hierarchicalshapestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/HierarchicalShapeStyleModifier": {
+      "abstract": [
+        {
+          "text": "Styles that you can apply to hierarchical shapes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HierarchicalShapeStyleModifier"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HierarchicalShapeStyleModifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HierarchicalShapeStyleModifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "HierarchicalShapeStyleModifier",
+      "type": "topic",
+      "url": "/documentation/swiftui/hierarchicalshapestylemodifier"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ImagePaint": {
+      "abstract": [
+        {
+          "text": "A shape style that fills a shape by repeating a region of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImagePaint"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ImagePaint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImagePaint"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImagePaint",
+      "type": "topic",
+      "url": "/documentation/swiftui/imagepaint"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Label": {
+      "abstract": [
+        {
+          "text": "A standard label for user interface items, consisting of an icon with a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Label"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Label",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Label"
+        }
+      ],
+      "role": "symbol",
+      "title": "Label",
+      "type": "topic",
+      "url": "/documentation/swiftui/label"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LinearGradient": {
+      "abstract": [
+        {
+          "text": "A linear gradient.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LinearGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LinearGradient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LinearGradient"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinearGradient",
+      "type": "topic",
+      "url": "/documentation/swiftui/lineargradient"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LinkShapeStyle": {
+      "abstract": [
+        {
+          "text": "A style appropriate for links.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LinkShapeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LinkShapeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LinkShapeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinkShapeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/linkshapestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Material": {
+      "abstract": [
+        {
+          "text": "A background material type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Material"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Material",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Material"
+        }
+      ],
+      "role": "symbol",
+      "title": "Material",
+      "type": "topic",
+      "url": "/documentation/swiftui/material"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Material/bar": {
+      "abstract": [
+        {
+          "text": "A material matching the style of system toolbars.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bar"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI8MaterialV",
+          "text": "Material"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Material/bar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bar",
+      "type": "topic",
+      "url": "/documentation/swiftui/material/bar"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Material/materialActiveAppearance(_:)": {
+      "abstract": [
+        {
+          "text": "Sets an explicit active appearance for this material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "materialActiveAppearance"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI24MaterialActiveAppearanceV",
+          "text": "MaterialActiveAppearance"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI8MaterialV",
+          "text": "Material"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Material/materialActiveAppearance(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "materialActiveAppearance(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/material/materialactiveappearance(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Material/regular": {
+      "abstract": [
+        {
+          "text": "A material that’s somewhat translucent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "regular"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI8MaterialV",
+          "text": "Material"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Material/regular",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "regular",
+      "type": "topic",
+      "url": "/documentation/swiftui/material/regular"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Material/thick": {
+      "abstract": [
+        {
+          "text": "A material that’s more opaque than translucent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "thick"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI8MaterialV",
+          "text": "Material"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Material/thick",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "thick",
+      "type": "topic",
+      "url": "/documentation/swiftui/material/thick"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Material/thin": {
+      "abstract": [
+        {
+          "text": "A material that’s more translucent than opaque.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "thin"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI8MaterialV",
+          "text": "Material"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Material/thin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "thin",
+      "type": "topic",
+      "url": "/documentation/swiftui/material/thin"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Material/ultraThick": {
+      "abstract": [
+        {
+          "text": "A mostly opaque material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ultraThick"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI8MaterialV",
+          "text": "Material"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Material/ultraThick",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ultraThick",
+      "type": "topic",
+      "url": "/documentation/swiftui/material/ultrathick"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Material/ultraThin": {
+      "abstract": [
+        {
+          "text": "A mostly translucent material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ultraThin"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI8MaterialV",
+          "text": "Material"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Material/ultraThin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ultraThin",
+      "type": "topic",
+      "url": "/documentation/swiftui/material/ultrathin"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PlaceholderTextShapeStyle": {
+      "abstract": [
+        {
+          "text": "A style appropriate for placeholder text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaceholderTextShapeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PlaceholderTextShapeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlaceholderTextShapeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlaceholderTextShapeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/placeholdertextshapestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/RadialGradient": {
+      "abstract": [
+        {
+          "text": "A radial gradient.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RadialGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/RadialGradient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RadialGradient"
+        }
+      ],
+      "role": "symbol",
+      "title": "RadialGradient",
+      "type": "topic",
+      "url": "/documentation/swiftui/radialgradient"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SelectionShapeStyle": {
+      "abstract": [
+        {
+          "text": "A style used to visually indicate selection following platform conventional",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "colors and behaviors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SelectionShapeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SelectionShapeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SelectionShapeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "SelectionShapeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/selectionshapestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SeparatorShapeStyle": {
+      "abstract": [
+        {
+          "text": "A style appropriate for foreground separator or border lines.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SeparatorShapeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SeparatorShapeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SeparatorShapeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "SeparatorShapeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/separatorshapestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle": {
+      "abstract": [
+        {
+          "text": "A color or pattern to use when rendering a shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShapeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShapeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ShapeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/shapestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle/secondary-swift.type.property": {
+      "abstract": [
+        {
+          "text": "A shape style that maps to the second level of the current content style.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "HierarchicalShapeStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "secondary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI22HierarchicalShapeStyleV",
+          "text": "HierarchicalShapeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle/secondary-swift.type.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "secondary",
+      "type": "topic",
+      "url": "/documentation/swiftui/shapestyle/secondary-swift.type.property"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle/teal": {
+      "abstract": [
+        {
+          "text": "A context-dependent teal color suitable for use in UI elements.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Color",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "teal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ColorV",
+          "text": "Color"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle/teal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "teal",
+      "type": "topic",
+      "url": "/documentation/swiftui/shapestyle/teal"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TintShapeStyle": {
+      "abstract": [
+        {
+          "text": "A style that reflects the current tint color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TintShapeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TintShapeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TintShapeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "TintShapeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/tintshapestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/background(_:ignoresSafeAreaEdges:)": {
+      "abstract": [
+        {
+          "text": "Sets the view’s background to a style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "background"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ignoresSafeAreaEdges"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO",
+          "text": "Edge"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/background(_:ignoresSafeAreaEdges:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "background(_:ignoresSafeAreaEdges:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/background(_:ignoressafeareaedges:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/background(_:in:fillStyle:)": {
+      "abstract": [
+        {
+          "text": "Sets the view’s background to an insettable shape filled with a style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "background"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "fillStyle"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/background(_:in:fillStyle:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "background(_:in:fillStyle:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/background(_:in:fillstyle:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/foregroundStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets a view’s foreground elements to use a given style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "foregroundStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/foregroundStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "foregroundStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/foregroundstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ZStack": {
+      "abstract": [
+        {
+          "text": "A view that overlays its subviews, aligning them in both axes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ZStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ZStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ZStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "ZStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/zstack"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Supporting-types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EllipticalGradient",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LinearGradient",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/RadialGradient",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ImagePaint",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/HierarchicalShapeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/HierarchicalShapeStyleModifier",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ForegroundStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/BackgroundStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SelectionShapeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SeparatorShapeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TintShapeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/FillShapeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LinkShapeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PlaceholderTextShapeStyle"
+      ],
+      "title": "Supporting types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-material-types",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Material/ultraThin",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Material/thin",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Material/regular",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Material/thick",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Material/ultraThick",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Material/bar"
+      ],
+      "title": "Getting material types"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Material/materialActiveAppearance(_:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/material"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,813 @@
+{
+  "abstract": [
+    {
+      "text": "Prepare your app to move into the background by pausing future GPU use and ensuring previous work is scheduled.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/preparing-your-metal-app-to-run-in-the-background"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Preparing Your Metal App to Run in the Background"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iOS and tvOS restrict a background app’s access to the GPU, to guarantee foreground app performance. If a Metal command queue tries to schedule command buffers after the app moves in the background, the system prevents those commands from executing. When UIKit notifies you that your app is being suspended or moved into the background, your app must restrict its use of Metal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on the UIKit app life cycle, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/preparing-your-ui-to-run-in-the-background",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Disable-Code-that-Commits-New-Command-Buffers",
+          "level": 3,
+          "text": "Disable Code that Commits New Command Buffers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app is deactivated, stop sending work to Metal. Enable that code only after your app is reactivated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the system notifies your app that it’s being deactivated, you’ve some time before the system restricts your app from using Metal. You can schedule additional commands if that work is critical to prepare your app to be in the background state. Similarly, if your app was already in the middle of encoding commands, your app can typically finish the current task before disabling further work. For example, if your app renders frames of animation to the screen, and you receive the notification while you’re encoding commands for a new frame, you can finish encoding that frame before disabling your rendering code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Ensure-All-Previous-Work-is-Scheduled-for-Execution",
+          "level": 3,
+          "text": "Ensure All Previous Work is Scheduled for Execution",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When UIKit calls your app delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/applicationDidEnterBackground(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, make sure Metal has scheduled all command buffers you’ve already committed before your app returns control to the system. On each command queue, if the last command buffer you queued isn’t already scheduled or complete, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/waitUntilScheduled()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to force it to be scheduled.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re in the middle of encoding a new command buffer, you can combine these steps. Finish encoding commands to render the frame and commit the command buffer, then call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/waitUntilScheduled()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After your app moves into the background, if Metal sees a new command buffer from your app, it returns an error, rather than scheduling the command buffer. To test for this error, add a completion handler by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/addCompletedHandler(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. In your completion handler, confirm the command buffer is in an error state by checking the following properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/status",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property is equal to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBufferStatus/error",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/error",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property is equal to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBufferError-swift.struct/Code/notPermitted",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/applicationDidEnterBackground(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the app is now in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationDidEnterBackground"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/applicationDidEnterBackground(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applicationDidEnterBackground(_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/applicationDidEnterBackground(_:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/preparing-your-ui-to-run-in-the-background": {
+      "abstract": [
+        {
+          "text": "Prepare your app to be suspended.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/preparing-your-ui-to-run-in-the-background",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your UI to run in the background",
+      "type": "topic",
+      "url": "/documentation/UIKit/preparing-your-ui-to-run-in-the-background"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/addCompletedHandler(_:)": {
+      "abstract": [
+        {
+          "text": "Registers a completion handler the GPU device calls immediately after the GPU finishes running the commands in the command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addCompletedHandler"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLCommandBufferHandler",
+          "text": "MTLCommandBufferHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/addCompletedHandler(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addCompletedHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "addCompletedHandler(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/addcompletedhandler(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/error": {
+      "abstract": [
+        {
+          "text": "A description of an error when the GPU encounters an issue as it runs the command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/error",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "error"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "error",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/error"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/status": {
+      "abstract": [
+        {
+          "text": "The command buffer’s current state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "status"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLCommandBufferStatus",
+          "text": "MTLCommandBufferStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "status"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "status",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/status"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/waitUntilScheduled()": {
+      "abstract": [
+        {
+          "text": "Blocks the current thread until the command queue schedules the buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "waitUntilScheduled"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/waitUntilScheduled()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "waitUntilScheduled"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "waitUntilScheduled()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/waituntilscheduled()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBufferError-swift.struct/Code/notPermitted": {
+      "abstract": [
+        {
+          "text": "An error code that indicates a process doesn’t have access to a GPU device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notPermitted"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBufferError-swift.struct/Code/notPermitted",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBufferErrorNotPermitted"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBufferError.Code.notPermitted",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffererror-swift.struct/code/notpermitted"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBufferStatus/error": {
+      "abstract": [
+        {
+          "text": "A command buffer’s unsuccessful, final state, which indicates the GPU stopped running the buffer’s commands because of a runtime issue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "error"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBufferStatus/error",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBufferStatusError"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBufferStatus.error",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbufferstatus/error"
+    },
+    "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission": {
+      "abstract": [
+        {
+          "text": "Find any available GPU, submit work to it with command buffers, suspend work, and coordinate between multiple GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GPU Devices and Work Submission",
+      "type": "topic",
+      "url": "/documentation/metal/gpu-devices-and-work-submission"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1error/title",
+          "value": "error"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1error/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "error"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferError-swift.struct~1Code~1notPermitted/title",
+          "value": "MTLCommandBufferErrorNotPermitted"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferError-swift.struct~1Code~1notPermitted/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBufferErrorNotPermitted"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferStatus~1error/title",
+          "value": "MTLCommandBufferStatusError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferStatus~1error/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBufferStatusError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1waitUntilScheduled()/title",
+          "value": "waitUntilScheduled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1waitUntilScheduled()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "waitUntilScheduled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1applicationDidEnterBackground(_:)/title",
+          "value": "applicationDidEnterBackground:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1applicationDidEnterBackground(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationDidEnterBackground:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1status/title",
+          "value": "status"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1status/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "status"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1addCompletedHandler(_:)/title",
+          "value": "addCompletedHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1addCompletedHandler(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addCompletedHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/preparing-your-metal-app-to-run-in-the-background"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/preparing-your-metal-app-to-run-in-the-background"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

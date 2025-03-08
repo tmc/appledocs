@@ -1,0 +1,249 @@
+{
+  "abstract": [
+    {
+      "text": "Keys that represent properties of a paticular device.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/iokit",
+        "doc://com.apple.documentation/documentation/iokit/iohidkeys_h_user-space",
+        "doc://com.apple.documentation/documentation/iokit/iohidkeys_h_user-space/hid_device_property_keys"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/iokit/kiohidmaxfeaturereportsizekey"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1556687,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@macro@kIOHIDMaxFeatureReportSizeKey",
+    "modules": [
+      {
+        "name": "IOKit"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.2",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Macro",
+    "symbolKind": "macro",
+    "title": "kIOHIDMaxFeatureReportSizeKey"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "#define"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kIOHIDMaxFeatureReportSizeKey"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Keys that represent properties of a paticular device. Can be added to your matching dictionary when refining searches for HID devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Please note:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "kIOHIDPrimaryUsageKey and kIOHIDPrimaryUsagePageKey are no longer rich enough to describe a device's capabilities. Take, for example, a device that describes both a keyboard and a mouse in the same descriptor. The previous behavior was to only describe the keyboard behavior with the primary usage and usage page. Needless to say, this would sometimes cause a program interested in mice to skip this device when matching.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Thus we have added 3 additional keys:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "kIOHIDDeviceUsageKey",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "kIOHIDDeviceUsagePageKey",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "kIOHIDDeviceUsagePairsKey",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "kIOHIDDeviceUsagePairsKey is used to represent an array of dictionaries containing key/value pairs referenced by kIOHIDDeviceUsageKey and kIOHIDDeviceUsagePageKey. These usage pairs describe all application type collections (behaviors) defined by the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An application intersted in only matching on one criteria would only add the kIOHIDDeviceUsageKey and kIOHIDDeviceUsagePageKey keys to the matching dictionary. If it is interested in a device that has multiple behaviors, the application would instead add an array or dictionaries referenced by kIOHIDDeviceUsagePairsKey to his matching dictionary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/iokit": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "IOKit",
+      "type": "topic",
+      "url": "/documentation/iokit"
+    },
+    "doc://com.apple.documentation/documentation/iokit/iohidkeys_h_user-space": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/iohidkeys_h_user-space",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOHIDKeys.h User-Space",
+      "type": "topic",
+      "url": "/documentation/iokit/iohidkeys_h_user-space"
+    },
+    "doc://com.apple.documentation/documentation/iokit/iohidkeys_h_user-space/hid_device_property_keys": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/iohidkeys_h_user-space/hid_device_property_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "HID Device Property Keys",
+      "type": "topic",
+      "url": "/documentation/iokit/iohidkeys_h_user-space/hid_device_property_keys"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/iokit/kiohidmaxfeaturereportsizekey"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

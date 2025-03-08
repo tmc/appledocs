@@ -1,0 +1,2073 @@
+{
+  "abstract": [
+    {
+      "text": "Allow eligible customers to subscribe to Apple Music.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupViewController"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/offering-apple-music-subscription-in-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Offering Apple Music Subscription in Your App"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With an Apple Music membership, customers can play songs from the entire Apple Music catalog or access their iCloud music library across all their devices. You can offer users the option to sign up for an Apple Music subscription directly from your app by following these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Request Apple Music Library access from the customer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Determine if the customer is eligible for an Apple Music subscription.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Present the sign-up subscription offer if the customer is eligible.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Request-Apple-Music-Library-Access",
+          "level": 3,
+          "text": "Request Apple Music Library Access",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The user must grant permission before your app can access Apple Music library. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/requesting-access-to-apple-music-library",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for details. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController/authorizationStatus()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine your app’s authorization status. If the authorization status is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceAuthorizationStatus/authorized",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", your app can check if the user is eligible for an Apple Music subscription offer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "SKCloudServiceController.authorizationStatus() == .authorized"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "SKCloudServiceAuthorizationStatus status = ([SKCloudServiceController authorizationStatus] == SKCloudServiceAuthorizationStatusAuthorized); "
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When the Music app is absent on the user’s device, ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupViewController/load(options:completionHandler:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " fails to load.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Determine-if-the-User-is-Eligible-for-an-Apple-Music-Subscription",
+          "level": 3,
+          "text": "Determine if the User is Eligible for an Apple Music Subscription",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After getting Apple Music access from the user, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController/requestCapabilities(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to query the user’s capabilities. Then, inspect the ",
+              "type": "text"
+            },
+            {
+              "code": "capabilities",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter of this method to determine eligibility. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/determining-a-person-s-apple-music-capabilities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for details. A user has an active subscription to Apple Music when ",
+              "type": "text"
+            },
+            {
+              "code": "capabilities",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceCapability/musicCatalogPlayback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". A user is eligible for the offer when ",
+              "type": "text"
+            },
+            {
+              "code": "capabilities",
+              "type": "codeVoice"
+            },
+            {
+              "text": " doesn’t include ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceCapability/musicCatalogPlayback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " but contains ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceCapability/musicCatalogSubscriptionEligible",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let controller = SKCloudServiceController()",
+                    "controller.requestCapabilities { (capabilities: SKCloudServiceCapability, error: Error?) in",
+                    "    guard error == nil else { return }",
+                    "",
+                    "    if capabilities.contains(.musicCatalogSubscriptionEligible) && !capabilities.contains(.musicCatalogPlayback) {",
+                    "        // Allows subscription to the Apple Music catalog.",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "SKCloudServiceController *controller = [[SKCloudServiceController alloc] init];",
+                    "    ",
+                    "[controller requestCapabilitiesWithCompletionHandler:^(SKCloudServiceCapability capabilities, NSError *error){",
+                    "     if (error != nil) {",
+                    "         // Handle error.",
+                    "     } else if ((capabilities & SKCloudServiceCapabilityMusicCatalogSubscriptionEligible) && (!(capabilities & SKCloudServiceCapabilityMusicCatalogPlayback))) {",
+                    "         // Allows subscription to the Apple Music catalog.",
+                    "     }",
+                    "}];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Present-the-Offer-to-Subscribe-for-Apple-Music",
+          "level": 3,
+          "text": "Present the Offer to Subscribe for Apple Music",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For users who are eligible for an Apple Music subscription, use the following steps to allow users to sign up for it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, create a dictionary with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupOptionsKey/action",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupAction/subscribe",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let options: [SKCloudServiceSetupOptionsKey: Any] = [.action: SKCloudServiceSetupAction.subscribe]"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "NSDictionary<SKCloudServiceSetupOptionsKey, id> *options = @{SKCloudServiceSetupOptionsActionKey: SKCloudServiceSetupActionSubscribe};"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have an ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/app-store-connect/#/itcfa7936330",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupOptionsKey/affiliateToken",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to the dictionary to earn commision if the user subscribes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let affiliateToken = \"Your_Affiliate_Token\"",
+                    "let options: [SKCloudServiceSetupOptionsKey: Any] = [.action: SKCloudServiceSetupAction.subscribe, .affiliateToken: affiliateToken]"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "NSString *affiliateToken = @\"Your_Affiliate_Token\";",
+                    "NSDictionary<SKCloudServiceSetupOptionsKey, id> *options = @{SKCloudServiceSetupOptionsActionKey: SKCloudServiceSetupActionSubscribe, SKCloudServiceSetupOptionsAffiliateTokenKey: affiliateToken};"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the setup view is configured with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupOptionsKey/messageIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key set to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupMessageIdentifier/join",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Add ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupOptionsKey/messageIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the dictionary and set it to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupMessageIdentifier/addMusic",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupMessageIdentifier/connect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupMessageIdentifier/playMusic",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if you wish to change the default message that your app shows to the user:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let options: [SKCloudServiceSetupOptionsKey: Any] = [.action: SKCloudServiceSetupAction.subscribe, .messageIdentifier: SKCloudServiceSetupMessageIdentifier.addMusic]"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "NSDictionary<SKCloudServiceSetupOptionsKey, id> *options = @{SKCloudServiceSetupOptionsActionKey: SKCloudServiceSetupActionSubscribe, SKCloudServiceSetupOptionsMessageIdentifierKey: SKCloudServiceSetupMessageIdentifierAddMusic};"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and set the view controller class as its delegate:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let controller = SKCloudServiceSetupViewController()",
+                    "controller.delegate = self"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "SKCloudServiceSetupViewController *controller = [[SKCloudServiceSetupViewController alloc] init];",
+                    "controller.delegate = self;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, pass the dictionary to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupViewController/load(options:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. Finally, present the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object modally from your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "controller.load(options: options) { [weak self] (result: Bool, error: Error?) in",
+                    "   guard error == nil else { return }",
+                    "   ",
+                    "    if result {",
+                    "        self?.present(controller, animated: true, completion: nil)",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[controller loadWithOptions:options completionHandler:^(BOOL result, NSError *error) {",
+                    "    if(error != nil) {",
+                    "        // Handle error.",
+                    "     } else if (result) {",
+                    "        [self presentViewController:controller animated:YES completion:nil];",
+                    "     }",
+                    "}];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKArcadeService": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKArcadeService"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKArcadeService",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKArcadeService"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKArcadeService",
+      "type": "topic",
+      "url": "/documentation/storekit/skarcadeservice"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceAuthorizationStatus/authorized": {
+      "abstract": [
+        {
+          "text": "The user authorizes playback of Apple Music tracks and the addition of tracks to their music library.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorized"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceAuthorizationStatus/authorized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKCloudServiceAuthorizationStatusAuthorized"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKCloudServiceAuthorizationStatus.authorized",
+      "type": "topic",
+      "url": "/documentation/storekit/skcloudserviceauthorizationstatus/authorized"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceCapability/musicCatalogPlayback": {
+      "abstract": [
+        {
+          "text": "The device allows playback of Apple Music catalog tracks.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "musicCatalogPlayback"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SKCloudServiceCapability",
+          "text": "SKCloudServiceCapability"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceCapability/musicCatalogPlayback",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKCloudServiceCapabilityMusicCatalogPlayback"
+        }
+      ],
+      "role": "symbol",
+      "title": "musicCatalogPlayback",
+      "type": "topic",
+      "url": "/documentation/storekit/skcloudservicecapability/musiccatalogplayback"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceCapability/musicCatalogSubscriptionEligible": {
+      "abstract": [
+        {
+          "text": "The device allows subscription to the Apple Music catalog.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "musicCatalogSubscriptionEligible"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SKCloudServiceCapability",
+          "text": "SKCloudServiceCapability"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceCapability/musicCatalogSubscriptionEligible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKCloudServiceCapabilityMusicCatalogSubscriptionEligible"
+        }
+      ],
+      "role": "symbol",
+      "title": "musicCatalogSubscriptionEligible",
+      "type": "topic",
+      "url": "/documentation/storekit/skcloudservicecapability/musiccatalogsubscriptioneligible"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController": {
+      "abstract": [
+        {
+          "text": "An object that determines the current capabilities of a person’s Music library.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKCloudServiceController"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKCloudServiceController"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKCloudServiceController",
+      "type": "topic",
+      "url": "/documentation/storekit/skcloudservicecontroller"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController/authorizationStatus()": {
+      "abstract": [
+        {
+          "text": "Returns the type of authorization the customer has for accessing the Music library on the device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SKCloudServiceAuthorizationStatus",
+          "text": "SKCloudServiceAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController/authorizationStatus()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationStatus()",
+      "type": "topic",
+      "url": "/documentation/storekit/skcloudservicecontroller/authorizationstatus()"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController/requestCapabilities(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Gets the current capabilities associated with the Music library on the device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestCapabilities"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SKCloudServiceCapability",
+          "text": "SKCloudServiceCapability"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController/requestCapabilities(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestCapabilitiesWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestCapabilities(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skcloudservicecontroller/requestcapabilities(completionhandler:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupAction/subscribe": {
+      "abstract": [
+        {
+          "text": "A subscribe action in a cloud service setup view, such as an offer to subscribe to Apple Music.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscribe"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SKCloudServiceSetupAction",
+          "text": "SKCloudServiceSetupAction"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupAction/subscribe",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKCloudServiceSetupActionSubscribe"
+        }
+      ],
+      "role": "symbol",
+      "title": "subscribe",
+      "type": "topic",
+      "url": "/documentation/storekit/skcloudservicesetupaction/subscribe"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupMessageIdentifier/addMusic": {
+      "abstract": [
+        {
+          "text": "Message identifier for adding music.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addMusic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SKCloudServiceSetupMessageIdentifier",
+          "text": "SKCloudServiceSetupMessageIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupMessageIdentifier/addMusic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKCloudServiceSetupMessageIdentifierAddMusic"
+        }
+      ],
+      "role": "symbol",
+      "title": "addMusic",
+      "type": "topic",
+      "url": "/documentation/storekit/skcloudservicesetupmessageidentifier/addmusic"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupMessageIdentifier/connect": {
+      "abstract": [
+        {
+          "text": "Message identifier for connecting.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "connect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SKCloudServiceSetupMessageIdentifier",
+          "text": "SKCloudServiceSetupMessageIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupMessageIdentifier/connect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKCloudServiceSetupMessageIdentifierConnect"
+        }
+      ],
+      "role": "symbol",
+      "title": "connect",
+      "type": "topic",
+      "url": "/documentation/storekit/skcloudservicesetupmessageidentifier/connect"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupMessageIdentifier/join": {
+      "abstract": [
+        {
+          "text": "Message identifier for joining.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "join"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SKCloudServiceSetupMessageIdentifier",
+          "text": "SKCloudServiceSetupMessageIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupMessageIdentifier/join",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKCloudServiceSetupMessageIdentifierJoin"
+        }
+      ],
+      "role": "symbol",
+      "title": "join",
+      "type": "topic",
+      "url": "/documentation/storekit/skcloudservicesetupmessageidentifier/join"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupMessageIdentifier/playMusic": {
+      "abstract": [
+        {
+          "text": "Message identifier for playing music.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playMusic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SKCloudServiceSetupMessageIdentifier",
+          "text": "SKCloudServiceSetupMessageIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupMessageIdentifier/playMusic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKCloudServiceSetupMessageIdentifierPlayMusic"
+        }
+      ],
+      "role": "symbol",
+      "title": "playMusic",
+      "type": "topic",
+      "url": "/documentation/storekit/skcloudservicesetupmessageidentifier/playmusic"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupOptionsKey": {
+      "abstract": [
+        {
+          "text": "Keys to specify the types of setup options for a cloud service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKCloudServiceSetupOptionsKey"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupOptionsKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKCloudServiceSetupOptionsKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKCloudServiceSetupOptionsKey",
+      "type": "topic",
+      "url": "/documentation/storekit/skcloudservicesetupoptionskey"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupOptionsKey/action": {
+      "abstract": [
+        {
+          "text": "A key that specifies the action for a setup entry point.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SKCloudServiceSetupOptionsKey",
+          "text": "SKCloudServiceSetupOptionsKey"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupOptionsKey/action",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKCloudServiceSetupOptionsActionKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "action",
+      "type": "topic",
+      "url": "/documentation/storekit/skcloudservicesetupoptionskey/action"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupOptionsKey/affiliateToken": {
+      "abstract": [
+        {
+          "text": "A key that specifies the iTunes Store affiliate token.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "affiliateToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SKCloudServiceSetupOptionsKey",
+          "text": "SKCloudServiceSetupOptionsKey"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupOptionsKey/affiliateToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKCloudServiceSetupOptionsAffiliateTokenKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "affiliateToken",
+      "type": "topic",
+      "url": "/documentation/storekit/skcloudservicesetupoptionskey/affiliatetoken"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupOptionsKey/messageIdentifier": {
+      "abstract": [
+        {
+          "text": "A key that is used to select the main message presented to the user for this setup view.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "messageIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SKCloudServiceSetupOptionsKey",
+          "text": "SKCloudServiceSetupOptionsKey"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupOptionsKey/messageIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKCloudServiceSetupOptionsMessageIdentifierKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "messageIdentifier",
+      "type": "topic",
+      "url": "/documentation/storekit/skcloudservicesetupoptionskey/messageidentifier"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that helps people perform setup for a cloud service, like an Apple Music subscription.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKCloudServiceSetupViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKCloudServiceSetupViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKCloudServiceSetupViewController",
+      "type": "topic",
+      "url": "/documentation/storekit/skcloudservicesetupviewcontroller"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupViewController/load(options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Loads the cloud service setup view with the specified options.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "load"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SKCloudServiceSetupOptionsKey",
+          "text": "SKCloudServiceSetupOptionsKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupViewController/load(options:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadWithOptions:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "load(options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skcloudservicesetupviewcontroller/load(options:completionhandler:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/determining-a-person-s-apple-music-capabilities": {
+      "abstract": [
+        {
+          "text": "Determine which Apple Music capabilities are available on a customer’s device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/determining-a-person-s-apple-music-capabilities",
+      "kind": "article",
+      "role": "article",
+      "title": "Determining a person’s Apple Music capabilities",
+      "type": "topic",
+      "url": "/documentation/storekit/determining-a-person-s-apple-music-capabilities"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/requesting-access-to-apple-music-library": {
+      "abstract": [
+        {
+          "text": "Prompt the customer to authorize access to Apple Music library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/requesting-access-to-apple-music-library",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting Access to Apple Music Library",
+      "type": "topic",
+      "url": "/documentation/storekit/requesting-access-to-apple-music-library"
+    },
+    "https://help.apple.com/app-store-connect/#/itcfa7936330": {
+      "identifier": "https://help.apple.com/app-store-connect/#/itcfa7936330",
+      "title": "iTunes Store affiliate account",
+      "titleInlineContent": [
+        {
+          "text": "iTunes Store affiliate account",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/app-store-connect/#/itcfa7936330"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Loading-the-setup-view",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupOptionsKey",
+        "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupViewController/load(options:completionHandler:)",
+        "doc://com.apple.storekit/documentation/StoreKit/SKArcadeService"
+      ],
+      "title": "Loading the setup view"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Loading-the-setup-view",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupOptionsKey",
+                "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceSetupViewController/load(options:completionHandler:)",
+                "doc://com.apple.storekit/documentation/StoreKit/SKArcadeService"
+              ],
+              "title": "Loading the setup view"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceAuthorizationStatus~1authorized/title",
+          "value": "SKCloudServiceAuthorizationStatusAuthorized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceAuthorizationStatus~1authorized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKCloudServiceAuthorizationStatusAuthorized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupMessageIdentifier~1addMusic/title",
+          "value": "SKCloudServiceSetupMessageIdentifierAddMusic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupMessageIdentifier~1addMusic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKCloudServiceSetupMessageIdentifierAddMusic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupOptionsKey~1messageIdentifier/title",
+          "value": "SKCloudServiceSetupOptionsMessageIdentifierKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupOptionsKey~1messageIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKCloudServiceSetupOptionsMessageIdentifierKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceController~1authorizationStatus()/title",
+          "value": "authorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceController~1authorizationStatus()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupViewController/title",
+          "value": "SKCloudServiceSetupViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKCloudServiceSetupViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKCloudServiceSetupViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceCapability~1musicCatalogPlayback/title",
+          "value": "SKCloudServiceCapabilityMusicCatalogPlayback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceCapability~1musicCatalogPlayback/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKCloudServiceCapabilityMusicCatalogPlayback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceController~1requestCapabilities(completionHandler:)/title",
+          "value": "requestCapabilitiesWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceController~1requestCapabilities(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestCapabilitiesWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupViewController~1load(options:completionHandler:)/title",
+          "value": "loadWithOptions:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupViewController~1load(options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadWithOptions:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupAction~1subscribe/title",
+          "value": "SKCloudServiceSetupActionSubscribe"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupAction~1subscribe/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKCloudServiceSetupActionSubscribe"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupMessageIdentifier~1playMusic/title",
+          "value": "SKCloudServiceSetupMessageIdentifierPlayMusic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupMessageIdentifier~1playMusic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKCloudServiceSetupMessageIdentifierPlayMusic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupOptionsKey~1affiliateToken/title",
+          "value": "SKCloudServiceSetupOptionsAffiliateTokenKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupOptionsKey~1affiliateToken/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKCloudServiceSetupOptionsAffiliateTokenKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceController/title",
+          "value": "SKCloudServiceController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKCloudServiceController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKCloudServiceController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKArcadeService/title",
+          "value": "SKArcadeService"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKArcadeService/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKArcadeService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKArcadeService/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKArcadeService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceCapability~1musicCatalogSubscriptionEligible/title",
+          "value": "SKCloudServiceCapabilityMusicCatalogSubscriptionEligible"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceCapability~1musicCatalogSubscriptionEligible/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKCloudServiceCapabilityMusicCatalogSubscriptionEligible"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupMessageIdentifier~1join/title",
+          "value": "SKCloudServiceSetupMessageIdentifierJoin"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupMessageIdentifier~1join/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKCloudServiceSetupMessageIdentifierJoin"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupMessageIdentifier~1connect/title",
+          "value": "SKCloudServiceSetupMessageIdentifierConnect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupMessageIdentifier~1connect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKCloudServiceSetupMessageIdentifierConnect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupOptionsKey/title",
+          "value": "SKCloudServiceSetupOptionsKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupOptionsKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKCloudServiceSetupOptionsKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupOptionsKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKCloudServiceSetupOptionsKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupOptionsKey~1action/title",
+          "value": "SKCloudServiceSetupOptionsActionKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceSetupOptionsKey~1action/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKCloudServiceSetupOptionsActionKey"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/offering-apple-music-subscription-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/offering-apple-music-subscription-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

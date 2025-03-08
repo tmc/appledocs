@@ -1,0 +1,1739 @@
+{
+  "abstract": [
+    {
+      "text": "An adaptor that converts a regular estimator to a tabular estimator by selecting features and annotations from columns.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:18CreateMLComponents24AnnotatedFeatureProviderV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AnnotatedFeatureProvider"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Create ML Components"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AnnotatedFeatureProvider"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "AnnotatedFeatureProvider"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AnnotatedFeatureProvider"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Base"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "genericParameter",
+              "text": "UnwrappedInput"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Base"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedEstimator",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:18CreateMLComponents19SupervisedEstimatorP",
+              "text": "SupervisedEstimator"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Base"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedEstimator/Transformer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:18CreateMLComponents19SupervisedEstimatorP11TransformerQa",
+              "text": "Transformer"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Transformer/Input",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:18CreateMLComponents11TransformerP5InputQa",
+              "text": "Input"
+            },
+            {
+              "kind": "text",
+              "text": " == "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "UnwrappedInput"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tabular estimators use multiple features columns as input. When there is a single column of features, you may use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a non-tabular estimator. Do this by combining multiple columns with a ",
+              "type": "text"
+            },
+            {
+              "code": "ColumnConcatenator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " transformer. Once",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "there is a single column of features, use ",
+              "type": "text"
+            },
+            {
+              "code": "AnnotatedFeatureProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to specify which column contains the features,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which column contains the annotations, and which column should hold the results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using ",
+              "type": "text"
+            },
+            {
+              "code": "AnnotatedFeatureProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", make sure to handle missing values before using a non-tabular estimator",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that takes non-optional values. This example includes an ",
+              "type": "text"
+            },
+            {
+              "code": "OptionalUnwrapper",
+              "type": "codeVoice"
+            },
+            {
+              "text": " transformer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let concatenation = ColumnConcatenator<Float>(",
+            "    columnSelection: .include(columnNames: [\"type\", \"region\"]),",
+            "    concatenatedColumnName: \"features\"",
+            ")",
+            "let regression = AnnotatedFeatureProvider(",
+            "    OptionalUnwrapper<MLShapedArray<Float>>().appending(LinearRegressor<Float>()),",
+            "    annotationsColumnName: \"price\",",
+            "    featuresColumnName: \"features\",",
+            "    resultsColumnName: \"result\"",
+            ")",
+            "let task = concatenation.appending(regression)"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents": {
+      "abstract": [
+        {
+          "text": "Create more customizable machine learning models in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML Components",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedBatch": {
+      "abstract": [
+        {
+          "text": "A batch of annotated examples for fitting a supervised estimator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnnotatedBatch"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedBatch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnnotatedBatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnnotatedBatch",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/annotatedbatch"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeature": {
+      "abstract": [
+        {
+          "text": "An annotated example for fitting a supervised estimator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnnotatedFeature"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnnotatedFeature"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnnotatedFeature",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/annotatedfeature"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider": {
+      "abstract": [
+        {
+          "text": "An adaptor that converts a regular estimator to a tabular estimator by selecting features and annotations from columns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnnotatedFeatureProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnnotatedFeatureProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnnotatedFeatureProvider",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/annotatedfeatureprovider"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/Annotation": {
+      "abstract": [
+        {
+          "text": "The annotation type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Annotation"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/Annotation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Annotation"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnnotatedFeatureProvider.Annotation",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/annotatedfeatureprovider/annotation"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/SupervisedTabularEstimator-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/SupervisedTabularEstimator-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SupervisedTabularEstimator Implementations",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/annotatedfeatureprovider/supervisedtabularestimator-implementations"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/Transformer": {
+      "abstract": [
+        {
+          "text": "The transformer type created by this estimator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transformer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/Transformer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Transformer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnnotatedFeatureProvider.Transformer",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/annotatedfeatureprovider/transformer"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/UpdatableSupervisedTabularEstimator-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/UpdatableSupervisedTabularEstimator-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "UpdatableSupervisedTabularEstimator Implementations",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/annotatedfeatureprovider/updatablesupervisedtabularestimator-implementations"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/annotationColumnID": {
+      "abstract": [
+        {
+          "text": "The annotation column identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "annotationColumnID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabularData8ColumnIDV",
+          "text": "ColumnID"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents24AnnotatedFeatureProviderV",
+          "text": "AnnotatedFeatureProvider"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Base"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "UnwrappedInput"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Annotation"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/annotationColumnID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "annotationColumnID",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/annotatedfeatureprovider/annotationcolumnid"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/base": {
+      "abstract": [
+        {
+          "text": "The base estimator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "base"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Base"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/base",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "base",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/annotatedfeatureprovider/base"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/decode(from:)": {
+      "abstract": [
+        {
+          "text": "Decodes a previously fitted transformer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "decode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents16EstimatorDecoderP",
+          "text": "EstimatorDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents24AnnotatedFeatureProviderV",
+          "text": "AnnotatedFeatureProvider"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Base"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "UnwrappedInput"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents24AnnotatedFeatureProviderV11Transformera",
+          "text": "Transformer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/decode(from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decode(from:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/annotatedfeatureprovider/decode(from:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/encode(_:to:)": {
+      "abstract": [
+        {
+          "text": "Encodes a fitted transformer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents24AnnotatedFeatureProviderV",
+          "text": "AnnotatedFeatureProvider"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Base"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "UnwrappedInput"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents24AnnotatedFeatureProviderV11Transformera",
+          "text": "Transformer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents16EstimatorEncoderP",
+          "text": "EstimatorEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/encode(_:to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(_:to:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/annotatedfeatureprovider/encode(_:to:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/featuresColumnName": {
+      "abstract": [
+        {
+          "text": "The features column name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "featuresColumnName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/featuresColumnName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "featuresColumnName",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/annotatedfeatureprovider/featurescolumnname"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/fitted(to:validateOn:eventHandler:)": {
+      "abstract": [
+        {
+          "text": "Fits a transformer to a data frame",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fitted"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabularData0B5FrameV",
+          "text": "DataFrame"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "validateOn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabularData0B5FrameV",
+          "text": "DataFrame"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "eventHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents12EventHandlera",
+          "text": "EventHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents25ColumnSelectorTransformerV",
+          "text": "ColumnSelectorTransformer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Base"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents19SupervisedEstimatorP11TransformerQa",
+          "text": "Transformer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "UnwrappedInput"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/fitted(to:validateOn:eventHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fitted(to:validateOn:eventHandler:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/annotatedfeatureprovider/fitted(to:validateon:eventhandler:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/init(_:annotationsColumnName:featuresColumnName:resultsColumnName:)": {
+      "abstract": [
+        {
+          "text": "Creates an adaptor that converts a regular estimator to a tabular estimator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Base"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "annotationsColumnName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "featuresColumnName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "resultsColumnName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/init(_:annotationsColumnName:featuresColumnName:resultsColumnName:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:annotationsColumnName:featuresColumnName:resultsColumnName:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/annotatedfeatureprovider/init(_:annotationscolumnname:featurescolumnname:resultscolumnname:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/resultsColumnName": {
+      "abstract": [
+        {
+          "text": "The results column name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resultsColumnName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/resultsColumnName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resultsColumnName",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/annotatedfeatureprovider/resultscolumnname"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFiles": {
+      "abstract": [
+        {
+          "text": "An annotated files collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnnotatedFiles"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFiles",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnnotatedFiles"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnnotatedFiles",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/annotatedfiles"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedPrediction": {
+      "abstract": [
+        {
+          "text": "An annotated prediction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnnotatedPrediction"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedPrediction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnnotatedPrediction"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnnotatedPrediction",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/annotatedprediction"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DataFrameTemporalAnnotationParameters": {
+      "abstract": [
+        {
+          "text": "Annotation parameters for the dataframe containing temporal annotations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataFrameTemporalAnnotationParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DataFrameTemporalAnnotationParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataFrameTemporalAnnotationParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataFrameTemporalAnnotationParameters",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/dataframetemporalannotationparameters"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedEstimator": {
+      "abstract": [
+        {
+          "text": "An estimator that creates a transformer by fitting to a data set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SupervisedEstimator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedEstimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SupervisedEstimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "SupervisedEstimator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/supervisedestimator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedEstimator/Transformer": {
+      "abstract": [
+        {
+          "text": "The transformer type created by this estimator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transformer"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents11TransformerP",
+          "text": "Transformer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedEstimator/Transformer",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Transformer",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/supervisedestimator/transformer"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedTabularEstimator": {
+      "abstract": [
+        {
+          "text": "A tabular estimator that creates a transformer by fitting to a data set in a data frame.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "UpdatableSupervisedEstimator",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "UnwrappedInput",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "UnwrappedInput",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", and ",
+            "type": "text"
+          },
+          {
+            "code": "Base.Transformer.Input",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "UnwrappedInput?",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SupervisedTabularEstimator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedTabularEstimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SupervisedTabularEstimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "SupervisedTabularEstimator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/supervisedtabularestimator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Transformer/Input": {
+      "abstract": [
+        {
+          "text": "The input type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Input"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Transformer/Input",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Input",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/transformer/input"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/UpdatableSupervisedTabularEstimator": {
+      "abstract": [
+        {
+          "text": "A supervised tabular estimator that can be incrementally updated.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "UpdatableSupervisedEstimator",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "UnwrappedInput",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "UnwrappedInput",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", and ",
+            "type": "text"
+          },
+          {
+            "code": "Base.Transformer.Input",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "UnwrappedInput?",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdatableSupervisedTabularEstimator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/UpdatableSupervisedTabularEstimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdatableSupervisedTabularEstimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdatableSupervisedTabularEstimator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/updatablesupervisedtabularestimator"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedTabularEstimator",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/UpdatableSupervisedTabularEstimator"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Annotations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFiles",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedBatch",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeature",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedPrediction",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DataFrameTemporalAnnotationParameters"
+      ],
+      "title": "Annotations"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-the-provider",
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/init(_:annotationsColumnName:featuresColumnName:resultsColumnName:)"
+      ],
+      "title": "Creating the provider"
+    },
+    {
+      "anchor": "Getting-the-properties",
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/annotationColumnID",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/Annotation",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/base",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/featuresColumnName",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/resultsColumnName"
+      ],
+      "title": "Getting the properties"
+    },
+    {
+      "anchor": "Encoding-and-decoding",
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/encode(_:to:)",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/decode(from:)"
+      ],
+      "title": "Encoding and decoding"
+    },
+    {
+      "anchor": "Fitting",
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/fitted(to:validateOn:eventHandler:)",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/Transformer"
+      ],
+      "title": "Fitting"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/SupervisedTabularEstimator-Implementations",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeatureProvider/UpdatableSupervisedTabularEstimator-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createmlcomponents/annotatedfeatureprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2652 @@
+{
+  "abstract": [
+    {
+      "text": "Display view controllers using different techniques, and pass data between them during transitions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/view-controllers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/showing-and-hiding-view-controllers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Showing and hiding view controllers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You change your app’s interface by presenting and dismissing view controllers. Every window has a root view controller, which provides the initial content for your window. Presenting a new view controller changes that content by installing a new set of views in the window. When you no longer need the view controller, dismissing it removes its views from the window. You present view controllers in one of these ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configure presentations visually in your storyboard.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Embed them in a container view controller.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call methods of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " directly.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each technique gives you different amounts of control over the presentation and dismissal process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-presentations-visually-in-your-storyboard-file",
+          "level": 3,
+          "text": "Specify presentations visually in your storyboard file",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using segues in your storyboard is the recommended way to present and dismiss view controllers. A segue is a visual representation of a transition from one view controller to another. A segue starts with an action such as a button tap or table-row selection in the initial view controller. When that action occurs, UIKit creates the view controller at the other end of the segue and presents it automatically. Because you create and configure segues in your storyboard, you can change them very quickly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3376046",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start a segue from any object that implements an action method, such as a control or gesture recognizer. You may also start segues from table rows and collection view cells.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Right-click the control or object in your current view controller.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag the cursor to the view controller you want to present.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the kind of segue you want from the list that Xcode provides.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The storyboard shows segues as an arrow between two view controllers. Selecting the segue displays information about it, including the kind of presentation you want UIKit to perform. You can modify the presentation type or configure additional details, such as a segue identifier. You use this information at runtime to customize the segue further, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/customizing-the-behavior-of-segue-based-presentations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about how to dismiss a view controller in your storyboards, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/dismissing-a-view-controller-with-an-unwind-segue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Let-the-current-context-define-the-presentation-technique",
+          "level": 3,
+          "text": "Let the current context define the presentation technique",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reusing the same view controller in multiple places creates a potential problem: presenting it in different ways based on the current context. For example, you might want to embed it in a navigation controller in one instance, but present it modally in another. UIKit solves this problem with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/show(_:sender:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/showDetailViewController(_:sender:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which present the view controller in the most appropriate way for the current context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/show(_:sender:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/showDetailViewController(_:sender:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, UIKit determines the most appropriate context for the presentation. Specifically, it calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/targetViewController(forAction:sender:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to search for a parent view controller that implements the corresponding ",
+              "type": "text"
+            },
+            {
+              "code": "show",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. If a parent implements the method and wants to handle the presentation, UIKit calls the parent’s implementation. A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object’s implementation of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/show(_:sender:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method pushes the new view controller onto its navigation stack. If no view controller handles the presentation, UIKit presents the view controller modally.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code example creates a view controller and shows it using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/show(_:sender:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. The code is equivalent to creating a segue with the kind set to Show.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBAction func showSecondViewController() {",
+            "    let storyboard = UIStoryboard(name: \"Main\", bundle: nil)",
+            "    let secondVC = storyboard.instantiateViewController(identifier: \"SecondViewController\")",
+            "",
+            "    show(secondVC, sender: self)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After showing a view controller, use the current context to determine how to dismiss it. Calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/dismiss(animated:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method might not always be the most appropriate option. For example, don’t call that method if a navigation controller added the view controller to its navigation stack. Instead, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/presentingViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/splitViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/navigationController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/tabBarController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties to determine the current context, and to take appropriate actions in response. That response might also include modifying your view controller’s UI to hide a Done button or other controls for dismissing the UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When implementing a custom container view controller, implement the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/show(_:sender:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/showDetailViewController(_:sender:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " methods to handle presentations. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-container-view-controller",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Embed-a-view-controller-inside-a-container-view-controller",
+          "level": 3,
+          "text": "Embed a view controller inside a container view controller",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A container view controller embeds content from one or more child view controllers, and presents the combined interface onscreen. Embedding a child view controller presents it using a container-specific approach. For example, a navigation controller initially positions the child view controller offscreen and then animates it into position onscreen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The standard UIKit container view controllers work with segues and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/show(_:sender:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/showDetailViewController(_:sender:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods to embed view controllers as children. They also define additional API for adding and removing child view controllers programmatically. Use segues and the show methods to handle most transitions. Use the methods in the following table to perform one-time configuration of your view controller, for example when restoring your app’s UI to a previous state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Container",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Presentation options",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "UISplitViewController",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Replace the two initial view controllers using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/viewControllers",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property. The first (primary) view controller appears in the leading pane and the second (detail) view controller appears in the trailing pane.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "UINavigationController",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Replace the contents of the navigation stack using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationController/viewControllers",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property. Add or remove a subset of view controllers simultaneously using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationController/setViewControllers(_:animated:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "UITabBarController",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Replace the initial tabs using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController/viewControllers",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property. Change the current tabs dynamically using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController/setViewControllers(_:animated:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "UIPageViewController",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide all child view controllers using a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPageViewControllerDataSource",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Always use the container view controller’s API to remove or replace a presented view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Present-a-view-controller-modally",
+          "level": 3,
+          "text": "Present a view controller modally",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use modal presentations to create temporary interruptions in your app’s workflow, such as prompting the user for important information. A modal presentation covers the current view controller wholly or partially, depending on the presentation style you use. Full-screen presentations always replace the previous content, but sheet-style presentations may leave some of the underlying content visible. The actual appearance of each presentation style depends on the current trait environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure a modal presentation, create the new view controller and call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/present(_:animated:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. That method animates the new view controller into position using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIModalPresentationStyle/automatic",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " style and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIModalTransitionStyle/coverVertical",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " transition animation. To change the styles, modify the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/modalPresentationStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/modalTransitionStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties of the view controller you present. The following code example changes both of these styles to create a full-screen presentation using a cross-dissolve animation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    @IBAction func presentSecondViewController() {",
+            "        let storyboard = UIStoryboard(name: \"Main\", bundle: nil)",
+            "        let secondVC = storyboard.instantiateViewController(identifier: \"SecondViewController\")",
+            "        ",
+            "        secondVC.modalPresentationStyle = .fullScreen",
+            "        secondVC.modalTransitionStyle = .crossDissolve",
+            "        ",
+            "        present(secondVC, animated: true, completion: nil)",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To dismiss a modally presented view controller, call the view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/dismiss(animated:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that specializes in managing a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIContentContainer": {
+      "abstract": [
+        {
+          "text": "A set of methods for adapting the contents of your view controllers to size and trait changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIContentContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContentContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIContentContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIContentContainer",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontentcontainer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIModalPresentationStyle/automatic": {
+      "abstract": [
+        {
+          "text": "The default presentation style chosen by the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automatic"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIModalPresentationStyle/automatic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIModalPresentationAutomatic"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIModalPresentationStyle.automatic",
+      "type": "topic",
+      "url": "/documentation/uikit/uimodalpresentationstyle/automatic"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIModalTransitionStyle/coverVertical": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "coverVertical"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIModalTransitionStyle/coverVertical",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIModalTransitionStyleCoverVertical"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIModalTransitionStyle.coverVertical",
+      "type": "topic",
+      "url": "/documentation/uikit/uimodaltransitionstyle/coververtical"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationController": {
+      "abstract": [
+        {
+          "text": "A container view controller that defines a stack-based scheme for navigating hierarchical content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINavigationController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UINavigationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationController",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationController/setViewControllers(_:animated:)": {
+      "abstract": [
+        {
+          "text": "Replaces the view controllers currently managed by the navigation controller with the specified items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setViewControllers"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationController/setViewControllers(_:animated:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setViewControllers:animated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setViewControllers(_:animated:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationcontroller/setviewcontrollers(_:animated:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationController/viewControllers": {
+      "abstract": [
+        {
+          "text": "The view controllers currently on the navigation stack.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewControllers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationController/viewControllers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewControllers"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewControllers",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationcontroller/viewcontrollers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPageViewControllerDataSource": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPageViewControllerDataSource",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " protocol is adopted by an object that provides view controllers to the page view controller on an as-needed basis, in response to navigation gestures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPageViewControllerDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPageViewControllerDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPageViewControllerDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPageViewControllerDataSource",
+      "type": "topic",
+      "url": "/documentation/uikit/uipageviewcontrollerdatasource"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/viewControllers": {
+      "abstract": [
+        {
+          "text": "The array of view controllers the split view controller manages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewControllers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/viewControllers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewControllers"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewControllers",
+      "type": "topic",
+      "url": "/documentation/uikit/uisplitviewcontroller/viewcontrollers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarController/setViewControllers(_:animated:)": {
+      "abstract": [
+        {
+          "text": "Sets the root view controllers of the tab bar controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setViewControllers"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController/setViewControllers(_:animated:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setViewControllers:animated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setViewControllers(_:animated:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbarcontroller/setviewcontrollers(_:animated:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarController/viewControllers": {
+      "abstract": [
+        {
+          "text": "An array of the root view controllers displayed by the tab bar interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewControllers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController/viewControllers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewControllers"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewControllers",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbarcontroller/viewcontrollers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that specializes in managing a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages a view hierarchy for your UIKit app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/dismiss(animated:completion:)": {
+      "abstract": [
+        {
+          "text": "Dismisses the view controller that was presented modally by the view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dismiss"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/dismiss(animated:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dismissViewControllerAnimated:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "dismiss(animated:completion:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/dismiss(animated:completion:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/modalPresentationStyle": {
+      "abstract": [
+        {
+          "text": "The presentation style for modal view controllers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modalPresentationStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIModalPresentationStyle",
+          "text": "UIModalPresentationStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/modalPresentationStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "modalPresentationStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "modalPresentationStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/modalpresentationstyle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/modalTransitionStyle": {
+      "abstract": [
+        {
+          "text": "The transition style to use when presenting the view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modalTransitionStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIModalTransitionStyle",
+          "text": "UIModalTransitionStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/modalTransitionStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "modalTransitionStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "modalTransitionStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/modaltransitionstyle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/navigationController": {
+      "abstract": [
+        {
+          "text": "The nearest ancestor in the view controller hierarchy that is a navigation controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UINavigationController",
+          "text": "UINavigationController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/navigationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "navigationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "navigationController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/navigationcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/present(_:animated:completion:)": {
+      "abstract": [
+        {
+          "text": "Presents a view controller modally.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "present"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/present(_:animated:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentViewController:animated:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "present(_:animated:completion:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/present(_:animated:completion:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/presentingViewController": {
+      "abstract": [
+        {
+          "text": "The view controller that presented this view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentingViewController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/presentingViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentingViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentingViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/presentingviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/show(_:sender:)": {
+      "abstract": [
+        {
+          "text": "Presents a view controller in a primary context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "show"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sender"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/show(_:sender:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showViewController:sender:"
+        }
+      ],
+      "role": "symbol",
+      "title": "show(_:sender:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/show(_:sender:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/showDetailViewController(_:sender:)": {
+      "abstract": [
+        {
+          "text": "Presents a view controller in a secondary (or detail) context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showDetailViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sender"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/showDetailViewController(_:sender:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showDetailViewController:sender:"
+        }
+      ],
+      "role": "symbol",
+      "title": "showDetailViewController(_:sender:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/showdetailviewcontroller(_:sender:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/splitViewController": {
+      "abstract": [
+        {
+          "text": "The nearest ancestor in the view controller hierarchy that is a split view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "splitViewController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISplitViewController",
+          "text": "UISplitViewController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/splitViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "splitViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "splitViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/splitviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/tabBarController": {
+      "abstract": [
+        {
+          "text": "The nearest ancestor in the view controller hierarchy that is a tab bar controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabBarController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITabBarController",
+          "text": "UITabBarController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/tabBarController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tabBarController"
+        }
+      ],
+      "role": "symbol",
+      "title": "tabBarController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/tabbarcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/targetViewController(forAction:sender:)": {
+      "abstract": [
+        {
+          "text": "Returns the view controller that responds to the action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "targetViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sender"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/targetViewController(forAction:sender:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "targetViewControllerForAction:sender:"
+        }
+      ],
+      "role": "symbol",
+      "title": "targetViewController(forAction:sender:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/targetviewcontroller(foraction:sender:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-container-view-controller": {
+      "abstract": [
+        {
+          "text": "Create a composite interface by combining content from one or more view controllers with other custom views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-container-view-controller",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a custom container view controller",
+      "type": "topic",
+      "url": "/documentation/uikit/creating-a-custom-container-view-controller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/customizing-the-behavior-of-segue-based-presentations": {
+      "abstract": [
+        {
+          "text": "Pass data between view controllers during a segue, and programmatically control when segues occur.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/customizing-the-behavior-of-segue-based-presentations",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the behavior of segue-based presentations",
+      "type": "topic",
+      "url": "/documentation/uikit/customizing-the-behavior-of-segue-based-presentations"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/dismissing-a-view-controller-with-an-unwind-segue": {
+      "abstract": [
+        {
+          "text": "Configure an unwind segue in your storyboard file that dynamically chooses the most appropriate view controller to display next.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/dismissing-a-view-controller-with-an-unwind-segue",
+      "kind": "article",
+      "role": "article",
+      "title": "Dismissing a view controller with an unwind segue",
+      "type": "topic",
+      "url": "/documentation/uikit/dismissing-a-view-controller-with-an-unwind-segue"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/displaying-and-managing-views-with-a-view-controller": {
+      "abstract": [
+        {
+          "text": "Build a view controller in storyboards, configure it with custom views, and fill those views with your app’s data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/displaying-and-managing-views-with-a-view-controller",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying and managing views with a view controller",
+      "type": "topic",
+      "url": "/documentation/uikit/displaying-and-managing-views-with-a-view-controller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-controllers": {
+      "abstract": [
+        {
+          "text": "Manage your interface using view controllers and facilitate navigation around your app’s content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View controllers",
+      "type": "topic",
+      "url": "/documentation/uikit/view-controllers"
+    },
+    "media-3376046": {
+      "alt": "An illustration of a segue between two view controllers. Tapping a table row in the first view controller triggers the segue. ",
+      "identifier": "media-3376046",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f98f713da106117c15ad64254d3c07c4/media-3376046@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a4daef45497ecc492f98402b5032a47c/media-3376046~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Content-view-controllers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/displaying-and-managing-views-with-a-view-controller",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UIContentContainer"
+      ],
+      "title": "Content view controllers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Segue-management",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/customizing-the-behavior-of-segue-based-presentations",
+        "doc://com.apple.uikit/documentation/UIKit/dismissing-a-view-controller-with-an-unwind-segue"
+      ],
+      "title": "Segue management"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Segue-management",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/customizing-the-behavior-of-segue-based-presentations",
+                "doc://com.apple.uikit/documentation/UIKit/dismissing-a-view-controller-with-an-unwind-segue"
+              ],
+              "title": "Segue management"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Content-view-controllers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/displaying-and-managing-views-with-a-view-controller",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UIContentContainer"
+              ],
+              "title": "Content view controllers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1showDetailViewController(_:sender:)/title",
+          "value": "showDetailViewController:sender:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1showDetailViewController(_:sender:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "showDetailViewController:sender:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1modalTransitionStyle/title",
+          "value": "modalTransitionStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1modalTransitionStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "modalTransitionStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1dismiss(animated:completion:)/title",
+          "value": "dismissViewControllerAnimated:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1dismiss(animated:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dismissViewControllerAnimated:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController~1viewControllers/title",
+          "value": "viewControllers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController~1viewControllers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "viewControllers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIModalPresentationStyle~1automatic/title",
+          "value": "UIModalPresentationAutomatic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIModalPresentationStyle~1automatic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIModalPresentationAutomatic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController~1setViewControllers(_:animated:)/title",
+          "value": "setViewControllers:animated:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController~1setViewControllers(_:animated:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setViewControllers:animated:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1presentingViewController/title",
+          "value": "presentingViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1presentingViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "presentingViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/title",
+          "value": "UIContentContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContentContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContentContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIModalTransitionStyle~1coverVertical/title",
+          "value": "UIModalTransitionStyleCoverVertical"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIModalTransitionStyle~1coverVertical/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIModalTransitionStyleCoverVertical"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/title",
+          "value": "UIViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1tabBarController/title",
+          "value": "tabBarController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1tabBarController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tabBarController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1modalPresentationStyle/title",
+          "value": "modalPresentationStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1modalPresentationStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "modalPresentationStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewController/title",
+          "value": "UITableViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageViewControllerDataSource/title",
+          "value": "UIPageViewControllerDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageViewControllerDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPageViewControllerDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageViewControllerDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPageViewControllerDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController/title",
+          "value": "UICollectionViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1targetViewController(forAction:sender:)/title",
+          "value": "targetViewControllerForAction:sender:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1targetViewController(forAction:sender:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "targetViewControllerForAction:sender:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1present(_:animated:completion:)/title",
+          "value": "presentViewController:animated:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1present(_:animated:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentViewController:animated:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController/title",
+          "value": "UINavigationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController~1setViewControllers(_:animated:)/title",
+          "value": "setViewControllers:animated:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController~1setViewControllers(_:animated:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setViewControllers:animated:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1navigationController/title",
+          "value": "navigationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1navigationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "navigationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISplitViewController~1viewControllers/title",
+          "value": "viewControllers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISplitViewController~1viewControllers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "viewControllers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController~1viewControllers/title",
+          "value": "viewControllers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController~1viewControllers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "viewControllers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1splitViewController/title",
+          "value": "splitViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1splitViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "splitViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1show(_:sender:)/title",
+          "value": "showViewController:sender:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1show(_:sender:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "showViewController:sender:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/showing-and-hiding-view-controllers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/showing-and-hiding-view-controllers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

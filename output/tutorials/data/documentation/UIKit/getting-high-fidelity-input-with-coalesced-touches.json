@@ -1,0 +1,562 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how to support high-precision touches in your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/handling-touches-in-your-view"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/getting-high-fidelity-input-with-coalesced-touches"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Getting high-fidelity input with coalesced touches"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UIKit usually delivers touches to your app at around 60 Hz, but some devices are capable of recording touch information at up to 240 Hz. On such devices, UIKit doesn’t deliver the extra touch information automatically, in case the app doesn’t need the extra data. Instead, it coalesces any extra touches into a single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, whose location reflects only the last recorded touch. However, apps that want the extra precision can retrieve and use the additional touch information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Coalesced touches are intended for apps that need the extra precision and can handle the associated costs. Processing coalesced touches means gathering additional data and applying it to your content. If you don’t need the extra precision, continue using the set of touch objects that UIKit passes to the methods of your views or gesture recognizers.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image illustrates what happens when the user drags Apple Pencil across the device. At the point where UIKit reports a touch event to the app, Apple Pencil has reported four touch positions, but UIKit reports only the last touch to the app by default. The remaining three touches are delivered as coalesced touches, and the app must retrieve them explicitly to use them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3004383",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To retrieve coalesced touches, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEvent/coalescedTouches(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object containing the original ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. That method returns the array of all touches since the last event, including the last ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object actually delivered to the app. You must retrieve coalesced touches immediately when handling an event. After handling the event, there’s no guarantee that any coalesced touches will remain available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIEvent": {
+      "abstract": [
+        {
+          "text": "An object that describes a single user interaction with your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIEvent",
+      "type": "topic",
+      "url": "/documentation/uikit/uievent"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIEvent/coalescedTouches(for:)": {
+      "abstract": [
+        {
+          "text": "Returns all of the touches associated with the specified main touch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "coalescedTouches"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITouch",
+          "text": "UITouch"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITouch",
+          "text": "UITouch"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEvent/coalescedTouches(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "coalescedTouchesForTouch:"
+        }
+      ],
+      "role": "symbol",
+      "title": "coalescedTouches(for:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uievent/coalescedtouches(for:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITouch": {
+      "abstract": [
+        {
+          "text": "An object representing the location, size, movement, and force of a touch occurring on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITouch"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITouch"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITouch",
+      "type": "topic",
+      "url": "/documentation/uikit/uitouch"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-touches-in-your-view": {
+      "abstract": [
+        {
+          "text": "Use touch events directly on a view subclass if touch handling is intricately linked to the view’s content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-touches-in-your-view",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Handling touches in your view",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-touches-in-your-view"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/implementing-a-multi-touch-app": {
+      "abstract": [
+        {
+          "text": "Learn how to create a simple app that handles multitouch input.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/implementing-a-multi-touch-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing a Multi-Touch app",
+      "type": "topic",
+      "url": "/documentation/uikit/implementing-a-multi-touch-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/implementing-coalesced-touch-support-in-an-app": {
+      "abstract": [
+        {
+          "text": "Learn how to create a simple app that handles coalesced touches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/implementing-coalesced-touch-support-in-an-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing coalesced touch support in an app",
+      "type": "topic",
+      "url": "/documentation/uikit/implementing-coalesced-touch-support-in-an-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/minimizing-latency-with-predicted-touches": {
+      "abstract": [
+        {
+          "text": "Create a smooth and responsive drawing experience using UIKit’s predictions for touch locations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/minimizing-latency-with-predicted-touches",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Minimizing latency with predicted touches",
+      "type": "topic",
+      "url": "/documentation/uikit/minimizing-latency-with-predicted-touches"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures": {
+      "abstract": [
+        {
+          "text": "Encapsulate your app’s event-handling logic in gesture recognizers so that you can reuse that code throughout your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Touches, presses, and gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/touches-presses-and-gestures"
+    },
+    "media-3004383": {
+      "alt": "An illustration, with two iPad screens shown side by side. On the left, the initial touch event made by Apple Pencil is shown toward the upper-left of the display. As Apple Pencil is dragged down and to the right, the touches are coalesced when the drag ends, as shown on the right.",
+      "identifier": "media-3004383",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/223d4aea70e73c49f05b65c59c288f41/media-3004383@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Advanced-touch-handling",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/implementing-a-multi-touch-app",
+        "doc://com.apple.uikit/documentation/UIKit/minimizing-latency-with-predicted-touches"
+      ],
+      "title": "Advanced touch handling"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Example",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/implementing-coalesced-touch-support-in-an-app"
+      ],
+      "title": "Example"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Example",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/implementing-coalesced-touch-support-in-an-app"
+              ],
+              "title": "Example"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Advanced-touch-handling",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/implementing-a-multi-touch-app",
+                "doc://com.apple.uikit/documentation/UIKit/minimizing-latency-with-predicted-touches"
+              ],
+              "title": "Advanced touch handling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent~1coalescedTouches(for:)/title",
+          "value": "coalescedTouchesForTouch:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent~1coalescedTouches(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "coalescedTouchesForTouch:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent/title",
+          "value": "UIEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/title",
+          "value": "UITouch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITouch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITouch"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/getting-high-fidelity-input-with-coalesced-touches"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/getting-high-fidelity-input-with-coalesced-touches"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

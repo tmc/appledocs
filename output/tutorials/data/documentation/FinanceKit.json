@@ -1,0 +1,2019 @@
+{
+  "abstract": [
+    {
+      "text": "Access financial data and interact with Apple Card, Apple Cash, and orders in Wallet.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.FinanceKit/documentation/FinanceKit"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "FinanceKit",
+    "images": [
+      {
+        "identifier": "FinanceKit-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "FinanceKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "FinanceKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use FinanceKit to access on-device financial data, Apple Cash, and interact with orders in Apple Wallet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You interact with FinanceKit through ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/FinanceKitUI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which presents a standardized UI that people access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "financekit-hero-img",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the FinanceKit framework, you can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Access on-device financial data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add, update, store, and interact with orders in Wallet.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Interact with Apple Card and Apple Cash.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To access someone’s financial data, you must meet the criteria outlined in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/financekit/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", request the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/contact/request/financekit/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ",",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "hold an organization-level Apple Developer account, be logged in as Account Holder,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "and include the ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSFinancialDataDescription",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " string in your ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Apple reviews each application using ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/financekit/",
+                  "isActive": true,
+                  "overridingTitle": "defined criteria",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "defined criteria",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ". If your request meets the criteria,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Apple adds the entitlement to your developer account by using managed capabilities.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To request access, see the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/contact/request/financekit/",
+                  "isActive": true,
+                  "overridingTitle": "FinanceKit managed entitlement request form",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "FinanceKit managed entitlement request form",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For more information about managed entitlements, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/help/account/reference/provisioning-with-managed-capabilities",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "FinanceKit-PageImage-card.png": {
+      "alt": "Image of FinanceKit logo card.",
+      "identifier": "FinanceKit-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dd6372549935039ba3e5f8f0b521dd52/FinanceKit-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0120ff241bb89f472038d3dc57d31582/FinanceKit-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit": {
+      "abstract": [
+        {
+          "text": "Access financial data and interact with Apple Card, Apple Cash, and orders in Wallet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit",
+      "images": [
+        {
+          "identifier": "FinanceKit-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "FinanceKit",
+      "type": "topic",
+      "url": "/documentation/financekit"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/Account": {
+      "abstract": [
+        {
+          "text": "A structure that describes a financial account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Account"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/Account",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Account"
+        }
+      ],
+      "role": "symbol",
+      "title": "Account",
+      "type": "topic",
+      "url": "/documentation/financekit/account"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/AccountBalance": {
+      "abstract": [
+        {
+          "text": "A structure that describes the financial balance of an account at a specific point in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountBalance"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/AccountBalance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountBalance"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountBalance",
+      "type": "topic",
+      "url": "/documentation/financekit/accountbalance"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/AccountBalanceQuery": {
+      "abstract": [
+        {
+          "text": "A structure that defines an account balance query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountBalanceQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/AccountBalanceQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountBalanceQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountBalanceQuery",
+      "type": "topic",
+      "url": "/documentation/financekit/accountbalancequery"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/AccountCreditInformation": {
+      "abstract": [
+        {
+          "text": "A structure that describes the credit information associated with an account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountCreditInformation"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/AccountCreditInformation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountCreditInformation"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountCreditInformation",
+      "type": "topic",
+      "url": "/documentation/financekit/accountcreditinformation"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/AccountQuery": {
+      "abstract": [
+        {
+          "text": "A structure that defines an account query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/AccountQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountQuery",
+      "type": "topic",
+      "url": "/documentation/financekit/accountquery"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/AssetAccount": {
+      "abstract": [
+        {
+          "text": "A structure that describes the characteristics of an asset account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssetAccount"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/AssetAccount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AssetAccount"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssetAccount",
+      "type": "topic",
+      "url": "/documentation/financekit/assetaccount"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/AuthorizationStatus": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/AuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/financekit/authorizationstatus"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/Balance": {
+      "abstract": [
+        {
+          "text": "A structure that describes an account balance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Balance"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/Balance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Balance"
+        }
+      ],
+      "role": "symbol",
+      "title": "Balance",
+      "type": "topic",
+      "url": "/documentation/financekit/balance"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/CreditDebitIndicator": {
+      "abstract": [
+        {
+          "text": "Values that the framework uses to describe transactions as credits or debits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreditDebitIndicator"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/CreditDebitIndicator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CreditDebitIndicator"
+        }
+      ],
+      "role": "symbol",
+      "title": "CreditDebitIndicator",
+      "type": "topic",
+      "url": "/documentation/financekit/creditdebitindicator"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/CurrencyAmount": {
+      "abstract": [
+        {
+          "text": "A structure that describes a monetary amount and its currency.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CurrencyAmount"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/CurrencyAmount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CurrencyAmount"
+        }
+      ],
+      "role": "symbol",
+      "title": "CurrencyAmount",
+      "type": "topic",
+      "url": "/documentation/financekit/currencyamount"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/CurrentBalance": {
+      "abstract": [
+        {
+          "text": "Values that describe the state of an account’s credit balance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CurrentBalance"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/CurrentBalance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CurrentBalance"
+        }
+      ],
+      "role": "symbol",
+      "title": "CurrentBalance",
+      "type": "topic",
+      "url": "/documentation/financekit/currentbalance"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FinanceError"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FinanceError"
+        }
+      ],
+      "role": "symbol",
+      "title": "FinanceError",
+      "type": "topic",
+      "url": "/documentation/financekit/financeerror"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore": {
+      "abstract": [
+        {
+          "text": "Secure storage for Apple Wallet orders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FinanceStore"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FinanceStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "FinanceStore",
+      "type": "topic",
+      "url": "/documentation/financekit/financestore"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/HistoryToken": {
+      "abstract": [
+        {
+          "text": "A structure that describes the starting point to use for financial data queries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HistoryToken"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/HistoryToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HistoryToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "FinanceStore.HistoryToken",
+      "type": "topic",
+      "url": "/documentation/financekit/financestore/historytoken"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/accountBalanceHistory(forAccountID:since:isMonitoring:)": {
+      "abstract": [
+        {
+          "text": "Returns the account balance history since a time specified by the provided financial history",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accountBalanceHistory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forAccountID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "since"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit0A5StoreC",
+          "text": "FinanceStore"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit0A5StoreC12HistoryTokenV",
+          "text": "HistoryToken"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isMonitoring"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit0A5StoreC",
+          "text": "FinanceStore"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit0A5StoreC7HistoryV",
+          "text": "History"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit14AccountBalanceV",
+          "text": "AccountBalance"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/accountBalanceHistory(forAccountID:since:isMonitoring:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accountBalanceHistory(forAccountID:since:isMonitoring:)",
+      "type": "topic",
+      "url": "/documentation/financekit/financestore/accountbalancehistory(foraccountid:since:ismonitoring:)"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/accountBalances(query:)": {
+      "abstract": [
+        {
+          "text": "Returns a list of balances that meet the criteria in the provided account query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accountBalances"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "query"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit19AccountBalanceQueryV",
+          "text": "AccountBalanceQuery"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit14AccountBalanceV",
+          "text": "AccountBalance"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/accountBalances(query:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accountBalances(query:)",
+      "type": "topic",
+      "url": "/documentation/financekit/financestore/accountbalances(query:)"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/accountHistory(since:isMonitoring:)": {
+      "abstract": [
+        {
+          "text": "Returns a list of accounts a person added since a time specified by the provided financial",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "history token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accountHistory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "since"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit0A5StoreC",
+          "text": "FinanceStore"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit0A5StoreC12HistoryTokenV",
+          "text": "HistoryToken"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isMonitoring"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit0A5StoreC",
+          "text": "FinanceStore"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit0A5StoreC7HistoryV",
+          "text": "History"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit7AccountO",
+          "text": "Account"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/accountHistory(since:isMonitoring:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accountHistory(since:isMonitoring:)",
+      "type": "topic",
+      "url": "/documentation/financekit/financestore/accounthistory(since:ismonitoring:)"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/accounts(query:)": {
+      "abstract": [
+        {
+          "text": "Returns a list of accounts a person added to their Wallet that meet the criteria in the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "provided account query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accounts"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "query"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit12AccountQueryV",
+          "text": "AccountQuery"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit7AccountO",
+          "text": "Account"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/accounts(query:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accounts(query:)",
+      "type": "topic",
+      "url": "/documentation/financekit/financestore/accounts(query:)"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/authorizationStatus()": {
+      "abstract": [
+        {
+          "text": "Checks the authorization status for the calling application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit19AuthorizationStatusO",
+          "text": "AuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/authorizationStatus()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "authorizationStatus()",
+      "type": "topic",
+      "url": "/documentation/financekit/financestore/authorizationstatus()"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/requestAuthorization()": {
+      "abstract": [
+        {
+          "text": "Prompts a person to give FinanceKit authorization to access financial data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit19AuthorizationStatusO",
+          "text": "AuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/requestAuthorization()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestAuthorization()",
+      "type": "topic",
+      "url": "/documentation/financekit/financestore/requestauthorization()"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/saveOrder(signedArchive:)": {
+      "abstract": [
+        {
+          "text": "Adds an order to the store or updates an existing order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "saveOrder"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "signedArchive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit0A5StoreC",
+          "text": "FinanceStore"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit0A5StoreC15SaveOrderResultO",
+          "text": "SaveOrderResult"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/saveOrder(signedArchive:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "saveOrder(signedArchive:)",
+      "type": "topic",
+      "url": "/documentation/financekit/financestore/saveorder(signedarchive:)"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/transactionHistory(forAccountID:since:isMonitoring:)": {
+      "abstract": [
+        {
+          "text": "Returns the transactions for the specified account ID, optional starting time, and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "monitoring indicator for long running transaction queries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transactionHistory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forAccountID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "since"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit0A5StoreC",
+          "text": "FinanceStore"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit0A5StoreC12HistoryTokenV",
+          "text": "HistoryToken"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isMonitoring"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit0A5StoreC",
+          "text": "FinanceStore"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit0A5StoreC7HistoryV",
+          "text": "History"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/transactionHistory(forAccountID:since:isMonitoring:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transactionHistory(forAccountID:since:isMonitoring:)",
+      "type": "topic",
+      "url": "/documentation/financekit/financestore/transactionhistory(foraccountid:since:ismonitoring:)"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/transactions(query:)": {
+      "abstract": [
+        {
+          "text": "Returns transactions that match the provided transaction query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transactions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "query"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit16TransactionQueryV",
+          "text": "TransactionQuery"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10FinanceKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/transactions(query:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transactions(query:)",
+      "type": "topic",
+      "url": "/documentation/financekit/financestore/transactions(query:)"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/FullyQualifiedOrderIdentifier": {
+      "abstract": [
+        {
+          "text": "A structure that specifies the characteristics of an order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FullyQualifiedOrderIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/FullyQualifiedOrderIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FullyQualifiedOrderIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "FullyQualifiedOrderIdentifier",
+      "type": "topic",
+      "url": "/documentation/financekit/fullyqualifiedorderidentifier"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/LiabilityAccount": {
+      "abstract": [
+        {
+          "text": "A structure that describes the characteristics of a liability account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LiabilityAccount"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/LiabilityAccount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LiabilityAccount"
+        }
+      ],
+      "role": "symbol",
+      "title": "LiabilityAccount",
+      "type": "topic",
+      "url": "/documentation/financekit/liabilityaccount"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/MerchantCategoryCode": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MerchantCategoryCode"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/MerchantCategoryCode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MerchantCategoryCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MerchantCategoryCode",
+      "type": "topic",
+      "url": "/documentation/financekit/merchantcategorycode"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/Transaction": {
+      "abstract": [
+        {
+          "text": "A structure that represents a transaction relating to a specific financial account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transaction"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/Transaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Transaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "Transaction",
+      "type": "topic",
+      "url": "/documentation/financekit/transaction"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/TransactionQuery": {
+      "abstract": [
+        {
+          "text": "A structure that describes the parameters to use for a transaction query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransactionQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/TransactionQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TransactionQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "TransactionQuery",
+      "type": "topic",
+      "url": "/documentation/financekit/transactionquery"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/TransactionStatus": {
+      "abstract": [
+        {
+          "text": "Values that describe the status of a transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransactionStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/TransactionStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TransactionStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "TransactionStatus",
+      "type": "topic",
+      "url": "/documentation/financekit/transactionstatus"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKit/TransactionType": {
+      "abstract": [
+        {
+          "text": "Values that describe kinds of transactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransactionType"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKit/TransactionType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TransactionType"
+        }
+      ],
+      "role": "symbol",
+      "title": "TransactionType",
+      "type": "topic",
+      "url": "/documentation/financekit/transactiontype"
+    },
+    "doc://com.apple.documentation/documentation/FinanceKitUI": {
+      "abstract": [
+        {
+          "text": "Add orders to Apple Wallet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FinanceKitUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "FinanceKitUI",
+      "type": "topic",
+      "url": "/documentation/FinanceKitUI"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "financekit-hero-img": {
+      "alt": "Image of FinanceKit hero logo.",
+      "identifier": "financekit-hero-img",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7c9c9fc964649ae4b55466327fde7c07/financekit-hero-img.png"
+        }
+      ]
+    },
+    "https://developer.apple.com/contact/request/financekit/": {
+      "identifier": "https://developer.apple.com/contact/request/financekit/",
+      "title": "FinanceKit managed entitlement",
+      "titleInlineContent": [
+        {
+          "text": "FinanceKit managed entitlement",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/request/financekit/"
+    },
+    "https://developer.apple.com/financekit/": {
+      "identifier": "https://developer.apple.com/financekit/",
+      "title": "Get started with FinanceKit",
+      "titleInlineContent": [
+        {
+          "text": "Get started with FinanceKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/financekit/"
+    },
+    "https://developer.apple.com/help/account/reference/provisioning-with-managed-capabilities": {
+      "identifier": "https://developer.apple.com/help/account/reference/provisioning-with-managed-capabilities",
+      "title": "Provisioning with capabilities",
+      "titleInlineContent": [
+        {
+          "text": "Provisioning with capabilities",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/reference/provisioning-with-managed-capabilities"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Data-storage",
+      "identifiers": [
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore"
+      ],
+      "title": "Data storage"
+    },
+    {
+      "anchor": "Authorization",
+      "identifiers": [
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/authorizationStatus()",
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/requestAuthorization()",
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/AuthorizationStatus"
+      ],
+      "title": "Authorization"
+    },
+    {
+      "anchor": "Accounts",
+      "identifiers": [
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/accounts(query:)",
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/accountHistory(since:isMonitoring:)",
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/AssetAccount",
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/LiabilityAccount",
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/Account"
+      ],
+      "title": "Accounts"
+    },
+    {
+      "anchor": "Balances",
+      "identifiers": [
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/accountBalances(query:)",
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/accountBalanceHistory(forAccountID:since:isMonitoring:)",
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/AccountBalance",
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/AccountBalanceQuery",
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/Balance",
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/CreditDebitIndicator",
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/CurrentBalance"
+      ],
+      "title": "Balances"
+    },
+    {
+      "anchor": "Orders",
+      "identifiers": [
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/FullyQualifiedOrderIdentifier",
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/HistoryToken",
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/saveOrder(signedArchive:)"
+      ],
+      "title": "Orders"
+    },
+    {
+      "anchor": "Transactions",
+      "identifiers": [
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/transactionHistory(forAccountID:since:isMonitoring:)",
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceStore/transactions(query:)",
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/AccountQuery",
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/AccountCreditInformation",
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/CurrencyAmount",
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/Transaction",
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/TransactionQuery",
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/TransactionType",
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/TransactionStatus"
+      ],
+      "title": "Transactions"
+    },
+    {
+      "anchor": "Merchant-categories",
+      "identifiers": [
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/MerchantCategoryCode"
+      ],
+      "title": "Merchant categories"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.FinanceKit/documentation/FinanceKit/FinanceError"
+      ],
+      "title": "Errors"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/financekit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

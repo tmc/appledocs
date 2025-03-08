@@ -1,0 +1,5320 @@
+{
+  "abstract": [
+    {
+      "text": "Display a customizable In-App Purchase store using StoreKit views for SwiftUI.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/storekit-views"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "StoreKit views"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The StoreKit views APIs provide UI to help you build a store for your In-App Purchases, and provide a way for customers to complete the purchase. The views support localization, so your customers see the product names, descriptions, and prices appropriate to their App Store storefront.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Session 10013: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2023/10013",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related session from WWDC23",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "StoreKit manages the layouts across all platforms, so the views look great on any device. You can use SwiftUI APIs to customize how the views integrate with your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use StoreKit views, configure your In-App Purchase metadata in App Store Connect, or in a StoreKit configuration file in Xcode if you’re testing your app. Next, create the views using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/StoreView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/ProductView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Finally, customize the default views to match your app by using your own icons, backgrounds, and other styling. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Previews-in-Xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to see your progress as you iterate on your design.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on configuring your In-App Purchase metadata, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/app-store-connect/#/devae49fb316",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information on StoreKit configuration files in Xcode, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Backyard-Birds-intro.png": {
+      "alt": null,
+      "identifier": "Backyard-Birds-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/308516255a4b167225a334a5a55a1ff3/Backyard-Birds-intro@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample": {
+      "abstract": [
+        {
+          "text": "Create an app with persistent data, interactive widgets, and an all new in-app purchase experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample",
+      "images": [
+        {
+          "identifier": "Backyard-Birds-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Backyard Birds: Building an app with SwiftData and widgets",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Backyard-birds-sample"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement/subscriptionStore": {
+      "abstract": [
+        {
+          "text": "An automatic placement within a subscription store view, based on the view’s context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStore"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI28ContainerBackgroundPlacementV",
+          "text": "ContainerBackgroundPlacement"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement/subscriptionStore",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStore",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ContainerBackgroundPlacement/subscriptionStore"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement/subscriptionStoreFullHeight": {
+      "abstract": [
+        {
+          "text": "A background placement that spans the full height of a subscription store view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStoreFullHeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI28ContainerBackgroundPlacementV",
+          "text": "ContainerBackgroundPlacement"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement/subscriptionStoreFullHeight",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStoreFullHeight",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ContainerBackgroundPlacement/subscriptionStoreFullHeight"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement/subscriptionStoreHeader": {
+      "abstract": [
+        {
+          "text": "A background placement behind the marketing content of a subscription store view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStoreHeader"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI28ContainerBackgroundPlacementV",
+          "text": "ContainerBackgroundPlacement"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement/subscriptionStoreHeader",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStoreHeader",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ContainerBackgroundPlacement/subscriptionStoreHeader"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Previews-in-Xcode": {
+      "abstract": [
+        {
+          "text": "Generate dynamic, interactive previews of your custom views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Previews-in-Xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Previews in Xcode",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Previews-in-Xcode"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/containerBackground(_:for:)": {
+      "abstract": [
+        {
+          "text": "Sets the container background of the enclosing container using a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "containerBackground"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "container"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI28ContainerBackgroundPlacementV",
+          "text": "ContainerBackgroundPlacement"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10ShapeStyleP",
+          "text": "ShapeStyle"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/containerBackground(_:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containerBackground(_:for:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/containerBackground(_:for:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/containerBackground(for:alignment:content:)": {
+      "abstract": [
+        {
+          "text": "Sets the container background of the enclosing container using a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "containerBackground"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "container"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI28ContainerBackgroundPlacementV",
+          "text": "ContainerBackgroundPlacement"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AlignmentV",
+          "text": "Alignment"
+        },
+        {
+          "kind": "text",
+          "text": " = .center, "
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI11ViewBuilderV",
+          "text": "ViewBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/containerBackground(for:alignment:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containerBackground(for:alignment:content:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/containerBackground(for:alignment:content:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/currentEntitlementTask(for:priority:action:)": {
+      "abstract": [
+        {
+          "text": "Declares the view as dependent on the entitlement of an In-App Purchase product, and returns a modified view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentEntitlementTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "productID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "priority"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScP",
+          "text": "TaskPriority"
+        },
+        {
+          "kind": "text",
+          "text": " = .medium, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI20EntitlementTaskStateO",
+          "text": "EntitlementTaskState"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit18VerificationResultO",
+          "text": "VerificationResult"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": ">?>) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> ()) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/currentEntitlementTask(for:priority:action:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentEntitlementTask(for:priority:action:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/currentEntitlementTask(for:priority:action:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/inAppPurchaseOptions(_:)": {
+      "abstract": [
+        {
+          "text": "Add a function to call before initiating a purchase from StoreKit view within this view, providing a set of options for the purchase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inAppPurchaseOptions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV14PurchaseOptionV",
+          "text": "PurchaseOption"
+        },
+        {
+          "kind": "text",
+          "text": ">)?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/inAppPurchaseOptions(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inAppPurchaseOptions(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/inAppPurchaseOptions(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/offerCodeRedemption(isPresented:onCompletion:)": {
+      "abstract": [
+        {
+          "text": "Presents a sheet that enables users to redeem subscription offer codes that you configure in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offerCodeRedemption"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "isPresented"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "onCompletion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " @"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": " = { _ in }) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/offerCodeRedemption(isPresented:onCompletion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offerCodeRedemption(isPresented:onCompletion:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/offerCodeRedemption(isPresented:onCompletion:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/onInAppPurchaseCompletion(perform:)": {
+      "abstract": [
+        {
+          "text": "Add an action to perform when a purchase initiated from a StoreKit view within this view completes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onInAppPurchaseCompletion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV14PurchaseResultO",
+          "text": "PurchaseResult"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> ())?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onInAppPurchaseCompletion(perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onInAppPurchaseCompletion(perform:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/onInAppPurchaseCompletion(perform:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/onInAppPurchaseStart(perform:)": {
+      "abstract": [
+        {
+          "text": "Add an action to perform when a user triggers the purchase button on a StoreKit view within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onInAppPurchaseStart"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> ())?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onInAppPurchaseStart(perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onInAppPurchaseStart(perform:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/onInAppPurchaseStart(perform:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/preferredSubscriptionOffer(_:)": {
+      "abstract": [
+        {
+          "text": "Selects a subscription offer to apply to a purchase that a customer makes from a subscription store view, a store view, or a product view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredSubscriptionOffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "offer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV16SubscriptionInfoV",
+          "text": "SubscriptionInfo"
+        },
+        {
+          "kind": "text",
+          "text": ", ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV17SubscriptionOfferV",
+          "text": "SubscriptionOffer"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV17SubscriptionOfferV",
+          "text": "SubscriptionOffer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/preferredSubscriptionOffer(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preferredSubscriptionOffer(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/preferredSubscriptionOffer(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/productDescription(_:)": {
+      "abstract": [
+        {
+          "text": "Configure the visibility of labels displaying an in-app purchase product description within the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "productDescription"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "visibility"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10VisibilityO",
+          "text": "Visibility"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/productDescription(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "productDescription(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/productDescription(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/productIconBorder()": {
+      "abstract": [
+        {
+          "text": "Adds a standard border to an in-app purchase product’s icon .",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "productIconBorder"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/productIconBorder()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "productIconBorder()",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/productIconBorder()"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/productViewStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for In-App Purchase product views within a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "productViewStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI16ProductViewStyleP",
+          "text": "ProductViewStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/productViewStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "productViewStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/productViewStyle(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/refundRequestSheet(for:isPresented:onDismiss:)": {
+      "abstract": [
+        {
+          "text": "Display the refund request sheet for the given transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "refundRequestSheet"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "transactionID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV2IDa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isPresented"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "onDismiss"
+        },
+        {
+          "kind": "text",
+          "text": ": (@"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV19RefundRequestStatusO",
+          "text": "RefundRequestStatus"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV18RefundRequestErrorO",
+          "text": "RefundRequestError"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> ())? = nil) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/refundRequestSheet(for:isPresented:onDismiss:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "refundRequestSheet(for:isPresented:onDismiss:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/refundRequestSheet(for:isPresented:onDismiss:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/storeButton(_:for:)": {
+      "abstract": [
+        {
+          "text": "Specifies the visibility of auxiliary buttons that store view and subscription store view instances may use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storeButton"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "visibility"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10VisibilityO",
+          "text": "Visibility"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "buttonKinds"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI0A10ButtonKindV",
+          "text": "StoreButtonKind"
+        },
+        {
+          "kind": "text",
+          "text": "...) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/storeButton(_:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "storeButton(_:for:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/storeButton(_:for:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/storeProductTask(for:priority:action:)": {
+      "abstract": [
+        {
+          "text": "Declares the view as dependent on an In-App Purchase product and returns a modified view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storeProductTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV2IDa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "priority"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScP",
+          "text": "TaskPriority"
+        },
+        {
+          "kind": "text",
+          "text": " = .medium, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV01_aB8_SwiftUIE9TaskStateO",
+          "text": "TaskState"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> ()) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/storeProductTask(for:priority:action:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "storeProductTask(for:priority:action:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/storeProductTask(for:priority:action:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/storeProductsTask(for:priority:action:)": {
+      "abstract": [
+        {
+          "text": "Declares the view as dependent on a collection of In-App Purchase products and returns a modified view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storeProductsTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "ids"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "> & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "priority"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScP",
+          "text": "TaskPriority"
+        },
+        {
+          "kind": "text",
+          "text": " = .medium, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV01_aB8_SwiftUIE19CollectionTaskStateO",
+          "text": "CollectionTaskState"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> ()) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/storeProductsTask(for:priority:action:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "storeProductsTask(for:priority:action:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/storeProductsTask(for:priority:action:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionPromotionalOffer(offer:signature:)": {
+      "abstract": [
+        {
+          "text": "Selects a promotional offer to apply to a purchase a customer makes from a subscription store view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionPromotionalOffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "offer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV16SubscriptionInfoV",
+          "text": "SubscriptionInfo"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV17SubscriptionOfferV",
+          "text": "SubscriptionOffer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "signature"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV16SubscriptionInfoV",
+          "text": "SubscriptionInfo"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV17SubscriptionOfferV",
+          "text": "SubscriptionOffer"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV17SubscriptionOfferV",
+          "text": "SubscriptionOffer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV17SubscriptionOfferV9SignatureV",
+          "text": "Signature"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionPromotionalOffer(offer:signature:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionPromotionalOffer(offer:signature:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionPromotionalOffer(offer:signature:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStatusTask(for:priority:action:)": {
+      "abstract": [
+        {
+          "text": "Declares the view as dependent on the status of an auto-renewable subscription group, and returns a modified view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStatusTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "groupID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "priority"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScP",
+          "text": "TaskPriority"
+        },
+        {
+          "kind": "text",
+          "text": " = .medium, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI20EntitlementTaskStateO",
+          "text": "EntitlementTaskState"
+        },
+        {
+          "kind": "text",
+          "text": "<["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV16SubscriptionInfoV",
+          "text": "SubscriptionInfo"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV16SubscriptionInfoV6StatusV",
+          "text": "Status"
+        },
+        {
+          "kind": "text",
+          "text": "]>) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> ()) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStatusTask(for:priority:action:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStatusTask(for:priority:action:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStatusTask(for:priority:action:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreButtonLabel(_:)": {
+      "abstract": [
+        {
+          "text": "Configures subscription store view instances within a view to use the provided button label.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStoreButtonLabel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA11ButtonLabelV",
+          "text": "SubscriptionStoreButtonLabel"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreButtonLabel(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStoreButtonLabel(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStoreButtonLabel(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlBackground(_:)-7ev89": {
+      "abstract": [
+        {
+          "text": "Set a standard effect to use for the background of subscription store view controls within the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStoreControlBackground"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "backgroundStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA17ControlBackgroundV",
+          "text": "SubscriptionStoreControlBackground"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlBackground(_:)-7ev89",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStoreControlBackground(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStoreControlBackground(_:)-7ev89"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlBackground(_:)-7jxa9": {
+      "abstract": [
+        {
+          "text": "Set a shape style to use for the background of subscription store view controls within the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStoreControlBackground"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "backgroundStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10ShapeStyleP",
+          "text": "ShapeStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlBackground(_:)-7jxa9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStoreControlBackground(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStoreControlBackground(_:)-7jxa9"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlIcon(icon:)": {
+      "abstract": [
+        {
+          "text": "Sets a view to use to decorate individual subscription options within a subscription store view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStoreControlIcon"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI11ViewBuilderV",
+          "text": "ViewBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "externalParam",
+          "text": "icon"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV16SubscriptionInfoV",
+          "text": "SubscriptionInfo"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlIcon(icon:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStoreControlIcon(icon:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStoreControlIcon(icon:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the control style for subscription store views within a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStoreControlStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA12ControlStyleP",
+          "text": "SubscriptionStoreControlStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStoreControlStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:placement:)": {
+      "abstract": [
+        {
+          "text": "Sets the control style and control placement for subscription store views within a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStoreControlStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "placement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA12ControlStyleP9PlacementQa",
+          "text": "Placement"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA12ControlStyleP",
+          "text": "SubscriptionStoreControlStyle"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:placement:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStoreControlStyle(_:placement:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:placement:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreOptionGroupStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style subscription store views within this view use to display groups of subscription options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStoreOptionGroupStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI28SubscriptionOptionGroupStyleP",
+          "text": "SubscriptionOptionGroupStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreOptionGroupStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStoreOptionGroupStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStoreOptionGroupStyle(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePickerItemBackground(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the background style for picker items of the subscription store view instances within a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStorePickerItemBackground"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "backgroundStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10ShapeStyleP",
+          "text": "ShapeStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePickerItemBackground(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStorePickerItemBackground(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStorePickerItemBackground(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePickerItemBackground(_:in:)": {
+      "abstract": [
+        {
+          "text": "Sets the background shape and style for subscription store view picker items within a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStorePickerItemBackground"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "backgroundStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10ShapeStyleP",
+          "text": "ShapeStyle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "shape"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ShapeP",
+          "text": "Shape"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePickerItemBackground(_:in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStorePickerItemBackground(_:in:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStorePickerItemBackground(_:in:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePolicyDestination(for:destination:)": {
+      "abstract": [
+        {
+          "text": "Configures a view as the destination for a policy button action in subscription store views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStorePolicyDestination"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "button"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA10PolicyKindV",
+          "text": "SubscriptionStorePolicyKind"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI11ViewBuilderV",
+          "text": "ViewBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePolicyDestination(for:destination:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStorePolicyDestination(for:destination:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStorePolicyDestination(for:destination:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePolicyDestination(url:for:)": {
+      "abstract": [
+        {
+          "text": "Configures a URL as the destination for a policy button action in subscription store views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStorePolicyDestination"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "button"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA10PolicyKindV",
+          "text": "SubscriptionStorePolicyKind"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePolicyDestination(url:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStorePolicyDestination(url:for:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStorePolicyDestination(url:for:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePolicyForegroundStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for the terms of service and privacy policy buttons within a subscription store view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStorePolicyForegroundStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10ShapeStyleP",
+          "text": "ShapeStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePolicyForegroundStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStorePolicyForegroundStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStorePolicyForegroundStyle(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePolicyForegroundStyle(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the primary and secondary style for the terms of service and privacy policy buttons within a subscription store view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStorePolicyForegroundStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "primary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10ShapeStyleP",
+          "text": "ShapeStyle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "secondary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10ShapeStyleP",
+          "text": "ShapeStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePolicyForegroundStyle(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStorePolicyForegroundStyle(_:_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStorePolicyForegroundStyle(_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreSignInAction(_:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform when a person uses the sign-in button on a subscription store view within a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStoreSignInAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> ())?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreSignInAction(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStoreSignInAction(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStoreSignInAction(_:)"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode": {
+      "abstract": [
+        {
+          "text": "Prepare your test environment to test in-app purchases with data you configure locally.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up StoreKit Testing in Xcode",
+      "type": "topic",
+      "url": "/documentation/Xcode/setting-up-storekit-testing-in-xcode"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/EntitlementTaskState": {
+      "abstract": [
+        {
+          "text": "The state of an entitlement task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntitlementTaskState"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/EntitlementTaskState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntitlementTaskState"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntitlementTaskState",
+      "type": "topic",
+      "url": "/documentation/storekit/entitlementtaskstate"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/CollectionTaskState": {
+      "abstract": [
+        {
+          "text": "The state of a task that loads a collection of products in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CollectionTaskState"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/CollectionTaskState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CollectionTaskState"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.CollectionTaskState",
+      "type": "topic",
+      "url": "/documentation/storekit/product/collectiontaskstate"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/TaskState": {
+      "abstract": [
+        {
+          "text": "The state of a task that loads a product in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TaskState"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/TaskState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TaskState"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.TaskState",
+      "type": "topic",
+      "url": "/documentation/storekit/product/taskstate"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ProductView": {
+      "abstract": [
+        {
+          "text": "A view that merchandises an individual In-App Purchase product.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProductView"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ProductView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProductView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProductView",
+      "type": "topic",
+      "url": "/documentation/storekit/productview"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ProductViewStyle": {
+      "abstract": [
+        {
+          "text": "A type that specifies the appearance and interaction of In-App Purchase products within the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProductViewStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ProductViewStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProductViewStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProductViewStyle",
+      "type": "topic",
+      "url": "/documentation/storekit/productviewstyle"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ProductViewStyleConfiguration": {
+      "abstract": [
+        {
+          "text": "The properties of an In-App Purchase product for use by custom product view styles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProductViewStyleConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ProductViewStyleConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProductViewStyleConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProductViewStyleConfiguration",
+      "type": "topic",
+      "url": "/documentation/storekit/productviewstyleconfiguration"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/StoreButtonKind": {
+      "abstract": [
+        {
+          "text": "A button to display in a store view or subscription store view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StoreButtonKind"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/StoreButtonKind",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StoreButtonKind"
+        }
+      ],
+      "role": "symbol",
+      "title": "StoreButtonKind",
+      "type": "topic",
+      "url": "/documentation/storekit/storebuttonkind"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/StoreContent": {
+      "abstract": [
+        {
+          "text": "A type that represents the content of a store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StoreContent"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/StoreContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StoreContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "StoreContent",
+      "type": "topic",
+      "url": "/documentation/storekit/storecontent"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/StoreContent/subscriptionStoreOptionGroupStyle(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStoreOptionGroupStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI28SubscriptionOptionGroupStyleP",
+          "text": "SubscriptionOptionGroupStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI0A7ContentP",
+          "text": "StoreContent"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/StoreContent/subscriptionStoreOptionGroupStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStoreOptionGroupStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/storekit/storecontent/subscriptionstoreoptiongroupstyle(_:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/StoreContentBuilder": {
+      "abstract": [
+        {
+          "text": "A result builder that creates store content from closures that you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StoreContentBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/StoreContentBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StoreContentBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "StoreContentBuilder",
+      "type": "topic",
+      "url": "/documentation/storekit/storecontentbuilder"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/StoreView": {
+      "abstract": [
+        {
+          "text": "A view that merchandises a collection of In-App Purchase products.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StoreView"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/StoreView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StoreView"
+        }
+      ],
+      "role": "symbol",
+      "title": "StoreView",
+      "type": "topic",
+      "url": "/documentation/storekit/storeview"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionOptionGroup": {
+      "abstract": [
+        {
+          "text": "A group of subscription options that includes optional views for labels and marketing content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionOptionGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionOptionGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionOptionGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionOptionGroup",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionoptiongroup"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionOptionGroupSet": {
+      "abstract": [
+        {
+          "text": "A set of groups of subscription options that include optional views for labels and marketing content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionOptionGroupSet"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionOptionGroupSet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionOptionGroupSet"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionOptionGroupSet",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionoptiongroupset"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionOptionGroupStyle": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionOptionGroupStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionOptionGroupStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionOptionGroupStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionOptionGroupStyle",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionoptiongroupstyle"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionOptionSection": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionOptionSection"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionOptionSection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionOptionSection"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionOptionSection",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionoptionsection"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionPeriodGroupSet": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionPeriodGroupSet"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionPeriodGroupSet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionPeriodGroupSet"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionPeriodGroupSet",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionperiodgroupset"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreButton": {
+      "abstract": [
+        {
+          "text": "A button for subscribing to an in-app subscription with a localized label and optional caption.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreButton"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreButton",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorebutton"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreButtonLabel": {
+      "abstract": [
+        {
+          "text": "The label of the subscribe button that a subscription store view uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreButtonLabel"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreButtonLabel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreButtonLabel"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreButtonLabel",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorebuttonlabel"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlBackground": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlBackground"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlBackground",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlBackground"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreControlBackground",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolbackground"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlPlacement": {
+      "abstract": [
+        {
+          "text": "A type that specifies the placement of a subscription control in a subscription store view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlPlacement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreControlPlacement",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolplacement"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle": {
+      "abstract": [
+        {
+          "text": "A type that specifies the appearance and interaction of controls in the subscription store view instances within the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreControlStyle",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyle"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration": {
+      "abstract": [
+        {
+          "text": "The properties of a subscription store control that includes the list of auto-renewable subscriptions to merchandise.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlStyleConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlStyleConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreControlStyleConfiguration",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyleconfiguration"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStorePicker": {
+      "abstract": [
+        {
+          "text": "A composite control with a picker for selecting a subscription option and a button for confirming the subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStorePicker"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStorePicker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStorePicker"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStorePicker",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorepicker"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStorePickerOption": {
+      "abstract": [
+        {
+          "text": "A subscription option within a subscription picker control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStorePickerOption"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStorePickerOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStorePickerOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStorePickerOption",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorepickeroption"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStorePolicyKind": {
+      "abstract": [
+        {
+          "text": "The type of policy, such as the terms of service or privacy policies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStorePolicyKind"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStorePolicyKind",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStorePolicyKind"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStorePolicyKind",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorepolicykind"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView": {
+      "abstract": [
+        {
+          "text": "A view that merchandises a collection of auto-renewable subscription options that belong to the same subscription group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreView"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreView"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreView",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstoreview"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10013": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10013",
+      "title": "Meet StoreKit for SwiftUI",
+      "titleInlineContent": [
+        {
+          "text": "Meet StoreKit for SwiftUI",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10013"
+    },
+    "https://help.apple.com/app-store-connect/#/devae49fb316": {
+      "identifier": "https://help.apple.com/app-store-connect/#/devae49fb316",
+      "title": "Manage In-App Purchases",
+      "titleInlineContent": [
+        {
+          "text": "Manage In-App Purchases",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/app-store-connect/#/devae49fb316"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Merchandising-In-App-Purchases-and-subscriptions",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/ProductView",
+        "doc://com.apple.storekit/documentation/StoreKit/StoreView",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView",
+        "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample"
+      ],
+      "title": "Merchandising In-App Purchases and subscriptions"
+    },
+    {
+      "anchor": "Styling-product-views",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/SwiftUI/View/productViewStyle(_:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/productIconBorder()",
+        "doc://com.apple.storekit/documentation/StoreKit/ProductViewStyle",
+        "doc://com.apple.storekit/documentation/StoreKit/ProductViewStyleConfiguration"
+      ],
+      "title": "Styling product views"
+    },
+    {
+      "anchor": "Styling-subscription-store-controls",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:placement:)",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlPlacement"
+      ],
+      "title": "Styling subscription store controls"
+    },
+    {
+      "anchor": "Configuring-subscription-store-controls",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlIcon(icon:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePickerItemBackground(_:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePickerItemBackground(_:in:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreButtonLabel(_:)",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreButtonLabel"
+      ],
+      "title": "Configuring subscription store controls"
+    },
+    {
+      "anchor": "Creating-custom-subscription-store-control-styles",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreButton",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStorePicker",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStorePickerOption"
+      ],
+      "title": "Creating custom subscription store control styles"
+    },
+    {
+      "anchor": "Declaring-the-structure-of-a-subscription-store",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionOptionGroup",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionOptionGroupSet",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionPeriodGroupSet",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionOptionSection",
+        "doc://com.apple.storekit/documentation/StoreKit/StoreContent",
+        "doc://com.apple.storekit/documentation/StoreKit/StoreContentBuilder"
+      ],
+      "title": "Declaring the structure of a subscription store"
+    },
+    {
+      "anchor": "Styling-subscription-option-groups",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreOptionGroupStyle(_:)",
+        "doc://com.apple.storekit/documentation/StoreKit/StoreContent/subscriptionStoreOptionGroupStyle(_:)",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionOptionGroupStyle"
+      ],
+      "title": "Styling subscription option groups"
+    },
+    {
+      "anchor": "Adding-backgrounds-to-subscription-stores",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/SwiftUI/View/containerBackground(_:for:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/containerBackground(for:alignment:content:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlBackground(_:)-7jxa9",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlBackground(_:)-7ev89",
+        "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement/subscriptionStore",
+        "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement/subscriptionStoreHeader",
+        "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement/subscriptionStoreFullHeight",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlBackground"
+      ],
+      "title": "Adding backgrounds to subscription stores"
+    },
+    {
+      "anchor": "Configuring-accessory-buttons",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/SwiftUI/View/storeButton(_:for:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreSignInAction(_:)",
+        "doc://com.apple.storekit/documentation/StoreKit/StoreButtonKind"
+      ],
+      "title": "Configuring accessory buttons"
+    },
+    {
+      "anchor": "Configuring-the-subscription-store-policies",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePolicyDestination(for:destination:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePolicyDestination(url:for:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePolicyForegroundStyle(_:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePolicyForegroundStyle(_:_:)",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStorePolicyKind"
+      ],
+      "title": "Configuring the subscription store policies"
+    },
+    {
+      "anchor": "Selecting-subscription-offers",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionPromotionalOffer(offer:signature:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/preferredSubscriptionOffer(_:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/offerCodeRedemption(isPresented:onCompletion:)"
+      ],
+      "title": "Selecting subscription offers"
+    },
+    {
+      "anchor": "Configuring-purchase-options-and-product-descriptions",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/SwiftUI/View/inAppPurchaseOptions(_:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/productDescription(_:)"
+      ],
+      "title": "Configuring purchase options and product descriptions"
+    },
+    {
+      "anchor": "Responding-to-store-events",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/SwiftUI/View/onInAppPurchaseStart(perform:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/onInAppPurchaseCompletion(perform:)"
+      ],
+      "title": "Responding to store events"
+    },
+    {
+      "anchor": "Loading-StoreKit-data",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/SwiftUI/View/storeProductTask(for:priority:action:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/storeProductsTask(for:priority:action:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/currentEntitlementTask(for:priority:action:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStatusTask(for:priority:action:)",
+        "doc://com.apple.storekit/documentation/StoreKit/Product/CollectionTaskState",
+        "doc://com.apple.storekit/documentation/StoreKit/Product/TaskState",
+        "doc://com.apple.storekit/documentation/StoreKit/EntitlementTaskState"
+      ],
+      "title": "Loading StoreKit data"
+    },
+    {
+      "anchor": "Refunding-a-request",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/SwiftUI/View/refundRequestSheet(for:isPresented:onDismiss:)"
+      ],
+      "title": "Refunding a request"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Merchandising-In-App-Purchases-and-subscriptions",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample"
+              ],
+              "title": "Merchandising In-App Purchases and subscriptions"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/storekit-views"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/storekit-views"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

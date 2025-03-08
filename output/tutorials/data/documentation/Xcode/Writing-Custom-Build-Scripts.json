@@ -1,0 +1,1303 @@
+{
+  "abstract": [
+    {
+      "text": "Extend your Xcode Cloud workflows with custom build scripts that perform custom tasks or install additional tools.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Writing-Custom-Build-Scripts"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Writing custom build scripts"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode Cloud leverages your project’s configured schemes and offers settings to create advanced workflows. However, Xcode Cloud workflows can offer even more flexibility to meet your project’s requirements. For example, you might need to install an additional third-party tool to successfully build your project, upload build artifacts to private storage, use a different app icon for nightly builds, and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need additional flexibility in your Xcode Cloud workflows, create a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "custom build script",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to perform a specific task at a designated time. Xcode Cloud recognizes three different script types:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "post-clone script",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " that runs after Xcode Cloud clones your Git repository.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "pre-",
+                          "type": "text"
+                        },
+                        {
+                          "code": "xcodebuild",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " script",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " that runs before Xcode Cloud runs ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "post-",
+                          "type": "text"
+                        },
+                        {
+                          "code": "xcodebuild",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " script",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " that Xcode Cloud runs after running ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For Xcode Cloud to recognize your custom build scripts, you’ll need to place",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "them at a specific location: the ",
+              "type": "text"
+            },
+            {
+              "code": "ci_scripts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory. Xcode Cloud runs your custom build scripts from this directory. Additionally, name the scripts according to conventions listed below. When it starts a new build, Xcode Cloud recognizes your custom build scripts automatically and runs them for every action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Xcode Cloud uses ",
+                  "type": "text"
+                },
+                {
+                  "code": "zsh",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " as its default Unix shell. As a best practice, always include a shebang in the first line of your custom build script; for example ",
+                  "type": "text"
+                },
+                {
+                  "code": "#!/bin/sh",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information about custom build scripts, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2021/10269",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information on installing a third-party tool, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud#Use-a-custom-build-script-to-install-a-third-party-dependency-or-tool",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-CI-scripts-directory",
+          "level": 3,
+          "text": "Create the CI scripts directory",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Custom build scripts reside in a directory named ",
+              "type": "text"
+            },
+            {
+              "code": "ci_scripts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that’s located in the same directory as your Xcode project or workspace, and Xcode Cloud runs your custom build scripts with this directory as the root directory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create the ",
+              "type": "text"
+            },
+            {
+              "code": "ci_scripts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your project or workspace in Xcode and navigate to the Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Project navigator, Control-click your project and choose New Group to create the group and its corresponding directory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name the new group ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ci_scripts",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Create-a-custom-build-script",
+          "level": 3,
+          "text": "Create a custom build script",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Xcode Cloud performs an action you’ve added to a workflow, it performs a series of steps. If you add a custom build script, Xcode Cloud runs it at a specific moment between these steps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The name of a custom script’s corresponding file determines when Xcode Cloud runs the script; only use the following file names for your scripts:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The post-clone script runs after Xcode Cloud clones your Git repository. You might use a post-clone script to install an additional tool, or to add a new entry to a property list.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "ci_post_clone.sh",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The pre-",
+                        "type": "text"
+                      },
+                      {
+                        "code": "xcodebuild",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " script runs before Xcode Cloud runs the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "xcodebuild",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " command. You might use a pre-",
+                        "type": "text"
+                      },
+                      {
+                        "code": "xcodebuild",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " script to compile additional dependencies.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "ci_pre_xcodebuild.sh",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The post-",
+                        "type": "text"
+                      },
+                      {
+                        "code": "xcodebuild",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " script runs after Xcode Cloud runs the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "xcodebuild",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " command — even if the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "xcodebuild",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " command fails. You might use a post-",
+                        "type": "text"
+                      },
+                      {
+                        "code": "xcodebuild",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " script to upload artifacts to storage or another service.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "ci_post_xcodebuild.sh",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Writing-Custom-Build-Scripts-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a custom build script:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your project or workspace in Xcode and navigate to the Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-click the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ci_scripts",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " group you created earlier and choose New File.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose the Shell Script template.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name the shell script ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ci_post_clone.sh",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ci_pre_xcodebuild.sh",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ci_post_xcodebuild.sh",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create the file without adding it to a target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Terminal, make the shell script an executable by running ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "chmod +x $filename.sh",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add code to your custom build script — including a shebang in the first line; for example ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "#!/bin/sh",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — and add it to your Git repository. Xcode Cloud runs it automatically when it starts the next build.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode Cloud respects the shebang if the file is executable. If you don’t include a shebang as the first line of your custom script or forget to make the file executable, Xcode Cloud runs the script as ",
+              "type": "text"
+            },
+            {
+              "code": "zsh $filename",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which — depending on your script — can cause a failing build.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can’t obtain administrator privileges by using ",
+                  "type": "text"
+                },
+                {
+                  "code": "sudo",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in your custom build scripts.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Files you create with a custom build script aren’t available to other custom build scripts, and Xcode Cloud deletes any files a custom build script creates. As a result, downloadable Xcode Cloud build artifacts don’t include files you create with custom build scripts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-resources-to-the-CI-scripts-directory",
+          "level": 3,
+          "text": "Add resources to the CI scripts directory",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Custom build scripts run in a temporary build environment where your source code may not be available. As a result, you need to place all resources your custom scripts access in the ",
+              "type": "text"
+            },
+            {
+              "code": "ci_scripts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory. For example, place artwork or ",
+              "type": "text"
+            },
+            {
+              "code": ".plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files in the directory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use sub-directories inside the ",
+                  "type": "text"
+                },
+                {
+                  "code": "ci_scripts",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " directory to organize its content. However, make sure to place the three custom build scripts ",
+                  "type": "text"
+                },
+                {
+                  "code": "ci_post_clone.sh",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "ci_pre_xcodebuild.sh",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "code": "ci_post_xcodebuild.sh",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " at the top level of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "ci_scripts",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " directory.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some cases, a custom build script needs to access a file that’s located in the repository, but placing it in the ",
+              "type": "text"
+            },
+            {
+              "code": "ci_scripts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory isn’t practical. In this case, create a symbolic link to the file in the ",
+              "type": "text"
+            },
+            {
+              "code": "ci_scripts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory. Xcode Cloud detects the symbolic link and makes it available within the ",
+              "type": "text"
+            },
+            {
+              "code": "ci_scripts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory in a subsequent phase of the running action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Access-environment-variables",
+          "level": 3,
+          "text": "Access environment variables",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Environment variables are key to custom scripts because they allow you to write flexible custom scripts with advanced control flows. For example, the following code snippet checks if the ",
+              "type": "text"
+            },
+            {
+              "code": "CI_PULL_REQUEST_NUMBER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable is present to only run a command when Xcode Cloud runs the script as part of a build from a pull request:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#!/bin/sh",
+            "",
+            "if [[ -n $CI_PULL_REQUEST_NUMBER ]];",
+            "then",
+            "    echo \"This build started from a pull request.\"",
+            "",
+            "    # Perform an action only if the build starts from a pull request.",
+            "fi"
+          ],
+          "syntax": "bash",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a list of predefined environment variables, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Environment-Variable-Reference",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-custom-environment-variables",
+          "level": 3,
+          "text": "Define custom environment variables",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to predefined environment variables, you can define custom environment variables in a workflow’s Environment section. To learn more about configuring custom environment variables, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud-Workflow-Reference#Custom-environment-variables",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-debug-information",
+          "level": 3,
+          "text": "Add debug information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The output of your custom build scripts appears in the build report’s build logs. Log information that may be helpful when you debug a custom build script. However, never log sensitive information like API keys or access tokens in your shell script output unless you use a secret custom environment variable. If you mark a custom environment variable to be a secret, Xcode Cloud replaces its value with asterisks (",
+              "type": "text"
+            },
+            {
+              "code": "**********",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") in build logs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Write-resilient-scripts",
+          "level": 3,
+          "text": "Write resilient scripts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Custom build scripts can perform critical tasks like installing dependencies or uploading build artifacts to storage. Write resilient code that handles errors gracefully, and, if a command fails, return a nonzero exit code. By returning a nonzero exit code in your custom build script, you let Xcode Cloud know that something went wrong and let it fail the build to let you know that there’s an issue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following build script sets the ",
+              "type": "text"
+            },
+            {
+              "code": "-e",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option to stop the script if a command exits with a nonzero exit code. Additionally, return a nonzero exit code in case something goes wrong:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#!/bin/sh",
+            "",
+            "# Set the -e flag to stop running the script in case a command returns",
+            "# a nonzero exit code.",
+            "set -e",
+            "",
+            "# A command or script succeeded.",
+            "echo \"A command or script was successful.\"",
+            "exit 0",
+            "",
+            "...",
+            "",
+            "# Something went wrong.",
+            "echo \"Something went wrong. Include helpful information here.\"",
+            "exit 1"
+          ],
+          "syntax": "bash",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Use-helper-scripts-in-complex-custom-build-scripts",
+          "level": 3,
+          "text": "Use helper scripts in complex custom build scripts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your repository contains more than one project, you’ll likely need to configure several Xcode Cloud workflows. Because Xcode Cloud only recognizes one ",
+              "type": "text"
+            },
+            {
+              "code": "ci_scripts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory in your repository — and that directory can only contain the three custom build scripts — you’ll need to add ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "helper scripts",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". Helper scripts are shell scripts you place in the ",
+              "type": "text"
+            },
+            {
+              "code": "ci_scripts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory that you can use to split up the tasks of the default build scripts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the helper scripts to create a more flexible build environment, where you offload most of the logic you want Xcode Cloud to perform in a custom build script into a separate shell script file. For example, you might use environment variables to determine which Xcode Cloud workflow runs the build script, what started the build, the platform of the running build, and so on, to run logic only when applicable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Xcode Cloud uses ",
+                  "type": "text"
+                },
+                {
+                  "code": "zsh",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " as its default Unix shell. Make your scripts executable and add a shebang line at the beginning of your scripts to avoid a failing build. For example, add ",
+                  "type": "text"
+                },
+                {
+                  "code": "#!/usr/bin/env python3",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to a helper script you write in Python that uploads build artifacts to your server. If you use Swift for your helper scripts, use ",
+                  "type": "text"
+                },
+                {
+                  "code": "#!/usr/bin/env swift",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When it comes to naming your helper scripts, use a filename that makes it easy to recognize the script’s purpose. For example, you might prefix helper scripts with the name of their intended platform and name the following script ",
+              "type": "text"
+            },
+            {
+              "code": "platform-detect.sh",
+              "type": "codeVoice"
+            },
+            {
+              "text": " because it uses the ",
+              "type": "text"
+            },
+            {
+              "code": "CI_PRODUCT_PLATFORM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable to detect the platform for the current build:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#!/bin/sh",
+            "",
+            "if [ $CI_PRODUCT_PLATFORM = 'macOS' ]",
+            "then",
+            "    ./macos_perform_example_task.sh",
+            "else",
+            "    ./iOS_perform_example_task.sh",
+            "fi"
+          ],
+          "syntax": "bash",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To help make your helper scripts more recognizable, you should avoid prefixing the script names with ",
+              "type": "text"
+            },
+            {
+              "code": "ci_",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Writing-Custom-Build-Scripts-1": {
+      "alt": "An illustration that shows the different steps Xcode Cloud performs when it performs an action, including the custom build scripts from left to right.",
+      "identifier": "Writing-Custom-Build-Scripts-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6dc78b269a115b929a161d8daec31be0/Writing-Custom-Build-Scripts-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e2511cf821fd68b3b9e48bbe7687c2cd/Writing-Custom-Build-Scripts-1~dark@2x.png"
+        }
+      ]
+    },
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Environment-Variable-Reference": {
+      "abstract": [
+        {
+          "text": "Review predefined environment variables you use in custom build scripts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Environment-Variable-Reference",
+      "kind": "article",
+      "role": "article",
+      "title": "Environment variable reference",
+      "type": "topic",
+      "url": "/documentation/xcode/environment-variable-reference"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud#Use-a-custom-build-script-to-install-a-third-party-dependency-or-tool": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud#Use-a-custom-build-script-to-install-a-third-party-dependency-or-tool",
+      "kind": "section",
+      "title": "Use a custom build script to install a third-party dependency or tool",
+      "type": "topic",
+      "url": "/documentation/xcode/making-dependencies-available-to-xcode-cloud#Use-a-custom-build-script-to-install-a-third-party-dependency-or-tool"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Automatically build, test, and distribute your apps with Xcode Cloud to verify changes and create high-quality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud-Workflow-Reference#Custom-environment-variables": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud-Workflow-Reference#Custom-environment-variables",
+      "kind": "section",
+      "title": "Custom environment variables",
+      "type": "topic",
+      "url": "/documentation/xcode/xcode-cloud-workflow-reference#Custom-environment-variables"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/videos/play/wwdc2021/10269": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2021/10269",
+      "title": "Customize your advanced Xcode Cloud workflows",
+      "titleInlineContent": [
+        {
+          "text": "Customize your advanced Xcode Cloud workflows",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2021/10269"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Custom-build-scripts",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Environment-Variable-Reference"
+      ],
+      "title": "Custom build scripts"
+    }
+  ]
+}

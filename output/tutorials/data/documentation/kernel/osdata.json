@@ -1,0 +1,1358 @@
+{
+  "abstract": [
+    {
+      "text": "OSData wraps an array of bytes in a C++ object for use in Libkern collections.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/libkern",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/osdata"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1388018,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@OSData",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "OSData"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "OSData"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSObject",
+              "text": "OSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "OSData represents an array of bytes as a Libkern C++ object. OSData objects are mutable: You can add bytes to them and overwrite portions of the byte array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use Restrictions",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With very few exceptions in the I/O Kit, all Libkern-based C++ classes, functions, and macros are ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "unsafe",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " to use in a primary interrupt context. Consult the I/O Kit documentation related to primary interrupts for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "OSData provides no concurrency protection; it's up to the usage context to provide any protection necessary. Some portions of the I/O Kit, such as IORegistryEntry, handle synchronization via defined member functions for setting properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "libkern",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern/data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Types",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern/data_types"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osboolean": {
+      "abstract": [
+        {
+          "text": "OSBoolean wraps a boolean value in a C++ object for use in Libkern collections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osboolean",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSBoolean",
+      "type": "topic",
+      "url": "/documentation/kernel/osboolean"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata": {
+      "abstract": [
+        {
+          "text": "OSData wraps an array of bytes in a C++ object for use in Libkern collections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSData",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1387997-appendbyte": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendByte"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1387997-appendbyte",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendByte",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1387997-appendbyte"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1387999-ensurecapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ensureCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1387999-ensurecapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ensureCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1387999-ensurecapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1388001-withbytes": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withBytes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1388001-withbytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withBytes",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1388001-withbytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1388002-initwithbytes": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithBytes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1388002-initwithbytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithBytes",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1388002-initwithbytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1388004-setcapacityincrement": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCapacityIncrement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1388004-setcapacityincrement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCapacityIncrement",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1388004-setcapacityincrement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1388008-initwithcapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1388008-initwithcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1388008-initwithcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1388010-withbytesnocopy": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withBytesNoCopy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1388010-withbytesnocopy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withBytesNoCopy",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1388010-withbytesnocopy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1388014-getcapacityincrement": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCapacityIncrement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1388014-getcapacityincrement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCapacityIncrement",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1388014-getcapacityincrement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1388020-initwithbytesnocopy": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithBytesNoCopy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1388020-initwithbytesnocopy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithBytesNoCopy",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1388020-initwithbytesnocopy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1388022-setdeallocfunction": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDeallocFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1388022-setdeallocfunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDeallocFunction",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1388022-setdeallocfunction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1388028-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1388028-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1388028-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1388030-initwithdata": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1388030-initwithdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithData",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1388030-initwithdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1388032-serialize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "serialize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1388032-serialize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "serialize",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1388032-serialize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1388036-appendbytes": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendBytes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1388036-appendbytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendBytes",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1388036-appendbytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1388038-setserializable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSerializable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1388038-setserializable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setSerializable",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1388038-setserializable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808052-appendbyte": {
+      "abstract": [
+        {
+          "text": "Appends a single byte value to the OSData object's internal data buffer a specified number of times.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808052-appendbyte",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "appendByte",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808052-appendbyte"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808058-appendbytes": {
+      "abstract": [
+        {
+          "text": "Appends the data contained in another OSData object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808058-appendbytes",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "appendBytes(const OSData *)",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808058-appendbytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808067-appendbytes": {
+      "abstract": [
+        {
+          "text": "Appends a buffer of bytes to the OSData object's internal data buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808067-appendbytes",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "appendBytes(const void *, unsigned int)",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808067-appendbytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808072-ensurecapacity": {
+      "abstract": [
+        {
+          "text": "Ensures the array has enough space to store the requested number of bytes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808072-ensurecapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ensureCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808072-ensurecapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808080-free": {
+      "abstract": [
+        {
+          "text": "Deallocates or releases any resources used by the OSDictionary instance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808080-free",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808080-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808085-getbytesnocopy": {
+      "abstract": [
+        {
+          "text": "Returns a pointer to the OSData object's internal data buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808085-getbytesnocopy",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getBytesNoCopy()",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808085-getbytesnocopy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808094-getbytesnocopy": {
+      "abstract": [
+        {
+          "text": "Returns a pointer into the OSData object's internal data buffer with a given offset and length.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808094-getbytesnocopy",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getBytesNoCopy(unsigned int, unsigned int)",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808094-getbytesnocopy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808100-getcapacity": {
+      "abstract": [
+        {
+          "text": "Returns the total number of bytes the OSData can store without reallocating.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808100-getcapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808100-getcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808106-getcapacityincrement": {
+      "abstract": [
+        {
+          "text": "Returns the storage increment of the OSData object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808106-getcapacityincrement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCapacityIncrement",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808106-getcapacityincrement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808111-getlength": {
+      "abstract": [
+        {
+          "text": "Returns the number of bytes in or referenced by the OSData object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808111-getlength",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getLength",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808111-getlength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808118-initwithbytes": {
+      "abstract": [
+        {
+          "text": "Initializes an instance of OSData with a copy of the provided data buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808118-initwithbytes",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithBytes",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808118-initwithbytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808127-initwithbytesnocopy": {
+      "abstract": [
+        {
+          "text": "Initializes an instance of OSData to share the provided data buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808127-initwithbytesnocopy",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithBytesNoCopy",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808127-initwithbytesnocopy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808134-initwithcapacity": {
+      "abstract": [
+        {
+          "text": "Initializes an instance of OSData.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808134-initwithcapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808134-initwithcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808141-initwithdata": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an instance of OSData with contents copied from another OSData object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808141-initwithdata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithData(const OSData *)",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808141-initwithdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808150-initwithdata": {
+      "abstract": [
+        {
+          "text": "Initializes an instance of OSData with contents copied from a range within another OSData object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808150-initwithdata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithData(const OSData *, unsigned int, unsigned int)",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808150-initwithdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808160-isequalto": {
+      "abstract": [
+        {
+          "text": "Tests the equality of two OSData objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808160-isequalto",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isEqualTo(const OSData *)",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808160-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808165-isequalto": {
+      "abstract": [
+        {
+          "text": "Tests the equality of an OSData object to an arbitrary object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808165-isequalto",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isEqualTo(const OSMetaClassBase *)",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808165-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808172-isequalto": {
+      "abstract": [
+        {
+          "text": "Tests the equality of an OSData object to an OSString.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808172-isequalto",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isEqualTo(const OSString *)",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808172-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808178-isequalto": {
+      "abstract": [
+        {
+          "text": "Tests the equality of an OSData object's contents to a C array of bytes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808178-isequalto",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isEqualTo(const void *, unsigned int)",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808178-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808185-serialize": {
+      "abstract": [
+        {
+          "text": "Archives the receiver into the provided OSSerialize object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808185-serialize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "serialize",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808185-serialize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808190-setcapacityincrement": {
+      "abstract": [
+        {
+          "text": "Sets the storage increment of the array.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808190-setcapacityincrement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCapacityIncrement",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808190-setcapacityincrement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808195-withbytes": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an instance of OSData with a copy of the provided data buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808195-withbytes",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withBytes",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808195-withbytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808197-withbytesnocopy": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an instance of OSData that shares the provided data buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808197-withbytesnocopy",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withBytesNoCopy",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808197-withbytesnocopy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808204-withcapacity": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an empty instance of OSData.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808204-withcapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808204-withcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808208-withdata": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an instance of OSData with contents copied from another OSData object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808208-withdata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withData(const OSData *)",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808208-withdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/1808211-withdata": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an instance of OSData with contents copied from a range within another OSData object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/1808211-withdata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withData(const OSData *, unsigned int, unsigned int)",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/1808211-withdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/2721392-isserializable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSerializable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/2721392-isserializable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isSerializable",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/2721392-isserializable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/3180878-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/3180878-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/3180878-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/3180879-getbytesnocopy": {
+      "abstract": [
+        {
+          "text": "Returns a pointer to the OSData object's internal data buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getBytesNoCopy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/3180879-getbytesnocopy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBytesNoCopy",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/3180879-getbytesnocopy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/3180880-getcapacity": {
+      "abstract": [
+        {
+          "text": "Returns length of preallocated capacity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/3180880-getcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/3180880-getcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/3180881-getlength": {
+      "abstract": [
+        {
+          "text": "Returns length of data present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getLength"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/3180881-getlength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getLength",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/3180881-getlength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/3180882-isequalto": {
+      "abstract": [
+        {
+          "text": "Compares the data with an OSData",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqualTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/3180882-isequalto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqualTo",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/3180882-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/3180885-withcapacity": {
+      "abstract": [
+        {
+          "text": "Allocates an OSData object with preallocated capacity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/3180885-withcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/3180885-withcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/3180886-withdata": {
+      "abstract": [
+        {
+          "text": "Allocates an OSData object with a copy of bytes from another OSData.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/3180886-withdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withData",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/3180886-withdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/3433841-appendbytes": {
+      "abstract": [
+        {
+          "text": "Appends a buffer of bytes to the OSData object's internal data buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendBytes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/3433841-appendbytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendBytes",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/3433841-appendbytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/3433842-getbytesnocopy": {
+      "abstract": [
+        {
+          "text": "Returns a pointer to the OSData object's internal data buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getBytesNoCopy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/3433842-getbytesnocopy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBytesNoCopy",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/3433842-getbytesnocopy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/3433843-isequalto": {
+      "abstract": [
+        {
+          "text": "Compares the data with an OSString",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqualTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/3433843-isequalto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqualTo",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/3433843-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/3433844-isequalto": {
+      "abstract": [
+        {
+          "text": "Compares the data with a pointer to bytes",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqualTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/3433844-isequalto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqualTo",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/3433844-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/3433845-withdata": {
+      "abstract": [
+        {
+          "text": "Allocates an OSData object with a copy of bytes from a subset of another OSData.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/3433845-withdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withData",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/3433845-withdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/3433858-isequalto": {
+      "abstract": [
+        {
+          "text": "Compares the data with an OSObject",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqualTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/3433858-isequalto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqualTo",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/3433858-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdata/3516834-initwithdata": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdata/3516834-initwithdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithData",
+      "type": "topic",
+      "url": "/documentation/kernel/osdata/3516834-initwithdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osnumber": {
+      "abstract": [
+        {
+          "text": "OSNumber wraps an integer value in a C++ object for use in Libkern collections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSNumber",
+      "type": "topic",
+      "url": "/documentation/kernel/osnumber"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring": {
+      "abstract": [
+        {
+          "text": "OSString wraps a C string in a C++ object for use in Libkern collections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSString",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osboolean",
+        "doc://com.apple.documentation/documentation/kernel/osstring",
+        "doc://com.apple.documentation/documentation/kernel/osnumber"
+      ],
+      "title": "Simple Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1673633",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808052-appendbyte",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808058-appendbytes",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808067-appendbytes",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808072-ensurecapacity",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808080-free",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808085-getbytesnocopy",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808094-getbytesnocopy",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808100-getcapacity",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808106-getcapacityincrement",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808111-getlength",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808118-initwithbytes",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808127-initwithbytesnocopy",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808134-initwithcapacity",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808141-initwithdata",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808150-initwithdata",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808160-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808165-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808172-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808178-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808185-serialize",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808190-setcapacityincrement",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808195-withbytes",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808197-withbytesnocopy",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808204-withcapacity",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808208-withdata",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1808211-withdata"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "3516968",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osdata/1387997-appendbyte",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1388036-appendbytes",
+        "doc://com.apple.documentation/documentation/kernel/osdata/3433841-appendbytes",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1387999-ensurecapacity",
+        "doc://com.apple.documentation/documentation/kernel/osdata/3180878-free",
+        "doc://com.apple.documentation/documentation/kernel/osdata/3180879-getbytesnocopy",
+        "doc://com.apple.documentation/documentation/kernel/osdata/3433842-getbytesnocopy",
+        "doc://com.apple.documentation/documentation/kernel/osdata/3180880-getcapacity",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1388014-getcapacityincrement",
+        "doc://com.apple.documentation/documentation/kernel/osdata/3180881-getlength",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1388028-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1388002-initwithbytes",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1388020-initwithbytesnocopy",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1388008-initwithcapacity",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1388030-initwithdata",
+        "doc://com.apple.documentation/documentation/kernel/osdata/3516834-initwithdata",
+        "doc://com.apple.documentation/documentation/kernel/osdata/3180882-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osdata/3433843-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osdata/3433844-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osdata/3433858-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osdata/2721392-isserializable",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1388032-serialize",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1388004-setcapacityincrement",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1388022-setdeallocfunction",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1388038-setserializable"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "3516969",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osdata/1388001-withbytes",
+        "doc://com.apple.documentation/documentation/kernel/osdata/1388010-withbytesnocopy",
+        "doc://com.apple.documentation/documentation/kernel/osdata/3180885-withcapacity",
+        "doc://com.apple.documentation/documentation/kernel/osdata/3180886-withdata",
+        "doc://com.apple.documentation/documentation/kernel/osdata/3433845-withdata"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/osdata"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

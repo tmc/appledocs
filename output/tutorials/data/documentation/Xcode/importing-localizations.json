@@ -1,0 +1,429 @@
+{
+  "abstract": [
+    {
+      "text": "Import the files that you translate or adapt for a language and region into your",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "project.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/localization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/importing-localizations"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Importing localizations"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you localize the contents of a catalog, import the localizations back into",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your project. When you import localizations, Xcode updates the strings files in your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "project from the localized versions in the XLIFF file in the catalog.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Import-localizations-using-Xcode",
+          "level": 3,
+          "text": "Import localizations using Xcode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Project navigator, select the project, then choose Product > Import Localizations.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the import dialog that appears, select the Xcode Localization Catalog folder,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and click Import. Xcode ingests the files and warns you if there are untranslated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the sheet that appears, review the warnings and errors. In the left column, click",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Issues View button in the toolbar, then select a message that appears below.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the comparison editor on the right, the imported catalog version of the file appears",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on the left and the current project file appears on the right.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "importing-localizations-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To review all the changes, click the File View button in the toolbar, and select",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a file in the navigator below. When you’re ready to import the files, click Import.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode updates the strings and ",
+              "type": "text"
+            },
+            {
+              "code": ".stringsdict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files from the localized versions in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the catalog. Xcode also updates any localizable resources and assets in an asset",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "catalog.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Import-localizations-using-commands",
+          "level": 3,
+          "text": "Import localizations using commands",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also import the catalog with the ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command using the ",
+              "type": "text"
+            },
+            {
+              "code": "-importLocalizations",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "argument:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "xcodebuild -importLocalizations -project <projectname> -localizationPath <dirpath>",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Be sure to test your app for the languages and regions in your project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-screenshots-of-your-app-for-localizers": {
+      "abstract": [
+        {
+          "text": "Share screenshots of your app with localizers to provide context for translation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-screenshots-of-your-app-for-localizers",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating screenshots of your app for localizers",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-screenshots-of-your-app-for-localizers"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/editing-xliff-and-string-catalog-files": {
+      "abstract": [
+        {
+          "text": "Translate or adapt the localizable files for a language and region that you export",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from your project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/editing-xliff-and-string-catalog-files",
+      "kind": "article",
+      "role": "article",
+      "title": "Editing XLIFF and string catalog files",
+      "type": "topic",
+      "url": "/documentation/xcode/editing-xliff-and-string-catalog-files"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/exporting-localizations": {
+      "abstract": [
+        {
+          "text": "Provide the localizable files from your project to localizers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/exporting-localizations",
+      "kind": "article",
+      "role": "article",
+      "title": "Exporting localizations",
+      "type": "topic",
+      "url": "/documentation/xcode/exporting-localizations"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/localization": {
+      "abstract": [
+        {
+          "text": "Expand the market for your app by supporting multiple languages and regions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Localization",
+      "type": "topic",
+      "url": "/documentation/xcode/localization"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/locking-views-in-storyboard-and-xib-files": {
+      "abstract": [
+        {
+          "text": "Prevent changes to your Interface Builder files while localizing human-facing strings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/locking-views-in-storyboard-and-xib-files",
+      "kind": "article",
+      "role": "article",
+      "title": "Locking views in storyboard and XIB files",
+      "type": "topic",
+      "url": "/documentation/xcode/locking-views-in-storyboard-and-xib-files"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "importing-localizations-1": {
+      "alt": "Screenshot of an import localization sheet where you review changes and errors.",
+      "identifier": "importing-localizations-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8efcb565b78fd33c9aa7a05aeeceb1ba/importing-localizations-1@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Translation-and-adaptation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/creating-screenshots-of-your-app-for-localizers",
+        "doc://com.apple.Xcode/documentation/Xcode/exporting-localizations",
+        "doc://com.apple.Xcode/documentation/Xcode/editing-xliff-and-string-catalog-files",
+        "doc://com.apple.Xcode/documentation/Xcode/locking-views-in-storyboard-and-xib-files"
+      ],
+      "title": "Translation and adaptation"
+    }
+  ]
+}

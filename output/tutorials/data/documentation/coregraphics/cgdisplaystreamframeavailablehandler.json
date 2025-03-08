@@ -1,0 +1,572 @@
+{
+  "abstract": [
+    {
+      "text": "A block called when a data stream has a new frame event to process.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coregraphics",
+        "doc://com.apple.documentation/documentation/coregraphics/quartz_display_services"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coregraphics",
+        "doc://com.apple.documentation/documentation/coregraphics/core_graphics_data_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coregraphics/cgdisplaystreamframeavailablehandler"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1455459,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@CGDisplayStreamFrameAvailableHandler",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "typealias "
+      },
+      {
+        "kind": "identifier",
+        "text": "CGDisplayStreamFrameAvailableHandler"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Graphics"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.8",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "tdef",
+    "title": "CGDisplayStreamFrameAvailableHandler"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typealias"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGDisplayStreamFrameAvailableHandler"
+            },
+            {
+              "kind": "text",
+              "text": " = ("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdisplaystreamframestatus",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@CGDisplayStreamFrameStatus",
+              "text": "CGDisplayStreamFrameStatus"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/UInt64",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s6UInt64V",
+              "text": "UInt64"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "symbol-1496291",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@IOSurfaceRef",
+              "text": "IOSurfaceRef"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdisplaystreamupdate",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGDisplayStreamUpdateRef",
+              "text": "CGDisplayStreamUpdate"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Void",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s4Voida",
+              "text": "Void"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The handler is called whenever the display stream has updated content to process as well as when other events occur. Each time a new frame is generated, the block receives an ",
+              "type": "text"
+            },
+            {
+              "code": "IOSurface",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object that contains the pixel data as well as an update object that describes the frame update.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The handler receives the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Describes the kind of update being passed to the handler. See ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdisplaystreamframestatus",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "status",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The mach absolute time when the event occurred. For a frame event, this is when the frame was displayed by the window server.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "displayTime",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "IOSurface",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " object that contains the pixel data. May be ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "NULL",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " in some cases.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "If you need to maintain a reference to the surface beyond the lifetime of the handler call, you must call the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521269-cfretain",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " function to retain the surface and the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/iosurface/1419455-iosurfaceincrementusecount",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " function to let the display stream know that the frame is not ready for re-use. Once you are finished using the surface you must call the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/iosurface/1419377-iosurfacedecrementusecount",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " function and then call the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " function. If you are maintaining a cache of information about the surface (such as a GL texture object created from the surface’s contents), you must not call release it until after you remove it from your cache.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "You can not depend on the set of surfaces being used by the display stream as being static, so you should remove surfaces from the cache when they haven’t been re-used in a while.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "frameSurface",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdisplaystreamupdate",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " reference that holds the update metadata for the current frame. ",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "If you need to hold onto the metadata beyond the lifetime of the handler call, you must call the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521269-cfretain",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " function on the update reference before the end of the handler. When you are finished with the update, call the call the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " function.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This parameter holds ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "NULL",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " when the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "status",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " parameter’s has any value other than ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdisplaystreamframestatus/framecomplete",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "updateRef",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/UInt64": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UInt64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UInt64",
+      "type": "topic",
+      "url": "/documentation/swift/uint64"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Void": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Void",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Void",
+      "type": "topic",
+      "url": "/documentation/swift/void"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFRelease",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1521153-cfrelease"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1521269-cfretain": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521269-cfretain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFRetain",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1521269-cfretain"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Graphics",
+      "type": "topic",
+      "url": "/documentation/coregraphics"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgdisplaystreamframestatus": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdisplaystreamframestatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGDisplayStreamFrameStatus",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgdisplaystreamframestatus"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgdisplaystreamframestatus/framecomplete": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdisplaystreamframestatus/framecomplete",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGDisplayStreamFrameStatus.frameComplete",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgdisplaystreamframestatus/framecomplete"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgdisplaystreamupdate": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdisplaystreamupdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGDisplayStreamUpdate",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgdisplaystreamupdate"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/core_graphics_data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/core_graphics_data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Graphics Data Types",
+      "type": "topic",
+      "url": "/documentation/coregraphics/core_graphics_data_types"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/quartz_display_services": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/quartz_display_services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Quartz Display Services",
+      "type": "topic",
+      "url": "/documentation/coregraphics/quartz_display_services"
+    },
+    "doc://com.apple.documentation/documentation/iosurface/1419377-iosurfacedecrementusecount": {
+      "identifier": "doc://com.apple.documentation/documentation/iosurface/1419377-iosurfacedecrementusecount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOSurfaceDecrementUseCount(_:)",
+      "type": "topic",
+      "url": "/documentation/iosurface/1419377-iosurfacedecrementusecount"
+    },
+    "doc://com.apple.documentation/documentation/iosurface/1419455-iosurfaceincrementusecount": {
+      "identifier": "doc://com.apple.documentation/documentation/iosurface/1419455-iosurfaceincrementusecount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOSurfaceIncrementUseCount(_:)",
+      "type": "topic",
+      "url": "/documentation/iosurface/1419455-iosurfaceincrementusecount"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coregraphics/cgdisplaystreamframeavailablehandler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coregraphics/cgdisplaystreamframeavailablehandler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

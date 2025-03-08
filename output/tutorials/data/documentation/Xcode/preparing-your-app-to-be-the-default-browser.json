@@ -1,0 +1,1907 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your browser app so users can set it as the default on their device",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "instead of Safari.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/projects-and-workspaces",
+        "doc://com.apple.Xcode/documentation/Xcode/allowing-apps-and-websites-to-link-to-your-content"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/preparing-your-app-to-be-the-default-browser"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Preparing your app to be the default web browser"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 14 and later, users can select an app to be their default web browser. To make your app a choice, confirm that your app meets the requirements below,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "then request a managed entitlement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-your-app-to-be-a-default-browser",
+          "level": 3,
+          "text": "Configure your app to be a default browser",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system invokes the default web browser in iOS whenever the user opens an HTTP",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or HTTPS link. Because this app becomes the user’s primary gateway to the internet,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Apple requires that web browsing apps meet specific functional criteria to protect",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "user privacy and ensure proper access to internet resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps express their capability to be a default web browser by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.web-browser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "managed entitlement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Request the default browser entitlement by filling out the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/contact/request/default-browser-entitlement/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In that form you can also request the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.browser.app-installation",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " entitlement.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you do that and your request for the default browser entitlement is accepted you get both the default browser entitlement and the app-installation entitlement for your browser app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Fulfill-default-browser-requirements",
+          "level": 3,
+          "text": "Fulfill default browser requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps that register as a default web browser option must satisfy the following criteria:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app must specify the HTTP and HTTPS schemes in its ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app can’t use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIWebView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On launch, the app must provide a text field for entering a URL, search tools for",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "finding relevant links on the internet, or curated lists of bookmarks.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When opening an HTTP or HTTPS URL in its default configuration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app must navigate directly to the specified destination and render the expected",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "web content. Apps that redirect to unexpected locations or render content not specified",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in the destination’s source code don’t meet the requirements of a default web browser.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apps designed to operate in a parental controls or locked down mode may restrict",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "navigation to comply with those goals.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app may present a “Safe Browsing” or other warning for content suspected of",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "phishing or other problems.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app may offer a native authentication UI for a site that also offers a native",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "web sign-in flow.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Use-default-browser-capabilities",
+          "level": 3,
+          "text": "Use default browser capabilities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps that use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.web-browser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "managed entitlement can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Be an option for the user to choose as their default browser.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Load pages from all domains with full script access.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use Service Workers in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "instances.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Offer the Add to Home Screen action in a share sheet by including the current",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "activityItems",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "array when creating a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Adhere-to-browser-restrictions",
+          "level": 3,
+          "text": "Adhere to browser restrictions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps that have the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.web-browser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "managed entitlement may not claim to respond to Universal Links for specific domains.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system will ignore any such claims. Apps with the entitlement can still open",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Universal Links to other apps as usual.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because of their privileged position in a user’s web browsing, browser apps should",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "avoid unnecessary access to personal data. Apps that use any of the following ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "keys while using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.web-browser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "managed entitlement will be rejected:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPhotoLibraryUsageDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "— For saving images, your app should only specify ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPhotoLibraryAddUsageDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " can still upload photos",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and files without your app needing access to a user’s entire photo library. To access",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "individual photos your app should use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/PhotosUI/PHPickerViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "which doesn’t require ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPhotoLibraryUsageDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ",",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "instead of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImagePickerController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationAlwaysUsageDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ",",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationAlwaysAndWhenInUseUsageDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "— For determining the user’s location, request while in-use authorization instead",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationWhenInUseUsageDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Browsers are restricted from always-on location access.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHomeKitUsageDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "— Browsers can’t access the user’s HomeKit database.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSBluetoothAlwaysUsageDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "— Browsers can’t poll for Bluetooth devices when the app is in the background. Browsers",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "should use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSBluetoothWhileInUseUsageDescription",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for Bluetooth features.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthShareUsageDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ",",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthUpdateUsageDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "— Browsers can’t access the user’s health database.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationAlwaysUsageDescription",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "was deprecated in iOS 10. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/choosing-the-location-services-authorization-to-request",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Check-if-your-app-is-the-default-browser",
+          "level": 3,
+          "text": "Check if your app is the default browser",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test whether someone configured your app as the default browser in iOS, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/isDefault(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (Swift) or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/defaultStatusForCategory:error:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (Objective-C), with the category ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/Category/webBrowser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method is rate-limited: if your app calls it too frequently, the method throws an error.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The value for the key ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/CategoryDefaultError/retryAvailableDateErrorKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the error’s user info dictionary is the date at which your app can next check whether it’s the default browser.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Ship-an-alternative-browser-engine",
+          "level": 3,
+          "text": "Ship an alternative browser engine",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your iOS browser app includes an alternative browser engine, which includes using a version of WebKit other than the framework supplied in the operating system, you need to design your browser as an app that hosts extensions to access system resources and process untrusted data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BrowserEngineKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/allowing-apps-and-websites-to-link-to-your-content": {
+      "abstract": [
+        {
+          "text": "Use universal links to link directly to content within your app and share data securely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/allowing-apps-and-websites-to-link-to-your-content",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Allowing apps and websites to link to your content",
+      "type": "topic",
+      "url": "/documentation/xcode/allowing-apps-and-websites-to-link-to-your-content"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/projects-and-workspaces": {
+      "abstract": [
+        {
+          "text": "Manage the code and resources you use to build apps, libraries, and other",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "software for Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/projects-and-workspaces",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Projects and workspaces",
+      "type": "topic",
+      "url": "/documentation/xcode/projects-and-workspaces"
+    },
+    "doc://com.apple.documentation/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/BrowserEngineKit"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.browser.app-installation": {
+      "abstract": [
+        {
+          "text": "The entitlement that enables a browser to install alternative-distribution apps from a website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.browser.app-installation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.browser.app-installation",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.browser.app-installation"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.web-browser": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the app can act as the user’s default web browser.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.web-browser",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.web-browser",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.web-browser"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSBluetoothAlwaysUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app needs access to Bluetooth.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSBluetoothAlwaysUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBluetoothAlwaysUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSBluetoothAlwaysUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthShareUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message to the user that explains why the app requested permission to read samples from the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthShareUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHealthShareUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSHealthShareUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthUpdateUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message to the user that explains why the app requested permission to save samples to the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthUpdateUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHealthUpdateUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSHealthUpdateUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHomeKitUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s HomeKit configuration data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHomeKitUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHomeKitUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSHomeKitUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationAlwaysAndWhenInUseUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s location information at all times.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationAlwaysAndWhenInUseUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLocationAlwaysAndWhenInUseUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSLocationAlwaysAndWhenInUseUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationAlwaysUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s location at all times.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationAlwaysUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLocationAlwaysUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSLocationAlwaysUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationWhenInUseUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s location information while the app is running in the foreground.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocationWhenInUseUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLocationWhenInUseUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSLocationWhenInUseUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPhotoLibraryAddUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting add-only access to the user’s photo library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPhotoLibraryAddUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPhotoLibraryAddUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSPhotoLibraryAddUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPhotoLibraryUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s photo library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPhotoLibraryUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPhotoLibraryUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSPhotoLibraryUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/choosing-the-location-services-authorization-to-request": {
+      "abstract": [
+        {
+          "text": "Determine the authorization your app needs to access location data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/choosing-the-location-services-authorization-to-request",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing the  Location Services Authorization to Request",
+      "type": "topic",
+      "url": "/documentation/BundleResources/choosing-the-location-services-authorization-to-request"
+    },
+    "doc://com.apple.documentation/documentation/PhotosUI/PHPickerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that provides the user interface for choosing assets from the photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHPickerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PhotosUI/PHPickerViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PHPickerViewController",
+      "type": "topic",
+      "url": "/documentation/PhotosUI/PHPickerViewController"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that you use to offer standard services from your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIActivityViewController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIActivityViewController"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplication/Category/webBrowser": {
+      "abstract": [
+        {
+          "text": "The app is a web browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "webBrowser"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/Category/webBrowser",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIApplication.Category.webBrowser",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplication/Category/webBrowser"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplication/CategoryDefaultError/retryAvailableDateErrorKey": {
+      "abstract": [
+        {
+          "text": "A dictionary key, with a value that’s a date when a result is next available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "retryAvailableDateErrorKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/CategoryDefaultError/retryAvailableDateErrorKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "retryAvailableDateErrorKey",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplication/CategoryDefaultError/retryAvailableDateErrorKey"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplication/defaultStatusForCategory:error:": {
+      "abstract": [
+        {
+          "text": "Reports whether this app is the person’s default app in the given category.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIApplicationCategoryDefaultStatus",
+          "text": "UIApplicationCategoryDefaultStatus"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultStatusForCategory:"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIApplicationCategory",
+          "text": "UIApplicationCategory"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "internalParam",
+          "text": "category"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "error:"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSError",
+          "text": "NSError"
+        },
+        {
+          "kind": "text",
+          "text": " * *) "
+        },
+        {
+          "kind": "internalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/defaultStatusForCategory:error:",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultStatusForCategory:error:",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplication/defaultStatusForCategory:error:"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplication/isDefault(_:)": {
+      "abstract": [
+        {
+          "text": "Reports whether this app is the person’s default app in the given category.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDefault"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "category"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIApplicationCategory",
+          "text": "Category"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/isDefault(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isDefault(_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplication/isDefault(_:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIImagePickerController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages the system interfaces for taking pictures, recording movies, and choosing items from the user’s media library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImagePickerController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIImagePickerController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIImagePickerController"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIWebView": {
+      "abstract": [
+        {
+          "text": "A view that embeds web content in your app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIWebView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIWebView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIWebView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIWebView"
+    },
+    "doc://com.apple.documentation/documentation/WebKit/WKWebView": {
+      "abstract": [
+        {
+          "text": "An object that displays interactive web content, such as for an in-app browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKWebView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKWebView",
+      "type": "topic",
+      "url": "/documentation/WebKit/WKWebView"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/contact/request/default-browser-entitlement/": {
+      "identifier": "https://developer.apple.com/contact/request/default-browser-entitlement/",
+      "title": "Default browser entitlement request form",
+      "titleInlineContent": [
+        {
+          "text": "Default browser entitlement request form",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/request/default-browser-entitlement/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIActivityViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIActivityViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1Category~1webBrowser/title",
+          "value": "UIApplicationCategoryWebBrowser"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1Category~1webBrowser/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationCategoryWebBrowser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKWebView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKWebView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSView",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1PhotosUI~1PHPickerViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHPickerViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSViewController",
+              "text": "NSViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIWebView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIWebView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImagePickerController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UINavigationController",
+              "text": "UINavigationController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

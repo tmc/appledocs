@@ -1,0 +1,961 @@
+{
+  "abstract": [
+    {
+      "text": "Fulfill the intent and provide feedback to SiriKit about what you did.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/SiriKit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/SiriKit",
+        "doc://com.apple.sirikit/documentation/Intents",
+        "doc://com.apple.sirikit/documentation/SiriKit/resolving-and-handling-intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/SiriKit/handling-an-intent"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Handling an Intent"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After resolving and confirming an intent, SiriKit asks you to handle the intent by fulfilling the user’s request. When handling an intent, you do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Perform the task associated with the intent.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Return a response object with information about what you did.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You handle most intents directly from your Intents app extension, but in some cases you may ask SiriKit to let your app handle the request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example-Handling-a-Start-Workout-Intent",
+          "level": 3,
+          "text": "Example: Handling a Start Workout Intent",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A workout app may need to configure timers and other health-related information, tasks that cannot be handled easily from the Intents app extension. Therefore, handling a workout intent involves directing SiriKit to launch your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The listing below shows an example of how to handle the start of a workout. This method creates a response object with a code that indicates SiriKit should launch the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func handle(startWorkout intent: INStartWorkoutIntent,",
+            "       completion: @escaping (INStartWorkoutIntentResponse) -> Void) {",
+            "    // Let the app start the workout. ",
+            "    let response = INStartWorkoutIntentResponse(code: .continueInApp,",
+            "             userActivity: nil)",
+            "    completion(response)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Example-Handling-a-Request-Ride-Intent",
+          "level": 3,
+          "text": "Example: Handling a Request Ride Intent",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ride booking app needs to provide detailed information about a ride booked by the user. Retrieving ride booking information requires communicating with your service and using the returned information to create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INRideStatus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The listing below shows an example of how to respond to a ride booking request. Most of the method is dedicated to putting the ride details into an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INRideStatus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. During that process, the method communicates the ride details to the ride-booking service and gets information about the driver and vehicle providing the ride. Finally, the method returns a response that includes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INRideStatus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object back to SiriKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func handle(requestRide intent: INRequestRideIntent, ",
+            "        completion: @escaping (INRequestRideIntentResponse) -> Void) {",
+            "    var rideOption : INRideOption? = nil",
+            "        ",
+            "    // Save a reference to the ride for status updates",
+            "    self.bookedRideIntent = intent",
+            "        ",
+            "    if let phrase = intent.rideOptionName?.spokenPhrase {",
+            "        switch phrase {",
+            "        case \"SUV\":",
+            "            rideOption = self.createSUVRideOption(pickup: ",
+            "                        intent.pickupLocation!, ",
+            "                        dropOff: intent.dropOffLocation!)",
+            "            break",
+            "        case \"Compact\":",
+            "            rideOption = self.createCompactRideOption(pickup: ",
+            "                        intent.pickupLocation!, ",
+            "                        dropOff: intent.dropOffLocation!)",
+            "            break",
+            "        case \"Sedan\":",
+            "            rideOption = self.createSedanRideOption(pickup:",
+            "                        intent.pickupLocation!, ",
+            "                        dropOff: intent.dropOffLocation!)",
+            "            break",
+            "                ",
+            "        default:    // Default to a sedan.",
+            "            rideOption = self.createSedanRideOption(pickup:",
+            "                        intent.pickupLocation!, ",
+            "                        dropOff: intent.dropOffLocation!)",
+            "            break",
+            "        }",
+            "    }",
+            "        ",
+            "    // Create the status for the response.",
+            "    let rideStatus = INRideStatus()",
+            "    rideStatus.rideOption = rideOption",
+            "    let (vehicle, driver) = self.getVehicleAndDriver(intent: intent,",
+            "            rideOption: rideOption!)",
+            "        ",
+            "    // Assign the driver and vehicle.",
+            "    rideStatus.vehicle = vehicle",
+            "    rideStatus.driver = driver",
+            "    rideStatus.estimatedPickupDate = ",
+            "             self.getPickupTimeForVehicle(vehicle : vehicle)",
+            "    rideStatus.pickupLocation = intent.pickupLocation",
+            "    rideStatus.dropOffLocation = intent.dropOffLocation",
+            "",
+            "    // Book the ride and get its ID.",
+            "    rideStatus.rideIdentifier = ",
+            "             self.bookRide(rideDetails : rideStatus)",
+            "    ",
+            "    // Get the current ride phase. ",
+            "    rideStatus.phase = ",
+            "             self.phaseForRide(identifier : rideStatus.rideIdentifier)",
+            "",
+            "    // Deliver the response to SiriKit",
+            "    if rideStatus.phase == .confirmed {",
+            "        let response = INRequestRideIntentResponse(code: .success,",
+            "               userActivity: nil)",
+            "        response.rideStatus = rideStatus",
+            "        completion(response)",
+            "    } else {",
+            "        let activity = NSUserActivity(activityType:",
+            "            \"com.example.myRideApp.noRideAvailable\")",
+            "        let response = INRequestRideIntentResponse(code: ",
+            "               .failureRequiringAppLaunch, userActivity: activity)",
+            "        response.rideStatus = rideStatus",
+            "        completion(response)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Tips-for-Handling-Intents",
+          "level": 3,
+          "text": "Tips for Handling Intents",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When handling intents, consider the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Always include as much information as possible in your responses.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Siri and Maps communicate as much information as possible to the user when confirming or handling intents. Filling your response object with detailed information creates a better user experience by clearly communicating what your app did.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Configure data objects fully before assigning them to the response object.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " For most response objects, properties use copy semantics. If you get the object in a property and modify it, the changes you make happen on the copy, not the original. Therefore, you must always set the value of the property only after making your changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Return your response objects within a few seconds.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Because Siri and Maps are actively communicating with the user, always return your response as quickly as possible. If it will take more than a few seconds to return your response, return your response with an “in-progress” code to indicate that you are still working on the request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Use custom user activity objects to support deep linking into your app.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Providing a custom ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object, instead of relying on the default object, lets you supply additional information for configuring your user interface. You can use that information to display specific information about the task that the user performed in Siri or Maps, which yields a better user experience.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Always handle user activity objects in your parent app.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Whenever Siri or Maps need to transfer control to your app, they provide an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object with information about what happened. Response objects create a default ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object if you do not provide one yourself. Handling these objects in your app ensures a seamless experience for the user.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SiriKit leverages information from the user’s contacts database to fill in parameters when applicable. If your app was denied access to the user’s contacts, information related to those contacts may not be included with the intent. For example, any ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INPerson",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects in the intent may contain only a value in their ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INSpeakable/spokenPhrase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property and not contain any other contact information. This lack of access also prevents SiriKit from accessing the addresses of contacts, which causes a phrase like ",
+              "type": "text"
+            },
+            {
+              "code": "“I need a ride home using <app>”",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to result in an intent without a drop-off location. If your app was denied access to the user’s contacts, you might want to inform the user that you can provide a better experience with access restored.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity": {
+      "abstract": [
+        {
+          "text": "A representation of the state of your app at a moment in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPerson": {
+      "abstract": [
+        {
+          "text": "Information about a person participating in a SiriKit interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPerson"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPerson",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPerson"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPerson",
+      "type": "topic",
+      "url": "/documentation/intents/inperson"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRideStatus": {
+      "abstract": [
+        {
+          "text": "The status of a ride booked through a ride-booking service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRideStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRideStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRideStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRideStatus",
+      "type": "topic",
+      "url": "/documentation/intents/inridestatus"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSpeakable/spokenPhrase": {
+      "abstract": [
+        {
+          "text": "The phrase identified by Siri.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spokenPhrase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSpeakable/spokenPhrase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "spokenPhrase"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "spokenPhrase",
+      "type": "topic",
+      "url": "/documentation/intents/inspeakable/spokenphrase"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit": {
+      "abstract": [
+        {
+          "text": "Empower users to interact with their devices through voice, intelligent suggestions, and personalized workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app": {
+      "abstract": [
+        {
+          "text": "Add custom intents and parameters to help users interact more quickly and effectively with Siri and the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding User Interactivity with Siri Shortcuts and the Shortcuts App",
+      "type": "topic",
+      "url": "/documentation/sirikit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/confirming-the-details-of-an-intent": {
+      "abstract": [
+        {
+          "text": "Perform final validation of the intent parameters and verify that your services are ready to fulfill the intent.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/confirming-the-details-of-an-intent",
+      "kind": "article",
+      "role": "article",
+      "title": "Confirming the Details of an Intent",
+      "type": "topic",
+      "url": "/documentation/sirikit/confirming-the-details-of-an-intent"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/defining-relevant-shortcuts-for-the-siri-watch-face": {
+      "abstract": [
+        {
+          "text": "Inform Siri when your app’s shortcuts may be useful to the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/defining-relevant-shortcuts-for-the-siri-watch-face",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining Relevant Shortcuts for the Siri Watch Face",
+      "type": "topic",
+      "url": "/documentation/sirikit/defining-relevant-shortcuts-for-the-siri-watch-face"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/deleting-donated-shortcuts": {
+      "abstract": [
+        {
+          "text": "Remove your donations from Siri.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/deleting-donated-shortcuts",
+      "kind": "article",
+      "role": "article",
+      "title": "Deleting Donated Shortcuts",
+      "type": "topic",
+      "url": "/documentation/sirikit/deleting-donated-shortcuts"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/dispatching-intents-to-handlers": {
+      "abstract": [
+        {
+          "text": "Provide SiriKit with an intent handler capable of handling a specific intent.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/dispatching-intents-to-handlers",
+      "kind": "article",
+      "role": "article",
+      "title": "Dispatching intents to handlers",
+      "type": "topic",
+      "url": "/documentation/sirikit/dispatching-intents-to-handlers"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/displaying-shortcut-information-in-a-siri-watch-face-card": {
+      "abstract": [
+        {
+          "text": "Display and customize watch-specific shortcut information with a default card template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/displaying-shortcut-information-in-a-siri-watch-face-card",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying Shortcut Information in a Siri Watch Face Card",
+      "type": "topic",
+      "url": "/documentation/sirikit/displaying-shortcut-information-in-a-siri-watch-face-card"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/donating-reservations": {
+      "abstract": [
+        {
+          "text": "Inform Siri of reservations made from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/donating-reservations",
+      "kind": "article",
+      "role": "article",
+      "title": "Donating Reservations",
+      "type": "topic",
+      "url": "/documentation/sirikit/donating-reservations"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/generating-a-list-of-ride-options": {
+      "abstract": [
+        {
+          "text": "Generate ride options for Maps to display to the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/generating-a-list-of-ride-options",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating a List of Ride Options",
+      "type": "topic",
+      "url": "/documentation/sirikit/generating-a-list-of-ride-options"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/handling-the-ride-booking-intents": {
+      "abstract": [
+        {
+          "text": "Support the different intent-handling sequences for booking rides with Shortcuts or Maps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/handling-the-ride-booking-intents",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Handling the Ride-Booking Intents",
+      "type": "topic",
+      "url": "/documentation/sirikit/handling-the-ride-booking-intents"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/improving-interactions-between-siri-and-your-messaging-app": {
+      "abstract": [
+        {
+          "text": "Donate app-specific content, use Siri’s contact suggestions, and adopt the latest platform features to create a more consistent messaging experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/improving-interactions-between-siri-and-your-messaging-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving interactions between Siri and your messaging app",
+      "type": "topic",
+      "url": "/documentation/sirikit/improving-interactions-between-siri-and-your-messaging-app"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/improving-siri-media-interactions-and-app-selection": {
+      "abstract": [
+        {
+          "text": "Fine-tune voice controls and improve Siri Suggestions by sharing app capabilities, customized names, and listening habits with the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/improving-siri-media-interactions-and-app-selection",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving Siri Media Interactions and App Selection",
+      "type": "topic",
+      "url": "/documentation/sirikit/improving-siri-media-interactions-and-app-selection"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/registering-custom-vocabulary-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Register your app’s custom terminology, and provide sample phrases for how to use your app with Siri.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/registering-custom-vocabulary-with-sirikit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Registering Custom Vocabulary with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/registering-custom-vocabulary-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/resolving-and-handling-intents": {
+      "abstract": [
+        {
+          "text": "Resolve, confirm, and handle user requests for your app’s services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/resolving-and-handling-intents",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resolving and Handling Intents",
+      "type": "topic",
+      "url": "/documentation/sirikit/resolving-and-handling-intents"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/resolving-the-parameters-of-an-intent": {
+      "abstract": [
+        {
+          "text": "Validate the parameters of an intent and make sure that you have the information you need to continue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/resolving-the-parameters-of-an-intent",
+      "kind": "article",
+      "role": "article",
+      "title": "Resolving the Parameters of an Intent",
+      "type": "topic",
+      "url": "/documentation/sirikit/resolving-the-parameters-of-an-intent"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/specifying-synonyms-for-your-app-name": {
+      "abstract": [
+        {
+          "text": "Provide alternative names for your app that are more familiar or easier for users to speak.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/specifying-synonyms-for-your-app-name",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying Synonyms for Your App Name",
+      "type": "topic",
+      "url": "/documentation/sirikit/specifying-synonyms-for-your-app-name"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Articles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app",
+        "doc://com.apple.sirikit/documentation/SiriKit/defining-relevant-shortcuts-for-the-siri-watch-face",
+        "doc://com.apple.sirikit/documentation/SiriKit/deleting-donated-shortcuts",
+        "doc://com.apple.sirikit/documentation/SiriKit/dispatching-intents-to-handlers",
+        "doc://com.apple.sirikit/documentation/SiriKit/improving-siri-media-interactions-and-app-selection",
+        "doc://com.apple.sirikit/documentation/SiriKit/improving-interactions-between-siri-and-your-messaging-app",
+        "doc://com.apple.sirikit/documentation/SiriKit/registering-custom-vocabulary-with-sirikit",
+        "doc://com.apple.sirikit/documentation/SiriKit/confirming-the-details-of-an-intent",
+        "doc://com.apple.sirikit/documentation/SiriKit/resolving-the-parameters-of-an-intent",
+        "doc://com.apple.sirikit/documentation/SiriKit/generating-a-list-of-ride-options",
+        "doc://com.apple.sirikit/documentation/SiriKit/handling-the-ride-booking-intents",
+        "doc://com.apple.sirikit/documentation/SiriKit/displaying-shortcut-information-in-a-siri-watch-face-card",
+        "doc://com.apple.sirikit/documentation/SiriKit/donating-reservations",
+        "doc://com.apple.sirikit/documentation/SiriKit/defining-relevant-shortcuts-for-the-siri-watch-face",
+        "doc://com.apple.sirikit/documentation/SiriKit/specifying-synonyms-for-your-app-name"
+      ],
+      "title": "Articles"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPerson/title",
+          "value": "INPerson"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPerson/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPerson"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPerson/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPerson"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRideStatus/title",
+          "value": "INRideStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRideStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRideStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRideStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRideStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSpeakable~1spokenPhrase/title",
+          "value": "spokenPhrase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSpeakable~1spokenPhrase/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "spokenPhrase"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

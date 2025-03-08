@@ -1,0 +1,2683 @@
+{
+  "abstract": [
+    {
+      "text": "A class that validates advertisement-driven app installations.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SKAdNetwork",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SKAdNetwork"
+      }
+    ],
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SKAdNetwork"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.3",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.3",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SKAdNetwork"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SKAdNetwork"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AdAttributionKit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for app ad campaigns on the App Store and alternative marketplaces. See the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/app-store/ad-attribution/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for information on how AdAttributionKit helps advertisers measure the success of ad campaigns while helping maintain user privacy. For information on interoperability between SKAdNetwork and AdAttributionKit, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AdAttributionKit/adattributionkit-skadnetwork-interoperability",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ad network API helps advertisers measure the success of ad campaigns while maintaining user privacy. The API involves three participants:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Ad networks",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " that sign ads and receive install-validation postbacks after ads result in conversions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Source apps",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " that display ads from the ad networks, or websites that display the ads in Safari",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Advertised apps",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " that update conversion values as people engage with the app",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ad networks register with Apple to get an ad network ID and to use the API. Developers configure their apps to accept attributable ads from ad networks, and to receive copies of winning postbacks. For information about setup, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/registering-an-ad-network",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/configuring-a-source-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/configuring-an-advertised-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For information about displaying ads in Safari, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SKAdNetworkforWebAds",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following diagram shows the path of an ad impression that wins ad attribution. The ad network serves an ad that an app or Safari web page displays. A user taps the ad and downloads the advertised app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4103236",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple determines a postback data tier for the app download, and the device uses the tier later to determine the level of detail the postback can contain to ensure crowd anonymity. For more information about the postback contents and the data tiers, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/receiving-postbacks-in-multiple-conversion-windows",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user launches the app within an attribution time-window, the ad impression is eligible for install-attribution postbacks. As the user engages with the app, the app updates the conversion value. Starting in iOS 16.1, apps can update conversion values during three conversion windows, which results in up to three postbacks for an ad signed using version 4. The system sends the postbacks to the ad network, and to the app’s developer if they opt in to receive postbacks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Devices send install-validation postbacks to multiple ad networks that sign their ads using version 3 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "One ad network receives a postback with a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "did-win",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for the ad impression that wins the ad attribution.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Up to five other ad networks receive a postback with a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "did-win",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "false",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " if their ad impressions qualify for the attribution, but don’t win.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following diagram shows the path of ad impressions that qualify for, but don’t win, the ad attribution. Up to five ad networks receive a single nonwinning postback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4103237",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about receiving ad attributions, including time-window details and other constraints, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/receiving-ad-attributions-and-postbacks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The information in the postback that Apple cryptographically signs doesn’t include user- or device-specific data. It may include values from the ad network and the advertised app if providing those values meets Apple’s privacy threshold. For more information about postback values and postback data tiers, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/receiving-postbacks-in-multiple-conversion-windows",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information about the contents of postbacks for each SKAdNetwork version, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/verifying-an-install-validation-postback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Presenting-ads-updating-conversion-values-and-receiving-attribution",
+          "level": 3,
+          "text": "Presenting ads, updating conversion values, and receiving attribution",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each participant has specific responsibilities when using the ad network APIs to present ads and receive attribution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ad network’s responsibilities are to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Register and provide its ad network identifier to developers. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/registering-an-ad-network",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Serve signed ads to the source app. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/signing-and-providing-ads",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Serve signed ads for display in Safari web pages. See the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SKAdNetworkforWebAds",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " API.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Receive install-validation postbacks at the URL it establishes during registration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify the postbacks. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/verifying-an-install-validation-postback",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The source app’s responsibilities are to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the ad network identifiers to its ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/configuring-a-source-app",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Display ads that the ad network signs. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/signing-and-providing-ads",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The advertised app’s responsibilities are to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Register an app installation by updating the conversion value when the user first launches the app by calling one of the conversion updating methods, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:coarseValue:lockWindow:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optionally, continue to update the conversion value as the user engages with the app, by calling one of the conversion updating methods, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:coarseValue:lockWindow:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optionally, specify a server URL in its ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file to receive a copy of the winning install-validation postback. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/configuring-an-advertised-app",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple designs SKAdNetwork APIs to maintain user privacy. Apps don’t need to use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppTrackingTransparency",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before calling SKAdNetwork APIs, and can call these APIs regardless of their tracking authorization status. For more information about privacy, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store/user-privacy-and-data-use/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The SKAdNetwork APIs have no effect, return empty strings, or return values that indicate unavailability when you call the APIs from a compatible iPad or iPhone app running in macOS or visionOS, from a Mac app built with Mac Catalyst, or from an App Clip’s code. For more information about App Clips, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppClip",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AdAttributionKit": {
+      "abstract": [
+        {
+          "text": "Present, process, and register postbacks for in-app ads in the App Store and alternative app marketplaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AdAttributionKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AdAttributionKit",
+      "type": "topic",
+      "url": "/documentation/AdAttributionKit"
+    },
+    "doc://com.apple.documentation/documentation/AdAttributionKit/adattributionkit-skadnetwork-interoperability": {
+      "abstract": [
+        {
+          "text": "Learn how attribution APIs interact to deliver ad impressions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AdAttributionKit/adattributionkit-skadnetwork-interoperability",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding AdAttributionKit and SKAdNetwork interoperability",
+      "type": "topic",
+      "url": "/documentation/AdAttributionKit/adattributionkit-skadnetwork-interoperability"
+    },
+    "doc://com.apple.documentation/documentation/AppClip": {
+      "abstract": [
+        {
+          "text": "Provide people a shortcut to selected content and features of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppClip",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Clips",
+      "type": "topic",
+      "url": "/documentation/AppClip"
+    },
+    "doc://com.apple.documentation/documentation/AppTrackingTransparency": {
+      "abstract": [
+        {
+          "text": "Request user authorization to access app-related data for tracking the user or the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppTrackingTransparency",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Tracking Transparency",
+      "type": "topic",
+      "url": "/documentation/AppTrackingTransparency"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAdvertisingAttributionReportEndpoint": {
+      "abstract": [
+        {
+          "text": "The URL where Private Click Measurement and SKAdNetwork send attribution information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAdvertisingAttributionReportEndpoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAdvertisingAttributionReportEndpoint",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSAdvertisingAttributionReportEndpoint"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/SKAdNetworkItems": {
+      "abstract": [
+        {
+          "text": "An array of dictionaries containing a list of ad network IDs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/SKAdNetworkItems",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKAdNetworkItems",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/SKAdNetworkItems"
+    },
+    "doc://com.apple.documentation/documentation/SKAdNetworkforWebAds": {
+      "abstract": [
+        {
+          "text": "Attribute app-install campaigns that originate on the web.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SKAdNetworkforWebAds",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SKAdNetwork for Web Ads",
+      "type": "topic",
+      "url": "/documentation/SKAdNetworkforWebAds"
+    },
+    "doc://com.apple.documentation/documentation/StoreKitTest/testing-and-validating-ad-impression-signatures-and-postbacks-for-skadnetwork": {
+      "abstract": [
+        {
+          "text": "Validate your ad impressions and test your postbacks by creating unit tests using the StoreKit Test framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKitTest/testing-and-validating-ad-impression-signatures-and-postbacks-for-skadnetwork",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Testing and validating ad impression signatures and postbacks for SKAdNetwork",
+      "type": "topic",
+      "url": "/documentation/StoreKitTest/testing-and-validating-ad-impression-signatures-and-postbacks-for-skadnetwork"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKAdImpression": {
+      "abstract": [
+        {
+          "text": "A class that defines an ad impression for a view-through ad.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAdImpression"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdImpression",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKAdImpression"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAdImpression",
+      "type": "topic",
+      "url": "/documentation/storekit/skadimpression"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork": {
+      "abstract": [
+        {
+          "text": "A class that validates advertisement-driven app installations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAdNetwork"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKAdNetwork"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAdNetwork",
+      "type": "topic",
+      "url": "/documentation/storekit/skadnetwork"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/CoarseConversionValue": {
+      "abstract": [
+        {
+          "text": "Coarse values to use for updating conversion values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CoarseConversionValue"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/CoarseConversionValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CoarseConversionValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAdNetwork.CoarseConversionValue",
+      "type": "topic",
+      "url": "/documentation/storekit/skadnetwork/coarseconversionvalue"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/endImpression(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Indicates that your app is no longer presenting a view-through ad to the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endImpression"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKAdImpression",
+          "text": "SKAdImpression"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/endImpression(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "endImpression:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "endImpression(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skadnetwork/endimpression(_:completionhandler:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/registerAppForAdNetworkAttribution()": {
+      "abstract": [
+        {
+          "text": "Verifies the first launch of an app installed as a result of an ad.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerAppForAdNetworkAttribution"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/registerAppForAdNetworkAttribution()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registerAppForAdNetworkAttribution"
+        }
+      ],
+      "role": "symbol",
+      "title": "registerAppForAdNetworkAttribution()",
+      "type": "topic",
+      "url": "/documentation/storekit/skadnetwork/registerappforadnetworkattribution()"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/startImpression(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Indicates that your app is presenting a view-through ad to the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startImpression"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKAdImpression",
+          "text": "SKAdImpression"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/startImpression(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startImpression:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startImpression(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skadnetwork/startimpression(_:completionhandler:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updateConversionValue(_:)": {
+      "abstract": [
+        {
+          "text": "Updates the conversion value and verifies the first launch of an app installed as a result of an ad.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateConversionValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updateConversionValue(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateConversionValue:"
+        }
+      ],
+      "role": "symbol",
+      "title": "updateConversionValue(_:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skadnetwork/updateconversionvalue(_:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:coarseValue:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Updates the fine and coarse conversion values, and calls a completion handler if the update fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updatePostbackConversionValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "coarseValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKAdNetwork",
+          "text": "SKAdNetwork"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SKAdNetworkCoarseConversionValue",
+          "text": "CoarseConversionValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:coarseValue:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updatePostbackConversionValue:coarseValue:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "updatePostbackConversionValue(_:coarseValue:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skadnetwork/updatepostbackconversionvalue(_:coarsevalue:completionhandler:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:coarseValue:lockWindow:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Updates the fine and coarse conversion values and indicates whether to send the postback before the conversion window ends, and calls a completion handler if the update fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updatePostbackConversionValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "coarseValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKAdNetwork",
+          "text": "SKAdNetwork"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SKAdNetworkCoarseConversionValue",
+          "text": "CoarseConversionValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lockWindow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:coarseValue:lockWindow:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updatePostbackConversionValue:coarseValue:lockWindow:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "updatePostbackConversionValue(_:coarseValue:lockWindow:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skadnetwork/updatepostbackconversionvalue(_:coarsevalue:lockwindow:completionhandler:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Verifies the first launch of an advertised app and, on subsequent calls, updates the conversion value or calls a completion handler if the update fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updatePostbackConversionValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updatePostbackConversionValue:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "updatePostbackConversionValue(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skadnetwork/updatepostbackconversionvalue(_:completionhandler:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ad-network-install-validation-keys": {
+      "abstract": [
+        {
+          "text": "Specify key values that validate and associate an app installation with an ad campaign.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ad-network-install-validation-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Ad network install-validation keys",
+      "type": "topic",
+      "url": "/documentation/storekit/ad-network-install-validation-keys"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/configuring-a-source-app": {
+      "abstract": [
+        {
+          "text": "Set up a source app to participate in ad campaigns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/configuring-a-source-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring a source app",
+      "type": "topic",
+      "url": "/documentation/storekit/configuring-a-source-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/configuring-an-advertised-app": {
+      "abstract": [
+        {
+          "text": "Prepare an advertised app to participate in ad campaigns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/configuring-an-advertised-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring an advertised app",
+      "type": "topic",
+      "url": "/documentation/storekit/configuring-an-advertised-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/generating-the-signature-to-validate-storekit-rendered-ads": {
+      "abstract": [
+        {
+          "text": "Initiate install validation by displaying a StoreKit-rendered ad with signed parameters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/generating-the-signature-to-validate-storekit-rendered-ads",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating the signature to validate StoreKit-rendered ads",
+      "type": "topic",
+      "url": "/documentation/storekit/generating-the-signature-to-validate-storekit-rendered-ads"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/generating-the-signature-to-validate-view-through-ads": {
+      "abstract": [
+        {
+          "text": "Initiate install validation by displaying a view-through ad with signed parameters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/generating-the-signature-to-validate-view-through-ads",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating the signature to validate view-through ads",
+      "type": "topic",
+      "url": "/documentation/storekit/generating-the-signature-to-validate-view-through-ads"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/identifying-the-parameters-in-install-validation-postbacks": {
+      "abstract": [
+        {
+          "text": "Learn about the postback parameters in all SKAdNetwork versions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/identifying-the-parameters-in-install-validation-postbacks",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying the parameters in install-validation postbacks",
+      "type": "topic",
+      "url": "/documentation/storekit/identifying-the-parameters-in-install-validation-postbacks"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/receiving-ad-attributions-and-postbacks": {
+      "abstract": [
+        {
+          "text": "Learn about timeframes and priorities for ad impressions that result in ad attributions, and how additional impressions qualify for postbacks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/receiving-ad-attributions-and-postbacks",
+      "kind": "article",
+      "role": "article",
+      "title": "Receiving ad attributions and postbacks",
+      "type": "topic",
+      "url": "/documentation/storekit/receiving-ad-attributions-and-postbacks"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/receiving-postbacks-in-multiple-conversion-windows": {
+      "abstract": [
+        {
+          "text": "Learn about the data that postbacks may contain in each conversion window.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/receiving-postbacks-in-multiple-conversion-windows",
+      "kind": "article",
+      "role": "article",
+      "title": "Receiving postbacks in multiple conversion windows",
+      "type": "topic",
+      "url": "/documentation/storekit/receiving-postbacks-in-multiple-conversion-windows"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/registering-an-ad-network": {
+      "abstract": [
+        {
+          "text": "Use the install-validation APIs for your ad campaigns after registering your ad network with Apple.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/registering-an-ad-network",
+      "kind": "article",
+      "role": "article",
+      "title": "Registering an ad network",
+      "type": "topic",
+      "url": "/documentation/storekit/registering-an-ad-network"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/signing-and-providing-ads": {
+      "abstract": [
+        {
+          "text": "Advertise apps by signing and providing StoreKit-rendered ads, view-through ads, or attributable web ads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/signing-and-providing-ads",
+      "kind": "article",
+      "role": "article",
+      "title": "Signing and providing ads",
+      "type": "topic",
+      "url": "/documentation/storekit/signing-and-providing-ads"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/skadnetwork-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about the features in each SKAdNetwork version.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/skadnetwork-release-notes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SKAdNetwork release notes",
+      "type": "topic",
+      "url": "/documentation/storekit/skadnetwork-release-notes"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-ad-attributions-with-a-downloaded-profile": {
+      "abstract": [
+        {
+          "text": "Reduce the time-window for ad attributions and inspect postbacks using a proxy during testing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-ad-attributions-with-a-downloaded-profile",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing ad attributions with a downloaded profile",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-ad-attributions-with-a-downloaded-profile"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/verifying-an-install-validation-postback": {
+      "abstract": [
+        {
+          "text": "Ensure the validity of a postback you receive after an ad conversion by verifying its cryptographic signature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/verifying-an-install-validation-postback",
+      "kind": "article",
+      "role": "article",
+      "title": "Verifying an install-validation postback",
+      "type": "topic",
+      "url": "/documentation/storekit/verifying-an-install-validation-postback"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://developer.apple.com/app-store/ad-attribution/": {
+      "identifier": "https://developer.apple.com/app-store/ad-attribution/",
+      "title": "ad attribution developer support page",
+      "titleInlineContent": [
+        {
+          "text": "ad attribution developer support page",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/ad-attribution/"
+    },
+    "https://developer.apple.com/app-store/user-privacy-and-data-use/": {
+      "identifier": "https://developer.apple.com/app-store/user-privacy-and-data-use/",
+      "title": "User Privacy and Data Use",
+      "titleInlineContent": [
+        {
+          "text": "User Privacy and Data Use",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/user-privacy-and-data-use/"
+    },
+    "media-4103236": {
+      "alt": null,
+      "identifier": "media-4103236",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cfb86917a943b271b8187aff2aa2993d/media-4103236@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/244850da92bfd7de352c1c176d85afdf/media-4103236~dark@2x.png"
+        }
+      ]
+    },
+    "media-4103237": {
+      "alt": null,
+      "identifier": "media-4103237",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62cd8fd4dc40174006c06a54c155300b/media-4103237@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4aefe58fb129d3f8fa91da4298101078/media-4103237~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Ad-impressions-and-installation-validations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/AdAttributionKit/adattributionkit-skadnetwork-interoperability",
+        "doc://com.apple.storekit/documentation/StoreKit/SKAdImpression"
+      ],
+      "title": "Ad impressions and installation validations"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/signing-and-providing-ads",
+        "doc://com.apple.storekit/documentation/StoreKit/receiving-ad-attributions-and-postbacks",
+        "doc://com.apple.storekit/documentation/StoreKit/receiving-postbacks-in-multiple-conversion-windows",
+        "doc://com.apple.storekit/documentation/StoreKit/skadnetwork-release-notes"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Registering-ad-networks-and-configuring-apps",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/registering-an-ad-network",
+        "doc://com.apple.storekit/documentation/StoreKit/configuring-a-source-app",
+        "doc://com.apple.storekit/documentation/StoreKit/configuring-an-advertised-app",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/SKAdNetworkItems",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAdvertisingAttributionReportEndpoint"
+      ],
+      "title": "Registering ad networks and configuring apps"
+    },
+    {
+      "anchor": "Signing-StoreKit-rendered-ads",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/generating-the-signature-to-validate-storekit-rendered-ads",
+        "doc://com.apple.storekit/documentation/StoreKit/ad-network-install-validation-keys"
+      ],
+      "title": "Signing StoreKit-rendered ads"
+    },
+    {
+      "anchor": "Signing-view-through-ads",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/generating-the-signature-to-validate-view-through-ads",
+        "doc://com.apple.storekit/documentation/StoreKit/SKAdImpression",
+        "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/startImpression(_:completionHandler:)",
+        "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/endImpression(_:completionHandler:)"
+      ],
+      "title": "Signing view-through ads"
+    },
+    {
+      "anchor": "Providing-conversion-information",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:coarseValue:lockWindow:completionHandler:)",
+        "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:coarseValue:completionHandler:)",
+        "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/CoarseConversionValue",
+        "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:completionHandler:)"
+      ],
+      "title": "Providing conversion information"
+    },
+    {
+      "anchor": "Verifying-postbacks",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/verifying-an-install-validation-postback",
+        "doc://com.apple.storekit/documentation/StoreKit/identifying-the-parameters-in-install-validation-postbacks"
+      ],
+      "title": "Verifying postbacks"
+    },
+    {
+      "anchor": "Testing-ad-attributions-and-postbacks",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/testing-ad-attributions-with-a-downloaded-profile",
+        "doc://com.apple.documentation/documentation/StoreKitTest/testing-and-validating-ad-impression-signatures-and-postbacks-for-skadnetwork"
+      ],
+      "title": "Testing ad attributions and postbacks"
+    },
+    {
+      "anchor": "Deprecated",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/registerAppForAdNetworkAttribution()",
+        "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updateConversionValue(_:)"
+      ],
+      "title": "Deprecated"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.3",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.3",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SKAdNetwork"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdNetwork"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdNetwork"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.storekit/documentation/StoreKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/signing-and-providing-ads",
+                "doc://com.apple.storekit/documentation/StoreKit/receiving-ad-attributions-and-postbacks",
+                "doc://com.apple.storekit/documentation/StoreKit/receiving-postbacks-in-multiple-conversion-windows",
+                "doc://com.apple.storekit/documentation/StoreKit/skadnetwork-release-notes"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Registering-ad-networks-and-configuring-apps",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/registering-an-ad-network",
+                "doc://com.apple.storekit/documentation/StoreKit/configuring-a-source-app",
+                "doc://com.apple.storekit/documentation/StoreKit/configuring-an-advertised-app",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/SKAdNetworkItems",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAdvertisingAttributionReportEndpoint"
+              ],
+              "title": "Registering ad networks and configuring apps"
+            },
+            {
+              "anchor": "Signing-StoreKit-rendered-ads",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/generating-the-signature-to-validate-storekit-rendered-ads",
+                "doc://com.apple.storekit/documentation/StoreKit/ad-network-install-validation-keys"
+              ],
+              "title": "Signing StoreKit-rendered ads"
+            },
+            {
+              "anchor": "Signing-view-through-ads",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/generating-the-signature-to-validate-view-through-ads",
+                "doc://com.apple.storekit/documentation/StoreKit/SKAdImpression",
+                "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/startImpression(_:completionHandler:)",
+                "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/endImpression(_:completionHandler:)"
+              ],
+              "title": "Signing view-through ads"
+            },
+            {
+              "anchor": "Providing-conversion-information",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:coarseValue:lockWindow:completionHandler:)",
+                "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:coarseValue:completionHandler:)",
+                "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/CoarseConversionValue",
+                "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:completionHandler:)"
+              ],
+              "title": "Providing conversion information"
+            },
+            {
+              "anchor": "Verifying-postbacks",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/verifying-an-install-validation-postback",
+                "doc://com.apple.storekit/documentation/StoreKit/identifying-the-parameters-in-install-validation-postbacks"
+              ],
+              "title": "Verifying postbacks"
+            },
+            {
+              "anchor": "Testing-ad-attributions-and-postbacks",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/testing-ad-attributions-with-a-downloaded-profile",
+                "doc://com.apple.documentation/documentation/StoreKitTest/testing-and-validating-ad-impression-signatures-and-postbacks-for-skadnetwork"
+              ],
+              "title": "Testing ad attributions and postbacks"
+            },
+            {
+              "anchor": "Deprecated",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/registerAppForAdNetworkAttribution()",
+                "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updateConversionValue(_:)"
+              ],
+              "title": "Deprecated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Ad-impressions-and-installation-validations",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/SKAdImpression"
+              ],
+              "title": "Ad impressions and installation validations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SKAdNetwork"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork~1registerAppForAdNetworkAttribution()/title",
+          "value": "registerAppForAdNetworkAttribution"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork~1registerAppForAdNetworkAttribution()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerAppForAdNetworkAttribution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork~1updateConversionValue(_:)/title",
+          "value": "updateConversionValue:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork~1updateConversionValue(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateConversionValue:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork~1updatePostbackConversionValue(_:completionHandler:)/title",
+          "value": "updatePostbackConversionValue:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork~1updatePostbackConversionValue(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "updatePostbackConversionValue:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork~1updatePostbackConversionValue(_:coarseValue:lockWindow:completionHandler:)/title",
+          "value": "updatePostbackConversionValue:coarseValue:lockWindow:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork~1updatePostbackConversionValue(_:coarseValue:lockWindow:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "updatePostbackConversionValue:coarseValue:lockWindow:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork/title",
+          "value": "SKAdNetwork"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdNetwork"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdNetwork"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdImpression/title",
+          "value": "SKAdImpression"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdImpression/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdImpression"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdImpression/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdImpression"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork~1updatePostbackConversionValue(_:coarseValue:completionHandler:)/title",
+          "value": "updatePostbackConversionValue:coarseValue:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork~1updatePostbackConversionValue(_:coarseValue:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "updatePostbackConversionValue:coarseValue:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork~1CoarseConversionValue/title",
+          "value": "SKAdNetworkCoarseConversionValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork~1CoarseConversionValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdNetworkCoarseConversionValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork~1CoarseConversionValue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdNetworkCoarseConversionValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork~1startImpression(_:completionHandler:)/title",
+          "value": "startImpression:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork~1startImpression(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "startImpression:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork~1endImpression(_:completionHandler:)/title",
+          "value": "endImpression:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork~1endImpression(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "endImpression:completionHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/skadnetwork"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/skadnetwork"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

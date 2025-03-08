@@ -1,0 +1,2682 @@
+{
+  "abstract": [
+    {
+      "text": "Present your content onscreen and handle user input and events.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/views-and-controls"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Views and Controls"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Views and controls are the building blocks of your app’s user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4098514",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Views can host other views. Embedding one view inside another creates a containment relationship between the host view (known as the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "superview",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ") and the embedded view (known as the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "subview",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "). View hierarchies make it easier to manage views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use views to do any of the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Respond to touches and other events (either directly or in coordination with gesture recognizers).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Draw custom content using Core Graphics.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Respond to focus changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Animate the size, position, and appearance attributes of the view using Core Animation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Favor AppKit views and controls whenever possible. These components adapt automatically to system changes, and many support appearance customizations to support the look and feel you want in your app. When AppKit doesn’t provide the exact view or control you need, you can create a custom view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is the root class for all views and defines their common behavior. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSControl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " defines additional behaviors that are specific to buttons, switches, and other views designed for user interactions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information about how to use views and controls, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/components/all-components",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSActionCell": {
+      "abstract": [
+        {
+          "text": "An active area inside a control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSActionCell"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSActionCell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSActionCell"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSActionCell",
+      "type": "topic",
+      "url": "/documentation/appkit/nsactioncell"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBox": {
+      "abstract": [
+        {
+          "text": "A stylized rectangular box with an optional title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSBox"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSBox"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSBox",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbox"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSButton": {
+      "abstract": [
+        {
+          "text": "A control that defines an area on the screen that a user clicks to trigger an action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSButton"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSButton",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbutton"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCell": {
+      "abstract": [
+        {
+          "text": "A mechanism for displaying text or images in a view object without the overhead of a full ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " subclass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCell"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCell"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCell",
+      "type": "topic",
+      "url": "/documentation/appkit/nscell"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColorWell": {
+      "abstract": [
+        {
+          "text": "A control that displays a color value and lets the user change that color value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSColorWell"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColorWell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSColorWell"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSColorWell",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolorwell"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSComboButton": {
+      "abstract": [
+        {
+          "text": "A button with a pull-down menu and a default action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSComboButton"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSComboButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSComboButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSComboButton",
+      "type": "topic",
+      "url": "/documentation/appkit/nscombobutton"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSControl": {
+      "abstract": [
+        {
+          "text": "A specialized view, such as a button or text field, that notifies your app of relevant events using the target-action design pattern.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSControl"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSControl",
+      "type": "topic",
+      "url": "/documentation/appkit/nscontrol"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDirectionalEdgeInsets": {
+      "abstract": [
+        {
+          "text": "The inset distances for views, taking the user interface layout direction into account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDirectionalEdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDirectionalEdgeInsets",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDirectionalEdgeInsets"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDirectionalEdgeInsets",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdirectionaledgeinsets"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDirectionalRectEdge": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDirectionalRectEdge"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDirectionalRectEdge",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDirectionalRectEdge"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDirectionalRectEdge",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdirectionalrectedge"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImageView": {
+      "abstract": [
+        {
+          "text": "A display of image data in a frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSImageView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImageView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSImageView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSImageView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimageview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLevelIndicator": {
+      "abstract": [
+        {
+          "text": "A visual representation of a level or quantity, using discrete values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLevelIndicator"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLevelIndicator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLevelIndicator"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLevelIndicator",
+      "type": "topic",
+      "url": "/documentation/appkit/nslevelindicator"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMatrix": {
+      "abstract": [
+        {
+          "text": "A legacy interface for grouping radio buttons or other types of cells together.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMatrix"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMatrix",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSMatrix"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSMatrix",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmatrix"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPopUpButton": {
+      "abstract": [
+        {
+          "text": "A control for selecting an item from a list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPopUpButton"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPopUpButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPopUpButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPopUpButton",
+      "type": "topic",
+      "url": "/documentation/appkit/nspopupbutton"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditor": {
+      "abstract": [
+        {
+          "text": "A defined set of rules that allows the editing of predicate objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPredicateEditor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPredicateEditor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPredicateEditor",
+      "type": "topic",
+      "url": "/documentation/appkit/nspredicateeditor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSProgressIndicator": {
+      "abstract": [
+        {
+          "text": "An interface that provides visual feedback to the user about the status of an ongoing task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSProgressIndicator"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSProgressIndicator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSProgressIndicator"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSProgressIndicator",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprogressindicator"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSRectAlignment": {
+      "abstract": [
+        {
+          "text": "Constants that specify alignment to an edge or a set of edges depending on the user interface layout direction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRectAlignment"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSRectAlignment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSRectAlignment"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSRectAlignment",
+      "type": "topic",
+      "url": "/documentation/appkit/nsrectalignment"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSRuleEditor": {
+      "abstract": [
+        {
+          "text": "An interface for configuring a rule-based list of options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRuleEditor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSRuleEditor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSRuleEditor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSRuleEditor",
+      "type": "topic",
+      "url": "/documentation/appkit/nsruleeditor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSegmentedControl": {
+      "abstract": [
+        {
+          "text": "Display one or more buttons in a single horizontal group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSegmentedControl"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSegmentedControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSegmentedControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSegmentedControl",
+      "type": "topic",
+      "url": "/documentation/appkit/nssegmentedcontrol"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitView": {
+      "abstract": [
+        {
+          "text": "A view that arranges two or more views in a linear stack running horizontally or vertically.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSplitView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSplitView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSplitView",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView": {
+      "abstract": [
+        {
+          "text": "A view that arranges an array of views horizontally or vertically and updates their placement and sizing when the window size changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStackView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSStackView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSStackView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStepper": {
+      "abstract": [
+        {
+          "text": "An interface with up and down arrow buttons for incrementing or decrementing a value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStepper"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStepper",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSStepper"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSStepper",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstepper"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSwitch": {
+      "abstract": [
+        {
+          "text": "A control that offers a binary choice.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSwitch"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSwitch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSwitch"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSwitch",
+      "type": "topic",
+      "url": "/documentation/appkit/nsswitch"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTabView": {
+      "abstract": [
+        {
+          "text": "A multipage interface that displays one page at a time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTabView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTabView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTabView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTabView",
+      "type": "topic",
+      "url": "/documentation/appkit/nstabview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextView": {
+      "abstract": [
+        {
+          "text": "A view that draws text and handles user interactions with that text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextView",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations": {
+      "abstract": [
+        {
+          "text": "A protocol that a custom class can adopt to manage the enabled state of a UI element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceValidations"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceValidations"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserInterfaceValidations",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuserinterfacevalidations"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSValidatedUserInterfaceItem": {
+      "abstract": [
+        {
+          "text": "A protocol that a custom class can adopt to manage the automatic enablement of a UI control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSValidatedUserInterfaceItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSValidatedUserInterfaceItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSValidatedUserInterfaceItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSValidatedUserInterfaceItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nsvalidateduserinterfaceitem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewToolTipOwner": {
+      "abstract": [
+        {
+          "text": "A set of methods for dynamically associating a tool tip with a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSViewToolTipOwner"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewToolTipOwner",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSViewToolTipOwner"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSViewToolTipOwner",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewtooltipowner"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSVisualEffectView": {
+      "abstract": [
+        {
+          "text": "A view that adds translucency and vibrancy effects to the views in your interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSVisualEffectView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSVisualEffectView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSVisualEffectView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSVisualEffectView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsvisualeffectview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/animation": {
+      "abstract": [
+        {
+          "text": "Animate your views and other content to create a more engaging experience for users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/animation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Animation",
+      "type": "topic",
+      "url": "/documentation/appkit/animation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/appearance-customization": {
+      "abstract": [
+        {
+          "text": "Add Dark Mode support to your app, and use appearance proxies to modify your UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/appearance-customization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Appearance Customization",
+      "type": "topic",
+      "url": "/documentation/appkit/appearance-customization"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/browser-view": {
+      "abstract": [
+        {
+          "text": "Provide a column-based interface for viewing and navigating hierarchical information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/browser-view",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Browser View",
+      "type": "topic",
+      "url": "/documentation/appkit/browser-view"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/collection-view": {
+      "abstract": [
+        {
+          "text": "Display one or more subviews in a highly configurable arrangement.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/collection-view",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collection View",
+      "type": "topic",
+      "url": "/documentation/appkit/collection-view"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/combo-box": {
+      "abstract": [
+        {
+          "text": "Display a list of values in a pop-up menu that lets the user select a value or type in a custom value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/combo-box",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Combo Box",
+      "type": "topic",
+      "url": "/documentation/appkit/combo-box"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/date-picker": {
+      "abstract": [
+        {
+          "text": "Display a calendar date and provide controls for editing the date value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/date-picker",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Date Picker",
+      "type": "topic",
+      "url": "/documentation/appkit/date-picker"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/grid-view": {
+      "abstract": [
+        {
+          "text": "Arrange views in a flexible grid, and handle the layout associated with those views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/grid-view",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Grid View",
+      "type": "topic",
+      "url": "/documentation/appkit/grid-view"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/organize-your-user-interface-with-a-stack-view": {
+      "abstract": [
+        {
+          "text": "Group individual views in your app’s user interface into a scrollable stack view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/organize-your-user-interface-with-a-stack-view",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Organize Your User Interface with a Stack View",
+      "type": "topic",
+      "url": "/documentation/appkit/organize-your-user-interface-with-a-stack-view"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/outline-view": {
+      "abstract": [
+        {
+          "text": "Display a list-based interface for hierarchical data, where each level of hierarchy is indented from the previous one.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/outline-view",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Outline View",
+      "type": "topic",
+      "url": "/documentation/appkit/outline-view"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/path-control": {
+      "abstract": [
+        {
+          "text": "A display of a file system path or virtual path information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/path-control",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Path Control",
+      "type": "topic",
+      "url": "/documentation/appkit/path-control"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/scroll-view": {
+      "abstract": [
+        {
+          "text": "Provide an interface for navigating content that is too large to fit in the available space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/scroll-view",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scroll View",
+      "type": "topic",
+      "url": "/documentation/appkit/scroll-view"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/search-field": {
+      "abstract": [
+        {
+          "text": "Provide a text field that is optimized for text-based search interfaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/search-field",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Search Field",
+      "type": "topic",
+      "url": "/documentation/appkit/search-field"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/slider": {
+      "abstract": [
+        {
+          "text": "Display a range of values from which the user selects a single value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/slider",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Slider",
+      "type": "topic",
+      "url": "/documentation/appkit/slider"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/sound-speech-and-haptics": {
+      "abstract": [
+        {
+          "text": "Play sounds and haptic feedback, and incorporate speech recognition and synthesis into your interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/sound-speech-and-haptics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sound, Speech, and Haptics",
+      "type": "topic",
+      "url": "/documentation/appkit/sound-speech-and-haptics"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/supporting-continuity-camera-in-your-mac-app": {
+      "abstract": [
+        {
+          "text": "Incorporate scanned documents and pictures from a user’s iPhone, iPad, or iPod touch into your Mac app using Continuity Camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/supporting-continuity-camera-in-your-mac-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Continuity Camera in Your Mac App",
+      "type": "topic",
+      "url": "/documentation/appkit/supporting-continuity-camera-in-your-mac-app"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/table-view": {
+      "abstract": [
+        {
+          "text": "Display custom data in rows and columns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/table-view",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Table View",
+      "type": "topic",
+      "url": "/documentation/appkit/table-view"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/text-field": {
+      "abstract": [
+        {
+          "text": "Provide a simple interface for displaying and editing text, including support for password fields and secure forms of text entry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/text-field",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text Field",
+      "type": "topic",
+      "url": "/documentation/appkit/text-field"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/token-field": {
+      "abstract": [
+        {
+          "text": "Provide a text field whose text can be rendered in a visually distinct way so that users can recognize portions more easily.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/token-field",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Token Field",
+      "type": "topic",
+      "url": "/documentation/appkit/token-field"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/toolbar": {
+      "abstract": [
+        {
+          "text": "Provide a space for controls under a window’s title bar and above your custom content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/toolbar",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Toolbar",
+      "type": "topic",
+      "url": "/documentation/appkit/toolbar"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/view-layout": {
+      "abstract": [
+        {
+          "text": "Position and size views using a stack view or Auto Layout constraints.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/view-layout",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View Layout",
+      "type": "topic",
+      "url": "/documentation/appkit/view-layout"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/view-management": {
+      "abstract": [
+        {
+          "text": "Manage your user interface, including the size and position of views in a window.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/view-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View Management",
+      "type": "topic",
+      "url": "/documentation/appkit/view-management"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/windows-panels-and-screens": {
+      "abstract": [
+        {
+          "text": "Organize your view hierarchies and facilitate their display onscreen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/windows-panels-and-screens",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Windows, Panels, and Screens",
+      "type": "topic",
+      "url": "/documentation/appkit/windows-panels-and-screens"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/responding-to-control-based-events-using-target-action": {
+      "abstract": [
+        {
+          "text": "Handle user input by connecting buttons, sliders, and other controls to your app’s code using the target-action design pattern.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/responding-to-control-based-events-using-target-action",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to control-based events using target-action",
+      "type": "topic",
+      "url": "/documentation/UIKit/responding-to-control-based-events-using-target-action"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/xcode/localization-friendly_layouts_in_macos": {
+      "abstract": [
+        {
+          "text": "This project demonstrates localization-friendly auto layout constraints. It uses `NSGridView` as a container view to achieve localized layouts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/xcode/localization-friendly_layouts_in_macos",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Localization-Friendly Layouts in macOS",
+      "type": "topic",
+      "url": "/documentation/xcode/localization-friendly_layouts_in_macos"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/components/all-components": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/components/all-components",
+      "title": "Human Interface Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/components/all-components"
+    },
+    "media-4098514": {
+      "alt": "A sample macOS app with the view broken down into label, text field, and button control elements.The window has the title New List. Beneath the title is a text field labeled name, with a text box containing the placeholder text Enter text here. Beneath that is a label titled color followed by seven selectable circles of color. In the bottom right hand corner is a enabled Cancel button followed by a disabled OK button side-by-side.",
+      "identifier": "media-4098514",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5493c5134f4713caea62664e3709803a/media-4098514@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9ed76e174019ea39fb0c373561df4c10/media-4098514~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-Interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/view-management",
+        "doc://com.apple.appkit/documentation/AppKit/view-layout",
+        "doc://com.apple.appkit/documentation/AppKit/appearance-customization",
+        "doc://com.apple.appkit/documentation/AppKit/animation",
+        "doc://com.apple.appkit/documentation/AppKit/windows-panels-and-screens",
+        "doc://com.apple.appkit/documentation/AppKit/sound-speech-and-haptics",
+        "doc://com.apple.appkit/documentation/AppKit/supporting-continuity-camera-in-your-mac-app"
+      ],
+      "title": "User Interface"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "View-Fundamentals",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSView",
+        "doc://com.apple.appkit/documentation/AppKit/NSControl",
+        "doc://com.apple.appkit/documentation/AppKit/NSCell",
+        "doc://com.apple.appkit/documentation/AppKit/NSActionCell"
+      ],
+      "title": "View Fundamentals"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Use container views to arrange the views of your interface and to facilitate navigation among those views.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Container-Views",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/xcode/localization-friendly_layouts_in_macos",
+        "doc://com.apple.appkit/documentation/AppKit/grid-view",
+        "doc://com.apple.appkit/documentation/AppKit/NSSplitView",
+        "doc://com.apple.appkit/documentation/AppKit/organize-your-user-interface-with-a-stack-view",
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView",
+        "doc://com.apple.appkit/documentation/AppKit/NSTabView",
+        "doc://com.apple.appkit/documentation/AppKit/scroll-view"
+      ],
+      "title": "Container Views"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Use content views to organize and display your app’s data.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Content-Views",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/browser-view",
+        "doc://com.apple.appkit/documentation/AppKit/collection-view",
+        "doc://com.apple.appkit/documentation/AppKit/outline-view",
+        "doc://com.apple.appkit/documentation/AppKit/table-view",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextView"
+      ],
+      "title": "Content Views"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Use controls to handle specific types of user interactions. Controls are specialized views that use the target-action design pattern to notify your app of interactions with their content.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Controls",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/UIKit/responding-to-control-based-events-using-target-action",
+        "doc://com.apple.appkit/documentation/AppKit/NSButton",
+        "doc://com.apple.appkit/documentation/AppKit/NSColorWell",
+        "doc://com.apple.appkit/documentation/AppKit/combo-box",
+        "doc://com.apple.appkit/documentation/AppKit/NSComboButton",
+        "doc://com.apple.appkit/documentation/AppKit/date-picker",
+        "doc://com.apple.appkit/documentation/AppKit/NSImageView",
+        "doc://com.apple.appkit/documentation/AppKit/NSLevelIndicator",
+        "doc://com.apple.appkit/documentation/AppKit/path-control",
+        "doc://com.apple.appkit/documentation/AppKit/NSPopUpButton",
+        "doc://com.apple.appkit/documentation/AppKit/NSProgressIndicator",
+        "doc://com.apple.appkit/documentation/AppKit/NSRuleEditor",
+        "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditor",
+        "doc://com.apple.appkit/documentation/AppKit/search-field",
+        "doc://com.apple.appkit/documentation/AppKit/NSSegmentedControl",
+        "doc://com.apple.appkit/documentation/AppKit/slider",
+        "doc://com.apple.appkit/documentation/AppKit/NSStepper",
+        "doc://com.apple.appkit/documentation/AppKit/text-field",
+        "doc://com.apple.appkit/documentation/AppKit/token-field",
+        "doc://com.apple.appkit/documentation/AppKit/toolbar",
+        "doc://com.apple.appkit/documentation/AppKit/NSSwitch",
+        "doc://com.apple.appkit/documentation/AppKit/NSMatrix"
+      ],
+      "title": "Controls"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Add purely decorative elements to your user interface.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Visual-Adornments",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSVisualEffectView",
+        "doc://com.apple.appkit/documentation/AppKit/NSBox"
+      ],
+      "title": "Visual Adornments"
+    },
+    {
+      "anchor": "UI-Validation",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations",
+        "doc://com.apple.appkit/documentation/AppKit/NSValidatedUserInterfaceItem"
+      ],
+      "title": "UI Validation"
+    },
+    {
+      "anchor": "Tool-Tips",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSViewToolTipOwner"
+      ],
+      "title": "Tool Tips"
+    },
+    {
+      "anchor": "Related-types",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSRectAlignment",
+        "doc://com.apple.appkit/documentation/AppKit/NSDirectionalEdgeInsets",
+        "doc://com.apple.appkit/documentation/AppKit/NSDirectionalRectEdge"
+      ],
+      "title": "Related types"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "View-Fundamentals",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSView",
+                "doc://com.apple.appkit/documentation/AppKit/NSControl",
+                "doc://com.apple.appkit/documentation/AppKit/NSCell",
+                "doc://com.apple.appkit/documentation/AppKit/NSActionCell"
+              ],
+              "title": "View Fundamentals"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Use container views to arrange the views of your interface and to facilitate navigation among those views.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Container-Views",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/xcode/localization-friendly_layouts_in_macos",
+                "doc://com.apple.appkit/documentation/AppKit/grid-view",
+                "doc://com.apple.appkit/documentation/AppKit/NSSplitView",
+                "doc://com.apple.appkit/documentation/AppKit/organize-your-user-interface-with-a-stack-view",
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView",
+                "doc://com.apple.appkit/documentation/AppKit/NSTabView",
+                "doc://com.apple.appkit/documentation/AppKit/scroll-view"
+              ],
+              "title": "Container Views"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Use content views to organize and display your app’s data.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Content-Views",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/browser-view",
+                "doc://com.apple.appkit/documentation/AppKit/collection-view",
+                "doc://com.apple.appkit/documentation/AppKit/outline-view",
+                "doc://com.apple.appkit/documentation/AppKit/table-view",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextView"
+              ],
+              "title": "Content Views"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Use controls to handle specific types of user interactions. Controls are specialized views that use the target-action design pattern to notify your app of interactions with their content.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Controls",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/UIKit/responding-to-control-based-events-using-target-action",
+                "doc://com.apple.appkit/documentation/AppKit/NSButton",
+                "doc://com.apple.appkit/documentation/AppKit/NSColorWell",
+                "doc://com.apple.appkit/documentation/AppKit/combo-box",
+                "doc://com.apple.appkit/documentation/AppKit/NSComboButton",
+                "doc://com.apple.appkit/documentation/AppKit/date-picker",
+                "doc://com.apple.appkit/documentation/AppKit/NSImageView",
+                "doc://com.apple.appkit/documentation/AppKit/NSLevelIndicator",
+                "doc://com.apple.appkit/documentation/AppKit/path-control",
+                "doc://com.apple.appkit/documentation/AppKit/NSPopUpButton",
+                "doc://com.apple.appkit/documentation/AppKit/NSProgressIndicator",
+                "doc://com.apple.appkit/documentation/AppKit/NSRuleEditor",
+                "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditor",
+                "doc://com.apple.appkit/documentation/AppKit/search-field",
+                "doc://com.apple.appkit/documentation/AppKit/NSSegmentedControl",
+                "doc://com.apple.appkit/documentation/AppKit/slider",
+                "doc://com.apple.appkit/documentation/AppKit/NSStepper",
+                "doc://com.apple.appkit/documentation/AppKit/text-field",
+                "doc://com.apple.appkit/documentation/AppKit/token-field",
+                "doc://com.apple.appkit/documentation/AppKit/toolbar",
+                "doc://com.apple.appkit/documentation/AppKit/NSSwitch",
+                "doc://com.apple.appkit/documentation/AppKit/NSMatrix"
+              ],
+              "title": "Controls"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Add purely decorative elements to your user interface.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Visual-Adornments",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSVisualEffectView",
+                "doc://com.apple.appkit/documentation/AppKit/NSBox"
+              ],
+              "title": "Visual Adornments"
+            },
+            {
+              "anchor": "UI-Validation",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations",
+                "doc://com.apple.appkit/documentation/AppKit/NSValidatedUserInterfaceItem"
+              ],
+              "title": "UI Validation"
+            },
+            {
+              "anchor": "Tool-Tips",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSViewToolTipOwner"
+              ],
+              "title": "Tool Tips"
+            },
+            {
+              "anchor": "Related-types",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSRectAlignment",
+                "doc://com.apple.appkit/documentation/AppKit/NSDirectionalEdgeInsets",
+                "doc://com.apple.appkit/documentation/AppKit/NSDirectionalRectEdge"
+              ],
+              "title": "Related types"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "User-Interface",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/view-management",
+                "doc://com.apple.appkit/documentation/AppKit/view-layout",
+                "doc://com.apple.appkit/documentation/AppKit/appearance-customization",
+                "doc://com.apple.appkit/documentation/AppKit/animation",
+                "doc://com.apple.appkit/documentation/AppKit/windows-panels-and-screens",
+                "doc://com.apple.appkit/documentation/AppKit/sound-speech-and-haptics",
+                "doc://com.apple.appkit/documentation/AppKit/supporting-continuity-camera-in-your-mac-app"
+              ],
+              "title": "User Interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSegmentedControl/title",
+          "value": "NSSegmentedControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSegmentedControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSegmentedControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSegmentedControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSegmentedControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSComboButton/title",
+          "value": "NSComboButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSComboButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSComboButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSComboButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSComboButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView/title",
+          "value": "NSStackView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStackView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStackView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSVisualEffectView/title",
+          "value": "NSVisualEffectView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSVisualEffectView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSVisualEffectView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSVisualEffectView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSVisualEffectView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditor/title",
+          "value": "NSPredicateEditor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPredicateEditor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPredicateEditor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDirectionalEdgeInsets/title",
+          "value": "NSDirectionalEdgeInsets"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDirectionalEdgeInsets/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDirectionalEdgeInsets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDirectionalEdgeInsets/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDirectionalEdgeInsets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewToolTipOwner/title",
+          "value": "NSViewToolTipOwner"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewToolTipOwner/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewToolTipOwner"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewToolTipOwner/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewToolTipOwner"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceValidations/title",
+          "value": "NSUserInterfaceValidations"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceValidations/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceValidations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceValidations/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceValidations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCell/title",
+          "value": "NSCell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCell/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSActionCell/title",
+          "value": "NSActionCell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSActionCell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSActionCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSActionCell/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSActionCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageView/title",
+          "value": "NSImageView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSValidatedUserInterfaceItem/title",
+          "value": "NSValidatedUserInterfaceItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSValidatedUserInterfaceItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSValidatedUserInterfaceItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSValidatedUserInterfaceItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSValidatedUserInterfaceItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox/title",
+          "value": "NSBox"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSBox"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSBox"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRectAlignment/title",
+          "value": "NSRectAlignment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRectAlignment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRectAlignment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRectAlignment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRectAlignment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/title",
+          "value": "NSView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSControl/title",
+          "value": "NSControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSProgressIndicator/title",
+          "value": "NSProgressIndicator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSProgressIndicator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSProgressIndicator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSProgressIndicator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSProgressIndicator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPopUpButton/title",
+          "value": "NSPopUpButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPopUpButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPopUpButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPopUpButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPopUpButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton/title",
+          "value": "NSButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLevelIndicator/title",
+          "value": "NSLevelIndicator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLevelIndicator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLevelIndicator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLevelIndicator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLevelIndicator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTabView/title",
+          "value": "NSTabView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTabView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTabView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTabView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTabView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStepper/title",
+          "value": "NSStepper"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStepper/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStepper"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStepper/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStepper"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDirectionalRectEdge/title",
+          "value": "NSDirectionalRectEdge"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDirectionalRectEdge/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDirectionalRectEdge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDirectionalRectEdge/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDirectionalRectEdge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSwitch/title",
+          "value": "NSSwitch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSwitch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSwitch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSwitch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSwitch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/title",
+          "value": "NSTextView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMatrix/title",
+          "value": "NSMatrix"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMatrix/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMatrix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMatrix/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMatrix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRuleEditor/title",
+          "value": "NSRuleEditor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRuleEditor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRuleEditor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRuleEditor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRuleEditor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitView/title",
+          "value": "NSSplitView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorWell/title",
+          "value": "NSColorWell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorWell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColorWell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorWell/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColorWell"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/views-and-controls"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/views-and-controls"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

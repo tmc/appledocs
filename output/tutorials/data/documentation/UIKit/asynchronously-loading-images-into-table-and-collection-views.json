@@ -1,0 +1,845 @@
+{
+  "abstract": [
+    {
+      "text": "Store and fetch images asynchronously to make your app more responsive.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+        "doc://com.apple.uikit/documentation/UIKit/table-views"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/asynchronously-loading-images-into-table-and-collection-views"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Asynchronously loading images into table and collection views"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Caching images can help you make the table and collection views in your app instantiate fast and respond quickly to scrolling. The app in the sample project demonstrates fetching images with URLs. The images are not part the assets catalog and instead are a part of the app bundle to simulate loading each asynchronously by URL. This ensures the user interface remains responsive. This project also supports Mac Catalyst.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-image-loading-and-caching",
+          "level": 3,
+          "text": "Handle image loading and caching",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the sample, the class ",
+              "type": "text"
+            },
+            {
+              "code": "ImageCache.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " demonstrates a basic mechanism for image loading from a URL with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "overridingTitle": "NSURLSession",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSURLSession",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and caching the downloaded images using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscache",
+              "isActive": true,
+              "overridingTitle": "NSCache",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSCache",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". Views such as ",
+              "type": "text"
+            },
+            {
+              "code": "UITableView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "UICollectionView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are subclasses of ",
+              "type": "text"
+            },
+            {
+              "code": "UIScrollView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the user scrolls in a view, the app requests the same image repeatedly. This sample holds onto the relevant completion blocks until the image loads, then passes the image to all of the requesting blocks so the API only has to make one call to fetch an image for a given URL. The following code shows how the sample project consructs a basic caching and loading method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Returns the cached image if available, otherwise asynchronously loads and caches it.",
+            "final func load(url: NSURL, item: Item, completion: @escaping (Item, UIImage?) -> Swift.Void) {",
+            "    // Check for a cached image.",
+            "    if let cachedImage = image(url: url) {",
+            "        DispatchQueue.main.async {",
+            "            completion(item, cachedImage)",
+            "        }",
+            "        return",
+            "    }",
+            "    // In case there are more than one requestor for the image, we append their completion block.",
+            "    if loadingResponses[url] != nil {",
+            "        loadingResponses[url]?.append(completion)",
+            "        return",
+            "    } else {",
+            "        loadingResponses[url] = [completion]",
+            "    }",
+            "    // Go fetch the image.",
+            "    ImageURLProtocol.urlSession().dataTask(with: url as URL) { (data, response, error) in",
+            "        // Check for the error, then data and try to create the image.",
+            "        guard let responseData = data, let image = UIImage(data: responseData),",
+            "            let blocks = self.loadingResponses[url], error == nil else {",
+            "            DispatchQueue.main.async {",
+            "                completion(item, nil)",
+            "            }",
+            "            return",
+            "        }",
+            "        // Cache the image.",
+            "        self.cachedImages.setObject(image, forKey: url, cost: responseData.count)",
+            "        // Iterate over each requestor for the image and pass it back.",
+            "        for block in blocks {",
+            "            DispatchQueue.main.async {",
+            "                block(item, image)",
+            "            }",
+            "            return",
+            "        }",
+            "    }.resume()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Update-your-datasource-responsibly",
+          "level": 3,
+          "text": "Update your datasource responsibly",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app that loads all of its data on launch risks running out of memory or terminating for taking too long to complete. Unless the app requires all data to be loaded before operation, load your images as the UI requests them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To ensure items load before becoming visible on screen, make use of prefetching APIs when applicable. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/prefetching-collection-view-data",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for best practices of prefetching data.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Generally the app should wait until the data source requests a cell to fetch and set an image. The sample project demonstrates one approach to fetching and displaying an image on a reusable view :",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var content = cell.defaultContentConfiguration()",
+            "content.image = item.image",
+            "ImageCache.publicCache.load(url: item.url as NSURL, item: item) { (fetchedItem, image) in",
+            "    if let img = image, img != fetchedItem.image {",
+            "        var updatedSnapshot = self.dataSource.snapshot()",
+            "        if let datasourceIndex = updatedSnapshot.indexOfItem(fetchedItem) {",
+            "            let item = self.imageObjects[datasourceIndex]",
+            "            item.image = img",
+            "            updatedSnapshot.reloadItems([item])",
+            "            self.dataSource.apply(updatedSnapshot, animatingDifferences: true)",
+            "        }",
+            "    }",
+            "}",
+            "cell.contentConfiguration = content"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nscache": {
+      "abstract": [
+        {
+          "text": "A mutable collection you use to temporarily store transient key-value pairs that are subject to eviction when resources are low.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCache"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscache",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCache",
+      "type": "topic",
+      "url": "/documentation/foundation/nscache"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct": {
+      "abstract": [
+        {
+          "text": "A representation of the state of the data in a view at a specific point in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSnapshot"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSnapshot"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDiffableDataSourceSnapshot",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDataSourceTranslating": {
+      "abstract": [
+        {
+          "text": "An advanced interface for managing a data source object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDataSourceTranslating"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDataSourceTranslating",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDataSourceTranslating"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDataSourceTranslating",
+      "type": "topic",
+      "url": "/documentation/uikit/uidatasourcetranslating"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILocalizedIndexedCollation": {
+      "abstract": [
+        {
+          "text": "An object that organizes, sorts, and localizes the data for a table view that has a section index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILocalizedIndexedCollation"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILocalizedIndexedCollation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UILocalizedIndexedCollation"
+        }
+      ],
+      "role": "symbol",
+      "title": "UILocalizedIndexedCollation",
+      "type": "topic",
+      "url": "/documentation/uikit/uilocalizedindexedcollation"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIRefreshControl": {
+      "abstract": [
+        {
+          "text": "A standard control that can initiate the refreshing of a scroll view’s contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIRefreshControl"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIRefreshControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIRefreshControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIRefreshControl",
+      "type": "topic",
+      "url": "/documentation/uikit/uirefreshcontrol"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSource": {
+      "abstract": [
+        {
+          "text": "The methods that an object adopts to manage data and provide cells for a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewDataSource",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdatasource"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSourcePrefetching": {
+      "abstract": [
+        {
+          "text": "A protocol that provides advance warning of the data requirements for a table view, allowing you to start potentially long-running data operations early.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewDataSourcePrefetching"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSourcePrefetching",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewDataSourcePrefetching"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewDataSourcePrefetching",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdatasourceprefetching"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDiffableDataSource-2euir": {
+      "abstract": [
+        {
+          "text": "The object you use to manage data and provide cells for a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewDiffableDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDiffableDataSource-2euir",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewDiffableDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewDiffableDataSource",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdiffabledatasource-2euir"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/filling-a-table-with-data": {
+      "abstract": [
+        {
+          "text": "Create and configure cells for your table dynamically using a data source object, or provide them statically from your storyboard.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/filling-a-table-with-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Filling a table with data",
+      "type": "topic",
+      "url": "/documentation/uikit/filling-a-table-with-data"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/prefetching-collection-view-data": {
+      "abstract": [
+        {
+          "text": "Load data for collection view cells before they display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/prefetching-collection-view-data",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Prefetching collection view data",
+      "type": "topic",
+      "url": "/documentation/uikit/prefetching-collection-view-data"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/table-views": {
+      "abstract": [
+        {
+          "text": "Display data in a single column of customizable rows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/table-views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Table views",
+      "type": "topic",
+      "url": "/documentation/uikit/table-views"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/views-and-controls": {
+      "abstract": [
+        {
+          "text": "Present your content onscreen and define the interactions allowed with that content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and controls",
+      "type": "topic",
+      "url": "/documentation/uikit/views-and-controls"
+    },
+    "f1d78f41a254/AsynchronouslyLoadingImagesIntoTableAndCollectionViews.zip": {
+      "checksum": "f1d78f41a254d743d5a6d783af9a45cdcf52659dd7373f0bf9b55b8b5b509775478e6a22d1d734b3562a84375e284bd8f688bb41c3e82209a11a592daa7725d3",
+      "identifier": "f1d78f41a254/AsynchronouslyLoadingImagesIntoTableAndCollectionViews.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/f1d78f41a254/AsynchronouslyLoadingImagesIntoTableAndCollectionViews.zip"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "f1d78f41a254/AsynchronouslyLoadingImagesIntoTableAndCollectionViews.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/filling-a-table-with-data",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSource",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSourcePrefetching",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewDiffableDataSource-2euir",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UILocalizedIndexedCollation",
+        "doc://com.apple.uikit/documentation/UIKit/UIDataSourceTranslating",
+        "doc://com.apple.uikit/documentation/UIKit/UIRefreshControl"
+      ],
+      "title": "Data"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDataSource/title",
+          "value": "UITableViewDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRefreshControl/title",
+          "value": "UIRefreshControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRefreshControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIRefreshControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRefreshControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIRefreshControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILocalizedIndexedCollation/title",
+          "value": "UILocalizedIndexedCollation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILocalizedIndexedCollation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILocalizedIndexedCollation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILocalizedIndexedCollation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILocalizedIndexedCollation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDataSourcePrefetching/title",
+          "value": "UITableViewDataSourcePrefetching"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDataSourcePrefetching/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDataSourcePrefetching"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDataSourcePrefetching/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDataSourcePrefetching"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDataSourceTranslating/title",
+          "value": "UIDataSourceTranslating"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDataSourceTranslating/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDataSourceTranslating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDataSourceTranslating/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDataSourceTranslating"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/asynchronously-loading-images-into-table-and-collection-views"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

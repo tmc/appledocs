@@ -1,0 +1,630 @@
+{
+  "abstract": [
+    {
+      "text": "Pauses speech on a speech channel.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/1461174-pausespeechat"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1461174,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@PauseSpeechAt",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "PauseSpeechAt"
+      },
+      {
+        "kind": "text",
+        "text": "(SpeechChannel, Int32) -> OSErr"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "13.0",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "PauseSpeechAt(_:_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PauseSpeechAt"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "chan"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechchannel",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SpeechChannel",
+              "text": "SpeechChannel"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "whereToPause"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Int32",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s5Int32V",
+              "text": "Int32"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSErr",
+              "text": "OSErr"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The speech channel on which speech is to be paused.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "chan"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A constant indicating when speech processing should be paused. Pass the constant ",
+                  "type": "text"
+                },
+                {
+                  "code": "kImmediate",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to pause immediately, even in the middle of a word. Pass ",
+                  "type": "text"
+                },
+                {
+                  "code": "kEndOfWord",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "kEndOfSentence",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to pause speech at the end of the current word or sentence, respectively. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "whereToPause"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A resultcode. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager#1659745",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "PauseSpeechAt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functionmakes speech production pause at a specified point in the text. ",
+              "type": "text"
+            },
+            {
+              "code": "PauseSpeechAt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " returnsimmediately, although speech output will continue until the specifiedpoint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can determine whether your application has paused speechoutput on a speech channel by obtaining a speech status informationstructure through the ",
+              "type": "text"
+            },
+            {
+              "code": "GetSpeechInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function.While a speech channel is paused, the speech status informationstructure indicates that ",
+              "type": "text"
+            },
+            {
+              "code": "outputBusy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "outputPaused",
+              "type": "codeVoice"
+            },
+            {
+              "text": " areboth ",
+              "type": "text"
+            },
+            {
+              "code": "TRUE",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the end of the input text buffer is reached before thespecified pause point, speech output pauses at the end of the buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "PauseSpeechAt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functiondiffers from the ",
+              "type": "text"
+            },
+            {
+              "code": "StopSpeech",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "StopSpeechAt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functionsin that a subsequent call to ",
+              "type": "text"
+            },
+            {
+              "code": "ContinueSpeech",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",described next, causes the contents of the current text buffer tocontinue being spoken.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you plan to continue speech synthesis from a paused speechchannel, the text buffer being processed must remain available atall times and must not move while the channel is in a paused state. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Int32": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int32",
+      "type": "topic",
+      "url": "/documentation/swift/int32"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459780-stopspeechat": {
+      "abstract": [
+        {
+          "text": "Terminates speech delivery on a specified channel eitherimmediately or at the end of the current word or sentence.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "StopSpeechAt"
+        },
+        {
+          "kind": "text",
+          "text": "(SpeechChannel, Int32) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459780-stopspeechat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StopSpeechAt(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459780-stopspeechat"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461174-pausespeechat": {
+      "abstract": [
+        {
+          "text": "Pauses speech on a speech channel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PauseSpeechAt"
+        },
+        {
+          "kind": "text",
+          "text": "(SpeechChannel, Int32) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461174-pausespeechat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PauseSpeechAt(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461174-pausespeechat"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461621-speakcfstring": {
+      "abstract": [
+        {
+          "text": "Begins speaking a string represented as a ",
+          "type": "text"
+        },
+        {
+          "code": "CFString",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeakCFString"
+        },
+        {
+          "kind": "text",
+          "text": "(SpeechChannel, CFString, CFDictionary?) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461621-speakcfstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeakCFString(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461621-speakcfstring"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462728-continuespeech": {
+      "abstract": [
+        {
+          "text": "Resumes speech paused by the ",
+          "type": "text"
+        },
+        {
+          "code": "PauseSpeechAt",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContinueSpeech"
+        },
+        {
+          "kind": "text",
+          "text": "(SpeechChannel) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462728-continuespeech",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ContinueSpeech(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462728-continuespeech"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462745-stopspeech": {
+      "abstract": [
+        {
+          "text": "Terminates speech immediately on the specified channel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "StopSpeech"
+        },
+        {
+          "kind": "text",
+          "text": "(SpeechChannel) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462745-stopspeech",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StopSpeech(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462745-stopspeech"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Speech Synthesis Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager#1659745": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager#1659745",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/applicationservices/speech_synthesis_manager#1659745"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechchannel": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechchannel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechChannel",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechchannel"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1462728-continuespeech",
+        "doc://com.apple.documentation/documentation/applicationservices/1461621-speakcfstring",
+        "doc://com.apple.documentation/documentation/applicationservices/1462745-stopspeech",
+        "doc://com.apple.documentation/documentation/applicationservices/1459780-stopspeechat"
+      ],
+      "title": "Starting, Stopping, and Pausing Speech"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/1461174-pausespeechat"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/applicationservices/1461174-pausespeechat"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1182 @@
+{
+  "abstract": [
+    {
+      "text": "Implement glanceable views with WidgetKit and SwiftUI.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-views-for-widgets-Live-Activities-and-watch-complications"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WidgetKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating views for widgets, Live Activities, and watch complications"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftUI and WidgetKit power widgets, Live Activities, and watch complications. Because they use the same technology and share design similarities, plan your WidgetKit adoption before you start creating these features. Start simple and add complexity later; for example, start by adding a widget extension as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and support one widget size. Spend time to make sure it offers a focused, glanceable experience. Then, add support for additional widget sizes and features like configurability, animations, and interactivity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2023/10027",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related session from WWDC23",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re new to using WidgetKit, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Developing-a-WidgetKit-strategy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-system-font-styles",
+          "level": 3,
+          "text": "Use system font styles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Widgets, Live Activities, and watch complications appear adjacent to other widgets or complications. As a result, a consistent look for your content that fits in well with the other elements needs to be a priority. To achieve a consistent look for your widgets and complications, use system fonts, default font parameters, and the following font styles:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Font/TextStyle/headline",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Font/TextStyle/title",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Font/TextStyle/body",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Font/TextStyle/caption",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Make-sure-text-fits-the-available-space",
+          "level": 3,
+          "text": "Make sure text fits the available space",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Widgets and watch complications offer limited space for content — especially on the Lock Screen or on Apple Watch. Give careful consideration to the amount of text you display. For example, say you support the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryInline",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " widget. It can include an image and text. However, the amount of displayable characters varies depending on the context where the widget appears. On Apple Watch, the size of the inline complication varies depending on the watch face. Include it in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ViewThatFits",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view to make sure text always fits the available space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Test your widgets with every language you support, especially if you support languages that commonly have words with a lot of characters, such as German.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Use-content-margins-instead-of-safe-areas",
+          "level": 3,
+          "text": "Use content margins instead of safe areas",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "watchOS 9, iOS 16, iPadOS 16, macOS 13, and earlier use system-defined safe areas to keep content from getting too close to the edge of the widget, complication, or Live Activity. You likely don’t change the safe areas that the system defines. However, you might use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/ignoresSafeArea(_:edges:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier to extend content farther than the safe area.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting with watchOS 10, iOS 17, iPadOS 17, and macOS 14, widgets, WidgetKit complications, and Live Activities use content margins instead of safe areas. As a result, ",
+              "type": "text"
+            },
+            {
+              "code": "ignoresSafeArea(_:edges:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has no effect. Instead, you need to use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WidgetConfiguration/contentMarginsDisabled()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier to define custom content margins.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use ",
+              "type": "text"
+            },
+            {
+              "code": "ignoresSafeArea(_:edges:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "contentMarginsDisabled()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " view modifier to your widget configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For any content that you intend to remain inside system-defined content margins, make use of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/padding(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " as needed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To access the system’s default content margins for an environment, use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/widgetContentMargins",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " environment variable.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Developing-WidgetKit-Strategy-PageImage-card.png": {
+      "alt": "A collection of widgets in different sizes and orientations.",
+      "identifier": "Developing-WidgetKit-Strategy-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3be6cd9e9843fbca08a8c9ac15fcd915/Developing-WidgetKit-Strategy-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/42a248c60d951cca0502f29a151532a0/Developing-WidgetKit-Strategy-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AccessoryWidgetBackground": {
+      "abstract": [
+        {
+          "text": "An adaptive background view that provides a standard appearance based on the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the widget’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessoryWidgetBackground"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AccessoryWidgetBackground",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessoryWidgetBackground"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessoryWidgetBackground",
+      "type": "topic",
+      "url": "/documentation/widgetkit/accessorywidgetbackground"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension": {
+      "abstract": [
+        {
+          "text": "Display your app’s content in a convenient, informative widget on various devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a widget extension",
+      "type": "topic",
+      "url": "/documentation/widgetkit/creating-a-widget-extension"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Developing-a-WidgetKit-strategy": {
+      "abstract": [
+        {
+          "text": "Explore features, tasks, related frameworks, and constraints as you make a plan to implement widgets, watch complications, and Live Activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Developing-a-WidgetKit-strategy",
+      "images": [
+        {
+          "identifier": "Developing-WidgetKit-Strategy-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Developing a WidgetKit strategy",
+      "type": "topic",
+      "url": "/documentation/widgetkit/developing-a-widgetkit-strategy"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Preparing-widgets-for-additional-contexts-and-appearances": {
+      "abstract": [
+        {
+          "text": "Create widgets that support additional platforms and adapt to their context.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Preparing-widgets-for-additional-contexts-and-appearances",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing widgets for additional platforms, contexts, and appearances",
+      "type": "topic",
+      "url": "/documentation/widgetkit/preparing-widgets-for-additional-contexts-and-appearances"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/SwiftUI-Views": {
+      "abstract": [
+        {
+          "text": "Present your app’s content in widgets with SwiftUI views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/SwiftUI-Views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SwiftUI views for widgets",
+      "type": "topic",
+      "url": "/documentation/widgetkit/swiftui-views"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryInline": {
+      "abstract": [
+        {
+          "text": "A flat widget that contains a single row of text and an optional image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryInline"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryInline",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.accessoryInline",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/accessoryinline"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetLocation": {
+      "abstract": [
+        {
+          "text": "Values that indicate different widget locations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetLocation",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetlocation"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/widgetContentMargins": {
+      "abstract": [
+        {
+          "text": "A property that identifies the content margins of a widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "widgetContentMargins"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10EdgeInsetsV",
+          "text": "EdgeInsets"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/widgetContentMargins",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "widgetContentMargins",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/widgetContentMargins"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Font/TextStyle/body": {
+      "abstract": [
+        {
+          "text": "The font used for body text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "body"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Font/TextStyle/body",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Font.TextStyle.body",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Font/TextStyle/body"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Font/TextStyle/caption": {
+      "abstract": [
+        {
+          "text": "The font used for standard captions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "caption"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Font/TextStyle/caption",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Font.TextStyle.caption",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Font/TextStyle/caption"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Font/TextStyle/headline": {
+      "abstract": [
+        {
+          "text": "The font used for headings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "headline"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Font/TextStyle/headline",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Font.TextStyle.headline",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Font/TextStyle/headline"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Font/TextStyle/title": {
+      "abstract": [
+        {
+          "text": "The font used for first level hierarchical headings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Font/TextStyle/title",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Font.TextStyle.title",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Font/TextStyle/title"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/ignoresSafeArea(_:edges:)": {
+      "abstract": [
+        {
+          "text": "Expands the safe area of a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ignoresSafeArea"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "regions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15SafeAreaRegionsV",
+          "text": "SafeAreaRegions"
+        },
+        {
+          "kind": "text",
+          "text": " = .all, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "edges"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO",
+          "text": "Edge"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": " = .all) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/ignoresSafeArea(_:edges:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ignoresSafeArea(_:edges:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/ignoresSafeArea(_:edges:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/padding(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a different padding amount to each edge of this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "padding"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "insets"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10EdgeInsetsV",
+          "text": "EdgeInsets"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/padding(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "padding(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/padding(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ViewThatFits": {
+      "abstract": [
+        {
+          "text": "A view that adapts to the available space by providing the first child view that fits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ViewThatFits"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ViewThatFits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ViewThatFits",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ViewThatFits"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/WidgetConfiguration/contentMarginsDisabled()": {
+      "abstract": [
+        {
+          "text": "Disable default content margins.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentMarginsDisabled"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19WidgetConfigurationP",
+          "text": "WidgetConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WidgetConfiguration/contentMarginsDisabled()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentMarginsDisabled()",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/WidgetConfiguration/contentMarginsDisabled()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/tutorials/SwiftUI": {
+      "abstract": [
+        {
+          "text": "SwiftUI is a modern way to declare user interfaces for any Apple platform. Create beautiful, dynamic apps faster than ever before.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/tutorials/SwiftUI",
+      "kind": "overview",
+      "role": "overview",
+      "title": "Introducing SwiftUI",
+      "type": "topic",
+      "url": "/tutorials/SwiftUI"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10027": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10027",
+      "title": "Session 10027: Bring widgets to new places",
+      "titleInlineContent": [
+        {
+          "text": "Session 10027: Bring widgets to new places",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10027"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Presentation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Preparing-widgets-for-additional-contexts-and-appearances",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/SwiftUI-Views",
+        "doc://com.apple.documentation/tutorials/SwiftUI",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/AccessoryWidgetBackground",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetLocation"
+      ],
+      "title": "Presentation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Presentation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Preparing-widgets-for-additional-contexts-and-appearances",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/SwiftUI-Views"
+              ],
+              "title": "Presentation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/widgetkit/creating-views-for-widgets-live-activities-and-watch-complications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/widgetkit/creating-views-for-widgets-live-activities-and-watch-complications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

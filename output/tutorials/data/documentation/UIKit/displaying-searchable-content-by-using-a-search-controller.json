@@ -1,0 +1,824 @@
+{
+  "abstract": [
+    {
+      "text": "Create a user interface with searchable content in a table view.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/view-controllers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/displaying-searchable-content-by-using-a-search-controller"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Displaying searchable content by using a search controller"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample demonstrates how to create a table view controller and search controller to manage the display of searchable content. It creates another custom table view controller to display the search results. This table view controller also acts as the presenter or provides context for the search results so they’re presented within their own context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample includes the optional—but recommended—",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. You adopt this protocol from the view controller class to save the search bar’s active state, first responder status, and search bar text and restore them when the app is relaunched.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-search-controller",
+          "level": 3,
+          "text": "Create a search controller",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "code": "MainTableViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to create a search controller. The search controller searches and filters a set of ",
+              "type": "text"
+            },
+            {
+              "code": "Product",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects and displays them in a table called ",
+              "type": "text"
+            },
+            {
+              "code": "ResultsTableController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This table controller is displayed as the user enters a search string and is dismissed when the search is complete.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func viewDidLoad() {",
+            "    super.viewDidLoad()",
+            "",
+            "    let nib = UINib(nibName: \"TableCell\", bundle: nil)",
+            "    tableView.register(nib, forCellReuseIdentifier: tableViewCellIdentifier)",
+            "    ",
+            "    resultsTableController =",
+            "        self.storyboard?.instantiateViewController(withIdentifier: \"ResultsTableController\") as? ResultsTableController",
+            "    // This view controller is interested in table view row selections.",
+            "    resultsTableController.tableView.delegate = self",
+            "    ",
+            "    searchController = UISearchController(searchResultsController: resultsTableController)",
+            "    searchController.delegate = self",
+            "    searchController.searchResultsUpdater = self",
+            "    searchController.searchBar.autocapitalizationType = .none",
+            "    searchController.searchBar.delegate = self // Monitor when the search button is tapped.",
+            "    ",
+            "    searchController.searchBar.scopeButtonTitles = [Product.productTypeName(forType: .all),",
+            "                                                    Product.productTypeName(forType: .birthdays),",
+            "                                                    Product.productTypeName(forType: .weddings),",
+            "                                                    Product.productTypeName(forType: .funerals)]",
+            "",
+            "    // Place the search bar in the navigation bar.",
+            "    navigationItem.searchController = searchController",
+            "    ",
+            "    // Make the search bar always visible.",
+            "    navigationItem.hidesSearchBarWhenScrolling = false",
+            "    ",
+            "    /** Search presents a view controller by applying normal view controller presentation semantics.",
+            "        This means that the presentation moves up the view controller hierarchy until it finds the root",
+            "        view controller or one that defines a presentation context.",
+            "    */",
+            "    ",
+            "    /** Specify that this view controller determines how the search controller is presented.",
+            "        The search controller should be presented modally and match the physical size of this view controller.",
+            "    */",
+            "    definesPresentationContext = true",
+            "    ",
+            "    setupDataSource()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Update-the-search-results",
+          "level": 3,
+          "text": "Update the search results",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchResultsUpdating",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, along with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscomparisonpredicate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to filter search results from the group of available products. ",
+              "type": "text"
+            },
+            {
+              "code": "NSComparisonPredicate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a foundation class that specifies how data should be fetched or filtered using search criteria. The search criteria are based on what the user types in the search bar, which can be a combination of product title, year introduced, and price.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To prepare for a search, the search bar content is trimmed of all leading and trailing space characters. Then the search string is passed to the ",
+              "type": "text"
+            },
+            {
+              "code": "findMatches",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function, which returns the ",
+              "type": "text"
+            },
+            {
+              "code": "NSComparisonPredicate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " used in the search. The product list results are applied to the search results table as a filtered list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func updateSearchResults(for searchController: UISearchController) {",
+            "       // Update the filtered array based on the search text.",
+            "       let searchResults = products",
+            "",
+            "       // Strip out all the leading and trailing spaces.",
+            "       let whitespaceCharacterSet = CharacterSet.whitespaces",
+            "       let strippedString =",
+            "           searchController.searchBar.text!.trimmingCharacters(in: whitespaceCharacterSet)",
+            "       let searchItems = strippedString.components(separatedBy: \" \") as [String]",
+            "",
+            "       // Build all the \"AND\" expressions for each value in searchString.",
+            "       let andMatchPredicates: [NSPredicate] = searchItems.map { searchString in",
+            "           findMatches(searchString: searchString)",
+            "       }",
+            "",
+            "       // Match up the fields of the Product object.",
+            "       let finalCompoundPredicate =",
+            "           NSCompoundPredicate(andPredicateWithSubpredicates: andMatchPredicates)",
+            "",
+            "       let filteredResults = searchResults.filter { finalCompoundPredicate.evaluate(with: $0) }",
+            "",
+            "       // Apply the filtered results to the search results table.",
+            "       if let resultsController = searchController.searchResultsController as? ResultsTableController {",
+            "           resultsController.filteredProducts = filteredResults",
+            "           resultsController.tableView.reloadData()",
+            "",
+            "           resultsController.resultsLabel.text = resultsController.filteredProducts.isEmpty ?",
+            "               NSLocalizedString(\"NoItemsFoundTitle\", comment: \"\") :",
+            "               String(format: NSLocalizedString(\"Items found: %ld\", comment: \"\"),",
+            "                      resultsController.filteredProducts.count)",
+            "       }",
+            "   }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "b3eaa845da50/DisplayingSearchableContentByUsingASearchController.zip": {
+      "checksum": "b3eaa845da50c5f07b5624e852fc42ceb9516d460248c5162b3765aea3b3beef9064ec3bc5d82f11f7853fa98adef1bfece2646948136f402f87d03af9bbf3fb",
+      "identifier": "b3eaa845da50/DisplayingSearchableContentByUsingASearchController.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/b3eaa845da50/DisplayingSearchableContentByUsingASearchController.zip"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscomparisonpredicate": {
+      "abstract": [
+        {
+          "text": "A specialized predicate for comparing expressions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSComparisonPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscomparisonpredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSComparisonPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nscomparisonpredicate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchBar": {
+      "abstract": [
+        {
+          "text": "A specialized view for receiving search-related information from the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchBar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchBar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchBar"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchBar",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchbar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchContainerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages the presentation of search results in your interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchContainerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchContainerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchContainerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchContainerViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchcontainerviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages the display of search results based on interactions with a search bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchController",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchResultsUpdating": {
+      "abstract": [
+        {
+          "text": "A set of methods that let you update search results based on information the user enters into the search bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchResultsUpdating"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchResultsUpdating",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchResultsUpdating"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchResultsUpdating",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchresultsupdating"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring": {
+      "abstract": [
+        {
+          "text": "Methods for adding objects to your state restoration archives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStateRestoring"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIStateRestoring"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIStateRestoring",
+      "type": "topic",
+      "url": "/documentation/uikit/uistaterestoring"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that specializes in managing a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/using-suggested-searches-with-a-search-controller": {
+      "abstract": [
+        {
+          "text": "Create a search interface with a table view of suggested searches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/using-suggested-searches-with-a-search-controller",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using suggested searches with a search controller",
+      "type": "topic",
+      "url": "/documentation/uikit/using-suggested-searches-with-a-search-controller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-controllers": {
+      "abstract": [
+        {
+          "text": "Manage your interface using view controllers and facilitate navigation around your app’s content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View controllers",
+      "type": "topic",
+      "url": "/documentation/uikit/view-controllers"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "b3eaa845da50/DisplayingSearchableContentByUsingASearchController.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Search-interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UISearchContainerViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchController",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchBar",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchResultsUpdating",
+        "doc://com.apple.uikit/documentation/UIKit/using-suggested-searches-with-a-search-controller"
+      ],
+      "title": "Search interface"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Search-interface",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UISearchContainerViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchController",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchBar",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchResultsUpdating",
+                "doc://com.apple.uikit/documentation/UIKit/using-suggested-searches-with-a-search-controller"
+              ],
+              "title": "Search interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewController/title",
+          "value": "UITableViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring/title",
+          "value": "UIStateRestoring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStateRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStateRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchResultsUpdating/title",
+          "value": "UISearchResultsUpdating"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchResultsUpdating/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchResultsUpdating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchResultsUpdating/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchResultsUpdating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchController/title",
+          "value": "UISearchController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchBar/title",
+          "value": "UISearchBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchBar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchBar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchContainerViewController/title",
+          "value": "UISearchContainerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchContainerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchContainerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchContainerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchContainerViewController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/displaying-searchable-content-by-using-a-search-controller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/displaying-searchable-content-by-using-a-search-controller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

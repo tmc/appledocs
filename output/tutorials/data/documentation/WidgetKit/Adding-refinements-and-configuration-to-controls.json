@@ -1,0 +1,2114 @@
+{
+  "abstract": [
+    {
+      "text": "Customize the way controls display across the system and offer people the ability to configure them.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.WidgetKit/documentation/WidgetKit/Adding-refinements-and-configuration-to-controls"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WidgetKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding refinements and configuration to controls"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use controls to allow people to enhance Control Center, the Lock Screen, and the Action button with actions from your app. Each system space displays controls differently, adding or removing information where needed: for example, people can resize controls in Control Center. Depending on the size, the title and value text aren’t always visible. Refine controls to display in different system spaces and provide people with the information they need.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Controls perform an action, and can provide configuration options to allow someone to customize what the action does, such as choosing which light to turn on and off. Consider if configuration is a good choice for your control.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customize-your-controls-name-and-description",
+          "level": 3,
+          "text": "Customize your control’s name and description",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the name of your app displays as the name for your control when the control appears in the controls gallery, and control toggles display in their inactive state. Customize your control’s name if your app offers multiple controls or to provide more context about what your control does. Customize the name of your control using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ControlWidgetConfiguration/displayName(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier. Localize your control’s name, if applicable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The control’s configuration view displays a localizable description for a control. Add a description, using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ControlWidgetConfiguration/description(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier, to give additional information about what the control does.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code adds a name and description to the control that gives people more insight about what it does:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct TimerToggle: ControlWidget {",
+            "\tstatic let kind: String = \"com.example.MyApp.TimerToggle\"",
+            "",
+            "\tvar body: some ControlWidgetConfiguration {",
+            "\t\tStaticControlConfiguration(",
+            "\t\t\t...",
+            "\t\t) {",
+            "\t\t\tControlWidgetToggle(",
+            "\t\t\t\t...",
+            "\t\t\t)",
+            "\t\t}",
+            "\t\t.displayName(\"Productivity Timer\")",
+            "\t\t.description(\"Start and stop a productivity timer.\")",
+            "\t}",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Enforce-security-and-privacy-for-controls",
+          "level": 3,
+          "text": "Enforce security and privacy for controls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Controls can require a device to be authenticated to allow the control to perform its action or to display its current state and information. Set the ",
+              "type": "text"
+            },
+            {
+              "code": "authenticationPolicy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the control’s app intent to refine what level of authentication is necessary to perform the action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code sets the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppIntent/authenticationPolicy-1r9kh",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/IntentAuthenticationPolicy/requiresAuthentication",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to require device authentication to unlock a door:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct UnlockDoor: AppIntent {",
+            "\tstatic let title: LocalizedStringResource = \"Unlock the door\"",
+            "\tstatic let authenticationPolicy = .requiresAuthentication",
+            "\t...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ControlWidgetTemplate/privacySensitive(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier on a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ControlWidgetTemplate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type to redact the active or inactive state of a control while the device isn’t authenticated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code adds the ",
+              "type": "text"
+            },
+            {
+              "code": "privacySensitive()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier to a control toggle. The modifier redacts the state and information in the control that displays whether a door is open or closed:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct DoorOpener: ControlWidget {",
+            "\tvar body: some ControlWidgetConfiguration {",
+            "\t\tStaticControlConfiguration(...) {",
+            "\t\t\tControlWidgetToggle(...) {",
+            "\t\t\t\tLabel(",
+            "\t\t\t\t\tisOpen ? \"Open\" : \"Closed\",",
+            "\t\t\t\t\tsystemImage: isOpen ? \"door.open\" : \"door.closed\"",
+            "\t\t\t\t)",
+            "\t\t\t}",
+            "\t\t\t.privacySensitive()",
+            "\t\t}",
+            "\t}",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may use the ",
+              "type": "text"
+            },
+            {
+              "code": "privacySensitive()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier on a control’s value or label individually to redact that information when a device isn’t authenticated, but the control’s active or inactive state will still be visible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Require authentication if a control performing its action would be problematic if done unintentionally or not by the device owner. Redact information if a control displays personally identifiable or security-related information or state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Refine-Action-button-hint-text",
+          "level": 3,
+          "text": "Refine Action button hint text",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Action button gives quick and easy access to controls and system functionality. Provide hint text to people to help give context to the action the control performs. The text set with the ",
+              "type": "text"
+            },
+            {
+              "code": "displayName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/StaticControlConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentControlConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides text to the system to display a hint. The default hint text is different for buttons, toggles, and buttons that have an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/OpenIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " action to launch an app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows the default hint text for a button:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Hint Text: \"Hold for 'Perform Action'\"",
+            "struct PerformActionButton: ControlWidget {",
+            "\tvar body: some ControlWidgetConfiguration {",
+            "\t\tStaticControlConfiguration(...) {",
+            "\t\t\t...",
+            "\t\t}",
+            "\t\t.displayName(\"Perform Action\")",
+            "\t}",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows the default hint text for a button with an ",
+              "type": "text"
+            },
+            {
+              "code": "OpenIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " action:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Hint Text: \"Hold to Open MyApp\"",
+            "struct MyAppLauncher: ControlWidget {",
+            "\tvar body: some ControlWidgetConfiguration {",
+            "\t\tStaticControlConfiguration(...) {",
+            "\t\t\tControlWidgetButton(",
+            "\t\t\t\taction: OpenMyAppIntent(),",
+            "\t\t\t\t...",
+            "\t\t\t)",
+            "\t\t}",
+            "\t\t.displayName(\"MyApp\")    ",
+            "\t}",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Hint text for a toggle prepends with “Hold to Turn On…” and “Hold to Turn Off…”",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following code shows the default hint text for a toggle:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Hint Text: \"Hold to Turn On 'Lightswitch'\" / \"Hold to Turn Off 'Lightswitch'\"",
+            "struct LightswitchToggle: ControlWidget {",
+            "\tvar body: some ControlWidgetConfiguration {",
+            "\t\tStaticControlConfiguration(...) {",
+            "\t\t\t...",
+            "\t\t}",
+            "\t\t.displayName(\"Lightswitch\")",
+            "\t}",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Label",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/controlWidgetActionHint(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier in your control content to create fully custom hint text. Begin the  ",
+              "type": "text"
+            },
+            {
+              "code": "controlWidgetActionHint",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with a verb, similar to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/accessibilityHint(_:isEnabled:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you customize hint text for button controls, the hint text prepends with “Hold to…” The following code shows custom hint text for a button:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Hint Text: \"Hold to Perform the Action\"",
+            "ControlWidgetButton(...) {",
+            "\tLabel(\"Perform Action\", systemName: \"checkmark.circle\")",
+            "\t\t.controlWidgetActionHint(\"Perform the Action\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows custom hint text for a button with an ",
+              "type": "text"
+            },
+            {
+              "code": "OpenIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " action. The hint text is the same as a button, but when executed, this action launches the app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Hint Text: \"Hold to Perform the Action\"",
+            "ControlWidgetButton(...) {",
+            "\tImage(systemName: \"checkmark.circle\")",
+            "\t\t.controlWidgetActionHint(\"Perform the Action\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Customize toggles using custom value text or a custom action hint. Custom hint text using custom value text prepends with “Hold for…” Custom hint text using a custom action hint prepends with “Hold to…”",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows custom hint text for a toggle using custom value text:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Hint Text: \"Hold for Lights On\" / \"Hold for Lights Off\"",
+            "ControlWidgetToggle(...) { isOn in",
+            "\tLabel(",
+            "\t\tisOn ? \"Lights On\" : \"Lights Off\",",
+            "\t\tsystemImage: isOn ? \"lightbulb.max\" : \"lightbulb\"",
+            "\t)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code uses the ",
+              "type": "text"
+            },
+            {
+              "code": "controlWidgetActionHint",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier to display custom hint text:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Hint Text: \"Hold to Turn on Lights\" / \"Hold to Turn off Lights\"",
+            "ControlWidgetToggle(...) { isOn in",
+            "\tLabel(",
+            "\t\tisOn ? \"On\" : \"Off\",",
+            "\t\tsystemImage: isOn ? \"lightbulb.max\" : \"lightbulb\"",
+            "\t)",
+            "\t.controlWidgetActionHint(isOn ? \"Turn on Lights\" : \"Turn off Lights\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "code": "controlsWidgetActionHint",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " takes precedence over custom value text ",
+                  "type": "text"
+                },
+                {
+                  "code": "Label",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " provides.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-Control-Center-status-text",
+          "level": 3,
+          "text": "Add Control Center status text",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/controlWidgetStatus(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to display momentary status text in Control Center when a control’s action is performed. Status text conveys additional information about the control’s state or the duration of effectiveness of the state. For example, status text might display the time a car idles before turning off after being remotely started.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use status text sparingly and only in situations where important information isn’t conveyed by the control.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-configuration-to-a-control",
+          "level": 3,
+          "text": "Add configuration to a control",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make a control configurable to enable people to use multiple controls and to set them up to perform different actions, such as selecting a productivity timer instead of a reading timer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make a control configurable, use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentControlConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and conform your value provider to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentControlValueProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This step tells the system you provide the ability for someone to configure the control when they long press the control, in edit mode, in Control Center, on the Lock Screen, and when they configure the control for the Action button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates a control toggle that starts and stops a timer. Someone can configure the control and select their desired type of timer. The control uses ",
+              "type": "text"
+            },
+            {
+              "code": "AppIntentControlConfiguration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and sets the name of the control to the name of the configured timer. ",
+              "type": "text"
+            },
+            {
+              "code": "ToggleTimerIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " acts on the selected timer. The control has a provider that uses ",
+              "type": "text"
+            },
+            {
+              "code": "AppIntentControlValueProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and has a custom app intent, ",
+              "type": "text"
+            },
+            {
+              "code": "SelectTimerIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", that provides the type of timer choices:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct TimerToggle: ControlWidget {",
+            "\tstatic let kind: String = \"com.example.MyApp.TimerToggle\"",
+            "",
+            "\tvar body: some ControlWidgetConfiguration {",
+            "\t\tAppIntentControlConfiguration(",
+            "\t\t\tkind: Self.kind,",
+            "\t\t\tprovider: ConfigurableProvider()",
+            "\t\t) { timerState in",
+            "\t\t\tControlWidgetToggle(",
+            "\t\t\t\ttimerState.timer.name,",
+            "\t\t\t\tisOn: timerState.isRunning,",
+            "\t\t\t\taction: ToggleTimerIntent(timer: timerState.timer),",
+            "\t\t\t\tvalueLabel: { isOn in",
+            "\t\t\t\t\tLabel(isOn ? \"Running\" : \"Stopped\", systemImage: \"timer\")",
+            "\t\t\t\t}",
+            "\t\t\t)",
+            "\t\t}",
+            "\t\t.displayName(\"Productivity Timer\")",
+            "\t\t.description(\"Start and stop a productivity timer.\")",
+            "\t}",
+            "}",
+            "",
+            "extension TimerToggle {",
+            "\tstruct ConfigurableProvider: AppIntentControlValueProvider {",
+            "\t\tfunc previewValue(configuration: SelectTimerIntent) -> TimerState {",
+            "\t\t\treturn TimerState(timer: configuration.timer, isRunning: false)",
+            "\t\t}",
+            "",
+            "\t\tfunc currentValue(configuration: SelectTimerIntent) async throws -> TimerState {b",
+            "\t\t\tlet timer = configuration.timer",
+            "\t\t\tlet isRunning = try await TimerManager.shared.fetchTimerRunning(timer: timer)",
+            "\t\t\t",
+            "\t\t\treturn TimerState(timer: timer, isRunning: isRunning)",
+            "\t\t}",
+            "\t}",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A control that requires configuration to be functional can use the ",
+              "type": "text"
+            },
+            {
+              "code": "promptsForUserConfiguration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier to have the system automatically prompt someone for configuration when they add it to Control Center or the Lock Screen, or configure it for the Action button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ControlWidgetConfiguration/promptsForUserConfiguration()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier on the ",
+              "type": "text"
+            },
+            {
+              "code": "AppIntentControlConfiguration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to prompt someone to configure the control when they choose it:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct TimerToggle: ControlWidget {",
+            "\tstatic let kind: String = \"com.example.MyApp.TimerToggle\"",
+            "",
+            "\tvar body: some ControlWidgetConfiguration {",
+            "\t\tAppIntentControlConfiguration(",
+            "\t\t\t...",
+            "\t\t) { timerState in",
+            "\t\t\tControlWidgetToggle(",
+            "\t\t\t\t...",
+            "\t\t\t)",
+            "\t\t}",
+            "\t\t.promptsForUserConfiguration()",
+            "\t}",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "creating-controls-to-perform-actions-PageImage-card.png": {
+      "alt": "A stylistic representation of various controls in Control Center.",
+      "identifier": "creating-controls-to-perform-actions-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/89b3200777246c98d3bbd28ebaaafe5b/creating-controls-to-perform-actions-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c63a545b551c9c7a56541562a57c11ab/creating-controls-to-perform-actions-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentControlConfiguration": {
+      "abstract": [
+        {
+          "text": "The description of a control widget that uses a custom intent to provide",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "user-configurable options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntentControlConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentControlConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntentControlConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntentControlConfiguration",
+      "type": "topic",
+      "url": "/documentation/widgetkit/appintentcontrolconfiguration"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentControlValueProvider": {
+      "abstract": [
+        {
+          "text": "A type that uses a custom intent to provide a value to a control template.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntentControlValueProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentControlValueProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntentControlValueProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntentControlValueProvider",
+      "type": "topic",
+      "url": "/documentation/widgetkit/appintentcontrolvalueprovider"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlCenter": {
+      "abstract": [
+        {
+          "text": "An object that contains a list of user-configured controls and is used for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "reloading controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlCenter",
+      "type": "topic",
+      "url": "/documentation/widgetkit/controlcenter"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetButton": {
+      "abstract": [
+        {
+          "text": "A control template representing a button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetButton"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlWidgetButton",
+      "type": "topic",
+      "url": "/documentation/widgetkit/controlwidgetbutton"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetToggle": {
+      "abstract": [
+        {
+          "text": "A control template representing a toggle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetToggle"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetToggle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetToggle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlWidgetToggle",
+      "type": "topic",
+      "url": "/documentation/widgetkit/controlwidgettoggle"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-controls-to-perform-actions-across-the-system": {
+      "abstract": [
+        {
+          "text": "Perform your app’s actions from Control Center, the Lock Screen, and the Action button.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-controls-to-perform-actions-across-the-system",
+      "images": [
+        {
+          "identifier": "creating-controls-to-perform-actions-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Creating controls to perform actions across the system",
+      "type": "topic",
+      "url": "/documentation/widgetkit/creating-controls-to-perform-actions-across-the-system"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/StaticControlConfiguration": {
+      "abstract": [
+        {
+          "text": "The description of a control widget that has no user-configurable options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StaticControlConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/StaticControlConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StaticControlConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "StaticControlConfiguration",
+      "type": "topic",
+      "url": "/documentation/widgetkit/staticcontrolconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/AppIntent/authenticationPolicy-1r9kh": {
+      "abstract": [
+        {
+          "text": "A property that defines the authentication policy that indicates whether this app intent requires the device to be unlocked or otherwise authenticated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authenticationPolicy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents26IntentAuthenticationPolicyO",
+          "text": "IntentAuthenticationPolicy"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppIntent/authenticationPolicy-1r9kh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "authenticationPolicy",
+      "type": "topic",
+      "url": "/documentation/AppIntents/AppIntent/authenticationPolicy-1r9kh"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/IntentAuthenticationPolicy/requiresAuthentication": {
+      "abstract": [
+        {
+          "text": "A policy that requires the user to authenticate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requiresAuthentication"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/IntentAuthenticationPolicy/requiresAuthentication",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IntentAuthenticationPolicy.requiresAuthentication",
+      "type": "topic",
+      "url": "/documentation/AppIntents/IntentAuthenticationPolicy/requiresAuthentication"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/OpenIntent": {
+      "abstract": [
+        {
+          "text": "Open the associated item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OpenIntent"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12SystemIntentP",
+          "text": "SystemIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/OpenIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OpenIntent",
+      "type": "topic",
+      "url": "/documentation/AppIntents/OpenIntent"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ControlWidgetConfiguration/description(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the description shown for the control when a user adds or edits it, using the specified string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation23LocalizedStringResourceV",
+          "text": "LocalizedStringResource"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI26ControlWidgetConfigurationP",
+          "text": "ControlWidgetConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ControlWidgetConfiguration/description(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ControlWidgetConfiguration/description(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ControlWidgetConfiguration/displayName(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the name shown for the control when a user adds or edits it, using the specified string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "displayName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation23LocalizedStringResourceV",
+          "text": "LocalizedStringResource"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI26ControlWidgetConfigurationP",
+          "text": "ControlWidgetConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ControlWidgetConfiguration/displayName(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "displayName(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ControlWidgetConfiguration/displayName(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ControlWidgetConfiguration/promptsForUserConfiguration()": {
+      "abstract": [
+        {
+          "text": "Specifies that a control’s configuration UI should be automatically presented after the widget is added.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "promptsForUserConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI26ControlWidgetConfigurationP",
+          "text": "ControlWidgetConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ControlWidgetConfiguration/promptsForUserConfiguration()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "promptsForUserConfiguration()",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ControlWidgetConfiguration/promptsForUserConfiguration()"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ControlWidgetTemplate": {
+      "abstract": [
+        {
+          "text": "A type that describes a control widget’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ControlWidgetTemplate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ControlWidgetTemplate",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ControlWidgetTemplate"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ControlWidgetTemplate/privacySensitive(_:)": {
+      "abstract": [
+        {
+          "text": "Marks the control template as containing sensitive, private user data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "privacySensitive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "sensitive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = true) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21ControlWidgetTemplateP",
+          "text": "ControlWidgetTemplate"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ControlWidgetTemplate/privacySensitive(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "privacySensitive(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ControlWidgetTemplate/privacySensitive(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Label": {
+      "abstract": [
+        {
+          "text": "A standard label for user interface items, consisting of an icon with a title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Title"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Icon"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Title"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Icon"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Label",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Label",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Label"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/accessibilityHint(_:isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Communicates to the user what happens after performing the view’s action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityHint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "hint"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15ModifiedContentV",
+          "text": "ModifiedContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI31AccessibilityAttachmentModifierV",
+          "text": "AccessibilityAttachmentModifier"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/accessibilityHint(_:isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityHint(_:isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/accessibilityHint(_:isEnabled:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/controlWidgetActionHint(_:)": {
+      "abstract": [
+        {
+          "text": "The action hint of the control described by the modified label.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "controlWidgetActionHint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "hint"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/controlWidgetActionHint(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "controlWidgetActionHint(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/controlWidgetActionHint(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/controlWidgetStatus(_:)": {
+      "abstract": [
+        {
+          "text": "The status of the control described by the modified label.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "controlWidgetStatus"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "status"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/controlWidgetStatus(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "controlWidgetStatus(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/controlWidgetStatus(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Controls",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-controls-to-perform-actions-across-the-system",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetToggle",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetButton",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlCenter"
+      ],
+      "title": "Controls"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Controls",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-controls-to-perform-actions-across-the-system"
+              ],
+              "title": "Controls"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/widgetkit/adding-refinements-and-configuration-to-controls"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/widgetkit/adding-refinements-and-configuration-to-controls"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

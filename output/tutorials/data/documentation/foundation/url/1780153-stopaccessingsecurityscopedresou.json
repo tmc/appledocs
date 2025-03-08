@@ -1,0 +1,379 @@
+{
+  "abstract": [
+    {
+      "text": "Revokes the access granted to the url by a prior successful call to the complementary start function.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+        "doc://com.apple.documentation/documentation/foundation/url"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/url/1780153-stopaccessingsecurityscopedresou"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1780153,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation3URLV35stopAccessingSecurityScopedResourceyyF",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "stopAccessingSecurityScopedResource"
+      },
+      {
+        "kind": "text",
+        "text": "()"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "URL"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.10",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "6.0.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "structm",
+    "title": "stopAccessingSecurityScopedResource()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopAccessingSecurityScopedResource"
+            },
+            {
+              "kind": "text",
+              "text": "()"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you no longer need access to a file or directory pointed to by a security-scoped URL, such as one returned by resolving a security-scoped bookmark, call this method on the URL to relinquish access. You can also use its Core Foundation equivalent, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542381-cfurlstopaccessingsecurityscoped",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must balance each call to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779698-startaccessingsecurityscopedreso",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for a given security-scoped URL with a call to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780153-stopaccessingsecurityscopedresou",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ". When you make the last balanced call to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780153-stopaccessingsecurityscopedresou",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", you immediately lose access to the resource in question.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you fail to relinquish your access to file-system resources when you no longer need them, your app leaks kernel resources. If sufficient kernel resources leak, your app loses its ability to add file-system locations to its sandbox, such as with Powerbox or security-scoped bookmarks, until relaunched.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you call this method on a URL whose referenced resource you don’t have access to, nothing happens.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Security-scoped bookmarks aren’t available in versions of macOS prior to OS X 10.7.3.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Version note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/1542381-cfurlstopaccessingsecurityscoped": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542381-cfurlstopaccessingsecurityscoped",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLStopAccessingSecurityScopedResource(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542381-cfurlstopaccessingsecurityscoped"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Numbers, Data, and Basic Values",
+      "type": "topic",
+      "url": "/documentation/foundation/numbers_data_and_basic_values"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url": {
+      "abstract": [
+        {
+          "text": "A value that identifies the location of a resource, such as an item on a remote server or the path to a local file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL",
+      "type": "topic",
+      "url": "/documentation/foundation/url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1779698-startaccessingsecurityscopedreso": {
+      "abstract": [
+        {
+          "text": "Given a url created by resolving a bookmark data created with security scope, make the resource referenced by the url accessible to the process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "startAccessingSecurityScopedResource"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779698-startaccessingsecurityscopedreso",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startAccessingSecurityScopedResource()",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1779698-startaccessingsecurityscopedreso"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780153-stopaccessingsecurityscopedresou": {
+      "abstract": [
+        {
+          "text": "Revokes the access granted to the url by a prior successful call to the complementary start function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopAccessingSecurityScopedResource"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780153-stopaccessingsecurityscopedresou",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stopAccessingSecurityScopedResource()",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780153-stopaccessingsecurityscopedresou"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/1779698-startaccessingsecurityscopedreso"
+      ],
+      "title": "Working with security scoped resources"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/url/1780153-stopaccessingsecurityscopedresou"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,324 @@
+{
+  "abstract": [
+    {
+      "text": "Specifies that a given pointer may be collected.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/objective-c_garbage_collection",
+        "doc://com.apple.documentation/documentation/foundation/nsgarbagecollector"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsgarbagecollector/1431017-enablecollectorforpointer"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1431017,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSGarbageCollector(im)enableCollectorForPointer:",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSGarbageCollector"
+    },
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "10.10",
+        "introducedAt": "10.5",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "enableCollectorForPointer:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "identifier",
+              "text": "enableCollectorForPointer:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "ptr"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to the memory that may be collected.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "ptr"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use this method to make memory that was previously marked as uncollectable. For example, given the address of the global dictionary created in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsgarbagecollector/1431013-disablecollectorforpointer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you could make the dictionary collectable as follows: ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[[NSGarbageCollector defaultCollector]",
+            "    enableCollectorForPointer:globalDictionary];"
+          ],
+          "metadata": {
+            "anchor": "2556979",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more about root objects and scanned memory, see Garbage Collection Programming Guide.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsgarbagecollector": {
+      "abstract": [
+        {
+          "text": "A convenient interface to the garbage collection system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsgarbagecollector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSGarbageCollector",
+      "type": "topic",
+      "url": "/documentation/foundation/nsgarbagecollector"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsgarbagecollector/1431013-disablecollectorforpointer": {
+      "abstract": [
+        {
+          "text": "Specifies that a given pointer will not be collected.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "disableCollectorForPointer:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsgarbagecollector/1431013-disablecollectorforpointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "disableCollectorForPointer:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsgarbagecollector/1431013-disablecollectorforpointer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsgarbagecollector/1431017-enablecollectorforpointer": {
+      "abstract": [
+        {
+          "text": "Specifies that a given pointer may be collected.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enableCollectorForPointer:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsgarbagecollector/1431017-enablecollectorforpointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enableCollectorForPointer:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsgarbagecollector/1431017-enablecollectorforpointer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsgarbagecollector/1431017-enablecollectorforpointer#2556979": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsgarbagecollector/1431017-enablecollectorforpointer#2556979",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsgarbagecollector/1431017-enablecollectorforpointer#2556979"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/objective-c_garbage_collection": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/objective-c_garbage_collection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Objective-C Garbage Collection",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/objective-c_garbage_collection"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsgarbagecollector/1431013-disablecollectorforpointer"
+      ],
+      "title": "Manipulating External References"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsgarbagecollector/1431017-enablecollectorforpointer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

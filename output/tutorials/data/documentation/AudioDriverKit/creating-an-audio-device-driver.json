@@ -1,0 +1,3919 @@
+{
+  "abstract": [
+    {
+      "text": "Implement a configurable audio input source as a driver extension that runs in user space in macOS and iPadOS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/creating-an-audio-device-driver"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AudioDriverKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.1",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating an audio device driver"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC21 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc21/10190/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". This version updates the sample to run in iPadOS, as discussed in WWDC22 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc22/110373/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows how to create an audio driver extension using the AudioDriverKit framework. The sample provides a C++ DriverKit implementation to publish a single audio device, output stream, input stream, volume control, and data-source selector control.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample implements a dynamic environment that can support multiple audio devices and any other audio objects the AudioDriverKit framework provides. The audio device provides the following features:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A configurable input device volume",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A sine tone generator for the input stream’s I/O buffer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An output stream loopback to the input stream data-source selector control",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A sine tone frequency data-source selector control",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "44.1 and 48 kHz sample rates",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A mono channel of audio I/O in 16-bit, linear PCM format",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An example of a string-based custom property",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AudioDriverKit is available in macOS, and in iPadOS 16 and later when running on an iPad device with an M-series chip. This sample project supports both platforms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app connects to the audio driver extension through a custom user client connection.  The custom user client shows an example of how to change the data-source selector value or the sample rate directly on the audio driver extension. In macOS, the sample app also provides the installer for the driver. In iPadOS, you install the driver by enabling it in Settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the sample project uses manual code signing. If you just want to run the app to see how it works, select “Automatically manage signing” for each of the targets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to run the app with manual signing, do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create new bundle identifiers for the app and driver. The bundle identifiers included with the project already have App IDs associated with them, so you need unique identifiers to create your own App IDs. Use a reverse-DNS format for your identifiers, as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Xcode/preparing-your-app-for-distribution",
+                      "isActive": true,
+                      "overridingTitle": "Preparing Your App For Distribution",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Preparing Your App For Distribution",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". iPadOS also requires that your driver’s bundle identifier begin with the host app’s bundle identifier. For example, the default bundle identifiers are ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.example.apple-samplecode.SimpleAudio",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for the app and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.example.apple-samplecode.SimpleAudio.Driver",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for the driver.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Xcode project, click the Signing & Capabilities tab for each of the three targets — driver, macOS app, and iOS app — and set the respective bundle identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the driver’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, set the value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "IOUserServerName",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to the driver bundle identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SimpleAudioDriverViewModel.swift",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", make sure the string concatentation that initializes ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "dextIdentifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " matches the bundle identifer for the driver.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The sample app needs an explicit App ID and provisioning profile with the entitlements ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.system-extension.install",
+                      "isActive": true,
+                      "overridingTitle": "System Extension",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "System Extension",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.communicates-with-drivers",
+                      "isActive": true,
+                      "overridingTitle": "Communicates with Drivers",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Communicates with Drivers",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". For information about how to request entitlements, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development",
+                      "isActive": true,
+                      "overridingTitle": "Requesting Entitlements for DriverKit Development",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Requesting Entitlements for DriverKit Development",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The sample driver needs an explicit App ID and provisioning profile with the following entitlements: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit",
+                      "isActive": true,
+                      "overridingTitle": "com.apple.developer.driverkit",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "com.apple.developer.driverkit",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.apple.developer.driverkit.family.audio",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.apple.developer.driverkit.allow-any-userclient-access",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This latter macOS-only entitlement allows any app to connect to the driver as a user client. Although this simplifies running the sample code, in your own apps you may prefer to use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.userclient-access",
+                      "isActive": true,
+                      "overridingTitle": "com.apple.developer.driverkit.userclient-access",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "com.apple.developer.driverkit.userclient-access",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". This entitlement goes on the app rather than the driver, and lists bundle identifiers of drivers it can connect to. If you don’t intend for your driver to allow user client connections, just use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.apple.developer.driverkit.family.audio",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " entitlement.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For each of the App IDs you create in the previous steps, select Profiles to create a new provisioning profile. You need one for the macOS app, one for the iPadOS app, and one for the driver, which supports both macOS and iPadOS. When creating the driver’s profile, be sure to select DriverKit App Development as the profile type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Download each profile and add it to Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the Signing & Capabilities tab, set each target to manual code signing and select its new profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Run-the-sample-in-macOS",
+          "level": 3,
+          "text": "Run the sample in macOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the sample app in macOS, use the scheme selector to select the SimpleAudio (macOS) scheme and the My Mac destination. Build the target, then copy the app to the Applications folder and launch the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can run the app directly from Xcode, without moving the app bundle to ",
+                  "type": "text"
+                },
+                {
+                  "code": "/Applications",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " each time, by using the ",
+                  "type": "text"
+                },
+                {
+                  "code": "systemextensionsctl",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " command to enable system extensions developer mode, as explained in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions",
+                  "isActive": true,
+                  "overridingTitle": "Debugging and testing system extensions",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Debugging and testing system extensions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS, the SimpleAudio app has two sections: Driver Manager, which installs the app, and User Client Manager, which interacts with the running driver. Under Driver Manager, click Install Driver. If a System Extension Blocked dialog appears, open System Settings and navigate to the Security & Privacy pane. Unlock the pane if necessary and click Allow to complete the installation. When installation completes, the Driver Manager status in the app displays the message “SimpleAudioDriver has been activated and is ready to use.”",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At this point, the sample’s audio device is available to Core Audio. To inspect the newly installed device, use the Audio MIDI Setup app (",
+              "type": "text"
+            },
+            {
+              "code": "Applications/Utilities",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), which shows the sine tone’s frequency and sample rate. You can change these settings there, or in the SimpleAudio app’s User Client Manager section. Click Open User Client to open a connection from the app to the driver. Then you can use the other buttons in this section to toggle the frequency and sample rate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To hear the sine tone, open the QuickTime Player app and choose File > New Audio Recording to create a new recording window. Next to the Record button, change the device from the default microphone to SimpleAudioDriver: Sine Tone 440 or SimpleAudioDriver: Sine Tone 660. Adjust the volume slider to hear the tone through your current audio output device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To uninstall the driver, delete the sample app, which also stops and removes the driver extension (dext). You can also use ",
+              "type": "text"
+            },
+            {
+              "code": "systemextensionsctl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the command line to list and selectively uninstall system extensions like ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleAudioDriver",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Run-the-sample-in-iPadOS",
+          "level": 3,
+          "text": "Run the sample in iPadOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the sample app in iPadOS, connect an iPad device with an M-series chip to your Mac. Use the scheme selector to select the SimpleAudio (iOS) scheme and the name of your iPad as the destination. Run the app directly from Xcode to launch it on your iPad.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iPadOS, the SimpleAudio app doesn’t show the Driver Manager section because the app isn’t responsible for installing the driver like it is in macOS. Instead, open the Settings app, navigate to Privacy & Security > Drivers, and enable the driver there.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After enabling the driver, return to the SimpleAudio app to open a user client connection and modify the device’s frequency and sample rate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you finish using the driver, delete the app, which deletes the driver as well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-driver-and-device-classes",
+          "level": 3,
+          "text": "Create driver and device classes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an AudioDriverKit driver, the sample creates a driver that subclasses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioDriver",
+              "isActive": true,
+              "overridingTitle": "IOUserAudioDriver",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IOUserAudioDriver",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", and a device that subclasses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioDevice",
+              "isActive": true,
+              "overridingTitle": "IOUserAudioDevice",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IOUserAudioDevice",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". The dext’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file contains entries that identify the driver class to AudioDriverKit, which instantiates and initializes the driver. The sample’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file shows how this works: the ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserClass",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key maps to the class name string ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleAudioDriver",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserServerName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the bundle ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The driver subclass is the entry point into the dext, while the device subclass handles start and stop I/O-related messages, timestamps, and configuration messages. The device also owns various ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioObject",
+              "isActive": true,
+              "overridingTitle": "IOUserAudioObject",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IOUserAudioObject",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instances for things like timer dispatch sources and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/osaction",
+              "isActive": true,
+              "overridingTitle": "OSAction",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "OSAction",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " references. In an actual hardware driver, the device class is also responsible for communication with the hardware over USB or PCI, and requires appropriate DriverKit entitlements for those transports. The sample doesn’t actually connect to hardware, and instead provides a virtual device that generates a sine tone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When creating a virtual device, best practice is to use an Audio Server Driver Plug-in instead, as described in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/CoreAudio/creating-an-audio-server-driver-plug-in",
+                  "isActive": true,
+                  "overridingTitle": "Creating an Audio Server Driver Plug-in",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Creating an Audio Server Driver Plug-in",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ". AudioDriverKit only supports physical audio devices.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After initialization, DriverKit calls the driver’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+              "isActive": true,
+              "overridingTitle": "Start",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Start",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method. The implementation in ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleAudioDriver",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates and configures the ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleAudioDevice",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance and, if successful, calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180701-registerservice",
+              "isActive": true,
+              "overridingTitle": "RegisterService",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "RegisterService",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to let the system know the driver is running.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "kern_return_t SimpleAudioDriver::Start_Impl(IOService* in_provider)",
+            "{",
+            "\tbool success = false;",
+            "\tauto device_uid = OSSharedPtr(OSString::withCString(kSimpleAudioDriverDeviceUID), OSNoRetain);",
+            "\tauto model_uid = OSSharedPtr(OSString::withCString(\"SimpleAudioDevice-Model\"), OSNoRetain);",
+            "\tauto manufacturer_uid = OSSharedPtr(OSString::withCString(\"Apple Inc.\"), OSNoRetain);",
+            "\tauto device_name = OSSharedPtr(OSString::withCString(\"SimpleAudioDevice\"), OSNoRetain);",
+            "\t",
+            "\tkern_return_t error = Start(in_provider, SUPERDISPATCH);",
+            "\tFailIfError(error, , Failure, \"Failed to start Super\");",
+            "\t",
+            "\t// Get the service's default dispatch queue from the driver object.",
+            "\tivars->m_work_queue = GetWorkQueue();",
+            "\tFailIfError(ivars->m_work_queue.get() == nullptr, error = kIOReturnInvalid, Failure, \"failed to get default work queue\");",
+            "\t\t",
+            "\t// Allocate and configure audio devices as necessary.",
+            "\tivars->m_simple_audio_device = OSSharedPtr(OSTypeAlloc(SimpleAudioDevice), OSNoRetain);",
+            "\tFailIfNULL(ivars->m_simple_audio_device.get(), error = kIOReturnNoMemory, Failure, \"Failed to allocate SimpleAudioDevice\");",
+            "\t",
+            "\tsuccess = ivars->m_simple_audio_device->init(this, false, device_uid.get(), model_uid.get(), manufacturer_uid.get(), k_zero_time_stamp_period);",
+            "\tFailIf(success == false, error = kIOReturnNoMemory, Failure, \"Failed to init SimpleAudioDevice\");",
+            "\t",
+            "\tivars->m_simple_audio_device->SetName(device_name.get());",
+            "\t",
+            "\t// Add the device object to the driver.",
+            "\tAddObject(ivars->m_simple_audio_device.get());",
+            "\t\t\t",
+            "\t// Register the service.",
+            "\terror = RegisterService();",
+            "\tFailIfError(error, , Failure, \"failed to register service!\");",
+            "\t",
+            "\treturn kIOReturnSuccess;",
+            "\t",
+            "Failure:",
+            "\treturn error;",
+            "}"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Implement-a-user-client-interface",
+          "level": 3,
+          "text": "Implement a user client interface",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two dictionaries in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file that define how the driver acts as a user client to the Core Audio Hardware Abstraction Layer (HAL) and to other apps. The first dictionary, ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserAudioDriverUserClientProperties",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", maps ",
+              "type": "text"
+            },
+            {
+              "code": "IOClass",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserUserClient",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserClass",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserAudioDriverUserClient",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This allows the HAL to connect to the driver. To support user client connections from apps, the sample also defines a custom user client class. The dictionary for the custom user client has the key ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleAudioDriverUserClientProperties",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and its ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserClass",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has the value ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleAudioDriverUserClient",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", a custom subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserClient",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Drivers that don’t accept user client connections from apps don’t need this second dictionary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the HAL requires a new user client connection to the dext, it calls the driver’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3325581-newuserclient",
+              "isActive": true,
+              "overridingTitle": "NewUserClient",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NewUserClient",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method. In the sample, the implementation of this method serves two purposes. If the incoming client type is ",
+              "type": "text"
+            },
+            {
+              "code": "kIOUserAudioDriverUserClientType",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then this is a request from the HAL. In this case, the driver just forwards the call to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioDriver",
+              "isActive": true,
+              "overridingTitle": "IOUserAudioDriver",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IOUserAudioDriver",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " superclass. For other client types, such as apps connecting to the driver, it uses the ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleAudioDriverUserClientProperties",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values from the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to create an instance of the custom ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleAudioDriverUserClient",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "kern_return_t SimpleAudioDriver::NewUserClient_Impl(uint32_t in_type, IOUserClient** out_user_client)",
+            "{",
+            "\tkern_return_t error = kIOReturnSuccess;",
+            "\t",
+            "\t// Have the superclass create the IOUserAudioDriverUserClient object",
+            "\t// if the type is kIOUserAudioDriverUserClientType.",
+            "\tif (in_type == kIOUserAudioDriverUserClientType)",
+            "\t{",
+            "\t\terror = super::NewUserClient(in_type, out_user_client, SUPERDISPATCH);",
+            "\t\tFailIfError(error, , Failure, \"Failed to create user client\");",
+            "\t\tFailIfNULL(*out_user_client, error = kIOReturnNoMemory, Failure, \"Failed to create user client\");",
+            "\t}",
+            "\telse",
+            "\t{",
+            "\t\tIOService* user_client_service = nullptr;",
+            "\t\terror = Create(this, \"SimpleAudioDriverUserClientProperties\", &user_client_service);",
+            "\t\tFailIfError(error, , Failure, \"failed to create the SimpleAudioDriver user client\");",
+            "\t\t*out_user_client = OSDynamicCast(IOUserClient, user_client_service);",
+            "\t}",
+            "\t",
+            "Failure:",
+            "\treturn error;",
+            "}"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-audio-objects-in-the-device-initializer",
+          "level": 3,
+          "text": "Create audio objects in the device initializer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The device class manages the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioStream",
+              "isActive": true,
+              "overridingTitle": "IOUserAudioStream",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IOUserAudioStream",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " interfaces that perform audio I/O. It can also contain controls and custom properties that interact with the audio stream.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the sample, the ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleAudioDevice",
+              "type": "codeVoice"
+            },
+            {
+              "text": " initializer method declares the stream format to use for ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserAudioStream",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects: single-channel, PCM, using 16-bit native-endian signed integer. It also sets two available sample rates — ",
+              "type": "text"
+            },
+            {
+              "code": "44100.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "48000.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " — which a person using the sample app can toggle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "double sample_rates[] = {kSampleRate_1, kSampleRate_2};",
+            "SetAvailableSampleRates(sample_rates, 2);",
+            "SetSampleRate(kSampleRate_1);",
+            "const auto channels_per_frame = 1;",
+            "IOUserAudioChannelLabel input_channel_layout[channels_per_frame] = { IOUserAudioChannelLabel::Mono };",
+            "IOUserAudioChannelLabel output_channel_layout[channels_per_frame] = { IOUserAudioChannelLabel::Mono };",
+            "",
+            "IOUserAudioStreamBasicDescription stream_formats[] =",
+            "{",
+            "\t{",
+            "\t\tkSampleRate_1, IOUserAudioFormatID::LinearPCM,",
+            "\t\tstatic_cast<IOUserAudioFormatFlags>(IOUserAudioFormatFlags::FormatFlagIsSignedInteger | IOUserAudioFormatFlags::FormatFlagsNativeEndian),",
+            "\t\tstatic_cast<uint32_t>(sizeof(int16_t)*channels_per_frame),",
+            "\t\t1,",
+            "\t\tstatic_cast<uint32_t>(sizeof(int16_t)*channels_per_frame),",
+            "\t\tstatic_cast<uint32_t>(channels_per_frame),",
+            "\t\t16",
+            "\t},",
+            "\t{",
+            "\t\tkSampleRate_2, IOUserAudioFormatID::LinearPCM,",
+            "\t\tstatic_cast<IOUserAudioFormatFlags>(IOUserAudioFormatFlags::FormatFlagIsSignedInteger | IOUserAudioFormatFlags::FormatFlagsNativeEndian),",
+            "\t\tstatic_cast<uint32_t>(sizeof(int16_t)*channels_per_frame),",
+            "\t\t1,",
+            "\t\tstatic_cast<uint32_t>(sizeof(int16_t)*channels_per_frame),",
+            "\t\tstatic_cast<uint32_t>(channels_per_frame),",
+            "\t\t16",
+            "\t},",
+            "};"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AudioDriverKit maps the memory of these streams to the Core Audio HAL. In an actual hardware driver, this memory needs to be the same I/O memory the system uses for DMA to hardware.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "OSSharedPtr<IOBufferMemoryDescriptor> output_io_ring_buffer;",
+            "OSSharedPtr<IOBufferMemoryDescriptor> input_io_ring_buffer;",
+            "const auto buffer_size_bytes = static_cast<uint32_t>(in_zero_timestamp_period * sizeof(uint16_t) * channels_per_frame);",
+            "error = IOBufferMemoryDescriptor::Create(kIOMemoryDirectionInOut, buffer_size_bytes, 0, output_io_ring_buffer.attach());",
+            "FailIf(error != kIOReturnSuccess, , Failure, \"Failed to create output IOBufferMemoryDescriptor\");",
+            "",
+            "error = IOBufferMemoryDescriptor::Create(kIOMemoryDirectionInOut, buffer_size_bytes, 0, input_io_ring_buffer.attach());",
+            "FailIf(error != kIOReturnSuccess, , Failure, \"Failed to create input IOBufferMemoryDescriptor\");",
+            "",
+            "// Create an output/input stream object and pass in the I/O ring buffer memory descriptor.",
+            "ivars->m_output_stream = IOUserAudioStream::Create(in_driver, IOUserAudioStreamDirection::Output, output_io_ring_buffer.get());",
+            "FailIfNULL(ivars->m_output_stream.get(), error = kIOReturnNoMemory, Failure, \"failed to create output stream\");",
+            "",
+            "ivars->m_input_stream = IOUserAudioStream::Create(in_driver, IOUserAudioStreamDirection::Input, input_io_ring_buffer.get());",
+            "FailIfNULL(ivars->m_input_stream.get(), error = kIOReturnNoMemory, Failure, \"failed to create input stream\");",
+            "",
+            "//\tConfigure stream properties: name, available formats, and current format.",
+            "ivars->m_output_stream->SetName(output_stream_name.get());",
+            "ivars->m_output_stream->SetAvailableStreamFormats(stream_formats, 2);",
+            "ivars->m_stream_format = stream_formats[0];",
+            "ivars->m_output_stream->SetCurrentStreamFormat(&ivars->m_stream_format);",
+            "",
+            "ivars->m_input_stream->SetName(input_stream_name.get());",
+            "ivars->m_input_stream->SetAvailableStreamFormats(stream_formats, 2);",
+            "ivars->m_input_stream->SetCurrentStreamFormat(&ivars->m_stream_format);",
+            "",
+            "// Add a stream object to the driver.",
+            "error = AddStream(ivars->m_output_stream.get());",
+            "FailIfError(error, , Failure, \"failed to add output stream\");",
+            "",
+            "error = AddStream(ivars->m_input_stream.get());",
+            "FailIfError(error, , Failure, \"failed to add input stream\");"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-standard-controls-in-the-device",
+          "level": 3,
+          "text": "Create standard controls in the device",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AudioDriverKit provides ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioControl",
+              "isActive": true,
+              "overridingTitle": "IOUserAudioControl",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IOUserAudioControl",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " objects for standard user interface to an audio device. Along with general controls for a toggle, slider, or selection interface to device properties, there are standard controls for volume and stereo pan. The sample driver adds an instance of the volume control, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioLevelControl",
+              "isActive": true,
+              "overridingTitle": "IOUserAudioLevelControl",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IOUserAudioLevelControl",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", in its initializer, which provides the volume slider in Audio MIDI Setup in macOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code example creates the audio level control with a default level of -6.0 decibels (dB), and a range of -96.0 to 0.0 dB. Like all audio controls, the level control has an element and scope to set; these properties have the same meaning as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioToolbox/AudioUnitElement",
+              "isActive": true,
+              "overridingTitle": "AudioUnitElement",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AudioUnitElement",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioToolbox/AudioUnitScope",
+              "isActive": true,
+              "overridingTitle": "AudioUnitScope",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AudioUnitScope",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioToolbox/AUAudioUnit",
+              "isActive": true,
+              "overridingTitle": "AUAudioUnit",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AUAudioUnit",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioToolbox",
+              "isActive": true,
+              "overridingTitle": "AudioToolbox",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AudioToolbox",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". In this case, the element ",
+              "type": "text"
+            },
+            {
+              "identifier": "audiodriverkit/iouseraudiodriver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " affects the entire control, and the scope ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioObjectPropertyScope/Input",
+              "isActive": true,
+              "overridingTitle": "IOUserAudioObjectPropertyScope::Input",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IOUserAudioObjectPropertyScope::Input",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " indicates that this control affects input from the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create the volume control object for the input stream.",
+            "ivars->m_input_volume_control = IOUserAudioLevelControl::Create(in_driver,",
+            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttrue,",
+            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t-6.0,",
+            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t{-96.0, 0.0},",
+            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tIOUserAudioObjectPropertyElementMain,",
+            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tIOUserAudioObjectPropertyScope::Input,",
+            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tIOUserAudioClassID::VolumeControl);",
+            "FailIfNULL(ivars->m_input_volume_control.get(), error = kIOReturnNoMemory, Failure, \"Failed to create input volume control\");",
+            "ivars->m_input_volume_control->SetName(input_volume_control_name.get());",
+            "",
+            "// Add the volume control to the device object.",
+            "error = AddControl(ivars->m_input_volume_control.get());",
+            "FailIfError(error, , Failure, \"failed to add input volume level control\");"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-custom-properties-to-control-the-device",
+          "level": 3,
+          "text": "Create custom properties to control the device",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates two custom control properties for its virtual device. In the code example below, the sample creates a property address reference for a property selector, using the main element and global scope. It then creates local pointer variables for the property selector, the data, and an optional qualifier that provides further detail about how to use the property data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "IOUserAudioObjectPropertyAddress prop_addr = {",
+            "\tkSimpleAudioDriverCustomPropertySelector,",
+            "\tIOUserAudioObjectPropertyScope::Global,",
+            "\tIOUserAudioObjectPropertyElementMain };",
+            "OSSharedPtr<IOUserAudioCustomProperty> custom_property = nullptr;",
+            "OSSharedPtr<OSString> qualifier = nullptr;",
+            "OSSharedPtr<OSString> data = nullptr;"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Later in the device’s initializer, the following code example creates the custom property from the property address, setting two qualifier/data pairs before adding the custom property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "custom_property = IOUserAudioCustomProperty::Create(in_driver,",
+            "\t\t\t\t\t\t\t\t\t\t\t\t\tprop_addr,",
+            "\t\t\t\t\t\t\t\t\t\t\t\t\ttrue,",
+            "\t\t\t\t\t\t\t\t\t\t\t\t\tIOUserAudioCustomPropertyDataType::String,",
+            "\t\t\t\t\t\t\t\t\t\t\t\t\tIOUserAudioCustomPropertyDataType::String);",
+            "",
+            "// Set the qualifier and data-value pair on the custom property.",
+            "qualifier = OSSharedPtr(OSString::withCString(kSimpleAudioDriverCustomPropertyQualifier0), OSNoRetain);",
+            "data = OSSharedPtr(OSString::withCString(kSimpleAudioDriverCustomPropertyDataValue0), OSNoRetain);",
+            "custom_property->SetQualifierAndDataValue(qualifier.get(), data.get());",
+            "   ",
+            "// Set another qualifier and data-value pair on the custom property.",
+            "qualifier = OSSharedPtr(OSString::withCString(kSimpleAudioDriverCustomPropertyQualifier1), OSNoRetain);",
+            "data = OSSharedPtr(OSString::withCString(kSimpleAudioDriverCustomPropertyDataValue1), OSNoRetain);",
+            "custom_property->SetQualifierAndDataValue(qualifier.get(), data.get());",
+            "AddCustomProperty(custom_property.get());"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "iPadOS doesn’t support custom properties and qualifiers.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Handle-the-callback-to-start-device-IO",
+          "level": 3,
+          "text": "Handle the callback to start device I/O",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the sample project doesn’t connect to a hardware device, it uses timers and actions in place of hardware interrupts and DMA. When the HAL attempts to start I/O on the device, it calls ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleAudioDevice::StartIO",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". AudioDriverKit provides this method to signal the driver to perform any necessary calls to start I/O on the device. The sample project uses this signal to start its timers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the sample, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioDevice/StartIO",
+              "isActive": true,
+              "overridingTitle": "StartIO",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "StartIO",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " implementation calls ",
+              "type": "text"
+            },
+            {
+              "text": "`GetIOMemoryDescriptor`",
+              "type": "text"
+            },
+            {
+              "text": " to get the streams’ memory descriptors, and then creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap",
+              "isActive": true,
+              "overridingTitle": "IOMemoryMap",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IOMemoryMap",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "text": "`CreateMapping`",
+              "type": "text"
+            },
+            {
+              "text": ". After setting up the mapping, the sample uses a private helper method, ",
+              "type": "text"
+            },
+            {
+              "code": "StartTimers",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", to configure and enable the time sources and actions to generate timestamps and fill out the input audio buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "kern_return_t SimpleAudioDevice::StartIO(IOUserAudioStartStopFlags in_flags)",
+            "{",
+            "\tDebugMsg(\"Start I/O: device %u\", GetObjectID());",
+            "\t",
+            "\t__block kern_return_t error = kIOReturnSuccess;",
+            "\t__block OSSharedPtr<IOMemoryDescriptor> input_iomd;",
+            "\t__block OSSharedPtr<IOMemoryDescriptor> output_iomd;",
+            "",
+            "\tivars->m_work_queue->DispatchSync(^(){",
+            "\t\t//\tTell IOUserAudioObject base class to start I/O for the device.",
+            "\t\terror = super::StartIO(in_flags);",
+            "\t\tFailIfError(error, , Failure, \"Failed to start I/O\");",
+            "\t\t",
+            "\t\toutput_iomd = ivars->m_output_stream->GetIOMemoryDescriptor();",
+            "\t\tFailIfNULL(output_iomd.get(), error = kIOReturnNoMemory, Failure, \"Failed to get output stream IOMemoryDescriptor\");",
+            "\t\terror = output_iomd->CreateMapping(0, 0, 0, 0, 0, ivars->m_output_memory_map.attach());",
+            "\t\tFailIf(error != kIOReturnSuccess, , Failure, \"Failed to create memory map from output stream IOMemoryDescriptor\");",
+            "\t\t",
+            "\t\tinput_iomd = ivars->m_input_stream->GetIOMemoryDescriptor();",
+            "\t\tFailIfNULL(input_iomd.get(), error = kIOReturnNoMemory, Failure, \"Failed to get input stream IOMemoryDescriptor\");",
+            "\t\terror = input_iomd->CreateMapping(0, 0, 0, 0, 0, ivars->m_input_memory_map.attach());",
+            "\t\tFailIf(error != kIOReturnSuccess, , Failure, \"Failed to create memory map from input stream IOMemoryDescriptor\");",
+            "",
+            "\t\t// Start the timers to send timestamps and generate sine tone on the stream I/O buffer.",
+            "\t\tStartTimers();",
+            "\t\treturn;",
+            "\t\t",
+            "\tFailure:",
+            "\t\tsuper::StopIO(in_flags);",
+            "\t\tivars->m_output_memory_map.reset();",
+            "\t\tivars->m_input_memory_map.reset();",
+            "\t\treturn;",
+            "\t});",
+            "",
+            "\treturn error;",
+            "}"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioDevice",
+              "isActive": true,
+              "overridingTitle": "IOUserAudioDevice",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IOUserAudioDevice",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " is a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioClockDevice",
+              "isActive": true,
+              "overridingTitle": "IOUserAudioClockDevice",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IOUserAudioClockDevice",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", and as such, it’s responsible for timekeeping between the driver and the hardware device. AudioDriverKit enables this with the methods ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioClockDevice/UpdateCurrentZeroTimestamp",
+              "isActive": true,
+              "overridingTitle": "UpdateCurrentZeroTimestamp",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "UpdateCurrentZeroTimestamp",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioClockDevice/GetCurrentZeroTimestamp",
+              "isActive": true,
+              "overridingTitle": "GetCurrentZeroTimestamp",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "GetCurrentZeroTimestamp",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". The framework handles the timestamps atomically, and the HAL uses the sample time-host time pair to run and synchronize I/O. Therefore, it’s vital to track the hardware clock’s timestamps as closely as possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the case of the sample device, timers and actions simulate calls from a hardware device. These actions manage the zero timestamp values. The device class’s initializer creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/iotimerdispatchsource",
+              "isActive": true,
+              "overridingTitle": "IOTimerDispatchSource",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IOTimerDispatchSource",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to serve as the timer. Then it creates an action to invoke a callback named ",
+              "type": "text"
+            },
+            {
+              "code": "ZtsTimerOccurred",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which simulates the handling of a hardware callback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Initialize the timer that stands in for a real interrupt.",
+            "error = IOTimerDispatchSource::Create(ivars->m_work_queue.get(), &zts_timer_event_source);",
+            "FailIfError(error, , Failure, \"failed to create the ZTS timer event source\");",
+            "ivars->m_zts_timer_event_source = OSSharedPtr(zts_timer_event_source, OSNoRetain);",
+            "",
+            "// Create a timer action to generate timestamps.",
+            "error = CreateActionZtsTimerOccurred(sizeof(void*), &zts_timer_occurred_action);",
+            "FailIfError(error, , Failure, \"failed to create the timer event source action\");",
+            "ivars->m_zts_timer_occurred_action = OSSharedPtr(zts_timer_occurred_action, OSNoRetain);",
+            "ivars->m_zts_timer_event_source->SetHandler(ivars->m_zts_timer_occurred_action.get());"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "code": "StartTimers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, which ",
+              "type": "text"
+            },
+            {
+              "code": "StartIO",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls earlier, the sample calls ",
+              "type": "text"
+            },
+            {
+              "code": "UpdateCurrentZeroTimestamp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to update the pair of values that represents the sample time and host time. Then it starts the timer that the sample creates in the previous code example, using ",
+              "type": "text"
+            },
+            {
+              "text": "`mach_absolute_time`",
+              "type": "text"
+            },
+            {
+              "text": " and host ticks from the device to schedule the timed callback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Clear the device's timestamps.",
+            "UpdateCurrentZeroTimestamp(0, 0);",
+            "auto current_time = mach_absolute_time();",
+            "",
+            "// Start the timer. The first timestamp occurs when the timer goes off.",
+            "ivars->m_zts_timer_event_source->WakeAtTime(kIOTimerClockMachAbsoluteTime, current_time + ivars->m_zts_host_ticks_per_buffer, 0);",
+            "ivars->m_zts_timer_event_source->SetEnable(true);"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the ",
+              "type": "text"
+            },
+            {
+              "code": "ZtsTimerOccurred",
+              "type": "codeVoice"
+            },
+            {
+              "text": " action fires, it gets the last zero timestamp value from the device by calling ",
+              "type": "text"
+            },
+            {
+              "code": "GetCurrentZeroTimestamp",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If this is the first timestamp, it uses ",
+              "type": "text"
+            },
+            {
+              "code": "mach_absolute_time",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the anchor time. Otherwise, it updates the timestamps by the zero timestamp period and host ticks per buffer. Either way, it updates the device’s timestamps with a call to ",
+              "type": "text"
+            },
+            {
+              "code": "UpdateCurrentZeroTimestamp",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Finally, it sets the timer to wake up in the future for the next zero timestamp.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "void\tSimpleAudioDevice::ZtsTimerOccurred_Impl(OSAction* action, uint64_t time)",
+            "{",
+            "\t// Get the current time.",
+            "\tauto current_time = time;",
+            "\t",
+            "\t// Increment the timestamps...",
+            "\tuint64_t current_sample_time = 0;",
+            "\tuint64_t current_host_time = 0;",
+            "\tGetCurrentZeroTimestamp(&current_sample_time, &current_host_time);",
+            "\t",
+            "\tauto host_ticks_per_buffer = ivars->m_zts_host_ticks_per_buffer;",
+            "\t",
+            "\tif(current_host_time != 0)",
+            "\t{",
+            "\t\tcurrent_sample_time += GetZeroTimestampPeriod();",
+            "\t\tcurrent_host_time += host_ticks_per_buffer;",
+            "\t}",
+            "\telse",
+            "\t{",
+            "\t\t// ...but not if it's the first one.",
+            "\t\tcurrent_sample_time = 0;",
+            "\t\tcurrent_host_time = current_time;",
+            "\t}",
+            "\t",
+            "\t// Update the device with the current timestamp.",
+            "\tUpdateCurrentZeroTimestamp(current_sample_time, current_host_time);",
+            "\t",
+            "\t// Set the timer to go off in one buffer.",
+            "\tivars->m_zts_timer_event_source->WakeAtTime(kIOTimerClockMachAbsoluteTime,",
+            "\t\t\t\t\t\t\t\t\t\t\t\tcurrent_host_time + host_ticks_per_buffer, 0);",
+            "}"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Use-real-time-callbacks-to-perform-signal-processing-in-the-driver",
+          "level": 3,
+          "text": "Use real-time callbacks to perform signal processing in the driver",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For drivers that need to perform signal processing, AudioDriverKit provides real-time callbacks. The driver registers a block that the system calls in a real-time context whenever an I/O operation occurs on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioStream",
+              "isActive": true,
+              "overridingTitle": "IOUserAudioStream",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IOUserAudioStream",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " buffers for the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the sample code, this is how ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleAudioDriver",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates its sine tone. It declares its callback in the ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleAudioDevice",
+              "type": "codeVoice"
+            },
+            {
+              "text": " initalizer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "io_operation = ^kern_return_t(IOUserAudioObjectID in_device,",
+            "\t\t\t\t\t\t\t  IOUserAudioIOOperation in_io_operation,",
+            "\t\t\t\t\t\t\t  uint32_t in_io_buffer_frame_size,",
+            "\t\t\t\t\t\t\t  uint64_t in_sample_time,",
+            "\t\t\t\t\t\t\t  uint64_t in_host_time)",
+            "{"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The block receives a reference to the device, the operation it’s performing, the buffer size, and the sample and host times. ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleAudioDriver",
+              "type": "codeVoice"
+            },
+            {
+              "text": " checks that the operation is ",
+              "type": "text"
+            },
+            {
+              "text": "`IOUserAudioIOOperationBeginRead`",
+              "type": "text"
+            },
+            {
+              "text": ", and if it is, it fills its audio buffers with signal data. The data is either loopback from the audio output, or a programmatically generated sine tone that results from a call to a private method, ",
+              "type": "text"
+            },
+            {
+              "code": "GenerateToneForInput",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because this callback block runs on a real-time thread, it must not perform any lengthy or indeterminate operations. This includes things like allocating memory, acquiring locks, calling Objective-C or Swift methods, and performing file system or network I/O.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set this block as the callback, the sample calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioDevice",
+              "isActive": true,
+              "overridingTitle": "IOUserAudioDevice",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IOUserAudioDevice",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioDevice/SetIOOperationHandler",
+              "isActive": true,
+              "overridingTitle": "SetIOOperationHandler",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "SetIOOperationHandler",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "this->SetIOOperationHandler(io_operation);"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Access-DMA-audio-buffers",
+          "level": 3,
+          "text": "Access DMA audio buffers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As mentioned previously, a private method called ",
+              "type": "text"
+            },
+            {
+              "code": "GenerateToneForInput",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates the sine tone. This is where the sample simulates writing audio data to DMA, and thereby delivers it to the hardware.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method starts by checking that the ",
+              "type": "text"
+            },
+            {
+              "code": "m_input_memory_map",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioDevice/StartIO",
+              "isActive": true,
+              "overridingTitle": "StartIO",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "StartIO",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " creates is valid. If so, it uses the memory map buffer length and stream format to calculate the length in samples for the I/O buffer. Because the sample project supports only signed, 16-bit PCM audio, it recasts the buffer to an ",
+              "type": "text"
+            },
+            {
+              "code": "int_16",
+              "type": "codeVoice"
+            },
+            {
+              "text": " pointer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the calculated buffer length and the pointer ready, it’s possible to fill the buffer with the sine tone. The sample starts by getting the current volume control gain as a scalar value. Next, it loops for the number of samples necessary to fill the buffer. In the loop, it calculates a sine value for each sample and applies the volume gain, then writes this value as a signed, 16-bit integer to all the channels in the buffer’s format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "void SimpleAudioDevice::GenerateToneForInput(double in_tone_freq, size_t in_sample_time, size_t in_frame_size)",
+            "{",
+            "\t// Fill out the input buffer with a sine tone.",
+            "\tif (ivars->m_input_memory_map)",
+            "\t{",
+            "\t\t// Get the pointer to the I/O buffer and use stream format information",
+            "\t\t// to get the buffer length.",
+            "\t\tconst auto& format = ivars->m_stream_format;",
+            "\t\tauto buffer_length = ivars->m_input_memory_map->GetLength() / (format.mBytesPerFrame / format.mChannelsPerFrame);",
+            "\t\tauto num_samples = in_frame_size;",
+            "\t\tauto buffer = reinterpret_cast<int16_t*>(ivars->m_input_memory_map->GetAddress() + ivars->m_input_memory_map->GetOffset());",
+            "",
+            "\t\t// Get the volume control dB value to apply gain to the tone.",
+            "\t\tauto input_volume_level = ivars->m_input_volume_control->GetScalarValue();",
+            "\t\t",
+            "\t\tfor(size_t i = 0; i < num_samples; i++)",
+            "\t\t{",
+            "\t\t\tfloat float_value = input_volume_level * sin(2.0 * M_PI * in_tone_freq * static_cast<double>(ivars->m_tone_sample_index) / format.mSampleRate);",
+            "\t\t\tint16_t integer_value = FloatToInt16(float_value);",
+            "\t\t\tfor (auto channel_index = 0; channel_index < format.mChannelsPerFrame; channel_index++)",
+            "\t\t\t{",
+            "\t\t\t\tauto buffer_index = (format.mChannelsPerFrame * (in_sample_time + i) + channel_index) % buffer_length;",
+            "\t\t\t\tbuffer[buffer_index] = integer_value;",
+            "\t\t\t}",
+            "\t\t\tivars->m_tone_sample_index += 1;",
+            "\t\t}",
+            "\t}",
+            "}"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-configuration-changes",
+          "level": 3,
+          "text": "Handle configuration changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At this point, the driver and device can supply an audio stream as if it’s coming from an external device. One other task a driver needs to support is handling configuration changes from the device. Three methods from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioClockDevice",
+              "isActive": true,
+              "overridingTitle": "IOUserAudioClockDevice",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IOUserAudioClockDevice",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " support this ability:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioClockDevice/RequestDeviceConfigurationChange",
+                      "isActive": true,
+                      "overridingTitle": "RequestDeviceConfigurationChange",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "RequestDeviceConfigurationChange",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " — A driver calls this method on the device prior to any configuration action. AudioDriverKit temporarily shuts down the audio stream — calling the device’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioDevice/StopIO",
+                      "isActive": true,
+                      "overridingTitle": "StopIO",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "StopIO",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " callback — so that the device class can perform the configuration change.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioClockDevice/PerformDeviceConfigurationChange",
+                      "isActive": true,
+                      "overridingTitle": "PerformDeviceConfigurationChange",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "PerformDeviceConfigurationChange",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " — AudioDriverKit calls this method after stopping any running I/O, signaling to the device class that it can perform its configuration change. This is where the device can change sample rate and format, or perform other changes that are only safe while I/O isn’t occurring. After this method returns, AudioDriverKit restarts I/O if necessary, calling the device’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioDevice/StartIO",
+                      "isActive": true,
+                      "overridingTitle": "StartIO",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "StartIO",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " callback.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioClockDevice/AbortDeviceConfigurationChange",
+                      "isActive": true,
+                      "overridingTitle": "AbortDeviceConfigurationChange",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "AbortDeviceConfigurationChange",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " — A driver calls this method to stop a change from a request to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "RequestDeviceConfigurationChange",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The sample doesn’t need to perform any additional work to implement this method, so it just calls its superclass’s implementation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the sample code project, changing the sample rate provides an example of how to perform a configuration change. When a person taps the Toggle Sample Rate button, the app makes a user client call to the driver’s ",
+              "type": "text"
+            },
+            {
+              "code": "HandleTestConfigChange",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. The driver calls ",
+              "type": "text"
+            },
+            {
+              "code": "RequestDeviceConfigurationChange",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which tells AudioDriverKit to shut down I/O and then make a callback to ",
+              "type": "text"
+            },
+            {
+              "code": "PerformDeviceConfigurationChange",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "kern_return_t SimpleAudioDriver::HandleTestConfigChange()",
+            "{",
+            "\tauto change_info = OSSharedPtr(OSString::withCString(\"Toggle Sample Rate\"), OSNoRetain);",
+            "\treturn ivars->m_simple_audio_device->RequestDeviceConfigurationChange(k_custom_config_change_action, change_info.get());",
+            "}"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The implementation of ",
+              "type": "text"
+            },
+            {
+              "code": "PerformDeviceConfigurationChange",
+              "type": "codeVoice"
+            },
+            {
+              "text": " starts by logging a string it receives from the initial callback in the app. Then it toggles between one of two preset sample rate values, and sets the new sample rate on the clock device with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioClockDevice/SetSampleRate",
+              "isActive": true,
+              "overridingTitle": "SetSampleRate",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "SetSampleRate",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". Assuming this succeeds, it then sets the sample rate on both the input and output streams with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioStream/DeviceSampleRateChanged",
+              "isActive": true,
+              "overridingTitle": "DeviceSampleRateChanged",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "DeviceSampleRateChanged",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". Finally, it calls the superclass’s implementation of ",
+              "type": "text"
+            },
+            {
+              "code": "PerformDeviceConfigurationChange",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "kern_return_t SimpleAudioDevice::PerformDeviceConfigurationChange(uint64_t change_action, OSObject* in_change_info)",
+            "{",
+            "\tDebugMsg(\"change action %llu\", change_action);",
+            "\tkern_return_t ret = kIOReturnSuccess;",
+            "\tswitch (change_action) {",
+            "\t\t\t// Add custom config change handlers.",
+            "\t\tcase k_custom_config_change_action:",
+            "\t\t{",
+            "\t\t\tif (in_change_info)",
+            "\t\t\t{",
+            "\t\t\t\tauto change_info_string = OSDynamicCast(OSString, in_change_info);",
+            "\t\t\t\tDebugMsg(\"%s\", change_info_string->getCStringNoCopy());",
+            "\t\t\t}",
+            "\t\t\t",
+            "\t\t\t// Toggle the sample rate of the device.",
+            "\t\t\tdouble rate_to_set = static_cast<uint64_t>(GetSampleRate()) != static_cast<uint64_t>(kSampleRate_1) ? kSampleRate_1 : kSampleRate_2;",
+            "\t\t\tret = SetSampleRate(rate_to_set);",
+            "\t\t\tif (ret == kIOReturnSuccess)",
+            "\t\t\t{",
+            "\t\t\t\t// Update the stream formats with the new rate.",
+            "\t\t\t\tret = ivars->m_input_stream->DeviceSampleRateChanged(rate_to_set);",
+            "\t\t\t\tret = ivars->m_output_stream->DeviceSampleRateChanged(rate_to_set);",
+            "\t\t\t}",
+            "\t\t}",
+            "\t\t\tbreak;",
+            "\t\t\t",
+            "\t\tdefault:",
+            "\t\t\tret = super::PerformDeviceConfigurationChange(change_action, in_change_info);",
+            "\t\t\tbreak;",
+            "\t}",
+            "\t",
+            "\t// Update the cached format.",
+            "\tivars->m_stream_format = ivars->m_input_stream->GetCurrentStreamFormat();",
+            "\t",
+            "\treturn ret;",
+            "}"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When this method returns, the configuration change is complete, and the system resumes I/O with the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "8fa6bc52317e/CreatingAnAudioDeviceDriver.zip": {
+      "checksum": "8fa6bc52317e80bd32ed278b2de4fc814bdfe48ae4058215cc7efad9931f24c3fedb5f2460fa62d2c039a62073b03cafec9eff9247bdbd6c8a98bab82f8748a7",
+      "identifier": "8fa6bc52317e/CreatingAnAudioDeviceDriver.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/8fa6bc52317e/CreatingAnAudioDeviceDriver.zip"
+    },
+    "audiodriverkit/iouseraudiodriver": {
+      "identifier": "audiodriverkit/iouseraudiodriver",
+      "title": "IOUserAudioObjectPropertyElementMain",
+      "titleInlineContent": [
+        {
+          "code": "IOUserAudioObjectPropertyElementMain",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "audiodriverkit/iouseraudiodriver"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for audio devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AudioDriverKit",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver": {
+      "abstract": [
+        {
+          "text": "A DriverKit provider object that manages communications with an audio device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioDriver"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioDriver",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiodriver"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioObject": {
+      "abstract": [
+        {
+          "text": "The base class for most classes in the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioObject"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioObject",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudioobject"
+    },
+    "doc://com.apple.documentation/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioObjectPropertyScope/Input": {
+      "abstract": [
+        {
+          "text": "The scope for properties that apply to the input side of an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Input"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioObjectPropertyScope/Input",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Input",
+      "type": "topic",
+      "url": "/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioObjectPropertyScope/Input"
+    },
+    "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioClockDevice": {
+      "abstract": [
+        {
+          "text": "An audio clock device object, used to synchronize and perform I/O.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioClockDevice"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioClockDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioClockDevice",
+      "type": "topic",
+      "url": "/documentation/AudioDriverKit/IOUserAudioClockDevice"
+    },
+    "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioClockDevice/AbortDeviceConfigurationChange": {
+      "abstract": [
+        {
+          "text": "Tells the clock device to stop handling a configuration change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@kern_return_t",
+          "text": "kern_return_t"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AbortDeviceConfigurationChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@uint64_t",
+          "text": "uint64_t"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "change_action"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@OSObject",
+          "text": "OSObject"
+        },
+        {
+          "kind": "text",
+          "text": " * "
+        },
+        {
+          "kind": "internalParam",
+          "text": "in_change_info"
+        },
+        {
+          "kind": "text",
+          "text": ");"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioClockDevice/AbortDeviceConfigurationChange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AbortDeviceConfigurationChange",
+      "type": "topic",
+      "url": "/documentation/AudioDriverKit/IOUserAudioClockDevice/AbortDeviceConfigurationChange"
+    },
+    "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioClockDevice/GetCurrentZeroTimestamp": {
+      "abstract": [
+        {
+          "text": "Gets the current zero timestamp value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:v",
+          "text": "void"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetCurrentZeroTimestamp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@uint64_t",
+          "text": "uint64_t"
+        },
+        {
+          "kind": "text",
+          "text": " * "
+        },
+        {
+          "kind": "internalParam",
+          "text": "out_sample_time"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@uint64_t",
+          "text": "uint64_t"
+        },
+        {
+          "kind": "text",
+          "text": " * "
+        },
+        {
+          "kind": "internalParam",
+          "text": "out_host_time"
+        },
+        {
+          "kind": "text",
+          "text": ");"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioClockDevice/GetCurrentZeroTimestamp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetCurrentZeroTimestamp",
+      "type": "topic",
+      "url": "/documentation/AudioDriverKit/IOUserAudioClockDevice/GetCurrentZeroTimestamp"
+    },
+    "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioClockDevice/PerformDeviceConfigurationChange": {
+      "abstract": [
+        {
+          "text": "Tells the clock device to handle a configuration change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@kern_return_t",
+          "text": "kern_return_t"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PerformDeviceConfigurationChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@uint64_t",
+          "text": "uint64_t"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "change_action"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@OSObject",
+          "text": "OSObject"
+        },
+        {
+          "kind": "text",
+          "text": " * "
+        },
+        {
+          "kind": "internalParam",
+          "text": "in_change_info"
+        },
+        {
+          "kind": "text",
+          "text": ");"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioClockDevice/PerformDeviceConfigurationChange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PerformDeviceConfigurationChange",
+      "type": "topic",
+      "url": "/documentation/AudioDriverKit/IOUserAudioClockDevice/PerformDeviceConfigurationChange"
+    },
+    "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioClockDevice/RequestDeviceConfigurationChange": {
+      "abstract": [
+        {
+          "text": "Instructs the host to initiate a configuration change operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@kern_return_t",
+          "text": "kern_return_t"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RequestDeviceConfigurationChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@uint64_t",
+          "text": "uint64_t"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "in_change_action"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@OSObject",
+          "text": "OSObject"
+        },
+        {
+          "kind": "text",
+          "text": " * "
+        },
+        {
+          "kind": "internalParam",
+          "text": "in_change_info"
+        },
+        {
+          "kind": "text",
+          "text": ");"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioClockDevice/RequestDeviceConfigurationChange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RequestDeviceConfigurationChange",
+      "type": "topic",
+      "url": "/documentation/AudioDriverKit/IOUserAudioClockDevice/RequestDeviceConfigurationChange"
+    },
+    "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioClockDevice/SetSampleRate": {
+      "abstract": [
+        {
+          "text": "Sets the sample rate for the clock device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@kern_return_t",
+          "text": "kern_return_t"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetSampleRate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:d",
+          "text": "double"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "in_sample_rate"
+        },
+        {
+          "kind": "text",
+          "text": ");"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioClockDevice/SetSampleRate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetSampleRate",
+      "type": "topic",
+      "url": "/documentation/AudioDriverKit/IOUserAudioClockDevice/SetSampleRate"
+    },
+    "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioClockDevice/UpdateCurrentZeroTimestamp": {
+      "abstract": [
+        {
+          "text": "Updates the current timestamp value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:v",
+          "text": "void"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateCurrentZeroTimestamp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@uint64_t",
+          "text": "uint64_t"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "in_sample_time"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@uint64_t",
+          "text": "uint64_t"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "in_host_time"
+        },
+        {
+          "kind": "text",
+          "text": ");"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioClockDevice/UpdateCurrentZeroTimestamp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UpdateCurrentZeroTimestamp",
+      "type": "topic",
+      "url": "/documentation/AudioDriverKit/IOUserAudioClockDevice/UpdateCurrentZeroTimestamp"
+    },
+    "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioControl": {
+      "abstract": [
+        {
+          "text": "The base class for audio control objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioControl"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioControl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioControl",
+      "type": "topic",
+      "url": "/documentation/AudioDriverKit/IOUserAudioControl"
+    },
+    "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioDevice": {
+      "abstract": [
+        {
+          "text": "An audio clock device object that handles the configurations for running I/O.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioDevice"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioDevice",
+      "type": "topic",
+      "url": "/documentation/AudioDriverKit/IOUserAudioDevice"
+    },
+    "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioDevice/SetIOOperationHandler": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@kern_return_t",
+          "text": "kern_return_t"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetIOOperationHandler"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@N@AudioDriverKit@T@IOOperationHandler",
+          "text": "IOOperationHandler"
+        },
+        {
+          "kind": "internalParam",
+          "text": "in_io_operation_block"
+        },
+        {
+          "kind": "text",
+          "text": ");"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioDevice/SetIOOperationHandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetIOOperationHandler",
+      "type": "topic",
+      "url": "/documentation/AudioDriverKit/IOUserAudioDevice/SetIOOperationHandler"
+    },
+    "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioDevice/StartIO": {
+      "abstract": [
+        {
+          "text": "Tells the device to start I/O.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@kern_return_t",
+          "text": "kern_return_t"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StartIO"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@N@AudioDriverKit@E@IOUserAudioStartStopFlags",
+          "text": "IOUserAudioStartStopFlags"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "in_flags"
+        },
+        {
+          "kind": "text",
+          "text": ");"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioDevice/StartIO",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StartIO",
+      "type": "topic",
+      "url": "/documentation/AudioDriverKit/IOUserAudioDevice/StartIO"
+    },
+    "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioDevice/StopIO": {
+      "abstract": [
+        {
+          "text": "Tells the device to stop I/O.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@kern_return_t",
+          "text": "kern_return_t"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StopIO"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@N@AudioDriverKit@E@IOUserAudioStartStopFlags",
+          "text": "IOUserAudioStartStopFlags"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "in_flags"
+        },
+        {
+          "kind": "text",
+          "text": ");"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioDevice/StopIO",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StopIO",
+      "type": "topic",
+      "url": "/documentation/AudioDriverKit/IOUserAudioDevice/StopIO"
+    },
+    "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioDriver": {
+      "abstract": [
+        {
+          "text": "A DriverKit provider object that manages communications with an audio device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioDriver"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioDriver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioDriver",
+      "type": "topic",
+      "url": "/documentation/AudioDriverKit/IOUserAudioDriver"
+    },
+    "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioLevelControl": {
+      "abstract": [
+        {
+          "text": "A control object that supports setting an audio level, with either scalar or decibel values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioLevelControl"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioLevelControl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioLevelControl",
+      "type": "topic",
+      "url": "/documentation/AudioDriverKit/IOUserAudioLevelControl"
+    },
+    "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioObject": {
+      "abstract": [
+        {
+          "text": "The base class for most classes in the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioObject"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioObject",
+      "type": "topic",
+      "url": "/documentation/AudioDriverKit/IOUserAudioObject"
+    },
+    "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioStream": {
+      "abstract": [
+        {
+          "text": "An audio object that performs I/O for an audio device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioStream"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioStream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioStream",
+      "type": "topic",
+      "url": "/documentation/AudioDriverKit/IOUserAudioStream"
+    },
+    "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioStream/DeviceSampleRateChanged": {
+      "abstract": [
+        {
+          "text": "Updates stream formats, in response to the owning audio device changing its sample rate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@kern_return_t",
+          "text": "kern_return_t"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DeviceSampleRateChanged"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:d",
+          "text": "double"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "in_sample_rate"
+        },
+        {
+          "kind": "text",
+          "text": ");"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioDriverKit/IOUserAudioStream/DeviceSampleRateChanged",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DeviceSampleRateChanged",
+      "type": "topic",
+      "url": "/documentation/AudioDriverKit/IOUserAudioStream/DeviceSampleRateChanged"
+    },
+    "doc://com.apple.documentation/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/AudioToolbox"
+    },
+    "doc://com.apple.documentation/documentation/AudioToolbox/AUAudioUnit": {
+      "abstract": [
+        {
+          "text": "A class that defines a host’s interface to an audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioToolbox/AUAudioUnit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AUAudioUnit",
+      "type": "topic",
+      "url": "/documentation/AudioToolbox/AUAudioUnit"
+    },
+    "doc://com.apple.documentation/documentation/AudioToolbox/AudioUnitElement": {
+      "abstract": [
+        {
+          "text": "The data type for an audio unit element identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioUnitElement"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioToolbox/AudioUnitElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AudioUnitElement",
+      "type": "topic",
+      "url": "/documentation/AudioToolbox/AudioUnitElement"
+    },
+    "doc://com.apple.documentation/documentation/AudioToolbox/AudioUnitScope": {
+      "abstract": [
+        {
+          "text": "The data type for audio unit scope identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioUnitScope"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioToolbox/AudioUnitScope",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AudioUnitScope",
+      "type": "topic",
+      "url": "/documentation/AudioToolbox/AudioUnitScope"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether your extension has permission to run as a user-space driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.driverkit"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.communicates-with-drivers": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an iPadOS app can communicate with drivers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.communicates-with-drivers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Communicates with Drivers",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.communicates-with-drivers"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.audio": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the device supports audio functionality.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.audio",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DriverKit Audio Family",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.audio"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.userclient-access": {
+      "abstract": [
+        {
+          "text": "An array of strings that represent macOS driver extensions that may communicate with other DriverKit services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.userclient-access",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.userclient-access",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.userclient-access"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.system-extension.install": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether your app has permission to activate or deactivate system extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.system-extension.install",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "System Extension Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.system-extension.install"
+    },
+    "doc://com.apple.documentation/documentation/CoreAudio/creating-an-audio-server-driver-plug-in": {
+      "abstract": [
+        {
+          "text": "Build a virtual audio device by creating a custom driver plug-in.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreAudio/creating-an-audio-server-driver-plug-in",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating an Audio Server Driver Plug-in",
+      "type": "topic",
+      "url": "/documentation/CoreAudio/creating-an-audio-server-driver-plug-in"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/preparing-your-app-for-distribution": {
+      "abstract": [
+        {
+          "text": "Configure the information property list and add icons before you distribute your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/preparing-your-app-for-distribution",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your app for distribution",
+      "type": "topic",
+      "url": "/documentation/Xcode/preparing-your-app-for-distribution"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions": {
+      "abstract": [
+        {
+          "text": "Debug your system extensions by temporarily disabling the security checks that macOS performs during the installation process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging and testing system extensions",
+      "type": "topic",
+      "url": "/documentation/driverkit/debugging_and_testing_system_extensions"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice/3325581-newuserclient": {
+      "abstract": [
+        {
+          "text": "Requests the creation of a new user client for the service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice/3325581-newuserclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NewUserClient",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice/3325581-newuserclient"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iotimerdispatchsource": {
+      "abstract": [
+        {
+          "text": "A dispatch source that notifies your driver at a specific time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iotimerdispatchsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOTimerDispatchSource",
+      "type": "topic",
+      "url": "/documentation/driverkit/iotimerdispatchsource"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osaction": {
+      "abstract": [
+        {
+          "text": "An object that executes your driver's custom behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSAction",
+      "type": "topic",
+      "url": "/documentation/driverkit/osaction"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development": {
+      "abstract": [
+        {
+          "text": "Request the entitlement for DriverKit development, and request other entitlements your driver needs to interact with specific devices and interfaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting Entitlements for DriverKit Development",
+      "type": "topic",
+      "url": "/documentation/driverkit/requesting_entitlements_for_driverkit_development"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap": {
+      "abstract": [
+        {
+          "text": "A class defining common methods for describing a memory mapping.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMemoryMap",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180701-registerservice": {
+      "abstract": [
+        {
+          "text": "Starts the registration process for the service and performs any additional matching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180701-registerservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RegisterService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180701-registerservice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start": {
+      "abstract": [
+        {
+          "text": "Starts the current service and associates it with the specified provider.  ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Start",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180710-start"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/wwdc21/10190/": {
+      "identifier": "https://developer.apple.com/wwdc21/10190/",
+      "title": "Create audio drivers with DriverKit",
+      "titleInlineContent": [
+        {
+          "text": "Create audio drivers with DriverKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc21/10190/"
+    },
+    "https://developer.apple.com/wwdc22/110373/": {
+      "identifier": "https://developer.apple.com/wwdc22/110373/",
+      "title": "Bring your driver to iPad with DriverKit",
+      "titleInlineContent": [
+        {
+          "text": "Bring your driver to iPad with DriverKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc22/110373/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "8fa6bc52317e/CreatingAnAudioDeviceDriver.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioObject",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.audio"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AudioToolbox~1AudioUnitScope/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@UInt32",
+              "text": "UInt32"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AudioUnitScope"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AudioToolbox~1AUAudioUnit/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnit"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AudioToolbox~1AudioUnitElement/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@UInt32",
+              "text": "UInt32"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AudioUnitElement"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiodriverkit/creating-an-audio-device-driver"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,948 @@
+{
+  "abstract": [
+    {
+      "text": "Interpret postback properties to understand the attribution report.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/identifying-the-parameters-in-a-postback"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AdAttributionKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Identifying the parameters in a postback"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following list describes all the possible parameters you can get in a postback. To verify that Apple signed the postback, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/verifying-a-postback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-the-JSON-stanza-the-framework-sends",
+          "level": 2,
+          "text": "Understand the JSON stanza the framework sends",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The JSON stanza your servers receive resembles the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"ad-interaction-type\": \"click\",",
+            "  \"jws-string\": \"eyJraWQiOiJhcHBsZS1jYXMtaWRlbnRpZmllci8wIiwiYWxnIjoiRVMyNTYifQ.eyJhZHZlcnRpc2VkLWl0ZW0taWRlbnRpZmllciI6Njg0OTM5LCJjb252ZXJzaW9uLXR5cGUiOiJyZS1lbmdhZ2VtZW50IiwibWFya2V0cGxhY2UtaWRlbnRpZmllciI6ImNvbS5hcHBsZS5BcHBTdG9yZSIsImFkLW5ldHdvcmstaWRlbnRpZmllciI6InRlc3QuYWRhdHRyaWJ1dGlvbmtpdCIsImltcHJlc3Npb24tdHlwZSI6ImFwcC1pbXByZXNzaW9uIiwicG9zdGJhY2stc2VxdWVuY2UtaW5kZXgiOjAsInNvdXJjZS1pZGVudGlmaWVyIjoiODM0NCIsImRpZC13aW4iOnRydWUsInBvc3RiYWNrLWlkZW50aWZpZXIiOiIzZjUwZmU1Ny0yOWFlLTQ4NjEtOGMwYi1hYzZhZGRkZmY3MmMiLCJwdWJsaXNoZXItaXRlbS1pZGVudGlmaWVyIjo1ODM4NDkyfQ.AemK1x2ahIPKOnFEEscG4wvipRtR1G6DzpNF4M4joPb8POIH4FJjm4VvcNgLXc9rWBrEDQPvDblduoc7MFcK5w\",",
+            "  \"coarse-conversion-value\": \"medium\"",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The keys in this stanza may include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "conversion-value (optional) — An unsigned 6-bit value that the advertised app sets by calling a method to update the conversion value, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/updateConversionValue(_:lockPostback:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "coarse-conversion-value (optional) — Possible values are the strings ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "low",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "medium",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "high",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The advertised app sets this value by calling a method to update conversion values, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/updateConversionValue(_:coarseConversionValue:lockPostback:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ad-interaction-type - The string ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "view",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ", indicating that the postback is the result of a view-through impression, or the string ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "click",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ", indicating that it’s the result of a click-through impression.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "jws-string — A compact JSON web signature (JWS) of the Apple-signed postback contents.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Examine-the-JWS-header-for-the-encryption-algorithm-and-key-identifier",
+          "level": 2,
+          "text": "Examine the JWS header for the encryption algorithm and key identifier",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The JWS header of the postback consists of two parameters and resembles the following structure:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"kid\": \"apple-cas-identifier/0\",",
+            "  \"alg\": \"ES256\"",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The keys for this structure are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "alg — The encryption algorithm Apple used to sign the postback.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "kid — The identifier of the key Apple used to sign the postback.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Examine-the-JWS-payload-of-the-postback",
+          "level": 2,
+          "text": "Examine the JWS payload of the postback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The JWS decoded payload of the postback resembles the following structure:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"advertised-item-identifier\": 684939,",
+            "  \"conversion-type\": \"re-engagement\",",
+            "  \"marketplace-identifier\": \"com.apple.AppStore\",",
+            "  \"ad-network-identifier\": \"test.adattributionkit\",",
+            "  \"impression-type\": \"app-impression\",",
+            "  \"postback-sequence-index\": 0,",
+            "  \"source-identifier\": \"8344\",",
+            "  \"did-win\": true,",
+            "  \"postback-identifier\": \"3f50fe57-29ae-4861-8c0b-ac6adddff72c\",",
+            "  \"publisher-item-identifier\": 5838492",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The keys the framework delivers in this structure may include the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "advertised-item-identifier — The app item ID of the advertised app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "conversion-type — The string ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "download",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " that the system returns to indicate someone purchased and downloaded the app for the first time, or the string ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "redownload",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to indicate someone downloaded an already-purchased app. The string ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "re-engagement",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to indicate someone reengaged with an app that they previously installed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "marketplace-identifier (optional) — The bundle ID of the alternative marketplace the advertised app was installed from.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ad-network-identifier — The string that identifies the ad network.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "impression-type — The string ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "app-impression",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "postback-sequence-index - The possible integer values of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " signify the order of postbacks that result from the three conversion windows. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/receiving-postbacks-in-multiple-conversion-windows",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "source-identifier — The hierarchical source identifier with two, three, or four digits.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "did-win —  A Boolean value that’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " if the ad network wins the attribution, or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "false",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " if the postback represents a qualifying ad impression that doesn’t win the attribution.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "postback-identifier — The postback’s unique identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "publisher-item-identifier (optional) — The app ID of the app that displays the ad.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Examine-the-postbacks-JWS-signature",
+          "level": 2,
+          "text": "Examine the postback’s JWS signature",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The signature is a combination of the JSON Web Signature (JWS) header and payload components that Apple signs using its private key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about verifying the postback’s signature, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/verifying-a-postback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about receiving postbacks, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/receiving-postbacks-in-multiple-conversion-windows",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-the-crowd-anonymity-controlled-properties",
+          "level": 2,
+          "text": "Understand the crowd anonymity controlled properties",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To help ensure crowd anonymity, Apple assigns a postback data tier to app downloads. The postback data tier determines whether certain parameters appear in the postback, as well as the number of digits in the hierarchical source identifier. The following postback parameters are subject to the postback data tier:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "coarse-conversion-value",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "conversion-value",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "source-identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (affects the number of digits the postback returns)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "publisher-item-identifier",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "marketplace-identifier",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit": {
+      "abstract": [
+        {
+          "text": "Present, process, and register postbacks for in-app ads in the App Store and alternative app marketplaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AdAttributionKit",
+      "type": "topic",
+      "url": "/documentation/adattributionkit"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/updateConversionValue(_:coarseConversionValue:lockPostback:)": {
+      "abstract": [
+        {
+          "text": "Updates the conversion value with the provided fine and coarse conversion values, and optionally locks the postback, reducing the amount of time the system needs to deliver a signal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateConversionValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "coarseConversionValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16AdAttributionKit21CoarseConversionValueO",
+          "text": "CoarseConversionValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lockPostback"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/updateConversionValue(_:coarseConversionValue:lockPostback:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updateConversionValue(_:coarseConversionValue:lockPostback:)",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/postback/updateconversionvalue(_:coarseconversionvalue:lockpostback:)"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/updateConversionValue(_:lockPostback:)": {
+      "abstract": [
+        {
+          "text": "Updates a conversion value with the provided fine and coarse conversion values, and optionally locks the postback, reducing the system time to deliver a signal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateConversionValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lockPostback"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/updateConversionValue(_:lockPostback:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updateConversionValue(_:lockPostback:)",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/postback/updateconversionvalue(_:lockpostback:)"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/receiving-postbacks-in-multiple-conversion-windows": {
+      "abstract": [
+        {
+          "text": "Learn about the data that postbacks can contain in each conversion window.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/receiving-postbacks-in-multiple-conversion-windows",
+      "kind": "article",
+      "role": "article",
+      "title": "Receiving postbacks in multiple conversion windows",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/receiving-postbacks-in-multiple-conversion-windows"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/verifying-a-postback": {
+      "abstract": [
+        {
+          "text": "Ensure the validity of a postback you receive after an ad conversion by verifying its cryptographic signature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/verifying-a-postback",
+      "kind": "article",
+      "role": "article",
+      "title": "Verifying a postback",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/verifying-a-postback"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Postback-verification-and-parameter-identification",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/verifying-a-postback"
+      ],
+      "title": "Postback verification and parameter identification"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/adattributionkit/identifying-the-parameters-in-a-postback"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

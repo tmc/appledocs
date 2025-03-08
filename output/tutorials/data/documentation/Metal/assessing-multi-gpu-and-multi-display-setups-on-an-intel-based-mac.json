@@ -1,0 +1,623 @@
+{
+  "abstract": [
+    {
+      "text": "Learn the possible GPU and display configurations for a Mac and their limitations.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission",
+        "doc://com.apple.metal/documentation/Metal/multi-gpu-systems"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/assessing-multi-gpu-and-multi-display-setups-on-an-intel-based-mac"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Assessing Multi-GPU and Multi-Display Setups on an Intel-Based Mac"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An Intel-based Mac can have multiple GPUs, and each GPU may connect to zero, one, or multiple displays. Prepare your app for various combinations of GPUs and display configurations by testing as many as possible, starting with the more common ones described below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2959797",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In general, each GPU in the system has its advantages and tradeoffs, depending on your app’s needs. It’s important your app chooses an appropriate GPU for each task, especially when it involves presenting the results on a specific display or transferring data between GPUs. For more information about choosing GPUs and transferring data between them, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/finding-multiple-gpus-on-an-intel-based-mac",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/adjusting-for-gpu-memory-bandwidth-tradeoffs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "As an alternative to implementing a policy that selects a GPU and a display for a task, your app can suggest configurations to a person and let them decide.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Consider-Various-GPU-and-Display-Configurations",
+          "level": 3,
+          "text": "Consider Various GPU and Display Configurations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a Mac with one built-in GPU — either integrated or discrete — that GPU always drives the built-in display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2960165",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a Mac with two built-in GPUs — both an integrated GPU and a discrete GPU — either GPU can drive the built-in display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3993424",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Mac can also directly connect to and drive one or more external displays. For a Mac that has a single, built-in GPU (either integrated or discrete), that GPU drives every display that’s directly connected.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, for a Mac with two built-in GPUs (both integrated and discrete), only the discrete GPU can drive the external displays. The discrete GPU also drives the built-in display when the Mac is driving one or more external displays. On that same Mac, the integrated GPU can drive only the built-in display, and only when the Mac isn’t driving any external displays.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3993425",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can use external GPUs for compute or rendering tasks, but an external GPU can’t drive the built-in display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3993426",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a display that’s connected to an external GPU, only that GPU can drive the display. A built-in GPU can’t drive a display that’s connected to an external GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3993427",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A person can configure a Mac with a combination of the scenarios above. For example, someone may connect multiple external GPUs and external displays that directly connect to the Mac and indirectly through an external GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3993428",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/adjusting-for-gpu-memory-bandwidth-tradeoffs": {
+      "abstract": [
+        {
+          "text": "Choose a suitable GPU and memory storage mode for tasks based on that GPU’s memory bandwidth on a Mac.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/adjusting-for-gpu-memory-bandwidth-tradeoffs",
+      "kind": "article",
+      "role": "article",
+      "title": "Adjusting for GPU Memory Bandwidth Tradeoffs",
+      "type": "topic",
+      "url": "/documentation/metal/adjusting-for-gpu-memory-bandwidth-tradeoffs"
+    },
+    "doc://com.apple.metal/documentation/Metal/finding-multiple-gpus-on-an-intel-based-mac": {
+      "abstract": [
+        {
+          "text": "Locate, identify, and choose suitable GPUs for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/finding-multiple-gpus-on-an-intel-based-mac",
+      "kind": "article",
+      "role": "article",
+      "title": "Finding Multiple GPUs on an Intel-based Mac",
+      "type": "topic",
+      "url": "/documentation/metal/finding-multiple-gpus-on-an-intel-based-mac"
+    },
+    "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission": {
+      "abstract": [
+        {
+          "text": "Find any available GPU, submit work to it with command buffers, suspend work, and coordinate between multiple GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GPU Devices and Work Submission",
+      "type": "topic",
+      "url": "/documentation/metal/gpu-devices-and-work-submission"
+    },
+    "doc://com.apple.metal/documentation/Metal/multi-gpu-systems": {
+      "abstract": [
+        {
+          "text": "Locate and work with internal and external GPUs and their displays, video memory, and performance tradeoffs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/multi-gpu-systems",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Multi-GPU Systems",
+      "type": "topic",
+      "url": "/documentation/metal/multi-gpu-systems"
+    },
+    "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-compute-processing": {
+      "abstract": [
+        {
+          "text": "Switch dynamically between multiple GPUs to efficiently execute a compute-intensive simulation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-compute-processing",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Selecting Device Objects for Compute Processing",
+      "type": "topic",
+      "url": "/documentation/metal/selecting-device-objects-for-compute-processing"
+    },
+    "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering": {
+      "abstract": [
+        {
+          "text": "Switch dynamically between multiple GPUs to efficiently render to a display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Selecting Device Objects for Graphics Rendering",
+      "type": "topic",
+      "url": "/documentation/metal/selecting-device-objects-for-graphics-rendering"
+    },
+    "media-2959797": {
+      "alt": "An image that shows a single MacBook Pro, three overlapping, external GPUs, and two overlapping, external displays.",
+      "identifier": "media-2959797",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9a429aea3101009b23f7e8ddf0ce4a61/media-2959797.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c776350aeeab804a826997bf07e005f0/media-2959797@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/87db86d25c186bfab52135f3e6d09990/media-2959797~dark@2x.png"
+        }
+      ]
+    },
+    "media-2960165": {
+      "alt": "A system diagram that shows a MacBook Pro with a single, built-in GPU.",
+      "identifier": "media-2960165",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/04f3eca6fb75e41ae37bdcf5defac6f7/media-2960165@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cca2af0438d8f321316fb4ff22bf1fe2/media-2960165~dark@2x.png"
+        }
+      ]
+    },
+    "media-3993424": {
+      "alt": "A system diagram that shows a MacBook Pro with two built-in GPUs.",
+      "identifier": "media-3993424",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d8e39761ab67f8ac01b859eedcf54ac8/media-3993424.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b022119842cf3a4a9bc64718e4ac3a20/media-3993424@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ab5912d9f24f9c355c0e7defae21739f/media-3993424~dark@2x.png"
+        }
+      ]
+    },
+    "media-3993425": {
+      "alt": "A system diagram that shows two external displays that connect to a MacBook Pro through separate connections.",
+      "identifier": "media-3993425",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c82e114bfc6e22ec2be0f3a59d1330af/media-3993425.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/efa16b8c347bd7c8298f23522e39838e/media-3993425@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e07a50ca8e1c83f1aa16a454978566a0/media-3993425~dark@2x.png"
+        }
+      ]
+    },
+    "media-3993426": {
+      "alt": "A system diagram that shows two external GPUs that connect to a MacBook Pro through separate, external connections.",
+      "identifier": "media-3993426",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/25a5098b1ae390e7ac87ab530701a9d8/media-3993426.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/48d37a14fcf9ce28e62e71ea938d9805/media-3993426@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c3309497e9df0ec8c774e5ec3d12f6b2/media-3993426~dark@2x.png"
+        }
+      ]
+    },
+    "media-3993427": {
+      "alt": "A system diagram that shows an external GPU that connects a MacBook Pro to an external display.",
+      "identifier": "media-3993427",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/97d0f0720baaa4cc0efb3aabd978e321/media-3993427.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b22a3f95645c4220377c91079b7fb6c5/media-3993427@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c97a373f0a3b0408385682fd809dae80/media-3993427~dark@2x.png"
+        }
+      ]
+    },
+    "media-3993428": {
+      "alt": "A system diagram that shows an iMac Pro connected to an external display, an external GPU, and another external GPU that’s also connected to two additional external displays.",
+      "identifier": "media-3993428",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/89d9fcddd529a30fdc2812b475477b59/media-3993428.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b505af846a78d0167e779ce702fb7d61/media-3993428@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9b36df5fcaf3f4f301f2fcac78302afb/media-3993428~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Selecting-GPUs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/adjusting-for-gpu-memory-bandwidth-tradeoffs",
+        "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering",
+        "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-compute-processing"
+      ],
+      "title": "Selecting GPUs"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Selecting-GPUs",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/adjusting-for-gpu-memory-bandwidth-tradeoffs",
+                "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering",
+                "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-compute-processing"
+              ],
+              "title": "Selecting GPUs"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/assessing-multi-gpu-and-multi-display-setups-on-an-intel-based-mac"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/assessing-multi-gpu-and-multi-display-setups-on-an-intel-based-mac"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

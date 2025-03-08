@@ -1,0 +1,524 @@
+{
+  "abstract": [
+    {
+      "text": "Declare the use of encryption in your app to streamline the app submission process.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/complying-with-encryption-export-regulations"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Complying with Encryption Export Regulations"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you submit your app to TestFlight or the App Store, you upload your app to a server in the United States. If you distribute your app outside the U.S. or Canada, your app is subject to U.S. export laws, regardless of where your legal entity is based. If your app uses, accesses, contains, implements, or incorporates encryption, this is considered an export of encryption software, which means your app is subject to U.S. export compliance requirements, as well as the import compliance requirements of the countries where you distribute your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every time you submit a new version of your app, App Store Connect asks you questions to guide you through a compliance review. You can bypass these questions and streamline the submission process by providing the required information in your app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about export compliance, read ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/app-store-connect/#/dev88f5c7bf9",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Declare-Your-Apps-Use-of-Encryption",
+          "level": 3,
+          "text": "Declare Your App’s Use of Encryption",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ITSAppUsesNonExemptEncryption",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file with a Boolean value that indicates whether your app uses encryption. Set the value to ",
+              "type": "text"
+            },
+            {
+              "code": "NO",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if your app—including any third-party libraries it links against—doesn’t use encryption, or if it only uses forms of encryption that are exempt from export compliance documentation requirements. Otherwise, set it to ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3150498",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Typically, the use of encryption that’s built into the operating system—for example, when your app makes HTTPS connections using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "—is exempt from export documentation upload requirements, whereas the use of proprietary encryption is not. To determine whether your use of encryption is considered exempt, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/app-store-connect/#/dev63c95e436",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your app uses exempt forms of encryption, you might alternatively be required to submit a year-end self-classification report to the U.S. government. (If you use non-exempt encryption and provide documentation to Apple, the self-classification report isn’t necessary.) To learn more, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://www.bis.doc.gov/index.php/policy-guidance/encryption/4-reports-and-reviews/a-annual-self-classification",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Provide-Compliance-Documentation",
+          "level": 3,
+          "text": "Provide Compliance Documentation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app requires export compliance documentation, upload the required items to App Store Connect, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/app-store-connect/#/dev38f592ac9",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". After successfully reviewing the documents, Apple provides you with a code. Add this string as the value for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ITSEncryptionExportComplianceCode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key in your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3150497",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List": {
+      "abstract": [
+        {
+          "text": "A resource containing key-value pairs that identify and configure a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Information Property List",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ITSAppUsesNonExemptEncryption": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the app uses encryption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ITSAppUsesNonExemptEncryption",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ITSAppUsesNonExemptEncryption",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/ITSAppUsesNonExemptEncryption"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ITSEncryptionExportComplianceCode": {
+      "abstract": [
+        {
+          "text": "The export compliance code provided by App Store Connect for apps that require it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ITSEncryptionExportComplianceCode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ITSEncryptionExportComplianceCode",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/ITSEncryptionExportComplianceCode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "https://help.apple.com/app-store-connect/#/dev38f592ac9": {
+      "identifier": "https://help.apple.com/app-store-connect/#/dev38f592ac9",
+      "title": "Upload export compliance documentation",
+      "titleInlineContent": [
+        {
+          "text": "Upload export compliance documentation",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/app-store-connect/#/dev38f592ac9"
+    },
+    "https://help.apple.com/app-store-connect/#/dev63c95e436": {
+      "identifier": "https://help.apple.com/app-store-connect/#/dev63c95e436",
+      "title": "Determine your export compliance requirements",
+      "titleInlineContent": [
+        {
+          "text": "Determine your export compliance requirements",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/app-store-connect/#/dev63c95e436"
+    },
+    "https://help.apple.com/app-store-connect/#/dev88f5c7bf9": {
+      "identifier": "https://help.apple.com/app-store-connect/#/dev88f5c7bf9",
+      "title": "Export compliance overview",
+      "titleInlineContent": [
+        {
+          "text": "Export compliance overview",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/app-store-connect/#/dev88f5c7bf9"
+    },
+    "https://www.bis.doc.gov/index.php/policy-guidance/encryption/4-reports-and-reviews/a-annual-self-classification": {
+      "identifier": "https://www.bis.doc.gov/index.php/policy-guidance/encryption/4-reports-and-reviews/a-annual-self-classification",
+      "title": "How to file an Annual Self Classification Report",
+      "titleInlineContent": [
+        {
+          "text": "How to file an Annual Self Classification Report",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.bis.doc.gov/index.php/policy-guidance/encryption/4-reports-and-reviews/a-annual-self-classification"
+    },
+    "media-3150497": {
+      "alt": null,
+      "identifier": "media-3150497",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ca34fbcb2028db89215039913ebd1527/media-3150497@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cf4b9a8ec053b9eb2b5a89ce2e629ddc/media-3150497~dark@2x.png"
+        }
+      ]
+    },
+    "media-3150498": {
+      "alt": null,
+      "identifier": "media-3150498",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f2655239d17f666aa363e42d1a5d69f0/media-3150498@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9e76cc34b631b59944dc72eb10c32421/media-3150498~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Encryption-Export-Compliance-Keys",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ITSAppUsesNonExemptEncryption",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ITSEncryptionExportComplianceCode"
+      ],
+      "title": "Encryption Export Compliance Keys"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Encryption-Export-Compliance-Keys",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ITSAppUsesNonExemptEncryption",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ITSEncryptionExportComplianceCode"
+              ],
+              "title": "Encryption Export Compliance Keys"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/complying-with-encryption-export-regulations"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/complying-with-encryption-export-regulations"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,749 @@
+{
+  "abstract": [
+    {
+      "text": "A standard interface for objects that provide shader-based OpenGL rendering effects.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.glkit/documentation/GLKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.glkit/documentation/GLKit/GLKNamedEffect"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)GLKNamedEffect",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "GLKNamedEffect"
+      }
+    ],
+    "modules": [
+      {
+        "name": "GLKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GLKNamedEffect"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.8",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "GLKNamedEffect"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "macOS",
+            "tvOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GLKNamedEffect"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Objects that implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKNamedEffect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol provide rendering support to shader-based apps. An effect is expected to provide access to one or more shaders. The typical usage pattern for an effect separates initialization tasks from rendering tasks, allowing the effect object to be used efficiently inside an animation loop.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At initialization time, your app first creates a compatible context and makes it current. Then it allocates and initializes a new effect object, configures its properties, and calls its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKNamedEffect/prepareToDraw()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Preparing an effect causes a shader to be compiled and bound to the current context. When an effect requires vertex data to act as inputs to the shader, your app also creates one or more vertex array objects. For each attribute required by the shader, the vertex array object should enable the attribute and point to data stored in a vertex buffer object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At runtime, your app calls the effect’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKNamedEffect/prepareToDraw()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to bind the shader program as the current program. Then, it binds a vertex array object (if necessary) and submits one or more OpenGL drawing commands.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.glkit/documentation/GLKit": {
+      "abstract": [
+        {
+          "text": "Speed up OpenGL ES or OpenGL app development. Use math libraries, background texture loading, pre-created shader effects, and a standard view and view controller to implement your rendering loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GLKit",
+      "type": "topic",
+      "url": "/documentation/glkit"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect": {
+      "abstract": [
+        {
+          "text": "A simple lighting and shading system for use in shader-based OpenGL rendering.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKBaseEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKBaseEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKBaseEffect",
+      "type": "topic",
+      "url": "/documentation/glkit/glkbaseeffect"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKNamedEffect": {
+      "abstract": [
+        {
+          "text": "A standard interface for objects that provide shader-based OpenGL rendering effects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKNamedEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKNamedEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKNamedEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKNamedEffect",
+      "type": "topic",
+      "url": "/documentation/glkit/glknamedeffect"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKNamedEffect/prepareToDraw()": {
+      "abstract": [
+        {
+          "text": "Prepares an effect for OpenGL ES rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareToDraw"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKNamedEffect/prepareToDraw()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "prepareToDraw"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "prepareToDraw()",
+      "type": "topic",
+      "url": "/documentation/glkit/glknamedeffect/preparetodraw()"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKReflectionMapEffect": {
+      "abstract": [
+        {
+          "text": "A lighting and shading system that supports reflection mapping for use in shader-based OpenGL rendering.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKReflectionMapEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKReflectionMapEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKReflectionMapEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKReflectionMapEffect",
+      "type": "topic",
+      "url": "/documentation/glkit/glkreflectionmapeffect"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKSkyboxEffect": {
+      "abstract": [
+        {
+          "text": "A simple skybox visual effect for use in shader-based OpenGL rendering.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKSkyboxEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKSkyboxEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKSkyboxEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKSkyboxEffect",
+      "type": "topic",
+      "url": "/documentation/glkit/glkskyboxeffect"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect",
+        "doc://com.apple.glkit/documentation/GLKit/GLKReflectionMapEffect",
+        "doc://com.apple.glkit/documentation/GLKit/GLKSkyboxEffect"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Shader-Based-Rendering-Effects",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect",
+        "doc://com.apple.glkit/documentation/GLKit/GLKReflectionMapEffect",
+        "doc://com.apple.glkit/documentation/GLKit/GLKSkyboxEffect"
+      ],
+      "title": "Shader-Based Rendering Effects"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Binding-the-Shader-Program",
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKNamedEffect/prepareToDraw()"
+      ],
+      "title": "Binding the Shader Program"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.8",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "GLKNamedEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKNamedEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKNamedEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.glkit/documentation/GLKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Binding-the-Shader-Program",
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKNamedEffect/prepareToDraw()"
+              ],
+              "title": "Binding the Shader Program"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect",
+                "doc://com.apple.glkit/documentation/GLKit/GLKReflectionMapEffect",
+                "doc://com.apple.glkit/documentation/GLKit/GLKSkyboxEffect"
+              ],
+              "kind": "relationships",
+              "title": "Conforming Types",
+              "type": "conformingTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Shader-Based-Rendering-Effects",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect",
+                "doc://com.apple.glkit/documentation/GLKit/GLKReflectionMapEffect",
+                "doc://com.apple.glkit/documentation/GLKit/GLKSkyboxEffect"
+              ],
+              "title": "Shader-Based Rendering Effects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "macOS",
+                  "tvOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "GLKNamedEffect"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKReflectionMapEffect/title",
+          "value": "GLKReflectionMapEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKReflectionMapEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKReflectionMapEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKReflectionMapEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKReflectionMapEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKNamedEffect/title",
+          "value": "GLKNamedEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKNamedEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKNamedEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKNamedEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKNamedEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect/title",
+          "value": "GLKBaseEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKBaseEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKBaseEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKNamedEffect~1prepareToDraw()/title",
+          "value": "prepareToDraw"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKNamedEffect~1prepareToDraw()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "prepareToDraw"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKSkyboxEffect/title",
+          "value": "GLKSkyboxEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKSkyboxEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKSkyboxEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKSkyboxEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKSkyboxEffect"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/glkit/glknamedeffect"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/glkit/glknamedeffect"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

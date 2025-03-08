@@ -1,0 +1,2672 @@
+{
+  "abstract": [
+    {
+      "text": "A view that merchandises a collection of auto-renewable subscription options that belong to the same subscription group.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17_StoreKit_SwiftUI012SubscriptionA4ViewV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SubscriptionStoreView"
+      }
+    ],
+    "modules": [
+      {
+        "name": "StoreKit",
+        "relatedModules": [
+          "SwiftUI"
+        ]
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SubscriptionStoreView"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "SubscriptionStoreView"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SubscriptionStoreView"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Content"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Content"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7SwiftUI4ViewP",
+              "text": "View"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.storekit/documentation/StoreKit/merchandising-win-back-offers-in-your-app",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-xcode"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "SubscriptionStoreView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " displays localized information about auto-renewable subscriptions, including their localized names, descriptions, and prices, as well as a purchase button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a subscription store view by using one of the initializers and providing the following information:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A subscription group identifier",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A collection of product identifiers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A collection of product values you previously loaded from the App Store",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you provide a subscription group identifier or a collection of product identifiers, the subscription store view automatically loads the subscription data from the App Store, and updates the view when the data is available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-a-background-and-a-decorative-icon",
+          "level": 3,
+          "text": "Provide a background and a decorative icon",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The subscription store view doesn’t draw a background by default. You can add a background as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To layer a background behind the view, use a view modifier, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "background(alignment:content:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To set the container background of the subscription store using a view, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "containerBackground(_:for:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "containerBackground(for:alignment:content:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " view modifier and specify a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement/subscriptionStoreHeader",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can optionally provide a view as a decorative icon next to each subscription option. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlIcon(icon:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier to set a view that decorates individual subscription options within a subscription store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Order-and-filter-subscriptions",
+          "level": 3,
+          "text": "Order and filter subscriptions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you create the subscription store view by providing a subscription group identifier, the system orders the subscription options according to their rank. If the customer is already subscribed, you may want to merchandise upgrade or crossgrade options. By default, the subscription store view lists all the subscriptions in the group. To hide certain subscription options, provide the ",
+              "type": "text"
+            },
+            {
+              "code": "visibleRelationships",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter in the initializer. For more information about the visible relationships, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionRelationship",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you create the subscription store view using one of the other initializers, the view orders the subscriptions according to the collection parameter’s order. The view excludes subscriptions that you don’t include in the collection parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-terms-of-service-and-privacy-policies",
+          "level": 3,
+          "text": "Add terms of service and privacy policies",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "SubscriptionStoreView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " automatically displays buttons for the terms of service and privacy policy that you submit in App Store Connect. To override the destination of these buttons with a URL to custom terms of service and privacy policy pages, or a custom view, use the modifiers ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePolicyDestination(url:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePolicyDestination(for:destination:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use modifiers, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePolicyForegroundStyle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to customize the button’s style, for example, to make the text more readable against your store’s background.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-auxiliary-buttons",
+          "level": 3,
+          "text": "Add auxiliary buttons",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can show auxiliary buttons in the subscription store using view modifiers. Specify the button’s visibility within the subscription store by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/storeButton(_:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you offer your subscription through other services, you can configure the subscription store view to display a sign-in button. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreSignInAction(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to set the function your app calls when someone uses the sign-in button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The subscription store view automatically shows a Close button. To override this behavior, use the ",
+              "type": "text"
+            },
+            {
+              "code": "storeButton(_:for:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier to unconditionally show, or hide, the Close button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Style-the-subscription-store-view",
+          "level": 3,
+          "text": "Style the subscription store view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can further customize the subscription store’s appearance using control styles. Use subscription store control styles to customize the display of subscription options, and how people interact with your store. To try out standard styles, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/PickerSubscriptionStoreControlStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", apply the style using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Backyard-Birds-intro.png": {
+      "alt": null,
+      "identifier": "Backyard-Birds-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/308516255a4b167225a334a5a55a1ff3/Backyard-Birds-intro@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample": {
+      "abstract": [
+        {
+          "text": "Create an app with persistent data, interactive widgets, and an all new in-app purchase experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample",
+      "images": [
+        {
+          "identifier": "Backyard-Birds-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Backyard Birds: Building an app with SwiftData and widgets",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Backyard-birds-sample"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement": {
+      "abstract": [
+        {
+          "text": "The placement of a container background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContainerBackgroundPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ContainerBackgroundPlacement",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ContainerBackgroundPlacement"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement/subscriptionStoreHeader": {
+      "abstract": [
+        {
+          "text": "A background placement behind the marketing content of a subscription store view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStoreHeader"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI28ContainerBackgroundPlacementV",
+          "text": "ContainerBackgroundPlacement"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement/subscriptionStoreHeader",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStoreHeader",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ContainerBackgroundPlacement/subscriptionStoreHeader"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/storeButton(_:for:)": {
+      "abstract": [
+        {
+          "text": "Specifies the visibility of auxiliary buttons that store view and subscription store view instances may use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storeButton"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "visibility"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10VisibilityO",
+          "text": "Visibility"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "buttonKinds"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI0A10ButtonKindV",
+          "text": "StoreButtonKind"
+        },
+        {
+          "kind": "text",
+          "text": "...) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/storeButton(_:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "storeButton(_:for:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/storeButton(_:for:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlIcon(icon:)": {
+      "abstract": [
+        {
+          "text": "Sets a view to use to decorate individual subscription options within a subscription store view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStoreControlIcon"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI11ViewBuilderV",
+          "text": "ViewBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "externalParam",
+          "text": "icon"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV16SubscriptionInfoV",
+          "text": "SubscriptionInfo"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlIcon(icon:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStoreControlIcon(icon:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStoreControlIcon(icon:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the control style for subscription store views within a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStoreControlStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA12ControlStyleP",
+          "text": "SubscriptionStoreControlStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStoreControlStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePolicyDestination(for:destination:)": {
+      "abstract": [
+        {
+          "text": "Configures a view as the destination for a policy button action in subscription store views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStorePolicyDestination"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "button"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA10PolicyKindV",
+          "text": "SubscriptionStorePolicyKind"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI11ViewBuilderV",
+          "text": "ViewBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePolicyDestination(for:destination:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStorePolicyDestination(for:destination:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStorePolicyDestination(for:destination:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePolicyDestination(url:for:)": {
+      "abstract": [
+        {
+          "text": "Configures a URL as the destination for a policy button action in subscription store views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStorePolicyDestination"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "button"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA10PolicyKindV",
+          "text": "SubscriptionStorePolicyKind"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePolicyDestination(url:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStorePolicyDestination(url:for:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStorePolicyDestination(url:for:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePolicyForegroundStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for the terms of service and privacy policy buttons within a subscription store view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStorePolicyForegroundStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10ShapeStyleP",
+          "text": "ShapeStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStorePolicyForegroundStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStorePolicyForegroundStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStorePolicyForegroundStyle(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreSignInAction(_:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform when a person uses the sign-in button on a subscription store view within a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStoreSignInAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> ())?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreSignInAction(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStoreSignInAction(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStoreSignInAction(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/AutomaticSubscriptionStoreMarketingContent": {
+      "abstract": [
+        {
+          "text": "A view that represents the default marketing content for a subscription store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AutomaticSubscriptionStoreMarketingContent"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AutomaticSubscriptionStoreMarketingContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AutomaticSubscriptionStoreMarketingContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AutomaticSubscriptionStoreMarketingContent",
+      "type": "topic",
+      "url": "/documentation/storekit/automaticsubscriptionstoremarketingcontent"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/PickerSubscriptionStoreControlStyle": {
+      "abstract": [
+        {
+          "text": "A subscription store control style that displays subscription plans as a picker control, with a single button to subscribe.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PickerSubscriptionStoreControlStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/PickerSubscriptionStoreControlStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PickerSubscriptionStoreControlStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "PickerSubscriptionStoreControlStyle",
+      "type": "topic",
+      "url": "/documentation/storekit/pickersubscriptionstorecontrolstyle"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionRelationship": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionRelationship"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionRelationship",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionRelationship"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.SubscriptionRelationship",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptionrelationship"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ProductView": {
+      "abstract": [
+        {
+          "text": "A view that merchandises an individual In-App Purchase product.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProductView"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ProductView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProductView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProductView",
+      "type": "topic",
+      "url": "/documentation/storekit/productview"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/StoreView": {
+      "abstract": [
+        {
+          "text": "A view that merchandises a collection of In-App Purchase products.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StoreView"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/StoreView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StoreView"
+        }
+      ],
+      "role": "symbol",
+      "title": "StoreView",
+      "type": "topic",
+      "url": "/documentation/storekit/storeview"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreContentView": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreContentView"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreContentView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreContentView"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreContentView",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontentview"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView": {
+      "abstract": [
+        {
+          "text": "A view that merchandises a collection of auto-renewable subscription options that belong to the same subscription group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreView"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreView"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreView",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstoreview"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(groupID:visibleRelationships:)": {
+      "abstract": [
+        {
+          "text": "Creates a view that loads all subscriptions in a subscription group from the App Store, and merchandises them with automatic marketing content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "groupID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "visibleRelationships"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV01_aB8_SwiftUIE24SubscriptionRelationshipV",
+          "text": "SubscriptionRelationship"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(groupID:visibleRelationships:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(groupID:visibleRelationships:)",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstoreview/init(groupid:visiblerelationships:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(groupID:visibleRelationships:content:)": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Content",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "View",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "groupID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "visibleRelationships"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV01_aB8_SwiftUIE24SubscriptionRelationshipV",
+          "text": "SubscriptionRelationship"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(groupID:visibleRelationships:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(groupID:visibleRelationships:content:)",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstoreview/init(groupid:visiblerelationships:content:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(groupID:visibleRelationships:marketingContent:)": {
+      "abstract": [
+        {
+          "text": "Creates a view that loads all the subscriptions in a subscription group from the App Store, and merchandises them with custom marketing content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "groupID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "visibleRelationships"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV01_aB8_SwiftUIE24SubscriptionRelationshipV",
+          "text": "SubscriptionRelationship"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "marketingContent"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(groupID:visibleRelationships:marketingContent:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(groupID:visibleRelationships:marketingContent:)",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstoreview/init(groupid:visiblerelationships:marketingcontent:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(productIDs:)": {
+      "abstract": [
+        {
+          "text": "Creates a view that loads subscriptions based on a collection of product identifiers, and merchandises them with automatic marketing content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "productIDs"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(productIDs:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(productIDs:)",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstoreview/init(productids:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(productIDs:content:)": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Content",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "View",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "productIDs"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(productIDs:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(productIDs:content:)",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstoreview/init(productids:content:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(productIDs:marketingContent:)": {
+      "abstract": [
+        {
+          "text": "Creates a view that loads a collection of subscriptions from the App Store, and merchandises them with custom marketing content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "productIDs"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "marketingContent"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(productIDs:marketingContent:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(productIDs:marketingContent:)",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstoreview/init(productids:marketingcontent:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(subscriptions:)": {
+      "abstract": [
+        {
+          "text": "Creates a view that displays a collection of subscription options, and merchandises them with automatic marketing content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "subscriptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(subscriptions:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(subscriptions:)",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstoreview/init(subscriptions:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(subscriptions:content:)": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Content",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "View",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "subscriptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(subscriptions:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(subscriptions:content:)",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstoreview/init(subscriptions:content:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(subscriptions:marketingContent:)": {
+      "abstract": [
+        {
+          "text": "Creates a view that displays a collection of subscription options, and merchandises them with custom marketing content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "subscriptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "marketingContent"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(subscriptions:marketingContent:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(subscriptions:marketingContent:)",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstoreview/init(subscriptions:marketingcontent:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/merchandising-win-back-offers-in-your-app": {
+      "abstract": [
+        {
+          "text": "Present win-back offers to eligible customers in your app with the win-back offer sheet or by implementing custom merchandising.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/merchandising-win-back-offers-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Merchandising win-back offers in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/merchandising-win-back-offers-in-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-xcode": {
+      "abstract": [
+        {
+          "text": "Validate your app’s handling of win-back offers that you configure for the testing environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing win-back offers in Xcode",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-win-back-offers-in-xcode"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Merchandising-In-App-Purchases-and-subscriptions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/ProductView",
+        "doc://com.apple.storekit/documentation/StoreKit/StoreView",
+        "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample"
+      ],
+      "title": "Merchandising In-App Purchases and subscriptions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-subscription-store-views-with-automatic-marketing-content",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(groupID:visibleRelationships:)",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(productIDs:)",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(subscriptions:)"
+      ],
+      "title": "Creating subscription store views with automatic marketing content"
+    },
+    {
+      "anchor": "Creating-subscription-store-views-with-custom-marketing-content",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(groupID:visibleRelationships:marketingContent:)",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(productIDs:marketingContent:)",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(subscriptions:marketingContent:)"
+      ],
+      "title": "Creating subscription store views with custom marketing content"
+    },
+    {
+      "anchor": "Creating-subscription-store-views-with-a-hierarchichal-structure",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(groupID:visibleRelationships:content:)",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(productIDs:content:)",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView/init(subscriptions:content:)"
+      ],
+      "title": "Creating subscription store views with a hierarchichal structure"
+    },
+    {
+      "anchor": "Supporting-types",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/AutomaticSubscriptionStoreMarketingContent",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreContentView"
+      ],
+      "title": "Supporting types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/subscriptionstoreview"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

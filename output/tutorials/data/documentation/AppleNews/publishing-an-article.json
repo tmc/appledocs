@@ -1,0 +1,979 @@
+{
+  "abstract": [
+    {
+      "text": "Build a URL and article body for the publish-article request.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNews",
+        "doc://com.apple.applenews/documentation/AppleNews/apple-news-api-tutorial"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.applenews/documentation/AppleNews/publishing-an-article"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Publishing an Article"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To publish an article to your channel, you make a multipart POST request consisting of at least one MIME part named ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You provide additional parts for each resource that uses a URL in the format ",
+              "type": "text"
+            },
+            {
+              "code": "bundle:// URL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-channels-_channelId_-articles",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On this page, you’ll learn how to:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build a publish-article URL.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build the article body.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "(Optional) Include a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "metadata.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Send the publish-article request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Copy-This-Code",
+          "level": 3,
+          "text": "Copy This Code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Open any text editor to copy this code. Save the file as ",
+              "type": "text"
+            },
+            {
+              "code": "create_article.py",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import sys",
+            "import requests",
+            "import base64",
+            "import hmac",
+            "import random",
+            "import os",
+            "import glob",
+            "import hashlib",
+            "from datetime import datetime",
+            "",
+            "class PublisherAPI:",
+            "    channel_id = \"\"",
+            "    current_action = \"\"",
+            "    key_id = \"\"",
+            "    key_secret = \"\"",
+            "    article_directory = \"\"",
+            "    url = \"\"",
+            "",
+            "    def send_request(self, method, url, body=None, content_type=None):",
+            "        date = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')",
+            "        if body:",
+            "            url = self.url + url",
+            "        canonical_request = method + url + date",
+            "        canonical_request = canonical_request.encode()",
+            "",
+            "        if body:",
+            "            canonical_request += content_type + body",
+            "",
+            "        signature = self.create_signature(canonical_request)",
+            "        authorization = \"HHMAC; key=%s; signature=%s; date=%s\" % (",
+            "            self.key_id, signature, date)",
+            "        headers = {\"Authorization\": authorization}",
+            "        if body:",
+            "            headers[\"Content-Type\"] = content_type",
+            "",
+            "        return requests.request(method, url, headers=headers, data=body)",
+            "",
+            "    def create_signature(self, canonical_request):",
+            "        key_bytes = base64.b64decode(self.key_secret)",
+            "        ",
+            "        message = canonical_request",
+            "        secret = self.key_secret.encode(\"utf-8\")",
+            "",
+            "        signature = base64.b64encode(",
+            "          hmac.new(key_bytes, message,",
+            "              digestmod=hashlib.sh 256).digest()).decode(\"utf-8\")",
+            "        return signature",
+            "",
+            "    def create_article(self):",
+            "        method = \"POST\"",
+            "        path = \"%s/articles\" % self.channel_id",
+            "        body, content_type = self.build_article_body()",
+            "        return self.send_request(method, path, body, content_type)",
+            "",
+            "    def build_article_body(self):",
+            "        boundary = str(random.getrandbits(64))",
+            "        boundary = boundary.encode()",
+            "        content_type = b\"multipart/form-data; boundary=%s\" % boundary",
+            "        filenames = glob.glob('%s/*' % self.article_directory)",
+            "        parts = filter(None, map(lambda f: self.build_mime_part(boundary, f), filenames))",
+            "        if not parts:",
+            "            sys.exit(\"%s doesn't appear to be a valid article bundle!\" %  self.article_directory)",
+            "        body = b\"\\r\\n\".join(parts)",
+            "        body += b\"\\r\\n--%s--\" % boundary",
+            "",
+            "        return body, content_type",
+            "",
+            "    def build_mime_part(self, boundary, filename):",
+            "        basename = os.path.basename(filename)",
+            "        content_type = self.guess_content_type(basename)",
+            "        if content_type == None:",
+            "            return None",
+            "        content_type = content_type.encode()",
+            "        part = bytearray()",
+            "        part = b\"--%s\\r\\n\" % boundary",
+            "        part += b\"Content-Type: %s\\r\\n\" % content_type",
+            "        if basename == 'metadata.json':",
+            "           part += b\"Content-Disposition: form-data; name=metadata; size=%d\\r\\n\\r\\n\" % os.stat(filename).st_size",
+            "        else:",
+            "            basename = basename.encode()",
+            "            part += b\"Content-Disposition: form-data; filename=%s; size=%d\\r\\n\\r\\n\" % (basename, os.stat(filename).st_size)",
+            "        with open(filename,'rb') as f:",
+            "            part += f.read()",
+            "        return part",
+            "",
+            "    def guess_content_type(self, filename):",
+            "        extension = os.path.splitext(filename)[1]",
+            "        if filename == \"article.json\" or filename == \"metadata.json\":",
+            "            return \"application/json\"",
+            "        elif extension == \".jpg\" or extension == \".jpeg\":",
+            "            return \"image/jpeg\"",
+            "        elif extension == \".gif\":",
+            "            return \"image/gif\"",
+            "        elif extension == \".png\":",
+            "            return \"image/png\"",
+            "        return None",
+            "",
+            "    def read_channel(self):",
+            "        method = \"GET\"",
+            "        url = self.url + \"%s\" % self.channel_id",
+            "        return self.send_request(method, url)",
+            "",
+            "    def main(self):",
+            "        if self.current_action == \"readChannel\":",
+            "            response = self.read_channel()",
+            "        elif self.current_action == \"createArticle\":",
+            "            response = self.create_article()",
+            "        else:",
+            "            response = {",
+            "                \"status_code\": 400,",
+            "                \"response\": \"{\\\"errors\\\":[{\\\"code\\\":\\\"UNKNOWN_COMMAND\\\"}]}\"",
+            "            }",
+            "        return response",
+            "",
+            "",
+            "if __name__ == '__main__':",
+            "    if not len(sys.argv) > 1:",
+            "        print ('no arguments')",
+            "        exit()",
+            "    ",
+            "    publisherAPI = PublisherAPI()",
+            "    publisherAPI.url = sys.argv[1] + \"/channels/\"",
+            "    publisherAPI.channel_id = sys.argv[2]",
+            "    publisherAPI.key_id = sys.argv[3]",
+            "    publisherAPI.key_secret = sys.argv[4]",
+            "",
+            "    if len(sys.argv) == 6:",
+            "        publisherAPI.article_directory = sys.argv[5]",
+            "        publisherAPI.current_action = \"createArticle\"",
+            "    else:",
+            "        publisherAPI.current_action = \"readChannel\"",
+            "    ",
+            "    response = publisherAPI.main()",
+            "",
+            "    print(response.status_code)",
+            "    print(response.text)"
+          ],
+          "syntax": "python",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-Metadata-File",
+          "level": 3,
+          "text": "Create the Metadata File",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This step is optional. You might want to include a metadata file to provide additional data about the article.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create the metadata file, open any text editor and include optional metadata fields. Save the file as ",
+              "type": "text"
+            },
+            {
+              "code": "metadata.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For information about supported metadata fields, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Create-Article-Metadata-Fields",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This is an example ",
+              "type": "text"
+            },
+            {
+              "code": "metadata.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "   \"data\": {",
+            "   \"isPreview\": true,",
+            "   \"isHidden\": true",
+            "   \"maturityRating\": null,",
+            "   \"links\": {",
+            "       \"sections\": [",
+            "         \"https://news-api.apple.com/sections/0a468272-356f-3b61-afa3-c4f989954180\",",
+            "         \"https://news-api.apple.com/sections/5cec0b36-529e-31bc-bc1e-3eaccbc15b97\"",
+            "       ]",
+            "   }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Run-the-Script",
+          "level": 3,
+          "text": "Run the Script",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start the command prompt and change to the directory containing ",
+              "type": "text"
+            },
+            {
+              "code": "create_article.py",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Run this script to make a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-channels-_channelId_-articles",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " request to the Apple News API. This script takes five arguments: API URL (https://news-api.apple.com), Channel ID, Key ID, Secret, and the path to the article directory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "python create_article.py https://news-api.apple.com channel_id key_id key_secret path/to/article/directory/"
+          ],
+          "syntax": "python",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Result",
+          "level": 3,
+          "text": "Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The server returns the ",
+              "type": "text"
+            },
+            {
+              "code": "ArticleResponse",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Article",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "ArticleLinks",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Meta",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "How-It-Works",
+          "level": 3,
+          "text": "How It Works",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To publish an article, you build the publish-article URL using the POST method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "method = \"POST\"",
+            "path = \"%s/articles\" % self.channel_id"
+          ],
+          "syntax": "python",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, you build the request body and set the content type. The body contains one or more parts based on the number of files in your article and the content type, as shown here:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "body, content_type = self.build_article_body()"
+          ],
+          "syntax": "python",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, you create a boundary to separate the request parts, as shown here. This is a unique string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "boundary = str(random.getrandbits(64))"
+          ],
+          "syntax": "python",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, you declare the content type along with the boundary, as shown here:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "content_type = b\"multipart/form-data; boundary=%s\" % boundary"
+          ],
+          "syntax": "python",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The content type looks like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "multipart/form-data; boundary=14970318244633716999"
+          ],
+          "syntax": "python",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, you build the MIME parts for each file in the article you want to publish.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "filenames = glob.glob('%s/*' % self.article_directory)",
+            "parts = filter(None, map(lambda f: self.build_mime_part(boundary, f), filenames))"
+          ],
+          "syntax": "python",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you build the MIME parts, only use the Apple News-supported file-format extensions; for example, JSON, JPEG, GIF, and PNG. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/preparing-image-video-audio-music-and-arkit-assets",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension = os.path.splitext(filename)[1]",
+            "if filename == \"article.json\" or filename == \"metadata.json\":",
+            "    return \"application/json\"",
+            "elif extension == \".jpg\" or extension == \".jpeg\":",
+            "    return \"image/jpeg\"",
+            "elif extension == \".gif\":",
+            "    return \"image/gif\"",
+            "elif extension == \".png\":",
+            "    return \"image/png\"",
+            "return None"
+          ],
+          "syntax": "python",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you determine the file type, you construct each part from ",
+              "type": "text"
+            },
+            {
+              "code": "Content-Type",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "Content-Disposition",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the file data, as shown here. If you include the ",
+              "type": "text"
+            },
+            {
+              "code": "metadata.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, the ",
+              "type": "text"
+            },
+            {
+              "code": "Content-Disposition",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header adds ",
+              "type": "text"
+            },
+            {
+              "code": "name=metadata",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ensure that the system recognizes the metadata for the article.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "part = b\"--%s\\r\\n\" % boundary",
+            "part += b\"Content-Type: %s\\r\\n\" % content_type",
+            "  if basename == 'metadata.json':",
+            "    part += b\"Content-Disposition: form-data; name=metadata; size=%d\\r\\n\\r\\n\" % os.stat(",
+            "                filename).st_size",
+            "    else:",
+            "      basename = basename.encode()",
+            "      part += b\"Content-Disposition: form-data; filename=%s; size=%d\\r\\n\\r\\n\" % (",
+            "                basename, os.stat(filename).st_size)",
+            "    with open(filename, 'rb') as f:",
+            "      part += f.read()"
+          ],
+          "syntax": "python",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A part looks like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "--6030599197195158890",
+            "Content-Type: image/jpeg",
+            "Content-Disposition: form-data; filename=photo.jpg; size=20483",
+            "{binary data}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, you join the parts together and denote the end of the multipart form data by the boundary, preceded by two dashes (",
+              "type": "text"
+            },
+            {
+              "code": "--",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "body = b\"\\r\\n\".join(parts)",
+            "body += b\"\\r\\n--%s--\" % boundary"
+          ],
+          "syntax": "python",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, you combine the canonical request with the request body and make the request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "def send_request(self, method, url, body=None, content_type=None):",
+            "    date = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')",
+            "    if body:",
+            "        url = self.url + url",
+            "    canonical_request = method + url + date",
+            "    canonical_request = canonical_request.encode()",
+            "    if body:",
+            "        canonical_request += content_type + body",
+            "",
+            "    signature = self.create_signature(canonical_request)",
+            "    authorization = \"HHMAC; key=%s; signature=%s; date=%s\" % (self.key_id, signature, date)",
+            "    headers = {\"Authorization\": authorization}",
+            "    if body:",
+            "        headers[\"Content-Type\"] = content_type",
+            "",
+            "    return requests.request(method, url, headers=headers, data=body)"
+          ],
+          "syntax": "python",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews": {
+      "abstract": [
+        {
+          "text": "Design, create, and publish signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple News",
+      "type": "topic",
+      "url": "/documentation/applenews"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/apple-news-api-tutorial": {
+      "abstract": [
+        {
+          "text": "Request channel data and publish an article using the Apple News API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/apple-news-api-tutorial",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple News API Tutorial",
+      "type": "topic",
+      "url": "/documentation/applenews/apple-news-api-tutorial"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/making-an-http-request-to-the-apple-news-api": {
+      "abstract": [
+        {
+          "text": "Create the URL, set the method, and send the request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/making-an-http-request-to-the-apple-news-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Making an HTTP Request to the Apple News API",
+      "type": "topic",
+      "url": "/documentation/applenews/making-an-http-request-to-the-apple-news-api"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/preparing-image-video-audio-music-and-arkit-assets": {
+      "abstract": [
+        {
+          "text": "Add media assets to your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/preparing-image-video-audio-music-and-arkit-assets",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing Image, Video, Audio, Music, and ARKit Assets",
+      "type": "topic",
+      "url": "/documentation/applenews/preparing-image-video-audio-music-and-arkit-assets"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/signing-the-http-request": {
+      "abstract": [
+        {
+          "text": "Sign the canonical request and send the custom authorization header to the Apple News API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/signing-the-http-request",
+      "kind": "article",
+      "role": "article",
+      "title": "Signing the HTTP Request",
+      "type": "topic",
+      "url": "/documentation/applenews/signing-the-http-request"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Article": {
+      "abstract": [
+        {
+          "text": "See the fields the article endpoints returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Article"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Article",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Article"
+        }
+      ],
+      "role": "symbol",
+      "title": "Article",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Create-Article-Metadata-Fields": {
+      "abstract": [
+        {
+          "text": "See the optional metadata fields for the Create an Article Request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Create Article Metadata Fields"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Create-Article-Metadata-Fields",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create Article Metadata Fields"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create Article Metadata Fields",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/create-article-metadata-fields"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Meta": {
+      "abstract": [
+        {
+          "text": "See the object that wraps the throttling information that’s returned for the Create an Article and Read an Article endpoints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Meta"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Meta",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Meta"
+        }
+      ],
+      "role": "symbol",
+      "title": "Meta",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/meta"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-channels-_channelId_-articles": {
+      "abstract": [
+        {
+          "text": "Publish an article to your channel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-channels-_channelId_-articles",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /channels/{channelId}/articles"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create an Article",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/post-channels-_channelid_-articles"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Apple-News-API-Python-Tutorial",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/making-an-http-request-to-the-apple-news-api",
+        "doc://com.apple.applenews/documentation/AppleNews/signing-the-http-request"
+      ],
+      "title": "Apple News API Python Tutorial"
+    }
+  ]
+}

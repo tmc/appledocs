@@ -1,0 +1,1161 @@
+{
+  "abstract": [
+    {
+      "text": "Respond appropriately when a server demands authentication for a URL request.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/url_loading_system/handling_an_authentication_challenge"
+  },
+  "kind": "article",
+  "legacy_identifier": 2938910,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Handling an authentication challenge"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app makes a request with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the server may respond with one or more demands for credentials before continuing. The session task attempts to handle this for you. If it can’t, it calls your session’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411530-delegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to handle the challenges.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement the delegate methods described in this article to answer challenges issued by a server that your app connects to. If you don’t implement a delegate, your request may be denied by the server, and you receive a response with HTTP status code ",
+              "type": "text"
+            },
+            {
+              "code": "401",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (Forbidden) instead of the data you expect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2942075",
+          "level": 3,
+          "text": "Determine the appropriate delegate method",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement one or both delegate authentication methods, depending on the nature of the challenge(s) you receive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate/1409308-urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to handle session-wide challenges. These are challenges like Transport Layer Security (TLS) validation. Once you’ve successfully handled this kind of challenge, your action remains in effect for all tasks created from that ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1411595-urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to handle task-specific challenges. These are challenges like demands for username/password authentication. Each task created from a given session may issue its own challenges.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotectionspace/nsurlprotectionspace_authentication_method_constants",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for a guide to which authentication methods are session-wide or task-specific.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a simple example, consider what happens when you request an ",
+              "type": "text"
+            },
+            {
+              "code": "http",
+              "type": "codeVoice"
+            },
+            {
+              "text": " URL protected by HTTP Basic authentication, as defined in ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-2951397",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Because this is a task-specific challenge, you handle this by implementing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1411595-urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you connect via ",
+                  "type": "text"
+                },
+                {
+                  "code": "https",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", you also receive a server trust challenge. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/handling_an_authentication_challenge/performing_manual_server_trust_authentication",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for information on handling this type of session-wide challenge.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "link-media-2948287",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " outlines a strategy for responding to the HTTP Basic challenge.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2948287",
+              "metadata": {
+                "anchor": "2948287",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following sections implement this strategy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2942073",
+          "level": 3,
+          "text": "Determine the type of authentication challenge",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you receive an authentication challenge, use your delegate method to determine the type of challenge. The delegate method receives a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlauthenticationchallenge",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance that describes the challenge being issued. This instance contains a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlauthenticationchallenge/1410012-protectionspace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property whose ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotectionspace/1415028-authenticationmethod",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property indicates the kind of challenge being issued (such as a request for a username and password, or a client certificate). You use this value to determine whether you can handle the challenge.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You respond to the challenge by directly invoking the completion handler passed in to the challenge, passing an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/authchallengedisposition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " indicating your response to the challenge. You use the disposition argument to provide a credential, cancel the request, or allow the default handling to proceed, whichever is appropriate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/handling_an_authentication_challenge#2942079",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " tests the authentication method to see if it is the expected type, HTTP Basic. If the ",
+              "type": "text"
+            },
+            {
+              "code": "authenticationMethod",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property indicates some other kind of challenge, it calls the completion handler with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/authchallengedisposition/performdefaulthandling",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " disposition. Telling the task to use its default handling may satisfy the challenge; otherwise, the task will move on to the next challenge in the response and call this delegate again. This process continues until the task reaches the HTTP Basic challenge that you expect to handle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let authMethod = challenge.protectionSpace.authenticationMethod",
+            "guard authMethod == NSURLAuthenticationMethodHTTPBasic else {",
+            "    completionHandler(.performDefaultHandling, nil)",
+            "    return",
+            "}"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Checking the authentication method of an authentication challenge",
+                "type": "text"
+              }
+            ],
+            "anchor": "2942079",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2942078",
+          "level": 3,
+          "text": "Create a credential instance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To successfully answer the challenge, you need to submit a credential appropriate to type of challenge you have received. For HTTP Basic and HTTP Digest challenges, you provide a username and password. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/handling_an_authentication_challenge#2942074",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " shows a helper method that attempts to create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlcredential",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance from user-interface fields, if they are filled in.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func credentialsFromUI() -> URLCredential? {",
+            "    guard let username = usernameField.text, !username.isEmpty,",
+            "        let password = passwordField.text, !password.isEmpty else {",
+            "            return nil",
+            "    }",
+            "    return URLCredential(user: username, password: password,",
+            "                         persistence: .forSession)",
+            "}"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Creating a URLCredential from user interface values",
+                "type": "text"
+              }
+            ],
+            "anchor": "2942074",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the returned ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlcredential",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " has ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlcredential/persistence/forsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " persistence, so it’s only stored by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " instance that created the task. You would need to supply new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlcredential",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " instances for tasks created by other session instances, and on future runs of the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2942077",
+          "level": 3,
+          "text": "Call the completion handler",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you’ve tried to create a credential instance, you must call the completion handler to answer the challenge.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you can’t create a credential, or if the user explicitly canceled, call the completion handler and pass the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/authchallengedisposition/cancelauthenticationchallenge",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " disposition.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you can create a credential instance, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/authchallengedisposition/usecredential",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " disposition to pass it to the completion handler.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/handling_an_authentication_challenge#2942076",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " shows both these options.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let credential = credentialOrNil else {",
+            "    completionHandler(.cancelAuthenticationChallenge, nil)",
+            "    return",
+            "}",
+            "completionHandler(.useCredential, credential)"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Invoking the authentication challenge completion Handler",
+                "type": "text"
+              }
+            ],
+            "anchor": "2942076",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you supply a credential that is accepted by the server, the task begins uploading or downloading data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can pass the completion handler to other methods or temporarily store it in a property, for situations like waiting for the user to complete a username/password dialog. But eventually you must call the completion handler to complete the challenge and allow the task to proceed, even if you’re choosing to cancel, as seen in the failure case of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/handling_an_authentication_challenge#2942076",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2938912",
+          "level": 3,
+          "text": "Handle failures gracefully",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the credential is refused, the system calls your delegate method again. When this happens, the callback provides your rejected credential as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlauthenticationchallenge/1417749-proposedcredential",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlauthenticationchallenge",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " parameter. The challenge instance also includes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlauthenticationchallenge/1416522-previousfailurecount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, which indicates how many times the credential has been rejected. You can use these properties to determine what to do next. For example, if the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlauthenticationchallenge/1416522-previousfailurecount",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is greater than zero, you could use the user string of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlauthenticationchallenge/1417749-proposedcredential",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to populate a user/password reentry UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/handling_an_authentication_challenge": {
+      "abstract": [
+        {
+          "text": "Respond appropriately when a server demands authentication for a URL request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/handling_an_authentication_challenge",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Handling an authentication challenge",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/handling_an_authentication_challenge"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/handling_an_authentication_challenge#2942074": {
+      "abstract": [
+        {
+          "text": "Creating a URLCredential from user interface values",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/handling_an_authentication_challenge#2942074",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/handling_an_authentication_challenge#2942074"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/handling_an_authentication_challenge#2942076": {
+      "abstract": [
+        {
+          "text": "Invoking the authentication challenge completion Handler",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/handling_an_authentication_challenge#2942076",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/handling_an_authentication_challenge#2942076"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/handling_an_authentication_challenge#2942079": {
+      "abstract": [
+        {
+          "text": "Checking the authentication method of an authentication challenge",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/handling_an_authentication_challenge#2942079",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/handling_an_authentication_challenge#2942079"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/handling_an_authentication_challenge/performing_manual_server_trust_authentication": {
+      "abstract": [
+        {
+          "text": "Evaluate the server’s security credentials in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/handling_an_authentication_challenge/performing_manual_server_trust_authentication",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing manual server trust authentication",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/handling_an_authentication_challenge/performing_manual_server_trust_authentication"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlauthenticationchallenge": {
+      "abstract": [
+        {
+          "text": "A challenge from a server requiring authentication from the client.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLAuthenticationChallenge"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlauthenticationchallenge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLAuthenticationChallenge",
+      "type": "topic",
+      "url": "/documentation/foundation/urlauthenticationchallenge"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlauthenticationchallenge/1410012-protectionspace": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlauthenticationchallenge/1410012-protectionspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "protectionSpace",
+      "type": "topic",
+      "url": "/documentation/foundation/urlauthenticationchallenge/1410012-protectionspace"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlauthenticationchallenge/1416522-previousfailurecount": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlauthenticationchallenge/1416522-previousfailurecount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "previousFailureCount",
+      "type": "topic",
+      "url": "/documentation/foundation/urlauthenticationchallenge/1416522-previousfailurecount"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlauthenticationchallenge/1417749-proposedcredential": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlauthenticationchallenge/1417749-proposedcredential",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "proposedCredential",
+      "type": "topic",
+      "url": "/documentation/foundation/urlauthenticationchallenge/1417749-proposedcredential"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlcredential": {
+      "abstract": [
+        {
+          "code": "A",
+          "type": "codeVoice"
+        },
+        {
+          "text": "n authentication credential consisting of information specific to the type of credential and the type of persistent storage to use, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLCredential"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlcredential",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLCredential",
+      "type": "topic",
+      "url": "/documentation/foundation/urlcredential"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlcredential/persistence/forsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlcredential/persistence/forsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLCredential.Persistence.forSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlcredential/persistence/forsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlcredentialstorage": {
+      "abstract": [
+        {
+          "text": "The manager of a shared credentials cache.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLCredentialStorage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlcredentialstorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLCredentialStorage",
+      "type": "topic",
+      "url": "/documentation/foundation/urlcredentialstorage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotectionspace": {
+      "abstract": [
+        {
+          "text": "A server or an area on a server, commonly referred to as a realm, that requires authentication. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLProtectionSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotectionspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLProtectionSpace",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotectionspace"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotectionspace/1415028-authenticationmethod": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotectionspace/1415028-authenticationmethod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "authenticationMethod",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotectionspace/1415028-authenticationmethod"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotectionspace/nsurlprotectionspace_authentication_method_constants": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotectionspace/nsurlprotectionspace_authentication_method_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "NSURLProtectionSpace authentication method constants",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotectionspace/nsurlprotectionspace_authentication_method_constants"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1411530-delegate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411530-delegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1411530-delegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/authchallengedisposition": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/authchallengedisposition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession.AuthChallengeDisposition",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/authchallengedisposition"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/authchallengedisposition/cancelauthenticationchallenge": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/authchallengedisposition/cancelauthenticationchallenge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession.AuthChallengeDisposition.cancelAuthenticationChallenge",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/authchallengedisposition/cancelauthenticationchallenge"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/authchallengedisposition/performdefaulthandling": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/authchallengedisposition/performdefaulthandling",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession.AuthChallengeDisposition.performDefaultHandling",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/authchallengedisposition/performdefaulthandling"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/authchallengedisposition/usecredential": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/authchallengedisposition/usecredential",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession.AuthChallengeDisposition.useCredential",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/authchallengedisposition/usecredential"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate/1409308-urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate/1409308-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlSession(_:didReceive:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondelegate/1409308-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionTask",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionTaskDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontaskdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1411595-urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1411595-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlSession(_:task:didReceive:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontaskdelegate/1411595-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-2951397": {
+      "identifier": "link-2951397",
+      "kind": "article",
+      "role": "link",
+      "title": "RFC 7617",
+      "type": "topic",
+      "url": "https://tools.ietf.org/html/rfc7617"
+    },
+    "link-media-2948287": {
+      "identifier": "link-media-2948287",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/foundation/url_loading_system/handling_an_authentication_challenge#2948287"
+    },
+    "media-2948287": {
+      "alt": "Decision tree showing states and choices for handling an authentication challenge. The first decision point is whether the received challenge's authentication method is HTTP Basic; if not, use system default handling. If so, the user is challenged for username and password. The second decision point asks if the user did provide a username and password. If yes, create and use credential; if not, cancel the challenge.",
+      "identifier": "media-2948287",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/00ef01d197/759d2099-d938-415f-ac8a-1a0cac9dea4b.png"
+        },
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0538c8630f/df4288af-90f3-4504-b657-a5ae9b3e994b.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlauthenticationchallenge",
+        "doc://com.apple.documentation/documentation/foundation/urlcredential",
+        "doc://com.apple.documentation/documentation/foundation/urlcredentialstorage",
+        "doc://com.apple.documentation/documentation/foundation/urlprotectionspace"
+      ],
+      "title": "Authentication and credentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2938913",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/handling_an_authentication_challenge/performing_manual_server_trust_authentication"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating URL credentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/url_loading_system/handling_an_authentication_challenge"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/url_loading_system/handling_an_authentication_challenge"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

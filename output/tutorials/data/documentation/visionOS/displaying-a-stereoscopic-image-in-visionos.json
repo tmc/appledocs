@@ -1,0 +1,673 @@
+{
+  "abstract": [
+    {
+      "text": "Build a stereoscopic image by applying textures to the left and right eye in a shader graph material.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS",
+        "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/displaying-a-stereoscopic-image-in-visionos"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Displaying a stereoscopic image"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample demonstrates how to create a stereoscopic image with shader graph materials in visionOS. You can apply the textures independently to the left and the right eye. The following image shows a stereoscopic image displaying a pair of left and right images that correspond to the angle of vision of a person’s eyes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "sample-stereoimage-1-main-view.jpg",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-up-the-shader-graph",
+          "level": 3,
+          "text": "Set up the shader graph",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample sets up the shader graph for the stereoscopic material with two image files: ",
+              "type": "text"
+            },
+            {
+              "code": "LeftTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "RightTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The sample applies these image files to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ShaderGraph/realitykit/Camera-Index-Switch-(RealityKit)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " node, to set up a dedicated texture for both the left and the right eye, like in the following image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "sample-stereoimage-1-shader-graph-view.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Load-the-stereoscopic-image-as-an-entity",
+          "level": 3,
+          "text": "Load the stereoscopic image as an entity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create the stereoscopic image, the sample creates the ",
+              "type": "text"
+            },
+            {
+              "code": "StereoImageCreator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class, which contains a private method to load the left and right textures. The app sets these textures as parameters to the shader graph material:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@MainActor private func applyTextureToEntity(box: ModelEntity, material: inout ShaderGraphMaterial) async {",
+            "    do {",
+            "        /// The name of the resource for the left texture.",
+            "        let leftFileName = \"Shop_L\"",
+            "        ",
+            "        /// The name of the resource for the right texture.",
+            "        let rightFileName = \"Shop_R\"",
+            "        ",
+            "        /// The left texture for the shader graph material.",
+            "        let leftTexture = try await TextureResource(named: leftFileName)",
+            "        ",
+            "        /// The right texture for the shader graph material.",
+            "        let rightTexture = try await TextureResource(named: rightFileName)",
+            "        ",
+            "        /// The parameter name to modify the left texture in the shader graph.",
+            "        let leftParameter = \"LeftTexture\"",
+            "        ",
+            "        /// The parameter name to modify the right texture in the shader graph.",
+            "        let rightParameter = \"RightTexture\"",
+            "        ",
+            "        // Set the textures into the shader graph material.",
+            "        try material.setParameter(name: leftParameter, value: .textureResource(leftTexture))",
+            "        try material.setParameter(name: rightParameter, value: .textureResource(rightTexture))",
+            "",
+            "        // Apply the results to the material and assign to the box's material.",
+            "        box.model?.materials = [material]",
+            "    } catch {",
+            "        // Handle any errors that occur.",
+            "        assertionFailure(\"\\(error)\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method uses a do-catch block to handle any potential errors that may occur when loading and applying the image files to the material.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "StereoImageCreator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class also contains the ",
+              "type": "text"
+            },
+            {
+              "code": "createImageEntity()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, which constructs a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ShaderGraphMaterial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and creates a box entity with the shader graph material.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@MainActor public func createImageEntity() async -> ModelEntity? {",
+            "    /// The full path to the material primitive in the usda file.",
+            "    let materialRoot: String = \"/Root/Material\"",
+            "",
+            "    /// The filename of the material.",
+            "    let materialName: String = \"StereoscopicMaterial\"",
+            "",
+            "    /// The shader graph material for the stereoscopic image.",
+            "    guard var material = try? await ShaderGraphMaterial(named: materialRoot, from: materialName) else {",
+            "        print(\"Failed to load shader graph material.\")",
+            "        return nil",
+            "    }",
+            "    ",
+            "    // Generates the model entity in the shape of a box and applies the shader graph material.",
+            "    let box = ModelEntity(",
+            "        mesh: .generateBox(size: size),",
+            "        materials: [material]",
+            "    )",
+            "    ",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app then modifies the z-axis scale to compress the box into a flat plane, which serves as a placeholder for the image. Lastly, the app calls the ",
+              "type": "text"
+            },
+            {
+              "code": "applyTextureToEntity(box:material:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to load the left and right textures onto the material and apply the results to the box:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@MainActor public func createImageEntity() async -> ModelEntity? {",
+            "    // ...",
+            "",
+            "    /// The size of the box in three dimensions.",
+            "    let size: Float = 0.3",
+            "    ",
+            "    /// The z-axis scale to compress the box into an image placeholder.",
+            "    let zScale: Float = 1E-3",
+            "    ",
+            "    // Apply the z-axis scale to compress the box into a flat plane.",
+            "    box.scale.z = zScale",
+            "",
+            "    // Load the textures and apply the result to the box.",
+            "    await applyTextureToEntity(box: box, material: &material)",
+            "",
+            "    return box",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Present-the-stereoscopic-image-with-text",
+          "level": 3,
+          "text": "Present the stereoscopic image with text",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "StereoImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view consists of a vertical stack that displays a title and a reality view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Within the reality view, it initializes the ",
+              "type": "text"
+            },
+            {
+              "code": "StereoImageCreator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance, calls the ",
+              "type": "text"
+            },
+            {
+              "code": "createImageEntity()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to create the stereoscopic image, and adds the entity to the reality view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "RealityView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " displays your RealityKit content inline in true 3D space.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To display the stereoscopic image inline in the window, set the frame’s depth to 0:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "VStack(spacing: spacing) {",
+            "    // ...",
+            "",
+            "    RealityView { content in",
+            "        /// The creator instance of `StereoImageCreator`.",
+            "        let creator = StereoImageCreator()",
+            "",
+            "        /// The image entity that `StereoImageCreator` generates.",
+            "        guard let entity = await creator.createImageEntity() else {",
+            "            print(\"Failed to create the stereoscopic image entity.\")",
+            "            return",
+            "        }",
+            "",
+            "        // Add the image entity to the `RealityView`.",
+            "        content.add(entity)",
+            "    }",
+            "    // Set the frame to 0 so the origin of the RealityView exists on the same plane as the window.",
+            "    .frame(depth: .zero)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "b3242f7dab28/DisplayingAStereoscopicImage.zip": {
+      "checksum": "b3242f7dab28d65cefcb16874e151bb80440b1d5598ea3b6e21c5d96050151524f9847dbd8d7dd4098fd4a5df5ebe7b275e00e2bd90570572985b2b9f8caf0d9",
+      "identifier": "b3242f7dab28/DisplayingAStereoscopicImage.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/b3242f7dab28/DisplayingAStereoscopicImage.zip"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ShaderGraphMaterial": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShaderGraphMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ShaderGraphMaterial",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ShaderGraphMaterial",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ShaderGraphMaterial"
+    },
+    "doc://com.apple.documentation/documentation/ShaderGraph/realitykit/Camera-Index-Switch-(RealityKit)": {
+      "abstract": [
+        {
+          "text": "Render different results for each eye in a stereoscopic render.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ShaderGraph/realitykit/Camera-Index-Switch-(RealityKit)",
+      "images": [
+        {
+          "identifier": "purple.camera.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Camera Index Switch (RealityKit)",
+      "type": "topic",
+      "url": "/documentation/ShaderGraph/realitykit/Camera-Index-Switch-(RealityKit)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/generating-procedural-textures-in-visionos": {
+      "abstract": [
+        {
+          "text": "Display a 3D model that generates procedural textures in a reality view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/generating-procedural-textures-in-visionos",
+      "images": [
+        {
+          "identifier": "sample-drawable-1-main-view-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Generating procedural textures",
+      "type": "topic",
+      "url": "/documentation/visionos/generating-procedural-textures-in-visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/implementing-adjustable-material-in-visionos": {
+      "abstract": [
+        {
+          "text": "Update the adjustable parameters of a 3D model in visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/implementing-adjustable-material-in-visionos",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing adjustable material",
+      "type": "topic",
+      "url": "/documentation/visionos/implementing-adjustable-material-in-visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples": {
+      "abstract": [
+        {
+          "text": "Learn the fundamentals of building apps for visionOS with beginner-friendly sample code projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples",
+      "images": [
+        {
+          "identifier": "introductory-visionOS-samples.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Introductory visionOS samples",
+      "type": "topic",
+      "url": "/documentation/visionos/introductory-visionos-samples"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "introductory-visionOS-samples.png": {
+      "alt": "A translucent window displaying five white, three-dimensional entities in a horizontal row. From left to right, the shapes are a box, a rounded box, a right sphere, a cone, and a cylinder that all top-align.",
+      "identifier": "introductory-visionOS-samples.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d386622a70e5f41179e6a4c98a125c7/introductory-visionOS-samples@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/58fa94f103305452c567401d648dedc5/introductory-visionOS-samples~dark@2x.png"
+        }
+      ]
+    },
+    "purple.camera.png": {
+      "alt": "nil",
+      "identifier": "purple.camera.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77182c01b5fd213e5d8ea2a9c2304aa8/purple.camera.png"
+        }
+      ]
+    },
+    "sample-drawable-1-main-view-card.png": {
+      "alt": "",
+      "identifier": "sample-drawable-1-main-view-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2b35928ee97847f8abb8441a454a5696/sample-drawable-1-main-view-card.png"
+        }
+      ]
+    },
+    "sample-stereoimage-1-main-view.jpg": {
+      "alt": "A screenshot of a visionOS app in Simulator displaying a translucent window, with the text Stereoscopic Image Example at the top, and a stereoscopic image at the bottom.",
+      "identifier": "sample-stereoimage-1-main-view.jpg",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/01e6cb9a20ba25889b7153ea0fa030fa/sample-stereoimage-1-main-view.jpg"
+        }
+      ]
+    },
+    "sample-stereoimage-1-shader-graph-view.png": {
+      "alt": "A screenshot of the shader graph in Reality Composer Pro, showcasing the stereoscopic material with the LeftTexture and RightTexture image files.",
+      "identifier": "sample-stereoimage-1-shader-graph-view.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1b5afec6df0c85a7507c7d49d99c3e9a/sample-stereoimage-1-shader-graph-view.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "b3242f7dab28/DisplayingAStereoscopicImage.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Building-materials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/generating-procedural-textures-in-visionos",
+        "doc://com.apple.visionOS/documentation/visionOS/implementing-adjustable-material-in-visionos"
+      ],
+      "title": "Building materials"
+    }
+  ]
+}

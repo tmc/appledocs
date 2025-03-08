@@ -1,0 +1,1555 @@
+{
+  "abstract": [
+    {
+      "text": "Add text-recognition features to your app using the Vision framework.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.vision/documentation/Vision",
+        "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.vision/documentation/Vision/recognizing-text-in-images"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Recognizing Text in Images"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "One of Vision’s many powerful features is its ability to detect and recognize multilanguage text in images. You can use this functionality in your own apps to handle both real-time and offline use cases. In all cases, all of Vision’s processing happens on the user’s device to enhance performance and user privacy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Vision’s text-recognition capabilities operate using one of these paths:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The fast path uses the framework’s character-detection capabilities to find individual characters, and then uses a small machine learning model to recognize individual characters and words. This approach is similar to traditional optical character recognition (OCR).",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Fast",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example code using the fast path, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/extracting-phone-numbers-from-text-in-images",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The accurate path uses a neural network to find text in terms of strings and lines, and then performs further analysis to find individual words and sentences. This approach is much more in line with how humans read text.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Accurate",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example code using the accurate path, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/visionkit/structuring_recognized_text_on_a_document",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using either path, you may optionally apply a language-correction phase based on Natural Language Processing (NLP) to minimize the potential for misreadings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3616311",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Using Vision’s text-recognition features is similar to performing other Vision operations, where you perform computer vision requests on an image and retrieve the resulting observations. If you’re new to the Vision framework, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.vision/documentation/Vision/detecting-objects-in-still-images",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Perform-a-Text-Recognition-Request",
+          "level": 3,
+          "text": "Perform a Text-Recognition Request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Vision provides its text-recognition capabilities through ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", an image-based request type that finds and extracts text in images. The following example shows how to use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to perform a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for recognizing text in the specified ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Get the CGImage on which to perform requests.",
+            "guard let cgImage = UIImage(named: \"snapshot\")?.cgImage else { return }",
+            "",
+            "// Create a new image-request handler.",
+            "let requestHandler = VNImageRequestHandler(cgImage: cgImage)",
+            "",
+            "// Create a new request to recognize text.",
+            "let request = VNRecognizeTextRequest(completionHandler: recognizeTextHandler)",
+            "",
+            "do {",
+            "    // Perform the text-recognition request.",
+            "    try requestHandler.perform([request])",
+            "} catch {",
+            "    print(\"Unable to perform the requests: \\(error).\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " uses the accurate path by default. To select the fast path, set the request’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest/recognitionLevel",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.vision/documentation/Vision/VNRequestTextRecognitionLevel/fast",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Process-the-Results",
+          "level": 3,
+          "text": "Process the Results",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the request handler processes the request, it calls the request’s completion closure, passing it the request and any errors that occurred. Retrieve the observations by querying the request object for its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNRequest/results",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which it returns as an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizedTextObservation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. Each observation provides the recognized text string, along with a confidence score that indicates the confidence in the accuracy of the recognition.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func recognizeTextHandler(request: VNRequest, error: Error?) {",
+            "    guard let observations =",
+            "            request.results as? [VNRecognizedTextObservation] else {",
+            "        return",
+            "    }",
+            "    let recognizedStrings = observations.compactMap { observation in",
+            "        // Return the string of the top VNRecognizedText instance.",
+            "        return observation.topCandidates(1).first?.string",
+            "    }",
+            "    ",
+            "    // Process the recognized strings.",
+            "    processResults(recognizedStrings)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’d like to render the bounding rectangles around recognized text in your user interface, you can also retrieve that information from the observation. The rectangles it provides are in normalized coordinates. To render them correctly in your user interface, convert ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances from normalized coordinates to image coordinates by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRectForNormalizedRect(_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function as shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let boundingRects: [CGRect] = observations.compactMap { observation in",
+            "",
+            "    // Find the top observation.",
+            "    guard let candidate = observation.topCandidates(1).first else { return .zero }",
+            "    ",
+            "    // Find the bounding-box observation for the string range.",
+            "    let stringRange = candidate.string.startIndex..<candidate.string.endIndex",
+            "    let boxObservation = try? candidate.boundingBox(for: stringRange)",
+            "    ",
+            "    // Get the normalized CGRect value.",
+            "    let boundingBox = boxObservation?.boundingBox ?? .zero",
+            "    ",
+            "    // Convert the rectangle from normalized coordinates to image coordinates.",
+            "    return VNImageRectForNormalizedRect(boundingBox,",
+            "                                        Int(image.size.width),",
+            "                                        Int(image.size.height))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resulting bounding box differs depending on the path you choose. The fast path calculates the recognized text’s bounding rectangle based on its individual characters. The accurate path tokenizes on whitespace, which means when working with Chinese text, the resulting bounding boxes will likely contain lines or line fragments instead of complete text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Optimize-Language-Settings",
+          "level": 3,
+          "text": "Optimize Language Settings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your choice of fast or accurate path, along with your use of a particular API revision, determines the language support the text-recognition algorithms provide. To determine which languages a particular path and revision support, call the request’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest/supportedRecognitionLanguages(for:revision:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If not otherwise specified, Vision biases its results toward English. To alter its default behavior, provide an array of supported languages in the request’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest/recognitionLanguages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. The order in which you provide the languages dictates their relative importance. To recognize traditional and simplified Chinese, specify ",
+              "type": "text"
+            },
+            {
+              "code": "zh-Hant",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "zh-Hans",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the first elements in the request’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest/recognitionLanguages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. English is the only other language that you can pair with Chinese.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enabling language correction on the request helps minimize common recognition errors. If the text you’re recognizing uses domain-specific jargon, such as medical or technical terms, you can tailor the language correction’s behavior by setting the request’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest/customWords",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Language correction gives precedence to the custom words when performing its processing. The request ignores the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest/customWords",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property if language correction isn’t enabled.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Vision doesn’t support language correction, or its related ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest/customWords",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " array, for Chinese.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/cgrect": {
+      "abstract": [
+        {
+          "text": "A structure that contains the location and dimensions of a rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRect",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgrect"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgimage": {
+      "abstract": [
+        {
+          "text": "A bitmap image or image mask.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImage",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgimage"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionkit/structuring_recognized_text_on_a_document": {
+      "abstract": [
+        {
+          "text": "Detect, recognize, and structure text on a business card or receipt using Vision and VisionKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionkit/structuring_recognized_text_on_a_document",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Structuring Recognized Text on a Document",
+      "type": "topic",
+      "url": "/documentation/visionkit/structuring_recognized_text_on_a_document"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNImageRectForNormalizedRect(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Projects a rectangle from normalized coordinates into image coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNImageRectForNormalizedRect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRectForNormalizedRect(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNImageRectForNormalizedRect"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNImageRectForNormalizedRect(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/vision/vnimagerectfornormalizedrect(_:_:_:)"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler": {
+      "abstract": [
+        {
+          "text": "An object that processes one or more image-analysis request pertaining to a single image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNImageRequestHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNImageRequestHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNImageRequestHandler",
+      "type": "topic",
+      "url": "/documentation/vision/vnimagerequesthandler"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNObservation": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for analysis results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that finds and recognizes text in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNRecognizeTextRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNRecognizeTextRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNRecognizeTextRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vnrecognizetextrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest/customWords": {
+      "abstract": [
+        {
+          "text": "An array of strings to supplement the recognized languages at the word-recognition stage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "customWords"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest/customWords",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "customWords"
+        }
+      ],
+      "role": "symbol",
+      "title": "customWords",
+      "type": "topic",
+      "url": "/documentation/vision/vnrecognizetextrequest/customwords"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest/recognitionLanguages": {
+      "abstract": [
+        {
+          "text": "An array of languages to detect, in priority order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recognitionLanguages"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest/recognitionLanguages",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "recognitionLanguages"
+        }
+      ],
+      "role": "symbol",
+      "title": "recognitionLanguages",
+      "type": "topic",
+      "url": "/documentation/vision/vnrecognizetextrequest/recognitionlanguages"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest/recognitionLevel": {
+      "abstract": [
+        {
+          "text": "A value that determines whether the request prioritizes accuracy or speed in text recognition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recognitionLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@VNRequestTextRecognitionLevel",
+          "text": "VNRequestTextRecognitionLevel"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest/recognitionLevel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "recognitionLevel"
+        }
+      ],
+      "role": "symbol",
+      "title": "recognitionLevel",
+      "type": "topic",
+      "url": "/documentation/vision/vnrecognizetextrequest/recognitionlevel"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest/supportedRecognitionLanguages(for:revision:)": {
+      "abstract": [
+        {
+          "text": "Requests a list of languages that the specified revision recognizes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportedRecognitionLanguages"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@VNRequestTextRecognitionLevel",
+          "text": "VNRequestTextRecognitionLevel"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "revision"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest/supportedRecognitionLanguages(for:revision:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportedRecognitionLanguagesForTextRecognitionLevel:revision:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "supportedRecognitionLanguages(for:revision:)",
+      "type": "topic",
+      "url": "/documentation/vision/vnrecognizetextrequest/supportedrecognitionlanguages(for:revision:)"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRecognizedTextObservation": {
+      "abstract": [
+        {
+          "text": "A request that detects and recognizes regions of text in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNRecognizedTextObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizedTextObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNRecognizedTextObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNRecognizedTextObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnrecognizedtextobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRequest/results": {
+      "abstract": [
+        {
+          "text": "The collection of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.vision/documentation/Vision/VNObservation",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " results generated by request processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "results"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)VNObservation",
+          "text": "VNObservation"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRequest/results",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "results"
+        }
+      ],
+      "role": "symbol",
+      "title": "results",
+      "type": "topic",
+      "url": "/documentation/vision/vnrequest/results"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRequestTextRecognitionLevel/fast": {
+      "abstract": [
+        {
+          "text": "Fast text recognition returns results more quickly at the expense of accuracy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fast"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRequestTextRecognitionLevel/fast",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNRequestTextRecognitionLevelFast"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNRequestTextRecognitionLevel.fast",
+      "type": "topic",
+      "url": "/documentation/vision/vnrequesttextrecognitionlevel/fast"
+    },
+    "doc://com.apple.vision/documentation/Vision/detecting-objects-in-still-images": {
+      "abstract": [
+        {
+          "text": "Locate and demarcate rectangles, faces, barcodes, and text in images using the Vision framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/detecting-objects-in-still-images",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Detecting Objects in Still Images",
+      "type": "topic",
+      "url": "/documentation/vision/detecting-objects-in-still-images"
+    },
+    "doc://com.apple.vision/documentation/Vision/extracting-phone-numbers-from-text-in-images": {
+      "abstract": [
+        {
+          "text": "Analyze and filter phone numbers from text in live capture by using Vision.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/extracting-phone-numbers-from-text-in-images",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Extracting phone numbers from text in images",
+      "type": "topic",
+      "url": "/documentation/vision/extracting-phone-numbers-from-text-in-images"
+    },
+    "doc://com.apple.vision/documentation/Vision/locating-and-displaying-recognized-text": {
+      "abstract": [
+        {
+          "text": "Perform text recognition on a photo using the Vision framework’s text-recognition request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/locating-and-displaying-recognized-text",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Locating and displaying recognized text",
+      "type": "topic",
+      "url": "/documentation/vision/locating-and-displaying-recognized-text"
+    },
+    "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api": {
+      "abstract": [],
+      "identifier": "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original Objective-C and Swift API",
+      "type": "topic",
+      "url": "/documentation/vision/original-objective-c-and-swift-api"
+    },
+    "media-3616311": {
+      "alt": "An illustration contrasting the Vision framework’s fast text-recognition path with its accurate text-recognition path. ",
+      "identifier": "media-3616311",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f79b11e3d4a11c918935c5267ed1999e/media-3616311@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5c8198687eefa03128316526e6f81e81/media-3616311~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Text-recognition",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/visionkit/structuring_recognized_text_on_a_document",
+        "doc://com.apple.vision/documentation/Vision/extracting-phone-numbers-from-text-in-images",
+        "doc://com.apple.vision/documentation/Vision/locating-and-displaying-recognized-text",
+        "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest",
+        "doc://com.apple.vision/documentation/Vision/VNRecognizedTextObservation"
+      ],
+      "title": "Text recognition"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Text-recognition",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest",
+                "doc://com.apple.vision/documentation/Vision/VNRecognizedTextObservation"
+              ],
+              "title": "Text recognition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgimage/title",
+          "value": "CGImageRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRequest~1results/title",
+          "value": "results"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRequest~1results/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "results"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageRequestHandler/title",
+          "value": "VNImageRequestHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageRequestHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNImageRequestHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageRequestHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNImageRequestHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNObservation/title",
+          "value": "VNObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNObservation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNObservation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizeTextRequest~1supportedRecognitionLanguages(for:revision:)/title",
+          "value": "supportedRecognitionLanguagesForTextRecognitionLevel:revision:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizeTextRequest~1supportedRecognitionLanguages(for:revision:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "supportedRecognitionLanguagesForTextRecognitionLevel:revision:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizedTextObservation/title",
+          "value": "VNRecognizedTextObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizedTextObservation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRecognizedTextObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizedTextObservation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRecognizedTextObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageRectForNormalizedRect(_:_:_:)/title",
+          "value": "VNImageRectForNormalizedRect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageRectForNormalizedRect(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNImageRectForNormalizedRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizeTextRequest/title",
+          "value": "VNRecognizeTextRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizeTextRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRecognizeTextRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizeTextRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRecognizeTextRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizeTextRequest~1recognitionLanguages/title",
+          "value": "recognitionLanguages"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizeTextRequest~1recognitionLanguages/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "recognitionLanguages"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRequestTextRecognitionLevel~1fast/title",
+          "value": "VNRequestTextRecognitionLevelFast"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRequestTextRecognitionLevel~1fast/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRequestTextRecognitionLevelFast"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizeTextRequest~1customWords/title",
+          "value": "customWords"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizeTextRequest~1customWords/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "customWords"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizeTextRequest~1recognitionLevel/title",
+          "value": "recognitionLevel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizeTextRequest~1recognitionLevel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "recognitionLevel"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/vision/recognizing-text-in-images"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/vision/recognizing-text-in-images"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

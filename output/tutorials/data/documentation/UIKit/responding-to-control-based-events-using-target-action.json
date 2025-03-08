@@ -1,0 +1,2110 @@
+{
+  "abstract": [
+    {
+      "text": "Handle user input by connecting buttons, sliders, and other controls to your app’s code using the target-action design pattern.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/views-and-controls"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/responding-to-control-based-events-using-target-action"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Responding to control-based events using target-action"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "User interactions generate thousands of events for your app. Every swipe of the finger or button click, for instance, results in numerous events your app has to process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "Target-action",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a design pattern to help you handle these user interactions efficiently. By only registering actions against specific events on your controls, you simplify your event processing, while making your code more maintainable and easier to read.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "code": "target-action",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to connect events directly from controls in your UI to methods in your code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Designate-an-object-to-handle-control-related-events",
+          "level": 3,
+          "text": "Designate an object to handle control-related events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a person interacts with your control, the control needs to know where to send the event. The destination for the event is the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "target",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". View controllers make good targets because they’re adept at handling user interactions, as well as hosting UI controls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4142878",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-the-action-methods-you-use-to-respond-to-events",
+          "level": 3,
+          "text": "Define the action methods you use to respond to events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With a control assigned to the target, provide a function to call on that target when the event occurs. This is the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "action",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Action methods have a distinct signature:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// UIKit.",
+                    "@IBAction func doSomething()",
+                    "@IBAction func doSomething(sender: Any)",
+                    "@IBAction func doSomething(sender: Any, forEvent event: UIEvent)",
+                    " ",
+                    "// AppKit.",
+                    "@IBAction func doSomething()",
+                    "@IBAction func doSomething(sender: Any)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "    // UIKit.",
+                    "    - (IBAction)doSomething;",
+                    "    - (IBAction)doSomething:(id)sender;",
+                    "    - (IBAction)doSomething:(id)sender forControlEvents:(UIControlEvents)controlEvents;",
+                    "",
+                    "    // AppKit.",
+                    "    - (IBAction)doSomething;",
+                    "    - (IBAction)doSomething:(id)sender;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode uses the ",
+              "type": "text"
+            },
+            {
+              "code": "@IBAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keyword to connect controls in Interface Builder to functions in your code. The keyword also bridges the Swift and Objective-C runtimes, enabling Swift code to call into Objective-C, which is where the target-action functionality lives.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "sender",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter defines where the event comes from; for example, a button. Use the generic type ",
+              "type": "text"
+            },
+            {
+              "code": "Any",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to allow any control to call the action method, or specify the ",
+              "type": "text"
+            },
+            {
+              "code": "sender",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type when you need more information about the control for event processing. For example, set the ",
+              "type": "text"
+            },
+            {
+              "code": "sender",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISlider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to read the slider thumb value when someone moves the slider left or right.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// UIKit.",
+                    "@IBAction func adjustVolume(sender: UISlider) {",
+                    "    print(sender.value)",
+                    "}",
+                    "",
+                    "// AppKit.",
+                    "@IBAction func adjustVolume(sender: NSSlider) {",
+                    "    NSLog(\"%@\", sender.stringValue)",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// UIKit.",
+                    "- (IBAction)adjustVolume:(UISlider *)sender {",
+                    "    NSLog(@\"%f\", sender.value);",
+                    "}",
+                    "",
+                    "// AppKit.",
+                    "- (IBAction)adjustVolume:(NSSlider *)sender {",
+                    "    NSLog(@\"%@\", [sender stringValue]);",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UIKit also supports coupling action methods to specific event types (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIControl/Event",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). For example, to set up target-action for a user dragging their finger inside the bounds of a control, register for the event type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIControl/Event/touchDragInside",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Connect-controls-to-the-action-methods-in-Interface-Builder",
+          "level": 3,
+          "text": "Connect controls to the action methods in Interface Builder",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the ",
+              "type": "text"
+            },
+            {
+              "code": "target",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "action",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods defined, you’re ready to connect them visually to the controls in Interface Builder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the control (the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "target",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") you want to connect to the code (the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "action",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-drag the control to the view controller in the document outline.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the action method that the control connects to.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4109954",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4109951",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can verify that the control and action are connected by moving the pointer over the circular dot to the left of the action method. When you do, Xcode highlights the control.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4110023",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Another way to connect is to Control-drag the control from Interface Builder into the view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4109950",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enter the name of the ",
+              "type": "text"
+            },
+            {
+              "code": "action",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method you’d like the control to call and then click Connect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4110161",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table lists the parameters available for configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Parameter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Connection",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The type of connection to make. Select Action to establish a target-action relationship between the control and the target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Object",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "target",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or object your control is connecting to.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of the function, or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "action",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", your control calls when the event occurs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The type of the control sending the event. Choose ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Any",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " if you don’t require any further information regarding the control’s state. Specify the control type if you require more information from the control for event processing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Event",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEvent",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " associated with the action. This feature is only available in UIKit.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Arguments",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The arguments to include in the signature or your target-action method. Choose None to include no arguments. Choose Sender to pass in the control type as the sender. Choose Sender and Event to pass in both the control type and the event that caused the action. This feature is available only in UIKit.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Connecting the target-action this way ensures the method signature and parameters are correct as Xcode generates the action method for you.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4110163",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Connect-a-control-to-your-code-programmatically",
+          "level": 3,
+          "text": "Connect a control to your code programmatically",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In UIKit, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIControl/addTarget(_:action:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to set up target-action programmatically on a control:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "import UIKit",
+                    "",
+                    "",
+                    "class ViewController: UIViewController {",
+                    "    let signInButton = UIButton(type: .system)",
+                    "    ",
+                    "    override func viewDidLoad() {",
+                    "        super.viewDidLoad()",
+                    "",
+                    "",
+                    "        signInButton.translatesAutoresizingMaskIntoConstraints = false",
+                    "        signInButton.setTitle(\"Sign in\", for: .normal)",
+                    "        ",
+                    "        // Target-action.",
+                    "        signInButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)",
+                    "        ",
+                    "        view.addSubview(signInButton)",
+                    "        signInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true",
+                    "        signInButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true",
+                    "    }",
+                    "    ",
+                    "    @IBAction func buttonTapped(sender: UIButton) {",
+                    "        print(\"Sign in successful 🎉\")",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "#import \"ViewController.h\"",
+                    "",
+                    "@implementation ViewController",
+                    "",
+                    "- (void)viewDidLoad {",
+                    "    [super viewDidLoad];",
+                    "    ",
+                    "    UIButton *signInButton = [UIButton buttonWithType:UIButtonTypeSystem];",
+                    "    [signInButton setTitle:@\"Sign in\" forState:UIControlStateNormal];",
+                    "",
+                    "    signInButton.translatesAutoresizingMaskIntoConstraints = false;",
+                    "",
+                    "    // Target-action.",
+                    "    [signInButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];",
+                    "    ",
+                    "    [self.view addSubview:signInButton];",
+                    "    [signInButton.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = true;",
+                    "    [signInButton.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = true;",
+                    "}",
+                    "",
+                    "- (void)buttonTapped:(UIButton *)sender {",
+                    "    NSLog(@\"Sign in successful 🎉\");",
+                    "}",
+                    "@end"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In AppKit, use the control’s ",
+              "type": "text"
+            },
+            {
+              "code": "target",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "action",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties to set target-action programmatically:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "import Cocoa",
+                    "",
+                    "class ViewController: NSViewController {",
+                    "    let signInButton = NSButton()",
+                    "    ",
+                    "    override func viewDidLoad() {",
+                    "        super.viewDidLoad()",
+                    "",
+                    "        signInButton.translatesAutoresizingMaskIntoConstraints = false",
+                    "        signInButton.title = \"Sign in\"",
+                    "        ",
+                    "        // Target-action.",
+                    "        signInButton.target = self",
+                    "        signInButton.action = #selector(buttonTapped(sender:))",
+                    "        ",
+                    "        view.addSubview(signInButton)",
+                    "        signInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true",
+                    "        signInButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true",
+                    "    }",
+                    "    ",
+                    "    @IBAction func buttonTapped(sender: NSButton) {",
+                    "        print(\"Sign in successful 🎉\")",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "#import \"ViewController.h\"",
+                    "",
+                    "@implementation ViewController",
+                    "",
+                    "- (void)viewDidLoad {",
+                    "    [super viewDidLoad];",
+                    "    ",
+                    "    NSButton *signInButton = [[NSButton alloc] initWithFrame: NSMakeRect(20, 20, 100, 80)];",
+                    "    signInButton.translatesAutoresizingMaskIntoConstraints = NO;",
+                    "    signInButton.title = @\"Sign in\";",
+                    "    signInButton.bezelStyle = NSBezelStyleRounded;",
+                    "    ",
+                    "    // Target-action.",
+                    "    signInButton.target = self;",
+                    "    signInButton.action = @selector(buttonTapped:);",
+                    "    ",
+                    "    [self.view addSubview:signInButton];",
+                    "    [signInButton.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;",
+                    "    [signInButton.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;",
+                    "}",
+                    "",
+                    "- (void)buttonTapped:(NSButton *)sender {",
+                    "    NSLog(@\"Sign in successful 🎉\");",
+                    "}",
+                    "",
+                    "@end"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Enable-other-objects-to-respond-to-control-related-events",
+          "level": 3,
+          "text": "Enable other objects to respond to control-related events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the object hosting the control isn’t the one you want handling the event, invoke the responder chain by passing in ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the target. This causes the control to search the responder chain for the specified action method and invoke it when found. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/using-responders-and-the-responder-chain-to-handle-events",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIButton": {
+      "abstract": [
+        {
+          "text": "A control that executes your custom code in response to user interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIButton"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIButton",
+      "type": "topic",
+      "url": "/documentation/uikit/uibutton"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIColorWell": {
+      "abstract": [
+        {
+          "text": "A control that displays a color picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIColorWell"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColorWell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIColorWell"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIColorWell",
+      "type": "topic",
+      "url": "/documentation/uikit/uicolorwell"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIControl": {
+      "abstract": [
+        {
+          "text": "The base class for controls, which are visual elements that convey a specific action or intention in response to user interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIControl"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIControl",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontrol"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIControl/Event": {
+      "abstract": [
+        {
+          "text": "Constants describing the types of events possible for controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Event"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIControl/Event",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Event"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIControl.Event",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontrol/event"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIControl/Event/touchDragInside": {
+      "abstract": [
+        {
+          "text": "An event where a finger is dragged inside the bounds of the control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "touchDragInside"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIControl",
+          "text": "UIControl"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIControlEvents",
+          "text": "Event"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIControl/Event/touchDragInside",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIControlEventTouchDragInside"
+        }
+      ],
+      "role": "symbol",
+      "title": "touchDragInside",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontrol/event/touchdraginside"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIControl/addTarget(_:action:for:)": {
+      "abstract": [
+        {
+          "text": "Associates a target object and action method with the control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addTarget"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIControl",
+          "text": "UIControl"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIControlEvents",
+          "text": "Event"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIControl/addTarget(_:action:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addTarget:action:forControlEvents:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addTarget(_:action:for:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontrol/addtarget(_:action:for:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDatePicker": {
+      "abstract": [
+        {
+          "text": "A control for inputting date and time values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDatePicker"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDatePicker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDatePicker"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDatePicker",
+      "type": "topic",
+      "url": "/documentation/uikit/uidatepicker"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIEvent": {
+      "abstract": [
+        {
+          "text": "An object that describes a single user interaction with your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIEvent",
+      "type": "topic",
+      "url": "/documentation/uikit/uievent"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPageControl": {
+      "abstract": [
+        {
+          "text": "A control that displays a horizontal series of dots, each of which corresponds to a page in the app’s document or other data-model entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPageControl"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPageControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPageControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPageControl",
+      "type": "topic",
+      "url": "/documentation/uikit/uipagecontrol"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISegmentedControl": {
+      "abstract": [
+        {
+          "text": "A horizontal control that consists of multiple segments, each segment functioning as a discrete button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISegmentedControl"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISegmentedControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISegmentedControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISegmentedControl",
+      "type": "topic",
+      "url": "/documentation/uikit/uisegmentedcontrol"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISlider": {
+      "abstract": [
+        {
+          "text": "A control for selecting a single value from a continuous range of values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISlider"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISlider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISlider"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISlider",
+      "type": "topic",
+      "url": "/documentation/uikit/uislider"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStepper": {
+      "abstract": [
+        {
+          "text": "A control for incrementing or decrementing a value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStepper"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStepper",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIStepper"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIStepper",
+      "type": "topic",
+      "url": "/documentation/uikit/uistepper"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISwitch": {
+      "abstract": [
+        {
+          "text": "A control that offers a binary choice, such as on/off.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISwitch"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwitch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISwitch"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISwitch",
+      "type": "topic",
+      "url": "/documentation/uikit/uiswitch"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/using-responders-and-the-responder-chain-to-handle-events": {
+      "abstract": [
+        {
+          "text": "Learn how to handle events that propagate through your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/using-responders-and-the-responder-chain-to-handle-events",
+      "kind": "article",
+      "role": "article",
+      "title": "Using responders and the responder chain to handle events",
+      "type": "topic",
+      "url": "/documentation/uikit/using-responders-and-the-responder-chain-to-handle-events"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/views-and-controls": {
+      "abstract": [
+        {
+          "text": "Present your content onscreen and define the interactions allowed with that content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and controls",
+      "type": "topic",
+      "url": "/documentation/uikit/views-and-controls"
+    },
+    "media-4109950": {
+      "alt": "A screenshot in Xcode showing how Control-dragging a control from Interface Builder into the Assistant editor generates the target-action method. Interface Builder is open on the left. The Assistant editor is open beside it on the right. An arrow points from the button into the code editor with the words Control-drag appearing above it.",
+      "identifier": "media-4109950",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/594b61e310e61c568d772d70c38e5b03/media-4109950@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2d9db43abc0469df1436447d66c81df8/media-4109950~dark@2x.png"
+        }
+      ]
+    },
+    "media-4109951": {
+      "alt": "A screenshot in Xcode showing a modal alert of connection options after completing a Control-drag action. The modal lists several action segue options including Show, Show Detail, and Present Modally. An arrow points to the signInButton Tapped option.",
+      "identifier": "media-4109951",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8a11490cb7c3caab14480f0f5cbb893f/media-4109951@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/31105ae81cc0f7d2811e0b405649ffd5/media-4109951~dark@2x.png"
+        }
+      ]
+    },
+    "media-4109954": {
+      "alt": "A screenshot showing how to connect a control to an action in Xcode using Interface Builder.  The screenshot consists of Xcode’s document outline view on the left displaying a connection to the view controller, with the Interface Builder canvas on the right containing a single button. A Control-drag arrow connects the button on the canvas to the view controller in the document outline.",
+      "identifier": "media-4109954",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90613da3ff62308359f7e291584b3279/media-4109954@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e074288a6385f97484b7aff8721589aa/media-4109954~dark@2x.png"
+        }
+      ]
+    },
+    "media-4110023": {
+      "alt": "A screenshot  in Xocde showing how moving the pointer over an action method in the code editor highlights the control it’s connected to in Interface Builder. Interface Builder is on the left with a highlighted button. The Assistant code editor is open on the right with the mouse tip hovering over the grey circle immediately to the left of the function definition.",
+      "identifier": "media-4110023",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3ad0351f2669de731034412de0ab3116/media-4110023@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1d55d99a9185e07895c15cfc147d81c4/media-4110023~dark@2x.png"
+        }
+      ]
+    },
+    "media-4110161": {
+      "alt": "A screenshot in Xcode showing a modal alert resulting from a Control-drag action between Interface Builder and the Assistant editor. The modal shows the fields Connection, Object, Name, Type, Event, and Arguments. Two buttons appear at the bottom: a Cancel button on the left and a Connect button on the right.",
+      "identifier": "media-4110161",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/28a830c43c2151941d9d2d44293e7cc5/media-4110161@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1e615c96f85eea30de2ae3181695b3bf/media-4110161~dark@2x.png"
+        }
+      ]
+    },
+    "media-4110163": {
+      "alt": "A screenshot in Xcode showing the generated code resulting from a Control-drag action from Interface Builder into the Assistant code editor. Interface Builder is open on the left. The Assistant editor is open beside it on the right. And inside the editor is the generated code. An arrow with the title Generated is pointing to the newly generated code.",
+      "identifier": "media-4110163",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5638d104c958057f451b05e8129b1637/media-4110163@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/01f5c1299d5adb55002ae0b1f8e6e1cc/media-4110163~dark@2x.png"
+        }
+      ]
+    },
+    "media-4142878": {
+      "alt": "A diagram that depicts the relationship between a control and its corresponding target and action. The control on the left has one arrow pointing to its target on the right, which is a view controller. Underneath this is a parallel arrow pointing from the control on the left to its action method on the right, which is a function with the name buttonTapped.",
+      "identifier": "media-4142878",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e4d1af298b6b4942ba4ae92e7b9142e1/media-4142878@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a33533a22f04cf1596d0c50a3ecd3b55/media-4142878~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Controls",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIControl",
+        "doc://com.apple.uikit/documentation/UIKit/UIButton",
+        "doc://com.apple.uikit/documentation/UIKit/UIColorWell",
+        "doc://com.apple.uikit/documentation/UIKit/UIDatePicker",
+        "doc://com.apple.uikit/documentation/UIKit/UIPageControl",
+        "doc://com.apple.uikit/documentation/UIKit/UISegmentedControl",
+        "doc://com.apple.uikit/documentation/UIKit/UISlider",
+        "doc://com.apple.uikit/documentation/UIKit/UIStepper",
+        "doc://com.apple.uikit/documentation/UIKit/UISwitch"
+      ],
+      "title": "Controls"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Controls",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIControl",
+                "doc://com.apple.uikit/documentation/UIKit/UIButton",
+                "doc://com.apple.uikit/documentation/UIKit/UIColorWell",
+                "doc://com.apple.uikit/documentation/UIKit/UIDatePicker",
+                "doc://com.apple.uikit/documentation/UIKit/UIPageControl",
+                "doc://com.apple.uikit/documentation/UIKit/UISegmentedControl",
+                "doc://com.apple.uikit/documentation/UIKit/UISlider",
+                "doc://com.apple.uikit/documentation/UIKit/UIStepper",
+                "doc://com.apple.uikit/documentation/UIKit/UISwitch"
+              ],
+              "title": "Controls"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent/title",
+          "value": "UIEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStepper/title",
+          "value": "UIStepper"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStepper/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStepper"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStepper/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStepper"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColorWell/title",
+          "value": "UIColorWell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColorWell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIColorWell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColorWell/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIColorWell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageControl/title",
+          "value": "UIPageControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPageControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPageControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIControl/title",
+          "value": "UIControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch/title",
+          "value": "UISwitch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISwitch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISwitch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIControl~1Event/title",
+          "value": "UIControlEvents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIControl~1Event/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIControlEvents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIControl~1Event/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIControlEvents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISegmentedControl/title",
+          "value": "UISegmentedControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISegmentedControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISegmentedControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISegmentedControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISegmentedControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDatePicker/title",
+          "value": "UIDatePicker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDatePicker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDatePicker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDatePicker/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDatePicker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIButton/title",
+          "value": "UIButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIControl~1Event~1touchDragInside/title",
+          "value": "UIControlEventTouchDragInside"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIControl~1Event~1touchDragInside/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIControlEventTouchDragInside"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIControl~1addTarget(_:action:for:)/title",
+          "value": "addTarget:action:forControlEvents:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIControl~1addTarget(_:action:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addTarget:action:forControlEvents:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISlider/title",
+          "value": "UISlider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISlider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISlider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISlider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISlider"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/responding-to-control-based-events-using-target-action"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/responding-to-control-based-events-using-target-action"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

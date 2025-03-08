@@ -1,0 +1,701 @@
+{
+  "abstract": [
+    {
+      "text": "Keep a persistent record of a purchase to continue making the product available as needed.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/persisting-a-purchase"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Persisting a purchase"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After making a product available, your app needs to make a persistent record of the purchase. Your app uses that persistent record to continue making the product available on launch and to restore purchases. Your app’s persistence strategy depends on the type of products you sell:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For non-consumable products and auto-renewable subscriptions, use the app receipt as your persistent record. If the app receipt isn’t available, use the user defaults system or iCloud to keep a persistent record.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For non-renewing subscriptions, use iCloud or your own server to keep a persistent record.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For consumable products, your app updates its internal state to reflect the purchase. Ensure that the updated state is part of an object that supports state preservation (in iOS) or that you manually preserve the state across app launches (in iOS or macOS).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using the user defaults system or iCloud, your app can store a value, such as a number or Boolean value, or a copy of the transaction receipt. In macOS, users can edit the user defaults system using the ",
+              "type": "text"
+            },
+            {
+              "code": "defaults",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command. Storing a receipt requires more application logic, but protects the persistent record from tampering.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When persisting with iCloud, your app’s persistent record syncs across devices, but your app is responsible for downloading any associated content on other devices.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Persist-purchases-using-the-app-receipt",
+          "level": 3,
+          "text": "Persist purchases using the app receipt",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app receipt contains a record of the user’s purchases, cryptographically signed by Apple. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/choosing-a-receipt-validation-technique",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system adds information about consumable products to the receipt when the user purchases them, and it remains in the receipt until you finish the transaction. After you finish the transaction, the system removes this information the next time it updates the receipt, such as the next time the user makes a purchase.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system adds information about all other kinds of purchases to the receipt when the user purchases the products, and it remains in the receipt indefinitely.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Persist-a-value-in-user-defaults-or-iCloud",
+          "level": 3,
+          "text": "Persist a value in user defaults or iCloud",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To store information in user defaults or iCloud, set the value for a key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "#if USE_ICLOUD_STORAGE",
+                    "let storage = NSUbiquitousKeyValueStore.default",
+                    "#else",
+                    "let storage = UserDefaults.standard",
+                    "#endif",
+                    "",
+                    "storage.set(true, forKey: \"enable_rocket_car\")",
+                    "storage.set(highestUnlockedLevel, forKey: \"highest_unlocked_level\")",
+                    ""
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "#if USE_ICLOUD_STORAGE",
+                    "NSUbiquitousKeyValueStore *storage = [NSUbiquitousKeyValueStore defaultStore];",
+                    "#else",
+                    "NSUserDefaults *storage = [NSUserDefaults standardUserDefaults];",
+                    "#endif",
+                    "",
+                    "[storage setBool:YES forKey:@\"enable_rocket_car\"];",
+                    "[storage setObject:@15 forKey:@\"highest_unlocked_level\"];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Persist-purchases-using-your-own-server",
+          "level": 3,
+          "text": "Persist purchases using your own server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Send a copy of the receipt to your server, along with credentials or an identifier, so you can keep track of which receipts belong to a particular user. For example, let users identify themselves to your server with a user name and password. Don’t use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDevice/identifierForVendor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Different devices have different values for this property, so you can’t use it to identify and restore purchases that the same user makes on a different device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/UIKit/UIDevice": {
+      "abstract": [
+        {
+          "text": "A representation of the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIDevice",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIDevice"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIDevice/identifierForVendor": {
+      "abstract": [
+        {
+          "text": "An alphanumeric string that uniquely identifies a device to the app’s vendor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifierForVendor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDevice/identifierForVendor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "identifierForVendor",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIDevice/identifierForVendor"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKDownload": {
+      "abstract": [
+        {
+          "text": "Downloadable content associated with a product.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKDownload"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKDownload",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKDownload"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKDownload",
+      "type": "topic",
+      "url": "/documentation/storekit/skdownload"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/choosing-a-receipt-validation-technique": {
+      "abstract": [
+        {
+          "text": "Select the type of receipt validation, on the device or on your server, that works for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/choosing-a-receipt-validation-technique",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a receipt validation technique",
+      "type": "topic",
+      "url": "/documentation/storekit/choosing-a-receipt-validation-technique"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/finishing-a-transaction": {
+      "abstract": [
+        {
+          "text": "Finish the transaction to complete the purchase process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/finishing-a-transaction",
+      "kind": "article",
+      "role": "article",
+      "title": "Finishing a transaction",
+      "type": "topic",
+      "url": "/documentation/storekit/finishing-a-transaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/original-api-for-in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/unlocking-purchased-content": {
+      "abstract": [
+        {
+          "text": "Deliver content to the customer after validating the purchase.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/unlocking-purchased-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Unlocking purchased content",
+      "type": "topic",
+      "url": "/documentation/storekit/unlocking-purchased-content"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Content-delivery",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/unlocking-purchased-content",
+        "doc://com.apple.storekit/documentation/StoreKit/finishing-a-transaction",
+        "doc://com.apple.storekit/documentation/StoreKit/SKDownload"
+      ],
+      "title": "Content delivery"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Content-delivery",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/unlocking-purchased-content",
+                "doc://com.apple.storekit/documentation/StoreKit/finishing-a-transaction",
+                "doc://com.apple.storekit/documentation/StoreKit/SKDownload"
+              ],
+              "title": "Content delivery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIDevice/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIDevice"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKDownload/title",
+          "value": "SKDownload"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKDownload/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKDownload"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKDownload/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKDownload"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIDevice~1identifierForVendor/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "strong"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSUUID",
+              "text": "NSUUID"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "identifierForVendor"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/persisting-a-purchase"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/persisting-a-purchase"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

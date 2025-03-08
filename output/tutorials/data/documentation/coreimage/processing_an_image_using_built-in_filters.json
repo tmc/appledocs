@@ -1,0 +1,1225 @@
+{
+  "abstract": [
+    {
+      "text": "Apply effects such as sepia tint, highlight strengthening, and scaling to images.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters"
+  },
+  "kind": "article",
+  "legacy_identifier": 2947524,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Processing an Image Using Built-in Filters"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add effects to images by applying Core Image filters to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. Figure 1 shows three filters chained together to achieve a cumulative effect:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apply the sepia filter to tint an image with a reddish-brown hue. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the bloom filter to accentuate highlights. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the Lanczos scale filter to scale an image down.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2955144",
+              "metadata": {
+                "abstract": [
+                  {
+                    "text": "Filtering a waterwheel image using built-in Core Image filters",
+                    "type": "text"
+                  }
+                ],
+                "anchor": "2955144",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2948368",
+          "level": 3,
+          "text": "Create a Context",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " processing occurs in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. Creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is expensive, so create one during your initial setup and reuse it throughout your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let context = CIContext()"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Creating a context in Core Image",
+                "type": "text"
+              }
+            ],
+            "anchor": "2948375",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "2948369",
+          "level": 3,
+          "text": "Load an Image to Process",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The next step is to load an image to process. This example loads an image from the project bundle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let imageURL = URL(fileURLWithPath: \"\\(Bundle.main.bundlePath)/YourImageName.png\")",
+            "let originalCIImage = CIImage(contentsOf: imageURL)!",
+            "self.imageView.image = UIImage(ciImage:originalCIImage)"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Loading an image into CIImage",
+                "type": "text"
+              }
+            ],
+            "anchor": "2948376",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object isn’t itself a displayable image, but rather image data. To display it, you must convert it to another type, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2951305",
+          "level": 3,
+          "text": "Apply Built-In Core Image Filters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " represents a single operation or recipe for a particular effect. To process a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, pass it through ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. You can subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or draw from the existing library of built-in filters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2948365",
+          "level": 4,
+          "text": "Tint Reddish-Brown with the Sepia Filter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although you can chain filters without separating them into functions, the following example shows how to configure a single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228402-sepiatone",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " filter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func sepiaFilter(_ input: CIImage, intensity: Float) -> CIImage? {",
+            "    let sepiaFilter = CIFilter.sepiaTone()",
+            "    sepiaFilter.inputImage = input",
+            "    sepiaFilter.intensity = intensity",
+            "    return sepiaFilter.outputImage",
+            "}"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Applying sepia tint as a ",
+                "type": "text"
+              }
+            ],
+            "anchor": "2948378",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To pass the image through the filter, call the sepia filter function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sepiaCIImage = sepiaFilter(originalCIImage, intensity:0.9)"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Calling the sepia filter function",
+                "type": "text"
+              }
+            ],
+            "anchor": "2948379",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can check the intermediate result at any point in the filter chain by converting from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can then assign this ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImageView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "self.imageView.image = UIImage(ciImage:sepiaCIImage!)"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Displaying intermediate outputs as ",
+                "type": "text"
+              }
+            ],
+            "anchor": "2948380",
+            "title": "Listing 5"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "2948366",
+          "level": 4,
+          "text": "Strengthen Highlights with the Bloom Filter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The bloom filter accentuates the highlights of an image. You can apply it as part of a chain without factoring it into a separate function, but this example encapsulates its functionality into a function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func bloomFilter(_ input:CIImage, intensity: Float, radius: Float) -> CIImage? {",
+            "    let bloomFilter = CIFilter.bloom()",
+            "    bloomFilter.inputImage = input",
+            "    bloomFilter.intensity = intensity",
+            "    bloomFilter.radius",
+            "    return bloomFilter.outputImage",
+            "}"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Applying the bloom filter as a ",
+                "type": "text"
+              }
+            ],
+            "anchor": "2948373",
+            "title": "Listing 6"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Like the sepia filter, the intensity of the bloom filter’s effect ranges between 0 and 1, with 1 being the most intense effect. The bloom filter has an additional r",
+              "type": "text"
+            },
+            {
+              "code": "adius",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to determine how much the glowing regions expand. Experiment with a range to values to fine tune the effect, or assign the input parameter to a control like a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISlider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to allow your users to tweak its values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228334-gloom",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " filter performs the opposite effect.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display the output, convert the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let bloomCIImage = bloomFilter(sepiaCIImage, intensity:1, radius:10)",
+            "_imageView.image = UIImage(ciImage:bloomCIImage)"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Calling the bloom filter",
+                "type": "text"
+              }
+            ],
+            "anchor": "2948374",
+            "title": "Listing 7"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "2948367",
+          "level": 4,
+          "text": "Scale Image Size with the Lanczos Scale Filter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apply the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228344-lanczosscaletransform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to obtain a high-quality downsampling of the image, preserving the original image’s aspect ratio through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228344-lanczosscaletransform",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " filter’s parameter ",
+              "type": "text"
+            },
+            {
+              "code": "aspectRatio",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For built-in Core Image filters, calculate the aspect ratio as the image’s width over height, as in Listing 8.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CGFloat imageWidth = originalUIImage.size.width",
+            "CGFloat imageHeight = originalUIImage.size.height",
+            "let aspectRatio = Double(originalImage.size.width) / Double(originalImage.size.height)",
+            "let scaledCIImage = scaleFilter(bloomCIImage, aspectRatio:aspectRatio, scale:0.5)"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Computing aspect ratio as height over width",
+                "type": "text"
+              }
+            ],
+            "anchor": "2948665",
+            "title": "Listing 8"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Like other built-in filters, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228344-lanczosscaletransform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " filter also outputs its result as a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func scaleFilter(_ input:CIImage, aspectRatio : Float, scale : Float) -> CIImage {",
+            "    let scaleFilter = CIFilter.lanczosScaleTransform()",
+            "    scaleFilter.inputImage = input",
+            "    scaleFilter.scale = scale",
+            "    scaleFilter.aspectRatio = aspectRatio",
+            "    return scaleFilter.outputImage!",
+            "}"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Applying the Lanczos scale transform as a ",
+                "type": "text"
+              }
+            ],
+            "anchor": "2948370",
+            "title": "Listing 9"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To optimize computation, Core Image doesn’t actually render any intermediate ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " result until you force the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to display its content onscreen, as you might do using ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImageView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "self.imageView.image = UIImage(ciImage:scaledCIImage)"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Showing the final result in a ",
+                "type": "text"
+              }
+            ],
+            "anchor": "2948372",
+            "title": "Listing 10"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Core Image optimizes filtering by reordering the three chained filters and concatenating them into a single image processing kernel, saving computation and rendering cycles.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to trying out the built-in filters for a fixed effect, you can combine filters in certain ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage#2951339",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to accomplish tasks such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/applying_a_chroma_key_effect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/selectively_focusing_on_an_image",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/customizing_image_transitions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "article",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage#2951339": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage#2951339",
+      "kind": "article",
+      "role": "task",
+      "title": "Filter Recipes",
+      "type": "section",
+      "url": "/documentation/coreimage#2951339"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/applying_a_chroma_key_effect": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/applying_a_chroma_key_effect",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying a Chroma Key Effect",
+      "type": "topic",
+      "url": "/documentation/coreimage/applying_a_chroma_key_effect"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext": {
+      "abstract": [
+        {
+          "text": "An evaluation context for rendering image processing results and performing image analysis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIContext",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFilter",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228334-gloom": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228334-gloom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gloom()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228334-gloom"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228344-lanczosscaletransform": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228344-lanczosscaletransform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lanczosScaleTransform()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228344-lanczosscaletransform"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228402-sepiatone": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228402-sepiatone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sepiaTone()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228402-sepiatone"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage": {
+      "abstract": [
+        {
+          "text": "A representation of an image to be processed or produced by Core Image filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImage",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/customizing_image_transitions": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/customizing_image_transitions",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing Image Transitions",
+      "type": "topic",
+      "url": "/documentation/coreimage/customizing_image_transitions"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters": {
+      "abstract": [
+        {
+          "text": "Apply effects such as sepia tint, highlight strengthening, and scaling to images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters",
+      "kind": "article",
+      "role": "article",
+      "title": "Processing an Image Using Built-in Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/processing_an_image_using_built-in_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters#2948370": {
+      "abstract": [
+        {
+          "text": "Applying the Lanczos scale transform as a ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters#2948370",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 9",
+      "type": "section",
+      "url": "/documentation/coreimage/processing_an_image_using_built-in_filters#2948370"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters#2948372": {
+      "abstract": [
+        {
+          "text": "Showing the final result in a ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters#2948372",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 10",
+      "type": "section",
+      "url": "/documentation/coreimage/processing_an_image_using_built-in_filters#2948372"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters#2948373": {
+      "abstract": [
+        {
+          "text": "Applying the bloom filter as a ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters#2948373",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 6",
+      "type": "section",
+      "url": "/documentation/coreimage/processing_an_image_using_built-in_filters#2948373"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters#2948374": {
+      "abstract": [
+        {
+          "text": "Calling the bloom filter",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters#2948374",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 7",
+      "type": "section",
+      "url": "/documentation/coreimage/processing_an_image_using_built-in_filters#2948374"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters#2948375": {
+      "abstract": [
+        {
+          "text": "Creating a context in Core Image",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters#2948375",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/coreimage/processing_an_image_using_built-in_filters#2948375"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters#2948376": {
+      "abstract": [
+        {
+          "text": "Loading an image into CIImage",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters#2948376",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/coreimage/processing_an_image_using_built-in_filters#2948376"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters#2948378": {
+      "abstract": [
+        {
+          "text": "Applying sepia tint as a ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters#2948378",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/coreimage/processing_an_image_using_built-in_filters#2948378"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters#2948379": {
+      "abstract": [
+        {
+          "text": "Calling the sepia filter function",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters#2948379",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/coreimage/processing_an_image_using_built-in_filters#2948379"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters#2948380": {
+      "abstract": [
+        {
+          "text": "Displaying intermediate outputs as ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters#2948380",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/coreimage/processing_an_image_using_built-in_filters#2948380"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters#2948665": {
+      "abstract": [
+        {
+          "text": "Computing aspect ratio as height over width",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters#2948665",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 8",
+      "type": "section",
+      "url": "/documentation/coreimage/processing_an_image_using_built-in_filters#2948665"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/selectively_focusing_on_an_image": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/selectively_focusing_on_an_image",
+      "kind": "article",
+      "role": "article",
+      "title": "Selectively Focusing on an Image",
+      "type": "topic",
+      "url": "/documentation/coreimage/selectively_focusing_on_an_image"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/simulating_scratchy_analog_film",
+      "kind": "article",
+      "role": "article",
+      "title": "Simulating Scratchy Analog Film",
+      "type": "topic",
+      "url": "/documentation/coreimage/simulating_scratchy_analog_film"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIImage",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImageView": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImageView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIImageView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimageview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISlider": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISlider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UISlider",
+      "type": "topic",
+      "url": "/documentation/uikit/uislider"
+    },
+    "link-media-2955144": {
+      "identifier": "link-media-2955144",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/coreimage/processing_an_image_using_built-in_filters#2955144"
+    },
+    "media-2955144": {
+      "abstract": [
+        {
+          "text": "Filtering a waterwheel image using built-in Core Image filters",
+          "type": "text"
+        }
+      ],
+      "alt": "Photo of a waterwheel filtered using sepia tone, bloom, and Lanczos scale filters",
+      "identifier": "media-2955144",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3ba6c93555/d7305d70-2fba-452b-a643-49041c714ee1.png"
+        },
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b3baff7207/1f667597-8bbc-4aa4-b986-7b411d16f52b.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cicontext",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/processing_an_image_using_built-in_filters"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/processing_an_image_using_built-in_filters"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1699 @@
+{
+  "abstract": [
+    {
+      "text": "Apply built-in styles to different types of views.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View-fundamentals",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-style-modifiers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Style modifiers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftUI defines built-in styles for certain kinds of views, and chooses the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "appropriate style for a particular presentation context. For example, a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Label",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " might appear as an icon, a string title, or both, depending on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "factors like the platform, whether the view appears in a toolbar, and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can override the automatic style by using one of the style modifiers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These modifiers typically propagate through container views, so you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "wrap an entire view hierarchy in a style modifier to affect all the views",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the given type within the hierarchy.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Some view types enable you to create custom styles, which you also",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "apply using style modifiers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about styling views, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-styles",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "View-Fundamentals-PageImage-card.png": {
+      "alt": "A conceptual illustration showing a view decomposed into different components.",
+      "identifier": "View-Fundamentals-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a9155d8ac081b19cb86c95247d8b043d/View-Fundamentals-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c29763670d863f869160a7df932dc4e1/View-Fundamentals-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Label": {
+      "abstract": [
+        {
+          "text": "A standard label for user interface items, consisting of an icon with a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Label"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Label",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Label"
+        }
+      ],
+      "role": "symbol",
+      "title": "Label",
+      "type": "topic",
+      "url": "/documentation/swiftui/label"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/swiftui/view"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Graphics-and-Rendering": {
+      "abstract": [
+        {
+          "text": "Affect the way the system draws a view, for example by scaling or masking a view,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "or by applying graphical effects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Graphics-and-Rendering",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Graphics and rendering modifiers",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-graphics-and-rendering"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Layout": {
+      "abstract": [
+        {
+          "text": "Tell a view how to arrange itself within a view hierarchy by adjusting its size,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "position, alignment, padding, and so on.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Layout",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layout modifiers",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-layout"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-fundamentals": {
+      "abstract": [
+        {
+          "text": "Define the visual elements of your app using a hierarchy of views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-fundamentals",
+      "images": [
+        {
+          "identifier": "View-Fundamentals-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View fundamentals",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-fundamentals"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-styles": {
+      "abstract": [
+        {
+          "text": "Apply built-in and custom appearances and behaviors to different types of views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-styles",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View styles",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-styles"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/buttonStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for buttons within this view to a button style with a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "custom appearance and standard interaction behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buttonStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/buttonStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buttonStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/buttonstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/controlGroupStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for control groups within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "controlGroupStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/controlGroupStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "controlGroupStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/controlgroupstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/datePickerStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for date pickers within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "datePickerStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/datePickerStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "datePickerStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/datepickerstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/disclosureGroupStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for disclosure groups within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "disclosureGroupStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/disclosureGroupStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "disclosureGroupStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/disclosuregroupstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gaugeStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for gauges within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gaugeStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gaugeStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gaugeStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/gaugestyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/groupBoxStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for group boxes within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "groupBoxStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/groupBoxStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "groupBoxStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/groupboxstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/indexViewStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for the index view within the current environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "indexViewStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/indexViewStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "indexViewStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/indexviewstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/labelStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for labels within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "labelStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/labelStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "labelStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/labelstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for lists within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/liststyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/menuStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for menus within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "menuStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/menuStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "menuStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/menustyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for navigation split views within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationSplitViewStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationSplitViewStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationsplitviewstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/pickerStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for pickers within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pickerStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/pickerStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pickerStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/pickerstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/presentedWindowStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for windows created by interacting with this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentedWindowStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/presentedWindowStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentedWindowStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/presentedwindowstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/presentedWindowToolbarStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for the toolbar in windows created by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "interacting with this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentedWindowToolbarStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/presentedWindowToolbarStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentedWindowToolbarStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/presentedwindowtoolbarstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/progressViewStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for progress views in this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "progressViewStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/progressViewStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "progressViewStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/progressviewstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for the tab view within the current environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabViewStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tabViewStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/tabviewstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tableStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for tables within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tableStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tableStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/tablestyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/textEditorStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for text editors within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textEditorStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15TextEditorStyleP",
+          "text": "TextEditorStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/textEditorStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textEditorStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/texteditorstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/textFieldStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for text fields within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textFieldStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/textFieldStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textFieldStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/textfieldstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toggleStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for toggles in a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toggleStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toggleStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toggleStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/togglestyle(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Drawing-views",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Layout",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Graphics-and-Rendering"
+      ],
+      "title": "Drawing views"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Controls",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/buttonStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/datePickerStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/menuStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/pickerStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toggleStyle(_:)"
+      ],
+      "title": "Controls"
+    },
+    {
+      "anchor": "Indicators",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gaugeStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/progressViewStyle(_:)"
+      ],
+      "title": "Indicators"
+    },
+    {
+      "anchor": "Text",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/labelStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/textFieldStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/textEditorStyle(_:)"
+      ],
+      "title": "Text"
+    },
+    {
+      "anchor": "Collections",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tableStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/disclosureGroupStyle(_:)"
+      ],
+      "title": "Collections"
+    },
+    {
+      "anchor": "Presentation",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/presentedWindowStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/presentedWindowToolbarStyle(_:)"
+      ],
+      "title": "Presentation"
+    },
+    {
+      "anchor": "Groups",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/controlGroupStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/groupBoxStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/indexViewStyle(_:)"
+      ],
+      "title": "Groups"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/view-style-modifiers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

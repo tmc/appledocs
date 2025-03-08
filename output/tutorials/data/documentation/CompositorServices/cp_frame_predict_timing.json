@@ -1,0 +1,756 @@
+{
+  "abstract": [
+    {
+      "text": "Computes and returns the predicted timing information for the frame.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.compositorservices/documentation/CompositorServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_predict_timing"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@cp_frame_predict_timing",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "cp_frame_predict_timing"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Compositor Services"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "cp_frame_predict_timing"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "cp_frame_predict_timing"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@cp_frame_timing_t",
+              "text": "cp_frame_timing_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "cp_frame_predict_timing"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@cp_frame_t",
+              "text": "cp_frame_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "frame"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The frame you’re preparing to draw.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "frame"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The predicted timing information for the specified frame,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the layer is in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/State-swift.enum/paused",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/State-swift.enum/invalidated",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/drawing-fully-immersive-content-using-metal"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The returned type contains the timing information for the specified frame.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use related functions to retrieve specific values.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_optimal_input_time",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "function to determine when to start the submission phase of your frame update.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This function updates the frame-specific timing information with the latest data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from Compositor Services before it returns it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t call this function after you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_query_drawable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the specified frame.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After you retrieve the frame’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_t",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type, get the timing information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from the drawable’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/frameTiming",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.compositorservices/documentation/CompositorServices": {
+      "abstract": [
+        {
+          "text": "Take control of the drawing environment and render your own content using Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Compositor Services",
+      "type": "topic",
+      "url": "/documentation/compositorservices"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/frameTiming": {
+      "abstract": [
+        {
+          "text": "The timing information for the drawable’s frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frameTiming"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+          "text": "LayerRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@cp_frame_t",
+          "text": "Frame"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@cp_frame_timing_t",
+          "text": "Timing"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/frameTiming",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_get_frame_timing"
+        }
+      ],
+      "role": "symbol",
+      "title": "frameTiming",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/drawable/frametiming"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/State-swift.enum/invalidated": {
+      "abstract": [
+        {
+          "text": "A state that indicates the layer no longer supports drawing operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidated"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/State-swift.enum/invalidated",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_state_invalidated"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer.State.invalidated",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/state-swift.enum/invalidated"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/State-swift.enum/paused": {
+      "abstract": [
+        {
+          "text": "A state that indicates the layer is paused and not currently drawing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paused"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/State-swift.enum/paused",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_state_paused"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer.State.paused",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/state-swift.enum/paused"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_t": {
+      "abstract": [
+        {
+          "text": "A type that provides the textures and information you need to draw a frame of content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_t"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_drawable_t",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_drawable_t"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_predict_timing": {
+      "abstract": [
+        {
+          "text": "Computes and returns the predicted timing information for the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_predict_timing"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_predict_timing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_frame_predict_timing",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_frame_predict_timing"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_query_drawable": {
+      "abstract": [
+        {
+          "text": "Returns the drawable type you use to retrieve the textures",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and drawing environment for the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_query_drawable"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_query_drawable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_frame_query_drawable",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_frame_query_drawable"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_t": {
+      "abstract": [
+        {
+          "text": "A type that provides access to the timing information",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and data types you need to render a single frame of content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_t"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_frame_t",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_frame_t"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_optimal_input_time": {
+      "abstract": [
+        {
+          "text": "Returns the optimal time to start the frame submission process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_timing_get_optimal_input_time"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_optimal_input_time",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_frame_timing_get_optimal_input_time",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_frame_timing_get_optimal_input_time"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_presentation_time": {
+      "abstract": [
+        {
+          "text": "Returns the time at which the system displays the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_timing_get_presentation_time"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_presentation_time",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_frame_timing_get_presentation_time",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_frame_timing_get_presentation_time"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_rendering_deadline": {
+      "abstract": [
+        {
+          "text": "Returns the time at which you must finish all work for the specified frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_timing_get_rendering_deadline"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_rendering_deadline",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_frame_timing_get_rendering_deadline",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_frame_timing_get_rendering_deadline"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_t": {
+      "abstract": [
+        {
+          "text": "A type that stores information about a frame’s encoding, rendering,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and presentation deadlines.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_timing_t"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_frame_timing_t",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_frame_timing_t"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/drawing-fully-immersive-content-using-metal": {
+      "abstract": [
+        {
+          "text": "Create a fully immersive experience in visionOS using a custom Metal-based rendering engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/drawing-fully-immersive-content-using-metal",
+      "kind": "article",
+      "role": "article",
+      "title": "Drawing fully immersive content using Metal",
+      "type": "topic",
+      "url": "/documentation/compositorservices/drawing-fully-immersive-content-using-metal"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-timing-information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_optimal_input_time",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_rendering_deadline",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_presentation_time",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_t"
+      ],
+      "title": "Getting timing information"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1State-swift.enum~1invalidated/title",
+          "value": "cp_layer_renderer_state_invalidated"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1State-swift.enum~1invalidated/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_layer_renderer_state_invalidated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1State-swift.enum~1paused/title",
+          "value": "cp_layer_renderer_state_paused"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1State-swift.enum~1paused/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_layer_renderer_state_paused"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Drawable~1frameTiming/title",
+          "value": "cp_drawable_get_frame_timing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Drawable~1frameTiming/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_drawable_get_frame_timing"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/compositorservices/cp_frame_predict_timing"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

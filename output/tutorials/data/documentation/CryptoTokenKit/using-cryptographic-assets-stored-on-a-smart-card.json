@@ -1,0 +1,1131 @@
+{
+  "abstract": [
+    {
+      "text": "Access certificates, keys, and identities stored on a smart card as if they were part of the keychain.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/using-cryptographic-assets-stored-on-a-smart-card"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "CryptoTokenKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using Cryptographic Assets Stored on a Smart Card"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A token is a storage repository for cryptographic items. When a token is present in the system—such as when the user physically inserts a smart card into a USB slot—the CryptoTokenKit framework exposes the token’s items to your app as standard keychain items. It does this by copying the items to the keychain when the token is inserted, and deleting them from the keychain when the token is removed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2940885",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the items appear to your app as standard keychain items, you use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/keychain-services",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to access them. All the usual rules for building a search query and parsing the search results apply. For an example of storing and retrieving keychain items, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/storing-keys-in-the-keychain",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When you work with tokens, the CryptoTokenKit framework handles the storage. You only have to perform item retrieval.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Narrow-the-Keychain-Search-with-a-Token-ID",
+          "level": 3,
+          "text": "Narrow the Keychain Search with a Token ID",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the framework copies an item from a token to the keychain, it records the associated token’s identifier, or token ID, as part of the keychain item. If you know the token ID, you can use it to very precisely filter the keychain search. Do this by including the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/kSecAttrTokenID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key in the query dictionary. For example, to get a reference to a key that comes from a token with token ID ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.piv:0123456789",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", use the search query:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let getquery: [String: Any] = [kSecClass as String: kSecClassKey,",
+            "                               kSecAttrTokenID as String: \"com.example.piv:0123456789\",",
+            "                               kSecReturnRef as String: true]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To identify token IDs that are currently available in the system, use an instance of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKTokenWatcher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class. This object has a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKTokenWatcher/tokenIDs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property that’s a list of all the token IDs present in the system. You can read this at any time:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let watcher = TKTokenWatcher()",
+            "print(\"The following token IDs are present in the system:\")",
+            "for tokenID in watcher.tokenIDs {",
+            "    print(tokenID)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKTokenWatcher/setInsertionHandler(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to register for a callback when a token is inserted into the system. Register to be notified of a particular token’s removal using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKTokenWatcher/addRemovalHandler(_:forTokenID:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. You typically use these methods together, registering for removal at the time the insertion handler is called:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "watcher.setInsertionHandler { tokenID in",
+            "    print(\"Token \\(tokenID) inserted\")",
+            "            ",
+            "    watcher.addRemovalHandler( { tokenID in",
+            "        print(\"Token \\(tokenID) removed\")",
+            "    }, forTokenID: tokenID)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Use-a-Persistent-Reference-to-Record-a-Token-Item",
+          "level": 3,
+          "text": "Use a Persistent Reference to Record a Token Item",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you want to keep a record of a token item or pass it to another process, you can get a persistent reference to the associated keychain item. Do this by setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/kSecReturnPersistentRef",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key’s value to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1411874-true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the keychain search query. For example, the earlier query becomes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let getquery: [String: Any] = [kSecClass as String: kSecClassKey,",
+            "                               kSecAttrTokenID as String: \"com.example.piv:0123456789\",",
+            "                               kSecReturnPersistentRef as String: true]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, if you perform any operation with the persistent reference after the token is removed from the system, Keychain Services returns the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/errSecItemNotFound",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " status.  Handle this by prompting the user to reinsert the token, after which you can try the operation again.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit": {
+      "abstract": [
+        {
+          "text": "Access security tokens and the cryptographic assets they store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CryptoTokenKit",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard": {
+      "abstract": [
+        {
+          "text": "A representation of a smart card.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TKSmartCard"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TKSmartCard"
+        }
+      ],
+      "role": "symbol",
+      "title": "TKSmartCard",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardSlot": {
+      "abstract": [
+        {
+          "text": "A single smart card reader slot in the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardSlot"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardSlot",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardSlot"
+        }
+      ],
+      "role": "symbol",
+      "title": "TKSmartCardSlot",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcardslot"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardSlotManager": {
+      "abstract": [
+        {
+          "text": "An interface to all available smart card reader slots.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardSlotManager"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardSlotManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardSlotManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "TKSmartCardSlotManager",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcardslotmanager"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKTokenWatcher": {
+      "abstract": [
+        {
+          "text": "An object that tracks the tokens available in the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TKTokenWatcher"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKTokenWatcher",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TKTokenWatcher"
+        }
+      ],
+      "role": "symbol",
+      "title": "TKTokenWatcher",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tktokenwatcher"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKTokenWatcher/addRemovalHandler(_:forTokenID:)": {
+      "abstract": [
+        {
+          "text": "Adds a removal handler for the specified token ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addRemovalHandler"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forTokenID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKTokenWatcher/addRemovalHandler(_:forTokenID:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addRemovalHandler:forTokenID:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addRemovalHandler(_:forTokenID:)",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tktokenwatcher/addremovalhandler(_:fortokenid:)"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKTokenWatcher/setInsertionHandler(_:)": {
+      "abstract": [
+        {
+          "text": "Sets an insertion handler closure to be called when a new token is inserted into the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setInsertionHandler"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKTokenWatcher/setInsertionHandler(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setInsertionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setInsertionHandler(_:)",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tktokenwatcher/setinsertionhandler(_:)"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKTokenWatcher/tokenIDs": {
+      "abstract": [
+        {
+          "text": "The token IDs currently available in the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenIDs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKTokenWatcher/tokenIDs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tokenIDs"
+        }
+      ],
+      "role": "symbol",
+      "title": "tokenIDs",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tktokenwatcher/tokenids"
+    },
+    "doc://com.apple.documentation/documentation/Security/errSecItemNotFound": {
+      "abstract": [
+        {
+          "text": "The item cannot be found.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errSecItemNotFound"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/errSecItemNotFound",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "errSecItemNotFound",
+      "type": "topic",
+      "url": "/documentation/Security/errSecItemNotFound"
+    },
+    "doc://com.apple.documentation/documentation/Security/kSecAttrTokenID": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates that a cryptographic key is in an external store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrTokenID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/kSecAttrTokenID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSecAttrTokenID",
+      "type": "topic",
+      "url": "/documentation/Security/kSecAttrTokenID"
+    },
+    "doc://com.apple.documentation/documentation/Security/kSecReturnPersistentRef": {
+      "abstract": [
+        {
+          "text": "A key whose value is a Boolean indicating whether or not to return a persistent reference to an item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecReturnPersistentRef"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/kSecReturnPersistentRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSecReturnPersistentRef",
+      "type": "topic",
+      "url": "/documentation/Security/kSecReturnPersistentRef"
+    },
+    "doc://com.apple.documentation/documentation/Security/keychain-services": {
+      "abstract": [
+        {
+          "text": "Securely store small chunks of data on behalf of the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/keychain-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Keychain services",
+      "type": "topic",
+      "url": "/documentation/Security/keychain-services"
+    },
+    "doc://com.apple.documentation/documentation/Security/storing-keys-in-the-keychain": {
+      "abstract": [
+        {
+          "text": "Store and access cryptographic keys in the keychain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/storing-keys-in-the-keychain",
+      "kind": "article",
+      "role": "article",
+      "title": "Storing Keys in the Keychain",
+      "type": "topic",
+      "url": "/documentation/Security/storing-keys-in-the-keychain"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1411874-true": {
+      "abstract": [
+        {
+          "text": "An expression to evalutate if a conditional expression’s predicate evaluates to true.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "`true`"
+        },
+        {
+          "kind": "text",
+          "text": ": NSExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1411874-true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1411874-true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-2940885": {
+      "alt": "Diagram showing how CryptoTokenKit makes keys stored on a smart card available to apps through keychain services.",
+      "identifier": "media-2940885",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0bd8ebd910d1499e169937a0ebe9c042/media-2940885@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Smart-Cards",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardSlotManager",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardSlot",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard"
+      ],
+      "title": "Smart Cards"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Smart-Cards",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardSlotManager",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardSlot",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard"
+              ],
+              "title": "Smart Cards"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardSlotManager/title",
+          "value": "TKSmartCardSlotManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardSlotManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardSlotManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardSlotManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardSlotManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard/title",
+          "value": "TKSmartCard"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardSlot/title",
+          "value": "TKSmartCardSlot"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardSlot/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardSlot"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardSlot/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardSlot"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKTokenWatcher/title",
+          "value": "TKTokenWatcher"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKTokenWatcher/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKTokenWatcher"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKTokenWatcher/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKTokenWatcher"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsexpression~11411874-true/title",
+          "value": "trueExpression"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1kSecAttrTokenID/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kSecAttrTokenID"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKTokenWatcher~1setInsertionHandler(_:)/title",
+          "value": "setInsertionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKTokenWatcher~1setInsertionHandler(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setInsertionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKTokenWatcher~1tokenIDs/title",
+          "value": "tokenIDs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKTokenWatcher~1tokenIDs/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tokenIDs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1errSecItemNotFound/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "errSecItemNotFound"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKTokenWatcher~1addRemovalHandler(_:forTokenID:)/title",
+          "value": "addRemovalHandler:forTokenID:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKTokenWatcher~1addRemovalHandler(_:forTokenID:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addRemovalHandler:forTokenID:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1kSecReturnPersistentRef/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kSecReturnPersistentRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cryptotokenkit/using-cryptographic-assets-stored-on-a-smart-card"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/cryptotokenkit/using-cryptographic-assets-stored-on-a-smart-card"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2271 @@
+{
+  "abstract": [
+    {
+      "text": "Locate relevant passages in a document by asking the Bidirectional Encoder Representations from Transformers (BERT) model a question.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coreml/documentation/CoreML",
+        "doc://com.apple.coreml/documentation/CoreML/model-integration-samples"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coreml/documentation/CoreML/finding-answers-to-questions-in-a-text-document"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core ML"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Finding answers to questions in a text document"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app leverages the BERT model to find the answer to a user’s question in a body of text.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The model accepts text from a document and a question, in natural English, about the document.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The model responds with the location of a passage within the document text that answers the question.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, given the text, “The quick brown fox jumps over the lethargic dog.”, with the question “Who jumped over the dog?”, the BERT model’s predicted answer is, “the quick brown fox”.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The BERT model does not generate new sentences to answer a given question.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It finds the passage in a document that’s most likely to answer the question.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "bert-overview.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample leverages the BERT model by:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Importing the BERT model’s vocabulary into a dictionary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Breaking up the document and question texts into tokens",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Converting the tokens to ID numbers using the vocabulary dictionary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Packing the converted token IDs into the model’s input format",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Calling the BERT model’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLModel/prediction(from:)-9y2aa",
+                      "isActive": true,
+                      "overridingTitle": "prediction(from:)",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "prediction(from:)",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Locating the answer by analyzing the BERT model’s output",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Extracting that answer from the original document text",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the sample code project in Xcode, use a device with either:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS 13 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS 10.15 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Build-the-vocabulary",
+          "level": 3,
+          "text": "Build the vocabulary",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first step to using the BERT model is to import its vocabulary.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample creates a vocabulary dictionary by splitting the vocabulary file into lines, each of which has one token.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The function assigns each token’s (zero-based) line number as its value. For example, the first token,  ",
+              "type": "text"
+            },
+            {
+              "code": "\"[PAD]\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", has an ID of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the 5,001st token, ",
+              "type": "text"
+            },
+            {
+              "code": "\"knight\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", has an ID of ",
+              "type": "text"
+            },
+            {
+              "code": "5000",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Split-the-text-into-word-tokens",
+          "level": 3,
+          "text": "Split the text into word tokens",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The BERT model requires you to convert each word into one or more token IDs.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Before you can use the vocabulary dictionary to find those IDs, you must divide the document’s text and the question’s text into word tokens.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "bert-word-tokens.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample does this by using an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/NaturalLanguage/NLTagger",
+              "isActive": true,
+              "overridingTitle": "NLTagger",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "NLTagger",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", which breaks up a string into word tokens, each of which is a substring of the original.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Store the tokenized substrings into an array.",
+            "var wordTokens = [Substring]()",
+            "",
+            "// Use Natural Language's NLTagger to tokenize the input by word.",
+            "let tagger = NLTagger(tagSchemes: [.tokenType])",
+            "tagger.string = rawString",
+            "",
+            "// Find all tokens in the string and append to the array.",
+            "tagger.enumerateTags(in: rawString.startIndex..<rawString.endIndex,",
+            "                     unit: .word,",
+            "                     scheme: .tokenType,",
+            "                     options: [.omitWhitespace]) { (_, range) -> Bool in",
+            "    wordTokens.append(rawString[range])",
+            "    return true",
+            "}",
+            "",
+            "return wordTokens"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app leverages the tagger to split each string into tokens by using its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/NaturalLanguage/NLTagger/enumerateTags(in:unit:scheme:options:using:)",
+              "isActive": true,
+              "overridingTitle": "enumerateTags(in:unit:scheme:options:using:)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "enumerateTags(in:unit:scheme:options:using:)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/NaturalLanguage/NLTagScheme/tokenType",
+              "isActive": true,
+              "overridingTitle": ".tokenType",
+              "overridingTitleInlineContent": [
+                {
+                  "text": ".tokenType",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " tagging scheme and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/NaturalLanguage/NLTokenUnit/word",
+              "isActive": true,
+              "overridingTitle": ".word",
+              "overridingTitleInlineContent": [
+                {
+                  "text": ".word",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " token unit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Convert-word-or-wordpiece-tokens-into-their-IDs",
+          "level": 3,
+          "text": "Convert word or wordpiece tokens into their IDs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For speed and efficiency, the BERT model operates on token IDs, which are numbers that represent tokens, rather than operating on the text tokens themselves.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let subTokenID = BERTVocabulary.tokenID(of: searchTerm)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a word token doesn’t exist in the vocabulary, the method looks for subtokens, or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "wordpieces",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A wordpiece is a component of a larger word token.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the word ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "lethargic",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " isn’t in the vocabulary but its wordpieces, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "let",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "har",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "gic",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " are.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Dividing the vocabulary’s large words into wordpieces reduces the vocabulary size and makes the BERT model more flexible.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The model can understand words that aren’t explicitly in the vocabulary by combining their wordpieces.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Secondary wordpieces, such as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "har",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "gic",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", each appear in the vocabulary with two leading pound signs, as ",
+              "type": "text"
+            },
+            {
+              "code": "##har",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "##gic",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Continuing the example, the method converts document text into the word and wordpiece token IDs shown in the following figure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "bert-word-token-ids.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-the-model-input",
+          "level": 3,
+          "text": "Prepare the model input",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The BERT model has two inputs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "wordIDs",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — Accepts the document and question texts",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "wordTypes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — Tells the BERT model which elements of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "wordIDs",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " are from the document",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates the ",
+              "type": "text"
+            },
+            {
+              "code": "wordIDs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array by arranging the token IDs in the following order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "classification start",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " token ID, which has a value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "101",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and appears as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"[CLS]\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the vocabulary file",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The token IDs from the question string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "separator",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " token ID, which has a value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "102",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and appears as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"[SEP]\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the vocabulary file",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The token IDs from the text string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Another separator token ID",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "One or more ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "padding",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " token IDs for the remaining, unused elements, which have a value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and appear as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"[PAD]\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the vocabulary file",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "// Start the wordID array with the `classification start` token.",
+            "var wordIDs = [BERTVocabulary.classifyStartTokenID]",
+            "",
+            "// Add the question tokens and a separator.",
+            "wordIDs += question.tokenIDs",
+            "wordIDs += [BERTVocabulary.separatorTokenID]",
+            "",
+            "// Add the document tokens and a separator.",
+            "wordIDs += document.tokenIDs",
+            "wordIDs += [BERTVocabulary.separatorTokenID]",
+            "",
+            "// Fill the remaining token slots with padding tokens.",
+            "let tokenIDPadding = BERTInput.maxTokens - wordIDs.count",
+            "wordIDs += Array(repeating: BERTVocabulary.paddingTokenID, count: tokenIDPadding)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, the sample prepares the ",
+              "type": "text"
+            },
+            {
+              "code": "wordTypes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " input by creating an array of the same length, where all the elements that correspond to the document text are ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and all others are ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set all of the token types before the document to 0.",
+            "var wordTypes = Array(repeating: 0, count: documentOffset)",
+            "",
+            "// Set all of the document token types to 1.",
+            "wordTypes += Array(repeating: 1, count: document.tokens.count)",
+            "",
+            "// Set the remaining token types to 0.",
+            "let tokenTypePadding = BERTInput.maxTokens - wordTypes.count",
+            "wordTypes += Array(repeating: 0, count: tokenTypePadding)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Continuing the example, the sample arranges the two input arrays with the values shown in the figure below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "bert-inputs.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, the sample creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreML/MLMultiArray",
+              "isActive": true,
+              "overridingTitle": "MLMultiArray",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MLMultiArray",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " for each input and copies the contents from the arrays, which it uses to create a ",
+              "type": "text"
+            },
+            {
+              "code": "BERTQAFP16Input",
+              "type": "codeVoice"
+            },
+            {
+              "text": " feature provider.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The BERT model in this sample requires a one-dimensional ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/CoreML/MLMultiArray",
+                  "isActive": true,
+                  "overridingTitle": "MLMultiArray",
+                  "overridingTitleInlineContent": [
+                    {
+                      "code": "MLMultiArray",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " input with 384 elements.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Models from other sources may have different inputs or shapes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "code": [
+            "// Create the MLMultiArray instances.",
+            "let tokenIDMultiArray = try? MLMultiArray(wordIDs)",
+            "let wordTypesMultiArray = try? MLMultiArray(wordTypes)",
+            "",
+            "// Unwrap the MLMultiArray optionals.",
+            "guard let tokenIDInput = tokenIDMultiArray else {",
+            "    fatalError(\"Couldn't create wordID MLMultiArray input\")",
+            "}",
+            "",
+            "guard let tokenTypeInput = wordTypesMultiArray else {",
+            "    fatalError(\"Couldn't create wordType MLMultiArray input\")",
+            "}",
+            "",
+            "// Create the BERT input MLFeatureProvider.",
+            "let modelInput = BERTQAFP16Input(wordIDs: tokenIDInput,",
+            "                                 wordTypes: tokenTypeInput)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Make-a-prediction",
+          "level": 3,
+          "text": "Make a prediction",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use the BERT model to predict where to find an answer to the question in the document text, by giving the model your input feature provider with the input ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreML/MLMultiArray",
+              "isActive": true,
+              "overridingTitle": "MLMultiArray",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MLMultiArray",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instances.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let prediction = try? bertModel.prediction(input: modelInput) else {",
+            "    return \"The BERT model is unable to make a prediction.\"",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Find-the-answer",
+          "level": 3,
+          "text": "Find the answer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You locate the answer to the question by analyzing the output from the BERT model.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The model produces two outputs, ",
+              "type": "text"
+            },
+            {
+              "code": "startLogits",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "endLogits",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "logit",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a raw confidence score of where the BERT model predicts the beginning and the end of an answer is.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "bert-logits.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the best start and end logits are ",
+              "type": "text"
+            },
+            {
+              "code": "6.08",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "7.53",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the tokens ",
+              "type": "text"
+            },
+            {
+              "code": "\"the\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "\"fox\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", respectively.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample finds the indices of the highest-value starting and ending logits by:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Converting each output logit ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLMultiArray",
+                      "isActive": true,
+                      "overridingTitle": "MLMultiArray",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "MLMultiArray",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " into a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Double",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Isolating the logits relevant to the document.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Finding the indices, in each array, to the 20 logits with the highest values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Searching through the 20 x 20 or fewer combinations of logits for the best combination.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "// Convert the logits MLMultiArrays to [Double].",
+            "let startLogits = prediction.startLogits.doubleArray()",
+            "let endLogits = prediction.endLogits.doubleArray()",
+            "",
+            "// Isolate the logits for the document.",
+            "let startLogitsOfDoc = [Double](startLogits[range])",
+            "let endLogitsOfDoc = [Double](endLogits[range])",
+            "",
+            "// Only keep the top 20 (out of the possible ~380) indices for faster searching.",
+            "let topStartIndices = startLogitsOfDoc.indicesOfLargest(20)",
+            "let topEndIndices = endLogitsOfDoc.indicesOfLargest(20)",
+            "",
+            "// Search for the highest valued logit pairing.",
+            "let bestPair = findBestLogitPair(startLogits: startLogitsOfDoc,",
+            "                                 bestStartIndices: topStartIndices,",
+            "                                 endLogits: endLogitsOfDoc,",
+            "                                 bestEndIndices: topEndIndices)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the indices of the best start and end logits are ",
+              "type": "text"
+            },
+            {
+              "code": "8",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "11",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", respectively.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The answer substring, located between indices ",
+              "type": "text"
+            },
+            {
+              "code": "8",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "11",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the original text, is ",
+              "type": "text"
+            },
+            {
+              "code": "“the quick brown fox”",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Scale-for-larger-documents",
+          "level": 3,
+          "text": "Scale for larger documents",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The BERT model included in this sample can process up to 384 tokens, including the three overhead tokens—one “classification start” token and two separator tokens—leaving 381 tokens for your text and question, combined.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For larger texts that exceed this limitation, consider using one of these techniques:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use a search mechanism to narrow down the relevant document text.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Break up the document text into sections, such as by paragraph, and make a prediction for each section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "027f89fdf072/FindingAnswersToQuestionsInATextDocument.zip": {
+      "checksum": "027f89fdf072cace77e1299c490e910af327f14ca0310114b500bf849077720084e9a30c4736392e3b6ddd50d6f6a72cba955beea36ca2e9eb9267a305542f9f",
+      "identifier": "027f89fdf072/FindingAnswersToQuestionsInATextDocument.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/027f89fdf072/FindingAnswersToQuestionsInATextDocument.zip"
+    },
+    "bert-inputs.png": {
+      "alt": "Layout diagram showing the arrangement of the two input arrays for the BERT model, as vertical columns, alongside a third reference column.",
+      "identifier": "bert-inputs.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bcb3d8e69c92837f01a68a48a4ae326e/bert-inputs@2x.png"
+        }
+      ]
+    },
+    "bert-logits.png": {
+      "alt": "Layout diagram showing the arrangement of the two output arrays from the BERT model shown as vertical columns.",
+      "identifier": "bert-logits.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3433d10e1e20a7caf2edf3989c5aebe3/bert-logits@2x.png"
+        }
+      ]
+    },
+    "bert-overview.png": {
+      "alt": "Flow diagram showing the information being processed through the BERT model.",
+      "identifier": "bert-overview.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b7aacadda5a94abbff3cb26265b6dc77/bert-overview@2x.png"
+        }
+      ]
+    },
+    "bert-word-token-ids.png": {
+      "alt": "Flow diagram showing the conversion of tokens to token IDs.",
+      "identifier": "bert-word-token-ids.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4bf9eec284bedc09cec6b1b898d716dd/bert-word-token-ids@2x.png"
+        }
+      ]
+    },
+    "bert-word-tokens.png": {
+      "alt": "Flow diagram showing the conversion of raw strings into tokens.",
+      "identifier": "bert-word-tokens.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cd606e6ce0035a82e16167360219f1ee/bert-word-tokens@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.coreml/documentation/CoreML": {
+      "abstract": [
+        {
+          "text": "Integrate machine learning models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/model-integration-samples": {
+      "abstract": [
+        {
+          "text": "Integrate tabular, image, and text classifcation models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/model-integration-samples",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Model Integration Samples",
+      "type": "topic",
+      "url": "/documentation/coreml/model-integration-samples"
+    },
+    "doc://com.apple.documentation/documentation/CoreML/MLModel/prediction(from:)-9y2aa": {
+      "abstract": [
+        {
+          "text": "Generates a prediction from the feature values within the input feature provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prediction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "input"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MLFeatureProvider",
+          "text": "MLFeatureProvider"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MLFeatureProvider",
+          "text": "MLFeatureProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLModel/prediction(from:)-9y2aa",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prediction(from:)",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLModel/prediction(from:)-9y2aa"
+    },
+    "doc://com.apple.documentation/documentation/CoreML/MLMultiArray": {
+      "abstract": [
+        {
+          "text": "A machine learning collection type that stores numeric values in an array with multiple dimensions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLMultiArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLMultiArray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLMultiArray",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLMultiArray"
+    },
+    "doc://com.apple.documentation/documentation/NaturalLanguage/NLTagScheme/tokenType": {
+      "abstract": [
+        {
+          "text": "A scheme that classifies tokens according to their broad type: word, punctuation, or whitespace.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLTagScheme",
+          "text": "NLTagScheme"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/NaturalLanguage/NLTagScheme/tokenType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tokenType",
+      "type": "topic",
+      "url": "/documentation/NaturalLanguage/NLTagScheme/tokenType"
+    },
+    "doc://com.apple.documentation/documentation/NaturalLanguage/NLTagger": {
+      "abstract": [
+        {
+          "text": "A tagger that analyzes natural language text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NLTagger"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/NaturalLanguage/NLTagger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NLTagger",
+      "type": "topic",
+      "url": "/documentation/NaturalLanguage/NLTagger"
+    },
+    "doc://com.apple.documentation/documentation/NaturalLanguage/NLTagger/enumerateTags(in:unit:scheme:options:using:)": {
+      "abstract": [
+        {
+          "text": "Enumerates a block over the tagger’s string, given a range, token unit, and tag scheme.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@nonobjc"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateTags"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "unit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NLTokenUnit",
+          "text": "NLTokenUnit"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLTagScheme",
+          "text": "NLTagScheme"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NLTagger",
+          "text": "NLTagger"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NLTaggerOptions",
+          "text": "Options"
+        },
+        {
+          "kind": "text",
+          "text": " = [], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "block"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLTag",
+          "text": "NLTag"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/NaturalLanguage/NLTagger/enumerateTags(in:unit:scheme:options:using:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerateTags(in:unit:scheme:options:using:)",
+      "type": "topic",
+      "url": "/documentation/NaturalLanguage/NLTagger/enumerateTags(in:unit:scheme:options:using:)"
+    },
+    "doc://com.apple.documentation/documentation/NaturalLanguage/NLTokenUnit/word": {
+      "abstract": [
+        {
+          "text": "An individual word.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "word"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/NaturalLanguage/NLTokenUnit/word",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NLTokenUnit.word",
+      "type": "topic",
+      "url": "/documentation/NaturalLanguage/NLTokenUnit/word"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "027f89fdf072/FindingAnswersToQuestionsInATextDocument.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLMultiArray/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MLMultiArray"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1NaturalLanguage~1NLTagger/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NLTagger"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1NaturalLanguage~1NLTagScheme~1tokenType/title",
+          "value": "NLTagSchemeTokenType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1NaturalLanguage~1NLTagScheme~1tokenType/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NLTagScheme",
+              "text": "NLTagScheme"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NLTagSchemeTokenType"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLModel~1prediction(from:)-9y2aa/title",
+          "value": "predictionFromFeatures:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLModel~1prediction(from:)-9y2aa/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)MLFeatureProvider",
+              "text": "id<MLFeatureProvider>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "predictionFromFeatures:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)MLFeatureProvider",
+              "text": "id<MLFeatureProvider>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "input"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "error:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1NaturalLanguage~1NLTokenUnit~1word/title",
+          "value": "NLTokenUnitWord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1NaturalLanguage~1NLTokenUnit~1word/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTokenUnitWord"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coreml/finding-answers-to-questions-in-a-text-document"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coreml/finding-answers-to-questions-in-a-text-document"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

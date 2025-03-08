@@ -1,0 +1,515 @@
+{
+  "abstract": [
+    {
+      "text": "A notification the framework posts when the audio engine configuration changes.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/notifications",
+        "doc://com.apple.documentation/documentation/foundation/notification",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/notifications",
+        "doc://com.apple.documentation/documentation/foundation/notification",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/avfaudio"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/avfoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1389078-avaudioengineconfigurationchange"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1389078,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@AVAudioEngineConfigurationChangeNotification",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "static let "
+      },
+      {
+        "kind": "identifier",
+        "text": "AVAudioEngineConfigurationChange"
+      },
+      {
+        "kind": "text",
+        "text": ": NSNotification.Name"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFAudio"
+      }
+    ],
+    "parent": {
+      "title": "NSNotification.Name"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.10",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "structdata",
+    "title": "AVAudioEngineConfigurationChange"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioEngineConfigurationChange"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSNotification",
+              "text": "NSNotification"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "Name"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the audio engine’s I/O unit observes a change to the audio input or output hardware’s channel count or sample rate, the audio engine stops, uninitializes itself, and issues this notification. The nodes remain in an attached and connected state with the previously set formats. The app must reestablish connections if the connection formats need to change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Don’t deallocate the engine from within the client’s notification handler. The callback happens on an internal dispatch queue and can deadlock while trying to tear down the engine synchronously.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/avfaudio": {
+      "identifier": "doc://com.apple.documentation/documentation/avfaudio",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFAudio",
+      "type": "topic",
+      "url": "/documentation/avfaudio"
+    },
+    "doc://com.apple.documentation/documentation/avfaudio/avaudiosession/interruptionnotification": {
+      "abstract": [
+        {
+          "text": "A notification the system posts when an audio interruption occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "interruptionNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/avfaudio/avaudiosession/interruptionnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interruptionNotification",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/interruptionnotification"
+    },
+    "doc://com.apple.documentation/documentation/avfaudio/avaudiosession/mediaserviceswerelostnotification": {
+      "abstract": [
+        {
+          "text": "A notification the system posts when it terminates the media server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaServicesWereLostNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/avfaudio/avaudiosession/mediaserviceswerelostnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mediaServicesWereLostNotification",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/mediaserviceswerelostnotification"
+    },
+    "doc://com.apple.documentation/documentation/avfaudio/avaudiosession/mediaserviceswereresetnotification": {
+      "abstract": [
+        {
+          "text": "A notification the system posts when the media server restarts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaServicesWereResetNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/avfaudio/avaudiosession/mediaserviceswereresetnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mediaServicesWereResetNotification",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/mediaserviceswereresetnotification"
+    },
+    "doc://com.apple.documentation/documentation/avfaudio/avaudiosession/routechangenotification": {
+      "abstract": [
+        {
+          "text": "A notification the system posts when its audio route changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "routeChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/avfaudio/avaudiosession/routechangenotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "routeChangeNotification",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/routechangenotification"
+    },
+    "doc://com.apple.documentation/documentation/avfaudio/avaudiosession/silencesecondaryaudiohintnotification": {
+      "abstract": [
+        {
+          "text": "A notification the system posts when the primary audio from other apps starts and stops.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "silenceSecondaryAudioHintNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/avfaudio/avaudiosession/silencesecondaryaudiohintnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "silenceSecondaryAudioHintNotification",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/silencesecondaryaudiohintnotification"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation": {
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notification": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Notification",
+      "type": "topic",
+      "url": "/documentation/foundation/notification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notifications": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notifications",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Notifications",
+      "type": "topic",
+      "url": "/documentation/foundation/notifications"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification.Name",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1387538-avaudiounitcomponenttagsdidchang": {
+      "abstract": [
+        {
+          "text": "A notification that indicates when component tags change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioUnitComponentTagsDidChange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1387538-avaudiounitcomponenttagsdidchang",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioUnitComponentTagsDidChange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1387538-avaudiounitcomponenttagsdidchang"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1389078-avaudioengineconfigurationchange": {
+      "abstract": [
+        {
+          "text": "A notification the framework posts when the audio engine configuration changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioEngineConfigurationChange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1389078-avaudioengineconfigurationchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioEngineConfigurationChange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1389078-avaudioengineconfigurationchange"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1387538-avaudiounitcomponenttagsdidchang",
+        "doc://com.apple.documentation/documentation/avfaudio/avaudiosession/interruptionnotification",
+        "doc://com.apple.documentation/documentation/avfaudio/avaudiosession/mediaserviceswerelostnotification",
+        "doc://com.apple.documentation/documentation/avfaudio/avaudiosession/mediaserviceswereresetnotification",
+        "doc://com.apple.documentation/documentation/avfaudio/avaudiosession/routechangenotification",
+        "doc://com.apple.documentation/documentation/avfaudio/avaudiosession/silencesecondaryaudiohintnotification"
+      ],
+      "title": "AVFAudio"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/avfaudio/avaudioengineconfigurationchangenotification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsnotification/name/1389078-avaudioengineconfigurationchange"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

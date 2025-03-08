@@ -1,0 +1,359 @@
+{
+  "abstract": [
+    {
+      "text": "Compares two intervals.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+        "doc://com.apple.documentation/documentation/foundation/dateinterval"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/dateinterval/1780283-compare"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1780283,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation12DateIntervalV7compareySo18NSComparisonResultVACF",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "compare"
+      },
+      {
+        "kind": "text",
+        "text": "(DateInterval) -> ComparisonResult"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "DateInterval"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.12",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "3.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "7.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "structm",
+    "title": "compare(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "compare"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "dateInterval"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/dateinterval",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation12DateIntervalV",
+              "text": "DateInterval"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/comparisonresult",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@NSComparisonResult",
+              "text": "ComparisonResult"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method prioritizes ordering by start date. If the start dates are equal, then it will order by duration. e.g. Given intervals a and b",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "a.   |-----|",
+            "b.      |-----|"
+          ],
+          "metadata": {
+            "anchor": "2844685",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "a.compare(b)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " would return ",
+              "type": "text"
+            },
+            {
+              "code": ".OrderedAscending",
+              "type": "codeVoice"
+            },
+            {
+              "text": " because a’s start date is earlier in time than b’s start date.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the event that the start dates are equal, the compare method will attempt to order by duration. e.g. Given intervals c and d",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "c.  |-----|",
+            "d.  |---|"
+          ],
+          "metadata": {
+            "anchor": "2844686",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "c.compare(d)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " would result in ",
+              "type": "text"
+            },
+            {
+              "code": ".OrderedDescending",
+              "type": "codeVoice"
+            },
+            {
+              "text": " because c is longer than d.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If both the start dates and the durations are equal, then the intervals are considered equal and ",
+              "type": "text"
+            },
+            {
+              "code": ".OrderedSame",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is returned as the result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/comparisonresult": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/comparisonresult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ComparisonResult",
+      "type": "topic",
+      "url": "/documentation/foundation/comparisonresult"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateinterval": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateinterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DateInterval",
+      "type": "topic",
+      "url": "/documentation/foundation/dateinterval"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateinterval/1780283-compare#2844685": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateinterval/1780283-compare#2844685",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/dateinterval/1780283-compare#2844685"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateinterval/1780283-compare#2844686": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateinterval/1780283-compare#2844686",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/dateinterval/1780283-compare#2844686"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dates_and_times": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dates and Times",
+      "type": "topic",
+      "url": "/documentation/foundation/dates_and_times"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/dateinterval/1780283-compare"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

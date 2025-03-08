@@ -1,0 +1,5301 @@
+{
+  "abstract": [
+    {
+      "text": "An object that represents a hardware or virtual capture device like a camera or microphone.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVCaptureDevice",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AVCaptureDevice"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AVCaptureDevice"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.7",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AVCaptureDevice"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/choosing-a-capture-device",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/setting-up-a-capture-session",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/enhancing-your-app-experience-with-the-camera-control",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/requesting-authorization-to-capture-and-save-media"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Capture devices provide media data to capture session inputs that you connect to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". An individual device can provide one or more streams of media of a particular type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t create capture device instances directly. Instead, retrieve them using an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/DiscoverySession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/default(_:for:position:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A capture device provides several configuration options. Before attempting to configure device properties, such as its focus mode, exposure mode, and so on, you must first acquire a lock on the device by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/lockForConfiguration()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. You should also query the device’s capabilities to ensure that the new modes you intend to set are valid for the device. You can then set the properties and release the lock using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/unlockForConfiguration()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. You may hold the lock if you want all settable device properties to remain unchanged. However, holding the device lock unnecessarily may degrade capture quality in other apps sharing the device and isn’t recommended.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the status of an app’s authorization to capture media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avauthorizationstatus"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice": {
+      "abstract": [
+        {
+          "text": "An object that represents a hardware or virtual capture device like a camera or microphone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/DeviceType-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that defines the device types the framework supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DeviceType"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/DeviceType-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DeviceType"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice.DeviceType",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/devicetype-swift.struct"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/DiscoverySession": {
+      "abstract": [
+        {
+          "text": "An object that finds capture devices that match specific search criteria.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DiscoverySession"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/DiscoverySession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DiscoverySession"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice.DiscoverySession",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/discoverysession"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/LensStabilizationStatus": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the status of optical image stabilization hardware during a bracketed photo capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LensStabilizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/LensStabilizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LensStabilizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice.LensStabilizationStatus",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/lensstabilizationstatus"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/Position-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the physical position of a capture device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Position"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/Position-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Position"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice.Position",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/position-swift.enum"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that defines the conditions in which to restrict camera switching.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice.PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/primaryconstituentdevicerestrictedswitchingbehaviorconditions-swift.struct"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/PrimaryConstituentDeviceSwitchingBehavior-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that control when to allow a virtual device to switch its active primary constituent device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PrimaryConstituentDeviceSwitchingBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/PrimaryConstituentDeviceSwitchingBehavior-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PrimaryConstituentDeviceSwitchingBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice.PrimaryConstituentDeviceSwitchingBehavior",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/primaryconstituentdeviceswitchingbehavior-swift.enum"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/RotationCoordinator": {
+      "abstract": [
+        {
+          "text": "A class that monitors the physical orientation of a capture device and provides adjustment angles to keep images level, relative to gravity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RotationCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/RotationCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RotationCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice.RotationCoordinator",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/rotationcoordinator"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/SystemPressureState-swift.class": {
+      "abstract": [
+        {
+          "text": "An object that provides information about OS and hardware status affecting capture system performance and availability.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SystemPressureState"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/SystemPressureState-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SystemPressureState"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice.SystemPressureState",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/systempressurestate-swift.class"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activePrimaryConstituent": {
+      "abstract": [
+        {
+          "text": "A virtual device’s active primary constituent device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activePrimaryConstituent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activePrimaryConstituent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activePrimaryConstituentDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "activePrimaryConstituent",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/activeprimaryconstituent"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions": {
+      "abstract": [
+        {
+          "text": "The conditions that restrict camera switching behavior for the active primary constituent device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions",
+          "text": "PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions"
+        }
+      ],
+      "role": "symbol",
+      "title": "activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/activeprimaryconstituentdevicerestrictedswitchingbehaviorconditions"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activePrimaryConstituentDeviceSwitchingBehavior": {
+      "abstract": [
+        {
+          "text": "The switching behavior of the active constituent device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activePrimaryConstituentDeviceSwitchingBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVCapturePrimaryConstituentDeviceSwitchingBehavior",
+          "text": "PrimaryConstituentDeviceSwitchingBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activePrimaryConstituentDeviceSwitchingBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activePrimaryConstituentDeviceSwitchingBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "activePrimaryConstituentDeviceSwitchingBehavior",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/activeprimaryconstituentdeviceswitchingbehavior"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/authorizationStatus(for:)": {
+      "abstract": [
+        {
+          "text": "Returns an authorization status that indicates whether the user grants the app permission to capture media of a particular type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaType",
+          "text": "AVMediaType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVAuthorizationStatus",
+          "text": "AVAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/authorizationStatus(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationStatusForMediaType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationStatus(for:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/authorizationstatus(for:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/centerStageRectOfInterestSupported": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "centerStageRectOfInterestSupported"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/centerStageRectOfInterestSupported",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "centerStageRectOfInterestSupported",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/centerstagerectofinterestsupported"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/companionDeskViewCamera": {
+      "abstract": [
+        {
+          "text": "A Desk View camera associated with a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "companionDeskViewCamera"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/companionDeskViewCamera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "companionDeskViewCamera"
+        }
+      ],
+      "role": "symbol",
+      "title": "companionDeskViewCamera",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/companiondeskviewcamera"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/constituentDevices": {
+      "abstract": [
+        {
+          "text": "An array of physical devices that make up a virtual device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "constituentDevices"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/constituentDevices",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "constituentDevices"
+        }
+      ],
+      "role": "symbol",
+      "title": "constituentDevices",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/constituentdevices"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/default(_:for:position:)": {
+      "abstract": [
+        {
+          "text": "Returns the default device for the specified device type, media type, and position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "`default`"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVCaptureDeviceType",
+          "text": "DeviceType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaType",
+          "text": "AVMediaType"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "position"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVCaptureDevicePosition",
+          "text": "Position"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/default(_:for:position:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "defaultDeviceWithDeviceType:mediaType:position:"
+        }
+      ],
+      "role": "symbol",
+      "title": "default(_:for:position:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/default(_:for:position:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/default(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the default device that captures the specified media type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "`default`"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaType",
+          "text": "AVMediaType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/default(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "defaultDeviceWithMediaType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "default(for:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/default(for:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/deviceType-swift.property": {
+      "abstract": [
+        {
+          "text": "The type of device, such as a built-in microphone or wide-angle camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVCaptureDeviceType",
+          "text": "DeviceType"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/deviceType-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deviceType"
+        }
+      ],
+      "role": "symbol",
+      "title": "deviceType",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/devicetype-swift.property"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/devices()": {
+      "abstract": [
+        {
+          "text": "Returns all available capture devices on the system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "devices"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/devices()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "devices"
+        }
+      ],
+      "role": "symbol",
+      "title": "devices()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/devices()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/devices(for:)": {
+      "abstract": [
+        {
+          "text": "Returns devices capable of capturing media of the specified type.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "devices"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaType",
+          "text": "AVMediaType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/devices(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "devicesWithMediaType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "devices(for:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/devices(for:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/extrinsicMatrix(from:to:)": {
+      "abstract": [
+        {
+          "text": "Returns the relative extrinsic matrix from one capture device to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "extrinsicMatrix"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/extrinsicMatrix(from:to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "extrinsicMatrixFromDevice:toDevice:"
+        }
+      ],
+      "role": "symbol",
+      "title": "extrinsicMatrix(from:to:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/extrinsicmatrix(from:to:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/fallbackPrimaryConstituentDevices": {
+      "abstract": [
+        {
+          "text": "The fallback devices to use when a constituent device with a longer focal length becomes limited by its light sensitivity or minimum focus distance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fallbackPrimaryConstituentDevices"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/fallbackPrimaryConstituentDevices",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fallbackPrimaryConstituentDevices"
+        }
+      ],
+      "role": "symbol",
+      "title": "fallbackPrimaryConstituentDevices",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/fallbackprimaryconstituentdevices"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/hasMediaType(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the device captures media of a particular type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasMediaType"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaType",
+          "text": "AVMediaType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/hasMediaType(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hasMediaType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "hasMediaType(_:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/hasmediatype(_:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/init(uniqueID:)": {
+      "abstract": [
+        {
+          "text": "Creates an object that represents a device with the specified identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "uniqueID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/init(uniqueID:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deviceWithUniqueID:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(uniqueID:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/init(uniqueid:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isAutoVideoFrameRateEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the capture device performs automatic video frame rate adjustments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAutoVideoFrameRateEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isAutoVideoFrameRateEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autoVideoFrameRateEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAutoVideoFrameRateEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/isautovideoframerateenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isConnected": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a device is currently connected to the system and available for use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isConnected"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isConnected",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "connected"
+        }
+      ],
+      "role": "symbol",
+      "title": "isConnected",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/isconnected"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isContinuityCamera": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the device is a Continuity Camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isContinuityCamera"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isContinuityCamera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "continuityCamera"
+        }
+      ],
+      "role": "symbol",
+      "title": "isContinuityCamera",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/iscontinuitycamera"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isInUseByAnotherApplication": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether another app is using the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isInUseByAnotherApplication"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isInUseByAnotherApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inUseByAnotherApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "isInUseByAnotherApplication",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/isinusebyanotherapplication"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isSubjectAreaChangeMonitoringEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the device monitors the subject area for changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSubjectAreaChangeMonitoringEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isSubjectAreaChangeMonitoringEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "subjectAreaChangeMonitoringEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isSubjectAreaChangeMonitoringEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/issubjectareachangemonitoringenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isSuspended": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the device is in a suspended state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSuspended"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isSuspended",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "suspended"
+        }
+      ],
+      "role": "symbol",
+      "title": "isSuspended",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/issuspended"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isVirtualDevice": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the device consists of two or more physical devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isVirtualDevice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isVirtualDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "virtualDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "isVirtualDevice",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/isvirtualdevice"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/localizedName": {
+      "abstract": [
+        {
+          "text": "A localized device name for display in the user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/localizedName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "localizedName"
+        }
+      ],
+      "role": "symbol",
+      "title": "localizedName",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/localizedname"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/lockForConfiguration()": {
+      "abstract": [
+        {
+          "text": "Requests exclusive access to configure device hardware properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockForConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/lockForConfiguration()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lockForConfiguration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "lockForConfiguration()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/lockforconfiguration()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/manufacturer": {
+      "abstract": [
+        {
+          "text": "A human-readable string for the manufacturer of the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "manufacturer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/manufacturer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "manufacturer"
+        }
+      ],
+      "role": "symbol",
+      "title": "manufacturer",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/manufacturer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/modelID": {
+      "abstract": [
+        {
+          "text": "A model identifier for the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modelID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/modelID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "modelID"
+        }
+      ],
+      "role": "symbol",
+      "title": "modelID",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/modelid"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/position-swift.property": {
+      "abstract": [
+        {
+          "text": "The physical position of the capture device hardware.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "position"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVCaptureDevicePosition",
+          "text": "Position"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/position-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "position"
+        }
+      ],
+      "role": "symbol",
+      "title": "position",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/position-swift.property"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/primaryConstituentDeviceRestrictedSwitchingBehaviorConditions-swift.property": {
+      "abstract": [
+        {
+          "text": "The conditions that restrict the primary constituent device’s switching behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "primaryConstituentDeviceRestrictedSwitchingBehaviorConditions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions",
+          "text": "PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/primaryConstituentDeviceRestrictedSwitchingBehaviorConditions-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "primaryConstituentDeviceRestrictedSwitchingBehaviorConditions"
+        }
+      ],
+      "role": "symbol",
+      "title": "primaryConstituentDeviceRestrictedSwitchingBehaviorConditions",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/primaryconstituentdevicerestrictedswitchingbehaviorconditions-swift.property"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/primaryConstituentDeviceSwitchingBehavior-swift.property": {
+      "abstract": [
+        {
+          "text": "The switching behavior for the primary constituent device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "primaryConstituentDeviceSwitchingBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVCapturePrimaryConstituentDeviceSwitchingBehavior",
+          "text": "PrimaryConstituentDeviceSwitchingBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/primaryConstituentDeviceSwitchingBehavior-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "primaryConstituentDeviceSwitchingBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "primaryConstituentDeviceSwitchingBehavior",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/primaryconstituentdeviceswitchingbehavior-swift.property"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/requestAccess(for:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Requests the user’s permission to allow the app to capture media of a particular type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAccess"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaType",
+          "text": "AVMediaType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/requestAccess(for:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestAccessForMediaType:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestAccess(for:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/requestaccess(for:completionhandler:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/setPrimaryConstituentDeviceSwitchingBehavior(_:restrictedSwitchingBehaviorConditions:)": {
+      "abstract": [
+        {
+          "text": "Sets the switching behavior of the primary constituent device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPrimaryConstituentDeviceSwitchingBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVCapturePrimaryConstituentDeviceSwitchingBehavior",
+          "text": "PrimaryConstituentDeviceSwitchingBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "restrictedSwitchingBehaviorConditions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions",
+          "text": "PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/setPrimaryConstituentDeviceSwitchingBehavior(_:restrictedSwitchingBehaviorConditions:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setPrimaryConstituentDeviceSwitchingBehavior:restrictedSwitchingBehaviorConditions:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setPrimaryConstituentDeviceSwitchingBehavior(_:restrictedSwitchingBehaviorConditions:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/setprimaryconstituentdeviceswitchingbehavior(_:restrictedswitchingbehaviorconditions:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/spatialCaptureDiscomfortReasons": {
+      "abstract": [
+        {
+          "text": "Reasons why current environmental conditions aren’t suitable to capturing spatial videos that are comfortable to view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spatialCaptureDiscomfortReasons"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVSpatialCaptureDiscomfortReason",
+          "text": "AVSpatialCaptureDiscomfortReason"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/spatialCaptureDiscomfortReasons",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "spatialCaptureDiscomfortReasons"
+        }
+      ],
+      "role": "symbol",
+      "title": "spatialCaptureDiscomfortReasons",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/spatialcapturediscomfortreasons"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/subjectAreaDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification the system posts when a capture device detects a substantial change to the video subject area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subjectAreaDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/subjectAreaDidChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDeviceSubjectAreaDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "subjectAreaDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/subjectareadidchangenotification"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/supportedFallbackPrimaryConstituentDevices": {
+      "abstract": [
+        {
+          "text": "The constituent devices available to select as a fallback for a longer focal length primary constituent device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportedFallbackPrimaryConstituentDevices"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/supportedFallbackPrimaryConstituentDevices",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportedFallbackPrimaryConstituentDevices"
+        }
+      ],
+      "role": "symbol",
+      "title": "supportedFallbackPrimaryConstituentDevices",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/supportedfallbackprimaryconstituentdevices"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/supportsSessionPreset(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether you can use the device with capture session configured with the specified preset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsSessionPreset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureSession",
+          "text": "AVCaptureSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVCaptureSessionPreset",
+          "text": "Preset"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/supportsSessionPreset(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsAVCaptureSessionPreset:"
+        }
+      ],
+      "role": "symbol",
+      "title": "supportsSessionPreset(_:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/supportssessionpreset(_:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/systemPreferredCamera": {
+      "abstract": [
+        {
+          "text": "A camera the system prefers to use for video and photo capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemPreferredCamera"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/systemPreferredCamera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "systemPreferredCamera"
+        }
+      ],
+      "role": "symbol",
+      "title": "systemPreferredCamera",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/systempreferredcamera"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/systemPressureState-swift.property": {
+      "abstract": [
+        {
+          "text": "A value that indicates the capture device’s current system pressure state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemPressureState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureSystemPressureState",
+          "text": "SystemPressureState"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/systemPressureState-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "systemPressureState"
+        }
+      ],
+      "role": "symbol",
+      "title": "systemPressureState",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/systempressurestate-swift.property"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/transportType": {
+      "abstract": [
+        {
+          "text": "The transport type of the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transportType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/transportType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transportType"
+        }
+      ],
+      "role": "symbol",
+      "title": "transportType",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/transporttype"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/uniqueID": {
+      "abstract": [
+        {
+          "text": "An identifier that uniquely identifies the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uniqueID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/uniqueID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "uniqueID"
+        }
+      ],
+      "role": "symbol",
+      "title": "uniqueID",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/uniqueid"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/unlockForConfiguration()": {
+      "abstract": [
+        {
+          "text": "Releases exclusive control over device hardware properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unlockForConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/unlockForConfiguration()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unlockForConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "unlockForConfiguration()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/unlockforconfiguration()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/userPreferredCamera": {
+      "abstract": [
+        {
+          "text": "A camera the user prefers to use for video and photo capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userPreferredCamera"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/userPreferredCamera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userPreferredCamera"
+        }
+      ],
+      "role": "symbol",
+      "title": "userPreferredCamera",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/userpreferredcamera"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/wasConnectedNotification": {
+      "abstract": [
+        {
+          "text": "A notification the system posts when a new capture device becomes available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wasConnectedNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/wasConnectedNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDeviceWasConnectedNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "wasConnectedNotification",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/wasconnectednotification"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/wasDisconnectedNotification": {
+      "abstract": [
+        {
+          "text": "A notification the system posts when an existing device becomes unavailable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wasDisconnectedNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/wasDisconnectedNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDeviceWasDisconnectedNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "wasDisconnectedNotification",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/wasdisconnectednotification"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDeviceInput": {
+      "abstract": [
+        {
+          "text": "An object that provides media input from a capture device to a capture session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDeviceInput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDeviceInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDeviceInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDeviceInput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedeviceinput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession": {
+      "abstract": [
+        {
+          "text": "An object that configures capture behavior and coordinates the flow of data from input devices to capture outputs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureSession"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureSession",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturesession"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSessionInterruptionSystemPressureStateKey": {
+      "abstract": [
+        {
+          "text": "A key to retrieve a state value that indicates the system pressure level and contributing factors that caused the interruption.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureSessionInterruptionSystemPressureStateKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSessionInterruptionSystemPressureStateKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureSessionInterruptionSystemPressureStateKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureSessionInterruptionSystemPressureStateKey",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturesessioninterruptionsystempressurestatekey"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVContinuityDevice": {
+      "abstract": [
+        {
+          "text": "A class that represents a physical iOS device that’s nearby and can provide access to its cameras and microphones.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVContinuityDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVContinuityDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVContinuityDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVContinuityDevice",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcontinuitydevice"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVExternalStorageDevice": {
+      "abstract": [
+        {
+          "text": "Represents a physical external storage device that stores media assets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVExternalStorageDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVExternalStorageDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVExternalStorageDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVExternalStorageDevice",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avexternalstoragedevice"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVExternalStorageDeviceDiscoverySession": {
+      "abstract": [
+        {
+          "text": "Informs your app when the external storage devices connect to and disconnect from the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVExternalStorageDeviceDiscoverySession"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVExternalStorageDeviceDiscoverySession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVExternalStorageDeviceDiscoverySession"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVExternalStorageDeviceDiscoverySession",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avexternalstoragedevicediscoverysession"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVSpatialCaptureDiscomfortReason": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the suitability of the current scene to create a comfortable viewing experience.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVSpatialCaptureDiscomfortReason"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVSpatialCaptureDiscomfortReason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVSpatialCaptureDiscomfortReason"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVSpatialCaptureDiscomfortReason",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avspatialcapturediscomfortreason"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-color": {
+      "abstract": [
+        {
+          "text": "Manage HDR and color space settings for a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-color",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Color",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-device-color"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-exposure": {
+      "abstract": [
+        {
+          "text": "Configure the automatic exposure behavior of a camera, or manually control its exposure settings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-exposure",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Exposure",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-device-exposure"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-focus": {
+      "abstract": [
+        {
+          "text": "Configure the automatic focus behavior of a camera, or manually set its lens position.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-focus",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Focus",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-device-focus"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-formats": {
+      "abstract": [
+        {
+          "text": "Configure capture formats and camera frame rates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-formats",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Formats",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-device-formats"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-lighting": {
+      "abstract": [
+        {
+          "text": "Configure the device flash, torch, and low light settings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-lighting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Lighting",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-device-lighting"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-white-balance": {
+      "abstract": [
+        {
+          "text": "Configure the automatic white balance behavior of a camera, or manually control white balance settings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-white-balance",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "White Balance",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-device-white-balance"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-zoom": {
+      "abstract": [
+        {
+          "text": "Configure device zooming behavior and inspect hardware capabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-zoom",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Zoom",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-device-zoom"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/choosing-a-capture-device": {
+      "abstract": [
+        {
+          "text": "Select the front or back camera, or use advanced features like the TrueDepth camera or dual camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/choosing-a-capture-device",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a Capture Device",
+      "type": "topic",
+      "url": "/documentation/avfoundation/choosing-a-capture-device"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/enhancing-your-app-experience-with-the-camera-control": {
+      "abstract": [
+        {
+          "text": "Provide direct access to your camera app’s features to help people quickly capture the perfect shot.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/enhancing-your-app-experience-with-the-camera-control",
+      "kind": "article",
+      "role": "article",
+      "title": "Enhancing your app experience with the Camera Control",
+      "type": "topic",
+      "url": "/documentation/avfoundation/enhancing-your-app-experience-with-the-camera-control"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/macos-capture-features": {
+      "abstract": [
+        {
+          "text": "Control the transport behavior and input sources of capture hardware in macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/macos-capture-features",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "macOS Capture Features",
+      "type": "topic",
+      "url": "/documentation/avfoundation/macos-capture-features"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/requesting-authorization-to-capture-and-save-media": {
+      "abstract": [
+        {
+          "text": "Prompt the user to authorize access to the camera, microphone, and photo library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/requesting-authorization-to-capture-and-save-media",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting authorization to capture and save media",
+      "type": "topic",
+      "url": "/documentation/avfoundation/requesting-authorization-to-capture-and-save-media"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/setting-up-a-capture-session": {
+      "abstract": [
+        {
+          "text": "Configure input devices, output media, preview views, and basic settings before capturing photos or video.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/setting-up-a-capture-session",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up a Capture Session",
+      "type": "topic",
+      "url": "/documentation/avfoundation/setting-up-a-capture-session"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/system-video-effects-and-microphone-modes": {
+      "abstract": [
+        {
+          "text": "Configure the state of system video effects like Center Stage, and inspect enhancements the system applies to microphone audio.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/system-video-effects-and-microphone-modes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "System Video Effects and Microphone Modes",
+      "type": "topic",
+      "url": "/documentation/avfoundation/system-video-effects-and-microphone-modes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Capture-devices",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/choosing-a-capture-device",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDeviceInput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVContinuityDevice",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVExternalStorageDevice",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVExternalStorageDeviceDiscoverySession"
+      ],
+      "title": "Capture devices"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Finding-and-Monitoring-Devices",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/DiscoverySession",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/default(_:for:position:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/default(for:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/init(uniqueID:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/wasConnectedNotification",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/wasDisconnectedNotification",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/devices(for:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/devices()"
+      ],
+      "title": "Finding and Monitoring Devices"
+    },
+    {
+      "anchor": "Authorizing-Device-Access",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/requestAccess(for:completionHandler:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/authorizationStatus(for:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAuthorizationStatus"
+      ],
+      "title": "Authorizing Device Access"
+    },
+    {
+      "anchor": "Identifying-a-Device",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/uniqueID",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/modelID",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/localizedName",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/manufacturer",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/deviceType-swift.property",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/DeviceType-swift.struct",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/position-swift.property",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/Position-swift.enum"
+      ],
+      "title": "Identifying a Device"
+    },
+    {
+      "anchor": "Accessing-Device-State",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isConnected",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isSuspended",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isInUseByAnotherApplication"
+      ],
+      "title": "Accessing Device State"
+    },
+    {
+      "anchor": "Inspecting-Device-Characteristics",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isVirtualDevice",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/constituentDevices",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/hasMediaType(_:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/transportType",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/supportsSessionPreset(_:)"
+      ],
+      "title": "Inspecting Device Characteristics"
+    },
+    {
+      "anchor": "Monitoring-Device-Rotation",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/RotationCoordinator"
+      ],
+      "title": "Monitoring Device Rotation"
+    },
+    {
+      "anchor": "Configuring-Camera-Hardware",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/lockForConfiguration()",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/unlockForConfiguration()",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isSubjectAreaChangeMonitoringEnabled",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/subjectAreaDidChangeNotification",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-formats",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-focus",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-exposure",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-white-balance",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-lighting",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-color",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-zoom"
+      ],
+      "title": "Configuring Camera Hardware"
+    },
+    {
+      "anchor": "Enabling-Automatic-Frame-Rate",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isAutoVideoFrameRateEnabled"
+      ],
+      "title": "Enabling Automatic Frame Rate"
+    },
+    {
+      "anchor": "Supporting-Spatial-Capture",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/spatialCaptureDiscomfortReasons",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVSpatialCaptureDiscomfortReason"
+      ],
+      "title": "Supporting Spatial Capture"
+    },
+    {
+      "anchor": "Supporting-Continuity-Camera",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/systemPreferredCamera",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/userPreferredCamera",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isContinuityCamera",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/companionDeskViewCamera"
+      ],
+      "title": "Supporting Continuity Camera"
+    },
+    {
+      "anchor": "Supporting-System-Features",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/system-video-effects-and-microphone-modes"
+      ],
+      "title": "Supporting System Features"
+    },
+    {
+      "anchor": "Monitoring-System-Pressure",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/systemPressureState-swift.property",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/SystemPressureState-swift.class",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSessionInterruptionSystemPressureStateKey"
+      ],
+      "title": "Monitoring System Pressure"
+    },
+    {
+      "anchor": "Restricting-Camera-Switching",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/setPrimaryConstituentDeviceSwitchingBehavior(_:restrictedSwitchingBehaviorConditions:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/primaryConstituentDeviceSwitchingBehavior-swift.property",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/primaryConstituentDeviceRestrictedSwitchingBehaviorConditions-swift.property",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activePrimaryConstituentDeviceSwitchingBehavior",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activePrimaryConstituent",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/PrimaryConstituentDeviceSwitchingBehavior-swift.enum",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions-swift.struct",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/supportedFallbackPrimaryConstituentDevices",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/fallbackPrimaryConstituentDevices"
+      ],
+      "title": "Restricting Camera Switching"
+    },
+    {
+      "anchor": "Configuring-macOS-Features",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/macos-capture-features"
+      ],
+      "title": "Configuring macOS Features"
+    },
+    {
+      "anchor": "Accessing-Camera-Extrinsics",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/extrinsicMatrix(from:to:)"
+      ],
+      "title": "Accessing Camera Extrinsics"
+    },
+    {
+      "anchor": "Determining-Lens-Stabilization",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/LensStabilizationStatus"
+      ],
+      "title": "Determining Lens Stabilization"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.7",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AVCaptureDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfoundation/documentation/AVFoundation"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Finding-and-Monitoring-Devices",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/DiscoverySession",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/default(_:for:position:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/default(for:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/init(uniqueID:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/wasConnectedNotification",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/wasDisconnectedNotification",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/devices(for:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/devices()"
+              ],
+              "title": "Finding and Monitoring Devices"
+            },
+            {
+              "anchor": "Authorizing-Device-Access",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/requestAccess(for:completionHandler:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/authorizationStatus(for:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAuthorizationStatus"
+              ],
+              "title": "Authorizing Device Access"
+            },
+            {
+              "anchor": "Identifying-a-Device",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/uniqueID",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/modelID",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/localizedName",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/manufacturer",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/deviceType-swift.property",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/DeviceType-swift.struct",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/position-swift.property",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/Position-swift.enum"
+              ],
+              "title": "Identifying a Device"
+            },
+            {
+              "anchor": "Accessing-Device-State",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isConnected",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isSuspended",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isInUseByAnotherApplication"
+              ],
+              "title": "Accessing Device State"
+            },
+            {
+              "anchor": "Inspecting-Device-Characteristics",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isVirtualDevice",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/constituentDevices",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/hasMediaType(_:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/transportType",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/supportsSessionPreset(_:)"
+              ],
+              "title": "Inspecting Device Characteristics"
+            },
+            {
+              "anchor": "Monitoring-Device-Rotation",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/RotationCoordinator"
+              ],
+              "title": "Monitoring Device Rotation"
+            },
+            {
+              "anchor": "Configuring-Camera-Hardware",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/lockForConfiguration()",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/unlockForConfiguration()",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isSubjectAreaChangeMonitoringEnabled",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/subjectAreaDidChangeNotification",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-formats",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-focus",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-exposure",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-white-balance",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-lighting",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-color",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-zoom"
+              ],
+              "title": "Configuring Camera Hardware"
+            },
+            {
+              "anchor": "Enabling-Automatic-Frame-Rate",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isAutoVideoFrameRateEnabled"
+              ],
+              "title": "Enabling Automatic Frame Rate"
+            },
+            {
+              "anchor": "Supporting-Spatial-Capture",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/spatialCaptureDiscomfortReasons",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVSpatialCaptureDiscomfortReason"
+              ],
+              "title": "Supporting Spatial Capture"
+            },
+            {
+              "anchor": "Supporting-Continuity-Camera",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/systemPreferredCamera",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/userPreferredCamera",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isContinuityCamera",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/companionDeskViewCamera"
+              ],
+              "title": "Supporting Continuity Camera"
+            },
+            {
+              "anchor": "Supporting-System-Features",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/system-video-effects-and-microphone-modes"
+              ],
+              "title": "Supporting System Features"
+            },
+            {
+              "anchor": "Monitoring-System-Pressure",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/systemPressureState-swift.property",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/SystemPressureState-swift.class",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSessionInterruptionSystemPressureStateKey"
+              ],
+              "title": "Monitoring System Pressure"
+            },
+            {
+              "anchor": "Restricting-Camera-Switching",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/setPrimaryConstituentDeviceSwitchingBehavior(_:restrictedSwitchingBehaviorConditions:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/primaryConstituentDeviceSwitchingBehavior-swift.property",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/primaryConstituentDeviceRestrictedSwitchingBehaviorConditions-swift.property",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activePrimaryConstituentDeviceSwitchingBehavior",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activePrimaryConstituent",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/PrimaryConstituentDeviceSwitchingBehavior-swift.enum",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions-swift.struct",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/supportedFallbackPrimaryConstituentDevices",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/fallbackPrimaryConstituentDevices"
+              ],
+              "title": "Restricting Camera Switching"
+            },
+            {
+              "anchor": "Configuring-macOS-Features",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/macos-capture-features"
+              ],
+              "title": "Configuring macOS Features"
+            },
+            {
+              "anchor": "Accessing-Camera-Extrinsics",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/extrinsicMatrix(from:to:)"
+              ],
+              "title": "Accessing Camera Extrinsics"
+            },
+            {
+              "anchor": "Determining-Lens-Stabilization",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/LensStabilizationStatus"
+              ],
+              "title": "Determining Lens Stabilization"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/centerStageRectOfInterestSupported"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Capture-devices",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/choosing-a-capture-device",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDeviceInput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVContinuityDevice",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVExternalStorageDevice",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVExternalStorageDeviceDiscoverySession"
+              ],
+              "title": "Capture devices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AVCaptureDevice"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1LensStabilizationStatus/title",
+          "value": "AVCaptureLensStabilizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1LensStabilizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureLensStabilizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1LensStabilizationStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureLensStabilizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1activePrimaryConstituentDeviceSwitchingBehavior/title",
+          "value": "activePrimaryConstituentDeviceSwitchingBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1activePrimaryConstituentDeviceSwitchingBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activePrimaryConstituentDeviceSwitchingBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1authorizationStatus(for:)/title",
+          "value": "authorizationStatusForMediaType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1authorizationStatus(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorizationStatusForMediaType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isContinuityCamera/title",
+          "value": "continuityCamera"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isContinuityCamera/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "continuityCamera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSpatialCaptureDiscomfortReason/title",
+          "value": "AVSpatialCaptureDiscomfortReason"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSpatialCaptureDiscomfortReason/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVSpatialCaptureDiscomfortReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSpatialCaptureDiscomfortReason/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVSpatialCaptureDiscomfortReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isSuspended/title",
+          "value": "suspended"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isSuspended/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "suspended"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSessionInterruptionSystemPressureStateKey/title",
+          "value": "AVCaptureSessionInterruptionSystemPressureStateKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSessionInterruptionSystemPressureStateKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSessionInterruptionSystemPressureStateKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1constituentDevices/title",
+          "value": "constituentDevices"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1constituentDevices/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "constituentDevices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1DeviceType-swift.struct/title",
+          "value": "AVCaptureDeviceType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1DeviceType-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1DeviceType-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAuthorizationStatus/title",
+          "value": "AVAuthorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAuthorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAuthorizationStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1unlockForConfiguration()/title",
+          "value": "unlockForConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1unlockForConfiguration()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unlockForConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isAutoVideoFrameRateEnabled/title",
+          "value": "autoVideoFrameRateEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isAutoVideoFrameRateEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autoVideoFrameRateEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/title",
+          "value": "AVCaptureDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1devices()/title",
+          "value": "devices"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1devices()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "devices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1requestAccess(for:completionHandler:)/title",
+          "value": "requestAccessForMediaType:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1requestAccess(for:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestAccessForMediaType:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions/title",
+          "value": "activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1supportsSessionPreset(_:)/title",
+          "value": "supportsAVCaptureSessionPreset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1supportsSessionPreset(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "supportsAVCaptureSessionPreset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession/title",
+          "value": "AVCaptureSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isConnected/title",
+          "value": "connected"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isConnected/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "connected"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1subjectAreaDidChangeNotification/title",
+          "value": "AVCaptureDeviceSubjectAreaDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1subjectAreaDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceSubjectAreaDidChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1primaryConstituentDeviceRestrictedSwitchingBehaviorConditions-swift.property/title",
+          "value": "primaryConstituentDeviceRestrictedSwitchingBehaviorConditions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1primaryConstituentDeviceRestrictedSwitchingBehaviorConditions-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "primaryConstituentDeviceRestrictedSwitchingBehaviorConditions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1userPreferredCamera/title",
+          "value": "userPreferredCamera"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1userPreferredCamera/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userPreferredCamera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDeviceInput/title",
+          "value": "AVCaptureDeviceInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDeviceInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDeviceInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1extrinsicMatrix(from:to:)/title",
+          "value": "extrinsicMatrixFromDevice:toDevice:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1extrinsicMatrix(from:to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "extrinsicMatrixFromDevice:toDevice:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVExternalStorageDevice/title",
+          "value": "AVExternalStorageDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVExternalStorageDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVExternalStorageDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVExternalStorageDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVExternalStorageDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1systemPreferredCamera/title",
+          "value": "systemPreferredCamera"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1systemPreferredCamera/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "systemPreferredCamera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1manufacturer/title",
+          "value": "manufacturer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1manufacturer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "manufacturer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1transportType/title",
+          "value": "transportType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1transportType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transportType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1RotationCoordinator/title",
+          "value": "AVCaptureDeviceRotationCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1RotationCoordinator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceRotationCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1RotationCoordinator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceRotationCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1modelID/title",
+          "value": "modelID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1modelID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "modelID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1wasDisconnectedNotification/title",
+          "value": "AVCaptureDeviceWasDisconnectedNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1wasDisconnectedNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceWasDisconnectedNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1companionDeskViewCamera/title",
+          "value": "companionDeskViewCamera"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1companionDeskViewCamera/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "companionDeskViewCamera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions-swift.struct/title",
+          "value": "AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isVirtualDevice/title",
+          "value": "virtualDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isVirtualDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "virtualDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isInUseByAnotherApplication/title",
+          "value": "inUseByAnotherApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isInUseByAnotherApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inUseByAnotherApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1default(for:)/title",
+          "value": "defaultDeviceWithMediaType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1default(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "defaultDeviceWithMediaType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1hasMediaType(_:)/title",
+          "value": "hasMediaType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1hasMediaType(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "hasMediaType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1Position-swift.enum/title",
+          "value": "AVCaptureDevicePosition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1Position-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevicePosition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1Position-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevicePosition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1DiscoverySession/title",
+          "value": "AVCaptureDeviceDiscoverySession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1DiscoverySession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceDiscoverySession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1DiscoverySession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceDiscoverySession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1deviceType-swift.property/title",
+          "value": "deviceType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1deviceType-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "deviceType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVExternalStorageDeviceDiscoverySession/title",
+          "value": "AVExternalStorageDeviceDiscoverySession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVExternalStorageDeviceDiscoverySession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVExternalStorageDeviceDiscoverySession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVExternalStorageDeviceDiscoverySession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVExternalStorageDeviceDiscoverySession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1lockForConfiguration()/title",
+          "value": "lockForConfiguration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1lockForConfiguration()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "lockForConfiguration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1supportedFallbackPrimaryConstituentDevices/title",
+          "value": "supportedFallbackPrimaryConstituentDevices"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1supportedFallbackPrimaryConstituentDevices/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supportedFallbackPrimaryConstituentDevices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1localizedName/title",
+          "value": "localizedName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1localizedName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "localizedName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1position-swift.property/title",
+          "value": "position"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1position-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "position"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1PrimaryConstituentDeviceSwitchingBehavior-swift.enum/title",
+          "value": "AVCapturePrimaryConstituentDeviceSwitchingBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1PrimaryConstituentDeviceSwitchingBehavior-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePrimaryConstituentDeviceSwitchingBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1PrimaryConstituentDeviceSwitchingBehavior-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePrimaryConstituentDeviceSwitchingBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1SystemPressureState-swift.class/title",
+          "value": "AVCaptureSystemPressureState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1SystemPressureState-swift.class/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSystemPressureState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1SystemPressureState-swift.class/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSystemPressureState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1activePrimaryConstituent/title",
+          "value": "activePrimaryConstituentDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1activePrimaryConstituent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activePrimaryConstituentDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVContinuityDevice/title",
+          "value": "AVContinuityDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVContinuityDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContinuityDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVContinuityDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContinuityDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1fallbackPrimaryConstituentDevices/title",
+          "value": "fallbackPrimaryConstituentDevices"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1fallbackPrimaryConstituentDevices/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fallbackPrimaryConstituentDevices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1devices(for:)/title",
+          "value": "devicesWithMediaType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1devices(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "devicesWithMediaType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1systemPressureState-swift.property/title",
+          "value": "systemPressureState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1systemPressureState-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "systemPressureState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1primaryConstituentDeviceSwitchingBehavior-swift.property/title",
+          "value": "primaryConstituentDeviceSwitchingBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1primaryConstituentDeviceSwitchingBehavior-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "primaryConstituentDeviceSwitchingBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1wasConnectedNotification/title",
+          "value": "AVCaptureDeviceWasConnectedNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1wasConnectedNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceWasConnectedNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isSubjectAreaChangeMonitoringEnabled/title",
+          "value": "subjectAreaChangeMonitoringEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isSubjectAreaChangeMonitoringEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "subjectAreaChangeMonitoringEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1init(uniqueID:)/title",
+          "value": "deviceWithUniqueID:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1init(uniqueID:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "deviceWithUniqueID:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1uniqueID/title",
+          "value": "uniqueID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1uniqueID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "uniqueID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1setPrimaryConstituentDeviceSwitchingBehavior(_:restrictedSwitchingBehaviorConditions:)/title",
+          "value": "setPrimaryConstituentDeviceSwitchingBehavior:restrictedSwitchingBehaviorConditions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1setPrimaryConstituentDeviceSwitchingBehavior(_:restrictedSwitchingBehaviorConditions:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setPrimaryConstituentDeviceSwitchingBehavior:restrictedSwitchingBehaviorConditions:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1default(_:for:position:)/title",
+          "value": "defaultDeviceWithDeviceType:mediaType:position:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1default(_:for:position:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "defaultDeviceWithDeviceType:mediaType:position:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1spatialCaptureDiscomfortReasons/title",
+          "value": "spatialCaptureDiscomfortReasons"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1spatialCaptureDiscomfortReasons/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "spatialCaptureDiscomfortReasons"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/avcapturedevice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/avcapturedevice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

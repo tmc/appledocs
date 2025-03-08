@@ -1,0 +1,982 @@
+{
+  "abstract": [
+    {
+      "text": "Fetch resources with extended attributes and included relationships and relationship views.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-resource-representation-and-relationships"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Music API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Handling Resource Representation and Relationships"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Resources are fetched with a default representation of attributes and relationships. Extend the default representation for a resource type to fetch additional attributes and include relationships and relationship views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If any relationship or relationship view contains too many related resources, use pagination to fetch the next set of objects. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/fetching-resources-by-page",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Extend-Resource-Attributes",
+          "level": 3,
+          "text": "Extend Resource Attributes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The server will fetch a subset of the available attributes for a resource type by default. The attributes not fetched by default are known as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "extended attributes",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". You may specify a set of attribute names using the ",
+              "type": "text"
+            },
+            {
+              "code": "extend",
+              "type": "codeVoice"
+            },
+            {
+              "text": " query parameter to request these additional attributes for a resource type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, when fetching an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Albums",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " resource, you can request that the server add the extended ",
+              "type": "text"
+            },
+            {
+              "code": "artistUrl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute to the album’s other attributes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET https://api.music.apple.com/v1/catalog/us/albums/310730204?extend=artistUrl"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Include-Resource-Relationships",
+          "level": 3,
+          "text": "Include Resource Relationships",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Responses contain some relationships and their related resources by default. Related resources in the response will be either resource objects with their attributes or resource identifiers without attributes. See how to include relationships in a single response below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, these Album relationships have different default behaviors:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "tracks",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " relationship includes the resource objects for the album’s songs and music videos, which are typically essential for working with albums.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "artists",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " relationship only includes resource identifiers for the artist or artists associated with the album and excludes the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "attributes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " member in each resource object. This relationship allows you to link to an artist from an album, although some artist attributes are also attributes of the album.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The response doesn’t include all relationships with a resource by default. For example, the response omits the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "genres",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " relationship, though you can expressly add this relationship to the request. This seldom-used relationship is often superseded by ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "genreNames",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which appear as an attribute of an album.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "include",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to specify a set of relationships to include with the resource in the response. The value of the ",
+              "type": "text"
+            },
+            {
+              "code": "include",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is a comma-separated list of the relationship names to include. For relationships that include resource objects by default, there’s no need to specify them in the list; they’re included along with the specified relationships. For example, when fetching an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Artists",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, you can request the ",
+              "type": "text"
+            },
+            {
+              "code": "playlists",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects using ",
+              "type": "text"
+            },
+            {
+              "code": "include.",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET https://api.music.apple.com/v1/catalog/us/artists/462006?include=playlists"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may request the related resources without their attributes for one or more relationships using the ",
+              "type": "text"
+            },
+            {
+              "code": "relate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. This is a way to quickly retrieve identifiers to related resources to fetch later. Modifying the example above, you can request related playlists resource identifiers for inclusion when fetching an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Artists",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET https://api.music.apple.com/v1/catalog/us/artists/462006?relate=playlists"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Include-Resource-Relationship-Views",
+          "level": 3,
+          "text": "Include Resource Relationship Views",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The response never includes relationship views with a resource by default. Use the ",
+              "type": "text"
+            },
+            {
+              "code": "views",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to specify a set of relationship views to include with the resource in the response. The value of the ",
+              "type": "text"
+            },
+            {
+              "code": "views",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is a comma-separated list of the relationship view names to include. For example, when fetching an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Albums",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, you can request the ",
+              "type": "text"
+            },
+            {
+              "code": "other-versions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " relationship view using ",
+              "type": "text"
+            },
+            {
+              "code": "views.",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET https://api.music.apple.com/v1/catalog/us/albums/310730204?views=other-versions"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can request any combination of resource relationship and relationship views using the ",
+                  "type": "text"
+                },
+                {
+                  "code": "include",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "relate",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "code": "views",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameters.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Scoping-Parameters",
+          "level": 3,
+          "text": "Scoping Parameters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When not classified, the ",
+              "type": "text"
+            },
+            {
+              "code": "extend",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "relate",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "include",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameters apply to the primary resource collection of the response. For example, when fetching one or more artists, applying ",
+              "type": "text"
+            },
+            {
+              "code": "&include=music-videos",
+              "type": "codeVoice"
+            },
+            {
+              "text": " adds the ",
+              "type": "text"
+            },
+            {
+              "code": "music-video",
+              "type": "codeVoice"
+            },
+            {
+              "text": " relationship for the artists in the response’s primary ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " resource collection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "extend",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "include",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "relate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameters can be scoped to specifically target a resource type in the response. This applies to all resources in the response instead of just the primary resources. For example, if you wish to fetch a playlist, and would like to extend the ",
+              "type": "text"
+            },
+            {
+              "code": "artistUrl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute on all ",
+              "type": "text"
+            },
+            {
+              "code": "songs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " resources in the response, you can extend the ",
+              "type": "text"
+            },
+            {
+              "code": "songs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " resource type specifically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "https://api.music.apple.com/v1/catalog/us/playlists/pl.2b0e6e332fdf4b7a91164da3162127b5?extend[songs]=artistUrl"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you wish to fetch an artist, and would like to include the ",
+              "type": "text"
+            },
+            {
+              "code": "featured-albums",
+              "type": "codeVoice"
+            },
+            {
+              "text": " relationship view along with the tracks for those albums, you can scope the ",
+              "type": "text"
+            },
+            {
+              "code": "include",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to the albums resource type specifically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET https://api.music.apple.com/v1/catalog/us/artists/462006?views=featured-albums&include[albums]=tracks"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Fetch-Resource-Relationships-Directly",
+          "level": 3,
+          "text": "Fetch Resource Relationships Directly",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To fetch a relationship exclusively, specify the name of the relationship after the ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " path parameter. For example, fetch just the tracks belonging to an album.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET https://api.music.apple.com/v1/catalog/us/albums/310730204/tracks"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the API fetches a limited number of related resources for the relationship. See the corresponding object model reference for the default fetch limits. To specify the number of objects fetched, use the ",
+              "type": "text"
+            },
+            {
+              "code": "limit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. For example, you can fetch an artist’s first five albums.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET https://api.music.apple.com/v1/catalog/us/artists/462006/albums?limit=5"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Fetch-Resource-Relationship-Views-Directly",
+          "level": 3,
+          "text": "Fetch Resource Relationship Views Directly",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To fetch a relationship view exclusively, you must append the “",
+              "type": "text"
+            },
+            {
+              "code": "/view/",
+              "type": "codeVoice"
+            },
+            {
+              "text": "” followed by name of the view to the ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " path parameter. For example, fetch similar-artists for an identified artist.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET https://api.music.apple.com/v1/catalog/us/artists/462006/view/similar-artists"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When fetching a relationship view directly, you may request the associated attributes using the ",
+              "type": "text"
+            },
+            {
+              "code": "with",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET https://api.music.apple.com/v1/catalog/us/artists/462006/view/similar-artists?with=attributes"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the API fetches a limited number of related resources for the relationship view. See the corresponding object model reference for the default fetch limits. To specify the number of objects fetched, use the ",
+              "type": "text"
+            },
+            {
+              "code": "limit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. For example, you can fetch the first three featured playlists for an artist.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET https://api.music.apple.com/v1/catalog/us/artists/462006/view/featured-playlists?limit=3"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI": {
+      "abstract": [
+        {
+          "text": "Integrate streaming music with catalog and personal content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music API",
+      "type": "topic",
+      "url": "/documentation/applemusicapi"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Albums": {
+      "abstract": [
+        {
+          "text": "A resource object that represents an album.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Albums"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Albums",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Albums"
+        }
+      ],
+      "role": "symbol",
+      "title": "Albums",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/albums"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Artists": {
+      "abstract": [
+        {
+          "text": "A resource object that represents the artist of an album where an artist can be one or more people.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Artists"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Artists",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Artists"
+        }
+      ],
+      "role": "symbol",
+      "title": "Artists",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/artists"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/common-objects": {
+      "abstract": [
+        {
+          "text": "Understand the common JSON objects that framework responses contain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/common-objects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Common Objects",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/common-objects"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/fetching-resources-by-page": {
+      "abstract": [
+        {
+          "text": "Use pagination to fetch the next set of objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/fetching-resources-by-page",
+      "kind": "article",
+      "role": "article",
+      "title": "Fetching Resources by Page",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/fetching-resources-by-page"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/generating-developer-tokens": {
+      "abstract": [
+        {
+          "text": "Generate a developer token needed to make requests to Apple Music API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/generating-developer-tokens",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating Developer Tokens",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/generating-developer-tokens"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses": {
+      "abstract": [
+        {
+          "text": "Write a request and handle responses from the API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Requests and Responses",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/handling-requests-and-responses"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/managing-content-ratings-alternate-versions-and-equivalencies": {
+      "abstract": [
+        {
+          "text": "Handle multiple and alternate versions of content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/managing-content-ratings-alternate-versions-and-equivalencies",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Content Ratings, Alternate Versions, and Equivalencies",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/managing-content-ratings-alternate-versions-and-equivalencies"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/storefronts-and-localization": {
+      "abstract": [
+        {
+          "text": "Pick a region-specific geographic location from which to retrieve catalog information, or retrieve information from the user’s personal library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/storefronts-and-localization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Storefronts and Localization",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/storefronts-and-localization"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit": {
+      "abstract": [
+        {
+          "text": "Authenticate requests for user data using the Music User Token.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+      "kind": "article",
+      "role": "article",
+      "title": "User Authentication for MusicKit",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/user-authentication-for-musickit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/generating-developer-tokens",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/storefronts-and-localization",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/common-objects",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/managing-content-ratings-alternate-versions-and-equivalencies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/fetching-resources-by-page"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemusicapi/handling-resource-representation-and-relationships"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

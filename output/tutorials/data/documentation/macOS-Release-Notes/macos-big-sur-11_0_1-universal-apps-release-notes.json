@@ -1,0 +1,881 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to support Macs with Apple silicon.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-universal-apps-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "macOS Big Sur 11.0.1 Universal Apps Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The macOS 11 Universal Apps beta SDK aids in the creation of Universal Mac apps that run on both Apple silicon and Intel-based Mac computers running macOS Big Sur 11. The SDK comes bundled with Xcode 12.2, available from the Mac App Store. For information on the compatibility requirements for Xcode 12.2, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-12_2-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This page is specific to the Developer Transition Kit. For additional macOS 11 changes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "General",
+          "level": 3,
+          "text": "General",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you need to restore your Developer Transition Kit to macOS Big Sur 11.0.1, you must use another Mac running macOS Big Sur 11.0.1 to perform the restore. (69589918)",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Auto-Unlock",
+          "level": 3,
+          "text": "Auto Unlock",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Auto Unlock is unsupported. (63733266)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Code-Signing",
+          "level": 3,
+          "text": "Code Signing",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "New in macOS 11 on Macs with Apple silicon, and starting in macOS Big Sur 11 beta 6, the operating system enforces that any executable must be signed before it’s allowed to run. There isn’t a specific identity requirement for this signature: a simple ad-hoc signature is sufficient. This new behavior doesn’t change the long-established policy that our users and developers can run arbitrary code on their Macs, and is designed to simplify the execution policies on Macs with Apple silicon and enable the system to better detect code modifications. This new policy doesn’t apply to translated x86 binaries running under Rosetta 2, nor does it apply to macOS 11 running on Intel-based platforms.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To reduce the impact on existing development workflows, starting with Xcode 12 beta 4, the toolchain will now automatically sign your executables whenever you build from Xcode, or use command-line utilities such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clang(1)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ld(1)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Since this signing mechanism generates signatures directly at link time, and doesn’t cover any resource other than the executable, it is expected to be faster than a traditional ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "codesign(1)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " invocation. If you use a custom workflow involving tools that modify a binary after linking (e.g. ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "strip",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "install_name_tool",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") you might need to manually call ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "codesign(1)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as an additional build phase to properly ad-hoc sign your binary. These new signatures are not bound to the specific machine that was used to build the executable, they can be verified on any other system and will be sufficient to comply with the new default code signing requirement on Macs with Apple silicon. However, given that these signatures do not bear any valid identity, binaries signed this way cannot pass through Gatekeeper.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode toolchains have been updated in the latest Xcode beta to automatically apply ad-hoc signatures at link time to support projects that might not already be configured for signing. Install the most current Xcode beta to ensure you have up-to-date tooling support.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Software previously built on your Developer Transition Kit might need to be either re-built with new tools, or re-signed with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "codesign -s - —preserve-metadata=identifier,entitlements,flags,runtime -f <path to mach-O>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", to resolve issues from using earlier releases of the toolchain, or correct executables that have incorrect or missing code signatures. To check the validity of a signature, run ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "codesign -v -vvvv —ignore-resources <path to mach-O>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". If the command indicates “valid on disk (not all contents verified)” and “satisfies its Designated Requirement”, the code is valid under this policy. (51911409)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Device-Management",
+          "level": 3,
+          "text": "Device Management",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Using MDM to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/devicemanagement/clear_the_bypass_code_for_activation_lock",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " isn’t supported on the Developer Transition Kit. (66019394)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Disk-Utility",
+          "level": 3,
+          "text": "Disk Utility",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Formatting an external disk as APFS (encrypted) isn’t currently supported. (63209956)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You might encounter a kernel panic when attempting to create a new APFS container. (67701824)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Displays",
+          "level": 3,
+          "text": "Displays",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "HDR displays might show unexpected graphical artifacts. (64372135)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "FairPlay",
+          "level": 3,
+          "text": "FairPlay",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "FairPlay and FairPlay Streaming support is unavailable, including playback in both native apps and via Rosetta 2. (51825430, 57564513, 63559609, 64439476)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Kernel",
+          "level": 3,
+          "text": "Kernel",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To generate a Non-Maskable Interrupt, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/kernel/generating_a_non-maskable_interrupt",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (64048855)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Printing",
+          "level": 3,
+          "text": "Printing",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You might experience difficulty adding a printer. (64512490)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Open ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/System/Library/CoreServices/",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in Finder and select the AddPrinter app. Choose Get Info from the File menu, then enable the “Open using Rosetta” option. Restart your Mac and try adding the printer again.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Pro-Display-XDR",
+          "level": 3,
+          "text": "Pro Display XDR",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Developer Transition Kit is intended for use primarily with the Apple Display (P3-500 nits) preset on Pro Display XDR, as it doesn’t support any Pro Display XDR reference presets. Select the Apple Display (P3-500 nits) preset using a supported Mac before connecting the Pro Display XDR to the Developer Transition Kit, otherwise you might encounter the following:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the Pro Display XDR is configured to use a HDR preset, a “High Dynamic Range” checkbox  appears in Displays Preferences even though the checkbox has no effect.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the Pro Display XDR is configured to use one of the Reference Modes, the brightness control and the “Automatically adjust brightness” checkbox might appear enabled in Displays Preferences, even though they have no effect while in a Reference Mode. (63837010, 63837824)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Software-Update",
+          "level": 3,
+          "text": "Software Update",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You might receive a Download failed error when attempting to use Software Update. (65198213)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Download the full installer or the restore image instead of using Software Update.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A full installer update is required to update from macOS 11 Big Sur beta 5 to beta 7. Installing via Software Update is supported if your Developer Transition Kit is running beta 3, 4, or 6. (67997566)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In addition to the existing Apple Configurator 2 “restore” (erase) mode, “revive” (update) mode is now supported for Developer Transition Kit restore images. (63168698)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Virtualization",
+          "level": 3,
+          "text": "Virtualization",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Virtualization isn’t supported on the Developer Transition Kit. Support can be tested using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "kern.hv_support sysctl",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "New Hypervisor APIs supporting arm64 virtualization on Macs with Apple silicon are available.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-12_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-12_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 12.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/Xcode-Release-Notes/xcode-12_2-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/generating_a_non-maskable_interrupt": {
+      "abstract": [
+        {
+          "text": "Interrupt the kernel on a target Mac and attach a remote debugger to it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/generating_a_non-maskable_interrupt",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating a Non-Maskable Interrupt",
+      "type": "topic",
+      "url": "/documentation/kernel/generating_a_non-maskable_interrupt"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-ios-ipados-apps-on-mac-release-notes": {
+      "abstract": [
+        {
+          "text": "Considerations for running iPhone and iPad apps on Macs with Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-ios-ipados-apps-on-mac-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Big Sur 11.0.1 iOS & iPadOS Apps on Mac Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-big-sur-11_0_1-ios-ipados-apps-on-mac-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-release-notes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "macOS Big Sur 11.0.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-big-sur-11_0_1-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Big Sur 11.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-big-sur-11_1-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Big Sur 11.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-big-sur-11_2-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Big Sur 11.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-big-sur-11_3-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Big Sur 11.4 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-big-sur-11_4-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_5-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_5-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Big Sur 11.5 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-big-sur-11_5-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the macOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "macOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes"
+    },
+    "https://developer.apple.com/documentation/devicemanagement/clear_the_bypass_code_for_activation_lock": {
+      "identifier": "https://developer.apple.com/documentation/devicemanagement/clear_the_bypass_code_for_activation_lock",
+      "title": "clear the bypass code for Activation Lock",
+      "titleInlineContent": [
+        {
+          "text": "clear the bypass code for Activation Lock",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/devicemanagement/clear_the_bypass_code_for_activation_lock"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "macOS-11",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_5-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_4-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_3-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_2-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_1-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-ios-ipados-apps-on-mac-release-notes"
+      ],
+      "title": "macOS 11"
+    }
+  ]
+}

@@ -1,0 +1,997 @@
+{
+  "abstract": [
+    {
+      "text": "Options for enabling and disabling window interaction behaviors.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowInteractionBehavior"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI25WindowInteractionBehaviorV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "WindowInteractionBehavior"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "WindowInteractionBehavior"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "WindowInteractionBehavior"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WindowInteractionBehavior"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use values of this type in conjunction with the following view and scene",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifiers to adjust the supported functionality for the window:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowDismissBehavior(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowMinimizeBehavior(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowFullScreenBehavior(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowResizeBehavior(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowBackgroundDragBehavior(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, you can create a custom “About” window which only allows for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dismissal:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyApp: App {",
+            "    var body: some Scene {",
+            "        ...",
+            "        Window(\"About MyApp\", id: \"about\") {",
+            "            AboutView()",
+            "                .windowMinimizeBehavior(.disabled)",
+            "                .windowResizeBehavior(.disabled)",
+            "        }",
+            "        .windowResizability(.contentSize)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowBackgroundDragBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the behavior of dragging a window by its background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowBackgroundDragBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25WindowInteractionBehaviorV",
+          "text": "WindowInteractionBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowBackgroundDragBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowBackgroundDragBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowbackgrounddragbehavior(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowManagerRole(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the role for windows derived from ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": " when",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "participating in a managed window context, such as full screen or",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Stage Manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowManagerRole"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17WindowManagerRoleV",
+          "text": "WindowManagerRole"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowManagerRole(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowManagerRole(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowmanagerrole(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowDismissBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the dismiss functionality for the window enclosing ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowDismissBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25WindowInteractionBehaviorV",
+          "text": "WindowInteractionBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowDismissBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowDismissBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/windowdismissbehavior(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowFullScreenBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the full screen functionality for the window enclosing ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowFullScreenBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25WindowInteractionBehaviorV",
+          "text": "WindowInteractionBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowFullScreenBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowFullScreenBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/windowfullscreenbehavior(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowMinimizeBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the minimize functionality for the window enclosing ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowMinimizeBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25WindowInteractionBehaviorV",
+          "text": "WindowInteractionBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowMinimizeBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowMinimizeBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/windowminimizebehavior(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowResizeBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the resize functionality for the window enclosing ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowResizeBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25WindowInteractionBehaviorV",
+          "text": "WindowInteractionBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowResizeBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowResizeBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/windowresizebehavior(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowInteractionBehavior": {
+      "abstract": [
+        {
+          "text": "Options for enabling and disabling window interaction behaviors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WindowInteractionBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowInteractionBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WindowInteractionBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "WindowInteractionBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowinteractionbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowInteractionBehavior/automatic": {
+      "abstract": [
+        {
+          "text": "The automatic behavior. The associated window behavior will be enabled",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "or disabled depending on the configuration of the enclosing ",
+          "type": "text"
+        },
+        {
+          "code": "Scene",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automatic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25WindowInteractionBehaviorV",
+          "text": "WindowInteractionBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowInteractionBehavior/automatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "automatic",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowinteractionbehavior/automatic"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowInteractionBehavior/disabled": {
+      "abstract": [
+        {
+          "text": "The disabled behavior. The associated window interaction behavior will",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "be disabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "disabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25WindowInteractionBehaviorV",
+          "text": "WindowInteractionBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowInteractionBehavior/disabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "disabled",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowinteractionbehavior/disabled"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowInteractionBehavior/enabled": {
+      "abstract": [
+        {
+          "text": "The enabled behavior. The associated window interaction behavior will be",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "enabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25WindowInteractionBehaviorV",
+          "text": "WindowInteractionBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowInteractionBehavior/enabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enabled",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowinteractionbehavior/enabled"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowManagerRole": {
+      "abstract": [
+        {
+          "text": "Options for defining how a scene’s windows behave when used within a managed",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "window context, such as full screen mode and Stage Manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WindowManagerRole"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowManagerRole",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WindowManagerRole"
+        }
+      ],
+      "role": "symbol",
+      "title": "WindowManagerRole",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowmanagerrole"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-window-behavior",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowManagerRole",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowManagerRole(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowDismissBehavior(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowFullScreenBehavior(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowMinimizeBehavior(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowResizeBehavior(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowBackgroundDragBehavior(_:)"
+      ],
+      "title": "Managing window behavior"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Type-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowInteractionBehavior/automatic",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowInteractionBehavior/disabled",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowInteractionBehavior/enabled"
+      ],
+      "title": "Type Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/windowinteractionbehavior"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

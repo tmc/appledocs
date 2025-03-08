@@ -1,0 +1,2919 @@
+{
+  "abstract": [
+    {
+      "text": "Control whether the App Privacy Report attributes network traffic to the app or to the user.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.network/documentation/Network",
+        "doc://com.apple.network/documentation/Network/privacy-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.network/documentation/Network/indicating-the-source-of-network-activity"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Network"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Indicating the source of network activity"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS and iPadOS 15 or later, users can view an App Privacy Report that includes the network domains that apps on the device have recently accessed. The report differentiates between network connections that the user initiates and those that the app initiates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the system attributes all connections — except those that your app makes using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASWebAuthenticationSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " — to the app. However, for network connections that meet certain criteria, you can tell the system to attribute the connection to the user. The API you use to control attribution depends on how you make the network connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn how to examine all the data your app contributes to the privacy report, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/inspecting-app-activity-data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-the-appropriate-attribution",
+          "level": 3,
+          "text": "Determine the appropriate attribution",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All connections, other than those that use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASWebAuthenticationSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", are classified by default as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "app-initiated",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". User-initiated network connections are the exception. Network connections to third-party domains can only be classified as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "user-initiated",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " if they meet all of the following criteria:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User-directed — Network connections to domains that occur only when a user affirmatively chooses to engage with content in your app. For a connection to qualify as user-directed, the user must be provided with a meaningful choice of whether to interact with the content.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Non-primary functionality — The app’s features must be functional without this particular network connection.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t categorize your app’s traffic using the APIs, all network connections are classified as app-initiated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the following connections should retain the app-initiated attribution:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A podcast app that automatically chooses and downloads podcasts based on the user’s interests. While the loaded content isn’t core to the app, the user has no control over it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An app that transmits analytics and other user data for use in improving the app. The access is core to the app’s functionality, and the user has no control over it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A maps app that loads and presents content from a review service — for example, for hotels or restaurants — when the user taps on a location pin. The action is core to the app’s functionality, and the user didn’t explicitly request the information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In contrast, you can attribute these connections to the user:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Links to user-generated content in a social media app, like when a user clicks or taps a news feed link. The user chooses the link, and the particular link isn’t part of the app’s primary functionality.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Messages in an email app. The user creates and configures the email account, and no particular email or email account is central to the app’s functionality.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pages loaded by a web browser. The user chooses the web sites to visit, and no particular web site is specific to the app’s functionality. Note that connections made by the browser that the user doesn’t choose, like sending analytics data or retrieving user configuration information, should retain app attribution.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To reclassify an access as user-initiated, use API at the same layer of the protocol stack that you use to make the connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Attribute-URL-Loading-System-connections",
+          "level": 3,
+          "text": "Attribute URL Loading System connections",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To mark a connection as user-initiated when using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", create an explicit ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and set its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/3767318-attribution",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/attribution/user",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before calling one of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods that takes a request, like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/3767352-data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import Foundation",
+            "",
+            "let url = URL(string: \"https://example.com\")!",
+            "var request = URLRequest(url: url)",
+            "request.attribution = .user",
+            "",
+            "let (data, response) = try await URLSession.shared.data(for: request)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " classes also have a comparable property. Use this kind of parameterized request for other high level link types as well, as the next few sections describe.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Attribute-WebKit-loads",
+          "level": 3,
+          "text": "Attribute WebKit loads",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WebKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " network access that you initiate with a URL request using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView/load(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method honors the attribution parameter that you set on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, just like the previous section describes for a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " access. If you want to set an attribution when you use WebKit to load an HTML string, data, or a file URL, use one of the corresponding load methods that takes a request. For example, you can load an HTML string with attribution using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView/loadSimulatedRequest(_:responseHTML:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, relying on the ",
+              "type": "text"
+            },
+            {
+              "code": "request",
+              "type": "codeVoice"
+            },
+            {
+              "text": " defined in the previous section:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import WebKit",
+            "",
+            "let webView = WKWebView()",
+            "let html = \"<html><body><h1>Hello, world!</h1></body></html>\"",
+            "",
+            "webView.loadSimulatedRequest(request, responseHTML: html)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can load a data version of the same content using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView/loadSimulatedRequest(_:response:responseData:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let data = Data(html.utf8)",
+            "let response = URLResponse(",
+            "    url: url,",
+            "    mimeType: \"text/HTML\",",
+            "    expectedContentLength: data.count,",
+            "    textEncodingName: \"UTF-8\")",
+            "",
+            "webView.loadSimulatedRequest(request, response: response, responseData: data)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To load a file called ",
+              "type": "text"
+            },
+            {
+              "code": "index.html",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from your main bundle’s ",
+              "type": "text"
+            },
+            {
+              "code": "resources",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory with user attribution, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView/loadFileRequest(_:allowingReadAccessTo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let fileURL = Bundle.main.url(",
+            "    forResource: \"index\",",
+            "    withExtension: \"html\",",
+            "    subdirectory: \"resources\")!",
+            "",
+            "var fileRequest = URLRequest(url: fileURL)",
+            "fileRequest.attribution = .user",
+            "",
+            "webView.loadFileRequest(",
+            "    fileRequest,",
+            "    allowingReadAccessTo: fileURL.deletingLastPathComponent())"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These load methods — as opposed to their non-request counterparts like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView/loadHTMLString(_:baseURL:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView/loadFileRequest(_:allowingReadAccessTo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " — also enable the user to browse backward and forward among the corresponding pages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Attribute-LinkPresentation-metadata-fetches",
+          "level": 3,
+          "text": "Attribute LinkPresentation metadata fetches",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To load link presentation metadata with attribution, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/LinkPresentation/LPMetadataProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " fetch method that takes a request. Specifically, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/LinkPresentation/LPMetadataProvider/startFetchingMetadata(for:completionHandler:)-9e6s8",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method — again, relying on the user-attributed ",
+              "type": "text"
+            },
+            {
+              "code": "request",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value that you defined earlier:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import LinkPresentation",
+            "",
+            "let metadataProvider = LPMetadataProvider()",
+            "let metadata = try await metadataProvider.startFetchingMetadata(for: request)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Attribute-Network-framework-connections",
+          "level": 3,
+          "text": "Attribute Network framework connections",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To control attribution when using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/NWParameters/attribution-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/NWParameters",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/NWParameters/Attribution-swift.enum/user",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and use that to create a connection:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import Network",
+            "",
+            "let parameters = NWParameters()",
+            "parameters.attribution = .user",
+            "let endpoint = NWEndpoint.url(url)",
+            "let connection = NWConnection(to: endpoint, using: parameters)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can work with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/nw_parameters_t",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, and set the attribution to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/nw_parameters_attribution_t/user",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a call to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/nw_parameters_set_attribution(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let parameters = nw_parameters_create()",
+            "nw_parameters_set_attribution(parameters, .user)",
+            "let endpoint = nw_endpoint_create_url(\"https://example.com\")",
+            "let connection = nw_connection_create(endpoint, parameters)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Attribute-connections-made-with-sockets",
+          "level": 3,
+          "text": "Attribute connections made with sockets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To control attribution when working with sockets, import the ",
+              "type": "text"
+            },
+            {
+              "code": "ne_socket.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header file, and use the ",
+              "type": "text"
+            },
+            {
+              "code": "ne_socket_set_attribution",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to set the value ",
+              "type": "text"
+            },
+            {
+              "code": "NE_SOCKET_ATTRIBUTION_USER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on a socket:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#include <sys/socket.h>",
+            "#include <networkext/ne_socket.h>",
+            "",
+            "int tcpSocket = socket(PF_INET, SOCK_STREAM, 0);",
+            "if (ne_socket_set_attribution(tcpSocket, NE_SOCKET_ATTRIBUTION_USER) != 0) {",
+            "    // Handle error.",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use custom DNS resolution, also call ",
+              "type": "text"
+            },
+            {
+              "code": "ne_socket_set_domains()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to associate the resolved domain name (as well as any resolved ",
+              "type": "text"
+            },
+            {
+              "code": "CNAME",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") with the socket:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "const char *domains[] = { \"resolved.example.com\" };",
+            "if (ne_socket_set_domains(tcpSocket, domains, 1) != 0) {",
+            "    // Handle error.",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This gives the system an opportunity to evaluate whether the resolved domain has been identified as potentially collecting information across apps and sites. After performing any additional configuration, use the socket to create a connection:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "const struct sockaddr *address = <#Some address#>;",
+            "int connectResult = connect(tcpSocket, address, address->sa_len);"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AuthenticationServices/ASWebAuthenticationSession": {
+      "abstract": [
+        {
+          "text": "A session that an app uses to authenticate a user through a web service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASWebAuthenticationSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASWebAuthenticationSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ASWebAuthenticationSession",
+      "type": "topic",
+      "url": "/documentation/AuthenticationServices/ASWebAuthenticationSession"
+    },
+    "doc://com.apple.documentation/documentation/LinkPresentation/LPMetadataProvider": {
+      "abstract": [
+        {
+          "text": "An object that retrieves metadata for a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LPMetadataProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LinkPresentation/LPMetadataProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LPMetadataProvider",
+      "type": "topic",
+      "url": "/documentation/LinkPresentation/LPMetadataProvider"
+    },
+    "doc://com.apple.documentation/documentation/LinkPresentation/LPMetadataProvider/startFetchingMetadata(for:completionHandler:)-9e6s8": {
+      "abstract": [
+        {
+          "text": "Fetches metadata for the given `NSURLRequest`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startFetchingMetadata"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation10URLRequestV",
+          "text": "URLRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)LPLinkMetadata",
+          "text": "LPLinkMetadata"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LinkPresentation/LPMetadataProvider/startFetchingMetadata(for:completionHandler:)-9e6s8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startFetchingMetadata(for:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/LinkPresentation/LPMetadataProvider/startFetchingMetadata(for:completionHandler:)-9e6s8"
+    },
+    "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController": {
+      "abstract": [
+        {
+          "text": "An object that provides a visible standard interface for browsing the web.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SFSafariViewController",
+      "type": "topic",
+      "url": "/documentation/SafariServices/SFSafariViewController"
+    },
+    "doc://com.apple.documentation/documentation/WebKit": {
+      "abstract": [
+        {
+          "text": "Integrate web content seamlessly into your app, and customize content interactions to meet your app’s needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WebKit",
+      "type": "topic",
+      "url": "/documentation/WebKit"
+    },
+    "doc://com.apple.documentation/documentation/WebKit/WKWebView/load(_:)": {
+      "abstract": [
+        {
+          "text": "Loads the web content that the specified URL request object references and navigates to that content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "load"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation10URLRequestV",
+          "text": "URLRequest"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKNavigation",
+          "text": "WKNavigation"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView/load(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "load(_:)",
+      "type": "topic",
+      "url": "/documentation/WebKit/WKWebView/load(_:)"
+    },
+    "doc://com.apple.documentation/documentation/WebKit/WKWebView/loadFileRequest(_:allowingReadAccessTo:)": {
+      "abstract": [
+        {
+          "text": "Loads the web content from the file the URL request object specifies and navigates to that content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadFileRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation10URLRequestV",
+          "text": "URLRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "allowingReadAccessTo"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "readAccessURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKNavigation",
+          "text": "WKNavigation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView/loadFileRequest(_:allowingReadAccessTo:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadFileRequest(_:allowingReadAccessTo:)",
+      "type": "topic",
+      "url": "/documentation/WebKit/WKWebView/loadFileRequest(_:allowingReadAccessTo:)"
+    },
+    "doc://com.apple.documentation/documentation/WebKit/WKWebView/loadHTMLString(_:baseURL:)": {
+      "abstract": [
+        {
+          "text": "Loads the contents of the specified HTML string and navigates to it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadHTMLString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "baseURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKNavigation",
+          "text": "WKNavigation"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView/loadHTMLString(_:baseURL:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadHTMLString(_:baseURL:)",
+      "type": "topic",
+      "url": "/documentation/WebKit/WKWebView/loadHTMLString(_:baseURL:)"
+    },
+    "doc://com.apple.documentation/documentation/WebKit/WKWebView/loadSimulatedRequest(_:response:responseData:)": {
+      "abstract": [
+        {
+          "text": "Loads the web content from the data you provide as if the data were the response to the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadSimulatedRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation10URLRequestV",
+          "text": "URLRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "response"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSURLResponse",
+          "text": "URLResponse"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "responseData"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKNavigation",
+          "text": "WKNavigation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView/loadSimulatedRequest(_:response:responseData:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadSimulatedRequest(_:response:responseData:)",
+      "type": "topic",
+      "url": "/documentation/WebKit/WKWebView/loadSimulatedRequest(_:response:responseData:)"
+    },
+    "doc://com.apple.documentation/documentation/WebKit/WKWebView/loadSimulatedRequest(_:responseHTML:)": {
+      "abstract": [
+        {
+          "text": "Loads the web content from the HTML you provide as if the HTML were the response to the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadSimulatedRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation10URLRequestV",
+          "text": "URLRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "responseHTML"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKNavigation",
+          "text": "WKNavigation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView/loadSimulatedRequest(_:responseHTML:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadSimulatedRequest(_:responseHTML:)",
+      "type": "topic",
+      "url": "/documentation/WebKit/WKWebView/loadSimulatedRequest(_:responseHTML:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest": {
+      "abstract": [
+        {
+          "text": "A mutable URL load request that bridges to  and you use when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableURLRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableURLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableurlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest": {
+      "abstract": [
+        {
+          "text": "A representation of a URL load request that you use when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURLRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest/attribution/user": {
+      "abstract": [
+        {
+          "text": "The user explicitly directs the app to make a network request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "user"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/attribution/user",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest.Attribution.user",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest/attribution/user"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "abstract": [
+        {
+          "text": "Interact with URLs and communicate with servers using standard Internet protocols. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "article",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest": {
+      "abstract": [
+        {
+          "text": "A URL load request that is independent of protocol or URL scheme.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/3767318-attribution": {
+      "abstract": [
+        {
+          "text": "The entity that initiates the network request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "attribution"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest.Attribution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/3767318-attribution",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attribution",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/3767318-attribution"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/3767352-data": {
+      "abstract": [
+        {
+          "text": "Downloads the contents of a URL based on the specified URL request and delivers the data asynchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest, "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any URLSessionTaskDelegate)?) -> (Data, URLResponse)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/3767352-data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "data(for:delegate:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/3767352-data"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.network/documentation/Network": {
+      "abstract": [
+        {
+          "text": "Create network connections to send and receive data using transport and security protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/network"
+    },
+    "doc://com.apple.network/documentation/Network/NWParameters": {
+      "abstract": [
+        {
+          "text": "An object that stores the protocols to use for connections, options for sending data, and network path constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWParameters",
+      "type": "topic",
+      "url": "/documentation/network/nwparameters"
+    },
+    "doc://com.apple.network/documentation/Network/NWParameters/Attribution-swift.enum/user": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "user"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWParameters/Attribution-swift.enum/user",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NWParameters.Attribution.user",
+      "type": "topic",
+      "url": "/documentation/network/nwparameters/attribution-swift.enum/user"
+    },
+    "doc://com.apple.network/documentation/Network/NWParameters/attribution-swift.property": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attribution"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Network12NWParametersC",
+          "text": "NWParameters"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Network12NWParametersC11AttributionO",
+          "text": "Attribution"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWParameters/attribution-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attribution",
+      "type": "topic",
+      "url": "/documentation/network/nwparameters/attribution-swift.property"
+    },
+    "doc://com.apple.network/documentation/Network/inspecting-app-activity-data": {
+      "abstract": [
+        {
+          "text": "Verify that your app accesses only the user data and network resources that you expect it to access.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/inspecting-app-activity-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting app activity data",
+      "type": "topic",
+      "url": "/documentation/network/inspecting-app-activity-data"
+    },
+    "doc://com.apple.network/documentation/Network/nw_parameters_attribution_t": {
+      "abstract": [
+        {
+          "text": "The entities that can make a network request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_attribution_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_parameters_attribution_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_attribution_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_parameters_attribution_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_parameters_attribution_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_parameters_attribution_t/user": {
+      "abstract": [
+        {
+          "text": "The user explicitly directs the app to make a network request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "user"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_parameters_attribution_t/user",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_attribution_user"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_parameters_attribution_t.user",
+      "type": "topic",
+      "url": "/documentation/network/nw_parameters_attribution_t/user"
+    },
+    "doc://com.apple.network/documentation/Network/nw_parameters_get_attribution(_:)": {
+      "abstract": [
+        {
+          "text": "Gets a flag that indicates whether the network request originates from the developer or the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_get_attribution"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_parameters_t",
+          "text": "nw_parameters_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@nw_parameters_attribution_t",
+          "text": "nw_parameters_attribution_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_parameters_get_attribution(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_get_attribution"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_parameters_get_attribution(_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_parameters_get_attribution(_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_parameters_set_attribution(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets a flag that indicates whether the network request originates from the developer or the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_set_attribution"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_parameters_t",
+          "text": "nw_parameters_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@nw_parameters_attribution_t",
+          "text": "nw_parameters_attribution_t"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_parameters_set_attribution(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_set_attribution"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_parameters_set_attribution(_:_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_parameters_set_attribution(_:_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_parameters_t": {
+      "abstract": [
+        {
+          "text": "An object that stores the protocols to use for connections, options for sending data, and network path constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_parameters_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_parameters_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_parameters_t"
+    },
+    "doc://com.apple.network/documentation/Network/privacy-management": {
+      "abstract": [
+        {
+          "text": "Configure parameters related to user privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/privacy-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Privacy Management",
+      "type": "topic",
+      "url": "/documentation/network/privacy-management"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Traffic-Attribution",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/inspecting-app-activity-data",
+        "doc://com.apple.network/documentation/Network/nw_parameters_set_attribution(_:_:)",
+        "doc://com.apple.network/documentation/Network/nw_parameters_get_attribution(_:)",
+        "doc://com.apple.network/documentation/Network/nw_parameters_attribution_t"
+      ],
+      "title": "Traffic Attribution"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Traffic-Attribution",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/inspecting-app-activity-data",
+                "doc://com.apple.network/documentation/Network/nw_parameters_set_attribution(_:_:)",
+                "doc://com.apple.network/documentation/Network/nw_parameters_get_attribution(_:)",
+                "doc://com.apple.network/documentation/Network/nw_parameters_attribution_t"
+              ],
+              "title": "Traffic Attribution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_get_attribution(_:)/title",
+          "value": "nw_parameters_get_attribution"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_get_attribution(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_parameters_get_attribution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LinkPresentation~1LPMetadataProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LPMetadataProvider"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_set_attribution(_:_:)/title",
+          "value": "nw_parameters_set_attribution"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_set_attribution(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_parameters_set_attribution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKWebView~1loadFileRequest(_:allowingReadAccessTo:)/title",
+          "value": "loadFileRequest:allowingReadAccessToURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKWebView~1loadFileRequest(_:allowingReadAccessTo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)WKNavigation",
+              "text": "WKNavigation"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadFileRequest:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURLRequest",
+              "text": "NSURLRequest"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "request"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "allowingReadAccessToURL:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURL",
+              "text": "NSURL"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "readAccessURL"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKWebView~1loadSimulatedRequest(_:response:responseData:)/title",
+          "value": "loadSimulatedRequest:response:responseData:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKWebView~1loadSimulatedRequest(_:response:responseData:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)WKNavigation",
+              "text": "WKNavigation"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadSimulatedRequest:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURLRequest",
+              "text": "NSURLRequest"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "request"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "response:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURLResponse",
+              "text": "NSURLResponse"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "response"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "responseData:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSData",
+              "text": "NSData"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "data"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsurlrequest/abstract",
+          "value": [
+            {
+              "text": "A URL load request that is independent of protocol or URL scheme.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SafariServices~1SFSafariViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SFSafariViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_attribution_t/title",
+          "value": "nw_parameters_attribution_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_attribution_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_parameters_attribution_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_attribution_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_parameters_attribution_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKWebView~1loadHTMLString(_:baseURL:)/title",
+          "value": "loadHTMLString:baseURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKWebView~1loadHTMLString(_:baseURL:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)WKNavigation",
+              "text": "WKNavigation"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadHTMLString:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "string"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "baseURL:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURL",
+              "text": "NSURL"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "baseURL"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsurlrequest~1attribution~1user/title",
+          "value": "NSURLRequestAttributionUser"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_attribution_t~1user/title",
+          "value": "nw_parameters_attribution_user"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_attribution_t~1user/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_parameters_attribution_user"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKWebView~1load(_:)/title",
+          "value": "loadRequest:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKWebView~1load(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)WKNavigation",
+              "text": "WKNavigation"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadRequest:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURLRequest",
+              "text": "NSURLRequest"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "request"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKWebView~1loadSimulatedRequest(_:responseHTML:)/title",
+          "value": "loadSimulatedRequest:responseHTMLString:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKWebView~1loadSimulatedRequest(_:responseHTML:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)WKNavigation",
+              "text": "WKNavigation"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadSimulatedRequest:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURLRequest",
+              "text": "NSURLRequest"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "request"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "responseHTMLString:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "string"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_t/title",
+          "value": "nw_parameters_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_parameters_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_parameters_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LinkPresentation~1LPMetadataProvider~1startFetchingMetadata(for:completionHandler:)-9e6s8/title",
+          "value": "startFetchingMetadataForRequest:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LinkPresentation~1LPMetadataProvider~1startFetchingMetadata(for:completionHandler:)-9e6s8/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "startFetchingMetadataForRequest:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURLRequest",
+              "text": "NSURLRequest"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "request"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)LPLinkMetadata",
+              "text": "LPLinkMetadata"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "metadata"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsmutableurlrequest/abstract",
+          "value": [
+            {
+              "text": "A mutable URL load request that is independent of protocol or URL scheme.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASWebAuthenticationSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ASWebAuthenticationSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/network/indicating-the-source-of-network-activity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/network/indicating-the-source-of-network-activity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

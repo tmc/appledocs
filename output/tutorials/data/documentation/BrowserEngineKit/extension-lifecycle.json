@@ -1,0 +1,742 @@
+{
+  "abstract": [
+    {
+      "text": "Launch, communicate with, and invalidate browser extensions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-lifecycle"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "BrowserEngineKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Extension lifecycle"
+  },
+  "references": {
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/browserenginekit"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEMediaEnvironment-n91a": {
+      "abstract": [
+        {
+          "text": "An object that represents a media playback environment",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "BEMediaEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEMediaEnvironment-n91a",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BEMediaEnvironment",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bemediaenvironment-n91a"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BENetworkingProcess": {
+      "abstract": [
+        {
+          "text": "An object that represents a running browser networking extension process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "BENetworkingProcess"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BENetworkingProcess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BENetworkingProcess",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/benetworkingprocess"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEProcessCapability-7av05": {
+      "abstract": [
+        {
+          "text": "An object representing capabilities that can be granted to a helper extension process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "BEProcessCapability"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEProcessCapability-7av05",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BEProcessCapability",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/beprocesscapability-7av05"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEProcessCapabilityGrant": {
+      "abstract": [
+        {
+          "text": "An object that represents a granted capability.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "BEProcessCapabilityGrant"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEProcessCapabilityGrant",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BEProcessCapabilityGrant",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/beprocesscapabilitygrant"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BERenderingProcess": {
+      "abstract": [
+        {
+          "text": "An object that represents a running browser rendering extension process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "BERenderingProcess"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BERenderingProcess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BERenderingProcess",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/berenderingprocess"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebContentProcess": {
+      "abstract": [
+        {
+          "text": "An object that represents a running web content extension process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "BEWebContentProcess"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebContentProcess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BEWebContentProcess",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bewebcontentprocess"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment": {
+      "abstract": [
+        {
+          "text": "An object that identifies a media playback or streaming environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MediaEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MediaEnvironment"
+        }
+      ],
+      "role": "symbol",
+      "title": "MediaEnvironment",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/mediaenvironment"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/NetworkingExtension": {
+      "abstract": [
+        {
+          "text": "An interface for configuring a networking helper extension process that will carry out networking operations on behalf of the browser app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NetworkingExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/NetworkingExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NetworkingExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "NetworkingExtension",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/networkingextension"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/NetworkingExtensionConfiguration": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NetworkingExtensionConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/NetworkingExtensionConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NetworkingExtensionConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "NetworkingExtensionConfiguration",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/networkingextensionconfiguration"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/NetworkingProcess": {
+      "abstract": [
+        {
+          "text": "An object that represents a running browser networking extension process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NetworkingProcess"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/NetworkingProcess",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NetworkingProcess"
+        }
+      ],
+      "role": "symbol",
+      "title": "NetworkingProcess",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/networkingprocess"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/ProcessCapability": {
+      "abstract": [
+        {
+          "text": "An enumeration that identifies capabilities that a browser app can grant to its extension processes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProcessCapability"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/ProcessCapability",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProcessCapability"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProcessCapability",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/processcapability"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RenderingExtension": {
+      "abstract": [
+        {
+          "text": "An interface for configuring a rendering helper extension process that will carry out operations requiring rendering access on behalf of the browser app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RenderingExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RenderingExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RenderingExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "RenderingExtension",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/renderingextension"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RenderingExtensionConfiguration": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RenderingExtensionConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RenderingExtensionConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RenderingExtensionConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "RenderingExtensionConfiguration",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/renderingextensionconfiguration"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RenderingProcess": {
+      "abstract": [
+        {
+          "text": "An object that represents a running browser rendering extension process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RenderingProcess"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RenderingProcess",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RenderingProcess"
+        }
+      ],
+      "role": "symbol",
+      "title": "RenderingProcess",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/renderingprocess"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/WebContentExtension": {
+      "abstract": [
+        {
+          "text": "An interface for configuring a web content helper extension process that will carry web page decoding operations on behalf of the browser app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WebContentExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/WebContentExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WebContentExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "WebContentExtension",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/webcontentextension"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/WebContentExtensionConfiguration": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WebContentExtensionConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/WebContentExtensionConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WebContentExtensionConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "WebContentExtensionConfiguration",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/webcontentextensionconfiguration"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/WebContentProcess": {
+      "abstract": [
+        {
+          "text": "An object that represents a running web content extension process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WebContentProcess"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/WebContentProcess",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WebContentProcess"
+        }
+      ],
+      "role": "symbol",
+      "title": "WebContentProcess",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/webcontentprocess"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/creating-browser-extensions-in-xcode": {
+      "abstract": [
+        {
+          "text": "Configure your Xcode project to support your alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/creating-browser-extensions-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating browser extensions in Xcode",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/creating-browser-extensions-in-xcode"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-resources": {
+      "abstract": [
+        {
+          "text": "Control access to files and memory in browser extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-resources",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Extension resources",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/extension-resources"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/managing-the-browser-extension-lifecycle": {
+      "abstract": [
+        {
+          "text": "Coordinate helper processes to efficiently support your browser app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/managing-the-browser-extension-lifecycle",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing the browser extension life cycle",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/managing-the-browser-extension-lifecycle"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions": {
+      "abstract": [
+        {
+          "text": "Build interprocess communication between your host app and extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Using XPC to communicate with browser extensions",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/using-xpc-to-communicate-with-browser-extensions"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Browser-extensions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/creating-browser-extensions-in-xcode",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-resources"
+      ],
+      "title": "Browser extensions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/managing-the-browser-extension-lifecycle",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Browser-extensions",
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/WebContentExtension",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/WebContentExtensionConfiguration",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/NetworkingExtension",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/NetworkingExtensionConfiguration",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RenderingExtension",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RenderingExtensionConfiguration"
+      ],
+      "title": "Browser extensions"
+    },
+    {
+      "anchor": "Host-app-representations",
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/WebContentProcess",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/NetworkingProcess",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RenderingProcess"
+      ],
+      "title": "Host app representations"
+    },
+    {
+      "anchor": "Extension-capabilities",
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/ProcessCapability",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment"
+      ],
+      "title": "Extension capabilities"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/managing-the-browser-extension-lifecycle",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Host-app-representations",
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebContentProcess",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BENetworkingProcess",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BERenderingProcess"
+              ],
+              "title": "Host app representations"
+            },
+            {
+              "anchor": "Extension-capabilities",
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEProcessCapability-7av05",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEMediaEnvironment-n91a",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEProcessCapabilityGrant"
+              ],
+              "title": "Extension capabilities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Browser-extensions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/creating-browser-extensions-in-xcode",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-resources"
+              ],
+              "title": "Browser extensions"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/browserenginekit/extension-lifecycle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/browserenginekit/extension-lifecycle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

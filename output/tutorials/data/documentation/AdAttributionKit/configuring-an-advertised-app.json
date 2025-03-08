@@ -1,0 +1,793 @@
+{
+  "abstract": [
+    {
+      "text": "Prepare an advertised app to participate in ad campaigns.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/configuring-an-advertised-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AdAttributionKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring an advertised app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An advertised app is an app someone installs or reengages with after viewing an ad that an ad network signs. After a conversion event occurs, the system may create postbacks for the advertised app. The advertised app needs to call one of the methods that update the postback’s conversion value at least once to begin the postback’s conversion window. It’s recommended that the app updates the conversion value when the app first launches to begin the conversion window. You can use the following methods to update the conversion value, depending on your use case: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/updateConversionValue(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/updateConversionValue(_:coarseConversionValue:lockPostback:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/updateConversionValue(_:lockPostback:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Developers opt in to get copies of winning postbacks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-your-app-to-receive-copies-of-winning-postbacks",
+          "level": 2,
+          "text": "Configure your app to receive copies of winning postbacks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To opt in to receive copies of winning postbacks for your advertised app, add the ",
+              "type": "text"
+            },
+            {
+              "code": "AttributionCopyEndpoint",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, and configure your server to receive the postbacks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add the key in your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the Project navigator in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button (+) beside a key in the property list editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type the key name ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AdAttributionKit",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and select ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AdAttributionKit - Postback Copy URL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from the pop-up menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose String from the pop-up menu in the Type column.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type a valid URL in the format of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https://example.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " that contains your domain name in place of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "example.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about editing property lists, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/dev3f399a2a6",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system uses the registrable part of the domain name you provide in the key, and ignores any subdomains. Using your domain name, the system generates a well-known path and sends postbacks to that URL. To receive postbacks, your domain needs to have a valid SSL certificate. Configure your server to accept HTTPS POST messages at the following well-known path:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "https://example.com/.well-known/appattribution/report-attribution/"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Replace ",
+              "type": "text"
+            },
+            {
+              "code": "example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with your domain name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about receiving postbacks, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/receiving-ad-attributions-and-postbacks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Opt-in-to-receive-copies-of-winning-reengagement-postbacks",
+          "level": 2,
+          "text": "Opt in to receive copies of winning reengagement postbacks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To receive copies of winning reengagement postbacks, you need to add an additional key to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. Follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the Project navigator in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button (+) beside a key in the property list editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type the key name ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AdAttributionKit",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and select ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AdAttributionKit - Opt in for Reengagement Postback Copies",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from the pop-up menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Boolean from the pop-up menu in the Type column.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set its value to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "YES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit": {
+      "abstract": [
+        {
+          "text": "Present, process, and register postbacks for in-app ads in the App Store and alternative app marketplaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AdAttributionKit",
+      "type": "topic",
+      "url": "/documentation/adattributionkit"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/updateConversionValue(_:)": {
+      "abstract": [
+        {
+          "text": "Updates the conversion value using the given postback update configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateConversionValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16AdAttributionKit14PostbackUpdateV",
+          "text": "PostbackUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/updateConversionValue(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updateConversionValue(_:)",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/postback/updateconversionvalue(_:)"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/updateConversionValue(_:coarseConversionValue:lockPostback:)": {
+      "abstract": [
+        {
+          "text": "Updates the conversion value with the provided fine and coarse conversion values, and optionally locks the postback, reducing the amount of time the system needs to deliver a signal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateConversionValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "coarseConversionValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16AdAttributionKit21CoarseConversionValueO",
+          "text": "CoarseConversionValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lockPostback"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/updateConversionValue(_:coarseConversionValue:lockPostback:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updateConversionValue(_:coarseConversionValue:lockPostback:)",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/postback/updateconversionvalue(_:coarseconversionvalue:lockpostback:)"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/updateConversionValue(_:lockPostback:)": {
+      "abstract": [
+        {
+          "text": "Updates a conversion value with the provided fine and coarse conversion values, and optionally locks the postback, reducing the system time to deliver a signal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateConversionValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lockPostback"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/updateConversionValue(_:lockPostback:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updateConversionValue(_:lockPostback:)",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/postback/updateconversionvalue(_:lockpostback:)"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/configuring-a-publisher-app": {
+      "abstract": [
+        {
+          "text": "Set up a publisher app to participate in ad campaigns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/configuring-a-publisher-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring a publisher app",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/configuring-a-publisher-app"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/receiving-ad-attributions-and-postbacks": {
+      "abstract": [
+        {
+          "text": "Understand timeframes and priorities for ad impressions that result in ad attributions, and how impressions qualify for postbacks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/receiving-ad-attributions-and-postbacks",
+      "kind": "article",
+      "role": "article",
+      "title": "Receiving ad attributions and postbacks",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/receiving-ad-attributions-and-postbacks"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/registering-an-ad-network": {
+      "abstract": [
+        {
+          "text": "Use the AdAttributionKit APIs for your ad campaigns after registering your ad network with Apple.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/registering-an-ad-network",
+      "kind": "article",
+      "role": "article",
+      "title": "Registering an ad network",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/registering-an-ad-network"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev3f399a2a6": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev3f399a2a6",
+      "title": "Edit property lists",
+      "titleInlineContent": [
+        {
+          "text": "Edit property lists",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev3f399a2a6"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Ad-network-registration-and-configuration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/registering-an-ad-network",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/configuring-a-publisher-app"
+      ],
+      "title": "Ad network registration and configuration"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/adattributionkit/configuring-an-advertised-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

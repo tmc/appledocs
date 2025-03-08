@@ -1,0 +1,1808 @@
+{
+  "abstract": [
+    {
+      "text": "Provide tactile feedback when people perform certain actions in your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ApplePencil/documentation/ApplePencil"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ApplePencil/documentation/ApplePencil/playing-haptic-feedback-in-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Playing haptic feedback in your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Haptic feedback provides a tactile response, such as a tap, that draws attention and reinforces both actions and events.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "While many system-provided interface elements (for example, pickers, switches, and sliders) automatically provide haptic feedback, you can add feedback to custom views and controls in your app when it’s suitable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-feedback-intentionally",
+          "level": 3,
+          "text": "Use feedback intentionally",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When providing feedback:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Always use feedback for its intended purpose. Don’t select a haptic because of the way it feels.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The source of the feedback must be clear to the user. For example, the feedback must match a visual change in the user interface, or must be in response to a user action. Feedback should never come as a surprise.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t overuse feedback. Overuse can cause confusion and diminish the feedback’s significance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, read Human Interface Guidelines > ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/playing-haptics",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Choose-the-type-of-feedback",
+          "level": 3,
+          "text": "Choose the type of feedback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftUI and UIKit have different APIs for providing haptic feedback.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Learn more about each style of haptic feedback and choose what makes sense for your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To learn more about different types of feedback in SwiftUI, read ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/SensoryFeedback",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "SwiftUI"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To learn more about different types of feedback in UIKit, read:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/UIKit/UICanvasFeedbackGenerator",
+                              "isActive": true,
+                              "type": "reference"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImpactFeedbackGenerator",
+                              "isActive": true,
+                              "type": "reference"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/UIKit/UISelectionFeedbackGenerator",
+                              "isActive": true,
+                              "type": "reference"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/UIKit/UINotificationFeedbackGenerator",
+                              "isActive": true,
+                              "type": "reference"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ],
+              "title": "UIKit"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Associate-the-feedback-with-a-view",
+          "level": 3,
+          "text": "Associate the feedback with a view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To play haptic feedback in your app, you need to add the feedback to a view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The following SwiftUI code example shows how to associate selection feedback with a view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/sensoryFeedback(_:trigger:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " view modifier to your view.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "trigger",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter, pass a value to monitor for changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "@State private var showAccessory = false",
+                    "",
+                    "ContentView()",
+                    "    .sensoryFeedback(.selection, trigger: showAccessory)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "SwiftUI"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The following UIKit code example shows how to associate impact feedback with a view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImpactFeedbackGenerator",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "view",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter, pass the view to associate your feedback with.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "feedback = UIImpactFeedbackGenerator(view: view)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "UIKit"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Define-when-to-play-feedback",
+          "level": 3,
+          "text": "Define when to play feedback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Haptic feedback occurs in response to something, like an action or event.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You need to define what to trigger feedback in response to.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the feedback APIs in SwiftUI and UIKit doesn’t play haptics directly.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Instead, it informs the system of the event.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system then determines whether to play the haptics based on the device, the app state, the amount of battery power remaining, and other factors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, haptic feedback plays only:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On a device with hardware for haptic feedback",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the app is running in the foreground",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the system Haptics setting is on",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Not all types of haptic feedback play on every type of device.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As a general rule, trust the system to determine whether it should play feedback.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Don’t check the device type or app state to conditionally trigger feedback.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After you decide how you want to use feedback, always trigger it when the appropriate events occur.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system ignores any requests that it can’t fulfill.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Play-feedback-for-selection-events",
+          "level": 3,
+          "text": "Play feedback for selection events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use selection feedback to communicate movement through a series of discrete values. For example, you might trigger selection feedback to indicate that a UI element’s values are changing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The following SwiftUI code example shows how to use a long-press gesture to toggle an accessory view, playing haptic feedback to indicate when the accessory appears or disappears.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "struct MyView: View {",
+                    "    @State private var showAccessory = false",
+                    "",
+                    "    var body: some View {",
+                    "        ContentView()",
+                    "            .sensoryFeedback(.selection, trigger: showAccessory)",
+                    "            .onLongPressGesture {",
+                    "                showAccessory.toggle()",
+                    "            }",
+                    "        ",
+                    "        if showAccessory {",
+                    "            MyAccessoryView()",
+                    "        }",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "SwiftUI"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The following UIKit code example shows how to play selection feedback in response to a long-press gesture.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "var feedback = UISelectionFeedbackGenerator()",
+                    "",
+                    "override func viewDidLoad() {",
+                    "    super.viewDidLoad()",
+                    "    ",
+                    "    // Create a selection feedback object and associate it with the view.",
+                    "    feedback = UISelectionFeedbackGenerator(view: view)",
+                    "    ",
+                    "    // Add a custom long-press gesture to the view.",
+                    "    let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))",
+                    "    longPressGesture.numberOfTouchesRequired = 2",
+                    "    view.addGestureRecognizer(longPressGesture)",
+                    "}",
+                    "",
+                    "@objc",
+                    "private func longPress(_ sender: UILongPressGestureRecognizer) {",
+                    "    if sender.state == .began {",
+                    "        // Play selection feedback to indicate a selection change.",
+                    "        feedback.selectionChanged(at: sender.location(in: view))",
+                    "        ",
+                    "        // Update the UI in response to a selection change.",
+                    "        // ...",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "UIKit"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Play-feedback-for-canvas-events",
+          "level": 3,
+          "text": "Play feedback for canvas events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use canvas feedback to indicate when a drawing event occurs, such as an object snapping to a guide or ruler. When using Apple Pencil Pro with a compatible iPad, this type of feedback can provide a tactile response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The following SwiftUI code example shows how to use a drag gesture to drag a square, playing haptic feedback to indicate when the square aligns with a gridline on the canvas.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "// The translation of the currently active drag gesture.",
+                    "@GestureState private var translation = CGSize.zero",
+                    "",
+                    "// The offset of the square as a result of the drag gesture.",
+                    "@State private var offset = CGSize.zero",
+                    "",
+                    "// A Boolean that indicates if the square currently aligns with a gridline.",
+                    "@State private var isAligned = false",
+                    "",
+                    "var drag: some Gesture {",
+                    "    DragGesture()",
+                    "        .updating($translation) { drag, translation, _ in",
+                    "            translation = drag.translation",
+                    "        }",
+                    "        .onChanged { drag in",
+                    "            isAligned = aligned(at: drag.location)",
+                    "        }",
+                    "        .onEnded { drag in",
+                    "            offset = CGSize(",
+                    "                width: offset.width + drag.translation.width,",
+                    "                height: offset.height + drag.translation.height",
+                    "            )",
+                    "        }",
+                    "}",
+                    "",
+                    "var body: some View {",
+                    "    Rectangle()",
+                    "        .sensoryFeedback(.alignment, trigger: isAligned) { oldValue, newValue in",
+                    "            // Plays feedback only when the square aligns with a gridline, but didn't previously.",
+                    "            !oldValue && newValue",
+                    "        }",
+                    "        .frame(width: 100, height: 100)",
+                    "        .offset(CGSize(",
+                    "            width: offset.width + translation.width,",
+                    "            height: offset.height + translation.height",
+                    "        ))",
+                    "        .gesture(drag)",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "SwiftUI"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The following UIKit code example shows how to use a pan gesture to drag a square, playing haptic feedback to indicate when the square aligns with a gridline on the canvas.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optionally, you can call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIFeedbackGenerator/prepare()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to put the feedback generator in a prepared state, which can reduce latency when triggering feedback.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "var gridlines: [Gridline] = []",
+                    "var feedback = UICanvasFeedbackGenerator()",
+                    "",
+                    "override func viewDidLoad() {",
+                    "    super.viewDidLoad()",
+                    "    configureGridlines()",
+                    "    ",
+                    "    // Create a canvas feedback object and associate it with the view.",
+                    "    feedback = UICanvasFeedbackGenerator(view: view)",
+                    "    ",
+                    "    // Draw a basic square and add it to the view hierarchy.",
+                    "    let center = CGPoint(x: view.center.x - 50, y: view.center.y - 50)",
+                    "    let square = UIView(frame: CGRect(origin: center,",
+                    "                                     size: CGSize(width: 100, height: 100)))",
+                    "    square.backgroundColor = .tintColor",
+                    "    view.addSubview(square)",
+                    "    ",
+                    "    // Add a pan gesture to allow dragging the square.",
+                    "    let panGesture = UIPanGestureRecognizer(target: self, action: #selector(dragSquare(_:)))",
+                    "    square.isUserInteractionEnabled = true",
+                    "    square.addGestureRecognizer(panGesture)",
+                    "}",
+                    "",
+                    "@objc",
+                    "private func dragSquare(_ sender: UIPanGestureRecognizer) {",
+                    "    guard let square = sender.view else { return }",
+                    "    ",
+                    "    if sender.state == .began {",
+                    "        // Prepare the feedback object.",
+                    "        feedback.prepare()",
+                    "    }",
+                    "",
+                    "    // Move the square in response to a pan gesture.",
+                    "    let distance = sender.translation(in: view)",
+                    "    square.center = CGPoint(x: square.center.x + distance.x, y: square.center.y + distance.y)",
+                    "    sender.setTranslation(CGPoint.zero, in: view)",
+                    "    ",
+                    "    // Play canvas feedback if the square aligns with one of the gridlines.",
+                    "    if square.aligned(gridlines: gridlines) {",
+                    "        feedback.alignmentOccurred(at: sender.location(in: view))",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "UIKit"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "anchor": "See-Also",
+                  "level": 2,
+                  "text": "See Also",
+                  "type": "heading"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 1,
+          "type": "row"
+        },
+        {
+          "anchor": "Related-reference-in-SwiftUI",
+          "level": 4,
+          "text": "Related reference in SwiftUI",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/documentation/SwiftUI/View/sensoryFeedback(_:trigger:)",
+            "doc://com.apple.documentation/documentation/SwiftUI/View/sensoryFeedback(trigger:_:)",
+            "doc://com.apple.documentation/documentation/SwiftUI/View/sensoryFeedback(_:trigger:condition:)",
+            "doc://com.apple.documentation/documentation/SwiftUI/SensoryFeedback"
+          ],
+          "style": "list",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-reference-in-UIKit",
+          "level": 4,
+          "text": "Related reference in UIKit",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/documentation/UIKit/UIFeedbackGenerator",
+            "doc://com.apple.documentation/documentation/UIKit/UICanvasFeedbackGenerator",
+            "doc://com.apple.documentation/documentation/UIKit/UIImpactFeedbackGenerator",
+            "doc://com.apple.documentation/documentation/UIKit/UISelectionFeedbackGenerator",
+            "doc://com.apple.documentation/documentation/UIKit/UINotificationFeedbackGenerator"
+          ],
+          "style": "list",
+          "type": "links"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.ApplePencil/documentation/ApplePencil": {
+      "abstract": [
+        {
+          "text": "Enhance your iPad app’s user experience by supporting drawing, handwriting, and other features of Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ApplePencil/documentation/ApplePencil",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple Pencil",
+      "type": "topic",
+      "url": "/documentation/applepencil"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/SensoryFeedback": {
+      "abstract": [
+        {
+          "text": "Represents a type of haptic and/or audio feedback that can be played.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SensoryFeedback"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/SensoryFeedback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SensoryFeedback",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/SensoryFeedback"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/sensoryFeedback(_:trigger:)": {
+      "abstract": [
+        {
+          "text": "Plays the specified `feedback` when the provided `trigger` value changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sensoryFeedback"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "feedback"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15SensoryFeedbackV",
+          "text": "SensoryFeedback"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trigger"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/sensoryFeedback(_:trigger:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sensoryFeedback(_:trigger:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/sensoryFeedback(_:trigger:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/sensoryFeedback(_:trigger:condition:)": {
+      "abstract": [
+        {
+          "text": "Plays the specified `feedback` when the provided `trigger` value changes and the `condition` closure returns `true`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sensoryFeedback"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "feedback"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15SensoryFeedbackV",
+          "text": "SensoryFeedback"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trigger"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "condition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/sensoryFeedback(_:trigger:condition:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sensoryFeedback(_:trigger:condition:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/sensoryFeedback(_:trigger:condition:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/sensoryFeedback(trigger:_:)": {
+      "abstract": [
+        {
+          "text": "Plays feedback when returned from the `feedback` closure after the provided `trigger` value changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sensoryFeedback"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "trigger"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "feedback"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15SensoryFeedbackV",
+          "text": "SensoryFeedback"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/sensoryFeedback(trigger:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sensoryFeedback(trigger:_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/sensoryFeedback(trigger:_:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UICanvasFeedbackGenerator": {
+      "abstract": [
+        {
+          "text": "A concrete feedback generator subclass that creates haptics to indicate events on a drawing canvas.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICanvasFeedbackGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UICanvasFeedbackGenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICanvasFeedbackGenerator",
+      "type": "topic",
+      "url": "/documentation/UIKit/UICanvasFeedbackGenerator"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIFeedbackGenerator": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for all feedback generators.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFeedbackGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIFeedbackGenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIFeedbackGenerator",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIFeedbackGenerator"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIFeedbackGenerator/prepare()": {
+      "abstract": [
+        {
+          "text": "Prepares the generator to trigger feedback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepare"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIFeedbackGenerator/prepare()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepare()",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIFeedbackGenerator/prepare()"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIImpactFeedbackGenerator": {
+      "abstract": [
+        {
+          "text": "A concrete feedback generator subclass that creates haptics to simulate physical impacts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImpactFeedbackGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImpactFeedbackGenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIImpactFeedbackGenerator",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIImpactFeedbackGenerator"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UINotificationFeedbackGenerator": {
+      "abstract": [
+        {
+          "text": "A concrete feedback generator subclass that creates haptics to communicate successes, failures, and warnings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINotificationFeedbackGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UINotificationFeedbackGenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UINotificationFeedbackGenerator",
+      "type": "topic",
+      "url": "/documentation/UIKit/UINotificationFeedbackGenerator"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UISelectionFeedbackGenerator": {
+      "abstract": [
+        {
+          "text": "A concrete feedback generator subclass that creates haptics to indicate a change in selection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISelectionFeedbackGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UISelectionFeedbackGenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UISelectionFeedbackGenerator",
+      "type": "topic",
+      "url": "/documentation/UIKit/UISelectionFeedbackGenerator"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/playing-haptics": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/playing-haptics",
+      "title": "Playing haptics",
+      "titleInlineContent": [
+        {
+          "text": "Playing haptics",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/playing-haptics"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImpactFeedbackGenerator/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIImpactFeedbackGenerator"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIFeedbackGenerator",
+              "text": "UIFeedbackGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIFeedbackGenerator~1prepare()/title",
+          "value": "prepare"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIFeedbackGenerator~1prepare()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "prepare"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIFeedbackGenerator/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIFeedbackGenerator"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UINotificationFeedbackGenerator/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UINotificationFeedbackGenerator"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIFeedbackGenerator",
+              "text": "UIFeedbackGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UISelectionFeedbackGenerator/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UISelectionFeedbackGenerator"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIFeedbackGenerator",
+              "text": "UIFeedbackGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UICanvasFeedbackGenerator/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UICanvasFeedbackGenerator"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIFeedbackGenerator",
+              "text": "UIFeedbackGenerator"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

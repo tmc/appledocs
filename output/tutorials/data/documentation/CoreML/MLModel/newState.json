@@ -1,0 +1,435 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a new state object.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coreml/documentation/CoreML",
+        "doc://com.apple.coreml/documentation/CoreML/MLModel"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.coreml/documentation/CoreML/MLModel/newState"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MLModel(im)newState",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "- "
+      },
+      {
+        "kind": "identifier",
+        "text": "newState"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core ML"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "newState"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "newState"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML/MLState",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MLState",
+              "text": "MLState"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "newState"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core ML framework will allocate the state buffers declared in the model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The allocated state buffers are initialized to zeros. To initialize with different values, use ",
+              "type": "text"
+            },
+            {
+              "code": ".withMultiArray(for:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to get the mutable ",
+              "type": "text"
+            },
+            {
+              "code": "MLMultiArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": "-view to the state buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It returns an empty state when the model is stateless. One can use the empty state with stateful prediction functions such as ",
+              "type": "text"
+            },
+            {
+              "code": "prediction(from:using:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and those predictions will be stateless. This simplifies the call site which may or may not use a stateful model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create state that contains two state buffers: s1 and s2.",
+            "// Then, initialize s1 to 1.0 and s2 to 2.0.",
+            "let state = model.newState()",
+            "state.withMultiArray(for: \"s1\") { stateMultiArray in",
+            "    stateMultiArray[0] = 1.0",
+            "}",
+            "state.withMultiArray(for: \"s2\") { stateMultiArray in",
+            "    stateMultiArray[0] = 2.0",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coreml/documentation/CoreML": {
+      "abstract": [
+        {
+          "text": "Integrate machine learning models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModel": {
+      "abstract": [
+        {
+          "text": "An encapsulation of all the details of your machine learning model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLModel"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLModel"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLModel",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodel"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModel/newState": {
+      "abstract": [
+        {
+          "text": "Creates a new state object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "newState"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModel/newState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newState"
+        }
+      ],
+      "role": "symbol",
+      "title": "newState",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodel/newstate"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLState": {
+      "abstract": [
+        {
+          "text": "Handle to the state buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLState"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLState"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLState",
+      "type": "topic",
+      "url": "/documentation/coreml/mlstate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLState/title",
+          "value": "MLState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModel/title",
+          "value": "MLModel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLModel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLModel"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coreml/mlmodel/newstate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

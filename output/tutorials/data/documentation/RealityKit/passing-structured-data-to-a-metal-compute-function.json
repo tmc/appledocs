@@ -1,0 +1,1413 @@
+{
+  "abstract": [
+    {
+      "text": "Send nontexture data from Swift to your Metal shaders using a shared header file.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/presentation-views-and-attachments",
+        "doc://com.apple.RealityKit/documentation/RealityKit/postprocessing-effects"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/passing-structured-data-to-a-metal-compute-function"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Passing Structured Data to a Metal Compute Function"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/setTexture(_:index:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to pass image data to a Metal compute function. Compute functions can access those",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "textures using ",
+              "type": "text"
+            },
+            {
+              "code": "[[texture(",
+              "type": "codeVoice"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "index",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "code": ")]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The compute command encoder doesn’t, however,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provide an easy way to pass structured data to a compute function. You pass all nonimage",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data as an unstructured buffer using the encoder’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/setBytes(_:length:index:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "methods. It’s possible to use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/setBytes(_:length:index:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to pass data contained in a Swift struct to your compute function, which can receive",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it as a Metal struct as long as the two structs use the same exact memory layout.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "By using a bridging header and defining the struct in C, Metal and Swift can import",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the same header file and use the same struct with the same layout in memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This article shows how to use a struct contained in a single header file",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "that’s imported by both Swift and Metal. See the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "sample code for two different examples of passing data, one that uses a separate",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Swift and Metal struct with the same layout in memory, and another that uses the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "approach from this article.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-a-header-file",
+          "level": 3,
+          "text": "Create a header file",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a new header file in your Xcode project. In the file, define a C struct with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the properties you need to send from Swift to your Metal compute function. The struct",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "should only contain simple datatypes. Don’t pass textures, samplers, or other complex",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "objects in your struct. Also, don’t use any datatype that doesn’t have a consistent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "size in both Metal and Swift and on all devices. An ",
+              "type": "text"
+            },
+            {
+              "code": "int",
+              "type": "codeVoice"
+            },
+            {
+              "text": " datatype, for example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can have different sizes on different devices. Instead, use datatypes like ",
+              "type": "text"
+            },
+            {
+              "code": "int32_t",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "uint16_t",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "float",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which are the same size everywhere.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#include <simd/simd.h>",
+            "",
+            "#ifndef MyArguments_h",
+            "#define MyArguments_h",
+            "struct MyArguments",
+            "{",
+            "    float widgetTolerance",
+            "    uint32_t widgetHeight;",
+            "};",
+            "#endif /* MyArguments_h */"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Import-the-struct-in-a-bridging-header",
+          "level": 3,
+          "text": "Import the struct in a bridging header",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your project already has a bridging header, import the struct header file in it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If your project doesn’t have a bridging header, create a new header file in your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "project to import the struct’s header. By importing using a bridging header, Swift",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sees the C struct as a Swift struct. Because Metal is a superset of C++, which is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a superset of C, Metal interprets the same struct as a Metal struct.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#import \"MyArguments.h\""
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you created a new bridging header, you must tell Xcode that it’s your project’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "bridging header. To do that, go to the build settings for your target and look for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a setting called Objective-C Bridging Header. Set it to the path of the bridging",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "header file you created. Don’t use an absolute path. Instead, create a path relative",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to ",
+              "type": "text"
+            },
+            {
+              "code": "$(PROJECT_DIR)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which points to your project’s main directory. Your entry should",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "look something like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "$(PROJECT_DIR)/$(PROJECT_NAME)/MyProject-Bridging-Header.h"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Encode-the-swift-struct-as-bytes",
+          "level": 3,
+          "text": "Encode the swift struct as bytes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your Swift code, create an instance of the struct to hold the values to send to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your compute function. Then, in the code that dispatches your compute function, call",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/setBytes(_:length:index:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and pass the struct as a data buffer before you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/dispatchThreads(_:threadsPerThreadgroup:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to execute the compute function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var args = MyArguments(widgetTolerance: 0.3493, widgetHeight: 5)",
+            "encoder.setBytes(&args, length: MemoryLayout<MyArguments>.stride, index: 0)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Retrieve-the-buffer-in-the-compute-function",
+          "level": 3,
+          "text": "Retrieve the buffer in the compute function",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Metal file that contains your compute function, include the new header file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "after including ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "metal_stdlib",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#include <metal_stdlib>",
+            "#include \"MyArguments.h\" ",
+            "",
+            "using namespace metal;"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your compute function, retrieve the buffer using ",
+              "type": "text"
+            },
+            {
+              "code": "[[buffer(",
+              "type": "codeVoice"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "index",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "code": ")]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and cast",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it to your struct. Metal allows you to do that as a function parameter, or you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "retrieve it in the body of your function and store it in a variable. Make sure the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "index value you pass to ",
+              "type": "text"
+            },
+            {
+              "code": "[[buffer(",
+              "type": "codeVoice"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "index",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "code": ")]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " matches the index value you used",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/setBytes(_:length:index:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "call. Your compute function can access members of the retrieved struct using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "->",
+              "type": "codeVoice"
+            },
+            {
+              "text": " operator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[[kernel]]",
+            "void myPostProcess(uint2 gid [[thread_position_in_grid]],",
+            "                         texture2d<half, access::read> inColor [[texture(0)]],",
+            "                         texture2d<half, access::write> outColor [[texture(1)]],",
+            "                         constant MyArguments *args [[buffer(0)]])",
+            "{",
+            "    auto widgetHeight = args->widgetHeight;",
+            "    auto widgetTolerance = args->widgetTolerance;",
+            "",
+            "    // Your compute function logic goes here.",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/checking-the-pixel-format-of-a-postprocess-effect-s-output-texture": {
+      "abstract": [
+        {
+          "text": "Make sure your postprocess effect works on all devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/checking-the-pixel-format-of-a-postprocess-effect-s-output-texture",
+      "kind": "article",
+      "role": "article",
+      "title": "Checking the pixel format of a postprocess effect’s output texture",
+      "type": "topic",
+      "url": "/documentation/realitykit/checking-the-pixel-format-of-a-postprocess-effect-s-output-texture"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/implementing-postprocess-effects-using-metal-compute-functions": {
+      "abstract": [
+        {
+          "text": "Create custom shaders to implement postprocess effects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/implementing-postprocess-effects-using-metal-compute-functions",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing postprocess effects using Metal compute functions",
+      "type": "topic",
+      "url": "/documentation/realitykit/implementing-postprocess-effects-using-metal-compute-functions"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/postprocessing-effects": {
+      "abstract": [
+        {
+          "text": "Create special rendering effects for your RealityKit scenes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/postprocessing-effects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Postprocessing effects",
+      "type": "topic",
+      "url": "/documentation/realitykit/postprocessing-effects"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/presentation-views-and-attachments": {
+      "abstract": [
+        {
+          "text": "Bring RealityKit content into your app with views and renderers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/presentation-views-and-attachments",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and attachments",
+      "type": "topic",
+      "url": "/documentation/realitykit/presentation-views-and-attachments"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/using-metal-performance-shaders-to-create-custom-postprocess-effects": {
+      "abstract": [
+        {
+          "text": "Leverage the Metal Performance Shaders framework to create special rendering effects",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for your RealityKit scenes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/using-metal-performance-shaders-to-create-custom-postprocess-effects",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Metal performance shaders to create custom postprocess effects",
+      "type": "topic",
+      "url": "/documentation/realitykit/using-metal-performance-shaders-to-create-custom-postprocess-effects"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An interface for dispatching commands to encode in a compute pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLComputeCommandEncoder"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCommandEncoder",
+          "text": "MTLCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLComputeCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLComputeCommandEncoder"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/dispatchThreads(_:threadsPerThreadgroup:)": {
+      "abstract": [
+        {
+          "text": "Encodes a compute command using an arbitrarily sized grid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatchThreads"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "threadsPerGrid"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "threadsPerThreadgroup"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/dispatchThreads(_:threadsPerThreadgroup:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatchThreads(_:threadsPerThreadgroup:)",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLComputeCommandEncoder/dispatchThreads(_:threadsPerThreadgroup:)"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/setBytes(_:length:index:)": {
+      "abstract": [
+        {
+          "text": "Copies data directly to the GPU to populate an entry in the buffer argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBytes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "bytes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/setBytes(_:length:index:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setBytes(_:length:index:)",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLComputeCommandEncoder/setBytes(_:length:index:)"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/setTexture(_:index:)": {
+      "abstract": [
+        {
+          "text": "Binds a texture to the texture argument table, allowing compute kernels to access its data on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTexture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "texture"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/setTexture(_:index:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setTexture(_:index:)",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLComputeCommandEncoder/setTexture(_:index:)"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing": {
+      "abstract": [
+        {
+          "text": "Implement a variety of postprocessing techniques to alter RealityKit rendering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing Special Rendering Effects with RealityKit Postprocessing",
+      "type": "topic",
+      "url": "/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Metal-effects",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/using-metal-performance-shaders-to-create-custom-postprocess-effects",
+        "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing",
+        "doc://com.apple.RealityKit/documentation/RealityKit/checking-the-pixel-format-of-a-postprocess-effect-s-output-texture",
+        "doc://com.apple.RealityKit/documentation/RealityKit/implementing-postprocess-effects-using-metal-compute-functions"
+      ],
+      "title": "Metal effects"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLComputeCommandEncoder~1setTexture(_:index:)/title",
+          "value": "setTexture:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLComputeCommandEncoder~1setTexture(_:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "setTexture:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)MTLTexture",
+              "text": "id<MTLTexture>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "texture"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "atIndex:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "index"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLComputeCommandEncoder~1setBytes(_:length:index:)/title",
+          "value": "setBytes:length:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLComputeCommandEncoder~1setBytes(_:length:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "setBytes:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "bytes"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "length:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "length"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "atIndex:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "index"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLComputeCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLComputeCommandEncoder"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)MTLCommandEncoder",
+              "text": "MTLCommandEncoder"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLComputeCommandEncoder~1dispatchThreads(_:threadsPerThreadgroup:)/title",
+          "value": "dispatchThreads:threadsPerThreadgroup:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLComputeCommandEncoder~1dispatchThreads(_:threadsPerThreadgroup:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "dispatchThreads:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@MTLSize",
+              "text": "MTLSize"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "threadsPerGrid"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "threadsPerThreadgroup:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@MTLSize",
+              "text": "MTLSize"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "threadsPerThreadgroup"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/passing-structured-data-to-a-metal-compute-function"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

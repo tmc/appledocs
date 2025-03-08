@@ -1,0 +1,638 @@
+{
+  "abstract": [
+    {
+      "text": "Support browsing an electronic program guide (EPG) and changing channels with specialized remote buttons.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.tvservices/documentation/TVServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.tvservices/documentation/TVServices/providing-channel-navigation"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "TV Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Providing Channel Navigation"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some Apple TV-compatible remotes provide buttons specifically for browsing live TV or other multichannel content. Support these buttons in your app so users can access your electronic program guide (EPG) quickly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For EPG design guidance, see the Human Interface Guidelines on ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/tvos/overview/live-viewing-apps/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For guidance on designing remote interactions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/tvos/remote-and-controllers/remote/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-a-Channel-Guide",
+          "level": 3,
+          "text": "Display a Channel Guide",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some remotes provide a dedicated button for displaying TV channel listings or a similar EPG. For example, if you have a function named ",
+              "type": "text"
+            },
+            {
+              "code": "activateChannelGuide()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that displays your EPG, add logic to your app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to call ",
+              "type": "text"
+            },
+            {
+              "code": "activateChannelGuide()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when your app receives a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVUserActivityTypeBrowsingChannelGuide",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " user activity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {",
+            "    if #available(tvOS 14.3, *) {",
+            "        if (userActivity.activityType == TVUserActivityTypeBrowsingChannelGuide) {",
+            "            activateChannelGuide()",
+            "            return true",
+            "        }",
+            "    }",
+            "    // Handle other NSUserActivity types if appropriate.",
+            "    return false",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVUserActivityTypeBrowsingChannelGuide",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "code": "NSUserActivityTypes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to inform the system of your app’s ability to handle this type of user activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user presses the Guide button while your app is active, the system sends the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVUserActivityTypeBrowsingChannelGuide",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to your app. When the user presses the Guide button while an app that doesn’t support the guide activity is active, the system sends the guide activity to the default guide app. The system also sends the user activity to the default guide app when the user long-presses the Guide button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Navigate-an-EPG",
+          "level": 3,
+          "text": "Navigate an EPG",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an EPG that spans multiple screens, help users scan listings quickly, then navigate to the content they want.  Respond to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPress/PressType/pageUp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPress/PressType/pageDown",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " button press by moving to the previous or next screen of content, similar to a large swipe gesture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Change-the-Channel",
+          "level": 3,
+          "text": "Change the Channel",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While your content plays, change the channel when your app receives ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPress/PressType/pageUp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPress/PressType/pageDown",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func viewDidLoad() {    ",
+            "    super.viewDidLoad()",
+            "",
+            "    let pageUpRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.channelUp))",
+            "    pageUpRecognizer.allowedPressTypes = [UIPress.PressType.pageUp.rawValue as NSNumber]",
+            "    view.addGestureRecognizer(pageUpRecognizer)",
+            "",
+            "    let pageDownRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.channelDown))",
+            "    pageDownRecognizer.allowedPressTypes = [UIPress.PressType.pageDown.rawValue as NSNumber]",
+            "    view.addGestureRecognizer(pageDownRecognizer)",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods to manage shared behaviors for your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplicationDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIApplicationDelegate",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIPress/PressType/pageDown": {
+      "abstract": [
+        {
+          "text": "A constant that represents the page down button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pageDown"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPress/PressType/pageDown",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPress.PressType.pageDown",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPress/PressType/pageDown"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIPress/PressType/pageUp": {
+      "abstract": [
+        {
+          "text": "A constant that represents the page up button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pageUp"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPress/PressType/pageUp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPress.PressType.pageUp",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPress/PressType/pageUp"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices": {
+      "abstract": [
+        {
+          "text": "Display content and descriptions, provide channel guides, and support multiple users on Apple TV.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TV Services",
+      "type": "topic",
+      "url": "/documentation/tvservices"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/TVUserActivityTypeBrowsingChannelGuide": {
+      "abstract": [
+        {
+          "text": "An activity for viewing your app’s channel guide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TVUserActivityTypeBrowsingChannelGuide"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVUserActivityTypeBrowsingChannelGuide",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TVUserActivityTypeBrowsingChannelGuide"
+        }
+      ],
+      "role": "symbol",
+      "title": "TVUserActivityTypeBrowsingChannelGuide",
+      "type": "topic",
+      "url": "/documentation/tvservices/tvuseractivitytypebrowsingchannelguide"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/tvos/overview/live-viewing-apps/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/tvos/overview/live-viewing-apps/",
+      "title": "Live-Viewing Apps",
+      "titleInlineContent": [
+        {
+          "text": "Live-Viewing Apps",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/tvos/overview/live-viewing-apps/"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/tvos/remote-and-controllers/remote/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/tvos/remote-and-controllers/remote/",
+      "title": "Remote",
+      "titleInlineContent": [
+        {
+          "text": "Remote",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/tvos/remote-and-controllers/remote/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Channel-guide",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.tvservices/documentation/TVServices/TVUserActivityTypeBrowsingChannelGuide"
+      ],
+      "title": "Channel guide"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Channel-guide",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.tvservices/documentation/TVServices/TVUserActivityTypeBrowsingChannelGuide"
+              ],
+              "title": "Channel guide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIPress~1PressType~1pageDown/title",
+          "value": "UIPressTypePageDown"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIPress~1PressType~1pageDown/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPressTypePageDown"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIApplicationDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserActivityTypeBrowsingChannelGuide/title",
+          "value": "TVUserActivityTypeBrowsingChannelGuide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserActivityTypeBrowsingChannelGuide/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVUserActivityTypeBrowsingChannelGuide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIPress~1PressType~1pageUp/title",
+          "value": "UIPressTypePageUp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIPress~1PressType~1pageUp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPressTypePageUp"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/tvservices/providing-channel-navigation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/tvservices/providing-channel-navigation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

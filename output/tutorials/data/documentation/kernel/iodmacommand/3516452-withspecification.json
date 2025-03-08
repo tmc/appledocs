@@ -1,0 +1,637 @@
+{
+  "abstract": [
+    {
+      "text": "Creates and initializes an DMA command in one operation.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iodmacommand/3516452-withspecification"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3516452,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IODMACommand@F@withSpecification#*Fb(#*$@S@IODMACommand#$@S@IODMACommand@S@Segment64#*v#i)#*1$@S@IODMACommand@S@SegmentOptions#i#*$@S@IOMapper#S5_#S",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "IODMACommand"
+    },
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.15.2",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "clm",
+    "title": "withSpecification"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "OSPtr"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IODMACommand",
+              "text": "IODMACommand"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "identifier",
+              "text": "withSpecification"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "SegmentFunction"
+            },
+            {
+              "kind": "text",
+              "text": " outSegFunc, "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "SegmentOptions"
+            },
+            {
+              "kind": "text",
+              "text": " *segmentOptions, "
+            },
+            {
+              "kind": "keyword",
+              "text": "uint32_t"
+            },
+            {
+              "kind": "text",
+              "text": " mappingOptions, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iomapper",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOMapper",
+              "text": "IOMapper"
+            },
+            {
+              "kind": "text",
+              "text": " *mapper, "
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " *refCon);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "SegmentFunction to call to output one physical segment. A set of nine commonly required segment functions are provided.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "outSegFunc"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A structure with the segment configuration options.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "segmentOptions"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The type of mapping that is required to translate an IOMemoryDescriptor into the desired number of bits. For instance if your hardware only supports 32 bits but must run on machines with > 4G of RAM some mapping will be required. Number of bits will be specified in numAddressBits, see below.This parameter can take 3 values:- kNonCoherent - used for non-coherent hardware transfers, Mapped - Validate that all I/O bus generated addresses are within the number of addressing bits specified, Bypassed indicates that bypassed addressing is required, this is used when the hardware transferes are into coherent memory but no mapping is required. See also prepare() for failure cases.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "mappingOptions"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For mapping types kMapped & kBypassed mapper is used to define the hardware that will perform the mapping, defaults to the system mapper.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "mapper"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A reference constant for the object.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "refCon"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Returns a new memory cursor if successfully created and initialized, 0 otherwise.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Factory function to create and initialize an IODMACommand in one operation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/driverkit/iodmacommand/3645796-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iodmacommand/3645796-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/driverkit/iodmacommand/3645796-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODMACommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547725-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547725-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547725-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547732-clonecommand": {
+      "abstract": [
+        {
+          "text": "Creates a new command based on the specification of the current one.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "cloneCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547732-clonecommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cloneCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547732-clonecommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547747-withrefcon": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withRefCon"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547747-withrefcon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withRefCon",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547747-withrefcon"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547748-initwithspecification": {
+      "abstract": [
+        {
+          "text": "Primary initializer for the DMA command object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547748-initwithspecification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547748-initwithspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547754-initwithrefcon": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithRefCon"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547754-initwithrefcon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithRefCon",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547754-initwithrefcon"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547758-withspecification": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an DMA command in one operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547758-withspecification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547758-withspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811059-clonecommand": {
+      "abstract": [
+        {
+          "text": "Creates a new command based on the specification of the current one.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811059-clonecommand",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "cloneCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811059-clonecommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811207-initwithspecification": {
+      "abstract": [
+        {
+          "text": "Primary initializer for the DMA command object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811207-initwithspecification",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811207-initwithspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811323-weakwithspecification": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an DMA command object in one operation if this version of the operating system supports it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811323-weakwithspecification",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "weakWithSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811323-weakwithspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811330-withspecification": {
+      "abstract": [
+        {
+          "text": "Creates and initializes a DMA command in one operation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811330-withspecification",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811330-withspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/3516450-initwithspecification": {
+      "abstract": [
+        {
+          "text": "Primary initializer for the DMA command object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/3516450-initwithspecification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/3516450-initwithspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/3516452-withspecification": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an DMA command in one operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/3516452-withspecification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/3516452-withspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/mappingoptions": {
+      "abstract": [
+        {
+          "text": "Mapping types to indicate the desired mapper type for translating memory descriptors into I/O DMA Bus addresses.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/mappingoptions",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "MappingOptions",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/mappingoptions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/synchronizeoptions": {
+      "abstract": [
+        {
+          "text": "Options for the synchronize method.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/synchronizeoptions",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "SynchronizeOptions",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/synchronizeoptions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/memory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomapper": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomapper",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMapper",
+      "type": "topic",
+      "url": "/documentation/kernel/iomapper"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811330-withspecification",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547758-withspecification",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811207-initwithspecification",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547748-initwithspecification",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/3516450-initwithspecification",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811323-weakwithspecification",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547747-withrefcon",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547754-initwithrefcon",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811059-clonecommand",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547732-clonecommand",
+        "doc://com.apple.documentation/documentation/driverkit/iodmacommand/3645796-init",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547725-free",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/mappingoptions",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/synchronizeoptions"
+      ],
+      "title": "Creating a DMA Command"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iodmacommand/3516452-withspecification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

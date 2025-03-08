@@ -1,0 +1,556 @@
+{
+  "abstract": [
+    {
+      "text": "Change developer-centric settings that change the behavior of Safari.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safari.developer-tools/documentation/safari-developer-tools"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/developer-settings"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Developer Features"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Changing Developer settings in Safari on macOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once features for web developers are shown, Safari adds a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Developer",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " pane to its settings, from which several behaviors can be controlled.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Automation",
+          "level": 3,
+          "text": "Automation",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Allow Safari to be automatically controlled with ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/webdriver",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Allow remote automation",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Allow text starting with ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "javascript:",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " to be run on the current page when entered in the Smart Search field.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Allow JavaScript from Smart Search field",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Allow JavaScript to be executed on webpages via ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "https://developer.apple.com/library/archive/documentation/LanguagesUtilities/Conceptual/MacAutomationScriptingGuide/index.html",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Allow JavaScript from Apple Events",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Compatibility",
+          "level": 3,
+          "text": "Compatibility",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "On rare occasions, when a particular website does not work correctly in Safari, modifications are made in browser code to get that site to work. This setting disables such modifications to make it possible for the site’s developers to debug their problem. If there are no site-specific hacks, this setting has no effect.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Disable site-specific hacks",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Security",
+          "level": 3,
+          "text": "Security",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Disable security checks that may prohibit local development when loading content with the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "file://",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " protocol.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Disable local file restrictions",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Disable security checks that are performed when loading resources from origins other than the one from which the main page was loaded.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Disable cross-origin restrictions",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Privacy",
+          "level": 3,
+          "text": "Privacy",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Enable additional logging for Intelligent Tracking Prevention. ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "https://webkit.org/blog/8387/itp-debug-mode-in-safari-technology-preview-62/",
+                        "isActive": true,
+                        "type": "reference"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Enable Intelligent Tracking Prevention debug mode",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Enables sending reports after 10 seconds, instead of 24-48 hours, after an event, as well as enabling additional logging in Web Inspector’s console. ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "https://webkit.org/blog/11940/pcm-click-fraud-prevention-and-attribution-sent-to-advertiser/",
+                        "isActive": true,
+                        "type": "reference"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Enable Private Click Measurement debug mode",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Extensions",
+          "level": 3,
+          "text": "Extensions",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Allow enabling unsigned extensions in the ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Extensions",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " settings panel.  ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "https://developer.apple.com/documentation/safariservices/safari_web_extensions/running_your_safari_web_extension#3744467",
+                        "isActive": true,
+                        "type": "reference"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Allow unsigned extensions",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Safari-Developer-Tools-PageImage-card.png": {
+      "alt": "A blue tools logo on a gradient background.",
+      "identifier": "Safari-Developer-Tools-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77bad5e1be417d2e9f3bb2ff2698c1f9/Safari-Developer-Tools-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ae177e98052f40b765cec73979b779b7/Safari-Developer-Tools-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/feature-flag-settings": {
+      "abstract": [
+        {
+          "text": "Test new web platform features before they ship in Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/feature-flag-settings",
+      "kind": "article",
+      "role": "article",
+      "title": "Changing Feature Flag settings in Safari on macOS",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/feature-flag-settings"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/webdriver": {
+      "abstract": [
+        {
+          "text": "Use WebDriver to write robust, comprehensive tests and run them against any browser that has a WebDriver-compliant driver, including Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/webdriver",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "WebDriver",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/webdriver"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/safari-developer-tools": {
+      "abstract": [
+        {
+          "text": "Inspect, debug, and test web content in Safari, in other apps, and on other devices including iPhone and iPad.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/safari-developer-tools",
+      "images": [
+        {
+          "identifier": "Safari-Developer-Tools-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Developer Features",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools"
+    },
+    "https://developer.apple.com/documentation/safariservices/safari_web_extensions/running_your_safari_web_extension#3744467": {
+      "identifier": "https://developer.apple.com/documentation/safariservices/safari_web_extensions/running_your_safari_web_extension#3744467",
+      "title": "Learn more about allowing unsigned extensions.",
+      "titleInlineContent": [
+        {
+          "text": "Learn more about allowing unsigned extensions.",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/safariservices/safari_web_extensions/running_your_safari_web_extension#3744467"
+    },
+    "https://developer.apple.com/library/archive/documentation/LanguagesUtilities/Conceptual/MacAutomationScriptingGuide/index.html": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/LanguagesUtilities/Conceptual/MacAutomationScriptingGuide/index.html",
+      "title": "AppleScript",
+      "titleInlineContent": [
+        {
+          "text": "AppleScript",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/LanguagesUtilities/Conceptual/MacAutomationScriptingGuide/index.html"
+    },
+    "https://webkit.org/blog/11940/pcm-click-fraud-prevention-and-attribution-sent-to-advertiser/": {
+      "identifier": "https://webkit.org/blog/11940/pcm-click-fraud-prevention-and-attribution-sent-to-advertiser/",
+      "title": "Learn more about Private Click Measurement…",
+      "titleInlineContent": [
+        {
+          "text": "Learn more about Private Click Measurement…",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://webkit.org/blog/11940/pcm-click-fraud-prevention-and-attribution-sent-to-advertiser/"
+    },
+    "https://webkit.org/blog/8387/itp-debug-mode-in-safari-technology-preview-62/": {
+      "identifier": "https://webkit.org/blog/8387/itp-debug-mode-in-safari-technology-preview-62/",
+      "title": "Learn more about Intelligent Tracking Prevention debug mode…",
+      "titleInlineContent": [
+        {
+          "text": "Learn more about Intelligent Tracking Prevention debug mode…",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://webkit.org/blog/8387/itp-debug-mode-in-safari-technology-preview-62/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Settings",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/feature-flag-settings"
+      ],
+      "title": "Settings"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safari-developer-tools/developer-settings"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

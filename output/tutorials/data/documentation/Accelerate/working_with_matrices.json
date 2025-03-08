@@ -1,0 +1,1591 @@
+{
+  "abstract": [
+    {
+      "text": "Solve simultaneous equations and transform points in space.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/simd-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/working-with-matrices"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Working with Matrices"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A matrix is a 2D array of values arranged in rows and columns. The simd library provides support for matrices of up to four rows and four columns, containing 16 elements. It uses a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "column major",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " naming convention; for example, a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/simd/simd_double4x2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a matrix containing four columns and two rows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The simd library provides initializers that include options for creating matrices from either rows or columns from the appropriately sized vectors. For example, the following code uses two vectors of four elements to create a 2 x 4 matrix and a 4 x 2 matrix:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let x = simd_double4(x: 10, y: 20, z: 30, w: 40)",
+            "let y = simd_double4(x: 1, y: 2, z: 3, w: 4)",
+            "",
+            "/*",
+            " A matrix of two columns and four rows:",
+            " ",
+            "     10  1",
+            "     20  2",
+            "     30  3",
+            "     40  4",
+            " */",
+            "let a = simd_double2x4([x, y]) // columns",
+            "",
+            "/*",
+            " A matrix of four columns and two rows:",
+            "",
+            "    10  20  30  40",
+            "    1   2   3   4",
+            "*/",
+            "let b = simd_double4x2(rows: [x, y])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following examples show a few common uses of matrices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Solve-Simultaneous-Equations",
+          "level": 3,
+          "text": "Solve Simultaneous Equations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use matrices to solve simultaneous equations of the form ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "AX = B",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "; for example, to find ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "x",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "y",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " in the following equations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " 2x + 4y = 2",
+            "-4x + 2y = 14"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You first create a 2 x 2 matrix containing the left-side coefficients:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let a = simd_double2x2(rows: [",
+            "    simd_double2( 2, 4),",
+            "    simd_double2(-4, 2)",
+            "    ])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then create a vector containing the right-side values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let b = simd_double2(2, 14)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To find the values of ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "x",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "y",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", multiply the inverse of the matrix ",
+              "type": "text"
+            },
+            {
+              "code": "a",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the vector ",
+              "type": "text"
+            },
+            {
+              "code": "b",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let x = simd_mul(a.inverse, b)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The result, ",
+              "type": "text"
+            },
+            {
+              "code": "x",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", is a two-element vector containing ",
+              "type": "text"
+            },
+            {
+              "code": "(x = -2.6, y = 1.8)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Transform-Vectors-with-Matrix-Multiplication",
+          "level": 3,
+          "text": "Transform Vectors with Matrix Multiplication",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Matrices provide a convenient way to transform (translate, rotate, and scale) points in 2D and 3D space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image shows point ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " translated to ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "B",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", rotated to ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "C",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", and scaled to ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "D",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2972223",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By representing 2D coordinates as a three-element vector, you can transform points using matrix multiplication. Typically, the third component of the vector, ",
+              "type": "text"
+            },
+            {
+              "code": "z",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", is set to 1, which indicates that the vector represents a position in space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the vector shown as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " in the preceding illustration is defined as a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/simd/simd_float3",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the following code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let positionVector = simd_float3(x: 3, y: 2, z: 1)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Transform matrices for 2D coordinates are represented by 3 x 3 matrices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Translate",
+          "level": 4,
+          "text": "Translate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A translate matrix takes the following form:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "tx",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ty",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The simd library provides constants for identity matrices (matrices with ones along the diagonal, and zeros elsewhere). The 3 x 3 ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Float",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " identity matrix is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/simd/matrix_identity_float3x3",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following function returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/simd/simd_float3x3",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " matrix using the specified ",
+              "type": "text"
+            },
+            {
+              "code": "tx",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "ty",
+              "type": "codeVoice"
+            },
+            {
+              "text": " translate values by setting the elements in an identity matrix:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func makeTranslationMatrix(tx: Float, ty: Float) -> simd_float3x3 {",
+            "    var matrix = matrix_identity_float3x3",
+            "    ",
+            "    matrix[2, 0] = tx",
+            "    matrix[2, 1] = ty",
+            "    ",
+            "    return matrix",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To apply a translate to the position vector, you multiply the pair together:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let translationMatrix = makeTranslationMatrix(tx: 1, ty: 3)",
+            "let translatedVector = translationMatrix * positionVector"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resulting ",
+              "type": "text"
+            },
+            {
+              "code": "translatedVector",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has the values ",
+              "type": "text"
+            },
+            {
+              "code": "(x: 4.0, y: 5.0, z: 1.0)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", shown as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "B",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " in the illustration above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Rotate",
+          "level": 4,
+          "text": "Rotate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A rotation matrix around the z-axis (that is, on the xy plane) takes the following form:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "cos(angle)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-sin(angle)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "sin(angle)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "cos(angle)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following function returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/simd/simd_float3x3",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " matrix using the specified rotation angle in radians:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func makeRotationMatrix(angle: Float) -> simd_float3x3 {",
+            "    let rows = [",
+            "        simd_float3(cos(angle), -sin(angle), 0),",
+            "        simd_float3(sin(angle), cos(angle), 0),",
+            "        simd_float3(0,          0,          1)",
+            "    ]",
+            "    ",
+            "    return float3x3(rows: rows)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To apply a rotation to the previously translated vector, you multiply the pair together:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let angle = Measurement(value: 30,",
+            "                        unit: UnitAngle.degrees)",
+            "let radians = Float(angle.converted(to: .radians).value)",
+            "",
+            "let rotationMatrix = makeRotationMatrix(angle: radians)",
+            "let rotatedVector = rotationMatrix * translatedVector"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resulting ",
+              "type": "text"
+            },
+            {
+              "code": "rotatedVector",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has the values ",
+              "type": "text"
+            },
+            {
+              "code": "(x: 0.964102, y: 6.33013, z: 1.0)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", shown as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "C",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " in the illustration above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Scale",
+          "level": 4,
+          "text": "Scale",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A scale matrix takes the following form:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "xScale",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "yScale",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following function returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/simd/simd_float3x3",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " matrix using the specified x and y scale values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func makeScaleMatrix(xScale: Float, yScale: Float) -> simd_float3x3 {",
+            "    let rows = [",
+            "        simd_float3(xScale,      0, 0),",
+            "        simd_float3(     0, yScale, 0),",
+            "        simd_float3(     0,      0, 1)",
+            "    ]",
+            "    ",
+            "    return float3x3(rows: rows)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To apply a scale to the previously rotated vector, you multiply the pair together:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let scaleMatrix = makeScaleMatrix(xScale: 8, yScale: 1.25)",
+            "let scaledVector = scaleMatrix * rotatedVector"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resulting ",
+              "type": "text"
+            },
+            {
+              "code": "scaledVector",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has the values ",
+              "type": "text"
+            },
+            {
+              "code": "(x: 7.71282, y: 7.91266, z: 1.0)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", shown as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "D",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " in the illustration above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The three transform matrices can be multiplied together and the product multiplied with the position vector to get the same result:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let transformMatrix = scaleMatrix * rotationMatrix * translationMatrix",
+            "let transformedVector = transformMatrix * positionVector"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/rotating-a-cube-by-transforming-its-vertices": {
+      "abstract": [
+        {
+          "text": "Rotate a cube through a series of keyframes using quaternion interpolation to transition between them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/rotating-a-cube-by-transforming-its-vertices",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rotating a cube by transforming its vertices",
+      "type": "topic",
+      "url": "/documentation/accelerate/rotating-a-cube-by-transforming-its-vertices"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/simd-library": {
+      "abstract": [
+        {
+          "text": "Perform computations on small vectors and matrices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/simd-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "simd",
+      "type": "topic",
+      "url": "/documentation/accelerate/simd-library"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vforce-library": {
+      "abstract": [
+        {
+          "text": "Perform transcendental and trigonometric functions on vectors of any length.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vforce-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vForce",
+      "type": "topic",
+      "url": "/documentation/accelerate/vforce-library"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/working-with-quaternions": {
+      "abstract": [
+        {
+          "text": "Rotate points around the surface of a sphere, and interpolate between them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/working-with-quaternions",
+      "kind": "article",
+      "role": "article",
+      "title": "Working with Quaternions",
+      "type": "topic",
+      "url": "/documentation/accelerate/working-with-quaternions"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/working-with-vectors": {
+      "abstract": [
+        {
+          "text": "Use vectors to calculate geometric values, calculate dot products and cross products, and interpolate between values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/working-with-vectors",
+      "kind": "article",
+      "role": "article",
+      "title": "Working with Vectors",
+      "type": "topic",
+      "url": "/documentation/accelerate/working-with-vectors"
+    },
+    "doc://com.apple.accelerate/documentation/simd/matrix_identity_float3x3": {
+      "abstract": [
+        {
+          "text": "A 3 x 3 identity matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matrix_identity_float3x3"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_float3x3",
+          "text": "simd_float3x3"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/simd/matrix_identity_float3x3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matrix_identity_float3x3"
+        }
+      ],
+      "role": "symbol",
+      "title": "matrix_identity_float3x3",
+      "type": "topic",
+      "url": "/documentation/simd/matrix_identity_float3x3"
+    },
+    "doc://com.apple.accelerate/documentation/simd/simd_double4x2": {
+      "abstract": [
+        {
+          "text": "A matrix of four columns and two rows that contains double-precision values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simd_double4x2"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/simd/simd_double4x2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "simd_double4x2"
+        }
+      ],
+      "role": "symbol",
+      "title": "simd_double4x2",
+      "type": "topic",
+      "url": "/documentation/simd/simd_double4x2"
+    },
+    "doc://com.apple.accelerate/documentation/simd/simd_float3": {
+      "abstract": [
+        {
+          "text": "A vector of three 32-bit floating-point elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simd_float3"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/simd/simd_float3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "simd_float3"
+        }
+      ],
+      "role": "symbol",
+      "title": "simd_float3",
+      "type": "topic",
+      "url": "/documentation/simd/simd_float3"
+    },
+    "doc://com.apple.accelerate/documentation/simd/simd_float3x3": {
+      "abstract": [
+        {
+          "text": "A matrix of three columns and three rows that contains single-precision values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simd_float3x3"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/simd/simd_float3x3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "simd_float3x3"
+        }
+      ],
+      "role": "symbol",
+      "title": "simd_float3x3",
+      "type": "topic",
+      "url": "/documentation/simd/simd_float3x3"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Float": {
+      "abstract": [
+        {
+          "text": "A single-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Float",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Float",
+      "type": "topic",
+      "url": "/documentation/Swift/Float"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-2972223": {
+      "alt": "Graphic showing a 2D point translated, rotated, and scaled. Using the translate matrix, point A at coordinates 3, 2 is translated to point B at coordinates 4, 5. Using the rotate matrix, point B at 4, 5 is rotated to point C at 0.964102, 6.33013. Using the scale matrix, point C at 0.964102, 6.33013 is scaled to point D at 7.71282, 7.91266.",
+      "identifier": "media-2972223",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/026f99fe0cbbe239989c8c6808930881/media-2972223.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0b379dabbfd3bdeb1460adbbc97ccca2/media-2972223@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Vectors-Matrices-and-Quaternions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/working-with-vectors",
+        "doc://com.apple.accelerate/documentation/Accelerate/working-with-quaternions",
+        "doc://com.apple.accelerate/documentation/Accelerate/rotating-a-cube-by-transforming-its-vertices",
+        "doc://com.apple.accelerate/documentation/Accelerate/simd-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/vforce-library"
+      ],
+      "title": "Vectors, Matrices, and Quaternions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_double4x2/title",
+          "value": "simd_double4x2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_double4x2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_double4x2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_double4x2/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_double4x2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_float3/title",
+          "value": "simd_float3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_float3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_float3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_float3/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_float3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_float3x3/title",
+          "value": "simd_float3x3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_float3x3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_float3x3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_float3x3/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_float3x3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1matrix_identity_float3x3/title",
+          "value": "matrix_identity_float3x3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1matrix_identity_float3x3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "matrix_identity_float3x3"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

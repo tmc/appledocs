@@ -1,0 +1,1226 @@
+{
+  "abstract": [
+    {
+      "text": "Implement a web server to register, update, and unregister a pass on a device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.walletpasses/documentation/WalletPasses"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.walletpasses/documentation/WalletPasses/adding-a-web-service-to-update-passes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Wallet Passes"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding a Web Service to Update Passes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Keep your users’ pass updated with the latest information, such as the time of a flight or the location of the next geocached object in a game.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3737830",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an updatable pass by adding the ",
+              "type": "text"
+            },
+            {
+              "code": "webServiceURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "authenticationToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keys to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Pass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The system calls your server endpoints using the base URL you provide. Updating a pass is a cooperative effort between the user’s device, Apple servers, and your server. The high-level steps are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user installs a pass that supports updates on their device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user’s device registers the pass with your server and provides a device identifier and a push token.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pass information changes and your server sends a push notification.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user’s device receives the notification and queries your server for updated passes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user’s device requests each pass that has changed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Server-Configuration",
+          "level": 3,
+          "text": "Server Configuration",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Authenticate each call to your server using a shared secret before responding using one of two shared secrets. Use the value of ",
+              "type": "text"
+            },
+            {
+              "code": "authenticationToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the pass to authenticate the calls that register and unregister a pass, and to send an updated pass. The other shared secret is the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "device library ID",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", a value that’s sent by the device when the device registers a pass. Use this secret to authenticate the call for the serial numbers of updated passes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Your web service must use an HTTPS connection for production, but you can use an HTTP connection during testing.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Store-Information",
+          "level": 4,
+          "text": "Store Information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Updating passes requires storing information for the registered passes and for their associated devices. One way you can store these details is to use a traditional relational database with two entities – devices and passes – and one relationship, registrations. The three tables are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Contains the devices that contain updatable passes. Information for a device includes the device library identifier and the push token that your server uses to send update notifications.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Device table",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Contains the updatable passes. Information for a pass includes the pass type identifier, serial number, and a last-update tag. You define the contents of this tag and use it to track when you last updated a pass. The table can also include other data that you require to generate an updated pass.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Pass table",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Contains the relationships between passes and devices. Use this table to find the devices registered for a pass, and to find all the registered passes for a device. Both relationships are many-to-many.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Registration table",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Register-and-Unregister-a-Pass",
+          "level": 3,
+          "text": "Register and Unregister a Pass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the relationship when a device registers an updatable pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3737836",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Complete these tasks to register a pass:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a new entry for the pass if one doesn’t exist.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a new entry for the device if one doesn’t exist.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Store the mapping between the pass and the device library identifier in the registrations table.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Remove the relationship when a device unregisters an updateable pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3737831",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Complete these tasks to unregister a pass:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Delete the mapping between the pass and the device library identifier from the registrations table.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Delete the device entry from the device table if the registration table has no more entries for that device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Update-a-Pass",
+          "level": 3,
+          "text": "Update a Pass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can update any type of pass and any information in the pass, except for the authentication token and the serial number. An updated pass is a new pass with the same pass type identifier and serial number. For more information on creating a pass, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/creating-the-source-for-a-pass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/building-a-pass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Updating the pass involves several steps for both your server and the client device that contains the pass:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your server sends a push notification to the device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device requests the serial numbers for updated passes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your server sends the serial numbers for the updated passes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device requests a specific pass.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your server sends the updated pass.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Send-a-Push-Notification",
+          "level": 4,
+          "text": "Send a Push Notification",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3737835",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Send a push notification to a registered device to indicate that there’s an updated pass. Do this using the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Find the registered devices for the updated pass.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create and send a push notification for each registered device. The notification uses the same certificate and private key that the creator of the pass used to sign the original, the push token registered by the device, and an empty JSON dictionary for the payload.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Delete a device if the Apple Push Notification service (APNs) returns an error that the push token is invalid.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on sending push notifications, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/sending-notification-requests-to-apns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "A push notification for a pass update works only in the production environment.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Return-the-Updated-Passes",
+          "level": 4,
+          "text": "Return the Updated Passes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A device that receives the push notification requests a list of serial numbers for updated passes, such as a tickets to an event. Your server sends the serial numbers for updated passes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3737834",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Keep track of the update time of a pass to limit the number of serial numbers your server sends when a device requests the updated passes. Set the ",
+              "type": "text"
+            },
+            {
+              "code": "lastUpdated",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/SerialNumbers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the last update time. The device saves the value and uses it to set the ",
+              "type": "text"
+            },
+            {
+              "code": "previousLastUpdated",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command line argument of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Get-the-List-of-Updatable-Passes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To send the list of serial numbers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Find the list of passes registered for the device using the registrations table.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the passes that have been updated since your web service provided the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "updated",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " tag, or all passes when there’s no tag. If there are multiple updates to a pass, select the one with the most recent update.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/SerialNumbers",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " JSON response dictionary and send it with the response. For example:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "{",
+            "    \"serialNumbers\" : [\"001\", \"020\", \"3019\"],",
+            "    \"lastUpdated\" : \"1351981923\"",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The device then sends a request to your server for each updated pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/UserNotifications/sending-notification-requests-to-apns": {
+      "abstract": [
+        {
+          "text": "Transmit your remote notification payload and device token information to Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/sending-notification-requests-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending notification requests to APNs",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/sending-notification-requests-to-apns"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses": {
+      "abstract": [
+        {
+          "text": "Create, distribute, and update passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Wallet Passes",
+      "type": "topic",
+      "url": "/documentation/walletpasses"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/Get-the-List-of-Updatable-Passes": {
+      "abstract": [
+        {
+          "text": "Send the serial numbers for updated passes to a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Get-the-List-of-Updatable-Passes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get the List of Updatable Passes"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get the List of Updatable Passes",
+      "type": "topic",
+      "url": "/documentation/walletpasses/get-the-list-of-updatable-passes"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/Log-a-Message": {
+      "abstract": [
+        {
+          "text": "Record a message on your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Log-a-Message",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Log a Message"
+        }
+      ],
+      "role": "symbol",
+      "title": "Log a Message",
+      "type": "topic",
+      "url": "/documentation/walletpasses/log-a-message"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/LogEntries": {
+      "abstract": [
+        {
+          "text": "An object that contains an array of messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LogEntries"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/LogEntries",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LogEntries"
+        }
+      ],
+      "role": "symbol",
+      "title": "LogEntries",
+      "type": "topic",
+      "url": "/documentation/walletpasses/logentries"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/Pass": {
+      "abstract": [
+        {
+          "text": "An object that represents a pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Pass"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Pass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Pass"
+        }
+      ],
+      "role": "symbol",
+      "title": "Pass",
+      "type": "topic",
+      "url": "/documentation/walletpasses/pass"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/PushToken": {
+      "abstract": [
+        {
+          "text": "An object that contains the push notification token for a registered pass on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PushToken"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/PushToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PushToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "PushToken",
+      "type": "topic",
+      "url": "/documentation/walletpasses/pushtoken"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/Register-a-Pass-for-Update-Notifications": {
+      "abstract": [
+        {
+          "text": "Set up change notifications for a pass on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Register-a-Pass-for-Update-Notifications",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Register a Pass for Update Notifications"
+        }
+      ],
+      "role": "symbol",
+      "title": "Register a Pass for Update Notifications",
+      "type": "topic",
+      "url": "/documentation/walletpasses/register-a-pass-for-update-notifications"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/Send-an-Updated-Pass": {
+      "abstract": [
+        {
+          "text": "Create and sign an updated pass, and send it to the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Send-an-Updated-Pass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Send an Updated Pass"
+        }
+      ],
+      "role": "symbol",
+      "title": "Send an Updated Pass",
+      "type": "topic",
+      "url": "/documentation/walletpasses/send-an-updated-pass"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/SerialNumbers": {
+      "abstract": [
+        {
+          "text": "An object that contains serial numbers for the updatable passes on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SerialNumbers"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/SerialNumbers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SerialNumbers"
+        }
+      ],
+      "role": "symbol",
+      "title": "SerialNumbers",
+      "type": "topic",
+      "url": "/documentation/walletpasses/serialnumbers"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/Unregister-a-Pass-for-Update-Notifications": {
+      "abstract": [
+        {
+          "text": "Stop sending update notifications for a pass on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Unregister-a-Pass-for-Update-Notifications",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Unregister a Pass for Update Notifications"
+        }
+      ],
+      "role": "symbol",
+      "title": "Unregister a Pass for Update Notifications",
+      "type": "topic",
+      "url": "/documentation/walletpasses/unregister-a-pass-for-update-notifications"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/building-a-pass": {
+      "abstract": [
+        {
+          "text": "Build a distributable pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/building-a-pass",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a Pass",
+      "type": "topic",
+      "url": "/documentation/walletpasses/building-a-pass"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/creating-the-source-for-a-pass": {
+      "abstract": [
+        {
+          "text": "Create the directory structure and add source files and images to define a pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/creating-the-source-for-a-pass",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating the Source for a Pass",
+      "type": "topic",
+      "url": "/documentation/walletpasses/creating-the-source-for-a-pass"
+    },
+    "media-3737830": {
+      "alt": "A diagram of the client and server flow for a user to update a pass. The server creates a pass which the user installs. Some time later the pass is updated, the server and client go through the update flow, and at some later time the user views the pass.",
+      "identifier": "media-3737830",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6a8e13984b4c1a7bdf413aed9e357a55/media-3737830@2x.png"
+        }
+      ]
+    },
+    "media-3737831": {
+      "alt": "An illustration that shows the call to unregister a pass. The client sends the server a pass type ID, serial number, authentication token, and device library ID.",
+      "identifier": "media-3737831",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8229d2e7d19a0a591cf90929469c6c89/media-3737831@2x.png"
+        }
+      ]
+    },
+    "media-3737834": {
+      "alt": "An illustration that shows the flow of updating a pass. The client sends the pass type ID, device library ID, and an update tag to request the updated passes. The server then sends the updated serial numbers with an update tag. The client then requests an updated pass sending a pass type ID, serial number and authentication. Finally the server sends the pass data.",
+      "identifier": "media-3737834",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62440eba4f5b58a5b78a014a1a00d490/media-3737834@2x.png"
+        }
+      ]
+    },
+    "media-3737835": {
+      "alt": "An illustration that shows the flow of sending an update notification to a client device. The server sends an Apple Push Notification for a pass type ID using the push token for the device.",
+      "identifier": "media-3737835",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/01e4d374e824d44b0fef1464bae944df/media-3737835@2x.png"
+        }
+      ]
+    },
+    "media-3737836": {
+      "alt": "An illustration that shows the call to register a pass. The client sends the server a pass type ID, serial number, authentication token, device library ID, and a push token.",
+      "identifier": "media-3737836",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/844b5602687e1b03836d55f776daf84e/media-3737836@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Pass-Updates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.walletpasses/documentation/WalletPasses/Register-a-Pass-for-Update-Notifications",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/Get-the-List-of-Updatable-Passes",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/Send-an-Updated-Pass",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/Unregister-a-Pass-for-Update-Notifications",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/Log-a-Message",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/PushToken",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/SerialNumbers",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/LogEntries"
+      ],
+      "title": "Pass Updates"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/walletpasses/adding-a-web-service-to-update-passes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

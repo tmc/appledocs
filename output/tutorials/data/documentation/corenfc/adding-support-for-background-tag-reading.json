@@ -1,0 +1,1582 @@
+{
+  "abstract": [
+    {
+      "text": "Allow users to scan NFC tags without an app using background tag reading.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corenfc/documentation/CoreNFC"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corenfc/documentation/CoreNFC/adding-support-for-background-tag-reading"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core NFC"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding Support for Background Tag Reading"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On iPhones that support background tag reading, the system scans for and reads NFC data without requiring users to scan tags using an app. The system displays a pop-up notification each time it reads a new tag. After the user taps the notification, the system delivers the tag data to the appropriate app. If the iPhone is locked, the system prompts the user to unlock the phone before providing the tag data to the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "iPhone XS and later support background tag reading.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To avoid unintentional tag reading, the system reads tags in the background only when the user’s iPhone is in use. Also, be aware there are times when the display is on and background tag reading is unavailable, such as if:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device has never been unlocked.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Core NFC reader session is in progress.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple Pay Wallet is in use.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The camera is in use.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Airplane mode is enabled.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Process-Scanned-Tags",
+          "level": 3,
+          "text": "Process Scanned Tags",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the device scans an NFC tag while in background tag reading mode, the system inspects the tag’s NDEF message for a URI record by looking for an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCNDEFPayload",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object with the following property values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCNDEFPayload/typeNameFormat",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " equal to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTypeNameFormat/nfcWellKnown",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCNDEFPayload/type",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " equal to “U”",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the NDEF message contains more than one URI record, the system uses the first one. The URI record must contain either a universal link or a supported URL scheme.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-Universal-Links",
+          "level": 4,
+          "text": "Use Universal Links",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For universal links, the system launches (or brings to the foreground) the app associated with the universal link after the user taps the notification. The system sends the NDEF message to the app as an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. If there are no installed apps associated with the universal link, the system opens the link in Safari.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-URL-Schemes",
+          "level": 4,
+          "text": "Use URL Schemes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system processes NDEF payloads containing a URI for a URL scheme in the same way as universal links. The system displays a notification after reading the tag. When the user taps the notification, the system launches the app that supports the URL scheme.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Background tag reading supports the following URL schemes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "URL Scheme",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Example",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Website URL (HTTP/HTTPS)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "https://www.example.com",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Email",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "mailto:user@example.com",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SMS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "sms:+14085551212",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Telephone",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "tel:+14085551212",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "FaceTime",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "facetime://user@example.com",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "FaceTime Audio",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "facetime-audio://user@example.com",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Maps",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "http://maps.apple.com/?address=Apple%20Park,Cupertino,California",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "HomeKit Accessory Setup",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "X-HM://12345",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on URL schemes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Background tag reading doesn’t support custom URL schemes. Use universal links instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-Your-App",
+          "level": 3,
+          "text": "Configure Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add support for background tag reading to your app by turning on ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Associated Domains",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " under the project’s Capabilities tab. This step adds the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to your project’s entitlement file and to the app ID. Next, enter the domain for each universal link supported by your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3225639",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-Tag-Delivery",
+          "level": 3,
+          "text": "Handle Tag Delivery",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To handle the NDEF message read from the tag, implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:continue:restorationHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method in your app delegate. The system calls this method to deliver the tag data to your app in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. The user activity has an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/1409611-activitytype",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivitytypebrowsingweb",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and the tag data is available in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/2968463-ndefmessagepayload",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For user activities not generated by background tag reading, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/2968463-ndefmessagepayload",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns a message that contains only one ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCNDEFPayload",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " record. That record has a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCNDEFPayload/typeNameFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTypeNameFormat/empty",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1. Process data from a tag read in the background",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func application(_ application: UIApplication,",
+            "                 continue userActivity: NSUserActivity,",
+            "                 restorationHandler: @escaping ([Any]?) -> Void) -> Bool {",
+            "",
+            "    guard userActivity.activityType == NSUserActivityTypeBrowsingWeb else {",
+            "        return false",
+            "    }",
+            "",
+            "    // Confirm that the NSUserActivity object contains a valid NDEF message.",
+            "    let ndefMessage = userActivity.ndefMessagePayload",
+            "    guard ndefMessage.records.count > 0,",
+            "        ndefMessage.records[0].typeNameFormat != .empty else {",
+            "            return false",
+            "    }",
+            "",
+            "    // Send the message to `MessagesTableViewController` for processing.",
+            "    guard let navigationController = window?.rootViewController as? UINavigationController else {",
+            "        return false",
+            "    }",
+            "",
+            "    navigationController.popToRootViewController(animated: true)",
+            "    let messageTableViewController = navigationController.topViewController as? MessagesTableViewController",
+            "    messageTableViewController?.addMessage(fromUserActivity: ndefMessage)",
+            "",
+            "    return true",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Not all devices support background tag reading, so be sure to provide the user the option to read tags directly from your app. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/building-an-nfc-tag-reader-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corenfc/documentation/CoreNFC": {
+      "abstract": [
+        {
+          "text": "Detect NFC tags, read messages that contain NDEF data, and save data to writable tags.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core NFC",
+      "type": "topic",
+      "url": "/documentation/corenfc"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCNDEFPayload": {
+      "abstract": [
+        {
+          "text": "A payload record in an NFC NDEF message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NFCNDEFPayload"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCNDEFPayload",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NFCNDEFPayload"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCNDEFPayload",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfcndefpayload"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCNDEFPayload/type": {
+      "abstract": [
+        {
+          "text": "The type of the payload, as defined by the NDEF specification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCNDEFPayload/type",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "type"
+        }
+      ],
+      "role": "symbol",
+      "title": "type",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfcndefpayload/type"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCNDEFPayload/typeNameFormat": {
+      "abstract": [
+        {
+          "text": "The Type Name Format field of the payload, as defined by the NDEF specification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeNameFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NFCTypeNameFormat",
+          "text": "NFCTypeNameFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCNDEFPayload/typeNameFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "typeNameFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "typeNameFormat",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfcndefpayload/typenameformat"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCTypeNameFormat/empty": {
+      "abstract": [
+        {
+          "text": "A type indicating that the payload contains no data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "empty"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTypeNameFormat/empty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NFCTypeNameFormatEmpty"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCTypeNameFormat.empty",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfctypenameformat/empty"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCTypeNameFormat/nfcWellKnown": {
+      "abstract": [
+        {
+          "text": "A type indicating that the payload contains well-known NFC record type data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nfcWellKnown"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTypeNameFormat/nfcWellKnown",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NFCTypeNameFormatNFCWellKnown"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCTypeNameFormat.nfcWellKnown",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfctypenameformat/nfcwellknown"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/building-an-nfc-tag-reader-app": {
+      "abstract": [
+        {
+          "text": "Read NFC tags with NDEF messages in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/building-an-nfc-tag-reader-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building an NFC Tag-Reader App",
+      "type": "topic",
+      "url": "/documentation/corenfc/building-an-nfc-tag-reader-app"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains": {
+      "abstract": [
+        {
+          "text": "The associated domains for specific services, such as shared web credentials, universal links, and App Clips.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Associated Domains Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NFCReaderUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the device’s NFC hardware.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NFCReaderUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NFCReaderUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NFCReaderUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:continue:restorationHandler:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the data for continuing an activity is available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "continue"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "userActivity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserActivity",
+          "text": "NSUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "restorationHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ([any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIUserActivityRestoring",
+          "text": "UIUserActivityRestoring"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:continue:restorationHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:continue:restorationHandler:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/application(_:continue:restorationHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity": {
+      "abstract": [
+        {
+          "text": "A representation of the state of your app at a moment in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity/1409611-activitytype": {
+      "abstract": [
+        {
+          "text": "The user activity object’s activity type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "activityType"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/1409611-activitytype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "activityType",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity/1409611-activitytype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity/2968463-ndefmessagepayload": {
+      "abstract": [
+        {
+          "text": "The NDEF message read by the system in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "ndefMessagePayload"
+        },
+        {
+          "kind": "text",
+          "text": ": NFCNDEFMessage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/2968463-ndefmessagepayload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ndefMessagePayload",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity/2968463-ndefmessagepayload"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivitytypebrowsingweb": {
+      "abstract": [
+        {
+          "text": "An activity that continues from Handoff or a universal link.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityTypeBrowsingWeb"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivitytypebrowsingweb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivityTypeBrowsingWeb",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivitytypebrowsingweb"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899": {
+      "identifier": "https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899",
+      "title": "Apple URL Scheme Reference",
+      "titleInlineContent": [
+        {
+          "text": "Apple URL Scheme Reference",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899"
+    },
+    "media-3225639": {
+      "alt": "A screenshot of Xcode highlighting the Associated Domain capabilities setting.",
+      "identifier": "media-3225639",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/adb2c84b456af9b774dc0de822a8591d/media-3225639@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/008a62b8e62417721e359567b1bb0510/media-3225639~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corenfc/documentation/CoreNFC/building-an-nfc-tag-reader-app",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NFCReaderUsageDescription"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corenfc/documentation/CoreNFC/building-an-nfc-tag-reader-app",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NFCReaderUsageDescription"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCNDEFPayload/title",
+          "value": "NFCNDEFPayload"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCNDEFPayload/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCNDEFPayload"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCNDEFPayload/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCNDEFPayload"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCTypeNameFormat~1empty/title",
+          "value": "NFCTypeNameFormatEmpty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCTypeNameFormat~1empty/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCTypeNameFormatEmpty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:continue:restorationHandler:)/title",
+          "value": "application:continueUserActivity:restorationHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:continue:restorationHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "continueUserActivity:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSUserActivity",
+              "text": "NSUserActivity"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "userActivity"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "restorationHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<id<UIUserActivityRestoring>>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "restorableObjects"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "restorationHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCNDEFPayload~1typeNameFormat/title",
+          "value": "typeNameFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCNDEFPayload~1typeNameFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "typeNameFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCNDEFPayload~1type/title",
+          "value": "type"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCNDEFPayload~1type/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "type"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCTypeNameFormat~1nfcWellKnown/title",
+          "value": "NFCTypeNameFormatNFCWellKnown"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCTypeNameFormat~1nfcWellKnown/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCTypeNameFormatNFCWellKnown"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corenfc/adding-support-for-background-tag-reading"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corenfc/adding-support-for-background-tag-reading"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1650 @@
+{
+  "abstract": [
+    {
+      "text": "The order’s details, including information about the products or services rendered, customer service, and fulfillment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.walletorders/documentation/WalletOrders"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.walletorders/documentation/WalletOrders/Order"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:WalletOrders:Order",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "Order"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Wallet Orders"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Order"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "Order"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: iOS",
+            "Unsupported OS: macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "Order"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The date and time when the customer created the order, in RFC 3339 format.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "createdAt",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "date-time"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "date-time"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The merchant for this order.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "merchant",
+          "required": true,
+          "type": [
+            {
+              "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Merchant",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:WalletOrders:Merchant",
+              "text": "Merchant"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A unique order identifier scoped to your order type identifier. In combination with the order type identifier, this uniquely identifies an order within the system and isn’t displayed to the user.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "orderIdentifier",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A URL where the customer can manage the order.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "orderManagementURL",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "uri"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "uri"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "ecommerce"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The type of order this bundle represents. Currently the only supported value is ",
+                  "type": "text"
+                },
+                {
+                  "code": "ecommerce",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "orderType",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An identifier for the order type associated with the order. The value must correspond with your signing certificate and isn’t displayed to the user.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "orderTypeIdentifier",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "open",
+                "completed",
+                "cancelled"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A high-level status of the order, used for display purposes. The system considers orders with status ",
+                  "type": "text"
+                },
+                {
+                  "code": "completed",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "cancelled",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " closed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "status",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The version of the schema used for the order. The current version is ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "schemaVersion",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "number"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "number"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The date and time when the order was last updated, in RFC 3339 format. This should equal the ",
+                  "type": "text"
+                },
+                {
+                  "code": "createdAt",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " time, if the order hasn’t had any updates. Must be monotonically increasing. Consider using a hybrid logical clock if your web service can’t make that guarantee.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "updatedAt",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "date-time"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "date-time"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of associated applications, in order of preference. The device uses the first available application.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "associatedApplications",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Application",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:WalletOrders:Application",
+              "text": "Application"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ],
+          "typeDetails": []
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The application identifier associated with the order.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "associatedApplicationIdentifiers",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ],
+          "typeDetails": [
+            {
+              "arrayMode": true,
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "minimumLength",
+              "value": "16"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The authentication token supplied to your web service. Required if you provide a web service.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "authenticationToken",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An identifier containing information about an order.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "barcode",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Barcode",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:WalletOrders:Barcode",
+              "text": "Barcode"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "enabled",
+                "disabledIfAppInstalled"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A property that describes whether the device notifies the user about relevant changes to the order. The default is ",
+                  "type": "text"
+                },
+                {
+                  "code": "enabled",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "changeNotifications",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The customer for this order.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "customer",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Customer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:WalletOrders:Customer",
+              "text": "Customer"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedTypes",
+              "values": [
+                [
+                  {
+                    "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/ShippingFulfillment",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "data:WalletOrders:ShippingFulfillment",
+                    "text": "ShippingFulfillment"
+                  }
+                ],
+                [
+                  {
+                    "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/PickupFulfillment",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "data:WalletOrders:PickupFulfillment",
+                    "text": "PickupFulfillment"
+                  }
+                ]
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of fulfillments. The device displays fulfillments in the order provided.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "fulfillments",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[*]"
+            }
+          ],
+          "typeDetails": []
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The items contained in the order, displayed in the order provided.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "lineItems",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/LineItem",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:WalletOrders:LineItem",
+              "text": "LineItem"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ],
+          "typeDetails": []
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If available, an order number or reference suitable for display to the user.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "orderNumber",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Information about the platform providing the order data. Use this field if the order data isn’t provided by the merchant, but by a third party.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "orderProvider",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/OrderProvider",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:WalletOrders:OrderProvider",
+              "text": "OrderProvider"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The payment for this order.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "payment",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Payment",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:WalletOrders:Payment",
+              "text": "Payment"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The information related to a partial or full return.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "returnInfo",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/ReturnInfo",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:WalletOrders:ReturnInfo",
+              "text": "ReturnInfo"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of returns. The device displays returns in the order provided.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "returns",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Return",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:WalletOrders:Return",
+              "text": "Return"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ],
+          "typeDetails": []
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A localized message describing the order status.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "statusDescription",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "/^https:///"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The URL of your web service. This must begin with ",
+                  "type": "text"
+                },
+                {
+                  "code": "HTTPS://",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "webServiceURL",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "uri"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "uri"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "attributes": [
+        {
+          "kind": "allowedTypes",
+          "values": []
+        }
+      ],
+      "kind": "attributes",
+      "title": "Attributes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.walletorders/documentation/WalletOrders/building-a-distributable-order-package",
+        "doc://com.apple.walletorders/documentation/WalletOrders/creating-the-source-for-an-order"
+      ]
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders": {
+      "abstract": [
+        {
+          "text": "Create, distribute, and update orders in Wallet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Wallet Orders",
+      "type": "topic",
+      "url": "/documentation/walletorders"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Address": {
+      "abstract": [
+        {
+          "text": "The physical address for an order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Address"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Address",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Address"
+        }
+      ],
+      "role": "symbol",
+      "title": "Address",
+      "type": "topic",
+      "url": "/documentation/walletorders/address"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Application": {
+      "abstract": [
+        {
+          "text": "The details of an app in the App Store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Application"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Application",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Application"
+        }
+      ],
+      "role": "symbol",
+      "title": "Application",
+      "type": "topic",
+      "url": "/documentation/walletorders/application"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Barcode": {
+      "abstract": [
+        {
+          "text": "The details of a barcode for an order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Barcode"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Barcode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Barcode"
+        }
+      ],
+      "role": "symbol",
+      "title": "Barcode",
+      "type": "topic",
+      "url": "/documentation/walletorders/barcode"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/CurrencyAmount": {
+      "abstract": [
+        {
+          "text": "An amount of money.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CurrencyAmount"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/CurrencyAmount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CurrencyAmount"
+        }
+      ],
+      "role": "symbol",
+      "title": "CurrencyAmount",
+      "type": "topic",
+      "url": "/documentation/walletorders/currencyamount"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Customer": {
+      "abstract": [
+        {
+          "text": "The details of the order’s customer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Customer"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Customer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Customer"
+        }
+      ],
+      "role": "symbol",
+      "title": "Customer",
+      "type": "topic",
+      "url": "/documentation/walletorders/customer"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/LineItem": {
+      "abstract": [
+        {
+          "text": "An item associated with the order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LineItem"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/LineItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LineItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "LineItem",
+      "type": "topic",
+      "url": "/documentation/walletorders/lineitem"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Location": {
+      "abstract": [
+        {
+          "text": "A geographic location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Location"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Location",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Location"
+        }
+      ],
+      "role": "symbol",
+      "title": "Location",
+      "type": "topic",
+      "url": "/documentation/walletorders/location"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Merchant": {
+      "abstract": [
+        {
+          "text": "The merchant associated with the order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Merchant"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Merchant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Merchant"
+        }
+      ],
+      "role": "symbol",
+      "title": "Merchant",
+      "type": "topic",
+      "url": "/documentation/walletorders/merchant"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Order": {
+      "abstract": [
+        {
+          "text": "The order’s details, including information about the products or services rendered, customer service, and fulfillment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Order"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Order",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Order"
+        }
+      ],
+      "role": "symbol",
+      "title": "Order",
+      "type": "topic",
+      "url": "/documentation/walletorders/order"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/OrderIdentifiers": {
+      "abstract": [
+        {
+          "text": "The unique identifiers associated with orders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "OrderIdentifiers"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/OrderIdentifiers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OrderIdentifiers"
+        }
+      ],
+      "role": "symbol",
+      "title": "OrderIdentifiers",
+      "type": "topic",
+      "url": "/documentation/walletorders/orderidentifiers"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/OrderProvider": {
+      "abstract": [
+        {
+          "text": "Information about the platform providing the order data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "OrderProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/OrderProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OrderProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "OrderProvider",
+      "type": "topic",
+      "url": "/documentation/walletorders/orderprovider"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Payment": {
+      "abstract": [
+        {
+          "text": "The payment information associated with the order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Payment"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Payment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Payment"
+        }
+      ],
+      "role": "symbol",
+      "title": "Payment",
+      "type": "topic",
+      "url": "/documentation/walletorders/payment"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Payment/SummaryItems-data.dictionary": {
+      "abstract": [
+        {
+          "text": "A breakdown of the total payment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Payment.SummaryItems"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Payment/SummaryItems-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Payment.SummaryItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "Payment.SummaryItems",
+      "type": "topic",
+      "url": "/documentation/walletorders/payment/summaryitems-data.dictionary"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/PaymentMethod": {
+      "abstract": [
+        {
+          "text": "The payment method for the transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/PaymentMethod",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentMethod"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentMethod",
+      "type": "topic",
+      "url": "/documentation/walletorders/paymentmethod"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/PaymentTransaction": {
+      "abstract": [
+        {
+          "text": "The details about a payment transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/PaymentTransaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentTransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentTransaction",
+      "type": "topic",
+      "url": "/documentation/walletorders/paymenttransaction"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/PickupFulfillment": {
+      "abstract": [
+        {
+          "text": "The details of a pickup order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PickupFulfillment"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/PickupFulfillment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PickupFulfillment"
+        }
+      ],
+      "role": "symbol",
+      "title": "PickupFulfillment",
+      "type": "topic",
+      "url": "/documentation/walletorders/pickupfulfillment"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Retrieve-the-Latest-Version-of-an-Order": {
+      "abstract": [
+        {
+          "text": "Retrieves the latest signed and compressed version of an order.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Retrieve-the-Latest-Version-of-an-Order",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Retrieve the Latest Version of an Order"
+        }
+      ],
+      "role": "symbol",
+      "title": "Retrieve the latest version of an order",
+      "type": "topic",
+      "url": "/documentation/walletorders/retrieve-the-latest-version-of-an-order"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Retrieve-the-Registrations-for-a-Device": {
+      "abstract": [
+        {
+          "text": "Retrieves the identifiers of the orders that the device registered for.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Retrieve-the-Registrations-for-a-Device",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Retrieve the Registrations for a Device"
+        }
+      ],
+      "role": "symbol",
+      "title": "Retrieve the registrations for a device",
+      "type": "topic",
+      "url": "/documentation/walletorders/retrieve-the-registrations-for-a-device"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Return": {
+      "abstract": [
+        {
+          "text": "The details of a return order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Return"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Return",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Return"
+        }
+      ],
+      "role": "symbol",
+      "title": "Return",
+      "type": "topic",
+      "url": "/documentation/walletorders/return"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/ReturnInfo": {
+      "abstract": [
+        {
+          "text": "The information related to a partial or full return.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReturnInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/ReturnInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReturnInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "ReturnInfo",
+      "type": "topic",
+      "url": "/documentation/walletorders/returninfo"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/ShippingFulfillment": {
+      "abstract": [
+        {
+          "text": "The details of a shipped order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShippingFulfillment"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/ShippingFulfillment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShippingFulfillment"
+        }
+      ],
+      "role": "symbol",
+      "title": "ShippingFulfillment",
+      "type": "topic",
+      "url": "/documentation/walletorders/shippingfulfillment"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/ShippingFulfillment/Recipient-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The recipient of the shipment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShippingFulfillment.Recipient"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/ShippingFulfillment/Recipient-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShippingFulfillment.Recipient"
+        }
+      ],
+      "role": "symbol",
+      "title": "ShippingFulfillment.Recipient",
+      "type": "topic",
+      "url": "/documentation/walletorders/shippingfulfillment/recipient-data.dictionary"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/building-a-distributable-order-package": {
+      "abstract": [
+        {
+          "text": "Prepare an order for distribution by building, signing, and compressing the source files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/building-a-distributable-order-package",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a distributable order package",
+      "type": "topic",
+      "url": "/documentation/walletorders/building-a-distributable-order-package"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/creating-the-source-for-an-order": {
+      "abstract": [
+        {
+          "text": "Define an order by creating the directory structure, and adding source files and images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/creating-the-source-for-an-order",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating the source for an order",
+      "type": "topic",
+      "url": "/documentation/walletorders/creating-the-source-for-an-order"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/example-order-packages": {
+      "abstract": [
+        {
+          "text": "Edit, build, and add example order packages to Wallet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/example-order-packages",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Example Order Packages",
+      "type": "topic",
+      "url": "/documentation/walletorders/example-order-packages"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.walletorders/documentation/WalletOrders/creating-the-source-for-an-order",
+        "doc://com.apple.walletorders/documentation/WalletOrders/building-a-distributable-order-package",
+        "doc://com.apple.walletorders/documentation/WalletOrders/Retrieve-the-Registrations-for-a-Device",
+        "doc://com.apple.walletorders/documentation/WalletOrders/Retrieve-the-Latest-Version-of-an-Order",
+        "doc://com.apple.walletorders/documentation/WalletOrders/example-order-packages"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Supporting-objects",
+      "identifiers": [
+        "doc://com.apple.walletorders/documentation/WalletOrders/Customer",
+        "doc://com.apple.walletorders/documentation/WalletOrders/Merchant",
+        "doc://com.apple.walletorders/documentation/WalletOrders/Address",
+        "doc://com.apple.walletorders/documentation/WalletOrders/Application",
+        "doc://com.apple.walletorders/documentation/WalletOrders/Barcode",
+        "doc://com.apple.walletorders/documentation/WalletOrders/CurrencyAmount",
+        "doc://com.apple.walletorders/documentation/WalletOrders/LineItem",
+        "doc://com.apple.walletorders/documentation/WalletOrders/Location",
+        "doc://com.apple.walletorders/documentation/WalletOrders/OrderIdentifiers",
+        "doc://com.apple.walletorders/documentation/WalletOrders/OrderProvider",
+        "doc://com.apple.walletorders/documentation/WalletOrders/Payment",
+        "doc://com.apple.walletorders/documentation/WalletOrders/Payment/SummaryItems-data.dictionary",
+        "doc://com.apple.walletorders/documentation/WalletOrders/PaymentMethod",
+        "doc://com.apple.walletorders/documentation/WalletOrders/PaymentTransaction",
+        "doc://com.apple.walletorders/documentation/WalletOrders/PickupFulfillment",
+        "doc://com.apple.walletorders/documentation/WalletOrders/Return",
+        "doc://com.apple.walletorders/documentation/WalletOrders/ReturnInfo",
+        "doc://com.apple.walletorders/documentation/WalletOrders/ShippingFulfillment",
+        "doc://com.apple.walletorders/documentation/WalletOrders/ShippingFulfillment/Recipient-data.dictionary"
+      ],
+      "title": "Supporting objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/walletorders/order"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

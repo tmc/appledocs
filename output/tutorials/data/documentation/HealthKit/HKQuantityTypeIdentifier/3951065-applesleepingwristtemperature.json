@@ -1,0 +1,568 @@
+{
+  "abstract": [
+    {
+      "text": "A quantity sample type that records the wrist temperature during sleep.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/healthkit",
+        "doc://com.apple.documentation/documentation/healthkit/data_types",
+        "doc://com.apple.documentation/documentation/healthkit/hkobjecttype",
+        "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/healthkit",
+        "doc://com.apple.documentation/documentation/healthkit/data_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/3951065-applesleepingwristtemperature"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3951065,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@HKQuantityTypeIdentifierAppleSleepingWristTemperature",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "static let "
+      },
+      {
+        "kind": "identifier",
+        "text": "appleSleepingWristTemperature"
+      },
+      {
+        "kind": "text",
+        "text": ": HKQuantityTypeIdentifier"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "parent": {
+      "title": "HKQuantityTypeIdentifier"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "9.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "structdata",
+    "title": "appleSleepingWristTemperature"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "appleSleepingWristTemperature"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@HKQuantityTypeIdentifier",
+              "text": "HKQuantityTypeIdentifier"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Watch Series 8 and Apple Watch Ultra can sample a person’s wrist temperature while they sleep. A supported watch measures temperature from both sensors every five seconds overnight during sleep. The watch then aggregates this data to a single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/3951065-applesleepingwristtemperature",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " sample. It corrects this sample for environmental bias and calculates a single value that represents the wrist temperature over the entire night.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Body temperature naturally fluctuates from night to night, and external factors, like the sleep environment, can also affect the measurements. Other factors that can affect a person’s relative temperature include exercise, jet lag, menstrual cycles, or illness. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Cycle tracking uses a person’s sleeping wrist temperature data to provide a retrospective estimate of when they likely ovulated. It also combines this data with heart rate and logged cycle data to provide improved predictions about their cycle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable sleeping wrist temperature measurements, ensure Sleep Focus is on and that somone is wearing Apple Watch while sleeping.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Watch records the absolute wrist temperature value; however, Health displays this data as a relative value, based on a person’s baseline. Health needs to calculate this baseline, so it won’t display the wrist temperature until it has gathered about five nights of data. However, Apple Watch records ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/3951065-applesleepingwristtemperature",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " samples starting with the first night, and you can read them immediately from the HealthKit store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sleeping wrist temperature samples use temperature units (described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/healthkit/hkunit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and measure discrete values (described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/healthkit/hkquantityaggregationstyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "These samples are read-only. You can request permission to read the samples using this identifier, but you can’t request authorization to share them. This means you can’t save new sleeping wrist temperature samples to the HealthKit store.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/healthkit": {
+      "identifier": "doc://com.apple.documentation/documentation/healthkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data types",
+      "type": "topic",
+      "url": "/documentation/healthkit/data_types"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkobjecttype": {
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkobjecttype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HKObjectType",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkobjecttype"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkquantityaggregationstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkquantityaggregationstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HKQuantityAggregationStyle",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantityaggregationstyle"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier": {
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HKQuantityTypeIdentifier",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitytypeidentifier"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615039-height": {
+      "abstract": [
+        {
+          "text": "A quantity sample type that measures the user’s height.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": HKQuantityTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615039-height",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "height",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitytypeidentifier/1615039-height"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615664-leanbodymass": {
+      "abstract": [
+        {
+          "text": "A quantity sample type that measures the user’s lean body mass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "leanBodyMass"
+        },
+        {
+          "kind": "text",
+          "text": ": HKQuantityTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615664-leanbodymass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "leanBodyMass",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitytypeidentifier/1615664-leanbodymass"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615666-bodyfatpercentage": {
+      "abstract": [
+        {
+          "text": "A quantity sample type that measures the user’s body fat percentage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "bodyFatPercentage"
+        },
+        {
+          "kind": "text",
+          "text": ": HKQuantityTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615666-bodyfatpercentage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bodyFatPercentage",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitytypeidentifier/1615666-bodyfatpercentage"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615693-bodymass": {
+      "abstract": [
+        {
+          "text": "A quantity sample type that measures the user’s weight.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "bodyMass"
+        },
+        {
+          "kind": "text",
+          "text": ": HKQuantityTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615693-bodymass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bodyMass",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitytypeidentifier/1615693-bodymass"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615698-bodymassindex": {
+      "abstract": [
+        {
+          "text": "A quantity sample type that measures the user’s body mass index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "bodyMassIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": HKQuantityTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615698-bodymassindex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bodyMassIndex",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitytypeidentifier/1615698-bodymassindex"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/2867758-waistcircumference": {
+      "abstract": [
+        {
+          "text": "A quantity sample type that measures the user’s waist circumference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "waistCircumference"
+        },
+        {
+          "kind": "text",
+          "text": ": HKQuantityTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/2867758-waistcircumference",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "waistCircumference",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitytypeidentifier/2867758-waistcircumference"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/3951065-applesleepingwristtemperature": {
+      "abstract": [
+        {
+          "text": "A quantity sample type that records the wrist temperature during sleep.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "appleSleepingWristTemperature"
+        },
+        {
+          "kind": "text",
+          "text": ": HKQuantityTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/3951065-applesleepingwristtemperature",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appleSleepingWristTemperature",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitytypeidentifier/3951065-applesleepingwristtemperature"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkunit": {
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HKUnit",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkunit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615039-height",
+        "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615693-bodymass",
+        "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615698-bodymassindex",
+        "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615664-leanbodymass",
+        "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615666-bodyfatpercentage",
+        "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/2867758-waistcircumference"
+      ],
+      "title": "Body measurements"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/healthkit/hkquantitytypeidentifierapplesleepingwristtemperature"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/healthkit/hkquantitytypeidentifier/3951065-applesleepingwristtemperature"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

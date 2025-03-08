@@ -1,0 +1,942 @@
+{
+  "abstract": [
+    {
+      "text": "Review how you can best create custom Xcode Cloud workflows to refine your continuous integration and delivery practice.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Developing-a-Workflow-Strategy-for-Xcode-Cloud"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Developing a workflow strategy for Xcode Cloud"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With Xcode, you can configure your project or workspace to use Xcode Cloud, create a first workflow, and start your first build. After Xcode Cloud successfully completes the first build, review how you can best create custom Xcode Cloud workflows to practice continuous integration and delivery (CI/CD). Then, plan next steps for refining your CI/CD practice to make sure your app or framework is always in a releasable state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Developing-a-Workflow-Strategy-for-Xcode-Cloud-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re new to CI/CD, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/About-Continuous-Integration-and-Delivery-with-Xcode-Cloud",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to learn how CI/CD with Xcode Cloud helps you create high-quality apps and frameworks. To learn more about creating your first workflow, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information about Xcode Cloud workflows, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud-Workflow-Reference",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/wwdc21/10268",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/wwdc21/10269",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Plan-next-steps",
+          "level": 3,
+          "text": "Plan next steps",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The number of Xcode Cloud workflows you create depends on factors like the complexity of your project and the size of your team. For example, consider a solo developer who works on an iOS app. They can create a workflow that builds their app and runs unit tests for every change to a branch. Additionally, they might create a second workflow that runs tests on other Apple devices in Simulator, archives the app, and distributes a new version to testers with ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/testflight/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " each time they create a new Git tag.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In contrast, consider a team in a corporate context that develops an app that’s available on all Apple platforms. The team might create several workflows that:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build various projects in a workspace and run unit tests on one simulated device per platform",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Perform additional, long-running tests once a week",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Automatically distribute nightly builds to members of the development team",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Distribute new versions to the QA team every two weeks",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although there’s no one-size-fits-all approach to CI/CD, following these steps to adopt CI/CD over time is a good strategy to consider:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Identify what a comprehensive CI/CD practice looks like for you. For example, list all verifications you want Xcode Cloud to perform.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Translate your comprehensive CI/CD practice into Xcode Cloud workflows. For example, if you want to distribute a new version of your app to testers every week, that task can translate to one workflow.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Plan the necessary work as individual tasks and work on each workflow one by one until you have a comprehensive CI/CD practice in place.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Edit-and-create-workflows",
+          "level": 3,
+          "text": "Edit and create workflows",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By adopting CI/CD, managing Xcode Cloud workflows becomes part of your day-to-day app development. To help you stay focused and make using Xcode Cloud convenient, edit your Xcode Cloud workflows with Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To update an existing workflow in Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Integrate > Manage Workflows to open the Manage Workflows sheet.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Double-click to open the existing workflow.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, Control-click a workflow in the Report navigator and choose Edit Workflow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a workflow in Xcode, choose Integrate > Create Workflow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Deactivate-a-workflow-instead-of-deleting-it",
+          "level": 3,
+          "text": "Deactivate a workflow instead of deleting it",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Eventually, you might want to stop using a certain workflow. One way to do this is to delete the workflow in the Manage Workflows sheet. However, deleting a workflow permanently deletes its build history and artifacts. Only delete a workflow when you’re confident that you don’t need that information anymore. Instead of deleting a workflow, deactivate it to preserve its build history and artifacts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To deactivate a workflow:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-click the workflow in the Report navigator and choose Edit Workflow.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Toggle the switch next to the workflow’s name in the top-left corner of the sheet to the Off position and save your changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, deactivate a workflow by Control-clicking it in the Manage Workflows sheet and choosing Deactivate, or by deactivating it in the Xcode Cloud tab on the App Store Connect website.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To start using a deactivated workflow again, reactivate it any time in the Manage Workflows sheet, or open the workflow and toggle the switch next to its name to the On position.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Developing-a-Workflow-Strategy-for-Xcode-Cloud-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Duplicate-a-workflow-before-making-significant-changes",
+          "level": 3,
+          "text": "Duplicate a workflow before making significant changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you edit a workflow, a change might unintentionally cause the next build to fail. If this happens, you can undo your changes to the workflow as needed and start a build to verify whether it completes successfully. However, this can take a great deal of time if you make significant changes to a workflow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To avoid costly mistakes and avoid impacting coworkers who may use a workflow, duplicate a workflow before you make significant changes to it. Then, use the duplicate to test a change without impacting coworkers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To copy an existing workflow:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your project or workspace in Xcode, and then choose Integrate > Manage Workflows to open the Manage Workflows sheet.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-click the workflow you want to change and choose Duplicate to open a copy.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Rename the copy to make sure you can distinguish it from the original.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Save the duplicated workflow.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A new workflow is active by default. As a result, Xcode Cloud runs both the original workflow and the duplicate unless you deactivate one of them or change either workflow’s start conditions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Restrict-who-can-edit-a-workflow",
+          "level": 3,
+          "text": "Restrict who can edit a workflow",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Depending on the complexity of your project, creating a workflow and making sure Xcode Cloud can successfully build your project can take a significant amount of time. To prevent team members from making unintentional changes to a workflow, restrict who can edit it using these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the workflow in Xcode or on the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://appstoreconnect.apple.com",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " website.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Navigate to the General section, and select the Restrict Editing checkbox.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a result, only members of your team with the Admin or App Manager role can make changes to that workflow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Developing-a-Workflow-Strategy-for-Xcode-Cloud-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Manage-workflows-in-App-Store-Connect",
+          "level": 3,
+          "text": "Manage workflows in App Store Connect",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some cases — especially for large teams and in a corporate context — a team member may be more familiar with ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com",
+              "isActive": true,
+              "overridingTitle": "App Store Connect",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "App Store Connect",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". To address use cases like this, you can create and edit workflows in App Store Connect after you configure your Xcode project or workspace to use Xcode Cloud.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To manage workflows in App Store Connect:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your app’s page and click the Xcode Cloud tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Manage Workflows in the sidebar to display a list of your workflows.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the More Options button (…) next to a workflow and choose the action you want to perform. For example, choose Edit to make changes to a workflow.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Developing-a-Workflow-Strategy-for-Xcode-Cloud-1": {
+      "alt": "A figure that shows the iterative continuous integration and delivery practice of building, testing, distributing, and gathering feedback to fix issues and verify changes.",
+      "identifier": "Developing-a-Workflow-Strategy-for-Xcode-Cloud-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bca93b3fc3895d146eeb3773171a9c1f/Developing-a-Workflow-Strategy-for-Xcode-Cloud-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2628bcded3e0e3e27989e74e6e76e2e8/Developing-a-Workflow-Strategy-for-Xcode-Cloud-1~dark@2x.png"
+        }
+      ]
+    },
+    "Developing-a-Workflow-Strategy-for-Xcode-Cloud-3": {
+      "alt": "A screenshot of a workflow in Xcode with a highlighted area for the switch you can use to activate or deactivate the workflow.",
+      "identifier": "Developing-a-Workflow-Strategy-for-Xcode-Cloud-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/87bcce8503098665528b9e2d5973285c/Developing-a-Workflow-Strategy-for-Xcode-Cloud-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c4b256b21929f4a81772091b2126de40/Developing-a-Workflow-Strategy-for-Xcode-Cloud-3~dark@2x.png"
+        }
+      ]
+    },
+    "Developing-a-Workflow-Strategy-for-Xcode-Cloud-4": {
+      "alt": "A screenshot that shows a workflow in Xcode. The General section is visible and the checkbox next to Restrict Editing is selected.",
+      "identifier": "Developing-a-Workflow-Strategy-for-Xcode-Cloud-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/361a557d6f785e47913557a712cece65/Developing-a-Workflow-Strategy-for-Xcode-Cloud-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/61ac1c1f3b5cf0574867a22b65d2e03a/Developing-a-Workflow-Strategy-for-Xcode-Cloud-4~dark@2x.png"
+        }
+      ]
+    },
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/About-Continuous-Integration-and-Delivery-with-Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Learn how continuous integration and delivery with Xcode Cloud helps you create high-quality apps and frameworks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/About-Continuous-Integration-and-Delivery-with-Xcode-Cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "About continuous integration and delivery with Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/about-continuous-integration-and-delivery-with-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow": {
+      "abstract": [
+        {
+          "text": "Set up your project or workspace to use Xcode Cloud and adopt continuous integration and delivery.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your first Xcode Cloud workflow",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-your-first-xcode-cloud-workflow"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Creating-a-workflow-that-builds-your-app-for-distribution": {
+      "abstract": [
+        {
+          "text": "Configure a workflow to build and sign your app for distribution to testers with TestFlight, in the App Store, or as a notarized app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Creating-a-workflow-that-builds-your-app-for-distribution",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a workflow that builds your app for distribution",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-a-workflow-that-builds-your-app-for-distribution"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Automatically build, test, and distribute your apps with Xcode Cloud to verify changes and create high-quality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud-Workflow-Reference": {
+      "abstract": [
+        {
+          "text": "Configure metadata, start conditions, actions, post-actions, and more to create custom Xcode Cloud workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud-Workflow-Reference",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Xcode Cloud workflow reference",
+      "type": "topic",
+      "url": "/documentation/xcode/xcode-cloud-workflow-reference"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://appstoreconnect.apple.com": {
+      "identifier": "https://appstoreconnect.apple.com",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com"
+    },
+    "https://developer.apple.com/testflight/": {
+      "identifier": "https://developer.apple.com/testflight/",
+      "title": "TestFlight",
+      "titleInlineContent": [
+        {
+          "text": "TestFlight",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/testflight/"
+    },
+    "https://developer.apple.com/wwdc21/10268": {
+      "identifier": "https://developer.apple.com/wwdc21/10268",
+      "title": "Explore Xcode Cloud workflows",
+      "titleInlineContent": [
+        {
+          "text": "Explore Xcode Cloud workflows",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc21/10268"
+    },
+    "https://developer.apple.com/wwdc21/10269": {
+      "identifier": "https://developer.apple.com/wwdc21/10269",
+      "title": "Customize your advanced Xcode Cloud workflows",
+      "titleInlineContent": [
+        {
+          "text": "Customize your advanced Xcode Cloud workflows",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc21/10269"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Workflows",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud-Workflow-Reference",
+        "doc://com.apple.Xcode/documentation/Xcode/Creating-a-workflow-that-builds-your-app-for-distribution"
+      ],
+      "title": "Workflows"
+    }
+  ]
+}

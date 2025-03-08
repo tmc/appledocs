@@ -1,0 +1,456 @@
+{
+  "abstract": [
+    {
+      "text": "Request and display weather data for destination airports in a flight-planning app.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/weatherkit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/weatherkit/fetching_weather_forecasts_with_weatherkit"
+  },
+  "kind": "article",
+  "legacy_identifier": 3978468,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WeatherKit"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Fetching weather forecasts with WeatherKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC22 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-4035501",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "4039215",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the sample code project in Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Download, install, and launch the latest version of Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Safari, visit the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-3835255",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " section of the developer website.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Identifiers and click the Add button to create a new App ID for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "FlightPlanner",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Follow the steps until you reach the Register an App ID page.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the Bundle ID, select Explicit, and enter a unique bundle identifier. Use a reverse-DNS format for your identifier, as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/preparing-your-app-for-distribution",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " describes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the App Services tab, and select the WeatherKit checkbox.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Complete the App ID creation process.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Wait 30 minutes while the service registers your app’s bundle ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, from the Project navigator, select the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "FlightPlanner",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " project and click the Signing & Capabilities tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter the unique bundle ID from step 4 in the Bundle Identifier field of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "FlightPlanner",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the scheme pop-up menu, select a run destination.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If necessary, click Register Device on the Signing & Capabilities tab to create the provisioning profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the toolbar, click Run, or choose Product > Run.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Xcode/documentation/Xcode/preparing-your-app-for-distribution": {
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/preparing-your-app-for-distribution",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your app for distribution",
+      "type": "topic",
+      "url": "/documentation/xcode/preparing-your-app-for-distribution"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/weatherkit": {
+      "identifier": "doc://com.apple.documentation/documentation/weatherkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WeatherKit",
+      "type": "topic",
+      "url": "/documentation/weatherkit"
+    },
+    "doc://com.apple.documentation/documentation/weatherkit/fetching_weather_forecasts_with_weatherkit": {
+      "abstract": [
+        {
+          "text": "Request and display weather data for destination airports in a flight-planning app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/weatherkit/fetching_weather_forecasts_with_weatherkit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Fetching weather forecasts with WeatherKit",
+      "type": "topic",
+      "url": "/documentation/weatherkit/fetching_weather_forecasts_with_weatherkit"
+    },
+    "doc://com.apple.documentation/documentation/weatherkit/weather": {
+      "abstract": [
+        {
+          "text": "A model representing the aggregate weather data the caller requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Weather"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/weatherkit/weather",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Weather",
+      "type": "topic",
+      "url": "/documentation/weatherkit/weather"
+    },
+    "doc://com.apple.documentation/documentation/weatherkit/weatherservice": {
+      "abstract": [
+        {
+          "text": "Provides an interface for obtaining weather data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "WeatherService"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/weatherkit/weatherservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WeatherService",
+      "type": "topic",
+      "url": "/documentation/weatherkit/weatherservice"
+    },
+    "https://docs-assets.developer.apple.com/published/91e33be0a7/FetchingWeatherForecastsWithWeatherKit.zip": {
+      "checksum": "bf03d81523b228188c3dee41123b2cabb931ccb6b51d23e62652934072eb93342e0aea6c74603c598b6d881dbd30167a24633a2234218b6195962751119642f2",
+      "identifier": "https://docs-assets.developer.apple.com/published/91e33be0a7/FetchingWeatherForecastsWithWeatherKit.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/91e33be0a7/FetchingWeatherForecastsWithWeatherKit.zip"
+    },
+    "link-3835255": {
+      "identifier": "link-3835255",
+      "kind": "article",
+      "role": "link",
+      "title": "Certificates, Identifiers, and Profiles",
+      "type": "topic",
+      "url": "https://developer.apple.com/account/resources"
+    },
+    "link-4035501": {
+      "identifier": "link-4035501",
+      "kind": "article",
+      "role": "link",
+      "title": "10003: Meet WeatherKit",
+      "type": "topic",
+      "url": "https://developer.apple.com/wwdc22/10003/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/91e33be0a7/FetchingWeatherForecastsWithWeatherKit.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/weatherkit/weather",
+        "doc://com.apple.documentation/documentation/weatherkit/weatherservice"
+      ],
+      "title": "Fundamentals"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/weatherkit/fetching_weather_forecasts_with_weatherkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

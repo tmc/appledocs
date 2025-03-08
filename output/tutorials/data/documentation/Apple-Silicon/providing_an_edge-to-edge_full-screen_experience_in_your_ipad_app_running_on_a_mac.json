@@ -1,0 +1,664 @@
+{
+  "abstract": [
+    {
+      "text": "Take advantage of the true native resolution of a Mac display when running your iPad app in full-screen mode on a Mac.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/apple-silicon"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/apple-silicon/providing_an_edge-to-edge_full-screen_experience_in_your_ipad_app_running_on_a_mac"
+  },
+  "kind": "article",
+  "legacy_identifier": 4054687,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.5",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.5",
+        "name": "iPadOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "13.4",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Providing an edge-to-edge, full-screen experience in your iPad app running on a Mac"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some iPad apps, such as games, require a full-screen experience. These apps don’t participate in iPad multitasking, and they don’t support resizable windows when run on a Mac. To ensure these behaviors, the apps include the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIRequiresFullScreen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key with a value of ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in their ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "But when one of these iPad apps enters full-screen mode on a Mac, the app doesn’t fill the entire screen. Instead, the app’s window is a fixed size, leaving space on either side of it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An iPad app that supports iPad multitasking, on the other hand, provides resizable windows when run on a Mac. A person can also view the app’s content in full-screen mode, filling the entire Mac display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows how to configure an iPad app that requires full-screen mode on iPad to take advantage of the native resolution of the Mac display for a pixel-perfect, edge-to-edge, full-screen experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4110158",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the sample app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Download the sample and open the project in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select a development team in the Signing & Capabilities tab of the target’s settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select My Mac (Designed for iPad) as the destination.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build and run the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The My Mac (Designed for iPad) destination option is available only on a Mac with Apple silicon.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you launch the sample app, it displays two grids across the screen. The first grid has white lines showing the pixel positions as defined in the backing store of the app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindowScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Each line is 1 pixel wide, and the grid separates each line by 10 pixels. The second grid uses red lines to show the point layout of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindowScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance. Each line is 1 point wide, and the grid separates each line by 10 points.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app can also show other visual elements, such as a border around the safe area insets. To change the display options, click anywhere within the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4110159",
+          "level": 3,
+          "text": "Support the native resolution of a Mac display",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app that requires full screen on iPad — that is, an app that includes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIRequiresFullScreen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key with a value of ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in its ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file — doesn’t take advantage of the entire display when run on a Mac in full-screen mode. The system determines the full-screen size of the app based on compatible iPad device sizes and displays the app using the aspect ratio of the chosen size. When the aspect ratio doesn’t match the aspect ratio of the Mac display, space appears on either side of the app’s content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To eliminate the space and display content across the entire screen, the sample includes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UISupportsTrueScreenSizeOnMac",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key in its ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4110152",
+              "metadata": {
+                "anchor": "4110152",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the key ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UISupportsTrueScreenSizeOnMac",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " set to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the sample app shows the pixel and point grids across the entire display area of the Mac when running in full-screen mode. The full-screen size of the app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindowScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " matches the resolution of the display that was active at the time the app launched. This size doesn’t change while the app is running, even when a person moves the window to a display that has a different resolution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Setting the key to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " also avoids content scaling in the app’s window (when it’s in full-screen mode on the display that was active at launch time) by mapping each rendered pixel in the window to one physical pixel on the screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+            "<plist version=\"1.0\">",
+            "<dict>",
+            "    <key>UIRequiresFullScreen</key>",
+            "    <true/>",
+            "    <key>UISupportsTrueScreenSizeOnMac</key>",
+            "    <true/>",
+            "    ...",
+            "</dict>",
+            "</plist>"
+          ],
+          "metadata": {
+            "anchor": "4110153",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For more information about the responsibilities of an iPad app that supports arbitrary screen sizes and resolutions when running on Mac, see the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UISupportsTrueScreenSizeOnMac",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " documentation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "4110160",
+          "level": 3,
+          "text": "Launch in full-screen mode by default",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many apps that require full-screen mode when running on iPad look equally as good on Mac when appearing in a window. For these apps, setting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIRequiresFullScreen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provides a full-screen-only experience when the app runs in iPadOS and lets the app appear in a window by default when launched in macOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "But for some apps like this sample app, the ideal experience is to run in full-screen mode on both iPad and Mac. Instead of appearing in a window by default when launched on a Mac, the sample app launches in full-screen mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To launch in full-screen mode by default, the sample includes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UILaunchToFullScreenByDefaultOnMac",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key with a value of ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in its ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+            "<plist version=\"1.0\">",
+            "<dict>",
+            "    <key>UIRequiresFullScreen</key>",
+            "    <true/>",
+            "    <key>UISupportsTrueScreenSizeOnMac</key>",
+            "    <true/>",
+            "    <key>UILaunchToFullScreenByDefaultOnMac</key>",
+            "    <true/>",
+            "    ...",
+            "</dict>",
+            "</plist>"
+          ],
+          "metadata": {
+            "anchor": "4110155",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app launches for the first time, it displays in full-screen mode. However, state restoration can override this behavior if the person using the app exits full-screen mode before quitting the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UILaunchToFullScreenByDefaultOnMac": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UILaunchToFullScreenByDefaultOnMac",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UILaunchToFullScreenByDefaultOnMac",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/uilaunchtofullscreenbydefaultonmac"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIRequiresFullScreen": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIRequiresFullScreen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIRequiresFullScreen",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/uirequiresfullscreen"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UISupportsTrueScreenSizeOnMac": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UISupportsTrueScreenSizeOnMac",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UISupportsTrueScreenSizeOnMac",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/uisupportstruescreensizeonmac"
+    },
+    "doc://com.apple.documentation/documentation/apple-silicon": {
+      "identifier": "doc://com.apple.documentation/documentation/apple-silicon",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Silicon",
+      "type": "topic",
+      "url": "/documentation/apple-silicon"
+    },
+    "doc://com.apple.documentation/documentation/apple-silicon/providing_an_edge-to-edge_full-screen_experience_in_your_ipad_app_running_on_a_mac#4110153": {
+      "identifier": "doc://com.apple.documentation/documentation/apple-silicon/providing_an_edge-to-edge_full-screen_experience_in_your_ipad_app_running_on_a_mac#4110153",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/apple-silicon/providing_an_edge-to-edge_full-screen_experience_in_your_ipad_app_running_on_a_mac#4110153"
+    },
+    "doc://com.apple.documentation/documentation/apple-silicon/providing_an_edge-to-edge_full-screen_experience_in_your_ipad_app_running_on_a_mac#4110155": {
+      "identifier": "doc://com.apple.documentation/documentation/apple-silicon/providing_an_edge-to-edge_full-screen_experience_in_your_ipad_app_running_on_a_mac#4110155",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/apple-silicon/providing_an_edge-to-edge_full-screen_experience_in_your_ipad_app_running_on_a_mac#4110155"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWindowScene": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindowScene",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIWindowScene",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwindowscene"
+    },
+    "https://docs-assets.developer.apple.com/published/62e79b00c1/ProvidingAnEdgeToEdgeFullScreenExperienceInYourIPadAppRunningOnAMac.zip": {
+      "checksum": "13b794ebe4b4fde1fe2ea1f337322c55b161ec23c480c53a60c500a38e9d2f8ff31b5d5431be423e617d2a0682bae8116a85fc7c6ed3be0e6f3955fd2ff0ad85",
+      "identifier": "https://docs-assets.developer.apple.com/published/62e79b00c1/ProvidingAnEdgeToEdgeFullScreenExperienceInYourIPadAppRunningOnAMac.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/62e79b00c1/ProvidingAnEdgeToEdgeFullScreenExperienceInYourIPadAppRunningOnAMac.zip"
+    },
+    "link-media-4110152": {
+      "identifier": "link-media-4110152",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/apple-silicon/providing_an_edge-to-edge_full-screen_experience_in_your_ipad_app_running_on_a_mac#4110152"
+    },
+    "media-4110152": {
+      "alt": "An illustration showing two displays side-by-side. The first display shows a fixed-size grid with empty space on each side. Below the display is the text UIRequiresFullScreen equals true. The second display shows a full-screen grid that extends from edge to edge across the display. Below the second display is the text UIRequiresFullScreen equals true, followed by UISupportsTrueScreenSizeOnMac equals true.",
+      "identifier": "media-4110152",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b487ef84cf/rendered2x-1663961335.png"
+        },
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/26e92434d7/renderedDark2x-1663961337.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/62e79b00c1/ProvidingAnEdgeToEdgeFullScreenExperienceInYourIPadAppRunningOnAMac.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/apple-silicon/providing_an_edge-to-edge_full-screen_experience_in_your_ipad_app_running_on_a_mac"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/apple-silicon/providing_an_edge-to-edge_full-screen_experience_in_your_ipad_app_running_on_a_mac"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

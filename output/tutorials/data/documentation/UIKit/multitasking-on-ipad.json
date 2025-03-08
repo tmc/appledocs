@@ -1,0 +1,804 @@
+{
+  "abstract": [
+    {
+      "text": "Implement multitasking APIs to seamlessly integrate your app with iPadOS.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/app-and-environment"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/multitasking-on-ipad"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Multitasking on iPad"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While your app runs in the foreground on iPad, other apps are likely to be running alongside it. Being aware of the environment your app may be running in and adopting the multitasking APIs are an essential part of integrating your apps with iPadOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first step to creating a great multitasking experience for your users is to ensure your app can adapt to different window sizes. Start by reading the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/adaptivity-and-layout/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " section of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Also, consider that your app may not be running full screen, but in a smaller window through Slide Over or Split View. Discover your app’s environment with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitCollection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and adapt to it by using Auto Layout, or by overriding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment/traitCollectionDidChange(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in your view controllers or views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With iPadOS 13 and later, you can choose to allow multiple windows in your app’s UI to run concurrently by setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UIApplicationSupportsMultipleScenes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property list key. Implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/scenes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and read ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/managing-your-app-s-life-cycle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for an overview of how ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " interacts with the system multitasking events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UIApplicationSupportsMultipleScenes": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the app supports two or more scenes simultaneously.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UIApplicationSupportsMultipleScenes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIApplicationSupportsMultipleScenes",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UIApplicationSupportsMultipleScenes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAdaptivePresentationControllerDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods that, in conjunction with a presentation controller, determine how to respond to trait changes in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAdaptivePresentationControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAdaptivePresentationControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAdaptivePresentationControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAdaptivePresentationControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiadaptivepresentationcontrollerdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIContentContainer": {
+      "abstract": [
+        {
+          "text": "A set of methods for adapting the contents of your view controllers to size and trait changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIContentContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContentContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIContentContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIContentContainer",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontentcontainer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate": {
+      "abstract": [
+        {
+          "text": "The core methods you use to respond to life-cycle events occurring within a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISceneDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISceneDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISceneDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscenedelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitCollection": {
+      "abstract": [
+        {
+          "text": "A collection of data that represents the environment for an individual element in your app’s user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitCollection",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitcollection"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment": {
+      "abstract": [
+        {
+          "text": "A set of methods that makes the iOS interface environment available to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitEnvironment"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitEnvironment",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitenvironment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment/traitCollectionDidChange(_:)": {
+      "abstract": [
+        {
+          "text": "Reports changes in the iOS interface environment.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "traitCollectionDidChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITraitCollection",
+          "text": "UITraitCollection"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment/traitCollectionDidChange(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "traitCollectionDidChange:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "traitCollectionDidChange(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitenvironment/traitcollectiondidchange(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/app-and-environment": {
+      "abstract": [
+        {
+          "text": "Manage life-cycle events and your app’s UI scenes, and get information about traits and the environment in which your app runs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and environment",
+      "type": "topic",
+      "url": "/documentation/uikit/app-and-environment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/building-a-desktop-class-ipad-app": {
+      "abstract": [
+        {
+          "text": "Optimize your iPad app’s user experience by adopting desktop-class enhancements for multitasking with Stage Manager, document interactions, text editing, search, and more in iPadOS 16.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/building-a-desktop-class-ipad-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a desktop-class iPad app",
+      "type": "topic",
+      "url": "/documentation/uikit/building-a-desktop-class-ipad-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/elevating-your-ipad-app-with-a-tab-bar-and-sidebar": {
+      "abstract": [
+        {
+          "text": "Provide a compact, ergonomic tab bar for quick access to key parts of your app, and a sidebar for in-depth navigation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/elevating-your-ipad-app-with-a-tab-bar-and-sidebar",
+      "kind": "article",
+      "role": "article",
+      "title": "Elevating your iPad app with a tab bar and sidebar",
+      "type": "topic",
+      "url": "/documentation/uikit/elevating-your-ipad-app-with-a-tab-bar-and-sidebar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/managing-your-app-s-life-cycle": {
+      "abstract": [
+        {
+          "text": "Respond to system notifications when your app is in the foreground or background, and handle other significant system-related events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/managing-your-app-s-life-cycle",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Managing your app’s life cycle",
+      "type": "topic",
+      "url": "/documentation/uikit/managing-your-app-s-life-cycle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/scenes": {
+      "abstract": [
+        {
+          "text": "Manage multiple instances of your app’s UI simultaneously, and direct resources to the appropriate instance of your UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/scenes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scenes",
+      "type": "topic",
+      "url": "/documentation/uikit/scenes"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/supporting-desktop-class-features-in-your-ipad-app": {
+      "abstract": [
+        {
+          "text": "Enhance your iPad app by adding desktop-class features and document support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/supporting-desktop-class-features-in-your-ipad-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting desktop-class features in your iPad app",
+      "type": "topic",
+      "url": "/documentation/uikit/supporting-desktop-class-features-in-your-ipad-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/supporting-multiple-windows-on-ipad": {
+      "abstract": [
+        {
+          "text": "Support side-by-side instances of your app’s interface and create new windows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/supporting-multiple-windows-on-ipad",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting multiple windows on iPad",
+      "type": "topic",
+      "url": "/documentation/uikit/supporting-multiple-windows-on-ipad"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/",
+      "title": "Human Interface Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/adaptivity-and-layout/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/adaptivity-and-layout/",
+      "title": "Adaptivity and Layout",
+      "titleInlineContent": [
+        {
+          "text": "Adaptivity and Layout",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/adaptivity-and-layout/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "iPad",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/building-a-desktop-class-ipad-app",
+        "doc://com.apple.uikit/documentation/UIKit/elevating-your-ipad-app-with-a-tab-bar-and-sidebar",
+        "doc://com.apple.uikit/documentation/UIKit/supporting-desktop-class-features-in-your-ipad-app"
+      ],
+      "title": "iPad"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Adaptivity",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITraitCollection",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment",
+        "doc://com.apple.uikit/documentation/UIKit/UIAdaptivePresentationControllerDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UIContentContainer"
+      ],
+      "title": "Adaptivity"
+    },
+    {
+      "anchor": "Scene-Management",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/scenes",
+        "doc://com.apple.uikit/documentation/UIKit/supporting-multiple-windows-on-ipad"
+      ],
+      "title": "Scene Management"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Adaptivity",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITraitCollection",
+                "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment",
+                "doc://com.apple.uikit/documentation/UIKit/UIAdaptivePresentationControllerDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UIContentContainer"
+              ],
+              "title": "Adaptivity"
+            },
+            {
+              "anchor": "Scene-Management",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/scenes",
+                "doc://com.apple.uikit/documentation/UIKit/supporting-multiple-windows-on-ipad"
+              ],
+              "title": "Scene Management"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "iPad",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/building-a-desktop-class-ipad-app",
+                "doc://com.apple.uikit/documentation/UIKit/elevating-your-ipad-app-with-a-tab-bar-and-sidebar",
+                "doc://com.apple.uikit/documentation/UIKit/supporting-desktop-class-features-in-your-ipad-app"
+              ],
+              "title": "iPad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitCollection/title",
+          "value": "UITraitCollection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitCollection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITraitCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitCollection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITraitCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneDelegate/title",
+          "value": "UISceneDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment~1traitCollectionDidChange(_:)/title",
+          "value": "traitCollectionDidChange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment~1traitCollectionDidChange(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "traitCollectionDidChange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/title",
+          "value": "UITraitEnvironment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITraitEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITraitEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAdaptivePresentationControllerDelegate/title",
+          "value": "UIAdaptivePresentationControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAdaptivePresentationControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAdaptivePresentationControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAdaptivePresentationControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAdaptivePresentationControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/title",
+          "value": "UIContentContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContentContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContentContainer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/multitasking-on-ipad"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/multitasking-on-ipad"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

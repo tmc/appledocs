@@ -1,0 +1,1457 @@
+{
+  "abstract": [
+    {
+      "text": "A SwiftUI view that displays a chart.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Charts/documentation/Charts"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Charts/documentation/Charts/Chart"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:6Charts5ChartV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Chart"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift Charts"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Chart"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Chart"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Chart"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Content"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Content"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:6Charts12ChartContentP",
+              "text": "ChartContent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.Charts/documentation/Charts/Creating-a-chart-using-Swift-Charts"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a chart, instantiate a ",
+              "type": "text"
+            },
+            {
+              "code": "Chart",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure with marks that display",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the properties of your data. For example, suppose you have an array",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of ",
+              "type": "text"
+            },
+            {
+              "code": "ValuePerCategory",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structures that define data points composed of a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "category",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and a ",
+              "type": "text"
+            },
+            {
+              "code": "value",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ValuePerCategory {",
+            "    var category: String",
+            "    var value: Double",
+            "}",
+            "",
+            "let data: [ValuePerCategory] = [",
+            "    .init(category: \"A\", value: 5),",
+            "    .init(category: \"B\", value: 9),",
+            "    .init(category: \"C\", value: 7)",
+            "]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/BarMark",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " inside a chart to represent the ",
+              "type": "text"
+            },
+            {
+              "code": "category",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as different bars in the chart and the ",
+              "type": "text"
+            },
+            {
+              "code": "value",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property as the y value for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "each bar:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Chart(data, id: \\.category) { item in",
+            "    BarMark(",
+            "        x: .value(\"Category\", item.category),",
+            "        y: .value(\"Value\", item.value)",
+            "    )",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This chart initializer behaves a lot like a SwiftUI",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ForEach",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "creating a mark — in this case, a bar — for each of the values in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "chart-1-macOS",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Controlling-data-series-inside-a-chart",
+          "level": 3,
+          "text": "Controlling data series inside a chart",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can compose more sophisticated charts by providing more than one series",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of marks to the chart. For example, suppose you have profit data for two",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "companies:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ProfitOverTime {",
+            "    var date: Date",
+            "    var profit: Double",
+            "}",
+            "",
+            "let departmentAProfit: [ProfitOverTime] = <#Profit array A#>",
+            "let departmentBProfit: [ProfitOverTime] = <#Profit array B#>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following chart creates two different series of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/LineMark",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with different colors to represent the data for each company. In effect,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it moves the ",
+              "type": "text"
+            },
+            {
+              "code": "ForEach",
+              "type": "codeVoice"
+            },
+            {
+              "text": " construct from the chart’s initializer into the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "body of the chart, enabling you to represent multiple different series:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Chart {",
+            "    ForEach(departmentAProfit, id: \\.date) { item in",
+            "        LineMark(",
+            "            x: .value(\"Date\", item.date),",
+            "            y: .value(\"Profit A\", item.profit),",
+            "            series: .value(\"Company\", \"A\")",
+            "        )",
+            "        .foregroundStyle(.blue)",
+            "    }",
+            "    ForEach(departmentBProfit, id: \\.date) { item in",
+            "        LineMark(",
+            "            x: .value(\"Date\", item.date),",
+            "            y: .value(\"Profit B\", item.profit),",
+            "            series: .value(\"Company\", \"B\")",
+            "        )",
+            "        .foregroundStyle(.green)",
+            "    }",
+            "    RuleMark(",
+            "        y: .value(\"Threshold\", 400)",
+            "    )",
+            "    .foregroundStyle(.red)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You indicate which series a line mark belongs to by specifying its ",
+              "type": "text"
+            },
+            {
+              "code": "series",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "input parameter. The above chart also uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/RuleMark",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to produce",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a horizontal line segment that displays a constant threshold value across",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the width of the chart:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "chart-2-macOS",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "chart-1-macOS": {
+      "alt": "A bar chart with three categories A, B, and C on the x-axis and a range of 0 to 10 on the y-axis. A bar appears in each category. All the bars are the same color. The first has a value of 5. The second has a value of 9. The third has a value of 7.",
+      "identifier": "chart-1-macOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e8d88794fa77f18d67e494cac557a292/chart-1-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f61eae80ef67b073b6e97cd98c11f44d/chart-1-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "chart-2-macOS": {
+      "alt": "A line chart with three lines. Dates appear on the x-axis, spanning one full month, and company profit appears on the y-axis in the range of 0 to 750. Two of the lines trend upward from left to right, with occasional downward movement. The third line is purely horizontal at the level of 400.",
+      "identifier": "chart-2-macOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/689db8aa648e1884570bed622d3af3a1/chart-2-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/478a1334e58440f091c813d97cf5e009/chart-2-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Charts/documentation/Charts": {
+      "abstract": [
+        {
+          "text": "Construct and customize charts on every Apple platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift Charts",
+      "type": "topic",
+      "url": "/documentation/charts"
+    },
+    "doc://com.apple.Charts/documentation/Charts/BarMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using bars.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BarMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/BarMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BarMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "BarMark",
+      "type": "topic",
+      "url": "/documentation/charts/barmark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/Chart": {
+      "abstract": [
+        {
+          "text": "A SwiftUI view that displays a chart.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Chart"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/Chart",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Chart"
+        }
+      ],
+      "role": "symbol",
+      "title": "Chart",
+      "type": "topic",
+      "url": "/documentation/charts/chart"
+    },
+    "doc://com.apple.Charts/documentation/Charts/Chart/init(_:content:)": {
+      "abstract": [
+        {
+          "text": "Creates a chart composed of a series of identifiable marks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/Chart/init(_:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:content:)",
+      "type": "topic",
+      "url": "/documentation/charts/chart/init(_:content:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/Chart/init(_:id:content:)": {
+      "abstract": [
+        {
+          "text": "Creates a chart composed of a series of marks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7KeyPathC",
+          "text": "KeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/Chart/init(_:id:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:id:content:)",
+      "type": "topic",
+      "url": "/documentation/charts/chart/init(_:id:content:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/Chart/init(content:)": {
+      "abstract": [
+        {
+          "text": "Creates a chart composed of any number of data series and individual marks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/Chart/init(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(content:)",
+      "type": "topic",
+      "url": "/documentation/charts/chart/init(content:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/ChartContent": {
+      "abstract": [
+        {
+          "text": "A type that represents the content that you draw on a chart.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChartContent"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChartContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ChartContent",
+      "type": "topic",
+      "url": "/documentation/charts/chartcontent"
+    },
+    "doc://com.apple.Charts/documentation/Charts/ChartContentBuilder": {
+      "abstract": [
+        {
+          "text": "A result builder that you use to compose the contents of a chart.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChartContentBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContentBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChartContentBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "ChartContentBuilder",
+      "type": "topic",
+      "url": "/documentation/charts/chartcontentbuilder"
+    },
+    "doc://com.apple.Charts/documentation/Charts/Creating-a-chart-using-Swift-Charts": {
+      "abstract": [
+        {
+          "text": "Make a chart by combining chart building blocks in SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/Creating-a-chart-using-Swift-Charts",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a chart using Swift Charts",
+      "type": "topic",
+      "url": "/documentation/charts/creating-a-chart-using-swift-charts"
+    },
+    "doc://com.apple.Charts/documentation/Charts/LineMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using a sequence of connected line segments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LineMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/LineMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LineMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "LineMark",
+      "type": "topic",
+      "url": "/documentation/charts/linemark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/Plot": {
+      "abstract": [
+        {
+          "text": "A mechanism for grouping chart contents into a single entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Plot"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/Plot",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Plot"
+        }
+      ],
+      "role": "symbol",
+      "title": "Plot",
+      "type": "topic",
+      "url": "/documentation/charts/plot"
+    },
+    "doc://com.apple.Charts/documentation/Charts/RuleMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using a single horizontal or vertical rule.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RuleMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/RuleMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RuleMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "RuleMark",
+      "type": "topic",
+      "url": "/documentation/charts/rulemark"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ForEach": {
+      "abstract": [
+        {
+          "text": "A structure that computes views on demand from an underlying collection of identified data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ForEach"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sk",
+          "text": "RandomAccessCollection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ForEach",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ForEach",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ForEach"
+    },
+    "doc://com.apple.documentation/documentation/charts/visualizing_your_app_s_data": {
+      "abstract": [
+        {
+          "text": "Build complex and interactive charts using Swift Charts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/charts/visualizing_your_app_s_data",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Visualizing your app’s data",
+      "type": "topic",
+      "url": "/documentation/charts/visualizing_your_app_s_data"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Charts",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Charts/documentation/Charts/Creating-a-chart-using-Swift-Charts",
+        "doc://com.apple.documentation/documentation/charts/visualizing_your_app_s_data",
+        "doc://com.apple.Charts/documentation/Charts/ChartContent",
+        "doc://com.apple.Charts/documentation/Charts/ChartContentBuilder",
+        "doc://com.apple.Charts/documentation/Charts/Plot"
+      ],
+      "title": "Charts"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-chart",
+      "identifiers": [
+        "doc://com.apple.Charts/documentation/Charts/Chart/init(content:)",
+        "doc://com.apple.Charts/documentation/Charts/Chart/init(_:content:)",
+        "doc://com.apple.Charts/documentation/Charts/Chart/init(_:id:content:)"
+      ],
+      "title": "Creating a chart"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/charts/chart"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

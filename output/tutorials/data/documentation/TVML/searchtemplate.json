@@ -1,0 +1,1104 @@
+{
+  "abstract": [
+    {
+      "text": "Searches for a media item based on user input.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.TVML/documentation/TVML"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.TVML/documentation/TVML/searchtemplate"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "collectionGroup",
+    "title": "searchTemplate"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "searchTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element to display a text field that takes user input in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "order to search for a specific item; for example, looking for a specific movie to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "download. Developers can also display preselected results in a ",
+              "type": "text"
+            },
+            {
+              "code": "shelf",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "list",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "collectionList",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element under the search field. The following figure shows the basic",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "layout for a ",
+              "type": "text"
+            },
+            {
+              "code": "searchTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " page. The theme for the search template defaults to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system preference.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "searchtemplate-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Main-Elements",
+          "level": 3,
+          "text": "Main Elements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following listing shows the main elements of the ",
+              "type": "text"
+            },
+            {
+              "code": "searchTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "TVML format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<searchTemplate>",
+            "    <searchField />",
+            "    <shelf>",
+            "        <header>",
+            "            …",
+            "        </header>",
+            "        <section>",
+            "            <lockup>",
+            "                <img />",
+            "                <title>…</title>",
+            "            </lockup>",
+            "        </section>",
+            "    </shelf>",
+            "</searchTemplate>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "shelf",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " element can be replaced with a ",
+                  "type": "text"
+                },
+                {
+                  "code": "collectionList",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "list",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " element",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "to change the look of the search results.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Element-Descriptions",
+          "level": 4,
+          "text": "Element Descriptions",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Element containing a group of options (such as most popular movies) or search results.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.TVML/documentation/TVML/collectionlist",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A figure representing a search result.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.TVML/documentation/TVML/img",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Element containing a list of options (such as most popular movies) or search results.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.TVML/documentation/TVML/list",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A group of elements describing a search result or prepopulated results.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.TVML/documentation/TVML/lockup",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A text field where the user is able to enter search terms. JavaScript is used to read the information entered.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.TVML/documentation/TVML/searchfield",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Elements that are grouped together so that they can be treated as one element for layout purposes.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.TVML/documentation/TVML/section",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Element containing a row of options (such as most popular movies) or search results.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.TVML/documentation/TVML/shelf",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The title for a search result.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.TVML/documentation/TVML/title",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following listing shows the TVML for a ",
+              "type": "text"
+            },
+            {
+              "code": "searchTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " example. The example",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "displays a search field and keyboard along the top of the screen. A shelf is prepopulated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with popular movies. Modify your main JavaScript file to accept the user input from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the search field. For more information on available JavaScript functions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/tvmljs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<document>",
+            "    <searchTemplate>",
+            "        <searchField/>",
+            "        <shelf>",
+            "            <header>",
+            "                <title>Popular</title>",
+            "            </header>",
+            "            <section>",
+            "                <lockup>",
+            "                    <img src=\"path to images on your server/Car_Movie_250x375_A.png\" width=\"182\" height=\"274\" />",
+            "                    <title>Movie 1</title>",
+            "                </lockup>",
+            "                <lockup>",
+            "                    <img src=\"path to images on your server/Car_Movie_250x375_B.png\" width=\"182\" height=\"274\" />",
+            "                    <title>Movie 2</title>",
+            "                </lockup>",
+            "                <lockup>",
+            "                    <img src=\"path to images on your server/Car_Movie_250x375_C.png\" width=\"182\" height=\"274\" />",
+            "                    <title>Movie 3</title>",
+            "                </lockup>",
+            "            </section>",
+            "        </shelf>",
+            "    </searchTemplate>",
+            "</document>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following listing shows the output for the above example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "searchtemplate-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.TVML/documentation/TVML": {
+      "abstract": [
+        {
+          "text": "Use Apple TV Markup Language to create individual pages inside of a client-server",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML",
+      "kind": "article",
+      "role": "collection",
+      "title": "TVML",
+      "type": "topic",
+      "url": "/documentation/tvml"
+    },
+    "doc://com.apple.TVML/documentation/TVML/alerttemplate": {
+      "abstract": [
+        {
+          "text": "Displays important information to the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/alerttemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "alertTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/alerttemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/binding": {
+      "abstract": [
+        {
+          "text": "Associates information in a data item with an element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/binding",
+      "kind": "article",
+      "role": "article",
+      "title": "binding",
+      "type": "topic",
+      "url": "/documentation/tvml/binding"
+    },
+    "doc://com.apple.TVML/documentation/TVML/catalogtemplate": {
+      "abstract": [
+        {
+          "text": "Displays groups of items along one side of a page and images of a group’s contents",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "on the other side.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/catalogtemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "catalogTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/catalogtemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/collectionlist": {
+      "abstract": [
+        {
+          "text": "Contains other layout elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/collectionlist",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "collectionList",
+      "type": "topic",
+      "url": "/documentation/tvml/collectionlist"
+    },
+    "doc://com.apple.TVML/documentation/TVML/compilationtemplate": {
+      "abstract": [
+        {
+          "text": "Displays information about a single media item and its components.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/compilationtemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "compilationTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/compilationtemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/descriptivealerttemplate": {
+      "abstract": [
+        {
+          "text": "Displays large amounts of important information to the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/descriptivealerttemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "descriptiveAlertTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/descriptivealerttemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/divtemplate": {
+      "abstract": [
+        {
+          "text": "Provides the ability to create pages that don’t conform to a layout defined by another",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/divtemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "divTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/divtemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/formtemplate": {
+      "abstract": [
+        {
+          "text": "Provides the ability to gather information from the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/formtemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "formTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/formtemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/img": {
+      "abstract": [
+        {
+          "text": "Displays an image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/img",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "img",
+      "type": "topic",
+      "url": "/documentation/tvml/img"
+    },
+    "doc://com.apple.TVML/documentation/TVML/itemid": {
+      "abstract": [
+        {
+          "text": "Mark elements for reuse during DOM updates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/itemid",
+      "kind": "article",
+      "role": "article",
+      "title": "itemID",
+      "type": "topic",
+      "url": "/documentation/tvml/itemid"
+    },
+    "doc://com.apple.TVML/documentation/TVML/layoutdirection": {
+      "abstract": [
+        {
+          "text": "Specifies the direction in which text is displayed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/layoutdirection",
+      "kind": "article",
+      "role": "article",
+      "title": "layoutDirection",
+      "type": "topic",
+      "url": "/documentation/tvml/layoutdirection"
+    },
+    "doc://com.apple.TVML/documentation/TVML/list": {
+      "abstract": [
+        {
+          "text": "Creates a generic container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/list",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "list",
+      "type": "topic",
+      "url": "/documentation/tvml/list"
+    },
+    "doc://com.apple.TVML/documentation/TVML/listtemplate": {
+      "abstract": [
+        {
+          "text": "Displays a list of items along one side of a page and the corresponding image on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the other side.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/listtemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "listTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/listtemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/loadingtemplate": {
+      "abstract": [
+        {
+          "text": "Displays a spinner and description on the screen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/loadingtemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "loadingTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/loadingtemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/lockup": {
+      "abstract": [
+        {
+          "text": "Contains several elements that are treated as a single element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/lockup",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "lockup",
+      "type": "topic",
+      "url": "/documentation/tvml/lockup"
+    },
+    "doc://com.apple.TVML/documentation/TVML/maintemplate": {
+      "abstract": [
+        {
+          "text": "Displays user options for a media item.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/maintemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "mainTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/maintemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/menubartemplate": {
+      "abstract": [
+        {
+          "text": "Creates a page with items along the top and related information below.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/menubartemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "menuBarTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/menubartemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/oneuptemplate": {
+      "abstract": [
+        {
+          "text": "Creates a page that allows users to navigate between full-screen images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/oneuptemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "oneupTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/oneuptemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/paradetemplate": {
+      "abstract": [
+        {
+          "text": "Displays a groups of items along one side of a page and scrolling images on the other",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "side.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/paradetemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "paradeTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/paradetemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/productbundletemplate": {
+      "abstract": [
+        {
+          "text": "Displays information for a group of related media items.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/productbundletemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "productBundleTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/productbundletemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/producttemplate": {
+      "abstract": [
+        {
+          "text": "Displays detailed information about a single product.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/producttemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "productTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/producttemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/prototype": {
+      "abstract": [
+        {
+          "text": "Associates a data item type with an element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/prototype",
+      "kind": "article",
+      "role": "article",
+      "title": "prototype",
+      "type": "topic",
+      "url": "/documentation/tvml/prototype"
+    },
+    "doc://com.apple.TVML/documentation/TVML/ratingtemplate": {
+      "abstract": [
+        {
+          "text": "Displays a rating for an item.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/ratingtemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ratingTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/ratingtemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/searchfield": {
+      "abstract": [
+        {
+          "text": "Displays an interactive text field used to search for content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/searchfield",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "searchField",
+      "type": "topic",
+      "url": "/documentation/tvml/searchfield"
+    },
+    "doc://com.apple.TVML/documentation/TVML/section": {
+      "abstract": [
+        {
+          "text": "Combines elements and acts as a single element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/section",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "section",
+      "type": "topic",
+      "url": "/documentation/tvml/section"
+    },
+    "doc://com.apple.TVML/documentation/TVML/shelf": {
+      "abstract": [
+        {
+          "text": "Displays elements horizontally and adds the ability to scroll to offscreen elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/shelf",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "shelf",
+      "type": "topic",
+      "url": "/documentation/tvml/shelf"
+    },
+    "doc://com.apple.TVML/documentation/TVML/theme": {
+      "abstract": [
+        {
+          "text": "Sets the color scheme for an element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/theme",
+      "kind": "article",
+      "role": "article",
+      "title": "theme",
+      "type": "topic",
+      "url": "/documentation/tvml/theme"
+    },
+    "doc://com.apple.TVML/documentation/TVML/title": {
+      "abstract": [
+        {
+          "text": "Displays a short amount of text.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/title",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/tvml/title"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs": {
+      "abstract": [
+        {
+          "text": "Create tvOS client-server apps using web technologies to stream media and respond to events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TVMLKit JS",
+      "type": "topic",
+      "url": "/documentation/tvmljs"
+    },
+    "searchtemplate-1": {
+      "alt": "Layout diagram showing a search field at the top, a keyboard area directly below, and a large area for search results at the bottom.",
+      "identifier": "searchtemplate-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c0eb1dc3255a800297e52637e665f624/searchtemplate-1.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/961a6394b691c143bea3c091f1f364fd/searchtemplate-1@2x.png"
+        }
+      ]
+    },
+    "searchtemplate-2": {
+      "alt": "Screenshot showing a search field at the top of the screen and three movies at the bottom.",
+      "identifier": "searchtemplate-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fe95303a3738836f9d33fbdbde65bb39/searchtemplate-2.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b2d096819f273e48e28d379bf322dc60/searchtemplate-2@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Full-Page-Templates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.TVML/documentation/TVML/alerttemplate",
+        "doc://com.apple.TVML/documentation/TVML/catalogtemplate",
+        "doc://com.apple.TVML/documentation/TVML/compilationtemplate",
+        "doc://com.apple.TVML/documentation/TVML/descriptivealerttemplate",
+        "doc://com.apple.TVML/documentation/TVML/divtemplate",
+        "doc://com.apple.TVML/documentation/TVML/formtemplate",
+        "doc://com.apple.TVML/documentation/TVML/listtemplate",
+        "doc://com.apple.TVML/documentation/TVML/loadingtemplate",
+        "doc://com.apple.TVML/documentation/TVML/maintemplate",
+        "doc://com.apple.TVML/documentation/TVML/menubartemplate",
+        "doc://com.apple.TVML/documentation/TVML/oneuptemplate",
+        "doc://com.apple.TVML/documentation/TVML/paradetemplate",
+        "doc://com.apple.TVML/documentation/TVML/productbundletemplate",
+        "doc://com.apple.TVML/documentation/TVML/producttemplate",
+        "doc://com.apple.TVML/documentation/TVML/ratingtemplate"
+      ],
+      "title": "Full-Page Templates"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Valid-TVML-Attributes",
+      "identifiers": [
+        "doc://com.apple.TVML/documentation/TVML/binding",
+        "doc://com.apple.TVML/documentation/TVML/itemid",
+        "doc://com.apple.TVML/documentation/TVML/layoutdirection",
+        "doc://com.apple.TVML/documentation/TVML/prototype",
+        "doc://com.apple.TVML/documentation/TVML/theme"
+      ],
+      "title": "Valid TVML Attributes"
+    }
+  ]
+}

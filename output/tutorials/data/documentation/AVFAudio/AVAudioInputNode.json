@@ -1,0 +1,1820 @@
+{
+  "abstract": [
+    {
+      "text": "An object that connects to the system’s audio input.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfaudio/documentation/AVFAudio"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVAudioInputNode",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AVAudioInputNode"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFAudio"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AVAudioInputNode"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AVAudioInputNode"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioInputNode"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This node connects to the system’s audio input when rendering to or from an audio device. In manual rendering mode, this node supplies input data to the engine.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This audio node has one element. The format of the input scope reflects:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The audio hardware sample rate and channel count when it connects to hardware.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The format of the PCM audio data that the node supplies to the engine in manual rendering mode. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/setManualRenderingInputPCMFormat(_:inputBlock:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When rendering from an audio device, the input node doesn’t support format conversion. In this case, the format of the output scope must be the same as the input and the formats for all nodes connected to the input chain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In manual rendering mode, the format of the output scope is initially the same as the input, but you may set it to a different format, which converts the node.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This class has no methods of its own. It implements the methods that the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixing",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " protocol defines, as well as those of the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DMixing",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " protocol, which the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixing",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " protocol adopts. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixing",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DMixing",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfaudio/documentation/AVFAudio": {
+      "abstract": [
+        {
+          "text": "Play, record, and process audio; configure your app’s system audio behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFAudio",
+      "type": "topic",
+      "url": "/documentation/avfaudio"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DMixing": {
+      "abstract": [
+        {
+          "text": "A collection of properties that define 3D mixing properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudio3DMixing"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DMixing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudio3DMixing"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudio3DMixing",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudio3dmixing"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioIONode": {
+      "abstract": [
+        {
+          "text": "An object that performs audio input or output in the engine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioIONode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioIONode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioIONode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioIONode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioionode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioIONodeInputBlock": {
+      "abstract": [
+        {
+          "text": "The type that represents a block to render operation calls to get input data when in manual rendering mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioIONodeInputBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioIONodeInputBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioIONodeInputBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioIONodeInputBlock",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioionodeinputblock"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode": {
+      "abstract": [
+        {
+          "text": "An object that connects to the system’s audio input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioInputNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioInputNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioInputNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioinputnode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/isVoiceProcessingAGCEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether automatic gain control on the processed microphone uplink signal is active.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isVoiceProcessingAGCEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/isVoiceProcessingAGCEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "voiceProcessingAGCEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isVoiceProcessingAGCEnabled",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioinputnode/isvoiceprocessingagcenabled"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/isVoiceProcessingBypassed": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the node bypasses all microphone uplink processing of the voice-processing unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isVoiceProcessingBypassed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/isVoiceProcessingBypassed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "voiceProcessingBypassed"
+        }
+      ],
+      "role": "symbol",
+      "title": "isVoiceProcessingBypassed",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioinputnode/isvoiceprocessingbypassed"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/isVoiceProcessingInputMuted": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the input of the voice processing unit is in a muted state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isVoiceProcessingInputMuted"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/isVoiceProcessingInputMuted",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "voiceProcessingInputMuted"
+        }
+      ],
+      "role": "symbol",
+      "title": "isVoiceProcessingInputMuted",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioinputnode/isvoiceprocessinginputmuted"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/setManualRenderingInputPCMFormat(_:inputBlock:)": {
+      "abstract": [
+        {
+          "text": "Supplies the data through the input node to the engine while operating in the manual rendering mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setManualRenderingInputPCMFormat"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioFormat",
+          "text": "AVAudioFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVAudioIONodeInputBlock",
+          "text": "AVAudioIONodeInputBlock"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/setManualRenderingInputPCMFormat(_:inputBlock:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setManualRenderingInputPCMFormat:inputBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setManualRenderingInputPCMFormat(_:inputBlock:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioinputnode/setmanualrenderinginputpcmformat(_:inputblock:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/setMutedSpeechActivityEventListener(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMutedSpeechActivityEventListener"
+        },
+        {
+          "kind": "text",
+          "text": "((("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVAudioVoiceProcessingSpeechActivityEvent",
+          "text": "AVAudioVoiceProcessingSpeechActivityEvent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/setMutedSpeechActivityEventListener(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setMutedSpeechActivityEventListener:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setMutedSpeechActivityEventListener(_:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioinputnode/setmutedspeechactivityeventlistener(_:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/voiceProcessingOtherAudioDuckingConfiguration": {
+      "abstract": [
+        {
+          "text": "The ducking configuration of nonvoice audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "voiceProcessingOtherAudioDuckingConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AVAudioVoiceProcessingOtherAudioDuckingConfiguration",
+          "text": "AVAudioVoiceProcessingOtherAudioDuckingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/voiceProcessingOtherAudioDuckingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "voiceProcessingOtherAudioDuckingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "voiceProcessingOtherAudioDuckingConfiguration",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioinputnode/voiceprocessingotheraudioduckingconfiguration"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixing": {
+      "abstract": [
+        {
+          "text": "A collection of properties that are applicable to the input bus of a mixer node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioMixing"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioMixing"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioMixing",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiomixing"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode": {
+      "abstract": [
+        {
+          "text": "An object you use for audio generation, processing, or an I/O block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudionode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioOutputNode": {
+      "abstract": [
+        {
+          "text": "An object that connects to the system’s audio output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioOutputNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioOutputNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioOutputNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioOutputNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiooutputnode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioStereoMixing": {
+      "abstract": [
+        {
+          "text": "A protocol that defines stereo mixing properties a mixer uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioStereoMixing"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioStereoMixing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioStereoMixing"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioStereoMixing",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiostereomixing"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioVoiceProcessingOtherAudioDuckingConfiguration": {
+      "abstract": [
+        {
+          "text": "The configuration of ducking non-voice audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioVoiceProcessingOtherAudioDuckingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioVoiceProcessingOtherAudioDuckingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioVoiceProcessingOtherAudioDuckingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioVoiceProcessingOtherAudioDuckingConfiguration",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiovoiceprocessingotheraudioduckingconfiguration"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioVoiceProcessingSpeechActivityEvent": {
+      "abstract": [
+        {
+          "text": "Types of speech activity events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioVoiceProcessingSpeechActivityEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioVoiceProcessingSpeechActivityEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioVoiceProcessingSpeechActivityEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioVoiceProcessingSpeechActivityEvent",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiovoiceprocessingspeechactivityevent"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioIONode"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DMixing",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixing",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioStereoMixing",
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Nodes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioOutputNode",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioIONode"
+      ],
+      "title": "Nodes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Manually-Giving-Data-to-an-Audio-Engine",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/setManualRenderingInputPCMFormat(_:inputBlock:)",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioIONodeInputBlock"
+      ],
+      "title": "Manually Giving Data to an Audio Engine"
+    },
+    {
+      "anchor": "Getting-and-Setting-Voice-Processing-Properties",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/isVoiceProcessingInputMuted",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/isVoiceProcessingBypassed",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/isVoiceProcessingAGCEnabled",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/voiceProcessingOtherAudioDuckingConfiguration",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioVoiceProcessingOtherAudioDuckingConfiguration"
+      ],
+      "title": "Getting and Setting Voice Processing Properties"
+    },
+    {
+      "anchor": "Handling-Muted-Speech-Events",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/setMutedSpeechActivityEventListener(_:)",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioVoiceProcessingSpeechActivityEvent"
+      ],
+      "title": "Handling Muted Speech Events"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.10",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AVAudioInputNode"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioInputNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioInputNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfaudio/documentation/AVFAudio"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Manually-Giving-Data-to-an-Audio-Engine",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/setManualRenderingInputPCMFormat(_:inputBlock:)",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioIONodeInputBlock"
+              ],
+              "title": "Manually Giving Data to an Audio Engine"
+            },
+            {
+              "anchor": "Getting-and-Setting-Voice-Processing-Properties",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/isVoiceProcessingInputMuted",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/isVoiceProcessingBypassed",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/isVoiceProcessingAGCEnabled",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/voiceProcessingOtherAudioDuckingConfiguration",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioVoiceProcessingOtherAudioDuckingConfiguration"
+              ],
+              "title": "Getting and Setting Voice Processing Properties"
+            },
+            {
+              "anchor": "Handling-Muted-Speech-Events",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode/setMutedSpeechActivityEventListener(_:)",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioVoiceProcessingSpeechActivityEvent"
+              ],
+              "title": "Handling Muted Speech Events"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioIONode"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixing"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Nodes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioOutputNode",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioIONode"
+              ],
+              "title": "Nodes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AVAudioInputNode"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioIONode",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)AVAudioIONode",
+                    "text": "AVAudioIONode"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioOutputNode/title",
+          "value": "AVAudioOutputNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioOutputNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioOutputNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioOutputNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioOutputNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioInputNode~1isVoiceProcessingInputMuted/title",
+          "value": "voiceProcessingInputMuted"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioInputNode~1isVoiceProcessingInputMuted/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "voiceProcessingInputMuted"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioInputNode~1isVoiceProcessingBypassed/title",
+          "value": "voiceProcessingBypassed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioInputNode~1isVoiceProcessingBypassed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "voiceProcessingBypassed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode/title",
+          "value": "AVAudioNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioVoiceProcessingSpeechActivityEvent/title",
+          "value": "AVAudioVoiceProcessingSpeechActivityEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioVoiceProcessingSpeechActivityEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioVoiceProcessingSpeechActivityEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioVoiceProcessingSpeechActivityEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioVoiceProcessingSpeechActivityEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioInputNode/title",
+          "value": "AVAudioInputNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioInputNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioInputNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioInputNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioInputNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioInputNode~1setManualRenderingInputPCMFormat(_:inputBlock:)/title",
+          "value": "setManualRenderingInputPCMFormat:inputBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioInputNode~1setManualRenderingInputPCMFormat(_:inputBlock:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setManualRenderingInputPCMFormat:inputBlock:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioInputNode~1voiceProcessingOtherAudioDuckingConfiguration/title",
+          "value": "voiceProcessingOtherAudioDuckingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioInputNode~1voiceProcessingOtherAudioDuckingConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "voiceProcessingOtherAudioDuckingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioInputNode~1setMutedSpeechActivityEventListener(_:)/title",
+          "value": "setMutedSpeechActivityEventListener:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioInputNode~1setMutedSpeechActivityEventListener(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setMutedSpeechActivityEventListener:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioInputNode~1isVoiceProcessingAGCEnabled/title",
+          "value": "voiceProcessingAGCEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioInputNode~1isVoiceProcessingAGCEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "voiceProcessingAGCEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioVoiceProcessingOtherAudioDuckingConfiguration/title",
+          "value": "AVAudioVoiceProcessingOtherAudioDuckingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioVoiceProcessingOtherAudioDuckingConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioVoiceProcessingOtherAudioDuckingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioVoiceProcessingOtherAudioDuckingConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioVoiceProcessingOtherAudioDuckingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioIONode/title",
+          "value": "AVAudioIONode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioIONode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioIONode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioIONode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioIONode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DMixing/title",
+          "value": "AVAudio3DMixing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DMixing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudio3DMixing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DMixing/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudio3DMixing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioIONodeInputBlock/title",
+          "value": "AVAudioIONodeInputBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioIONodeInputBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioIONodeInputBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioIONodeInputBlock/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioIONodeInputBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioMixing/title",
+          "value": "AVAudioMixing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioMixing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioMixing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioMixing/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioMixing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioStereoMixing/title",
+          "value": "AVAudioStereoMixing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioStereoMixing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioStereoMixing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioStereoMixing/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioStereoMixing"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfaudio/avaudioinputnode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfaudio/avaudioinputnode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

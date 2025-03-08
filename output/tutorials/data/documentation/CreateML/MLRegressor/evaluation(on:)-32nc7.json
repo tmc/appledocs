@@ -1,0 +1,631 @@
+{
+  "abstract": [
+    {
+      "text": "Evaluates the classifier on the provided labeled data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateML/documentation/CreateML",
+        "doc://com.apple.CreateML/documentation/CreateML/MLRegressor"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/evaluation(on:)-32nc7"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:8CreateML11MLRegressorO10evaluation2onAA0C7MetricsV11TabularData0H5FrameV_tF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "evaluation"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "on"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:11TabularData0B5FrameV",
+        "text": "DataFrame"
+      },
+      {
+        "kind": "text",
+        "text": ") -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:8CreateML18MLRegressorMetricsV",
+        "text": "MLRegressorMetrics"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Create ML"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "evaluation(on:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "evaluation"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "on"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "labeledData"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:11TabularData0B5FrameV",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:11TabularData0B5FrameV",
+              "text": "DataFrame"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressorMetrics",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:8CreateML18MLRegressorMetricsV",
+              "text": "MLRegressorMetrics"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A ",
+                  "type": "text"
+                },
+                {
+                  "code": "DataFrame",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to evaluate the trained model on.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "labeledData"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metrics that describe the maximum error",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressorMetrics/maximumError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") or the average error",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressorMetrics/rootMeanSquaredError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Evaluation should be done on a testing data set that the model has not seen as part of the training or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "validation data sets. The data should have feature columns with identical name and type to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "training data, as well as a labels column with the same name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateML/documentation/CreateML": {
+      "abstract": [
+        {
+          "text": "Create machine learning models for use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML",
+      "type": "topic",
+      "url": "/documentation/createml"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRegressor": {
+      "abstract": [
+        {
+          "text": "A model you train to estimate continuous values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLRegressor"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLRegressor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLRegressor",
+      "type": "topic",
+      "url": "/documentation/createml/mlregressor"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/evaluation(on:)-32nc7": {
+      "abstract": [
+        {
+          "text": "Evaluates the classifier on the provided labeled data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabularData0B5FrameV",
+          "text": "DataFrame"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML18MLRegressorMetricsV",
+          "text": "MLRegressorMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/evaluation(on:)-32nc7",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evaluation(on:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlregressor/evaluation(on:)-32nc7"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/evaluation(on:)-7pirm": {
+      "abstract": [
+        {
+          "text": "Evaluates the classifier on the provided labeled data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML18MLRegressorMetricsV",
+          "text": "MLRegressorMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/evaluation(on:)-7pirm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evaluation(on:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlregressor/evaluation(on:)-7pirm"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRegressorMetrics": {
+      "abstract": [
+        {
+          "text": "Metrics you use to evaluate a regressor’s performance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLRegressorMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressorMetrics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLRegressorMetrics"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLRegressorMetrics",
+      "type": "topic",
+      "url": "/documentation/createml/mlregressormetrics"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRegressorMetrics/maximumError": {
+      "abstract": [
+        {
+          "text": "The largest absolute difference between the expected values and the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "model’s predicted values during testing or training.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressorMetrics/maximumError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maximumError",
+      "type": "topic",
+      "url": "/documentation/createml/mlregressormetrics/maximumerror"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRegressorMetrics/rootMeanSquaredError": {
+      "abstract": [
+        {
+          "text": "A common metric used to determine the deviation between correct and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "predicted values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rootMeanSquaredError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressorMetrics/rootMeanSquaredError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rootMeanSquaredError",
+      "type": "topic",
+      "url": "/documentation/createml/mlregressormetrics/rootmeansquarederror"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:11TabularData0B5FrameV": {
+      "abstract": [
+        {
+          "text": "A collection that arranges data in rows and columns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@dynamicMemberLookup"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataFrame"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:11TabularData0B5FrameV",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DataFrame",
+      "type": "topic",
+      "url": "/documentation/TabularData/DataFrame"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Evaluating-a-regressor",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/evaluation(on:)-7pirm"
+      ],
+      "title": "Evaluating a regressor"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createml/mlregressor/evaluation(on:)-32nc7"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,854 @@
+{
+  "abstract": [
+    {
+      "text": "Removes the elements of the set that are also in the given set and adds",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "the members of the given set that are not already in the set.",
+      "type": "text"
+    }
+  ],
+  "defaultImplementationsSections": [
+    {
+      "anchor": "SetAlgebra-Implementations",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/SetAlgebra/formSymmetricDifference(_:)-56m23"
+      ],
+      "title": "SetAlgebra Implementations"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift",
+        "doc://com.apple.Swift/documentation/Swift/SetAlgebra"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/SetAlgebra/formSymmetricDifference(_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:s10SetAlgebraP23formSymmetricDifferenceyyxnF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "formSymmetricDifference"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "text": "Self"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "required": true,
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "formSymmetricDifference(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "mutating"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "formSymmetricDifference"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "other"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Self"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A set of the same type.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "other"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following example, the elements of the ",
+              "type": "text"
+            },
+            {
+              "code": "employees",
+              "type": "codeVoice"
+            },
+            {
+              "text": " set that are",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "also members of ",
+              "type": "text"
+            },
+            {
+              "code": "neighbors",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are removed from ",
+              "type": "text"
+            },
+            {
+              "code": "employees",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", while the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "elements of ",
+              "type": "text"
+            },
+            {
+              "code": "neighbors",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that are not members of ",
+              "type": "text"
+            },
+            {
+              "code": "employees",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are added to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "employees",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". In particular, the names ",
+              "type": "text"
+            },
+            {
+              "code": "\"Bethany\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "\"Eric\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "removed from ",
+              "type": "text"
+            },
+            {
+              "code": "employees",
+              "type": "codeVoice"
+            },
+            {
+              "text": " while the name ",
+              "type": "text"
+            },
+            {
+              "code": "\"Forlani\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is added.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var employees: Set = [\"Alicia\", \"Bethany\", \"Diana\", \"Eric\"]",
+            "let neighbors: Set = [\"Bethany\", \"Eric\", \"Forlani\"]",
+            "employees.formSymmetricDifference(neighbors)",
+            "print(employees)",
+            "// Prints \"[\"Diana\", \"Forlani\", \"Alicia\"]\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/SetAlgebra": {
+      "abstract": [
+        {
+          "text": "A type that provides mathematical set operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetAlgebra"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/SetAlgebra",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SetAlgebra"
+        }
+      ],
+      "role": "symbol",
+      "title": "SetAlgebra",
+      "type": "topic",
+      "url": "/documentation/swift/setalgebra"
+    },
+    "doc://com.apple.Swift/documentation/Swift/SetAlgebra/formIntersection(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the elements of this set that aren’t also in the given set.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formIntersection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/SetAlgebra/formIntersection(_:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "formIntersection(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/setalgebra/formintersection(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/SetAlgebra/formSymmetricDifference(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the elements of the set that are also in the given set and adds",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the members of the given set that are not already in the set.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formSymmetricDifference"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/SetAlgebra/formSymmetricDifference(_:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "formSymmetricDifference(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/setalgebra/formsymmetricdifference(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/SetAlgebra/formSymmetricDifference(_:)-56m23": {
+      "abstract": [
+        {
+          "text": "Replaces this set with a new set containing all elements",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "contained in either this set or the given set, but not in both.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "RawValue",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "FixedWidthInteger",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formSymmetricDifference"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/SetAlgebra/formSymmetricDifference(_:)-56m23",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formSymmetricDifference(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/setalgebra/formsymmetricdifference(_:)-56m23"
+    },
+    "doc://com.apple.Swift/documentation/Swift/SetAlgebra/formUnion(_:)": {
+      "abstract": [
+        {
+          "text": "Adds the elements of the given set to the set.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formUnion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/SetAlgebra/formUnion(_:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "formUnion(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/setalgebra/formunion(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/SetAlgebra/intersection(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new set with the elements that are common to both this set and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the given set.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "intersection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/SetAlgebra/intersection(_:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "intersection(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/setalgebra/intersection(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/SetAlgebra/symmetricDifference(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new set with the elements that are either in this set or in the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "given set, but not in both.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "symmetricDifference"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/SetAlgebra/symmetricDifference(_:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "symmetricDifference(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/setalgebra/symmetricdifference(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/SetAlgebra/union(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new set with the elements of both this and the given set.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "union"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/SetAlgebra/union(_:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "union(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/setalgebra/union(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Combining-Sets",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/SetAlgebra/union(_:)",
+        "doc://com.apple.Swift/documentation/Swift/SetAlgebra/formUnion(_:)",
+        "doc://com.apple.Swift/documentation/Swift/SetAlgebra/intersection(_:)",
+        "doc://com.apple.Swift/documentation/Swift/SetAlgebra/formIntersection(_:)",
+        "doc://com.apple.Swift/documentation/Swift/SetAlgebra/symmetricDifference(_:)"
+      ],
+      "title": "Combining Sets"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/setalgebra/formsymmetricdifference(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

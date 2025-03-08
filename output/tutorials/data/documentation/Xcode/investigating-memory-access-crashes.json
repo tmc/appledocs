@@ -1,0 +1,2205 @@
+{
+  "abstract": [
+    {
+      "text": "Identify crashes that arise from memory access issues, and investigate the cause",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "of the crash.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs",
+        "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/investigating-memory-access-crashes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Investigating memory access crashes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A crash due to a memory access issue occurs when an app uses memory in an unexpected",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "way. Memory access problems have numerous causes, such as dereferencing a pointer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to an invalid memory address, writing to read-only memory, or jumping to an instruction",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at an invalid address. These crashes are most often identified by the ",
+              "type": "text"
+            },
+            {
+              "code": "EXC_BAD_ACCESS (SIGSEGV)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "EXC_BAD_ACCESS (SIGBUS)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " exceptions in the crash report:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Exception Type:  EXC_BAD_ACCESS (SIGSEGV)",
+            "Exception Subtype: KERN_INVALID_ADDRESS at 0x0000000000000000"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On macOS, bad memory access crashes are occasionally identified only by a signal,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as ",
+              "type": "text"
+            },
+            {
+              "code": "SIGSEGV",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "SEGV_MAPERR",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "SEGV_NOOP",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Exception Type: SIGSEGV",
+            "Exception Codes: SEGV_MAPERR at 0x41e0af0c5ab8"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode provides several tools that can help identify the source of a memory access",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "issue. Further analysis of each section in the crash report may provide further insight",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and clues to help you diagnose the problem.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Investigate-the-crash-with-Xcode",
+          "level": 3,
+          "text": "Investigate the crash with Xcode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you’ve identified that a crash report is for a memory access issue through the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "exception type, use Xcode to continue your investigation. Xcode contains a suite",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of debugging tools you can use to identify memory access issues as your app runs.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These tools are most effective when your tests execute as many code branches in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app as possible:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Address Sanitizer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Undefined Behavior Sanitizer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Thread Sanitizer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app contains code in Objective-C, C, or C++, run the static analyzer, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "fix all issues it discovers. The static analyzer analyzes your app’s code at build",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "time, and identifies common programming mistakes, including some types of memory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "management issues. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/devb7babe820",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Beyond the exception type in the crash report, other sections of the crash report",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "may contain additional clues that suggest applying additional debugging tools. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, if a zombie object caused the crash, telltale signs are in the crash report.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/investigating-memory-access-crashes#Check-the-crashed-threads-backtrace-for-clues-about-the-source-of-the-memory-access-issue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for information on the specific clues.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For difficult to diagnose memory access crashes, the malloc debugging features, such",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as Guard Malloc, can help. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/ManagingMemory/Articles/MallocDebug.html#//apple_ref/doc/uid/20001884",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for information about these tools. You enable these tools through the Xcode scheme",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "editor, as described by ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/devcef23c572",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Examine-the-exception-subtype-to-determine-why-access-was-invalid",
+          "level": 3,
+          "text": "Examine the exception subtype to determine why access was invalid",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Exception Subtype",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field in the crash report contains a ",
+              "type": "text"
+            },
+            {
+              "code": "kern_return_t",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "describing the error and the address of the memory that was incorrectly accessed,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Exception Type:  EXC_BAD_ACCESS (SIGSEGV)",
+            "Exception Subtype: KERN_INVALID_ADDRESS at 0x0000000000000000"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On macOS, the ",
+              "type": "text"
+            },
+            {
+              "code": "Exception Codes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field contains the exception subtype:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Exception Type:        EXC_BAD_ACCESS (SIGBUS)",
+            "Exception Codes:       KERN_MEMORY_ERROR at 0x00000001098c1000"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are several exception subtypes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "KERN_INVALID_ADDRESS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The crashed thread accessed unmapped memory, either by",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "accessing data or an instruction fetch. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/investigating-memory-access-crashes#Identify-the-type-of-memory-access-that-caused-the-issue",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "describes how to tell the difference.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "KERN_PROTECTION_FAILURE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The crashed thread tried to use a valid memory address",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "that’s protected. Some types of protected memory include read-only memory regions,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "or nonexecutable memory regions. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/investigating-memory-access-crashes#Use-VM-Region-Info-to-locate-the-memory-in-your-apps-address-space",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "for how to distinguish the type of protected memory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "KERN_MEMORY_ERROR",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The crashed thread tried to access memory that couldn’t return",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "data at that moment, such as a memory-mapped file that became unavailable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "EXC_ARM_DA_ALIGN",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The crashed thread tried to access memory that isn’t appropriately",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "aligned. This exception code is rare because 64-bit ARM CPUs work with misaligned",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "data. However, you may see this exception subtype if the memory address is both misaligned",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and located in an unmapped memory region. You may have other crash reports that show",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "a memory access issue with a different exception subtype, which are likely caused",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "by the same underlying memory access issue.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "arm64e",
+              "type": "codeVoice"
+            },
+            {
+              "text": " CPU architecture uses pointer authentication codes with cryptographic",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "signatures to detect and guard against unexpected changes to pointers in memory.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A crash due to a possible pointer authentication failure uses the ",
+              "type": "text"
+            },
+            {
+              "code": "KERN_INVALID_ADDRESS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "exception subtype with an additional message on the end:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Exception Type:  EXC_BAD_ACCESS (SIGBUS)",
+            "Exception Subtype: KERN_INVALID_ADDRESS at 0x00006f126c1a9aa0 -> 0x000000126c1a9aa0 (possible pointer authentication failure)"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An invalid memory access, where high-order bits are erroneously set, can look like",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a pointer authentication failure, even if the cause is due to a memory corruption",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "problem in the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/preparing-your-app-to-work-with-pointer-authentication",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for more information about pointer authentication.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-VM-Region-Info-to-locate-the-memory-in-your-apps-address-space",
+          "level": 3,
+          "text": "Use VM Region Info to locate the memory in your app’s address space",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "VM Region Info",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field of the crash report shows the location of the specific",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "memory that your app incorrectly accessed in relation to other sections of the app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "address space. Consider this example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Exception Type:  EXC_BAD_ACCESS (SIGSEGV)",
+            "Exception Subtype: KERN_INVALID_ADDRESS at 0x0000000000000000",
+            "VM Region Info: 0 is not in any region.  Bytes before following region: 4307009536",
+            "      REGION TYPE                      START - END             [ VSIZE] PRT/MAX SHRMOD  REGION DETAIL",
+            "      UNUSED SPACE AT START",
+            "--->  ",
+            "      __TEXT                 0000000100b7c000-0000000100b84000 [   32K] r-x/r-x SM=COW  ...pp/MyGreatApp"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here, a dereference to unmapped memory triggered the crash, at ",
+              "type": "text"
+            },
+            {
+              "code": "0x0000000000000000",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This is an invalid address, specifically a ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " pointer, so the exception subtype",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "indicates this with the ",
+              "type": "text"
+            },
+            {
+              "code": "KERN_INVALID_ADDRESS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value. The ",
+              "type": "text"
+            },
+            {
+              "code": "VM Region Info",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "shows the location of this invalid address is 4,307,009,536 bytes before a valid",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "region of memory in the app’s address space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider a different example, for a ",
+              "type": "text"
+            },
+            {
+              "code": "KERN_PROTECTION_FAILURE",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Exception Type:  EXC_BAD_ACCESS (SIGBUS)",
+            "Exception Subtype: KERN_PROTECTION_FAILURE at 0x000000016c070a30",
+            "VM Region Info: 0x16c070a30 is in 0x16c070000-0x16c074000;  bytes after start: 2608  bytes before end: 13775",
+            "      REGION TYPE                      START - END             [ VSIZE] PRT/MAX SHRMOD  REGION DETAIL",
+            "      Stack                  000000016bfe8000-000000016c070000 [  544K] rw-/rwx SM=COW  thread 12",
+            "--->  STACK GUARD            000000016c070000-000000016c074000 [   16K] ---/rwx SM=NUL  ...for thread 11",
+            "      Stack                  000000016c074000-000000016c0fc000 [  544K] rw-/rwx SM=COW  thread 11"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the dereferenced memory address is ",
+              "type": "text"
+            },
+            {
+              "code": "0x000000016c070a30",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", with the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "region containing this memory address identified by the arrow. The address is located",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in a special memory region called the stack guard, which is a memory region that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "buffers the stack of a thread from the stack of another thread. The ",
+              "type": "text"
+            },
+            {
+              "code": "PRT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " column",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "shows the current permission attributes for the memory regions, with ",
+              "type": "text"
+            },
+            {
+              "code": "r",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicating",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the memory is readable, ",
+              "type": "text"
+            },
+            {
+              "code": "w",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicating the memory is writable, and ",
+              "type": "text"
+            },
+            {
+              "code": "x",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicating",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the memory is executable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the stack guard region has no permissions, all memory accesses to this region",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are invalid, and the crash report is identifying this memory access as a violation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the memory protection attributes. The stack guard is just one example of protected",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "memory—there are others types of protected memory regions, with different combinations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the protection attributes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/ManagingMemory/Articles/VMPages.html#//apple_ref/doc/uid/20001985-97652",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for more information on the ",
+              "type": "text"
+            },
+            {
+              "code": "VM Region Info",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-the-crashed-threads-backtrace-for-clues-about-the-source-of-the-memory-access-issue",
+          "level": 3,
+          "text": "Check the crashed thread’s backtrace for clues about the source of the memory access issue",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consult the crashed thread’s backtrace for clues on where the memory access issue",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is occurring. Some types of memory access issues, such as dereferencing a ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pointer, are easy to identify when looking at the backtrace and comparing it to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "source code. Other memory access issues are identified by the stack frame at the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "top of the crashed thread’s backtrace:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/objectivec/1456712-objc_msgsend",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ",",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "objc_retain",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "objc_release",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is at the top of the backtrace, the crash is due",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to a zombie object. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/investigating-crashes-for-zombie-objects",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "gpus_ReturnNotPermittedKillClient",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is at the top of the backtrace, the operating",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "system terminated the process because it attempted to do rendering with OpenGL ES",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "while in the background. To resolve a crash with this symbol in the backtrace, migrate",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "your OpenGL ES code to Metal. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/migrating-opengl-code-to-metal",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In other cases, the cause of a memory access issue isn’t present in the backtrace.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Memory corruption",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " occurs when a memory location is unexpectedly modified. After",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this modification, another part of your app may crash when it tries to use that memory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "location. The backtrace shows the code accessing the modified memory, but not the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code that unexpectedly modified the memory. The unexpected modification may have",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "occurred a long time before the crash, so the source of the issue isn’t visible in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the backtrace. If you have numerous crash reports with signs of a memory access issue,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "but with different backtraces, you may have a memory corruption issue. The information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/investigating-memory-access-crashes#Investigate-the-crash-with-Xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "help identify the source of the memory corruption.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-the-type-of-memory-access-that-caused-the-issue",
+          "level": 3,
+          "text": "Identify the type of memory access that caused the issue",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two categories of memory access issues: invalid memory fetches and invalid",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instruction fetches. An ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "invalid memory fetch",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " occurs when code dereferences an invalid",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pointer. An ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "invalid instruction fetch",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " occurs when a function jumps to another function",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "through a bad function pointer, or through a function call to an unexpected object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To determine which type of memory access issue caused a crash, focus on the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "program",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "counter",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", a register that contains the address of the instruction that caused the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "memory access exception. On ARM CPU architectures, this is the ",
+              "type": "text"
+            },
+            {
+              "code": "pc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " register. On",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "x86_64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " CPU architecture, this is the ",
+              "type": "text"
+            },
+            {
+              "code": "rip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " register.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the program counter register isn’t the same as the exception address, the crash",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is due to an invalid memory fetch. For example, consider the following macOS crash",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "report on an ",
+              "type": "text"
+            },
+            {
+              "code": "x86_64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " CPU:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Exception Type:  SIGSEGV",
+            "Exception Codes: SEGV_MAPERR at 0x21474feae2c8",
+            "...",
+            "Thread 12 crashed with X86-64 Thread State:",
+            "   rip: 0x00007fff61f5739d    rbp: 0x00007000026c72c0    rsp: 0x00007000026c7248    rax: 0xe85e2965c85400b4 ",
+            "   rbx: 0x00006000023ee2b0    rcx: 0x00007f9273022990    rdx: 0x00007000026c6d88    rdi: 0x00006000023ee2b0 ",
+            "   rsi: 0x00007fff358aae0f     r8: 0x00000000000003ff     r9: 0x00006000023edbc0    r10: 0x000021474feae2b0 ",
+            "   r11: 0x00007fff358aae0f    r12: 0x000060000237af10    r13: 0x00007fff61f57380    r14: 0x00006000023ee2b0 ",
+            "   r15: 0x0000000000000006 rflags: 0x0000000000010202     cs: 0x000000000000002b     fs: 0x0000000000000000 ",
+            "    gs: 0x0000000000000000 ",
+            ""
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The program counter register is ",
+              "type": "text"
+            },
+            {
+              "code": "0x00007fff61f5739d",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which isn’t the same as the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "exception’s address of ",
+              "type": "text"
+            },
+            {
+              "code": "0x21474feae2c8",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This crash is due to an invalid memory fetch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the program counter register is the same as the exception address, the crash is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "due to an invalid instruction fetch. For example, consider the following iOS crash",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "report on an ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " CPU:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Exception Type:  EXC_BAD_ACCESS (SIGSEGV)",
+            "Exception Subtype: KERN_INVALID_ADDRESS at 0x0000000000000040",
+            "...",
+            "Thread 0 name:  Dispatch queue: com.apple.main-thread",
+            "Thread 0 Crashed:",
+            "0   ???                               0x0000000000000040 0 + 64",
+            "...",
+            "Thread 0 crashed with ARM Thread State (64-bit):",
+            "    x0: 0x0000000000000002   x1: 0x0000000000000040   x2: 0x0000000000000001   x3: 0x000000016dcfe080",
+            "    x4: 0x0000000000000010   x5: 0x000000016dcfdc8f   x6: 0x000000016dcfdd80   x7: 0x0000000000000000",
+            "    x8: 0x000000010210d3c8   x9: 0x0000000000000000  x10: 0x0000000000000014  x11: 0x0000000102835948",
+            "   x12: 0x0000000000000014  x13: 0x0000000000000000  x14: 0x0000000000000001  x15: 0x0000000000000000",
+            "   x16: 0x000000010210c0b8  x17: 0x00000001021063b0  x18: 0x0000000000000000  x19: 0x0000000102402b80",
+            "   x20: 0x0000000102402b80  x21: 0x0000000204f6b000  x22: 0x00000001f6e6f984  x23: 0x0000000000000001",
+            "   x24: 0x0000000000000001  x25: 0x00000001fc47b690  x26: 0x0000000102304040  x27: 0x0000000204eea000",
+            "   x28: 0x00000001f6e78fae   fp: 0x000000016dcfdec0   lr: 0x00000001021063c4",
+            "    sp: 0x000000016dcfdec0   pc: 0x0000000000000040 cpsr: 0x40000000",
+            "   esr: 0x82000006 (Instruction Abort) Translation fault",
+            "",
+            "Binary Images:",
+            "0x102100000 - 0x102107fff MyCoolApp arm64  <87760ecf8573392ca5795f0db63a44e2> /var/containers/Bundle/Application/686CA3F1-6CC5-4F84-8126-EE22D03BC161/MyCoolApp.app/MyCoolApp",
+            ""
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the program counter register is ",
+              "type": "text"
+            },
+            {
+              "code": "0x0000000000000040",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which matches",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the address reported in the Exception Subtype, indicating this crash is due to a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "bad instruction fetch. Because this is a bad instruction fetch, frame 0 in the backtrace",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "doesn’t contain a running function, as indicated by the ",
+              "type": "text"
+            },
+            {
+              "code": "???",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and memory address",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instead of a symbol name in the backtrace. However, the link register, ",
+              "type": "text"
+            },
+            {
+              "code": "lr",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", contains",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the location the code would return to after a function call under normal circumstances.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The value in the link register allows you trace the origin of the jump to a bad instruction",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pointer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "x86_64",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " CPU architecture stores return addresses on the stack, instead",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "of in a link register, so you can’t trace the origin of the bad function pointer",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "on ",
+                  "type": "text"
+                },
+                {
+                  "code": "x86_64",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " CPUs.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The link register contains ",
+              "type": "text"
+            },
+            {
+              "code": "0x00000001021063c4",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which is an instruction address",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in one of the binaries loaded in the app’s process. The Binary Images section of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the crash report shows that this address is inside the ",
+              "type": "text"
+            },
+            {
+              "code": "MyCoolApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " binary, because",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that address is in the range ",
+              "type": "text"
+            },
+            {
+              "code": "0x102100000-0x102107fff",
+              "type": "codeVoice"
+            },
+            {
+              "text": " listed for that binary. With",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this information, you can use the ",
+              "type": "text"
+            },
+            {
+              "code": "atos",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command line tool with the ",
+              "type": "text"
+            },
+            {
+              "code": "dSYM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the binary, and identify the corresponding code located at ",
+              "type": "text"
+            },
+            {
+              "code": "0x00000001021063c4",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% atos -arch arm64 -o MyCoolApp.app.dSYM/Contents/Resources/DWARF/MyCoolApp -l 0x102100000 0x00000001021063c4",
+            "-[ViewController loadData] (in MyCoolApp) (ViewController.m:38)"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Symbolicate-the-crash-report-with-the-command-line",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "discusses how to use the ",
+              "type": "text"
+            },
+            {
+              "code": "atos",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command line tool in more detail.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Symbolicate-the-crash-report-with-the-command-line": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Symbolicate-the-crash-report-with-the-command-line",
+      "kind": "section",
+      "title": "Symbolicate the crash report with the command line",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-identifiable-symbol-names-to-a-crash-report#Symbolicate-the-crash-report-with-the-command-line"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Identify clues in a crash report that help you diagnose problems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing a crash report",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-a-crash-report"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs": {
+      "abstract": [
+        {
+          "text": "Use crash reports and device logs to debug app issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Diagnosing issues using crash reports and device logs",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-issues-using-crash-reports-and-device-logs"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes": {
+      "abstract": [
+        {
+          "text": "Find patterns in crash reports that identify common problems, and investigate the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "issue based on the pattern.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Identifying the cause of common crashes",
+      "type": "topic",
+      "url": "/documentation/xcode/identifying-the-cause-of-common-crashes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/investigating-crashes-for-zombie-objects": {
+      "abstract": [
+        {
+          "text": "Identify the signature of a zombie and investigate the cause of the crash.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/investigating-crashes-for-zombie-objects",
+      "kind": "article",
+      "role": "article",
+      "title": "Investigating crashes for zombie objects",
+      "type": "topic",
+      "url": "/documentation/xcode/investigating-crashes-for-zombie-objects"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/investigating-memory-access-crashes#Check-the-crashed-threads-backtrace-for-clues-about-the-source-of-the-memory-access-issue": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/investigating-memory-access-crashes#Check-the-crashed-threads-backtrace-for-clues-about-the-source-of-the-memory-access-issue",
+      "kind": "section",
+      "title": "Check the crashed thread’s backtrace for clues about the source of the memory access issue",
+      "type": "topic",
+      "url": "/documentation/xcode/investigating-memory-access-crashes#Check-the-crashed-threads-backtrace-for-clues-about-the-source-of-the-memory-access-issue"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/investigating-memory-access-crashes#Identify-the-type-of-memory-access-that-caused-the-issue": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/investigating-memory-access-crashes#Identify-the-type-of-memory-access-that-caused-the-issue",
+      "kind": "section",
+      "title": "Identify the type of memory access that caused the issue",
+      "type": "topic",
+      "url": "/documentation/xcode/investigating-memory-access-crashes#Identify-the-type-of-memory-access-that-caused-the-issue"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/investigating-memory-access-crashes#Investigate-the-crash-with-Xcode": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/investigating-memory-access-crashes#Investigate-the-crash-with-Xcode",
+      "kind": "section",
+      "title": "Investigate the crash with Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/investigating-memory-access-crashes#Investigate-the-crash-with-Xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/investigating-memory-access-crashes#Use-VM-Region-Info-to-locate-the-memory-in-your-apps-address-space": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/investigating-memory-access-crashes#Use-VM-Region-Info-to-locate-the-memory-in-your-apps-address-space",
+      "kind": "section",
+      "title": "Use VM Region Info to locate the memory in your app’s address space",
+      "type": "topic",
+      "url": "/documentation/xcode/investigating-memory-access-crashes#Use-VM-Region-Info-to-locate-the-memory-in-your-apps-address-space"
+    },
+    "doc://com.apple.documentation/documentation/Metal/migrating-opengl-code-to-metal": {
+      "abstract": [
+        {
+          "text": "Replace your app’s deprecated OpenGL code with Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/migrating-opengl-code-to-metal",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Migrating OpenGL Code to Metal",
+      "type": "topic",
+      "url": "/documentation/Metal/migrating-opengl-code-to-metal"
+    },
+    "doc://com.apple.documentation/documentation/Security/preparing-your-app-to-work-with-pointer-authentication": {
+      "abstract": [
+        {
+          "text": "Test your app against the arm64e architecture to ensure that it works seamlessly with enhanced security features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/preparing-your-app-to-work-with-pointer-authentication",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your app to work with pointer authentication",
+      "type": "topic",
+      "url": "/documentation/Security/preparing-your-app-to-work-with-pointer-authentication"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1456712-objc_msgsend": {
+      "abstract": [
+        {
+          "text": "Sends a message with a simple return value to an instance of a class.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1456712-objc_msgsend",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_msgSend",
+      "type": "topic",
+      "url": "/documentation/objectivec/1456712-objc_msgsend"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/ManagingMemory/Articles/MallocDebug.html#//apple_ref/doc/uid/20001884": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/ManagingMemory/Articles/MallocDebug.html#//apple_ref/doc/uid/20001884",
+      "title": "Enabling the Malloc Debugging Features",
+      "titleInlineContent": [
+        {
+          "text": "Enabling the Malloc Debugging Features",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/ManagingMemory/Articles/MallocDebug.html#//apple_ref/doc/uid/20001884"
+    },
+    "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/ManagingMemory/Articles/VMPages.html#//apple_ref/doc/uid/20001985-97652": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/ManagingMemory/Articles/VMPages.html#//apple_ref/doc/uid/20001985-97652",
+      "title": "Interpreting vmmap’s Output",
+      "titleInlineContent": [
+        {
+          "text": "Interpreting vmmap’s Output",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/ManagingMemory/Articles/VMPages.html#//apple_ref/doc/uid/20001985-97652"
+    },
+    "https://help.apple.com/xcode/mac/current/#/devb7babe820": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/devb7babe820",
+      "title": "Analyze your code for potential flaws",
+      "titleInlineContent": [
+        {
+          "text": "Analyze your code for potential flaws",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/devb7babe820"
+    },
+    "https://help.apple.com/xcode/mac/current/#/devcef23c572": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/devcef23c572",
+      "title": "Run your app with sanitizers, API checks, and memory management diagnostics",
+      "titleInlineContent": [
+        {
+          "text": "Run your app with sanitizers, API checks, and memory management",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "diagnostics",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/devcef23c572"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Memory-access-errors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/investigating-crashes-for-zombie-objects"
+      ],
+      "title": "Memory access errors"
+    }
+  ]
+}

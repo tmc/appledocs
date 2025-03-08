@@ -1,0 +1,1839 @@
+{
+  "abstract": [
+    {
+      "text": "An object representing a haptic waveform.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CHHapticPattern",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CHHapticPattern"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Haptics"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CHHapticPattern"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CHHapticPattern"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CHHapticPattern"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-a-single-tap-haptic-pattern"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A haptic pattern represents the waveform of a haptic through a hierarchical set of key-value pairs, starting at the topmost level with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/Key",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This key marks the beginning of an array of events and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/Key/parameterID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " definitions. Each event has an associated time that indicates when the system delivers the event to the haptic engine.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3163328",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These key-value pairs represent not only events constituting the pattern, but also individual parameters of each event, which are characteristics of the haptic, such as sharpness and intensity. More complicated patterns also contain key-value pairs for parameter curves, which you can use to modulate parameters over time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Haptic-Patterns",
+          "level": 3,
+          "text": "Haptic Patterns",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add haptics to your app, you create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEngine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", load a pattern, and use the engine to create a player to play that pattern. You create a pattern in one of three ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Dictionaries",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". Each entry in the dictionary defines a single characteristic of the haptic, like its intensity, start time, or duration. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-a-single-tap-haptic-pattern",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to learn more about creating a dictionary inline.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Arrays of events and parameters",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class represents a haptic event as an object in code. The key-value pairs in a dictionary correspond to the properties and parameters associated with a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Haptic event objects are just another representation of the haptics dictionary.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "AHAP files",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". This JSON-compliant file format specifies a haptic pattern through key-value pairs, analogous to a dictionary literal, except in a text file. Add this file to your Xcode project bundle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can produce the same kind of content with all forms of pattern creation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Haptic-Intensity-and-Sharpness",
+          "level": 3,
+          "text": "Haptic Intensity and Sharpness",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Regardless of the building block you choose to generate a custom haptic, you can control its intensity and sharpness. Intensity varies the haptic’s amplitude or strength. Sharpness lets you determine the character of the haptic experience. For example, you can use sharpness values to convey an experience that’s crisp, precise, and mechanical, or one that’s soft, rounded, and organic.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corehaptics/documentation/CoreHaptics": {
+      "abstract": [
+        {
+          "text": "Compose and play haptic patterns to customize your iOS app’s haptic feedback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Haptics",
+      "type": "topic",
+      "url": "/documentation/corehaptics"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticAdvancedPatternPlayer": {
+      "abstract": [
+        {
+          "text": "A protocol that defines an advanced pattern player capable of looping, seeking, pausing, and resuming haptic playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticAdvancedPatternPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticAdvancedPatternPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticAdvancedPatternPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticAdvancedPatternPlayer",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticadvancedpatternplayer"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEngine": {
+      "abstract": [
+        {
+          "text": "An object that represents the connection to the haptic server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEngine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticEngine"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticEngine",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticengine"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent": {
+      "abstract": [
+        {
+          "text": "An object that describes a single haptic or audio event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticEvent",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticevent"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern": {
+      "abstract": [
+        {
+          "text": "An object representing a haptic waveform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticPattern"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticPattern"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticPattern",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticpattern"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/Key": {
+      "abstract": [
+        {
+          "text": "Constants that define the keys you use to create a haptic pattern dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Key"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/Key",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Key"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticPattern.Key",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticpattern/key"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/Key/parameterID": {
+      "abstract": [
+        {
+          "text": "A key that identifies the parameter ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parameterID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CHHapticPattern",
+          "text": "CHHapticPattern"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CHHapticPatternKey",
+          "text": "Key"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/Key/parameterID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticPatternKeyParameterID"
+        }
+      ],
+      "role": "symbol",
+      "title": "parameterID",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticpattern/key/parameterid"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/duration": {
+      "abstract": [
+        {
+          "text": "The duration of the haptic pattern, in seconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/duration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "duration"
+        }
+      ],
+      "role": "symbol",
+      "title": "duration",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticpattern/duration"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/exportDictionary()": {
+      "abstract": [
+        {
+          "text": "Returns the dictionary representation of the haptic pattern.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exportDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CHHapticPattern",
+          "text": "CHHapticPattern"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CHHapticPatternKey",
+          "text": "Key"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/exportDictionary()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "exportDictionaryAndReturnError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "exportDictionary()",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticpattern/exportdictionary()"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/init(contentsOf:)": {
+      "abstract": [
+        {
+          "text": "Creates a haptic pattern with the contents of an AHAP file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/init(contentsOf:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithContentsOfURL:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(contentsOf:)",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticpattern/init(contentsof:)"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/init(dictionary:)": {
+      "abstract": [
+        {
+          "text": "Creates a haptic pattern from a property list dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "dictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CHHapticPattern",
+          "text": "CHHapticPattern"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CHHapticPatternKey",
+          "text": "Key"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/init(dictionary:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithDictionary:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(dictionary:)",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticpattern/init(dictionary:)"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/init(events:parameterCurves:)": {
+      "abstract": [
+        {
+          "text": "Constructs a haptic pattern from a series of events and parameter curves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "events"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CHHapticEvent",
+          "text": "CHHapticEvent"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "parameterCurves"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CHHapticParameterCurve",
+          "text": "CHHapticParameterCurve"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/init(events:parameterCurves:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithEvents:parameterCurves:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(events:parameterCurves:)",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticpattern/init(events:parametercurves:)"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/init(events:parameters:)": {
+      "abstract": [
+        {
+          "text": "Constructs a haptic pattern from a series of events and parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "events"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CHHapticEvent",
+          "text": "CHHapticEvent"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CHHapticDynamicParameter",
+          "text": "CHHapticDynamicParameter"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/init(events:parameters:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithEvents:parameters:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(events:parameters:)",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticpattern/init(events:parameters:)"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPatternPlayer": {
+      "abstract": [
+        {
+          "text": "A protocol that defines a standard pattern player capable of playing haptic patterns with fixed parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticPatternPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPatternPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticPatternPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticPatternPlayer",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticpatternplayer"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-a-single-tap-haptic-pattern": {
+      "abstract": [
+        {
+          "text": "Create and play a transient haptic pattern from a dictionary literal inline.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-a-single-tap-haptic-pattern",
+      "kind": "article",
+      "role": "article",
+      "title": "Playing a single-tap haptic pattern",
+      "type": "topic",
+      "url": "/documentation/corehaptics/playing-a-single-tap-haptic-pattern"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/preparing-your-app-to-play-haptics": {
+      "abstract": [
+        {
+          "text": "Set up your app to play haptics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/preparing-your-app-to-play-haptics",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your app to play haptics",
+      "type": "topic",
+      "url": "/documentation/corehaptics/preparing-your-app-to-play-haptics"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "media-3163328": {
+      "alt": "A diagram showing the contents of a pattern: its keys, values, and subdictionaries.",
+      "identifier": "media-3163328",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/34fa249208e0ab093d6f9cc9a6c29417/media-3163328@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/preparing-your-app-to-play-haptics",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-a-single-tap-haptic-pattern",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEngine",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPatternPlayer",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticAdvancedPatternPlayer"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Haptic-Pattern",
+      "identifiers": [
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/init(contentsOf:)",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/init(events:parameterCurves:)",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/init(events:parameters:)",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/init(dictionary:)",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/Key"
+      ],
+      "title": "Creating a Haptic Pattern"
+    },
+    {
+      "anchor": "Retrieving-Haptic-Pattern-Duration",
+      "identifiers": [
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/duration"
+      ],
+      "title": "Retrieving Haptic Pattern Duration"
+    },
+    {
+      "anchor": "Exporting-a-Haptic-Pattern",
+      "identifiers": [
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/exportDictionary()"
+      ],
+      "title": "Exporting a Haptic Pattern"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CHHapticPattern"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticPattern"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticPattern"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Haptic-Pattern",
+              "identifiers": [
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/init(contentsOf:)",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/init(events:parameterCurves:)",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/init(events:parameters:)",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/init(dictionary:)",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/Key"
+              ],
+              "title": "Creating a Haptic Pattern"
+            },
+            {
+              "anchor": "Retrieving-Haptic-Pattern-Duration",
+              "identifiers": [
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/duration"
+              ],
+              "title": "Retrieving Haptic Pattern Duration"
+            },
+            {
+              "anchor": "Exporting-a-Haptic-Pattern",
+              "identifiers": [
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPattern/exportDictionary()"
+              ],
+              "title": "Exporting a Haptic Pattern"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/preparing-your-app-to-play-haptics",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-a-single-tap-haptic-pattern",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEngine",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPatternPlayer",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticAdvancedPatternPlayer"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CHHapticPattern"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPattern~1init(events:parameterCurves:)/title",
+          "value": "initWithEvents:parameterCurves:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPattern~1init(events:parameterCurves:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithEvents:parameterCurves:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEngine/title",
+          "value": "CHHapticEngine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEngine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEngine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEngine/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEngine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPattern~1duration/title",
+          "value": "duration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPattern~1duration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "duration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPattern~1init(contentsOf:)/title",
+          "value": "initWithContentsOfURL:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPattern~1init(contentsOf:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithContentsOfURL:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPattern~1exportDictionary()/title",
+          "value": "exportDictionaryAndReturnError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPattern~1exportDictionary()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "exportDictionaryAndReturnError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent/title",
+          "value": "CHHapticEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPattern~1Key/title",
+          "value": "CHHapticPatternKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPattern~1Key/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticPatternKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPattern~1Key/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticPatternKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPattern/title",
+          "value": "CHHapticPattern"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPattern/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticPattern"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPattern/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticPattern"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticAdvancedPatternPlayer/title",
+          "value": "CHHapticAdvancedPatternPlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticAdvancedPatternPlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticAdvancedPatternPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticAdvancedPatternPlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticAdvancedPatternPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPattern~1Key~1parameterID/title",
+          "value": "CHHapticPatternKeyParameterID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPattern~1Key~1parameterID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticPatternKeyParameterID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPattern~1init(events:parameters:)/title",
+          "value": "initWithEvents:parameters:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPattern~1init(events:parameters:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithEvents:parameters:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPattern~1init(dictionary:)/title",
+          "value": "initWithDictionary:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPattern~1init(dictionary:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithDictionary:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPatternPlayer/title",
+          "value": "CHHapticPatternPlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPatternPlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticPatternPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPatternPlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticPatternPlayer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corehaptics/chhapticpattern"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corehaptics/chhapticpattern"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1165 @@
+{
+  "abstract": [
+    {
+      "text": "Manage the addition and removal of apps available on your alternative marketplace.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/processing-alternative-marketplace-notifications"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "MarketplaceKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Processing alternative app marketplace notifications"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app completes Notarization in App Store Connect, you can host it for download on your website or distribute it on an app marketplace. Either case requires you to facilitate getting the approved app to the location that it installs from.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The developer of an approved app can download it and provide it manually, either to the alternative marketplace, or to their web server back end. The approved app is in the form of an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "alternative distribution package",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which the distributor of the app needs to assemble before the system can install it onto a device. For more information on the assembly process, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/ingesting-an-alternative-distribution-package",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Or, the developer can enable notifications in App Store Connect to send the app to the marketplace(s) they choose. When notifications are enabled, App Store Connect sends newly available app versions automatically to the alternative marketplace(s) that the developer chooses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To receive notifications in an alternative app marketplace that you develop, implement an endpoint, or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "webook",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", and define the webhook URL in App Store Connect. The three conditions under which App Store Connect sends a notification are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A new app version is available.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An app version needs to be removed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All versions of an app need to be removed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Meet-the-criteria-for-notifications",
+          "level": 2,
+          "text": "Meet the criteria for notifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a new app version passes notarization for an app that installs from your marketplace, App Store Connect requires the following conditions before notifying your webhook:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You and the app developer sign the respective Developer Program License Agreement; notifications cease if either signed license agreement expires.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The marketplace app completes Notarization and is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Ready for Distribution",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in App Store Connect; notifications cease for any other state. Note that ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Ready for Distribution",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " doesn’t determine when you can publish the download link on your website. You can test notifications before making the download link public.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A relationship exists between you and the app developer in App Store Connect. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/manage-distribution-on-an-alternative-app-marketplace",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The developer enables notifications in App Store Connect for the apps that distribute on your alternative marketplace.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "App Store Connect doesn’t send notifications for your marketplace app itself. When your app or app update passes Notarization, you need to download its associated alternative distribution package from App Store Connect manually. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/distributing-your-app-from-your-website",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Set-up-your-notification-webhook",
+          "level": 2,
+          "text": "Set up your notification webhook",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "notification webhook",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is an endpoint that you create on your marketplace server, which receives HTTP POST requests from App Store Connect. The POST requests describe important events about your app or the apps that your marketplace distributes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To invoke your webhook, App Store Connect needs to know your server’s webhook endpoint URL. To set up your webhook endpoint the first time, provide the URL to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstoreconnectapi/add_a_marketplace_webhook_configuration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "POST https://api.appstoreconnect.apple.com/v1/marketplaceWebhooks"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any time you reconfigure your web server, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstoreconnectapi/modify_a_marketplace_webhook_configuration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint to update App Store Connect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about managing webhook endpoint configuration for your marketplace, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-up-notification-authentication",
+          "level": 2,
+          "text": "Set up notification authentication",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Secure your webhook by verifying that a request to your endpoint comes from App Store Connect. The security protocol for webhooks is Hash-based Message Authentication Code (HMAC), which requires that you:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Share a secret phrase with the request sender (App Store Connect).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify that each POST to your endpoint has the HMAC header and validate it with your secret.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you register your webhook URL with App Store Connect, define the secret phrase using the ",
+              "type": "text"
+            },
+            {
+              "code": "secret",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstoreconnectapi/marketplacewebhookcreaterequest/data/attributes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Choose a ",
+              "type": "text"
+            },
+            {
+              "code": "String",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value for ",
+              "type": "text"
+            },
+            {
+              "code": "secret",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that’s difficult to guess.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "App Store Connect creates a hash signature using the secret and includes in each POST. The signature resides in the payload header as ",
+              "type": "text"
+            },
+            {
+              "code": "x-apple-signature",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Verify the signature by implementing code in your webhook endpoint that:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Creates a hash from the payload body using your secret token.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Compares the hash to the one App Store Connect sends in the header to ensure they match.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, applying ",
+              "type": "text"
+            },
+            {
+              "code": "HMAC-SHA256",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "code": "secret",
+              "type": "codeVoice"
+            },
+            {
+              "text": " “This is my secret” and payload body “Hello, World!” produces the hash:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "7f062172b01cb00b53ca068614674a3d982a34062a0f5d37687d5e3377e54657"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This result verifies a POST is authentic — the sender knows the secret — if the payload contains the header:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "x-apple-signature:hmacsha256=7f062172b01cb00b53ca068614674a3d982a34062a0f5d37687d5e3377e54657"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an implementation of HMAC ",
+              "type": "text"
+            },
+            {
+              "code": "hex digest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to generate the hash. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Receive-a-notification-and-determine-the-type",
+          "level": 2,
+          "text": "Receive a notification and determine the type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When App Store Connect sends a notification to your webhook, it does so in the form of an HTTP POST. When you receive a notification, check its type to process it accordingly. The action you perform depends on the notification type, which is among the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notification type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "AlternativeDistributionPackageVersionAvailable",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An alternative distribution package for a newly approved app version.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "AppVersionUnavailable",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A request to remove the alternative distribution package for a specific app version.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "AppUnavailable",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A request to remove all alternative distribution packages for an app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each type has a specific data set, or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "schema",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", composed of ",
+              "type": "text"
+            },
+            {
+              "code": "attributes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that drive the different action you take.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In rare circumstances, your webhook may receive a duplicate notification. Your webhook can filter out duplicate notifications by discarding them. Specifically, if you receive a notification of type ",
+              "type": "text"
+            },
+            {
+              "code": "AlternativeDistributionPackageVersionAvailable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that describes a package that your webhook already ingested, discard it. Similarly, if you receive a notification of type ",
+              "type": "text"
+            },
+            {
+              "code": "AppVersionsUnavailable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "AppUnavailable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for an app or version that’s already unavailable, discard it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Process-an-available-app-version",
+          "level": 2,
+          "text": "Process an available app version",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the type is ",
+              "type": "text"
+            },
+            {
+              "code": "AlternativeDistributionPackageVersionAvailable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "code": "attributes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " include the alternative distribution package ID, version ID and version number. Use this information to add the new app or versions of an app. An example notification follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"data\": {",
+            "    \"type\": \"AlternativeDistributionPackageVersionAvailable\",",
+            "    \"version\": 1,",
+            "    \"id\": \"543c3939-2db6-4fbc-9672-fb0ec5687624\",",
+            "    \"timestamp\": \"2023-11-27T10:40:37.246-08:00\",",
+            "    \"attributes\": {",
+            "      \"marketplaceAppId\": \"3839839\",",
+            "      \"appId\": \"1111\",",
+            "      \"alternativeDistributionPackageId\": \"f826eb7a-fa2b-420f-a780-356106195663\",",
+            "      \"alternativeDistributionPackageVersionId\": \"6B29FC40-CA47-1067-B31D-00DD010662DA\",",
+            "      \"alternativeDistributionPackageVersionNum\": \"1\",",
+            "      \"eventTimestamp\": \"2023-11-27T18:40:32.143-00:00\"",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about ingesting apps and app versions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/ingesting-an-alternative-distribution-package",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Process-a-request-to-remove-specific-app-versions",
+          "level": 2,
+          "text": "Process a request to remove specific app versions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the notification type is ",
+              "type": "text"
+            },
+            {
+              "code": "AppVersionsUnavailable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", App Store Connect requests that you remove the identified app versions from your alternative marketplace. The ",
+              "type": "text"
+            },
+            {
+              "code": "attributes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " include a list of alternative distribution package IDs to remove. An example notification follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"data\": {",
+            "    \"type\": \"AppVersionsUnavailable\",",
+            "    \"version\": 1,",
+            "    \"id\": \"543c3939-2db6-4fbc-9672-fb0ec5687624\",",
+            "    \"timestamp\": \"2023-11-27T10:40:37.246-08:00\",",
+            "    \"attributes\": {",
+            "      \"marketplaceAppId\": \"3839839\",",
+            "      \"appId\": \"1111\",",
+            "      \"alternativeDistributionPackageIds\": [",
+            "        \"f826eb7a-fa2b-420f-a780-356106195663\"",
+            "      ],",
+            "      \"eventTimestamp\": \"2023-11-27T18:40:32.143-00:00\"",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Process-a-request-to-remove-all-versions-of-an-app",
+          "level": 2,
+          "text": "Process a request to remove all versions of an app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "AppUnavailable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type is similar to ",
+              "type": "text"
+            },
+            {
+              "code": "AppVersionsUnavailable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", except that App Store Connect requests that you remove all versions for the identified app. As such, the ",
+              "type": "text"
+            },
+            {
+              "code": "attributes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contain only the app to remove. An example notification follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"data\": {",
+            "    \"type\": \"AppUnavailable\",",
+            "    \"version\": 1,",
+            "    \"id\": \"543c3939-2db6-4fbc-9672-fb0ec5687624\",",
+            "    \"timestamp\": \"2023-11-27T10:40:37.246-08:00\",",
+            "    \"attributes\": {",
+            "      \"marketplaceAppId\": \"3839839\",",
+            "      \"appId\": \"1111\",",
+            "      \"eventTimestamp\": \"2023-11-27T18:40:32.143-00:00\"",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit": {
+      "abstract": [
+        {
+          "text": "Create an alternative app marketplace, distribute your app on an alternative app marketplace, or distribute your app from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MarketplaceKit",
+      "type": "topic",
+      "url": "/documentation/marketplacekit"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/distributing-your-app-from-your-website": {
+      "abstract": [
+        {
+          "text": "Configure your app and website to enable people to install your app on their devices from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/distributing-your-app-from-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing your app from your website",
+      "type": "topic",
+      "url": "/documentation/appdistribution/distributing-your-app-from-your-website"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/ingesting-an-alternative-distribution-package": {
+      "abstract": [
+        {
+          "text": "Process an available app version from App Store Connect and store it for download from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/ingesting-an-alternative-distribution-package",
+      "kind": "article",
+      "role": "article",
+      "title": "Ingesting an alternative distribution package",
+      "type": "topic",
+      "url": "/documentation/appdistribution/ingesting-an-alternative-distribution-package"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/installing-apps-from-an-alternative-marketplace": {
+      "abstract": [
+        {
+          "text": "Manage the installation of apps that developers distribute from your marketplace app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/installing-apps-from-an-alternative-marketplace",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing apps from an alternative marketplace",
+      "type": "topic",
+      "url": "/documentation/appdistribution/installing-apps-from-an-alternative-marketplace"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/installing-your-app-from-your-website": {
+      "abstract": [
+        {
+          "text": "Manage the installation of an app that you develop and distribute through your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/installing-your-app-from-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing your app from your website",
+      "type": "topic",
+      "url": "/documentation/appdistribution/installing-your-app-from-your-website"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/supplying-an-install-verification-token": {
+      "abstract": [
+        {
+          "text": "Support the installation of alternative distribution apps by creating signed JSON web tokens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/supplying-an-install-verification-token",
+      "kind": "article",
+      "role": "article",
+      "title": "Supplying an install verification token",
+      "type": "topic",
+      "url": "/documentation/appdistribution/supplying-an-install-verification-token"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/notifications": {
+      "abstract": [
+        {
+          "text": "Add and read information for alternative distribution package notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Notifications",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/notifications"
+    },
+    "doc://com.apple.documentation/documentation/appstoreconnectapi/add_a_marketplace_webhook_configuration": {
+      "abstract": [
+        {
+          "text": "Add a new endpoint URL and secret for alternative distribution package notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstoreconnectapi/add_a_marketplace_webhook_configuration",
+      "kind": "article",
+      "role": "symbol",
+      "title": "Add a marketplace webhook configuration",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/add_a_marketplace_webhook_configuration"
+    },
+    "doc://com.apple.documentation/documentation/appstoreconnectapi/marketplacewebhookcreaterequest/data/attributes": {
+      "abstract": [
+        {
+          "text": "The attributes you set that describe the marketplace webhook used to create a new resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MarketplaceWebhookCreateRequest.Data.Attributes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstoreconnectapi/marketplacewebhookcreaterequest/data/attributes",
+      "kind": "article",
+      "role": "symbol",
+      "title": "MarketplaceWebhookCreateRequest.Data.Attributes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/marketplacewebhookcreaterequest/data/attributes"
+    },
+    "doc://com.apple.documentation/documentation/appstoreconnectapi/modify_a_marketplace_webhook_configuration": {
+      "abstract": [
+        {
+          "text": "Update the endpoint URL and secret for alternative distribution package notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstoreconnectapi/modify_a_marketplace_webhook_configuration",
+      "kind": "article",
+      "role": "symbol",
+      "title": "Modify a marketplace webhook configuration",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/modify_a_marketplace_webhook_configuration"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/manage-distribution-on-an-alternative-app-marketplace": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/manage-distribution-on-an-alternative-app-marketplace",
+      "title": "Manage distribution on an alternative app marketplace",
+      "titleInlineContent": [
+        {
+          "text": "Manage distribution on an alternative app marketplace",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/manage-distribution-on-an-alternative-app-marketplace"
+    },
+    "https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries": {
+      "identifier": "https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries",
+      "title": "GitHub’s Validating webhook deliveries",
+      "titleInlineContent": [
+        {
+          "text": "GitHub’s Validating webhook deliveries",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Web-services",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/ingesting-an-alternative-distribution-package",
+        "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/installing-your-app-from-your-website",
+        "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/installing-apps-from-an-alternative-marketplace",
+        "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/supplying-an-install-verification-token"
+      ],
+      "title": "Web services"
+    }
+  ]
+}

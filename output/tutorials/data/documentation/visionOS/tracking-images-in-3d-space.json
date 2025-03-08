@@ -1,0 +1,519 @@
+{
+  "abstract": [
+    {
+      "text": "Place content based on the current position of a known image in a person’s surroundings.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/tracking-images-in-3d-space"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Tracking preregistered images in 3D space"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ARKit’s support for tracking 2D images to place 3D content in a space. ARKit provides updates to the image’s location as it moves relative to the person. If you supply one or more reference images in your app’s asset catalog, people can use a real-world copy of that image to place virtual 3D content in your app. For example, if you design a pack of custom playing cards and provide those assets to people in the form of a real-world deck of playing cards, they can place unique content per card in a fully immersive experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example tracks a set of images loaded from an app’s asset catalog:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let session = ARKitSession()",
+            "let imageInfo = ImageTrackingProvider(",
+            "    referenceImages: ReferenceImage.loadReferenceImages(inGroupNamed: \"playingcard-photos\")",
+            ")",
+            "",
+            "if ImageTrackingProvider.isSupported {",
+            "    Task {",
+            "        try await session.run([imageInfo])",
+            "        for await update in imageInfo.anchorUpdates {",
+            "            updateImage(update.anchor)",
+            "        }",
+            "    }",
+            "}",
+            "",
+            "func updateImage(_ anchor: ImageAnchor) {",
+            "    if imageAnchors[anchor.id] == nil {",
+            "        // Add a new entity to represent this image.",
+            "        let entity = ModelEntity(mesh: .generateSphere(radius: 0.05))",
+            "        entityMap[anchor.id] = entity",
+            "        rootEntity.addChild(entity)",
+            "    }",
+            "    ",
+            "    if anchor.isTracked {",
+            "        entityMap[anchor.id]?.transform = Transform(matrix: anchor.originFromAnchorTransform)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you know the real-world dimensions of the images you’re tracking, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/ReferenceImage/physicalSize",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to improve tracking accuracy. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/ImageAnchor/estimatedScaleFactor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property provides information about how the scale of the tracked image differs from the expected physical size you provide.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Building-local-experiences-with-room-tracking-PageImage-card.png": {
+      "alt": "A view into the corner of a room with an open doorway, where one wall is a portal to a virtual universe.",
+      "identifier": "Building-local-experiences-with-room-tracking-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ecb2f88d37f7bba036c739568409febf/Building-local-experiences-with-room-tracking-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/af99ba5e2e307907caed07d89553f518/Building-local-experiences-with-room-tracking-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "Happy-Beam-intro.png": {
+      "alt": "A screenshot showing the Happy Beam game. A player makes a heart gesture with their hands, a beam projects from it aimed at nearby clouds, and a scoreboard window shows seven points.",
+      "identifier": "Happy-Beam-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/52b497b6d705af322726d7371dee6ddd/Happy-Beam-intro@2x.png"
+        }
+      ]
+    },
+    "Object-Tracking-PageImage-card.png": {
+      "alt": "An image of a room with several rectangular tiers on which glowing and textured, reflective spheres rest.",
+      "identifier": "Object-Tracking-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dfd3696d1b7df884ded8407cef3e8045/Object-Tracking-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2332d74827799a86de0261e14c5a61f5/Object-Tracking-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/ARKit/ImageAnchor/estimatedScaleFactor": {
+      "abstract": [
+        {
+          "text": "The estimated scale factor between the tracked image’s physical size and the reference image’s size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "estimatedScaleFactor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/ImageAnchor/estimatedScaleFactor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "estimatedScaleFactor",
+      "type": "topic",
+      "url": "/documentation/ARKit/ImageAnchor/estimatedScaleFactor"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/ReferenceImage/physicalSize": {
+      "abstract": [
+        {
+          "text": "The size, in meters, of a reference image in the real world.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "physicalSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/ReferenceImage/physicalSize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "physicalSize",
+      "type": "topic",
+      "url": "/documentation/ARKit/ReferenceImage/physicalSize"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/building_local_experiences_with_room_tracking": {
+      "abstract": [
+        {
+          "text": "Use room tracking in visionOS to provide custom interactions with physical spaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/building_local_experiences_with_room_tracking",
+      "images": [
+        {
+          "identifier": "Building-local-experiences-with-room-tracking-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building local experiences with room tracking",
+      "type": "topic",
+      "url": "/documentation/visionos/building_local_experiences_with_room_tracking"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/exploring_object_tracking_with_arkit": {
+      "abstract": [
+        {
+          "text": "Find and track real-world objects in visionOS using reference objects trained with Create ML.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/exploring_object_tracking_with_arkit",
+      "images": [
+        {
+          "identifier": "Object-Tracking-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Exploring object tracking with ARKit",
+      "type": "topic",
+      "url": "/documentation/visionos/exploring_object_tracking_with_arkit"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/happybeam": {
+      "abstract": [
+        {
+          "text": "Leverage a Full Space to create a fun game using ARKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/happybeam",
+      "images": [
+        {
+          "identifier": "Happy-Beam-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Happy Beam",
+      "type": "topic",
+      "url": "/documentation/visionos/happybeam"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/incorporating-real-world-surroundings-in-an-immersive-experience": {
+      "abstract": [
+        {
+          "text": "Create an immersive experience by making your app’s content respond to the local shape of the world.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/incorporating-real-world-surroundings-in-an-immersive-experience",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Incorporating real-world surroundings in an immersive experience",
+      "type": "topic",
+      "url": "/documentation/visionos/incorporating-real-world-surroundings-in-an-immersive-experience"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/object-tracking-with-reality-composer-pro-experiences": {
+      "abstract": [
+        {
+          "text": "Use object tracking in visionOS to attach digital content to real objects to create engaging experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/object-tracking-with-reality-composer-pro-experiences",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Object tracking with Reality Composer Pro experiences",
+      "type": "topic",
+      "url": "/documentation/visionos/object-tracking-with-reality-composer-pro-experiences"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/placing-content-on-detected-planes": {
+      "abstract": [
+        {
+          "text": "Detect horizontal surfaces like tables and floors, as well as vertical planes like walls and doors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/placing-content-on-detected-planes",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Placing content on detected planes",
+      "type": "topic",
+      "url": "/documentation/visionos/placing-content-on-detected-planes"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/placing-entities-using-head-and-device-transform": {
+      "abstract": [
+        {
+          "text": "Query and react to changes in the position and rotation of Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/placing-entities-using-head-and-device-transform",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Placing entities using head and device transform",
+      "type": "topic",
+      "url": "/documentation/visionos/placing-entities-using-head-and-device-transform"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/setting-up-access-to-arkit-data": {
+      "abstract": [
+        {
+          "text": "Check whether your app can use ARKit and respect people’s privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/setting-up-access-to-arkit-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up access to ARKit data",
+      "type": "topic",
+      "url": "/documentation/visionos/setting-up-access-to-arkit-data"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/tracking-points-in-world-space": {
+      "abstract": [
+        {
+          "text": "Retrieve the position and orientation of anchors your app stores in ARKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/tracking-points-in-world-space",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Tracking specific points in world space",
+      "type": "topic",
+      "url": "/documentation/visionos/tracking-points-in-world-space"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "ARKit",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/happybeam",
+        "doc://com.apple.visionOS/documentation/visionOS/setting-up-access-to-arkit-data",
+        "doc://com.apple.visionOS/documentation/visionOS/incorporating-real-world-surroundings-in-an-immersive-experience",
+        "doc://com.apple.visionOS/documentation/visionOS/placing-content-on-detected-planes",
+        "doc://com.apple.visionOS/documentation/visionOS/tracking-points-in-world-space",
+        "doc://com.apple.visionOS/documentation/visionOS/exploring_object_tracking_with_arkit",
+        "doc://com.apple.visionOS/documentation/visionOS/object-tracking-with-reality-composer-pro-experiences",
+        "doc://com.apple.visionOS/documentation/visionOS/building_local_experiences_with_room_tracking",
+        "doc://com.apple.visionOS/documentation/visionOS/placing-entities-using-head-and-device-transform"
+      ],
+      "title": "ARKit"
+    }
+  ]
+}

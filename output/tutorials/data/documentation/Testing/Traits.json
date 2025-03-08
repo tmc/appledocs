@@ -1,0 +1,1965 @@
+{
+  "abstract": [
+    {
+      "text": "Add traits to tests to annotate them or customize their behavior.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.testing/documentation/Testing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://org.swift.testing/documentation/Testing/Traits"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift Testing"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Traits"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pass built-in traits to test functions or suite types to comment, categorize,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "classify, and modify runtime behaviors. You can also use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/Trait",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/TestTrait",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/SuiteTrait",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocols to create your own types that customize the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "behavior of test functions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.testing/documentation/Testing": {
+      "abstract": [
+        {
+          "text": "Create and run tests for your Swift packages and Xcode projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift Testing",
+      "type": "topic",
+      "url": "/documentation/testing"
+    },
+    "doc://org.swift.testing/documentation/Testing/AddingComments": {
+      "abstract": [
+        {
+          "text": "Add comments to provide useful information about tests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/AddingComments",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding comments to tests",
+      "type": "topic",
+      "url": "/documentation/testing/addingcomments"
+    },
+    "doc://org.swift.testing/documentation/Testing/AddingTags": {
+      "abstract": [
+        {
+          "text": "Use tags to provide semantic information for organization, filtering, and customizing appearances.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/AddingTags",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding tags to tests",
+      "type": "topic",
+      "url": "/documentation/testing/addingtags"
+    },
+    "doc://org.swift.testing/documentation/Testing/AssociatingBugs": {
+      "abstract": [
+        {
+          "text": "Associate bugs uncovered or verified by tests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/AssociatingBugs",
+      "kind": "article",
+      "role": "article",
+      "title": "Associating bugs with tests",
+      "type": "topic",
+      "url": "/documentation/testing/associatingbugs"
+    },
+    "doc://org.swift.testing/documentation/Testing/Bug": {
+      "abstract": [
+        {
+          "text": "A type representing a bug report tracked by a test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bug"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Bug",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Bug"
+        }
+      ],
+      "role": "symbol",
+      "title": "Bug",
+      "type": "topic",
+      "url": "/documentation/testing/bug"
+    },
+    "doc://org.swift.testing/documentation/Testing/BugIdentifiers": {
+      "abstract": [
+        {
+          "text": "Examine how the testing library interprets bug identifiers provided by developers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/BugIdentifiers",
+      "kind": "article",
+      "role": "article",
+      "title": "Interpreting bug identifiers",
+      "type": "topic",
+      "url": "/documentation/testing/bugidentifiers"
+    },
+    "doc://org.swift.testing/documentation/Testing/Comment": {
+      "abstract": [
+        {
+          "text": "A type representing a comment related to a test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Comment"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Comment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Comment"
+        }
+      ],
+      "role": "symbol",
+      "title": "Comment",
+      "type": "topic",
+      "url": "/documentation/testing/comment"
+    },
+    "doc://org.swift.testing/documentation/Testing/ConditionTrait": {
+      "abstract": [
+        {
+          "text": "A type that defines a condition which must be satisfied for a test to be",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "enabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConditionTrait"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/ConditionTrait",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ConditionTrait"
+        }
+      ],
+      "role": "symbol",
+      "title": "ConditionTrait",
+      "type": "topic",
+      "url": "/documentation/testing/conditiontrait"
+    },
+    "doc://org.swift.testing/documentation/Testing/EnablingAndDisabling": {
+      "abstract": [
+        {
+          "text": "Conditionally enable or disable individual tests before they run.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/EnablingAndDisabling",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling and disabling tests",
+      "type": "topic",
+      "url": "/documentation/testing/enablinganddisabling"
+    },
+    "doc://org.swift.testing/documentation/Testing/LimitingExecutionTime": {
+      "abstract": [
+        {
+          "text": "Set limits on how long a test can run for until it fails.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/LimitingExecutionTime",
+      "kind": "article",
+      "role": "article",
+      "title": "Limiting the running time of tests",
+      "type": "topic",
+      "url": "/documentation/testing/limitingexecutiontime"
+    },
+    "doc://org.swift.testing/documentation/Testing/Parallelization": {
+      "abstract": [
+        {
+          "text": "Control whether tests run serially or in parallel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Parallelization",
+      "kind": "article",
+      "role": "article",
+      "title": "Running tests serially or in parallel",
+      "type": "topic",
+      "url": "/documentation/testing/parallelization"
+    },
+    "doc://org.swift.testing/documentation/Testing/ParallelizationTrait": {
+      "abstract": [
+        {
+          "text": "A type that affects whether or not a test or suite is parallelized.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ParallelizationTrait"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/ParallelizationTrait",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ParallelizationTrait"
+        }
+      ],
+      "role": "symbol",
+      "title": "ParallelizationTrait",
+      "type": "topic",
+      "url": "/documentation/testing/parallelizationtrait"
+    },
+    "doc://org.swift.testing/documentation/Testing/SuiteTrait": {
+      "abstract": [
+        {
+          "text": "A protocol describing traits that can be added to a test suite.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SuiteTrait"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/SuiteTrait",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SuiteTrait"
+        }
+      ],
+      "role": "symbol",
+      "title": "SuiteTrait",
+      "type": "topic",
+      "url": "/documentation/testing/suitetrait"
+    },
+    "doc://org.swift.testing/documentation/Testing/Tag": {
+      "abstract": [
+        {
+          "text": "A type representing a tag that can be applied to a test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Tag"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Tag",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Tag"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tag",
+      "type": "topic",
+      "url": "/documentation/testing/tag"
+    },
+    "doc://org.swift.testing/documentation/Testing/Tag()": {
+      "abstract": [
+        {
+          "text": "Declare a tag that can be applied to a test function or test suite.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Tag"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Tag()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Tag()",
+      "type": "topic",
+      "url": "/documentation/testing/tag()"
+    },
+    "doc://org.swift.testing/documentation/Testing/Tag/List": {
+      "abstract": [
+        {
+          "text": "A type representing one or more tags applied to a test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "List"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Tag/List",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "List"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tag.List",
+      "type": "topic",
+      "url": "/documentation/testing/tag/list"
+    },
+    "doc://org.swift.testing/documentation/Testing/TestScoping": {
+      "abstract": [
+        {
+          "text": "A protocol that allows providing a custom execution scope for a test",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "function (and each of its cases) or a test suite by performing custom code",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "before or after it runs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TestScoping"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/TestScoping",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TestScoping"
+        }
+      ],
+      "role": "symbol",
+      "title": "TestScoping",
+      "type": "topic",
+      "url": "/documentation/testing/testscoping"
+    },
+    "doc://org.swift.testing/documentation/Testing/TestTrait": {
+      "abstract": [
+        {
+          "text": "A protocol describing traits that can be added to a test function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TestTrait"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/TestTrait",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TestTrait"
+        }
+      ],
+      "role": "symbol",
+      "title": "TestTrait",
+      "type": "topic",
+      "url": "/documentation/testing/testtrait"
+    },
+    "doc://org.swift.testing/documentation/Testing/TimeLimitTrait": {
+      "abstract": [
+        {
+          "text": "A type that defines a time limit to apply to a test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimeLimitTrait"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/TimeLimitTrait",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimeLimitTrait"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimeLimitTrait",
+      "type": "topic",
+      "url": "/documentation/testing/timelimittrait"
+    },
+    "doc://org.swift.testing/documentation/Testing/Trait": {
+      "abstract": [
+        {
+          "text": "A protocol describing traits that can be added to a test function or to a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "test suite.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Trait"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Trait",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Trait"
+        }
+      ],
+      "role": "symbol",
+      "title": "Trait",
+      "type": "topic",
+      "url": "/documentation/testing/trait"
+    },
+    "doc://org.swift.testing/documentation/Testing/Trait/bug(_:_:)": {
+      "abstract": [
+        {
+          "text": "Construct a bug to track with a test.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Bug",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bug"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Trait/bug(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bug(_:_:)",
+      "type": "topic",
+      "url": "/documentation/testing/trait/bug(_:_:)"
+    },
+    "doc://org.swift.testing/documentation/Testing/Trait/bug(_:id:_:)-10yf5": {
+      "abstract": [
+        {
+          "text": "Construct a bug to track with a test.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Bug",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bug"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Trait/bug(_:id:_:)-10yf5",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bug(_:id:_:)",
+      "type": "topic",
+      "url": "/documentation/testing/trait/bug(_:id:_:)-10yf5"
+    },
+    "doc://org.swift.testing/documentation/Testing/Trait/bug(_:id:_:)-3vtpl": {
+      "abstract": [
+        {
+          "text": "Construct a bug to track with a test.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Bug",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bug"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sj",
+          "text": "Numeric"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Trait/bug(_:id:_:)-3vtpl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bug(_:id:_:)",
+      "type": "topic",
+      "url": "/documentation/testing/trait/bug(_:id:_:)-3vtpl"
+    },
+    "doc://org.swift.testing/documentation/Testing/Trait/disabled(_:sourceLocation:)": {
+      "abstract": [
+        {
+          "text": "Construct a condition trait that disables a test unconditionally.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "ConditionTrait",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "disabled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing14SourceLocationV",
+          "text": "SourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Trait/disabled(_:sourceLocation:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "disabled(_:sourceLocation:)",
+      "type": "topic",
+      "url": "/documentation/testing/trait/disabled(_:sourcelocation:)"
+    },
+    "doc://org.swift.testing/documentation/Testing/Trait/disabled(_:sourceLocation:_:)": {
+      "abstract": [
+        {
+          "text": "Construct a condition trait that causes a test to be disabled if it",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "returns ",
+          "type": "text"
+        },
+        {
+          "code": "true",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "ConditionTrait",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "disabled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing14SourceLocationV",
+          "text": "SourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ", () "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Trait/disabled(_:sourceLocation:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "disabled(_:sourceLocation:_:)",
+      "type": "topic",
+      "url": "/documentation/testing/trait/disabled(_:sourcelocation:_:)"
+    },
+    "doc://org.swift.testing/documentation/Testing/Trait/disabled(if:_:sourceLocation:)": {
+      "abstract": [
+        {
+          "text": "Construct a condition trait that causes a test to be disabled if it",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "returns ",
+          "type": "text"
+        },
+        {
+          "code": "true",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "ConditionTrait",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "disabled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "if"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing14SourceLocationV",
+          "text": "SourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Trait/disabled(if:_:sourceLocation:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "disabled(if:_:sourceLocation:)",
+      "type": "topic",
+      "url": "/documentation/testing/trait/disabled(if:_:sourcelocation:)"
+    },
+    "doc://org.swift.testing/documentation/Testing/Trait/enabled(_:sourceLocation:_:)": {
+      "abstract": [
+        {
+          "text": "Construct a condition trait that causes a test to be disabled if it",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "returns ",
+          "type": "text"
+        },
+        {
+          "code": "false",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "ConditionTrait",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enabled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing14SourceLocationV",
+          "text": "SourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ", () "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Trait/enabled(_:sourceLocation:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enabled(_:sourceLocation:_:)",
+      "type": "topic",
+      "url": "/documentation/testing/trait/enabled(_:sourcelocation:_:)"
+    },
+    "doc://org.swift.testing/documentation/Testing/Trait/enabled(if:_:sourceLocation:)": {
+      "abstract": [
+        {
+          "text": "Construct a condition trait that causes a test to be disabled if it",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "returns ",
+          "type": "text"
+        },
+        {
+          "code": "false",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "ConditionTrait",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enabled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "if"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing14SourceLocationV",
+          "text": "SourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Trait/enabled(if:_:sourceLocation:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enabled(if:_:sourceLocation:)",
+      "type": "topic",
+      "url": "/documentation/testing/trait/enabled(if:_:sourcelocation:)"
+    },
+    "doc://org.swift.testing/documentation/Testing/Trait/serialized": {
+      "abstract": [
+        {
+          "text": "A trait that serializes the test to which it is applied.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "ParallelizationTrait",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "serialized"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing20ParallelizationTraitV",
+          "text": "ParallelizationTrait"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Trait/serialized",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "serialized",
+      "type": "topic",
+      "url": "/documentation/testing/trait/serialized"
+    },
+    "doc://org.swift.testing/documentation/Testing/Trait/timeLimit(_:)": {
+      "abstract": [
+        {
+          "text": "Construct a time limit trait that causes a test to time out if it runs for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "too long.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "TimeLimitTrait",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeLimit"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing14TimeLimitTraitV",
+          "text": "TimeLimitTrait"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing14TimeLimitTraitV8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Trait/timeLimit(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeLimit(_:)",
+      "type": "topic",
+      "url": "/documentation/testing/trait/timelimit(_:)"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Customizing-runtime-behaviors",
+      "identifiers": [
+        "doc://org.swift.testing/documentation/Testing/EnablingAndDisabling",
+        "doc://org.swift.testing/documentation/Testing/LimitingExecutionTime",
+        "doc://org.swift.testing/documentation/Testing/Trait/enabled(if:_:sourceLocation:)",
+        "doc://org.swift.testing/documentation/Testing/Trait/enabled(_:sourceLocation:_:)",
+        "doc://org.swift.testing/documentation/Testing/Trait/disabled(_:sourceLocation:)",
+        "doc://org.swift.testing/documentation/Testing/Trait/disabled(if:_:sourceLocation:)",
+        "doc://org.swift.testing/documentation/Testing/Trait/disabled(_:sourceLocation:_:)",
+        "doc://org.swift.testing/documentation/Testing/Trait/timeLimit(_:)"
+      ],
+      "title": "Customizing runtime behaviors"
+    },
+    {
+      "anchor": "Running-tests-serially-or-in-parallel",
+      "identifiers": [
+        "doc://org.swift.testing/documentation/Testing/Parallelization",
+        "doc://org.swift.testing/documentation/Testing/Trait/serialized"
+      ],
+      "title": "Running tests serially or in parallel"
+    },
+    {
+      "anchor": "Annotating-tests",
+      "identifiers": [
+        "doc://org.swift.testing/documentation/Testing/AddingTags",
+        "doc://org.swift.testing/documentation/Testing/AddingComments",
+        "doc://org.swift.testing/documentation/Testing/AssociatingBugs",
+        "doc://org.swift.testing/documentation/Testing/BugIdentifiers",
+        "doc://org.swift.testing/documentation/Testing/Tag()",
+        "doc://org.swift.testing/documentation/Testing/Trait/bug(_:_:)",
+        "doc://org.swift.testing/documentation/Testing/Trait/bug(_:id:_:)-10yf5",
+        "doc://org.swift.testing/documentation/Testing/Trait/bug(_:id:_:)-3vtpl"
+      ],
+      "title": "Annotating tests"
+    },
+    {
+      "anchor": "Creating-custom-traits",
+      "identifiers": [
+        "doc://org.swift.testing/documentation/Testing/Trait",
+        "doc://org.swift.testing/documentation/Testing/TestTrait",
+        "doc://org.swift.testing/documentation/Testing/SuiteTrait",
+        "doc://org.swift.testing/documentation/Testing/TestScoping"
+      ],
+      "title": "Creating custom traits"
+    },
+    {
+      "anchor": "Supporting-types",
+      "identifiers": [
+        "doc://org.swift.testing/documentation/Testing/Bug",
+        "doc://org.swift.testing/documentation/Testing/Comment",
+        "doc://org.swift.testing/documentation/Testing/ConditionTrait",
+        "doc://org.swift.testing/documentation/Testing/ParallelizationTrait",
+        "doc://org.swift.testing/documentation/Testing/Tag",
+        "doc://org.swift.testing/documentation/Testing/Tag/List",
+        "doc://org.swift.testing/documentation/Testing/TimeLimitTrait"
+      ],
+      "title": "Supporting types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/testing/traits"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

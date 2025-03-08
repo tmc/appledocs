@@ -1,0 +1,709 @@
+{
+  "abstract": [
+    {
+      "text": "Compare face-capture quality in a set of images by using Vision.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.vision/documentation/Vision",
+        "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.vision/documentation/Vision/selecting-a-selfie-based-on-capture-quality"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Selecting a selfie based on capture quality"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "New in iOS 13, the Vision framework adds the Face Capture Quality metric to represent the capture quality of a given face in a photo.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample app shows you how to use this metric to evaluate a collection of images of the same person and identify which one has the best capture quality.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Face Capture Quality is a holistic measure that considers scene lighting, blur, occlusion, expression, pose, focus, and more. It provides a score you can use to rank multiple captures of the same person. The pre-trained underlying models score a capture lower if, for example, the image contains low light or bad focus, or if the person has a negative expression. These scores are floating-point numbers normalized between ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First the app creates and performs a ",
+              "type": "text"
+            },
+            {
+              "code": "VNDetectFaceCaptureQualityRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and obtains face observations from the results:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let faceDetectionRequest = VNDetectFaceCaptureQualityRequest()",
+            "do {",
+            "    try handler.perform([faceDetectionRequest])",
+            "    guard let faceObservations = faceDetectionRequest.results as? [VNFaceObservation] else {",
+            "        return",
+            "    }",
+            "    displayFaceObservations(faceObservations)",
+            "    if isCapturingFaces {",
+            "        saveFaceObservations(faceObservations, in: pixelBuffer)",
+            "    }",
+            "} catch {",
+            "    print(\"Vision error: \\(error.localizedDescription)\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then the app passes the face observations to ",
+              "type": "text"
+            },
+            {
+              "code": "saveFaceObservations(_:in:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", where it retrieves the ",
+              "type": "text"
+            },
+            {
+              "code": "faceCaptureQuality",
+              "type": "codeVoice"
+            },
+            {
+              "text": " score for each capture. When the user presses down on the capture button, the app saves each capture’s image data along with its quality score:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let faceDetectionRequest = VNDetectFaceCaptureQualityRequest()",
+            "do {",
+            "    try handler.perform([faceDetectionRequest])",
+            "    guard let faceObservations = faceDetectionRequest.results as? [VNFaceObservation] else {",
+            "        return",
+            "    }",
+            "    displayFaceObservations(faceObservations)",
+            "    if isCapturingFaces {",
+            "        saveFaceObservations(faceObservations, in: pixelBuffer)",
+            "    }",
+            "} catch {",
+            "    print(\"Vision error: \\(error.localizedDescription)\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, the app sorts the captures based on quality score:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Sort faces in descending quality-score order.",
+            "savedFaces.sort { $0.qualityScore < $1.qualityScore }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the app displays the saved faces with their quality scores:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let savedFace = savedFaces[indexPath.item]",
+            "let faceImage = UIImage(contentsOfFile: savedFace.url.path)",
+            "cell.imageView.image = faceImage",
+            "cell.label.text = \"\\(savedFace.qualityScore)\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run this sample app, you need the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode 11 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iPhone with iOS 13 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Connect the iPhone to the Mac over USB. The first time you run this sample app, the system prompts you to grant the app access to the camera. You must allow the sample app to access the camera for it to function correctly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC19 session 222: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc19/222/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "1a22def1b6eb/SelectingASelfieBasedOnCaptureQuality.zip": {
+      "checksum": "1a22def1b6ebfa9ce2d144ecaa07f38fd701795af548b8449c8eb65885606a8bb1c27f3fe9f5e2a3b8eb6da9cbdb2db748eed75bfe76fb51e1c1e9976cc083fb",
+      "identifier": "1a22def1b6eb/SelectingASelfieBasedOnCaptureQuality.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/1a22def1b6eb/SelectingASelfieBasedOnCaptureQuality.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNDetectFaceCaptureQualityRequest": {
+      "abstract": [
+        {
+          "text": "A request that produces a floating-point number that represents the capture quality of a face in a photo.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNDetectFaceCaptureQualityRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNDetectFaceCaptureQualityRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNDetectFaceCaptureQualityRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNDetectFaceCaptureQualityRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vndetectfacecapturequalityrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNDetectFaceLandmarksRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that finds facial features like eyes and mouth in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNDetectFaceLandmarksRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNDetectFaceLandmarksRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNDetectFaceLandmarksRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNDetectFaceLandmarksRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vndetectfacelandmarksrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNDetectFaceRectanglesRequest": {
+      "abstract": [
+        {
+          "text": "A request that finds faces within an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNDetectFaceRectanglesRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNDetectFaceRectanglesRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNDetectFaceRectanglesRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNDetectFaceRectanglesRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vndetectfacerectanglesrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNDetectHumanRectanglesRequest": {
+      "abstract": [
+        {
+          "text": "A request that finds rectangular regions that contain people in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNDetectHumanRectanglesRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNDetectHumanRectanglesRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNDetectHumanRectanglesRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNDetectHumanRectanglesRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vndetecthumanrectanglesrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNHumanObservation": {
+      "abstract": [
+        {
+          "text": "An object that represents a person that the request detects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNHumanObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNHumanObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNHumanObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNHumanObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnhumanobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api": {
+      "abstract": [],
+      "identifier": "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original Objective-C and Swift API",
+      "type": "topic",
+      "url": "/documentation/vision/original-objective-c-and-swift-api"
+    },
+    "https://developer.apple.com/videos/play/wwdc19/222/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc19/222/",
+      "title": "Understanding Images in Vision Framework",
+      "titleInlineContent": [
+        {
+          "text": "Understanding Images in Vision Framework",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc19/222/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "1a22def1b6eb/SelectingASelfieBasedOnCaptureQuality.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Face-and-body-detection",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/VNDetectFaceCaptureQualityRequest",
+        "doc://com.apple.vision/documentation/Vision/VNDetectFaceLandmarksRequest",
+        "doc://com.apple.vision/documentation/Vision/VNDetectFaceRectanglesRequest",
+        "doc://com.apple.vision/documentation/Vision/VNDetectHumanRectanglesRequest",
+        "doc://com.apple.vision/documentation/Vision/VNHumanObservation"
+      ],
+      "title": "Face and body detection"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectFaceCaptureQualityRequest/title",
+          "value": "VNDetectFaceCaptureQualityRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectFaceCaptureQualityRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDetectFaceCaptureQualityRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectFaceCaptureQualityRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDetectFaceCaptureQualityRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectFaceRectanglesRequest/title",
+          "value": "VNDetectFaceRectanglesRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectFaceRectanglesRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDetectFaceRectanglesRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectFaceRectanglesRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDetectFaceRectanglesRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectHumanRectanglesRequest/title",
+          "value": "VNDetectHumanRectanglesRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectHumanRectanglesRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDetectHumanRectanglesRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectHumanRectanglesRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDetectHumanRectanglesRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectFaceLandmarksRequest/title",
+          "value": "VNDetectFaceLandmarksRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectFaceLandmarksRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDetectFaceLandmarksRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectFaceLandmarksRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDetectFaceLandmarksRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNHumanObservation/title",
+          "value": "VNHumanObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNHumanObservation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNHumanObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNHumanObservation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNHumanObservation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/vision/selecting-a-selfie-based-on-capture-quality"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

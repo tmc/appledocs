@@ -1,0 +1,4109 @@
+{
+  "abstract": [
+    {
+      "text": "Display user interface content in a window or a collection of windows.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Windows"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Windows"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The most common way to present a view hierarchy in your app’s interface is with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which produces a platform-specific behavior and appearance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "windows-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On platforms that support it, people can open multiple windows from the group",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "simultaneously. Each window relies on the same root view definition, but",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "retains its own view state. On some platforms, you can also supplement your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app’s user interface with a single-instance window using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Window",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " scene",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure windows using scene modifiers that you add to the window",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "declaration, like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowStyle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultPosition(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also indicate how to configure new windows that you present from a view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "hierarchy by adding the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/presentedWindowStyle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier to a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view in the hierarchy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/windows",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "components-windows-thumbnail.png": {
+      "alt": null,
+      "identifier": "components-windows-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/954d0938deaa82c77e2697bea81040da/components-windows-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cdddbeeb4c914a11ab4a384a96de036c/components-windows-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "customizing-window-styles-PageImage-card.png": {
+      "alt": "A translucent window above a vibrant blue and orange background.",
+      "identifier": "customizing-window-styles-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2ad38e0c3283b1ac07867f22266e037f/customizing-window-styles-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/33d64ed1d006ace96b27aa334aa05a93/customizing-window-styles-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/App-extensions": {
+      "abstract": [
+        {
+          "text": "Extend your app’s basic functionality to other parts of the system, like",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "by adding a Widget.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App extensions",
+      "type": "topic",
+      "url": "/documentation/swiftui/app-extensions"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization": {
+      "abstract": [
+        {
+          "text": "Define the entry point and top-level structure of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App organization",
+      "type": "topic",
+      "url": "/documentation/swiftui/app-organization"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ControlActiveState": {
+      "abstract": [
+        {
+          "text": "The active appearance expected of controls in a window.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlActiveState"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ControlActiveState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlActiveState"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlActiveState",
+      "type": "topic",
+      "url": "/documentation/swiftui/controlactivestate"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Customizing-window-styles-and-state-restoration-behavior-in-macOS": {
+      "abstract": [
+        {
+          "text": "Configure how your app’s windows look and function in macOS to provide an",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "engaging and more coherent experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Customizing-window-styles-and-state-restoration-behavior-in-macOS",
+      "images": [
+        {
+          "identifier": "customizing-window-styles-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Customizing window styles and state-restoration behavior in macOS",
+      "type": "topic",
+      "url": "/documentation/swiftui/customizing-window-styles-and-state-restoration-behavior-in-macos"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DismissAction": {
+      "abstract": [
+        {
+          "text": "An action that dismisses a presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DismissAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DismissAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DismissAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "DismissAction",
+      "type": "topic",
+      "url": "/documentation/swiftui/dismissaction"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DismissBehavior": {
+      "abstract": [
+        {
+          "text": "Programmatic window dismissal behaviors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DismissBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DismissBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DismissBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "DismissBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/dismissbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DismissWindowAction": {
+      "abstract": [
+        {
+          "text": "An action that dismisses a window associated to a particular scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DismissWindowAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DismissWindowAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DismissWindowAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "DismissWindowAction",
+      "type": "topic",
+      "url": "/documentation/swiftui/dismisswindowaction"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DisplayProxy": {
+      "abstract": [
+        {
+          "text": "A type which provides information about display hardware.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DisplayProxy"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DisplayProxy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DisplayProxy"
+        }
+      ],
+      "role": "symbol",
+      "title": "DisplayProxy",
+      "type": "topic",
+      "url": "/documentation/swiftui/displayproxy"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Documents": {
+      "abstract": [
+        {
+          "text": "Enable people to open and manage documents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Documents",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Documents",
+      "type": "topic",
+      "url": "/documentation/swiftui/documents"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/dismiss": {
+      "abstract": [
+        {
+          "text": "An action that dismisses the current presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dismiss"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI13DismissActionV",
+          "text": "DismissAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/dismiss",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dismiss",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/dismiss"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/dismissWindow": {
+      "abstract": [
+        {
+          "text": "A window dismissal action stored in a view’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dismissWindow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19DismissWindowActionV",
+          "text": "DismissWindowAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/dismissWindow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dismissWindow",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/dismisswindow"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/openWindow": {
+      "abstract": [
+        {
+          "text": "A window presentation action stored in a view’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openWindow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16OpenWindowActionV",
+          "text": "OpenWindowAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/openWindow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "openWindow",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/openwindow"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/supportsMultipleWindows": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the current platform supports",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "opening multiple windows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsMultipleWindows"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/supportsMultipleWindows",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "supportsMultipleWindows",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/supportsmultiplewindows"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/worldTrackingLimitations": {
+      "abstract": [
+        {
+          "text": "The current limitations of the device tracking the user’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "worldTrackingLimitations"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI23WorldTrackingLimitationV",
+          "text": "WorldTrackingLimitation"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/worldTrackingLimitations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "worldTrackingLimitations",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/worldtrackinglimitations"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Immersive-spaces": {
+      "abstract": [
+        {
+          "text": "Display unbounded content in a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Immersive-spaces",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Immersive spaces",
+      "type": "topic",
+      "url": "/documentation/swiftui/immersive-spaces"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Modal-presentations": {
+      "abstract": [
+        {
+          "text": "Present content in a separate view that offers focused interaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Modal-presentations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Modal presentations",
+      "type": "topic",
+      "url": "/documentation/swiftui/modal-presentations"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Navigation": {
+      "abstract": [
+        {
+          "text": "Enable people to move between different parts of your app’s view hierarchy",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "within a scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Navigation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Navigation",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/OpenWindowAction": {
+      "abstract": [
+        {
+          "text": "An action that presents a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OpenWindowAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/OpenWindowAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OpenWindowAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "OpenWindowAction",
+      "type": "topic",
+      "url": "/documentation/swiftui/openwindowaction"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PushWindowAction": {
+      "abstract": [
+        {
+          "text": "An action that opens the requested window in place of the window the action",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "is called from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PushWindowAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PushWindowAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PushWindowAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "PushWindowAction",
+      "type": "topic",
+      "url": "/documentation/swiftui/pushwindowaction"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultLaunchBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the default launch behavior for this scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultLaunchBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19SceneLaunchBehaviorV",
+          "text": "SceneLaunchBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultLaunchBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultLaunchBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/defaultlaunchbehavior(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultPosition(_:)": {
+      "abstract": [
+        {
+          "text": "Sets a default position for a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultPosition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9UnitPointV",
+          "text": "UnitPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultPosition(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultPosition(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/defaultposition(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(_:)": {
+      "abstract": [
+        {
+          "text": "Sets a default size for a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultSize(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/defaultsize(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(_:in:)": {
+      "abstract": [
+        {
+          "text": "Sets a default size for a volumetric window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@UA@SPSize3D",
+          "text": "Size3D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUnitLength",
+          "text": "UnitLength"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(_:in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultSize(_:in:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/defaultsize(_:in:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(width:height:)": {
+      "abstract": [
+        {
+          "text": "Sets a default width and height for a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(width:height:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultSize(width:height:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/defaultsize(width:height:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(width:height:depth:)": {
+      "abstract": [
+        {
+          "text": "Sets a default size for a volumetric window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "depth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(width:height:depth:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultSize(width:height:depth:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/defaultsize(width:height:depth:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(width:height:depth:in:)": {
+      "abstract": [
+        {
+          "text": "Sets a default size for a volumetric window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "depth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUnitLength",
+          "text": "UnitLength"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(width:height:depth:in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultSize(width:height:depth:in:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/defaultsize(width:height:depth:in:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultWindowPlacement(_:)": {
+      "abstract": [
+        {
+          "text": "Defines a function used for determining the default placement",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of windows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultWindowPlacement"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16WindowLayoutRootV",
+          "text": "WindowLayoutRoot"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI22WindowPlacementContextV",
+          "text": "WindowPlacementContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15WindowPlacementV",
+          "text": "WindowPlacement"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultWindowPlacement(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultWindowPlacement(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/defaultwindowplacement(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultWorldScaling(_:)": {
+      "abstract": [
+        {
+          "text": "Specify the world scaling behavior for the window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultWorldScaling"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20WorldScalingBehaviorV",
+          "text": "WorldScalingBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultWorldScaling(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultWorldScaling(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/defaultworldscaling(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/persistentSystemOverlays(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the preferred visibility of the non-transient system views",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "overlaying the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "persistentSystemOverlays"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10VisibilityO",
+          "text": "Visibility"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/persistentSystemOverlays(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "persistentSystemOverlays(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/persistentsystemoverlays(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/restorationBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the restoration behavior for this scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restorationBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI24SceneRestorationBehaviorV",
+          "text": "SceneRestorationBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/restorationBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "restorationBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/restorationbehavior(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/volumeWorldAlignment(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies how a volume should be aligned when moved in the world.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeWorldAlignment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI22WorldAlignmentBehaviorV",
+          "text": "WorldAlignmentBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/volumeWorldAlignment(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeWorldAlignment(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/volumeworldalignment(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowBackgroundDragBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the behavior of dragging a window by its background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowBackgroundDragBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25WindowInteractionBehaviorV",
+          "text": "WindowInteractionBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowBackgroundDragBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowBackgroundDragBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowbackgrounddragbehavior(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowIdealPlacement(_:)": {
+      "abstract": [
+        {
+          "text": "Provides a function which determines a placement to use when windows",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of a scene zoom.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowIdealPlacement"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16WindowLayoutRootV",
+          "text": "WindowLayoutRoot"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI22WindowPlacementContextV",
+          "text": "WindowPlacementContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15WindowPlacementV",
+          "text": "WindowPlacement"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowIdealPlacement(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowIdealPlacement(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowidealplacement(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowIdealSize(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies how windows derived form this scene should determine their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "size when zooming.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowIdealSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15WindowIdealSizeV",
+          "text": "WindowIdealSize"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowIdealSize(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowIdealSize(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowidealsize(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowLevel(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the window level of this scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowLevel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11WindowLevelV",
+          "text": "WindowLevel"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowLevel(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowLevel(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowlevel(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowManagerRole(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the role for windows derived from ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": " when",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "participating in a managed window context, such as full screen or",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Stage Manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowManagerRole"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17WindowManagerRoleV",
+          "text": "WindowManagerRole"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowManagerRole(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowManagerRole(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowmanagerrole(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowResizability(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the kind of resizability to use for a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowResizability"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18WindowResizabilityV",
+          "text": "WindowResizability"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowResizability(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowResizability(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowresizability(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for windows created by this scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowToolbarLabelStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the label style of items in a toolbar and enables user customization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowToolbarLabelStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17ToolbarLabelStyleV",
+          "text": "ToolbarLabelStyle"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowToolbarLabelStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowToolbarLabelStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowtoolbarlabelstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowToolbarLabelStyle(fixed:)": {
+      "abstract": [
+        {
+          "text": "Sets the label style of items in a toolbar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowToolbarLabelStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fixed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17ToolbarLabelStyleV",
+          "text": "ToolbarLabelStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowToolbarLabelStyle(fixed:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowToolbarLabelStyle(fixed:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowtoolbarlabelstyle(fixed:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowToolbarStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for the toolbar defined within this scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowToolbarStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowToolbarStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowToolbarStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowtoolbarstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SceneLaunchBehavior": {
+      "abstract": [
+        {
+          "text": "The launch behavior for a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SceneLaunchBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SceneLaunchBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SceneLaunchBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "SceneLaunchBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/scenelaunchbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SceneRestorationBehavior": {
+      "abstract": [
+        {
+          "text": "The restoration behavior for a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SceneRestorationBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SceneRestorationBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SceneRestorationBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "SceneRestorationBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/scenerestorationbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scenes": {
+      "abstract": [
+        {
+          "text": "Declare the user interface groupings that make up the parts of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scenes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scenes",
+      "type": "topic",
+      "url": "/documentation/swiftui/scenes"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Search": {
+      "abstract": [
+        {
+          "text": "Enable people to search for text or other content within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Search",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Search",
+      "type": "topic",
+      "url": "/documentation/swiftui/search"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SquareAzimuth": {
+      "abstract": [
+        {
+          "text": "A type describing what direction something is being viewed from along",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the horizontal plane and snapped to 4 directions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SquareAzimuth"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SquareAzimuth",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SquareAzimuth"
+        }
+      ],
+      "role": "symbol",
+      "title": "SquareAzimuth",
+      "type": "topic",
+      "url": "/documentation/swiftui/squareazimuth"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Toolbars": {
+      "abstract": [
+        {
+          "text": "Provide immediate access to frequently used commands and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Toolbars",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Toolbars",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbars"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UtilityWindow": {
+      "abstract": [
+        {
+          "text": "A specialized window scene that provides secondary utility to the content",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of the main scenes of an application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UtilityWindow"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UtilityWindow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UtilityWindow"
+        }
+      ],
+      "role": "symbol",
+      "title": "UtilityWindow",
+      "type": "topic",
+      "url": "/documentation/swiftui/utilitywindow"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onVolumeViewpointChange(updateStrategy:initial:_:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform when the viewpoint of the volume changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onVolumeViewpointChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "updateStrategy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI29VolumeViewpointUpdateStrategyV",
+          "text": "VolumeViewpointUpdateStrategy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "initial"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11Viewpoint3DV",
+          "text": "Viewpoint3D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11Viewpoint3DV",
+          "text": "Viewpoint3D"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onVolumeViewpointChange(updateStrategy:initial:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onVolumeViewpointChange(updateStrategy:initial:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/onvolumeviewpointchange(updatestrategy:initial:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/presentedWindowStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for windows created by interacting with this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentedWindowStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/presentedWindowStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentedWindowStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/presentedwindowstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/supportedVolumeViewpoints(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies which viewpoints are supported for the window bar and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "ornaments in a volume.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportedVolumeViewpoints"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI13SquareAzimuthO",
+          "text": "SquareAzimuth"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI13SquareAzimuthO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/supportedVolumeViewpoints(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "supportedVolumeViewpoints(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/supportedvolumeviewpoints(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowDismissBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the dismiss functionality for the window enclosing ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowDismissBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25WindowInteractionBehaviorV",
+          "text": "WindowInteractionBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowDismissBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowDismissBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/windowdismissbehavior(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowFullScreenBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the full screen functionality for the window enclosing ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowFullScreenBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25WindowInteractionBehaviorV",
+          "text": "WindowInteractionBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowFullScreenBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowFullScreenBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/windowfullscreenbehavior(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowMinimizeBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the minimize functionality for the window enclosing ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowMinimizeBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25WindowInteractionBehaviorV",
+          "text": "WindowInteractionBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowMinimizeBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowMinimizeBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/windowminimizebehavior(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowResizeBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the resize functionality for the window enclosing ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowResizeBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25WindowInteractionBehaviorV",
+          "text": "WindowInteractionBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowResizeBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowResizeBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/windowresizebehavior(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowToolbarFullScreenVisibility(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the visibility of the window toolbar when the window enters",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "full screen mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowToolbarFullScreenVisibility"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI33WindowToolbarFullScreenVisibilityV",
+          "text": "WindowToolbarFullScreenVisibility"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowToolbarFullScreenVisibility(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowToolbarFullScreenVisibility(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/windowtoolbarfullscreenvisibility(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Viewpoint3D": {
+      "abstract": [
+        {
+          "text": "A type describing what direction something is being viewed from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Viewpoint3D"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Viewpoint3D",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Viewpoint3D"
+        }
+      ],
+      "role": "symbol",
+      "title": "Viewpoint3D",
+      "type": "topic",
+      "url": "/documentation/swiftui/viewpoint3d"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VolumeViewpointUpdateStrategy": {
+      "abstract": [
+        {
+          "text": "A type describing when the action provided to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onVolumeViewpointChange(updateStrategy:initial:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " should be",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "called.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VolumeViewpointUpdateStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VolumeViewpointUpdateStrategy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VolumeViewpointUpdateStrategy"
+        }
+      ],
+      "role": "symbol",
+      "title": "VolumeViewpointUpdateStrategy",
+      "type": "topic",
+      "url": "/documentation/swiftui/volumeviewpointupdatestrategy"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Window": {
+      "abstract": [
+        {
+          "text": "A scene that presents its content in a single, unique window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Window"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Window",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Window"
+        }
+      ],
+      "role": "symbol",
+      "title": "Window",
+      "type": "topic",
+      "url": "/documentation/swiftui/window"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowGroup": {
+      "abstract": [
+        {
+          "text": "A scene that presents a group of identically structured windows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WindowGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WindowGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "WindowGroup",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowgroup"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowIdealSize": {
+      "abstract": [
+        {
+          "text": "A type which defines the size a window should use when zooming.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WindowIdealSize"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowIdealSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WindowIdealSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "WindowIdealSize",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowidealsize"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowInteractionBehavior": {
+      "abstract": [
+        {
+          "text": "Options for enabling and disabling window interaction behaviors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WindowInteractionBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowInteractionBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WindowInteractionBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "WindowInteractionBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowinteractionbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowLayoutRoot": {
+      "abstract": [
+        {
+          "text": "A proxy which represents the root contents of a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WindowLayoutRoot"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowLayoutRoot",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WindowLayoutRoot"
+        }
+      ],
+      "role": "symbol",
+      "title": "WindowLayoutRoot",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowlayoutroot"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowLevel": {
+      "abstract": [
+        {
+          "text": "The level of a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WindowLevel"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowLevel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WindowLevel"
+        }
+      ],
+      "role": "symbol",
+      "title": "WindowLevel",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowlevel"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowManagerRole": {
+      "abstract": [
+        {
+          "text": "Options for defining how a scene’s windows behave when used within a managed",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "window context, such as full screen mode and Stage Manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WindowManagerRole"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowManagerRole",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WindowManagerRole"
+        }
+      ],
+      "role": "symbol",
+      "title": "WindowManagerRole",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowmanagerrole"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowPlacement": {
+      "abstract": [
+        {
+          "text": "A type which represents a preferred size and position for a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WindowPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowPlacement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WindowPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "WindowPlacement",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowplacement"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowPlacementContext": {
+      "abstract": [
+        {
+          "text": "A type which represents contextual information used for sizing and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "positioning windows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WindowPlacementContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowPlacementContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WindowPlacementContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "WindowPlacementContext",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowplacementcontext"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowProxy": {
+      "abstract": [
+        {
+          "text": "The proxy for an open window in the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WindowProxy"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowProxy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WindowProxy"
+        }
+      ],
+      "role": "symbol",
+      "title": "WindowProxy",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowproxy"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowResizability": {
+      "abstract": [
+        {
+          "text": "The resizability of a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WindowResizability"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowResizability",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WindowResizability"
+        }
+      ],
+      "role": "symbol",
+      "title": "WindowResizability",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowresizability"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowStyle": {
+      "abstract": [
+        {
+          "text": "A specification for the appearance and interaction of a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WindowStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WindowStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "WindowStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowstyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowToolbarFullScreenVisibility": {
+      "abstract": [
+        {
+          "text": "The visibility of the window toolbar with respect to full screen mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WindowToolbarFullScreenVisibility"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowToolbarFullScreenVisibility",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WindowToolbarFullScreenVisibility"
+        }
+      ],
+      "role": "symbol",
+      "title": "WindowToolbarFullScreenVisibility",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowtoolbarfullscreenvisibility"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowToolbarStyle": {
+      "abstract": [
+        {
+          "text": "A specification for the appearance and behavior of a window’s toolbar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WindowToolbarStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowToolbarStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WindowToolbarStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "WindowToolbarStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowtoolbarstyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowVisibilityToggle": {
+      "abstract": [
+        {
+          "text": "A specialized button for toggling the visibility of a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WindowVisibilityToggle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowVisibilityToggle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WindowVisibilityToggle"
+        }
+      ],
+      "role": "symbol",
+      "title": "WindowVisibilityToggle",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowvisibilitytoggle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WorldAlignmentBehavior": {
+      "abstract": [
+        {
+          "text": "A type representing the world alignment behavior for a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WorldAlignmentBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WorldAlignmentBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WorldAlignmentBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "WorldAlignmentBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/worldalignmentbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WorldScalingBehavior": {
+      "abstract": [
+        {
+          "text": "Specifies the scaling behavior a window should have within the world.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WorldScalingBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WorldScalingBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WorldScalingBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "WorldScalingBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/worldscalingbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WorldScalingCompensation": {
+      "abstract": [
+        {
+          "text": "Indicates whether returned metrics will take dynamic scaling into account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WorldScalingCompensation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WorldScalingCompensation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WorldScalingCompensation"
+        }
+      ],
+      "role": "symbol",
+      "title": "WorldScalingCompensation",
+      "type": "topic",
+      "url": "/documentation/swiftui/worldscalingcompensation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WorldTrackingLimitation": {
+      "abstract": [
+        {
+          "text": "A structure to represent limitations of tracking the user’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WorldTrackingLimitation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WorldTrackingLimitation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WorldTrackingLimitation"
+        }
+      ],
+      "role": "symbol",
+      "title": "WorldTrackingLimitation",
+      "type": "topic",
+      "url": "/documentation/swiftui/worldtrackinglimitation"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/windows": {
+      "abstract": [
+        {
+          "text": "A window presents UI views and components in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/windows",
+      "images": [
+        {
+          "identifier": "components-windows-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Windows",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/windows"
+    },
+    "doc://com.apple.documentation/documentation/swiftui/bringing_multiple_windows_to_your_swiftui_app": {
+      "abstract": [
+        {
+          "text": "Compose rich views by reacting to state changes and customize your app’s scene presentation and behavior on iPadOS and macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swiftui/bringing_multiple_windows_to_your_swiftui_app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Bringing multiple windows to your SwiftUI app",
+      "type": "topic",
+      "url": "/documentation/swiftui/bringing_multiple_windows_to_your_swiftui_app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/positioning-and-sizing-windows": {
+      "abstract": [
+        {
+          "text": "Influence the initial geometry of windows that your app presents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/positioning-and-sizing-windows",
+      "kind": "article",
+      "role": "article",
+      "title": "Positioning and sizing windows",
+      "type": "topic",
+      "url": "/documentation/visionOS/positioning-and-sizing-windows"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/presenting-windows-and-spaces": {
+      "abstract": [
+        {
+          "text": "Open and close the scenes that make up your app’s interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/presenting-windows-and-spaces",
+      "kind": "article",
+      "role": "article",
+      "title": "Presenting windows and spaces",
+      "type": "topic",
+      "url": "/documentation/visionOS/presenting-windows-and-spaces"
+    },
+    "windows-hero": {
+      "alt": null,
+      "identifier": "windows-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9522b0ac981c7a46c7a0319092d0212b/windows-hero@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-structure",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scenes",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Immersive-spaces",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Documents",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Navigation",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Modal-presentations",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Toolbars",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Search",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/App-extensions"
+      ],
+      "title": "App structure"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Customizing-window-styles-and-state-restoration-behavior-in-macOS",
+        "doc://com.apple.documentation/documentation/swiftui/bringing_multiple_windows_to_your_swiftui_app"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Creating-windows",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowGroup",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Window",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UtilityWindow",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowStyle(_:)"
+      ],
+      "title": "Creating windows"
+    },
+    {
+      "anchor": "Styling-the-associated-toolbar",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowToolbarStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowToolbarLabelStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowToolbarLabelStyle(fixed:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowToolbarStyle"
+      ],
+      "title": "Styling the associated toolbar"
+    },
+    {
+      "anchor": "Opening-windows",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/visionOS/presenting-windows-and-spaces",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/supportsMultipleWindows",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/openWindow",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/OpenWindowAction",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PushWindowAction"
+      ],
+      "title": "Opening windows"
+    },
+    {
+      "anchor": "Closing-windows",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/dismissWindow",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DismissWindowAction",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/dismiss",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DismissAction",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DismissBehavior"
+      ],
+      "title": "Closing windows"
+    },
+    {
+      "anchor": "Sizing-a-window",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/visionOS/positioning-and-sizing-windows",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(width:height:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(width:height:depth:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(_:in:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(width:height:depth:in:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowResizability(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowResizability",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowIdealSize(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowIdealSize"
+      ],
+      "title": "Sizing a window"
+    },
+    {
+      "anchor": "Positioning-a-window",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultPosition(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowLevel",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowLevel(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowLayoutRoot",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowPlacement",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultWindowPlacement(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowIdealPlacement(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowPlacementContext",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowProxy",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DisplayProxy"
+      ],
+      "title": "Positioning a window"
+    },
+    {
+      "anchor": "Configuring-window-visibility",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowVisibilityToggle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultLaunchBehavior(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/restorationBehavior(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SceneLaunchBehavior",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SceneRestorationBehavior",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/persistentSystemOverlays(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowToolbarFullScreenVisibility(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowToolbarFullScreenVisibility"
+      ],
+      "title": "Configuring window visibility"
+    },
+    {
+      "anchor": "Managing-window-behavior",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowManagerRole",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowManagerRole(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowInteractionBehavior",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowDismissBehavior(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowFullScreenBehavior(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowMinimizeBehavior(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/windowResizeBehavior(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowBackgroundDragBehavior(_:)"
+      ],
+      "title": "Managing window behavior"
+    },
+    {
+      "anchor": "Interacting-with-volumes",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onVolumeViewpointChange(updateStrategy:initial:_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/supportedVolumeViewpoints(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VolumeViewpointUpdateStrategy",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Viewpoint3D",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SquareAzimuth",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WorldAlignmentBehavior",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/volumeWorldAlignment(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WorldScalingBehavior",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultWorldScaling(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WorldScalingCompensation",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/worldTrackingLimitations",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WorldTrackingLimitation"
+      ],
+      "title": "Interacting with volumes"
+    },
+    {
+      "anchor": "Deprecated-Types",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ControlActiveState"
+      ],
+      "title": "Deprecated Types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/windows"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

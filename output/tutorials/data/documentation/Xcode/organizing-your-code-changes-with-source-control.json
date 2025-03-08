@@ -1,0 +1,778 @@
+{
+  "abstract": [
+    {
+      "text": "Streamline your collaboration workflow by managing your Xcode project’s",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "features and releases with Git branches and tags.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/source-control-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/organizing-your-code-changes-with-source-control"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Organizing your code changes with source control"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most Xcode projects need to keep track of multiple feature and release timelines",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "simultaneously. Git provides support for organizing different versions of code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "into branches and annotating your project’s significant milestones with tags.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "organizing-your-code-changes-with-source-control-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Organize-new-feature-or-bug-fix-changes-in-a-branch",
+          "level": 3,
+          "text": "Organize new feature or bug fix changes in a branch",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you update source code to add a new feature or to fix a bug, keep all the changes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "together in a branch so that you can work with them as a unit. For example, if you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "decide not to add a new feature after building it without using source control, it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can be a significant effort to undo the work. If you organize your work in a branch,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can decide not to merge the branch and avoid having to undo work.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you begin new work, choose a starting point for your branch. In Xcode, open",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Source Control navigator and expand the folder with your project name. Expand",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Branches folder to see a list of the current local branches, or the Remotes folder",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to see a list of remote repositories and branches. By default, Xcode creates a branch",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "named ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "main",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " when you create a new project with a Git repository. Control-click the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "branch you want to use as your starting point, choose “Branch from [",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "branch name",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "]”,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and then enter a name for your branch that identifies the work you’re doing. When",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you click Create, Xcode creates the branch and makes it current, so any changes you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "make and commit are part of that branch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make, test, and commit your changes. When your new feature or bug fix is complete",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and you’re ready to include your work in the main code branch, review and merge it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/combining-code-changes-in-a-source-control-repository",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Create a new branch from the current branch with uncommitted changes, and your",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "changes become part of the new branch. You can’t switch to another branch if you",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "have uncommitted changes, so commit your changes or stash them before switching to",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "another branch.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Set-aside-work-in-progress-to-make-other-changes",
+          "level": 3,
+          "text": "Set aside work in progress to make other changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you have work in progress that you aren’t ready to commit and you need to switch",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to another branch, stash your changes to save them without committing them to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "repository. Choose Source Control > Stash Changes, and optionally enter a description",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of your changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "organizing-your-code-changes-with-source-control-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode creates a stash entry with your changes and removes those changes from the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "current working environment so that you can switch branches or start working on other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Source Control navigator, view the Stashed Changes folder under your project",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "folder. Select a stashed change item to review the changes in the comparison view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To add the changes to your current work, Control-click the stashed change item and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "choose Apply Stashed Changes. Xcode updates the current working environment with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the stashed changes so you can continue making updates or commit your changes to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the repository.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you no longer need the stashed changes, Control-click the stashed change item",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and choose Delete to remove it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Mark-releases-and-significant-milestones",
+          "level": 3,
+          "text": "Mark releases and significant milestones",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add tags to commits that represent a significant milestone, like a release or large",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "feature addition, to make them easy to find in source control history.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Source Control navigator, expand the folder with your project name. Expand",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Branches folder to see a list of the current local branches, select a branch,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and then optionally select a commit in the history list. Control-click either the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "branch or the commit, and choose Tag.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "organizing-your-code-changes-with-source-control-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you select the branch, Xcode applies the tag to the most recent commit in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "branch. Enter a short string for the tag, and, optionally, a more detailed message.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Click Create, and Xcode creates the tag and marks the commit with it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "organizing-your-code-changes-with-source-control-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Source Control navigator, under the folder with your project name, expand",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Tags folder to see and navigate to tagged commits.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/combining-code-changes-in-a-source-control-repository": {
+      "abstract": [
+        {
+          "text": "Integrate code changes from multiple sources and resolve conflicts between",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "different versions of code using source control tools in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/combining-code-changes-in-a-source-control-repository",
+      "kind": "article",
+      "role": "article",
+      "title": "Combining code changes in a source control repository",
+      "type": "topic",
+      "url": "/documentation/xcode/combining-code-changes-in-a-source-control-repository"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-source-control-preferences-in-xcode": {
+      "abstract": [
+        {
+          "text": "Customize the default Xcode Settings for connecting to Git repositories, applying code changes, and more options for configuring source control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-source-control-preferences-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring source control preferences in Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-source-control-preferences-in-xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/source-control-management": {
+      "abstract": [
+        {
+          "text": "Back up your files, collaborate with others, and tag your releases with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "source control support in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/source-control-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Source control management",
+      "type": "topic",
+      "url": "/documentation/xcode/source-control-management"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "organizing-your-code-changes-with-source-control-1": {
+      "alt": "Conceptual diagram that shows three rows of commits, each row representing a branch. Each commit in the topmost branch contains a tag that associates the commit with a release version number.",
+      "identifier": "organizing-your-code-changes-with-source-control-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/eb95fd8ad7944207eca4370f2ba73c51/organizing-your-code-changes-with-source-control-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/06643cb221ac7e166b2435c4da3f4c01/organizing-your-code-changes-with-source-control-1~dark@2x.png"
+        }
+      ]
+    },
+    "organizing-your-code-changes-with-source-control-2": {
+      "alt": "The Xcode Stash Changes dialog with an example description.",
+      "identifier": "organizing-your-code-changes-with-source-control-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/480313213fef1c8d0df53472bd599755/organizing-your-code-changes-with-source-control-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c2b590f3801d435920097b9958a0c055/organizing-your-code-changes-with-source-control-2~dark@2x.png"
+        }
+      ]
+    },
+    "organizing-your-code-changes-with-source-control-3": {
+      "alt": "An Xcode dialog for creating a new tag from a commit, with an example tag name and message.",
+      "identifier": "organizing-your-code-changes-with-source-control-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/eecba2e1c4fdbbacc6dc892da13f7b01/organizing-your-code-changes-with-source-control-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5e6cc074a595b80039abb40b8af72e66/organizing-your-code-changes-with-source-control-3~dark@2x.png"
+        }
+      ]
+    },
+    "organizing-your-code-changes-with-source-control-4": {
+      "alt": "Xcode showing an example commit with a tag in the Source Control navigator.",
+      "identifier": "organizing-your-code-changes-with-source-control-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ad244c1da83428156e02ff578b5763f1/organizing-your-code-changes-with-source-control-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ef18ec88161a9a5b223ad9189d15a5c2/organizing-your-code-changes-with-source-control-4~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Git",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/combining-code-changes-in-a-source-control-repository",
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-source-control-preferences-in-xcode"
+      ],
+      "title": "Git"
+    }
+  ]
+}

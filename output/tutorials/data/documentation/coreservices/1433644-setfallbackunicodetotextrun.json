@@ -1,0 +1,484 @@
+{
+  "abstract": [
+    {
+      "text": "Specifies a fallback handler to be used for convertinga Unicode text segment to another encoding when the Unicode Convertercannot convert the text using the mapping table specified by a Unicodeconverter object.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coreservices/1433644-setfallbackunicodetotextrun"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1433644,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SetFallbackUnicodeToTextRun",
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SetFallbackUnicodeToTextRun"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "identifier": "symbol-1586802",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SetFallbackUnicodeToTextRun"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/unicodetotextruninfo",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@UnicodeToTextRunInfo",
+              "text": "UnicodeToTextRunInfo"
+            },
+            {
+              "kind": "text",
+              "text": " iUnicodeToTextRunInfo, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/unicodetotextfallbackupp",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@UnicodeToTextFallbackUPP",
+              "text": "UnicodeToTextFallbackUPP"
+            },
+            {
+              "kind": "text",
+              "text": " iFallback, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/optionbits",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OptionBits",
+              "text": "OptionBits"
+            },
+            {
+              "kind": "text",
+              "text": " iControlFlags, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/logicaladdress",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@LogicalAddress",
+              "text": "LogicalAddress"
+            },
+            {
+              "kind": "text",
+              "text": " iInfoPtr);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Unicode converter object to which the fallback handler is to be associated. You use the function ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1433632-createunicodetotextruninfo",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1433651-createunicodetotextruninfobyenco",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1433657-createunicodetotextruninfobyscri",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to obtain a Unicode converter object to specify for this parameter. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "iUnicodeToTextRunInfo"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A universal procedure pointer to the application-defined fallback routine. For a description of the function prototype to which your fallback handler must adhere and how to create your own fallback handler, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/unicodetotextfallbackprocptr",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". You should use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "NewUnicodeToTextFallbackProc",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " macro described in the discussion of the function ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1433614-setfallbackunicodetotext",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "iFallback"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Control flags that stipulate which fallback handler the Unicode Converter should call—the application-defined fallback handler or the default handler—if a fallback handler is required, and the sequence in which the Unicode Converter should call the fallback handlers if either can be used when the other fails or is unavailable. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1433507-fallback_handler_selectors",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "iControlFlags"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a block of memory to be passed to the application-defined fallback handler. The Unicode Converter passes this pointer to the application-defined fallback handler as the last parameter when it calls the fallback handler. Your application can use this block to store data required by your fallback handler whenever it is called. This is similar in use to a reference constant(refcon). If you don’t need to use a memory block, specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for this parameter. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "iInfoPtr"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A resultcode. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can define multiple fallback handlers and associate themwith different Unicode converter objects, depending on your requirements.See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/unicodetotextfallbackprocptr",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for adescription of how to create and install an application-definedfallback handler. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433507-fallback_handler_selectors": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433507-fallback_handler_selectors",
+      "kind": "symbol",
+      "role": "containerSymbol",
+      "title": "Fallback Handler Selectors",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433507-fallback_handler_selectors"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433614-setfallbackunicodetotext": {
+      "abstract": [
+        {
+          "text": "Specifies a fallback handler to be used for convertinga Unicode text segment to another encoding when the Unicode Convertercannot convert the text using the mapping table specified by theUnicode converter object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433614-setfallbackunicodetotext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetFallbackUnicodeToText",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433614-setfallbackunicodetotext"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433632-createunicodetotextruninfo": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433632-createunicodetotextruninfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateUnicodeToTextRunInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433632-createunicodetotextruninfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433644-setfallbackunicodetotextrun": {
+      "abstract": [
+        {
+          "text": "Specifies a fallback handler to be used for convertinga Unicode text segment to another encoding when the Unicode Convertercannot convert the text using the mapping table specified by a Unicodeconverter object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433644-setfallbackunicodetotextrun",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetFallbackUnicodeToTextRun",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433644-setfallbackunicodetotextrun"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433651-createunicodetotextruninfobyenco": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433651-createunicodetotextruninfobyenco",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateUnicodeToTextRunInfoByEncoding",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433651-createunicodetotextruninfobyenco"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433657-createunicodetotextruninfobyscri": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433657-createunicodetotextruninfobyscri",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateUnicodeToTextRunInfoByScriptCode",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433657-createunicodetotextruninfobyscri"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text Encoding Conversion Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/text_encoding_conversion_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/unicodetotextfallbackprocptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/unicodetotextfallbackprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnicodeToTextFallbackProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/unicodetotextfallbackprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/unicodetotextfallbackupp": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/unicodetotextfallbackupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnicodeToTextFallbackUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/unicodetotextfallbackupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/unicodetotextruninfo": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/unicodetotextruninfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnicodeToTextRunInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/unicodetotextruninfo"
+    },
+    "doc://com.apple.documentation/documentation/kernel/logicaladdress": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/logicaladdress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LogicalAddress",
+      "type": "topic",
+      "url": "/documentation/kernel/logicaladdress"
+    },
+    "doc://com.apple.documentation/documentation/kernel/optionbits": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/optionbits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OptionBits",
+      "type": "topic",
+      "url": "/documentation/kernel/optionbits"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1433614-setfallbackunicodetotext"
+      ],
+      "title": "Setting the Fallback Handler"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/1433644-setfallbackunicodetotextrun"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

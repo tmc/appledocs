@@ -1,0 +1,338 @@
+{
+  "abstract": [
+    {
+      "text": "A cryptographically signed payload, in JSON Web Signature (JWS) format, that contains the response body for a version 2 notification.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/signedPayload"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:store_s2s:signedPayload",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "type "
+      },
+      {
+        "kind": "identifier",
+        "text": "signedPayload"
+      }
+    ],
+    "modules": [
+      {
+        "name": "App Store Server Notifications"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "signedPayload"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "App Store Server Notifications"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type",
+    "symbolKind": "typealias",
+    "title": "signedPayload"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: App Store Server Notifications"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "string "
+            },
+            {
+              "kind": "identifier",
+              "text": "signedPayload"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/receiving-app-store-server-notifications"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "signedPayload",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a string of three Base64URL-encoded components, separated by a period. The string contains a JWS representation of the notification response body, signed by the App Store according to the JSON Web Signature (JWS) ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://datatracker.ietf.org/doc/html/rfc7515",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " specification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The three components of the string are a header, a payload, and a signature, in that order.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To read the notification response body, Base64URL-decode the payload. Use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responseBodyV2DecodedPayload",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to read the payload information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To read the header, Base64URL-decode it and use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/JWSDecodedHeader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to access the information. Use the information in the decoded header to verify the signature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications": {
+      "abstract": [
+        {
+          "text": "Monitor In-App Purchase events in real time and learn of unreported external purchase tokens, with server notifications from the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/JWSDecodedHeader": {
+      "abstract": [
+        {
+          "text": "A decoded JSON Web Signature header containing transaction or renewal information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "JWSDecodedHeader"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/JWSDecodedHeader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JWSDecodedHeader"
+        }
+      ],
+      "role": "symbol",
+      "title": "JWSDecodedHeader",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/jwsdecodedheader"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/receiving-app-store-server-notifications": {
+      "abstract": [
+        {
+          "text": "Implement server-side code to receive and parse notification posts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/receiving-app-store-server-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Receiving App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/receiving-app-store-server-notifications"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responseBodyV2DecodedPayload": {
+      "abstract": [
+        {
+          "text": "A decoded payload that contains the version 2 notification data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "responseBodyV2DecodedPayload"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responseBodyV2DecodedPayload",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "responseBodyV2DecodedPayload"
+        }
+      ],
+      "role": "symbol",
+      "title": "responseBodyV2DecodedPayload",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/responsebodyv2decodedpayload"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/signedPayload": {
+      "abstract": [
+        {
+          "text": "A cryptographically signed payload, in JSON Web Signature (JWS) format, that contains the response body for a version 2 notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "signedPayload"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/signedPayload",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "signedPayload"
+        }
+      ],
+      "role": "symbol",
+      "title": "signedPayload",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/signedpayload"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://datatracker.ietf.org/doc/html/rfc7515": {
+      "identifier": "https://datatracker.ietf.org/doc/html/rfc7515",
+      "title": "IETF RFC 7515",
+      "titleInlineContent": [
+        {
+          "text": "IETF RFC 7515",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://datatracker.ietf.org/doc/html/rfc7515"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreservernotifications/signedpayload"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

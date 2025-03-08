@@ -1,0 +1,1529 @@
+{
+  "abstract": [
+    {
+      "text": "An object wrapper, or container, for an Interface Builder nib file.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSNib"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSNib",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSNib"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSNib"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSNib"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSNib"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSNib",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object keeps the contents of a nib file resident in memory, ready for unarchiving and instantiation. When you create a nib object using the contents of a nib file, the object loads the contents of the referenced nib bundle—the object graph as well as any images and sounds—into memory; but it does not yet unarchive it. To unarchive all of the nib data and thus truly instantiate the nib you must call one of the ",
+              "type": "text"
+            },
+            {
+              "code": "instantiate...",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods of ",
+              "type": "text"
+            },
+            {
+              "code": "NSNib",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During the instantiation process, each object in the archive is unarchived and then initialized using the method befitting its type. View classes are initialized using their ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/init(frame:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Custom objects are initialized using their ",
+              "type": "text"
+            },
+            {
+              "code": "init",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. In the case of Cocoa views (and custom views that have options on an associated Interface Builder palette) the initialization process also reads in any values set by the user in Interface Builder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once all objects have been instantiated and initialized from the archive, the nib loading code attempts to reestablish the connections between each object’s outlets and the corresponding target objects. If your custom objects have outlets, the ",
+              "type": "text"
+            },
+            {
+              "code": "NSNib",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object attempts to reestablish any connections you created in Interface Builder. It starts by trying to establish the connections using your object’s own methods first. For each outlet that needs a connection, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSNib",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object looks for a method of the form ",
+              "type": "text"
+            },
+            {
+              "code": "set:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in your object. If that method exists, the nib object calls it, passing the target object as a parameter. If you did not define a setter method with that exact name, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSNib",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object searches the object for an instance variable (of type ",
+              "type": "text"
+            },
+            {
+              "code": "IBOutlet id",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") with the corresponding outlet name and tries to set its value directly. If an instance variable with the correct name cannot be found, initialization of that connection does not occur.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After all objects have been initialized and their connections reestablished, each object receives an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1402907-awakefromnib",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " message. You can override this method in your custom objects to perform any additional initialization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Subclassing-Notes",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can subclass ",
+              "type": "text"
+            },
+            {
+              "code": "NSNib",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if you want to extend or specialize nib-loading behavior. For example, you could create a custom ",
+              "type": "text"
+            },
+            {
+              "code": "NSNib",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subclass that performs some post-processing on the top-level objects returned from the ",
+              "type": "text"
+            },
+            {
+              "code": "instantiateNib...",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods. If you want to modify how nib instantiations are performed, it is recommended that you override the primitive method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSNib/instantiate(withOwner:topLevelObjects:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Note that the instance variables of ",
+              "type": "text"
+            },
+            {
+              "code": "NSNib",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are private and thus are not available to subclasses. Any override of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSNib/init(nibData:bundle:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSNib/init(nibNamed:bundle:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " should first invoke the superclass implementation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSNib": {
+      "abstract": [
+        {
+          "text": "An object wrapper, or container, for an Interface Builder nib file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNib"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSNib",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSNib"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSNib",
+      "type": "topic",
+      "url": "/documentation/appkit/nsnib"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSNib/Name": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSNib/Name",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Name"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSNib.Name",
+      "type": "topic",
+      "url": "/documentation/appkit/nsnib/name"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSNib/init(nibData:bundle:)": {
+      "abstract": [
+        {
+          "text": "Initializes an instance with nib data and specified bundle for locating resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "nibData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSNib/init(nibData:bundle:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithNibData:bundle:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(nibData:bundle:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsnib/init(nibdata:bundle:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSNib/init(nibNamed:bundle:)": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSNib",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object initialized to the nib file in the specified bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "nibNamed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNib",
+          "text": "NSNib"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNibName",
+          "text": "Name"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSNib/init(nibNamed:bundle:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithNibNamed:bundle:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(nibNamed:bundle:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsnib/init(nibnamed:bundle:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSNib/initWithContentsOfURL:": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSNib",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object initialized to the nib file at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithContentsOfURL:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSNib/initWithContentsOfURL:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithContentsOfURL:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithContentsOfURL:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsnib/initwithcontentsofurl:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSNib/instantiate(withOwner:topLevelObjects:)": {
+      "abstract": [
+        {
+          "text": "Instantiates objects in the nib file with the specified owner.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "instantiate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withOwner"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "topLevelObjects"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SA",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSArray",
+          "text": "NSArray"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSNib/instantiate(withOwner:topLevelObjects:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "instantiateWithOwner:topLevelObjects:"
+        }
+      ],
+      "role": "symbol",
+      "title": "instantiate(withOwner:topLevelObjects:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsnib/instantiate(withowner:toplevelobjects:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSNib/instantiateNibWithExternalNameTable:": {
+      "abstract": [
+        {
+          "text": "Unarchives and instantiates the in-memory contents of the receiver’s nib file, creating a distinct object tree and top level objects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "instantiateNibWithExternalNameTable:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSNib/instantiateNibWithExternalNameTable:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "instantiateNibWithExternalNameTable:"
+        }
+      ],
+      "role": "symbol",
+      "title": "instantiateNibWithExternalNameTable:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsnib/instantiatenibwithexternalnametable:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSNib/instantiateNibWithOwner:topLevelObjects:": {
+      "abstract": [
+        {
+          "text": "Unarchives and instantiates the in-memory contents of the receiver’s nib file, creating a distinct object tree and set of top level objects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "instantiateNibWithOwner:topLevelObjects:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSNib/instantiateNibWithOwner:topLevelObjects:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "instantiateNibWithOwner:topLevelObjects:"
+        }
+      ],
+      "role": "symbol",
+      "title": "instantiateNibWithOwner:topLevelObjects:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsnib/instantiatenibwithowner:toplevelobjects:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSNibConnector": {
+      "abstract": [
+        {
+          "text": "A connection between two nibs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSNibConnector"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSNibConnector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNibConnector",
+      "type": "topic",
+      "url": "/documentation/appkit/nsnibconnector"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSNibControlConnector": {
+      "abstract": [
+        {
+          "text": "A control connection between two Interface Builder objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSNibControlConnector"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSNibControlConnector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNibControlConnector",
+      "type": "topic",
+      "url": "/documentation/appkit/nsnibcontrolconnector"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSNibOutletConnector": {
+      "abstract": [
+        {
+          "text": "An outlet connection between Interface Builder objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSNibOutletConnector"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSNibOutletConnector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNibOutletConnector",
+      "type": "topic",
+      "url": "/documentation/appkit/nsniboutletconnector"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/init(frame:)": {
+      "abstract": [
+        {
+          "text": "Initializes and returns a newly allocated ",
+          "type": "text"
+        },
+        {
+          "code": "NSView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object with a specified frame rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "frame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/init(frame:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithFrame:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(frame:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/init(frame:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/nib-loading-keys": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "NSNib",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class uses the following constants which are used as keys in the dictionary passed to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSNib/instantiateNibWithExternalNameTable:",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/nib-loading-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Nib Loading Keys",
+      "type": "topic",
+      "url": "/documentation/appkit/nib-loading-keys"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1402907-awakefromnib": {
+      "abstract": [
+        {
+          "text": "Prepares the receiver for service after it has been loaded from an Interface Builder archive, or nib file.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "awakeFromNib"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1402907-awakefromnib",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "awakeFromNib()",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1402907-awakefromnib"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Initializing-a-Nib",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSNib/init(nibNamed:bundle:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSNib/init(nibData:bundle:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSNib/Name"
+      ],
+      "title": "Initializing a Nib"
+    },
+    {
+      "anchor": "Instantiating-a-Nib",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSNib/instantiate(withOwner:topLevelObjects:)"
+      ],
+      "title": "Instantiating a Nib"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/nib-loading-keys"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSNib"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSNib"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSNib"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializing-a-Nib",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSNib/initWithContentsOfURL:",
+                "doc://com.apple.appkit/documentation/AppKit/NSNib/init(nibNamed:bundle:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSNib/init(nibData:bundle:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSNib/Name"
+              ],
+              "title": "Initializing a Nib"
+            },
+            {
+              "anchor": "Instantiating-a-Nib",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSNib/instantiateNibWithOwner:topLevelObjects:",
+                "doc://com.apple.appkit/documentation/AppKit/NSNib/instantiateNibWithExternalNameTable:",
+                "doc://com.apple.appkit/documentation/AppKit/NSNib/instantiate(withOwner:topLevelObjects:)"
+              ],
+              "title": "Instantiating a Nib"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/nib-loading-keys"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Nib-Files",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSNibConnector",
+                "doc://com.apple.appkit/documentation/AppKit/NSNibControlConnector",
+                "doc://com.apple.appkit/documentation/AppKit/NSNibOutletConnector"
+              ],
+              "title": "Nib Files"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSNib"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11402907-awakefromnib/title",
+          "value": "awakeFromNib"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSNib~1instantiate(withOwner:topLevelObjects:)/title",
+          "value": "instantiateWithOwner:topLevelObjects:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSNib~1instantiate(withOwner:topLevelObjects:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "instantiateWithOwner:topLevelObjects:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSNib/title",
+          "value": "NSNib"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSNib/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSNib"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSNib/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSNib"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1init(frame:)/title",
+          "value": "initWithFrame:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1init(frame:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithFrame:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSNib~1init(nibData:bundle:)/title",
+          "value": "initWithNibData:bundle:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSNib~1init(nibData:bundle:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithNibData:bundle:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSNib~1Name/title",
+          "value": "NSNibName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSNib~1Name/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSNibName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSNib~1Name/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSNibName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSNib~1init(nibNamed:bundle:)/title",
+          "value": "initWithNibNamed:bundle:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSNib~1init(nibNamed:bundle:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithNibNamed:bundle:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsnib"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsnib"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

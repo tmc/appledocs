@@ -1,0 +1,1065 @@
+{
+  "abstract": [
+    {
+      "text": "Use tags to provide semantic information for organization, filtering, and customizing appearances.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.testing/documentation/Testing",
+        "doc://org.swift.testing/documentation/Testing/Traits"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://org.swift.testing/documentation/Testing/AddingTags"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift Testing"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding tags to tests"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A complex package or project may contain hundreds or thousands of tests and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "suites. Some subset of those tests may share some common facet, such as being",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "critical",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "flaky",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". The testing library includes a type of trait called",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "tags",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " that you can add to group and categorize tests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tags are different from test suites: test suites impose structure on test",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "functions at the source level, while tags provide semantic information for a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "test that can be shared with any number of other tests across test suites,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "source files, and even test targets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-tag",
+          "level": 2,
+          "text": "Add a tag",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a tag to a test, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/Trait/tags(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " trait. This trait takes a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sequence of tags as its argument, and those tags are then applied to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "corresponding test at runtime. If any tags are applied to a test suite, then all",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tests in that suite inherit those tags.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The testing library doesn’t assign any semantic meaning to any tags, nor does",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the presence or absence of tags affect how the testing library runs tests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tags themselves are instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/Tag",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and expressed as named constants",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "declared as static members of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/Tag",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To declare a named constant tag, use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/Tag()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension Tag {",
+            "  @Tag static var legallyRequired: Self",
+            "}",
+            "",
+            "@Test(\"Vendor's license is valid\", .tags(.legallyRequired))",
+            "func licenseValid() { ... }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If two tags with the same name (",
+              "type": "text"
+            },
+            {
+              "code": "legallyRequired",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the above example) are",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "declared in different files, modules, or other contexts, the testing library",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "treats them as equivalent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If it’s important for a tag to be distinguished from similar tags declared",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "elsewhere in a package or project (or its dependencies), use reverse-DNS naming",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to create a unique Swift symbol name for your tag:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension Tag {",
+            "  enum com_example_foodtruck {}",
+            "}",
+            "",
+            "extension Tag.com_example_foodtruck {",
+            "  @Tag static var extraSpecial: Tag",
+            "}",
+            "",
+            "@Test(",
+            "  \"Extra Special Sauce recipe is secret\",",
+            "  .tags(.com_example_foodtruck.extraSpecial)",
+            ")",
+            "func secretSauce() { ... }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Where-tags-can-be-declared",
+          "level": 3,
+          "text": "Where tags can be declared",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tags must always be declared as members of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/Tag",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in an extension to that type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or in a type nested within ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/Tag",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Redeclaring a tag under a second name has no",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "effect and the additional name will not be recognized by the testing library.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following example is unsupported:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension Tag {",
+            "  @Tag static var legallyRequired: Self // ✅ OK: Declaring a new tag.",
+            "",
+            "  static var requiredByLaw: Self { // ❌ ERROR: This tag name isn't",
+            "                                   // recognized at runtime.",
+            "    legallyRequired",
+            "  }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a tag is declared as a named constant outside of an extension to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/Tag",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type (for example, at the root of a file or in another unrelated type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "declaration), it cannot be applied to test functions or test suites. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "following declarations are unsupported:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Tag let needsKetchup: Self // ❌ ERROR: Tags must be declared in an extension",
+            "                            // to Tag.",
+            "struct Food {",
+            "  @Tag var needsMustard: Self // ❌ ERROR: Tags must be declared in an extension",
+            "                              // to Tag.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.testing/documentation/Testing": {
+      "abstract": [
+        {
+          "text": "Create and run tests for your Swift packages and Xcode projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift Testing",
+      "type": "topic",
+      "url": "/documentation/testing"
+    },
+    "doc://org.swift.testing/documentation/Testing/AddingComments": {
+      "abstract": [
+        {
+          "text": "Add comments to provide useful information about tests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/AddingComments",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding comments to tests",
+      "type": "topic",
+      "url": "/documentation/testing/addingcomments"
+    },
+    "doc://org.swift.testing/documentation/Testing/AssociatingBugs": {
+      "abstract": [
+        {
+          "text": "Associate bugs uncovered or verified by tests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/AssociatingBugs",
+      "kind": "article",
+      "role": "article",
+      "title": "Associating bugs with tests",
+      "type": "topic",
+      "url": "/documentation/testing/associatingbugs"
+    },
+    "doc://org.swift.testing/documentation/Testing/BugIdentifiers": {
+      "abstract": [
+        {
+          "text": "Examine how the testing library interprets bug identifiers provided by developers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/BugIdentifiers",
+      "kind": "article",
+      "role": "article",
+      "title": "Interpreting bug identifiers",
+      "type": "topic",
+      "url": "/documentation/testing/bugidentifiers"
+    },
+    "doc://org.swift.testing/documentation/Testing/Tag": {
+      "abstract": [
+        {
+          "text": "A type representing a tag that can be applied to a test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Tag"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Tag",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Tag"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tag",
+      "type": "topic",
+      "url": "/documentation/testing/tag"
+    },
+    "doc://org.swift.testing/documentation/Testing/Tag()": {
+      "abstract": [
+        {
+          "text": "Declare a tag that can be applied to a test function or test suite.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Tag"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Tag()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Tag()",
+      "type": "topic",
+      "url": "/documentation/testing/tag()"
+    },
+    "doc://org.swift.testing/documentation/Testing/Trait/bug(_:_:)": {
+      "abstract": [
+        {
+          "text": "Construct a bug to track with a test.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Bug",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bug"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Trait/bug(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bug(_:_:)",
+      "type": "topic",
+      "url": "/documentation/testing/trait/bug(_:_:)"
+    },
+    "doc://org.swift.testing/documentation/Testing/Trait/bug(_:id:_:)-10yf5": {
+      "abstract": [
+        {
+          "text": "Construct a bug to track with a test.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Bug",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bug"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Trait/bug(_:id:_:)-10yf5",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bug(_:id:_:)",
+      "type": "topic",
+      "url": "/documentation/testing/trait/bug(_:id:_:)-10yf5"
+    },
+    "doc://org.swift.testing/documentation/Testing/Trait/bug(_:id:_:)-3vtpl": {
+      "abstract": [
+        {
+          "text": "Construct a bug to track with a test.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Bug",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bug"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sj",
+          "text": "Numeric"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Trait/bug(_:id:_:)-3vtpl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bug(_:id:_:)",
+      "type": "topic",
+      "url": "/documentation/testing/trait/bug(_:id:_:)-3vtpl"
+    },
+    "doc://org.swift.testing/documentation/Testing/Trait/tags(_:)": {
+      "abstract": [
+        {
+          "text": "Construct a list of tags to apply to a test.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Tag.List",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tags"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing3TagV",
+          "text": "Tag"
+        },
+        {
+          "kind": "text",
+          "text": "...) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Trait/tags(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tags(_:)",
+      "type": "topic",
+      "url": "/documentation/testing/trait/tags(_:)"
+    },
+    "doc://org.swift.testing/documentation/Testing/Traits": {
+      "abstract": [
+        {
+          "text": "Add traits to tests to annotate them or customize their behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Traits",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Traits",
+      "type": "topic",
+      "url": "/documentation/testing/traits"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Annotating-tests",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.testing/documentation/Testing/AddingComments",
+        "doc://org.swift.testing/documentation/Testing/AssociatingBugs",
+        "doc://org.swift.testing/documentation/Testing/BugIdentifiers",
+        "doc://org.swift.testing/documentation/Testing/Tag()",
+        "doc://org.swift.testing/documentation/Testing/Trait/bug(_:_:)",
+        "doc://org.swift.testing/documentation/Testing/Trait/bug(_:id:_:)-10yf5",
+        "doc://org.swift.testing/documentation/Testing/Trait/bug(_:id:_:)-3vtpl"
+      ],
+      "title": "Annotating tests"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/testing/addingtags"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,453 @@
+{
+  "abstract": [
+    {
+      "text": "Adds a mode to the set of run loop common modes.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/corefoundation",
+        "doc://com.apple.documentation/documentation/corefoundation/cfrunloop-rht"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/corefoundation/1542137-cfrunloopaddcommonmode"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1542137,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@CFRunLoopAddCommonMode",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "CFRunLoopAddCommonMode"
+      },
+      {
+        "kind": "text",
+        "text": "(CFRunLoop!, CFRunLoopMode!)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "CFRunLoopAddCommonMode(_:_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CFRunLoopAddCommonMode"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "rl"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloop",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFRunLoopRef",
+              "text": "CFRunLoop"
+            },
+            {
+              "kind": "text",
+              "text": "!"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "mode"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloopmode",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFRunLoopMode",
+              "text": "CFRunLoopMode"
+            },
+            {
+              "kind": "text",
+              "text": "!"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The run loop to modify. Each run loop has its own independent list of modes that are in the set of common modes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "rl"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The run loop mode to add to the set of common modes of ",
+                  "type": "text"
+                },
+                {
+                  "code": "rl",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "mode"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sources, timers, and observers get registered to one or more run loop modes and only run when the run loop is running in one of those modes. Common modes are a set of run loop modes for which you can define a set of sources, timers, and observers that are shared by these modes. Instead of registering a source, for example, to each specific run loop mode, you can register it once to the run loop’s common pseudo-mode and it will be automatically registered in each run loop mode in the common mode set. Likewise, when a mode is added to the set of common modes, any sources, timers, or observers already registered to the common pseudo-mode are added to the newly added common mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once a mode is added to the set of common modes, it cannot be removed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Add, Contains, and Remove functions for sources, timers, and observers operate on a run loop’s set of common modes when you use the constant ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloopmode/1542364-commonmodes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the run loop mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Foundation",
+      "type": "topic",
+      "url": "/documentation/corefoundation"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1541775-cfrunloopcopycurrentmode": {
+      "abstract": [
+        {
+          "text": "Returns the name of the mode in which a given run loop is currently running.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFRunLoopCopyCurrentMode"
+        },
+        {
+          "kind": "text",
+          "text": "(CFRunLoop!) -> CFRunLoopMode!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1541775-cfrunloopcopycurrentmode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFRunLoopCopyCurrentMode(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1541775-cfrunloopcopycurrentmode"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542137-cfrunloopaddcommonmode": {
+      "abstract": [
+        {
+          "text": "Adds a mode to the set of run loop common modes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFRunLoopAddCommonMode"
+        },
+        {
+          "kind": "text",
+          "text": "(CFRunLoop!, CFRunLoopMode!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542137-cfrunloopaddcommonmode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFRunLoopAddCommonMode(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542137-cfrunloopaddcommonmode"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542184-cfrunloopcopyallmodes": {
+      "abstract": [
+        {
+          "text": "Returns an array that contains all the defined modes for a CFRunLoop object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFRunLoopCopyAllModes"
+        },
+        {
+          "kind": "text",
+          "text": "(CFRunLoop!) -> CFArray!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542184-cfrunloopcopyallmodes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFRunLoopCopyAllModes(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542184-cfrunloopcopyallmodes"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunloop": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFRunLoop",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunloop"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunloop-rht": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloop-rht",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFRunLoop",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunloop-rht"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunloopmode": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloopmode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFRunLoopMode",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunloopmode"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunloopmode/1542364-commonmodes": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloopmode/1542364-commonmodes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commonModes",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunloopmode/1542364-commonmodes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1542184-cfrunloopcopyallmodes",
+        "doc://com.apple.documentation/documentation/corefoundation/1541775-cfrunloopcopycurrentmode"
+      ],
+      "title": "Managing Run Loop Modes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/corefoundation/1542137-cfrunloopaddcommonmode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/corefoundation/1542137-cfrunloopaddcommonmode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

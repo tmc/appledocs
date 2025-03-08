@@ -1,0 +1,1845 @@
+{
+  "abstract": [
+    {
+      "text": "A sequence whose elements consist of the elements of some base",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "sequence that also satisfy a given predicate.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:s18LazyFilterSequenceV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "LazyFilterSequence"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "LazyFilterSequence"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "LazyFilterSequence"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LazyFilterSequence"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Base"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Base"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Sequence",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:ST",
+              "text": "Sequence"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "code": "s.lazy.filter { ... }",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", for an arbitrary sequence ",
+                  "type": "text"
+                },
+                {
+                  "code": "s",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ",",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "is a ",
+                  "type": "text"
+                },
+                {
+                  "code": "LazyFilterSequence",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/BidirectionalCollection": {
+      "abstract": [
+        {
+          "text": "A collection that supports backward as well as forward traversal.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "BidirectionalCollection",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BidirectionalCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BidirectionalCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BidirectionalCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "BidirectionalCollection",
+      "type": "topic",
+      "url": "/documentation/swift/bidirectionalcollection"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Collection": {
+      "abstract": [
+        {
+          "text": "A sequence whose elements can be traversed multiple times,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "nondestructively, and accessed by an indexed subscript.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Collection",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Collection"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Collection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Collection"
+        }
+      ],
+      "role": "symbol",
+      "title": "Collection",
+      "type": "topic",
+      "url": "/documentation/swift/collection"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Copyable": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Sequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Copyable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/swift/copyable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyCollection": {
+      "abstract": [
+        {
+          "text": "A collection containing the same elements as a ",
+          "type": "text"
+        },
+        {
+          "code": "Base",
+          "type": "codeVoice"
+        },
+        {
+          "text": " collection,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "but on which some operations such as ",
+          "type": "text"
+        },
+        {
+          "code": "map",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "code": "filter",
+          "type": "codeVoice"
+        },
+        {
+          "text": " are",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "implemented lazily.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyCollection",
+      "type": "topic",
+      "url": "/documentation/swift/lazycollection"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyCollectionProtocol": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Collection",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyCollectionProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyCollectionProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyCollectionProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyCollectionProtocol",
+      "type": "topic",
+      "url": "/documentation/swift/lazycollectionprotocol"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyDropWhileCollection": {
+      "abstract": [
+        {
+          "text": "A lazy wrapper that includes the elements of an underlying",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "collection after any initial consecutive elements that satisfy a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyDropWhileCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyDropWhileCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyDropWhileCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyDropWhileCollection",
+      "type": "topic",
+      "url": "/documentation/swift/lazydropwhilecollection"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyDropWhileSequence": {
+      "abstract": [
+        {
+          "text": "A sequence whose elements consist of the elements that follow the initial",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "consecutive elements of some base sequence that satisfy a given predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyDropWhileSequence"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyDropWhileSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyDropWhileSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyDropWhileSequence",
+      "type": "topic",
+      "url": "/documentation/swift/lazydropwhilesequence"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyFilterCollection": {
+      "abstract": [
+        {
+          "text": "A lazy ",
+          "type": "text"
+        },
+        {
+          "code": "Collection",
+          "type": "codeVoice"
+        },
+        {
+          "text": " wrapper that includes the elements of an",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "underlying collection that satisfy a predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyFilterCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyFilterCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyFilterCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyFilterCollection",
+      "type": "topic",
+      "url": "/documentation/swift/lazyfiltercollection"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence": {
+      "abstract": [
+        {
+          "text": "A sequence whose elements consist of the elements of some base",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "sequence that also satisfy a given predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyFilterSequence"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyFilterSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyFilterSequence",
+      "type": "topic",
+      "url": "/documentation/swift/lazyfiltersequence"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/BidirectionalCollection-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/BidirectionalCollection-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "BidirectionalCollection Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/lazyfiltersequence/bidirectionalcollection-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/Collection-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/Collection-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collection Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/lazyfiltersequence/collection-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/LazySequenceProtocol-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/LazySequenceProtocol-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "LazySequenceProtocol Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/lazyfiltersequence/lazysequenceprotocol-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/Sequence-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/Sequence-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sequence Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/lazyfiltersequence/sequence-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/filter(_:)": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Sequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "filter"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s18LazyFilterSequenceV",
+          "text": "LazyFilterSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Base"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s18LazyFilterSequenceV",
+          "text": "LazyFilterSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Base"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/filter(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "filter(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/lazyfiltersequence/filter(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/formIndex(_:offsetBy:)": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Collection",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formIndex"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s18LazyFilterSequenceV",
+          "text": "LazyFilterSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Base"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsetBy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/formIndex(_:offsetBy:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formIndex(_:offsetBy:)",
+      "type": "topic",
+      "url": "/documentation/swift/lazyfiltersequence/formindex(_:offsetby:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/formIndex(_:offsetBy:limitedBy:)": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Collection",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formIndex"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s18LazyFilterSequenceV",
+          "text": "LazyFilterSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Base"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsetBy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "limitedBy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s18LazyFilterSequenceV",
+          "text": "LazyFilterSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Base"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/formIndex(_:offsetBy:limitedBy:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formIndex(_:offsetBy:limitedBy:)",
+      "type": "topic",
+      "url": "/documentation/swift/lazyfiltersequence/formindex(_:offsetby:limitedby:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/underestimatedCount": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Collection",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "underestimatedCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/underestimatedCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "underestimatedCount",
+      "type": "topic",
+      "url": "/documentation/swift/lazyfiltersequence/underestimatedcount"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyMapCollection": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "code": "Collection",
+          "type": "codeVoice"
+        },
+        {
+          "text": " whose elements consist of those in a ",
+          "type": "text"
+        },
+        {
+          "code": "Base",
+          "type": "codeVoice"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "Collection",
+          "type": "codeVoice"
+        },
+        {
+          "text": " passed through a transform function returning ",
+          "type": "text"
+        },
+        {
+          "code": "Element",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "These elements are computed lazily, each time they’re read, by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "calling the transform function on a base element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyMapCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyMapCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyMapCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyMapCollection",
+      "type": "topic",
+      "url": "/documentation/swift/lazymapcollection"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyMapSequence": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "code": "Sequence",
+          "type": "codeVoice"
+        },
+        {
+          "text": " whose elements consist of those in a ",
+          "type": "text"
+        },
+        {
+          "code": "Base",
+          "type": "codeVoice"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "Sequence",
+          "type": "codeVoice"
+        },
+        {
+          "text": " passed through a transform function returning ",
+          "type": "text"
+        },
+        {
+          "code": "Element",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "These elements are computed lazily, each time they’re read, by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "calling the transform function on a base element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyMapSequence"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyMapSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyMapSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyMapSequence",
+      "type": "topic",
+      "url": "/documentation/swift/lazymapsequence"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyPrefixWhileCollection": {
+      "abstract": [
+        {
+          "text": "A lazy collection wrapper that includes the initial consecutive",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "elements of an underlying collection that satisfy a predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyPrefixWhileCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyPrefixWhileCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyPrefixWhileCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyPrefixWhileCollection",
+      "type": "topic",
+      "url": "/documentation/swift/lazyprefixwhilecollection"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyPrefixWhileSequence": {
+      "abstract": [
+        {
+          "text": "A sequence whose elements consist of the initial consecutive elements of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "some base sequence that satisfy a given predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyPrefixWhileSequence"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyPrefixWhileSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyPrefixWhileSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyPrefixWhileSequence",
+      "type": "topic",
+      "url": "/documentation/swift/lazyprefixwhilesequence"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazySequence": {
+      "abstract": [
+        {
+          "text": "A sequence containing the same elements as a ",
+          "type": "text"
+        },
+        {
+          "code": "Base",
+          "type": "codeVoice"
+        },
+        {
+          "text": " sequence, but",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "on which some operations such as ",
+          "type": "text"
+        },
+        {
+          "code": "map",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "code": "filter",
+          "type": "codeVoice"
+        },
+        {
+          "text": " are",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "implemented lazily.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazySequence"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazySequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazySequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazySequence",
+      "type": "topic",
+      "url": "/documentation/swift/lazysequence"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol": {
+      "abstract": [
+        {
+          "text": "A sequence on which normally-eager sequence operations are implemented",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "lazily.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Sequence",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazySequenceProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazySequenceProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazySequenceProtocol",
+      "type": "topic",
+      "url": "/documentation/swift/lazysequenceprotocol"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sequence": {
+      "abstract": [
+        {
+          "text": "A type that provides sequential, iterated access to its elements.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Collection",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sequence"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sequence",
+      "type": "topic",
+      "url": "/documentation/swift/sequence"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/BidirectionalCollection",
+        "doc://com.apple.Swift/documentation/Swift/Collection",
+        "doc://com.apple.Swift/documentation/Swift/Copyable",
+        "doc://com.apple.Swift/documentation/Swift/LazyCollectionProtocol",
+        "doc://com.apple.Swift/documentation/Swift/LazySequenceProtocol",
+        "doc://com.apple.Swift/documentation/Swift/Sequence"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Lazy-Wrappers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/LazySequence",
+        "doc://com.apple.Swift/documentation/Swift/LazyMapSequence",
+        "doc://com.apple.Swift/documentation/Swift/LazyPrefixWhileSequence",
+        "doc://com.apple.Swift/documentation/Swift/LazyDropWhileSequence",
+        "doc://com.apple.Swift/documentation/Swift/LazyCollection",
+        "doc://com.apple.Swift/documentation/Swift/LazyDropWhileCollection",
+        "doc://com.apple.Swift/documentation/Swift/LazyFilterCollection",
+        "doc://com.apple.Swift/documentation/Swift/LazyMapCollection",
+        "doc://com.apple.Swift/documentation/Swift/LazyPrefixWhileCollection"
+      ],
+      "title": "Lazy Wrappers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/underestimatedCount"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/filter(_:)",
+        "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/formIndex(_:offsetBy:)",
+        "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/formIndex(_:offsetBy:limitedBy:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/BidirectionalCollection-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/Collection-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/LazySequenceProtocol-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/LazyFilterSequence/Sequence-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/lazyfiltersequence"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

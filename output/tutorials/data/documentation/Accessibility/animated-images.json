@@ -1,0 +1,670 @@
+{
+  "abstract": [
+    {
+      "text": "Pause animations in animated images in your app when people turn off the Animated",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "Images setting.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Accessibility/documentation/Accessibility",
+        "doc://com.apple.Accessibility/documentation/Accessibility/vision"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Accessibility/documentation/Accessibility",
+        "doc://com.apple.Accessibility/documentation/Accessibility/accessibility-api",
+        "doc://com.apple.Accessibility/documentation/Accessibility/AccessibilitySettings"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Accessibility/documentation/Accessibility/animated-images"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accessibility"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Animated images"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People use the Animated Images setting to control whether to play animated images",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "like GIFs on the web and in apps. By default, the setting is on, which allows animated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "images to play automatically. A person can turn off the setting to indicate that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "they want to pause animated images on their device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your app, handle changes to the Animated Images setting to create an enjoyable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "experience for people who choose to pause animated images. Register for the notification",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AccessibilitySettings/animatedImagesEnabledDidChangeNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to respond to changes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in this setting:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import Accessibility",
+            "",
+            "NotificationCenter.default.addObserver(self,",
+            "    selector: #selector(animatedImagesChanged),",
+            "    name: NSNotification.Name.animatedImagesEnabledDidChangeNotification,",
+            "    object: nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the Animated Images setting changes, perform changes to your UI to pause animated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "images:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@objc ",
+            "func animatedImagesChanged(_ notification: Notification) {",
+            "    if AccessibilitySettings.animatedImagesEnabled {",
+            "        // The setting is on. Animate images.",
+            "    } else {",
+            "        // The setting is off. Pause animations in animated images.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Check the value of the Animated Images setting at any time by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AccessibilitySettings/animatedImagesEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Accessibility-PageImage-card.png": {
+      "alt": "",
+      "identifier": "Accessibility-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/718b8a161d77a3423dde2dd53ac35ffb/Accessibility-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ed433f19cfa41ebf0c9f495a066b6bbd/Accessibility-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "accessibility-card-vision.png": {
+      "alt": "An illustration that shows a person with low vision walking with the assistance of a guide dog while using an iPhone and AirPods.",
+      "identifier": "accessibility-card-vision.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/11631c0b01fa73cc082557dc6067840e/accessibility-card-vision@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/624a8a2e8a195d6785905c00a619d3ac/accessibility-card-vision~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility": {
+      "abstract": [
+        {
+          "text": "Make your apps accessible to everyone who uses Apple devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility",
+      "images": [
+        {
+          "identifier": "Accessibility-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/documentation/accessibility"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AccessibilitySettings": {
+      "abstract": [
+        {
+          "text": "A structure for working with accessibility system settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessibilitySettings"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AccessibilitySettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessibilitySettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessibilitySettings",
+      "type": "topic",
+      "url": "/documentation/accessibility/accessibilitysettings"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AccessibilitySettings/animatedImagesEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the system setting for playing animated images is on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animatedImagesEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AccessibilitySettings/animatedImagesEnabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "animatedImagesEnabled",
+      "type": "topic",
+      "url": "/documentation/accessibility/accessibilitysettings/animatedimagesenabled"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AccessibilitySettings/animatedImagesEnabledDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts when the system setting for playing animated images changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animatedImagesEnabledDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation12NotificationV",
+          "text": "Notification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation12NotificationV4Namea",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AccessibilitySettings/animatedImagesEnabledDidChangeNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "animatedImagesEnabledDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/accessibility/accessibilitysettings/animatedimagesenableddidchangenotification"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/accessibility-api": {
+      "abstract": [
+        {
+          "text": "Browse API in the Accessibility framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/accessibility-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessibility API",
+      "type": "topic",
+      "url": "/documentation/accessibility/accessibility-api"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/audio-graphs": {
+      "abstract": [
+        {
+          "text": "Define an accessible representation of your chart for VoiceOver to generate an audio",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "graph.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/audio-graphs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio graphs",
+      "type": "topic",
+      "url": "/documentation/accessibility/audio-graphs"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/braille-displays": {
+      "abstract": [
+        {
+          "text": "Display a graphical representation of images, icons, data, and more on a two-dimensional",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "braille display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/braille-displays",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Braille displays",
+      "type": "topic",
+      "url": "/documentation/accessibility/braille-displays"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/horizontal-text": {
+      "abstract": [
+        {
+          "text": "Lay out vertical text horizontally in your app when people turn on the Prefer Horizontal",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Text setting.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/horizontal-text",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Horizontal text",
+      "type": "topic",
+      "url": "/documentation/accessibility/horizontal-text"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/vision": {
+      "abstract": [
+        {
+          "text": "A person may be blind or color blind, or have a vision challenge that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "makes focusing difficult.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/vision",
+      "images": [
+        {
+          "identifier": "accessibility-card-vision.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/accessibility/vision"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/voiceover": {
+      "abstract": [
+        {
+          "text": "A gesture-based screen reader that provides an auditory description of the content onscreen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/voiceover",
+      "images": [
+        {
+          "identifier": "voiceover-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VoiceOver",
+      "type": "topic",
+      "url": "/documentation/accessibility/voiceover"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/wwdc21_challenge_large_text_challenge": {
+      "abstract": [
+        {
+          "text": "Design for large text sizes by modifying the user interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/wwdc21_challenge_large_text_challenge",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "WWDC21 Challenge: Large Text Challenge",
+      "type": "topic",
+      "url": "/documentation/accessibility/wwdc21_challenge_large_text_challenge"
+    },
+    "doc://com.apple.documentation/documentation/MediaAccessibility/flashing-lights": {
+      "abstract": [
+        {
+          "text": "Detect, mitigate, and inform people about flashing lights in media content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MediaAccessibility/flashing-lights",
+      "kind": "article",
+      "role": "article",
+      "title": "Flashing lights",
+      "type": "topic",
+      "url": "/documentation/MediaAccessibility/flashing-lights"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "voiceover-card.png": {
+      "alt": "",
+      "identifier": "voiceover-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6d02ab927e1e3865da0472d09dc3aae4/voiceover-card@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Supporting-vision-accessibility-features",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Accessibility/documentation/Accessibility/voiceover",
+        "doc://com.apple.documentation/documentation/MediaAccessibility/flashing-lights",
+        "doc://com.apple.Accessibility/documentation/Accessibility/audio-graphs",
+        "doc://com.apple.Accessibility/documentation/Accessibility/braille-displays",
+        "doc://com.apple.Accessibility/documentation/Accessibility/horizontal-text",
+        "doc://com.apple.Accessibility/documentation/Accessibility/wwdc21_challenge_large_text_challenge"
+      ],
+      "title": "Supporting vision accessibility features"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Animated-images",
+      "identifiers": [
+        "doc://com.apple.Accessibility/documentation/Accessibility/AccessibilitySettings/animatedImagesEnabled",
+        "doc://com.apple.Accessibility/documentation/Accessibility/AccessibilitySettings/animatedImagesEnabledDidChangeNotification"
+      ],
+      "title": "Animated images"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Supporting-vision-accessibility-features",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.Accessibility/documentation/Accessibility/voiceover",
+                "doc://com.apple.documentation/documentation/MediaAccessibility/flashing-lights",
+                "doc://com.apple.Accessibility/documentation/Accessibility/audio-graphs",
+                "doc://com.apple.Accessibility/documentation/Accessibility/braille-displays",
+                "doc://com.apple.Accessibility/documentation/Accessibility/horizontal-text",
+                "doc://com.apple.Accessibility/documentation/Accessibility/wwdc21_challenge_large_text_challenge"
+              ],
+              "title": "Supporting vision accessibility features"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accessibility/animated-images"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accessibility/animated-images"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

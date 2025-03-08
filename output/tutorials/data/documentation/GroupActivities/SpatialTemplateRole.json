@@ -1,0 +1,734 @@
+{
+  "abstract": [
+    {
+      "text": "An interface for defining roles that you assign to the",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "participants of a group activity.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateRole"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:15GroupActivities19SpatialTemplateRoleP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SpatialTemplateRole"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Group Activities"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SpatialTemplateRole"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "SpatialTemplateRole"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SpatialTemplateRole"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SH",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SH",
+              "text": "Hashable"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s8SendableP",
+              "text": "Sendable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateRole",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " interface in a custom ",
+              "type": "text"
+            },
+            {
+              "code": "enum",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and use it with your custom spatial template. Roles are",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an optional way for you to assign a purpose to participants with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a spatial Persona. For example, a spatial template for a game might",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "define roles for the opposing teams. When a participant joins an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "activity, assign one of your custom roles to place them in a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specific seat of your template. Seats in the template are available only",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to participants with spatial Personas.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a spatial template for a table tennis",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "game with two teams. The first four seats are for the players of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "team, and the last seat is for a spectator. When participants request",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a role for the red or blue team, the template assigns them to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "first available seat in the array with that role.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct SimpleTableTennis: SpatialTemplate {",
+            "    enum Role: String, SpatialTemplateRole {",
+            "        case blueTeam",
+            "        case redTeam",
+            "    }",
+            "",
+            "    var elements: [any SpatialTemplateElement] = [",
+            "        .seat(position: .app.offsetBy(x: -1, z: -3), role: Role.blueTeam),",
+            "        .seat(position: .app.offsetBy(x: -1, z:  3), role: Role.redTeam),",
+            "",
+            "        .seat(position: .app.offsetBy(x:  1, z: -3), role: Role.blueTeam),",
+            "        .seat(position: .app.offsetBy(x:  1, z:  3), role: Role.redTeam),",
+            "",
+            "        .seat(position: .app.offsetBy(x: -2, z:  0)),",
+            "    ]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.GroupActivities/documentation/GroupActivities": {
+      "abstract": [
+        {
+          "text": "Create app-specific activities your users can share and experience together.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Group Activities",
+      "type": "topic",
+      "url": "/documentation/groupactivities"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplate": {
+      "abstract": [
+        {
+          "text": "An interface you use to create custom arrangements of spatial Personas",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTemplate",
+      "type": "topic",
+      "url": "/documentation/groupactivities/spatialtemplate"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElement": {
+      "abstract": [
+        {
+          "text": "An interface that defines an element in your spatial template.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateElement"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTemplateElement",
+      "type": "topic",
+      "url": "/documentation/groupactivities/spatialtemplateelement"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElementDirection": {
+      "abstract": [
+        {
+          "text": "The initial direction a participant faces when an activity starts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateElementDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElementDirection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateElementDirection"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTemplateElementDirection",
+      "type": "topic",
+      "url": "/documentation/groupactivities/spatialtemplateelementdirection"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElementPosition": {
+      "abstract": [
+        {
+          "text": "A type that defines the position of an element in a spatial template.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateElementPosition"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElementPosition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateElementPosition"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTemplateElementPosition",
+      "type": "topic",
+      "url": "/documentation/groupactivities/spatialtemplateelementposition"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateRole": {
+      "abstract": [
+        {
+          "text": "An interface for defining roles that you assign to the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "participants of a group activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateRole"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateRole",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateRole"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTemplateRole",
+      "type": "topic",
+      "url": "/documentation/groupactivities/spatialtemplaterole"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateRole/roleIdentifier": {
+      "abstract": [
+        {
+          "text": "The unique identifier string for the role.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "roleIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateRole/roleIdentifier",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "roleIdentifier",
+      "type": "topic",
+      "url": "/documentation/groupactivities/spatialtemplaterole/roleidentifier"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateSeatElement": {
+      "abstract": [
+        {
+          "text": "A spatial template element that represents a seat for a participant",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in the activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateSeatElement"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateSeatElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpatialTemplateSeatElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTemplateSeatElement",
+      "type": "topic",
+      "url": "/documentation/groupactivities/spatialtemplateseatelement"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/building-a-guessing-game-for-visionos": {
+      "abstract": [
+        {
+          "text": "Create a team-based guessing game for visionOS using Group Activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/building-a-guessing-game-for-visionos",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a guessing game for visionOS",
+      "type": "topic",
+      "url": "/documentation/groupactivities/building-a-guessing-game-for-visionos"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Custom-spatial-templates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/building-a-guessing-game-for-visionos",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplate",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateSeatElement",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElement",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElementPosition",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateElementDirection"
+      ],
+      "title": "Custom spatial templates"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-the-role-identifier",
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplateRole/roleIdentifier"
+      ],
+      "title": "Getting the role identifier"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/groupactivities/spatialtemplaterole"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

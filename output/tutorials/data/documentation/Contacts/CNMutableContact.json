@@ -1,0 +1,2979 @@
+{
+  "abstract": [
+    {
+      "text": "A mutable object that stores information about a single contact, such as the contact’s first name, phone numbers, and addresses.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.contacts/documentation/Contacts"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CNMutableContact",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CNMutableContact"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Contacts"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CNMutableContact"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CNMutableContact"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CNMutableContact"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "CNMutableContact",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects are not a thread-safe class. To access the contact information in a thread-safe manner, use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.contacts/documentation/Contacts/CNContact",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may modify only those properties whose values you fetched from the contacts database. When fetching a contact, you specify which properties you want to retrieve from the database. The contact store then populates the properties of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.contacts/documentation/Contacts/CNContact",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object with those values. After creating a mutable copy of that object, you can modify only those properties for which a value exists. If you attempt to access a property that is not available, the ",
+              "type": "text"
+            },
+            {
+              "code": "CNMutableContact",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object throws a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.contacts/documentation/Contacts/CNContactPropertyNotFetchedExceptionName",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " exception.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To remove the value for a property, set string and array properties to empty, and set all other properties to ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.contacts/documentation/Contacts": {
+      "abstract": [
+        {
+          "text": "Access the user’s contacts, and format and localize contact information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Contacts",
+      "type": "topic",
+      "url": "/documentation/contacts"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNContact": {
+      "abstract": [
+        {
+          "text": "An immutable object that stores information about a single contact, such as the contact’s first name, phone numbers, and addresses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CNContact"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNContact",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CNContact"
+        }
+      ],
+      "role": "symbol",
+      "title": "CNContact",
+      "type": "topic",
+      "url": "/documentation/contacts/cncontact"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNContactPropertyNotFetchedExceptionName": {
+      "abstract": [
+        {
+          "text": "Exception thrown when an accessed property was not fetched.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CNContactPropertyNotFetchedExceptionName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNContactPropertyNotFetchedExceptionName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CNContactPropertyNotFetchedExceptionName"
+        }
+      ],
+      "role": "symbol",
+      "title": "CNContactPropertyNotFetchedExceptionName",
+      "type": "topic",
+      "url": "/documentation/contacts/cncontactpropertynotfetchedexceptionname"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact": {
+      "abstract": [
+        {
+          "text": "A mutable object that stores information about a single contact, such as the contact’s first name, phone numbers, and addresses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CNMutableContact"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CNMutableContact"
+        }
+      ],
+      "role": "symbol",
+      "title": "CNMutableContact",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/birthday": {
+      "abstract": [
+        {
+          "text": "A date component for the Gregorian birthday of the contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "birthday"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation14DateComponentsV",
+          "text": "DateComponents"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/birthday",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "birthday"
+        }
+      ],
+      "role": "symbol",
+      "title": "birthday",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/birthday"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/contactRelations": {
+      "abstract": [
+        {
+          "text": "An array of labeled contact relations for the contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contactRelations"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CNLabeledValue",
+          "text": "CNLabeledValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CNContactRelation",
+          "text": "CNContactRelation"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/contactRelations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contactRelations"
+        }
+      ],
+      "role": "symbol",
+      "title": "contactRelations",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/contactrelations"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/contactType": {
+      "abstract": [
+        {
+          "text": "An enum identifying the contact type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contactType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CNContactType",
+          "text": "CNContactType"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/contactType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contactType"
+        }
+      ],
+      "role": "symbol",
+      "title": "contactType",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/contacttype"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/dates": {
+      "abstract": [
+        {
+          "text": "An array containing labeled Gregorian dates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dates"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CNLabeledValue",
+          "text": "CNLabeledValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDateComponents",
+          "text": "NSDateComponents"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/dates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dates"
+        }
+      ],
+      "role": "symbol",
+      "title": "dates",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/dates"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/departmentName": {
+      "abstract": [
+        {
+          "text": "The name of the department associated with the contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "departmentName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/departmentName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "departmentName"
+        }
+      ],
+      "role": "symbol",
+      "title": "departmentName",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/departmentname"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/emailAddresses": {
+      "abstract": [
+        {
+          "text": "An array of labeled email addresses for the contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "emailAddresses"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CNLabeledValue",
+          "text": "CNLabeledValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSString",
+          "text": "NSString"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/emailAddresses",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "emailAddresses"
+        }
+      ],
+      "role": "symbol",
+      "title": "emailAddresses",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/emailaddresses"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/familyName": {
+      "abstract": [
+        {
+          "text": "The family name of the contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "familyName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/familyName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "familyName"
+        }
+      ],
+      "role": "symbol",
+      "title": "familyName",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/familyname"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/givenName": {
+      "abstract": [
+        {
+          "text": "The given name of the contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "givenName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/givenName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "givenName"
+        }
+      ],
+      "role": "symbol",
+      "title": "givenName",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/givenname"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/id": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/id",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "id",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/id"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/imageData": {
+      "abstract": [
+        {
+          "text": "The profile picture of a contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/imageData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageData"
+        }
+      ],
+      "role": "symbol",
+      "title": "imageData",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/imagedata"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/instantMessageAddresses": {
+      "abstract": [
+        {
+          "text": "An array of labeled IM addresses for the contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "instantMessageAddresses"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CNLabeledValue",
+          "text": "CNLabeledValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CNInstantMessageAddress",
+          "text": "CNInstantMessageAddress"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/instantMessageAddresses",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "instantMessageAddresses"
+        }
+      ],
+      "role": "symbol",
+      "title": "instantMessageAddresses",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/instantmessageaddresses"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/jobTitle": {
+      "abstract": [
+        {
+          "text": "The contact’s job title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "jobTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/jobTitle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "jobTitle"
+        }
+      ],
+      "role": "symbol",
+      "title": "jobTitle",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/jobtitle"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/middleName": {
+      "abstract": [
+        {
+          "text": "The middle name of the contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "middleName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/middleName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "middleName"
+        }
+      ],
+      "role": "symbol",
+      "title": "middleName",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/middlename"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/namePrefix": {
+      "abstract": [
+        {
+          "text": "The name prefix of the contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "namePrefix"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/namePrefix",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "namePrefix"
+        }
+      ],
+      "role": "symbol",
+      "title": "namePrefix",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/nameprefix"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/nameSuffix": {
+      "abstract": [
+        {
+          "text": "The name suffix of the contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nameSuffix"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/nameSuffix",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nameSuffix"
+        }
+      ],
+      "role": "symbol",
+      "title": "nameSuffix",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/namesuffix"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/nickname": {
+      "abstract": [
+        {
+          "text": "The nickname of the contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nickname"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/nickname",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nickname"
+        }
+      ],
+      "role": "symbol",
+      "title": "nickname",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/nickname"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/nonGregorianBirthday": {
+      "abstract": [
+        {
+          "text": "A date component for the non-Gregorian birthday of the contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nonGregorianBirthday"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation14DateComponentsV",
+          "text": "DateComponents"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/nonGregorianBirthday",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nonGregorianBirthday"
+        }
+      ],
+      "role": "symbol",
+      "title": "nonGregorianBirthday",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/nongregorianbirthday"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/note": {
+      "abstract": [
+        {
+          "text": "A string containing notes for the contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "note"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/note",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "note"
+        }
+      ],
+      "role": "symbol",
+      "title": "note",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/note"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/organizationName": {
+      "abstract": [
+        {
+          "text": "The name of the organization associated with the contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "organizationName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/organizationName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "organizationName"
+        }
+      ],
+      "role": "symbol",
+      "title": "organizationName",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/organizationname"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/phoneNumbers": {
+      "abstract": [
+        {
+          "text": "An array of labeled phone numbers for a contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "phoneNumbers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CNLabeledValue",
+          "text": "CNLabeledValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CNPhoneNumber",
+          "text": "CNPhoneNumber"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/phoneNumbers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "phoneNumbers"
+        }
+      ],
+      "role": "symbol",
+      "title": "phoneNumbers",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/phonenumbers"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/phoneticFamilyName": {
+      "abstract": [
+        {
+          "text": "The phonetic family name of the contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "phoneticFamilyName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/phoneticFamilyName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "phoneticFamilyName"
+        }
+      ],
+      "role": "symbol",
+      "title": "phoneticFamilyName",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/phoneticfamilyname"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/phoneticGivenName": {
+      "abstract": [
+        {
+          "text": "The phonetic given name of the contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "phoneticGivenName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/phoneticGivenName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "phoneticGivenName"
+        }
+      ],
+      "role": "symbol",
+      "title": "phoneticGivenName",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/phoneticgivenname"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/phoneticMiddleName": {
+      "abstract": [
+        {
+          "text": "The phonetic middle name of the contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "phoneticMiddleName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/phoneticMiddleName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "phoneticMiddleName"
+        }
+      ],
+      "role": "symbol",
+      "title": "phoneticMiddleName",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/phoneticmiddlename"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/phoneticOrganizationName": {
+      "abstract": [
+        {
+          "text": "The phonetic name of the organization associated with the contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "phoneticOrganizationName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/phoneticOrganizationName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "phoneticOrganizationName"
+        }
+      ],
+      "role": "symbol",
+      "title": "phoneticOrganizationName",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/phoneticorganizationname"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/postalAddresses": {
+      "abstract": [
+        {
+          "text": "An array of labeled postal addresses for a contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "postalAddresses"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CNLabeledValue",
+          "text": "CNLabeledValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CNPostalAddress",
+          "text": "CNPostalAddress"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/postalAddresses",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "postalAddresses"
+        }
+      ],
+      "role": "symbol",
+      "title": "postalAddresses",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/postaladdresses"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/previousFamilyName": {
+      "abstract": [
+        {
+          "text": "The previous family name of the contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "previousFamilyName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/previousFamilyName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "previousFamilyName"
+        }
+      ],
+      "role": "symbol",
+      "title": "previousFamilyName",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/previousfamilyname"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/socialProfiles": {
+      "abstract": [
+        {
+          "text": "An array of labeled social profiles for a contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "socialProfiles"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CNLabeledValue",
+          "text": "CNLabeledValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CNSocialProfile",
+          "text": "CNSocialProfile"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/socialProfiles",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "socialProfiles"
+        }
+      ],
+      "role": "symbol",
+      "title": "socialProfiles",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/socialprofiles"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/urlAddresses": {
+      "abstract": [
+        {
+          "text": "An array of labeled URL addresses for a contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "urlAddresses"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CNLabeledValue",
+          "text": "CNLabeledValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSString",
+          "text": "NSString"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/urlAddresses",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "urlAddresses"
+        }
+      ],
+      "role": "symbol",
+      "title": "urlAddresses",
+      "type": "topic",
+      "url": "/documentation/contacts/cnmutablecontact/urladdresses"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/contact-keys": {
+      "abstract": [
+        {
+          "text": "Specify contact-related properties during fetch operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/contact-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Contact Keys",
+      "type": "topic",
+      "url": "/documentation/contacts/contact-keys"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/data-objects": {
+      "abstract": [
+        {
+          "text": "Access contact-related data, such as the user’s postal address and phone number.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/data-objects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Objects",
+      "type": "topic",
+      "url": "/documentation/contacts/data-objects"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSItemProviderReading": {
+      "abstract": [
+        {
+          "text": "The protocol for implementing a class to allow an item provider to create an instance of the class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSItemProviderReading"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSItemProviderReading",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSItemProviderReading",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemproviderreading"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSItemProviderWriting": {
+      "abstract": [
+        {
+          "text": "The protocol for implementing a class to allow an item provider to retrieve data from an instance of the class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSItemProviderWriting"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSItemProviderWriting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSItemProviderWriting",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemproviderwriting"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSMutableCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that mutable objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSMutableCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s12IdentifiableP": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s12IdentifiableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/Swift/Identifiable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.contacts/documentation/Contacts/CNContact"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:s12IdentifiableP",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSItemProviderReading",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSItemProviderWriting",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSMutableCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Contact-data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.contacts/documentation/Contacts/CNContact",
+        "doc://com.apple.contacts/documentation/Contacts/data-objects",
+        "doc://com.apple.contacts/documentation/Contacts/contact-keys"
+      ],
+      "title": "Contact data"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Setting-the-Identity-of-the-Contact",
+      "identifiers": [
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/contactType"
+      ],
+      "title": "Setting the Identity of the Contact"
+    },
+    {
+      "anchor": "Setting-Name-Information",
+      "identifiers": [
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/namePrefix",
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/givenName",
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/middleName",
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/familyName",
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/previousFamilyName",
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/nameSuffix",
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/nickname",
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/phoneticGivenName",
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/phoneticMiddleName",
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/phoneticFamilyName"
+      ],
+      "title": "Setting Name Information"
+    },
+    {
+      "anchor": "Setting-Work-Information",
+      "identifiers": [
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/jobTitle",
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/departmentName",
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/organizationName",
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/phoneticOrganizationName"
+      ],
+      "title": "Setting Work Information"
+    },
+    {
+      "anchor": "Setting-Addresses",
+      "identifiers": [
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/postalAddresses",
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/emailAddresses",
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/urlAddresses"
+      ],
+      "title": "Setting Addresses"
+    },
+    {
+      "anchor": "Setting-Phone-Information",
+      "identifiers": [
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/phoneNumbers"
+      ],
+      "title": "Setting Phone Information"
+    },
+    {
+      "anchor": "Setting-Social-Profiles",
+      "identifiers": [
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/socialProfiles"
+      ],
+      "title": "Setting Social Profiles"
+    },
+    {
+      "anchor": "Setting-Birthday-Information",
+      "identifiers": [
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/dates",
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/nonGregorianBirthday",
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/birthday"
+      ],
+      "title": "Setting Birthday Information"
+    },
+    {
+      "anchor": "Setting-Notes",
+      "identifiers": [
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/note"
+      ],
+      "title": "Setting Notes"
+    },
+    {
+      "anchor": "Setting-Images",
+      "identifiers": [
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/imageData"
+      ],
+      "title": "Setting Images"
+    },
+    {
+      "anchor": "Relating-Other-Information-to-the-Contact",
+      "identifiers": [
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/contactRelations",
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/instantMessageAddresses"
+      ],
+      "title": "Relating Other Information to the Contact"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/id"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CNMutableContact"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CNMutableContact"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CNMutableContact"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.contacts/documentation/Contacts"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Setting-the-Identity-of-the-Contact",
+              "identifiers": [
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/contactType"
+              ],
+              "title": "Setting the Identity of the Contact"
+            },
+            {
+              "anchor": "Setting-Name-Information",
+              "identifiers": [
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/namePrefix",
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/givenName",
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/middleName",
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/familyName",
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/previousFamilyName",
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/nameSuffix",
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/nickname",
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/phoneticGivenName",
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/phoneticMiddleName",
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/phoneticFamilyName"
+              ],
+              "title": "Setting Name Information"
+            },
+            {
+              "anchor": "Setting-Work-Information",
+              "identifiers": [
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/jobTitle",
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/departmentName",
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/organizationName",
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/phoneticOrganizationName"
+              ],
+              "title": "Setting Work Information"
+            },
+            {
+              "anchor": "Setting-Addresses",
+              "identifiers": [
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/postalAddresses",
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/emailAddresses",
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/urlAddresses"
+              ],
+              "title": "Setting Addresses"
+            },
+            {
+              "anchor": "Setting-Phone-Information",
+              "identifiers": [
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/phoneNumbers"
+              ],
+              "title": "Setting Phone Information"
+            },
+            {
+              "anchor": "Setting-Social-Profiles",
+              "identifiers": [
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/socialProfiles"
+              ],
+              "title": "Setting Social Profiles"
+            },
+            {
+              "anchor": "Setting-Birthday-Information",
+              "identifiers": [
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/dates",
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/nonGregorianBirthday",
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/birthday"
+              ],
+              "title": "Setting Birthday Information"
+            },
+            {
+              "anchor": "Setting-Notes",
+              "identifiers": [
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/note"
+              ],
+              "title": "Setting Notes"
+            },
+            {
+              "anchor": "Setting-Images",
+              "identifiers": [
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/imageData"
+              ],
+              "title": "Setting Images"
+            },
+            {
+              "anchor": "Relating-Other-Information-to-the-Contact",
+              "identifiers": [
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/contactRelations",
+                "doc://com.apple.contacts/documentation/Contacts/CNMutableContact/instantMessageAddresses"
+              ],
+              "title": "Relating Other Information to the Contact"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.contacts/documentation/Contacts/CNContact"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Contact-data",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.contacts/documentation/Contacts/CNContact",
+                "doc://com.apple.contacts/documentation/Contacts/data-objects",
+                "doc://com.apple.contacts/documentation/Contacts/contact-keys"
+              ],
+              "title": "Contact data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CNMutableContact"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.contacts/documentation/Contacts/CNContact",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)CNContact",
+                    "text": "CNContact"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContact/title",
+          "value": "CNContact"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContact/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CNContact"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContact/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CNContact"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1contactRelations/title",
+          "value": "contactRelations"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1contactRelations/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contactRelations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1dates/title",
+          "value": "dates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1dates/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1organizationName/title",
+          "value": "organizationName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1organizationName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "organizationName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1middleName/title",
+          "value": "middleName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1middleName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "middleName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1namePrefix/title",
+          "value": "namePrefix"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1namePrefix/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "namePrefix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1phoneticOrganizationName/title",
+          "value": "phoneticOrganizationName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1phoneticOrganizationName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "phoneticOrganizationName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1phoneticFamilyName/title",
+          "value": "phoneticFamilyName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1phoneticFamilyName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "phoneticFamilyName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1nonGregorianBirthday/title",
+          "value": "nonGregorianBirthday"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1nonGregorianBirthday/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nonGregorianBirthday"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1postalAddresses/title",
+          "value": "postalAddresses"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1postalAddresses/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "postalAddresses"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1socialProfiles/title",
+          "value": "socialProfiles"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1socialProfiles/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "socialProfiles"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1emailAddresses/title",
+          "value": "emailAddresses"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1emailAddresses/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "emailAddresses"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1imageData/title",
+          "value": "imageData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1imageData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "imageData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1nickname/title",
+          "value": "nickname"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1nickname/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nickname"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1note/title",
+          "value": "note"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1note/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "note"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1contactType/title",
+          "value": "contactType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1contactType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contactType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1nameSuffix/title",
+          "value": "nameSuffix"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1nameSuffix/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nameSuffix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1phoneticGivenName/title",
+          "value": "phoneticGivenName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1phoneticGivenName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "phoneticGivenName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1instantMessageAddresses/title",
+          "value": "instantMessageAddresses"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1instantMessageAddresses/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "instantMessageAddresses"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1jobTitle/title",
+          "value": "jobTitle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1jobTitle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "jobTitle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1urlAddresses/title",
+          "value": "urlAddresses"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1urlAddresses/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "urlAddresses"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact/title",
+          "value": "CNMutableContact"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CNMutableContact"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CNMutableContact"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1phoneNumbers/title",
+          "value": "phoneNumbers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1phoneNumbers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "phoneNumbers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1birthday/title",
+          "value": "birthday"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1birthday/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "birthday"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1familyName/title",
+          "value": "familyName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1familyName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "familyName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1departmentName/title",
+          "value": "departmentName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1departmentName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "departmentName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactPropertyNotFetchedExceptionName/title",
+          "value": "CNContactPropertyNotFetchedExceptionName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactPropertyNotFetchedExceptionName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CNContactPropertyNotFetchedExceptionName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1phoneticMiddleName/title",
+          "value": "phoneticMiddleName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1phoneticMiddleName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "phoneticMiddleName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1givenName/title",
+          "value": "givenName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1givenName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "givenName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1previousFamilyName/title",
+          "value": "previousFamilyName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNMutableContact~1previousFamilyName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "previousFamilyName"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/contacts/cnmutablecontact"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/contacts/cnmutablecontact"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,395 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_4-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "macOS Big Sur 11.4 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To develop apps for macOS Big Sur 11.4, build your apps against the macOS 11.3 SDK or later. The SDK comes bundled with Xcode 12.5, available from the Mac App Store. For information on the compatibility requirements for Xcode 12.5, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-12_5-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Displays",
+          "level": 3,
+          "text": "Displays",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now use graphics cards based on the AMD Navi RDNA2 architecture (6800, 6800XT and 6900XT). (73709953)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Xcode",
+          "level": 3,
+          "text": "Xcode",
+          "type": "heading"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t use the iOS ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/MinimumOSVersion",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " information property list key to declare the minimum release of macOS in which your app runs. Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSMinimumSystemVersion",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instead. (73890473)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Future releases of macOS ignore the ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "MinimumOSVersion",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " key in Mac apps, including apps built with Mac Catalyst.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Future releases of macOS use the ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "LSMinimumSystemVersion",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " key in iOS apps built with Xcode 12.5 or later. If an iOS app doesn’t include an ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "LSMinimumSystemVersion",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " key, future releases of macOS compare the app’s ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "MinimumOSVersion",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " with the version of its Mac Catalyst runtime to determine compatibility.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSMinimumSystemVersion": {
+      "abstract": [
+        {
+          "text": "The minimum version of the operating system required for the app to run in macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSMinimumSystemVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSMinimumSystemVersion",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/LSMinimumSystemVersion"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/MinimumOSVersion": {
+      "abstract": [
+        {
+          "text": "The minimum version of the operating system required for the app to run in iOS, iPadOS, tvOS, and watchOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/MinimumOSVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MinimumOSVersion",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/MinimumOSVersion"
+    },
+    "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-12_5-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-12_5-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 12.5 Release Notes",
+      "type": "topic",
+      "url": "/documentation/Xcode-Release-Notes/xcode-12_5-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-ios-ipados-apps-on-mac-release-notes": {
+      "abstract": [
+        {
+          "text": "Considerations for running iPhone and iPad apps on Macs with Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-ios-ipados-apps-on-mac-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Big Sur 11.0.1 iOS & iPadOS Apps on Mac Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-big-sur-11_0_1-ios-ipados-apps-on-mac-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-release-notes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "macOS Big Sur 11.0.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-big-sur-11_0_1-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-universal-apps-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to support Macs with Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-universal-apps-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Big Sur 11.0.1 Universal Apps Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-big-sur-11_0_1-universal-apps-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Big Sur 11.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-big-sur-11_1-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Big Sur 11.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-big-sur-11_2-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Big Sur 11.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-big-sur-11_3-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_5-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_5-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Big Sur 11.5 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-big-sur-11_5-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the macOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "macOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "macOS-11",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_5-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_3-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_2-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_1-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-universal-apps-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-ios-ipados-apps-on-mac-release-notes"
+      ],
+      "title": "macOS 11"
+    }
+  ]
+}

@@ -1,0 +1,3390 @@
+{
+  "abstract": [
+    {
+      "text": "Organize your resources into groups and influence when they become accessible to the GPU.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/resource-fundamentals"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/simplifying-gpu-resource-management-with-residency-sets"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Simplifying GPU Resource Management with Residency Sets"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metal apps typically create resources, such as textures and buffers, so that their shaders can work with data as they run on the GPU. These resources need to be in memory that’s accessible to the GPU, or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "resident",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", so the shaders can access their data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "residency set",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is one way you tell Metal which resources your app needs to make resident. You do this by creating ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLResidencySet",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances, managing which resource ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "allocations",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " they contain, and attaching them to command buffers or command queues. Resource allocation types conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLAllocation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, including ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLHeap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The other way to tell Metal which resources it needs to make resident is by calling a command encoder’s methods. However, these methods can impact an app’s runtime performance because each call incurs some CPU overhead. Additionally, Metal makes those resources resident right after your app commits the command buffer, which can delay when the GPU starts working on it. This overhead adds up as the number of resources increases, especially in apps that use many resources for each frame, such as games.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Residency sets help you mitigate these performance issues and delays. With a residency set, your app can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add multiple allocations with less CPU overhead than with a command encoder’s methods",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make its allocations resident at the same time",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Request that Metal make its resources resident ahead of time",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Keep allocations resident indefinitely",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remove all allocations, or a selection of them, which Metal marks as candidates that it can make nonresident, if necessary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can attach each residency set to a command buffer or an entire command queue. Attaching a residency set to a command buffer removes the need to tell each of its command encoders which resources they need to use. Similarly, attaching a residency set to a command queue removes the need to attach that residency set to each of its command buffers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-a-Residency-Set-and-Add-Allocations-to-It",
+          "level": 3,
+          "text": "Make a Residency Set and Add Allocations to It",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a residency set by configuring an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLResidencySetDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance and passing it to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeResidencySet(descriptor:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let setDescriptor = MTLResidencySetDescriptor()",
+                    "setDescriptor.label = \"Primary residency set\"",
+                    "setDescriptor.initialCapacity = 42",
+                    "",
+                    "let residencySet = try device.makeResidencySet(descriptor: setDescriptor)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "MTLResidencySetDescriptor *setDescriptor;",
+                    "setDescriptor = [[MTLResidencySetDescriptor alloc] init];",
+                    "setDescriptor.label = @\"Primary residency set\";",
+                    "setDescriptor.initialCapacity = 42;",
+                    "",
+                    "NSError *error;",
+                    "id<MTLResidencySet> residencySet;",
+                    "residencySet = [device newResidencySetWithDescriptor:setDescriptor",
+                    "                                               error:&error];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add an individual allocation to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLResidencySet",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance by calling its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLResidencySet/addAllocation(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, or add multiple allocations with its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLResidencySet/addAllocations(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let residencySet = try device.makeResidencySet(descriptor: setDescriptor)",
+                    "",
+                    "residencySet.addAllocation(buffer0)",
+                    "residencySet.addAllocation(buffer1)",
+                    "residencySet.addAllocation(texture0)",
+                    "residencySet.addAllocation(texture1)",
+                    "residencySet.addAllocation(heap)",
+                    "",
+                    "let allocations = [buffer2,",
+                    "                   texture2,",
+                    "                   argumentBufferHeap,",
+                    "                   textureHeap]",
+                    "",
+                    "residencySet.addAllocations(allocations)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[residencySet addAllocation:buffer0];",
+                    "[residencySet addAllocation:buffer1];",
+                    "[residencySet addAllocation:texture0];",
+                    "[residencySet addAllocation:texture1];",
+                    "[residencySet addAllocation:heap];",
+                    "",
+                    "id<MTLAllocation> allocations[] = {",
+                    "    buffer2,",
+                    "    texture2,",
+                    "    argumentBufferHeap,",
+                    "    textureHeap",
+                    "};",
+                    "",
+                    "[residencySet addAllocations:allocations",
+                    "                       count:4];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A residency set handles redundant allocations by ignoring instances that already have an entry in the set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Adding a resource allocation that originates from an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLHeap",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to a residency set makes that entire heap resident.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finalize and apply the pending changes to the residency set by calling its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLResidencySet/commit()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "residencySet.commit()"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[residencySet commit];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLResidencySet",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for information about working with residency sets, including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Inspecting current allocations",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Adding and removing allocations over time",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Accounting for resource hazards",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Attach-a-Residency-Set-to-a-Command-Buffer",
+          "level": 3,
+          "text": "Attach a Residency Set to a Command Buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Connect an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to a residency set’s resource allocations by attaching the set to the command buffer with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/useResidencySet(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/useResidencySets(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "commandBuffer.useResidencySet(residencySet)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[commandBuffer useResidencySet:residencySet];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metal makes the allocations in the set resident before the GPU runs the passes in the command buffer. This includes all resources that come from an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLHeap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " allocation that’s in the residency set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t need to call the following methods for any allocation in a residency set that you associate with the command buffer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useResource(_:usage:stages:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useResource(_:usage:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useResources(_:usage:stages:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useResources(_:usage:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useHeap(_:stages:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useHeap(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useHeaps(_:stages:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useHeaps(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Attaching a residency set to a command buffer takes less CPU runtime and overhead than calling these methods for each encoder within a command buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Attach-a-Residency-Set-to-a-Command-Queue-and-its-Command-Buffers",
+          "level": 3,
+          "text": "Attach a Residency Set to a Command Queue and its Command Buffers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Connect an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandQueue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to a residency set’s resource allocations by attaching the set to the queue with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandQueue/addResidencySet(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandQueue/addResidencySets(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "commandQueue.addResidencySet(residencySet)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[commandQueue addResidencySet:residencySet];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app calls a command buffer’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/commit()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, Metal automatically attaches the owning queue’s current residency sets to the command buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Attach a residency set to a command queue for resources the GPU needs access to frequently, or for the lifetime of your app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Attaching a residency set to a command queue is more efficient than attaching that residency set to multiple command buffers from that queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Detach-a-Residency-Set-from-a-Command-Queue",
+          "level": 3,
+          "text": "Detach a Residency Set from a Command Queue",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your command queue doesn’t need the resources of a residency set, disconnect it from the queue by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandQueue/removeResidencySet(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandQueue/removeResidencySets(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "commandQueue.removeResidencySet(residencySet)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[commandQueue removeResidencySet:residencySet];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The residency set remains attached to any of the queue’s command buffers already in-flight with a status equal to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBufferStatus/committed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBufferStatus/scheduled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Request-Residency-Ahead-of-Time",
+          "level": 3,
+          "text": "Request Residency Ahead of Time",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make allocations in a residency set resident (for allocations that aren’t already resident), the Metal framework needs to do some work on the CPU. By default, Metal does this work when you call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/commit()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of the first command buffer that’s using the residency set. Making the allocations resident at this time can delay the graphics driver from submitting the command buffer to the GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To help minimize the time between committing a command buffer and when the GPU starts working on it, ask Metal to do the work beforehand. You do this by calling a residency set’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLResidencySet/requestResidency()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "residencySet.requestResidency()"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[residencySet requestResidency];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call this method at any time before you commit the first command buffer that relies on the allocations in the residency set. This can be any noncritical moment when your app can afford the CPU time the framework needs to prepare the applicable allocations for residency. For example, you can call this method at launch or during an app state change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLResidencySet/requestResidency()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method may postpone some of the necessary steps to make allocations resident in scenarios where other apps have competing memory needs.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Conclude-Residency-for-the-Resources",
+          "level": 3,
+          "text": "Conclude Residency for the Resources",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app no longer needs a residency set’s allocations to be accessible to the GPU, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLResidencySet/endResidency()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, which effectively releases them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "residencySet.endResidency()"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[residencySet endResidency];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method tells Metal that it can reuse the memory backing that residency set’s allocations for your app’s other residency sets, or for another app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAllocation": {
+      "abstract": [
+        {
+          "text": "A memory allocation from a Metal GPU device, such as a memory heap, texture, or data buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAllocation"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAllocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAllocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAllocation",
+      "type": "topic",
+      "url": "/documentation/metal/mtlallocation"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer": {
+      "abstract": [
+        {
+          "text": "A resource that stores data in a format defined by your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer": {
+      "abstract": [
+        {
+          "text": "A container that stores a sequence of GPU commands that you encode into it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/commit()": {
+      "abstract": [
+        {
+          "text": "Submits the command buffer to run on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commit"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/commit()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "commit"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "commit()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/commit()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/useResidencySet(_:)": {
+      "abstract": [
+        {
+          "text": "Attaches a residency set to the command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useResidencySet"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLResidencySet",
+          "text": "MTLResidencySet"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/useResidencySet(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "useResidencySet:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "useResidencySet(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/useresidencyset(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/useResidencySets(_:)": {
+      "abstract": [
+        {
+          "text": "Attaches multiple residency sets to the command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useResidencySets"
+        },
+        {
+          "kind": "text",
+          "text": "([any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLResidencySet",
+          "text": "MTLResidencySet"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/useResidencySets(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "useResidencySets(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/useresidencysets(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBufferStatus/committed": {
+      "abstract": [
+        {
+          "text": "A command buffer’s third state, which indicates the command queue is preparing to schedule the command buffer by resolving its dependencies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "committed"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBufferStatus/committed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBufferStatusCommitted"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBufferStatus.committed",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbufferstatus/committed"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBufferStatus/scheduled": {
+      "abstract": [
+        {
+          "text": "A command buffer’s fourth state, which indicates the command buffer has its resources ready and is waiting for the GPU to run its commands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheduled"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBufferStatus/scheduled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBufferStatusScheduled"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBufferStatus.scheduled",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbufferstatus/scheduled"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandQueue": {
+      "abstract": [
+        {
+          "text": "An instance you use to create, submit, and schedule command buffers to a specific GPU device to run the commands within those buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandQueue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandQueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandQueue",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandqueue"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandQueue/addResidencySet(_:)": {
+      "abstract": [
+        {
+          "text": "Attaches a residency set to the queue, which Metal attaches to its command buffers as you commit them.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addResidencySet"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLResidencySet",
+          "text": "MTLResidencySet"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandQueue/addResidencySet(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addResidencySet:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "addResidencySet(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandqueue/addresidencyset(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandQueue/addResidencySets(_:)": {
+      "abstract": [
+        {
+          "text": "Attaches multiple residency sets to the queue, which Metal attaches to its command buffers as you commit them.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addResidencySets"
+        },
+        {
+          "kind": "text",
+          "text": "([any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLResidencySet",
+          "text": "MTLResidencySet"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandQueue/addResidencySets(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addResidencySets(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandqueue/addresidencysets(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandQueue/removeResidencySet(_:)": {
+      "abstract": [
+        {
+          "text": "Detaches a residency set from the command queue, which prevents Metal from attaching it to the queue’s command buffers as you commit them.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeResidencySet"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLResidencySet",
+          "text": "MTLResidencySet"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandQueue/removeResidencySet(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeResidencySet:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "removeResidencySet(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandqueue/removeresidencyset(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandQueue/removeResidencySets(_:)": {
+      "abstract": [
+        {
+          "text": "Detaches multiple residency sets from the command queue, which prevents Metal from attaching them to the queue’s command buffers as you commit them.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeResidencySets"
+        },
+        {
+          "kind": "text",
+          "text": "([any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLResidencySet",
+          "text": "MTLResidencySet"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandQueue/removeResidencySets(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeResidencySets(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandqueue/removeresidencysets(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An interface for dispatching commands to encode in a compute pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLComputeCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLComputeCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLComputeCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useHeap(_:)": {
+      "abstract": [
+        {
+          "text": "Ensures the shaders in the render pass’s subsequent draw commands have access to all of the resources you allocate from a heap.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useHeap"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLHeap",
+          "text": "MTLHeap"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useHeap(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "useHeap:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "useHeap(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/useheap(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useHeaps(_:)": {
+      "abstract": [
+        {
+          "text": "Ensures the shaders in the render pass’s subsequent draw commands have access to all of the resources you allocate from multiple heaps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useHeaps"
+        },
+        {
+          "kind": "text",
+          "text": "([any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLHeap",
+          "text": "MTLHeap"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useHeaps(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "useHeaps(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/useheaps(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useResource(_:usage:)": {
+      "abstract": [
+        {
+          "text": "Ensures kernel calls that the system encodes in subsequent commands have access to a resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useResource"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLResource",
+          "text": "MTLResource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLResourceUsage",
+          "text": "MTLResourceUsage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useResource(_:usage:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "useResource:usage:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "useResource(_:usage:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/useresource(_:usage:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useResources(_:usage:)": {
+      "abstract": [
+        {
+          "text": "Ensures kernel calls that the system encodes in subsequent commands have access to multiple resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useResources"
+        },
+        {
+          "kind": "text",
+          "text": "([any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLResource",
+          "text": "MTLResource"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLResourceUsage",
+          "text": "MTLResourceUsage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useResources(_:usage:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "useResources(_:usage:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder/useresources(_:usage:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeResidencySet(descriptor:)": {
+      "abstract": [
+        {
+          "text": "Creates a residency set, which can move resources in and out of memory residency.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeResidencySet"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLResidencySetDescriptor",
+          "text": "MTLResidencySetDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLResidencySet",
+          "text": "MTLResidencySet"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeResidencySet(descriptor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newResidencySetWithDescriptor:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeResidencySet(descriptor:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makeresidencyset(descriptor:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLHeap": {
+      "abstract": [
+        {
+          "text": "A memory pool from which you can suballocate resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLHeap"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLHeap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLHeap"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLHeap",
+      "type": "topic",
+      "url": "/documentation/metal/mtlheap"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An interface that encodes a render pass into a command buffer, including all its draw calls and configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useHeap(_:stages:)": {
+      "abstract": [
+        {
+          "text": "Ensures the shaders in the render pass’s subsequent draw commands have access to the resources you allocate from a heap.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useHeap"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLHeap",
+          "text": "MTLHeap"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stages"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLRenderStages",
+          "text": "MTLRenderStages"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useHeap(_:stages:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "useHeap:stages:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "useHeap(_:stages:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/useheap(_:stages:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useHeaps(_:stages:)": {
+      "abstract": [
+        {
+          "text": "Ensures the shaders in the render pass’s subsequent draw commands have access to the resources you allocate from multiple heaps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useHeaps"
+        },
+        {
+          "kind": "text",
+          "text": "([any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLHeap",
+          "text": "MTLHeap"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stages"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLRenderStages",
+          "text": "MTLRenderStages"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useHeaps(_:stages:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "useHeaps(_:stages:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/useheaps(_:stages:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useResource(_:usage:stages:)": {
+      "abstract": [
+        {
+          "text": "Ensures the shaders in the render pass’s subsequent draw commands have access to a resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useResource"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLResource",
+          "text": "MTLResource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLResourceUsage",
+          "text": "MTLResourceUsage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stages"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLRenderStages",
+          "text": "MTLRenderStages"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useResource(_:usage:stages:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "useResource:usage:stages:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "useResource(_:usage:stages:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/useresource(_:usage:stages:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useResources(_:usage:stages:)": {
+      "abstract": [
+        {
+          "text": "Ensures the shaders in the render pass’s subsequent draw commands have access to multiple resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useResources"
+        },
+        {
+          "kind": "text",
+          "text": "([any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLResource",
+          "text": "MTLResource"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLResourceUsage",
+          "text": "MTLResourceUsage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stages"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLRenderStages",
+          "text": "MTLRenderStages"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useResources(_:usage:stages:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "useResources(_:usage:stages:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/useresources(_:usage:stages:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResidencySet": {
+      "abstract": [
+        {
+          "text": "A collection of resource allocations that can move in and out of resident memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLResidencySet"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResidencySet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResidencySet"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLResidencySet",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresidencyset"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResidencySet/addAllocation(_:)": {
+      "abstract": [
+        {
+          "text": "Stages a single resource to join the residency set’s list of allocations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAllocation"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLAllocation",
+          "text": "MTLAllocation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResidencySet/addAllocation(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addAllocation:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "addAllocation(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresidencyset/addallocation(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResidencySet/addAllocations(_:)": {
+      "abstract": [
+        {
+          "text": "Stages multiple resources to join the residency set’s list of allocations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAllocations"
+        },
+        {
+          "kind": "text",
+          "text": "([any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLAllocation",
+          "text": "MTLAllocation"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResidencySet/addAllocations(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addAllocations(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresidencyset/addallocations(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResidencySet/commit()": {
+      "abstract": [
+        {
+          "text": "Applies any pending additions to and removals from the residency set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commit"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResidencySet/commit()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "commit"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "commit()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresidencyset/commit()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResidencySet/endResidency()": {
+      "abstract": [
+        {
+          "text": "Informs Metal that the residency set’s allocations no longer need to be resident, and that it can reuse the memory for other allocations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endResidency"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResidencySet/endResidency()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "endResidency"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "endResidency()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresidencyset/endresidency()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResidencySet/requestResidency()": {
+      "abstract": [
+        {
+          "text": "Tells Metal to do as much preparatory work as it can, with the system’s current conditions, to make the set’s resource allocations resident.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestResidency"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResidencySet/requestResidency()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestResidency"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "requestResidency()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresidencyset/requestresidency()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResidencySetDescriptor": {
+      "abstract": [
+        {
+          "text": "A configuration that customizes the behavior for a residency set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLResidencySetDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResidencySetDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResidencySetDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLResidencySetDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresidencysetdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTexture": {
+      "abstract": [
+        {
+          "text": "A resource that holds formatted image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLTexture",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture"
+    },
+    "doc://com.apple.metal/documentation/Metal/resource-fundamentals": {
+      "abstract": [
+        {
+          "text": "Learn the common attributes of all Metal memory resources, including buffers and textures, and how to manage the underlying memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/resource-fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resource Fundamentals",
+      "type": "topic",
+      "url": "/documentation/metal/resource-fundamentals"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Residency-Sets",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLResidencySet",
+        "doc://com.apple.metal/documentation/Metal/MTLResidencySetDescriptor"
+      ],
+      "title": "Residency Sets"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Residency-Sets",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLResidencySet",
+                "doc://com.apple.metal/documentation/Metal/MTLResidencySetDescriptor"
+              ],
+              "title": "Residency Sets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResidencySet~1requestResidency()/title",
+          "value": "requestResidency"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResidencySet~1requestResidency()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestResidency"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder/title",
+          "value": "MTLComputeCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputeCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputeCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeap/title",
+          "value": "MTLHeap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHeap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeap/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHeap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1useResidencySet(_:)/title",
+          "value": "useResidencySet:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1useResidencySet(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "useResidencySet:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandQueue~1removeResidencySet(_:)/title",
+          "value": "removeResidencySet:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandQueue~1removeResidencySet(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeResidencySet:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandQueue/title",
+          "value": "MTLCommandQueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandQueue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandQueue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/title",
+          "value": "MTLRenderCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1useHeap(_:)/title",
+          "value": "useHeap:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1useHeap(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "useHeap:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResidencySet~1endResidency()/title",
+          "value": "endResidency"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResidencySet~1endResidency()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "endResidency"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeResidencySet(descriptor:)/title",
+          "value": "newResidencySetWithDescriptor:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeResidencySet(descriptor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newResidencySetWithDescriptor:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/title",
+          "value": "MTLBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1useResource(_:usage:)/title",
+          "value": "useResource:usage:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder~1useResource(_:usage:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "useResource:usage:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1useHeap(_:stages:)/title",
+          "value": "useHeap:stages:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1useHeap(_:stages:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "useHeap:stages:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResidencySet~1addAllocation(_:)/title",
+          "value": "addAllocation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResidencySet~1addAllocation(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addAllocation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandQueue~1addResidencySet(_:)/title",
+          "value": "addResidencySet:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandQueue~1addResidencySet(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addResidencySet:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResidencySetDescriptor/title",
+          "value": "MTLResidencySetDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResidencySetDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResidencySetDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResidencySetDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResidencySetDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResidencySet~1commit()/title",
+          "value": "commit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResidencySet~1commit()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "commit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/title",
+          "value": "MTLCommandBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResidencySet/title",
+          "value": "MTLResidencySet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResidencySet/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResidencySet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResidencySet/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResidencySet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1commit()/title",
+          "value": "commit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1commit()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "commit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture/title",
+          "value": "MTLTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferStatus~1scheduled/title",
+          "value": "MTLCommandBufferStatusScheduled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferStatus~1scheduled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBufferStatusScheduled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAllocation/title",
+          "value": "MTLAllocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAllocation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAllocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAllocation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAllocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1useResource(_:usage:stages:)/title",
+          "value": "useResource:usage:stages:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1useResource(_:usage:stages:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "useResource:usage:stages:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferStatus~1committed/title",
+          "value": "MTLCommandBufferStatusCommitted"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferStatus~1committed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBufferStatusCommitted"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/simplifying-gpu-resource-management-with-residency-sets"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/simplifying-gpu-resource-management-with-residency-sets"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

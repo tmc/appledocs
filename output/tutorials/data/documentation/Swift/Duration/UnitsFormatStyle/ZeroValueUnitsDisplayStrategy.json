@@ -1,0 +1,828 @@
+{
+  "abstract": [
+    {
+      "text": "A strategy that determines how to format a unit whose value is zero.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift",
+        "doc://com.apple.Swift/documentation/Swift/Duration",
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/ZeroValueUnitsDisplayStrategy"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:s8DurationV10FoundationE16UnitsFormatStyleV09ZeroValueC15DisplayStrategyV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ZeroValueUnitsDisplayStrategy"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ZeroValueUnitsDisplayStrategy"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Duration.UnitsFormatStyle.ZeroValueUnitsDisplayStrategy"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ZeroValueUnitsDisplayStrategy"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", specifying a ",
+              "type": "text"
+            },
+            {
+              "code": "ZeroValueUnitsDisplayStrategy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " enables you to decide whether show a unit whose value is zero.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example creates a duration of 25 seconds, then formats it with two different styles. The first style uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/ZeroValueUnitsDisplayStrategy/hide",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " display strategy, which omits the hours and minutes, since their value is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The second uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/ZeroValueUnitsDisplayStrategy/show(length:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create two-digit representations of the hour and minute fields.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let duration = Duration.seconds(25)",
+            "let hide = duration.formatted(",
+            "    .units(allowed: [.hours, .minutes, .seconds],",
+            "           width: .abbreviated,",
+            "           zeroValueUnits:.hide)) // 25 sec",
+            "let showTwo = duration.formatted(",
+            "    .units(allowed: [.hours, .minutes, .seconds],",
+            "           width: .abbreviated,",
+            "           zeroValueUnits:.show(length: 2))) // 00 hr, 00 min, 25 sec"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Decodable": {
+      "abstract": [
+        {
+          "text": "A type that can decode itself from an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/swift/decodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration": {
+      "abstract": [
+        {
+          "text": "A representation of high precision time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Duration"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Duration"
+        }
+      ],
+      "role": "symbol",
+      "title": "Duration",
+      "type": "topic",
+      "url": "/documentation/swift/duration"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle": {
+      "abstract": [
+        {
+          "text": "A format style that shows durations with localized labeled components",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnitsFormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnitsFormatStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "Duration.UnitsFormatStyle",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/ZeroValueUnitsDisplayStrategy": {
+      "abstract": [
+        {
+          "text": "A strategy that determines how to format a unit whose value is zero.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ZeroValueUnitsDisplayStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/ZeroValueUnitsDisplayStrategy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ZeroValueUnitsDisplayStrategy"
+        }
+      ],
+      "role": "symbol",
+      "title": "Duration.UnitsFormatStyle.ZeroValueUnitsDisplayStrategy",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/zerovalueunitsdisplaystrategy"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/ZeroValueUnitsDisplayStrategy/hide": {
+      "abstract": [
+        {
+          "text": "A display strategy that hides leading fields whose value is zero.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hide"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV",
+          "text": "UnitsFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV09ZeroValueC15DisplayStrategyV",
+          "text": "ZeroValueUnitsDisplayStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/ZeroValueUnitsDisplayStrategy/hide",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hide",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/zerovalueunitsdisplaystrategy/hide"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/ZeroValueUnitsDisplayStrategy/show(length:)": {
+      "abstract": [
+        {
+          "text": "Returns display strategy that shows leading fields whose value is zero, with a given number of digits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "show"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV",
+          "text": "UnitsFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV09ZeroValueC15DisplayStrategyV",
+          "text": "ZeroValueUnitsDisplayStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/ZeroValueUnitsDisplayStrategy/show(length:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "show(length:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/zerovalueunitsdisplaystrategy/show(length:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/zeroValueUnitsDisplay": {
+      "abstract": [
+        {
+          "text": "The strategy for how zero-value units are handled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zeroValueUnitsDisplay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV",
+          "text": "UnitsFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV09ZeroValueC15DisplayStrategyV",
+          "text": "ZeroValueUnitsDisplayStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/zeroValueUnitsDisplay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "zeroValueUnitsDisplay",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/zerovalueunitsdisplay"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encodable": {
+      "abstract": [
+        {
+          "text": "A type that can encode itself to an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/swift/encodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Equatable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Equatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/swift/equatable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a ",
+          "type": "text"
+        },
+        {
+          "code": "Hasher",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Decodable",
+        "doc://com.apple.Swift/documentation/Swift/Encodable",
+        "doc://com.apple.Swift/documentation/Swift/Equatable",
+        "doc://com.apple.Swift/documentation/Swift/Hashable",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Working-with-zero-values",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/zeroValueUnitsDisplay"
+      ],
+      "title": "Working with zero values"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Using-common-strategies",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/ZeroValueUnitsDisplayStrategy/hide",
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/ZeroValueUnitsDisplayStrategy/show(length:)"
+      ],
+      "title": "Using common strategies"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/duration/unitsformatstyle/zerovalueunitsdisplaystrategy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

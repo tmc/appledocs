@@ -1,0 +1,994 @@
+{
+  "abstract": [
+    {
+      "text": "An object that manages the room-scanning process.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:8RoomPlan0A14CaptureSessionC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "RoomCaptureSession"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RoomPlan"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "RoomCaptureSession"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": true,
+        "deprecated": false,
+        "deprecatedAt": "1.0",
+        "introducedAt": "16.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "RoomCaptureSession"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "RoomCaptureSession"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/scanning-the-rooms-of-a-single-structure"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class scans a room on the app’s behalf and provides the necessary callbacks for you to display",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your own UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As an alternate approach to the UX of the framework-provided view (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), this class",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is appropriate for apps that intend to display their own view and scanning experience. You can start",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your own AR experience by accessing this class’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/arSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or by providing your own ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/ARSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/init(arSession:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To produce a 3D asset of the user’s environment, this class:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Utilizes an ARKit session (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/arSession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") that enables the device’s LiDAR Scanner to capture the environment’s physical layout.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provides instructions that you display to the user to coach them on moving the device appropriately",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to collect the necessary data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RoomPlan/documentation/RoomPlan": {
+      "abstract": [
+        {
+          "text": "Create a 3D model of a room by interactively guiding people to scan their physical environment using a device’s camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RoomPlan",
+      "type": "topic",
+      "url": "/documentation/roomplan"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession": {
+      "abstract": [
+        {
+          "text": "An object that manages the room-scanning process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RoomCaptureSession"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RoomCaptureSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "RoomCaptureSession",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcapturesession"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/CaptureError": {
+      "abstract": [
+        {
+          "text": "Errors that can occur during a room-capture session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CaptureError"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/CaptureError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CaptureError"
+        }
+      ],
+      "role": "symbol",
+      "title": "RoomCaptureSession.CaptureError",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcapturesession/captureerror"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/Configuration": {
+      "abstract": [
+        {
+          "text": "An object to configure the capture process",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/Configuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "RoomCaptureSession.Configuration",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcapturesession/configuration"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/Instruction": {
+      "abstract": [
+        {
+          "text": "Instructions that the framework recommends the app display to the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Instruction"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/Instruction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Instruction"
+        }
+      ],
+      "role": "symbol",
+      "title": "RoomCaptureSession.Instruction",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcapturesession/instruction"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/arSession": {
+      "abstract": [
+        {
+          "text": "An object that manages an ARKit session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "arSession"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/arSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "arSession",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcapturesession/arsession"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/delegate": {
+      "abstract": [
+        {
+          "text": "An object that observes important events in the room-scanning process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan0A22CaptureSessionDelegateP",
+          "text": "RoomCaptureSessionDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/delegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcapturesession/delegate"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/init()": {
+      "abstract": [
+        {
+          "text": "Creates a room-capture session with the given AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcapturesession/init()"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/init(arSession:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "arSession"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/init(arSession:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(arSession:)",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcapturesession/init(arsession:)"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/isSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the user’s device supports the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/isSupported",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isSupported",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcapturesession/issupported"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/run(configuration:)": {
+      "abstract": [
+        {
+          "text": "Start capture process for the session with specified options",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "run"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan0A14CaptureSessionC",
+          "text": "RoomCaptureSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan0A14CaptureSessionC13ConfigurationV",
+          "text": "Configuration"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/run(configuration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "run(configuration:)",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcapturesession/run(configuration:)"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/stop()": {
+      "abstract": [
+        {
+          "text": "Stops the room-capture session and indicates whether the app pauses the underlying AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stop"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/stop()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stop()",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcapturesession/stop()"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/stop(pauseARSession:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stop"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "pauseARSession"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/stop(pauseARSession:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stop(pauseARSession:)",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcapturesession/stop(pausearsession:)"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSessionDelegate": {
+      "abstract": [
+        {
+          "text": "A specification of important events in the room-scanning process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RoomCaptureSessionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSessionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RoomCaptureSessionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "RoomCaptureSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcapturesessiondelegate"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureView": {
+      "abstract": [
+        {
+          "text": "A view that enables the user to scan their room with the device’s camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RoomCaptureView"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RoomCaptureView"
+        }
+      ],
+      "role": "symbol",
+      "title": "RoomCaptureView",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcaptureview"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/scanning-the-rooms-of-a-single-structure": {
+      "abstract": [
+        {
+          "text": "Create an AR experience that enables people to scan a building that contains multiple rooms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/scanning-the-rooms-of-a-single-structure",
+      "kind": "article",
+      "role": "article",
+      "title": "Scanning the rooms of a single structure",
+      "type": "topic",
+      "url": "/documentation/roomplan/scanning-the-rooms-of-a-single-structure"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/ARSession": {
+      "abstract": [
+        {
+          "text": "The object that manages the major tasks associated with every AR experience, such as motion tracking, camera passthrough, and image analysis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/ARSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARSession",
+      "type": "topic",
+      "url": "/documentation/ARKit/ARSession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Scanning-Protocol",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSessionDelegate"
+      ],
+      "title": "Scanning Protocol"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-session",
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/init(arSession:)"
+      ],
+      "title": "Creating a session"
+    },
+    {
+      "anchor": "Ensuring-device-support",
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/isSupported"
+      ],
+      "title": "Ensuring device support"
+    },
+    {
+      "anchor": "Controlling-a-session",
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/run(configuration:)",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/Configuration",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/stop(pauseARSession:)"
+      ],
+      "title": "Controlling a session"
+    },
+    {
+      "anchor": "Responding-to-events",
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/delegate",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/CaptureError"
+      ],
+      "title": "Responding to events"
+    },
+    {
+      "anchor": "Accessing-the-AR-session",
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/arSession"
+      ],
+      "title": "Accessing the AR session"
+    },
+    {
+      "anchor": "Displaying-user-instructions",
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/Instruction"
+      ],
+      "title": "Displaying user instructions"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/init()"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureSession/stop()"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ARKit~1ARSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ARSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/roomplan/roomcapturesession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

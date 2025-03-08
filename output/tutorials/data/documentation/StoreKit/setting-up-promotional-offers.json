@@ -1,0 +1,559 @@
+{
+  "abstract": [
+    {
+      "text": "Generate a key and configure offers for auto-renewable subscriptions in App Store Connect.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/setting-up-promotional-offers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Setting up promotional offers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can offer a discounted or free period of service for auto-renewable subscription products on macOS, iOS, and tvOS using promotional offers. Limited-time, discounted promotional offers can be effective in winning back lapsed subscribers or retaining current subscribers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can provide promotional offers in your app, you must first generate a subscription key and set up the offers in your App Store Connect account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your goal is to attract new users, use introductory offers and promote the in-app purchase on the App Store. Redeeming an introductory offer doesn’t affect a user’s eligibility for a promotional offer. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/implementing-introductory-offers-in-your-app",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Generate-a-Private-Key",
+          "level": 3,
+          "text": "Generate a Private Key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You generate a private key in App Store Connect that you use on your server to sign promotional offers. This key allows Apple to authenticate and validate subscription requests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Keys don’t expire, and you can use them with any apps in your account. To get started, ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/app-store-connect/#/dev689c93225",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in App Store Connect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Download-and-Store-the-Private-Key",
+          "level": 4,
+          "text": "Download and Store the Private Key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you’ve generated your subscription key, you’re given the opportunity to download the private half of the key. You can only download this key one time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The keys are provided in base64-encoded PEM format. Apple doesn’t keep a copy of the private key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Store your private subscription key in a safe place. You should never share your keys, store keys in a code repository, or include keys in apps or client-side code.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the key becomes lost or compromised, revoke it immediately and update your promotional offers. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/app-store-connect/#/dev689c93225?sub=dev4587a2b9c",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-Promotional-Offers",
+          "level": 3,
+          "text": "Configure Promotional Offers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You configure promotional offers in App Store Connect, providing details such as a reference name, payment mode, duration, and price. To configure your offer, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/app-store-connect/#/dev16dfca448",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can have up to 10 promotional offers active at any given time per subscription.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For business guidance on using promotional offers, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store/subscriptions/#providing-subscription-offers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentDiscount": {
+      "abstract": [
+        {
+          "text": "The signed discount to apply to a payment.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPaymentDiscount"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentDiscount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPaymentDiscount"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPaymentDiscount",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentdiscount"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/generating-a-promotional-offer-signature-on-the-server": {
+      "abstract": [
+        {
+          "text": "Generate a signature using your private key and lightweight cryptography libraries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/generating-a-promotional-offer-signature-on-the-server",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Generating a Promotional Offer Signature on the Server",
+      "type": "topic",
+      "url": "/documentation/storekit/generating-a-promotional-offer-signature-on-the-server"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/generating-a-signature-for-promotional-offers": {
+      "abstract": [
+        {
+          "text": "Create a signature to validate a promotional offer using your private key.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/generating-a-signature-for-promotional-offers",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating a signature for promotional offers",
+      "type": "topic",
+      "url": "/documentation/storekit/generating-a-signature-for-promotional-offers"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/implementing-introductory-offers-in-your-app": {
+      "abstract": [
+        {
+          "text": "Offer introductory pricing for auto-renewable subscriptions to eligible users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/implementing-introductory-offers-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing introductory offers in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/implementing-introductory-offers-in-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app": {
+      "abstract": [
+        {
+          "text": "Offer discounted pricing for auto-renewable subscription products to eligible subscribers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing promotional offers in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/implementing-promotional-offers-in-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/original-api-for-in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers": {
+      "abstract": [
+        {
+          "text": "Offer customers additional time-based content and services through purchases they make within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Subscriptions and offers",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptions-and-offers"
+    },
+    "https://developer.apple.com/app-store/subscriptions/#providing-subscription-offers": {
+      "identifier": "https://developer.apple.com/app-store/subscriptions/#providing-subscription-offers",
+      "title": "Auto-renewable Subscriptions > Providing Subscription Offers",
+      "titleInlineContent": [
+        {
+          "text": "Auto-renewable Subscriptions > Providing Subscription Offers",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/subscriptions/#providing-subscription-offers"
+    },
+    "https://help.apple.com/app-store-connect/#/dev16dfca448": {
+      "identifier": "https://help.apple.com/app-store-connect/#/dev16dfca448",
+      "title": "Set up promotional offers for auto-renewable subscriptions",
+      "titleInlineContent": [
+        {
+          "text": "Set up promotional offers for auto-renewable subscriptions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/app-store-connect/#/dev16dfca448"
+    },
+    "https://help.apple.com/app-store-connect/#/dev689c93225": {
+      "identifier": "https://help.apple.com/app-store-connect/#/dev689c93225",
+      "title": "generate a subscriptions access key",
+      "titleInlineContent": [
+        {
+          "text": "generate a subscriptions access key",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/app-store-connect/#/dev689c93225"
+    },
+    "https://help.apple.com/app-store-connect/#/dev689c93225?sub=dev4587a2b9c": {
+      "identifier": "https://help.apple.com/app-store-connect/#/dev689c93225?sub=dev4587a2b9c",
+      "title": "Revoke a subscription key",
+      "titleInlineContent": [
+        {
+          "text": "Revoke a subscription key",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/app-store-connect/#/dev689c93225?sub=dev4587a2b9c"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Promotional-offers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app",
+        "doc://com.apple.storekit/documentation/StoreKit/generating-a-signature-for-promotional-offers",
+        "doc://com.apple.storekit/documentation/StoreKit/generating-a-promotional-offer-signature-on-the-server",
+        "doc://com.apple.storekit/documentation/StoreKit/SKPaymentDiscount"
+      ],
+      "title": "Promotional offers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Promotional-offers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app",
+                "doc://com.apple.storekit/documentation/StoreKit/generating-a-signature-for-promotional-offers",
+                "doc://com.apple.storekit/documentation/StoreKit/generating-a-promotional-offer-signature-on-the-server",
+                "doc://com.apple.storekit/documentation/StoreKit/SKPaymentDiscount"
+              ],
+              "title": "Promotional offers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentDiscount/title",
+          "value": "SKPaymentDiscount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentDiscount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentDiscount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentDiscount/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentDiscount"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/setting-up-promotional-offers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/setting-up-promotional-offers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

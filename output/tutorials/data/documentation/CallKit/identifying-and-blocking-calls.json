@@ -1,0 +1,1145 @@
+{
+  "abstract": [
+    {
+      "text": "Create a Call Directory app extension to identify and block incoming callers",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "by their phone number.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.callkit/documentation/CallKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.callkit/documentation/CallKit/identifying-and-blocking-calls"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "CallKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Identifying and blocking calls"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the Call Directory app extension to manage callers by their phone number. The system communicates with the app extension and checks a person’s contacts and block lists to identify callers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryPhoneNumber",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " type represents phone numbers in a Call Directory app extension, and consists of a country calling code (such as ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for the United States) followed by a sequence of digits.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-a-Call-Directory-app-extension",
+          "level": 3,
+          "text": "Create a Call Directory app extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create a Call Directory app extension for your containing app by adding a new project target and selecting the Call Directory Extension template under Application Extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-call-directory-extension",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You set up both identification and blocking of incoming calls in the implementation of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryProvider/beginRequest(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass of your Call Directory app extension. The system calls this method when it launches the app extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about how app extensions work, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-extensions/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-incoming-callers",
+          "level": 3,
+          "text": "Identify incoming callers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a phone receives an incoming call, the system first checks the person’s contacts to find a matching phone number. If there’s no match, the system then checks your app’s Call Directory app extension to find a matching entry to identify the phone number. This is useful for apps that maintain a contact list that’s separate from the system contacts, such as for a social network, or for identifying incoming calls that may initiate from within the app, such as for customer service support or a delivery notification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, consider a person who is friends with Maria in a social networking app, but who doesn’t have her phone number in their contacts. The social networking app has a Call Directory app extension, which downloads and adds the phone numbers of all of the person’s friends. Because of this, when there’s an incoming call from Maria, the system displays something like ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "(App Name) Caller ID: Maria Ruiz",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " rather than ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Unknown Caller",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide identifying information about incoming callers, you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryExtensionContext/addIdentificationEntry(withNextSequentialPhoneNumber:label:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method in the implementation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryProvider/beginRequest(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "class CustomCallDirectoryProvider: CXCallDirectoryProvider {",
+                    "    override func beginRequest(with context: CXCallDirectoryExtensionContext) {",
+                    "        let labelsKeyedByPhoneNumber: [CXCallDirectoryPhoneNumber: String] = [ … ]",
+                    "        for (phoneNumber, label) in labelsKeyedByPhoneNumber.sorted(by: <) {",
+                    "            context.addIdentificationEntry(withNextSequentialPhoneNumber: phoneNumber, label: label)        ",
+                    "        }",
+                    "",
+                    "        context.completeRequest()",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "@interface CustomCallDirectoryProvider: CXCallDirectoryProvider",
+                    "@end",
+                    " ",
+                    "@implementation CustomCallDirectoryProvider",
+                    "- (void)beginRequestWithExtensionContext:(NSExtensionContext *)context {",
+                    "    NSDictionary<NSNumber *, NSString *> *labelsKeyedByPhoneNumber = @{ … };",
+                    "    for (NSNumber *phoneNumber in [labelsKeyedByPhoneNumber.allKeys sortedArrayUsingSelector:@selector(compare:)]) {",
+                    "       NSString *label = labelsKeyedByPhoneNumber[phoneNumber];",
+                    "       [context addIdentificationEntryWithNextSequentialPhoneNumber:(CXCallDirectoryPhoneNumber)[phoneNumber unsignedLongLongValue] label:label];",
+                    "    }",
+                    " ",
+                    "    [context completeRequestWithCompletionHandler:nil];",
+                    "}",
+                    "@end"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the system calls this method only when it launches the app extension and not for each individual call, you need to specify call identification information all at once. For example, you can’t make a request to a web service to find information about an incoming call.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Block-incoming-calls",
+          "level": 4,
+          "text": "Block incoming calls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a phone receives an incoming call, the system first checks the person’s block list to determine whether to block the call. If the phone number isn’t on a user- or system-defined block list, the system then checks your app’s Call Directory app extension to find a matching blocked number. This is useful for apps that maintain a database of known solicitors, or allow someone to block any numbers that match a set of criteria.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To block incoming calls for a particular phone number, you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryExtensionContext/addBlockingEntry(withNextSequentialPhoneNumber:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method in the implementation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryProvider/beginRequest(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can specify that your Call Directory app extension adds identification and blocks phone numbers in its implementation of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryProvider/beginRequest(with:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "class CustomCallDirectoryProvider: CXCallDirectoryProvider {",
+                    "    override func beginRequest(with context: CXCallDirectoryExtensionContext) {",
+                    "        let blockedPhoneNumbers: [CXCallDirectoryPhoneNumber] = [ … ]",
+                    "        for phoneNumber in blockedPhoneNumbers.sorted(by: <) {",
+                    "            context.addBlockingEntry(withNextSequentialPhoneNumber: phoneNumber)",
+                    "        }",
+                    "        ",
+                    "        context.completeRequest()",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "@interface CustomCallDirectoryProvider: CXCallDirectoryProvider",
+                    "@end",
+                    " ",
+                    "@implementation CustomCallDirectoryProvider",
+                    "- (void)beginRequestWithExtensionContext:(NSExtensionContext *)context {",
+                    "    NSArray<NSNumber *> *blockedPhoneNumbers.sorted = @[ … ];",
+                    "     for (NSNumber *phoneNumber in [blockedPhoneNumbers.sorted sortedArrayUsingSelector:@selector(compare:)]) {",
+                    "        [context addBlockingEntryWithNextSequentialPhoneNumber:(CXCallDirectoryPhoneNumber)[phoneNumber unsignedLongLongValue]];",
+                    "     }",
+                    " ",
+                    "    [context completeRequestWithCompletionHandler:nil];",
+                    "}",
+                    "@end"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Handle-audio-session-interruptions",
+          "level": 3,
+          "text": "Handle audio session interruptions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Like other audio apps, VoIP apps need to handle audio session interruptions. Interruptions may occur for several reasons, including a person accepting another call or closing the Smart Folio of their iPad. In these situations, an interruption notification contains the reason for the interruption and allows your app to correctly terminate the call, if necessary. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/handling-audio-interruptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.callkit/documentation/CallKit": {
+      "abstract": [
+        {
+          "text": "Display the system-calling UI for your app’s VoIP services, and coordinate your calling services with other apps and the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CallKit",
+      "type": "topic",
+      "url": "/documentation/callkit"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryExtensionContext": {
+      "abstract": [
+        {
+          "text": "A programmatic interface for adding identification and blocking entries to a Call Directory app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXCallDirectoryExtensionContext"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryExtensionContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXCallDirectoryExtensionContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXCallDirectoryExtensionContext",
+      "type": "topic",
+      "url": "/documentation/callkit/cxcalldirectoryextensioncontext"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryExtensionContext/addBlockingEntry(withNextSequentialPhoneNumber:)": {
+      "abstract": [
+        {
+          "text": "Adds a blocking entry with the specified phone number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addBlockingEntry"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withNextSequentialPhoneNumber"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CXCallDirectoryPhoneNumber",
+          "text": "CXCallDirectoryPhoneNumber"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryExtensionContext/addBlockingEntry(withNextSequentialPhoneNumber:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addBlockingEntryWithNextSequentialPhoneNumber:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addBlockingEntry(withNextSequentialPhoneNumber:)",
+      "type": "topic",
+      "url": "/documentation/callkit/cxcalldirectoryextensioncontext/addblockingentry(withnextsequentialphonenumber:)"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryExtensionContext/addIdentificationEntry(withNextSequentialPhoneNumber:label:)": {
+      "abstract": [
+        {
+          "text": "Adds an identification entry with the specified phone number and label.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addIdentificationEntry"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withNextSequentialPhoneNumber"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CXCallDirectoryPhoneNumber",
+          "text": "CXCallDirectoryPhoneNumber"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryExtensionContext/addIdentificationEntry(withNextSequentialPhoneNumber:label:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addIdentificationEntryWithNextSequentialPhoneNumber:label:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addIdentificationEntry(withNextSequentialPhoneNumber:label:)",
+      "type": "topic",
+      "url": "/documentation/callkit/cxcalldirectoryextensioncontext/addidentificationentry(withnextsequentialphonenumber:label:)"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryExtensionContextDelegate": {
+      "abstract": [
+        {
+          "text": "A collection of methods a Call Directory extension context object calls when a request fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXCallDirectoryExtensionContextDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryExtensionContextDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXCallDirectoryExtensionContextDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXCallDirectoryExtensionContextDelegate",
+      "type": "topic",
+      "url": "/documentation/callkit/cxcalldirectoryextensioncontextdelegate"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryManager": {
+      "abstract": [
+        {
+          "text": "The programmatic interface to an object that manages a Call Directory app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXCallDirectoryManager"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXCallDirectoryManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXCallDirectoryManager",
+      "type": "topic",
+      "url": "/documentation/callkit/cxcalldirectorymanager"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryPhoneNumber": {
+      "abstract": [
+        {
+          "text": "A value that represents a phone number consisting of a country calling code followed by a sequence of digits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXCallDirectoryPhoneNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryPhoneNumber",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXCallDirectoryPhoneNumber"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXCallDirectoryPhoneNumber",
+      "type": "topic",
+      "url": "/documentation/callkit/cxcalldirectoryphonenumber"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryProvider": {
+      "abstract": [
+        {
+          "text": "The principal object for a Call Directory app extension for a host app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXCallDirectoryProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXCallDirectoryProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXCallDirectoryProvider",
+      "type": "topic",
+      "url": "/documentation/callkit/cxcalldirectoryprovider"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryProvider/beginRequest(with:)": {
+      "abstract": [
+        {
+          "text": "Tells the extension to prepare for a host app’s request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CXCallDirectoryExtensionContext",
+          "text": "CXCallDirectoryExtensionContext"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryProvider/beginRequest(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "beginRequestWithExtensionContext:"
+        }
+      ],
+      "role": "symbol",
+      "title": "beginRequest(with:)",
+      "type": "topic",
+      "url": "/documentation/callkit/cxcalldirectoryprovider/beginrequest(with:)"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/handling-audio-interruptions": {
+      "abstract": [
+        {
+          "text": "Observe audio session notifications to ensure that your app responds appropriately to interruptions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/handling-audio-interruptions",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling audio interruptions",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/handling-audio-interruptions"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/app-extensions/": {
+      "identifier": "https://developer.apple.com/app-extensions/",
+      "title": "App extensions",
+      "titleInlineContent": [
+        {
+          "text": "App extensions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-extensions/"
+    },
+    "media-call-directory-extension": {
+      "alt": "An Xcode screenshot of the New target dialog with the Call Directory Extension entry selected.",
+      "identifier": "media-call-directory-extension",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/748561c23c1f916045573b17910167ca/media-call-directory-extension.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Caller-ID",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryProvider",
+        "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryExtensionContext",
+        "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryExtensionContextDelegate",
+        "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryManager"
+      ],
+      "title": "Caller ID"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Caller-ID",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryProvider",
+                "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryExtensionContext",
+                "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryExtensionContextDelegate",
+                "doc://com.apple.callkit/documentation/CallKit/CXCallDirectoryManager"
+              ],
+              "title": "Caller ID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallDirectoryProvider/title",
+          "value": "CXCallDirectoryProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallDirectoryProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallDirectoryProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallDirectoryProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallDirectoryProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallDirectoryManager/title",
+          "value": "CXCallDirectoryManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallDirectoryManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallDirectoryManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallDirectoryManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallDirectoryManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallDirectoryExtensionContext/title",
+          "value": "CXCallDirectoryExtensionContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallDirectoryExtensionContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallDirectoryExtensionContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallDirectoryExtensionContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallDirectoryExtensionContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallDirectoryProvider~1beginRequest(with:)/title",
+          "value": "beginRequestWithExtensionContext:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallDirectoryProvider~1beginRequest(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginRequestWithExtensionContext:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallDirectoryExtensionContext~1addBlockingEntry(withNextSequentialPhoneNumber:)/title",
+          "value": "addBlockingEntryWithNextSequentialPhoneNumber:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallDirectoryExtensionContext~1addBlockingEntry(withNextSequentialPhoneNumber:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addBlockingEntryWithNextSequentialPhoneNumber:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallDirectoryExtensionContext~1addIdentificationEntry(withNextSequentialPhoneNumber:label:)/title",
+          "value": "addIdentificationEntryWithNextSequentialPhoneNumber:label:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallDirectoryExtensionContext~1addIdentificationEntry(withNextSequentialPhoneNumber:label:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addIdentificationEntryWithNextSequentialPhoneNumber:label:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallDirectoryPhoneNumber/title",
+          "value": "CXCallDirectoryPhoneNumber"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallDirectoryPhoneNumber/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallDirectoryPhoneNumber"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallDirectoryPhoneNumber/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallDirectoryPhoneNumber"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallDirectoryExtensionContextDelegate/title",
+          "value": "CXCallDirectoryExtensionContextDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallDirectoryExtensionContextDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallDirectoryExtensionContextDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallDirectoryExtensionContextDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallDirectoryExtensionContextDelegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/callkit/identifying-and-blocking-calls"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/callkit/identifying-and-blocking-calls"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

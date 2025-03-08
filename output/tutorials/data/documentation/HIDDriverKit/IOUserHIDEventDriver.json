@@ -1,0 +1,1412 @@
+{
+  "abstract": [
+    {
+      "text": "A complete driver object that dispatches keyboard, digitizer, scrolling, and pointer events originating from a HID device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUserHIDEventDriver",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "IOUserHIDEventDriver"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HIDDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "IOUserHIDEventDriver"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "DriverKit"
+      },
+      {
+        "beta": false,
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "IOUserHIDEventDriver"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOUserHIDEventDriver"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserHIDEventDriver",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object is a fully functional driver that handles many common types of HID events. This driver parses incoming reports and uses the information to dispatch many types of events to the system. Apple provides this driver object as a default implementation for devices that conform to the HID specifications and don’t include any custom information that requires a special driver.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can subclass ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserHIDEventDriver",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and add support for other types of events. Alternatively, you can subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and customize how your event service processes the report data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-the-Drivers-Personality-Information",
+          "level": 3,
+          "text": "Specify the Driver’s Personality Information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", update the ",
+              "type": "text"
+            },
+            {
+              "code": "IOKitPersonalities",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key of your driver extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file with information to match your driver to appropriate hardware. For this class, always include the keys and values in the following table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Discussion",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "IOClass",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AppleUserHIDEventService",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "IOProviderClass",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The provider class information. For HID interfaces, specify ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "IOUserClass",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of your custom subclass.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The bundle identifier of your driver.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may add other keys to assist with the matching process. For example, you might include the ",
+              "type": "text"
+            },
+            {
+              "code": "VendorID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "ProductID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "PrimaryUsagePage",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "PrimaryUsage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keys to match against specific USB devices and HID usage types. The USB specification defines which keys to include when matching your driver to a USB device. For information about the specific key combinations, see ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Universal Serial Bus Common Class Specification",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " at ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.usb.org",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.eventservice": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the driver provides a HID-related event service to the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.eventservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.family.hid.eventservice",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.eventservice"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleIdentifier",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/CFBundleIdentifier"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for human-interface devices, such as keyboards, pointing devices, and digitizers like pens and touch pads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HIDDriverKit",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDEventService": {
+      "abstract": [
+        {
+          "text": "The base class for implementing a device or operating system service that dispatches events to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDEventService"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDEventService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDEventService",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohideventservice"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface": {
+      "abstract": [
+        {
+          "text": "A provider object for a HID device’s interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDInterface"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDInterface",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidinterface"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver": {
+      "abstract": [
+        {
+          "text": "A complete driver object that dispatches keyboard, digitizer, scrolling, and pointer events originating from a HID device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserHIDEventDriver"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserHIDEventDriver",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/SetLED": {
+      "abstract": [
+        {
+          "text": "Sets the state of an LED on the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetLED"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/SetLED",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetLED",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/setled"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/SetProperties": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/SetProperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetProperties",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/setproperties"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/Start": {
+      "abstract": [
+        {
+          "text": "Starts the current event driver and associates it with the specified provider object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Start"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/Start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Start",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/start"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/calibrateCenteredPreferredStateElement": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "calibrateCenteredPreferredStateElement"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/calibrateCenteredPreferredStateElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "calibrateCenteredPreferredStateElement",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/calibratecenteredpreferredstateelement"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/calibrateJustifiedPreferredStateElement": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "calibrateJustifiedPreferredStateElement"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/calibrateJustifiedPreferredStateElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "calibrateJustifiedPreferredStateElement",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/calibratejustifiedpreferredstateelement"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/checkGameControllerElement": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "checkGameControllerElement"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/checkGameControllerElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "checkGameControllerElement",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/checkgamecontrollerelement"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/copyKeyboardEvent": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "copyKeyboardEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/copyKeyboardEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copyKeyboardEvent",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/copykeyboardevent"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/createEventForDigitizerCollection": {
+      "abstract": [
+        {
+          "text": "Creates a HID event object that represents a digitizer collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "createEventForDigitizerCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/createEventForDigitizerCollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createEventForDigitizerCollection",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/createeventfordigitizercollection"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/free": {
+      "abstract": [
+        {
+          "text": "Performs any final cleanup for the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/free"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/getButtonStateFromElements": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getButtonStateFromElements"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/getButtonStateFromElements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getButtonStateFromElements",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/getbuttonstatefromelements"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleAbsolutePointerReport": {
+      "abstract": [
+        {
+          "text": "Iterates through absolute pointer elements and dispatches them if the element value has been updated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "handleAbsolutePointerReport"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleAbsolutePointerReport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleAbsolutePointerReport",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/handleabsolutepointerreport"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleCopyMatchingEvent": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "handleCopyMatchingEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleCopyMatchingEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleCopyMatchingEvent",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/handlecopymatchingevent"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleDigitizerReport": {
+      "abstract": [
+        {
+          "text": "Processes the digitizer elements and dispatches events for any updated values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "handleDigitizerReport"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleDigitizerReport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleDigitizerReport",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/handledigitizerreport"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleGameControllerReport": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "handleGameControllerReport"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleGameControllerReport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleGameControllerReport",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/handlegamecontrollerreport"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleKeyboardReport": {
+      "abstract": [
+        {
+          "text": "Iterates through keyboard elements and dispatches them if the element value has been updated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "handleKeyboardReport"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleKeyboardReport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleKeyboardReport",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/handlekeyboardreport"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleProximityReport": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "handleProximityReport"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleProximityReport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleProximityReport",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/handleproximityreport"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleRelativePointerReport": {
+      "abstract": [
+        {
+          "text": "Iterates through relative pointer elements and dispatches them if the element value has been updated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "handleRelativePointerReport"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleRelativePointerReport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleRelativePointerReport",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/handlerelativepointerreport"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleReport": {
+      "abstract": [
+        {
+          "text": "Processes the information in a new device report and dispatches any relevant events in response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "handleReport"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleReport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleReport",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/handlereport"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleScrollReport": {
+      "abstract": [
+        {
+          "text": "Iterates through scroll elements and dispatches them if the element value has been updated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "handleScrollReport"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleScrollReport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleScrollReport",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/handlescrollreport"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/init": {
+      "abstract": [
+        {
+          "text": "Handles the basic initialization of the event service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/init"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseDigitizerElement": {
+      "abstract": [
+        {
+          "text": "Parses an element to see if it supports digitizer usages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "parseDigitizerElement"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseDigitizerElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parseDigitizerElement",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/parsedigitizerelement"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseElement": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "parseElement"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parseElement",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/parseelement"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseElements": {
+      "abstract": [
+        {
+          "text": "Parses the specified array of elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "parseElements"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseElements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parseElements",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/parseelements"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseGameControllerElement": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "parseGameControllerElement"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseGameControllerElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parseGameControllerElement",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/parsegamecontrollerelement"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseKeyboardElement": {
+      "abstract": [
+        {
+          "text": "Parses an element to see if it contains keyboard-related information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "parseKeyboardElement"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseKeyboardElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parseKeyboardElement",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/parsekeyboardelement"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseLEDElement": {
+      "abstract": [
+        {
+          "text": "Parses an element to see if it supports LED usages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "parseLEDElement"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseLEDElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parseLEDElement",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/parseledelement"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parsePointerElement": {
+      "abstract": [
+        {
+          "text": "Parses an element to see if it supports pointer usages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "parsePointerElement"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parsePointerElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parsePointerElement",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/parsepointerelement"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseProximityElement": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "parseProximityElement"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseProximityElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parseProximityElement",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/parseproximityelement"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseRemainingElement": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "parseRemainingElement"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseRemainingElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parseRemainingElement",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/parseremainingelement"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseRemainingElements": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "parseRemainingElements"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseRemainingElements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parseRemainingElements",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/parseremainingelements"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseScrollElement": {
+      "abstract": [
+        {
+          "text": "Parses an element to see if it supports scroll usages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "parseScrollElement"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseScrollElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parseScrollElement",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/parsescrollelement"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/postProcessElements": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "postProcessElements"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/postProcessElements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "postProcessElements",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/postprocesselements"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/postProcessElements_internal": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "postProcessElements_internal"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/postProcessElements_internal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "postProcessElements_internal",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/postprocesselements_internal"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/processDigitizerElements": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "processDigitizerElements"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/processDigitizerElements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "processDigitizerElements",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/processdigitizerelements"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/processGameControllerElements": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "processGameControllerElements"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/processGameControllerElements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "processGameControllerElements",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/processgamecontrollerelements"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setAccelerationProperties": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setAccelerationProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setAccelerationProperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAccelerationProperties",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/setaccelerationproperties"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setDigitizerProperties": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setDigitizerProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setDigitizerProperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDigitizerProperties",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/setdigitizerproperties"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setGameControllerProperties": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setGameControllerProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setGameControllerProperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setGameControllerProperties",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/setgamecontrollerproperties"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setKeyboardProperties": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setKeyboardProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setKeyboardProperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setKeyboardProperties",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/setkeyboardproperties"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setLEDProperties": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setLEDProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setLEDProperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setLEDProperties",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/setledproperties"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setRelativeProperties": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setRelativeProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setRelativeProperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setRelativeProperties",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/setrelativeproperties"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setScrollProperties": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setScrollProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setScrollProperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setScrollProperties",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/setscrollproperties"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setSurfaceDimensions": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setSurfaceDimensions"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setSurfaceDimensions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setSurfaceDimensions",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/setsurfacedimensions"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setTipThreshold": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setTipThreshold"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setTipThreshold",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setTipThreshold",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver/settipthreshold"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService": {
+      "abstract": [
+        {
+          "text": "A service that parses HID report data into elements that you can use to dispatch events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserHIDEventService"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserHIDEventService",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice"
+    },
+    "https://www.usb.org": {
+      "identifier": "https://www.usb.org",
+      "title": "https://www.usb.org",
+      "titleInlineContent": [
+        {
+          "text": "https://www.usb.org",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.usb.org"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Driver-Interfaces",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.eventservice",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDEventService"
+      ],
+      "title": "Driver Interfaces"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Running-the-Driver",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/init",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/Start",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/free"
+      ],
+      "title": "Running the Driver"
+    },
+    {
+      "anchor": "Parsing-the-Element-Hierarchy",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseElements",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parsePointerElement",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseDigitizerElement",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseKeyboardElement",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseScrollElement",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseLEDElement"
+      ],
+      "title": "Parsing the Element Hierarchy"
+    },
+    {
+      "anchor": "Handling-New-Data-Reports",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleReport",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleKeyboardReport",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleRelativePointerReport",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleAbsolutePointerReport",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleScrollReport",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleDigitizerReport",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/createEventForDigitizerCollection"
+      ],
+      "title": "Handling New Data Reports"
+    },
+    {
+      "anchor": "Configuring-LED-Lights",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/SetLED"
+      ],
+      "title": "Configuring LED Lights"
+    },
+    {
+      "anchor": "Configuring-Private-Properties",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setAccelerationProperties",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setSurfaceDimensions",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setTipThreshold"
+      ],
+      "title": "Configuring Private Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/SetProperties",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/calibrateCenteredPreferredStateElement",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/calibrateJustifiedPreferredStateElement",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/checkGameControllerElement",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/copyKeyboardEvent",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/getButtonStateFromElements",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleCopyMatchingEvent",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleGameControllerReport",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/handleProximityReport",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseElement",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseGameControllerElement",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseProximityElement",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseRemainingElement",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/parseRemainingElements",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/postProcessElements",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/postProcessElements_internal",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/processDigitizerElements",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/processGameControllerElements",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setDigitizerProperties",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setGameControllerProperties",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setKeyboardProperties",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setLEDProperties",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setRelativeProperties",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver/setScrollProperties"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/hiddriverkit/iouserhideventdriver"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

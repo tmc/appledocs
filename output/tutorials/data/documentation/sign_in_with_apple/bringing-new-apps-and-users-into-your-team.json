@@ -1,0 +1,1150 @@
+{
+  "abstract": [
+    {
+      "text": "Receive Sign in with Apple users and associated apps from another team.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.signinwithapple/documentation/SigninwithApple"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/bringing-new-apps-and-users-into-your-team"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Bringing new apps and users into your team"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When acquiring an app from another team that uses Sign in with Apple, you follow a specific process to receive signed-in users from the sending team.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Coordinate with the sending team transferring their users and apps over to your team. Then accept transfer identifers for all of the migrating users, and exchange the transfer identifiers for team-scoped identifiers and private email addresses to complete the process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Obtain-team-scoped-identifiers",
+          "level": 3,
+          "text": "Obtain team-scoped identifiers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The identity token issued by Apple contains the transfer identifier in the ",
+              "type": "text"
+            },
+            {
+              "code": "transfer_sub",
+              "type": "codeVoice"
+            },
+            {
+              "text": " claim for all migrated users who sign into your application after the transfer, as well as the team-scoped identifier. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the transfer identifier to correlate the Sign in with Apple user in the data records migrated from the previous owner. The identity token continues to include the transfer identifier, for up to 60 days from the transfer date.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For users who don’t sign in after the transfer, you must generate an access token and use it to obtain your team-scoped identifier. Generate the access token with your client credential and provide scope as ",
+              "type": "text"
+            },
+            {
+              "code": "user.migration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " using the following HTTP POST method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "POST /auth/token HTTP/1.1",
+            "Host: appleid.apple.com",
+            "Content-Type: application/x-www-form-urlencoded",
+            "",
+            "grant_type=client_credentials&scope=user.migration&client_id={client_id}&client_secret={client_secret}"
+          ],
+          "syntax": "console",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The HTTP POST method includes the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The type of grant requested. Set to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "client_credentials",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " as there are no user credentials. Access the migration endpoint using the client application’s credentials.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "grant_type",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The scope of the migration. Set to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "user.migration",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " in order to exchange the identifier.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "scope",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The identifier (App ID or Services ID) for the transferred app. The identifier must not include your Team ID, to help mitigate the possibility of exposing sensitive data to the end user.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "client_id",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The client secret of the recipient team, represented as a JSON Web Token (JWT). The JWT payload should contain a ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "sub",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " claim that matches the transferred app’s bundle ID or associated Services ID. For more information on generating a client secret, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/AccountOrganizationalDataSharing/creating-a-client-secret",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "client_secret",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Expect an HTTP POST response similar to the following example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "HTTP/1.1 200 OK",
+            "Content-Type: application/json;charset=UTF-8",
+            "Cache-Control: no-store",
+            "Pragma: no-cache",
+            "",
+            "{",
+            "  \"access_token\":\"beg5105ed7a4def32adec143038877c2b.0.nx.20LreF67Or9\",",
+            "  \"token_type\":\"Bearer\",",
+            "  \"expires_in\":3600",
+            "}"
+          ],
+          "syntax": "console",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Exchange-identifiers",
+          "level": 3,
+          "text": "Exchange identifiers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the access token to call the ",
+              "type": "text"
+            },
+            {
+              "code": "userMigrationInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint. Provide the transfer identifier of the user as input using the following HTTP POST method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "POST /auth/usermigrationinfo HTTP/1.1",
+            "Host: appleid.apple.com",
+            "Content-Type: application/x-www-form-urlencoded",
+            "Authorization: Bearer {access_token}",
+            "",
+            "transfer_sub={transfer_sub}&client_id={client_id}&client_secret={client_secret}",
+            ""
+          ],
+          "syntax": "console",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The HTTP POST method includes the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The transfer identifier that you obtained from the sending team.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "transfer_sub",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The identifier (App ID or Services ID) for the transferred app. The identifier must not include your Team ID, to help mitigate the possibility of exposing sensitive data to the end user.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "client_id",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The client secret of the recipient team, represented as a JSON Web Token (JWT). The JWT payload should contain a ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "sub",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " claim that matches the transferred app’s bundle ID or associated Services ID. For more information on generating a client secret, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/AccountOrganizationalDataSharing/creating-a-client-secret",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "client_secret",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Expect an HTTP POST response similar to the following example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "HTTP/1.1 200 OK",
+            "Content-Type: application/json;charset=UTF-8",
+            "Cache-Control: no-store",
+            "Pragma: no-cache",
+            "",
+            "{",
+            "  \"sub\":\"820417.faa325acbc78e1be1668ba852d492d8a.0219\",",
+            "  \"email\": \"ep9ks2tnph@privaterelay.appleid.com\",",
+            "  \"is_private_email\" : true",
+            "}"
+          ],
+          "syntax": "console",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The HTTP POST response includes the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The recipient team-scoped identifier for the user. This value is the same as the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "sub",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " in the ID token issued during user sign-in.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "sub",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The private email address specific to the recipient team. This attribute returns only if the user utilized a private email address with the transferred application.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "email",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A Boolean indicator specifying if the email address provided is the private mail relay address.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "is_private_email",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The user identifier and the private email address are specific to your team, and all of your applications share the same identifier for the user. Avoid exposing the user identifier to a different team to prevent correlation of a user across teams.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once 60 days have passed after transfer acceptance, the ID token no longer includes the transfer identifier. Also, the server endpoint used to obtain the team-scoped identifiers becomes inactive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Regroup-your-apps",
+          "level": 3,
+          "text": "Regroup your apps",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the sending team ungrouped their apps, coordinate with the team to regroup the apps after the transfer completes. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/configure-app-capabilities/group-apps-for-sign-in-with-apple",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The service identifiers for web applications don’t require ungrouping. They transfer over automatically when their primary app transfers.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Confirm-the-transferred-credential-state",
+          "level": 3,
+          "text": "Confirm the transferred credential state",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your transferred application starts receiving ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/CredentialState/transferred",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/getCredentialState(forUserID:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This status indicates that the user identifier currently in use is the one associated with the delivering team.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code silently performs a new authorization in the background, and delivers the new user identifier to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationControllerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate object. It doesn’t involve any user interaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let request = ASAuthorizationAppleIDProvider().createRequest()",
+            "",
+            "// Specify the current user identifier here.",
+            "request.user = \"User Identifier\"",
+            "",
+            "let controller = ASAuthorizationController(authorizationRequests: [request]) ",
+            "controller.delegate = self",
+            "controller.presentationContextProvider = self",
+            "",
+            "controller.performRequests()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Upon receiving ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/CredentialState/transferred",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can consider the current session approved.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AccountOrganizationalDataSharing/creating-a-client-secret": {
+      "abstract": [
+        {
+          "text": "Generate a signed token to identify your client application.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AccountOrganizationalDataSharing/creating-a-client-secret",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a client secret",
+      "type": "topic",
+      "url": "/documentation/AccountOrganizationalDataSharing/creating-a-client-secret"
+    },
+    "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/CredentialState/transferred": {
+      "abstract": [
+        {
+          "text": "The app has been transferred to a different team, and you need to migrate the user’s identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transferred"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/CredentialState/transferred",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ASAuthorizationAppleIDProvider.CredentialState.transferred",
+      "type": "topic",
+      "url": "/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/CredentialState/transferred"
+    },
+    "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/getCredentialState(forUserID:completion:)": {
+      "abstract": [
+        {
+          "text": "Returns the credential state for the given user in a completion handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCredentialState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forUserID"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "userID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationAppleIDProvider",
+          "text": "ASAuthorizationAppleIDProvider"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ASAuthorizationAppleIDProviderCredentialState",
+          "text": "CredentialState"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/getCredentialState(forUserID:completion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCredentialState(forUserID:completion:)",
+      "type": "topic",
+      "url": "/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/getCredentialState(forUserID:completion:)"
+    },
+    "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationControllerDelegate": {
+      "abstract": [
+        {
+          "text": "An interface for providing information about the outcome of an authorization request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationControllerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationControllerDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ASAuthorizationControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/AuthenticationServices/ASAuthorizationControllerDelegate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithApple": {
+      "abstract": [
+        {
+          "text": "Provide users the ability to sign in to your apps and websites using their Apple ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithApple",
+      "kind": "article",
+      "role": "collection",
+      "title": "Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/signinwithapple"
+    },
+    "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple": {
+      "abstract": [
+        {
+          "text": "Securely authenticate users and create accounts for them in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple",
+      "kind": "article",
+      "role": "article",
+      "title": "Authenticating users with Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple"
+    },
+    "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/transferring-your-apps-and-users-to-another-team": {
+      "abstract": [
+        {
+          "text": "Migrate Sign in with Apple users to another team.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/transferring-your-apps-and-users-to-another-team",
+      "kind": "article",
+      "role": "article",
+      "title": "Transferring your apps and users to another team",
+      "type": "topic",
+      "url": "/documentation/sign_in_with_apple/transferring-your-apps-and-users-to-another-team"
+    },
+    "https://developer.apple.com/help/account/configure-app-capabilities/group-apps-for-sign-in-with-apple": {
+      "identifier": "https://developer.apple.com/help/account/configure-app-capabilities/group-apps-for-sign-in-with-apple",
+      "title": "Group Apps for Sign in with Apple",
+      "titleInlineContent": [
+        {
+          "text": "Group Apps for Sign in with Apple",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/configure-app-capabilities/group-apps-for-sign-in-with-apple"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Transfers-across-teams",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/transferring-your-apps-and-users-to-another-team"
+      ],
+      "title": "Transfers across teams"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider~1CredentialState~1transferred/title",
+          "value": "ASAuthorizationAppleIDProviderCredentialTransferred"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider~1CredentialState~1transferred/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDProviderCredentialTransferred"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorizationControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationControllerDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider~1getCredentialState(forUserID:completion:)/title",
+          "value": "getCredentialStateForUserID:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider~1getCredentialState(forUserID:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "getCredentialStateForUserID:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "userID"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completion:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@ASAuthorizationAppleIDProviderCredentialState",
+              "text": "ASAuthorizationAppleIDProviderCredentialState"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "credentialState"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completion"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

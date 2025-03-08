@@ -1,0 +1,1839 @@
+{
+  "abstract": [
+    {
+      "text": "Generate reply suggestions by using Apple Intelligence and put selected text into your text UI.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/keyboards-and-input"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/adopting-smart-reply-in-your-messaging-or-email-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adopting Smart Reply in your messaging or email app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Messages and Mail use Apple Intelligence to provide the Smart Reply feature, which generates suggestions that are contextually relevant for a thread when you draft a message or email. To add this feature to your messaging or email app, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "conversation context",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " object with your app’s data from a thread.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attach the conversation context to your text view or text field when you prepare your user interface.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement delegate methods to keep the conversation context up-to-date when you send or receive messages.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For an email or other long-form type of messaging, use the selected input suggestion to generate a long-form response and place it in the entry field.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Create-a-conversation-context",
+          "level": 3,
+          "text": "Create a conversation context",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To give Apple Intelligence the context it needs for Smart Reply generation, create a conversation context object with information about your messaging conversation. This object includes information about participants in the conversation and text entries from the conversation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you prepare your user interface to send and receive messages with one or more participants, create a conversation context that reflects the type of messaging thread in your app: use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMessageConversationContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for messaging, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMailConversationContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for email.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure the conversation context with these details:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A unique identifier for the thread",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A dictionary of unique identifiers and names of the participants in the thread",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A set of identifiers for the current person using your app to send and receive messages",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A set of identifiers for the other people in the conversation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array of conversation entries for the type of thread, either ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMessageConversationContext/MessageEntry",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMailConversationContext/MailEntry",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s how you configure a conversation context:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func mailConversationContext(for yourEntries: [YourMailEntry]) -> UIMailConversationContext {",
+                    "    var context: UIMailConversationContext = UIMailConversationContext()",
+                    "    ",
+                    "    var contextEntries: [UIMailConversationContext.MailEntry] = []",
+                    "    for yourEntry in yourEntries {",
+                    "        var conversationEntry = UIMailConversationContext.MailEntry()",
+                    "        ",
+                    "        conversationEntry.text = yourEntry.text",
+                    "        conversationEntry.senderIdentifier = yourEntry.sender",
+                    "        conversationEntry.primaryRecipientIdentifiers = [yourEntry.recipient]",
+                    "        conversationEntry.sentDate = yourEntry.date",
+                    "        conversationEntry.entryIdentifier = yourEntry.yourEntryIdentifier",
+                    "        conversationEntry.kind = .personal",
+                    "        ",
+                    "        contextEntries.append(conversationEntry)",
+                    "    }",
+                    "    ",
+                    "    context.threadIdentifier = yourThreadObject.identifier",
+                    "    context.entries = contextEntries",
+                    "    ",
+                    "    var senderName = PersonNameComponents()",
+                    "    senderName.givenName = \"Sender's name\"",
+                    "    ",
+                    "    var recipientName = PersonNameComponents()",
+                    "    recipientName.givenName = \"Recipient's name\"",
+                    "    ",
+                    "    context.participantNameByIdentifier = [senderIdentifier:senderName, recipientIdentifier: recipientName]",
+                    "    ",
+                    "    context.selfIdentifiers = [senderIdentifier]",
+                    "    ",
+                    "    context.responsePrimaryRecipientIdentifiers = [recipientIdentifier]",
+                    "    ",
+                    "    return context",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (UIMailConversationContext *)mailConversationContextForEntries:(NSArray<YourMailEntry *> *)yourEntries {",
+                    "    UIMailConversationContext *context = [[UIMailConversationContext alloc] init];",
+                    "",
+                    "    NSMutableArray *contextEntries = [NSMutableArray new];",
+                    "    for (YourMailEntry *yourEntry in yourEntries) {",
+                    "        UIMailConversationEntry *conversationEntry = [[UIMailConversationEntry alloc] init];",
+                    "        conversationEntry.text = yourEntry.text;",
+                    "        conversationEntry.senderIdentifier = yourEntry.sender;",
+                    "        ",
+                    "        conversationEntry.primaryRecipientIdentifiers = [NSSet setWithObject:yourEntry.recipient];",
+                    "",
+                    "        conversationEntry.sentDate = yourEntry.date;",
+                    "        conversationEntry.entryIdentifier = yourEntry.yourEntryIdentifier;",
+                    "        ",
+                    "        conversationEntry.kind = UIMailConversationEntryKindPersonal;",
+                    "        ",
+                    "        [contextEntries addObject:conversationEntry];",
+                    "    }",
+                    "    ",
+                    "    context.threadIdentifier = yourThreadObject.identifier;",
+                    "    context.entries = contextEntries;",
+                    "    ",
+                    "    NSPersonNameComponents *senderName = [[NSPersonNameComponents alloc] init];",
+                    "    senderName.givenName = @\"Sender's name\";",
+                    "    ",
+                    "    NSPersonNameComponents *recipientName = [[NSPersonNameComponents alloc] init];",
+                    "    recipientName.givenName = @\"Recipient's name\";",
+                    "    ",
+                    "    context.participantNameByIdentifier = @{",
+                    "        senderID : senderName,",
+                    "        recipientID : recipientName",
+                    "    };",
+                    "    ",
+                    "    context.selfIdentifiers = [NSSet setWithObject:senderID];",
+                    "    ",
+                    "    context.responsePrimaryRecipientIdentifiers = [NSSet setWithArray:@[recipientID]];",
+                    "    ",
+                    "    return context;",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Attach-the-conversation-context-to-a-text-view-or-text-field",
+          "level": 3,
+          "text": "Attach the conversation context to a text view or text field",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create an entry field, such as a text view or text field, which you use to get input from the person using your app, assign the conversation context you created to the object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputTraits/conversationContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property before the keyboard appears:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "entryField.conversationContext = context"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[self.entryField setConversationContext:context];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The keyboard uses this context once per session for initialization. Use the steps in the next section to handle changes to the conversation during the keyboard session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Keep-the-conversation-context-up-to-date",
+          "level": 3,
+          "text": "Keep the conversation context up-to-date",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every time you send or receive a message, keep the conversation context up-to-date. Because the conversation context is tied to a keyboard session, update or regenerate the conversation context you created earlier if the focus changed from your entry field, then set the entry field’s ",
+              "type": "text"
+            },
+            {
+              "code": "conversationContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the updated context:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "entryField.conversationContext = context"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[self.entryField setConversationContext:context];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputDelegate/conversationContext(_:didChange:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the entry field’s ",
+              "type": "text"
+            },
+            {
+              "code": "inputDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to notify it that the conversation has more entries:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "entryField.inputDelegate?.conversationContext(context, didChange: entryField)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "id<UITextInputDelegate> entryFieldInputDelegate = (id<UITextInputDelegate>)self.entryField.inputDelegate;",
+                    "    ",
+                    "[entryFieldInputDelegate conversationContext:context didChange:self.entryField];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Generate-long-form-responses",
+          "level": 3,
+          "text": "Generate long-form responses",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For email or other long-form messaging apps, instead of dropping the Smart Reply response directly into the entry field, use the suggestion to generate a long-form response with your own model. To do this, implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextViewDelegate/textView(_:insertInputSuggestion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:insertInputSuggestion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func textField(_:UITextField, insertInputSuggestion inputSuggestion: UIInputSuggestion) {",
+                    "    guard let smartReplySuggestion = inputSuggestion as? UISmartReplySuggestion else {",
+                    "        return",
+                    "    }",
+                    "    ",
+                    "    // Call your model with smartReplySuggestion.smartReply,",
+                    "    // then assign the result to your entry field's text property.",
+                    "    let entryFieldText = YourModel.response(from:smartReplySuggestion.smartReply)",
+                    "    entryField.text = entryFieldText",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)textField:(UITextField *)textField insertInputSuggestion:(UIInputSuggestion *)inputSuggestion {",
+                    "    if ([inputSuggestion.class isEqual:UISmartReplySuggestion.class]) {",
+                    "        UISmartReplySuggestion *smartReplySuggestion = (UISmartReplySuggestion *)inputSuggestion;",
+                    "        ",
+                    "        // Call your model with smartReplySuggestion.smartReply,",
+                    "        // then assign the result to your entry field's text property.",
+                    "        NSString *entryFieldText = [YourModel responseFrom:smartReplySuggestion.smartReply];",
+                    "        ",
+                    "        self.entryField.text = entryFieldText;",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your entry field is a custom implementation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInput/insert(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-when-the-system-generates-Smart-Reply-suggestions",
+          "level": 3,
+          "text": "Understand when the system generates Smart Reply suggestions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system only generates Smart Reply suggestions in specific circumstances, and might not generate suggestions in all cases.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Circumstances when a messaging conversation can generate suggestions include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The input field is empty.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The last message in the conversation is from the recipient, not the person sending messages.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The preceding messages in the conversation are text (not images or emojis).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The preceding messages are recent.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Circumstances when a mail conversation can generate suggestions include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The person is the direct recipient of the email, and is not in the CC or BCC list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The person has not already replied to the email.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The sender and recipient of the email have different email addresses.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIConversationContext": {
+      "abstract": [
+        {
+          "text": "A base class that represents a conversation between participants, such as in an email or messaging app.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIConversationContext"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIConversationContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIConversationContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIConversationContext",
+      "type": "topic",
+      "url": "/documentation/uikit/uiconversationcontext"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIConversationContext/Entry": {
+      "abstract": [
+        {
+          "text": "A base class that represents a message in a conversation.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Entry"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIConversationContext/Entry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Entry"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIConversationContext.Entry",
+      "type": "topic",
+      "url": "/documentation/uikit/uiconversationcontext/entry"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIInputSuggestion": {
+      "abstract": [
+        {
+          "text": "A base class you use to handle suggestions from the keyboard or system.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIInputSuggestion"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIInputSuggestion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIInputSuggestion"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIInputSuggestion",
+      "type": "topic",
+      "url": "/documentation/uikit/uiinputsuggestion"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMailConversationContext": {
+      "abstract": [
+        {
+          "text": "A class that represents an email conversation.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIMailConversationContext"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMailConversationContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMailConversationContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMailConversationContext",
+      "type": "topic",
+      "url": "/documentation/uikit/uimailconversationcontext"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMailConversationContext/MailEntry": {
+      "abstract": [
+        {
+          "text": "A class that represents a specific email in an email thread.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MailEntry"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMailConversationContext/MailEntry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MailEntry"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMailConversationContext.MailEntry",
+      "type": "topic",
+      "url": "/documentation/uikit/uimailconversationcontext/mailentry"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMessageConversationContext": {
+      "abstract": [
+        {
+          "text": "A class that represents a message conversation.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIMessageConversationContext"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMessageConversationContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMessageConversationContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMessageConversationContext",
+      "type": "topic",
+      "url": "/documentation/uikit/uimessageconversationcontext"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMessageConversationContext/MessageEntry": {
+      "abstract": [
+        {
+          "text": "A class that represents a message in a message conversation.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MessageEntry"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMessageConversationContext/MessageEntry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MessageEntry"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMessageConversationContext.MessageEntry",
+      "type": "topic",
+      "url": "/documentation/uikit/uimessageconversationcontext/messageentry"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISmartReplySuggestion": {
+      "abstract": [
+        {
+          "text": "A class you use to handle a Smart Reply suggestion.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISmartReplySuggestion"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISmartReplySuggestion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISmartReplySuggestion"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISmartReplySuggestion",
+      "type": "topic",
+      "url": "/documentation/uikit/uismartreplysuggestion"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:insertInputSuggestion:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the keyboard delivers an input suggestion.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textField"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextField",
+          "text": "UITextField"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "insertInputSuggestion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIInputSuggestion",
+          "text": "UIInputSuggestion"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFieldDelegate/textField(_:insertInputSuggestion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textField:insertInputSuggestion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textField(_:insertInputSuggestion:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfielddelegate/textfield(_:insertinputsuggestion:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInput": {
+      "abstract": [
+        {
+          "text": "A set of methods for interacting with the text input system and enabling features in documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextInput"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextInput",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinput"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInput/insert(_:)": {
+      "abstract": [
+        {
+          "text": "Inserts the user or system’s input suggestion into the document.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIInputSuggestion",
+          "text": "UIInputSuggestion"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInput/insert(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertInputSuggestion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "insert(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinput/insert(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputDelegate/conversationContext(_:didChange:)": {
+      "abstract": [
+        {
+          "text": "Tells the input delegate when text has changed in the input object for a conversation.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "conversationContext"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIConversationContext",
+          "text": "UIConversationContext"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didChange"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UITextInput",
+          "text": "UITextInput"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputDelegate/conversationContext(_:didChange:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "conversationContext:didChange:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "conversationContext(_:didChange:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputdelegate/conversationcontext(_:didchange:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputTraits/conversationContext": {
+      "abstract": [
+        {
+          "text": "A reference to a conversation, such as a mail or messaging thread.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "conversationContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIConversationContext",
+          "text": "UIConversationContext"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputTraits/conversationContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "conversationContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "conversationContext",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputtraits/conversationcontext"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextViewDelegate/textView(_:insertInputSuggestion:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the keyboard delivers an input suggestion.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextView",
+          "text": "UITextView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "insertInputSuggestion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIInputSuggestion",
+          "text": "UIInputSuggestion"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextViewDelegate/textView(_:insertInputSuggestion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textView:insertInputSuggestion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textView(_:insertInputSuggestion:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextviewdelegate/textview(_:insertinputsuggestion:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/keyboards-and-input": {
+      "abstract": [
+        {
+          "text": "Configure the system keyboard, create your own keyboards to handle input, or detect key presses on a physical keyboard.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/keyboards-and-input",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keyboards and input",
+      "type": "topic",
+      "url": "/documentation/uikit/keyboards-and-input"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Smart-Reply-for-messaging",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIConversationContext",
+        "doc://com.apple.uikit/documentation/UIKit/UIConversationContext/Entry",
+        "doc://com.apple.uikit/documentation/UIKit/UIMailConversationContext",
+        "doc://com.apple.uikit/documentation/UIKit/UIMailConversationContext/MailEntry",
+        "doc://com.apple.uikit/documentation/UIKit/UIMessageConversationContext",
+        "doc://com.apple.uikit/documentation/UIKit/UIMessageConversationContext/MessageEntry",
+        "doc://com.apple.uikit/documentation/UIKit/UIInputSuggestion",
+        "doc://com.apple.uikit/documentation/UIKit/UISmartReplySuggestion"
+      ],
+      "title": "Smart Reply for messaging"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Smart-Reply-for-messaging",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIConversationContext",
+                "doc://com.apple.uikit/documentation/UIKit/UIConversationContext/Entry",
+                "doc://com.apple.uikit/documentation/UIKit/UIMailConversationContext",
+                "doc://com.apple.uikit/documentation/UIKit/UIMailConversationContext/MailEntry",
+                "doc://com.apple.uikit/documentation/UIKit/UIMessageConversationContext",
+                "doc://com.apple.uikit/documentation/UIKit/UIMessageConversationContext/MessageEntry",
+                "doc://com.apple.uikit/documentation/UIKit/UIInputSuggestion",
+                "doc://com.apple.uikit/documentation/UIKit/UISmartReplySuggestion"
+              ],
+              "title": "Smart Reply for messaging"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMailConversationContext~1MailEntry/title",
+          "value": "UIMailConversationEntry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMailConversationContext~1MailEntry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMailConversationEntry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMailConversationContext~1MailEntry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMailConversationEntry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTraits~1conversationContext/title",
+          "value": "conversationContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTraits~1conversationContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "conversationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInput/title",
+          "value": "UITextInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMailConversationContext/title",
+          "value": "UIMailConversationContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMailConversationContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMailConversationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMailConversationContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMailConversationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextViewDelegate~1textView(_:insertInputSuggestion:)/title",
+          "value": "textView:insertInputSuggestion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextViewDelegate~1textView(_:insertInputSuggestion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textView:insertInputSuggestion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textField(_:insertInputSuggestion:)/title",
+          "value": "textField:insertInputSuggestion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFieldDelegate~1textField(_:insertInputSuggestion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textField:insertInputSuggestion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIConversationContext/title",
+          "value": "UIConversationContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIConversationContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIConversationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIConversationContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIConversationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInputSuggestion/title",
+          "value": "UIInputSuggestion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInputSuggestion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIInputSuggestion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInputSuggestion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIInputSuggestion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInput~1insert(_:)/title",
+          "value": "insertInputSuggestion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInput~1insert(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertInputSuggestion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIConversationContext~1Entry/title",
+          "value": "UIConversationEntry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIConversationContext~1Entry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIConversationEntry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIConversationContext~1Entry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIConversationEntry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMessageConversationContext/title",
+          "value": "UIMessageConversationContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMessageConversationContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMessageConversationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMessageConversationContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMessageConversationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputDelegate~1conversationContext(_:didChange:)/title",
+          "value": "conversationContext:didChange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputDelegate~1conversationContext(_:didChange:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "conversationContext:didChange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMessageConversationContext~1MessageEntry/title",
+          "value": "UIMessageConversationEntry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMessageConversationContext~1MessageEntry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMessageConversationEntry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMessageConversationContext~1MessageEntry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMessageConversationEntry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISmartReplySuggestion/title",
+          "value": "UISmartReplySuggestion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISmartReplySuggestion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISmartReplySuggestion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISmartReplySuggestion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISmartReplySuggestion"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/adopting-smart-reply-in-your-messaging-or-email-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/adopting-smart-reply-in-your-messaging-or-email-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,891 @@
+{
+  "abstract": [
+    {
+      "text": "An implementation of Secure Hashing Algorithm 2 (SHA-2) hashing with a",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "512-bit digest.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:9CryptoKit6SHA512V",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SHA512"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Apple CryptoKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SHA512"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "SHA512"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SHA512"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " hash implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HashFunction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol for the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specific case of SHA-2 hashing with a 512-bit digest (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512Digest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Larger digests take more space but are more secure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can compute the digest by calling the static ",
+              "type": "text"
+            },
+            {
+              "code": "hash(data:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "once. Alternatively, if the data that you want to hash is too large to fit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in memory, you can compute the digest iteratively by creating a new hash",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance, calling the ",
+              "type": "text"
+            },
+            {
+              "code": "update(data:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method repeatedly with blocks of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data, and then calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512/finalize()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to get the result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CryptoKit/documentation/CryptoKit": {
+      "abstract": [
+        {
+          "text": "Perform cryptographic operations securely and efficiently.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple CryptoKit",
+      "type": "topic",
+      "url": "/documentation/cryptokit"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HashFunction": {
+      "abstract": [
+        {
+          "text": "A type that performs cryptographically secure hashing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HashFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HashFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HashFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "HashFunction",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hashfunction"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA256": {
+      "abstract": [
+        {
+          "text": "An implementation of Secure Hashing Algorithm 2 (SHA-2) hashing with a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "256-bit digest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHA256"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA256",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHA256"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHA256",
+      "type": "topic",
+      "url": "/documentation/cryptokit/sha256"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA384": {
+      "abstract": [
+        {
+          "text": "An implementation of Secure Hashing Algorithm 2 (SHA-2) hashing with a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "384-bit digest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHA384"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA384",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHA384"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHA384",
+      "type": "topic",
+      "url": "/documentation/cryptokit/sha384"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512": {
+      "abstract": [
+        {
+          "text": "An implementation of Secure Hashing Algorithm 2 (SHA-2) hashing with a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "512-bit digest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHA512"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHA512"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHA512",
+      "type": "topic",
+      "url": "/documentation/cryptokit/sha512"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512/Digest": {
+      "abstract": [
+        {
+          "text": "The digest type for a SHA512 hash function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Digest"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512/Digest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Digest"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHA512.Digest",
+      "type": "topic",
+      "url": "/documentation/cryptokit/sha512/digest"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512/blockByteCount": {
+      "abstract": [
+        {
+          "text": "The number of bytes that represents the hash function’s internal state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blockByteCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512/blockByteCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "blockByteCount",
+      "type": "topic",
+      "url": "/documentation/cryptokit/sha512/blockbytecount"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512/byteCount": {
+      "abstract": [
+        {
+          "text": "The number of bytes in a SHA512 digest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "byteCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512/byteCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "byteCount",
+      "type": "topic",
+      "url": "/documentation/cryptokit/sha512/bytecount"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512/finalize()": {
+      "abstract": [
+        {
+          "text": "Finalizes the hash function and returns the computed digest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "finalize"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit6SHA512V",
+          "text": "SHA512"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit6SHA512V6Digesta",
+          "text": "Digest"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512/finalize()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "finalize()",
+      "type": "topic",
+      "url": "/documentation/cryptokit/sha512/finalize()"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512/init()": {
+      "abstract": [
+        {
+          "text": "Creates a SHA512 hash function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/cryptokit/sha512/init()"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512/update(bufferPointer:)": {
+      "abstract": [
+        {
+          "text": "Incrementally updates the hash function with the contents of the buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "bufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SW",
+          "text": "UnsafeRawBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512/update(bufferPointer:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "update(bufferPointer:)",
+      "type": "topic",
+      "url": "/documentation/cryptokit/sha512/update(bufferpointer:)"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512Digest": {
+      "abstract": [
+        {
+          "text": "The output of a Secure Hashing Algorithm 2 (SHA-2) hash with a 512-bit digest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHA512Digest"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512Digest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHA512Digest"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHA512Digest",
+      "type": "topic",
+      "url": "/documentation/cryptokit/sha512digest"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HashFunction",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Cryptographically-secure-hashes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HashFunction",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA384",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA256"
+      ],
+      "title": "Cryptographically secure hashes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Specifying-the-output-type",
+      "identifiers": [
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512/Digest",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512Digest"
+      ],
+      "title": "Specifying the output type"
+    },
+    {
+      "anchor": "Computing-a-hash-iteratively",
+      "identifiers": [
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512/init()",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512/update(bufferPointer:)",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512/finalize()"
+      ],
+      "title": "Computing a hash iteratively"
+    },
+    {
+      "anchor": "Inspecting-hash-information",
+      "identifiers": [
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512/byteCount",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512/blockByteCount"
+      ],
+      "title": "Inspecting hash information"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cryptokit/sha512"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

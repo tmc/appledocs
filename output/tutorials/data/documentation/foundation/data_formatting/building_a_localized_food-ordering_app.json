@@ -1,0 +1,1342 @@
+{
+  "abstract": [
+    {
+      "text": "Format, style, and localize your app’s text for use in multiple languages with string formatting, attributed strings, and automatic grammar agreement.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app"
+  },
+  "kind": "article",
+  "legacy_identifier": 3850360,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "8.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Building a Localized Food-Ordering App"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC21 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-3853056",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Caffé sample app presents a list of menu items — each of which are available in a variety of sizes — that users can order from a café. In presenting the various food items and helping to prepare an order, the app uses various Foundation APIs to localize and stylize the app’s text:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "FormatStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "-based formatting customizes the display of currency values, dates and times, and lists of strings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attributed strings allow the app to easily create styled text with Markdown for display in SwiftUI views. The app also uses localized attributed strings to build strings at runtime, even when the word order changes in different languages.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Automatic grammar agreement handles localization situations when strings need to adjust at runtime to match grammatical gender or number in certain languages.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "3885683",
+          "level": 3,
+          "text": "Use Formatters to Format Strings at Runtime",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app launches, the user can choose one of several foods to add to their order. When the user chooses a food item, a new view shows the item’s ingredients and the available sizes with corresponding prices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ingredient list shows an example of formatting a list of items, using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Sequence/formatted(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method defined on the Swift ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Sequence",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type. It starts with the an array of ",
+              "type": "text"
+            },
+            {
+              "code": "ingredients",
+              "type": "codeVoice"
+            },
+            {
+              "text": " defined by the ",
+              "type": "text"
+            },
+            {
+              "code": "Food",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type. In ",
+              "type": "text"
+            },
+            {
+              "code": "FoodHeaderView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "code": "ingredientText",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable takes the ingredient strings, maps each to a localized string, and then uses the ",
+              "type": "text"
+            },
+            {
+              "code": "formatted(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to create a comma-separated list. By adding the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/listformatstyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " list type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/listformatstyle/listtype/and",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as a format style parameter, the formatter places an “and” (or its localized equivalent) before last member of the list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private var ingredientText: String {",
+            "    food.ingredients.map(\\.localizedDescription).formatted(.list(type: .and))",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3885668",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In English, the ingredient text reads “Our pizza is made from: prosciutto, cheese, flour, and tomatoes.” In Spanish, the list reads “Nuestro pizza está hecho de: prosciutto, queso, harina y tomates.”",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app also uses string formatters to present the price of each item, as seen here:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func localizedPrice(_ size: FoodSize) -> String {",
+            "    price[size]!.formatted(.currency(code: \"USD\"))",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3885669",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As with the list of ingredients earlier, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryInteger/formatted(_:)-73k3e",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method applies directly to the type it formats. In this case, the formatted type is a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/decimal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "; this type conforms to Swift’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryInteger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which defines the ",
+              "type": "text"
+            },
+            {
+              "code": "formatted(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " parameter indicates that the formatting should format the price as a currency, using U.S. dollars.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more sophisticated formatting needs, some format styles support chaining modifier methods to customize a default style. The Caffé app includes a companion app for Apple Watch that shows the next date when the user is eligible to receive a free coffee. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " presented in this view customizes the default ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date/formatstyle/3798884-datetime",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " format style to show only the weekday, hour, and minute:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var str = date.formatted(.dateTime",
+            "                            .locale(locale)",
+            "                            .minute()",
+            "                            .hour()",
+            "                            .weekday()",
+            "                            .attributed)"
+          ],
+          "metadata": {
+            "anchor": "3885670",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "3885684",
+          "level": 3,
+          "text": "Use Attributed Strings to Style Text",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The previous listing also uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date/formatstyle/3796283-attributed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to return an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Attributed strings contain text and metadata that applies to ranges of that text. In this case, the attributed string returned by the formatter uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/3796121-datefield",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attribute to mark which ranges of text correspond to which parts of the formatted date. This allows the app to find the weekday attribute in the attribute container and change it to an orange foreground color attribute. The SwiftUI view can then use this attribute when styling the watch display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let weekday = AttributeContainer",
+            "    .dateField(.weekday)",
+            "",
+            "let color = AttributeContainer",
+            "    .foregroundColor(.orange)",
+            "",
+            "str.replaceAttributes(weekday, with: color)"
+          ],
+          "metadata": {
+            "anchor": "3885672",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is strongly-typed, meaning that all attributes must have defined names and value types. ",
+              "type": "text"
+            },
+            {
+              "code": "AttributedString",
+              "type": "codeVoice"
+            },
+            {
+              "text": " defines attributes for Foundation, SwiftUI, AppKit, and UIKit in its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type. For common inline attributes like emphasis and links, attributed strings support initialization from with Markdown syntax, either in source or in ",
+              "type": "text"
+            },
+            {
+              "code": ".strings",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files. The following entry from the Spanish localization’s ",
+              "type": "text"
+            },
+            {
+              "code": "Localizable.strings",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file shows Markdown formatting for strong emphasis (",
+              "type": "text"
+            },
+            {
+              "code": "**",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), regular emphasis (",
+              "type": "text"
+            },
+            {
+              "code": "_",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), and links (",
+              "type": "text"
+            },
+            {
+              "code": "[]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for link text, followed by a URL in parentheses):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"**Thank you!**\" = \"**¡Gracias!**\";",
+            "\"_Please visit our [website](https://www.example.com)._\" = \"_Visita nuestro [sitio web](https://www.example.com)._\";"
+          ],
+          "metadata": {
+            "anchor": "3885673",
+            "title": "Listing 5"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app can also define custom attributes, as Caffé does with its ",
+              "type": "text"
+            },
+            {
+              "code": "RainbowAttribute",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type, an attribute that indicates a range of text to display in multiple colors. The Caffé app adds this attribute by:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Defining the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "RainbowAttribute",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as an extension of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/codableattributedstringkey",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and providing the name and value type of the attribute.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Extending ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to define a new ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescope",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " called ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CaffeAppAttributes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", whose one member is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "rainbow",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", of type ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "RainbowAttribute",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The app also extends ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AttributeScopes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "caffeApp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", a variable of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CaffeAppAttributes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " type, that allows access to the Caffé app’s custom attributes with dynamic member lookup syntax.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Extending ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedynamiclookup",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to provide a subscript method that takes key paths of type ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CaffeAppAttributes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This allows code to use dot syntax when looking up the members of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CaffeAppAttributes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "enum RainbowAttribute: CodableAttributedStringKey, MarkdownDecodableAttributedStringKey {",
+            "    enum Value: String, Codable, Hashable {",
+            "        case plain",
+            "        case fun",
+            "        case extreme",
+            "    }",
+            "    ",
+            "    static var name: String = \"rainbow\"",
+            "}",
+            "",
+            "extension AttributeScopes {",
+            "    struct CaffeAppAttributes: AttributeScope {",
+            "        let rainbow: RainbowAttribute",
+            "    }",
+            "    ",
+            "    var caffeApp: CaffeAppAttributes.Type { CaffeAppAttributes.self }",
+            "}",
+            "",
+            "extension AttributeDynamicLookup {",
+            "    subscript<T: AttributedStringKey>(dynamicMember keyPath: KeyPath<AttributeScopes.CaffeAppAttributes, T>) -> T {",
+            "        self[T.self]",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3885674",
+            "title": "Listing 6"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The implementation of ",
+              "type": "text"
+            },
+            {
+              "code": "RainbowText",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses these attributes by creating an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and calling a private ",
+              "type": "text"
+            },
+            {
+              "code": "annotateRainbowColors(from:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to apply its color attributes. To create an ",
+              "type": "text"
+            },
+            {
+              "code": "AttributedString",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that uses custom attribute scopes, Caffé uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3867591-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer, passing the key path to the custom attribute name as the ",
+              "type": "text"
+            },
+            {
+              "code": "including:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "init(_ localizedKey: String.LocalizationValue) {",
+            "    attributedString = RainbowText.annotateRainbowColors(",
+            "        from: AttributedString(localized: localizedKey, including: \\.caffeApp))",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3885675",
+            "title": "Listing 7"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To apply a custom attribute in a string, a caller uses the Markdown extension syntax, as seen in the following example, which applies two different values of the rainbow attribute:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "RainbowText(\"^[Fast](rainbow: 'fun') & ^[Delicious](rainbow: 'extreme') Food\")",
+            "    .font(.slogan)",
+            "    .frame(maxWidth: 260, alignment: .leading)"
+          ],
+          "metadata": {
+            "anchor": "3885676",
+            "title": "Listing 8"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "3885685",
+          "level": 3,
+          "text": "Simplify Localization by Performing Grammar Agreement Automatically",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some languages’ grammar require that nouns, adjectives, articles, and other parts of speech agree in number or gender with other parts of a sentence. Localized attributed strings can perform this agreement by using a template string to format the values at runtime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Caffé, each food’s detail view has a button indicating how many of each item the user has selected to add to their order. The app fills in this button text with the number, size, and food item to add to the order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Button(",
+            "    \"Add ^[\\(quantity) \\(foodSizeSelection.localizedName) \\(food.localizedName)](inflect: true) to your order\",",
+            "    action: orderButtonTapped",
+            ")"
+          ],
+          "metadata": {
+            "anchor": "3885678",
+            "title": "Listing 9"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The syntax ",
+              "type": "text"
+            },
+            {
+              "code": "^[text](inflect:true)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tells the generated attributed string to ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "inflect",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " the string, meaning to perform automatic grammar agreement on the range of text within the square braces. This process takes into account the value of any numeric substitutions and grammatical gender of string substitutions. In English, this causes the food name to pluralize when ",
+              "type": "text"
+            },
+            {
+              "code": "quantity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is not equal to ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Spanish, the localized string in the ",
+              "type": "text"
+            },
+            {
+              "code": ".strings",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file uses the parameter reordering syntax to place the noun before the adjective, like the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"Añadir ^[%1$lld %3$@ %2$@](inflect: true) a tu pedido\";"
+          ],
+          "metadata": {
+            "anchor": "3885679",
+            "title": "Listing 10"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the automatic grammar engine inflects the generated string for Spanish, it pluralizes the food name, as it does in English. In Spanish, it also adjusts the adjective (",
+              "type": "text"
+            },
+            {
+              "code": "foodSizeSelection.localizedName",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") to match the number of ",
+              "type": "text"
+            },
+            {
+              "code": "quantity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the grammatical gender of ",
+              "type": "text"
+            },
+            {
+              "code": "food.localizedName",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, one small salad becomes “1 ensalada pequeña” in Spanish, while two small salads is “2 ensaladas pequeñas”. In both cases, the grammar engine changes the adjective “pequeño” to match the feminine gender of “ensalada”.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some languages, an app may need to provide part-of-speech information to the inflection engine. This happens in English, where the words “sandwich” and “juice” are both a noun and a verb. In Spanish, the food size terms “grande” and “enorme” can be used as both adjectives and nouns. The inflection engine logs a warning when it encounters this type of ambiguity. To clarify intent, the inflection engine accepts a grammar markup that wraps the substitution with the syntax ",
+              "type": "text"
+            },
+            {
+              "code": "^[…](morphology: {…})",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and provides part-of-speech information. The following entry from the English strings file shows an example of this disambiguation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"Add ^[%lld %@ %@](inflect: true) to your order\" = \"Add ^[%lld %@ ^[%@](morphology: { partOfSpeech: \\\"noun\\\" })](inflect: true) to your order\";"
+          ],
+          "metadata": {
+            "anchor": "3885680",
+            "title": "Listing 11"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/BinaryInteger": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryInteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BinaryInteger",
+      "type": "topic",
+      "url": "/documentation/swift/binaryinteger"
+    },
+    "doc://com.apple.Swift/documentation/Swift/BinaryInteger/formatted(_:)-73k3e": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryInteger/formatted(_:)-73k3e",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/binaryinteger/formatted(_:)-73k3e"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sequence": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sequence",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sequence",
+      "type": "topic",
+      "url": "/documentation/swift/sequence"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sequence/formatted(_:)": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sequence/formatted(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/sequence/formatted(_:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/3867591-init": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3867591-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(localized:options:table:bundle:locale:comment:including:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/3867591-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedynamiclookup": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedynamiclookup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributeDynamicLookup",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedynamiclookup"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributescope": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescope",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributeScope",
+      "type": "topic",
+      "url": "/documentation/foundation/attributescope"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributescopes": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributeScopes",
+      "type": "topic",
+      "url": "/documentation/foundation/attributescopes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/3796121-datefield": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/3796121-datefield",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dateField",
+      "type": "topic",
+      "url": "/documentation/foundation/attributescopes/foundationattributes/3796121-datefield"
+    },
+    "doc://com.apple.documentation/documentation/foundation/codableattributedstringkey": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/codableattributedstringkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CodableAttributedStringKey",
+      "type": "topic",
+      "url": "/documentation/foundation/codableattributedstringkey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Formatting",
+      "type": "topic",
+      "url": "/documentation/foundation/data_formatting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app": {
+      "abstract": [
+        {
+          "text": "Format, style, and localize your app’s text for use in multiple languages with string formatting, attributed strings, and automatic grammar agreement.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a Localized Food-Ordering App",
+      "type": "topic",
+      "url": "/documentation/foundation/data_formatting/building_a_localized_food-ordering_app"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885668": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885668",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885668"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885669": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885669",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885669"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885670": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885670",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885670"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885672": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885672",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885672"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885673": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885673",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885673"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885674": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885674",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 6",
+      "type": "section",
+      "url": "/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885674"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885675": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885675",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 7",
+      "type": "section",
+      "url": "/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885675"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885676": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885676",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 8",
+      "type": "section",
+      "url": "/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885676"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885678": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885678",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 9",
+      "type": "section",
+      "url": "/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885678"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885679": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885679",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 10",
+      "type": "section",
+      "url": "/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885679"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885680": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885680",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 11",
+      "type": "section",
+      "url": "/documentation/foundation/data_formatting/building_a_localized_food-ordering_app#3885680"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date",
+      "type": "topic",
+      "url": "/documentation/foundation/date"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/formatstyle/3796283-attributed": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/formatstyle/3796283-attributed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributed",
+      "type": "topic",
+      "url": "/documentation/foundation/date/formatstyle/3796283-attributed"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/formatstyle/3798884-datetime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/formatstyle/3798884-datetime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dateTime",
+      "type": "topic",
+      "url": "/documentation/foundation/date/formatstyle/3798884-datetime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/decimal": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/decimal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decimal",
+      "type": "topic",
+      "url": "/documentation/foundation/decimal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatter/displaying_human-friendly_content": {
+      "abstract": [
+        {
+          "text": "Convert data into readable strings or Swift objects using formatters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatter/displaying_human-friendly_content",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Displaying Human-Friendly Content",
+      "type": "topic",
+      "url": "/documentation/foundation/formatter/displaying_human-friendly_content"
+    },
+    "doc://com.apple.documentation/documentation/foundation/listformatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/listformatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ListFormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/listformatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/listformatstyle/listtype/and": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/listformatstyle/listtype/and",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ListFormatStyle.ListType.and",
+      "type": "topic",
+      "url": "/documentation/foundation/listformatstyle/listtype/and"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs-assets.developer.apple.com/published/decc79ee4b/BuildingALocalizedFoodOrderingApp.zip": {
+      "checksum": "98e0bfebf37a3b7d273eb483887179722488c1333e0931246c80ca7fd103e8cde91714ffc155a9b8a634756845bc3598a5546de736d57d19c6bc0c137eb21578",
+      "identifier": "https://docs-assets.developer.apple.com/published/decc79ee4b/BuildingALocalizedFoodOrderingApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/decc79ee4b/BuildingALocalizedFoodOrderingApp.zip"
+    },
+    "link-3853056": {
+      "identifier": "link-3853056",
+      "kind": "article",
+      "role": "link",
+      "title": "10109: What’s New in Foundation",
+      "type": "topic",
+      "url": "https://developer.apple.com/wwdc21/10109/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/decc79ee4b/BuildingALocalizedFoodOrderingApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/formatter/displaying_human-friendly_content"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/data_formatting/building_a_localized_food-ordering_app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

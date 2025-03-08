@@ -1,0 +1,1426 @@
+{
+  "abstract": [
+    {
+      "text": "Provide suggestions to people searching for content in your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Search"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Suggesting-search-terms"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Suggesting search terms"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can suggest query text during a search operation by providing a collection",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of search suggestion views. Because suggestion views are not limited to plain",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "text, you must also provide the search string that each suggestion view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "represents. You can also provide suggestions for tokens, if your search",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interface includes them. SwiftUI presents the suggestions in a list below",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the search field.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Search-suggest-0-macOS",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For both text and tokens, you manage the list of suggestions, so you have",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "complete flexibility to decide what to suggest. For example, you can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Offer a static list of suggestions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remember previous searches and offer the most recent or most common ones.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Update the list of suggestions in real time based on the current search text.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Employ some combination of these and other strategies, possibly changing",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "over time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Suggest-search-text",
+          "level": 3,
+          "text": "Suggest search text",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Suggest search text by providing a collection of views to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchSuggestions(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier. This modifier applies to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:placement:prompt:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier that appears",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "before it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When someone activates the search interface, it presents the suggestion views",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as a list of choices below the query string. Associate a string with each",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "suggestion view by adding the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchCompletion(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the view inside the search suggestions closure. For example, you can include",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "emoji with fruit types that you suggest as possible products to search for,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and provide the corresponding search string as a search completion in each case:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ProductList(departmentId: departmentId, productId: $productId)",
+            "    .searchable(text: $model.searchText)",
+            "    .searchSuggestions {",
+            "        Text(\"🍎 Apple\").searchCompletion(\"apple\")",
+            "        Text(\"🍐 Pear\").searchCompletion(\"pear\")",
+            "        Text(\"🍌 Banana\").searchCompletion(\"banana\")",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When someone chooses a suggestion, SwiftUI replaces the text in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "search field with the search completion string. In the above example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "choosing “🍐 Pear” puts the text “pear” in the search query.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Search-suggest-1-macOS",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you omit the search completion modifier for a particular suggestion",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view, SwiftUI displays the view, but the view doesn’t react to taps or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "clicks. However, you can group the views with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Section",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " containers that have",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "headers, enabling you to distinguish different kinds of suggestions,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "like recent searches and common search terms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In tvOS, searchable modifiers only support suggestion views",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "of type ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", like in the above example. Other platforms can use",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "arbitrary views for the suggestions, including custom views.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Certain events or actions, like when someone moves a macOS window, might",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dismiss the suggestion list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Suggest-tokens",
+          "level": 3,
+          "text": "Suggest tokens",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also suggest tokens for the search field. In",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this case, associate a suggestion view with a token using the version of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchCompletion(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier that takes tokens as input:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ProductList(departmentId: departmentId, productId: $productId)",
+            "    .searchable(text: $model.searchText, tokens: $model.tokens) { token in",
+            "        switch token {",
+            "        case .apple: Text(\"Apple\")",
+            "        case .pear: Text(\"Pear\")",
+            "        case .banana: Text(\"Banana\")",
+            "        }",
+            "    }",
+            "    .searchSuggestions {",
+            "        Text(\"Apple\").searchCompletion(FruitToken.apple)",
+            "        Text(\"Pear\").searchCompletion(FruitToken.pear)",
+            "        Text(\"Banana\").searchCompletion(FruitToken.banana)",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use any type that conforms to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol as a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "token. For more information about using tokens in the search query, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Performing-a-search-operation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Simplify-token-suggestions",
+          "level": 3,
+          "text": "Simplify token suggestions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a convenience when you have a collection of suggestions that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "exactly matches the list of tokens, you can create a collection of possible",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tokens to suggest. For example, you can add a published ",
+              "type": "text"
+            },
+            {
+              "code": "suggestions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to your model that contains all the possible tokens:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Published var suggestions: [FruitToken] = FruitToken.allCases"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then you can provide this array to one of the searchable modifiers",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that takes a ",
+              "type": "text"
+            },
+            {
+              "code": "suggestedTokens",
+              "type": "codeVoice"
+            },
+            {
+              "text": " input parameter, like",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:tokens:suggestedTokens:placement:prompt:token:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI uses this to generate the suggestions automatically:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ProductList(departmentId: departmentId, productId: $productId)",
+            "    .searchable(",
+            "        text: $model.searchText,",
+            "        tokens: $model.tokens,",
+            "        suggestedTokens: $model.suggestions",
+            "    ) { token in",
+            "        switch token {",
+            "        case .apple: Text(\"Apple\")",
+            "        case .pear: Text(\"Pear\")",
+            "        case .banana: Text(\"Banana\")",
+            "        }",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this version of the searchable modifier, SwiftUI uses one view builder",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to describe the appearance of the tokens in both the search field and the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "suggestions container.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-suggestions-dynamically",
+          "level": 3,
+          "text": "Update suggestions dynamically",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can update the suggestions that you provide as conditions change. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, you can specify an array of ",
+              "type": "text"
+            },
+            {
+              "code": "suggestedSearches",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that you store in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app’s model:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ProductList(departmentId: departmentId, productId: $productId)",
+            "    .searchable(text: $model.searchText)",
+            "    .searchSuggestions {",
+            "        ForEach(model.suggestedSearches) { suggestion in",
+            "            Label(suggestion.title,  image: suggestion.image)",
+            "                .searchCompletion(suggestion.text)",
+            "        }",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If ",
+              "type": "text"
+            },
+            {
+              "code": "suggestedSearches",
+              "type": "codeVoice"
+            },
+            {
+              "text": " begins as an empty array, the interface",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "doesn’t display any suggestions to start. You can then",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "update the array as conditions change, like when you want to include previous",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "searches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Search-suggest-0-macOS": {
+      "alt": "A wide rectangle with rounded corners and outlined in blue that contains a magnifying glass on the left, followed by the text, Search in a gray color. A list appears below the rectangle in another rectangle with a drop shadow. The list contains three items, each of which consists of a word and an emoji that displays an image that matches the word. The items are Apple, Pear, and Banana.",
+      "identifier": "Search-suggest-0-macOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f4425da92b699d3b9f0292f1c8c053e8/Search-suggest-0-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/22f317e6faa54777a65f41589ed7ecb6/Search-suggest-0-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "Search-suggest-1-macOS": {
+      "alt": "A macOS window with three navigation panes. The pane on the left lists the items Produce, Frozen, and Bakery. The middle pane has a long list of fruits and vegetables. The pane on the right has the placeholder text Select a Product. The toolbar has a search field in the upper right of the window that has the placeholder text Search. A list appears attached to the search field, floating above the window. The list contains the items Apple, Pear, and Banana, each represented by an emoji and the corresponding text.",
+      "identifier": "Search-suggest-1-macOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/29b5c6ee93212663a69e0d993a7eacbd/Search-suggest-1-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cee177e62e31ef29770545c69317d1d4/Search-suggest-1-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Performing-a-search-operation": {
+      "abstract": [
+        {
+          "text": "Update search results based on search text and optional tokens that you store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Performing-a-search-operation",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing a search operation",
+      "type": "topic",
+      "url": "/documentation/swiftui/performing-a-search-operation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Search": {
+      "abstract": [
+        {
+          "text": "Enable people to search for text or other content within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Search",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Search",
+      "type": "topic",
+      "url": "/documentation/swiftui/search"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SearchSuggestionsPlacement": {
+      "abstract": [
+        {
+          "text": "The ways that SwiftUI displays search suggestions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SearchSuggestionsPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SearchSuggestionsPlacement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SearchSuggestionsPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "SearchSuggestionsPlacement",
+      "type": "topic",
+      "url": "/documentation/swiftui/searchsuggestionsplacement"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Section": {
+      "abstract": [
+        {
+          "text": "A container view that you can use to add hierarchy within certain views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Section"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Section",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Section"
+        }
+      ],
+      "role": "symbol",
+      "title": "Section",
+      "type": "topic",
+      "url": "/documentation/swiftui/section"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text": {
+      "abstract": [
+        {
+          "text": "A view that displays one or more lines of read-only text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "role": "symbol",
+      "title": "Text",
+      "type": "topic",
+      "url": "/documentation/swiftui/text"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchCompletion(_:)": {
+      "abstract": [
+        {
+          "text": "Associates a fully formed string with the value of this view when used",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "as a search suggestion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchCompletion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchCompletion(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "searchCompletion(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/searchcompletion(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchSuggestions(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the search suggestions for this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchSuggestions"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">(() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchSuggestions(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "searchSuggestions(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/searchsuggestions(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchSuggestions(_:for:)": {
+      "abstract": [
+        {
+          "text": "Configures how to display search suggestions within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchSuggestions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10VisibilityO",
+          "text": "Visibility"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI26SearchSuggestionsPlacementV",
+          "text": "SearchSuggestionsPlacement"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI26SearchSuggestionsPlacementV3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchSuggestions(_:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "searchSuggestions(_:for:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/searchsuggestions(_:for:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:placement:prompt:)": {
+      "abstract": [
+        {
+          "text": "Marks this view as searchable, which configures the display of a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "search field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "text"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "placement"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "prompt"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:placement:prompt:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "searchable(text:placement:prompt:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/searchable(text:placement:prompt:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:tokens:suggestedTokens:placement:prompt:token:)": {
+      "abstract": [
+        {
+          "text": "Marks this view as searchable with text, tokens, and suggestions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "text"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "tokens"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "suggestedTokens"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "placement"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "prompt"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "token"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:tokens:suggestedTokens:placement:prompt:token:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "searchable(text:tokens:suggestedTokens:placement:prompt:token:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/searchable(text:tokens:suggestedtokens:placement:prompt:token:)"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Identifiable": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/Swift/Identifiable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Making-search-suggestions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchSuggestions(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchSuggestions(_:for:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchCompletion(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:tokens:suggestedTokens:placement:prompt:token:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SearchSuggestionsPlacement"
+      ],
+      "title": "Making search suggestions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/suggesting-search-terms"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

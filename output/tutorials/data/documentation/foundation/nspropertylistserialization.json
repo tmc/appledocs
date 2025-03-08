@@ -1,0 +1,805 @@
+{
+  "abstract": [
+    {
+      "text": "An object that converts between a property list and one of several serialized representations.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1417383,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSPropertyListSerialization",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.2",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSPropertyListSerialization"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSPropertyListSerialization"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class provides methods that convert a property list to and from several serialized formats. A property list is itself an array or dictionary that contains only ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Property list objects are toll-free bridged with their respective Core Foundation types (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdataref",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstringref",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and so on). See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1745091",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  for more information on toll-free bridging.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1745091": {
+      "identifier": "devLink-1745091",
+      "title": "Toll-Free Bridging",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdataref": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdataref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFDataRef",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdataref"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstringref": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstringref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFStringRef",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstringref"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1448136-nserror_codes/nspropertylisterrormaximum": {
+      "abstract": [
+        {
+          "text": "The end of the range of error codes reserved for property list errors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1448136-nserror_codes/nspropertylisterrormaximum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPropertyListErrorMaximum",
+      "type": "topic",
+      "url": "/documentation/foundation/1448136-nserror_codes/nspropertylisterrormaximum"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1448136-nserror_codes/nspropertylisterrorminimum": {
+      "abstract": [
+        {
+          "text": "The start of the range of error codes reserved for property list errors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1448136-nserror_codes/nspropertylisterrorminimum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPropertyListErrorMinimum",
+      "type": "topic",
+      "url": "/documentation/foundation/1448136-nserror_codes/nspropertylisterrorminimum"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1448136-nserror_codes/nspropertylistreadcorrupterror": {
+      "abstract": [
+        {
+          "text": "Parsing of the property list failed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1448136-nserror_codes/nspropertylistreadcorrupterror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPropertyListReadCorruptError",
+      "type": "topic",
+      "url": "/documentation/foundation/1448136-nserror_codes/nspropertylistreadcorrupterror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1448136-nserror_codes/nspropertylistreadstreamerror": {
+      "abstract": [
+        {
+          "text": "Reading of the property list failed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1448136-nserror_codes/nspropertylistreadstreamerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPropertyListReadStreamError",
+      "type": "topic",
+      "url": "/documentation/foundation/1448136-nserror_codes/nspropertylistreadstreamerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1448136-nserror_codes/nspropertylistreadunknownversionerror": {
+      "abstract": [
+        {
+          "text": "The version number of the property list cannot be determined.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1448136-nserror_codes/nspropertylistreadunknownversionerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPropertyListReadUnknownVersionError",
+      "type": "topic",
+      "url": "/documentation/foundation/1448136-nserror_codes/nspropertylistreadunknownversionerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1448136-nserror_codes/nspropertylistwriteinvaliderror": {
+      "abstract": [
+        {
+          "text": "Writing failed because of an invalid property list object, or an invalid property list type was specified.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1448136-nserror_codes/nspropertylistwriteinvaliderror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPropertyListWriteInvalidError",
+      "type": "topic",
+      "url": "/documentation/foundation/1448136-nserror_codes/nspropertylistwriteinvaliderror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1448136-nserror_codes/nspropertylistwritestreamerror": {
+      "abstract": [
+        {
+          "text": "Writing to the property list failed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1448136-nserror_codes/nspropertylistwritestreamerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPropertyListWriteStreamError",
+      "type": "topic",
+      "url": "/documentation/foundation/1448136-nserror_codes/nspropertylistwritestreamerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Archives and Serialization",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumber": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspropertylistformat": {
+      "abstract": [
+        {
+          "text": "These constants are used to specify a property list serialization format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspropertylistformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPropertyListFormat",
+      "type": "topic",
+      "url": "/documentation/foundation/nspropertylistformat"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspropertylistmutabilityoptions": {
+      "abstract": [
+        {
+          "text": "These constants specify mutability options in property lists.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspropertylistmutabilityoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPropertyListMutabilityOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/nspropertylistmutabilityoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspropertylistreadoptions": {
+      "abstract": [
+        {
+          "text": "The only read options supported are described in ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nspropertylistmutabilityoptions",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspropertylistreadoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPropertyListReadOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/nspropertylistreadoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPropertyListSerialization",
+      "type": "topic",
+      "url": "/documentation/foundation/nspropertylistserialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization/1407862-writepropertylist": {
+      "abstract": [
+        {
+          "text": "Writes a property list to the specified stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "writePropertyList:toStream:format:options:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization/1407862-writepropertylist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writePropertyList:toStream:format:options:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nspropertylistserialization/1407862-writepropertylist"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization/1409678-propertylistwithdata": {
+      "abstract": [
+        {
+          "text": "Creates and returns a property list from the specified data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "propertyListWithData:options:format:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization/1409678-propertylistwithdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "propertyListWithData:options:format:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nspropertylistserialization/1409678-propertylistwithdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization/1411020-propertylist": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a given property list is valid for a given format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "propertyList:isValidForFormat:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization/1411020-propertylist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "propertyList:isValidForFormat:",
+      "type": "topic",
+      "url": "/documentation/foundation/nspropertylistserialization/1411020-propertylist"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization/1411993-propertylistfromdata": {
+      "abstract": [
+        {
+          "text": "This method is deprecated. Use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization/1418309-datawithpropertylist",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "propertyListFromData:mutabilityOption:format:errorDescription:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization/1411993-propertylistfromdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "propertyListFromData:mutabilityOption:format:errorDescription:",
+      "type": "topic",
+      "url": "/documentation/foundation/nspropertylistserialization/1411993-propertylistfromdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization/1415468-propertylistwithstream": {
+      "abstract": [
+        {
+          "text": "Creates and returns a property list by reading from the specified stream. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "propertyListWithStream:options:format:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization/1415468-propertylistwithstream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "propertyListWithStream:options:format:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nspropertylistserialization/1415468-propertylistwithstream"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization/1416061-datafrompropertylist": {
+      "abstract": [
+        {
+          "text": "This method is obsolete and will be deprecated soon.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataFromPropertyList:format:errorDescription:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization/1416061-datafrompropertylist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dataFromPropertyList:format:errorDescription:",
+      "type": "topic",
+      "url": "/documentation/foundation/nspropertylistserialization/1416061-datafrompropertylist"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization/1418309-datawithpropertylist": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSData",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object containing a given property list in a specified format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataWithPropertyList:format:options:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization/1418309-datawithpropertylist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dataWithPropertyList:format:options:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nspropertylistserialization/1418309-datawithpropertylist"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspropertylistwriteoptions": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspropertylistwriteoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPropertyListWriteOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/nspropertylistwriteoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1651121",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization/1418309-datawithpropertylist",
+        "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization/1407862-writepropertylist",
+        "doc://com.apple.documentation/documentation/foundation/nspropertylistwriteoptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Serializing a Property List"
+    },
+    {
+      "anchor": "1651140",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization/1409678-propertylistwithdata",
+        "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization/1415468-propertylistwithstream"
+      ],
+      "kind": "taskGroup",
+      "title": "Deserializing a Property List"
+    },
+    {
+      "anchor": "1651171",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization/1411020-propertylist"
+      ],
+      "kind": "taskGroup",
+      "title": "Validating a Property List"
+    },
+    {
+      "anchor": "1651194",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization/1416061-datafrompropertylist",
+        "doc://com.apple.documentation/documentation/foundation/nspropertylistserialization/1411993-propertylistfromdata"
+      ],
+      "kind": "taskGroup",
+      "title": "Obsolete Methods"
+    },
+    {
+      "anchor": "1651225",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nspropertylistmutabilityoptions",
+        "doc://com.apple.documentation/documentation/foundation/nspropertylistformat",
+        "doc://com.apple.documentation/documentation/foundation/nspropertylistreadoptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "2879036",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/1448136-nserror_codes/nspropertylistreadcorrupterror",
+        "doc://com.apple.documentation/documentation/foundation/1448136-nserror_codes/nspropertylistreadunknownversionerror",
+        "doc://com.apple.documentation/documentation/foundation/1448136-nserror_codes/nspropertylistreadstreamerror",
+        "doc://com.apple.documentation/documentation/foundation/1448136-nserror_codes/nspropertylistwritestreamerror",
+        "doc://com.apple.documentation/documentation/foundation/1448136-nserror_codes/nspropertylistwriteinvaliderror",
+        "doc://com.apple.documentation/documentation/foundation/1448136-nserror_codes/nspropertylisterrorminimum",
+        "doc://com.apple.documentation/documentation/foundation/1448136-nserror_codes/nspropertylisterrormaximum"
+      ],
+      "kind": "taskGroup",
+      "title": "Error Codes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nspropertylistserialization"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/propertylistserialization"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

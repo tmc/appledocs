@@ -1,0 +1,849 @@
+{
+  "abstract": [
+    {
+      "text": "Create reports for external purchase tokens that result in completed transactions, including one-time charges, subscriptions and renewals, and refunds.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportwithtransactions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "External Purchase Server API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Reporting tokens with transactions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/external-purchase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you’re required to report all tokens and associated transactions according to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/support/apps-using-alternative-payment-providers-in-the-eu#commission-reports-and-payments",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " section of the article Using alternative payment options on the App Store in the European Union.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To send a report, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/Send-External-Purchase-Report",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint for each token you receive.  A report has a request body, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/ExternalPurchaseReport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which consists of a unique report identifier, the token identifier, a status, and depending on the status, an array of line items that describe the transactions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a token has associated transactions, send a report with line items.  To correct a previous submission, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportcorrections",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If the token didn’t result in any transactions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportwithouttransactions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each transaction, add one line item to the line items array in your report. Choose the line item type based on the transaction type:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/OneTimeBuyLineItem",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " — for one-time charges",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/SubscriptionBuyLineItem",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " - for transactions and events that involve subscriptions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/RefundLineItem",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " — for refunds",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Create-line-items-for-one-time-charges",
+          "level": 3,
+          "text": "Create line items for one-time charges",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/OneTimeBuyLineItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to specify a one-time charge in the ",
+              "type": "text"
+            },
+            {
+              "code": "lineItems",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/ExternalPurchaseReport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example is an external purchase report with a single one-time charge transaction:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"requestIdentifier\": \"1cdc286e-7389-417c-b58f-7a7d196e5bbe\",",
+            "    \"externalPurchaseId\": \"2924c319-5205-4188-831a-1ca2c00326b4\",",
+            "    \"status\": \"LINE_ITEM\",",
+            "    \"lineItems\": [{",
+            "        \"lineItemId\": \"aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa\",",
+            "        \"creationDate\": 1706047472367,",
+            "        \"eventType\": \"BUY\",",
+            "        \"productType\": \"ONE_TIME_BUY\",",
+            "        \"productIdentifier\": \"example.one-time-buy.product\",",
+            "        \"amountTaxInclusive\": 10000,",
+            "        \"amountTaxExclusive\": 8000,",
+            "        \"taxAmount\": 2000,",
+            "        \"netAmountTaxExclusive\": 8000,",
+            "        \"reportingCurrency\": \"EUR\",",
+            "        \"pricingCurrency\": \"EUR\",",
+            "        \"taxCountry\": \"ESP\",",
+            "        \"quantity\": 6",
+            "    }]",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-line-items-for-subscription-events-and-transactions",
+          "level": 3,
+          "text": "Create line items for subscription events and transactions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/SubscriptionBuyLineItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to specify a subscription-related transaction or event in the ",
+              "type": "text"
+            },
+            {
+              "code": "lineItems",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/ExternalPurchaseReport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The subscription events to report include subscription starts, renewals, changes to the subscription, and payments. Report subscription events even if they don’t include a payment. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/subscriptionEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example is an external purchase report for an initial subscription purchase:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"requestIdentifier\": \"c4dcf1a5-afac-4e2c-83d7-280f9f2cb832\",",
+            "    \"externalPurchaseId\": \"59908800-c9d3-40c3-b638-8a9c5a535654\",",
+            "    \"status\": \"LINE_ITEM\",",
+            "    \"lineItems\": [{",
+            "        \"lineItemId\": \"cccccccc-cccc-cccc-cccc-cccccccccccc\",",
+            "        \"creationDate\": 1706047488039,",
+            "        \"eventType\": \"BUY\",",
+            "        \"productType\": \"SUBSCRIPTION\",",
+            "        \"productIdentifier\": \"example.subscription.monthly\",",
+            "        \"amountTaxInclusive\": 10000,",
+            "        \"amountTaxExclusive\": 8000,",
+            "        \"taxAmount\": 2000,",
+            "        \"netAmountTaxExclusive\": 8000,",
+            "        \"reportingCurrency\": \"EUR\",",
+            "        \"pricingCurrency\": \"EUR\",",
+            "        \"taxCountry\": \"ESP\",",
+            "        \"subscriptionEvent\": \"SUBSCRIPTION_START\",",
+            "        \"subscriptionStartDate\": 1706047488039,",
+            "        \"subscriptionEndDate\": 1708639488039,",
+            "        \"subscriptionDaysOfPaidService\": 0,",
+            "        \"quantity\": 1",
+            "    }]",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example is an external purchase report for a subscription renewal:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"requestIdentifier\": \"446fdfd8-2c06-4956-873c-8c449a9d61f5\",",
+            "    \"externalPurchaseId\": \"59908800-c9d3-40c3-b638-8a9c5a535654\",",
+            "    \"status\": \"LINE_ITEM\",",
+            "    \"lineItems\": [{",
+            "        \"lineItemId\": \"dddddddd-dddd-dddd-dddd-dddddddddddd\",",
+            "        \"creationDate\": 1708639488039,",
+            "        \"eventType\": \"BUY\",",
+            "        \"productType\": \"SUBSCRIPTION\",",
+            "        \"productIdentifier\": \"example.subscription.monthly\",",
+            "        \"amountTaxInclusive\": 10000,",
+            "        \"amountTaxExclusive\": 8000,",
+            "        \"taxAmount\": 2000,",
+            "        \"netAmountTaxExclusive\": 8000,",
+            "        \"reportingCurrency\": \"EUR\",",
+            "        \"pricingCurrency\": \"EUR\",",
+            "        \"taxCountry\": \"ESP\",",
+            "        \"subscriptionEvent\": \"RENEWAL\",",
+            "        \"subscriptionStartDate\": 1708639488039,",
+            "        \"subscriptionEndDate\": 1711231488039,",
+            "        \"subscriptionDaysOfPaidService\": 30,",
+            "        \"quantity\": 1,",
+            "        \"referenceLineItemId\": \"cccccccc-cccc-cccc-cccc-cccccccccccc\"",
+            "    }]",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-line-items-for-refunds",
+          "level": 3,
+          "text": "Create line items for refunds",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/RefundLineItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to specify a refund transaction in the ",
+              "type": "text"
+            },
+            {
+              "code": "lineItems",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/ExternalPurchaseReport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Refunds include a ",
+              "type": "text"
+            },
+            {
+              "code": "referenceLineItemId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that contains the ",
+              "type": "text"
+            },
+            {
+              "code": "lineItemId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of a previously submitted transaction, to which the refund applies.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example is an external purchase report for a partial refund of the one-time charge shown in an earlier example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"requestIdentifier\": \"b598cbea-c0a8-44cb-bb0e-abb12ed59cb9\",",
+            "    \"externalPurchaseId\": \"2924c319-5205-4188-831a-1ca2c00326b4\",",
+            "    \"status\": \"LINE_ITEM\",",
+            "    \"lineItems\": [{",
+            "        \"lineItemId\": \"bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb\",",
+            "        \"creationDate\": 1706047491127,",
+            "        \"eventType\": \"REFUND\"",
+            "        \"amountTaxInclusive\": 2500,",
+            "        \"amountTaxExclusive\": 2000,",
+            "        \"taxAmount\": 500,",
+            "        \"netAmountTaxExclusive\": 6000,",
+            "        \"reportingCurrency\": \"EUR\",",
+            "        \"pricingCurrency\": \"EUR\",",
+            "        \"taxCountry\": \"ESP\",",
+            "        \"referenceLineItemId\": \"aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa\"",
+            "    }]",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "REFUND",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/eventType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to report chargebacks as well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/StoreKit/external-purchase": {
+      "abstract": [
+        {
+          "text": "Enable qualifying apps to offer external purchases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/external-purchase",
+      "kind": "article",
+      "role": "article",
+      "title": "External Purchase",
+      "type": "topic",
+      "url": "/documentation/StoreKit/external-purchase"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI": {
+      "abstract": [
+        {
+          "text": "Send and manage reports you send to Apple for tokens you receive when your app provides external purchases for digital goods and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "External Purchase Server API",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/ExternalPurchaseReport": {
+      "abstract": [
+        {
+          "text": "The contents of an external purchase report for a single token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExternalPurchaseReport"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/ExternalPurchaseReport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExternalPurchaseReport"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExternalPurchaseReport",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/externalpurchasereport"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/OneTimeBuyLineItem": {
+      "abstract": [
+        {
+          "text": "The line item that indicates a one-time charge transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "OneTimeBuyLineItem"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/OneTimeBuyLineItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OneTimeBuyLineItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "OneTimeBuyLineItem",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/onetimebuylineitem"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/RefundLineItem": {
+      "abstract": [
+        {
+          "text": "The line item that indicates a refund transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RefundLineItem"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/RefundLineItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RefundLineItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "RefundLineItem",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/refundlineitem"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/Send-External-Purchase-Report": {
+      "abstract": [
+        {
+          "text": "Report required information about external purchase tokens and associated transactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/Send-External-Purchase-Report",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Send External Purchase Report"
+        }
+      ],
+      "role": "symbol",
+      "title": "Send External Purchase Report",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/send-external-purchase-report"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/SubscriptionBuyLineItem": {
+      "abstract": [
+        {
+          "text": "The line item that indicates a subscription-related event or transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionBuyLineItem"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/SubscriptionBuyLineItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionBuyLineItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionBuyLineItem",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/subscriptionbuylineitem"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/eventType": {
+      "abstract": [
+        {
+          "text": "The type of transaction the line item reports, whether it’s a buy or refund.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "eventType"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/eventType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "eventType"
+        }
+      ],
+      "role": "symbol",
+      "title": "eventType",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/eventtype"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/lineitems": {
+      "abstract": [
+        {
+          "text": "Properties that describe a single transaction or correction in an external purchase report.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/lineitems",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Line item fields",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/lineitems"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportcorrections": {
+      "abstract": [
+        {
+          "text": "Submit a report with corrections if you find errors in, or have adjustments to, a successfully submitted transaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportcorrections",
+      "kind": "article",
+      "role": "article",
+      "title": "Reporting corrections",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/reportcorrections"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportwithouttransactions": {
+      "abstract": [
+        {
+          "text": "Create reports for external purchase tokens that didn’t result in completed transactions, or tokens that you learn of from an App Store server notification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportwithouttransactions",
+      "kind": "article",
+      "role": "article",
+      "title": "Reporting unrecognized tokens and tokens without transactions",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/reportwithouttransactions"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/subscriptionEvent": {
+      "abstract": [
+        {
+          "text": "The event in the subscription’s life cycle that the transaction represents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionEvent"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/subscriptionEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "subscriptionEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "subscriptionEvent",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/subscriptionevent"
+    },
+    "https://developer.apple.com/support/apps-using-alternative-payment-providers-in-the-eu#commission-reports-and-payments": {
+      "identifier": "https://developer.apple.com/support/apps-using-alternative-payment-providers-in-the-eu#commission-reports-and-payments",
+      "title": "Commission, transaction reports, and payments",
+      "titleInlineContent": [
+        {
+          "text": "Commission, transaction reports, and payments",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/apps-using-alternative-payment-providers-in-the-eu#commission-reports-and-payments"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "External-purchase-report-transactions",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportcorrections",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/OneTimeBuyLineItem",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/RefundLineItem",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/SubscriptionBuyLineItem",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/lineitems"
+      ],
+      "title": "External purchase report transactions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/externalpurchaseserverapi/reportwithtransactions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

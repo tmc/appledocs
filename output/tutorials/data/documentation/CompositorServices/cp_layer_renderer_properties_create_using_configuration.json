@@ -1,0 +1,435 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a new opaque type to store layer-related properties.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.compositorservices/documentation/CompositorServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_properties_create_using_configuration"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@cp_layer_renderer_properties_create_using_configuration",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "cp_layer_renderer_properties_create_using_configuration"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Compositor Services"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "cp_layer_renderer_properties_create_using_configuration"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "cp_layer_renderer_properties_create_using_configuration"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_properties_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@cp_layer_renderer_properties_t",
+              "text": "cp_layer_renderer_properties_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "cp_layer_renderer_properties_create_using_configuration"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@cp_layer_renderer_configuration_t",
+              "text": "cp_layer_renderer_configuration_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "configuration"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@CFErrorRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFErrorRef",
+              "text": "CFErrorRef"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The configuration details for your layer. Compositor Services uses this information to configure the properties an equivalent layer would use.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "configuration"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to an error object. On success, the function sets this value to ",
+                  "type": "text"
+                },
+                {
+                  "code": "nil",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". If an error occurs, the function sets the value of the pointer to an error object with details about what happened.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "error"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A new layer properties type with details about how the layer configures its topologies and texture maps. The function returns ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if an error occurs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call this function to create a set of layer properties when you don’t yet have a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type. This function generates an equivalent set of properties for the configuration you provide. You can use those properties to configure other parts of your app before the layer becomes available. For example, you might use the information to configure portions of your app’s render pipeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.compositorservices/documentation/CompositorServices": {
+      "abstract": [
+        {
+          "text": "Take control of the drawing environment and render your own content using Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Compositor Services",
+      "type": "topic",
+      "url": "/documentation/compositorservices"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer": {
+      "abstract": [
+        {
+          "text": "A type that provides the Metal types and timing information you need to draw your content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LayerRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LayerRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_t": {
+      "abstract": [
+        {
+          "text": "A type that stores the texture formats, layout information, and other details you use to configure your rendering loop code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_configuration_t"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_configuration_t",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_configuration_t"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_properties_create_using_configuration": {
+      "abstract": [
+        {
+          "text": "Creates a new opaque type to store layer-related properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_properties_create_using_configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_properties_create_using_configuration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_properties_create_using_configuration",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_properties_create_using_configuration"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_properties_t": {
+      "abstract": [
+        {
+          "text": "A type that describes the organization of the layer’s textures and the relationships between those textures and the views you use for drawing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_properties_t"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_properties_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_properties_t",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_properties_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@CFErrorRef": {
+      "abstract": [
+        {
+          "text": "A reference to a CFError object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFError"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@CFErrorRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFError",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cferror"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@CFErrorRef/title",
+          "value": "CFErrorRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer/title",
+          "value": "CP_OBJECT_cp_layer_renderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CP_OBJECT_cp_layer_renderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CP_OBJECT_cp_layer_renderer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/compositorservices/cp_layer_renderer_properties_create_using_configuration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

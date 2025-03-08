@@ -1,0 +1,469 @@
+{
+  "abstract": [
+    {
+      "text": "Create a plug-in and driver extension to support an audio device in macOS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coreaudio/documentation/CoreAudio"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coreaudio/documentation/CoreAudio/building-an-audio-server-plug-in-and-driver-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Audio"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "20.0",
+        "name": "DriverKit"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Building an Audio Server Plug-in and Driver Extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows how to create an Audio Server plug-in built on top of a DriverKit Driver Extension. The sample provides C++ implementations of the plug-in and the Driver Extension, and shows how to implement the communication between the two, including discovering, connecting to, and calling into the Driver Extension from the plug-in.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample implements a dynamic environment that supports multiple audio devices. The plug-in’s audio devices provide the following features:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configurable device master volume.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Support for 44.1 kHz and 48 kHz sample rates",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Support for two channels of audio I/O in 32-bit, floating point, linear PCM format",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To deploy the sample driver, you need to create an explicit App ID and provisioning profile with the following entitlements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "com.apple.developer.driverkit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "com.apple.developer.driverkit.transport.usb",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn how to perform this configuration, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To bypass this configuration and use ad hoc signing to test the driver in your local development environment, perform the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Disable System Integrity Protection (SIP) on your system so it recognizes ad hoc-signed DriverKit extensions. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Security/disabling-and-enabling-system-integrity-protection",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configure the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SimpleAudioDriver",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "  target to use local signing. Select the target, and then select its Build Settings tab. Find the Code Signing Identity build setting and select Sign to Run Locally.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the included installer script to install the driver on your system. Navigate to the root of the sample project and run the following command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "./Scripts/install.sh",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reboot your computer so that the system recognizes the driver. After your computer restarts, open Audio MIDI Setup to inspect the newly installed device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To uninstall the driver, run the ",
+              "type": "text"
+            },
+            {
+              "code": "uninstall.sh",
+              "type": "codeVoice"
+            },
+            {
+              "text": " script and reboot your computer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "9b27b11a4824/BuildingAnAudioServerPlugInAndDriverExtension.zip": {
+      "checksum": "9b27b11a482450e2342dd8672e84ddd3e6c9511de4150c43450a4a6ce7b79d59fb8bd6492db8cbd778d00397445a74751139e8e6fc5bfbbb235cc1fa9aa19ed1",
+      "identifier": "9b27b11a4824/BuildingAnAudioServerPlugInAndDriverExtension.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/9b27b11a4824/BuildingAnAudioServerPlugInAndDriverExtension.zip"
+    },
+    "doc://com.apple.coreaudio/documentation/CoreAudio": {
+      "abstract": [
+        {
+          "text": "Use the Core Audio framework to interact with device’s audio hardware.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudio/documentation/CoreAudio",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Audio",
+      "type": "topic",
+      "url": "/documentation/coreaudio"
+    },
+    "doc://com.apple.coreaudio/documentation/CoreAudio/capturing-system-audio-with-core-audio-taps": {
+      "abstract": [
+        {
+          "text": "Use a Core Audio tap to capture outgoing audio from a process or group of processes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudio/documentation/CoreAudio/capturing-system-audio-with-core-audio-taps",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Capturing system audio with Core Audio taps",
+      "type": "topic",
+      "url": "/documentation/coreaudio/capturing-system-audio-with-core-audio-taps"
+    },
+    "doc://com.apple.coreaudio/documentation/CoreAudio/creating-an-audio-server-driver-plug-in": {
+      "abstract": [
+        {
+          "text": "Build a virtual audio device by creating a custom driver plug-in.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudio/documentation/CoreAudio/creating-an-audio-server-driver-plug-in",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating an Audio Server Driver Plug-in",
+      "type": "topic",
+      "url": "/documentation/coreaudio/creating-an-audio-server-driver-plug-in"
+    },
+    "doc://com.apple.documentation/documentation/Security/disabling-and-enabling-system-integrity-protection": {
+      "abstract": [
+        {
+          "text": "Disable system protections only temporarily during development to test drivers, kernel extensions, and other low-level code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/disabling-and-enabling-system-integrity-protection",
+      "kind": "article",
+      "role": "article",
+      "title": "Disabling and Enabling System Integrity Protection",
+      "type": "topic",
+      "url": "/documentation/Security/disabling-and-enabling-system-integrity-protection"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development": {
+      "abstract": [
+        {
+          "text": "Request the entitlement for DriverKit development, and request other entitlements your driver needs to interact with specific devices and interfaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting Entitlements for DriverKit Development",
+      "type": "topic",
+      "url": "/documentation/driverkit/requesting_entitlements_for_driverkit_development"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "9b27b11a4824/BuildingAnAudioServerPlugInAndDriverExtension.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Drivers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coreaudio/documentation/CoreAudio/creating-an-audio-server-driver-plug-in",
+        "doc://com.apple.coreaudio/documentation/CoreAudio/capturing-system-audio-with-core-audio-taps"
+      ],
+      "title": "Drivers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Drivers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coreaudio/documentation/CoreAudio/creating-an-audio-server-driver-plug-in",
+                "doc://com.apple.coreaudio/documentation/CoreAudio/capturing-system-audio-with-core-audio-taps"
+              ],
+              "title": "Drivers"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coreaudio/building-an-audio-server-plug-in-and-driver-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coreaudio/building-an-audio-server-plug-in-and-driver-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

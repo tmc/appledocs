@@ -1,0 +1,1126 @@
+{
+  "abstract": [
+    {
+      "text": "Activate system extensions and drivers to make them available to the system, and update or deactivate them as needed.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.systemextensions/documentation/SystemExtensions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.systemextensions/documentation/SystemExtensions/installing-system-extensions-and-drivers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "System Extensions"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Installing System Extensions and Drivers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of installing system extensions using an installer, you ship system extensions inside your app’s bundle and install them from your app. Request activation of any system extensions as early as possible in your app’s launch. Doing so helps the system seamlessly update the extension when updating the app. Depending on your app, you may choose to request activation later. For example, you might delay activation until after the user accepts a license agreement or makes an in-app purchase.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "System extensions reside inside your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Contents/Library/SystemExtensions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " folder. When the user launches your app, use the SystemExtensions framework to activate your driver and make it available for use. During the activation process, the system checks the validity of your driver—for example, by verifying that it has the proper entitlements to run. The specific checks depend on the type of system extension you activate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Activate-a-New-System-Extension",
+          "level": 3,
+          "text": "Activate a New System Extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To start the activation process for your system extension, create an activation request by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionRequest/activationRequest(forExtensionWithIdentifier:queue:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When you submit that request object to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the system begins the activation process and reports the results back to the delegate object you specify. The following code shows the activation steps for a DriverKit extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create an activation request and assign a delegate to",
+            "// receive reports of success or failure.",
+            "let request = OSSystemExtensionRequest.activationRequest(forExtensionWithIdentifier: driverID,",
+            "                     queue: DispatchQueue.main)",
+            "request.delegate = self",
+            "",
+            "// Submit the request to the system.",
+            "let extensionManager = OSSystemExtensionManager.shared",
+            "extensionManager.submitRequest(request)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During the activation process, the system verifies:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your extension is installed in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Contents/Library/SystemExtensions",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " folder of your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app is installed in an appropriate ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Applications",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " directory of the system.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The code signature of your extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The entitlements in the code signature match the entitlements granted to your development team.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The identifer in your activation request matches the one in your system extension bundle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The identifier isn’t already in use by another system extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the verification process fails, the system reports the error back to your delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionRequestDelegate/request(_:didFailWithError:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Use the error code to identify the reason for the failure so that you can correct it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "During development, you can disable some verification checks to simplify testing your system extensions. For more information, see Debugging and Testing System Extensions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Update-an-Existing-System-Extension",
+          "level": 3,
+          "text": "Update an Existing System Extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To update a driver, increment the driver’s version and activate it using the same process for new system extensions. When the system detects an existing extension with the same identifier, it passes the version information for both extensions to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionRequestDelegate/request(_:actionForReplacingExtension:withExtension:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of your request delegate. Use that information to determine whether you want to install the new extension or keep the old one.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about implementing the delegate methods for your request, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionRequestDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Uninstall-a-System-Extension",
+          "level": 3,
+          "text": "Uninstall a System Extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system automatically uninstalls any system extensions when the user deletes the corresponding app. You can also uninstall a system extension by creating a deactivation request. Call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionRequest/deactivationRequest(forExtensionWithIdentifier:queue:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and submit the resulting object to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Examine-the-Installed-System-Extensions",
+          "level": 3,
+          "text": "Examine the Installed System Extensions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see the system extensions installed on your system, run the ",
+              "type": "text"
+            },
+            {
+              "code": "systemextensionsctl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command-line tool with the ",
+              "type": "text"
+            },
+            {
+              "code": "list",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option from Terminal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "% systemextensionsctl list",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about how to use the ",
+              "type": "text"
+            },
+            {
+              "code": "systemextensionsctl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool, see the man pages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.system-extension.redistributable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether other development teams may distribute a system extension you create.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.system-extension.redistributable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "System Extension Redistributable Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.system-extension.redistributable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.systemextensions/documentation/SystemExtensions": {
+      "abstract": [
+        {
+          "text": "Install and manage user space code that extends the capabilities of macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "System Extensions",
+      "type": "topic",
+      "url": "/documentation/systemextensions"
+    },
+    "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionManager": {
+      "abstract": [
+        {
+          "text": "A type that facilitates activation and deactivation of system extensions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSSystemExtensionManager"
+        }
+      ],
+      "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSSystemExtensionManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSSystemExtensionManager",
+      "type": "topic",
+      "url": "/documentation/systemextensions/ossystemextensionmanager"
+    },
+    "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionRequest": {
+      "abstract": [
+        {
+          "text": "A request to activate or deactivate a system extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSSystemExtensionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSSystemExtensionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSSystemExtensionRequest",
+      "type": "topic",
+      "url": "/documentation/systemextensions/ossystemextensionrequest"
+    },
+    "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionRequest/activationRequest(forExtensionWithIdentifier:queue:)": {
+      "abstract": [
+        {
+          "text": "Creates a request to activate a System Extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activationRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forExtensionWithIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "queue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionRequest/activationRequest(forExtensionWithIdentifier:queue:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activationRequestForExtension:queue:"
+        }
+      ],
+      "role": "symbol",
+      "title": "activationRequest(forExtensionWithIdentifier:queue:)",
+      "type": "topic",
+      "url": "/documentation/systemextensions/ossystemextensionrequest/activationrequest(forextensionwithidentifier:queue:)"
+    },
+    "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionRequest/deactivationRequest(forExtensionWithIdentifier:queue:)": {
+      "abstract": [
+        {
+          "text": "Creates a request to deactivate a System Extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deactivationRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forExtensionWithIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "queue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionRequest/deactivationRequest(forExtensionWithIdentifier:queue:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deactivationRequestForExtension:queue:"
+        }
+      ],
+      "role": "symbol",
+      "title": "deactivationRequest(forExtensionWithIdentifier:queue:)",
+      "type": "topic",
+      "url": "/documentation/systemextensions/ossystemextensionrequest/deactivationrequest(forextensionwithidentifier:queue:)"
+    },
+    "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionRequestDelegate": {
+      "abstract": [
+        {
+          "text": "A type that receives updates about the progress of a request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSSystemExtensionRequestDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionRequestDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSSystemExtensionRequestDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSSystemExtensionRequestDelegate",
+      "type": "topic",
+      "url": "/documentation/systemextensions/ossystemextensionrequestdelegate"
+    },
+    "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionRequestDelegate/request(_:actionForReplacingExtension:withExtension:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the user has a different version of the extension installed on their system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)OSSystemExtensionRequest",
+          "text": "OSSystemExtensionRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "actionForReplacingExtension"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)OSSystemExtensionProperties",
+          "text": "OSSystemExtensionProperties"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withExtension"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)OSSystemExtensionProperties",
+          "text": "OSSystemExtensionProperties"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)OSSystemExtensionRequest",
+          "text": "OSSystemExtensionRequest"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@OSSystemExtensionReplacementAction",
+          "text": "ReplacementAction"
+        }
+      ],
+      "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionRequestDelegate/request(_:actionForReplacingExtension:withExtension:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "request:actionForReplacingExtension:withExtension:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "request(_:actionForReplacingExtension:withExtension:)",
+      "type": "topic",
+      "url": "/documentation/systemextensions/ossystemextensionrequestdelegate/request(_:actionforreplacingextension:withextension:)"
+    },
+    "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionRequestDelegate/request(_:didFailWithError:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate the manager failed to complete the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)OSSystemExtensionRequest",
+          "text": "OSSystemExtensionRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFailWithError"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionRequestDelegate/request(_:didFailWithError:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "request:didFailWithError:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "request(_:didFailWithError:)",
+      "type": "topic",
+      "url": "/documentation/systemextensions/ossystemextensionrequestdelegate/request(_:didfailwitherror:)"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Extension-activation-and-deactivation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionManager",
+        "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionRequest",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.system-extension.redistributable"
+      ],
+      "title": "Extension activation and deactivation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Extension-activation-and-deactivation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionManager",
+                "doc://com.apple.systemextensions/documentation/SystemExtensions/OSSystemExtensionRequest",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.system-extension.redistributable"
+              ],
+              "title": "Extension activation and deactivation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemextensions~1documentation~1SystemExtensions~1OSSystemExtensionRequestDelegate~1request(_:didFailWithError:)/title",
+          "value": "request:didFailWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemextensions~1documentation~1SystemExtensions~1OSSystemExtensionRequestDelegate~1request(_:didFailWithError:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "request:didFailWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemextensions~1documentation~1SystemExtensions~1OSSystemExtensionRequestDelegate/title",
+          "value": "OSSystemExtensionRequestDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemextensions~1documentation~1SystemExtensions~1OSSystemExtensionRequestDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OSSystemExtensionRequestDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemextensions~1documentation~1SystemExtensions~1OSSystemExtensionRequestDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OSSystemExtensionRequestDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemextensions~1documentation~1SystemExtensions~1OSSystemExtensionManager/title",
+          "value": "OSSystemExtensionManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemextensions~1documentation~1SystemExtensions~1OSSystemExtensionManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OSSystemExtensionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemextensions~1documentation~1SystemExtensions~1OSSystemExtensionManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OSSystemExtensionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemextensions~1documentation~1SystemExtensions~1OSSystemExtensionRequest~1deactivationRequest(forExtensionWithIdentifier:queue:)/title",
+          "value": "deactivationRequestForExtension:queue:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemextensions~1documentation~1SystemExtensions~1OSSystemExtensionRequest~1deactivationRequest(forExtensionWithIdentifier:queue:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "deactivationRequestForExtension:queue:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemextensions~1documentation~1SystemExtensions~1OSSystemExtensionRequestDelegate~1request(_:actionForReplacingExtension:withExtension:)/title",
+          "value": "request:actionForReplacingExtension:withExtension:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemextensions~1documentation~1SystemExtensions~1OSSystemExtensionRequestDelegate~1request(_:actionForReplacingExtension:withExtension:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "request:actionForReplacingExtension:withExtension:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemextensions~1documentation~1SystemExtensions~1OSSystemExtensionRequest~1activationRequest(forExtensionWithIdentifier:queue:)/title",
+          "value": "activationRequestForExtension:queue:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemextensions~1documentation~1SystemExtensions~1OSSystemExtensionRequest~1activationRequest(forExtensionWithIdentifier:queue:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "activationRequestForExtension:queue:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemextensions~1documentation~1SystemExtensions~1OSSystemExtensionRequest/title",
+          "value": "OSSystemExtensionRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemextensions~1documentation~1SystemExtensions~1OSSystemExtensionRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OSSystemExtensionRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemextensions~1documentation~1SystemExtensions~1OSSystemExtensionRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OSSystemExtensionRequest"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/systemextensions/installing-system-extensions-and-drivers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/systemextensions/installing-system-extensions-and-drivers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

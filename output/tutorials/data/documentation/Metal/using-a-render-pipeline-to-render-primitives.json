@@ -1,0 +1,2537 @@
+{
+  "abstract": [
+    {
+      "text": "Render a simple 2D triangle.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/render-passes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.12",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Using a Render Pipeline to Render Primitives"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows you how to configure a render pipeline and use it as part of the render pass to draw a simple 2D colored triangle into the view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample supplies a position and color for each vertex, and the render pipeline uses that data to render the triangle, interpolating color values between the colors specified for the triangle’s vertices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "1-example-triangle",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Xcode project contains schemes for running the sample on macOS, iOS, and tvOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-the-Metal-Render-Pipeline",
+          "level": 3,
+          "text": "Understand the Metal Render Pipeline",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "render pipeline",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " processes drawing commands and writes data into a render pass’s targets.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A render pipeline has many stages, some programmed using shaders and others with fixed or configurable behavior.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This sample focuses on the three main stages of the pipeline: the vertex stage, the rasterization stage, and the fragment stage.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The vertex stage and fragment stage are programmable, so you write functions for them in Metal Shading Language (MSL).",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The rasterization stage has fixed behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "2-render-pipeline",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Rendering starts with a drawing command, which includes a vertex count and what kind of primitive to render.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, here’s the drawing command from this sample:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Draw the triangle.",
+            "[renderEncoder drawPrimitives:MTLPrimitiveTypeTriangle",
+            "                  vertexStart:0",
+            "                  vertexCount:3];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vertex stage provides data for each vertex.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When enough vertices have been processed, the render pipeline rasterizes the primitive, determining which pixels in the render targets lie within the boundaries of the primitive.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The fragment stage determines the values to write into the render targets for those pixels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the rest of this sample, you will see how to write the vertex and fragment functions, how to create the render pipeline state object, and finally, how to encode a draw command that uses this pipeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Decide-How-Data-is-Processed-by-Your-Custom-Render-Pipeline",
+          "level": 3,
+          "text": "Decide How Data is Processed by Your Custom Render Pipeline",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A vertex function generates data for a single vertex and a fragment function generates data for a single fragment, but you decide how they work.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You configure the stages of the pipeline with a goal in mind, meaning that you know what you want the pipeline to generate and how it generates those results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Decide what data to pass into your render pipeline and what data is passed to later stages of the pipeline.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "There are typically three places where you do this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The inputs to the pipeline, which are provided by your app and passed to the vertex stage.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The outputs of the vertex stage, which is passed to the rasterization stage.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The inputs to the fragment stage, which are provided by your app or generated by the rasterization stage.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this sample, the input data for the pipeline is the position of a vertex and its color.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To demonstrate the kind of transformation you typically perform in a vertex function, input coordinates are defined in a custom coordinate space, measured in pixels from the center of the view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These coordinates need to be translated into Metal’s coordinate system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Declare an ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLVertex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure, using SIMD vector types to hold the position and color data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To share a single definition for how the structure is laid out in memory, declare the structure in a common header and import it in both the Metal shader and the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typedef struct",
+            "{",
+            "    vector_float2 position;",
+            "    vector_float4 color;",
+            "} AAPLVertex;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SIMD types are commonplace in Metal Shading Language, and you should also use them in your app using the simd library.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SIMD types contain multiple channels of a particular data type, so declaring the position as a ",
+              "type": "text"
+            },
+            {
+              "code": "vector_float2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " means it contains two 32-bit float values (which will hold the x and y coordinates.)",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Colors are stored using a ",
+              "type": "text"
+            },
+            {
+              "code": "vector_float4",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", so they have four channels – red, green, blue, and alpha.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the app, the input data is specified using a constant array:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static const AAPLVertex triangleVertices[] =",
+            "{",
+            "    // 2D positions,    RGBA colors",
+            "    { {  250,  -250 }, { 1, 0, 0, 1 } },",
+            "    { { -250,  -250 }, { 0, 1, 0, 1 } },",
+            "    { {    0,   250 }, { 0, 0, 1, 1 } },",
+            "};"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vertex stage generates data for a vertex, so it needs to provide a color and a transformed position.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Declare a ",
+              "type": "text"
+            },
+            {
+              "code": "RasterizerData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure containing a position and a color value, again using SIMD types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct RasterizerData",
+            "{",
+            "    // The [[position]] attribute of this member indicates that this value",
+            "    // is the clip space position of the vertex when this structure is",
+            "    // returned from the vertex function.",
+            "    float4 position [[position]];",
+            "",
+            "    // Since this member does not have a special attribute, the rasterizer",
+            "    // interpolates its value with the values of the other triangle vertices",
+            "    // and then passes the interpolated value to the fragment shader for each",
+            "    // fragment in the triangle.",
+            "    float4 color;",
+            "};"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The output position (described in detail below) must be defined as a ",
+              "type": "text"
+            },
+            {
+              "code": "vector_float4",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The color is declared as it was in the input data structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You need to tell Metal which field in the rasterization data provides position data, because Metal doesn’t enforce any particular naming convention for fields in your struct.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Annotate the ",
+              "type": "text"
+            },
+            {
+              "code": "position",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field with the ",
+              "type": "text"
+            },
+            {
+              "code": "[[position]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute qualifier to declare that this field holds the output position.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The fragment function simply passes the rasterization stage’s data to later stages so it doesn’t need any additional arguments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Declare-the-Vertex-Function",
+          "level": 3,
+          "text": "Declare the Vertex Function",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Declare the vertex function, including its input arguments and the data it outputs.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Much like compute functions were declared using the ",
+              "type": "text"
+            },
+            {
+              "code": "kernel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keyword, you declare a vertex function using the ",
+              "type": "text"
+            },
+            {
+              "code": "vertex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keyword.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "vertex RasterizerData",
+            "vertexShader(uint vertexID [[vertex_id]],",
+            "             constant AAPLVertex *vertices [[buffer(AAPLVertexInputIndexVertices)]],",
+            "             constant vector_uint2 *viewportSizePointer [[buffer(AAPLVertexInputIndexViewportSize)]])"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first argument, ",
+              "type": "text"
+            },
+            {
+              "code": "vertexID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", uses the ",
+              "type": "text"
+            },
+            {
+              "code": "[[vertex_id]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute qualifier, which is another Metal keyword.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you execute a render command, the GPU calls your vertex function multiple times, generating a unique value for each vertex.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The second argument, ",
+              "type": "text"
+            },
+            {
+              "code": "vertices",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", is an array that contains the vertex data, using the ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLVertex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " struct previously defined.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To transform the position into Metal’s coordinates, the function needs the size of the viewport (in pixels) that the triangle is being drawn into, so this is stored in the ",
+              "type": "text"
+            },
+            {
+              "code": "viewportSizePointer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The second and third arguments have the ",
+              "type": "text"
+            },
+            {
+              "code": "[[buffer(n)]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute qualifier.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "By default, Metal assigns slots in the argument table for each parameter automatically.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you add the ",
+              "type": "text"
+            },
+            {
+              "code": "[[buffer(n)]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " qualifier to a buffer argument, you tell Metal explicitly which slot to use.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Declaring slots explicitly can make it easier to revise your shaders without also needing to change your app code.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Declare the constants for the two indicies in the shared header file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The function’s output is a ",
+              "type": "text"
+            },
+            {
+              "code": "RasterizerData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " struct.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Write-the-Vertex-Function",
+          "level": 3,
+          "text": "Write the Vertex Function",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your vertex function must generate both fields of the output struct.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "vertexID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument to index into the ",
+              "type": "text"
+            },
+            {
+              "code": "vertices",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array and read the input data for the vertex.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Also, retrieve the viewport dimensions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "float2 pixelSpacePosition = vertices[vertexID].position.xy;",
+            "",
+            "// Get the viewport size and cast to float.",
+            "vector_float2 viewportSize = vector_float2(*viewportSizePointer);",
+            ""
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Vertex functions must provide position data in ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "clip-space coordinates",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which are 3D points specified using a four-dimensional homogenous vector (",
+              "type": "text"
+            },
+            {
+              "code": "x,y,z,w",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The rasterization stage takes the output position and divides the ",
+              "type": "text"
+            },
+            {
+              "code": "x",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "code": "y",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "z",
+              "type": "codeVoice"
+            },
+            {
+              "text": " coordinates by ",
+              "type": "text"
+            },
+            {
+              "code": "w",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to generate a 3D point in ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "normalized device coordinates",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Normalized device coordinates are independent of viewport size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "3-normalized-coordinates",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Normalized device coordinates use a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "left-handed coordinate system",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and map to positions in the viewport.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Primitives are clipped to a box in this coordinate system and then rasterized.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The lower-left corner of the clipping box is at an ",
+              "type": "text"
+            },
+            {
+              "code": "(x,y)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " coordinate of ",
+              "type": "text"
+            },
+            {
+              "code": "(-1.0,-1.0)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the upper-right corner is at ",
+              "type": "text"
+            },
+            {
+              "code": "(1.0,1.0)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Positive-z values point away from the camera (into the screen.)",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The visible portion of the ",
+              "type": "text"
+            },
+            {
+              "code": "z",
+              "type": "codeVoice"
+            },
+            {
+              "text": " coordinate is between ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (the near clipping plane) and ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (the far clipping plane).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Transform the input coordinate system to the normalized device coordinate system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "4-coordinate-transformation",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because this is a 2D application and does not need homogenous coordinates, first write a default value to the output coordinate, with the the ",
+              "type": "text"
+            },
+            {
+              "code": "w",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value is set to ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the other coordinates set to ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This means that the coordinates are already in the normalized device coordinate space and the vertex function should generate (x,y) coordinates in that coordinate space.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Divide the input position by half the viewport size to generate normalized device coordinates.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Since this calculation is performed using SIMD types, both channels can be divided at the same time using a single line of code.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Perform the divide and put the results in the x and y channels of the output position.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "out.position = vector_float4(0.0, 0.0, 0.0, 1.0);",
+            "out.position.xy = pixelSpacePosition / (viewportSize / 2.0);"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, copy the color value into the ",
+              "type": "text"
+            },
+            {
+              "code": "out.color",
+              "type": "codeVoice"
+            },
+            {
+              "text": " return value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "out.color = vertices[vertexID].color;"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Write-a-Fragment-Function",
+          "level": 3,
+          "text": "Write a Fragment Function",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "fragment",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a possible change to the render targets.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The rasterizer determines which pixels of the render target are covered by the primitive.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Only fragments whose pixel centers are inside the triangle are rendered.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "5-fragment-function",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A fragment function processes incoming information from the rasterizer for a single position and calculates output values for each of the render targets.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These fragment values are processed by later stages in the pipeline, eventually being written to the render targets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The reason a fragment is called a possible change is because the pipeline stages after the fragment stage can be configured to reject some fragments or change what gets written to the render targets.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In this sample, all values calculated by the fragment stage are written as-is to the render target.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The fragment shader in this sample receives the same parameters that were declared in the vertex shader’s output.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Declare the fragment function using the ",
+              "type": "text"
+            },
+            {
+              "code": "fragment",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keyword.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It takes a single argument, the same ",
+              "type": "text"
+            },
+            {
+              "code": "RasterizerData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure that was provided by the vertex stage.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Add the ",
+              "type": "text"
+            },
+            {
+              "code": "[[stage_in]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute qualifier to indicate that this argument is generated by the rasterizer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fragment float4 fragmentShader(RasterizerData in [[stage_in]])"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your fragment function writes to multiple render targets, it must declare a struct with fields for each render target.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because this sample only has a single render target, you specify a floating-point vector directly as the function’s output.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This output is the color to be written to the render target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The rasterization stage calculates values for each fragment’s arguments and calls the fragment function with them.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The rasterization stage calculates its color argument as a blend of the colors at the triangle’s vertices.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The closer a fragment is to a vertex, the more that vertex contributes to the final color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "6-rasterization-stage",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Return the interpolated color as the function’s output.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "return in.color;"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-Render-Pipeline-State-Object",
+          "level": 3,
+          "text": "Create a Render Pipeline State Object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now that the functions are complete, you can create a render pipeline that uses them.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "First, get the default library and obtain an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object for each function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "id<MTLLibrary> defaultLibrary = [_device newDefaultLibrary];",
+            "",
+            "id<MTLFunction> vertexFunction = [defaultLibrary newFunctionWithName:@\"vertexShader\"];",
+            "id<MTLFunction> fragmentFunction = [defaultLibrary newFunctionWithName:@\"fragmentShader\"];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineState",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Render pipelines have more stages to configure, so you use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to configure the pipeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MTLRenderPipelineDescriptor *pipelineStateDescriptor = [[MTLRenderPipelineDescriptor alloc] init];",
+            "pipelineStateDescriptor.label = @\"Simple Pipeline\";",
+            "pipelineStateDescriptor.vertexFunction = vertexFunction;",
+            "pipelineStateDescriptor.fragmentFunction = fragmentFunction;",
+            "pipelineStateDescriptor.colorAttachments[0].pixelFormat = mtkView.colorPixelFormat;",
+            "",
+            "_pipelineState = [_device newRenderPipelineStateWithDescriptor:pipelineStateDescriptor",
+            "                                                         error:&error];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to specifying the vertex and fragment functions, you also declare the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "pixel format",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " of all render targets that the pipeline will draw into.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A pixel format (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") defines the memory layout of pixel data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For simple formats, this definition includes the number of bytes per pixel, the number of channels of data stored in a pixel, and the bit layout of those channels.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Since this sample only has one render target and it is provided by the view, copy the view’s pixel format into the render pipeline descriptor.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Your render pipeline state must use a pixel format that is compatible with the one specified by the render pass.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In this sample, the render pass and the pipeline state object both use the view’s pixel format, so they are always the same.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Metal creates the render pipeline state object, the pipeline is configured to convert the fragment function’s output into the render target’s pixel format.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you want to target a different pixel format, you need to create a different pipeline state object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can reuse the same shaders in multiple pipelines targeting different pixel formats.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-a-Viewport",
+          "level": 3,
+          "text": "Set a Viewport",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now that you have the render pipeline state object for the pipeline, you’ll render the triangle.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You do this using a render command encoder.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "First, set the viewport, so that Metal knows which part of the render target you want to draw into.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set the region of the drawable to draw into.",
+            "[renderEncoder setViewport:(MTLViewport){0.0, 0.0, _viewportSize.x, _viewportSize.y, 0.0, 1.0 }];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-the-Render-Pipeline-State",
+          "level": 3,
+          "text": "Set the Render Pipeline State",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the render pipeline state for the pipeline you want to use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[renderEncoder setRenderPipelineState:_pipelineState];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Send-Argument-Data-to-the-Vertex-Function",
+          "level": 3,
+          "text": "Send Argument Data to the Vertex Function",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Often, you use buffers (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") to pass data to shaders.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, when you need to pass only a small amount of data to the vertex function, as is the case here, copy the data directly into the command buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample copies data for both parameters into the command buffer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The vertex data is copied from an array defined in the sample.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The viewport data is copied from the same variable that you used to set the viewport.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this sample, the fragment function uses only the data it receives from the rasterizer, so there are no arguments to set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[renderEncoder setVertexBytes:triangleVertices",
+            "                       length:sizeof(triangleVertices)",
+            "                      atIndex:AAPLVertexInputIndexVertices];",
+            "",
+            "[renderEncoder setVertexBytes:&_viewportSize",
+            "                       length:sizeof(_viewportSize)",
+            "                      atIndex:AAPLVertexInputIndexViewportSize];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Encode-the-Drawing-Command",
+          "level": 3,
+          "text": "Encode the Drawing Command",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify the kind of primitive, the starting index, and the number of vertices.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When the triangle is rendered, the vertex function is called with values of 0, 1, and 2 for the ",
+              "type": "text"
+            },
+            {
+              "code": "vertexID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Draw the triangle.",
+            "[renderEncoder drawPrimitives:MTLPrimitiveTypeTriangle",
+            "                  vertexStart:0",
+            "                  vertexCount:3];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As with Drawing to the Screen Using Metal, you end the encoding process and commit the command buffer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, you could encode more render commands using the same set of steps.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The final image is rendered as if the commands were processed in the order they were specified.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(For performance, the GPU is allowed to process commands or even parts of commands in parallel, so long as the final result appears to have been rendered in order.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Experiment-with-the-Color-Interpolation",
+          "level": 3,
+          "text": "Experiment with the Color Interpolation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this sample, color values were interpolated across the triangle.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "That’s often what you want, but sometimes you want a value to be generated by one vertex and remain constant across the whole primitive.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Specify the ",
+              "type": "text"
+            },
+            {
+              "code": "flat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute qualifier on an output of the vertex function to do this.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Try this now.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Find the definition of ",
+              "type": "text"
+            },
+            {
+              "code": "RasterizerData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the sample project and add the ",
+              "type": "text"
+            },
+            {
+              "code": "[[flat]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " qualifier to its ",
+              "type": "text"
+            },
+            {
+              "code": "color",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "float4 color [[flat]];",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Run the sample again.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The render pipeline uses the color value from the first vertex (called the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "provoking vertex",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ") uniformly across the triangle, and it ignores the colors from the other two vertices.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can use a mix of flat shaded and interpolated values, simply by adding or omitting the ",
+              "type": "text"
+            },
+            {
+              "code": "flat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " qualifier on your vertex function’s outputs.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " defines other attribute qualifiers you can also use to modify the rasterization behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "1-example-triangle": {
+      "alt": "Simple 2D Triangle Vertices",
+      "identifier": "1-example-triangle",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d362f1dd779fbd9f0fd2b936f0754bd8/1-example-triangle@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6844092631d8ad2387d663cc00b748b0/1-example-triangle~dark@2x.png"
+        }
+      ]
+    },
+    "2-render-pipeline": {
+      "alt": "Main Stages of the Metal Graphics Render Pipeline",
+      "identifier": "2-render-pipeline",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1d1c22d8779c2e6da924d530c10abd68/2-render-pipeline@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/aad84c46665104179c48509f25f1c5ba/2-render-pipeline~dark@2x.png"
+        }
+      ]
+    },
+    "3-normalized-coordinates": {
+      "alt": "Normalized device coordinate system",
+      "identifier": "3-normalized-coordinates",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7e63cb5469ae588b932879fbe397f179/3-normalized-coordinates@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3484e61d24a09c915dd4309c39a0f891/3-normalized-coordinates~dark@2x.png"
+        }
+      ]
+    },
+    "4-coordinate-transformation": {
+      "alt": "Vertex function coordinate transformation",
+      "identifier": "4-coordinate-transformation",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b4e7aab1d7cda380346d40766a551e38/4-coordinate-transformation@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/aacba85267092b85df4c72199d7d204a/4-coordinate-transformation~dark@2x.png"
+        }
+      ]
+    },
+    "5-fragment-function": {
+      "alt": "Fragments generated by the rasterization stage",
+      "identifier": "5-fragment-function",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/296da5b4c7faf227df9ac13a9c3ce377/5-fragment-function@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1d132c0354d54b348b0ab9f81f468cfa/5-fragment-function~dark@2x.png"
+        }
+      ]
+    },
+    "6-rasterization-stage": {
+      "alt": "Interpolated Fragment Colors",
+      "identifier": "6-rasterization-stage",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2eb4f4fff7119e58e00e89b63d4a23dc/6-rasterization-stage@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d2b69d97bef10d16eaf36e600b298215/6-rasterization-stage~dark@2x.png"
+        }
+      ]
+    },
+    "a01b01435736/UsingARenderPipelineToRenderPrimitives.zip": {
+      "checksum": "a01b014357363f1ce626f4aac65b0f8bb0acf926a9a69af066c74628ebab65aac792d80bb21736b3b2905224511f3ec45464c2b8a490908c02d0a9f6e02d8e99",
+      "identifier": "a01b01435736/UsingARenderPipelineToRenderPrimitives.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/a01b01435736/UsingARenderPipelineToRenderPrimitives.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer": {
+      "abstract": [
+        {
+          "text": "A resource that stores data in a format defined by your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunction": {
+      "abstract": [
+        {
+          "text": "An object that represents a public shader function in a Metal library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFunction",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunction"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat": {
+      "abstract": [
+        {
+          "text": "The data formats that describe the organization and characteristics of individual pixels in a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPixelFormat",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor": {
+      "abstract": [
+        {
+          "text": "An argument of options you pass to a GPU device to get a render pipeline state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPipelineDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpipelinedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineState": {
+      "abstract": [
+        {
+          "text": "An interface that represents a graphics pipeline configuration for a render pass, which the pass applies to the draw commands you encode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineState"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineState"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPipelineState",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpipelinestate"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/performing-calculations-on-a-gpu": {
+      "abstract": [
+        {
+          "text": "Use Metal to find GPUs and perform calculations on them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/performing-calculations-on-a-gpu",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Performing Calculations on a GPU",
+      "type": "topic",
+      "url": "/documentation/metal/performing-calculations-on-a-gpu"
+    },
+    "doc://com.apple.metal/documentation/Metal/render-passes": {
+      "abstract": [
+        {
+          "text": "Encode a render pass to draw graphics into an image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/render-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Render Passes",
+      "type": "topic",
+      "url": "/documentation/metal/render-passes"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents": {
+      "abstract": [
+        {
+          "text": "Create a MetalKit view and a render pass to draw the view’s contents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using Metal to Draw a View’s Contents",
+      "type": "topic",
+      "url": "/documentation/metal/using-metal-to-draw-a-view's-contents"
+    },
+    "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf": {
+      "identifier": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf",
+      "title": "Metal Shading Language specification",
+      "titleInlineContent": [
+        {
+          "text": "Metal Shading Language specification",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "a01b01435736/UsingARenderPipelineToRenderPrimitives.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/performing-calculations-on-a-gpu",
+        "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/performing-calculations-on-a-gpu",
+                "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/title",
+          "value": "MTLRenderPipelineDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat/title",
+          "value": "MTLPixelFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/title",
+          "value": "MTLBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction/title",
+          "value": "MTLFunction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineState/title",
+          "value": "MTLRenderPipelineState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineState"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/using-a-render-pipeline-to-render-primitives"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/using-a-render-pipeline-to-render-primitives"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

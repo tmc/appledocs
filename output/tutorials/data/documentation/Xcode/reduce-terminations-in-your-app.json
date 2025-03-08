@@ -1,0 +1,591 @@
+{
+  "abstract": [
+    {
+      "text": "Minimize how frequently the system stops your app by addressing common termination reasons.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/reduce-terminations-in-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Reducing terminations in your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Terminations are part of the app lifecycle, when the system stops your process. You can significantly reduce terminations by fixing bugs and lowering your app’s resource consumption; however, terminations are expected and you cannot fully eliminate them. The system uses terminations to prioritize resources needed to keep the foreground user experience fluid.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system terminates your app, your app must re-launch the next time a user activates it. A re-launch is much slower than re-activating your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "View Termination data using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2020/10076/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or collect data in your app using MetricKit’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/metrickit/mxappexitmetric",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "reduce-terminations-in-your-app-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about debugging your terminations, see the following WWDC session video: ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2020/10078/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-termination-reasons",
+          "level": 3,
+          "text": "Understand termination reasons",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system stops your app when it encounters any of the following issues.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Aborts (Abnormal Exits). An abort happens when your process calls ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "abort()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This commonly occurs when your app encounters uncaught exceptions or failed ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "assert()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " calls, often through a framework that your app uses. An abort makes use of the SIGABRT signal. Aborts are crashes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Memory Limit. On iOS, the system attempts to provide foreground apps as much memory as possible. If your app attempts to use more memory than the system can provide, the system terminates it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Bad Access. A Bad Access termination happens when your app attempts to access invalid memory; for example, by deferencing null pointers or by attempting to index out of bounds on an array. Bad Access terminations are crashes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Illegal Instruction. An Illegal Instruction termination happens when your app attempts to execute an instruction that the system cannot interpret. Illegal Instruction terminations are crashes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App Watchdog. An App Timeout happens when your app takes too long to launch. The system gives a lenient amount of time to launch, and a timeout is generally indicative of your app getting stuck on launch. Many users will quit your app before this limit is hit, and those quits will not be considered an App Timeout. macOS apps do not have a launch time limit.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Memory Pressure. As part of the normal app lifecycle, iOS & watchOS terminate apps when the system requires more memory than is currently available. The system most often terminates apps in the background when a foreground app needs more memory. Reduce the frequency of memory pressure terminations for your app by lowering your memory at suspension. You can see memory at suspension in the Xcode Organizer. Because you cannot remove all memory pressure terminations, ensure that your app has proper state restoration to provide a fluid user experience.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To resolve terminations that are crashes, view the stack trace for the crash in the Crashes Organizer in Xcode. For more information about diagnosing and resolving a crash, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/xcode/diagnosing-issues-using-crash-reports-and-device-logs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Background-termination-reasons",
+          "level": 3,
+          "text": "Background termination reasons",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some termination reasons only apply while your app is in the background:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Task Timeout. The system allows your app to continue executing in the background, after the user has placed the app in the background, through the use of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/uikit/uiapplication/1623051-beginbackgroundtask",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". If your app does not finish its work in the allotted time, the system will terminate it with the Task Timeout reason.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "File Lock. A File Lock termination happens when your app continues to hold a lock on a shared file held in your AppGroup when the user put your app in the background. The system performs this termination to avoid blocking on a lock that your app may never release.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/analyzing-responsiveness-issues-in-your-shipping-app": {
+      "abstract": [
+        {
+          "text": "Identify responsiveness issues your users encounter, and use the hang and hitch data in Xcode Organizer to determine which issues are most important to fix.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/analyzing-responsiveness-issues-in-your-shipping-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing responsiveness issues in your shipping app",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-responsiveness-issues-in-your-shipping-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-performance-issues-early": {
+      "abstract": [
+        {
+          "text": "Diagnose potential performance issues in your app during testing with the Thread Performance Checker tool in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-performance-issues-early",
+      "kind": "article",
+      "role": "article",
+      "title": "Diagnosing performance issues early",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-performance-issues-early"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/improving-app-responsiveness": {
+      "abstract": [
+        {
+          "text": "Create a user experience that feels responsive by removing hangs and hitches from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/improving-app-responsiveness",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving app responsiveness",
+      "type": "topic",
+      "url": "/documentation/xcode/improving-app-responsiveness"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics": {
+      "abstract": [
+        {
+          "text": "Measure, investigate, and address the use of system resources and issues impacting performance using Instruments and Xcode Organizer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Performance and metrics",
+      "type": "topic",
+      "url": "/documentation/xcode/performance-and-metrics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reducing-disk-writes": {
+      "abstract": [
+        {
+          "text": "Improve your app’s responsiveness by optimizing how it writes data to permanent storage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-disk-writes",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing disk writes",
+      "type": "topic",
+      "url": "/documentation/xcode/reducing-disk-writes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-launch-time": {
+      "abstract": [
+        {
+          "text": "Create a more responsive experience with your app by minimizing time spent in startup.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-launch-time",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing your app’s launch time",
+      "type": "topic",
+      "url": "/documentation/xcode/reducing-your-app-s-launch-time"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-hangs-in-your-app": {
+      "abstract": [
+        {
+          "text": "Determine the cause for delays in user interactions by examining the main thread and the main run loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-hangs-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding hangs in your app",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-hangs-in-your-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app": {
+      "abstract": [
+        {
+          "text": "Determine the cause of interruptions in motion by examining the render loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding hitches in your app",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-hitches-in-your-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-user-interface-responsiveness": {
+      "abstract": [
+        {
+          "text": "Make your app more responsive by examining the event-handling and rendering loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-user-interface-responsiveness",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding user interface responsiveness",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-user-interface-responsiveness"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/documentation/metrickit/mxappexitmetric": {
+      "identifier": "https://developer.apple.com/documentation/metrickit/mxappexitmetric",
+      "title": "MXAppExitMetric",
+      "titleInlineContent": [
+        {
+          "text": "MXAppExitMetric",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/metrickit/mxappexitmetric"
+    },
+    "https://developer.apple.com/documentation/uikit/uiapplication/1623051-beginbackgroundtask": {
+      "identifier": "https://developer.apple.com/documentation/uikit/uiapplication/1623051-beginbackgroundtask",
+      "title": "beginBackgroundTask API",
+      "titleInlineContent": [
+        {
+          "text": "beginBackgroundTask API",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/uikit/uiapplication/1623051-beginbackgroundtask"
+    },
+    "https://developer.apple.com/documentation/xcode/diagnosing-issues-using-crash-reports-and-device-logs": {
+      "identifier": "https://developer.apple.com/documentation/xcode/diagnosing-issues-using-crash-reports-and-device-logs",
+      "title": "Diagnosing Issues Using Crash Reports and Device Logs ",
+      "titleInlineContent": [
+        {
+          "text": "Diagnosing Issues Using Crash Reports and Device Logs ",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/xcode/diagnosing-issues-using-crash-reports-and-device-logs"
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10076/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10076/",
+      "title": "Xcode Organizer",
+      "titleInlineContent": [
+        {
+          "text": "Xcode Organizer",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10076/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10078/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10078/",
+      "title": "developer.apple.com/videos/play/wwdc2020/10078",
+      "titleInlineContent": [
+        {
+          "text": "developer.apple.com/videos/play/wwdc2020/10078",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10078/"
+    },
+    "reduce-terminations-in-your-app-1": {
+      "alt": "Screenshot of the Terminations pane in the Xcode Organizer. From left to right is the list of metrics and reports, Report List, the foreground and background terminations charts, and the Inspector with additional details for the selected and latest app versions.  ",
+      "identifier": "reduce-terminations-in-your-app-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/976cb841e717d92b5eea7b4f7ecdd798/reduce-terminations-in-your-app-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/eb597ffb09fb6555bc0700b5a4c3ff09/reduce-terminations-in-your-app-1~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Responsiveness",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/analyzing-responsiveness-issues-in-your-shipping-app",
+        "doc://com.apple.Xcode/documentation/Xcode/improving-app-responsiveness",
+        "doc://com.apple.Xcode/documentation/Xcode/understanding-user-interface-responsiveness",
+        "doc://com.apple.Xcode/documentation/Xcode/understanding-hangs-in-your-app",
+        "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app",
+        "doc://com.apple.Xcode/documentation/Xcode/diagnosing-performance-issues-early",
+        "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-launch-time",
+        "doc://com.apple.Xcode/documentation/Xcode/reducing-disk-writes"
+      ],
+      "title": "Responsiveness"
+    }
+  ]
+}

@@ -1,0 +1,419 @@
+{
+  "abstract": [
+    {
+      "text": "The type of network service for all tasks within network sessions to enable Cellular Network Slicing. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011409-networkservicetype"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2011409,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation10URLRequestV18networkServiceTypeSo019NSURLRequestNetworkdE0Vvp",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "var "
+      },
+      {
+        "kind": "identifier",
+        "text": "networkServiceType"
+      },
+      {
+        "kind": "text",
+        "text": ": URLRequest.NetworkServiceType"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "URLRequest"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.10",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "8.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "structp",
+    "title": "networkServiceType"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "networkServiceType"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation10URLRequestV",
+              "text": "URLRequest"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/networkservicetype",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation10URLRequestV18NetworkServiceTypea",
+              "text": "NetworkServiceType"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two steps to enable Cellular Network Slicing:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the entitlements in your property list for ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.slicing.appcategory",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.slicing.trafficcategory",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". If you don’t entitle your app by specifying both these entitlements, your apps network connections won’t be using Cellular Network Slicing, even if supported by the carrier. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "At the time of network flow creation, set this to the appropriate ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/networkservicetype",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for your application type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.slicing.appcategory": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.slicing.appcategory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "5G Network Slicing App Category",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.networking.slicing.appcategory"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.slicing.trafficcategory": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.slicing.trafficcategory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "5G Network Slicing Traffic Category",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.networking.slicing.trafficcategory"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest/networkservicetype": {
+      "abstract": [
+        {
+          "text": "Constants that specify how a request uses network resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURLRequest.NetworkServiceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/networkservicetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest.NetworkServiceType",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest/networkservicetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2011409-networkservicetype": {
+      "abstract": [
+        {
+          "text": "The type of network service for all tasks within network sessions to enable Cellular Network Slicing. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "networkServiceType"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest.NetworkServiceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011409-networkservicetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "networkServiceType",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2011409-networkservicetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/networkservicetype": {
+      "abstract": [
+        {
+          "text": "An alias for the network service type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLRequest.NetworkServiceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/networkservicetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLRequest.NetworkServiceType",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/networkservicetype"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlrequest/networkservicetype",
+        "doc://com.apple.documentation/documentation/foundation/nsurlrequest/networkservicetype"
+      ],
+      "title": "Accessing the service type"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/urlrequest/2011409-networkservicetype"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1045 @@
+{
+  "abstract": [
+    {
+      "text": "Configure audio devices that enable the guest operating system to perform audio playback and capture through the host’s audio devices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.virtualization/documentation/Virtualization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.virtualization/documentation/Virtualization/audio"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Virtualization"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Audio"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app can configure an audio input device, you must set an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " message in your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist.",
+              "type": "codeVoice"
+            },
+            {
+              "text": " The system uses this description when asking the user’s permission to enable microphone access. If this message isn’t set or the key isn’t present, the system denies microphone access to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To enable VIRTIO sound support in Linux guests, configure sound support in the kernel using the ",
+                  "type": "text"
+                },
+                {
+                  "code": "CONFIG_SND_VIRTIO",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " kernel parameter.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add audio support to your guest with just a few lines of code. The example below shows how to configure a VM to expose a VIRTIO sound device that consists of an audio input and output on the guest that the system bridges to the host machine’s speakers and microphone:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let outputStream = VZVirtioSoundDeviceOutputStreamConfiguration()",
+                    "outputStream.sink = VZHostAudioOutputStreamSink()",
+                    "let outputSoundDevice = VZVirtioSoundDeviceConfiguration()",
+                    "outputSoundDevice.streams = [outputStream]",
+                    "",
+                    "let inputStream = VZVirtioSoundDeviceInputStreamConfiguration()",
+                    "inputStream.source = VZHostAudioInputStreamSource()",
+                    "let inputSoundDevice = VZVirtioSoundDeviceConfiguration()",
+                    "inputSoundDevice.streams = [inputStream]",
+                    "",
+                    "let configuration = VZVirtualMachineConfiguration()",
+                    "configuration.audioDevices = [outputSoundDevice, inputSoundDevice]"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "VZVirtioSoundDeviceOutputStreamConfiguration *outputStream = [[VZVirtioSoundDeviceOutputStreamConfiguration alloc] init];",
+                    "outputStream.sink = [[VZHostAudioOutputStreamSink alloc] init];",
+                    "VZVirtioSoundDeviceConfiguration *outputSoundDevice = [[VZVirtioSoundDeviceConfiguration alloc] init];",
+                    "soundDevice.streams = @[ outputStream ];",
+                    "",
+                    "VZVirtioSoundDeviceInputStreamConfiguration *inputStream = [[VZVirtioSoundDeviceInputStreamConfiguration alloc] init];",
+                    "inputStream.source = [[VZHostAudioInputStreamSource alloc] init];",
+                    "VZVirtioSoundDeviceConfiguration *inputSoundDevice = [[VZVirtioSoundDeviceConfiguration alloc] init];",
+                    "soundDevice.streams = @[ inputStream ];",
+                    "",
+                    "VZVirtualMachineConfiguration *configuration = [[VZVirtualMachineConfiguration alloc] init];",
+                    "configuration.audioDevices = @[ outputSoundDevice, inputSoundDevice ];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the device’s microphone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMicrophoneUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization": {
+      "abstract": [
+        {
+          "text": "Create virtual machines and run macOS and Linux-based operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Virtualization",
+      "type": "topic",
+      "url": "/documentation/virtualization"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZAudioDeviceConfiguration": {
+      "abstract": [
+        {
+          "text": "The base class for an audio device configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZAudioDeviceConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZAudioDeviceConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZAudioDeviceConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZAudioDeviceConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzaudiodeviceconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZAudioInputStreamSource": {
+      "abstract": [
+        {
+          "text": "The base class for an audio input stream source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZAudioInputStreamSource"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZAudioInputStreamSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZAudioInputStreamSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZAudioInputStreamSource",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzaudioinputstreamsource"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZAudioOutputStreamSink": {
+      "abstract": [
+        {
+          "text": "The base class for an audio output stream sink.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZAudioOutputStreamSink"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZAudioOutputStreamSink",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZAudioOutputStreamSink"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZAudioOutputStreamSink",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzaudiooutputstreamsink"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZHostAudioInputStreamSource": {
+      "abstract": [
+        {
+          "text": "The host audio input stream source that provides audio from the host system’s default input device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZHostAudioInputStreamSource"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZHostAudioInputStreamSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZHostAudioInputStreamSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZHostAudioInputStreamSource",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzhostaudioinputstreamsource"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZHostAudioOutputStreamSink": {
+      "abstract": [
+        {
+          "text": "Host audio output stream sink plays audio to the host system’s default output device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZHostAudioOutputStreamSink"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZHostAudioOutputStreamSink",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZHostAudioOutputStreamSink"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZHostAudioOutputStreamSink",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzhostaudiooutputstreamsink"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioSoundDeviceConfiguration": {
+      "abstract": [
+        {
+          "text": "An object that defines a Virtio sound device configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtioSoundDeviceConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioSoundDeviceConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtioSoundDeviceConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtioSoundDeviceConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtiosounddeviceconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioSoundDeviceInputStreamConfiguration": {
+      "abstract": [
+        {
+          "text": "A PCM stream of input audio data, such as from a microphone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtioSoundDeviceInputStreamConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioSoundDeviceInputStreamConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtioSoundDeviceInputStreamConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtioSoundDeviceInputStreamConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtiosounddeviceinputstreamconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioSoundDeviceOutputStreamConfiguration": {
+      "abstract": [
+        {
+          "text": "An object that defines a Virtio sound device output stream configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtioSoundDeviceOutputStreamConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioSoundDeviceOutputStreamConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtioSoundDeviceOutputStreamConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtioSoundDeviceOutputStreamConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtiosounddeviceoutputstreamconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioSoundDeviceStreamConfiguration": {
+      "abstract": [
+        {
+          "text": "An object that defines a Virtio sound device stream configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtioSoundDeviceStreamConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioSoundDeviceStreamConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtioSoundDeviceStreamConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtioSoundDeviceStreamConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtiosounddevicestreamconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/clipboard-sharing": {
+      "abstract": [
+        {
+          "text": "Share the pasteboard between the host and guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/clipboard-sharing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Clipboard sharing",
+      "type": "topic",
+      "url": "/documentation/virtualization/clipboard-sharing"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/consoles": {
+      "abstract": [
+        {
+          "text": "Configure a device that manages multiport console communication with the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/consoles",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Consoles",
+      "type": "topic",
+      "url": "/documentation/virtualization/consoles"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/graphics": {
+      "abstract": [
+        {
+          "text": "Configure a device for a guest to display its UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/graphics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Graphics",
+      "type": "topic",
+      "url": "/documentation/virtualization/graphics"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/keyboards-and-pointing-devices": {
+      "abstract": [
+        {
+          "text": "Configure devices that connect a mouse and keyboard to the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/keyboards-and-pointing-devices",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keyboards and pointing devices",
+      "type": "topic",
+      "url": "/documentation/virtualization/keyboards-and-pointing-devices"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/memory": {
+      "abstract": [
+        {
+          "text": "Configure a memory balloon device to change the allocated memory for the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/memory",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory",
+      "type": "topic",
+      "url": "/documentation/virtualization/memory"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/network": {
+      "abstract": [
+        {
+          "text": "Configure the devices that connect the guest system to the network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/network",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/virtualization/network"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/randomization": {
+      "abstract": [
+        {
+          "text": "Configure a device for the guest system to use to generate random numbers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/randomization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Randomization",
+      "type": "topic",
+      "url": "/documentation/virtualization/randomization"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/serial-ports": {
+      "abstract": [
+        {
+          "text": "Configure the serial devices that you use to communicate with the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/serial-ports",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Serial ports",
+      "type": "topic",
+      "url": "/documentation/virtualization/serial-ports"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/shared-directories": {
+      "abstract": [
+        {
+          "text": "Configure devices that share directories from the host into the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/shared-directories",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Shared directories",
+      "type": "topic",
+      "url": "/documentation/virtualization/shared-directories"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/sockets": {
+      "abstract": [
+        {
+          "text": "Configure a device that manages port-based communication with the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/sockets",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sockets",
+      "type": "topic",
+      "url": "/documentation/virtualization/sockets"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/storage": {
+      "abstract": [
+        {
+          "text": "Configure the block-storage devices that represent the disks of the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/storage",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Storage",
+      "type": "topic",
+      "url": "/documentation/virtualization/storage"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/usb-devices": {
+      "abstract": [],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/usb-devices",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USB Devices",
+      "type": "topic",
+      "url": "/documentation/virtualization/usb-devices"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Devices",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/graphics",
+        "doc://com.apple.virtualization/documentation/Virtualization/keyboards-and-pointing-devices",
+        "doc://com.apple.virtualization/documentation/Virtualization/memory",
+        "doc://com.apple.virtualization/documentation/Virtualization/network",
+        "doc://com.apple.virtualization/documentation/Virtualization/randomization",
+        "doc://com.apple.virtualization/documentation/Virtualization/serial-ports",
+        "doc://com.apple.virtualization/documentation/Virtualization/shared-directories",
+        "doc://com.apple.virtualization/documentation/Virtualization/sockets",
+        "doc://com.apple.virtualization/documentation/Virtualization/storage",
+        "doc://com.apple.virtualization/documentation/Virtualization/consoles",
+        "doc://com.apple.virtualization/documentation/Virtualization/clipboard-sharing",
+        "doc://com.apple.virtualization/documentation/Virtualization/usb-devices"
+      ],
+      "title": "Devices"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configurations",
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioSoundDeviceConfiguration",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioSoundDeviceOutputStreamConfiguration",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioSoundDeviceInputStreamConfiguration",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZAudioDeviceConfiguration",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioSoundDeviceStreamConfiguration"
+      ],
+      "title": "Configurations"
+    },
+    {
+      "anchor": "Audio-streams",
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/VZHostAudioOutputStreamSink",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZHostAudioInputStreamSource",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZAudioOutputStreamSink",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZAudioInputStreamSource"
+      ],
+      "title": "Audio streams"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Configurations",
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioSoundDeviceConfiguration",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioSoundDeviceOutputStreamConfiguration",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioSoundDeviceInputStreamConfiguration",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZAudioDeviceConfiguration",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioSoundDeviceStreamConfiguration"
+              ],
+              "title": "Configurations"
+            },
+            {
+              "anchor": "Audio-streams",
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/VZHostAudioOutputStreamSink",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZHostAudioInputStreamSource",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZAudioOutputStreamSink",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZAudioInputStreamSource"
+              ],
+              "title": "Audio streams"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Devices",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/graphics",
+                "doc://com.apple.virtualization/documentation/Virtualization/keyboards-and-pointing-devices",
+                "doc://com.apple.virtualization/documentation/Virtualization/memory",
+                "doc://com.apple.virtualization/documentation/Virtualization/network",
+                "doc://com.apple.virtualization/documentation/Virtualization/randomization",
+                "doc://com.apple.virtualization/documentation/Virtualization/serial-ports",
+                "doc://com.apple.virtualization/documentation/Virtualization/shared-directories",
+                "doc://com.apple.virtualization/documentation/Virtualization/sockets",
+                "doc://com.apple.virtualization/documentation/Virtualization/storage",
+                "doc://com.apple.virtualization/documentation/Virtualization/consoles",
+                "doc://com.apple.virtualization/documentation/Virtualization/clipboard-sharing",
+                "doc://com.apple.virtualization/documentation/Virtualization/usb-devices"
+              ],
+              "title": "Devices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioSoundDeviceConfiguration/title",
+          "value": "VZVirtioSoundDeviceConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioSoundDeviceConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioSoundDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioSoundDeviceConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioSoundDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioSoundDeviceStreamConfiguration/title",
+          "value": "VZVirtioSoundDeviceStreamConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioSoundDeviceStreamConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioSoundDeviceStreamConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioSoundDeviceStreamConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioSoundDeviceStreamConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZAudioInputStreamSource/title",
+          "value": "VZAudioInputStreamSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZAudioInputStreamSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZAudioInputStreamSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZAudioInputStreamSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZAudioInputStreamSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZAudioOutputStreamSink/title",
+          "value": "VZAudioOutputStreamSink"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZAudioOutputStreamSink/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZAudioOutputStreamSink"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZAudioOutputStreamSink/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZAudioOutputStreamSink"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioSoundDeviceInputStreamConfiguration/title",
+          "value": "VZVirtioSoundDeviceInputStreamConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioSoundDeviceInputStreamConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioSoundDeviceInputStreamConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioSoundDeviceInputStreamConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioSoundDeviceInputStreamConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioSoundDeviceOutputStreamConfiguration/title",
+          "value": "VZVirtioSoundDeviceOutputStreamConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioSoundDeviceOutputStreamConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioSoundDeviceOutputStreamConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioSoundDeviceOutputStreamConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioSoundDeviceOutputStreamConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZAudioDeviceConfiguration/title",
+          "value": "VZAudioDeviceConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZAudioDeviceConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZAudioDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZAudioDeviceConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZAudioDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZHostAudioOutputStreamSink/title",
+          "value": "VZHostAudioOutputStreamSink"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZHostAudioOutputStreamSink/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZHostAudioOutputStreamSink"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZHostAudioOutputStreamSink/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZHostAudioOutputStreamSink"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZHostAudioInputStreamSource/title",
+          "value": "VZHostAudioInputStreamSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZHostAudioInputStreamSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZHostAudioInputStreamSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZHostAudioInputStreamSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZHostAudioInputStreamSource"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/virtualization/audio"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/virtualization/audio"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

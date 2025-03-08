@@ -1,0 +1,3931 @@
+{
+  "abstract": [
+    {
+      "text": "Define interactions from taps, clicks, and swipes to fine-grained gestures.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Gestures"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Gestures"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Respond to gestures by adding gesture modifiers to your views.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can listen for taps, drags, pinches, and other standard gestures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gestures-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also compose custom gestures from individual gestures using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Gesture/simultaneously(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Gesture/sequenced(before:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Gesture/exclusively(before:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifiers, or combine gestures with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "keyboard modifiers using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Gesture/modifiers(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When you need a button, use a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Button",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instance rather than",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "a tap gesture. You can use any view as the button’s label, and the button",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "type automatically provides many of the standard behaviors that users expect",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "from a button, like accessibility labels and hints.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/gestures",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Adding-Interactivity-with-Gestures": {
+      "abstract": [
+        {
+          "text": "Use gesture modifiers to add interactivity to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Adding-Interactivity-with-Gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding interactivity with gestures",
+      "type": "topic",
+      "url": "/documentation/swiftui/adding-interactivity-with-gestures"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyGesture": {
+      "abstract": [
+        {
+          "text": "A type-erased gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnyGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyGesture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnyGesture"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnyGesture",
+      "type": "topic",
+      "url": "/documentation/swiftui/anygesture"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Button": {
+      "abstract": [
+        {
+          "text": "A control that initiates an action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Button"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Button",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Button"
+        }
+      ],
+      "role": "symbol",
+      "title": "Button",
+      "type": "topic",
+      "url": "/documentation/swiftui/button"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Chirality": {
+      "abstract": [
+        {
+          "text": "The chirality, or handedness, of a pose.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Chirality"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Chirality",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Chirality"
+        }
+      ],
+      "role": "symbol",
+      "title": "Chirality",
+      "type": "topic",
+      "url": "/documentation/swiftui/chirality"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Clipboard": {
+      "abstract": [
+        {
+          "text": "Enable people to move or duplicate items by issuing Copy and Paste commands.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Clipboard",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Clipboard",
+      "type": "topic",
+      "url": "/documentation/swiftui/clipboard"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Composing-SwiftUI-Gestures": {
+      "abstract": [
+        {
+          "text": "Combine gestures to create complex interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Composing-SwiftUI-Gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Composing SwiftUI gestures",
+      "type": "topic",
+      "url": "/documentation/swiftui/composing-swiftui-gestures"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Drag-and-drop": {
+      "abstract": [
+        {
+          "text": "Enable people to move or duplicate items by dragging them from one location to another.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Drag-and-drop",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Drag and drop",
+      "type": "topic",
+      "url": "/documentation/swiftui/drag-and-drop"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DragGesture": {
+      "abstract": [
+        {
+          "text": "A dragging motion that invokes an action as the drag-event sequence changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DragGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DragGesture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DragGesture"
+        }
+      ],
+      "role": "symbol",
+      "title": "DragGesture",
+      "type": "topic",
+      "url": "/documentation/swiftui/draggesture"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/preferredPencilDoubleTapAction": {
+      "abstract": [
+        {
+          "text": "The action that the user prefers to perform after double-tapping their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Apple Pencil, as selected in the Settings app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredPencilDoubleTapAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21PencilPreferredActionV",
+          "text": "PencilPreferredAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/preferredPencilDoubleTapAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preferredPencilDoubleTapAction",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/preferredpencildoubletapaction"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/preferredPencilSqueezeAction": {
+      "abstract": [
+        {
+          "text": "The action that the user prefers to perform when squeezing their Apple",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Pencil, as selected in the Settings app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredPencilSqueezeAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21PencilPreferredActionV",
+          "text": "PencilPreferredAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/preferredPencilSqueezeAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preferredPencilSqueezeAction",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/preferredpencilsqueezeaction"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ExclusiveGesture": {
+      "abstract": [
+        {
+          "text": "A gesture that consists of two gestures where only one of them can succeed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExclusiveGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ExclusiveGesture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExclusiveGesture"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExclusiveGesture",
+      "type": "topic",
+      "url": "/documentation/swiftui/exclusivegesture"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Focus": {
+      "abstract": [
+        {
+          "text": "Identify and control which visible object responds to user interaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Focus",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Focus",
+      "type": "topic",
+      "url": "/documentation/swiftui/focus"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Gesture": {
+      "abstract": [
+        {
+          "text": "An instance that matches a sequence of events to a gesture, and returns a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "stream of values for each of its states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Gesture"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Gesture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Gesture"
+        }
+      ],
+      "role": "symbol",
+      "title": "Gesture",
+      "type": "topic",
+      "url": "/documentation/swiftui/gesture"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Gesture/exclusively(before:)": {
+      "abstract": [
+        {
+          "text": "Combines two gestures exclusively to create a new gesture where only one",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "gesture succeeds, giving precedence to the first gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exclusively"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Other"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "before"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Other"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16ExclusiveGestureV",
+          "text": "ExclusiveGesture"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Other"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Gesture/exclusively(before:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exclusively(before:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/gesture/exclusively(before:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Gesture/modifiers(_:)": {
+      "abstract": [
+        {
+          "text": "Combines a gesture with keyboard modifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modifiers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14EventModifiersV",
+          "text": "EventModifiers"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "_ModifiersGesture"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Gesture/modifiers(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "modifiers(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/gesture/modifiers(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Gesture/sequenced(before:)": {
+      "abstract": [
+        {
+          "text": "Sequences a gesture with another one to create a new gesture, which",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "results in the second gesture only receiving events after the first",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "gesture succeeds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sequenced"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Other"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "before"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Other"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15SequenceGestureV",
+          "text": "SequenceGesture"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Other"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Gesture/sequenced(before:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sequenced(before:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/gesture/sequenced(before:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Gesture/simultaneously(with:)": {
+      "abstract": [
+        {
+          "text": "Combines a gesture with another gesture to create a new gesture that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "recognizes both gestures at the same time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simultaneously"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Other"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Other"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19SimultaneousGestureV",
+          "text": "SimultaneousGesture"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Other"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Gesture/simultaneously(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "simultaneously(with:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/gesture/simultaneously(with:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/GestureMask": {
+      "abstract": [
+        {
+          "text": "Options that control how adding a gesture to a view affects other gestures",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "recognized by the view and its subviews.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GestureMask"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GestureMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GestureMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "GestureMask",
+      "type": "topic",
+      "url": "/documentation/swiftui/gesturemask"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/GestureState": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that updates a property while the user performs a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "gesture and resets the property back to its initial state when the gesture",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "ends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GestureState"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GestureState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GestureState"
+        }
+      ],
+      "role": "symbol",
+      "title": "GestureState",
+      "type": "topic",
+      "url": "/documentation/swiftui/gesturestate"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/GestureStateGesture": {
+      "abstract": [
+        {
+          "text": "A gesture that updates the state provided by a gesture’s updating callback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GestureStateGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GestureStateGesture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GestureStateGesture"
+        }
+      ],
+      "role": "symbol",
+      "title": "GestureStateGesture",
+      "type": "topic",
+      "url": "/documentation/swiftui/gesturestategesture"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/HandActivationBehavior": {
+      "abstract": [
+        {
+          "text": "An activation behavior specific to hand-driven input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HandActivationBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HandActivationBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HandActivationBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "HandActivationBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/handactivationbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/HandGestureShortcut": {
+      "abstract": [
+        {
+          "text": "Hand gesture shortcuts describe finger and wrist movements that the user can",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "perform in order to activate a button or toggle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HandGestureShortcut"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HandGestureShortcut",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HandGestureShortcut"
+        }
+      ],
+      "role": "symbol",
+      "title": "HandGestureShortcut",
+      "type": "topic",
+      "url": "/documentation/swiftui/handgestureshortcut"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Input-events": {
+      "abstract": [
+        {
+          "text": "Respond to input from a hardware device, like a keyboard or a Touch Bar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Input-events",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Input events",
+      "type": "topic",
+      "url": "/documentation/swiftui/input-events"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LongPressGesture": {
+      "abstract": [
+        {
+          "text": "A gesture that succeeds when the user performs a long press.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LongPressGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LongPressGesture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LongPressGesture"
+        }
+      ],
+      "role": "symbol",
+      "title": "LongPressGesture",
+      "type": "topic",
+      "url": "/documentation/swiftui/longpressgesture"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/MagnificationGesture": {
+      "abstract": [
+        {
+          "text": "A gesture that recognizes a magnification motion and tracks the amount of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "magnification.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MagnificationGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/MagnificationGesture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MagnificationGesture"
+        }
+      ],
+      "role": "symbol",
+      "title": "MagnificationGesture",
+      "type": "topic",
+      "url": "/documentation/swiftui/magnificationgesture"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/MagnifyGesture": {
+      "abstract": [
+        {
+          "text": "A gesture that recognizes a magnification motion and tracks the amount of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "magnification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MagnifyGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/MagnifyGesture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MagnifyGesture"
+        }
+      ],
+      "role": "symbol",
+      "title": "MagnifyGesture",
+      "type": "topic",
+      "url": "/documentation/swiftui/magnifygesture"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PencilDoubleTapGestureValue": {
+      "abstract": [
+        {
+          "text": "Describes the value of an Apple Pencil double-tap gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PencilDoubleTapGestureValue"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PencilDoubleTapGestureValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PencilDoubleTapGestureValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "PencilDoubleTapGestureValue",
+      "type": "topic",
+      "url": "/documentation/swiftui/pencildoubletapgesturevalue"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PencilHoverPose": {
+      "abstract": [
+        {
+          "text": "A value describing the location and distance of an Apple Pencil hovering in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the area above a view’s bounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PencilHoverPose"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PencilHoverPose",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PencilHoverPose"
+        }
+      ],
+      "role": "symbol",
+      "title": "PencilHoverPose",
+      "type": "topic",
+      "url": "/documentation/swiftui/pencilhoverpose"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PencilPreferredAction": {
+      "abstract": [
+        {
+          "text": "An action that the user prefers to perform after double-tapping their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PencilPreferredAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PencilPreferredAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PencilPreferredAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "PencilPreferredAction",
+      "type": "topic",
+      "url": "/documentation/swiftui/pencilpreferredaction"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PencilSqueezeGesturePhase": {
+      "abstract": [
+        {
+          "text": "Describes the phase and value of an Apple Pencil squeeze gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PencilSqueezeGesturePhase"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PencilSqueezeGesturePhase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PencilSqueezeGesturePhase"
+        }
+      ],
+      "role": "symbol",
+      "title": "PencilSqueezeGesturePhase",
+      "type": "topic",
+      "url": "/documentation/swiftui/pencilsqueezegesturephase"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PencilSqueezeGestureValue": {
+      "abstract": [
+        {
+          "text": "Describes the value of an Apple Pencil squeeze gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PencilSqueezeGestureValue"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PencilSqueezeGestureValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PencilSqueezeGestureValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "PencilSqueezeGestureValue",
+      "type": "topic",
+      "url": "/documentation/swiftui/pencilsqueezegesturevalue"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/RotateGesture": {
+      "abstract": [
+        {
+          "text": "A gesture that recognizes a rotation motion and tracks the angle of the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "rotation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RotateGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/RotateGesture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RotateGesture"
+        }
+      ],
+      "role": "symbol",
+      "title": "RotateGesture",
+      "type": "topic",
+      "url": "/documentation/swiftui/rotategesture"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/RotateGesture3D": {
+      "abstract": [
+        {
+          "text": "A gesture that recognizes 3D rotation motion and tracks the angle and axis",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of the rotation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RotateGesture3D"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/RotateGesture3D",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RotateGesture3D"
+        }
+      ],
+      "role": "symbol",
+      "title": "RotateGesture3D",
+      "type": "topic",
+      "url": "/documentation/swiftui/rotategesture3d"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/RotationGesture": {
+      "abstract": [
+        {
+          "text": "A gesture that recognizes a rotation motion and tracks the angle of the rotation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RotationGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/RotationGesture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RotationGesture"
+        }
+      ],
+      "role": "symbol",
+      "title": "RotationGesture",
+      "type": "topic",
+      "url": "/documentation/swiftui/rotationgesture"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SequenceGesture": {
+      "abstract": [
+        {
+          "text": "A gesture that’s a sequence of two gestures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SequenceGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SequenceGesture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SequenceGesture"
+        }
+      ],
+      "role": "symbol",
+      "title": "SequenceGesture",
+      "type": "topic",
+      "url": "/documentation/swiftui/sequencegesture"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SimultaneousGesture": {
+      "abstract": [
+        {
+          "text": "A gesture containing two gestures that can happen at the same time with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "neither of them preceding the other.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SimultaneousGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SimultaneousGesture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SimultaneousGesture"
+        }
+      ],
+      "role": "symbol",
+      "title": "SimultaneousGesture",
+      "type": "topic",
+      "url": "/documentation/swiftui/simultaneousgesture"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialEventCollection": {
+      "abstract": [
+        {
+          "text": "A collection of spatial input events that target a specific view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialEventCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialEventCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpatialEventCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialEventCollection",
+      "type": "topic",
+      "url": "/documentation/swiftui/spatialeventcollection"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialEventGesture": {
+      "abstract": [
+        {
+          "text": "A gesture that provides information about ongoing spatial events like",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "clicks and touches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialEventGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialEventGesture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpatialEventGesture"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialEventGesture",
+      "type": "topic",
+      "url": "/documentation/swiftui/spatialeventgesture"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture": {
+      "abstract": [
+        {
+          "text": "A gesture that recognizes one or more taps and reports their location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialTapGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpatialTapGesture"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTapGesture",
+      "type": "topic",
+      "url": "/documentation/swiftui/spatialtapgesture"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/System-events": {
+      "abstract": [
+        {
+          "text": "React to system events, like opening a URL.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/System-events",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "System events",
+      "type": "topic",
+      "url": "/documentation/swiftui/system-events"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TapGesture": {
+      "abstract": [
+        {
+          "text": "A gesture that recognizes one or more taps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TapGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TapGesture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TapGesture"
+        }
+      ],
+      "role": "symbol",
+      "title": "TapGesture",
+      "type": "topic",
+      "url": "/documentation/swiftui/tapgesture"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIGestureRecognizerRepresentable": {
+      "abstract": [
+        {
+          "text": "A wrapper for a ",
+          "type": "text"
+        },
+        {
+          "code": "UIGestureRecognizer",
+          "type": "codeVoice"
+        },
+        {
+          "text": " that you use to integrate that gesture",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "recognizer into your SwiftUI hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIGestureRecognizerRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGestureRecognizerRepresentable",
+      "type": "topic",
+      "url": "/documentation/swiftui/uigesturerecognizerrepresentable"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/allowsWindowActivationEvents(_:)": {
+      "abstract": [
+        {
+          "text": "Configures whether gestures in this view hierarchy can handle events",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that activate the containing window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsWindowActivationEvents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/allowsWindowActivationEvents(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowsWindowActivationEvents(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/allowswindowactivationevents(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/defersSystemGestures(on:)": {
+      "abstract": [
+        {
+          "text": "Sets the screen edge from which you want your gesture to take",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "precedence over the system gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defersSystemGestures"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO",
+          "text": "Edge"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/defersSystemGestures(on:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defersSystemGestures(on:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/deferssystemgestures(on:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gesture(_:)": {
+      "abstract": [
+        {
+          "text": "Attaches a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIGestureRecognizerRepresentable",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " to the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gesture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI32UIGestureRecognizerRepresentableP",
+          "text": "UIGestureRecognizerRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gesture(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gesture(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/gesture(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gesture(_:including:)": {
+      "abstract": [
+        {
+          "text": "Attaches a gesture to the view with a lower precedence than gestures",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "defined by the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gesture"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "including"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11GestureMaskV",
+          "text": "GestureMask"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gesture(_:including:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gesture(_:including:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/gesture(_:including:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gesture(_:isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Attaches a gesture to the view with a lower precedence than gestures",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "defined by the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gesture"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gesture(_:isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gesture(_:isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/gesture(_:isenabled:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gesture(_:name:isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Attaches a gesture to the view with a lower precedence than gestures",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "defined by the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gesture"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gesture(_:name:isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gesture(_:name:isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/gesture(_:name:isenabled:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/handGestureShortcut(_:isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Assigns a hand gesture shortcut to the modified control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handGestureShortcut"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19HandGestureShortcutV",
+          "text": "HandGestureShortcut"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/handGestureShortcut(_:isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handGestureShortcut(_:isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/handgestureshortcut(_:isenabled:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/highPriorityGesture(_:including:)": {
+      "abstract": [
+        {
+          "text": "Attaches a gesture to the view with a higher precedence than gestures",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "defined by the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "highPriorityGesture"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "including"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11GestureMaskV",
+          "text": "GestureMask"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/highPriorityGesture(_:including:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "highPriorityGesture(_:including:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/highprioritygesture(_:including:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/highPriorityGesture(_:isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Attaches a gesture to the view with a higher precedence than gestures",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "defined by the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "highPriorityGesture"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/highPriorityGesture(_:isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "highPriorityGesture(_:isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/highprioritygesture(_:isenabled:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/highPriorityGesture(_:name:isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Attaches a gesture to the view with a higher precedence than gestures",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "defined by the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "highPriorityGesture"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/highPriorityGesture(_:name:isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "highPriorityGesture(_:name:isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/highprioritygesture(_:name:isenabled:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onLongPressGesture(minimumDuration:maximumDistance:perform:onPressingChanged:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform when this view recognizes a long press",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onLongPressGesture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "minimumDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maximumDistance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "onPressingChanged"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onLongPressGesture(minimumDuration:maximumDistance:perform:onPressingChanged:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onLongPressGesture(minimumDuration:maximumDistance:perform:onPressingChanged:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/onlongpressgesture(minimumduration:maximumdistance:perform:onpressingchanged:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onLongPressGesture(minimumDuration:perform:onPressingChanged:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform when this view recognizes a long press",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onLongPressGesture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "minimumDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "onPressingChanged"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onLongPressGesture(minimumDuration:perform:onPressingChanged:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onLongPressGesture(minimumDuration:perform:onPressingChanged:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/onlongpressgesture(minimumduration:perform:onpressingchanged:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onLongTouchGesture(minimumDuration:perform:onTouchingChanged:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform when this view recognizes a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "remote long touch gesture. A long touch gesture is when the finger is",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "on the remote touch surface without actually pressing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onLongTouchGesture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "minimumDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "onTouchingChanged"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onLongTouchGesture(minimumDuration:perform:onTouchingChanged:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onLongTouchGesture(minimumDuration:perform:onTouchingChanged:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/onlongtouchgesture(minimumduration:perform:ontouchingchanged:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onPencilDoubleTap(perform:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform after the user double-taps their Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onPencilDoubleTap"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI27PencilDoubleTapGestureValueV",
+          "text": "PencilDoubleTapGestureValue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onPencilDoubleTap(perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onPencilDoubleTap(perform:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/onpencildoubletap(perform:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onPencilSqueeze(perform:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform when the user squeezes their Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onPencilSqueeze"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25PencilSqueezeGesturePhaseO",
+          "text": "PencilSqueezeGesturePhase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onPencilSqueeze(perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onPencilSqueeze(perform:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/onpencilsqueeze(perform:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onTapGesture(count:coordinateSpace:perform:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform when this view recognizes a tap gesture,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and provides the action with the location of the interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onTapGesture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "coordinateSpace"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onTapGesture(count:coordinateSpace:perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onTapGesture(count:coordinateSpace:perform:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/ontapgesture(count:coordinatespace:perform:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onTapGesture(count:perform:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform when this view recognizes a tap gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onTapGesture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onTapGesture(count:perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onTapGesture(count:perform:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/ontapgesture(count:perform:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/simultaneousGesture(_:including:)": {
+      "abstract": [
+        {
+          "text": "Attaches a gesture to the view to process simultaneously with gestures",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "defined by the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simultaneousGesture"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "including"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11GestureMaskV",
+          "text": "GestureMask"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/simultaneousGesture(_:including:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "simultaneousGesture(_:including:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/simultaneousgesture(_:including:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/simultaneousGesture(_:isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Attaches a gesture to the view to process simultaneously with gestures",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "defined by the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simultaneousGesture"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/simultaneousGesture(_:isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "simultaneousGesture(_:isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/simultaneousgesture(_:isenabled:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/simultaneousGesture(_:name:isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Attaches a gesture to the view to process simultaneously with gestures",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "defined by the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simultaneousGesture"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/simultaneousGesture(_:name:isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "simultaneousGesture(_:name:isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/simultaneousgesture(_:name:isenabled:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowDragGesture": {
+      "abstract": [
+        {
+          "text": "A gesture that recognizes the motion of and handles dragging a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WindowDragGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowDragGesture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WindowDragGesture"
+        }
+      ],
+      "role": "symbol",
+      "title": "WindowDragGesture",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowdraggesture"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/gestures": {
+      "abstract": [
+        {
+          "text": "A gesture is a physical motion that a person uses to directly affect an object in an app or game on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/gestures",
+      "images": [
+        {
+          "identifier": "gestures.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "inputs-gestures-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Gestures",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/gestures"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gestures-hero": {
+      "alt": null,
+      "identifier": "gestures-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6a1478e9bc9c150def717738cb949d52/gestures-hero@2x.png"
+        }
+      ]
+    },
+    "gestures.svg": {
+      "alt": null,
+      "identifier": "gestures.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "touchscreen-gestures",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d4b4978965ca14deb6aba96c11ac2dd/gestures.svg"
+        }
+      ]
+    },
+    "inputs-gestures-thumbnail.png": {
+      "alt": null,
+      "identifier": "inputs-gestures-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/53d3d273df86384a9010c035e462b355/inputs-gestures-thumbnail~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ca100cc13bcc2fbb7168bebc1da95af8/inputs-gestures-thumbnail@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Event-handling",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Input-events",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Clipboard",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Drag-and-drop",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Focus",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/System-events"
+      ],
+      "title": "Event handling"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Adding-Interactivity-with-Gestures"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Recognizing-tap-gestures",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onTapGesture(count:perform:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onTapGesture(count:coordinateSpace:perform:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TapGesture",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture"
+      ],
+      "title": "Recognizing tap gestures"
+    },
+    {
+      "anchor": "Recognizing-long-press-gestures",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onLongPressGesture(minimumDuration:maximumDistance:perform:onPressingChanged:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onLongPressGesture(minimumDuration:perform:onPressingChanged:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onLongTouchGesture(minimumDuration:perform:onTouchingChanged:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LongPressGesture"
+      ],
+      "title": "Recognizing long press gestures"
+    },
+    {
+      "anchor": "Recognizing-spatial-events",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialEventGesture",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialEventCollection",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Chirality"
+      ],
+      "title": "Recognizing spatial events"
+    },
+    {
+      "anchor": "Recognizing-gestures-that-change-over-time",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gesture(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gesture(_:isEnabled:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gesture(_:name:isEnabled:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gesture(_:including:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DragGesture",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowDragGesture",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/MagnifyGesture",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/RotateGesture",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/RotateGesture3D",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/GestureMask"
+      ],
+      "title": "Recognizing gestures that change over time"
+    },
+    {
+      "anchor": "Recognizing-Apple-Pencil-gestures",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onPencilDoubleTap(perform:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onPencilSqueeze(perform:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/preferredPencilDoubleTapAction",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/preferredPencilSqueezeAction",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PencilPreferredAction",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PencilDoubleTapGestureValue",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PencilSqueezeGestureValue",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PencilSqueezeGesturePhase",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PencilHoverPose"
+      ],
+      "title": "Recognizing Apple Pencil gestures"
+    },
+    {
+      "anchor": "Combining-gestures",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Composing-SwiftUI-Gestures",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/simultaneousGesture(_:including:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/simultaneousGesture(_:isEnabled:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/simultaneousGesture(_:name:isEnabled:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SequenceGesture",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SimultaneousGesture",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ExclusiveGesture"
+      ],
+      "title": "Combining gestures"
+    },
+    {
+      "anchor": "Defining-custom-gestures",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/highPriorityGesture(_:including:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/highPriorityGesture(_:isEnabled:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/highPriorityGesture(_:name:isEnabled:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/handGestureShortcut(_:isEnabled:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/defersSystemGestures(on:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Gesture",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyGesture",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/HandActivationBehavior",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/HandGestureShortcut"
+      ],
+      "title": "Defining custom gestures"
+    },
+    {
+      "anchor": "Managing-gesture-state",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/GestureState",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/GestureStateGesture"
+      ],
+      "title": "Managing gesture state"
+    },
+    {
+      "anchor": "Handling-activation-events",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/allowsWindowActivationEvents(_:)"
+      ],
+      "title": "Handling activation events"
+    },
+    {
+      "anchor": "Deprecated-gestures",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/MagnificationGesture",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/RotationGesture"
+      ],
+      "title": "Deprecated gestures"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/gestures"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1127 @@
+{
+  "abstract": [
+    {
+      "text": "Correlate GPU events with CPU timelines by calculating the CPU time equivalents for GPU timestamps.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/gpu-counters-and-counter-sample-buffers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/converting-gpu-timestamps-into-cpu-time"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Converting GPU Timestamps into CPU Time"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sampling runtime data from a GPU can provide a valuable insight to your app’s GPU performance (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/sampling-gpu-data-into-counter-sample-buffers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). GPU timestamps in particular can isolate runtime issues by showing what the GPU is working on relative to what the CPU is doing. However, the timestamp values your app samples from a GPU don’t typically match a CPU’s timestamps because each uses different hardware to measure time. This means you can’t always compare GPU timestamps directly with CPU timestamps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can convert a GPU’s timestamps to CPU time by sampling both clocks at the same time to establish a common baseline of time. Establish that baseline by sampling both the GPU and CPU clocks at least twice. Typically, apps sample the timestamps at least twice, once before and once after the GPU stores its timestamp data in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterSampleBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Your app needs the baseline to accurately convert the GPU’s timestamp data it ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "resolves",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " from a counter sample buffer. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/converting-a-gpus-counter-data-into-a-readable-format",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for instructions about resolving data within a counter sample buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Reference-Baseline-in-Time-by-Sampling-the-CPU-and-GPU-Timestamps-Twice",
+          "level": 3,
+          "text": "Create a Reference Baseline in Time by Sampling the CPU and GPU Timestamps Twice",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can sample timestamps from the GPU and CPU at the same time by calling",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/sampleTimestamps()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method in Swift,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/sampleTimestamps:gpuTimestamp:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method in Objective-C.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func updateStartTimes(_ device: MTLDevice) {",
+                    "    // Save the current CPU and GPU times as a baseline.",
+                    "    let startTimes = device.sampleTimestamps()",
+                    "    let cpuStart = Double(startTimes.cpu)",
+                    "    let gpuStart = Double(startTimes.gpu)",
+                    "",
+                    "    self.cpuStart = cpuStart",
+                    "    self.gpuStart = gpuStart",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void) updateStartTimesWithDevice:(id<MTLDevice>)device {",
+                    "    // Save the current CPU and GPU times as a baseline.",
+                    "    MTLTimestamp cpuStartTimestamp = 0;",
+                    "    MTLTimestamp gpuStartTimestamp = 0;",
+                    "",
+                    "    [device sampleTimestamps:&cpuStartTimestamp",
+                    "                gpuTimestamp:&gpuStartTimestamp];",
+                    "",
+                    "    self.cpuStart = (double)cpuStartTimestamp;",
+                    "    self.gpuStart = (double)gpuStartTimestamp;",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can sample the initial timestamps any time before a pass, such as at launch time or when your app creates a command buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Call ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/sampleTimestamps()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " sparingly because doing so may trap to the kernel (to read the GPU clock), which can affect your app’s runtime performance.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Calculate the time span by sampling the GPU and CPU timestamps again after the command buffer completes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func updateFinalTimes(_ device: MTLDevice) {",
+                    "    // Update the final times with the current CPU and GPU times.",
+                    "    let finalTimes = device.sampleTimestamps()",
+                    "",
+                    "    cpuTimeSpan = Double(finalTimes.cpu) - cpuStart",
+                    "    gpuTimeSpan = Double(finalTimes.gpu) - gpuStart",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void) updateFinalTimesWithDevice:(id<MTLDevice>)device {",
+                    "    // Update the final times with the current CPU and GPU times.",
+                    "    MTLTimestamp cpuFinalTimestamp = 0;",
+                    "    MTLTimestamp gpuFinalTimestamp = 0;",
+                    "",
+                    "    [device sampleTimestamps:&cpuFinalTimestamp",
+                    "                gpuTimestamp:&gpuFinalTimestamp];",
+                    "",
+                    "    self.cpuTimeSpan = (double)cpuFinalTimestamp - self.cpuStart;",
+                    "    self.gpuTimeSpan = (double)gpuFinalTimestamp - self.gpuStart;",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The span of time establishes a baseline that your app needs to convert timestamps from a counter sample buffer into real-world time values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "One good strategy is to sample the timestamps when you create a command buffer, and again inside a completion handler for that command buffer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the code below samples the GPU and CPU timestamps before and immediately after the GPU runs the command buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func configureCommandBuffer(_ commandBuffer: MTLCommandBuffer, frame: Int) {",
+                    "    guard frame.isMultiple(of: framePollingPeriod) && frame != 0 else {",
+                    "        return",
+                    "    }",
+                    "",
+                    "    timeConverter.updateStartTimes(commandBuffer.device)",
+                    "",
+                    "    commandBuffer.addCompletedHandler { commandBuffer in",
+                    "        self.resolveSampleBuffer()",
+                    "        self.timeConverter.updateFinalTimes(commandBuffer.device)",
+                    "        self.printVertexAndFragmentDurations(frame)",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)  configureCommandBuffer:(id<MTLCommandBuffer>) commandBuffer",
+                    "                           frame: (NSUInteger)frame;",
+                    "{",
+                    "    if (frame % self.framePollingPeriod != 0) {",
+                    "        return;",
+                    "    }",
+                    "",
+                    "    [self.timeConverter updateStartTimesWithDevice:commandBuffer.device];",
+                    "",
+                    "    [commandBuffer addCompletedHandler:^(id<MTLCommandBuffer> _Nonnull commandBuffer) {",
+                    "        [self resolveSampleBuffer];",
+                    "        [self.timeConverter updateFinalTimesWithDevice:commandBuffer.device];",
+                    "        [self printVertexAndFragmentDurationsForFrame:frame];",
+                    "    }];",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Convert-GPU-Timestamps-to-CPU-Time",
+          "level": 3,
+          "text": "Convert GPU Timestamps to CPU Time",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Calculate the CPU time equivalent of a GPU timestamp by mathematically converting it using two sets of your app’s reference GPU and CPU timestamps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The system measures CPU timestamps in nanoseconds.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Convert a GPU timestamp by following these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Subtract the GPU reference starting time from the GPU timestamp.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Divide the difference by the total GPU reference time span.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Multiply the product by the total CPU reference time span.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the starting CPU reference time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func absoluteTimeInMicroseconds(timestamp: MTLTimestamp) -> Double {",
+                    "    guard ready else { return Double.nan }",
+                    "",
+                    "    // Convert the GPU time to a value within the range [0.0, 1.0].",
+                    "    let normalizedGpuTime = (Double(timestamp) - gpuStart) / gpuTimeSpan",
+                    "",
+                    "    // Convert GPU time to CPU time.",
+                    "    let nanoseconds = (normalizedGpuTime * cpuTimeSpan) + cpuStart",
+                    "",
+                    "    let microseconds = nanoseconds / 1e3",
+                    "    return microseconds",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (double) absoluteTimeInMicroseconds:(MTLTimestamp) timestamp {",
+                    "    // Convert the GPU time to a value within the range [0.0, 1.0].",
+                    "    double normalizedGpuTime = ((double)timestamp - self.gpuStart);",
+                    "    normalizedGpuTime /= self.gpuTimeSpan;",
+                    "",
+                    "    // Convert GPU time to CPU time.",
+                    "    double nanoseconds = (normalizedGpuTime * self.cpuTimeSpan);",
+                    "    nanoseconds += self.cpuStart;",
+                    "",
+                    "    double microseconds = nanoseconds / 1000.0;",
+                    "    return microseconds;",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method returns a value in microseconds, but you can convert the value to a unit of time that you prefer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, you can calculate the CPU time equivalent between two GPU timestamps by applying the latter calculations to the time span between them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func microsecondsBetween(begin: MTLTimestamp, end: MTLTimestamp) -> Double {",
+                    "    let timeSpan = Double(end) - Double(begin)",
+                    "",
+                    "    // Convert GPU time to CPU time.",
+                    "    let nanoseconds = timeSpan / gpuTimeSpan * cpuTimeSpan",
+                    "",
+                    "    let microseconds = nanoseconds / 1e3",
+                    "    return microseconds",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (double) microsecondsBetweenBegin:(MTLTimestamp)begin",
+                    "                                end:(MTLTimestamp)end {",
+                    "    double timeSpan = (double)end - (double)begin;",
+                    "",
+                    "    // Convert GPU time to CPU time.",
+                    "    double nanoseconds = timeSpan / self.gpuTimeSpan * self.cpuTimeSpan;",
+                    "",
+                    "    double microseconds = nanoseconds / 1000.0;",
+                    "    return microseconds;",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method is useful to show the duration between the beginning and end of an event window. For example, you might use this to see the duration of the vertex and fragment stages of a render pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func printVertexAndFragmentDurations(_ frame: Int) {",
+                    "    guard let timestamps = resolvedTimestampSamples else { return }",
+                    "",
+                    "    print(\"\\n--- Frame \\(frame) ---\")",
+                    "",
+                    "    if timestamps.count >= 2 {",
+                    "        let vertexStart = timestamps[0].timestamp",
+                    "        let vertexFinish = timestamps[1].timestamp",
+                    "",
+                    "        let vertexTime = timeConverter.microsecondsBetween(begin: vertexStart,",
+                    "                                                           end: vertexFinish)",
+                    "",
+                    "        let roundedTime = String(format: \"%.2f\", vertexTime)",
+                    "        print(\"    Vertex duration:   \\(roundedTime) µS\")",
+                    "    }",
+                    "",
+                    "    if timestamps.count >= 4 {",
+                    "        let fragmentStart = timestamps[2].timestamp",
+                    "        let fragmentFinish = timestamps[3].timestamp",
+                    "",
+                    "        let fragmentTime = timeConverter.microsecondsBetween(begin: fragmentStart,",
+                    "                                                             end: fragmentFinish)",
+                    "",
+                    "        let roundedTime = String(format: \"%.2f\", fragmentTime)",
+                    "        print(\"    Fragment duration: \\(roundedTime) µS\")",
+                    "    }",
+                    "}",
+                    ""
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void) printVertexAndFragmentDurationsForFrame:(NSUInteger)frame",
+                    "{",
+                    "    if (nil == self.resolvedTimestampSamples) { return; }",
+                    "",
+                    "    printf(\"\\n--- Frame %lu ---\\n\", frame);",
+                    "",
+                    "    if (self.resolvedTimestampSampleCount >= 2) {",
+                    "        MTLTimestamp vertexStart = self.resolvedTimestampSamples[0].timestamp;",
+                    "        MTLTimestamp vertexFinish = self.resolvedTimestampSamples[1].timestamp;",
+                    "",
+                    "        printf(\"VS %.2llu\\n\", vertexStart);",
+                    "        printf(\"VF %.2llu\\n\", vertexFinish);",
+                    "",
+                    "        double vertexTime;",
+                    "        vertexTime = [self.timeConverter microsecondsBetweenBegin:vertexStart",
+                    "                                                              end:vertexFinish];",
+                    "",
+                    "        printf(\"    Vertex duration:   %.2f µS\\n\", vertexTime);",
+                    "    }",
+                    "",
+                    "    if (self.resolvedTimestampSampleCount >= 4) {",
+                    "        MTLTimestamp fragmentStart = self.resolvedTimestampSamples[2].timestamp;",
+                    "        MTLTimestamp fragmentFinish = self.resolvedTimestampSamples[3].timestamp;",
+                    "",
+                    "        double fragmentTime;",
+                    "        fragmentTime = [self.timeConverter microsecondsBetweenBegin:fragmentStart",
+                    "                                                                end:fragmentFinish];",
+                    "",
+                    "        printf(\"    Fragment duration: %.2f µS\\n\", fragmentTime);",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCounterSampleBuffer": {
+      "abstract": [
+        {
+          "text": "A specialized memory buffer that stores a GPU’s counter set data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCounterSampleBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterSampleBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCounterSampleBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCounterSampleBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcountersamplebuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/sampleTimestamps()": {
+      "abstract": [
+        {
+          "text": "Captures and returns a CPU timestamp and a GPU timestamp from the same moment in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sampleTimestamps"
+        },
+        {
+          "kind": "text",
+          "text": "() -> (cpu"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLTimestamp",
+          "text": "MTLTimestamp"
+        },
+        {
+          "kind": "text",
+          "text": ", gpu"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLTimestamp",
+          "text": "MTLTimestamp"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/sampleTimestamps()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sampleTimestamps()",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/sampletimestamps()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/sampleTimestamps:gpuTimestamp:": {
+      "abstract": [
+        {
+          "text": "Captures and returns a CPU timestamp and a GPU timestamp from the same moment in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sampleTimestamps:gpuTimestamp:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/sampleTimestamps:gpuTimestamp:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sampleTimestamps:gpuTimestamp:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sampleTimestamps:gpuTimestamp:",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/sampletimestamps:gputimestamp:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTimestamp": {
+      "abstract": [
+        {
+          "text": "The number of nanoseconds for a point in absolute time or Mach absolute time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTimestamp"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTimestamp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTimestamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLTimestamp",
+      "type": "topic",
+      "url": "/documentation/metal/mtltimestamp"
+    },
+    "doc://com.apple.metal/documentation/Metal/converting-a-gpus-counter-data-into-a-readable-format": {
+      "abstract": [
+        {
+          "text": "Inspect and use the data within a GPU’s counter sample buffer by resolving it into a standard format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/converting-a-gpus-counter-data-into-a-readable-format",
+      "kind": "article",
+      "role": "article",
+      "title": "Converting a GPU’s Counter Data into a Readable Format",
+      "type": "topic",
+      "url": "/documentation/metal/converting-a-gpus-counter-data-into-a-readable-format"
+    },
+    "doc://com.apple.metal/documentation/Metal/gpu-counters-and-counter-sample-buffers": {
+      "abstract": [
+        {
+          "text": "Retrieve runtime data from a GPU device by sampling one or more of its counters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/gpu-counters-and-counter-sample-buffers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GPU Counters and Counter Sample Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/gpu-counters-and-counter-sample-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/sampling-gpu-data-into-counter-sample-buffers": {
+      "abstract": [
+        {
+          "text": "Retrieve a GPU’s counter data at a time the GPU supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/sampling-gpu-data-into-counter-sample-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Sampling GPU Data into Counter Sample Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/sampling-gpu-data-into-counter-sample-buffers"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Timestamp-Data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLTimestamp"
+      ],
+      "title": "Timestamp Data"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Timestamp-Data",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLTimestamp"
+              ],
+              "title": "Timestamp Data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterSampleBuffer/title",
+          "value": "MTLCounterSampleBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterSampleBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCounterSampleBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterSampleBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCounterSampleBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTimestamp/title",
+          "value": "MTLTimestamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTimestamp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTimestamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTimestamp/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTimestamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/converting-gpu-timestamps-into-cpu-time"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/converting-gpu-timestamps-into-cpu-time"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

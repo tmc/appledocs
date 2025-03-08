@@ -1,0 +1,3680 @@
+{
+  "abstract": [
+    {
+      "text": "An interface for providing an app-specific capability that people invoke",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "from system experiences like Siri and the Shortcuts app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppIntents/documentation/AppIntents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10AppIntents0A6IntentP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AppIntent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "App Intents"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AppIntent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "AppIntent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AppIntent"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/PersistentlyIdentifiable",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10AppIntents24PersistentlyIdentifiableP",
+              "text": "PersistentlyIdentifiable"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "_SupportsAppDependencies"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s8SendableP",
+              "text": "Sendable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/Making-actions-and-content-discoverable-and-widely-available",
+        "doc://com.apple.AppIntents/documentation/AppIntents/ActionButtonArticle",
+        "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-actions-with-siri-and-apple-intelligence",
+        "doc://com.apple.AppIntents/documentation/AppIntents/Creating-your-first-app-intent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/Adding-parameters-to-an-app-intent"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To expose your app’s functionality to system experiences like Siri or the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Shortcuts app, and to support interactivity in widgets, you need to implement",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "AppIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol. Use it to provide phrases that can trigger",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the functionality, describe the needed data for the functionality you make available,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and implement the method that performs the functionality.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system instantiates an app intent you create parameter-less using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/init()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer whenever a person invokes it through a system service",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "like Siri, Shortcuts, and so on. If available, the system sets parameters",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "based on user input or other available sources. With set parameters, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system attempts to resolve them in the order of their declaration in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "AppIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " body. After it resolves all parameters, the system calls",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to perform the app intent with its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "configured parameters. Note that the system retains the app intent and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "its output only for the duration of the invocation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Session 10032: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2022/10032",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related sessions from WWDC22",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Implement-the-AppIntent-Protocol",
+          "level": 3,
+          "text": "Implement the AppIntent Protocol",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Declare a custom intent type by defining a structure that conforms to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "AppIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct OrderSoupIntent: AppIntent {",
+            "   static var title = LocalizedStringResource(\"Order Soup\")",
+            "   static var description = IntentDescription(\"Orders a soup from your favorite restaurant.\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, declare the AppIntent’s parameters. When you implement an ",
+              "type": "text"
+            },
+            {
+              "code": "AppIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type, parameters must be declared with the ",
+              "type": "text"
+            },
+            {
+              "code": "@Parameter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property wrapper.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about declaring parameters, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Adding-parameters-to-an-app-intent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct OrderSoupIntent: AppIntent {",
+            "   @Parameter(title: \"Soup\")",
+            "   var soup: Soup",
+            "",
+            "   @Parameter(title: \"Quantity\")",
+            "   var quantity: Int?",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, implement the required ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "function: Validate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your intent’s parameters, execute the intent, and return an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that represents the output of a completed intent; for example, a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/PerformResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct OrderSoupIntent: AppIntent {",
+            "    @Parameter(title: \"Soup\")",
+            "    var soup: Soup",
+            "",
+            "    @Parameter(title: \"Quantity\")",
+            "    var quantity: Int?",
+            "",
+            "    static var parameterSummary: some ParameterSummary {",
+            "        Summary(\"Order \\(\\.$soup)\") {",
+            "            \\.$quantity",
+            "        }",
+            "    }",
+            "",
+            "    func perform() async throws -> some IntentResult {",
+            "        guard let quantity = quantity, quantity < 10 else {",
+            "            throw $quantity.needsValue",
+            "        }",
+            "        soup.order(quantity: quantity)",
+            "        return .result()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "app-intents-PageImage-card.png": {
+      "alt": "[A hero image of an App Intents framework icon.]",
+      "identifier": "app-intents-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f45fa3b20a1dca9bc37dc1052bdd8f0b/app-intents-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8bc71c773b4be518f0665536bee92d34/app-intents-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents": {
+      "abstract": [
+        {
+          "text": "Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and enhanced action capabilities of Siri, powered by Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/appintents"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/ActionButtonArticle": {
+      "abstract": [
+        {
+          "text": "Use App Intents to register actions for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/ActionButtonArticle",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to the Action button on Apple Watch Ultra",
+      "type": "topic",
+      "url": "/documentation/appintents/actionbuttonarticle"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/Adding-parameters-to-an-app-intent": {
+      "abstract": [
+        {
+          "text": "Enable people to configure app intents with their custom input values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Adding-parameters-to-an-app-intent",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding parameters to an app intent",
+      "type": "topic",
+      "url": "/documentation/appintents/adding-parameters-to-an-app-intent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent": {
+      "abstract": [
+        {
+          "text": "An interface for providing an app-specific capability that people invoke",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from system experiences like Siri and the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/Case": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Case"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/Case",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Case"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntent.Case",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/case"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/DefaultCase": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DefaultCase"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/DefaultCase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DefaultCase"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntent.DefaultCase",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/defaultcase"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/Parameter": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Parameter"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/Parameter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Parameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntent.Parameter",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/parameter"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/PerformResult": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PerformResult"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentResultP",
+          "text": "IntentResult"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/PerformResult",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "PerformResult",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/performresult"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/Summary": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Summary"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/Summary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Summary"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntent.Summary",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/summary"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/SummaryContent": {
+      "abstract": [
+        {
+          "text": "The type of parameter summary representing this intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SummaryContent"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents16ParameterSummaryP",
+          "text": "ParameterSummary"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/SummaryContent",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "SummaryContent",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/summarycontent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/Switch": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Switch"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/Switch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Switch"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntent.Switch",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/switch"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/When": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "When"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/When",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "When"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntent.When",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/when"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/authenticationPolicy": {
+      "abstract": [
+        {
+          "text": "A property that defines the authentication policy that indicates",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "whether this app intent requires the device to be unlocked or otherwise",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "authenticated.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authenticationPolicy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents26IntentAuthenticationPolicyO",
+          "text": "IntentAuthenticationPolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/authenticationPolicy",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "authenticationPolicy",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/authenticationpolicy"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/callAsFunction(donate:)-3qvbt": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "callAsFunction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "donate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP13PerformResultQa",
+          "text": "PerformResult"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentResultP5ValueQa",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/callAsFunction(donate:)-3qvbt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "callAsFunction(donate:)",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/callasfunction(donate:)-3qvbt"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/callAsFunction(donate:)-7v1om": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "callAsFunction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "donate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/callAsFunction(donate:)-7v1om",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "callAsFunction(donate:)",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/callasfunction(donate:)-7v1om"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/description": {
+      "abstract": [
+        {
+          "text": "A description of the app intent that the system shows to people.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents17IntentDescriptionV",
+          "text": "IntentDescription"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/description",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/description"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/donate()-1e60c": {
+      "abstract": [
+        {
+          "text": "Donates the intent to the transcript.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "donate"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents24IntentDonationIdentifierV",
+          "text": "IntentDonationIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/donate()-1e60c",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "donate()",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/donate()-1e60c"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/donate()-jp6k": {
+      "abstract": [
+        {
+          "text": "Donates the intent to the transcript.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "donate"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents24IntentDonationIdentifierV",
+          "text": "IntentDonationIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/donate()-jp6k",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "donate()",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/donate()-jp6k"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/donate(result:)-36cia": {
+      "abstract": [
+        {
+          "text": "Donates the intent and optional result to the transcript.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "donate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentResultP",
+          "text": "IntentResult"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents24IntentDonationIdentifierV",
+          "text": "IntentDonationIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/donate(result:)-36cia",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "donate(result:)",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/donate(result:)-36cia"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/donate(result:)-9b25i": {
+      "abstract": [
+        {
+          "text": "Donates the intent and optional result to the transcript.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "donate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentResultP",
+          "text": "IntentResult"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents24IntentDonationIdentifierV",
+          "text": "IntentDonationIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/donate(result:)-9b25i",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "donate(result:)",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/donate(result:)-9b25i"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/init()": {
+      "abstract": [
+        {
+          "text": "Creates an app intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/init()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/init()"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/isDiscoverable": {
+      "abstract": [
+        {
+          "text": "A boolean value that determines whether system features such as Shortcuts",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and Spotlight can discover this app intent.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDiscoverable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/isDiscoverable",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "isDiscoverable",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/isdiscoverable"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/openAppWhenRun": {
+      "abstract": [
+        {
+          "text": "A boolean property that tells the system to consider the app intent even",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "if its app is not in the foreground.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 5,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openAppWhenRun"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/openAppWhenRun",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "openAppWhenRun",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/openappwhenrun"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/parameterSummary": {
+      "abstract": [
+        {
+          "text": "Defines the summary of this intent in relation to how its parameters are populated.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parameterSummary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP14SummaryContentQa",
+          "text": "SummaryContent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/parameterSummary",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "parameterSummary",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/parametersummary"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/parameterSummary-4vgic": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parameterSummary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents16ParameterSummaryP",
+          "text": "ParameterSummary"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/parameterSummary-4vgic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parameterSummary",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/parametersummary-4vgic"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()": {
+      "abstract": [
+        {
+          "text": "Performs the intent after resolving the provided parameters.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 6,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP13PerformResultQa",
+          "text": "PerformResult"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "perform()",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/perform()"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/requestConfirmation()": {
+      "abstract": [
+        {
+          "text": "Requests user confirmation before performing the app intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestConfirmation"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/requestConfirmation()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestConfirmation()",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/requestconfirmation()"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/requestConfirmation(conditions:actionName:dialog:)": {
+      "abstract": [
+        {
+          "text": "Requests user confirmation before performing the app intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestConfirmation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "conditions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents22ConfirmationConditionsV",
+          "text": "ConfirmationConditions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "actionName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents22ConfirmationActionNameV",
+          "text": "ConfirmationActionName"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dialog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/requestConfirmation(conditions:actionName:dialog:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestConfirmation(conditions:actionName:dialog:)",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/requestconfirmation(conditions:actionname:dialog:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/requestConfirmation(conditions:actionName:dialog:showDialogAsPrompt:content:)": {
+      "abstract": [
+        {
+          "text": "Request user confirmation before performing the app intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestConfirmation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "conditions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents22ConfirmationConditionsV",
+          "text": "ConfirmationConditions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "actionName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents22ConfirmationActionNameV",
+          "text": "ConfirmationActionName"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dialog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "showDialogAsPrompt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/requestConfirmation(conditions:actionName:dialog:showDialogAsPrompt:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestConfirmation(conditions:actionName:dialog:showDialogAsPrompt:content:)",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/requestconfirmation(conditions:actionname:dialog:showdialogasprompt:content:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/requestConfirmation(output:confirmationActionName:showPrompt:)": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestConfirmation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "confirmationActionName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents22ConfirmationActionNameV",
+          "text": "ConfirmationActionName"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "showPrompt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/requestConfirmation(output:confirmationActionName:showPrompt:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestConfirmation(output:confirmationActionName:showPrompt:)",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/requestconfirmation(output:confirmationactionname:showprompt:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/requestConfirmation(result:confirmationActionName:showPrompt:)": {
+      "abstract": [
+        {
+          "text": "Requests user confirmation before performing the app intent.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestConfirmation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "confirmationActionName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents22ConfirmationActionNameV",
+          "text": "ConfirmationActionName"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "showPrompt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/requestConfirmation(result:confirmationActionName:showPrompt:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestConfirmation(result:confirmationActionName:showPrompt:)",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/requestconfirmation(result:confirmationactionname:showprompt:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/systemContext": {
+      "abstract": [
+        {
+          "text": "Context information that’s available while the system performs the app intent’s action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents19IntentSystemContextV",
+          "text": "IntentSystemContext"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/systemContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "systemContext",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/systemcontext"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/title": {
+      "abstract": [
+        {
+          "text": "A short, localized, human-readable string that describes the app intent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "using a verb and a noun in title case.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation23LocalizedStringResourceV",
+          "text": "LocalizedStringResource"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/title",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/title"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantIntent": {
+      "abstract": [
+        {
+          "text": "An app intent that Siri performs to fulfill a person’s request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssistantIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AssistantIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssistantIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemaIntent": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssistantSchemaIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemaIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AssistantSchemaIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssistantSchemaIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantschemaintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AudioPlaybackIntent": {
+      "abstract": [
+        {
+          "text": "An App Intent that plays, pauses, or otherwise modifies audio playback state when it executes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioPlaybackIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AudioPlaybackIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioPlaybackIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioPlaybackIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/audioplaybackintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AudioRecordingIntent": {
+      "abstract": [
+        {
+          "text": "An app intent that starts, stops or otherwise modifies audio recording state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioRecordingIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AudioRecordingIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioRecordingIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioRecordingIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/audiorecordingintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AudioStartingIntent": {
+      "abstract": [
+        {
+          "text": "An App Intent that plays, pauses, or otherwise modifies audio playback state when it executes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioStartingIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AudioStartingIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioStartingIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioStartingIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/audiostartingintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/CameraCaptureIntent": {
+      "abstract": [
+        {
+          "text": "Designates intent that will launch an activity that uses device’s camera to capture photos or videos.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Marking your intent with this protocol makes it available as a possible action for Camera quick action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CameraCaptureIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/CameraCaptureIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CameraCaptureIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CameraCaptureIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/cameracaptureintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/ControlConfigurationIntent": {
+      "abstract": [
+        {
+          "text": "An interface for configuring a Control Center module.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlConfigurationIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/ControlConfigurationIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlConfigurationIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlConfigurationIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/controlconfigurationintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/Creating-your-first-app-intent": {
+      "abstract": [
+        {
+          "text": "Create your first app intent that makes your app available in system experiences like Spotlight or the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Creating-your-first-app-intent",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating your first app intent",
+      "type": "topic",
+      "url": "/documentation/appintents/creating-your-first-app-intent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/CustomIntentMigratedAppIntent": {
+      "abstract": [
+        {
+          "text": "An interface for replacing a custom SiriKit intent that allows existing",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "shortcuts and donations to continue working.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomIntentMigratedAppIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/CustomIntentMigratedAppIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomIntentMigratedAppIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomIntentMigratedAppIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/customintentmigratedappintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/DeleteIntent": {
+      "abstract": [
+        {
+          "text": "Delete the associated entity(s).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DeleteIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DeleteIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DeleteIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "DeleteIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/deleteintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/DeprecatedAppIntent": {
+      "abstract": [
+        {
+          "text": "An app intent that marks an action as deprecated and informs people which action to use instead.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DeprecatedAppIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DeprecatedAppIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DeprecatedAppIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "DeprecatedAppIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/deprecatedappintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/ForegroundContinuableIntent": {
+      "abstract": [
+        {
+          "text": "A protocol you use for app intents which begin their work with the app in the background but",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "may request to continue in the foreground.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ForegroundContinuableIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/ForegroundContinuableIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ForegroundContinuableIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ForegroundContinuableIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/foregroundcontinuableintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-actions-with-siri-and-apple-intelligence": {
+      "abstract": [
+        {
+          "text": "Create app intents, entities, and enumerations that conform to assistant schemas to tap into the enhanced action capabilities of Siri and Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-actions-with-siri-and-apple-intelligence",
+      "images": [
+        {
+          "identifier": "app-intents-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Integrating actions with Siri and Apple Intelligence",
+      "type": "topic",
+      "url": "/documentation/appintents/integrating-actions-with-siri-and-apple-intelligence"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentAuthenticationPolicy": {
+      "abstract": [
+        {
+          "text": "An enumeration that describes the authentication policy to use when running an app intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntentAuthenticationPolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentAuthenticationPolicy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IntentAuthenticationPolicy"
+        }
+      ],
+      "role": "symbol",
+      "title": "IntentAuthenticationPolicy",
+      "type": "topic",
+      "url": "/documentation/appintents/intentauthenticationpolicy"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult": {
+      "abstract": [
+        {
+          "text": "A type that contains the result of performing an action, and includes optional information to deliver back to the initiator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntentResult"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IntentResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "IntentResult",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/LiveActivityIntent": {
+      "abstract": [
+        {
+          "text": "An intent that starts, pauses, or otherwise modifies a Live Activity when it runs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LiveActivityIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/LiveActivityIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LiveActivityIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "LiveActivityIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/liveactivityintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/LiveActivityStartingIntent": {
+      "abstract": [
+        {
+          "text": "An intent that starts, pauses, or otherwise modifies a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LiveActivityStartingIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/LiveActivityStartingIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LiveActivityStartingIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "LiveActivityStartingIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/liveactivitystartingintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/Making-actions-and-content-discoverable-and-widely-available": {
+      "abstract": [
+        {
+          "text": "Adopt App Intents to make your app discoverable with Siri and Apple Intelligence, Spotlight, controls, widgets, and the Action button.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Making-actions-and-content-discoverable-and-widely-available",
+      "kind": "article",
+      "role": "article",
+      "title": "Making actions and content discoverable and widely available",
+      "type": "topic",
+      "url": "/documentation/appintents/making-actions-and-content-discoverable-and-widely-available"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/OpenIntent": {
+      "abstract": [
+        {
+          "text": "Open the associated item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OpenIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/OpenIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OpenIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "OpenIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/openintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/OpenURLIntent": {
+      "abstract": [
+        {
+          "text": "An intent that opens a universal link.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OpenURLIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/OpenURLIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OpenURLIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "OpenURLIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/openurlintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/ParameterSummaryBuilder": {
+      "abstract": [
+        {
+          "text": "A result builder that allows you to declaratively describe a parameter summary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ParameterSummaryBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/ParameterSummaryBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ParameterSummaryBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "ParameterSummaryBuilder",
+      "type": "topic",
+      "url": "/documentation/appintents/parametersummarybuilder"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/PauseWorkoutIntent": {
+      "abstract": [
+        {
+          "text": "An App Intent that lets someone pause your app’s current workout session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PauseWorkoutIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/PauseWorkoutIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PauseWorkoutIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PauseWorkoutIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/pauseworkoutintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/PersistentlyIdentifiable": {
+      "abstract": [
+        {
+          "text": "Defines a string that uniquely identifies a type. This is useful for maintaining the identity",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of a type, even when its type name is changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PersistentlyIdentifiable"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/PersistentlyIdentifiable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PersistentlyIdentifiable"
+        }
+      ],
+      "role": "symbol",
+      "title": "PersistentlyIdentifiable",
+      "type": "topic",
+      "url": "/documentation/appintents/persistentlyidentifiable"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/PlayVideoIntent": {
+      "abstract": [
+        {
+          "text": "An intent that looks for videos based on a search term, then plays the content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayVideoIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/PlayVideoIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayVideoIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayVideoIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/playvideointent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/PredictableIntent": {
+      "abstract": [
+        {
+          "text": "An interface that allows the system to suggest the app intent to someone in the future using predictions you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredictableIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/PredictableIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PredictableIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PredictableIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/predictableintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/ProgressReportingIntent": {
+      "abstract": [
+        {
+          "text": "An intent that reports progress to the system during its execution",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProgressReportingIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/ProgressReportingIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProgressReportingIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProgressReportingIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/progressreportingintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/PushToTalkTransmissionIntent": {
+      "abstract": [
+        {
+          "text": "An intent that begins or ends an audio transmission with the Push to Talk framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PushToTalkTransmissionIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/PushToTalkTransmissionIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PushToTalkTransmissionIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PushToTalkTransmissionIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/pushtotalktransmissionintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/ResumeWorkoutIntent": {
+      "abstract": [
+        {
+          "text": "An App Intent that lets someone resume your app’s paused workout session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ResumeWorkoutIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/ResumeWorkoutIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ResumeWorkoutIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ResumeWorkoutIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/resumeworkoutintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/SetFocusFilterIntent": {
+      "abstract": [
+        {
+          "text": "An interface for providing an app intent that you use to adapt your app’s behavior when Focus changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetFocusFilterIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/SetFocusFilterIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SetFocusFilterIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SetFocusFilterIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/setfocusfilterintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/SetValueIntent": {
+      "abstract": [
+        {
+          "text": "An intent that contains a value which can be set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetValueIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/SetValueIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SetValueIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SetValueIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/setvalueintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/ShowInAppSearchResultsIntent": {
+      "abstract": [
+        {
+          "text": "An app intent that takes a person to search results for a specified search term.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShowInAppSearchResultsIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/ShowInAppSearchResultsIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShowInAppSearchResultsIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ShowInAppSearchResultsIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/showinappsearchresultsintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/StartDiveIntent": {
+      "abstract": [
+        {
+          "text": "An App Intent that lets people start a dive session when they press the Action",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "button on Apple Watch Ultra.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StartDiveIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/StartDiveIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StartDiveIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "StartDiveIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/startdiveintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/StartWorkoutIntent": {
+      "abstract": [
+        {
+          "text": "An App Intent for starting a workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StartWorkoutIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/StartWorkoutIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StartWorkoutIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "StartWorkoutIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/startworkoutintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/SystemIntent": {
+      "abstract": [
+        {
+          "text": "Designates intent types provided by App Intents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SystemIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/SystemIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SystemIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SystemIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/systemintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/URLRepresentableIntent": {
+      "abstract": [
+        {
+          "text": "An app intent with a URL representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLRepresentableIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/URLRepresentableIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "URLRepresentableIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "URLRepresentableIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/urlrepresentableintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/WidgetConfigurationIntent": {
+      "abstract": [
+        {
+          "text": "An interface for configuring a WidgetKit widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetConfigurationIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/WidgetConfigurationIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetConfigurationIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetConfigurationIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/widgetconfigurationintent"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "https://developer.apple.com/videos/play/wwdc2022/10032": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022/10032",
+      "title": "Dive into App Intents",
+      "titleInlineContent": [
+        {
+          "text": "Dive into App Intents",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/10032"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/PersistentlyIdentifiable",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/AssistantIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemaIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AudioPlaybackIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AudioRecordingIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AudioStartingIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/CameraCaptureIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/ControlConfigurationIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/CustomIntentMigratedAppIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/DeleteIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/DeprecatedAppIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/ForegroundContinuableIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/LiveActivityIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/LiveActivityStartingIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/OpenIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/PauseWorkoutIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/PlayVideoIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/PredictableIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/ProgressReportingIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/PushToTalkTransmissionIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/ResumeWorkoutIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/SetFocusFilterIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/SetValueIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/ShowInAppSearchResultsIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/StartDiveIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/StartWorkoutIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/SystemIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/URLRepresentableIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/WidgetConfigurationIntent"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/OpenURLIntent"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Actions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/AudioPlaybackIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AudioRecordingIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AudioStartingIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/CameraCaptureIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/DeleteIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/DeprecatedAppIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/ForegroundContinuableIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/OpenIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/OpenURLIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/PlayVideoIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/ProgressReportingIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/PushToTalkTransmissionIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/URLRepresentableIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/SetValueIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/ShowInAppSearchResultsIntent"
+      ],
+      "title": "Actions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-app-intent",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/init()"
+      ],
+      "title": "Creating an app intent"
+    },
+    {
+      "anchor": "Specifying-the-authentication-policy",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/authenticationPolicy",
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentAuthenticationPolicy"
+      ],
+      "title": "Specifying the authentication policy"
+    },
+    {
+      "anchor": "Configuring-the-metadata",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/title",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/description",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/openAppWhenRun",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/isDiscoverable"
+      ],
+      "title": "Configuring the metadata"
+    },
+    {
+      "anchor": "Performing-the-action",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/systemContext",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/PerformResult"
+      ],
+      "title": "Performing the action"
+    },
+    {
+      "anchor": "Requesting-confirmation",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/requestConfirmation()",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/requestConfirmation(conditions:actionName:dialog:)",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/requestConfirmation(conditions:actionName:dialog:showDialogAsPrompt:content:)",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/requestConfirmation(result:confirmationActionName:showPrompt:)",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/requestConfirmation(output:confirmationActionName:showPrompt:)"
+      ],
+      "title": "Requesting confirmation"
+    },
+    {
+      "anchor": "Donating-the-intent-to-the-system",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/donate()-1e60c",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/donate()-jp6k",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/donate(result:)-36cia",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/donate(result:)-9b25i",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/callAsFunction(donate:)-3qvbt",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/callAsFunction(donate:)-7v1om"
+      ],
+      "title": "Donating the intent to the system"
+    },
+    {
+      "anchor": "Summarizing-the-parameters",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/SummaryContent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/parameterSummary",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/parameterSummary-4vgic",
+        "doc://com.apple.AppIntents/documentation/AppIntents/ParameterSummaryBuilder",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/Parameter",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/Case",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/DefaultCase",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/Summary",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/Switch",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/When"
+      ],
+      "title": "Summarizing the parameters"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appintents/appintent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

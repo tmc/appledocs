@@ -1,0 +1,3258 @@
+{
+  "abstract": [
+    {
+      "text": "The object you use to start, update, and end a Live Activity.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:11ActivityKit0A0C",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Activity"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ActivityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Activity"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.1",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.1",
+        "name": "iPadOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "Activity"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Activity"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Attributes"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Attributes"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityAttributes",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:11ActivityKit0A10AttributesP",
+              "text": "ActivityAttributes"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/displaying-live-data-with-live-activities"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Activity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object offers functionality to start, update, and end a Live Activity from within your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can update or end a Live Activity while your app is in the background, but you can only start a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Live Activity while the app is in the foreground.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, ",
+              "type": "text"
+            },
+            {
+              "code": "Activity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " offers functionality to observe changes to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Live Activity",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Live Activity’s state in its life cycle",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A person’s permission to start Live Activities",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Live Activity’s push token if you configure it to receive updates through ActivityKit push notifications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To observe these changes, use the asynchronous sequences the activity object offers; for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/activityStateUpdates-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sequence to observe changes to the state of a Live Activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "ActivityKit-PageImage-card.png": {
+      "alt": "[A hero image of the ActivityKit framework.]",
+      "identifier": "ActivityKit-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2809f67730f457afbeb77d866e20466e/ActivityKit-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5cbca6adfca53a5472c0c9f4b7395c3e/ActivityKit-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit": {
+      "abstract": [
+        {
+          "text": "Share live updates from your app as Live Activities in the Dynamic Island, on the Lock Screen, and on the Smart Stack in watchOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit",
+      "images": [
+        {
+          "identifier": "ActivityKit-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ActivityKit",
+      "type": "topic",
+      "url": "/documentation/activitykit"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity": {
+      "abstract": [
+        {
+          "text": "The object you use to start, update, and end a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Activity"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Activity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Activity",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/ActivityStateUpdates-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that offers functionality to observe state changes of a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Attributes",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "ActivityAttributes",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActivityStateUpdates"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/ActivityStateUpdates-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActivityStateUpdates"
+        }
+      ],
+      "role": "symbol",
+      "title": "Activity.ActivityStateUpdates",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/activitystateupdates-swift.struct"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/ActivityUpdates-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that offers functionality to observe changes to a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Attributes",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "ActivityAttributes",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActivityUpdates"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/ActivityUpdates-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActivityUpdates"
+        }
+      ],
+      "role": "symbol",
+      "title": "Activity.ActivityUpdates",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/activityupdates-swift.struct"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/ContentState-swift.typealias": {
+      "abstract": [
+        {
+          "text": "The type alias for the structure that describes the dynamic content of a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentState"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/ContentState-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentState"
+        }
+      ],
+      "role": "symbol",
+      "title": "Activity.ContentState",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/contentstate-swift.typealias"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/ContentStateUpdates-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that offers functionality to observe changes to the dynamic content of a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Attributes",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "ActivityAttributes",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentStateUpdates"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/ContentStateUpdates-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentStateUpdates"
+        }
+      ],
+      "role": "symbol",
+      "title": "Activity.ContentStateUpdates",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/contentstateupdates-swift.struct"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/ContentUpdates-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that offers functionality to observe changes to the dynamic content of a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Attributes",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "ActivityAttributes",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentUpdates"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/ContentUpdates-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentUpdates"
+        }
+      ],
+      "role": "symbol",
+      "title": "Activity.ContentUpdates",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/contentupdates-swift.struct"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/ID-swift.typealias": {
+      "abstract": [
+        {
+          "text": "A type representing the stable identity of the entity associated with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "an instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ID"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/ID-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ID"
+        }
+      ],
+      "role": "symbol",
+      "title": "Activity.ID",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/id-swift.typealias"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/PushTokenUpdates-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that offers functionality to observe changes to the push token of a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Attributes",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "ActivityAttributes",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PushTokenUpdates"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/PushTokenUpdates-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PushTokenUpdates"
+        }
+      ],
+      "role": "symbol",
+      "title": "Activity.PushTokenUpdates",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/pushtokenupdates-swift.struct"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/activities": {
+      "abstract": [
+        {
+          "text": "An array of your app’s current Live Activities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activities"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/activities",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "activities",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/activities"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/activityState": {
+      "abstract": [
+        {
+          "text": "The current state of a Live Activity in its life cycle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activityState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A5StateO",
+          "text": "ActivityState"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/activityState",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "activityState",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/activitystate"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/activityStateUpdates-swift.property": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence you use to observe activity state changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activityStateUpdates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C0A12StateUpdatesV",
+          "text": "ActivityStateUpdates"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/activityStateUpdates-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "activityStateUpdates",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/activitystateupdates-swift.property"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/activityUpdates-swift.type.property": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence you use to observe changes to ongoing Live Activities and to asynchronously access a Live Activity when you start it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activityUpdates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C0A7UpdatesV",
+          "text": "ActivityUpdates"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/activityUpdates-swift.type.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "activityUpdates",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/activityupdates-swift.type.property"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/attributes": {
+      "abstract": [
+        {
+          "text": "A set of attributes that describe a Live Activity and its content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/attributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributes",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/attributes"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/content": {
+      "abstract": [
+        {
+          "text": "The dynamic content of a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A7ContentV",
+          "text": "ActivityContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ContentState"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/content",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "content",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/content"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/contentState-swift.property": {
+      "abstract": [
+        {
+          "text": "The dynamic content of a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ContentState"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/contentState-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentState",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/contentstate-swift.property"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/contentStateUpdates-swift.property": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence you use to observe changes to the dynamic content of a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentStateUpdates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C19ContentStateUpdatesV",
+          "text": "ContentStateUpdates"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/contentStateUpdates-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentStateUpdates",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/contentstateupdates-swift.property"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/contentUpdates-swift.property": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence you use to observe changes to the dynamic content of a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentUpdates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C14ContentUpdatesV",
+          "text": "ContentUpdates"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/contentUpdates-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentUpdates",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/contentupdates-swift.property"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/end(_:dismissalPolicy:)": {
+      "abstract": [
+        {
+          "text": "Ends an active Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A7ContentV",
+          "text": "ActivityContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ContentState"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dismissalPolicy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A17UIDismissalPolicyV",
+          "text": "ActivityUIDismissalPolicy"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/end(_:dismissalPolicy:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "end(_:dismissalPolicy:)",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/end(_:dismissalpolicy:)"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/end(_:dismissalPolicy:timestamp:)": {
+      "abstract": [
+        {
+          "text": "Ends an active Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A7ContentV",
+          "text": "ActivityContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ContentState"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dismissalPolicy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A17UIDismissalPolicyV",
+          "text": "ActivityUIDismissalPolicy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timestamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/end(_:dismissalPolicy:timestamp:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "end(_:dismissalPolicy:timestamp:)",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/end(_:dismissalpolicy:timestamp:)"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/end(using:dismissalPolicy:)": {
+      "abstract": [
+        {
+          "text": "Ends an active Live Activity.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ContentState"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dismissalPolicy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A17UIDismissalPolicyV",
+          "text": "ActivityUIDismissalPolicy"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/end(using:dismissalPolicy:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "end(using:dismissalPolicy:)",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/end(using:dismissalpolicy:)"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/id-swift.property": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/id-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "id",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/id-swift.property"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/pushToStartToken": {
+      "abstract": [
+        {
+          "text": "The token you use to start a Live Activity with an ActivityKit push",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pushToStartToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/pushToStartToken",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pushToStartToken",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/pushtostarttoken"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/pushToStartTokenUpdates": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence you use to observe changes to the token",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for starting a Live Activity with an ActivityKit push notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pushToStartTokenUpdates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C16PushTokenUpdatesV",
+          "text": "PushTokenUpdates"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/pushToStartTokenUpdates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pushToStartTokenUpdates",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/pushtostarttokenupdates"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/pushToken": {
+      "abstract": [
+        {
+          "text": "The token you use to send ActivityKit push notifications to a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pushToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/pushToken",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pushToken",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/pushtoken"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/pushTokenUpdates-swift.property": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence you use to observe changes to the push token of a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pushTokenUpdates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C16PushTokenUpdatesV",
+          "text": "PushTokenUpdates"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/pushTokenUpdates-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pushTokenUpdates",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/pushtokenupdates-swift.property"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/request(attributes:content:pushType:)": {
+      "abstract": [
+        {
+          "text": "Requests and starts a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A7ContentV",
+          "text": "ActivityContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ContentState"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pushType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit8PushTypeV",
+          "text": "PushType"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/request(attributes:content:pushType:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "request(attributes:content:pushType:)",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/request(attributes:content:pushtype:)"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/request(attributes:content:pushType:style:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A7ContentV",
+          "text": "ActivityContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ContentState"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pushType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit8PushTypeV",
+          "text": "PushType"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A5StyleO",
+          "text": "ActivityStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/request(attributes:content:pushType:style:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "request(attributes:content:pushType:style:)",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/request(attributes:content:pushtype:style:)"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/request(attributes:contentState:pushType:)": {
+      "abstract": [
+        {
+          "text": "Requests and starts a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ContentState"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pushType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit8PushTypeV",
+          "text": "PushType"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/request(attributes:contentState:pushType:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "request(attributes:contentState:pushType:)",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/request(attributes:contentstate:pushtype:)"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/update(_:)": {
+      "abstract": [
+        {
+          "text": "Updates the dynamic content of the Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A7ContentV",
+          "text": "ActivityContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ContentState"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/update(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "update(_:)",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/update(_:)"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/update(_:alertConfiguration:)": {
+      "abstract": [
+        {
+          "text": "Updates the dynamic content of a Live Activity and alerts a person about the Live Activity update.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A7ContentV",
+          "text": "ActivityContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ContentState"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alertConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit18AlertConfigurationV",
+          "text": "AlertConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/update(_:alertConfiguration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "update(_:alertConfiguration:)",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/update(_:alertconfiguration:)"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/update(_:alertConfiguration:timestamp:)": {
+      "abstract": [
+        {
+          "text": "Updates the dynamic content of a Live Activity and alerts a person about the Live Activity update.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A7ContentV",
+          "text": "ActivityContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ContentState"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alertConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit18AlertConfigurationV",
+          "text": "AlertConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timestamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/update(_:alertConfiguration:timestamp:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "update(_:alertConfiguration:timestamp:)",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/update(_:alertconfiguration:timestamp:)"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/update(using:)": {
+      "abstract": [
+        {
+          "text": "Updates the dynamic content of the Live Activity.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ContentState"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/update(using:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "update(using:)",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/update(using:)"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/update(using:alertConfiguration:)": {
+      "abstract": [
+        {
+          "text": "Updates the dynamic content of a Live Activity and alerts a person about the Live Activity update.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit0A0C",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ContentState"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alertConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11ActivityKit18AlertConfigurationV",
+          "text": "AlertConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/update(using:alertConfiguration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "update(using:alertConfiguration:)",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity/update(using:alertconfiguration:)"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityAttributes": {
+      "abstract": [
+        {
+          "text": "The protocol you implement to describe the content of a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActivityAttributes"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityAttributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActivityAttributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActivityAttributes",
+      "type": "topic",
+      "url": "/documentation/activitykit/activityattributes"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityAuthorizationError": {
+      "abstract": [
+        {
+          "text": "An error that indicates why the request to start a Live Activity failed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActivityAuthorizationError"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityAuthorizationError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActivityAuthorizationError"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActivityAuthorizationError",
+      "type": "topic",
+      "url": "/documentation/activitykit/activityauthorizationerror"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityAuthorizationInfo": {
+      "abstract": [
+        {
+          "text": "An object with information about whether a person allowed your app to start Live Activities and permitted",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "content updates with frequent ActivityKit push notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActivityAuthorizationInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityAuthorizationInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActivityAuthorizationInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActivityAuthorizationInfo",
+      "type": "topic",
+      "url": "/documentation/activitykit/activityauthorizationinfo"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityContent": {
+      "abstract": [
+        {
+          "text": "A structure that describes the state and configuration of a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActivityContent"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActivityContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActivityContent",
+      "type": "topic",
+      "url": "/documentation/activitykit/activitycontent"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityState": {
+      "abstract": [
+        {
+          "text": "The enum that describes the state of a Live Activity in its life cycle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActivityState"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActivityState"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActivityState",
+      "type": "topic",
+      "url": "/documentation/activitykit/activitystate"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityStyle": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActivityStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActivityStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActivityStyle",
+      "type": "topic",
+      "url": "/documentation/activitykit/activitystyle"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityUIDismissalPolicy": {
+      "abstract": [
+        {
+          "text": "The structure that describes when the system should remove a Live Activity that ended.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActivityUIDismissalPolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityUIDismissalPolicy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActivityUIDismissalPolicy"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActivityUIDismissalPolicy",
+      "type": "topic",
+      "url": "/documentation/activitykit/activityuidismissalpolicy"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/AlertConfiguration": {
+      "abstract": [
+        {
+          "text": "A structure you use to configure an alert that appears when you update your Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AlertConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/AlertConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AlertConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AlertConfiguration",
+      "type": "topic",
+      "url": "/documentation/activitykit/alertconfiguration"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/PushType": {
+      "abstract": [
+        {
+          "text": "The structure that offers constants you use to configure a Live Activity to receive updates through ActivityKit",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "push notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PushType"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/PushType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PushType"
+        }
+      ],
+      "role": "symbol",
+      "title": "PushType",
+      "type": "topic",
+      "url": "/documentation/activitykit/pushtype"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/adding-accessible-descriptions-to-widgets-and-live-activities": {
+      "abstract": [
+        {
+          "text": "Describe the interface elements of your widgets and Live Activities to help people understand what they represent.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/adding-accessible-descriptions-to-widgets-and-live-activities",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding accessible descriptions to widgets and Live Activities",
+      "type": "topic",
+      "url": "/documentation/activitykit/adding-accessible-descriptions-to-widgets-and-live-activities"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/displaying-live-data-with-live-activities": {
+      "abstract": [
+        {
+          "text": "Display your app’s data in the Dynamic Island and on the Lock Screen and offer quick interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/displaying-live-data-with-live-activities",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying live data with Live Activities",
+      "type": "topic",
+      "url": "/documentation/activitykit/displaying-live-data-with-live-activities"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/starting-and-updating-live-activities-with-activitykit-push-notifications": {
+      "abstract": [
+        {
+          "text": "Use ActivityKit to receive push tokens and to remotely start, update, and end your Live Activity with ActivityKit notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/starting-and-updating-live-activities-with-activitykit-push-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Starting and updating Live Activities with ActivityKit push notifications",
+      "type": "topic",
+      "url": "/documentation/activitykit/starting-and-updating-live-activities-with-activitykit-push-notifications"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivities": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an app supports Live Activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivities",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSupportsLiveActivities",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivities"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivitiesFrequentUpdates": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an app can update its Live Activities frequently.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivitiesFrequentUpdates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSupportsLiveActivitiesFrequentUpdates",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivitiesFrequentUpdates"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations": {
+      "abstract": [
+        {
+          "text": "Offer Live Activities, controls, animate data updates, and add interactivity to widgets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Emoji Rangers: Supporting Live Activities, interactivity, and animations",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s12IdentifiableP": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s12IdentifiableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/Swift/Identifiable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s12IdentifiableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Live-Activity-implementation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/displaying-live-data-with-live-activities",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/starting-and-updating-live-activities-with-activitykit-push-notifications",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/adding-accessible-descriptions-to-widgets-and-live-activities",
+        "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivities",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivitiesFrequentUpdates"
+      ],
+      "title": "Live Activity implementation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Starting-a-Live-Activity",
+      "identifiers": [
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/request(attributes:content:pushType:)",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/attributes",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityAttributes",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityStyle",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/content",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityContent",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/ContentState-swift.typealias",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/PushType",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityAuthorizationError",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/request(attributes:content:pushType:style:)"
+      ],
+      "title": "Starting a Live Activity"
+    },
+    {
+      "anchor": "Updating-a-Live-Activity",
+      "identifiers": [
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/update(_:)",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/update(_:alertConfiguration:)",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/AlertConfiguration",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/update(using:)",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/update(_:alertConfiguration:timestamp:)"
+      ],
+      "title": "Updating a Live Activity"
+    },
+    {
+      "anchor": "Ending-a-Live-Activity",
+      "identifiers": [
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/end(_:dismissalPolicy:)",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityUIDismissalPolicy",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/end(_:dismissalPolicy:timestamp:)"
+      ],
+      "title": "Ending a Live Activity"
+    },
+    {
+      "anchor": "Observing-Live-Activity-content-changes",
+      "identifiers": [
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/contentUpdates-swift.property",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/ContentUpdates-swift.struct"
+      ],
+      "title": "Observing Live Activity content changes"
+    },
+    {
+      "anchor": "Observing-the-Live-Activity-life-cycle",
+      "identifiers": [
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/activityState",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityState",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/activityStateUpdates-swift.property",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/ActivityStateUpdates-swift.struct"
+      ],
+      "title": "Observing the Live Activity life cycle"
+    },
+    {
+      "anchor": "Using-ActivityKit-push-notifications",
+      "identifiers": [
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/pushToken",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/pushTokenUpdates-swift.property",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/PushTokenUpdates-swift.struct",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/pushToStartToken",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/pushToStartTokenUpdates"
+      ],
+      "title": "Using ActivityKit push notifications"
+    },
+    {
+      "anchor": "Checking-user-authorization",
+      "identifiers": [
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/ActivityAuthorizationInfo"
+      ],
+      "title": "Checking user authorization"
+    },
+    {
+      "anchor": "Accessing-Live-Activities",
+      "identifiers": [
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/activities",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/activityUpdates-swift.type.property",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/ActivityUpdates-swift.struct"
+      ],
+      "title": "Accessing Live Activities"
+    },
+    {
+      "anchor": "Identifying-a-Live-Activity",
+      "identifiers": [
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/id-swift.property",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/id-swift.property"
+      ],
+      "title": "Identifying a Live Activity"
+    },
+    {
+      "anchor": "Deprecated-symbols",
+      "identifiers": [
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/request(attributes:contentState:pushType:)",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/contentState-swift.property",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/update(using:alertConfiguration:)",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/end(using:dismissalPolicy:)",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/contentStateUpdates-swift.property",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/ContentStateUpdates-swift.struct"
+      ],
+      "title": "Deprecated symbols"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity/ID-swift.typealias"
+      ],
+      "title": "Type Aliases"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/activitykit/activity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1737 @@
+{
+  "abstract": [
+    {
+      "text": "Define the complications that your app supports.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.clockkit/documentation/ClockKit",
+        "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.clockkit/documentation/ClockKit/declaring-complications-for-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ClockKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Declaring complications for your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In watchOS 7 and later, use your data source’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getComplicationDescriptors(handler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to define the complications your app supports. In your implementation, create an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects, and pass this array to the method’s handler. You can update the complications by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationServer/reloadComplicationDescriptors()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method at any time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A complication descriptor contains a type identifier and one or more supported families. Each descriptor represents a separate complication that the user can select.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-the-Complication-Identifiers",
+          "level": 3,
+          "text": "Specify the Complication Identifiers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can support multiple types of complications. For example, a weather app may support complications for ",
+              "type": "text"
+            },
+            {
+              "code": "Condition",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "Temperature",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "Precipitation",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ClockKit uses unique strings to identify the complications. If your app has only a few complications, you can use constants for the identifiers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let complicationConditionIdentifier = \"Condition\"",
+            "let complicationTemperatureIdentifier = \"Temperature\"",
+            "let complicationPrecipitationIdentifier = \"PrecipitationChance\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app uses these identifiers when creating the complication descriptors for your app, and when creating timeline entries for your complications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-the-Supported-Families",
+          "level": 3,
+          "text": "Specify the Supported Families",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each complication descriptor specifies an array of families that it supports. The descriptors don’t all need to support the same families. Each descriptor can support a different subset of families, and these subsets can overlap. However, you should make sure that at least one descriptor supports each family—even if the resulting complication only acts as a launcher for your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get the complete list of families, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKAllComplicationFamilies",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-and-Return-the-Descriptors",
+          "level": 3,
+          "text": "Create and Return the Descriptors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After creating the type identifiers and supported families, create the descriptors for your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create the condition descriptor.",
+            "let conditionDescriptor = CLKComplicationDescriptor(",
+            "    identifier: complicationConditionIdentifier,",
+            "    displayName: \"Weather Condition\",",
+            "    supportedFamilies: mySupportedFamilies)",
+            "",
+            "// Create the temperature descriptor.",
+            "let temperatureDescriptor = CLKComplicationDescriptor(",
+            "    identifier: complicationTemperatureIdentifier,",
+            "    displayName: \"Temperature\",",
+            "    supportedFamilies: mySupportedFamilies)",
+            "",
+            "// Create the precipitation descriptor.",
+            "let precipitationDescriptor = CLKComplicationDescriptor(",
+            "    identifier: complicationPrecipitationIdentifier,",
+            "    displayName: \"Percipitation\",",
+            "    supportedFamilies: mySupportedFamilies)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each descriptor has a localized display name that ClockKit shows when users select complications for a watch face.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you create the descriptors, pass them to the handler from your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getComplicationDescriptors(handler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implementation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Call the handler and pass an array of descriptors.",
+            "handler([conditionDescriptor,",
+            "         temperatureDescriptor,",
+            "         precipitationDescriptor])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-Information-to-the-Descriptors",
+          "level": 3,
+          "text": "Add Information to the Descriptors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides two additional initializers: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDescriptor/init(identifier:displayName:supportedFamilies:userActivity:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDescriptor/init(identifier:displayName:supportedFamilies:userInfo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDescriptor/init(identifier:displayName:supportedFamilies:userActivity:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to specify an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object for the complication type. When the user taps the complication, ClockKit wakes your app and passes the activity object to your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKExtensionDelegate/handle(_:)-5pyj1",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. You can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKExtensionDelegate/handle(_:)-5pyj1",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to navigate to a particular part of your app that the activity object specifies.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDescriptor/init(identifier:displayName:supportedFamilies:userInfo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to specify a user info dictionary with information that your data source can use when creating timeline entries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Because the system can pass complications as part of a shared watch face, only place data in the user info dictionary that other instances of your app can use. For example, when referring to data, avoid using identifiers that can change between users—like an index into the user’s favorites list. Instead use items that remain constant across all copies of the app, like unique string identifiers.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user taps your complication, ClockKit includes the content of the ",
+              "type": "text"
+            },
+            {
+              "code": "userInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter in the dictionary that passes to the extension delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKExtensionDelegate/handleUserActivity(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. You can also use this data to navigate to a particular part of your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Dynamically-Define-Descriptors",
+          "level": 3,
+          "text": "Dynamically Define Descriptors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The previously examples created a static set of descriptors—the app always presents the same set of complications to its users. However, you can also customize the complications for each particular user. For example, the weather app could provide ",
+              "type": "text"
+            },
+            {
+              "code": "Condition",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "Temperature",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "Precipitation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " complications for each city in the user’s favorite city list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by creating unique identifiers for each city and weather data combination.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for city in myData.favoriteCities {",
+            "    ",
+            "    let conditionIdentifier = complicationConditionIdentifier + \": \\(city.id)\"",
+            "    let temperatureIdentifier = complicationTemperatureIdentifier + \": \\(city.id)\"",
+            "    let perceptionIdentifier = complicationPrecipitationIdentifier + \": \\(city.id)\"",
+            "    ",
+            "    // Create the descriptors for the city.",
+            "    ...    ",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then create the descriptors for all the identifiers. As the list of descriptors grows, it’s important to think about their order. The complications appear in the same order as the descriptors in the array. When the user configures a complication, the picker shows the first three items from the array that support the complication’s family. If there are more than three, the picker displays a More button to provide access to the additional complications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create the descriptors for the city.",
+            "descriptors.append(CLKComplicationDescriptor(",
+            "                    identifier: conditionIdentifier,",
+            "                    displayName: \"\\(city.abbreviation) Weather Condition\",",
+            "                    supportedFamilies: CLKComplicationFamily.allCases,",
+            "                    userInfo: [myCityIDKey: city.id,",
+            "                               myTypeIdentifierKey: conditionIdentifier]))",
+            "",
+            "descriptors.append(CLKComplicationDescriptor(",
+            "                    identifier: temperatureIdentifier,",
+            "                    displayName: \"\\(city.abbreviation) Temperature\",",
+            "                    supportedFamilies: CLKComplicationFamily.allCases,",
+            "                    userInfo: [myCityIDKey: city.id,",
+            "                               myTypeIdentifierKey: temperatureIdentifier]))",
+            "",
+            "descriptors.append(CLKComplicationDescriptor(",
+            "                    identifier: perceptionIdentifier,",
+            "                    displayName: \"\\(city.abbreviation) Percipitation\",",
+            "                    supportedFamilies: CLKComplicationFamily.allCases,",
+            "                    userInfo: [myCityIDKey: city.id,",
+            "                               myTypeIdentifierKey: perceptionIdentifier]))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example also uses the descriptor’s ",
+              "type": "text"
+            },
+            {
+              "code": "userInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to contain a ",
+              "type": "text"
+            },
+            {
+              "code": "myCityIDKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and a ",
+              "type": "text"
+            },
+            {
+              "code": "myTypeIdentifierKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for each city. This lets you look up the city and weather data type without having to parse the complication’s ",
+              "type": "text"
+            },
+            {
+              "code": "identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string. For an example of using the ",
+              "type": "text"
+            },
+            {
+              "code": "myCityIDKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to create a complication template, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry#Use-Complication-Data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When the user adds or removes a favorite city, you need to reload the complication descriptors according to their new favorites list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reload-the-Descriptors",
+          "level": 3,
+          "text": "Reload the Descriptors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can reload the descriptors at any point by calling the complication server’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationServer/reloadComplicationDescriptors()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. For example, the weather app needs to reload its descriptors when the user adds or removes cities from their favorite cities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var myFavoriteCities = [City]() {",
+            "    didSet {",
+            "        CLKComplicationServer.sharedInstance().reloadComplicationDescriptors()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ClockKit then calls your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getComplicationDescriptors(handler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to load the new descriptors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your data source removes a complication that’s already present on a watch face, ClockKit continues to display and request new timeline entries for that complication. However, the user won’t be able to add the complication to new watch faces.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Run-on-Earlier-Versions-of-watchOS",
+          "level": 3,
+          "text": "Run on Earlier Versions of watchOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In watchOS 6 and earlier, you statically define the supported complication families in the WatchKit extension’s General tab under the Complication and Configuration settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3570727",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode then saves these settings in the extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In watchOS 7 and later, if you implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getComplicationDescriptors(handler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the system ignores the static list of complications in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, and calls the data source’s method so that you can specify and modify the list of supported descriptors at runtime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.clockkit/documentation/ClockKit": {
+      "abstract": [
+        {
+          "text": "Display app-specific data on the clock face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClockKit",
+      "type": "topic",
+      "url": "/documentation/clockkit"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKAllComplicationFamilies": {
+      "abstract": [
+        {
+          "text": "Returns an array containing all possible values of the complication family enumeration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CLKAllComplicationFamilies"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKAllComplicationFamilies",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLKAllComplicationFamilies",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkallcomplicationfamilies"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getComplicationDescriptors(handler:)": {
+      "abstract": [
+        {
+          "text": "Returns the list of complication descriptors.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getComplicationDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplicationDescriptor",
+          "text": "CLKComplicationDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getComplicationDescriptors(handler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getComplicationDescriptorsWithHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getComplicationDescriptors(handler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/getcomplicationdescriptors(handler:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDescriptor": {
+      "abstract": [
+        {
+          "text": "A descriptor that defines a complication and the families that it supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationDescriptor",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdescriptor"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDescriptor/init(identifier:displayName:supportedFamilies:userActivity:)": {
+      "abstract": [
+        {
+          "text": "Returns a new complication descriptor with an associated user activity.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "displayName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "supportedFamilies"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CLKComplicationFamily",
+          "text": "CLKComplicationFamily"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userActivity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserActivity",
+          "text": "NSUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDescriptor/init(identifier:displayName:supportedFamilies:userActivity:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(identifier:displayName:supportedFamilies:userActivity:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdescriptor/init(identifier:displayname:supportedfamilies:useractivity:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDescriptor/init(identifier:displayName:supportedFamilies:userInfo:)": {
+      "abstract": [
+        {
+          "text": "Returns a new complication descriptor with an associated dictionary of user data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "displayName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "supportedFamilies"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CLKComplicationFamily",
+          "text": "CLKComplicationFamily"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDescriptor/init(identifier:displayName:supportedFamilies:userInfo:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(identifier:displayName:supportedFamilies:userInfo:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdescriptor/init(identifier:displayname:supportedfamilies:userinfo:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationServer/reloadComplicationDescriptors()": {
+      "abstract": [
+        {
+          "text": "Reloads the complication descriptors from the complication data source.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadComplicationDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationServer/reloadComplicationDescriptors()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reloadComplicationDescriptors"
+        }
+      ],
+      "role": "symbol",
+      "title": "reloadComplicationDescriptors()",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationserver/reloadcomplicationdescriptors()"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/adding-placeholders-for-your-complication": {
+      "abstract": [
+        {
+          "text": "Provide the placeholders that users see when adding your complication to a watch face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/adding-placeholders-for-your-complication",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Placeholders for Your Complication",
+      "type": "topic",
+      "url": "/documentation/clockkit/adding-placeholders-for-your-complication"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/adding-text-to-a-complication": {
+      "abstract": [
+        {
+          "text": "Use text in SwiftUI complications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/adding-text-to-a-complication",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding text to a complication",
+      "type": "topic",
+      "url": "/documentation/clockkit/adding-text-to-a-complication"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/building-complications-with-swiftui": {
+      "abstract": [
+        {
+          "text": "Design the appearance of a graphic complication using SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/building-complications-with-swiftui",
+      "kind": "article",
+      "role": "article",
+      "title": "Building complications with SwiftUI",
+      "type": "topic",
+      "url": "/documentation/clockkit/building-complications-with-swiftui"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry": {
+      "abstract": [
+        {
+          "text": "Package your app-specific data into a template and create a timeline entry for that template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a timeline entry",
+      "type": "topic",
+      "url": "/documentation/clockkit/creating-a-timeline-entry"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry#Use-Complication-Data": {
+      "abstract": [],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry#Use-Complication-Data",
+      "kind": "section",
+      "title": "Use Complication Data",
+      "type": "topic",
+      "url": "/documentation/clockkit/creating-a-timeline-entry#Use-Complication-Data"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/creating-complications-for-your-watchos-app": {
+      "abstract": [
+        {
+          "text": "Set up and implement complications for your watchOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/creating-complications-for-your-watchos-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating complications for your watchOS app",
+      "type": "topic",
+      "url": "/documentation/clockkit/creating-complications-for-your-watchos-app"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols": {
+      "abstract": [],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated articles and symbols",
+      "type": "topic",
+      "url": "/documentation/clockkit/deprecated-articles-and-symbols"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/displaying-progress-views-and-gauges": {
+      "abstract": [
+        {
+          "text": "Add rich visual data to your SwiftUI complications with progress views and gauges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/displaying-progress-views-and-gauges",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying progress views and gauges",
+      "type": "topic",
+      "url": "/documentation/clockkit/displaying-progress-views-and-gauges"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/enabling-complications-for-your-watchos-app": {
+      "abstract": [
+        {
+          "text": "Set up your watchOS app’s complications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/enabling-complications-for-your-watchos-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling Complications for Your watchOS App",
+      "type": "topic",
+      "url": "/documentation/clockkit/enabling-complications-for-your-watchos-app"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/keeping-your-complications-up-to-date": {
+      "abstract": [
+        {
+          "text": "Replace or extend the data in your complication’s timeline.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/keeping-your-complications-up-to-date",
+      "kind": "article",
+      "role": "article",
+      "title": "Keeping your complications up to date",
+      "type": "topic",
+      "url": "/documentation/clockkit/keeping-your-complications-up-to-date"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/loading-future-timeline-events": {
+      "abstract": [
+        {
+          "text": "Preserve battery life and improve performance on the watch by providing a timeline with expected data and updates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/loading-future-timeline-events",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading future timeline events",
+      "type": "topic",
+      "url": "/documentation/clockkit/loading-future-timeline-events"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKExtensionDelegate/handle(_:)-5pyj1": {
+      "abstract": [
+        {
+          "text": "Responds to Handoff–related activity from Siri.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "userActivity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserActivity",
+          "text": "NSUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKExtensionDelegate/handle(_:)-5pyj1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handle(_:)",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKExtensionDelegate/handle(_:)-5pyj1"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKExtensionDelegate/handleUserActivity(_:)": {
+      "abstract": [
+        {
+          "text": "Responds to Handoff–related activity from complications and notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKExtensionDelegate/handleUserActivity(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleUserActivity(_:)",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKExtensionDelegate/handleUserActivity(_:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity": {
+      "abstract": [
+        {
+          "text": "A representation of the state of your app at a moment in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3570727": {
+      "alt": "A screenshot of the Complication Configuration settings with all the families selected.",
+      "identifier": "media-3570727",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2adf6b90dffa2cd20e75bf0e0428ef00/media-3570727@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a948c9aa062166b0f74e86528bb9cdce/media-3570727~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/enabling-complications-for-your-watchos-app",
+        "doc://com.apple.clockkit/documentation/ClockKit/adding-placeholders-for-your-complication"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Articles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/creating-complications-for-your-watchos-app",
+        "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry",
+        "doc://com.apple.clockkit/documentation/ClockKit/loading-future-timeline-events",
+        "doc://com.apple.clockkit/documentation/ClockKit/keeping-your-complications-up-to-date",
+        "doc://com.apple.clockkit/documentation/ClockKit/building-complications-with-swiftui",
+        "doc://com.apple.clockkit/documentation/ClockKit/displaying-progress-views-and-gauges",
+        "doc://com.apple.clockkit/documentation/ClockKit/adding-text-to-a-complication"
+      ],
+      "title": "Articles"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.clockkit/documentation/ClockKit/enabling-complications-for-your-watchos-app",
+                "doc://com.apple.clockkit/documentation/ClockKit/adding-placeholders-for-your-complication"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Articles",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.clockkit/documentation/ClockKit/creating-complications-for-your-watchos-app",
+                "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry",
+                "doc://com.apple.clockkit/documentation/ClockKit/loading-future-timeline-events",
+                "doc://com.apple.clockkit/documentation/ClockKit/keeping-your-complications-up-to-date",
+                "doc://com.apple.clockkit/documentation/ClockKit/building-complications-with-swiftui",
+                "doc://com.apple.clockkit/documentation/ClockKit/displaying-progress-views-and-gauges",
+                "doc://com.apple.clockkit/documentation/ClockKit/adding-text-to-a-complication"
+              ],
+              "title": "Articles"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getComplicationDescriptors(handler:)/title",
+          "value": "getComplicationDescriptorsWithHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getComplicationDescriptors(handler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getComplicationDescriptorsWithHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKExtensionDelegate~1handle(_:)-5pyj1/title",
+          "value": "handleActivity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKExtensionDelegate~1handle(_:)-5pyj1/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleActivity:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSUserActivity",
+              "text": "NSUserActivity"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "userActivity"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDescriptor/title",
+          "value": "CLKComplicationDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKExtensionDelegate~1handleUserActivity(_:)/title",
+          "value": "handleUserActivity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKExtensionDelegate~1handleUserActivity(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleUserActivity:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSDictionary",
+              "text": "NSDictionary"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "userInfo"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationServer~1reloadComplicationDescriptors()/title",
+          "value": "reloadComplicationDescriptors"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationServer~1reloadComplicationDescriptors()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reloadComplicationDescriptors"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/clockkit/declaring-complications-for-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/clockkit/declaring-complications-for-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

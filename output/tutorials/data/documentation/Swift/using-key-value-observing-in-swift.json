@@ -1,0 +1,690 @@
+{
+  "abstract": [
+    {
+      "text": "Notify objects about changes to the properties of other objects.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift",
+        "doc://com.apple.Swift/documentation/Swift/cocoa-design-patterns"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/using-key-value-observing-in-swift"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using Key-Value Observing in Swift"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Key-value observing is a Cocoa programming pattern you use to notify objects about",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "changes to properties of other objects. It’s useful for communicating changes between",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "logically separated parts of your app—such as between models and views. You can only",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use key-value observing with classes that inherit from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Annotate-a-Property-for-Key-Value-Observing",
+          "level": 3,
+          "text": "Annotate a Property for Key-Value Observing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Mark properties that you want to observe through key-value observing with both the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "@objc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute and the ",
+              "type": "text"
+            },
+            {
+              "code": "dynamic",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier. The example below defines the ",
+              "type": "text"
+            },
+            {
+              "code": "MyObjectToObserve",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "class with a property—",
+              "type": "text"
+            },
+            {
+              "code": "myDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": "—that can be observed:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class MyObjectToObserve: NSObject {",
+            "    @objc dynamic var myDate = NSDate(timeIntervalSince1970: 0) // 1970",
+            "    func updateDate() {",
+            "        myDate = myDate.addingTimeInterval(Double(2 << 30)) // Adds about 68 years.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-an-Observer",
+          "level": 3,
+          "text": "Define an Observer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An instance of an observer class manages information about changes made to one or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "more properties. When you create an observer, you start observation by calling the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "observe(_:options:changeHandler:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method with a key path that refers to the property",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you want to observe.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the example below, the ",
+              "type": "text"
+            },
+            {
+              "code": "\\.objectToObserve.myDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key path refers to the ",
+              "type": "text"
+            },
+            {
+              "code": "myDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property of ",
+              "type": "text"
+            },
+            {
+              "code": "MyObjectToObserve",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class MyObserver: NSObject {",
+            "    @objc var objectToObserve: MyObjectToObserve",
+            "    var observation: NSKeyValueObservation?",
+            "",
+            "    init(object: MyObjectToObserve) {",
+            "        objectToObserve = object",
+            "        super.init()",
+            "",
+            "        observation = observe(",
+            "            \\.objectToObserve.myDate,",
+            "            options: [.old, .new]",
+            "        ) { object, change in",
+            "            print(\"myDate changed from: \\(change.oldValue!), updated to: \\(change.newValue!)\")",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use the ",
+              "type": "text"
+            },
+            {
+              "code": "oldValue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "newValue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyvalueobservedchange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance to see what’s changed about the property you’re observing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t need to know ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "how",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " a property has changed, omit the ",
+              "type": "text"
+            },
+            {
+              "code": "options",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Omitting the ",
+              "type": "text"
+            },
+            {
+              "code": "options",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter forgoes storing the new and old property values,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which causes the ",
+              "type": "text"
+            },
+            {
+              "code": "oldValue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "newValue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties to be ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Associate-the-Observer-with-the-Property-to-Observe",
+          "level": 3,
+          "text": "Associate the Observer with the Property to Observe",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You associate the property you want to observe with its observer by passing the object",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the initializer of the observer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let observed = MyObjectToObserve()",
+            "let observer = MyObserver(object: observed)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Respond-to-a-Property-Change",
+          "level": 3,
+          "text": "Respond to a Property Change",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Objects that are set up to use key-value observing—such as ",
+              "type": "text"
+            },
+            {
+              "code": "observed",
+              "type": "codeVoice"
+            },
+            {
+              "text": " above—notify",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "their observers about property changes. The example below changes the ",
+              "type": "text"
+            },
+            {
+              "code": "myDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by calling the ",
+              "type": "text"
+            },
+            {
+              "code": "updateDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. That method call automatically triggers the observer’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "change handler:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "observed.updateDate() // Triggers the observer's change handler.",
+            "// Prints \"myDate changed from: 1970-01-01 00:00:00 +0000, updated to: 2038-01-19 03:14:08 +0000\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example above responds to the property change by printing both the new and old",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "values of the date.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/about-imported-cocoa-error-parameters": {
+      "abstract": [
+        {
+          "text": "Learn how Cocoa error parameters are converted to Swift throwing methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/about-imported-cocoa-error-parameters",
+      "kind": "article",
+      "role": "article",
+      "title": "About Imported Cocoa Error Parameters",
+      "type": "topic",
+      "url": "/documentation/swift/about-imported-cocoa-error-parameters"
+    },
+    "doc://com.apple.Swift/documentation/Swift/cocoa-design-patterns": {
+      "abstract": [
+        {
+          "text": "Adopt and interoperate with Cocoa design patterns in your Swift apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/cocoa-design-patterns",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Cocoa Design Patterns",
+      "type": "topic",
+      "url": "/documentation/swift/cocoa-design-patterns"
+    },
+    "doc://com.apple.Swift/documentation/Swift/handling-cocoa-errors-in-swift": {
+      "abstract": [
+        {
+          "text": "Throw and catch errors that use Cocoa’s error types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/handling-cocoa-errors-in-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Cocoa Errors in Swift",
+      "type": "topic",
+      "url": "/documentation/swift/handling-cocoa-errors-in-swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/managing-a-shared-resource-using-a-singleton": {
+      "abstract": [
+        {
+          "text": "Provide access to a shared resource using a single, shared class instance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/managing-a-shared-resource-using-a-singleton",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing a Shared Resource Using a Singleton",
+      "type": "topic",
+      "url": "/documentation/swift/managing-a-shared-resource-using-a-singleton"
+    },
+    "doc://com.apple.Swift/documentation/Swift/using-delegates-to-customize-object-behavior": {
+      "abstract": [
+        {
+          "text": "Respond to events on behalf of a delegator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/using-delegates-to-customize-object-behavior",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Delegates to Customize Object Behavior",
+      "type": "topic",
+      "url": "/documentation/swift/using-delegates-to-customize-object-behavior"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyvalueobservedchange": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSKeyValueObservedChange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyvalueobservedchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyValueObservedChange",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyvalueobservedchange"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Common-Patterns",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/using-delegates-to-customize-object-behavior",
+        "doc://com.apple.Swift/documentation/Swift/managing-a-shared-resource-using-a-singleton",
+        "doc://com.apple.Swift/documentation/Swift/about-imported-cocoa-error-parameters",
+        "doc://com.apple.Swift/documentation/Swift/handling-cocoa-errors-in-swift"
+      ],
+      "title": "Common Patterns"
+    }
+  ]
+}

@@ -1,0 +1,1560 @@
+{
+  "abstract": [
+    {
+      "text": "Create app intents, entities, and enumerations that conform to assistant schemas to tap into the enhanced action capabilities of Siri and Apple Intelligence.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppIntents/documentation/AppIntents"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppIntents/documentation/AppIntents",
+        "doc://com.apple.AppIntents/documentation/AppIntents/app-intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-actions-with-siri-and-apple-intelligence"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "app-intents-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "App Intents"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "watchOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Integrating actions with Siri and Apple Intelligence"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Intelligence is a new personal intelligence system that deeply integrates powerful generative models into the core of iPhone, iPad and Mac. Siri draws on the capabilities of Apple Intelligence to deliver assistance that’s more natural, contextually relevant and personal to users. A big part of people’s personal context are the apps they use every day. The App Intents framework gives you a means to express your app’s capabilities and content to the system and integrate with Siri and Apple Intelligence. This will unlock new ways for your users to interact with your app from anywhere on their device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you’re new to the App Intents framework, make sure to read ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Making-actions-and-content-discoverable-and-widely-available",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Creating-your-first-app-intent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Understand-assistant-schemas",
+          "level": 3,
+          "text": "Understand assistant schemas",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To integrate your app with Siri and Apple Intelligence, provide ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEnum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implementations that work well with the pre-trained models Apple Intelligence uses. To provide the implementation that Apple Intelligence needs, create the necessary code using Swift macros to generate additional properties, and add the relevant protocol conformance for your app intent, app entity, and app enum implementation. Xcode offers templates for the macros and verifies the conformance of your code at compile time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create implementations that work well with Siri and Apple Intelligence:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For your  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " implementation, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantIntent(schema:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " macro.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " implementation, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEntity(schema:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " macro.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For your  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEnum",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " implementation, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEnum(schema:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " macro.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each macro requires you to provide a ",
+              "type": "text"
+            },
+            {
+              "code": "schema",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value to generate app intent, app entity, or app enum code that Apple Intelligence can understand. The value you provide to the macros, the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "assistant schema",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", has two parts:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "App intent domain",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " that describes a collection of APIs for specific functionality; for example, the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".photos",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " domain if an app has photos or video functionality.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "schema",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ", an action or a content type within the domain, the specific API for the app intent, app entity, or app enum you create.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, an app intent that opens a photo from a photo library uses ",
+              "type": "text"
+            },
+            {
+              "code": "@AssistantIntent(schema: .photos.openAsset)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to make sure the intent provides necessary metadata that allows Apple Intelligence to understand it well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Only use the provided app intents domains and schemas for app actions and content that match the specific domain and schema.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a list of available assistant schemas, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/app-intent-domains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Review-schema-requirements",
+          "level": 3,
+          "text": "Review schema requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Conforming to an assistant schema comes with requirements that vary depending on the domain and schema. However, all assistant schemas share the following constraints:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App intents can’t require parameters in addition to the parameters a schema expects. If your app intent uses additional parameters, make them optional.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optional parameters that extend the schema are only available to the app intent when it appears in the Shortcuts app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App entities can’t use required properties in addition to the properties the schema expects. However, you can use optional properties.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App enums don’t come with requirements for their enumeration cases and offer full flexibility, but you can’t use more than a total of 10 app enums that conform to assistant schemas.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Create-an-app-intent-that-implements-a-schema",
+          "level": 3,
+          "text": "Create an app intent that implements a schema",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an app intent that integrates your app functionality with Apple Intelligence:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Identify an action or existing app intent implementation in your app that matches a domain listed in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/app-intent-domains",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a new Swift file for your app intent code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use Xcode code completion to generate code that conforms to an assistant schema: Type the name of the domain, followed by an underscore (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<domain>_",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") and choose the schema that fits your action. For example, type ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "photos_",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to see a list of available schemas for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".photos",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " domain and choose the action to open an asset (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "photos_openAsset",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ). To ensure assistant schema conformance for an existing app intent, add the macro — for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@AssistantIntent(schema: .photos.openAsset)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — to your existing app intent implementation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build your app to check for errors that indicate that your app intent implementation doesn’t match the chosen assistant schema.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make changes to meet the schema requirements and rebuild your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Xcode code completion can create ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEnum",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " code that conforms to assistant schemas.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code snippet shows how the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/making-your-app-s-functionality-available-to-siri",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample declares an app intent that opens a video from a device’s media library:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@AssistantIntent(schema: .photos.openAsset)",
+            "struct OpenAssetIntent: OpenIntent {",
+            "    var target: AssetEntity",
+            "",
+            "    @Dependency",
+            "    var library: MediaLibrary",
+            "",
+            "    @Dependency",
+            "    var navigation: NavigationManager",
+            "",
+            "    @MainActor",
+            "    func perform() async throws -> some IntentResult {",
+            "        let assets = library.assets(for: [target.id])",
+            "        guard let asset = assets.first else {",
+            "            throw IntentError.noEntity",
+            "        }",
+            "",
+            "        navigation.openAsset(asset)",
+            "        return .result()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When an app intent conforms to an assistant schema that is known at compile time, the system no longer needs metadata you previously provided, like a ",
+                  "type": "text"
+                },
+                {
+                  "code": "title",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "description",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Remove them to simplify your code. However, you can always supply additional metadata as needed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Ensure-app-entities-and-app-enums-conform-to-the-schema",
+          "level": 3,
+          "text": "Ensure app entities and app enums conform to the schema",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many actions you describe as an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " require parameters or return results, often with custom types you describe as an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEnum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you use an app entity or app enum in an intent that conforms to an assistant schema, the entity or enum also needs to conform to the assistant schema. Ensuring conformance works similar to conformance for your app intent:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Annotate your app entity or app enum with the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEntity(schema:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEnum(schema:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " macro or create a new entity or enum using Xcode code completion to automatically generate code that conforms to a schema. For more information, see the previous section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pass the corresponding domain and entity or enum parts to the macro.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Update your code to meet the requirements of the schema.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the  ",
+              "type": "text"
+            },
+            {
+              "code": "AssetEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implementation from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/making-your-app-s-functionality-available-to-siri",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample looks like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@AssistantEntity(schema: .photos.asset)",
+            "struct AssetEntity: IndexedEntity {",
+            "",
+            "    static let defaultQuery = AssetQuery()",
+            "",
+            "    let id: String",
+            "    let asset: Asset",
+            "",
+            "    @Property(title: \"Title\")",
+            "    var title: String?",
+            "",
+            "    var creationDate: Date?",
+            "    var location: CLPlacemark?",
+            "    var assetType: AssetType?",
+            "    var isFavorite: Bool",
+            "    var isHidden: Bool",
+            "    var hasSuggestedEdits: Bool",
+            "",
+            "    var displayRepresentation: DisplayRepresentation {",
+            "        DisplayRepresentation(",
+            "            title: title.map { \"\\($0)\" } ?? \"Unknown\",",
+            "            subtitle: assetType?.localizedStringResource ?? \"Photo\"",
+            "        )",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Consider-the-impact-of-updating-existing-app-intents",
+          "level": 3,
+          "text": "Consider the impact of updating existing app intents",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your existing app intents might overlap with functionality that assistant schemas provide. If you can make an existing app intent conform to a schema without making changes to parameters that the intent uses, proceed with adding schema conformance. However, changing existing app intent implementations or removing app intents can directly impact people because their custom shortcuts may no longer work.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To not break people’s existing workflows, create a new app intent in addition to an existing app intent. As a result, both intents appear in the Shortcuts app as actions. To avoid them appearing as duplicates, mark your new app intent as available to Apple Intelligence only by setting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemaIntent/isAssistantOnly-p4hd",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, an app intent implementation could look like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@AssistantIntent(schema: .photos.createAssets)",
+            "struct CreateAssetsIntent: AppIntent {",
+            "    ",
+            "    // ...",
+            "",
+            "    static let isAssistantOnly: Bool = true",
+            "    ",
+            "    // ...",
+            "",
+            "    @MainActor",
+            "    func perform() async throws -> some ReturnsValue<[AssetEntity]> {",
+            "        // ... ",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, you can set ",
+              "type": "text"
+            },
+            {
+              "code": "isAssistantOnly",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for any applicable app entities and app enums that conform to an assistant schema.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After some time, you can remove the  ",
+              "type": "text"
+            },
+            {
+              "code": "isAssistantOnly",
+              "type": "codeVoice"
+            },
+            {
+              "text": " code and remove your old app intent. For more information about giving people time to update their custom shortcuts with new app intents, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Making-actions-and-content-discoverable-and-widely-available#Understand-the-impact-of-removing-app-intents-and-shortcuts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Making-on-screen-content-available-to-Siri-and-Apple-Intelligence-PageImage-card.png": {
+      "alt": "A stylized iPhone device frame with Apple Intelligence and Siri artwork in the background.",
+      "identifier": "Making-on-screen-content-available-to-Siri-and-Apple-Intelligence-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/76b142f1270da8b71f89536595d2435c/Making-on-screen-content-available-to-Siri-and-Apple-Intelligence-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b41e58e257cfb1f41fb0063e96ba83b0/Making-on-screen-content-available-to-Siri-and-Apple-Intelligence-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "app-intents-PageImage-card.png": {
+      "alt": null,
+      "identifier": "app-intents-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f45fa3b20a1dca9bc37dc1052bdd8f0b/app-intents-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8bc71c773b4be518f0665536bee92d34/app-intents-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents": {
+      "abstract": [
+        {
+          "text": "Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and enhanced action capabilities of Siri, powered by Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/appintents"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity": {
+      "abstract": [
+        {
+          "text": "An interface for exposing a custom type or app-specific concept to system experiences like Siri and the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppEntity",
+      "type": "topic",
+      "url": "/documentation/appintents/appentity"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppEnum": {
+      "abstract": [
+        {
+          "text": "An interface to express that a custom type has a predefined, static set of valid values to display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEnum"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEnum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppEnum"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppEnum",
+      "type": "topic",
+      "url": "/documentation/appintents/appenum"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent": {
+      "abstract": [
+        {
+          "text": "An interface for providing an app-specific capability that people invoke",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from system experiences like Siri and the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEntity(schema:)": {
+      "abstract": [
+        {
+          "text": "A Swift macro you use to make sure your app entity conforms to an assistant schema.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssistantEntity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "schema"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEntity(schema:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AssistantEntity(schema:)",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantentity(schema:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEnum(schema:)": {
+      "abstract": [
+        {
+          "text": "A Swift macro you use to make sure your app enum conforms to an assistant schema.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssistantEnum"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "schema"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEnum(schema:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AssistantEnum(schema:)",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantenum(schema:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantIntent(schema:)": {
+      "abstract": [
+        {
+          "text": "A Swift macro you use to make sure your app intent conforms to an assistant schema.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssistantIntent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "schema"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantIntent(schema:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AssistantIntent(schema:)",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantintent(schema:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemaIntent/isAssistantOnly-p4hd": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAssistantOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemaIntent/isAssistantOnly-p4hd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isAssistantOnly",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantschemaintent/isassistantonly-p4hd"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/Creating-your-first-app-intent": {
+      "abstract": [
+        {
+          "text": "Create your first app intent that makes your app available in system experiences like Spotlight or the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Creating-your-first-app-intent",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating your first app intent",
+      "type": "topic",
+      "url": "/documentation/appintents/creating-your-first-app-intent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/Making-actions-and-content-discoverable-and-widely-available": {
+      "abstract": [
+        {
+          "text": "Adopt App Intents to make your app discoverable with Siri and Apple Intelligence, Spotlight, controls, widgets, and the Action button.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Making-actions-and-content-discoverable-and-widely-available",
+      "kind": "article",
+      "role": "article",
+      "title": "Making actions and content discoverable and widely available",
+      "type": "topic",
+      "url": "/documentation/appintents/making-actions-and-content-discoverable-and-widely-available"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/Making-actions-and-content-discoverable-and-widely-available#Understand-the-impact-of-removing-app-intents-and-shortcuts": {
+      "abstract": [],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Making-actions-and-content-discoverable-and-widely-available#Understand-the-impact-of-removing-app-intents-and-shortcuts",
+      "kind": "section",
+      "title": "Understand the impact of removing app intents and shortcuts",
+      "type": "topic",
+      "url": "/documentation/appintents/making-actions-and-content-discoverable-and-widely-available#Understand-the-impact-of-removing-app-intents-and-shortcuts"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/Making-onscreen-content-available-to-siri-and-apple-intelligence": {
+      "abstract": [
+        {
+          "text": "Enable Siri and Apple Intelligence to respond to a person’s questions and action requests for your app’s onscreen content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Making-onscreen-content-available-to-siri-and-apple-intelligence",
+      "images": [
+        {
+          "identifier": "Making-on-screen-content-available-to-Siri-and-Apple-Intelligence-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Making onscreen content available to Siri and Apple Intelligence",
+      "type": "topic",
+      "url": "/documentation/appintents/making-onscreen-content-available-to-siri-and-apple-intelligence"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/app-intent-domains": {
+      "abstract": [
+        {
+          "text": "Make your app’s actions and content available to Siri and Apple Intelligence with assistant schemas.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/app-intent-domains",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App intent domains",
+      "type": "topic",
+      "url": "/documentation/appintents/app-intent-domains"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/app-intents": {
+      "abstract": [
+        {
+          "text": "Define the custom actions your app exposes to the system, and incorporate",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "support for existing SiriKit intents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/app-intents",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App intents",
+      "type": "topic",
+      "url": "/documentation/appintents/app-intents"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/making-your-app-s-functionality-available-to-siri": {
+      "abstract": [
+        {
+          "text": "Add assistant schemas to your app so Siri can complete requests, and integrate your app with Apple Intelligence, Spotlight, and other system experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/making-your-app-s-functionality-available-to-siri",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Making your app’s functionality available to Siri",
+      "type": "topic",
+      "url": "/documentation/appintents/making-your-app-s-functionality-available-to-siri"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Siri-and-Apple-Intelligence",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/Making-onscreen-content-available-to-siri-and-apple-intelligence",
+        "doc://com.apple.AppIntents/documentation/AppIntents/app-intent-domains",
+        "doc://com.apple.AppIntents/documentation/AppIntents/making-your-app-s-functionality-available-to-siri"
+      ],
+      "title": "Siri and Apple Intelligence"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appintents/integrating-actions-with-siri-and-apple-intelligence"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

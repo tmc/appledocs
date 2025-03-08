@@ -1,0 +1,2860 @@
+{
+  "abstract": [
+    {
+      "text": "An object that represents the metadata for a reference signature.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.shazamkit/documentation/ShazamKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SHMediaItem",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SHMediaItem"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ShazamKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SHMediaItem"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SHMediaItem"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SHMediaItem"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class uses subscripting for the data elements of a custom media item that an existing property doesn’t already represent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a readable custom property by extending ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItemProperty",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a key for that property, and by extending this class with a property that uses the key. The following code shows the extensions for an episode number:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Add an episode number to the list of properties.",
+            "extension SHMediaItemProperty {",
+            "    static let episode = SHMediaItemProperty(\"Episode\")",
+            "}",
+            "",
+            "// Add a property for returning the episode number using a subscript.",
+            "extension SHMediaItem {",
+            "    var episode: Int? {",
+            "        return self[.episode] as? Int",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add your custom property when you create the media item as the following code shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a new media item and set the title, subtitle, and episode properties.",
+            "let mediaItem = SHMediaItem(properties: [.episode: 42,",
+            "                                         .title: \"Question\",",
+            "                                         .subtitle: \"The Answer\"])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The class of the object that represents a custom object must be one of: ",
+                  "type": "text"
+                },
+                {
+                  "code": "Dictionary",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "Array",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "URL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "Number",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "String",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "Date",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", or ",
+                  "type": "text"
+                },
+                {
+                  "code": "Data",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit": {
+      "abstract": [
+        {
+          "text": "Find information about a specific audio recording when a segment of it’s part of captured sound in the Shazam catalog or your custom catalog.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ShazamKit",
+      "type": "topic",
+      "url": "/documentation/shazamkit"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession": {
+      "abstract": [
+        {
+          "text": "An object that records and matches a recording with captured sound in the Shazam catalog or your custom catalog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHManagedSession"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHManagedSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHManagedSession",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmanagedsession"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatch": {
+      "abstract": [
+        {
+          "text": "An object that represents the catalog media items that match a query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHMatch"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHMatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHMatch",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmatch"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatchedMediaItem": {
+      "abstract": [
+        {
+          "text": "An object that represents the metadata for a matched reference signature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHMatchedMediaItem"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatchedMediaItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHMatchedMediaItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHMatchedMediaItem",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmatchedmediaitem"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem": {
+      "abstract": [
+        {
+          "text": "An object that represents the metadata for a reference signature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHMediaItem"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHMediaItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHMediaItem",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/Identifiable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/Identifiable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Identifiable Implementations",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/identifiable-implementations"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/appleMusicID": {
+      "abstract": [
+        {
+          "text": "The Apple Music ID for the song.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appleMusicID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/appleMusicID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "appleMusicID"
+        }
+      ],
+      "role": "symbol",
+      "title": "appleMusicID",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/applemusicid"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/appleMusicURL": {
+      "abstract": [
+        {
+          "text": "A link to the Apple Music page that contains the full information for the song.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appleMusicURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/appleMusicURL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "appleMusicURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "appleMusicURL",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/applemusicurl"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/artist": {
+      "abstract": [
+        {
+          "text": "The name of the artist for the media item, such as the performer of a song.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "artist"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/artist",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "artist"
+        }
+      ],
+      "role": "symbol",
+      "title": "artist",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/artist"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/artworkURL": {
+      "abstract": [
+        {
+          "text": "The URL for artwork for the media item, such as an album cover.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "artworkURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/artworkURL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "artworkURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "artworkURL",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/artworkurl"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/creationDate": {
+      "abstract": [
+        {
+          "text": "The date the media item was created.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "creationDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/creationDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "creationDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "creationDate",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/creationdate"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/explicitContent": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the media item contains explicit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "explicitContent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/explicitContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "explicitContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "explicitContent",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/explicitcontent"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/fetch(shazamID:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Requests the media item for the song with the specified Shazam ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "shazamID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SHMediaItem",
+          "text": "SHMediaItem"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/fetch(shazamID:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchMediaItemWithShazamID:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetch(shazamID:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/fetch(shazamid:completionhandler:)"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/frequencySkewRanges-1j7d3": {
+      "abstract": [
+        {
+          "text": "An array of ranges that indicate the frequency skews in the reference signature that this media item describes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frequencySkewRanges"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/frequencySkewRanges-1j7d3",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frequencySkewRanges",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/frequencyskewranges-1j7d3"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/frequencySkewRanges-4yqx": {
+      "abstract": [
+        {
+          "text": "An array of ranges that indicate the frequency skews in the reference signature that this media item describes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "frequencySkewRanges"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/frequencySkewRanges-4yqx",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frequencySkewRanges",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/frequencyskewranges-4yqx"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/genres": {
+      "abstract": [
+        {
+          "text": "An array of genre names for the media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "genres"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/genres",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "genres"
+        }
+      ],
+      "role": "symbol",
+      "title": "genres",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/genres"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/id": {
+      "abstract": [
+        {
+          "text": "A unique identifier for this media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/id",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "id",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/id"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/init(properties:)": {
+      "abstract": [
+        {
+          "text": "Creates a media item object with a dictionary of properties and their associated values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "properties"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SHMediaItemProperty",
+          "text": "SHMediaItemProperty"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/init(properties:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(properties:)",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/init(properties:)"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/isrc": {
+      "abstract": [
+        {
+          "text": "The International Standard Recording Code (ISRC) for the media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isrc"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/isrc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isrc"
+        }
+      ],
+      "role": "symbol",
+      "title": "isrc",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/isrc"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/mediaItemWithProperties:": {
+      "abstract": [
+        {
+          "text": "Creates a media item object with a dictionary of properties and their associated values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaItemWithProperties:"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/mediaItemWithProperties:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mediaItemWithProperties:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mediaItemWithProperties:",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/mediaitemwithproperties:"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/shazamID": {
+      "abstract": [
+        {
+          "text": "The Shazam ID for the song.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shazamID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/shazamID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shazamID"
+        }
+      ],
+      "role": "symbol",
+      "title": "shazamID",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/shazamid"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/songs": {
+      "abstract": [
+        {
+          "text": "An array of MusicKit song objects that represent the song.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "songs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8MusicKit4SongV",
+          "text": "Song"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/songs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "songs",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/songs"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/subscript(_:)": {
+      "abstract": [
+        {
+          "text": "Accesses the property for the specified key for reading.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SHMediaItemProperty",
+          "text": "SHMediaItemProperty"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/subscript(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "objectForKeyedSubscript:"
+        }
+      ],
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/subscript(_:)"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/subtitle": {
+      "abstract": [
+        {
+          "text": "A subtitle for the media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subtitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/subtitle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "subtitle"
+        }
+      ],
+      "role": "symbol",
+      "title": "subtitle",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/subtitle"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/timeRanges-43654": {
+      "abstract": [
+        {
+          "text": "An array of ranges that indicate the offsets within the reference signature that this media item describes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "timeRanges"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/timeRanges-43654",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeRanges",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/timeranges-43654"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/timeRanges-8msna": {
+      "abstract": [
+        {
+          "text": "An array of ranges that indicate the offsets within the reference signature that this media item describes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeRanges"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/timeRanges-8msna",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeRanges",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/timeranges-8msna"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/title": {
+      "abstract": [
+        {
+          "text": "A title for the media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/title",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "title"
+        }
+      ],
+      "role": "symbol",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/title"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/valueForProperty:": {
+      "abstract": [
+        {
+          "text": "Accesses the property for the specified key for reading.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "valueForProperty:"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/valueForProperty:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "valueForProperty:"
+        }
+      ],
+      "role": "symbol",
+      "title": "valueForProperty:",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/valueforproperty:"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/videoURL": {
+      "abstract": [
+        {
+          "text": "The URL for a video for the media item, such as a music video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/videoURL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "videoURL",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/videourl"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/webURL": {
+      "abstract": [
+        {
+          "text": "A link to the Shazam Music catalog page that contains the full information for the song.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "webURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/webURL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "webURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "webURL",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem/weburl"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItemProperty": {
+      "abstract": [
+        {
+          "text": "Constants for the media item property names.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHMediaItemProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItemProperty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHMediaItemProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHMediaItemProperty",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitemproperty"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHRange": {
+      "abstract": [
+        {
+          "text": "A half-open interval from a lower bound up to, but not including, an upper bound.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SHRange"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHRange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SHRange",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shrange"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession": {
+      "abstract": [
+        {
+          "text": "An object that matches a specific audio recording when a segment of that recording is part of captured sound in the Shazam catalog or your custom catalog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHSession"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHSession",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shsession"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHSessionDelegate": {
+      "abstract": [
+        {
+          "text": "Methods that the session calls with the result of a match request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHSessionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHSessionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHSessionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shsessiondelegate"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s12IdentifiableP": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s12IdentifiableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/Swift/Identifiable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatchedMediaItem"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:s12IdentifiableP",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Match-audio",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHSessionDelegate",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatch",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatchedMediaItem"
+      ],
+      "title": "Match audio"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-new-media-item-object",
+      "identifiers": [
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/init(properties:)"
+      ],
+      "title": "Creating a new media item object"
+    },
+    {
+      "anchor": "Working-with-media-item-properties",
+      "identifiers": [
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/subscript(_:)",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItemProperty",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/timeRanges-8msna",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/frequencySkewRanges-1j7d3"
+      ],
+      "title": "Working with media item properties"
+    },
+    {
+      "anchor": "Reading-general-media-item-properties",
+      "identifiers": [
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/title",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/subtitle",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/artist",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/artworkURL",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/videoURL",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/genres",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/explicitContent",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/creationDate",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/isrc",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/id"
+      ],
+      "title": "Reading general media item properties"
+    },
+    {
+      "anchor": "Reading-Apple-Music-properties",
+      "identifiers": [
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/songs",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/appleMusicURL",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/appleMusicID"
+      ],
+      "title": "Reading Apple Music properties"
+    },
+    {
+      "anchor": "Working-with-Shazam-music-catalog-media-items",
+      "identifiers": [
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/webURL",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/shazamID",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/fetch(shazamID:completionHandler:)"
+      ],
+      "title": "Working with Shazam music catalog media items"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/Identifiable-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SHMediaItem"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMediaItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMediaItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.shazamkit/documentation/ShazamKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-new-media-item-object",
+              "identifiers": [
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/mediaItemWithProperties:"
+              ],
+              "title": "Creating a new media item object"
+            },
+            {
+              "anchor": "Working-with-media-item-properties",
+              "identifiers": [
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/subscript(_:)",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/valueForProperty:",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItemProperty",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/timeRanges-43654",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/frequencySkewRanges-4yqx",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHRange"
+              ],
+              "title": "Working with media item properties"
+            },
+            {
+              "anchor": "Reading-general-media-item-properties",
+              "identifiers": [
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/title",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/subtitle",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/artist",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/artworkURL",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/videoURL",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/genres",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/explicitContent",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/creationDate",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/isrc"
+              ],
+              "title": "Reading general media item properties"
+            },
+            {
+              "anchor": "Reading-Apple-Music-properties",
+              "identifiers": [
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/appleMusicURL",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/appleMusicID"
+              ],
+              "title": "Reading Apple Music properties"
+            },
+            {
+              "anchor": "Working-with-Shazam-music-catalog-media-items",
+              "identifiers": [
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/webURL",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/shazamID",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem/fetch(shazamID:completionHandler:)"
+              ],
+              "title": "Working with Shazam music catalog media items"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatchedMediaItem"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Match-audio",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHSessionDelegate",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatch",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatchedMediaItem"
+              ],
+              "title": "Match audio"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SHMediaItem"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1isrc/title",
+          "value": "isrc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1isrc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "isrc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1genres/title",
+          "value": "genres"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1genres/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "genres"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1title/title",
+          "value": "title"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1title/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "title"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMatchedMediaItem/title",
+          "value": "SHMatchedMediaItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMatchedMediaItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMatchedMediaItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMatchedMediaItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMatchedMediaItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1artist/title",
+          "value": "artist"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1artist/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "artist"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1artworkURL/title",
+          "value": "artworkURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1artworkURL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "artworkURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1subtitle/title",
+          "value": "subtitle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1subtitle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "subtitle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1videoURL/title",
+          "value": "videoURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1videoURL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "videoURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1appleMusicURL/title",
+          "value": "appleMusicURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1appleMusicURL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "appleMusicURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItemProperty/title",
+          "value": "SHMediaItemProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItemProperty/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMediaItemProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItemProperty/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMediaItemProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1creationDate/title",
+          "value": "creationDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1creationDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "creationDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1explicitContent/title",
+          "value": "explicitContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1explicitContent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "explicitContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem/title",
+          "value": "SHMediaItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMediaItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMediaItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1subscript(_:)/title",
+          "value": "objectForKeyedSubscript:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1subscript(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "objectForKeyedSubscript:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1appleMusicID/title",
+          "value": "appleMusicID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1appleMusicID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "appleMusicID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSession/title",
+          "value": "SHSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMatch/title",
+          "value": "SHMatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMatch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMatch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSessionDelegate/title",
+          "value": "SHSessionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSessionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHSessionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSessionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHSessionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1webURL/title",
+          "value": "webURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1webURL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "webURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1fetch(shazamID:completionHandler:)/title",
+          "value": "fetchMediaItemWithShazamID:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1fetch(shazamID:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchMediaItemWithShazamID:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1shazamID/title",
+          "value": "shazamID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem~1shazamID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shazamID"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/shazamkit/shmediaitem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/shazamkit/shmediaitem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,784 @@
+{
+  "abstract": [
+    {
+      "text": "Prompt the customer to authorize access to Apple Music library.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/requesting-access-to-apple-music-library"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Requesting Access to Apple Music Library"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app must obtain permission from the customer before accessing Apple Music Library.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-a-Purpose-String-in-Infoplist",
+          "level": 3,
+          "text": "Provide a Purpose String in Info.plist",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide a purpose string or usage description that describes how your app intends to use the user’s iCloud Music library or Apple Music catalog. Add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to your app’s Info.plist. Set its value to a string that explains why your app needs access to Apple Music library. The system displays the string to the user when prompting them for authorization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3580813",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This key is required for apps that access the user’s music library. Apps crash when the key is absent.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/requesting-access-to-protected-resources",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Request-Authorization",
+          "level": 3,
+          "text": "Request Authorization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The user determines whether apps can play items from the Apple Music catalog or add tracks to their iCloud Music library. They can grant or deny access when your app requests authorization. Because the user can change your app’s authorization status in Settings > Privacy > Media and Apple Music, be sure to call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController/authorizationStatus()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before attempting to access their Apple Music library.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "guard SKCloudServiceController.authorizationStatus() == .notDetermined else { return }"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "SKCloudServiceAuthorizationStatus status = ([SKCloudServiceController authorizationStatus] == SKCloudServiceAuthorizationStatusNotDetermined);"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the authorization status i",
+              "type": "text"
+            },
+            {
+              "code": "s",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceAuthorizationStatus/notDetermined",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController/requestAuthorization(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to prompt the user for access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "SKCloudServiceController.requestAuthorization {(status: SKCloudServiceAuthorizationStatus) in",
+                    "    switch status {",
+                    "    case .denied, .restricted: disableAppleMusicBasedFeatures()",
+                    "    case .authorized: enableAppleMusicBasedFeatures()",
+                    "    default: break",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[SKCloudServiceController requestAuthorization:^(SKCloudServiceAuthorizationStatus status) {",
+                    "    switch (status) {",
+                    "        case SKCloudServiceAuthorizationStatusDenied:",
+                    "        case SKCloudServiceAuthorizationStatusRestricted: [self disableAppleMusicBasedFeatures];",
+                    "            break;",
+                    "        case SKCloudServiceAuthorizationStatusAuthorized: [self enableAppleMusicBasedFeatures];",
+                    "            break;",
+                    "        default: break;",
+                    "    }",
+                    "}];",
+                    ""
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system remembers the user’s answer so that subsequent calls to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController/requestAuthorization(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " don’t prompt them again.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s media library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAppleMusicUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/requesting-access-to-protected-resources": {
+      "abstract": [
+        {
+          "text": "Provide a purpose string that explains to a person why you need access to protected resources on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/requesting-access-to-protected-resources",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting access to protected resources",
+      "type": "topic",
+      "url": "/documentation/UIKit/requesting-access-to-protected-resources"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceAuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the type of authorization the customer has for accessing the Music library.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKCloudServiceAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceAuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKCloudServiceAuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKCloudServiceAuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/storekit/skcloudserviceauthorizationstatus"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceAuthorizationStatus/notDetermined": {
+      "abstract": [
+        {
+          "text": "The authorization type cannot be determined.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notDetermined"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceAuthorizationStatus/notDetermined",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKCloudServiceAuthorizationStatusNotDetermined"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKCloudServiceAuthorizationStatus.notDetermined",
+      "type": "topic",
+      "url": "/documentation/storekit/skcloudserviceauthorizationstatus/notdetermined"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController": {
+      "abstract": [
+        {
+          "text": "An object that determines the current capabilities of a person’s Music library.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKCloudServiceController"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKCloudServiceController"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKCloudServiceController",
+      "type": "topic",
+      "url": "/documentation/storekit/skcloudservicecontroller"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController/authorizationStatus()": {
+      "abstract": [
+        {
+          "text": "Returns the type of authorization the customer has for accessing the Music library on the device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SKCloudServiceAuthorizationStatus",
+          "text": "SKCloudServiceAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController/authorizationStatus()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationStatus()",
+      "type": "topic",
+      "url": "/documentation/storekit/skcloudservicecontroller/authorizationstatus()"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController/requestAuthorization(_:)": {
+      "abstract": [
+        {
+          "text": "Asks the customer for permission to access the Music library on the device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SKCloudServiceAuthorizationStatus",
+          "text": "SKCloudServiceAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController/requestAuthorization(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestAuthorization(_:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skcloudservicecontroller/requestauthorization(_:)"
+    },
+    "media-3580813": {
+      "alt": "Privacy - Media Library Usage Description",
+      "identifier": "media-3580813",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/172797b315ff7d28ae7b00cf609dd514/media-3580813@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d1790db08bf88385914162fa8eabb9c3/media-3580813~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-authorization-to-access-the-Music-library",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController/authorizationStatus()",
+        "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController/requestAuthorization(_:)",
+        "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceAuthorizationStatus"
+      ],
+      "title": "Getting authorization to access the Music library"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Getting-authorization-to-access-the-Music-library",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController/authorizationStatus()",
+                "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceController/requestAuthorization(_:)",
+                "doc://com.apple.storekit/documentation/StoreKit/SKCloudServiceAuthorizationStatus"
+              ],
+              "title": "Getting authorization to access the Music library"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceController~1authorizationStatus()/title",
+          "value": "authorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceController~1authorizationStatus()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceController/title",
+          "value": "SKCloudServiceController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKCloudServiceController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKCloudServiceController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceAuthorizationStatus/title",
+          "value": "SKCloudServiceAuthorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceAuthorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKCloudServiceAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceAuthorizationStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKCloudServiceAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceAuthorizationStatus~1notDetermined/title",
+          "value": "SKCloudServiceAuthorizationStatusNotDetermined"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceAuthorizationStatus~1notDetermined/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKCloudServiceAuthorizationStatusNotDetermined"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceController~1requestAuthorization(_:)/title",
+          "value": "requestAuthorization:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKCloudServiceController~1requestAuthorization(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestAuthorization:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/requesting-access-to-apple-music-library"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/requesting-access-to-apple-music-library"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

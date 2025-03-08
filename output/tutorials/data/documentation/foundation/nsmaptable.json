@@ -1,0 +1,1214 @@
+{
+  "abstract": [
+    {
+      "text": "A collection similar to a dictionary, but with a broader range of available memory semantics.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/collections"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsmaptable"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1391336,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSMapTable",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSMapTable"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "6.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "6.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.5",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Generic Class",
+    "symbolKind": "cl",
+    "title": "NSMapTable"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSMapTable"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSMapTable@KeyType",
+              "text": "KeyType"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSMapTable@ObjectType",
+              "text": "ObjectType"
+            },
+            {
+              "kind": "text",
+              "text": "> : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSMapTable@KeyType",
+              "text": "KeyType"
+            },
+            {
+              "kind": "text",
+              "text": " : AnyObject"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSMapTable@ObjectType",
+              "text": "ObjectType"
+            },
+            {
+              "kind": "text",
+              "text": " : AnyObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The map table is modeled after ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the following differences:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Keys and/or values are optionally held “weakly” such that entries are removed when one of the objects is reclaimed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Its keys or values may be copied on input or may use pointer identity for equality and hashing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It can contain arbitrary pointers (its contents are not constrained to being objects).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can configure an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " instance to operate on arbitrary pointers and not just objects, although typically you are encouraged to use the C function API for void * pointers. The object-based API (such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391457-setobject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") will not work for non-object pointers without type-casting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When configuring map tables, note that only the options listed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptableoptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " guarantee that the rest of the API will work correctly—including copying, archiving, and fast enumeration. While other ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerfunctions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " options are used for certain configurations, such as to hold arbitrary pointers, not all combinations of the options are valid. With some combinations the map table may not work correctly, or may not even be initialized correctly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1673833",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSMapTable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is not suitable for subclassing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/collections": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/collections",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collections",
+      "type": "topic",
+      "url": "/documentation/foundation/collections"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfastenumeration": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfastenumeration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFastEnumeration",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfastenumeration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable": {
+      "abstract": [
+        {
+          "text": "A collection similar to a set, but with broader range of available memory semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHashTable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHashTable",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptable": {
+      "abstract": [
+        {
+          "text": "A collection similar to a dictionary, but with a broader range of available memory semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMapTable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMapTable",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391346-weaktostrongobjects": {
+      "abstract": [
+        {
+          "text": "Returns a new map table object which has weak references to the keys and strong references to the values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "weakToStrongObjects"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSMapTable<KeyType, ObjectType>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391346-weaktostrongobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "weakToStrongObjects()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptable/1391346-weaktostrongobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391360-count": {
+      "abstract": [
+        {
+          "text": "The number of key-value pairs in the map table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391360-count",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "count",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptable/1391360-count"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391366-strongtoweakobjects": {
+      "abstract": [
+        {
+          "text": "Returns a new map table object which has strong references to the keys and weak references to the values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "strongToWeakObjects"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSMapTable<KeyType, ObjectType>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391366-strongtoweakobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "strongToWeakObjects()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptable/1391366-strongtoweakobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391382-init": {
+      "abstract": [
+        {
+          "text": "Returns a map table, initialized with the given options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "keyOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPointerFunctions.Options, "
+        },
+        {
+          "kind": "identifier",
+          "text": "valueOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPointerFunctions.Options, "
+        },
+        {
+          "kind": "identifier",
+          "text": "capacity"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391382-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(keyOptions:valueOptions:capacity:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptable/1391382-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391386-removeallobjects": {
+      "abstract": [
+        {
+          "text": "Empties the map table of its entries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllObjects"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391386-removeallobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeAllObjects()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptable/1391386-removeallobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391398-keyenumerator": {
+      "abstract": [
+        {
+          "text": "Returns an enumerator object that lets you access each key in the map table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyEnumerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSEnumerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391398-keyenumerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keyEnumerator()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptable/1391398-keyenumerator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391400-objectenumerator": {
+      "abstract": [
+        {
+          "text": "Returns an enumerator object that lets you access each value in the map table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectEnumerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSEnumerator?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391400-objectenumerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectEnumerator()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptable/1391400-objectenumerator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391402-dictionaryrepresentation": {
+      "abstract": [
+        {
+          "text": "Returns a dictionary representation of the map table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "dictionaryRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "() -> [AnyHashable : ObjectType]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391402-dictionaryrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dictionaryRepresentation()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptable/1391402-dictionaryrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391412-keypointerfunctions": {
+      "abstract": [
+        {
+          "text": "The pointer functions the map table uses to manage keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyPointerFunctions"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPointerFunctions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391412-keypointerfunctions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keyPointerFunctions",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptable/1391412-keypointerfunctions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391414-init": {
+      "abstract": [
+        {
+          "text": "Returns a new map table, initialized with the given options",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "keyOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPointerFunctions.Options, "
+        },
+        {
+          "kind": "identifier",
+          "text": "valueOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPointerFunctions.Options)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391414-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(keyOptions:valueOptions:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptable/1391414-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391429-init": {
+      "abstract": [
+        {
+          "text": "Returns a map table, initialized with the given functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "keyPointerFunctions"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPointerFunctions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "valuePointerFunctions"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPointerFunctions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "capacity"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391429-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(keyPointerFunctions:valuePointerFunctions:capacity:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptable/1391429-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391430-weaktoweakobjects": {
+      "abstract": [
+        {
+          "text": "Returns a new map table object which has weak references to the keys and values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "weakToWeakObjects"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSMapTable<KeyType, ObjectType>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391430-weaktoweakobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "weakToWeakObjects()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptable/1391430-weaktoweakobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391440-strongtostrongobjects": {
+      "abstract": [
+        {
+          "text": "Returns a new map table object which has strong references to the keys and values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "strongToStrongObjects"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSMapTable<KeyType, ObjectType>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391440-strongtostrongobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "strongToStrongObjects()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptable/1391440-strongtostrongobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391444-object": {
+      "abstract": [
+        {
+          "text": "Returns a the value associated with a given key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": KeyType?) -> ObjectType?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391444-object",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "object(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptable/1391444-object"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391457-setobject": {
+      "abstract": [
+        {
+          "text": "Adds a given key-value pair to the map table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObject"
+        },
+        {
+          "kind": "text",
+          "text": "(ObjectType?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": KeyType?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391457-setobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setObject(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptable/1391457-setobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391461-removeobject": {
+      "abstract": [
+        {
+          "text": "Removes a given key and its associated value from the map table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": KeyType?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391461-removeobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObject(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptable/1391461-removeobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391467-valuepointerfunctions": {
+      "abstract": [
+        {
+          "text": "The pointer functions the map table uses to manage values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "valuePointerFunctions"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPointerFunctions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391467-valuepointerfunctions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "valuePointerFunctions",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptable/1391467-valuepointerfunctions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptable/legacy_map_table_implementation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable/legacy_map_table_implementation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Legacy Map Table Implementation",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptable/legacy_map_table_implementation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptableoptions": {
+      "abstract": [
+        {
+          "text": "Constants used as components in a bitfield to specify the behavior of elements (keys and values) in an ",
+          "type": "text"
+        },
+        {
+          "code": "NSMapTable",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMapTableOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptableoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMapTableOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptableoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerarray": {
+      "abstract": [
+        {
+          "text": "A collection similar to an array, but with a broader range of available memory semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPointerArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPointerArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerfunctions": {
+      "abstract": [
+        {
+          "text": "An instance of ",
+          "type": "text"
+        },
+        {
+          "code": "NSPointerFunctions",
+          "type": "codeVoice"
+        },
+        {
+          "text": " defines callout functions appropriate for managing a pointer reference held somewhere else.  ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPointerFunctions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerfunctions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPointerFunctions",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerfunctions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nsfastenumeration",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nspointerarray",
+        "doc://com.apple.documentation/documentation/foundation/nshashtable"
+      ],
+      "title": "Pointer Collections"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1661241",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391382-init",
+        "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391414-init",
+        "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391429-init",
+        "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391440-strongtostrongobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391346-weaktostrongobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391366-strongtoweakobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391430-weaktoweakobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsmaptableoptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating and Initializing a Map Table"
+    },
+    {
+      "anchor": "1661314",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391444-object",
+        "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391398-keyenumerator",
+        "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391400-objectenumerator",
+        "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391360-count"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Content"
+    },
+    {
+      "anchor": "1661350",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391457-setobject",
+        "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391461-removeobject",
+        "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391386-removeallobjects"
+      ],
+      "kind": "taskGroup",
+      "title": "Manipulating Content"
+    },
+    {
+      "anchor": "1661380",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391402-dictionaryrepresentation"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Dictionary Representation"
+    },
+    {
+      "anchor": "1661398",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391412-keypointerfunctions",
+        "doc://com.apple.documentation/documentation/foundation/nsmaptable/1391467-valuepointerfunctions",
+        "doc://com.apple.documentation/documentation/foundation/nspointerfunctions"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Pointer Functions"
+    },
+    {
+      "anchor": "2881025",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmaptable/legacy_map_table_implementation"
+      ],
+      "kind": "taskGroup",
+      "title": "Deprecated"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsmaptable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsmaptable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

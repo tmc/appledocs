@@ -1,0 +1,2354 @@
+{
+  "abstract": [
+    {
+      "text": "Create a composite interface by combining content from one or more view controllers with other custom views.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/view-controllers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-container-view-controller"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a custom container view controller"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Container view controllers promote better encapsulation by separating out your content from how you display that content onscreen. Unlike a content view controller that displays your app’s data, a container view controller displays other view controllers, arranging them onscreen and handling navigation between them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A container view controller is still a view controller, so you display it in a window or present it like any other view controller. A container view controller also manages a composite interface, incorporating the views from one or more child view controllers into its own view hierarchy. Each child continues to manage its own view hierarchy, but the container manages the position and size of that child’s root view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3375406",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many container view controllers facilitate navigation between different parts of your app’s content. Examples include ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPageViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which help users navigate between different view controllers. You can also use container view controllers to organize the content you have more efficiently. For example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISplitViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " displays two view controllers side-by-side on iPad. The only difference between navigation and organization is that navigation requires custom API to change the child view controllers; otherwise, the implementations are identical.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-child-view-controller-programmatically-to-your-content",
+          "level": 3,
+          "text": "Add a child view controller programmatically to your content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your container view controller changes its child view controllers dynamically, it’s easier to add those children programmatically. Custom navigation interfaces facilitate navigation by changing their child view controllers, and you might also change child view controllers as part of configuring your interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each new child view controller you add to your interface, perform the following steps in order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/addChild(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of your container view controller to configure the containment relationship.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the child’s root view to your container’s view hierarchy.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add constraints to set the size and position of the child’s root view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/didMove(toParent:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of the child view controller to notify it that the transition is complete.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example code instantiates a new child view controller from a storyboard and embeds it as a child of the current view controller. After calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/addChild(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the code adds the child’s view to the view hierarchy and sets up some layout constraints to size and position it. At the end of the process, it notifies the child.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a child view controller and add it to the current view controller.",
+            "let storyboard = UIStoryboard(name: \"Main\", bundle: .main)",
+            "if let viewController = storyboard.instantiateViewController(identifier: \"imageViewController\")",
+            "                                    as? ImageViewController {",
+            "   // Add the view controller to the container.",
+            "   addChild(viewController)",
+            "   view.addSubview(viewController.view)",
+            "            ",
+            "   // Create and activate the constraints for the child’s view.",
+            "   onscreenConstraints = configureConstraintsForContainedView(containedView: viewController.view,",
+            "                             stage: .onscreen)",
+            "   NSLayoutConstraint.activate(onscreenConstraints)",
+            "     ",
+            "   // Notify the child view controller that the move is complete.       ",
+            "   viewController.didMove(toParent: self)",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Establishing a container-child relationship between view controllers prevents UIKit from interfering with your interface unintentionally. UIKit normally routes information to each of your app’s view controllers independently. When a container-child relationship exists, UIKit routes many requests through the container view controller first, giving it a chance to alter the behavior for any child view controllers. For example, a container view controller may override the traits of its children, forcing them to adopt a specific appearance or behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Remove-a-child-view-controller-from-your-content",
+          "level": 3,
+          "text": "Remove a child view controller from your content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To remove a child view controller from your container, perform the following steps in order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call the child’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/willMove(toParent:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method with the value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Deactivate or remove any constraints for the child’s root view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/removeFromSuperview()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on the child’s root view to remove it from the view hierarchy.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call the child’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/removeFromParent()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to finalize the end of the container-child relationship.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Breaking a container-child relationship tells UIKit that your container view controller is no longer displaying the child’s content. You can still maintain other references to the child view controller. For example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " manages a stack of child view controllers, but it maintains a container-child relationship with only one or two of those children at any given time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Embed-a-child-view-controller-in-your-storyboard-UI",
+          "level": 3,
+          "text": "Embed a child view controller in your storyboard UI",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your container view controller organizes content, and doesn’t change that content later, configure your UI using container views. A container view is a proxy view that stands in for the content of a child view controller. When you add one to your interface, it looks like a normal view, but it has an attached view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3376047",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Size and position a container view the same way you would other views in your interface. Add constraints to specify the size and position of the view for different devices and in different configurations. However, don’t add any subviews to the container view itself. Instead, add them to the view of the attached view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you instantiate a view controller that contains one or more container views, UIKit also instantiates the associated child view controllers. After creating the new view controllers, UIKit adds them as children of the original view controller you requested. You don’t need to call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/addChild(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " yourself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Support-additional-container-behaviors",
+          "level": 3,
+          "text": "Support additional container behaviors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider implementing the following additional behaviors in your custom container view controllers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Override ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/show(_:sender:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and use it to present a new child view controller.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Override ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/showDetailViewController(_:sender:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", as needed, to present a secondary child view controller.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Update ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/additionalSafeAreaInsets",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to account for decoration views that might obscure the content of your children.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/setOverrideTraitCollection(_:forChild:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to change the traits of your child view controllers. For example, you might designate a child view controller as always horizontally or vertically compact.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Override ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/childForScreenEdgesDeferringSystemGestures",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/childForHomeIndicatorAutoHidden",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to let a child view controller determine the behavior for system gestures.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Override ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/allowedChildrenForUnwinding(from:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to limit the set of child view controllers that are targets of an unwind segue action.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see the descriptions in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationBar": {
+      "abstract": [
+        {
+          "text": "Navigational controls that display in a bar along the top of the screen, usually in conjunction with a navigation controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINavigationBar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationBar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UINavigationBar"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationBar",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationbar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationController": {
+      "abstract": [
+        {
+          "text": "A container view controller that defines a stack-based scheme for navigating hierarchical content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINavigationController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UINavigationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationController",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem": {
+      "abstract": [
+        {
+          "text": "The items that a navigation bar displays when the associated view controller is visible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINavigationItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UINavigationItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPageViewController": {
+      "abstract": [
+        {
+          "text": "A container view controller that manages navigation between pages of content, where a subview controller manages each page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPageViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPageViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPageViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPageViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uipageviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchTab": {
+      "abstract": [
+        {
+          "text": "A tab subclass that represents the system’s search tab.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchTab"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTab",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchTab"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchTab",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtab"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISplitViewController": {
+      "abstract": [
+        {
+          "text": "A container view controller that implements a hierarchical interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISplitViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISplitViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISplitViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISplitViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uisplitviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITab": {
+      "abstract": [
+        {
+          "text": "An object that manages a tab in a tab bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITab"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITab",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITab"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITab",
+      "type": "topic",
+      "url": "/documentation/uikit/uitab"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBar": {
+      "abstract": [
+        {
+          "text": "A control that displays one or more buttons in a tab bar for selecting between different subtasks, views, or modes in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITabBar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabBar"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabBar",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarController": {
+      "abstract": [
+        {
+          "text": "A container view controller that manages a multiselection interface, where the selection determines which child view controller to display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITabBarController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabBarController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabBarController",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbarcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarItem": {
+      "abstract": [
+        {
+          "text": "An object that describes an item in a tab bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITabBarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabBarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabBarItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbaritem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabGroup": {
+      "abstract": [
+        {
+          "text": "An object that manages a collection of tab objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITabGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabGroup",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabgroup"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/removeFromSuperview()": {
+      "abstract": [
+        {
+          "text": "Unlinks the view from its superview and its window, and removes it from the responder chain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeFromSuperview"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/removeFromSuperview()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeFromSuperview"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeFromSuperview()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/removefromsuperview()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages a view hierarchy for your UIKit app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/addChild(_:)": {
+      "abstract": [
+        {
+          "text": "Adds the specified view controller as a child of the current view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addChild"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/addChild(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addChildViewController:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addChild(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/addchild(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/additionalSafeAreaInsets": {
+      "abstract": [
+        {
+          "text": "Custom insets that you specify to modify the view controller’s safe area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "additionalSafeAreaInsets"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@UIEdgeInsets",
+          "text": "UIEdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/additionalSafeAreaInsets",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "additionalSafeAreaInsets"
+        }
+      ],
+      "role": "symbol",
+      "title": "additionalSafeAreaInsets",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/additionalsafeareainsets"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/allowedChildrenForUnwinding(from:)": {
+      "abstract": [
+        {
+          "text": "Returns an array of child view controllers to search for an unwind segue destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowedChildrenForUnwinding"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIStoryboardUnwindSegueSource",
+          "text": "UIStoryboardUnwindSegueSource"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/allowedChildrenForUnwinding(from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowedChildViewControllersForUnwindingFromSource:"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowedChildrenForUnwinding(from:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/allowedchildrenforunwinding(from:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/childForHomeIndicatorAutoHidden": {
+      "abstract": [
+        {
+          "text": "Returns the child view controller that is consulted about its preference for displaying a visual indicator for returning to the Home screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "childForHomeIndicatorAutoHidden"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/childForHomeIndicatorAutoHidden",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "childViewControllerForHomeIndicatorAutoHidden"
+        }
+      ],
+      "role": "symbol",
+      "title": "childForHomeIndicatorAutoHidden",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/childforhomeindicatorautohidden"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/childForScreenEdgesDeferringSystemGestures": {
+      "abstract": [
+        {
+          "text": "Returns the child view controller that should be queried to see if its gestures should take precedence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "childForScreenEdgesDeferringSystemGestures"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/childForScreenEdgesDeferringSystemGestures",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "childViewControllerForScreenEdgesDeferringSystemGestures"
+        }
+      ],
+      "role": "symbol",
+      "title": "childForScreenEdgesDeferringSystemGestures",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/childforscreenedgesdeferringsystemgestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/didMove(toParent:)": {
+      "abstract": [
+        {
+          "text": "Called after the view controller is added or removed from a container view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didMove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toParent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/didMove(toParent:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didMoveToParentViewController:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didMove(toParent:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/didmove(toparent:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/removeFromParent()": {
+      "abstract": [
+        {
+          "text": "Removes the view controller from its parent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeFromParent"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/removeFromParent()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeFromParentViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeFromParent()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/removefromparent()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/setOverrideTraitCollection(_:forChild:)": {
+      "abstract": [
+        {
+          "text": "Changes the traits assigned to the specified child view controller.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOverrideTraitCollection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITraitCollection",
+          "text": "UITraitCollection"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forChild"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/setOverrideTraitCollection(_:forChild:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setOverrideTraitCollection:forChildViewController:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setOverrideTraitCollection(_:forChild:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/setoverridetraitcollection(_:forchild:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/show(_:sender:)": {
+      "abstract": [
+        {
+          "text": "Presents a view controller in a primary context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "show"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sender"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/show(_:sender:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showViewController:sender:"
+        }
+      ],
+      "role": "symbol",
+      "title": "show(_:sender:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/show(_:sender:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/showDetailViewController(_:sender:)": {
+      "abstract": [
+        {
+          "text": "Presents a view controller in a secondary (or detail) context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showDetailViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sender"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/showDetailViewController(_:sender:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showDetailViewController:sender:"
+        }
+      ],
+      "role": "symbol",
+      "title": "showDetailViewController(_:sender:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/showdetailviewcontroller(_:sender:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/willMove(toParent:)": {
+      "abstract": [
+        {
+          "text": "Called just before the view controller is added or removed from a container view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willMove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toParent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/willMove(toParent:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "willMoveToParentViewController:"
+        }
+      ],
+      "role": "symbol",
+      "title": "willMove(toParent:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/willmove(toparent:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-controllers": {
+      "abstract": [
+        {
+          "text": "Manage your interface using view controllers and facilitate navigation around your app’s content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View controllers",
+      "type": "topic",
+      "url": "/documentation/uikit/view-controllers"
+    },
+    "media-3375406": {
+      "alt": "An illustration showing the relationships between a container view controller and its children, and the resulting interface that appears onscreen.",
+      "identifier": "media-3375406",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/31b57b164fcd77f6c82549528d86339e/media-3375406@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8897854bba995ef7495464d180e817dc/media-3375406~dark@2x.png"
+        }
+      ]
+    },
+    "media-3376047": {
+      "alt": "An illustration showing a container view standiyou’d the content of an embedded child view controller.",
+      "identifier": "media-3376047",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e1ea2e4e04857d762d37bd948d9fb131/media-3376047@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a86ae7b4b9a48474616e1ee8565e0d08/media-3376047~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Container-view-controllers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UISplitViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationController",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationBar",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem",
+        "doc://com.apple.uikit/documentation/UIKit/UITabBarController",
+        "doc://com.apple.uikit/documentation/UIKit/UITabBar",
+        "doc://com.apple.uikit/documentation/UIKit/UITabBarItem",
+        "doc://com.apple.uikit/documentation/UIKit/UITab",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchTab",
+        "doc://com.apple.uikit/documentation/UIKit/UITabGroup",
+        "doc://com.apple.uikit/documentation/UIKit/UIPageViewController"
+      ],
+      "title": "Container view controllers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Container-view-controllers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UISplitViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationController",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationBar",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationItem",
+                "doc://com.apple.uikit/documentation/UIKit/UITabBarController",
+                "doc://com.apple.uikit/documentation/UIKit/UITabBar",
+                "doc://com.apple.uikit/documentation/UIKit/UITabBarItem",
+                "doc://com.apple.uikit/documentation/UIKit/UITab",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchTab",
+                "doc://com.apple.uikit/documentation/UIKit/UITabGroup",
+                "doc://com.apple.uikit/documentation/UIKit/UIPageViewController"
+              ],
+              "title": "Container view controllers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1removeFromSuperview()/title",
+          "value": "removeFromSuperview"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1removeFromSuperview()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeFromSuperview"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBar/title",
+          "value": "UITabBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1childForHomeIndicatorAutoHidden/title",
+          "value": "childViewControllerForHomeIndicatorAutoHidden"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1childForHomeIndicatorAutoHidden/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "childViewControllerForHomeIndicatorAutoHidden"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1addChild(_:)/title",
+          "value": "addChildViewController:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1addChild(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addChildViewController:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarItem/title",
+          "value": "UITabBarItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem/title",
+          "value": "UINavigationItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1allowedChildrenForUnwinding(from:)/title",
+          "value": "allowedChildViewControllersForUnwindingFromSource:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1allowedChildrenForUnwinding(from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "allowedChildViewControllersForUnwindingFromSource:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1childForScreenEdgesDeferringSystemGestures/title",
+          "value": "childViewControllerForScreenEdgesDeferringSystemGestures"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1childForScreenEdgesDeferringSystemGestures/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "childViewControllerForScreenEdgesDeferringSystemGestures"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1showDetailViewController(_:sender:)/title",
+          "value": "showDetailViewController:sender:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1showDetailViewController(_:sender:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "showDetailViewController:sender:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1additionalSafeAreaInsets/title",
+          "value": "additionalSafeAreaInsets"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1additionalSafeAreaInsets/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "additionalSafeAreaInsets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISplitViewController/title",
+          "value": "UISplitViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISplitViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISplitViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISplitViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISplitViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1removeFromParent()/title",
+          "value": "removeFromParentViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1removeFromParent()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeFromParentViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController/title",
+          "value": "UITabBarController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1didMove(toParent:)/title",
+          "value": "didMoveToParentViewController:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1didMove(toParent:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didMoveToParentViewController:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1willMove(toParent:)/title",
+          "value": "willMoveToParentViewController:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1willMove(toParent:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "willMoveToParentViewController:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabGroup/title",
+          "value": "UITabGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController/title",
+          "value": "UINavigationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTab/title",
+          "value": "UISearchTab"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTab/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTab"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTab/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTab"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1show(_:sender:)/title",
+          "value": "showViewController:sender:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1show(_:sender:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "showViewController:sender:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1setOverrideTraitCollection(_:forChild:)/title",
+          "value": "setOverrideTraitCollection:forChildViewController:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1setOverrideTraitCollection(_:forChild:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setOverrideTraitCollection:forChildViewController:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageViewController/title",
+          "value": "UIPageViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPageViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPageViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab/title",
+          "value": "UITab"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITab"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITab/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITab"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/title",
+          "value": "UIViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBar/title",
+          "value": "UINavigationBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationBar"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/creating-a-custom-container-view-controller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/creating-a-custom-container-view-controller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1893 @@
+{
+  "abstract": [
+    {
+      "text": "A description of a new stitched function.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MTLFunctionStitchingGraph",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MTLFunctionStitchingGraph"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MTLFunctionStitchingGraph"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "MTLFunctionStitchingGraph"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionStitchingGraph"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object describes the function graph for a stitched function. A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "stitched function",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a visible function you create by composing other Metal shader functions together in a function graph. A function stitching graph contains nodes for the function’s arguments and any functions it calls in the implementation. Data flows from the arguments to the end of the graph until the stitched function evaluates all of the graph’s nodes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The graph in the figure below constructs a new function that adds numbers from two source arrays, storing the result in a third array. The function’s parameters are pointers to the source and destination arrays, and an index for performing the array lookup. The graph uses three separate MSL functions to construct the stitched function: a function to look up a value from an array, a function that adds two numbers together, and a function that stores a value to an array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3842304",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object for each stitched function you want to create. Configure its properties to describe the new function and the nodes that define its behavior, as described below. To create a new library with these stitched functions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLStitchedLibraryDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configuring-a-Function-Stitching-Graph",
+          "level": 3,
+          "text": "Configuring a Function Stitching Graph",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a valid stitched function, the function stitching graph and shader code must meet some requirements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement the MSL functions that you use to create the new function, adding the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stitchable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute to each. Stitchable functions are visible functions that you can also use in a function graph. Stitchable functions may require the compiler to do additional work or emit larger object code, so mark functions as stitchable only when necessary.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Declare the stitched function’s name and signature in a header file to include in any shader code that calls the new function. Alternatively, you can add the function to a function table with a matching type and pass the function table as an argument.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingInputNode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " node for each of the function’s arguments, specifying which parameter each node references. The output type of each input node is the type of that parameter in your function signature.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingFunctionNode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for each function the implementation calls. A function node’s output type is the return type of the MSL function.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make sure the output types of each node match the types of the node they pass to. For example, if a function takes a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "float",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter, the node that provides that data must output a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "float",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value. If you don’t match the types correctly, Metal doesn’t define the behavior of the resulting function.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an array from the node objects and assign it to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph/nodes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the function produces an output, create another node and assign it to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph/outputNode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property. The output type of this node must match the function’s return type. Don’t include this node in the array of nodes you assign to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph/nodes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The MSL code below implements the functions in the example graph above, as well as the function’s signature:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[[stitchable]] float add(float a, float b)",
+            "{",
+            "    return a + b;",
+            "}",
+            "",
+            "[[stitchable]] float lookup(const constant float *a, uint index)",
+            "{",
+            "    return a[index];",
+            "}",
+            "",
+            "[[stitchable]] float store(float value, device float *a, uint index)",
+            "{",
+            "    a[index] = value;",
+            "}",
+            "",
+            "// The output function declaration.",
+            "[[visible]] void add_arrays(constant float *a, constant float *b, device float*c, uint tid);"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates the graph above:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Load the functions from the library.",
+                    "let functions = [",
+                    "    library.makeFunction(name: \"add\"),",
+                    "    library.makeFunction(name: \"lookup\"),",
+                    "    library.makeFunction(name: \"store\")",
+                    "]",
+                    "",
+                    "// Create nodes for the input parameters.",
+                    "let srcA = MTLFunctionStitchingInputNode.init(argumentIndex: 0)",
+                    "let srcB = MTLFunctionStitchingInputNode.init(argumentIndex: 1)",
+                    "let dest = MTLFunctionStitchingInputNode.init(argumentIndex: 2)",
+                    "let index = MTLFunctionStitchingInputNode.init(argumentIndex: 3)",
+                    "",
+                    "// Create nodes for the functions.",
+                    "let lookup_a = MTLFunctionStitchingFunctionNode.init(name: \"read\", arguments: [srcA, index], controlDependencies: [])",
+                    "let lookup_b = MTLFunctionStitchingFunctionNode.init(name: \"read\", arguments: [srcB, index], controlDependencies: [])",
+                    "let sum = MTLFunctionStitchingFunctionNode.init(name: \"add\", arguments: [lookup_a, lookup_b], controlDependencies: [])",
+                    "let store = MTLFunctionStitchingFunctionNode.init(name: \"store\", arguments: [sum, dest, index], controlDependencies: [])",
+                    "",
+                    "// Create the stitching graph.",
+                    "let graph = MTLFunctionStitchingGraph.init(functionName: \"add_arrays\", nodes: [lookup_a, lookup_b, sum, store], outputNode: nil, attributes: [])"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Load the functions from the library.",
+                    "NSArray *functions = @[",
+                    "    [library newFunctionWithName:@\"add\"],",
+                    "    [library newFunctionWithName:@\"lookup\"],",
+                    "    [library newFunctionWithName:@\"store\"],",
+                    "];",
+                    "",
+                    "// Create nodes for the input parameters.",
+                    "MTLFunctionStitchingInputNode *srcA = [[MTLFunctionStitchingInputNode alloc] initWithArgumentIndex:0];",
+                    "MTLFunctionStitchingInputNode *srcB = [[MTLFunctionStitchingInputNode alloc] initWithArgumentIndex:1];",
+                    "MTLFunctionStitchingInputNode *dest = [[MTLFunctionStitchingInputNode alloc] initWithArgumentIndex:2];",
+                    "MTLFunctionStitchingInputNode *index = [[MTLFunctionStitchingInputNode alloc] initWithArgumentIndex:3];",
+                    "",
+                    "// Create nodes for the functions.",
+                    "MTLFunctionStitchingFunctionNode *lookup_a =",
+                    "    [[MTLFunctionStitchingFunctionNode alloc] initWithName:@\"read\" arguments:@[srcA, index] controlDependencies:@[]];",
+                    "MTLFunctionStitchingFunctionNode *lookup_b =",
+                    "    [[MTLFunctionStitchingFunctionNode alloc] initWithName:@\"read\" arguments:@[srcB, index] controlDependencies:@[]];",
+                    "MTLFunctionStitchingFunctionNode *sum =",
+                    "    [[MTLFunctionStitchingFunctionNode alloc] initWithName:@\"add\" arguments:@[lookup_a, lookup_b] controlDependencies:@[]];",
+                    "MTLFunctionStitchingFunctionNode *store =",
+                    "    [[MTLFunctionStitchingFunctionNode alloc] initWithName:@\"store\" arguments:@[sum, dest, index] controlDependencies:@[]];",
+                    "",
+                    "// Create the stitching graph.",
+                    "MTLFunctionStitchingGraph *graph =",
+                    "    [[MTLFunctionStitchingGraph alloc] initWithFunctionName:@\"add_arrays\" nodes:@[lookup_a, lookup_b, sum, store]",
+                    "                                                 outputNode:nil attributes:@[]];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingAttribute": {
+      "abstract": [
+        {
+          "text": "A protocol to identify types that customize how the Metal compiler stitches a function together.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionStitchingAttribute"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingAttribute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionStitchingAttribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFunctionStitchingAttribute",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunctionstitchingattribute"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingAttributeAlwaysInline": {
+      "abstract": [
+        {
+          "text": "An attribute to specify that Metal needs to inline all of the function calls when generating the stitched function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionStitchingAttributeAlwaysInline"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingAttributeAlwaysInline",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionStitchingAttributeAlwaysInline"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFunctionStitchingAttributeAlwaysInline",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunctionstitchingattributealwaysinline"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingFunctionNode": {
+      "abstract": [
+        {
+          "text": "A call graph node that describes a function call and its inputs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionStitchingFunctionNode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingFunctionNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionStitchingFunctionNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFunctionStitchingFunctionNode",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunctionstitchingfunctionnode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph": {
+      "abstract": [
+        {
+          "text": "A description of a new stitched function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionStitchingGraph"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionStitchingGraph"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFunctionStitchingGraph",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunctionstitchinggraph"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph/attributes": {
+      "abstract": [
+        {
+          "text": "A list of attributes to configure how the Metal device object generates the new stitched function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLFunctionStitchingAttribute",
+          "text": "MTLFunctionStitchingAttribute"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph/attributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "attributes",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunctionstitchinggraph/attributes"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph/functionName": {
+      "abstract": [
+        {
+          "text": "The name of the new stitched function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "functionName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph/functionName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "functionName"
+        }
+      ],
+      "role": "symbol",
+      "title": "functionName",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunctionstitchinggraph/functionname"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph/init(functionName:nodes:outputNode:attributes:)": {
+      "abstract": [
+        {
+          "text": "Creates a description of a new function call graph.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "functionName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "nodes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLFunctionStitchingFunctionNode",
+          "text": "MTLFunctionStitchingFunctionNode"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputNode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLFunctionStitchingFunctionNode",
+          "text": "MTLFunctionStitchingFunctionNode"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLFunctionStitchingAttribute",
+          "text": "MTLFunctionStitchingAttribute"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph/init(functionName:nodes:outputNode:attributes:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithFunctionName:nodes:outputNode:attributes:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(functionName:nodes:outputNode:attributes:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunctionstitchinggraph/init(functionname:nodes:outputnode:attributes:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph/nodes": {
+      "abstract": [
+        {
+          "text": "The nodes in the function’s call graph.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nodes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLFunctionStitchingFunctionNode",
+          "text": "MTLFunctionStitchingFunctionNode"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph/nodes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nodes"
+        }
+      ],
+      "role": "symbol",
+      "title": "nodes",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunctionstitchinggraph/nodes"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph/outputNode": {
+      "abstract": [
+        {
+          "text": "The node with the output that’s the output of the new stitched function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputNode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLFunctionStitchingFunctionNode",
+          "text": "MTLFunctionStitchingFunctionNode"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph/outputNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outputNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "outputNode",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunctionstitchinggraph/outputnode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingInputNode": {
+      "abstract": [
+        {
+          "text": "A call graph node that describes an input to the call graph.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionStitchingInputNode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingInputNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionStitchingInputNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFunctionStitchingInputNode",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunctionstitchinginputnode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingNode": {
+      "abstract": [
+        {
+          "text": "A protocol to identify call graph nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionStitchingNode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionStitchingNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFunctionStitchingNode",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunctionstitchingnode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStitchedLibraryDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a new library of procedurally generated functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLStitchedLibraryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStitchedLibraryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStitchedLibraryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStitchedLibraryDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstitchedlibrarydescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/customizing-shaders-using-function-pointers-and-stitching": {
+      "abstract": [
+        {
+          "text": "Define custom shader behavior at runtime by creating functions from existing ones and preferentially linking to others in a dynamic library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/customizing-shaders-using-function-pointers-and-stitching",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Customizing shaders using function pointers and stitching",
+      "type": "topic",
+      "url": "/documentation/metal/customizing-shaders-using-function-pointers-and-stitching"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "media-3842304": {
+      "alt": "A function graph with four columns. The first column shows the function’s arguments, which consist of two source arrays, an index, and a destination array. The second column shows two function calls to look up numbers in the source arrays in the first column. The third column shows a function call to add the numbers, and the final column calls a function to store the sum to the destination array in the first column.",
+      "identifier": "media-3842304",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/76256ecf7b056395a2c570d8dc8b2570/media-3842304@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f123f8a3ffeb3749a42fabbe146c4239/media-3842304~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Stitched-Function-Libraries",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/customizing-shaders-using-function-pointers-and-stitching",
+        "doc://com.apple.metal/documentation/Metal/MTLStitchedLibraryDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingInputNode",
+        "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingFunctionNode",
+        "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingNode",
+        "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingAttributeAlwaysInline",
+        "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingAttribute"
+      ],
+      "title": "Stitched Function Libraries"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializing-a-Function-Graph",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph/init(functionName:nodes:outputNode:attributes:)"
+      ],
+      "title": "Initializing a Function Graph"
+    },
+    {
+      "anchor": "Configuring-a-Function-Graph",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph/functionName",
+        "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph/nodes",
+        "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph/outputNode",
+        "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph/attributes"
+      ],
+      "title": "Configuring a Function Graph"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MTLFunctionStitchingGraph"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionStitchingGraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionStitchingGraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializing-a-Function-Graph",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph/init(functionName:nodes:outputNode:attributes:)"
+              ],
+              "title": "Initializing a Function Graph"
+            },
+            {
+              "anchor": "Configuring-a-Function-Graph",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph/functionName",
+                "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph/nodes",
+                "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph/outputNode",
+                "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingGraph/attributes"
+              ],
+              "title": "Configuring a Function Graph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Stitched-Function-Libraries",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/customizing-shaders-using-function-pointers-and-stitching",
+                "doc://com.apple.metal/documentation/Metal/MTLStitchedLibraryDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingInputNode",
+                "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingFunctionNode",
+                "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingNode",
+                "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingAttributeAlwaysInline",
+                "doc://com.apple.metal/documentation/Metal/MTLFunctionStitchingAttribute"
+              ],
+              "title": "Stitched Function Libraries"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MTLFunctionStitchingGraph"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingGraph~1outputNode/title",
+          "value": "outputNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingGraph~1outputNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "outputNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingInputNode/title",
+          "value": "MTLFunctionStitchingInputNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingInputNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionStitchingInputNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingInputNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionStitchingInputNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingGraph~1nodes/title",
+          "value": "nodes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingGraph~1nodes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nodes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingAttribute/title",
+          "value": "MTLFunctionStitchingAttribute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingAttribute/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionStitchingAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingAttribute/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionStitchingAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingFunctionNode/title",
+          "value": "MTLFunctionStitchingFunctionNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingFunctionNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionStitchingFunctionNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingFunctionNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionStitchingFunctionNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingGraph~1attributes/title",
+          "value": "attributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingGraph~1attributes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "attributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingGraph~1functionName/title",
+          "value": "functionName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingGraph~1functionName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "functionName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingGraph~1init(functionName:nodes:outputNode:attributes:)/title",
+          "value": "initWithFunctionName:nodes:outputNode:attributes:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingGraph~1init(functionName:nodes:outputNode:attributes:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithFunctionName:nodes:outputNode:attributes:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingNode/title",
+          "value": "MTLFunctionStitchingNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionStitchingNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionStitchingNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingAttributeAlwaysInline/title",
+          "value": "MTLFunctionStitchingAttributeAlwaysInline"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingAttributeAlwaysInline/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionStitchingAttributeAlwaysInline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingAttributeAlwaysInline/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionStitchingAttributeAlwaysInline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingGraph/title",
+          "value": "MTLFunctionStitchingGraph"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingGraph/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionStitchingGraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionStitchingGraph/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionStitchingGraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStitchedLibraryDescriptor/title",
+          "value": "MTLStitchedLibraryDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStitchedLibraryDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStitchedLibraryDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStitchedLibraryDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStitchedLibraryDescriptor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtlfunctionstitchinggraph"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtlfunctionstitchinggraph"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

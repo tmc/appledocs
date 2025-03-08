@@ -1,0 +1,1349 @@
+{
+  "abstract": [
+    {
+      "text": "A node for use in manually creating decision trees, representing a specific question and possible answers, or an action that follows from answering other questions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionNode"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)GKDecisionNode",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "GKDecisionNode"
+      }
+    ],
+    "modules": [
+      {
+        "name": "GameplayKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GKDecisionNode"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.12",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "GKDecisionNode"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GKDecisionNode"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance represents an element in a decision tree (a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionTree",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object). Decision trees contain two kinds of nodes. Some nodes, including the tree’s root node, represent individual decisions to be made (also called a question or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "attribute",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ") and reference child nodes for each possible outcome of (or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "branch",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " from) that decision. Each branch can lead to another question node, or to a leaf node—nodes that have no branches represent a final outcome (or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "action",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ") to result from the tree’s decision-making process. After creating a decision tree from a set of nodes, you can present the tree with a set of inputs (values for attributes, or answers to questions) and the tree provides a final action that follows from the branches corresponding to each attribute.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two ways to create a decision tree. You use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class directly only when you want to define an entire decision tree manually—that is, to specify each question, the possible branches from each question, and the possible final actions. To create such a decision tree, start with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionTree",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionTree/init(attribute:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer, then use the methods listed in Creating Child Nodes for Decision Branches to add branches to the tree.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To instead automatically learn a decision tree given a set of questions and example answers, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionTree",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionTree/init(examples:actions:attributes:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit": {
+      "abstract": [
+        {
+          "text": "Architect and organize your game logic. Incorporate common gameplay behaviors such as random number generation, artificial intelligence, pathfinding, and agent behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameplayKit",
+      "type": "topic",
+      "url": "/documentation/gameplaykit"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionNode": {
+      "abstract": [
+        {
+          "text": "A node for use in manually creating decision trees, representing a specific question and possible answers, or an action that follows from answering other questions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKDecisionNode"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKDecisionNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKDecisionNode",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkdecisionnode"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionNode/createBranch(predicate:attribute:)": {
+      "abstract": [
+        {
+          "text": "Creates a child node that the decision tree should use when the current node’s attribute satisfies the specified predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "createBranch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attribute"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionNode/createBranch(predicate:attribute:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "createBranchWithPredicate:attribute:"
+        }
+      ],
+      "role": "symbol",
+      "title": "createBranch(predicate:attribute:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkdecisionnode/createbranch(predicate:attribute:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionNode/createBranch(value:attribute:)": {
+      "abstract": [
+        {
+          "text": "Creates a child node that the decision tree should use when the current node’s attribute has the specified value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "createBranch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attribute"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionNode/createBranch(value:attribute:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "createBranchWithValue:attribute:"
+        }
+      ],
+      "role": "symbol",
+      "title": "createBranch(value:attribute:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkdecisionnode/createbranch(value:attribute:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionNode/createBranch(weight:attribute:)": {
+      "abstract": [
+        {
+          "text": "Creates a child node that the decision tree should use as the result of a random choice, biased by the specified weight.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "createBranch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "weight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attribute"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionNode/createBranch(weight:attribute:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "createBranchWithWeight:attribute:"
+        }
+      ],
+      "role": "symbol",
+      "title": "createBranch(weight:attribute:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkdecisionnode/createbranch(weight:attribute:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionTree": {
+      "abstract": [
+        {
+          "text": "A data structure that models a set of specific questions, their possible answers, and the actions that follow from a series of answers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKDecisionTree"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionTree",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKDecisionTree"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKDecisionTree",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkdecisiontree"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionTree/init(attribute:)": {
+      "abstract": [
+        {
+          "text": "Creates a decision tree starting with the specified initial attribute to test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "attribute"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionTree/init(attribute:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithAttribute:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(attribute:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkdecisiontree/init(attribute:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionTree/init(examples:actions:attributes:)": {
+      "abstract": [
+        {
+          "text": "Creates an automatically learned decision tree using the specified attributes, example items, and actions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "examples"
+        },
+        {
+          "kind": "text",
+          "text": ": [[any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": "]], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "actions"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionTree/init(examples:actions:attributes:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithExamples:actions:attributes:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(examples:actions:attributes:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkdecisiontree/init(examples:actions:attributes:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Decision-Trees",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionTree"
+      ],
+      "title": "Decision Trees"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-Child-Nodes-for-Decision-Branches",
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionNode/createBranch(value:attribute:)",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionNode/createBranch(predicate:attribute:)",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionNode/createBranch(weight:attribute:)"
+      ],
+      "title": "Creating Child Nodes for Decision Branches"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.12",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "GKDecisionNode"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKDecisionNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKDecisionNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-Child-Nodes-for-Decision-Branches",
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionNode/createBranch(value:attribute:)",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionNode/createBranch(predicate:attribute:)",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionNode/createBranch(weight:attribute:)"
+              ],
+              "title": "Creating Child Nodes for Decision Branches"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Decision-Trees",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKDecisionTree"
+              ],
+              "title": "Decision Trees"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "GKDecisionNode"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKDecisionTree~1init(attribute:)/title",
+          "value": "initWithAttribute:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKDecisionTree~1init(attribute:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithAttribute:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKDecisionNode/title",
+          "value": "GKDecisionNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKDecisionNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKDecisionNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKDecisionNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKDecisionNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKDecisionNode~1createBranch(value:attribute:)/title",
+          "value": "createBranchWithValue:attribute:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKDecisionNode~1createBranch(value:attribute:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "createBranchWithValue:attribute:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKDecisionNode~1createBranch(weight:attribute:)/title",
+          "value": "createBranchWithWeight:attribute:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKDecisionNode~1createBranch(weight:attribute:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "createBranchWithWeight:attribute:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKDecisionNode~1createBranch(predicate:attribute:)/title",
+          "value": "createBranchWithPredicate:attribute:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKDecisionNode~1createBranch(predicate:attribute:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "createBranchWithPredicate:attribute:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKDecisionTree~1init(examples:actions:attributes:)/title",
+          "value": "initWithExamples:actions:attributes:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKDecisionTree~1init(examples:actions:attributes:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithExamples:actions:attributes:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKDecisionTree/title",
+          "value": "GKDecisionTree"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKDecisionTree/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKDecisionTree"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKDecisionTree/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKDecisionTree"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gameplaykit/gkdecisionnode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gameplaykit/gkdecisionnode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

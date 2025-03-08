@@ -1,0 +1,566 @@
+{
+  "abstract": [
+    {
+      "text": "Store an image that represents one of your app’s assignable activities.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Create-or-Replace-a-Thumbnail"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:classkit_api:post:v1-thumbnails",
+    "modules": [
+      {
+        "name": "ClassKit Catalog API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Create or Replace a Thumbnail"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "ClassKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Create or Replace a Thumbnail"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://classkit-catalog.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/thumbnails"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "development",
+                "production"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The development or production environment to use for this access. For details, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/testing-your-classkit-catalog-implementation",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "environment",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The thumbnail identifier for the thumbnail to upload. Format this value as a URL-encoded string.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "thumbnailId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request succeeded.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Created",
+          "status": 201,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The API accepted, but hasn’t completed the request. To ask for a status update later, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Get-Status",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Accepted",
+          "status": 202,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request contained an error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Bad Request",
+          "status": 400,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request wasn’t authorized.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Forbidden",
+          "status": 403,
+          "type": []
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can associate a thumbnail image with one or more contexts. Create an association by matching the ",
+              "type": "text"
+            },
+            {
+              "code": "thumbnailId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value that you provide as a query parameter to this call with the ",
+              "type": "text"
+            },
+            {
+              "code": "thumbnailId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context/Data-data.dictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that you upload with a call to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Create-or-Replace-Contexts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Upload the context that references a thumbnail before uploading the thumbnail.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide the thumbnail image as binary data in the request body. For example, after obtaining a web token, as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/authenticating-calls-to-the-classkit-catalog-api",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " describes, you could use the following ",
+              "type": "text"
+            },
+            {
+              "code": "curl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command to upload the image in the file ",
+              "type": "text"
+            },
+            {
+              "code": "catalog.png",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% curl --request POST \\",
+            "       --url 'https://classkit-catalog.apple.com/v1/thumbnails?thumbnailId=catalog.png&environment=production' \\",
+            "       --header 'authorization: Bearer <JWT>' \\",
+            "       --header 'content-type: image/png' \\",
+            "       --data-binary '@catalog.png'"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Follow the same guidelines for creating thumbnails as you follow when working with the ClassKit API in your app. In particular, provide images that are at least 80 x 80 pixels, and no larger than 330 x 330 pixels. The system ignores thumbnails that are too small, and scales down thumbnails that are too large. Use a thumbnail with the maximum dimensions to produce the best result across devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you delete every context that references a thumbnail, the system automatically deletes the thumbnail image as well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI": {
+      "abstract": [
+        {
+          "text": "Declare the activities supported by your educational app through a web interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClassKit Catalog API",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context/Data-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The data that makes up a context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Context.Data"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context/Data-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Context.Data"
+        }
+      ],
+      "role": "symbol",
+      "title": "Context.Data",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/context/data-data.dictionary"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Create-or-Replace-Contexts": {
+      "abstract": [
+        {
+          "text": "Store information about the assignable content that your educational app provides.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Create-or-Replace-Contexts",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create or Replace Contexts"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create or Replace Contexts",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/create-or-replace-contexts"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Create-or-Replace-a-Thumbnail": {
+      "abstract": [
+        {
+          "text": "Store an image that represents one of your app’s assignable activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Create-or-Replace-a-Thumbnail",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create or Replace a Thumbnail"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create or Replace a Thumbnail",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/create-or-replace-a-thumbnail"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Delete-a-Thumbnail": {
+      "abstract": [
+        {
+          "text": "Remove one of the images for your app’s assignable activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Delete-a-Thumbnail",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Delete a Thumbnail"
+        }
+      ],
+      "role": "symbol",
+      "title": "Delete a Thumbnail",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/delete-a-thumbnail"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Get-Status": {
+      "abstract": [
+        {
+          "text": "Fetch the status of an operation that you initiated earlier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Get-Status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Status"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Status",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/get-status"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Get-a-Thumbnail": {
+      "abstract": [
+        {
+          "text": "Fetch the image for one of your app’s assignable activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Get-a-Thumbnail",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a Thumbnail"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Thumbnail",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/get-a-thumbnail"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/authenticating-calls-to-the-classkit-catalog-api": {
+      "abstract": [
+        {
+          "text": "Establish your identity to the ClassKit Catalog server by providing a cryptographically signed token for each call.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/authenticating-calls-to-the-classkit-catalog-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Authenticating Calls to the ClassKit Catalog API",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/authenticating-calls-to-the-classkit-catalog-api"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/testing-your-classkit-catalog-implementation": {
+      "abstract": [
+        {
+          "text": "Verify your server interaction before deployment by operating in a development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/testing-your-classkit-catalog-implementation",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing Your ClassKit Catalog Implementation",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/testing-your-classkit-catalog-implementation"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Uploading-Thumbnails",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Get-a-Thumbnail",
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Delete-a-Thumbnail"
+      ],
+      "title": "Uploading Thumbnails"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/classkitcatalogapi/create-or-replace-a-thumbnail"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

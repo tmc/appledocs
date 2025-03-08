@@ -1,0 +1,4314 @@
+{
+  "abstract": [
+    {
+      "text": "The center of activity for the font-conversion system.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSFontManager"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSFontManager",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSFontManager"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSFontManager"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSFontManager"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSFontManager"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The font manager records the currently selected font, updates the Font panel and Font menu to reflect the selected font, initiates font changes, and converts fonts in response to requests from text-bearing objects. In a more prosaic role, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " can be queried for the fonts available to the application and for the particular attributes of a font, such as whether it’s condensed or extended.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You typically set up a font manager and the Font menu using Interface Builder. However, you can also do so programmatically by getting the shared font manager instance and having it create the standard Font menu at runtime:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSFontManager *fontManager = [NSFontManager sharedFontManager];",
+            "NSMenu *fontMenu = [fontManager fontMenu:YES];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can then add the Font menu to your app’s main menu. After the Font menu is installed, your app automatically gains the functionality of both the Font menu and the Font panel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Font collections are managed by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFont": {
+      "abstract": [
+        {
+          "text": "The representation of a font in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFont"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFont",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFont"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFont",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfont"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontAction": {
+      "abstract": [
+        {
+          "text": "Actions that modify a font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFontAction"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFontAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFontAction",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontaction"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontCollection": {
+      "abstract": [
+        {
+          "text": "A font collection, which is a group of font descriptors taken together as a single object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFontCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFontCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFontCollection",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontcollection"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontCollectionOptions": {
+      "abstract": [
+        {
+          "text": "Constants that support font collection management.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFontCollectionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontCollectionOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFontCollectionOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFontCollectionOptions",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontcollectionoptions"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager": {
+      "abstract": [
+        {
+          "text": "The center of activity for the font-conversion system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFontManager"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFontManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFontManager",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/action": {
+      "abstract": [
+        {
+          "text": "The action sent to the first responder when the user selects a new font from the Font panel or chooses a command from the Font menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/action",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "action"
+        }
+      ],
+      "role": "symbol",
+      "title": "action",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/action"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/addFontTrait(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a trait to the font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addFontTrait"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/addFontTrait(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addFontTrait:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addFontTrait(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/addfonttrait(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/availableFontFamilies": {
+      "abstract": [
+        {
+          "text": "The names of the font families available in the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableFontFamilies"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/availableFontFamilies",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "availableFontFamilies"
+        }
+      ],
+      "role": "symbol",
+      "title": "availableFontFamilies",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/availablefontfamilies"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/availableFontNames(with:)": {
+      "abstract": [
+        {
+          "text": "Returns the names of the fonts available in the system whose traits are described exactly by the given font trait mask (not the ",
+          "type": "text"
+        },
+        {
+          "code": "NSFont",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects themselves).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableFontNames"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSFontTraitMask",
+          "text": "NSFontTraitMask"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/availableFontNames(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "availableFontNamesWithTraits:"
+        }
+      ],
+      "role": "symbol",
+      "title": "availableFontNames(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/availablefontnames(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/availableFonts": {
+      "abstract": [
+        {
+          "text": "The names of the fonts available in the system (not the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFont",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " objects themselves).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableFonts"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/availableFonts",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "availableFonts"
+        }
+      ],
+      "role": "symbol",
+      "title": "availableFonts",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/availablefonts"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/availableMembers(ofFontFamily:)": {
+      "abstract": [
+        {
+          "text": "Returns an array with one entry for each available member of a font family.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableMembers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofFontFamily"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> [["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]]?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/availableMembers(ofFontFamily:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "availableMembersOfFontFamily:"
+        }
+      ],
+      "role": "symbol",
+      "title": "availableMembers(ofFontFamily:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/availablemembers(offontfamily:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:)": {
+      "abstract": [
+        {
+          "text": "Converts the given font according to the object that initiated a font change, typically the Font panel or Font menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertFont:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convert(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/convert(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:toFace:)": {
+      "abstract": [
+        {
+          "text": "Returns a font whose traits are as similar as possible to those of the given font except for the typeface, which is changed to the given typeface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toFace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:toFace:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertFont:toFace:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convert(_:toFace:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/convert(_:toface:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:toFamily:)": {
+      "abstract": [
+        {
+          "text": "Returns a font whose traits are as similar as possible to those of the given font except for the font family, which is changed to the given family.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toFamily"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:toFamily:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertFont:toFamily:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convert(_:toFamily:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/convert(_:tofamily:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:toHaveTrait:)": {
+      "abstract": [
+        {
+          "text": "Returns a new version of the font object containing a single additional trait.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toHaveTrait"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSFontTraitMask",
+          "text": "NSFontTraitMask"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:toHaveTrait:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertFont:toHaveTrait:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convert(_:toHaveTrait:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/convert(_:tohavetrait:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:toNotHaveTrait:)": {
+      "abstract": [
+        {
+          "text": "Returns a new version of a font object without the specified traits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toNotHaveTrait"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSFontTraitMask",
+          "text": "NSFontTraitMask"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:toNotHaveTrait:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertFont:toNotHaveTrait:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convert(_:toNotHaveTrait:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/convert(_:tonothavetrait:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:toSize:)": {
+      "abstract": [
+        {
+          "text": "Returns a font object whose traits are the same as those of the given font, except for the size, which is changed to the given size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:toSize:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertFont:toSize:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convert(_:toSize:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/convert(_:tosize:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convertAttributes(_:)": {
+      "abstract": [
+        {
+          "text": "Converts attributes in response to an object initiating an attribute change, typically the Font panel or Font menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convertAttributes(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertAttributes:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convertAttributes(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/convertattributes(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convertFontTraits(_:)": {
+      "abstract": [
+        {
+          "text": "Converts font traits to a new traits mask value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertFontTraits"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSFontTraitMask",
+          "text": "NSFontTraitMask"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSFontTraitMask",
+          "text": "NSFontTraitMask"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convertFontTraits(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertFontTraits:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convertFontTraits(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/convertfonttraits(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convertWeight(_:of:)": {
+      "abstract": [
+        {
+          "text": "Returns a font object whose weight is greater or lesser than that of the given font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertWeight"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convertWeight(_:of:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertWeight:ofFont:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convertWeight(_:of:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/convertweight(_:of:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/currentFontAction": {
+      "abstract": [
+        {
+          "text": "The current font conversion action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentFontAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSFontAction",
+          "text": "NSFontAction"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/currentFontAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentFontAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentFontAction",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/currentfontaction"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/font(withFamily:traits:weight:size:)": {
+      "abstract": [
+        {
+          "text": "Attempts to load a font with the specified characteristics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "font"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withFamily"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "traits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSFontTraitMask",
+          "text": "NSFontTraitMask"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "weight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/font(withFamily:traits:weight:size:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fontWithFamily:traits:weight:size:"
+        }
+      ],
+      "role": "symbol",
+      "title": "font(withFamily:traits:weight:size:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/font(withfamily:traits:weight:size:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/fontMenu(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the menu that’s connected to the font conversion system, creating it if necessary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fontMenu"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSMenu",
+          "text": "NSMenu"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/fontMenu(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fontMenu:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fontMenu(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/fontmenu(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/fontNamed(_:hasTraits:)": {
+      "abstract": [
+        {
+          "text": "Indicates whether the given font has all the specified traits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fontNamed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "hasTraits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSFontTraitMask",
+          "text": "NSFontTraitMask"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/fontNamed(_:hasTraits:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fontNamed:hasTraits:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fontNamed(_:hasTraits:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/fontnamed(_:hastraits:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/fontPanel(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the application’s shared Font panel object, creating it if necessary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fontPanel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFontPanel",
+          "text": "NSFontPanel"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/fontPanel(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fontPanel:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fontPanel(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/fontpanel(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/isEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the font conversion system’s Font panel and Font menu items are enabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/isEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isEnabled",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/isenabled"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/isMultiple": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the currently selected font has multiple fonts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMultiple"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/isMultiple",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "multiple"
+        }
+      ],
+      "role": "symbol",
+      "title": "isMultiple",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/ismultiple"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/localizedName(forFamily:face:)": {
+      "abstract": [
+        {
+          "text": "Returns a localized string with the name of the specified font family and face, if one exists.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forFamily"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "face"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/localizedName(forFamily:face:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "localizedNameForFamily:face:"
+        }
+      ],
+      "role": "symbol",
+      "title": "localizedName(forFamily:face:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/localizedname(forfamily:face:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/modifyFont(_:)": {
+      "abstract": [
+        {
+          "text": "Modifies a trait of the font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modifyFont"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/modifyFont(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "modifyFont:"
+        }
+      ],
+      "role": "symbol",
+      "title": "modifyFont(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/modifyfont(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/modifyFontViaPanel(_:)": {
+      "abstract": [
+        {
+          "text": "Modifies a font trait using input from the Font panel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modifyFontViaPanel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/modifyFontViaPanel(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "modifyFontViaPanel:"
+        }
+      ],
+      "role": "symbol",
+      "title": "modifyFontViaPanel(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/modifyfontviapanel(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/orderFrontFontPanel(_:)": {
+      "abstract": [
+        {
+          "text": "Opens the Font panel, creating it if necessary, and displays that panel in front of the app’s windows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "orderFrontFontPanel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/orderFrontFontPanel(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "orderFrontFontPanel:"
+        }
+      ],
+      "role": "symbol",
+      "title": "orderFrontFontPanel(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/orderfrontfontpanel(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/orderFrontStylesPanel(_:)": {
+      "abstract": [
+        {
+          "text": "Opens the Font Styles panel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "orderFrontStylesPanel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/orderFrontStylesPanel(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "orderFrontStylesPanel:"
+        }
+      ],
+      "role": "symbol",
+      "title": "orderFrontStylesPanel(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/orderfrontstylespanel(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/removeFontTrait(_:)": {
+      "abstract": [
+        {
+          "text": "Removes a trait from the font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeFontTrait"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/removeFontTrait(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeFontTrait:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeFontTrait(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/removefonttrait(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/selectedFont": {
+      "abstract": [
+        {
+          "text": "The currently selected font object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedFont"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/selectedFont",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectedFont"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectedFont",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/selectedfont"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/sendAction()": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a responder handled the font manager’s action message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendAction"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/sendAction()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sendAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "sendAction()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/sendaction()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/setFontManagerFactory(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the class that creates the shared font manager object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFontManagerFactory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/setFontManagerFactory(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setFontManagerFactory:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setFontManagerFactory(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/setfontmanagerfactory(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/setFontMenu(_:)": {
+      "abstract": [
+        {
+          "text": "Records the given menu as the application’s Font menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFontMenu"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSMenu",
+          "text": "NSMenu"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/setFontMenu(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setFontMenu:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setFontMenu(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/setfontmenu(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/setFontPanelFactory(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the class that creates the shared Font panel object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFontPanelFactory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/setFontPanelFactory(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setFontPanelFactory:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setFontPanelFactory(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/setfontpanelfactory(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/setSelectedAttributes(_:isMultiple:)": {
+      "abstract": [
+        {
+          "text": "Informs the Font panel that the specified font attributes changed for the selected text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSelectedAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isMultiple"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/setSelectedAttributes(_:isMultiple:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setSelectedAttributes:isMultiple:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setSelectedAttributes(_:isMultiple:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/setselectedattributes(_:ismultiple:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/setSelectedFont(_:isMultiple:)": {
+      "abstract": [
+        {
+          "text": "Records the specified font as the currently selected font and updates the Font panel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSelectedFont"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isMultiple"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/setSelectedFont(_:isMultiple:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setSelectedFont:isMultiple:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setSelectedFont(_:isMultiple:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/setselectedfont(_:ismultiple:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/shared": {
+      "abstract": [
+        {
+          "text": "Returns the shared instance of the font manager for the application, creating it if necessary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFontManager",
+          "text": "NSFontManager"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/shared",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharedFontManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "shared",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/shared"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/target": {
+      "abstract": [
+        {
+          "text": "The object that receives action messages related to the font manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "target"
+        },
+        {
+          "kind": "text",
+          "text": ": AnyObject?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/target",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "target"
+        }
+      ],
+      "role": "symbol",
+      "title": "target",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/target"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/traits(of:)": {
+      "abstract": [
+        {
+          "text": "Returns the traits of the given font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "traits"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSFontTraitMask",
+          "text": "NSFontTraitMask"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/traits(of:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "traitsOfFont:"
+        }
+      ],
+      "role": "symbol",
+      "title": "traits(of:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/traits(of:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontManager/weight(of:)": {
+      "abstract": [
+        {
+          "text": "Returns an approximation of the specified font’s weight.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "weight"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontManager/weight(of:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "weightOfFont:"
+        }
+      ],
+      "role": "symbol",
+      "title": "weight(of:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager/weight(of:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontTraitMask": {
+      "abstract": [
+        {
+          "text": "Constants for isolating specific traits of a font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFontTraitMask"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontTraitMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFontTraitMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFontTraitMask",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfonttraitmask"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMenuItemValidation": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMenuItemValidation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItemValidation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSMenuItemValidation"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSMenuItemValidation",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmenuitemvalidation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMutableFontCollection": {
+      "abstract": [
+        {
+          "text": "A mutable collection of font descriptors taken together as a single object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableFontCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMutableFontCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSMutableFontCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSMutableFontCollection",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmutablefontcollection"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/nsfontmanager-deprecated-symbols": {
+      "abstract": [
+        {
+          "text": "Review unsupported symbols and their replacements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/nsfontmanager-deprecated-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated Symbols",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontmanager-deprecated-symbols"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1462311-changefont": {
+      "abstract": [
+        {
+          "text": "Informs responders of a font change.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1462311-changefont",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "changeFont:",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1462311-changefont"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.apple.appkit/documentation/AppKit/NSMenuItemValidation",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSFontCollection",
+        "doc://com.apple.appkit/documentation/AppKit/NSMutableFontCollection",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontCollectionOptions"
+      ],
+      "title": "Management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-the-Shared-Font-Manager",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/shared"
+      ],
+      "title": "Getting the Shared Font Manager"
+    },
+    {
+      "anchor": "Changing-the-Default-Font-Conversion-Classes",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/setFontManagerFactory(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/setFontPanelFactory(_:)"
+      ],
+      "title": "Changing the Default Font Conversion Classes"
+    },
+    {
+      "anchor": "Getting-Available-Fonts",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/availableFonts",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/availableFontFamilies",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/availableFontNames(with:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/availableMembers(ofFontFamily:)"
+      ],
+      "title": "Getting Available Fonts"
+    },
+    {
+      "anchor": "Setting-and-Examining-the-Selected-Font",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/setSelectedFont(_:isMultiple:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/selectedFont",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/isMultiple",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/sendAction()",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/localizedName(forFamily:face:)"
+      ],
+      "title": "Setting and Examining the Selected Font"
+    },
+    {
+      "anchor": "Sending-Action-Methods",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/addFontTrait(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/removeFontTrait(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/modifyFont(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/modifyFontViaPanel(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/orderFrontStylesPanel(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/orderFrontFontPanel(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontAction"
+      ],
+      "title": "Sending Action Methods"
+    },
+    {
+      "anchor": "Converting-Fonts-Automatically",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:)"
+      ],
+      "title": "Converting Fonts Automatically"
+    },
+    {
+      "anchor": "Converting-Fonts-Manually",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:toFace:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:toFamily:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:toHaveTrait:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:toNotHaveTrait:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:toSize:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convertWeight(_:of:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/currentFontAction",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convertFontTraits(_:)"
+      ],
+      "title": "Converting Fonts Manually"
+    },
+    {
+      "anchor": "Getting-a-Particular-Font",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/font(withFamily:traits:weight:size:)"
+      ],
+      "title": "Getting a Particular Font"
+    },
+    {
+      "anchor": "Examining-Fonts",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/traits(of:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/fontNamed(_:hasTraits:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontTraitMask",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/weight(of:)"
+      ],
+      "title": "Examining Fonts"
+    },
+    {
+      "anchor": "Managing-the-Font-Panel-and-Font-Menu",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/isEnabled",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/fontPanel(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/setFontMenu(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/fontMenu(_:)"
+      ],
+      "title": "Managing the Font Panel and Font Menu"
+    },
+    {
+      "anchor": "Accessing-the-Action-Property",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/action",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/target"
+      ],
+      "title": "Accessing the Action Property"
+    },
+    {
+      "anchor": "Setting-Attributes",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/setSelectedAttributes(_:isMultiple:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convertAttributes(_:)"
+      ],
+      "title": "Setting Attributes"
+    },
+    {
+      "anchor": "Deprecated",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/nsfontmanager-deprecated-symbols"
+      ],
+      "title": "Deprecated"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSFontManager"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFontManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFontManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Getting-the-Shared-Font-Manager",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/shared"
+              ],
+              "title": "Getting the Shared Font Manager"
+            },
+            {
+              "anchor": "Changing-the-Default-Font-Conversion-Classes",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/setFontManagerFactory(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/setFontPanelFactory(_:)"
+              ],
+              "title": "Changing the Default Font Conversion Classes"
+            },
+            {
+              "anchor": "Getting-Available-Fonts",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/availableFonts",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/availableFontFamilies",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/availableFontNames(with:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/availableMembers(ofFontFamily:)"
+              ],
+              "title": "Getting Available Fonts"
+            },
+            {
+              "anchor": "Setting-and-Examining-the-Selected-Font",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/setSelectedFont(_:isMultiple:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/selectedFont",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/isMultiple",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/sendAction()",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/localizedName(forFamily:face:)"
+              ],
+              "title": "Setting and Examining the Selected Font"
+            },
+            {
+              "anchor": "Sending-Action-Methods",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/addFontTrait(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/removeFontTrait(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/modifyFont(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/modifyFontViaPanel(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/orderFrontStylesPanel(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/orderFrontFontPanel(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontAction"
+              ],
+              "title": "Sending Action Methods"
+            },
+            {
+              "anchor": "Converting-Fonts-Automatically",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:)",
+                "doc://com.apple.documentation/documentation/objectivec/nsobject/1462311-changefont"
+              ],
+              "title": "Converting Fonts Automatically"
+            },
+            {
+              "anchor": "Converting-Fonts-Manually",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:toFace:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:toFamily:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:toHaveTrait:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:toNotHaveTrait:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convert(_:toSize:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convertWeight(_:of:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/currentFontAction",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convertFontTraits(_:)"
+              ],
+              "title": "Converting Fonts Manually"
+            },
+            {
+              "anchor": "Getting-a-Particular-Font",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/font(withFamily:traits:weight:size:)"
+              ],
+              "title": "Getting a Particular Font"
+            },
+            {
+              "anchor": "Examining-Fonts",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/traits(of:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/fontNamed(_:hasTraits:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontTraitMask",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/weight(of:)"
+              ],
+              "title": "Examining Fonts"
+            },
+            {
+              "anchor": "Managing-the-Font-Panel-and-Font-Menu",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/isEnabled",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/fontPanel(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/setFontMenu(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/fontMenu(_:)"
+              ],
+              "title": "Managing the Font Panel and Font Menu"
+            },
+            {
+              "anchor": "Accessing-the-Action-Property",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/action",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/target"
+              ],
+              "title": "Accessing the Action Property"
+            },
+            {
+              "anchor": "Setting-Attributes",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/setSelectedAttributes(_:isMultiple:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontManager/convertAttributes(_:)"
+              ],
+              "title": "Setting Attributes"
+            },
+            {
+              "anchor": "Deprecated",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/nsfontmanager-deprecated-symbols"
+              ],
+              "title": "Deprecated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSMenuItemValidation"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Management",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSFontCollection",
+                "doc://com.apple.appkit/documentation/AppKit/NSMutableFontCollection",
+                "doc://com.apple.appkit/documentation/AppKit/NSFontCollectionOptions"
+              ],
+              "title": "Management"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSFontManager"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemValidation/title",
+          "value": "NSMenuItemValidation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemValidation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMenuItemValidation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemValidation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMenuItemValidation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1modifyFontViaPanel(_:)/title",
+          "value": "modifyFontViaPanel:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1modifyFontViaPanel(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "modifyFontViaPanel:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1convertAttributes(_:)/title",
+          "value": "convertAttributes:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1convertAttributes(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertAttributes:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1fontMenu(_:)/title",
+          "value": "fontMenu:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1fontMenu(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fontMenu:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1shared/title",
+          "value": "sharedFontManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1shared/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sharedFontManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1weight(of:)/title",
+          "value": "weightOfFont:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1weight(of:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "weightOfFont:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager/title",
+          "value": "NSFontManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFontManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFontManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1fontNamed(_:hasTraits:)/title",
+          "value": "fontNamed:hasTraits:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1fontNamed(_:hasTraits:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fontNamed:hasTraits:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1removeFontTrait(_:)/title",
+          "value": "removeFontTrait:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1removeFontTrait(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeFontTrait:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1convert(_:)/title",
+          "value": "convertFont:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1convert(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertFont:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1convert(_:toFamily:)/title",
+          "value": "convertFont:toFamily:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1convert(_:toFamily:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertFont:toFamily:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1convertFontTraits(_:)/title",
+          "value": "convertFontTraits:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1convertFontTraits(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertFontTraits:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1orderFrontFontPanel(_:)/title",
+          "value": "orderFrontFontPanel:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1orderFrontFontPanel(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "orderFrontFontPanel:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1setSelectedAttributes(_:isMultiple:)/title",
+          "value": "setSelectedAttributes:isMultiple:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1setSelectedAttributes(_:isMultiple:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setSelectedAttributes:isMultiple:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontCollection/title",
+          "value": "NSFontCollection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontCollection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFontCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontCollection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFontCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFont/title",
+          "value": "NSFont"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFont/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFont"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFont/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFont"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1availableFontNames(with:)/title",
+          "value": "availableFontNamesWithTraits:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1availableFontNames(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "availableFontNamesWithTraits:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1convert(_:toHaveTrait:)/title",
+          "value": "convertFont:toHaveTrait:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1convert(_:toHaveTrait:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertFont:toHaveTrait:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1font(withFamily:traits:weight:size:)/title",
+          "value": "fontWithFamily:traits:weight:size:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1font(withFamily:traits:weight:size:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fontWithFamily:traits:weight:size:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1localizedName(forFamily:face:)/title",
+          "value": "localizedNameForFamily:face:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1localizedName(forFamily:face:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "localizedNameForFamily:face:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1addFontTrait(_:)/title",
+          "value": "addFontTrait:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1addFontTrait(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addFontTrait:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1sendAction()/title",
+          "value": "sendAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1sendAction()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sendAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1isEnabled/title",
+          "value": "enabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1isEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "enabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1availableFontFamilies/title",
+          "value": "availableFontFamilies"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1availableFontFamilies/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "availableFontFamilies"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1traits(of:)/title",
+          "value": "traitsOfFont:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1traits(of:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "traitsOfFont:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1availableMembers(ofFontFamily:)/title",
+          "value": "availableMembersOfFontFamily:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1availableMembers(ofFontFamily:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "availableMembersOfFontFamily:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1currentFontAction/title",
+          "value": "currentFontAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1currentFontAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentFontAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1selectedFont/title",
+          "value": "selectedFont"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1selectedFont/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectedFont"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1modifyFont(_:)/title",
+          "value": "modifyFont:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1modifyFont(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "modifyFont:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontTraitMask/title",
+          "value": "NSFontTraitMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontTraitMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFontTraitMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontTraitMask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFontTraitMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1orderFrontStylesPanel(_:)/title",
+          "value": "orderFrontStylesPanel:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1orderFrontStylesPanel(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "orderFrontStylesPanel:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1action/title",
+          "value": "action"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1action/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "action"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1target/title",
+          "value": "target"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1target/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "target"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1isMultiple/title",
+          "value": "multiple"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1isMultiple/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "multiple"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1setSelectedFont(_:isMultiple:)/title",
+          "value": "setSelectedFont:isMultiple:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1setSelectedFont(_:isMultiple:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setSelectedFont:isMultiple:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1fontPanel(_:)/title",
+          "value": "fontPanel:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1fontPanel(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fontPanel:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1setFontPanelFactory(_:)/title",
+          "value": "setFontPanelFactory:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1setFontPanelFactory(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "setFontPanelFactory:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMutableFontCollection/title",
+          "value": "NSMutableFontCollection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMutableFontCollection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMutableFontCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMutableFontCollection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMutableFontCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1setFontManagerFactory(_:)/title",
+          "value": "setFontManagerFactory:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1setFontManagerFactory(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "setFontManagerFactory:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1convert(_:toNotHaveTrait:)/title",
+          "value": "convertFont:toNotHaveTrait:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1convert(_:toNotHaveTrait:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertFont:toNotHaveTrait:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1convert(_:toFace:)/title",
+          "value": "convertFont:toFace:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1convert(_:toFace:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertFont:toFace:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontCollectionOptions/title",
+          "value": "NSFontCollectionOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontCollectionOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFontCollectionOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontCollectionOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFontCollectionOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontAction/title",
+          "value": "NSFontAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFontAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFontAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1convertWeight(_:of:)/title",
+          "value": "convertWeight:ofFont:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1convertWeight(_:of:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertWeight:ofFont:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1convert(_:toSize:)/title",
+          "value": "convertFont:toSize:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1convert(_:toSize:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertFont:toSize:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1availableFonts/title",
+          "value": "availableFonts"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1availableFonts/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "availableFonts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1setFontMenu(_:)/title",
+          "value": "setFontMenu:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFontManager~1setFontMenu(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setFontMenu:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsfontmanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsfontmanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

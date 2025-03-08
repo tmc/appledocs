@@ -1,0 +1,1002 @@
+{
+  "abstract": [
+    {
+      "text": "Create the directory structure and add source files and images to define a pass.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.walletpasses/documentation/WalletPasses"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.walletpasses/documentation/WalletPasses/creating-the-source-for-a-pass"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Wallet Passes"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating the Source for a Pass"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The source for your pass includes all the information the system needs to show it to the user:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Image files for the icon and other visual elements, such as a logo.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pass.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file that contains the strings the system displays on the pass and the metadata that defines the pass.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optional localization information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create the source in a directory that you use to create the final distributable pass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For information on building a pass from the source, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/building-a-pass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-Directory-and-add-Files-for-the-Pass",
+          "level": 3,
+          "text": "Create the Directory and add Files for the Pass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First create a directory to hold all the source files. The name of the directory is the name of the final pass file followed by ",
+              "type": "text"
+            },
+            {
+              "code": ".pass",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, ",
+              "type": "text"
+            },
+            {
+              "code": "Lift It Membership.pass",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the name of the top-level directory for the source of the Lift It membership pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the ",
+              "type": "text"
+            },
+            {
+              "code": "pass.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file that contains the information and metadata for the pass. For more information on the contents of this file, see the top-level ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Pass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows the directory structure for a simple pass that’s localized for English and Simplified Chinese:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3744498",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-images-for-the-Pass",
+          "level": 3,
+          "text": "Add the images for the Pass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Customize the look of your pass by using images for a logo and other items. All passes require an icon:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In notifications, including on the lock screen.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "As the image for an email attachment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some types of passes include other types of images, such as a background. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/PassKit_PG/Creating.html#//apple_ref/doc/uid/TP40012195-CH4-SW1",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-Localization-to-the-Pass",
+          "level": 3,
+          "text": "Add Localization to the Pass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Expand your audience by localizing the strings and images of your pass to different languages and regions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3737832",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a directory at the top-level source directory of each pass for each localization. The name of the directory identifies the language and an optional region:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "[language identifier]-[region identifier].lproj",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the name for the French localization directory is ",
+              "type": "text"
+            },
+            {
+              "code": "fr.lproj",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the name for the Simplified Chinese directory is ",
+              "type": "text"
+            },
+            {
+              "code": "zh-Hans.lproj",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For more information on language identifiers, see ",
+              "type": "text"
+            },
+            {
+              "code": "Understand the Language Identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Localize an image by adding the location-specific image files to each localization directory. For example, to add the localized versions of the diamond logo shown above, add the English version of the ",
+              "type": "text"
+            },
+            {
+              "code": "logo@2x.png",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "logo@3x.png",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files to the ",
+              "type": "text"
+            },
+            {
+              "code": "en.lproj",
+              "type": "codeVoice"
+            },
+            {
+              "text": " folder and the Chinese version of the ",
+              "type": "text"
+            },
+            {
+              "code": "logo@2x.png",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "logo@3x.png",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files to the ",
+              "type": "text"
+            },
+            {
+              "code": "zh-Hans.lproj",
+              "type": "codeVoice"
+            },
+            {
+              "text": " folder. Each folder must contain the same number of resolutions for an image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Adding an image of the same name to the top-level folder of the pass overrides any localized versions. In addition, the localized image of a pass may not update after adding the pass to Wallet.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Localize-the-Strings",
+          "level": 3,
+          "text": "Localize the Strings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user opens a pass, the system localizes displayed strings in two different ways. The system localizes pass fields that contain dates, times, and currencies that use standard formats in the ",
+              "type": "text"
+            },
+            {
+              "code": "pass.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. For example, in the pass shown above, the expiration date value is an ISO 8601 date in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/PassFieldContent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "   \"dateStyle\": \"PKDateStyleShort\", ",
+            "   \"isRelative\": true, ",
+            "   \"key\": \"expires\", ",
+            "   \"label\": \"ExpiresLabel\", ",
+            "   \"value\": \"2019-06-26T12:00:00+00:00\"",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system always displays localized versions of these values, even when your pass doesn’t contain localization folders for the language. For example, the figure below shows a pass that contains localizations for English and Simplified Chinese displayed on a device set to the Arabic language. The system only localizes the date:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3737827",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system localizes other strings on your pass using a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "strings file",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " which contains a list of keys and associated localized strings. Add localized strings to your pass in three steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the value of a displayed string in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pass.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to a key, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "“OfferAmountLabel”",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "label",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " of the offer amount field.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pass.strings",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file to the localization folder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a line to each ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pass.strings",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file that sets a key you created in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pass.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to the localized term.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the following three code snippets show the code to localize the offer label and offer text of the passes shown above to English and to Simplified Chinese.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the value of the strings in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields/PrimaryFields-data.dictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object in the ",
+              "type": "text"
+            },
+            {
+              "code": "pass.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to the keys you use to show a localized string in the ",
+              "type": "text"
+            },
+            {
+              "code": "pass.strings",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files",
+              "type": "text"
+            },
+            {
+              "code": ":",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "...  ",
+            "   \"primaryFields\": [",
+            "      {",
+            "        \"key\": \"offer\", ",
+            "        \"value\": \"OfferAmount\"",
+            "        \"label\": \"OfferAmountLabel\", ",
+            "      }",
+            "    ]",
+            "..."
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the English strings in ",
+              "type": "text"
+            },
+            {
+              "code": "en.lproj/pass.strings",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/* English Localization */",
+            "/* Offer strings */",
+            "\"OfferAmount\" = \"100% off\";",
+            "\"OfferAmountLabel\" = \"Anything you want!\";"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the Simplified Chinese strings in ",
+              "type": "text"
+            },
+            {
+              "code": "zh-Hans.lproj/pass.strings",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/* Simplified Chinese Localization */",
+            "/* Offer strings */",
+            "\"OfferAmount\" = \"100% 折扣\";",
+            "\"OfferAmountLabel\" = \"尽享所需一切！\";"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use UTF-16 encoding for non-ASCII characters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/bundle": {
+      "abstract": [
+        {
+          "text": "A representation of the code and resources stored in a bundle directory on disk. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bundle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bundle",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses": {
+      "abstract": [
+        {
+          "text": "Create, distribute, and update passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Wallet Passes",
+      "type": "topic",
+      "url": "/documentation/walletpasses"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/Pass": {
+      "abstract": [
+        {
+          "text": "An object that represents a pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Pass"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Pass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Pass"
+        }
+      ],
+      "role": "symbol",
+      "title": "Pass",
+      "type": "topic",
+      "url": "/documentation/walletpasses/pass"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/PassFieldContent": {
+      "abstract": [
+        {
+          "text": "An object that represents the information to display in a field on a pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PassFieldContent"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/PassFieldContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PassFieldContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PassFieldContent",
+      "type": "topic",
+      "url": "/documentation/walletpasses/passfieldcontent"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields/PrimaryFields-data.dictionary": {
+      "abstract": [
+        {
+          "text": "An object that represents the fields that display the most important information on the front of a pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PassFields.PrimaryFields"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields/PrimaryFields-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PassFields.PrimaryFields"
+        }
+      ],
+      "role": "symbol",
+      "title": "PassFields.PrimaryFields",
+      "type": "topic",
+      "url": "/documentation/walletpasses/passfields/primaryfields-data.dictionary"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/building-a-pass": {
+      "abstract": [
+        {
+          "text": "Build a distributable pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/building-a-pass",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a Pass",
+      "type": "topic",
+      "url": "/documentation/walletpasses/building-a-pass"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/distributing-and-updating-a-pass": {
+      "abstract": [
+        {
+          "text": "Distribute a pass to your users or update an existing pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/distributing-and-updating-a-pass",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing and updating a pass",
+      "type": "topic",
+      "url": "/documentation/walletpasses/distributing-and-updating-a-pass"
+    },
+    "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/PassKit_PG/Creating.html#//apple_ref/doc/uid/TP40012195-CH4-SW1": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/PassKit_PG/Creating.html#//apple_ref/doc/uid/TP40012195-CH4-SW1",
+      "title": "Pass Design and Creation.",
+      "titleInlineContent": [
+        {
+          "text": "Pass Design and Creation.",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/PassKit_PG/Creating.html#//apple_ref/doc/uid/TP40012195-CH4-SW1"
+    },
+    "media-3737827": {
+      "alt": "An annotated graphic of the pass that shows the date in Arabic script and all the other strings in English.",
+      "identifier": "media-3737827",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/59faeede36e42808d8834d8d4e001247/media-3737827@2x.png"
+        }
+      ]
+    },
+    "media-3737832": {
+      "alt": "An annotated graphic that shows the English and Simplified Chinese versions of a pass; each pass shows three differences between the passes: a localized logo, localized primary field strings, and a date displayed in regional format.",
+      "identifier": "media-3737832",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f60886fb46e4d824d9bc26ae68af3b4b/media-3737832@2x.png"
+        }
+      ]
+    },
+    "media-3744498": {
+      "alt": "A file structure diagram that shows the files and directories for an example pass. At the top is a directory called simple.pass. Inside that directory are the icon and background images files at different resolutions and the pass.json file. There are two localization directories, one called en.lproj for the English localization and one called zh-Hans.lproj for Simplified Chinese. Inside each of the localization folders are the image files for the logo and the pass.strings file.",
+      "identifier": "media-3744498",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f17917bd0601d887d0b8d95e47ceafc0/media-3744498@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.walletpasses/documentation/WalletPasses/building-a-pass",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/distributing-and-updating-a-pass",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/Pass"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1bundle/title",
+          "value": "NSBundle"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/walletpasses/creating-the-source-for-a-pass"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

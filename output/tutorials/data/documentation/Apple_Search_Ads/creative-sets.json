@@ -1,0 +1,701 @@
+{
+  "abstract": [
+    {
+      "text": "Creative Sets is deprecated.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/creative-sets"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Search Ads"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creative Sets"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "As of January 2022, ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/custom-product-pages",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " replaces Creative Sets functionality. The Apple Search Ads API no longer supports Creative Sets and ",
+                  "type": "text"
+                },
+                {
+                  "code": "AdGroupCreativeSets",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Creative Sets APIs return ",
+                  "type": "text"
+                },
+                {
+                  "code": "200OK",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " responses with an invalid state. Your Creative Sets data remains available through ",
+                  "type": "text"
+                },
+                {
+                  "code": "Get Creative Set-Level Reports",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and through the ",
+                  "type": "text"
+                },
+                {
+                  "code": "AdServices",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " attribution framework for devices running below iOS 15.2. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AdServices/AAAttribution/attributionToken()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Creative Sets",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " are collections of app screenshots and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store/app-previews/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that you  upload to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store-connect/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". After setting up your app and assets in App Store Connect, you can create and link Creative Sets to ad groups through the API or through the Apple Search Ads UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creative Sets enable you to test ad variations in ad groups and optimize for different keywords, devices, and display sizes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Upload-Assets-to-App-Store-Connect",
+          "level": 3,
+          "text": "Upload Assets to App Store Connect",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using ceatives in the Apple Search Ads Campaign Management API requires you to upload your app assets to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store-connect/",
+              "isActive": true,
+              "overridingTitle": "App Store Connect",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "App Store Connect",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". For the API to return asset data, you must meet two important requirements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app needs a  minimum number of assets. See the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Asset",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MediaAppPreviewOrScreenshots",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MediaAppPreviewOrScreenshotsDetail",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for app asset descriptions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The supported language for your campaign must be the same as the one for the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/app-store-connect/",
+                      "isActive": true,
+                      "overridingTitle": "App Store Connect",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "App Store Connect",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " territory of your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Create-and-Work-with-Creatives",
+          "level": 3,
+          "text": "Create and Work with Creatives",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you upload your app assets to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store-connect/",
+              "isActive": true,
+              "overridingTitle": "App Store Connect",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "App Store Connect",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", use ",
+              "type": "text"
+            },
+            {
+              "code": "Get App Language, Device Sizes, and Asset Details",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to identify supported languages for your app and countries or regions. Then use ",
+              "type": "text"
+            },
+            {
+              "code": "Create Ad Group Creative Sets",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You can reassign Creative Sets to another ad group using ",
+              "type": "text"
+            },
+            {
+              "code": "Assign Creative Sets to an Ad Group",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additional features include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-App-Preview-Device-Sizes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to identify available assets for your app and language, grouped by device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use  ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Find Ad Group Creative Sets",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Get a Creative Set Ad Variation",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Find Creative Sets",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as necessary to locate Creative Sets and ad variations.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Update Creative Sets",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as necessary to make changes to your Creative Set names.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the Creative Set status. See ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Update Ad Group Creative Sets",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Delete Ad Group Creative Sets",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as necessary to remove Creative Sets from an ad group.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Measure campaign performance using metrics that return through ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Get Creative Set-Level Reports",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/custom-product-pages": {
+      "abstract": [
+        {
+          "text": "View Custom Product Page details.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/custom-product-pages",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Custom Product Pages",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/custom-product-pages"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads": {
+      "abstract": [
+        {
+          "text": "Drive app discovery by creating and managing campaigns with the Apple Search Ads Campaign Management API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Search Ads",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-App-Preview-Device-Sizes": {
+      "abstract": [
+        {
+          "text": "Fetches supported app preview device-size mappings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-App-Preview-Device-Sizes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get App Preview Device Sizes"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get App Preview Device Sizes",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-app-preview-device-sizes"
+    },
+    "doc://com.apple.documentation/documentation/AdServices/AAAttribution/attributionToken()": {
+      "abstract": [
+        {
+          "text": "Generates a token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributionToken"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AdServices/AAAttribution/attributionToken()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributionToken()",
+      "type": "topic",
+      "url": "/documentation/AdServices/AAAttribution/attributionToken()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/app-store-connect/": {
+      "identifier": "https://developer.apple.com/app-store-connect/",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store-connect/"
+    },
+    "https://developer.apple.com/app-store/app-previews/": {
+      "identifier": "https://developer.apple.com/app-store/app-previews/",
+      "title": "app previews",
+      "titleInlineContent": [
+        {
+          "text": "app previews",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/app-previews/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AdServices~1AAAttribution~1attributionToken()/title",
+          "value": "attributionTokenWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AdServices~1AAAttribution~1attributionToken()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "attributionTokenWithError:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/apple_search_ads/creative-sets"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

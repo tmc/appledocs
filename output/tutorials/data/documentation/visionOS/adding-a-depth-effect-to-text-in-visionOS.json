@@ -1,0 +1,1829 @@
+{
+  "abstract": [
+    {
+      "text": "Create text that expands out of a window using stacked SwiftUI text views.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS",
+        "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/adding-a-depth-effect-to-text-in-visionOS"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "sample-depth-text-1-main-view.png",
+        "type": "card"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Adding a depth effect to text in visionOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app demonstrates how to stack multiple text views so the text appears to pop out of its window. At launch, the app applies a spring animation to the views in the stack, causing the text to pop out, like the scene in the following image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "sample-text-1-main-view-video",
+          "type": "video"
+        },
+        {
+          "anchor": "Initialize-the-text",
+          "level": 3,
+          "text": "Initialize the text",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app’s ",
+              "type": "text"
+            },
+            {
+              "code": "DepthTextView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates and stores a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance as one of its properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct DepthTextView: View {",
+            "    let text = Text(\"Hello World\").font(.extraLargeTitle)",
+            "",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By passing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Font/extraLargeTitle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text/font(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier, it makes the text appear bigger. The main view creates text variations from this property in its methods and computed properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-foremost-text-view",
+          "level": 3,
+          "text": "Create the foremost text view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "textFrontView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property creates a variation of the ",
+              "type": "text"
+            },
+            {
+              "code": "text",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property, to act as the view that pops out the most, by changing its offset along the z-axis:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var textFrontView: some View {",
+            "    text.offset(z: Double(layerSpacing * layers) * animationProgress)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample achieves this by passing the largest value into the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/offset(z:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier. The offset value, excluding the ",
+              "type": "text"
+            },
+            {
+              "code": "animationProgress",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value that controls the animation, is the product of the ",
+              "type": "text"
+            },
+            {
+              "code": "layerSpacing",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "layers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// The number of text layers that extend from the window along its z-axis.",
+            "let layers = 5",
+            "",
+            "/// The number of points between each layer.",
+            "let layerSpacing = 100"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Generate-a-series-of-text-layers-along-the-z-axis",
+          "level": 3,
+          "text": "Generate a series of text layers along the z-axis",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "textMiddleViews",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property makes several variations of the ",
+              "type": "text"
+            },
+            {
+              "code": "text",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to form the middle layers between the shadow and the front of the stack. It does this by creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ForEach",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to generate the text views:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var textMiddleViews: some View {",
+            "    ForEach(1..<layers, id: \\.self) { layer in",
+            "        let layerPercent = Double(layer) / Double(layers)",
+            "        let maximumOffset = Double(layerSpacing * layers)",
+            "        let maximumOpacity = 1.0",
+            "",
+            "        text",
+            "            .offset(z: maximumOffset * layerPercent * animationProgress)",
+            "            .opacity(maximumOpacity * layerPercent)",
+            "    }",
+            "}   "
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The property dynamically applies a unique offset along the z-axis to each text view by passing a larger value to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/offset(z:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier with each iteration. This offset creates a stacking effect that shows the text extending outward from the view window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "layers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property controls the number of iterations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let layers = 5"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Generate-a-shadow-version-of-the-text-view",
+          "level": 3,
+          "text": "Generate a shadow version of the text view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "textShadowView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property makes a version of the ",
+              "type": "text"
+            },
+            {
+              "code": "text",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property that acts as a shadow by adding a blur effect and modifying its style and transparency:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var textShadowView: some View {",
+            "    /// The width, in points, of the blur effect relative to the text's edges.",
+            "    let blurRadius: CGFloat = 12",
+            "    let maximumOpacity = 0.6",
+            "",
+            "    return text",
+            "        .foregroundStyle(.black)",
+            "        .blur(radius: blurRadius)",
+            "        .opacity(maximumOpacity * animationProgress)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DeviceActivity/DeviceActivityReport/blur(radius:opaque:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier applies a Gaussian blur to the text view, and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Color/opacity(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier makes the view semitransparent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This property doesn’t change the offset along the z-axis from ",
+                  "type": "text"
+                },
+                {
+                  "code": "0.0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ",",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "which places the shadow view in the same plane as the window that contains the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": "ZStack",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Stack-the-text-with-animations",
+          "level": 3,
+          "text": "Stack the text with animations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "DepthTextView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " arranges its view properties along its z-axis by adding a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ZStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the main view of its ",
+              "type": "text"
+            },
+            {
+              "code": "body",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var body: some View {",
+            "    // Create a stack of the same text view with different opacities and",
+            "    // positions along the z-axes, starting with a blurry shadow version.",
+            "    ZStack {",
+            "        textShadowView",
+            "        textMiddleViews",
+            "        textFrontView",
+            "    }",
+            "    .onAppear(perform: animateWithSpringEffect)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "textShadowView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "textMiddleViews",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "textFrontView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties each create a version of the text. The sample adds an animation effect to its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ZStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by passing its ",
+              "type": "text"
+            },
+            {
+              "code": "animateWithSpringEffect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to the stack’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onAppear(perform:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "animateWithSpringEffect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method animates the transition through the ",
+              "type": "text"
+            },
+            {
+              "code": "animationProgress",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property from ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Creating a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Spring",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Creating an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Animation/interpolatingSpring",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " animation with that spring.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Passing the spring animation to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/withAnimation(_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "func animateWithSpringEffect() {",
+            "    /// A spring coefficient for a spring animation effect,",
+            "    /// in newtons per meter.",
+            "    let stiffness: Double = 200",
+            "",
+            "    /// The damping factor of a spring animation's effect,",
+            "    /// in newton-seconds per meter.",
+            "    let damping: Double = 10",
+            "",
+            "    let spring = Spring(stiffness: stiffness, damping: damping)",
+            "    let springAnimation = Animation.interpolatingSpring(spring).delay(1.0)",
+            "",
+            "    // Animate the text popping out of the window with a spring effect.",
+            "    withAnimation(springAnimation) { animationProgress = 1.0 }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "animateWithSpringEffect()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method creates a spring animation with ",
+              "type": "text"
+            },
+            {
+              "code": "stiffness",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "damping",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties, as well as a one-second delay. It animates the ",
+              "type": "text"
+            },
+            {
+              "code": "animationProgress",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from 0.0 to 1.0, resulting in a springlike pop effect as the text enters the view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "dd2db0b42cec/AddingADepthEffectToTextInVisionOS.zip": {
+      "checksum": "dd2db0b42cec4e604e79de5ca6125bb2d211ddf6bfae2121552f3a7d63d78e57ea14d6b393b4d616470a3df29dc2ebe40acd0abab48005e76d820b0d532011ec",
+      "identifier": "dd2db0b42cec/AddingADepthEffectToTextInVisionOS.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/dd2db0b42cec/AddingADepthEffectToTextInVisionOS.zip"
+    },
+    "doc://com.apple.documentation/documentation/DeviceActivity/DeviceActivityReport/blur(radius:opaque:)": {
+      "abstract": [
+        {
+          "text": "Applies a Gaussian blur to this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blur"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "radius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "opaque"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = false) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DeviceActivity/DeviceActivityReport/blur(radius:opaque:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "blur(radius:opaque:)",
+      "type": "topic",
+      "url": "/documentation/DeviceActivity/DeviceActivityReport/blur(radius:opaque:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Animation/interpolatingSpring": {
+      "abstract": [
+        {
+          "text": "An interpolating spring animation that uses a damped spring model to produce values in the range [0, 1] that are then used to interpolate within the [from, to] range of the animated property. Preserves velocity across overlapping animations by adding the effects of each animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interpolatingSpring"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Animation/interpolatingSpring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interpolatingSpring",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Animation/interpolatingSpring"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Color/opacity(_:)": {
+      "abstract": [
+        {
+          "text": "Multiplies the opacity of the color by the given amount.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "opacity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "opacity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ColorV",
+          "text": "Color"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Color/opacity(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "opacity(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Color/opacity(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Font/extraLargeTitle": {
+      "abstract": [
+        {
+          "text": "Create a font with the extra large title text style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "extraLargeTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Font/extraLargeTitle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "extraLargeTitle",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Font/extraLargeTitle"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ForEach": {
+      "abstract": [
+        {
+          "text": "A structure that computes views on demand from an underlying collection of identified data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ForEach"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sk",
+          "text": "RandomAccessCollection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ForEach",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ForEach",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ForEach"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Spring": {
+      "abstract": [
+        {
+          "text": "A representation of a spring’s motion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Spring"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Spring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Spring",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Spring"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Text": {
+      "abstract": [
+        {
+          "text": "A view that displays one or more lines of read-only text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Text",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Text"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Text/font(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the default font for text in the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "font"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "font"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text/font(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "font(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Text/font(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/offset(z:)": {
+      "abstract": [
+        {
+          "text": "Brings a view forward in Z by the provided distance in points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "z"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/offset(z:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offset(z:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/offset(z:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/onAppear(perform:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform before this view appears.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onAppear"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onAppear(perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onAppear(perform:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/onAppear(perform:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ZStack": {
+      "abstract": [
+        {
+          "text": "A view that overlays its subviews, aligning them in both axes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ZStack"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ZStack",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ZStack",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ZStack"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/withAnimation(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the result of recomputing the view’s body with the provided animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "animation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        },
+        {
+          "kind": "text",
+          "text": "? = .default, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": () "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/withAnimation(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withAnimation(_:_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/withAnimation(_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/displaying-text-in-visionOS": {
+      "abstract": [
+        {
+          "text": "Create styled text in a window using SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/displaying-text-in-visionOS",
+      "images": [
+        {
+          "identifier": "sample-text-1-main-view.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Displaying text in visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos/displaying-text-in-visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples": {
+      "abstract": [
+        {
+          "text": "Learn the fundamentals of building apps for visionOS with beginner-friendly sample code projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples",
+      "images": [
+        {
+          "identifier": "introductory-visionOS-samples.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Introductory visionOS samples",
+      "type": "topic",
+      "url": "/documentation/visionos/introductory-visionos-samples"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "introductory-visionOS-samples.png": {
+      "alt": "A translucent window displaying five white, three-dimensional entities in a horizontal row. From left to right, the shapes are a box, a rounded box, a right sphere, a cone, and a cylinder that all top-align.",
+      "identifier": "introductory-visionOS-samples.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d386622a70e5f41179e6a4c98a125c7/introductory-visionOS-samples@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/58fa94f103305452c567401d648dedc5/introductory-visionOS-samples~dark@2x.png"
+        }
+      ]
+    },
+    "sample-depth-text-1-main-view.png": {
+      "alt": null,
+      "identifier": "sample-depth-text-1-main-view.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c79c1f13c52063f06b265f70cfe8bf04/sample-depth-text-1-main-view.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/82d1e9e9316ee77d5c23d2c2731c4831/sample-depth-text-1-main-view~dark.png"
+        }
+      ]
+    },
+    "sample-text-1-main-view-video": {
+      "alt": "A screenshot of a visionOS app in Simulator displaying a translucent window, with the phrase 'Hello World' extruding from the window.",
+      "identifier": "sample-text-1-main-view-video",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2385a0fa186cabf6a9dd3dbac4b8461a/sample-text-1-main-view-video.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8abe1449dcdf848488cbaf7edf5231e8/sample-text-1-main-view-video~dark.mp4"
+        }
+      ]
+    },
+    "sample-text-1-main-view.png": {
+      "alt": "",
+      "identifier": "sample-text-1-main-view.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b0b559a94b06c521fe5a19afaae2670e/sample-text-1-main-view.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/15236dd5f82909968fad8f2183ac0389/sample-text-1-main-view~dark.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "dd2db0b42cec/AddingADepthEffectToTextInVisionOS.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Drawing-text",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/displaying-text-in-visionOS"
+      ],
+      "title": "Drawing text"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Drawing-text",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.visionOS/documentation/visionOS/displaying-text-in-visionOS"
+              ],
+              "title": "Drawing text"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,394 @@
+{
+  "abstract": [
+    {
+      "text": "Use the AdAttributionKit APIs for your ad campaigns after registering your ad network with Apple.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/registering-an-ad-network"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AdAttributionKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Registering an ad network"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can use the ad network ID that you receive during SKAdNetwork registration with AdAttributionKit.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ad networks provide and cryptographically sign ads that are eligible for ad attribution through AdAttributionKit. Ad networks need to register with Apple before using the AdAttributionKit API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To register your ad network, go to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/contact/request/ad-network-id/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which prompts you to sign in and opens the request form.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When registering, you:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Receive your ad network ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an elliptic-curve cryptographic key pair, and share your public key with Apple for signature verification.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide a URL where you receive AdAttributionKit postback requests.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Share-your-ad-network-ID-with-developers",
+          "level": 2,
+          "text": "Share your ad network ID with developers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ad network ID is a unique lowercase identifier in the format of ",
+              "type": "text"
+            },
+            {
+              "code": "example123.adattribuitionkit",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Share your ad network ID with app developers who display your ads. Developers need to include your ad network ID in their app’s information property list for your impressions to qualify for postbacks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Lowercase the ad network ID string; otherwise, the system doesn’t recognize it as valid.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Generate-your-private-key",
+          "level": 2,
+          "text": "Generate your private key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ad networks use a private cryptographic key to generate a signature for each ad that an app displays. During registration, ad networks create a public-private key pair, and send the public key to Apple. The private key you create uses an Elliptic Curve Digital Signature Algorithm (ECDSA) with a prime256v1 curve.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create your private key, open Terminal and enter the following command, replacing ",
+              "type": "text"
+            },
+            {
+              "code": "companyname",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the name of your company:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "openssl ecparam -name prime256v1 -genkey -noout -out companyname_adattribuitionkit_private_key.pem"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Secure your private keys as you do other credentials, such as passwords. Don’t share your private keys, store keys in a code repository, or include keys in client-side code. Only share your public key.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Generate-and-share-your-public-key",
+          "level": 2,
+          "text": "Generate and share your public key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, you create a public key from the private key you created in the previous section. The public key is a PEM-encoded PKCS #8 EC key that uses the prime256v1 curve. In Terminal, enter the following command, again replacing ",
+              "type": "text"
+            },
+            {
+              "code": "companyname",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the name of your company:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "openssl ec -in companyname_adattribuitionkit_private_key.pem -pubout -out companyname_adattribuitionkit_public_key.pem"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This command creates the file ",
+              "type": "text"
+            },
+            {
+              "code": "companyname_adattribuitionkit_public_key.pem",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which contains your public key. Run this command anytime to generate a copy of your public key file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Send your public key file to Apple when you register your ad network.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit": {
+      "abstract": [
+        {
+          "text": "Present, process, and register postbacks for in-app ads in the App Store and alternative app marketplaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AdAttributionKit",
+      "type": "topic",
+      "url": "/documentation/adattributionkit"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/configuring-a-publisher-app": {
+      "abstract": [
+        {
+          "text": "Set up a publisher app to participate in ad campaigns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/configuring-a-publisher-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring a publisher app",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/configuring-a-publisher-app"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/configuring-an-advertised-app": {
+      "abstract": [
+        {
+          "text": "Prepare an advertised app to participate in ad campaigns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/configuring-an-advertised-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring an advertised app",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/configuring-an-advertised-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/contact/request/ad-network-id/": {
+      "identifier": "https://developer.apple.com/contact/request/ad-network-id/",
+      "title": "Ad Network ID Request Form",
+      "titleInlineContent": [
+        {
+          "text": "Ad Network ID Request Form",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/request/ad-network-id/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Ad-network-registration-and-configuration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/configuring-a-publisher-app",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/configuring-an-advertised-app"
+      ],
+      "title": "Ad network registration and configuration"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/adattributionkit/registering-an-ad-network"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

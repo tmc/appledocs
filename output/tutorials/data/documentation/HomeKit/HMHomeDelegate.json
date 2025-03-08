@@ -1,0 +1,3633 @@
+{
+  "abstract": [
+    {
+      "text": "An interface that communicates changes to a home’s configuration.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.homekit/documentation/HomeKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)HMHomeDelegate",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "HMHomeDelegate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HomeKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "HMHomeDelegate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "HMHomeDelegate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HMHomeDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adopt this protocol to find out about changes made outside your app to a particular home, like when the home’s name changes, or when a room is added.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Changes that your app initiates—even those made asynchronously followed by a call to a completion handler—generate delegate callbacks in other apps, but not in your own. As a result, your app must update its internal data store or user interface from both the completion handler of an asynchronous call, and the delegate callback that corresponds to the same kind of change made by another app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To be alerted about changes made to the overall list of homes, adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. To find out about changes made to specific accessories, adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit": {
+      "abstract": [
+        {
+          "text": "Configure, control, and communicate with home automation accessories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HomeKit",
+      "type": "topic",
+      "url": "/documentation/homekit"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines the communication method for state updates from accessories to their delegates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMAccessoryDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMAccessoryDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMAccessoryDelegate",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessorydelegate"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/delegate": {
+      "abstract": [
+        {
+          "text": "A delegate that receives updates on the state of the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)HMHomeDelegate",
+          "text": "HMHomeDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/delegate"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate": {
+      "abstract": [
+        {
+          "text": "An interface that communicates changes to a home’s configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMHomeDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMHomeDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMHomeDelegate",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-3dymz": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home added a service group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAdd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMServiceGroup",
+          "text": "HMServiceGroup"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-3dymz",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didAddServiceGroup:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didAdd:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didadd:)-3dymz"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-42aqd": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home added a new room.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAdd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMRoom",
+          "text": "HMRoom"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-42aqd",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didAddRoom:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didAdd:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didadd:)-42aqd"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-64yxx": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home added a trigger.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAdd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMTrigger",
+          "text": "HMTrigger"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-64yxx",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didAddTrigger:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didAdd:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didadd:)-64yxx"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-6jcl7": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home added a new accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAdd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMAccessory",
+          "text": "HMAccessory"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-6jcl7",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didAddAccessory:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didAdd:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didadd:)-6jcl7"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-7vyoe": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home added a new zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAdd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMZone",
+          "text": "HMZone"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-7vyoe",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didAddZone:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didAdd:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didadd:)-7vyoe"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-8q7jm": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home added a user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAdd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMUser",
+          "text": "HMUser"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-8q7jm",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didAddUser:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didAdd:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didadd:)-8q7jm"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-9dcki": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home added an action set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAdd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMActionSet",
+          "text": "HMActionSet"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-9dcki",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didAddActionSet:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didAdd:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didadd:)-9dcki"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:to:)-4hiew": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home added a room to a zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAdd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMRoom",
+          "text": "HMRoom"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMZone",
+          "text": "HMZone"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:to:)-4hiew",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didAddRoom:toZone:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didAdd:to:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didadd:to:)-4hiew"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:to:)-6xdgy": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home added a service to a service group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAdd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMService",
+          "text": "HMService"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMServiceGroup",
+          "text": "HMServiceGroup"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:to:)-6xdgy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didAddService:toServiceGroup:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didAdd:to:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didadd:to:)-6xdgy"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didEncounterError:for:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a configured accessory encountered an error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didEncounterError"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMAccessory",
+          "text": "HMAccessory"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didEncounterError:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didEncounterError:forAccessory:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didEncounterError:for:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didencountererror:for:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-3fm38": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home removed a user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didRemove"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMUser",
+          "text": "HMUser"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-3fm38",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didRemoveUser:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didRemove:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didremove:)-3fm38"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-3if6s": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home removed a room.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didRemove"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMRoom",
+          "text": "HMRoom"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-3if6s",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didRemoveRoom:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didRemove:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didremove:)-3if6s"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-3o8ta": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home removed a zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didRemove"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMZone",
+          "text": "HMZone"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-3o8ta",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didRemoveZone:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didRemove:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didremove:)-3o8ta"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-4ujfa": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home removed a trigger.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didRemove"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMTrigger",
+          "text": "HMTrigger"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-4ujfa",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didRemoveTrigger:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didRemove:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didremove:)-4ujfa"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-6kqxo": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home removed a service group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didRemove"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMServiceGroup",
+          "text": "HMServiceGroup"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-6kqxo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didRemoveServiceGroup:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didRemove:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didremove:)-6kqxo"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-6plye": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home removed an accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didRemove"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMAccessory",
+          "text": "HMAccessory"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-6plye",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didRemoveAccessory:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didRemove:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didremove:)-6plye"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-80ewx": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home removed an action set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didRemove"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMActionSet",
+          "text": "HMActionSet"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-80ewx",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didRemoveActionSet:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didRemove:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didremove:)-80ewx"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:from:)-8oz67": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home removed a room from a zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didRemove"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMRoom",
+          "text": "HMRoom"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMZone",
+          "text": "HMZone"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:from:)-8oz67",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didRemoveRoom:fromZone:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didRemove:from:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didremove:from:)-8oz67"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:from:)-9yzp0": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home removed a service from a service group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didRemove"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMService",
+          "text": "HMService"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMServiceGroup",
+          "text": "HMServiceGroup"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:from:)-9yzp0",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didRemoveService:fromServiceGroup:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didRemove:from:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didremove:from:)-9yzp0"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUnblockAccessory:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that an accessory has been unblocked.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUnblockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMAccessory",
+          "text": "HMAccessory"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUnblockAccessory:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didUnblockAccessory:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didUnblockAccessory:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didunblockaccessory:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdate:)-3l4r1": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home updated a trigger.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMTrigger",
+          "text": "HMTrigger"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdate:)-3l4r1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didUpdateTrigger:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didUpdate:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didupdate:)-3l4r1"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdate:)-5fntk": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the state of the home hub has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HMHomeHubState",
+          "text": "HMHomeHubState"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdate:)-5fntk",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didUpdateHomeHubState:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didUpdate:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didupdate:)-5fntk"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdate:for:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home assigned an accessory to a different room.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMRoom",
+          "text": "HMRoom"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMAccessory",
+          "text": "HMAccessory"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdate:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didUpdateRoom:forAccessory:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didUpdate:for:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didupdate:for:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateActionsFor:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home updated the actions for an action set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdateActionsFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMActionSet",
+          "text": "HMActionSet"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateActionsFor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didUpdateActionsForActionSet:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didUpdateActionsFor:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didupdateactionsfor:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateNameFor:)-1a110": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home updated the name of one of its rooms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdateNameFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMRoom",
+          "text": "HMRoom"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateNameFor:)-1a110",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didUpdateNameForRoom:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didUpdateNameFor:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didupdatenamefor:)-1a110"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateNameFor:)-1k32g": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home changed the name of a zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdateNameFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMZone",
+          "text": "HMZone"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateNameFor:)-1k32g",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didUpdateNameForZone:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didUpdateNameFor:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didupdatenamefor:)-1k32g"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateNameFor:)-4tam1": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home updated the name of a service group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdateNameFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMServiceGroup",
+          "text": "HMServiceGroup"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateNameFor:)-4tam1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didUpdateNameForServiceGroup:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didUpdateNameFor:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didupdatenamefor:)-4tam1"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateNameFor:)-7fxvl": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home updated the name of an action set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdateNameFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMActionSet",
+          "text": "HMActionSet"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateNameFor:)-7fxvl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didUpdateNameForActionSet:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didUpdateNameFor:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didupdatenamefor:)-7fxvl"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateNameFor:)-8vn79": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home updated the name of a trigger.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "home"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdateNameFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMTrigger",
+          "text": "HMTrigger"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateNameFor:)-8vn79",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "home:didUpdateNameForTrigger:"
+        }
+      ],
+      "role": "symbol",
+      "title": "home(_:didUpdateNameFor:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/home(_:didupdatenamefor:)-8vn79"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/homeDidUpdateAccessControl(forCurrentUser:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the access control for the current user has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "homeDidUpdateAccessControl"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forCurrentUser"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/homeDidUpdateAccessControl(forCurrentUser:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "homeDidUpdateAccessControlForCurrentUser:"
+        }
+      ],
+      "role": "symbol",
+      "title": "homeDidUpdateAccessControl(forCurrentUser:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/homedidupdateaccesscontrol(forcurrentuser:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/homeDidUpdateName(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a home’s name changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "homeDidUpdateName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/homeDidUpdateName(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "homeDidUpdateName:"
+        }
+      ],
+      "role": "symbol",
+      "title": "homeDidUpdateName(_:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/homedidupdatename(_:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/homeDidUpdateSupportedFeatures(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the home’s supported features changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "homeDidUpdateSupportedFeatures"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/homeDidUpdateSupportedFeatures(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "homeDidUpdateSupportedFeatures:"
+        }
+      ],
+      "role": "symbol",
+      "title": "homeDidUpdateSupportedFeatures(_:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate/homedidupdatesupportedfeatures(_:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeHubState": {
+      "abstract": [
+        {
+          "text": "The possible states of the home hub.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMHomeHubState"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeHubState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMHomeHubState"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMHomeHubState",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomehubstate"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate": {
+      "abstract": [
+        {
+          "text": "An interface the home manager uses to communicate changes to the state of the home network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMHomeManagerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMHomeManagerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMHomeManagerDelegate",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomemanagerdelegate"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Keeping-track-of-home-configuration-changes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMHome/delegate"
+      ],
+      "title": "Keeping track of home configuration changes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Observing-Home-Configuration",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/homeDidUpdateName(_:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-6jcl7",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdate:for:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-6plye",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-42aqd",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateNameFor:)-1a110",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:to:)-4hiew",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:from:)-8oz67",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-3if6s",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-7vyoe",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateNameFor:)-1k32g",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-3o8ta",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-8q7jm",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-3fm38",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/homeDidUpdateAccessControl(forCurrentUser:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdate:)-5fntk",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/homeDidUpdateSupportedFeatures(_:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeHubState"
+      ],
+      "title": "Observing Home Configuration"
+    },
+    {
+      "anchor": "Observing-Service-Configuration",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-3dymz",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateNameFor:)-4tam1",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:to:)-6xdgy",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:from:)-9yzp0",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-6kqxo"
+      ],
+      "title": "Observing Service Configuration"
+    },
+    {
+      "anchor": "Observing-Action-and-Trigger-Configuration",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-9dcki",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateNameFor:)-7fxvl",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateActionsFor:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-80ewx",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-64yxx",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateNameFor:)-8vn79",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdate:)-3l4r1",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-4ujfa"
+      ],
+      "title": "Observing Action and Trigger Configuration"
+    },
+    {
+      "anchor": "Observing-Accessories",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didEncounterError:for:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUnblockAccessory:)"
+      ],
+      "title": "Observing Accessories"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "HMHomeDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.homekit/documentation/HomeKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Observing-Home-Configuration",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/homeDidUpdateName(_:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-6jcl7",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdate:for:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-6plye",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-42aqd",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateNameFor:)-1a110",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:to:)-4hiew",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:from:)-8oz67",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-3if6s",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-7vyoe",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateNameFor:)-1k32g",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-3o8ta",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-8q7jm",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-3fm38",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/homeDidUpdateAccessControl(forCurrentUser:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdate:)-5fntk",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/homeDidUpdateSupportedFeatures(_:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeHubState"
+              ],
+              "title": "Observing Home Configuration"
+            },
+            {
+              "anchor": "Observing-Service-Configuration",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-3dymz",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateNameFor:)-4tam1",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:to:)-6xdgy",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:from:)-9yzp0",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-6kqxo"
+              ],
+              "title": "Observing Service Configuration"
+            },
+            {
+              "anchor": "Observing-Action-and-Trigger-Configuration",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-9dcki",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateNameFor:)-7fxvl",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateActionsFor:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-80ewx",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didAdd:)-64yxx",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdateNameFor:)-8vn79",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUpdate:)-3l4r1",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didRemove:)-4ujfa"
+              ],
+              "title": "Observing Action and Trigger Configuration"
+            },
+            {
+              "anchor": "Observing-Accessories",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didEncounterError:for:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate/home(_:didUnblockAccessory:)"
+              ],
+              "title": "Observing Accessories"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Keeping-track-of-home-configuration-changes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMHome/delegate"
+              ],
+              "title": "Keeping track of home configuration changes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "HMHomeDelegate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didRemove:)-6kqxo/title",
+          "value": "home:didRemoveServiceGroup:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didRemove:)-6kqxo/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didRemoveServiceGroup:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didAdd:to:)-6xdgy/title",
+          "value": "home:didAddService:toServiceGroup:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didAdd:to:)-6xdgy/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didAddService:toServiceGroup:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didAdd:)-7vyoe/title",
+          "value": "home:didAddZone:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didAdd:)-7vyoe/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didAddZone:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didRemove:)-3o8ta/title",
+          "value": "home:didRemoveZone:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didRemove:)-3o8ta/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didRemoveZone:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didUpdate:for:)/title",
+          "value": "home:didUpdateRoom:forAccessory:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didUpdate:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didUpdateRoom:forAccessory:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didRemove:)-80ewx/title",
+          "value": "home:didRemoveActionSet:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didRemove:)-80ewx/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didRemoveActionSet:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didUpdateNameFor:)-1k32g/title",
+          "value": "home:didUpdateNameForZone:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didUpdateNameFor:)-1k32g/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didUpdateNameForZone:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didAdd:)-64yxx/title",
+          "value": "home:didAddTrigger:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didAdd:)-64yxx/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didAddTrigger:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didUpdateNameFor:)-4tam1/title",
+          "value": "home:didUpdateNameForServiceGroup:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didUpdateNameFor:)-4tam1/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didUpdateNameForServiceGroup:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManagerDelegate/title",
+          "value": "HMHomeManagerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManagerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeManagerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManagerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeManagerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didUpdateNameFor:)-7fxvl/title",
+          "value": "home:didUpdateNameForActionSet:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didUpdateNameFor:)-7fxvl/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didUpdateNameForActionSet:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeHubState/title",
+          "value": "HMHomeHubState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeHubState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeHubState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeHubState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeHubState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate/title",
+          "value": "HMHomeDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didRemove:)-4ujfa/title",
+          "value": "home:didRemoveTrigger:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didRemove:)-4ujfa/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didRemoveTrigger:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didAdd:)-9dcki/title",
+          "value": "home:didAddActionSet:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didAdd:)-9dcki/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didAddActionSet:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didUpdateNameFor:)-1a110/title",
+          "value": "home:didUpdateNameForRoom:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didUpdateNameFor:)-1a110/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didUpdateNameForRoom:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didAdd:)-6jcl7/title",
+          "value": "home:didAddAccessory:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didAdd:)-6jcl7/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didAddAccessory:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didRemove:)-3if6s/title",
+          "value": "home:didRemoveRoom:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didRemove:)-3if6s/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didRemoveRoom:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didEncounterError:for:)/title",
+          "value": "home:didEncounterError:forAccessory:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didEncounterError:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didEncounterError:forAccessory:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didRemove:from:)-9yzp0/title",
+          "value": "home:didRemoveService:fromServiceGroup:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didRemove:from:)-9yzp0/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didRemoveService:fromServiceGroup:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1homeDidUpdateAccessControl(forCurrentUser:)/title",
+          "value": "homeDidUpdateAccessControlForCurrentUser:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1homeDidUpdateAccessControl(forCurrentUser:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "homeDidUpdateAccessControlForCurrentUser:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didUpdateNameFor:)-8vn79/title",
+          "value": "home:didUpdateNameForTrigger:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didUpdateNameFor:)-8vn79/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didUpdateNameForTrigger:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didUnblockAccessory:)/title",
+          "value": "home:didUnblockAccessory:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didUnblockAccessory:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didUnblockAccessory:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didRemove:)-6plye/title",
+          "value": "home:didRemoveAccessory:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didRemove:)-6plye/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didRemoveAccessory:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didRemove:from:)-8oz67/title",
+          "value": "home:didRemoveRoom:fromZone:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didRemove:from:)-8oz67/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didRemoveRoom:fromZone:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didAdd:)-42aqd/title",
+          "value": "home:didAddRoom:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didAdd:)-42aqd/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didAddRoom:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didRemove:)-3fm38/title",
+          "value": "home:didRemoveUser:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didRemove:)-3fm38/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didRemoveUser:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didAdd:)-3dymz/title",
+          "value": "home:didAddServiceGroup:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didAdd:)-3dymz/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didAddServiceGroup:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didUpdate:)-5fntk/title",
+          "value": "home:didUpdateHomeHubState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didUpdate:)-5fntk/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didUpdateHomeHubState:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didAdd:to:)-4hiew/title",
+          "value": "home:didAddRoom:toZone:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didAdd:to:)-4hiew/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didAddRoom:toZone:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1homeDidUpdateName(_:)/title",
+          "value": "homeDidUpdateName:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1homeDidUpdateName(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "homeDidUpdateName:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didAdd:)-8q7jm/title",
+          "value": "home:didAddUser:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didAdd:)-8q7jm/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didAddUser:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didUpdateActionsFor:)/title",
+          "value": "home:didUpdateActionsForActionSet:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didUpdateActionsFor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didUpdateActionsForActionSet:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryDelegate/title",
+          "value": "HMAccessoryDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessoryDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessoryDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didUpdate:)-3l4r1/title",
+          "value": "home:didUpdateTrigger:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1home(_:didUpdate:)-3l4r1/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "home:didUpdateTrigger:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1homeDidUpdateSupportedFeatures(_:)/title",
+          "value": "homeDidUpdateSupportedFeatures:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate~1homeDidUpdateSupportedFeatures(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "homeDidUpdateSupportedFeatures:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/homekit/hmhomedelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/homekit/hmhomedelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

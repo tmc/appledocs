@@ -1,0 +1,560 @@
+{
+  "abstract": [
+    {
+      "text": "Performs the specified block asynchronously and notifies you if the process is about to be suspended.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/task_management",
+        "doc://com.apple.documentation/documentation/foundation/nsprocessinfo"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+        "doc://com.apple.documentation/documentation/foundation/nsprocessinfo"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1617030-performexpiringactivitywithreaso"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1617030,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSProcessInfo(im)performExpiringActivityWithReason:usingBlock:",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSProcessInfo"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "8.2",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "8.2",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "performExpiringActivityWithReason:usingBlock:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "identifier",
+              "text": "performExpiringActivityWithReason:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "reason"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "usingBlock:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "keyword",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " expired)"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "block"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A string used in debugging to indicate the reason the activity began. This parameter must not be ",
+                  "type": "text"
+                },
+                {
+                  "code": "nil",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or an empty string.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "reason"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A block containing the work to be performed by the activity. The block has no return value and takes the following parameter:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "definition": {
+                    "content": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "A Boolean indicating whether the process is about to be suspended. If the value is ",
+                            "type": "text"
+                          },
+                          {
+                            "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+                            "isActive": false,
+                            "type": "reference"
+                          },
+                          {
+                            "text": ", the process is about to be suspended so you should take whatever steps are needed to stop in progress work. If it is ",
+                            "type": "text"
+                          },
+                          {
+                            "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+                            "isActive": false,
+                            "type": "reference"
+                          },
+                          {
+                            "text": ", start the planned tasks.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ]
+                  },
+                  "term": {
+                    "inlineContent": [
+                      {
+                        "text": "expired",
+                        "type": "text"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "type": "termList"
+            }
+          ],
+          "name": "block"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this method to perform tasks when your process is executing in the background. This method queues ",
+              "type": "text"
+            },
+            {
+              "code": "block",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for asynchronous execution on a concurrent queue. When your process is in the background, the method tries to take a task assertion to ensure that your block has time to execute. If it is unable to take a task assertion, or if the time allotted for the task assertion expires, the system executes your block with the parameter set to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ". If it is able to take the task assertion, it executes the block and passes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " for the expired parameter. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your block is still executing and the system need to suspend the process, the system executes your block a second time with the ",
+              "type": "text"
+            },
+            {
+              "code": "expired",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter set to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ". Your block must be prepared to handle this case. When the expired parameter is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", stop any in-progress tasks as quickly as possible. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsprocessinfo": {
+      "abstract": [
+        {
+          "text": "A collection of information about the current process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsprocessinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSProcessInfo",
+      "type": "topic",
+      "url": "/documentation/foundation/nsprocessinfo"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1411321-endactivity": {
+      "abstract": [
+        {
+          "text": "Ends the given activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "endActivity:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1411321-endactivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endActivity:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsprocessinfo/1411321-endactivity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1415995-beginactivitywithoptions": {
+      "abstract": [
+        {
+          "text": "Begin an activity using the given options and reason.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginActivityWithOptions:reason:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1415995-beginactivitywithoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginActivityWithOptions:reason:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsprocessinfo/1415995-beginactivitywithoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1418048-performactivitywithoptions": {
+      "abstract": [
+        {
+          "text": "Synchronously perform an activity defined by a given block using the given options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "performActivityWithOptions:reason:usingBlock:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1418048-performactivitywithoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performActivityWithOptions:reason:usingBlock:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsprocessinfo/1418048-performactivitywithoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1617030-performexpiringactivitywithreaso": {
+      "abstract": [
+        {
+          "text": "Performs the specified block asynchronously and notifies you if the process is about to be suspended.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "performExpiringActivityWithReason:usingBlock:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1617030-performexpiringactivitywithreaso",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performExpiringActivityWithReason:usingBlock:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsprocessinfo/1617030-performexpiringactivitywithreaso"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/processes_and_threads": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Processes and Threads",
+      "type": "topic",
+      "url": "/documentation/foundation/processes_and_threads"
+    },
+    "doc://com.apple.documentation/documentation/foundation/task_management": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/task_management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Task Management",
+      "type": "topic",
+      "url": "/documentation/foundation/task_management"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/no": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NO",
+      "type": "topic",
+      "url": "/documentation/objectivec/no"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/yes": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "YES",
+      "type": "topic",
+      "url": "/documentation/objectivec/yes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1415995-beginactivitywithoptions",
+        "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1411321-endactivity",
+        "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1418048-performactivitywithoptions"
+      ],
+      "title": "Managing Activities"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsprocessinfo/1617030-performexpiringactivitywithreaso"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/processinfo/1617030-performexpiringactivity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

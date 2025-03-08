@@ -1,0 +1,1119 @@
+{
+  "abstract": [
+    {
+      "text": "A declarative description of the process of importing and exporting a transferable item.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CoreTransferable/documentation/CoreTransferable"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:16CoreTransferable22TransferRepresentationP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "TransferRepresentation"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Transferable"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "TransferRepresentation"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "TransferRepresentation"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "TransferRepresentation"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation/Item",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:16CoreTransferable22TransferRepresentationP4ItemQa",
+              "text": "Item"
+            },
+            {
+              "kind": "text",
+              "text": "> : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s8SendableP",
+              "text": "Sendable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Combine multiple existing transfer representations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to compose a single transfer representation that describes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "how to transfer an item in multiple scenarios.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following shows a ",
+              "type": "text"
+            },
+            {
+              "code": "Greeting",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type that transfers both as a ",
+              "type": "text"
+            },
+            {
+              "code": "Codable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and by proxy through its ",
+              "type": "text"
+            },
+            {
+              "code": "message",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import UniformTypeIdentifiers",
+            "",
+            "struct Greeting: Codable, Transferable {",
+            "    let message: String",
+            "    var displayInAllCaps: Bool = false",
+            "",
+            "    static var transferRepresentation: some TransferRepresentation {",
+            "        CodableRepresentation(contentType: .greeting)",
+            "        ProxyRepresentation(exporting: \\.message)",
+            "    }",
+            "}",
+            "",
+            "extension UTType {",
+            "    static var greeting: UTType { .init(exportedAs: \"com.example.greeting\") }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable": {
+      "abstract": [
+        {
+          "text": "Declare a transfer representation for your model types",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to participate in system sharing and data transfer operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Transferable",
+      "type": "topic",
+      "url": "/documentation/coretransferable"
+    },
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable/CodableRepresentation": {
+      "abstract": [
+        {
+          "text": "A transfer representation for types that participate in Swift’s protocols for encoding and decoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CodableRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/CodableRepresentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CodableRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CodableRepresentation",
+      "type": "topic",
+      "url": "/documentation/coretransferable/codablerepresentation"
+    },
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable/DataRepresentation": {
+      "abstract": [
+        {
+          "text": "A transfer representation for types that provide their own binary data conversion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/DataRepresentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataRepresentation",
+      "type": "topic",
+      "url": "/documentation/coretransferable/datarepresentation"
+    },
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable/FileRepresentation": {
+      "abstract": [
+        {
+          "text": "A transfer representation for types that transfer as a file URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/FileRepresentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FileRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "FileRepresentation",
+      "type": "topic",
+      "url": "/documentation/coretransferable/filerepresentation"
+    },
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable/ProxyRepresentation": {
+      "abstract": [
+        {
+          "text": "A transfer representation that uses another type’s transfer representation",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "as its own.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProxyRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/ProxyRepresentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProxyRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProxyRepresentation",
+      "type": "topic",
+      "url": "/documentation/coretransferable/proxyrepresentation"
+    },
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation": {
+      "abstract": [
+        {
+          "text": "A declarative description of the process of importing and exporting a transferable item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransferRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TransferRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "TransferRepresentation",
+      "type": "topic",
+      "url": "/documentation/coretransferable/transferrepresentation"
+    },
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation/Body-swift.associatedtype": {
+      "abstract": [
+        {
+          "text": "The transfer representation for the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Body"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable22TransferRepresentationP",
+          "text": "TransferRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation/Body-swift.associatedtype",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Body",
+      "type": "topic",
+      "url": "/documentation/coretransferable/transferrepresentation/body-swift.associatedtype"
+    },
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation/Item": {
+      "abstract": [
+        {
+          "text": "The type of the item that’s being transferred.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable0B0P",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation/Item",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Item",
+      "type": "topic",
+      "url": "/documentation/coretransferable/transferrepresentation/item"
+    },
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation/body-swift.property": {
+      "abstract": [
+        {
+          "text": "A builder expression that describes the process of importing and exporting an item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable22TransferRepresentationP4BodyQa",
+          "text": "Body"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation/body-swift.property",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "body",
+      "type": "topic",
+      "url": "/documentation/coretransferable/transferrepresentation/body-swift.property"
+    },
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation/exportingCondition(_:)": {
+      "abstract": [
+        {
+          "text": "Prevents the system from exporting an item if it does not meet the supplied condition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exportingCondition"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable22TransferRepresentationP4ItemQa",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "_ConditionalTransferRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation/exportingCondition(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exportingCondition(_:)",
+      "type": "topic",
+      "url": "/documentation/coretransferable/transferrepresentation/exportingcondition(_:)"
+    },
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation/suggestedFileName(_:)-2yln2": {
+      "abstract": [
+        {
+          "text": "Provides a filename to use if the receiver chooses to write the item to disk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "suggestedFileName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable22TransferRepresentationP",
+          "text": "TransferRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable22TransferRepresentationP4ItemQa",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": ">\n"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation/suggestedFileName(_:)-2yln2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "suggestedFileName(_:)",
+      "type": "topic",
+      "url": "/documentation/coretransferable/transferrepresentation/suggestedfilename(_:)-2yln2"
+    },
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation/suggestedFileName(_:)-47rg0": {
+      "abstract": [
+        {
+          "text": "Provides a filename to use if the receiver chooses to write the item to disk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "suggestedFileName"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable22TransferRepresentationP4ItemQa",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable22TransferRepresentationP",
+          "text": "TransferRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable22TransferRepresentationP4ItemQa",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": ">\n"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation/suggestedFileName(_:)-47rg0",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "suggestedFileName(_:)",
+      "type": "topic",
+      "url": "/documentation/coretransferable/transferrepresentation/suggestedfilename(_:)-47rg0"
+    },
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation/visibility(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies the kinds of apps and processes that can see an item in transit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "visibility"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable32TransferRepresentationVisibilityV",
+          "text": "TransferRepresentationVisibility"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable22TransferRepresentationP",
+          "text": "TransferRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable22TransferRepresentationP4ItemQa",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": ">\n"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation/visibility(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "visibility(_:)",
+      "type": "topic",
+      "url": "/documentation/coretransferable/transferrepresentation/visibility(_:)"
+    },
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable/Transferable": {
+      "abstract": [
+        {
+          "text": "A protocol that describes how a type interacts with transport APIs",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "such as drag and drop or copy and paste.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/Transferable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Transferable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Transferable",
+      "type": "topic",
+      "url": "/documentation/coretransferable/transferable"
+    },
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TupleTransferRepresentation": {
+      "abstract": [
+        {
+          "text": "A wrapper type for tuples that contain transfer representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TupleTransferRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TupleTransferRepresentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TupleTransferRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "TupleTransferRepresentation",
+      "type": "topic",
+      "url": "/documentation/coretransferable/tupletransferrepresentation"
+    },
+    "doc://com.apple.CoreTransferable/documentation/CoreTransferable/choosing-a-transfer-representation-for-a-model-type": {
+      "abstract": [
+        {
+          "text": "Define a custom representation for your data using a combination of built-in types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreTransferable/documentation/CoreTransferable/choosing-a-transfer-representation-for-a-model-type",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a transfer representation for a model type",
+      "type": "topic",
+      "url": "/documentation/coretransferable/choosing-a-transfer-representation-for-a-model-type"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.CoreTransferable/documentation/CoreTransferable/CodableRepresentation",
+        "doc://com.apple.CoreTransferable/documentation/CoreTransferable/DataRepresentation",
+        "doc://com.apple.CoreTransferable/documentation/CoreTransferable/FileRepresentation",
+        "doc://com.apple.CoreTransferable/documentation/CoreTransferable/ProxyRepresentation",
+        "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TupleTransferRepresentation"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CoreTransferable/documentation/CoreTransferable/Transferable",
+        "doc://com.apple.CoreTransferable/documentation/CoreTransferable/choosing-a-transfer-representation-for-a-model-type"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Implementing-a-transfer-representation",
+      "identifiers": [
+        "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation/body-swift.property",
+        "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation/Body-swift.associatedtype",
+        "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation/Item"
+      ],
+      "title": "Implementing a transfer representation"
+    },
+    {
+      "anchor": "Configuring-exports",
+      "identifiers": [
+        "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation/exportingCondition(_:)"
+      ],
+      "title": "Configuring exports"
+    },
+    {
+      "anchor": "Controlling-visibility",
+      "identifiers": [
+        "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation/visibility(_:)"
+      ],
+      "title": "Controlling visibility"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation/suggestedFileName(_:)-2yln2",
+        "doc://com.apple.CoreTransferable/documentation/CoreTransferable/TransferRepresentation/suggestedFileName(_:)-47rg0"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coretransferable/transferrepresentation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

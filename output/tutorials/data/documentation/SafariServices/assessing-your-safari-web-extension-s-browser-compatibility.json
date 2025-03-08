@@ -1,0 +1,1588 @@
+{
+  "abstract": [
+    {
+      "text": "Review your Safari web extension implementation plan, manifest keys, and JavaScript API usage for compatibility with other browsers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/assessing-your-safari-web-extension-s-browser-compatibility"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Assessing your Safari web extension’s browser compatibility"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Safari web extensions provide a number of features for compatibility with other browsers and a good developer experience, while ensuring the safety and privacy that users expect. Review your extension implementation or planned approach, ",
+              "type": "text"
+            },
+            {
+              "code": "manifest.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key usage, and selected JavaScript APIs for incompatibilities, and get suggestions and workarounds for potential issues.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Review-your-implementation-plan",
+          "level": 3,
+          "text": "Review your implementation plan",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider these factors when reviewing your implementation plan for your Safari web extension, and make adjustments as needed:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Safari web extensions support both the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "chrome.*",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "browser.*",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " namespaces. Use them as appropriate for your extension and your plan for browser compatibility.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Safari web extensions support both the callback and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Promise",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " approaches for asynchronous APIs. Use the most suitable approach for your code quality and browser compatibility.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Safari ignores file URL schemes in manifest permissions. If you use them, adjust your implementation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Review-your-manifest",
+          "level": 3,
+          "text": "Review your manifest",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Generally, Safari web extensions ignore any unsupported manifest keys, but you may need to develop workarounds or alternative approaches for any incompatibilities. Check for these keys in your manifest and take action where needed:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "In iOS, you need to set the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "persistent",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " attribute to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "false",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". With manifest version 3, all background pages are nonpersistent.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "background",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Supported in Safari 16 or later.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "devtools_page",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Not supported. Use ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "permissions.webRequest",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " instead for macOS only.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "permissions.webRequestBlocking",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The extension needs host permission.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "tabs",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Not supported. Handle Safari web extension updates with the App Store.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "update_url",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Supported in Safari 15.4 or later. ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ids",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " not supported.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "externally_connectable",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Safari 15.4 and later supports manifest versions 2 and 3. To evaluate compatibility for manifest keys in your extension, see Mozilla’s compatibility table at  ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Browser_compatibility_for_manifest.json",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Review-your-web-extension-API-usage",
+          "level": 3,
+          "text": "Review your web extension API usage",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Generally, Safari ignores any unsupported JavaScript APIs, but you may need to develop workarounds or alternative approaches for any incompatibilities. Check for these APIs in your Safari web extension and take action where needed:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Storage mechanism implemented, but syncing not supported.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "storage.sync",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Local storage limit is 5 MB. In Safari 15 or earlier, setting this to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "unlimited",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " increases the extension’s storage limit to 10 MB. In Safari 16 or later, setting this to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "unlimited",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " grants unlimited storage.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "storage",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Supported in Safari 16.4 or later.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "storage.session",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Not supported. Initiate an OAuth flow in a new tab.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "identity",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "setUninstallURL,",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "onUpdateURL",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " not supported.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "runtime",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "onChanged",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " not supported.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "cookies",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "onCreatedNavigationTarget",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "onReferenceFragmentUpdated",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "onTabReplaced",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "onHistoryStateUpdated",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " not supported. ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "transitionType",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "transitionQualifiers",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " not supported.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "webNavigation",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Supported in Safari 16 or later.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "devtools",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "injectImmediately",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " not supported.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "scripting.executeScript",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "origin",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "allFrames",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "frameIds",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " not supported.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "scripting.insertCSS",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "origin",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "allFrames",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "frameIds",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " not supported.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "scripting.removeCSS",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "registerContentScripts",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "getRegisteredContentScripts",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "unregisterContentScripts",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "updateContentScripts",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": "  supported in Safari 16.4 or later.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "scripting",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Not supported.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "tabs.highlighted",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "highlighted",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " not supported.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "tabs.update",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Not supported.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "tabs.move",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Returns ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "und",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " (undefined language) for macOS 10.15 and earlier. May include country code in the response; for example, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "en-US",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " instead of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "en",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "tabs.detectLanguage",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Doesn’t require ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "all_urls",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " permission.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "tabs.captureVisibleTab",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "matchAboutBlank",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "runAt",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " not supported.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "tabs.executeScript",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "matchAboutBlank",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "runAt",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "cssOrigin",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "allFrames",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "frameId",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " not supported.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "tabs.insertCSS",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "frameId",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "allFrames",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "matchAboutBlank",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "cssOrigin",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " not supported.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "tabs.removeCSS",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Extensions can’t change zoom settings on websites.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "tabs.getZoomSettings",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ", ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "tabs.setZoomSettings",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ", ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "tabs.onZoomChange",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Not supported in iOS.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "webRequest",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "BlockingResponse",
+              "type": "codeVoice"
+            },
+            {
+              "text": " not supported.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Blocking requests not supported.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "opt_extraInfoSpec",
+              "type": "codeVoice"
+            },
+            {
+              "text": " not supported for any of the events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Supported.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "webRequest.RequestFilter",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ", ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "webRequest.ResourceType",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "cookies",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " not supported.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "webRequest.HTTPHeaders",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "panel",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "app",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "devtool",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " types not supported.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "WindowType",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Not supported in iOS.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "contextMenus, menus",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "windows.create",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "windows.remove",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "windows.update",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " not supported in iOS.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "windows",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To evaluate compatibility for JavaScript extension APIs in your Safari web extension, see Mozilla’s compatibility table at ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Browser_support_for_JavaScript_APIs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/adopting-new-safari-web-extension-apis": {
+      "abstract": [
+        {
+          "text": "Improve your web extension in Safari with a non-persistent background page and new tab-override customization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adopting-new-safari-web-extension-apis",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adopting New Safari Web Extension APIs",
+      "type": "topic",
+      "url": "/documentation/safariservices/adopting-new-safari-web-extension-apis"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/optimizing-your-web-extension-for-safari": {
+      "abstract": [
+        {
+          "text": "Support Dark Mode, reduce memory and power usage, and ensure feature compatibility to improve your web extension experience in Safari and web apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/optimizing-your-web-extension-for-safari",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing your web extension for Safari",
+      "type": "topic",
+      "url": "/documentation/safariservices/optimizing-your-web-extension-for-safari"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions": {
+      "abstract": [
+        {
+          "text": "Create web extensions that work in Safari and other browsers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari web extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-web-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/syncing-safari-web-extensions-across-devices-and-platforms": {
+      "abstract": [
+        {
+          "text": "Let users install your extension on one device and then use and manage the extension on all their other iOS and macOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/syncing-safari-web-extensions-across-devices-and-platforms",
+      "kind": "article",
+      "role": "article",
+      "title": "Syncing Safari web extensions across devices and platforms",
+      "type": "topic",
+      "url": "/documentation/safariservices/syncing-safari-web-extensions-across-devices-and-platforms"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Use developer resources to investigate and resolve common problems with Safari web extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-web-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Troubleshooting your Safari web extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/troubleshooting-your-safari-web-extension"
+    },
+    "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Browser_compatibility_for_manifest.json": {
+      "identifier": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Browser_compatibility_for_manifest.json",
+      "title": "Browser compatibility for manifest.json",
+      "titleInlineContent": [
+        {
+          "text": "Browser compatibility for manifest.json",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Browser_compatibility_for_manifest.json"
+    },
+    "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Browser_support_for_JavaScript_APIs": {
+      "identifier": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Browser_support_for_JavaScript_APIs",
+      "title": "Browser support for JavaScript APIs",
+      "titleInlineContent": [
+        {
+          "text": "Browser support for JavaScript APIs",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Browser_support_for_JavaScript_APIs"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Extension-improvements",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/optimizing-your-web-extension-for-safari",
+        "doc://com.apple.safariservices/documentation/SafariServices/adopting-new-safari-web-extension-apis",
+        "doc://com.apple.safariservices/documentation/SafariServices/syncing-safari-web-extensions-across-devices-and-platforms",
+        "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-web-extension"
+      ],
+      "title": "Extension improvements"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Extension-improvements",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/optimizing-your-web-extension-for-safari",
+                "doc://com.apple.safariservices/documentation/SafariServices/adopting-new-safari-web-extension-apis",
+                "doc://com.apple.safariservices/documentation/SafariServices/syncing-safari-web-extensions-across-devices-and-platforms",
+                "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-web-extension"
+              ],
+              "title": "Extension improvements"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/assessing-your-safari-web-extension-s-browser-compatibility"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/assessing-your-safari-web-extension-s-browser-compatibility"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

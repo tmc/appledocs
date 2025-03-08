@@ -1,0 +1,1259 @@
+{
+  "abstract": [
+    {
+      "text": "An object containing information broadcast to registered observers that bridges to ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notification",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": "; use ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+      "isActive": false,
+      "type": "reference"
+    },
+    {
+      "text": " when you need reference semantics or other Foundation-specific behavior. ",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/notifications",
+        "doc://com.apple.documentation/documentation/foundation/notification"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsnotification"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1416040,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSNotification",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSNotification"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSNotification"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSNotification"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A notification contains a name, an object, and an optional dictionary, and is broadcast to by instances of  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The name is a tag identifying the notification. The object is any object that the poster of the notification wants to send to observers of that notification (typically, the object posting the notification). The dictionary stores other related objects, if any. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects are immutable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t usually create your own notifications directly, but instead call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1415812-post",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1410608-post",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Swift overlay to the Foundation framework provides the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/notification",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure, which bridges to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " class. For more information about value types, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1752769",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1752686",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1653683",
+          "level": 3,
+          "text": "Object Comparison",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The objects of a notification are compared using pointer equality for local notifications. Distributed notifications use strings as their objects, and those strings are compared using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol/1418795-isequal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", because pointer equality doesn’t make sense across process boundaries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1653712",
+          "level": 3,
+          "text": "Creating Subclasses",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to contain information in addition to the notification name, object, and dictionary. This extra data must be agreed upon between notifiers and observers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is a class cluster with no instance variables. As such, you must subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " and override the primitive methods ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/1416472-name",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/1414469-object",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/1409222-userinfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can choose any designated initializer you like, but be sure that your initializer does not call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/1412595-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on ",
+              "type": "text"
+            },
+            {
+              "code": "super",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is not meant to be instantiated directly, and its ",
+              "type": "text"
+            },
+            {
+              "code": "init",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method raises an exception).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1695368": {
+      "identifier": "devLink-1695368",
+      "title": "Notification Programming Topics",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Notifications/Introduction/introNotifications.html#//apple_ref/doc/uid/10000043i"
+    },
+    "devLink-1752686": {
+      "identifier": "devLink-1752686",
+      "title": "Using Swift with Cocoa and Objective-C (Swift 4.1)",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216"
+    },
+    "devLink-1752769": {
+      "identifier": "devLink-1752769",
+      "title": "Working with Cocoa Frameworks",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DistributedNotificationCenter",
+      "type": "topic",
+      "url": "/documentation/foundation/distributednotificationcenter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notification": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Notification",
+      "type": "topic",
+      "url": "/documentation/foundation/notification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notification/referencetype": {
+      "abstract": [
+        {
+          "text": "An alias for this value type's equivalent reference type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "Notification.ReferenceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notification/referencetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Notification.ReferenceType",
+      "type": "topic",
+      "url": "/documentation/foundation/notification/referencetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NotificationCenter",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter/1410608-post": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1410608-post",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "post(name:object:userInfo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter/1410608-post"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter/1415812-post": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1415812-post",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "post(name:object:)",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter/1415812-post"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notifications": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notifications",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Notifications",
+      "type": "topic",
+      "url": "/documentation/foundation/notifications"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification": {
+      "abstract": [
+        {
+          "text": "An object containing information broadcast to registered observers that bridges to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/notification",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": "; use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/1409222-userinfo": {
+      "abstract": [
+        {
+          "text": "The user information dictionary associated with the notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/1409222-userinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userInfo",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/1409222-userinfo"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/1412464-init": {
+      "abstract": [
+        {
+          "text": "Initializes a notification with the data from an unarchiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/1412464-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/1412464-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/1412595-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/1412595-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/1412595-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/1414469-object": {
+      "abstract": [
+        {
+          "text": "The object associated with the notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/1414469-object",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "object",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/1414469-object"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/1415764-init": {
+      "abstract": [
+        {
+          "text": "Initializes a notification with a specified name, object, and user information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name, "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/1415764-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(name:object:userInfo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/1415764-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/1416472-name": {
+      "abstract": [
+        {
+          "text": "The name of the notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/1416472-name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/1416472-name"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/1417440-init": {
+      "abstract": [
+        {
+          "text": "Returns a new notification object with a specified name and object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name, "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/1417440-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(name:object:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/1417440-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/4380133-avplayabledidcompleteenterfullsc": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayableDidCompleteEnterFullscreen"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/4380133-avplayabledidcompleteenterfullsc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayableDidCompleteEnterFullscreen",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/4380133-avplayabledidcompleteenterfullsc"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/4380134-avplayabledidcompleteexitfullscr": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayableDidCompleteExitFullscreen"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/4380134-avplayabledidcompleteexitfullscr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayableDidCompleteExitFullscreen",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/4380134-avplayabledidcompleteexitfullscr"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/4380135-avplayabledidenterviewingmodeimm": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayableDidEnterViewingModeImmersive"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/4380135-avplayabledidenterviewingmodeimm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayableDidEnterViewingModeImmersive",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/4380135-avplayabledidenterviewingmodeimm"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/4380136-avplayabledidenterviewingmodemon": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayableDidEnterViewingModeMono"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/4380136-avplayabledidenterviewingmodemon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayableDidEnterViewingModeMono",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/4380136-avplayabledidenterviewingmodemon"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/4380137-avplayabledidenterviewingmodespa": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayableDidEnterViewingModeSpatial"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/4380137-avplayabledidenterviewingmodespa",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayableDidEnterViewingModeSpatial",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/4380137-avplayabledidenterviewingmodespa"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/4380138-avplayabledidenterviewingmodeste": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayableDidEnterViewingModeStereo"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/4380138-avplayabledidenterviewingmodeste",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayableDidEnterViewingModeStereo",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/4380138-avplayabledidenterviewingmodeste"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/4380139-avplayabledidpause": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayableDidPause"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/4380139-avplayabledidpause",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayableDidPause",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/4380139-avplayabledidpause"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/4380140-avplayabledidplay": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayableDidPlay"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/4380140-avplayabledidplay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayableDidPlay",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/4380140-avplayabledidplay"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/4380141-avplayabledidtoggleinline": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayableDidToggleInline"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/4380141-avplayabledidtoggleinline",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayableDidToggleInline",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/4380141-avplayabledidtoggleinline"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/4380142-avplayabledidtogglemuted": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayableDidToggleMuted"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/4380142-avplayabledidtogglemuted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayableDidToggleMuted",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/4380142-avplayabledidtogglemuted"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/4380143-avplayablevideoboundsdidchange": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayableVideoBoundsDidChange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/4380143-avplayablevideoboundsdidchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayableVideoBoundsDidChange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/4380143-avplayablevideoboundsdidchange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/4380144-avplayablewantspipstart": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayableWantsPiPStart"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/4380144-avplayablewantspipstart",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayableWantsPiPStart",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/4380144-avplayablewantspipstart"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/4380145-avplayablewantspipstop": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayableWantsPiPStop"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/4380145-avplayablewantspipstop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayableWantsPiPStop",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/4380145-avplayablewantspipstop"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name": {
+      "abstract": [
+        {
+          "text": "A structure that defines the name of a notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification.Name",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol/1418795-isequal": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol/1418795-isequal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqual(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol/1418795-isequal"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscoding",
+        "doc://com.apple.documentation/documentation/foundation/nscopying"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/notification/referencetype"
+      ],
+      "title": "Using Reference Types"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "devLink-1695368"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1653742",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/1412464-init",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/1417440-init",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/1415764-init",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Notifications"
+    },
+    {
+      "anchor": "1653803",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/1416472-name",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/1414469-object",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/1409222-userinfo"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Notification Information"
+    },
+    {
+      "anchor": "4107542",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/4380133-avplayabledidcompleteenterfullsc",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/4380134-avplayabledidcompleteexitfullscr",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/4380135-avplayabledidenterviewingmodeimm",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/4380136-avplayabledidenterviewingmodemon",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/4380137-avplayabledidenterviewingmodespa",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/4380138-avplayabledidenterviewingmodeste",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/4380139-avplayabledidpause",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/4380140-avplayabledidplay",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/4380141-avplayabledidtoggleinline",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/4380142-avplayabledidtogglemuted",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/4380143-avplayablevideoboundsdidchange",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/4380144-avplayablewantspipstart",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/4380145-avplayablewantspipstop"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsnotification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsnotification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

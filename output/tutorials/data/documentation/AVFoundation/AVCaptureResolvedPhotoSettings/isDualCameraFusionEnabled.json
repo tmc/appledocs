@@ -1,0 +1,1342 @@
+{
+  "abstract": [
+    {
+      "text": "A Boolean value indicating whether this capture combines image data from a dual camera.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isVirtualDeviceFusionEnabled",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isDualCameraFusionEnabled"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVCaptureResolvedPhotoSettings(py)dualCameraFusionEnabled",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "isDualCameraFusionEnabled"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sb",
+        "text": "Bool"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "dualCameraFusionEnabled"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "13.0",
+        "introducedAt": "10.2",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "13.0",
+        "introducedAt": "10.2",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "13.1",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "isDualCameraFusionEnabled"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "isDualCameraFusionEnabled"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This property corresponds to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isAutoDualCameraFusionEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When this value is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", a dual-camera device automatically combines samples from both cameras to produce a higher quality image. This property applies only when using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/DeviceType-swift.struct/builtInDualCamera",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " device type on supported devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you specify automatic image fusion when requesting a capture, the device automatically chooses whether to use image fusion based on the scene conditions at the moment of capture. Therefore, you don’t know whether the system uses image fusion until right before the moment of capture. When the photo output calls your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:willBeginCaptureFor:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method (or other delegate methods that occur later in the capture process), you can use this property to determine whether image fusion is active.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/DeviceType-swift.struct/builtInDualCamera": {
+      "abstract": [
+        {
+          "text": "A built-in camera device type that consists of a wide-angle and telephoto camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "builtInDualCamera"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVCaptureDeviceType",
+          "text": "DeviceType"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/DeviceType-swift.struct/builtInDualCamera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDeviceTypeBuiltInDualCamera"
+        }
+      ],
+      "role": "symbol",
+      "title": "builtInDualCamera",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/devicetype-swift.struct/builtindualcamera"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:willBeginCaptureFor:)": {
+      "abstract": [
+        {
+          "text": "Notifies the delegate that the capture output has resolved settings and will soon begin its capture process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "photoOutput"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCapturePhotoOutput",
+          "text": "AVCapturePhotoOutput"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "willBeginCaptureFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureResolvedPhotoSettings",
+          "text": "AVCaptureResolvedPhotoSettings"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:willBeginCaptureFor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "captureOutput:willBeginCaptureForResolvedSettings:"
+        }
+      ],
+      "role": "symbol",
+      "title": "photoOutput(_:willBeginCaptureFor:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotocapturedelegate/photooutput(_:willbegincapturefor:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings": {
+      "abstract": [
+        {
+          "text": "A specification of the features and settings to use for a single photo capture request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhotoSettings",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotosettings"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isAutoDualCameraFusionEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that specifies whether captures automatically combine data from a dual camera device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAutoDualCameraFusionEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/isAutoDualCameraFusionEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autoDualCameraFusionEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAutoDualCameraFusionEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotosettings/isautodualcamerafusionenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings": {
+      "abstract": [
+        {
+          "text": "A description of the features and settings in use for an in-progress or complete photo capture request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureResolvedPhotoSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureResolvedPhotoSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureResolvedPhotoSettings",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureresolvedphotosettings"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isContentAwareDistortionCorrectionEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the system applies content-aware distortion correction when capturing the photo.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isContentAwareDistortionCorrectionEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isContentAwareDistortionCorrectionEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentAwareDistortionCorrectionEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isContentAwareDistortionCorrectionEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureresolvedphotosettings/iscontentawaredistortioncorrectionenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isDualCameraFusionEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether this capture combines image data from a dual camera.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDualCameraFusionEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isDualCameraFusionEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dualCameraFusionEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isDualCameraFusionEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureresolvedphotosettings/isdualcamerafusionenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isFastCapturePrioritizationEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the system uses fast capture prioritization when capturing the photo.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isFastCapturePrioritizationEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isFastCapturePrioritizationEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fastCapturePrioritizationEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isFastCapturePrioritizationEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureresolvedphotosettings/isfastcaptureprioritizationenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isFlashEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the camera flash fires for this capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isFlashEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isFlashEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "flashEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isFlashEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureresolvedphotosettings/isflashenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isRedEyeReductionEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the camera automatically reduces red-eye when capturing photos.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isRedEyeReductionEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isRedEyeReductionEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "redEyeReductionEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isRedEyeReductionEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureresolvedphotosettings/isredeyereductionenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isStillImageStabilizationEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether this capture uses image stabilization.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isStillImageStabilizationEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isStillImageStabilizationEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stillImageStabilizationEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isStillImageStabilizationEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureresolvedphotosettings/isstillimagestabilizationenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isVirtualDeviceFusionEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that specifies whether the system automatically uses virtual device image fusion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isVirtualDeviceFusionEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isVirtualDeviceFusionEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "virtualDeviceFusionEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isVirtualDeviceFusionEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureresolvedphotosettings/isvirtualdevicefusionenabled"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@BOOL": {
+      "abstract": [
+        {
+          "text": "Type to represent a Boolean value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BOOL",
+      "type": "topic",
+      "url": "/documentation/objectivec/bool"
+    },
+    "doc://com.externally.resolved.symbol/s:Sb": {
+      "abstract": [
+        {
+          "text": "A value type whose instances are either `true` or `false`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/Swift/Bool"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Examining-Photo-Capture-Settings",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isFlashEnabled",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isRedEyeReductionEnabled",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isVirtualDeviceFusionEnabled",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isFastCapturePrioritizationEnabled",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isContentAwareDistortionCorrectionEnabled",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isStillImageStabilizationEnabled"
+      ],
+      "title": "Examining Photo Capture Settings"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "13.0",
+              "introducedAt": "10.2",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "13.0",
+              "introducedAt": "10.2",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "13.1",
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "dualCameraFusionEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dualCameraFusionEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfoundation/documentation/AVFoundation",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Examining-Photo-Capture-Settings",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isFlashEnabled",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isRedEyeReductionEnabled",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isVirtualDeviceFusionEnabled",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isFastCapturePrioritizationEnabled",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isContentAwareDistortionCorrectionEnabled",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isStillImageStabilizationEnabled"
+              ],
+              "title": "Examining Photo Capture Settings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "readonly"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "getter"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "="
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "isDualCameraFusionEnabled"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@BOOL",
+                    "text": "BOOL"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "dualCameraFusionEnabled"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureResolvedPhotoSettings/isVirtualDeviceFusionEnabled",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoCaptureDelegate~1photoOutput(_:willBeginCaptureFor:)/title",
+          "value": "captureOutput:willBeginCaptureForResolvedSettings:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoCaptureDelegate~1photoOutput(_:willBeginCaptureFor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "captureOutput:willBeginCaptureForResolvedSettings:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureResolvedPhotoSettings~1isVirtualDeviceFusionEnabled/title",
+          "value": "virtualDeviceFusionEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureResolvedPhotoSettings~1isVirtualDeviceFusionEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "virtualDeviceFusionEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings/title",
+          "value": "AVCapturePhotoSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1DeviceType-swift.struct~1builtInDualCamera/title",
+          "value": "AVCaptureDeviceTypeBuiltInDualCamera"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1DeviceType-swift.struct~1builtInDualCamera/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceTypeBuiltInDualCamera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureResolvedPhotoSettings~1isStillImageStabilizationEnabled/title",
+          "value": "stillImageStabilizationEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureResolvedPhotoSettings~1isStillImageStabilizationEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "stillImageStabilizationEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureResolvedPhotoSettings~1isFlashEnabled/title",
+          "value": "flashEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureResolvedPhotoSettings~1isFlashEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "flashEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureResolvedPhotoSettings~1isDualCameraFusionEnabled/title",
+          "value": "dualCameraFusionEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureResolvedPhotoSettings~1isDualCameraFusionEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dualCameraFusionEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureResolvedPhotoSettings~1isFastCapturePrioritizationEnabled/title",
+          "value": "fastCapturePrioritizationEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureResolvedPhotoSettings~1isFastCapturePrioritizationEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fastCapturePrioritizationEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureResolvedPhotoSettings/title",
+          "value": "AVCaptureResolvedPhotoSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureResolvedPhotoSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureResolvedPhotoSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureResolvedPhotoSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureResolvedPhotoSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1isAutoDualCameraFusionEnabled/title",
+          "value": "autoDualCameraFusionEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1isAutoDualCameraFusionEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autoDualCameraFusionEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureResolvedPhotoSettings~1isRedEyeReductionEnabled/title",
+          "value": "redEyeReductionEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureResolvedPhotoSettings~1isRedEyeReductionEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "redEyeReductionEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureResolvedPhotoSettings~1isContentAwareDistortionCorrectionEnabled/title",
+          "value": "contentAwareDistortionCorrectionEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureResolvedPhotoSettings~1isContentAwareDistortionCorrectionEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contentAwareDistortionCorrectionEnabled"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/avcaptureresolvedphotosettings/isdualcamerafusionenabled"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/avcaptureresolvedphotosettings/isdualcamerafusionenabled"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

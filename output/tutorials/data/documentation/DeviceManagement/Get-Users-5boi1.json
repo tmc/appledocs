@@ -1,0 +1,514 @@
+{
+  "abstract": [
+    {
+      "text": "Get information about a set of users.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "This legacy API is currently in maintenance mode. Apple won’t add any new functionality to it.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Users-5boi1"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:vpp:post:getVPPUsersSrv",
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Get Users"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "Device Assignment Services"
+      },
+      {
+        "beta": false,
+        "name": "VPP License Management"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get Users"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://vpp.itunes.apple.com/mdm/"
+        },
+        {
+          "kind": "path",
+          "text": "getVPPUsersSrv"
+        }
+      ]
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetVppUsersRequest",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "mdm-apps:vpp:GetVppUsersRequest",
+          "text": "GetVppUsersRequest"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "missing",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetVppUsersResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:GetVppUsersResponse",
+              "text": "GetVppUsersResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/retrieving-a-large-record-set",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/handling-error-responses"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "anchor": "Example-Request-and-Response",
+          "level": 3,
+          "text": "Example Request and Response",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"batchToken\": null,",
+                    "  \"sinceModifiedToken\": null,",
+                    "  \"includeRetired\": 1,",
+                    "  \"includeRetiredOnly\": false,",
+                    "  \"ifModifiedSince\": null,",
+                    "  \"overrideIndex\": null,",
+                    "  \"sToken\": \"h40Gte9aQnZFDNM39IUkRPCsQDxBxbZB4Wy34pxefOuQkeeb3h2 a5Rlopo4KDn3MrFKf4CM3OY+WGAoZ1cD6iZ6yzsMk1+5PVBNc66YS6ZQ=\"",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"clientContext\": \"{\\\"guid\\\":\\\"b92\\\",\\\"hostname\\\":\\\"test.test.org\\\",\\\"ac2\\\":1}\",",
+                    "  \"batchCount\": 4,",
+                    "  \"expirationMillis\": 1898103480266,",
+                    "  \"location\": {",
+                    "    \"locationId\": 22222222222,",
+                    "    \"locationName\": \"LocationName\"",
+                    "  },",
+                    "  \"sinceModifiedToken\": \"H4sIAAAAAAAAAKtWMFCwVdBQMDQwMDEwV9C0VlAoyS9JzHFKLEnOSC12yy/NS3EGEiVAVYZAycw03/yUzLTM1JTgzLzkVN/MnJzMYpCcqamJiaGlkbGBiakZiiEw3QYg0cqCVCBTqRisF2qQEsjYvOSc0pTUoNSSzKLUFIhdtQAHYCyLnAAAAA==\",",
+                    "  \"status\": 0,",
+                    "  \"totalBatchCount\": \"0\",",
+                    "  \"totalCount\": 4,",
+                    "  \"uId\": \"100978\",",
+                    "  \"users\": [",
+                    "    {",
+                    "      \"userId\": 1,",
+                    "      \"email\": \"user1@test.com\",",
+                    "      \"clientUserIdStr\": \"200006\",",
+                    "      \"status\": \"Associated\",",
+                    "      \"itsIdHash\": \"C2Wwd8LcIaE2v6f2/mvu82Gs/Lc=\"",
+                    "    },",
+                    "    {",
+                    "      \"userId\": 2,",
+                    "      \"email\": \"user2@test.com\",",
+                    "      \"clientUserIdStr\": \"200007\",",
+                    "      \"status\": \"Associated\",",
+                    "      \"itsIdHash\": \"*leSKk3IaE2vk2KLmv2k3/200D3=\"",
+                    "    },",
+                    "    {",
+                    "      \"userId\": 3,",
+                    "      \"email\": \"user3@test.com\",",
+                    "      \"clientUserIdStr\": \"user3@test.com\",",
+                    "      \"status\": \"Registered\",",
+                    "      \"inviteCode\": \"f551b37da07146628e8dcbe0111f0364\",",
+                    "      \"inviteUrl\": \"https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/associateVPPUserWithITSAccount?inviteCode=f551b37da07146628e8dcbe0111f0364&mt=8\"",
+                    "    },",
+                    "    {",
+                    "      \"userId\": 4,",
+                    "      \"email\": \"user4@test.com\",",
+                    "      \"clientUserIdStr\": \"user4@test.com\",",
+                    "      \"status\": \"Registered\",",
+                    "      \"inviteUrl\": \"https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/associateVPPUserWithITSAccount?inviteCode=859c5aa3485a48918a5f4f70c5629ec8&mt=8\",",
+                    "      \"inviteCode\": \"859c5aa3485a48918a5f4f70c5629ec8\"",
+                    "    }",
+                    "  ]",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Edit-a-User": {
+      "abstract": [
+        {
+          "text": "Modify details about a user.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Edit-a-User",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Edit a User"
+        }
+      ],
+      "role": "symbol",
+      "title": "Edit a User",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/edit-a-user"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Users-5boi1": {
+      "abstract": [
+        {
+          "text": "Get information about a set of users.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Users-5boi1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Users"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Users",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-users-5boi1"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-a-User": {
+      "abstract": [
+        {
+          "text": "Get information about a particular user.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-a-User",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a User"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a User",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-a-user"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetVppUsersRequest": {
+      "abstract": [
+        {
+          "text": "The request for the users’ details service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetVppUsersRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetVppUsersRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GetVppUsersRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "GetVppUsersRequest",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/getvppusersrequest"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetVppUsersResponse": {
+      "abstract": [
+        {
+          "text": "The response from the users’ details service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetVppUsersResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetVppUsersResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GetVppUsersResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "GetVppUsersResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/getvppusersresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Register-a-User": {
+      "abstract": [
+        {
+          "text": "Register a user with the volume-purchase program.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Register-a-User",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Register a User"
+        }
+      ],
+      "role": "symbol",
+      "title": "Register a User",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/register-a-user"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Retire-a-User": {
+      "abstract": [
+        {
+          "text": "Retire a user account.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Retire-a-User",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Retire a User"
+        }
+      ],
+      "role": "symbol",
+      "title": "Retire a User",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/retire-a-user"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/handling-error-responses": {
+      "abstract": [
+        {
+          "text": "Investigate service request errors and troubleshoot solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/handling-error-responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Error Responses",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/handling-error-responses"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/retrieving-a-large-record-set": {
+      "abstract": [
+        {
+          "text": "Efficiently work with large record sets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/retrieving-a-large-record-set",
+      "kind": "article",
+      "role": "article",
+      "title": "Retrieving a Large Record Set",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/retrieving-a-large-record-set"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-a-User",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Register-a-User",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Edit-a-User",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Retire-a-User"
+      ],
+      "title": "User Management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Request-and-Response",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetVppUsersRequest",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetVppUsersResponse"
+      ],
+      "title": "Request and Response"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/get-users-5boi1"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

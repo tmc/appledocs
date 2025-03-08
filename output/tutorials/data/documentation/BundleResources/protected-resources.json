@@ -1,0 +1,3136 @@
+{
+  "abstract": [
+    {
+      "text": "Control an app’s access to protected system services and user data.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.bundleresources/documentation/BundleResources",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.bundleresources/documentation/BundleResources/protected-resources"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Bundle Resources"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Protected resources"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before your app can access certain protected resources, like the Bluetooth interface, location information, or the user’s photos, the system asks the user for permission on behalf of your app. To signal that your app needs the access, you add a ",
+              "type": "text"
+            },
+            {
+              "code": "UsageDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to your app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You set the value associated with the key to a string that explains why your app needs access. The system displays this string when prompting the user, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/requesting-access-to-protected-resources",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources": {
+      "abstract": [
+        {
+          "text": "Resources located in an app, framework, or plugin bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Bundle Resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List": {
+      "abstract": [
+        {
+          "text": "A resource containing key-value pairs that identify and configure a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+      "kind": "symbol",
+      "name": "Information Property List",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Information Property List"
+        }
+      ],
+      "role": "symbol",
+      "title": "Information Property List",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ITSAppUsesNonExemptEncryption": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the app uses encryption.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "App Uses Non-Exempt Encryption",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ITSAppUsesNonExemptEncryption",
+      "kind": "symbol",
+      "name": "ITSAppUsesNonExemptEncryption",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ITSAppUsesNonExemptEncryption"
+        }
+      ],
+      "role": "symbol",
+      "title": "ITSAppUsesNonExemptEncryption",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/itsappusesnonexemptencryption"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ITSEncryptionExportComplianceCode": {
+      "abstract": [
+        {
+          "text": "The export compliance code provided by App Store Connect for apps that require it.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "App Encryption Export Compliance Code",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ITSEncryptionExportComplianceCode",
+      "kind": "symbol",
+      "name": "ITSEncryptionExportComplianceCode",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ITSEncryptionExportComplianceCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "ITSEncryptionExportComplianceCode",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/itsencryptionexportcompliancecode"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NFCReaderUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the device’s NFC hardware.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - NFC Scan Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NFCReaderUsageDescription",
+      "kind": "symbol",
+      "name": "NFCReaderUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NFCReaderUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCReaderUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nfcreaderusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppDataUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app needs to access files in other apps’ sandbox containers.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Other Application Data Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppDataUsageDescription",
+      "kind": "symbol",
+      "name": "NSAppDataUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAppDataUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAppDataUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsappdatausagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppleEventsUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting the ability to send Apple events.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - AppleEvents Sending Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppleEventsUsageDescription",
+      "kind": "symbol",
+      "name": "NSAppleEventsUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAppleEventsUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAppleEventsUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsappleeventsusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s media library.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Media Library Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription",
+      "kind": "symbol",
+      "name": "NSAppleMusicUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAppleMusicUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAppleMusicUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsapplemusicusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppleScriptEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether AppleScript is enabled.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Scriptable",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppleScriptEnabled",
+      "kind": "symbol",
+      "name": "NSAppleScriptEnabled",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAppleScriptEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAppleScriptEnabled",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsapplescriptenabled"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSBluetoothAlwaysUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app needs access to Bluetooth.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Bluetooth Always Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSBluetoothAlwaysUsageDescription",
+      "kind": "symbol",
+      "name": "NSBluetoothAlwaysUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSBluetoothAlwaysUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSBluetoothAlwaysUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsbluetoothalwaysusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSBluetoothPeripheralUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting the ability to connect to Bluetooth peripherals.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "ideTitle": "Privacy - Bluetooth Peripheral Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSBluetoothPeripheralUsageDescription",
+      "kind": "symbol",
+      "name": "NSBluetoothPeripheralUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSBluetoothPeripheralUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSBluetoothPeripheralUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsbluetoothperipheralusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSCalendarsFullAccessUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells people why the app is requesting access to read and write their calendar data.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Calendars Full Access Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSCalendarsFullAccessUsageDescription",
+      "kind": "symbol",
+      "name": "NSCalendarsFullAccessUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCalendarsFullAccessUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCalendarsFullAccessUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nscalendarsfullaccessusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSCalendarsUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells people why the app is requesting access to their calendar data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "ideTitle": "Privacy - Calendars Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSCalendarsUsageDescription",
+      "kind": "symbol",
+      "name": "NSCalendarsUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCalendarsUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCalendarsUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nscalendarsusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSCalendarsWriteOnlyAccessUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells people why the app is requesting access to create calendar events.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Calendars Write Only Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSCalendarsWriteOnlyAccessUsageDescription",
+      "kind": "symbol",
+      "name": "NSCalendarsWriteOnlyAccessUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCalendarsWriteOnlyAccessUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCalendarsWriteOnlyAccessUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nscalendarswriteonlyaccessusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the device’s camera.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Camera Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription",
+      "kind": "symbol",
+      "name": "NSCameraUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCameraUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCameraUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nscamerausagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSContactsUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s contacts.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Contacts Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSContactsUsageDescription",
+      "kind": "symbol",
+      "name": "NSContactsUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSContactsUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSContactsUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nscontactsusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDesktopFolderUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app needs access to the user’s Desktop folder.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Desktop Folder Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDesktopFolderUsageDescription",
+      "kind": "symbol",
+      "name": "NSDesktopFolderUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDesktopFolderUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDesktopFolderUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsdesktopfolderusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDocumentsFolderUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app needs access to the user’s Documents folder.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Documents Folder Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDocumentsFolderUsageDescription",
+      "kind": "symbol",
+      "name": "NSDocumentsFolderUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDocumentsFolderUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDocumentsFolderUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsdocumentsfolderusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDownloadsFolderUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app needs access to the user’s Downloads folder.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Downloads Folder Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDownloadsFolderUsageDescription",
+      "kind": "symbol",
+      "name": "NSDownloadsFolderUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDownloadsFolderUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDownloadsFolderUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsdownloadsfolderusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSFaceIDUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting the ability to authenticate with Face ID.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Face ID Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSFaceIDUsageDescription",
+      "kind": "symbol",
+      "name": "NSFaceIDUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFaceIDUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFaceIDUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsfaceidusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSFallDetectionUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message to the user that explains the app’s request for permission to access fall detection event data.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Fall Detection Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSFallDetectionUsageDescription",
+      "kind": "symbol",
+      "name": "NSFallDetectionUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFallDetectionUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFallDetectionUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsfalldetectionusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSFileProviderDomainUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app needs access to files managed by a file provider.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Access to a File Provider Domain Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSFileProviderDomainUsageDescription",
+      "kind": "symbol",
+      "name": "NSFileProviderDomainUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderDomainUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderDomainUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsfileproviderdomainusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSFinancialDataUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to financial data stored in Wallet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSFinancialDataUsageDescription",
+      "kind": "symbol",
+      "name": "NSFinancialDataUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFinancialDataUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFinancialDataUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsfinancialdatausagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSGKFriendListUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app needs access to their Game Center friends list.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSGKFriendListUsageDescription",
+      "kind": "symbol",
+      "name": "NSGKFriendListUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSGKFriendListUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSGKFriendListUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsgkfriendlistusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHandsTrackingUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to track the user’s hand position and location.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHandsTrackingUsageDescription",
+      "kind": "symbol",
+      "name": "NSHandsTrackingUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHandsTrackingUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHandsTrackingUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nshandstrackingusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHealthClinicalHealthRecordsShareUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message to the user that explains why the app requested permission to read clinical records.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Health Records Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHealthClinicalHealthRecordsShareUsageDescription",
+      "kind": "symbol",
+      "name": "NSHealthClinicalHealthRecordsShareUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHealthClinicalHealthRecordsShareUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHealthClinicalHealthRecordsShareUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nshealthclinicalhealthrecordsshareusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHealthRequiredReadAuthorizationTypeIdentifiers": {
+      "abstract": [
+        {
+          "text": "The clinical record data types that your app must get permission to read.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHealthRequiredReadAuthorizationTypeIdentifiers",
+      "kind": "symbol",
+      "name": "NSHealthRequiredReadAuthorizationTypeIdentifiers",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHealthRequiredReadAuthorizationTypeIdentifiers"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHealthRequiredReadAuthorizationTypeIdentifiers",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nshealthrequiredreadauthorizationtypeidentifiers"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHealthShareUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message to the user that explains why the app requested permission to read samples from the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Health Share Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHealthShareUsageDescription",
+      "kind": "symbol",
+      "name": "NSHealthShareUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHealthShareUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHealthShareUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nshealthshareusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHealthUpdateUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message to the user that explains why the app requested permission to save samples to the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Health Update Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHealthUpdateUsageDescription",
+      "kind": "symbol",
+      "name": "NSHealthUpdateUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHealthUpdateUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHealthUpdateUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nshealthupdateusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHomeKitUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s HomeKit configuration data.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - HomeKit Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHomeKitUsageDescription",
+      "kind": "symbol",
+      "name": "NSHomeKitUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHomeKitUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHomeKitUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nshomekitusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSIdentityUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting identity information.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Identity Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSIdentityUsageDescription",
+      "kind": "symbol",
+      "name": "NSIdentityUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSIdentityUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSIdentityUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsidentityusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocalNetworkUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the local network.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Local Network Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocalNetworkUsageDescription",
+      "kind": "symbol",
+      "name": "NSLocalNetworkUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLocalNetworkUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLocalNetworkUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nslocalnetworkusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationAlwaysAndWhenInUseUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s location information at all times.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Location Always and When In Use Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationAlwaysAndWhenInUseUsageDescription",
+      "kind": "symbol",
+      "name": "NSLocationAlwaysAndWhenInUseUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLocationAlwaysAndWhenInUseUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLocationAlwaysAndWhenInUseUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nslocationalwaysandwheninuseusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationAlwaysUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s location at all times.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "ideTitle": "Privacy - Location Always Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationAlwaysUsageDescription",
+      "kind": "symbol",
+      "name": "NSLocationAlwaysUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLocationAlwaysUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLocationAlwaysUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nslocationalwaysusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationDefaultAccuracyReduced": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app requests reduced location accuracy by default.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Location Default Accuracy Reduced",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationDefaultAccuracyReduced",
+      "kind": "symbol",
+      "name": "NSLocationDefaultAccuracyReduced",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLocationDefaultAccuracyReduced"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLocationDefaultAccuracyReduced",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nslocationdefaultaccuracyreduced"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationTemporaryUsageDescriptionDictionary": {
+      "abstract": [
+        {
+          "text": "A collection of messages that explain why the app is requesting temporary access to the user’s location.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Location Temporary Usage Description Dictionary",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationTemporaryUsageDescriptionDictionary",
+      "kind": "symbol",
+      "name": "NSLocationTemporaryUsageDescriptionDictionary",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLocationTemporaryUsageDescriptionDictionary"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLocationTemporaryUsageDescriptionDictionary",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nslocationtemporaryusagedescriptiondictionary"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s location information.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Location Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationUsageDescription",
+      "kind": "symbol",
+      "name": "NSLocationUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLocationUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLocationUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nslocationusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationWhenInUseUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s location information while the app is running in the foreground.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Location When In Use Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationWhenInUseUsageDescription",
+      "kind": "symbol",
+      "name": "NSLocationWhenInUseUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLocationWhenInUseUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLocationWhenInUseUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nslocationwheninuseusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the device’s microphone.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Microphone Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription",
+      "kind": "symbol",
+      "name": "NSMicrophoneUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSMicrophoneUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSMicrophoneUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsmicrophoneusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSMotionUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the device’s motion data.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Motion Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSMotionUsageDescription",
+      "kind": "symbol",
+      "name": "NSMotionUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSMotionUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSMotionUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsmotionusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSNearbyInteractionAllowOnceUsageDescription": {
+      "abstract": [
+        {
+          "text": "A one-time request for user permission to begin an interaction session with nearby devices.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "ideTitle": "Privacy - Nearby Interaction Allow Once Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSNearbyInteractionAllowOnceUsageDescription",
+      "kind": "symbol",
+      "name": "NSNearbyInteractionAllowOnceUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSNearbyInteractionAllowOnceUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSNearbyInteractionAllowOnceUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsnearbyinteractionallowonceusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSNearbyInteractionUsageDescription": {
+      "abstract": [
+        {
+          "text": "A request for user permission to begin an interaction session with nearby devices.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Nearby Interaction Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSNearbyInteractionUsageDescription",
+      "kind": "symbol",
+      "name": "NSNearbyInteractionUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSNearbyInteractionUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSNearbyInteractionUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsnearbyinteractionusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSNetworkVolumesUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app needs access to files on a network volume.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Network Volumes Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSNetworkVolumesUsageDescription",
+      "kind": "symbol",
+      "name": "NSNetworkVolumesUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSNetworkVolumesUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSNetworkVolumesUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsnetworkvolumesusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPhotoLibraryAddUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting add-only access to the user’s photo library.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Photo Library Additions Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPhotoLibraryAddUsageDescription",
+      "kind": "symbol",
+      "name": "NSPhotoLibraryAddUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPhotoLibraryAddUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPhotoLibraryAddUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsphotolibraryaddusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPhotoLibraryUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s photo library.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Photo Library Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPhotoLibraryUsageDescription",
+      "kind": "symbol",
+      "name": "NSPhotoLibraryUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPhotoLibraryUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPhotoLibraryUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsphotolibraryusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRemindersFullAccessUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells people why the app is requesting access to read and write their reminders data.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Reminders Full Access Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRemindersFullAccessUsageDescription",
+      "kind": "symbol",
+      "name": "NSRemindersFullAccessUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSRemindersFullAccessUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSRemindersFullAccessUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsremindersfullaccessusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRemindersUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells people why the app is requesting access to their reminders.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "ideTitle": "Privacy - Reminders Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRemindersUsageDescription",
+      "kind": "symbol",
+      "name": "NSRemindersUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSRemindersUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSRemindersUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsremindersusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRemovableVolumesUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app needs access to files on a removable volume.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Removable Volumes Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRemovableVolumesUsageDescription",
+      "kind": "symbol",
+      "name": "NSRemovableVolumesUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSRemovableVolumesUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSRemovableVolumesUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsremovablevolumesusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSensorKitPrivacyPolicyURL": {
+      "abstract": [
+        {
+          "text": "A hyperlink to a webpage that displays the privacy policy for your app’s research study.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSensorKitPrivacyPolicyURL",
+      "kind": "symbol",
+      "name": "NSSensorKitPrivacyPolicyURL",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSensorKitPrivacyPolicyURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSensorKitPrivacyPolicyURL",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nssensorkitprivacypolicyurl"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSensorKitUsageDescription": {
+      "abstract": [
+        {
+          "text": "A short description of the purpose of your app’s research study.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSensorKitUsageDescription",
+      "kind": "symbol",
+      "name": "NSSensorKitUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSensorKitUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSensorKitUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nssensorkitusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSensorKitUsageDetail": {
+      "abstract": [
+        {
+          "text": "A dictionary that includes keys for the specific information your app collects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSensorKitUsageDetail",
+      "kind": "symbol",
+      "name": "NSSensorKitUsageDetail",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSensorKitUsageDetail"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSensorKitUsageDetail",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nssensorkitusagedetail"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSiriUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting to send user data to Siri.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Siri Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSiriUsageDescription",
+      "kind": "symbol",
+      "name": "NSSiriUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSiriUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSiriUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nssiriusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSpeechRecognitionUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting to send user data to Apple’s speech recognition servers.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Speech Recognition Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSpeechRecognitionUsageDescription",
+      "kind": "symbol",
+      "name": "NSSpeechRecognitionUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSpeechRecognitionUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSpeechRecognitionUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsspeechrecognitionusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSystemAdministrationUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message in macOS that tells the user why the app is requesting to manipulate the system configuration.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - System Administration Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSystemAdministrationUsageDescription",
+      "kind": "symbol",
+      "name": "NSSystemAdministrationUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSystemAdministrationUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSystemAdministrationUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nssystemadministrationusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSUpdateSecurityPolicy": {
+      "abstract": [
+        {
+          "text": "A dictionary that identifies which apps or installer packages the operating system allows to write to the app’s bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSUpdateSecurityPolicy",
+      "kind": "symbol",
+      "name": "NSUpdateSecurityPolicy",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUpdateSecurityPolicy"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUpdateSecurityPolicy",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsupdatesecuritypolicy"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSUserTrackingUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that informs the user why an app is requesting permission to use data for tracking the user or the device.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Tracking Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSUserTrackingUsageDescription",
+      "kind": "symbol",
+      "name": "NSUserTrackingUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserTrackingUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserTrackingUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsusertrackingusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSVideoSubscriberAccountUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s TV provider account.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Video Subscriber Account Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSVideoSubscriberAccountUsageDescription",
+      "kind": "symbol",
+      "name": "NSVideoSubscriberAccountUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSVideoSubscriberAccountUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSVideoSubscriberAccountUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsvideosubscriberaccountusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSWidgetWantsLocation": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates a widget uses the user’s location information.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Widget wants location",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSWidgetWantsLocation",
+      "kind": "symbol",
+      "name": "NSWidgetWantsLocation",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSWidgetWantsLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWidgetWantsLocation",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nswidgetwantslocation"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSWorldSensingUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to image tracking, plane detection, or scene reconstruction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSWorldSensingUsageDescription",
+      "kind": "symbol",
+      "name": "NSWorldSensingUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSWorldSensingUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWorldSensingUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsworldsensingusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIRequiresPersistentWiFi": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app requires a Wi-Fi connection.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Application uses Wi-Fi",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIRequiresPersistentWiFi",
+      "kind": "symbol",
+      "name": "UIRequiresPersistentWiFi",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIRequiresPersistentWiFi"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIRequiresPersistentWiFi",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/uirequirespersistentwifi"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/app-services": {
+      "abstract": [
+        {
+          "text": "Configure services provided by the app, like support for giving directions or using game controllers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/app-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App services",
+      "type": "topic",
+      "url": "/documentation/bundleresources/app-services"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/choosing-the-location-services-authorization-to-request": {
+      "abstract": [
+        {
+          "text": "Determine the authorization your app needs to access location data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/choosing-the-location-services-authorization-to-request",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing the  Location Services Authorization to Request",
+      "type": "topic",
+      "url": "/documentation/bundleresources/choosing-the-location-services-authorization-to-request"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/data-and-storage": {
+      "abstract": [
+        {
+          "text": "Regulate documents, URLs, and other kinds of data movement and storage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/data-and-storage",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data and storage",
+      "type": "topic",
+      "url": "/documentation/bundleresources/data-and-storage"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/kernel-and-drivers": {
+      "abstract": [
+        {
+          "text": "Configure device drivers provided by the app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/kernel-and-drivers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Kernel and drivers",
+      "type": "topic",
+      "url": "/documentation/bundleresources/kernel-and-drivers"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/requesting-authorization-for-media-capture-on-macos": {
+      "abstract": [
+        {
+          "text": "Prompt the user to authorize access to the camera and microphone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/requesting-authorization-for-media-capture-on-macos",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting Authorization for Media Capture on macOS",
+      "type": "topic",
+      "url": "/documentation/bundleresources/requesting-authorization-for-media-capture-on-macos"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/requesting-authorization-to-capture-and-save-media": {
+      "abstract": [
+        {
+          "text": "Prompt the user to authorize access to the camera, microphone, and photo library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/requesting-authorization-to-capture-and-save-media",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting authorization to capture and save media",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/requesting-authorization-to-capture-and-save-media"
+    },
+    "doc://com.apple.documentation/documentation/Contacts/accessing-the-contact-store": {
+      "abstract": [
+        {
+          "text": "Request permission from the person to read and write their contact data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Contacts/accessing-the-contact-store",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing the contact store",
+      "type": "topic",
+      "url": "/documentation/Contacts/accessing-the-contact-store"
+    },
+    "doc://com.apple.documentation/documentation/EventKit/accessing-the-event-store": {
+      "abstract": [
+        {
+          "text": "Request access to a person’s calendar data through the event store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKit/accessing-the-event-store",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing the event store",
+      "type": "topic",
+      "url": "/documentation/EventKit/accessing-the-event-store"
+    },
+    "doc://com.apple.documentation/documentation/HealthKit/setting-up-healthkit": {
+      "abstract": [
+        {
+          "text": "Set up and configure your HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HealthKit/setting-up-healthkit",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up HealthKit",
+      "type": "topic",
+      "url": "/documentation/HealthKit/setting-up-healthkit"
+    },
+    "doc://com.apple.documentation/documentation/HomeKit/enabling-homekit-in-your-app": {
+      "abstract": [
+        {
+          "text": "Declare your app’s intention to use HomeKit, and get permission from the user to access home automation accessories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HomeKit/enabling-homekit-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling HomeKit in your app",
+      "type": "topic",
+      "url": "/documentation/HomeKit/enabling-homekit-in-your-app"
+    },
+    "doc://com.apple.documentation/documentation/LocalAuthentication/logging-a-user-into-your-app-with-face-id-or-touch-id": {
+      "abstract": [
+        {
+          "text": "Supplement your own authentication scheme with biometric authentication, making it easy for users to access sensitive parts of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/logging-a-user-into-your-app-with-face-id-or-touch-id",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Logging a User into Your App with Face ID or Touch ID",
+      "type": "topic",
+      "url": "/documentation/LocalAuthentication/logging-a-user-into-your-app-with-face-id-or-touch-id"
+    },
+    "doc://com.apple.documentation/documentation/Network/inspecting-app-activity-data": {
+      "abstract": [
+        {
+          "text": "Verify that your app accesses only the user data and network resources that you expect it to access.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/inspecting-app-activity-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting app activity data",
+      "type": "topic",
+      "url": "/documentation/Network/inspecting-app-activity-data"
+    },
+    "doc://com.apple.documentation/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app": {
+      "abstract": [
+        {
+          "text": "Adopt the latest privacy enhancements to deliver advanced user-privacy controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Delivering an Enhanced Privacy Experience in Your Photos App",
+      "type": "topic",
+      "url": "/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app"
+    },
+    "doc://com.apple.documentation/documentation/SiriKit/requesting-authorization-to-use-siri": {
+      "abstract": [
+        {
+          "text": "Request permission from the user for Siri and Maps to communicate with your app or Intents app extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SiriKit/requesting-authorization-to-use-siri",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting Authorization to Use Siri",
+      "type": "topic",
+      "url": "/documentation/SiriKit/requesting-authorization-to-use-siri"
+    },
+    "doc://com.apple.documentation/documentation/Speech/asking-permission-to-use-speech-recognition": {
+      "abstract": [
+        {
+          "text": "Ask the user’s permission to perform speech recognition using Apple’s servers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Speech/asking-permission-to-use-speech-recognition",
+      "kind": "article",
+      "role": "article",
+      "title": "Asking Permission to Use Speech Recognition",
+      "type": "topic",
+      "url": "/documentation/Speech/asking-permission-to-use-speech-recognition"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/requesting-access-to-apple-music-library": {
+      "abstract": [
+        {
+          "text": "Prompt the customer to authorize access to Apple Music library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/requesting-access-to-apple-music-library",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting Access to Apple Music Library",
+      "type": "topic",
+      "url": "/documentation/StoreKit/requesting-access-to-apple-music-library"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/requesting-access-to-protected-resources": {
+      "abstract": [
+        {
+          "text": "Provide a purpose string that explains to a person why you need access to protected resources on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/requesting-access-to-protected-resources",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting access to protected resources",
+      "type": "topic",
+      "url": "/documentation/UIKit/requesting-access-to-protected-resources"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Services",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/data-and-storage",
+        "doc://com.apple.bundleresources/documentation/BundleResources/app-services",
+        "doc://com.apple.bundleresources/documentation/BundleResources/kernel-and-drivers"
+      ],
+      "title": "Services"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/UIKit/requesting-access-to-protected-resources",
+        "doc://com.apple.documentation/documentation/Network/inspecting-app-activity-data"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Bluetooth",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSBluetoothAlwaysUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSBluetoothPeripheralUsageDescription"
+      ],
+      "title": "Bluetooth"
+    },
+    {
+      "anchor": "Calendar-and-reminders",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSCalendarsFullAccessUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSCalendarsWriteOnlyAccessUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRemindersFullAccessUsageDescription",
+        "doc://com.apple.documentation/documentation/EventKit/accessing-the-event-store"
+      ],
+      "title": "Calendar and reminders"
+    },
+    {
+      "anchor": "Camera-and-microphone",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/AVFoundation/requesting-authorization-to-capture-and-save-media",
+        "doc://com.apple.bundleresources/documentation/BundleResources/requesting-authorization-for-media-capture-on-macos",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription"
+      ],
+      "title": "Camera and microphone"
+    },
+    {
+      "anchor": "Contacts",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Contacts/accessing-the-contact-store",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSContactsUsageDescription"
+      ],
+      "title": "Contacts"
+    },
+    {
+      "anchor": "Face-ID",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/LocalAuthentication/logging-a-user-into-your-app-with-face-id-or-touch-id",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSFaceIDUsageDescription"
+      ],
+      "title": "Face ID"
+    },
+    {
+      "anchor": "Files-and-folders",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDesktopFolderUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDocumentsFolderUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDownloadsFolderUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSNetworkVolumesUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRemovableVolumesUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSFileProviderDomainUsageDescription"
+      ],
+      "title": "Files and folders"
+    },
+    {
+      "anchor": "Game-center",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSGKFriendListUsageDescription"
+      ],
+      "title": "Game center"
+    },
+    {
+      "anchor": "Health",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/HealthKit/setting-up-healthkit",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHealthClinicalHealthRecordsShareUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHealthShareUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHealthUpdateUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHealthRequiredReadAuthorizationTypeIdentifiers"
+      ],
+      "title": "Health"
+    },
+    {
+      "anchor": "Home",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/HomeKit/enabling-homekit-in-your-app",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHomeKitUsageDescription"
+      ],
+      "title": "Home"
+    },
+    {
+      "anchor": "Location",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/choosing-the-location-services-authorization-to-request",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationAlwaysAndWhenInUseUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationWhenInUseUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationTemporaryUsageDescriptionDictionary",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationAlwaysUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSWidgetWantsLocation",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationDefaultAccuracyReduced"
+      ],
+      "title": "Location"
+    },
+    {
+      "anchor": "MediaPlayer",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/StoreKit/requesting-access-to-apple-music-library",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription"
+      ],
+      "title": "MediaPlayer"
+    },
+    {
+      "anchor": "Motion",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSMotionUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSFallDetectionUsageDescription"
+      ],
+      "title": "Motion"
+    },
+    {
+      "anchor": "Networking",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocalNetworkUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSNearbyInteractionUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSNearbyInteractionAllowOnceUsageDescription"
+      ],
+      "title": "Networking"
+    },
+    {
+      "anchor": "NFC",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NFCReaderUsageDescription"
+      ],
+      "title": "NFC"
+    },
+    {
+      "anchor": "Photos",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPhotoLibraryAddUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPhotoLibraryUsageDescription"
+      ],
+      "title": "Photos"
+    },
+    {
+      "anchor": "Scripting",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppleScriptEnabled"
+      ],
+      "title": "Scripting"
+    },
+    {
+      "anchor": "Security",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSUpdateSecurityPolicy",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppDataUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSUserTrackingUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppleEventsUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSystemAdministrationUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ITSAppUsesNonExemptEncryption",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ITSEncryptionExportComplianceCode"
+      ],
+      "title": "Security"
+    },
+    {
+      "anchor": "Sensors",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSensorKitUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSensorKitUsageDetail",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSensorKitPrivacyPolicyURL"
+      ],
+      "title": "Sensors"
+    },
+    {
+      "anchor": "Siri",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/SiriKit/requesting-authorization-to-use-siri",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSiriUsageDescription"
+      ],
+      "title": "Siri"
+    },
+    {
+      "anchor": "Speech",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Speech/asking-permission-to-use-speech-recognition",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSpeechRecognitionUsageDescription"
+      ],
+      "title": "Speech"
+    },
+    {
+      "anchor": "TV",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSVideoSubscriberAccountUsageDescription"
+      ],
+      "title": "TV"
+    },
+    {
+      "anchor": "Vision",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSWorldSensingUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHandsTrackingUsageDescription"
+      ],
+      "title": "Vision"
+    },
+    {
+      "anchor": "Wallet",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSFinancialDataUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSIdentityUsageDescription"
+      ],
+      "title": "Wallet"
+    },
+    {
+      "anchor": "Wi-Fi",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIRequiresPersistentWiFi"
+      ],
+      "title": "Wi-Fi"
+    },
+    {
+      "anchor": "Deprecated-keys",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSCalendarsUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRemindersUsageDescription"
+      ],
+      "title": "Deprecated keys"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/UIKit/requesting-access-to-protected-resources",
+                "doc://com.apple.documentation/documentation/Network/inspecting-app-activity-data"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Bluetooth",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSBluetoothAlwaysUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSBluetoothPeripheralUsageDescription"
+              ],
+              "title": "Bluetooth"
+            },
+            {
+              "anchor": "Calendar-and-reminders",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSCalendarsFullAccessUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSCalendarsWriteOnlyAccessUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRemindersFullAccessUsageDescription",
+                "doc://com.apple.documentation/documentation/EventKit/accessing-the-event-store"
+              ],
+              "title": "Calendar and reminders"
+            },
+            {
+              "anchor": "Camera-and-microphone",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/AVFoundation/requesting-authorization-to-capture-and-save-media",
+                "doc://com.apple.bundleresources/documentation/BundleResources/requesting-authorization-for-media-capture-on-macos",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription"
+              ],
+              "title": "Camera and microphone"
+            },
+            {
+              "anchor": "Contacts",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/Contacts/accessing-the-contact-store",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSContactsUsageDescription"
+              ],
+              "title": "Contacts"
+            },
+            {
+              "anchor": "Face-ID",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/LocalAuthentication/logging-a-user-into-your-app-with-face-id-or-touch-id",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSFaceIDUsageDescription"
+              ],
+              "title": "Face ID"
+            },
+            {
+              "anchor": "Files-and-folders",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDesktopFolderUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDocumentsFolderUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSDownloadsFolderUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSNetworkVolumesUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRemovableVolumesUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSFileProviderDomainUsageDescription"
+              ],
+              "title": "Files and folders"
+            },
+            {
+              "anchor": "Game-center",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSGKFriendListUsageDescription"
+              ],
+              "title": "Game center"
+            },
+            {
+              "anchor": "Health",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/HealthKit/setting-up-healthkit",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHealthClinicalHealthRecordsShareUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHealthShareUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHealthUpdateUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHealthRequiredReadAuthorizationTypeIdentifiers"
+              ],
+              "title": "Health"
+            },
+            {
+              "anchor": "Home",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/HomeKit/enabling-homekit-in-your-app",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHomeKitUsageDescription"
+              ],
+              "title": "Home"
+            },
+            {
+              "anchor": "Location",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/choosing-the-location-services-authorization-to-request",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationAlwaysAndWhenInUseUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationWhenInUseUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationTemporaryUsageDescriptionDictionary",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationAlwaysUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSWidgetWantsLocation",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationDefaultAccuracyReduced"
+              ],
+              "title": "Location"
+            },
+            {
+              "anchor": "MediaPlayer",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/StoreKit/requesting-access-to-apple-music-library",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription"
+              ],
+              "title": "MediaPlayer"
+            },
+            {
+              "anchor": "Motion",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSMotionUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSFallDetectionUsageDescription"
+              ],
+              "title": "Motion"
+            },
+            {
+              "anchor": "Networking",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocalNetworkUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSNearbyInteractionUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSNearbyInteractionAllowOnceUsageDescription"
+              ],
+              "title": "Networking"
+            },
+            {
+              "anchor": "NFC",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NFCReaderUsageDescription"
+              ],
+              "title": "NFC"
+            },
+            {
+              "anchor": "Photos",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPhotoLibraryAddUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPhotoLibraryUsageDescription"
+              ],
+              "title": "Photos"
+            },
+            {
+              "anchor": "Scripting",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppleScriptEnabled"
+              ],
+              "title": "Scripting"
+            },
+            {
+              "anchor": "Security",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSUpdateSecurityPolicy",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppDataUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSUserTrackingUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppleEventsUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSystemAdministrationUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ITSAppUsesNonExemptEncryption",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ITSEncryptionExportComplianceCode"
+              ],
+              "title": "Security"
+            },
+            {
+              "anchor": "Sensors",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSensorKitUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSensorKitUsageDetail",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSensorKitPrivacyPolicyURL"
+              ],
+              "title": "Sensors"
+            },
+            {
+              "anchor": "Siri",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/SiriKit/requesting-authorization-to-use-siri",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSiriUsageDescription"
+              ],
+              "title": "Siri"
+            },
+            {
+              "anchor": "Speech",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/Speech/asking-permission-to-use-speech-recognition",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSpeechRecognitionUsageDescription"
+              ],
+              "title": "Speech"
+            },
+            {
+              "anchor": "TV",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSVideoSubscriberAccountUsageDescription"
+              ],
+              "title": "TV"
+            },
+            {
+              "anchor": "Vision",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSWorldSensingUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSHandsTrackingUsageDescription"
+              ],
+              "title": "Vision"
+            },
+            {
+              "anchor": "Wallet",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSFinancialDataUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSIdentityUsageDescription"
+              ],
+              "title": "Wallet"
+            },
+            {
+              "anchor": "Wi-Fi",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIRequiresPersistentWiFi"
+              ],
+              "title": "Wi-Fi"
+            },
+            {
+              "anchor": "Deprecated-keys",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSCalendarsUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRemindersUsageDescription"
+              ],
+              "title": "Deprecated keys"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Services",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/data-and-storage",
+                "doc://com.apple.bundleresources/documentation/BundleResources/app-services",
+                "doc://com.apple.bundleresources/documentation/BundleResources/kernel-and-drivers"
+              ],
+              "title": "Services"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSFaceIDUsageDescription/title",
+          "value": "NSFaceIDUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSFaceIDUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFaceIDUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSDownloadsFolderUsageDescription/title",
+          "value": "NSDownloadsFolderUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSDownloadsFolderUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDownloadsFolderUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSRemindersFullAccessUsageDescription/title",
+          "value": "NSRemindersFullAccessUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSRemindersFullAccessUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRemindersFullAccessUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSHandsTrackingUsageDescription/title",
+          "value": "NSHandsTrackingUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSHandsTrackingUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSHandsTrackingUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSIdentityUsageDescription/title",
+          "value": "NSIdentityUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSIdentityUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSIdentityUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSMotionUsageDescription/title",
+          "value": "NSMotionUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSMotionUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMotionUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSUpdateSecurityPolicy/title",
+          "value": "NSUpdateSecurityPolicy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSUpdateSecurityPolicy/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUpdateSecurityPolicy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSSensorKitPrivacyPolicyURL/title",
+          "value": "NSSensorKitPrivacyPolicyURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSSensorKitPrivacyPolicyURL/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSensorKitPrivacyPolicyURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSRemindersUsageDescription/title",
+          "value": "NSRemindersUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSRemindersUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRemindersUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1UIRequiresPersistentWiFi/title",
+          "value": "UIRequiresPersistentWiFi"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1UIRequiresPersistentWiFi/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIRequiresPersistentWiFi"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/title",
+          "value": "Information Property List"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Information Property List"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSPhotoLibraryAddUsageDescription/title",
+          "value": "NSPhotoLibraryAddUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSPhotoLibraryAddUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPhotoLibraryAddUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSSpeechRecognitionUsageDescription/title",
+          "value": "NSSpeechRecognitionUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSSpeechRecognitionUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechRecognitionUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSPhotoLibraryUsageDescription/title",
+          "value": "NSPhotoLibraryUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSPhotoLibraryUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPhotoLibraryUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSNearbyInteractionAllowOnceUsageDescription/title",
+          "value": "NSNearbyInteractionAllowOnceUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSNearbyInteractionAllowOnceUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSNearbyInteractionAllowOnceUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSNearbyInteractionUsageDescription/title",
+          "value": "NSNearbyInteractionUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSNearbyInteractionUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSNearbyInteractionUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSWorldSensingUsageDescription/title",
+          "value": "NSWorldSensingUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSWorldSensingUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWorldSensingUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSDocumentsFolderUsageDescription/title",
+          "value": "NSDocumentsFolderUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSDocumentsFolderUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDocumentsFolderUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationUsageDescription/title",
+          "value": "NSLocationUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLocationUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSHomeKitUsageDescription/title",
+          "value": "NSHomeKitUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSHomeKitUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSHomeKitUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSCameraUsageDescription/title",
+          "value": "NSCameraUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSCameraUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCameraUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSVideoSubscriberAccountUsageDescription/title",
+          "value": "NSVideoSubscriberAccountUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSVideoSubscriberAccountUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSVideoSubscriberAccountUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppleScriptEnabled/title",
+          "value": "NSAppleScriptEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppleScriptEnabled/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAppleScriptEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocalNetworkUsageDescription/title",
+          "value": "NSLocalNetworkUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocalNetworkUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLocalNetworkUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSNetworkVolumesUsageDescription/title",
+          "value": "NSNetworkVolumesUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSNetworkVolumesUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSNetworkVolumesUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSCalendarsUsageDescription/title",
+          "value": "NSCalendarsUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSCalendarsUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCalendarsUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppleMusicUsageDescription/title",
+          "value": "NSAppleMusicUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppleMusicUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAppleMusicUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSCalendarsWriteOnlyAccessUsageDescription/title",
+          "value": "NSCalendarsWriteOnlyAccessUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSCalendarsWriteOnlyAccessUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCalendarsWriteOnlyAccessUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationTemporaryUsageDescriptionDictionary/title",
+          "value": "NSLocationTemporaryUsageDescriptionDictionary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationTemporaryUsageDescriptionDictionary/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLocationTemporaryUsageDescriptionDictionary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSSystemAdministrationUsageDescription/title",
+          "value": "NSSystemAdministrationUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSSystemAdministrationUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSystemAdministrationUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSBluetoothAlwaysUsageDescription/title",
+          "value": "NSBluetoothAlwaysUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSBluetoothAlwaysUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSBluetoothAlwaysUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSBluetoothPeripheralUsageDescription/title",
+          "value": "NSBluetoothPeripheralUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSBluetoothPeripheralUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSBluetoothPeripheralUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSFallDetectionUsageDescription/title",
+          "value": "NSFallDetectionUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSFallDetectionUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFallDetectionUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NFCReaderUsageDescription/title",
+          "value": "NFCReaderUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NFCReaderUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCReaderUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSWidgetWantsLocation/title",
+          "value": "NSWidgetWantsLocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSWidgetWantsLocation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWidgetWantsLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSHealthUpdateUsageDescription/title",
+          "value": "NSHealthUpdateUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSHealthUpdateUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSHealthUpdateUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSMicrophoneUsageDescription/title",
+          "value": "NSMicrophoneUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSMicrophoneUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMicrophoneUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationDefaultAccuracyReduced/title",
+          "value": "NSLocationDefaultAccuracyReduced"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationDefaultAccuracyReduced/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLocationDefaultAccuracyReduced"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationAlwaysAndWhenInUseUsageDescription/title",
+          "value": "NSLocationAlwaysAndWhenInUseUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationAlwaysAndWhenInUseUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLocationAlwaysAndWhenInUseUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationWhenInUseUsageDescription/title",
+          "value": "NSLocationWhenInUseUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationWhenInUseUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLocationWhenInUseUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSFinancialDataUsageDescription/title",
+          "value": "NSFinancialDataUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSFinancialDataUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFinancialDataUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSGKFriendListUsageDescription/title",
+          "value": "NSGKFriendListUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSGKFriendListUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGKFriendListUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationAlwaysUsageDescription/title",
+          "value": "NSLocationAlwaysUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationAlwaysUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLocationAlwaysUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSCalendarsFullAccessUsageDescription/title",
+          "value": "NSCalendarsFullAccessUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSCalendarsFullAccessUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCalendarsFullAccessUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1ITSAppUsesNonExemptEncryption/title",
+          "value": "ITSAppUsesNonExemptEncryption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1ITSAppUsesNonExemptEncryption/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ITSAppUsesNonExemptEncryption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSDesktopFolderUsageDescription/title",
+          "value": "NSDesktopFolderUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSDesktopFolderUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDesktopFolderUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSSiriUsageDescription/title",
+          "value": "NSSiriUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSSiriUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSiriUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppleEventsUsageDescription/title",
+          "value": "NSAppleEventsUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppleEventsUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAppleEventsUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSHealthShareUsageDescription/title",
+          "value": "NSHealthShareUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSHealthShareUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSHealthShareUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSUserTrackingUsageDescription/title",
+          "value": "NSUserTrackingUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSUserTrackingUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserTrackingUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSSensorKitUsageDescription/title",
+          "value": "NSSensorKitUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSSensorKitUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSensorKitUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSContactsUsageDescription/title",
+          "value": "NSContactsUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSContactsUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSContactsUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSFileProviderDomainUsageDescription/title",
+          "value": "NSFileProviderDomainUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSFileProviderDomainUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderDomainUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1ITSEncryptionExportComplianceCode/title",
+          "value": "ITSEncryptionExportComplianceCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1ITSEncryptionExportComplianceCode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ITSEncryptionExportComplianceCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSRemovableVolumesUsageDescription/title",
+          "value": "NSRemovableVolumesUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSRemovableVolumesUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRemovableVolumesUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppDataUsageDescription/title",
+          "value": "NSAppDataUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppDataUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAppDataUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSHealthRequiredReadAuthorizationTypeIdentifiers/title",
+          "value": "NSHealthRequiredReadAuthorizationTypeIdentifiers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSHealthRequiredReadAuthorizationTypeIdentifiers/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSHealthRequiredReadAuthorizationTypeIdentifiers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSHealthClinicalHealthRecordsShareUsageDescription/title",
+          "value": "NSHealthClinicalHealthRecordsShareUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSHealthClinicalHealthRecordsShareUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSHealthClinicalHealthRecordsShareUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSSensorKitUsageDetail/title",
+          "value": "NSSensorKitUsageDetail"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSSensorKitUsageDetail/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSensorKitUsageDetail"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/bundleresources/protected-resources"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/bundleresources/protected-resources"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

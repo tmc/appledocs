@@ -1,0 +1,2432 @@
+{
+  "abstract": [
+    {
+      "text": "An image buffer that stores an image’s pixel data, dimensions, and row stride.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@vImage_Buffer",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "vImage_Buffer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "vImage_Buffer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "vImage_Buffer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "vImage_Buffer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.accelerate/documentation/Accelerate/enhancing-image-contrast-with-histogram-manipulation",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest",
+        "doc://com.apple.accelerate/documentation/Accelerate/creating-and-populating-buffers-from-core-graphics-images",
+        "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-conversion-workflow",
+        "doc://com.apple.accelerate/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers",
+        "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-vimage-blend-modes",
+        "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-processing-workflow"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vImage buffer is the fundamental data structure that the vImage library uses to represent image data. To ensure the best performance, the vImage buffer initialization functions may add extra padding to each row. For example, the following code declares an 8-bit per pixel buffer that’s 10 pixels wide:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var buffer = vImage_Buffer()",
+            "",
+            "vImageBuffer_Init(&buffer,",
+            "                  5,    // height",
+            "                  10,   // width",
+            "                  8,    // bits per pixel",
+            "                  vImage_Flags(kvImageNoFlags))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although the code defines a buffer with 10 bytes per row, to maximize performance, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageBuffer_Init(_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializes a buffer with 16 bytes per row:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4052499",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you provide your own buffer storage, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/preferredAlignmentAndRowBytes(width:height:bitsPerPixel:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to get the row stride that ensures your buffer achieves the best performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let width = 10",
+            "let height = 5",
+            "",
+            "let alignmentAndRowBytes = try vImage_Buffer.preferredAlignmentAndRowBytes(",
+            "    width: width,",
+            "    height: height,",
+            "    bitsPerPixel: 8)",
+            "",
+            "// Prints \"16\".",
+            "print(alignmentAndRowBytes.rowBytes)",
+            "",
+            "let data = UnsafeMutableRawPointer.allocate(",
+            "    byteCount: alignmentAndRowBytes.rowBytes * height,",
+            "    alignment: alignmentAndRowBytes.alignment)",
+            "",
+            "let buffer = vImage_Buffer(data: data,",
+            "                           height: vImagePixelCount(height),",
+            "                           width: vImagePixelCount(width),",
+            "                           rowBytes: alignmentAndRowBytes.rowBytes)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/GammaFunction": {
+      "abstract": [
+        {
+          "text": "A type for a gamma function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GammaFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/GammaFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GammaFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "GammaFunction",
+      "type": "topic",
+      "url": "/documentation/accelerate/gammafunction"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/ResamplingFilter": {
+      "abstract": [
+        {
+          "text": "A pointer to a resampling filter callback function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ResamplingFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/ResamplingFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ResamplingFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "ResamplingFilter",
+      "type": "topic",
+      "url": "/documentation/accelerate/resamplingfilter"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest": {
+      "abstract": [
+        {
+          "text": "Limit the effect of vImage operations to rectangular regions of interest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying vImage operations to regions of interest",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-vimage-operations-to-regions-of-interest"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-conversion-workflow": {
+      "abstract": [
+        {
+          "text": "Learn the fundamentals of the convert-any-to-any function by converting a CMYK image to an RGB image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-conversion-workflow",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a basic image conversion workflow",
+      "type": "topic",
+      "url": "/documentation/accelerate/building-a-basic-image-conversion-workflow"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-processing-workflow": {
+      "abstract": [
+        {
+          "text": "Resize an image with vImage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-processing-workflow",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a Basic Image-Processing Workflow",
+      "type": "topic",
+      "url": "/documentation/accelerate/building-a-basic-image-processing-workflow"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-vimage-blend-modes": {
+      "abstract": [
+        {
+          "text": "Combine two images by using blend modes to create a single output.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-vimage-blend-modes",
+      "kind": "article",
+      "role": "article",
+      "title": "Compositing images with vImage blend modes",
+      "type": "topic",
+      "url": "/documentation/accelerate/compositing-images-with-vimage-blend-modes"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers": {
+      "abstract": [
+        {
+          "text": "Pass image data between Core Graphics and vImage to create and manipulate images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Converting bitmap data between Core Graphics images and vImage buffers",
+      "type": "topic",
+      "url": "/documentation/accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/creating-and-populating-buffers-from-core-graphics-images": {
+      "abstract": [
+        {
+          "text": "Initialize vImage buffers from Core Graphics images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/creating-and-populating-buffers-from-core-graphics-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating and Populating Buffers from Core Graphics Images",
+      "type": "topic",
+      "url": "/documentation/accelerate/creating-and-populating-buffers-from-core-graphics-images"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/enhancing-image-contrast-with-histogram-manipulation": {
+      "abstract": [
+        {
+          "text": "Enhance and adjust the contrast of an image with histogram equalization and contrast stretching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/enhancing-image-contrast-with-histogram-manipulation",
+      "kind": "article",
+      "role": "article",
+      "title": "Enhancing image contrast with histogram manipulation",
+      "type": "topic",
+      "url": "/documentation/accelerate/enhancing-image-contrast-with-histogram-manipulation"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageBuffer_Init(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Initializes a vImage buffer with a specified width, height, and bits per pixel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageBuffer_Init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImagePixelCount",
+          "text": "vImagePixelCount"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImagePixelCount",
+          "text": "vImagePixelCount"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageBuffer_Init(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageBuffer_Init"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageBuffer_Init(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagebuffer_init(_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImagePixelCount": {
+      "abstract": [
+        {
+          "text": "A type for the number of pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImagePixelCount"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImagePixelCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImagePixelCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImagePixelCount",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagepixelcount"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_AffineTransform": {
+      "abstract": [
+        {
+          "text": "A structure for values that represent an affine transformation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_AffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_AffineTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_AffineTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_AffineTransform",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_affinetransform"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_AffineTransform_Double": {
+      "abstract": [
+        {
+          "text": "A structure for values that represent a double-precision affine transformation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_AffineTransform_Double"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_AffineTransform_Double",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_AffineTransform_Double"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_AffineTransform_Double",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_affinetransform_double"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, and row stride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_Buffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_Buffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_Buffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/copy(destinationBuffer:pixelSize:flags:)": {
+      "abstract": [
+        {
+          "text": "Copies the contents of a vImage buffer to the specified destination buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "copy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pixelSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7OptionsV",
+          "text": "Options"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/copy(destinationBuffer:pixelSize:flags:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copy(destinationBuffer:pixelSize:flags:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/copy(destinationbuffer:pixelsize:flags:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/createCGImage(format:flags:)": {
+      "abstract": [
+        {
+          "text": "Creates a Core Graphics image from the vImage buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "createCGImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_CGImageFormat",
+          "text": "vImage_CGImageFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7OptionsV",
+          "text": "Options"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/createCGImage(format:flags:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createCGImage(format:flags:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/createcgimage(format:flags:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/data": {
+      "abstract": [
+        {
+          "text": "A pointer to the top-left pixel of the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/data",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "data"
+        }
+      ],
+      "role": "symbol",
+      "title": "data",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/data"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/free()": {
+      "abstract": [
+        {
+          "text": "Frees the resources associated with the vImage buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/free()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free()",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/free()"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/height": {
+      "abstract": [
+        {
+          "text": "The height of the image, in pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImagePixelCount",
+          "text": "vImagePixelCount"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/height",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "height"
+        }
+      ],
+      "role": "symbol",
+      "title": "height",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/height"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init()": {
+      "abstract": [
+        {
+          "text": "Creates an empty vImage buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/init()"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(cgImage:flags:)": {
+      "abstract": [
+        {
+          "text": "Creates a new buffer with the contents of a Core Graphics image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "cgImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7OptionsV",
+          "text": "Options"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(cgImage:flags:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cgImage:flags:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/init(cgimage:flags:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(cgImage:format:flags:)": {
+      "abstract": [
+        {
+          "text": "Creates a new buffer with the contents of a Core Graphics image using the supplied image format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "cgImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_CGImageFormat",
+          "text": "vImage_CGImageFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7OptionsV",
+          "text": "Options"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(cgImage:format:flags:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cgImage:format:flags:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/init(cgimage:format:flags:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(data:height:width:rowBytes:)": {
+      "abstract": [
+        {
+          "text": "Creates a new buffer with the specified size that references existing data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImagePixelCount",
+          "text": "vImagePixelCount"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImagePixelCount",
+          "text": "vImagePixelCount"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "rowBytes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(data:height:width:rowBytes:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(data:height:width:rowBytes:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/init(data:height:width:rowbytes:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(size:bitsPerPixel:)": {
+      "abstract": [
+        {
+          "text": "Creates a new buffer with the specified size and bits per pixel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bitsPerPixel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(size:bitsPerPixel:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(size:bitsPerPixel:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/init(size:bitsperpixel:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(width:height:bitsPerPixel:)": {
+      "abstract": [
+        {
+          "text": "Creates a new buffer with the specified width, height, and bits per pixel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bitsPerPixel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(width:height:bitsPerPixel:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(width:height:bitsPerPixel:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/init(width:height:bitsperpixel:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/preferredAlignmentAndRowBytes(width:height:bitsPerPixel:)": {
+      "abstract": [
+        {
+          "text": "Returns the preferred alignment and row bytes for a specified size and bits per pixel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredAlignmentAndRowBytes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bitsPerPixel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> (alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", rowBytes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/preferredAlignmentAndRowBytes(width:height:bitsPerPixel:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preferredAlignmentAndRowBytes(width:height:bitsPerPixel:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/preferredalignmentandrowbytes(width:height:bitsperpixel:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/rowBytes": {
+      "abstract": [
+        {
+          "text": "The distance, in bytes, between the start of one pixel row and the next in an image, including any unused space between them.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rowBytes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/rowBytes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rowBytes"
+        }
+      ],
+      "role": "symbol",
+      "title": "rowBytes",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/rowbytes"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/size": {
+      "abstract": [
+        {
+          "text": "The size of the image, in pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/size",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "size",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/size"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/width": {
+      "abstract": [
+        {
+          "text": "The width of the image, in pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImagePixelCount",
+          "text": "vImagePixelCount"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/width",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "width"
+        }
+      ],
+      "role": "symbol",
+      "title": "width",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/width"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGAffineTransform": {
+      "abstract": [
+        {
+          "text": "A structure for values that represent a Core Graphics–compatible affine transformation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGAffineTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_CGAffineTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_CGAffineTransform",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_cgaffinetransform"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Error": {
+      "abstract": [
+        {
+          "text": "A type for image errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Error",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_Error"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_Error",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_error"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Flags": {
+      "abstract": [
+        {
+          "text": "A type for processing options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_Flags"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Flags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_Flags"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_Flags",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_flags"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Escapable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/Swift/BitwiseCopyable"
+    },
+    "media-4052499": {
+      "alt": "A diagram that shows the visible pixels and the padding of a vImage buffer.",
+      "identifier": "media-4052499",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/28556585f1059b162e1423b669798cbe/media-4052499@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d902396d2012fb840eddf9ae790f7cb2/media-4052499~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Data-Types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImagePixelCount",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_AffineTransform",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_AffineTransform_Double",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGAffineTransform",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_Error",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_Flags",
+        "doc://com.apple.accelerate/documentation/Accelerate/GammaFunction",
+        "doc://com.apple.accelerate/documentation/Accelerate/ResamplingFilter"
+      ],
+      "title": "Data Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-empty-vImage-buffer",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(width:height:bitsPerPixel:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(size:bitsPerPixel:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init()"
+      ],
+      "title": "Creating an empty vImage buffer"
+    },
+    {
+      "anchor": "Creating-a-buffer-that-references-existing-data",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(data:height:width:rowBytes:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/preferredAlignmentAndRowBytes(width:height:bitsPerPixel:)"
+      ],
+      "title": "Creating a buffer that references existing data"
+    },
+    {
+      "anchor": "Consuming-and-producing-Core-Graphics-images",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(cgImage:flags:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(cgImage:format:flags:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/createCGImage(format:flags:)"
+      ],
+      "title": "Consuming and producing Core Graphics images"
+    },
+    {
+      "anchor": "Inspecting-a-buffers-properties",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/data",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/height",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/width",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/size",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/rowBytes"
+      ],
+      "title": "Inspecting a buffer’s properties"
+    },
+    {
+      "anchor": "Copying-a-buffers-contents",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/copy(destinationBuffer:pixelSize:flags:)"
+      ],
+      "title": "Copying a buffer’s contents"
+    },
+    {
+      "anchor": "Deallocating-a-buffer",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/free()"
+      ],
+      "title": "Deallocating a buffer"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Structure"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "vImage_Buffer"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "struct"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_Buffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_Buffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.accelerate/documentation/Accelerate"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Inspecting-a-buffers-properties",
+              "identifiers": [
+                "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/data",
+                "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/height",
+                "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/width",
+                "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/rowBytes"
+              ],
+              "title": "Inspecting a buffer’s properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Data-Types",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.accelerate/documentation/Accelerate/vImagePixelCount",
+                "doc://com.apple.accelerate/documentation/Accelerate/vImage_AffineTransform",
+                "doc://com.apple.accelerate/documentation/Accelerate/vImage_AffineTransform_Double",
+                "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGAffineTransform",
+                "doc://com.apple.accelerate/documentation/Accelerate/vImage_Error",
+                "doc://com.apple.accelerate/documentation/Accelerate/vImage_Flags",
+                "doc://com.apple.accelerate/documentation/Accelerate/GammaFunction",
+                "doc://com.apple.accelerate/documentation/Accelerate/ResamplingFilter"
+              ],
+              "title": "Data Types"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "typedef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "struct"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "vImage_Buffer"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " { ... } "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "vImage_Buffer"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer~1height/title",
+          "value": "height"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer~1height/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "height"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_AffineTransform/title",
+          "value": "vImage_AffineTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_AffineTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_AffineTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_AffineTransform/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_AffineTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer~1rowBytes/title",
+          "value": "rowBytes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer~1rowBytes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rowBytes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer~1width/title",
+          "value": "width"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer~1width/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "width"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1ResamplingFilter/title",
+          "value": "ResamplingFilter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1ResamplingFilter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ResamplingFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1ResamplingFilter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ResamplingFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageBuffer_Init(_:_:_:_:_:)/title",
+          "value": "vImageBuffer_Init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageBuffer_Init(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageBuffer_Init"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Error/title",
+          "value": "vImage_Error"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Error/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_Error"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Error/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_Error"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer~1data/title",
+          "value": "data"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer~1data/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_AffineTransform_Double/title",
+          "value": "vImage_AffineTransform_Double"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_AffineTransform_Double/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_AffineTransform_Double"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_AffineTransform_Double/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_AffineTransform_Double"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImagePixelCount/title",
+          "value": "vImagePixelCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImagePixelCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImagePixelCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImagePixelCount/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImagePixelCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Flags/title",
+          "value": "vImage_Flags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Flags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_Flags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Flags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_Flags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGAffineTransform/title",
+          "value": "vImage_CGAffineTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGAffineTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_CGAffineTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGAffineTransform/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_CGAffineTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/title",
+          "value": "vImage_Buffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_Buffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_Buffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1GammaFunction/title",
+          "value": "GammaFunction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1GammaFunction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GammaFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1GammaFunction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GammaFunction"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/vimage_buffer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accelerate/vimage_buffer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

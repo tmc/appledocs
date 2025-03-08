@@ -1,0 +1,1233 @@
+{
+  "abstract": [
+    {
+      "text": "An abstract class that handles the loading of protocol-specific URL data.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/urlsession",
+        "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/urlprotocol"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1411029,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSURLProtocol",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "URLProtocol"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.2",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "URLProtocol"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "URLProtocol"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t instantiate a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " subclass directly. Instead, create subclasses for any custom protocols or URL schemes that your app supports. When a download starts, the system creates the appropriate protocol object to handle the corresponding URL request. You define your protocol class and call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1407208-registerclass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method during your app’s launch time so that the system is aware of your protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You cannot use this class to define custom URL schemes and protocols in watchOS 2 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support the customization of protocol-specific requests, create extensions to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to provide any custom API that you need. You can store and retrieve protocol-specific request data by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": "’s class methods ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1416521-property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1407897-setproperty",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlresponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for each request your subclass processes successfully. You may want to create a custom ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlresponse",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class to provide protocol specific information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2994185",
+          "level": 3,
+          "text": "Subclassing notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When overriding methods of this class, be aware that methods that take a ",
+              "type": "text"
+            },
+            {
+              "code": "task",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter are preferred by the system to those that do not. Therefore, you should override the task-based methods when subclassing, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Initialization — Override ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1417672-init",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instead of or in addition to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1414366-init",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Also override the task-based ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1416997-caninit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instead of or in addition to the request-based ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1411389-caninit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotocol": {
+      "abstract": [
+        {
+          "text": "An abstract class that handles the loading of protocol-specific URL data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLProtocol",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotocol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotocol/1407208-registerclass": {
+      "abstract": [
+        {
+          "text": "Attempts to register a subclass of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", making it visible to the URL loading system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerClass"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1407208-registerclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerClass(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotocol/1407208-registerclass"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotocol/1407649-task": {
+      "abstract": [
+        {
+          "text": "The protocol’s task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "task"
+        },
+        {
+          "kind": "text",
+          "text": ": URLSessionTask?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1407649-task",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "task",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotocol/1407649-task"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotocol/1407740-removeproperty": {
+      "abstract": [
+        {
+          "text": "Removes the property associated with the specified key in the specified request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeProperty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSMutableURLRequest)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1407740-removeproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeProperty(forKey:in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotocol/1407740-removeproperty"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotocol/1407897-setproperty": {
+      "abstract": [
+        {
+          "text": "Sets the property associated with the specified key in the specified request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setProperty"
+        },
+        {
+          "kind": "text",
+          "text": "(Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSMutableURLRequest)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1407897-setproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setProperty(_:forKey:in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotocol/1407897-setproperty"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotocol/1408650-canonicalrequest": {
+      "abstract": [
+        {
+          "text": "Returns a canonical version of the specified request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "canonicalRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest) -> URLRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1408650-canonicalrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canonicalRequest(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotocol/1408650-canonicalrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotocol/1408666-stoploading": {
+      "abstract": [
+        {
+          "text": "Stops protocol-specific loading of the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopLoading"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1408666-stoploading",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stopLoading()",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotocol/1408666-stoploading"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotocol/1408989-startloading": {
+      "abstract": [
+        {
+          "text": "Starts protocol-specific loading of the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "startLoading"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1408989-startloading",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startLoading()",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotocol/1408989-startloading"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotocol/1409131-unregisterclass": {
+      "abstract": [
+        {
+          "text": "Unregisters the specified subclass of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "unregisterClass"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1409131-unregisterclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unregisterClass(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotocol/1409131-unregisterclass"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotocol/1410008-requestiscacheequivalent": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether two requests are equivalent for cache purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestIsCacheEquivalent"
+        },
+        {
+          "kind": "text",
+          "text": "(URLRequest, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1410008-requestiscacheequivalent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestIsCacheEquivalent(_:to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotocol/1410008-requestiscacheequivalent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotocol/1411389-caninit": {
+      "abstract": [
+        {
+          "text": "Determines whether the protocol subclass can handle the specified request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "canInit"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1411389-caninit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canInit(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotocol/1411389-caninit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotocol/1412383-request": {
+      "abstract": [
+        {
+          "text": "The protocol’s request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1412383-request",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "request",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotocol/1412383-request"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotocol/1413722-client": {
+      "abstract": [
+        {
+          "text": "The object the protocol uses to communicate with the URL loading system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "client"
+        },
+        {
+          "kind": "text",
+          "text": ": (any URLProtocolClient)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1413722-client",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "client",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotocol/1413722-client"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotocol/1414366-init": {
+      "abstract": [
+        {
+          "text": "Creates a URL protocol instance to handle the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest, "
+        },
+        {
+          "kind": "identifier",
+          "text": "cachedResponse"
+        },
+        {
+          "kind": "text",
+          "text": ": CachedURLResponse?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "client"
+        },
+        {
+          "kind": "text",
+          "text": ": (any URLProtocolClient)?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1414366-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(request:cachedResponse:client:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotocol/1414366-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotocol/1416521-property": {
+      "abstract": [
+        {
+          "text": "Fetches the property associated with the specified key in the specified request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "property"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1416521-property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "property(forKey:in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotocol/1416521-property"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotocol/1416997-caninit": {
+      "abstract": [
+        {
+          "text": "Determines whether the protocol subclass can handle the specified task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "canInit"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": URLSessionTask) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1416997-caninit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canInit(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotocol/1416997-caninit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotocol/1417672-init": {
+      "abstract": [
+        {
+          "text": "Creates a URL protocol instance to handle the task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "task"
+        },
+        {
+          "kind": "text",
+          "text": ": URLSessionTask, "
+        },
+        {
+          "kind": "identifier",
+          "text": "cachedResponse"
+        },
+        {
+          "kind": "text",
+          "text": ": CachedURLResponse?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "client"
+        },
+        {
+          "kind": "text",
+          "text": ": (any URLProtocolClient)?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1417672-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(task:cachedResponse:client:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotocol/1417672-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotocol/1418409-cachedresponse": {
+      "abstract": [
+        {
+          "text": "The protocol’s cached response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cachedResponse"
+        },
+        {
+          "kind": "text",
+          "text": ": CachedURLResponse?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol/1418409-cachedresponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cachedResponse",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotocol/1418409-cachedresponse"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotocolclient": {
+      "abstract": [
+        {
+          "text": "The interface used by ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocol",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " subclasses to communicate with the URL Loading System.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLProtocolClient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotocolclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLProtocolClient",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotocolclient"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresponse": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLResponse",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresponse"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411050-protocolclasses": {
+      "abstract": [
+        {
+          "text": "An array of extra protocol subclasses that handle requests in a session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "protocolClasses"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyClass]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411050-protocolclasses",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "protocolClasses",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration/1411050-protocolclasses"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411050-protocolclasses"
+      ],
+      "title": "Supporting custom protocols"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1662691",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlprotocol/1414366-init",
+        "doc://com.apple.documentation/documentation/foundation/urlprotocol/1417672-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating protocol objects"
+    },
+    {
+      "anchor": "1662722",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlprotocol/1407208-registerclass",
+        "doc://com.apple.documentation/documentation/foundation/urlprotocol/1409131-unregisterclass"
+      ],
+      "kind": "taskGroup",
+      "title": "Registering and unregistering protocol classes"
+    },
+    {
+      "anchor": "1662775",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlprotocol/1411389-caninit",
+        "doc://com.apple.documentation/documentation/foundation/urlprotocol/1416997-caninit"
+      ],
+      "kind": "taskGroup",
+      "title": "Determining If a subclass can handle a request"
+    },
+    {
+      "anchor": "1662808",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlprotocol/1416521-property",
+        "doc://com.apple.documentation/documentation/foundation/urlprotocol/1407897-setproperty",
+        "doc://com.apple.documentation/documentation/foundation/urlprotocol/1407740-removeproperty"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting and setting request properties"
+    },
+    {
+      "anchor": "1662888",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlprotocol/1408650-canonicalrequest"
+      ],
+      "kind": "taskGroup",
+      "title": "Providing a canonical version of a request"
+    },
+    {
+      "anchor": "1662927",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlprotocol/1410008-requestiscacheequivalent"
+      ],
+      "kind": "taskGroup",
+      "title": "Determining if requests are cache equivalent"
+    },
+    {
+      "anchor": "1662971",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlprotocol/1408989-startloading",
+        "doc://com.apple.documentation/documentation/foundation/urlprotocol/1408666-stoploading"
+      ],
+      "kind": "taskGroup",
+      "title": "Starting and stopping downloads"
+    },
+    {
+      "anchor": "1663011",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlprotocol/1418409-cachedresponse",
+        "doc://com.apple.documentation/documentation/foundation/urlprotocol/1413722-client",
+        "doc://com.apple.documentation/documentation/foundation/urlprotocolclient",
+        "doc://com.apple.documentation/documentation/foundation/urlprotocol/1412383-request",
+        "doc://com.apple.documentation/documentation/foundation/urlprotocol/1407649-task"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting protocol attributes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurlprotocol"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/urlprotocol"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

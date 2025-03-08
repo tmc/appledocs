@@ -1,0 +1,2228 @@
+{
+  "abstract": [
+    {
+      "text": "Create an interactive mesh with low-level mesh and low-level texture.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Generating interactive geometry with RealityKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app demonstrates how to create geometry that moves and changes shape in real time—to simulate the appearance of fabric, terrain, or water, for example, like in the following images:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "generating-interactive-geometry-1",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "generating-interactive-geometry-3",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "generating-interactive-geometry-2",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "generating-interactive-geometry-4",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create dynamic, interactive geometry, the app leverages low-level meshes and textures. Using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " types, you can customize their data layouts and update their contents directly in real time with Metal compute shaders. You define the compute shaders and the types they operate on using ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (MSL), which is a derivative of C++.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app starts by generating a plane mesh with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and it reconfigures the vertices within that mesh by reading data from a low-level texture that stores its height and normal map. As the app runs, it updates both the mesh and texture on the GPU in every frame. The sample demonstrates three unique height map generation functions, including a sine wave that oscillates outward over time, as well as a terrain editor and a water simulation that each respond to a person’s input.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-a-custom-vertex-structure",
+          "level": 2,
+          "text": "Define a custom vertex structure",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample defines the custom vertex data structure for its plane mesh in an MSL header file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct PlaneVertex {",
+            "    simd_float3 position;",
+            "    simd_float3 normal;",
+            "};"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the vertex has a 3D position and a 3D normal vector, but you can define your app’s vertex type with different names and other data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-low-level-mesh-with-a-descriptor",
+          "level": 2,
+          "text": "Create a low-level mesh with a descriptor",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates the plane low-level mesh by defining its vertex attributes, vertex layouts, and the number of vertices and indices it has capacity for:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// The number of vertices in each dimension of the plane mesh.",
+            "let dimensions: SIMD2<UInt32>",
+            "",
+            "...",
+            "",
+            "/// Creates a low-level mesh with `PlaneVertex` vertices.",
+            "private func createMesh() throws -> LowLevelMesh {",
+            "    // Define the vertex attributes of `PlaneVertex`.",
+            "    let positionAttributeOffset = MemoryLayout.offset(of: \\PlaneVertex.position) ?? 0",
+            "    let normalAttributeOffset = MemoryLayout.offset(of: \\PlaneVertex.normal) ?? 16",
+            "    ",
+            "    let positionAttribute = LowLevelMesh.Attribute(semantic: .position, format: .float3, offset: positionAttributeOffset)",
+            "    let normalAttribute = LowLevelMesh.Attribute(semantic: .normal, format: .float3, offset: normalAttributeOffset)",
+            "    ",
+            "    let vertexAttributes = [positionAttribute, normalAttribute]",
+            "    ",
+            "    // Define the vertex layouts of `PlaneVertex`.",
+            "    let vertexLayouts = [LowLevelMesh.Layout(bufferIndex: 0, bufferStride: MemoryLayout<PlaneVertex>.stride)]",
+            "    ",
+            "    // Derive the vertex and index counts from the dimensions.",
+            "    let vertexCount = Int(dimensions.x * dimensions.y)",
+            "    let indicesPerTriangle = 3",
+            "    let trianglesPerCell = 2",
+            "    let cellCount = Int((dimensions.x - 1) * (dimensions.y - 1))",
+            "    let indexCount = indicesPerTriangle * trianglesPerCell * cellCount",
+            "    ",
+            "    // Create a low-level mesh with the necessary `PlaneVertex` capacity.",
+            "    let meshDescriptor = LowLevelMesh.Descriptor(vertexCapacity: vertexCount,",
+            "                                                 vertexAttributes: vertexAttributes,",
+            "                                                 vertexLayouts: vertexLayouts,",
+            "                                                 indexCapacity: indexCount)",
+            "    return try LowLevelMesh(descriptor: meshDescriptor)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this case, determining the exact vertex and index capacities of the mesh is straightforward given its dimensions. For more complex meshes, or meshes you add vertices to or remove vertices from at runtime, you can estimate the maximum vertex capacity and resize the mesh if its vertex count ever exceeds that number.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-plane-with-low-level-mesh",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information on how the sample creates this mesh, including how it fills the mesh’s vertex and index buffers with data, like in the following image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "generating-interactive-geometry-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-compute-shader-dispatch-system",
+          "level": 2,
+          "text": "Create a compute shader dispatch system",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample defines a custom ",
+              "type": "text"
+            },
+            {
+              "code": "ComputeUpdateContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure that contains the necessary context for dispatching compute shader functions in every frame:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ComputeUpdateContext {",
+            "    /// The number of seconds elapsed since the last frame.",
+            "    let deltaTime: TimeInterval",
+            "    /// The command buffer for the current frame.",
+            "    let commandBuffer: MTLCommandBuffer",
+            "    /// The compute command encoder for the current frame.",
+            "    let computeEncoder: MTLComputeCommandEncoder",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample dispatches compute shader functions in every frame by passing this structure to each ",
+              "type": "text"
+            },
+            {
+              "code": "ComputeSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the app (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/passing-metal-command-objects-around-your-application",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "HeightMapMesh",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is an example of a ",
+              "type": "text"
+            },
+            {
+              "code": "ComputeSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". It implements the ",
+              "type": "text"
+            },
+            {
+              "code": "ComputeSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": "  protocol’s ",
+              "type": "text"
+            },
+            {
+              "code": "update",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to dispatch compute shaders that generate a height map and modify the vertex positions and normals of a mesh in each frame:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class HeightMapMesh: ComputeSystem {",
+            "    ...",
+            "",
+            "    /// Updates the height map mesh by generating a height map, deriving normals from it, and then setting the vertex positions and normals.",
+            "    func update(computeContext: ComputeUpdateContext) {",
+            "        ...",
+            "        ",
+            "        // Generate the height map height values.",
+            "        heightMap.generateHeight(computeContext: computeContext, heightMapComputeParams: heightMapComputeParams)",
+            "        // Update the height map normal directions.",
+            "        heightMap.updateNormals(computeContext: computeContext, heightMapComputeParams: heightMapComputeParams)",
+            "        ",
+            "        // Update the vertex positions and normals.",
+            "        updateVertices(computeContext: computeContext)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-low-level-texture-height-map",
+          "level": 2,
+          "text": "Create a low-level texture height map",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates a height map with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by specifying its pixel format, dimensions, and usage:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct HeightMap {",
+            "    ...",
+            "   ",
+            "    /// The low-level texture that stores the height and normal information of the height map.",
+            "    var heightMapTexture: LowLevelTexture",
+            "    ",
+            "    init(dimensions: SIMD2<UInt32>) throws {",
+            "        // Initialize the texture with an RGBA pixel format where the alpha channel stores height,",
+            "        // while the red, green, and blue channels store the surface normal direction.",
+            "        let textureDescriptor = LowLevelTexture.Descriptor(pixelFormat: .rgba32Float,",
+            "                                                           width: Int(dimensions.x),",
+            "                                                           height: Int(dimensions.y),",
+            "                                                           textureUsage: [.shaderRead, .shaderWrite])",
+            "        self.heightMapTexture = try LowLevelTexture(descriptor: textureDescriptor)",
+            "    }",
+            "    ",
+            "    ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The low-level texture has the same dimensions as the plane low-level mesh, such that each pixel in the texture corresponds to a vertex in the mesh.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Write-height-data-to-the-low-level-texture",
+          "level": 2,
+          "text": "Write height data to the low-level texture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample writes height data to the low-level texture in every frame on the GPU by dispatching Metal compute shaders. For example, the compute shader function ",
+              "type": "text"
+            },
+            {
+              "code": "generateSineWaveHeightMap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " writes height values to the texture in the shape of a sine wave moving outward from the center of the texture over time:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[[kernel]]",
+            "void generateSineWaveHeightMap(texture2d<float, access::read> heightMapIn [[texture(0)]],",
+            "                               texture2d<float, access::write> heightMapOut [[texture(1)]],",
+            "                               constant float &time [[buffer(2)]],",
+            "                               constant float &amplitude [[buffer(3)]],",
+            "                               uint2 pixelCoords [[thread_position_in_grid]]) {",
+            "    // Skip out-of-bounds threads.",
+            "    // https://developer.apple.com/documentation/metal/compute_passes/calculating_threadgroup_and_grid_sizes",
+            "    if (pixelCoords.x >= heightMapIn.get_width() || pixelCoords.y >= heightMapIn.get_height()) { return; }",
+            "    ",
+            "    // Compute texture coordinates ranging from 0 to 1 along each axis.",
+            "    float2 uv = float2(pixelCoords.x / (heightMapIn.get_width() - 1.0),",
+            "                       pixelCoords.y / (heightMapIn.get_height() - 1.0));",
+            "    ",
+            "    // Get the distance to the center of the texture in texture coordinate space.",
+            "    float distanceToCenter = length(uv - 0.5);",
+            "    // Normalize the distance to a range from 0 to 2π along the horizontal and vertical axes.",
+            "    float normalizedDistanceToCenter = (distanceToCenter / 0.5) * (2 * M_PI_F);",
+            "",
+            "    // Get sine as a function of the normalized distance to the center of the texture times the wave count,",
+            "    // subtracting time to animate it outward over time.",
+            "    float waveCount = 3;",
+            "    float sine = sin(normalizedDistanceToCenter * waveCount - time);",
+            "    // Convert sine to the range 0 to 1.",
+            "    float sine01 = (sine + 1) / 2;",
+            "    ",
+            "    // Generate height from the sine function.",
+            "    float height = amplitude * sine01;",
+            "    ",
+            "    // Read the current height map data.",
+            "    float4 heightMapData = heightMapIn.read(pixelCoords);",
+            "    // Update the alpha channel with the new height.",
+            "    heightMapData.a = height;",
+            "    // Write the updated height data to height map.",
+            "    heightMapOut.write(heightMapData, pixelCoords);",
+            "}"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following video shows the texture the ",
+              "type": "text"
+            },
+            {
+              "code": "generateSineWaveHeightMap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " compute function creates:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "generating-interactive-geometry-6.mp4",
+          "type": "video"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample dispatches this compute shader function in ",
+              "type": "text"
+            },
+            {
+              "code": "SineWaveHeightMapGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", passing in both the height map low-level texture, the time, and the amplitude:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class SineWaveHeightMapGenerator: HeightMapGenerator {",
+            "    /// Compute pipeline corresponding to the Metal compute shader function `generateSineWaveHeightMap`.",
+            "    ///",
+            "    /// See `SineWaveComputeShader.metal`.",
+            "    private let sineWaveHeightPipeline: MTLComputePipelineState = makeComputePipeline(named: \"generateSineWaveHeightMap\")!",
+            "    ",
+            "    /// The number of seconds elapsed since the person reset this generator.",
+            "    private var time: Float = 0",
+            "    ",
+            "    /// The amplitude of the sine wave this generator generates.",
+            "    private var amplitude: Float = 0.05",
+            "",
+            "    ...",
+            "    ",
+            "    /// Dispatches a Metal compute shader to generate a height map in the shape of a sine wave.",
+            "    func generateHeightMap(computeContext: ComputeUpdateContext,",
+            "                           heightMapTexture: LowLevelTexture,",
+            "                           heightMapComputeParams: HeightMapComputeParams) {",
+            "        // Get deltaTime.",
+            "        let deltaTime = Float(computeContext.deltaTime)",
+            "        // Get the command buffer and compute encoder.",
+            "        let commandBuffer = computeContext.commandBuffer",
+            "        let computeEncoder = computeContext.computeEncoder",
+            "        // Get the threadgroups.",
+            "        let threadgroups = heightMapComputeParams.threadgroups",
+            "        let threadsPerThreadgroup = heightMapComputeParams.threadsPerThreadgroup",
+            "        ",
+            "        // Increment time.",
+            "        time += deltaTime",
+            "        ",
+            "        // Set the compute shader pipeline to `generateSineWaveHeightMap`.",
+            "        computeEncoder.setComputePipelineState(sineWaveHeightPipeline)",
+            "        ",
+            "        // Pass a readable version of the height map texture to the compute shader.",
+            "        computeEncoder.setTexture(heightMapTexture.read(), index: 0)",
+            "        // Pass a writable version of the height map texture to the compute shader.",
+            "        computeEncoder.setTexture(heightMapTexture.replace(using: commandBuffer), index: 1)",
+            "        ",
+            "        // Pass the time to the compute shader.",
+            "        computeEncoder.setBytes(&time, length: MemoryLayout<Float>.size, index: 2)",
+            "        // Pass the amplitude to the compute shader.",
+            "        computeEncoder.setBytes(&amplitude, length: MemoryLayout<Float>.size, index: 3)",
+            "        ",
+            "        // Dispatch the compute shader.",
+            "        computeEncoder.dispatchThreadgroups(threadgroups, threadsPerThreadgroup: threadsPerThreadgroup)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample defines the ",
+              "type": "text"
+            },
+            {
+              "code": "makeComputePipeline",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// The device Metal selects as the default.",
+            "let metalDevice: MTLDevice? = MTLCreateSystemDefaultDevice()",
+            "",
+            "...",
+            "",
+            "/// Makes a compute pipeline for the compute function with the given name.",
+            "func makeComputePipeline(named name: String) -> MTLComputePipelineState? {",
+            "    guard let function = metalDevice?.makeDefaultLibrary()?.makeFunction(name: name) else {",
+            "        return nil",
+            "    }",
+            "    return try? metalDevice?.makeComputePipelineState(function: function)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-dynamic-height-map-with-low-level-texture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for further details, along with a description of how the sample derives surface normal directions from the height map.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Generate-additional-height-maps",
+          "level": 2,
+          "text": "Generate additional height maps",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample abstracts the generation of height maps by defining a ",
+              "type": "text"
+            },
+            {
+              "code": "HeightMapGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "protocol HeightMapGenerator {",
+            "    /// Resets the height map.",
+            "    func reset()",
+            "    ",
+            "    /// Generates the height map.",
+            "    func generateHeightMap(computeContext: ComputeUpdateContext,",
+            "                           heightMapTexture: LowLevelTexture,",
+            "                           heightMapComputeParams: HeightMapComputeParams)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can adopt this protocol to create custom height map generators. These height map generators can generate custom height maps by dispatching compute shader functions, with the given ",
+              "type": "text"
+            },
+            {
+              "code": "computeContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", that write height data to the alpha channel of the given ",
+              "type": "text"
+            },
+            {
+              "code": "heightMapTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following videos show the custom height map textures the ",
+              "type": "text"
+            },
+            {
+              "code": "TerrainHeightMapGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "WaterSurfaceHeightMapGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " create:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "identifier": "generating-interactive-geometry-7.mp4",
+                  "type": "video"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "identifier": "generating-interactive-geometry-8.mp4",
+                  "type": "video"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "HeightMap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure calls the ",
+              "type": "text"
+            },
+            {
+              "code": "generateHeightMap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method of its active height map generator, passing in the height map low-level texture and the compute update context necessary to dispatch compute shader functions with the texture:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct HeightMap {",
+            "    ...",
+            "    ",
+            "    /// The generator that generates the height values of the height map.",
+            "    var heightMapGenerator: HeightMapGenerator = SineWaveHeightMapGenerator()",
+            "",
+            "    /// The low-level texture that stores the height and normal information of the height map.",
+            "    var heightMapTexture: LowLevelTexture",
+            "    ",
+            "    ...",
+            "    ",
+            "    /// Generates the height values in the alpha channel of the height map using the current `heightMapGenerator`.",
+            "    func generateHeight(computeContext: ComputeUpdateContext, heightMapComputeParams: HeightMapComputeParams) {",
+            "        heightMapGenerator.generateHeightMap(computeContext: computeContext,",
+            "                                             heightMapTexture: heightMapTexture,",
+            "                                             heightMapComputeParams: heightMapComputeParams)",
+            "    }",
+            "    ",
+            "    ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Update-the-mesh-vertex-data-on-the-GPU",
+          "level": 2,
+          "text": "Update the mesh vertex data on the GPU",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample defines a structure containing the information necessary to update the mesh’s vertex data on the GPU:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MeshParams {",
+            "    simd_uint2 dimensions;",
+            "    simd_float2 size;",
+            "    float maxVertexDepth;",
+            "};"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These parameters are suitable for updating the vertices of the plane low-level mesh on the GPU, but you can define parameters that conform to your custom mesh and vertex format. Declare this structure in an MSL header file so that you can send it to the GPU (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/passing-structured-data-to-a-metal-compute-function#Import-the-struct-in-a-bridging-header",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, the sample updates the position and normal of each vertex in the low-level mesh with a compute shader function that reads this information from the height map low-level texture:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[[kernel]]",
+            "void setVertexData(constant MeshParams &params [[buffer(0)]],",
+            "                   device PlaneVertex *vertices [[buffer(1)]],",
+            "                   texture2d<float, access::read> heightMap [[texture(2)]],",
+            "                   uint2 vertexCoords [[thread_position_in_grid]]) {",
+            "    // Skip out-of-bounds threads.",
+            "    // https://developer.apple.com/documentation/metal/compute_passes/calculating_threadgroup_and_grid_sizes",
+            "    if (any(vertexCoords >= params.dimensions)) { return; }",
+            "    ",
+            "    // Calculate the 1D vertex buffer index given its 2D x, y coordinates.",
+            "    uint vertexIndex = vertexCoords.x + params.dimensions.x * vertexCoords.y;",
+            "    // Get the current vertex.",
+            "    device PlaneVertex &vert = vertices[vertexIndex];",
+            "    ",
+            "    // Sample the height map pixel corresponding to this vertex.",
+            "    float4 heightMapData = heightMap.read(vertexCoords);",
+            "    // Extract the normal direction and the height.",
+            "    float3 normal = heightMapData.rgb;",
+            "    float height = heightMapData.a;",
+            "    ",
+            "    // Convert the x and y vertex coordinates to the range [0, 1].",
+            "    float2 vertexCoords01 = float2(vertexCoords) / float2(params.dimensions - 1);",
+            "    ",
+            "    // Get the x and y position from the size.",
+            "    float2 xyPosition = params.size * vertexCoords01 - params.size / 2;",
+            "    // Get the z position from the height, clamping it within",
+            "    // the bounds of the mesh that `maxVertexDepth` defines.",
+            "    float zPosition = clamp(height, 0., params.maxVertexDepth);",
+            "    ",
+            "    // Update the vertex position and normal.",
+            "    vert.position = float3(xyPosition, zPosition);",
+            "    vert.normal = normal;",
+            "}"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here, the ",
+              "type": "text"
+            },
+            {
+              "code": "maxVertexDepth",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter defines the maximum z offset position for vertices, so that they remain within the bounds of the mesh (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-plane-with-low-level-mesh",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). You can take your own approach to ensuring your vertices remain within bounds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample passes the mesh parameters, vertex buffer, and height map to the compute function before dispatching it:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func updateVertices(computeContext: ComputeUpdateContext) {",
+            "    // Set the compute shader pipeline to `setVertexData`.",
+            "    computeContext.computeEncoder.setComputePipelineState(setVerticesPipeline)",
+            "    ",
+            "    // Pass the mesh parameters to the compute shader.",
+            "    computeContext.computeEncoder.setBytes(&meshParams, length: MemoryLayout<MeshParams>.size, index: 0)",
+            "    // Pass the vertex buffer to the compute shader.",
+            "    let vertexBuffer = planeMesh.mesh.replace(bufferIndex: 0, using: computeContext.commandBuffer)",
+            "    computeContext.computeEncoder.setBuffer(vertexBuffer, offset: 0, index: 1)",
+            "    // Pass the height map to the compute shader.",
+            "    computeContext.computeEncoder.setTexture(heightMap.heightMapTexture.read(), index: 2)",
+            "    ",
+            "    // Dispatch the compute shader.",
+            "    computeContext.computeEncoder.dispatchThreadgroups(threadgroups, threadsPerThreadgroup: threadsPerThreadgroup)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-the-mesh-with-an-entity",
+          "level": 2,
+          "text": "Display the mesh with an entity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates a custom ",
+              "type": "text"
+            },
+            {
+              "code": "HeightMapMeshEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to display the ",
+              "type": "text"
+            },
+            {
+              "code": "HeightMapMesh",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class HeightMapMeshEntity: Entity, HasModel {",
+            "    /// The height map mesh this entity renders.",
+            "    var heightMapMesh: HeightMapMesh?",
+            "    ",
+            "    /// Sets up the entity by creating a `HeightMapMesh` and adding the necessary components.",
+            "    private func setup(size: SIMD2<Float>, dimensions: SIMD2<UInt32>, maxVertexDepth: Float) {",
+            "        // Try to create a `HeightMapMesh` and get its low-level mesh.",
+            "        guard let heightMapMesh = try? HeightMapMesh(size: size, dimensions: dimensions, maxVertexDepth: maxVertexDepth),",
+            "              let planeMesh = try? MeshResource(from: heightMapMesh.planeMesh.mesh) else {",
+            "            assertionFailure(\"Failed to create height map mesh and get its low-level mesh.\")",
+            "            return",
+            "        }",
+            "        self.heightMapMesh = heightMapMesh",
+            "        ",
+            "        // Add a compute system component with the height map mesh as its compute system.",
+            "        self.components.set(ComputeSystemComponent(computeSystem: heightMapMesh))",
+            "",
+            "        // Add a model component with the plane mesh.",
+            "        self.components.set(ModelComponent(mesh: planeMesh, materials: [SimpleMaterial()]))",
+            "",
+            "        // Make this entity capable of receiving gestures by giving it an input target component and a collider.",
+            "        self.components.set(InputTargetComponent())",
+            "        let collisionBoxDepth: Float = 0.025",
+            "        let collisionBox = ShapeResource.generateBox(width: size.x, height: size.y, depth: collisionBoxDepth)",
+            "            .offsetBy(translation: [0, 0, -collisionBoxDepth / 2])",
+            "        self.components.set(CollisionComponent(shapes: [collisionBox]))",
+            "    }",
+            "    ",
+            "    /// The custom initializer.",
+            "    ///",
+            "    /// Sets up the `heightMapMesh` with given size, dimensions, and maximum vertex depth.",
+            "    init(size: SIMD2<Float>, dimensions: SIMD2<UInt32>, maxVertexDepth: Float) {",
+            "        super.init()",
+            "        setup(size: size, dimensions: dimensions, maxVertexDepth: maxVertexDepth)",
+            "    }",
+            "    ",
+            "    /// The default initializer.",
+            "    required init() {",
+            "        super.init()",
+            "        setup(size: [1, 1], dimensions: [512, 512], maxVertexDepth: 1)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following video shows a ",
+              "type": "text"
+            },
+            {
+              "code": "HeightMapMeshEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " displaying the mesh its ",
+              "type": "text"
+            },
+            {
+              "code": "HeightMapMesh",
+              "type": "codeVoice"
+            },
+            {
+              "text": " generates with the ",
+              "type": "text"
+            },
+            {
+              "code": "SineWaveHeightMapGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "generating-interactive-geometry-9",
+          "type": "video"
+        },
+        {
+          "anchor": "Make-the-mesh-and-texture-interactive",
+          "level": 2,
+          "text": "Make the mesh and texture interactive",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample allows the mesh to respond to a person’s interactions by passing interaction data to the GPU, which uses it to modify the height map, which in turn updates the vertices of the mesh.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To start, the sample captures the person’s interaction position and state with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/DragGesture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", passing that information to ",
+              "type": "text"
+            },
+            {
+              "code": "HeightMapMesh",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".gesture(",
+            "    DragGesture()",
+            "        .targetedToEntity(heightMapMeshEntity)",
+            "        .onChanged({ value in",
+            "            let interactionPosition = value.convert(value.location3D,",
+            "                                                    from: .local,",
+            "                                                    to: heightMapMeshEntity)",
+            "            heightMapMeshEntity.heightMapMesh?.interactionPosition = interactionPosition",
+            "            heightMapMeshEntity.heightMapMesh?.isInteractionHappening = true",
+            "        })",
+            "        .onEnded({ value in",
+            "            heightMapMeshEntity.heightMapMesh?.isInteractionHappening = false",
+            "        })",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "HeightMapMesh",
+              "type": "codeVoice"
+            },
+            {
+              "text": " passes this interaction information to the active ",
+              "type": "text"
+            },
+            {
+              "code": "HeightMapGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which can use it to generate its height map.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, ",
+              "type": "text"
+            },
+            {
+              "code": "WaterSurfaceHeightMapGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " takes the interaction position and passes it to a compute shader with a custom structure that the sample defines in an MSL header file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct WaterParams {",
+            "    float deltaTime;",
+            "    float waterSpeed;",
+            "    simd_float2 disturbancePosition;",
+            "    float disturbanceRadius;",
+            "    float disturbanceAmount;",
+            "    simd_uint2 dimensions;",
+            "    simd_float2 size;",
+            "    simd_float2 cellSize;",
+            "};"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It dispatches a compute shader to disturb the height of the water at the ",
+              "type": "text"
+            },
+            {
+              "code": "interactionPosition",
+              "type": "codeVoice"
+            },
+            {
+              "text": " whenever an interaction is happening, by storing the interaction position in this structure’s ",
+              "type": "text"
+            },
+            {
+              "code": "disturbancePosition",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class WaterSurfaceHeightMapGenerator: HeightMapGenerator {",
+            "    ...",
+            "",
+            "    // Disturbs the water surface by dispatching a compute shader that increases/decreases the height",
+            "    // of the water around the disturbance position.",
+            "    func disturbWaterSurface(computeContext: ComputeUpdateContext,",
+            "                             heightMapTexture: LowLevelTexture,",
+            "                             heightMapComputeParams: HeightMapComputeParams,",
+            "                             waterParams: inout WaterParams) {",
+            "        // Dispatch the disturbance compute function.",
+            "        computeContext.computeEncoder.setComputePipelineState(disturbWaterSurfacePipeline)",
+            "        computeContext.computeEncoder.setBytes(&waterParams, length: MemoryLayout<WaterParams>.size, index: 0)",
+            "        computeContext.computeEncoder.setTexture(heightMapTexture.read(), index: 1)",
+            "        computeContext.computeEncoder.setTexture(heightMapTexture.replace(using: computeContext.commandBuffer), index: 2)",
+            "        computeContext.computeEncoder.dispatchThreadgroups(heightMapComputeParams.threadgroups,",
+            "                                                           threadsPerThreadgroup: heightMapComputeParams.threadsPerThreadgroup)",
+            "    }",
+            "    ",
+            "    ...",
+            "    ",
+            "    func generateHeightMap(computeContext: ComputeUpdateContext,",
+            "                           heightMapTexture: LowLevelTexture,",
+            "                           heightMapComputeParams: HeightMapComputeParams) {",
+            "        ...",
+            "        ",
+            "        // Disturb the water surface downward at the position the person is interacting with it,",
+            "        // if an interaction is happening.",
+            "        if heightMapComputeParams.isInteractionHappening {",
+            "            waterParams.disturbancePosition = simd_make_float2(heightMapComputeParams.interactionPosition)",
+            "            waterParams.disturbanceRadius = 7 * waterParams.cellSize.x",
+            "            waterParams.disturbanceAmount = 250 * waterParams.cellSize.x * waterParams.deltaTime",
+            "            disturbWaterSurface(computeContext: computeContext,",
+            "                                heightMapTexture: heightMapTexture,",
+            "                                heightMapComputeParams: heightMapComputeParams,",
+            "                                waterParams: &waterParams)",
+            "        }",
+            "        ",
+            "        ...",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "disturbWaterSurface",
+              "type": "codeVoice"
+            },
+            {
+              "text": " compute shader function subtracts height from the height map around the disturbance position, simulating the effect of the person’s interaction pushing the water downward:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[[kernel]]",
+            "void disturbWaterSurface(constant WaterParams &params [[buffer(0)]],",
+            "                         texture2d<float, access::read> heightMapIn [[texture(1)]],",
+            "                         texture2d<float, access::write> heightMapOut [[texture(2)]],",
+            "                         uint2 pixelCoords [[thread_position_in_grid]]) {",
+            "    // Skip out-of-bounds threads.",
+            "    // https://developer.apple.com/documentation/metal/compute_passes/calculating_threadgroup_and_grid_sizes",
+            "    if (any(pixelCoords >= params.dimensions)) { return; }",
+            "",
+            "    // Get the current state of the height map.",
+            "    float4 heightMapData = heightMapIn.read(pixelCoords);",
+            "    ",
+            "    // Convert the position of the current pixel to the same coordinate space as the disturbance position.",
+            "    float2 currentPosition = float2(remap(pixelCoords.x, float2(0, params.dimensions.x - 1), float2(-params.size.x / 2, params.size.x / 2)),",
+            "                                    remap(pixelCoords.y, float2(0, params.dimensions.y - 1), float2(-params.size.y / 2, params.size.y / 2)));",
+            "    // Disturb the height of the water closer to the disturbance position.",
+            "    float distance = length(currentPosition-params.disturbancePosition);",
+            "    if (distance <= params.disturbanceRadius) {",
+            "        heightMapData.a -= params.disturbanceAmount * pow((params.disturbanceRadius-distance)/(params.disturbanceRadius), 2);",
+            "    }",
+            "    ",
+            "    // Write modified height map data back to the height map.",
+            "    heightMapOut.write(heightMapData, pixelCoords);",
+            "}"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following video shows the result of using the person’s interaction position to dynamically alter the height map:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "generating-interactive-geometry-10",
+          "type": "video"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app uses a similar technique to allow the person to edit the terrain height map, like in the following video:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "generating-interactive-geometry-11.mp4",
+          "type": "video"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "722f0701c26a/GeneratingInteractiveGeometryWithRealityKit.zip": {
+      "checksum": "722f0701c26a0912d9d00538993464efc2559c7c2a5ce7a0432d7677fc503ce0f9b0e3275b4defc4f65abe951935ce752b10187018abedf9ea179a4a302e4d0b",
+      "identifier": "722f0701c26a/GeneratingInteractiveGeometryWithRealityKit.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/722f0701c26a/GeneratingInteractiveGeometryWithRealityKit.zip"
+    },
+    "Hello-World-intro.png": {
+      "alt": null,
+      "identifier": "Hello-World-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/770e1d0451ba3b86de3b05eb0ce728b7/Hello-World-intro@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh": {
+      "abstract": [
+        {
+          "text": "A container for vertex data that you can use to create and update meshes using your own format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LowLevelMesh"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LowLevelMesh"
+        }
+      ],
+      "role": "symbol",
+      "title": "LowLevelMesh",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowlevelmesh"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture": {
+      "abstract": [
+        {
+          "text": "A container for texture data allowing you to create and update textures using your own format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LowLevelTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LowLevelTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "LowLevelTexture",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowleveltexture"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent": {
+      "abstract": [
+        {
+          "text": "A component that contains a mesh and materials for the visual appearance of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app": {
+      "abstract": [
+        {
+          "text": "Use attachments to place 2D content relative to 3D content in your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Combining 2D and 3D views in an immersive app",
+      "type": "topic",
+      "url": "/documentation/realitykit/combining-2d-and-3d-views-in-an-immersive-app"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-dynamic-height-map-with-low-level-texture": {
+      "abstract": [
+        {
+          "text": "Create a low-level texture and update its pixel data on the GPU to form a dynamic height and normal map.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-dynamic-height-map-with-low-level-texture",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a dynamic height and normal map with low-level texture",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-a-dynamic-height-map-with-low-level-texture"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-plane-with-low-level-mesh": {
+      "abstract": [
+        {
+          "text": "Create a low-level mesh and set its vertex positions and normals to form a plane.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-plane-with-low-level-mesh",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a plane with low-level mesh",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-a-plane-with-low-level-mesh"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spatial-drawing-app-with-realitykit": {
+      "abstract": [
+        {
+          "text": "Use low-level mesh and texture APIs to achieve fast updates to a person’s brush",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "strokes by integrating RealityKit with ARKit and SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spatial-drawing-app-with-realitykit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a spatial drawing app with RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-a-spatial-drawing-app-with-realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/passing-metal-command-objects-around-your-application": {
+      "abstract": [
+        {
+          "text": "Build a system that creates and passes Metal command objects to entities dispatching Metal compute shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/passing-metal-command-objects-around-your-application",
+      "kind": "article",
+      "role": "article",
+      "title": "Passing Metal command objects around your application",
+      "type": "topic",
+      "url": "/documentation/realitykit/passing-metal-command-objects-around-your-application"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-anchors": {
+      "abstract": [
+        {
+          "text": "Lock virtual content to the real world.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-anchors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Anchors",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-anchors"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-audio": {
+      "abstract": [
+        {
+          "text": "Create personalized and realistic spatial audio experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-audio",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-audio"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-content-synchronization": {
+      "abstract": [
+        {
+          "text": "Synchronize the contents of entities locally or across the network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-content-synchronization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Content synchronization",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-content-synchronization"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-lights-and-cameras": {
+      "abstract": [
+        {
+          "text": "Control the lighting and point of view for a scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-lights-and-cameras",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Lights and cameras",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-lights-and-cameras"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders": {
+      "abstract": [
+        {
+          "text": "Apply textures to the surface of your scene’s 3D objects to give each object a unique appearance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Materials, textures, and shaders",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-materials-and-shaders"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-models-and-meshes": {
+      "abstract": [
+        {
+          "text": "Display virtual objects in your scene with mesh-based models.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-models-and-meshes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Models and meshes",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-models-and-meshes"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-videos": {
+      "abstract": [
+        {
+          "text": "Present videos in your RealityKit experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-videos",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Videos",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-videos"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/transforming-realitykit-entities-with-gestures": {
+      "abstract": [
+        {
+          "text": "Build a RealityKit component to support standard visionOS gestures on any entity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/transforming-realitykit-entities-with-gestures",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Transforming RealityKit entities using gestures",
+      "type": "topic",
+      "url": "/documentation/realitykit/transforming-realitykit-entities-with-gestures"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/passing-structured-data-to-a-metal-compute-function#Import-the-struct-in-a-bridging-header": {
+      "abstract": [
+        {
+          "text": "Send nontexture data from Swift to your Metal shaders using a shared header file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/passing-structured-data-to-a-metal-compute-function#Import-the-struct-in-a-bridging-header",
+      "kind": "article",
+      "role": "article",
+      "title": "Passing Structured Data to a Metal Compute Function",
+      "type": "topic",
+      "url": "/documentation/RealityKit/passing-structured-data-to-a-metal-compute-function"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/DragGesture": {
+      "abstract": [
+        {
+          "text": "A dragging motion that invokes an action as the drag-event sequence changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DragGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/DragGesture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DragGesture",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/DragGesture"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/World": {
+      "abstract": [
+        {
+          "text": "Use windows, volumes, and immersive spaces to teach people about the Earth.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/World",
+      "images": [
+        {
+          "identifier": "Hello-World-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Hello World",
+      "type": "topic",
+      "url": "/documentation/visionOS/World"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment": {
+      "abstract": [
+        {
+          "text": "Create a more immersive experience by adding video reflections in a custom environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment",
+      "images": [
+        {
+          "identifier": "lightspill-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Enabling video reflections in an immersive environment",
+      "type": "topic",
+      "url": "/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment"
+    },
+    "generating-interactive-geometry-1": {
+      "alt": "A screenshot of a light gray plane mesh floating in a living room scene.",
+      "identifier": "generating-interactive-geometry-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ec5dd81b85c330ee0ca57e364e834bbc/generating-interactive-geometry-1.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/79447282e6e2202dc20afc21aae585d0/generating-interactive-geometry-1~dark.jpg"
+        }
+      ]
+    },
+    "generating-interactive-geometry-10": {
+      "alt": "A video of a plane mesh whose whose vertices have been modified to take the shape of the surface of a body of water. A person's interactions disturb the surface and cause ripples to emanate outwards.",
+      "identifier": "generating-interactive-geometry-10",
+      "poster": "generating-interactive-geometry-10-poster",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/db3b31d41ac06022ff0a18478dae3f6f/generating-interactive-geometry-10.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9a4ab32ad60f520e5f8edf3b40a7c0dd/generating-interactive-geometry-10~dark.mp4"
+        }
+      ]
+    },
+    "generating-interactive-geometry-10-poster": {
+      "alt": null,
+      "identifier": "generating-interactive-geometry-10-poster",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e11e7a2a4303d106a3d188687bc68fd7/generating-interactive-geometry-10-poster.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7378c341588e5a3ec18a18c2a71f1d84/generating-interactive-geometry-10-poster~dark.jpg"
+        }
+      ]
+    },
+    "generating-interactive-geometry-11-poster": {
+      "alt": null,
+      "identifier": "generating-interactive-geometry-11-poster",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/17fd0ff90589f89c0c91d1ee5b54379a/generating-interactive-geometry-11-poster.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4417eb1497b4bac827d2c657350ee7da/generating-interactive-geometry-11-poster~dark.jpg"
+        }
+      ]
+    },
+    "generating-interactive-geometry-11.mp4": {
+      "alt": "A video of a plane mesh whose vertices have been modified to take the shape of mountainous terrain. A person's interactions cause new mountains to grow out of the terrain surface.",
+      "identifier": "generating-interactive-geometry-11.mp4",
+      "poster": "generating-interactive-geometry-11-poster",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/aaa1701e30c2d9a707265918a8774cd1/generating-interactive-geometry-11.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/29614a144a2952b4891ef36c18a60515/generating-interactive-geometry-11~dark.mp4"
+        }
+      ]
+    },
+    "generating-interactive-geometry-2": {
+      "alt": "A screenshot of a green plane mesh floating in a living room scene. The mesh's vertices have been offset to form sine waves moving outward from its center.",
+      "identifier": "generating-interactive-geometry-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8bdb067e1aeb2f147175246ebff843c5/generating-interactive-geometry-2.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d2f5c6a672d83edf582fa62052c75ca/generating-interactive-geometry-2~dark.jpg"
+        }
+      ]
+    },
+    "generating-interactive-geometry-3": {
+      "alt": "A screenshot of a brown plane mesh floating in a living room scene. The mesh's vertices have been offset to form shape of mountainous terrain.",
+      "identifier": "generating-interactive-geometry-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/79972eba92b8fadc1b2ffa098994af28/generating-interactive-geometry-3.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6999a19be70b68432c9d494997097f83/generating-interactive-geometry-3~dark.jpg"
+        }
+      ]
+    },
+    "generating-interactive-geometry-4": {
+      "alt": "A screenshot of a light blue plane mesh floating in a living room scene. The mesh's vertices have been offset to form ripples such that it looks like the surface of a body of water.",
+      "identifier": "generating-interactive-geometry-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fd2958e725987fa2045b0de3d5add06b/generating-interactive-geometry-4.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f78cf128c3cf37bf3386495f803df60c/generating-interactive-geometry-4~dark.jpg"
+        }
+      ]
+    },
+    "generating-interactive-geometry-5": {
+      "alt": "A screenshot of a flat plane mesh floating in a volume in a living room scene. The plane appears light gray in color.",
+      "identifier": "generating-interactive-geometry-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fc5bccc455ef9a0d26e5a71a3b76deb0/generating-interactive-geometry-5.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/aacf3820a1d669e7f2c3dc5047d3e790/generating-interactive-geometry-5~dark.jpg"
+        }
+      ]
+    },
+    "generating-interactive-geometry-6-poster": {
+      "alt": null,
+      "identifier": "generating-interactive-geometry-6-poster",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/24204babf0f9a4e5b2b9e214859a4ac6/generating-interactive-geometry-6-poster.jpg"
+        }
+      ]
+    },
+    "generating-interactive-geometry-6.mp4": {
+      "alt": "A video of the height map texture the generate sine wave height map compute shader function creates. The texture oscillates from black to white in concentric circles growing outward from the center of the texture over time.",
+      "identifier": "generating-interactive-geometry-6.mp4",
+      "poster": "generating-interactive-geometry-6-poster",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b41f325391db81c314b8a2dd0378d050/generating-interactive-geometry-6.mp4"
+        }
+      ]
+    },
+    "generating-interactive-geometry-7-poster": {
+      "alt": null,
+      "identifier": "generating-interactive-geometry-7-poster",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2f771f936289bdad7f04c099a64fd5e9/generating-interactive-geometry-7-poster.jpg"
+        }
+      ]
+    },
+    "generating-interactive-geometry-7.mp4": {
+      "alt": "A video of the height map texture the terrain height map generator creates. A person's interactions add height to the texture in large brush strokes, leaving behind light gray smudges.",
+      "identifier": "generating-interactive-geometry-7.mp4",
+      "poster": "generating-interactive-geometry-7-poster",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0c41a5c195039a64dfa41660c1e4eb09/generating-interactive-geometry-7.mp4"
+        }
+      ]
+    },
+    "generating-interactive-geometry-8-poster": {
+      "alt": null,
+      "identifier": "generating-interactive-geometry-8-poster",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3db40c2bcc79c532966af7424113fcc3/generating-interactive-geometry-8-poster.jpg"
+        }
+      ]
+    },
+    "generating-interactive-geometry-8.mp4": {
+      "alt": "A video of the height map texture the water surface height map generator creates. A person's interactions cause grayscale ripples to appear in the texture.",
+      "identifier": "generating-interactive-geometry-8.mp4",
+      "poster": "generating-interactive-geometry-8-poster",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/658f73740eebe1dc21611e1c325b75a9/generating-interactive-geometry-8.mp4"
+        }
+      ]
+    },
+    "generating-interactive-geometry-9": {
+      "alt": "A video of a plane mesh whose vertices are offset vertically to form a sine wave moving outward from the center of the mesh in concentric circles over time.",
+      "identifier": "generating-interactive-geometry-9",
+      "poster": "generating-interactive-geometry-9-poster",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2f46398e8e9e4444ee1177f0b0d96395/generating-interactive-geometry-9.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ffad212729cdf488852bcefb25a9b78a/generating-interactive-geometry-9~dark.mp4"
+        }
+      ]
+    },
+    "generating-interactive-geometry-9-poster": {
+      "alt": null,
+      "identifier": "generating-interactive-geometry-9-poster",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4900cd2a14a396cd7ffd226206337dcf/generating-interactive-geometry-9-poster.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4f844e8f6af52f2427ffd18ec508e0fe/generating-interactive-geometry-9-poster~dark.jpg"
+        }
+      ]
+    },
+    "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf": {
+      "identifier": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf",
+      "title": "Metal Shading Language",
+      "titleInlineContent": [
+        {
+          "text": "Metal Shading Language",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf"
+    },
+    "lightspill-PageImage-card.png": {
+      "alt": null,
+      "identifier": "lightspill-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/87e397de07459c756d21eb0c441569f7/lightspill-PageImage-card@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "722f0701c26a/GeneratingInteractiveGeometryWithRealityKit.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Scene-content",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/visionOS/World",
+        "doc://com.apple.documentation/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment",
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spatial-drawing-app-with-realitykit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app",
+        "doc://com.apple.RealityKit/documentation/RealityKit/transforming-realitykit-entities-with-gestures",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-models-and-meshes",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-anchors",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-lights-and-cameras",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-content-synchronization",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-audio",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-videos"
+      ],
+      "title": "Scene content"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/generating-interactive-geometry-with-realitykit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

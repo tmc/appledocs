@@ -1,0 +1,873 @@
+{
+  "abstract": [
+    {
+      "text": "The interface for providing data for a braille map.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Accessibility/documentation/Accessibility"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Accessibility/documentation/Accessibility/AXBrailleMapRenderer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)AXBrailleMapRenderer",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AXBrailleMapRenderer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accessibility"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AXBrailleMapRenderer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "AXBrailleMapRenderer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AXBrailleMapRenderer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You update the braille display in one of these ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AXBrailleMapRenderer/accessibilityBrailleMapRenderRegion",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to specify an area of the UI to render to the braille display. With this approach,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "VoiceOver handles the process of converting the data to a braille map by rendering",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the image of the screen in that region and updating the braille display automatically.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AXBrailleMapRenderer/accessibilityBrailleMapRenderer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to update the braille map manually. With this approach, you get more detailed control",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "over what to display, but you must modify the braille map yourself.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Accessibility-PageImage-card.png": {
+      "alt": "",
+      "identifier": "Accessibility-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/718b8a161d77a3423dde2dd53ac35ffb/Accessibility-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ed433f19cfa41ebf0c9f495a066b6bbd/Accessibility-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility": {
+      "abstract": [
+        {
+          "text": "Make your apps accessible to everyone who uses Apple devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility",
+      "images": [
+        {
+          "identifier": "Accessibility-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/documentation/accessibility"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AXBrailleMap": {
+      "abstract": [
+        {
+          "text": "A representation of a two-dimensional braille display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXBrailleMap"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AXBrailleMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AXBrailleMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "AXBrailleMap",
+      "type": "topic",
+      "url": "/documentation/accessibility/axbraillemap"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AXBrailleMapRenderer": {
+      "abstract": [
+        {
+          "text": "The interface for providing data for a braille map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXBrailleMapRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AXBrailleMapRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AXBrailleMapRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AXBrailleMapRenderer",
+      "type": "topic",
+      "url": "/documentation/accessibility/axbraillemaprenderer"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AXBrailleMapRenderer/accessibilityBrailleMapRenderRegion": {
+      "abstract": [
+        {
+          "text": "A region of the UI that the system converts into a braille map and displays on the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "braille display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityBrailleMapRenderRegion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AXBrailleMapRenderer/accessibilityBrailleMapRenderRegion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessibilityBrailleMapRenderRegion"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessibilityBrailleMapRenderRegion",
+      "type": "topic",
+      "url": "/documentation/accessibility/axbraillemaprenderer/accessibilitybraillemaprenderregion"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AXBrailleMapRenderer/accessibilityBrailleMapRenderer": {
+      "abstract": [
+        {
+          "text": "A handler that the system calls to let you update the Braille map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityBrailleMapRenderer"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AXBrailleMap",
+          "text": "AXBrailleMap"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AXBrailleMapRenderer/accessibilityBrailleMapRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessibilityBrailleMapRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessibilityBrailleMapRenderer",
+      "type": "topic",
+      "url": "/documentation/accessibility/axbraillemaprenderer/accessibilitybraillemaprenderer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Braille-maps",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Accessibility/documentation/Accessibility/AXBrailleMap"
+      ],
+      "title": "Braille maps"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Rendering-a-specific-region",
+      "identifiers": [
+        "doc://com.apple.Accessibility/documentation/Accessibility/AXBrailleMapRenderer/accessibilityBrailleMapRenderRegion"
+      ],
+      "title": "Rendering a specific region"
+    },
+    {
+      "anchor": "Updating-the-braille-map-manually",
+      "identifiers": [
+        "doc://com.apple.Accessibility/documentation/Accessibility/AXBrailleMapRenderer/accessibilityBrailleMapRenderer"
+      ],
+      "title": "Updating the braille map manually"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AXBrailleMapRenderer"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXBrailleMapRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXBrailleMapRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.Accessibility/documentation/Accessibility"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Rendering-a-specific-region",
+              "identifiers": [
+                "doc://com.apple.Accessibility/documentation/Accessibility/AXBrailleMapRenderer/accessibilityBrailleMapRenderRegion"
+              ],
+              "title": "Rendering a specific region"
+            },
+            {
+              "anchor": "Updating-the-braille-map-manually",
+              "identifiers": [
+                "doc://com.apple.Accessibility/documentation/Accessibility/AXBrailleMapRenderer/accessibilityBrailleMapRenderer"
+              ],
+              "title": "Updating the braille map manually"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Braille-maps",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.Accessibility/documentation/Accessibility/AXBrailleMap"
+              ],
+              "title": "Braille maps"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AXBrailleMapRenderer"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXBrailleMapRenderer~1accessibilityBrailleMapRenderer/title",
+          "value": "accessibilityBrailleMapRenderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXBrailleMapRenderer~1accessibilityBrailleMapRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accessibilityBrailleMapRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXBrailleMapRenderer/title",
+          "value": "AXBrailleMapRenderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXBrailleMapRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXBrailleMapRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXBrailleMapRenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXBrailleMapRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXBrailleMapRenderer~1accessibilityBrailleMapRenderRegion/title",
+          "value": "accessibilityBrailleMapRenderRegion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXBrailleMapRenderer~1accessibilityBrailleMapRenderRegion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accessibilityBrailleMapRenderRegion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXBrailleMap/title",
+          "value": "AXBrailleMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXBrailleMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXBrailleMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXBrailleMap/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXBrailleMap"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accessibility/axbraillemaprenderer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accessibility/axbraillemaprenderer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

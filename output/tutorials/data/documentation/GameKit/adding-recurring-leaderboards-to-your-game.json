@@ -1,0 +1,434 @@
+{
+  "abstract": [
+    {
+      "text": "Encourage competition in your games by adding leaderboards that have a duration and repeat.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamekit/documentation/GameKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamekit/documentation/GameKit/adding-recurring-leaderboards-to-your-game"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "GameKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.5",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Adding Recurring Leaderboards to Your Game"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC21 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc21/10067/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "0acc1471b1d8/AddingRecurringLeaderboardsToYourGame.zip": {
+      "checksum": "0acc1471b1d8a597669841c7f256d1b1b6adca09b1f2dccebb09fbcb72bc715fd7d2f7adcfd6c29abf34e53d7f254be83e2c16edb70176b21cc466ef61d1c0b7",
+      "identifier": "0acc1471b1d8/AddingRecurringLeaderboardsToYourGame.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/0acc1471b1d8/AddingRecurringLeaderboardsToYourGame.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit": {
+      "abstract": [
+        {
+          "text": "Enable players to interact with friends, compare leaderboard ranks, earn achievements, and participate in multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameKit",
+      "type": "topic",
+      "url": "/documentation/gamekit"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard": {
+      "abstract": [
+        {
+          "text": "A leaderboard for a game that Game Center stores.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKLeaderboard"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKLeaderboard"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKLeaderboard",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkleaderboard"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardScore": {
+      "abstract": [
+        {
+          "text": "Information about a player’s score on a leaderboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKLeaderboardScore"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardScore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKLeaderboardScore"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKLeaderboardScore",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkleaderboardscore"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardSet": {
+      "abstract": [
+        {
+          "text": "Organizes leaderboards into logical and coherent groups.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKLeaderboardSet"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardSet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKLeaderboardSet"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKLeaderboardSet",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkleaderboardset"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/creating-recurring-leaderboards": {
+      "abstract": [
+        {
+          "text": "Create a leaderboard for your game that ranks player scores based on a schedule.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/creating-recurring-leaderboards",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating recurring leaderboards",
+      "type": "topic",
+      "url": "/documentation/gamekit/creating-recurring-leaderboards"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/encourage-progress-and-competition-with-leaderboards": {
+      "abstract": [
+        {
+          "text": "Let players measure their own progress and compare their skills with friends and others.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/encourage-progress-and-competition-with-leaderboards",
+      "kind": "article",
+      "role": "article",
+      "title": "Encourage progress and competition with leaderboards",
+      "type": "topic",
+      "url": "/documentation/gamekit/encourage-progress-and-competition-with-leaderboards"
+    },
+    "https://developer.apple.com/wwdc21/10067/": {
+      "identifier": "https://developer.apple.com/wwdc21/10067/",
+      "title": "10067: Bring Recurring Leaderboards to Your Game",
+      "titleInlineContent": [
+        {
+          "text": "10067: Bring Recurring Leaderboards to Your Game",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc21/10067/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "0acc1471b1d8/AddingRecurringLeaderboardsToYourGame.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Leaderboards",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/encourage-progress-and-competition-with-leaderboards",
+        "doc://com.apple.gamekit/documentation/GameKit/creating-recurring-leaderboards",
+        "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard",
+        "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardSet",
+        "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardScore"
+      ],
+      "title": "Leaderboards"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Leaderboards",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/encourage-progress-and-competition-with-leaderboards",
+                "doc://com.apple.gamekit/documentation/GameKit/creating-recurring-leaderboards",
+                "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard",
+                "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardSet",
+                "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardScore"
+              ],
+              "title": "Leaderboards"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboardSet/title",
+          "value": "GKLeaderboardSet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboardSet/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLeaderboardSet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboardSet/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLeaderboardSet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard/title",
+          "value": "GKLeaderboard"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLeaderboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLeaderboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboardScore/title",
+          "value": "GKLeaderboardScore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboardScore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLeaderboardScore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboardScore/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLeaderboardScore"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamekit/adding-recurring-leaderboards-to-your-game"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamekit/adding-recurring-leaderboards-to-your-game"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

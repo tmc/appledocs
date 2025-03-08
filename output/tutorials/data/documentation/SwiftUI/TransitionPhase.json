@@ -1,0 +1,1705 @@
+{
+  "abstract": [
+    {
+      "text": "An indication of which the current stage of a transition.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/TransitionPhase"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI15TransitionPhaseO",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "enum"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "TransitionPhase"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "TransitionPhase"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "TransitionPhase"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "TransitionPhase"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a view is appearing with a transition, the transition will first be",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "shown with the ",
+              "type": "text"
+            },
+            {
+              "code": "willAppear",
+              "type": "codeVoice"
+            },
+            {
+              "text": " phase, then will be immediately moved to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "identity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " phase. When a view is being removed, its transition is changed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from the ",
+              "type": "text"
+            },
+            {
+              "code": "identity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " phase to the ",
+              "type": "text"
+            },
+            {
+              "code": "didDisappear",
+              "type": "codeVoice"
+            },
+            {
+              "text": " phase. If a view is removed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "while it is still transitioning in, then its phase will change to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "didDisappear",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If a view is re-added while it is transitioning out, its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "phase will change back to ",
+              "type": "text"
+            },
+            {
+              "code": "identity",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "code": "identity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " phase, transitions should generally not make any visual",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "change to the view they are applied to, since the transition’s view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifications in the ",
+              "type": "text"
+            },
+            {
+              "code": "identity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " phase will be applied to the view as long as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it is visible. In the ",
+              "type": "text"
+            },
+            {
+              "code": "willAppear",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "didDisappear",
+              "type": "codeVoice"
+            },
+            {
+              "text": " phases, transitions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "should apply a change that will be animated to create the transition. If no",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "animatable change is applied, then the transition will be a no-op.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "See Also: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Transition",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "See Also: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AnyTransition",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyTransition": {
+      "abstract": [
+        {
+          "text": "A type-erased transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnyTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyTransition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnyTransition"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnyTransition",
+      "type": "topic",
+      "url": "/documentation/swiftui/anytransition"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AsymmetricTransition": {
+      "abstract": [
+        {
+          "text": "A composite ",
+          "type": "text"
+        },
+        {
+          "code": "Transition",
+          "type": "codeVoice"
+        },
+        {
+          "text": " that uses a different transition for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "insertion versus removal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AsymmetricTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AsymmetricTransition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AsymmetricTransition"
+        }
+      ],
+      "role": "symbol",
+      "title": "AsymmetricTransition",
+      "type": "topic",
+      "url": "/documentation/swiftui/asymmetrictransition"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ContentTransition": {
+      "abstract": [
+        {
+          "text": "A kind of transition that applies to the content within a single view,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "rather than to the insertion or removal of a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ContentTransition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentTransition"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContentTransition",
+      "type": "topic",
+      "url": "/documentation/swiftui/contenttransition"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/contentTransition": {
+      "abstract": [
+        {
+          "text": "The current method of animating the contents of views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentTransition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17ContentTransitionV",
+          "text": "ContentTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/contentTransition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentTransition",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/contenttransition"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/contentTransitionAddsDrawingGroup": {
+      "abstract": [
+        {
+          "text": "A Boolean value that controls whether views that render content",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "transitions use GPU-accelerated rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentTransitionAddsDrawingGroup"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/contentTransitionAddsDrawingGroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentTransitionAddsDrawingGroup",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/contenttransitionaddsdrawinggroup"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/MatchedTransitionSourceConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that defines the appearance of a matched transition",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MatchedTransitionSourceConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/MatchedTransitionSourceConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MatchedTransitionSourceConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "MatchedTransitionSourceConfiguration",
+      "type": "topic",
+      "url": "/documentation/swiftui/matchedtransitionsourceconfiguration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationTransition": {
+      "abstract": [
+        {
+          "text": "A type that defines the transition to use when navigating to a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NavigationTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationTransition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NavigationTransition"
+        }
+      ],
+      "role": "symbol",
+      "title": "NavigationTransition",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationtransition"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PlaceholderContentView": {
+      "abstract": [
+        {
+          "text": "A placeholder used to construct an inline modifier, transition, or other",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "helper type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaceholderContentView"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PlaceholderContentView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlaceholderContentView"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlaceholderContentView",
+      "type": "topic",
+      "url": "/documentation/swiftui/placeholdercontentview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Transition": {
+      "abstract": [
+        {
+          "text": "A description of view changes to apply when a view is added to and removed",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transition"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Transition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Transition"
+        }
+      ],
+      "role": "symbol",
+      "title": "Transition",
+      "type": "topic",
+      "url": "/documentation/swiftui/transition"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TransitionPhase": {
+      "abstract": [
+        {
+          "text": "An indication of which the current stage of a transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransitionPhase"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TransitionPhase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TransitionPhase"
+        }
+      ],
+      "role": "symbol",
+      "title": "TransitionPhase",
+      "type": "topic",
+      "url": "/documentation/swiftui/transitionphase"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TransitionPhase/didDisappear": {
+      "abstract": [
+        {
+          "text": "The transition is being applied to a view that has been requested to be",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "removed from the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didDisappear"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TransitionPhase/didDisappear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TransitionPhase.didDisappear",
+      "type": "topic",
+      "url": "/documentation/swiftui/transitionphase/diddisappear"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TransitionPhase/identity": {
+      "abstract": [
+        {
+          "text": "The transition is being applied to a view that is in the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identity"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TransitionPhase/identity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TransitionPhase.identity",
+      "type": "topic",
+      "url": "/documentation/swiftui/transitionphase/identity"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TransitionPhase/isIdentity": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the transition should have an identity",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "effect, i.e. not change the appearance of its view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isIdentity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TransitionPhase/isIdentity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isIdentity",
+      "type": "topic",
+      "url": "/documentation/swiftui/transitionphase/isidentity"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TransitionPhase/value": {
+      "abstract": [
+        {
+          "text": "A value that can be used to multiply effects that are applied",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "differently depending on the phase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TransitionPhase/value",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "value",
+      "type": "topic",
+      "url": "/documentation/swiftui/transitionphase/value"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TransitionPhase/willAppear": {
+      "abstract": [
+        {
+          "text": "The transition is being applied to a view that is about to be inserted",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "into the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willAppear"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TransitionPhase/willAppear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TransitionPhase.willAppear",
+      "type": "topic",
+      "url": "/documentation/swiftui/transitionphase/willappear"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TransitionProperties": {
+      "abstract": [
+        {
+          "text": "The properties a ",
+          "type": "text"
+        },
+        {
+          "code": "Transition",
+          "type": "codeVoice"
+        },
+        {
+          "text": " can have.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransitionProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TransitionProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TransitionProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "TransitionProperties",
+      "type": "topic",
+      "url": "/documentation/swiftui/transitionproperties"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contentTransition(_:)": {
+      "abstract": [
+        {
+          "text": "Modifies the view to use a given transition as its method of animating",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "changes to the contents of its views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentTransition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17ContentTransitionV",
+          "text": "ContentTransition"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contentTransition(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentTransition(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/contenttransition(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/matchedTransitionSource(id:in:)": {
+      "abstract": [
+        {
+          "text": "Identifies this view as the source of a navigation transition, such",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "as a zoom transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchedTransitionSource"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9NamespaceV",
+          "text": "Namespace"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9NamespaceV2IDV",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/matchedTransitionSource(id:in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matchedTransitionSource(id:in:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/matchedtransitionsource(id:in:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/matchedTransitionSource(id:in:configuration:)": {
+      "abstract": [
+        {
+          "text": "Identifies this view as the source of a navigation transition, such",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "as a zoom transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchedTransitionSource"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9NamespaceV",
+          "text": "Namespace"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9NamespaceV2IDV",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI41EmptyMatchedTransitionSourceConfigurationV",
+          "text": "EmptyMatchedTransitionSourceConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI36MatchedTransitionSourceConfigurationP",
+          "text": "MatchedTransitionSourceConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/matchedTransitionSource(id:in:configuration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matchedTransitionSource(id:in:configuration:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/matchedtransitionsource(id:in:configuration:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationTransition(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the navigation transition style for this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationTransition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20NavigationTransitionP",
+          "text": "NavigationTransition"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationTransition(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationTransition(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationtransition(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/transition(_:)": {
+      "abstract": [
+        {
+          "text": "Associates a transition with the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/transition(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transition(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/transition(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Escapable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/Swift/BitwiseCopyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Defining-transitions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/transition(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Transition",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TransitionProperties",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AsymmetricTransition",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyTransition",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contentTransition(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/contentTransition",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/contentTransitionAddsDrawingGroup",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ContentTransition",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PlaceholderContentView",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationTransition(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationTransition",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/matchedTransitionSource(id:in:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/matchedTransitionSource(id:in:configuration:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/MatchedTransitionSourceConfiguration"
+      ],
+      "title": "Defining transitions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-the-phase",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TransitionPhase/identity",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TransitionPhase/willAppear",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TransitionPhase/didDisappear"
+      ],
+      "title": "Getting the phase"
+    },
+    {
+      "anchor": "Getting-phase-characteristics",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TransitionPhase/isIdentity",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TransitionPhase/value"
+      ],
+      "title": "Getting phase characteristics"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/transitionphase"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,922 @@
+{
+  "abstract": [
+    {
+      "text": "Recognize the keys of the user info dictionary provided by functions that return error objects.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/code-signing-services"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/user-info-dictionary-error-keys"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "User Info Dictionary Error Keys"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Code Signing Services functions that return an error on failure may provide additional information by populating the error’s user info dictionary with any of these keys. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1494648-cferrorcopyuserinfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to retrieve the user info dictionary from the error object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These keys are always supplemental and optional. Don’t rely on their presence or absence to categorize an error. Use the primary ",
+              "type": "text"
+            },
+            {
+              "code": "OSStatus",
+              "type": "codeVoice"
+            },
+            {
+              "text": " return codes listed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/code-signing-services-result-codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for that.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/1494648-cferrorcopyuserinfo": {
+      "abstract": [
+        {
+          "text": "Returns the user info dictionary for a given CFError.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFErrorCopyUserInfo"
+        },
+        {
+          "kind": "text",
+          "text": "(CFError!) -> CFDictionary!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1494648-cferrorcopyuserinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFErrorCopyUserInfo(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1494648-cferrorcopyuserinfo"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/code-signing-services": {
+      "abstract": [
+        {
+          "text": "Examine and validate signed code running on the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/code-signing-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Code Signing Services",
+      "type": "topic",
+      "url": "/documentation/security/code-signing-services"
+    },
+    "doc://com.apple.security/documentation/Security/code-signing-services-result-codes": {
+      "abstract": [
+        {
+          "text": "Recognize result codes specific to the code signing services API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/code-signing-services-result-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Code Signing Services Result Codes",
+      "type": "topic",
+      "url": "/documentation/security/code-signing-services-result-codes"
+    },
+    "doc://com.apple.security/documentation/Security/kSecCFErrorArchitecture": {
+      "abstract": [
+        {
+          "text": "A key whose value is a string containing the name of the architecture that is causing the problem.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecCFErrorArchitecture"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecCFErrorArchitecture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecCFErrorArchitecture"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecCFErrorArchitecture",
+      "type": "topic",
+      "url": "/documentation/security/kseccferrorarchitecture"
+    },
+    "doc://com.apple.security/documentation/Security/kSecCFErrorGuestAttributes": {
+      "abstract": [
+        {
+          "text": "A key whose value is a Core Foundation object containing an attribute that is unrecognized or that contains a value of the wrong type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecCFErrorGuestAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecCFErrorGuestAttributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecCFErrorGuestAttributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecCFErrorGuestAttributes",
+      "type": "topic",
+      "url": "/documentation/security/kseccferrorguestattributes"
+    },
+    "doc://com.apple.security/documentation/Security/kSecCFErrorInfoPlist": {
+      "abstract": [
+        {
+          "text": "A key whose value is a Core Foundation object identifying the invalid component or key in the dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecCFErrorInfoPlist"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecCFErrorInfoPlist",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecCFErrorInfoPlist"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecCFErrorInfoPlist",
+      "type": "topic",
+      "url": "/documentation/security/kseccferrorinfoplist"
+    },
+    "doc://com.apple.security/documentation/Security/kSecCFErrorPath": {
+      "abstract": [
+        {
+          "text": "A key whose value is a URL indicating the subcomponent containing the error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecCFErrorPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecCFErrorPath",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecCFErrorPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecCFErrorPath",
+      "type": "topic",
+      "url": "/documentation/security/kseccferrorpath"
+    },
+    "doc://com.apple.security/documentation/Security/kSecCFErrorPattern": {
+      "abstract": [
+        {
+          "text": "A key whose value is a string containing a regular expression that’s part of a resource specification that did not parse correctly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecCFErrorPattern"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecCFErrorPattern",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecCFErrorPattern"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecCFErrorPattern",
+      "type": "topic",
+      "url": "/documentation/security/kseccferrorpattern"
+    },
+    "doc://com.apple.security/documentation/Security/kSecCFErrorRequirementSyntax": {
+      "abstract": [
+        {
+          "text": "A key whose value is a string containing a compilation error generated when parsing a requirement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecCFErrorRequirementSyntax"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecCFErrorRequirementSyntax",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecCFErrorRequirementSyntax"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecCFErrorRequirementSyntax",
+      "type": "topic",
+      "url": "/documentation/security/kseccferrorrequirementsyntax"
+    },
+    "doc://com.apple.security/documentation/Security/kSecCFErrorResourceAdded": {
+      "abstract": [
+        {
+          "text": "A key whose value is a URL pointing to the resource on disk that is not included in the signed resources for the code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecCFErrorResourceAdded"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecCFErrorResourceAdded",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecCFErrorResourceAdded"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecCFErrorResourceAdded",
+      "type": "topic",
+      "url": "/documentation/security/kseccferrorresourceadded"
+    },
+    "doc://com.apple.security/documentation/Security/kSecCFErrorResourceAltered": {
+      "abstract": [
+        {
+          "text": "A key whose value is a URL pointing to the resource on disk that has been altered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecCFErrorResourceAltered"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecCFErrorResourceAltered",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecCFErrorResourceAltered"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecCFErrorResourceAltered",
+      "type": "topic",
+      "url": "/documentation/security/kseccferrorresourcealtered"
+    },
+    "doc://com.apple.security/documentation/Security/kSecCFErrorResourceMissing": {
+      "abstract": [
+        {
+          "text": "A key whose value is a URL indicating the location of the missing resource as it is specified in the ",
+          "type": "text"
+        },
+        {
+          "code": "CodeResources",
+          "type": "codeVoice"
+        },
+        {
+          "text": " file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecCFErrorResourceMissing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecCFErrorResourceMissing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecCFErrorResourceMissing"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecCFErrorResourceMissing",
+      "type": "topic",
+      "url": "/documentation/security/kseccferrorresourcemissing"
+    },
+    "doc://com.apple.security/documentation/Security/kSecCFErrorResourceSeal": {
+      "abstract": [
+        {
+          "text": "A key whose value is a Core Foundation object containing the part of the resource seal that had a problem.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecCFErrorResourceSeal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecCFErrorResourceSeal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecCFErrorResourceSeal"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecCFErrorResourceSeal",
+      "type": "topic",
+      "url": "/documentation/security/kseccferrorresourceseal"
+    },
+    "doc://com.apple.security/documentation/Security/kSecCFErrorResourceSideband": {
+      "abstract": [
+        {
+          "text": "A key whose value is a URL representing a sealed resource with invalid sideband data (resource fork, etc.).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecCFErrorResourceSideband"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecCFErrorResourceSideband",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecCFErrorResourceSideband"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecCFErrorResourceSideband",
+      "type": "topic",
+      "url": "/documentation/security/kseccferrorresourcesideband"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/kSecCFErrorArchitecture",
+        "doc://com.apple.security/documentation/Security/kSecCFErrorPattern",
+        "doc://com.apple.security/documentation/Security/kSecCFErrorResourceSeal",
+        "doc://com.apple.security/documentation/Security/kSecCFErrorResourceAdded",
+        "doc://com.apple.security/documentation/Security/kSecCFErrorResourceAltered",
+        "doc://com.apple.security/documentation/Security/kSecCFErrorResourceMissing",
+        "doc://com.apple.security/documentation/Security/kSecCFErrorResourceSideband",
+        "doc://com.apple.security/documentation/Security/kSecCFErrorInfoPlist",
+        "doc://com.apple.security/documentation/Security/kSecCFErrorGuestAttributes",
+        "doc://com.apple.security/documentation/Security/kSecCFErrorRequirementSyntax",
+        "doc://com.apple.security/documentation/Security/kSecCFErrorPath"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/kSecCFErrorArchitecture",
+                "doc://com.apple.security/documentation/Security/kSecCFErrorPattern",
+                "doc://com.apple.security/documentation/Security/kSecCFErrorResourceSeal",
+                "doc://com.apple.security/documentation/Security/kSecCFErrorResourceAdded",
+                "doc://com.apple.security/documentation/Security/kSecCFErrorResourceAltered",
+                "doc://com.apple.security/documentation/Security/kSecCFErrorResourceMissing",
+                "doc://com.apple.security/documentation/Security/kSecCFErrorResourceSideband",
+                "doc://com.apple.security/documentation/Security/kSecCFErrorInfoPlist",
+                "doc://com.apple.security/documentation/Security/kSecCFErrorGuestAttributes",
+                "doc://com.apple.security/documentation/Security/kSecCFErrorRequirementSyntax",
+                "doc://com.apple.security/documentation/Security/kSecCFErrorPath"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCFErrorResourceAdded/title",
+          "value": "kSecCFErrorResourceAdded"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCFErrorResourceAdded/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecCFErrorResourceAdded"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCFErrorResourceMissing/title",
+          "value": "kSecCFErrorResourceMissing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCFErrorResourceMissing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecCFErrorResourceMissing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCFErrorPath/title",
+          "value": "kSecCFErrorPath"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCFErrorPath/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecCFErrorPath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCFErrorGuestAttributes/title",
+          "value": "kSecCFErrorGuestAttributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCFErrorGuestAttributes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecCFErrorGuestAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCFErrorArchitecture/title",
+          "value": "kSecCFErrorArchitecture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCFErrorArchitecture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecCFErrorArchitecture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCFErrorResourceSeal/title",
+          "value": "kSecCFErrorResourceSeal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCFErrorResourceSeal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecCFErrorResourceSeal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1corefoundation~11494648-cferrorcopyuserinfo/title",
+          "value": "CFErrorCopyUserInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCFErrorRequirementSyntax/title",
+          "value": "kSecCFErrorRequirementSyntax"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCFErrorRequirementSyntax/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecCFErrorRequirementSyntax"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCFErrorResourceAltered/title",
+          "value": "kSecCFErrorResourceAltered"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCFErrorResourceAltered/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecCFErrorResourceAltered"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCFErrorInfoPlist/title",
+          "value": "kSecCFErrorInfoPlist"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCFErrorInfoPlist/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecCFErrorInfoPlist"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCFErrorPattern/title",
+          "value": "kSecCFErrorPattern"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCFErrorPattern/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecCFErrorPattern"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCFErrorResourceSideband/title",
+          "value": "kSecCFErrorResourceSideband"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecCFErrorResourceSideband/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecCFErrorResourceSideband"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/user-info-dictionary-error-keys"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/user-info-dictionary-error-keys"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

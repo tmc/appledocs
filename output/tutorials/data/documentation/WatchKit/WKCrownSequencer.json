@@ -1,0 +1,1507 @@
+{
+  "abstract": [
+    {
+      "text": "An object that reports the current state of the digital crown, including its rotational speed when it is in motion.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchkit/documentation/WatchKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)WKCrownSequencer",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "WKCrownSequencer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "WatchKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "WKCrownSequencer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "WKCrownSequencer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKCrownSequencer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Do not create instances of this class yourself. Instead, retrieve a crown sequencer object from the current interface controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/crownSequencer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Before the sequencer can receive data, you must call its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/focus()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Only one object in your interface can have focus at any given time, so if your interface also contains picker objects or has scrollable scenes, you must coordinate changes in focus accordingly. For example, calling the sequencer’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/focus()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method causes any picker objects or interface controllers to resign focus. When the user taps on a picker object, the currently active sequencer resigns focus, and the selected picker object gains the focus. Because the crown sequencer is not tied to a specific interface object, you can use it as general input for your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although the crown sequencer object has properties that contain the current state of the crown, it is more common to use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/delegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to receive notifications as the user rotates the crown. For more information on receiving data using a delegate, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKCrownDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that use features the app delegate monitors or controls, such as background tasks and extended runtime sessions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WatchKit",
+      "type": "topic",
+      "url": "/documentation/watchkit"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKCrownDelegate": {
+      "abstract": [
+        {
+          "text": "A collection of methods you can implement to track the user’s interaction with the digital crown, receiving notifications when the user rotates the crown or when rotation stops.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKCrownDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKCrownDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKCrownDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKCrownDelegate",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkcrowndelegate"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer": {
+      "abstract": [
+        {
+          "text": "An object that reports the current state of the digital crown, including its rotational speed when it is in motion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKCrownSequencer"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKCrownSequencer"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKCrownSequencer",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkcrownsequencer"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/delegate": {
+      "abstract": [
+        {
+          "text": "The object you use to monitor changes to the crown state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)WKCrownDelegate",
+          "text": "WKCrownDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkcrownsequencer/delegate"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/focus()": {
+      "abstract": [
+        {
+          "text": "Begins the delivery of crown events to the current crown sequencer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "focus"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/focus()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "focus"
+        }
+      ],
+      "role": "symbol",
+      "title": "focus()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkcrownsequencer/focus()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/isHapticFeedbackEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the crown sequencer’s haptic feedback is enabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isHapticFeedbackEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/isHapticFeedbackEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hapticFeedbackEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isHapticFeedbackEnabled",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkcrownsequencer/ishapticfeedbackenabled"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/isIdle": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the crown is at rest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isIdle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/isIdle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "idle"
+        }
+      ],
+      "role": "symbol",
+      "title": "isIdle",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkcrownsequencer/isidle"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/resignFocus()": {
+      "abstract": [
+        {
+          "text": "Ends the delivery of crown events to the current crown sequencer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resignFocus"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/resignFocus()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resignFocus"
+        }
+      ],
+      "role": "symbol",
+      "title": "resignFocus()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkcrownsequencer/resignfocus()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/rotationsPerSecond": {
+      "abstract": [
+        {
+          "text": "The rotational speed of the crown, measured in rotations per second.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rotationsPerSecond"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/rotationsPerSecond",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rotationsPerSecond"
+        }
+      ],
+      "role": "symbol",
+      "title": "rotationsPerSecond",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkcrownsequencer/rotationspersecond"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "The base class for all other gesture recognizer classes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkgesturerecognizer"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/crownSequencer": {
+      "abstract": [
+        {
+          "text": "The object to use when directly tracking crown events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "crownSequencer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKCrownSequencer",
+          "text": "WKCrownSequencer"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/crownSequencer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "crownSequencer"
+        }
+      ],
+      "role": "symbol",
+      "title": "crownSequencer",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacecontroller/crownsequencer"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKLongPressGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A gesture recognizer that interprets a touch event that occurs in the same relative area for an extended period of time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKLongPressGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKLongPressGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKLongPressGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKLongPressGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/watchkit/wklongpressgesturerecognizer"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKPanGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A gesture recognizer that interprets a touch event that moves around the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKPanGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKPanGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKPanGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKPanGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkpangesturerecognizer"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKSwipeGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A gesture recognizer that interprets swiping gestures in one or more directions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKSwipeGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKSwipeGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKSwipeGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKSwipeGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkswipegesturerecognizer"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKTapGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A gesture recognizer that interprets a touch event occurring and ending in approximately the same area on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKTapGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKTapGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKTapGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKTapGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/watchkit/wktapgesturerecognizer"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Event-handling",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKCrownDelegate",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKLongPressGestureRecognizer",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKPanGestureRecognizer",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKSwipeGestureRecognizer",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKTapGestureRecognizer"
+      ],
+      "title": "Event handling"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-the-Current-Crown-Status",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/rotationsPerSecond",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/isIdle"
+      ],
+      "title": "Getting the Current Crown Status"
+    },
+    {
+      "anchor": "Accessing-the-Delegate",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/delegate"
+      ],
+      "title": "Accessing the Delegate"
+    },
+    {
+      "anchor": "Managing-the-Focus",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/focus()",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/resignFocus()"
+      ],
+      "title": "Managing the Focus"
+    },
+    {
+      "anchor": "Managing-Haptic-Feedback",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/isHapticFeedbackEnabled"
+      ],
+      "title": "Managing Haptic Feedback"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "WKCrownSequencer"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKCrownSequencer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKCrownSequencer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.watchkit/documentation/WatchKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Getting-the-Current-Crown-Status",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/rotationsPerSecond",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/isIdle"
+              ],
+              "title": "Getting the Current Crown Status"
+            },
+            {
+              "anchor": "Accessing-the-Delegate",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/delegate"
+              ],
+              "title": "Accessing the Delegate"
+            },
+            {
+              "anchor": "Managing-the-Focus",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/focus()",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/resignFocus()"
+              ],
+              "title": "Managing the Focus"
+            },
+            {
+              "anchor": "Managing-Haptic-Feedback",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer/isHapticFeedbackEnabled"
+              ],
+              "title": "Managing Haptic Feedback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Event-handling",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKCrownDelegate",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKLongPressGestureRecognizer",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKPanGestureRecognizer",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKSwipeGestureRecognizer",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKTapGestureRecognizer"
+              ],
+              "title": "Event handling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "WKCrownSequencer"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownSequencer~1isIdle/title",
+          "value": "idle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownSequencer~1isIdle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "idle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownSequencer/title",
+          "value": "WKCrownSequencer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownSequencer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKCrownSequencer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownSequencer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKCrownSequencer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKPanGestureRecognizer/title",
+          "value": "WKPanGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKPanGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKPanGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKPanGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKPanGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKSwipeGestureRecognizer/title",
+          "value": "WKSwipeGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKSwipeGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKSwipeGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKSwipeGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKSwipeGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizer/title",
+          "value": "WKGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1crownSequencer/title",
+          "value": "crownSequencer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController~1crownSequencer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "crownSequencer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownSequencer~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownSequencer~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKLongPressGestureRecognizer/title",
+          "value": "WKLongPressGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKLongPressGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKLongPressGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKLongPressGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKLongPressGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownSequencer~1rotationsPerSecond/title",
+          "value": "rotationsPerSecond"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownSequencer~1rotationsPerSecond/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rotationsPerSecond"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownSequencer~1resignFocus()/title",
+          "value": "resignFocus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownSequencer~1resignFocus()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resignFocus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownSequencer~1isHapticFeedbackEnabled/title",
+          "value": "hapticFeedbackEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownSequencer~1isHapticFeedbackEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hapticFeedbackEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKTapGestureRecognizer/title",
+          "value": "WKTapGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKTapGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKTapGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKTapGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKTapGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownSequencer~1focus()/title",
+          "value": "focus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownSequencer~1focus()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "focus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownDelegate/title",
+          "value": "WKCrownDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKCrownDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKCrownDelegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/watchkit/wkcrownsequencer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/watchkit/wkcrownsequencer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

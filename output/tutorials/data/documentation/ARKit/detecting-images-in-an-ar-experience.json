@@ -1,0 +1,1677 @@
+{
+  "abstract": [
+    {
+      "text": "React to known 2D images in the user’s environment, and use their positions to place AR content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-visionos"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+        "doc://com.apple.arkit/documentation/ARKit/content-anchors"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/detecting-images-in-an-ar-experience"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "11.3",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.3",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Detecting Images in an AR Experience"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many AR experiences can be enhanced by using known features of the user’s environment to trigger the appearance of virtual content. For example, a museum app might show a virtual curator when the user points their device at a painting, or a board game might place virtual pieces when the player points their device at a game board. In iOS 11.3 and later, you can add such features to your AR experience by enabling image detection in ARKit: Your app provides known 2D images, and ARKit tells you when and where those images are detected during an AR session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example app looks for any of the several reference images included in the app’s asset catalog. When ARKit detects one of those images, the app shows a message identifying the detected image and a brief animation showing its position in the scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The images included with this sample are designed to fit the screen sizes of various Apple devices. To try the app using these images, choose an image that fits any spare device you have, and display the image full screen on that device. Then run the sample code project on a different device, and point its camera at the device displaying the image. Alternatively, you can add your own images; see the steps in Provide Your Own Reference Images, below.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Enable-Image-Detection",
+          "level": 3,
+          "text": "Enable Image Detection",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Image detection is an add-on feature for world-tracking AR sessions. (For more details on world tracking, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/tracking-and-visualizing-planes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable image detection:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Load one or more ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceImage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " resources from your app’s asset catalog.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a world-tracking configuration and pass those reference images to its ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/detectionImages",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/run(_:options:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to run a session with your configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code below shows how the sample app performs these steps when starting or restarting the AR experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: \"AR Resources\", ",
+            "                                                             bundle: nil) else {",
+            "    fatalError(\"Missing expected asset catalog resources.\")",
+            "}",
+            "",
+            "let configuration = ARWorldTrackingConfiguration()",
+            "configuration.detectionImages = referenceImages",
+            "session.run(configuration, options: [.resetTracking, .removeExistingAnchors])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Visualize-Image-Detection-Results",
+          "level": 3,
+          "text": "Visualize Image Detection Results",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When ARKit detects one of your reference images, the session automatically adds a corresponding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARImageAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to its list of anchors. To respond to an image being detected, implement an appropriate ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSKViewDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method that reports the new anchor being added to the session. (This example app uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate/renderer(_:didAdd:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method for the code shown below.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use the detected image as a trigger for AR content, you’ll need to know its position and orientation, its size, and which reference image it is. The anchor’s inherited ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor/transform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property provides position and orientation, and its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARImageAnchor/referenceImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property tells you which ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object was detected. If your AR content depends on the extent of the image in the scene, you can then use the reference image’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceImage/physicalSize",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to set up your content, as shown in the code below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {",
+            "    guard let imageAnchor = anchor as? ARImageAnchor else { return }",
+            "    let referenceImage = imageAnchor.referenceImage",
+            "    updateQueue.async {",
+            "        ",
+            "        // Create a plane to visualize the initial position of the detected image.",
+            "        let plane = SCNPlane(width: referenceImage.physicalSize.width,",
+            "                                height: referenceImage.physicalSize.height)",
+            "        let planeNode = SCNNode(geometry: plane)",
+            "        planeNode.opacity = 0.25",
+            "        ",
+            "        /*",
+            "            `SCNPlane` is vertically oriented in its local coordinate space, but",
+            "            `ARImageAnchor` assumes the image is horizontal in its local space, so",
+            "            rotate the plane to match.",
+            "            */",
+            "        planeNode.eulerAngles.x = -.pi / 2",
+            "        ",
+            "        /*",
+            "            Image anchors are not tracked after initial detection, so create an",
+            "            animation that limits the duration for which the plane visualization appears.",
+            "            */",
+            "        planeNode.runAction(self.imageHighlightAction)",
+            "        ",
+            "        // Add the plane visualization to the scene.",
+            "        node.addChildNode(planeNode)",
+            "    }",
+            "        DispatchQueue.main.async {",
+            "        let imageName = referenceImage.name ?? \"\"",
+            "        self.statusViewController.cancelAllScheduledMessages()",
+            "        self.statusViewController.showMessage(\"Detected image “\\(imageName)”\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Provide-Your-Own-Reference-Images",
+          "level": 3,
+          "text": "Provide Your Own Reference Images",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use your own images for detection (in this sample or in your own project), you’ll need to add them to your asset catalog in Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your project’s asset catalog, then use the Add button (+) to add a new AR resource group.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag image files from the Finder into the newly created resource group.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For each image, use the inspector to describe the physical size of the image as you’d expect to find it in the user’s real-world environment, and optionally include a descriptive name for your own use.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Put all the images you want to look for in the same session into a resource group. Use separate resource groups to hold sets of images for use in separate sessions. For example, an art museum app might use separate sessions (and thus separate resource groups) for detecting paintings in different wings of the museum.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Be aware of image detection capabilities.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Choose, design, and configure reference images for optimal reliability and performance:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter the physical size of the image in Xcode as accurately as possible. ARKit relies on this information to determine the distance of the image from the camera. Entering an incorrect physical size will result in an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARImageAnchor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " that’s the wrong distance from the camera.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When you add reference images to your asset catalog in Xcode, pay attention to the quality estimation warnings Xcode provides. Images with high contrast work best for image detection.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use only images on flat surfaces for detection. If an image to be detected is on a nonplanar surface, like a label on a wine bottle, ARKit might not detect it at all, or might create an image anchor at the wrong location.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Consider how your image appears under different lighting conditions. If an image is printed on glossy paper or displayed on a device screen, reflections on those surfaces can interfere with detection.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Apply-Best-Practices",
+          "level": 3,
+          "text": "Apply Best Practices",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example app simply visualizes where ARKit detects each reference image in the user’s environment, but your app can do much more. Follow the tips below to design AR experiences that use image detection well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use detected images to set a frame of reference for the AR scene.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Instead of requiring the user to choose a place for virtual content, or arbitrarily placing content in the user’s environment, use detected images to anchor the virtual scene. You can even use multiple detected images. For example, an app for a retail store could make a virtual character appear to emerge from a store’s front door by detecting posters placed on either side of the door and then calculating a position for the character directly between the posters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/setWorldOrigin(relativeTransform:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method to redefine the world coordinate system so that you can place all anchors and other content relative to the reference point you choose.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Design your AR experience to use detected images as a starting point for virtual content.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " ARKit doesn’t track changes to the position or orientation of each detected image. If you try to place virtual content that stays attached to a detected image, that content may not appear to stay in place correctly. Instead, use detected images as a frame of reference for starting a dynamic scene. For example, your app might detect theater posters for a sci-fi film and then have virtual spaceships appear to emerge from the posters and fly around the environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Consider when to allow detection of each image to trigger (or repeat) AR interactions.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " ARKit adds an image anchor to a session exactly once for each reference image in the session configuration’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/detectionImages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array. If your AR experience adds virtual content to the scene when an image is detected, that action will by default happen only once. To allow the user to experience that content again without restarting your app, call the session’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/remove(anchor:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to remove the corresponding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARImageAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". After the anchor is removed, ARKit will add a new anchor the next time it detects the image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, in the case described above, where spaceships appear to fly out of a movie poster, you might not want an extra copy of that animation to appear while the first one is still playing. Wait until the animation ends to remove the anchor, so that the user can trigger it again by pointing their device at the image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "b7d5e65ac573/ARKitImageDetection.zip": {
+      "checksum": "b7d5e65ac57326a4d7220403dd3806ea71f1117ff1dd4898cd532696836f56e5518810a18c19f4bd6c8de399c4c73d608ad011eeb5cb3f86073f154c6f9cc383",
+      "identifier": "b7d5e65ac573/ARKitImageDetection.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/b7d5e65ac573/ARKitImageDetection.zip"
+    },
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAnchor/transform": {
+      "abstract": [
+        {
+          "text": "A matrix encoding the position, orientation, and scale of the anchor relative to the world coordinate space of the AR session the anchor is placed in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_float4x4",
+          "text": "simd_float4x4"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor/transform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transform"
+        }
+      ],
+      "role": "symbol",
+      "title": "transform",
+      "type": "topic",
+      "url": "/documentation/arkit/aranchor/transform"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARImageAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor for a known image that ARKit detects in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARImageAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARImageAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARImageAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARImageAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/arimageanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARImageAnchor/referenceImage": {
+      "abstract": [
+        {
+          "text": "The detected image referenced by the image anchor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "referenceImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARReferenceImage",
+          "text": "ARReferenceImage"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARImageAnchor/referenceImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "referenceImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "referenceImage",
+      "type": "topic",
+      "url": "/documentation/arkit/arimageanchor/referenceimage"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARReferenceImage": {
+      "abstract": [
+        {
+          "text": "A 2D image that you want ARKit to detect in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARReferenceImage"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARReferenceImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARReferenceImage",
+      "type": "topic",
+      "url": "/documentation/arkit/arreferenceimage"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARReferenceImage/physicalSize": {
+      "abstract": [
+        {
+          "text": "The real-world dimensions, in meters, of the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "physicalSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceImage/physicalSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "physicalSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "physicalSize",
+      "type": "topic",
+      "url": "/documentation/arkit/arreferenceimage/physicalsize"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate": {
+      "abstract": [
+        {
+          "text": "Methods you can implement to mediate the automatic synchronization of SceneKit content with an AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSCNViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSCNViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSCNViewDelegate",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnviewdelegate"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate/renderer(_:didAdd:for:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a SceneKit node corresponding to a new AR anchor has been added to the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderer"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SCNSceneRenderer",
+          "text": "SCNSceneRenderer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAdd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNNode",
+          "text": "SCNNode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARAnchor",
+          "text": "ARAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate/renderer(_:didAdd:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderer:didAddNode:forAnchor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "renderer(_:didAdd:for:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnviewdelegate/renderer(_:didadd:for:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSKViewDelegate": {
+      "abstract": [
+        {
+          "text": "Methods you can implement to mediate the automatic synchronization of SpriteKit content with an AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSKViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSKViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSKViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSKViewDelegate",
+      "type": "topic",
+      "url": "/documentation/arkit/arskviewdelegate"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/remove(anchor:)": {
+      "abstract": [
+        {
+          "text": "Removes the specified anchor from tracking by the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "anchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARAnchor",
+          "text": "ARAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/remove(anchor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeAnchor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "remove(anchor:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/remove(anchor:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/run(_:options:)": {
+      "abstract": [
+        {
+          "text": "Starts AR processing for the session with the specified configuration and options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "run"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARConfiguration",
+          "text": "ARConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARSessionRunOptions",
+          "text": "RunOptions"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/run(_:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "runWithConfiguration:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "run(_:options:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/run(_:options:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/setWorldOrigin(relativeTransform:)": {
+      "abstract": [
+        {
+          "text": "Changes the basis for the AR world coordinate space using the specified transform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setWorldOrigin"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "relativeTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_float4x4",
+          "text": "simd_float4x4"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/setWorldOrigin(relativeTransform:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setWorldOrigin:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setWorldOrigin(relativeTransform:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/setworldorigin(relativetransform:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate": {
+      "abstract": [
+        {
+          "text": "Methods you can implement to receive captured video frame images and tracking state from an AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSessionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSessionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessiondelegate"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/detectionImages": {
+      "abstract": [
+        {
+          "text": "A set of images that ARKit searches for in the user’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectionImages"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARReferenceImage",
+          "text": "ARReferenceImage"
+        },
+        {
+          "kind": "text",
+          "text": ">!"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/detectionImages",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "detectionImages"
+        }
+      ],
+      "role": "symbol",
+      "title": "detectionImages",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/detectionimages"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-visionos": {
+      "abstract": [
+        {
+          "text": "Create immersive augmented reality experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-visionos",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in visionOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-visionos"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/content-anchors": {
+      "abstract": [
+        {
+          "text": "Identify items in the physical environment, including planar surfaces, images, physical objects, body positions, and faces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/content-anchors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Content Anchors",
+      "type": "topic",
+      "url": "/documentation/arkit/content-anchors"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/tracking-and-visualizing-planes": {
+      "abstract": [
+        {
+          "text": "Detect surfaces in the physical environment and visualize their shape and location in 3D space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/tracking-and-visualizing-planes",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Tracking and visualizing planes",
+      "type": "topic",
+      "url": "/documentation/arkit/tracking-and-visualizing-planes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "b7d5e65ac573/ARKitImageDetection.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARImageAnchor/title",
+          "value": "ARImageAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARImageAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARImageAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARImageAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARImageAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceImage/title",
+          "value": "ARReferenceImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARReferenceImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceImage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARReferenceImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSKViewDelegate/title",
+          "value": "ARSKViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSKViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSKViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSKViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSKViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate/title",
+          "value": "ARSessionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSessionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSessionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1detectionImages/title",
+          "value": "detectionImages"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1detectionImages/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "detectionImages"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1run(_:options:)/title",
+          "value": "runWithConfiguration:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1run(_:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "runWithConfiguration:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNViewDelegate/title",
+          "value": "ARSCNViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceImage~1physicalSize/title",
+          "value": "physicalSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceImage~1physicalSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "physicalSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNViewDelegate~1renderer(_:didAdd:for:)/title",
+          "value": "renderer:didAddNode:forAnchor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNViewDelegate~1renderer(_:didAdd:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "renderer:didAddNode:forAnchor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor~1transform/title",
+          "value": "transform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor~1transform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARImageAnchor~1referenceImage/title",
+          "value": "referenceImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARImageAnchor~1referenceImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "referenceImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1remove(anchor:)/title",
+          "value": "removeAnchor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1remove(anchor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeAnchor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1setWorldOrigin(relativeTransform:)/title",
+          "value": "setWorldOrigin:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1setWorldOrigin(relativeTransform:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setWorldOrigin:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/detecting-images-in-an-ar-experience"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

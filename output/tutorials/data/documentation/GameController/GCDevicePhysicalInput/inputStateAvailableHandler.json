@@ -1,0 +1,991 @@
+{
+  "abstract": [
+    {
+      "text": "The block that the profile calls when Game Controller adds an input state to the queue.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamecontroller/documentation/GameController",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/inputStateAvailableHandler"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)GCDevicePhysicalInput(py)inputStateAvailableHandler",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "inputStateAvailableHandler"
+      },
+      {
+        "kind": "text",
+        "text": ": ((any "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(pl)GCDevicePhysicalInput",
+        "text": "GCDevicePhysicalInput"
+      },
+      {
+        "kind": "text",
+        "text": ") -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:s4Voida",
+        "text": "Void"
+      },
+      {
+        "kind": "text",
+        "text": ")?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Game Controller"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "inputStateAvailableHandler"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "required": true,
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "inputStateAvailableHandler"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "inputStateAvailableHandler"
+            },
+            {
+              "kind": "text",
+              "text": ": ((any "
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)GCDevicePhysicalInput",
+              "text": "GCDevicePhysicalInput"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s4Voida",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s4Voida",
+              "text": "Void"
+            },
+            {
+              "kind": "text",
+              "text": ")? { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.gamecontroller/documentation/GameController/handling-input-events"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set this property to track every element value change, not just the current value. When Game Controller invokes the handler, invoke the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/nextInputState()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method repeatedly to get all the buffered changes until the queue is empty.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get just the current element value, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/elementValueDidChangeHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController": {
+      "abstract": [
+        {
+          "text": "Support hardware game controllers in your game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Game Controller",
+      "type": "topic",
+      "url": "/documentation/gamecontroller"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput": {
+      "abstract": [
+        {
+          "text": "The common properties and methods for objects that represent the input profile of a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCDevicePhysicalInput"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCDevicePhysicalInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCDevicePhysicalInput",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevicephysicalinput"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/capture()": {
+      "abstract": [
+        {
+          "text": "Returns a snapshot of the physical device inputs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "capture"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GCDevicePhysicalInputState",
+          "text": "GCDevicePhysicalInputState"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/capture()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "capture"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "capture()",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevicephysicalinput/capture()"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/elementValueDidChangeHandler": {
+      "abstract": [
+        {
+          "text": "A block that the profile calls when an element’s value changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "elementValueDidChangeHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GCDevicePhysicalInput",
+          "text": "GCDevicePhysicalInput"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GCPhysicalInputElement",
+          "text": "GCPhysicalInputElement"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/elementValueDidChangeHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "elementValueDidChangeHandler"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "elementValueDidChangeHandler",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevicephysicalinput/elementvaluedidchangehandler"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/inputStateAvailableHandler": {
+      "abstract": [
+        {
+          "text": "The block that the profile calls when Game Controller adds an input state to the queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputStateAvailableHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GCDevicePhysicalInput",
+          "text": "GCDevicePhysicalInput"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/inputStateAvailableHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inputStateAvailableHandler"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "inputStateAvailableHandler",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevicephysicalinput/inputstateavailablehandler"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/inputStateQueueDepth": {
+      "abstract": [
+        {
+          "text": "The maximum number of input values that the queue stores.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputStateQueueDepth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/inputStateQueueDepth",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inputStateQueueDepth"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "inputStateQueueDepth",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevicephysicalinput/inputstatequeuedepth"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/nextInputState()": {
+      "abstract": [
+        {
+          "text": "Returns the next input state from the queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nextInputState"
+        },
+        {
+          "kind": "text",
+          "text": "() -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GCDevicePhysicalInputState",
+          "text": "GCDevicePhysicalInputState"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GCDevicePhysicalInputStateDiff",
+          "text": "GCDevicePhysicalInputStateDiff"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/nextInputState()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nextInputState"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "nextInputState()",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevicephysicalinput/nextinputstate()"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/handling-input-events": {
+      "abstract": [
+        {
+          "text": "Receive controller input using either polling or callbacks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/handling-input-events",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling input events",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/handling-input-events"
+    },
+    "doc://com.externally.resolved.symbol/s:s4Voida": {
+      "abstract": [
+        {
+          "text": "The return type of functions that don’t explicitly specify a return type, that is, an empty tuple `()`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": " = ()"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s4Voida",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Void",
+      "type": "topic",
+      "url": "/documentation/Swift/Void"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Handling-device-input",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/nextInputState()",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/inputStateQueueDepth",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/capture()",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/elementValueDidChangeHandler"
+      ],
+      "title": "Handling device input"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "inputStateAvailableHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inputStateAvailableHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.gamecontroller/documentation/GameController",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Handling-device-input",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/nextInputState()",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/inputStateQueueDepth",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/capture()",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/elementValueDidChangeHandler"
+              ],
+              "title": "Handling device input"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "atomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "copy"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " (^"
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "inputStateAvailableHandler"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ")("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:Qoobjc(pl)GCDevicePhysicalInput",
+                    "text": "id<GCDevicePhysicalInput>"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "physicalInput"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ");"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput~1nextInputState()/title",
+          "value": "nextInputState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput~1nextInputState()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "nextInputState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput~1elementValueDidChangeHandler/title",
+          "value": "elementValueDidChangeHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput~1elementValueDidChangeHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "elementValueDidChangeHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput~1inputStateQueueDepth/title",
+          "value": "inputStateQueueDepth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput~1inputStateQueueDepth/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inputStateQueueDepth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput/title",
+          "value": "GCDevicePhysicalInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDevicePhysicalInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDevicePhysicalInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput~1capture()/title",
+          "value": "capture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput~1capture()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "capture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput~1inputStateAvailableHandler/title",
+          "value": "inputStateAvailableHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput~1inputStateAvailableHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inputStateAvailableHandler"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamecontroller/gcdevicephysicalinput/inputstateavailablehandler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamecontroller/gcdevicephysicalinput/inputstateavailablehandler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

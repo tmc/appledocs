@@ -1,0 +1,1128 @@
+{
+  "abstract": [
+    {
+      "text": "The protocol for exporting Objective-C objects to JavaScript.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.javascriptcore/documentation/JavaScriptCore"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSExport"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)JSExport",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "JSExport"
+      }
+    ],
+    "modules": [
+      {
+        "name": "JavaScriptCore"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "JSExport"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.5",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "JSExport"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "JSExport"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement this protocol to export your Objective-C classes and their instance methods, class methods, and properties to JavaScript code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Export-Objective-C-Objects-to-JavaScript",
+          "level": 3,
+          "text": "Export Objective-C Objects to JavaScript",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a JavaScript value from an instance of an Objective-C class, and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class doesn’t specify a copying convention, JavaScriptCore creates a JavaScript wrapper object. For certain classes, JavaScriptCore automatically copies values to the appropriate JavaScript type; for example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances become JavaScript strings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "JavaScript supports inheritance using a chain of prototype objects. For each Objective-C class you export, JavaScriptCore creates a prototype within the enclosing JavaScript context (a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object). For the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, the prototype object is the JavaScript context’s ",
+              "type": "text"
+            },
+            {
+              "code": "Object",
+              "type": "codeVoice"
+            },
+            {
+              "text": " prototype. For all other Objective-C classes, JavaScriptCore creates a prototype object with an internal ",
+              "type": "text"
+            },
+            {
+              "code": "[Prototype]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property that points to the prototype property it creates for the Objective-C class’s superclass. As such, the prototype chain for a JavaScript wrapper object reflects the wrapped Objective-C type’s inheritance hierarchy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the prototype object, JavaScriptCore produces a JavaScript constructor object for each Objective-C class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Expose-Objective-C-Methods-and-Properties-to-JavaScript",
+          "level": 3,
+          "text": "Expose Objective-C Methods and Properties to JavaScript",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, no methods or properties of the Objective-C class have exposure to JavaScript. Instead, you must choose methods and properties to export. For each protocol that a class conforms to, if the protocol incorporates the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSExport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, JavaScriptCore interprets that protocol as a list of methods and properties to export to JavaScript.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each instance method you export, JavaScriptCore creates a corresponding JavaScript function as a property of the prototype object. For each Objective-C property you export, JavaScriptCore creates a JavaScript accessor property on the prototype. For each class method you export, JavaScriptCore creates a JavaScript function on the constructor object. The following code example illustrates adoption of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSExport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@protocol MyPointExports <JSExport>",
+            "@property double x;",
+            "@property double y;",
+            "- (NSString *)description;",
+            "- (instancetype)initWithX:(double)x y:(double)y;",
+            "+ (MyPoint *)makePointWithX:(double)x y:(double)y;",
+            "@end",
+            " ",
+            "@interface MyPoint : NSObject <MyPointExports>",
+            "- (void)myPrivateMethod;  // This isn't in the MyPointExports protocol, so it isn't visible to JavaScript code.",
+            "@end",
+            " ",
+            "@implementation MyPoint",
+            "// ...",
+            "@end"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code example illustrates the API that an exported class presents in JavaScript:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Objective-C properties become fields.",
+            "point.x;",
+            "point.x = 10;",
+            "// Objective-C instance methods become functions.",
+            "point.description();",
+            "// Call Objective-C initializers with constructor syntax.",
+            "var p = MyPoint(1, 2);",
+            "// Objective-C class methods become functions on the constructor object.",
+            "var q = MyPoint.makePointWithXY(0, 0);"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The attributes of an Objective-C ",
+              "type": "text"
+            },
+            {
+              "code": "@property",
+              "type": "codeVoice"
+            },
+            {
+              "text": " declaration determine the attributes of the corresponding JavaScript property as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the Objective-C property is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "readonly",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the JavaScript property has the attributes ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "writable: false",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "enumerable: false",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "configurable: true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the Objective-C property is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "readwrite",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the JavaScript property has the attributes ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "writable: true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "enumerable: true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "configurable: true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Wrapped Objective-C properties, parameters, and return values convert according to the copying convention that the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class specifies for their types. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the complete list of copying conventions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If a class declares conformance to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSExport",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " protocol, JavaScriptCore ignores its normal copying conventions for built-in types. For example, if you define a custom ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " subclass that conforms to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSExport",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " protocol and pass an instance of that class to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "valueWithObject:",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " method, the result is a JavaScript wrapper object for the custom class, not a JavaScript string primitive.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Customize-Export-of-Objective-C-Selectors",
+          "level": 3,
+          "text": "Customize Export of Objective-C Selectors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When exporting a selector that takes one or more arguments, JavaScriptCore generates a corresponding function name using the following conversion:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It removes all colons from the selector.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It capitalizes any lowercase letter that follows a colon.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, under the default conversion, the Objective-C selector ",
+              "type": "text"
+            },
+            {
+              "code": "doX:withY:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " exports as the JavaScript function ",
+              "type": "text"
+            },
+            {
+              "code": "doXWithY",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can only apply the ",
+                  "type": "text"
+                },
+                {
+                  "code": "JSExportAs",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " macro to a selector that takes one or more arguments.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To rename a selector that you export to JavaScript, use the ",
+              "type": "text"
+            },
+            {
+              "code": "JSExportAs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro. For example, to instead export the Objective-C selector ",
+              "type": "text"
+            },
+            {
+              "code": "doX:withY:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the JavaScript function ",
+              "type": "text"
+            },
+            {
+              "code": "doX",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", use the following declaration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@protocol MyClassJavaScriptMethods <JSExport>",
+            "JSExportAs(doX,",
+            "- (void)doX:(id)x withY:(id)y",
+            ");",
+            "@end"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "abstract": [
+        {
+          "text": "A static, plain-text Unicode string object which you use when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.javascriptcore/documentation/JavaScriptCore": {
+      "abstract": [
+        {
+          "text": "Evaluate JavaScript programs from within an app, and support JavaScript scripting of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "JavaScriptCore",
+      "type": "topic",
+      "url": "/documentation/javascriptcore"
+    },
+    "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSContext": {
+      "abstract": [
+        {
+          "text": "A JavaScript execution environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JSContext"
+        }
+      ],
+      "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JSContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "JSContext",
+      "type": "topic",
+      "url": "/documentation/javascriptcore/jscontext"
+    },
+    "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSExport": {
+      "abstract": [
+        {
+          "text": "The protocol for exporting Objective-C objects to JavaScript.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JSExport"
+        }
+      ],
+      "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSExport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JSExport"
+        }
+      ],
+      "role": "symbol",
+      "title": "JSExport",
+      "type": "topic",
+      "url": "/documentation/javascriptcore/jsexport"
+    },
+    "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue": {
+      "abstract": [
+        {
+          "text": "A JavaScript value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JSValue"
+        }
+      ],
+      "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JSValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "JSValue",
+      "type": "topic",
+      "url": "/documentation/javascriptcore/jsvalue"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.5",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "JSExport"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "JSExport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "JSExport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.javascriptcore/documentation/JavaScriptCore"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "JSExport"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSExport/title",
+          "value": "JSExport"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSExport/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "JSExport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSExport/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "JSExport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSContext/title",
+          "value": "JSContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "JSContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "JSContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsstring/abstract",
+          "value": [
+            {
+              "text": "A static, plain-text Unicode string object.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSValue/title",
+          "value": "JSValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "JSValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSValue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "JSValue"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/javascriptcore/jsexport"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/javascriptcore/jsexport"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

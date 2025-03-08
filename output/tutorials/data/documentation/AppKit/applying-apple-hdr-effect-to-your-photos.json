@@ -1,0 +1,1015 @@
+{
+  "abstract": [
+    {
+      "text": "You can decode and apply Apple’s HDR gain map to your own images.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/images-and-pdf"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/applying-apple-hdr-effect-to-your-photos"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Applying Apple HDR effect to your photos"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can apply Apple high dynamic range (HDR) effect to digital photography images without using Apple SDKs. You compute the Apple HDR gain map from the image’s auxiliary data and then apply it to the image. The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Apple HDR gain map",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is an 8-bit, single-channel luminance map that’s stored with an image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Extract-the-existing-HDR-gain-map-from-the-image",
+          "level": 3,
+          "text": "Extract the existing HDR gain map from the image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Get the existing HDR gain map from the image’s auxiliary data using the ",
+              "type": "text"
+            },
+            {
+              "code": "urn:com:apple:photo:2020:aux:hdrgainmap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " image data type. The gain map is untagged and formatted as linear data. It’s encoded using the Rec.709 transfer function and is 1/4 the resolution of the original image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, using Apple APIs, you can extract the gain map from a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object by passing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImageAuxiliaryDataTypeHDRGainMap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageSourceCopyAuxiliaryDataInfoAtIndex(_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Calculate-the-headroom-from-the-image-metadata",
+          "level": 3,
+          "text": "Calculate the headroom from the image metadata",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Write code that computes the headroom you need to change the dynamic range image. The headroom is the ratio of the luminance of the image’s brightest white to the luminance of standard dynamic range (SDR) white, in the image’s native color space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you begin, check whether the image’s metadata contains the ",
+              "type": "text"
+            },
+            {
+              "code": "HDRGainMapVersion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key. If this key exists in the metadata, the gain map is valid and you can continue calculating the headroom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, extract the ",
+              "type": "text"
+            },
+            {
+              "code": "MakerNote",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary from the image’s metadata. If the ",
+              "type": "text"
+            },
+            {
+              "code": "MakerNote",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary contains the ",
+              "type": "text"
+            },
+            {
+              "code": "33",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "48",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keys and they’re set to 32-bit float values, the HDR gain map is valid and you can use it to calculate the headroom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To compute the headroom, use the following Swift code snippet or rewrite this code in your preferred language:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Extract the metadata keys from the image.",
+            "let (maker33, maker48) = getMetadataFromImage()",
+            "let stops: Float",
+            "",
+            "// Convert the metadata to the number of stops",
+            "// (factors of 2) that the gain map should apply",
+            "// to the image.",
+            "if maker33 < 1.0 {",
+            "    if maker48 <= 0.01 {",
+            "        stops = -20.0 * maker48 + 1.8",
+            "    } else {",
+            "        stops = -0.101 * maker48 + 1.601",
+            "    }",
+            "} else {",
+            "    if maker48 <= 0.01 {",
+            "        stops = -70.0*maker48 + 3.0",
+            "    } else {",
+            "        stops = -0.303*maker48 + 2.303",
+            "    }",
+            "}",
+            "",
+            "// Convert the stops to linear headroom.",
+            "let headroom = pow(2.0, max(stops, 0.0))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Apply-the-HDR-gain-map-to-the-image",
+          "level": 3,
+          "text": "Apply the HDR gain map to the image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you apply the HDR gain map to the image, perform the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resize the gain map by scaling it so it matches the size of the original image.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Linearize the gain map by inverting the gain map gamma using the Rec.709 transfer function.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Linearize the SDR RGB image by inverting the gamma of the image according to the colorspace.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then use the headroom value you calculated previously to scale the gain map to the correct level and multiply it into each channel of the image as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sdr_rgb = ... // A pixel of the SDR image.",
+            "let gainmap = ... // A pixel of the gain map.",
+            "",
+            "let hdr_rgb = sdr_rgb * (1.0 + (headroom - 1.0) * gainmap)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The result of applying the gain map is a linear HDR image with a scale where ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the reference white and the peak value is no greater than the headroom value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The technique described in this document has been proposed for standardization at the International Organization for Standardization (ISO) as part of ISO/NP 21496-1. Apple is prepared to commit to license essential patents in this technique with respect to a standard resulting from ISO/NP 21496-1 in accordance with the Common Patent Policy for ITU-T/ITU-R/ISO/IEC (as of April 2023).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage": {
+      "abstract": [
+        {
+          "text": "A high-level interface for manipulating image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSImage"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSImage",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImageDelegate": {
+      "abstract": [
+        {
+          "text": "A set of optional methods that you can use to respond to drawing failures and manage incremental loads.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSImageDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImageDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSImageDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSImageDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimagedelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImageRep": {
+      "abstract": [
+        {
+          "text": "A semiabstract superclass that provides subclasses that you use to draw an image from a particular type of source data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSImageRep"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImageRep",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSImageRep"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSImageRep",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimagerep"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/images-and-pdf": {
+      "abstract": [
+        {
+          "text": "Create and manage images, in bitmap, PDF, and other formats.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/images-and-pdf",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Images and PDF",
+      "type": "topic",
+      "url": "/documentation/appkit/images-and-pdf"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/supporting-continuity-camera-in-your-mac-app": {
+      "abstract": [
+        {
+          "text": "Incorporate scanned documents and pictures from a user’s iPhone, iPad, or iPod touch into your Mac app using Continuity Camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/supporting-continuity-camera-in-your-mac-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Continuity Camera in Your Mac App",
+      "type": "topic",
+      "url": "/documentation/appkit/supporting-continuity-camera-in-your-mac-app"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/CGImageSourceCopyAuxiliaryDataInfoAtIndex(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns auxiliary data, such as mattes and depth information, that accompany the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImageSourceCopyAuxiliaryDataInfoAtIndex"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "isrc"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageSourceRef",
+          "text": "CGImageSource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "auxiliaryImageDataType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageSourceCopyAuxiliaryDataInfoAtIndex(_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImageSourceCopyAuxiliaryDataInfoAtIndex(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/ImageIO/CGImageSourceCopyAuxiliaryDataInfoAtIndex(_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/kCGImageAuxiliaryDataTypeHDRGainMap": {
+      "abstract": [
+        {
+          "text": "The type for High Dynamic Range (HDR) gain map information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCGImageAuxiliaryDataTypeHDRGainMap"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImageAuxiliaryDataTypeHDRGainMap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCGImageAuxiliaryDataTypeHDRGainMap",
+      "type": "topic",
+      "url": "/documentation/ImageIO/kCGImageAuxiliaryDataTypeHDRGainMap"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/providing-images-for-different-appearances": {
+      "abstract": [
+        {
+          "text": "Supply image resources appropriate for light and dark appearances and for high-contrast environments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/providing-images-for-different-appearances",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing images for different appearances",
+      "type": "topic",
+      "url": "/documentation/UIKit/providing-images-for-different-appearances"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/supporting-hdr-images-in-your-app": {
+      "abstract": [
+        {
+          "text": "​ Load, display, edit, and save HDR images using SwiftUI and Core Image. ​",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/supporting-hdr-images-in-your-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting HDR images in your app",
+      "type": "topic",
+      "url": "/documentation/UIKit/supporting-hdr-images-in-your-app"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgimage": {
+      "abstract": [
+        {
+          "text": "A bitmap image or image mask.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImage",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgimage"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Images",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/UIKit/providing-images-for-different-appearances",
+        "doc://com.apple.appkit/documentation/AppKit/supporting-continuity-camera-in-your-mac-app",
+        "doc://com.apple.documentation/documentation/UIKit/supporting-hdr-images-in-your-app",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage",
+        "doc://com.apple.appkit/documentation/AppKit/NSImageDelegate",
+        "doc://com.apple.appkit/documentation/AppKit/NSImageRep"
+      ],
+      "title": "Images"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Images",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/UIKit/providing-images-for-different-appearances",
+                "doc://com.apple.appkit/documentation/AppKit/supporting-continuity-camera-in-your-mac-app",
+                "doc://com.apple.documentation/documentation/UIKit/supporting-hdr-images-in-your-app",
+                "doc://com.apple.appkit/documentation/AppKit/NSImage",
+                "doc://com.apple.appkit/documentation/AppKit/NSImageDelegate",
+                "doc://com.apple.appkit/documentation/AppKit/NSImageRep"
+              ],
+              "title": "Images"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageSourceCopyAuxiliaryDataInfoAtIndex(_:_:_:)/title",
+          "value": "CGImageSourceCopyAuxiliaryDataInfoAtIndex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageSourceCopyAuxiliaryDataInfoAtIndex(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFDictionaryRef",
+              "text": "CFDictionaryRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGImageSourceCopyAuxiliaryDataInfoAtIndex"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGImageSourceRef",
+              "text": "CGImageSourceRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "isrc"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@size_t",
+              "text": "size_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "index"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "auxiliaryImageDataType"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgimage/title",
+          "value": "CGImageRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/title",
+          "value": "NSImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageDelegate/title",
+          "value": "NSImageDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep/title",
+          "value": "NSImageRep"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageRep"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageRep"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1kCGImageAuxiliaryDataTypeHDRGainMap/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCGImageAuxiliaryDataTypeHDRGainMap"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/applying-apple-hdr-effect-to-your-photos"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/applying-apple-hdr-effect-to-your-photos"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

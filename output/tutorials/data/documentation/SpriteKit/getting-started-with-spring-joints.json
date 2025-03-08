@@ -1,0 +1,469 @@
+{
+  "abstract": [
+    {
+      "text": "Connect two physics bodies with a spring joint.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointSpring"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-spring-joints"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Getting Started with Spring Joints"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following Swift code shows how you can create a spring joint between sprite nodes. The physics body of ",
+              "type": "text"
+            },
+            {
+              "code": "staticNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/isDynamic",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property set to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", preventing it from being affected by gravity. It is animated with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to move it upward.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "dynamicNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is joined to ",
+              "type": "text"
+            },
+            {
+              "code": "staticNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointSpring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " named ",
+              "type": "text"
+            },
+            {
+              "code": "spring",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", with a frequency of 0.5 and a damping of 0.2.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The result is that as ",
+              "type": "text"
+            },
+            {
+              "code": "staticNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " moves vertically, ",
+              "type": "text"
+            },
+            {
+              "code": "dynamicNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " follows the upward path with a slight delay and bounce.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let scene = SKScene()",
+            " ",
+            "let size = CGSize(width: 50, height: 50)",
+            " ",
+            "let staticNode = SKSpriteNode(color: .red,",
+            "                              size: size)",
+            "let dynamicNode = SKSpriteNode(color: .blue,",
+            "                               size: size)",
+            " ",
+            "staticNode.physicsBody = SKPhysicsBody(rectangleOf: size)",
+            "staticNode.physicsBody?.isDynamic = false",
+            "staticNode.position = CGPoint(x: 250, y: 300)",
+            " ",
+            "dynamicNode.physicsBody = SKPhysicsBody(rectangleOf: size)",
+            "dynamicNode.position = CGPoint(x: 250, y: 200)",
+            " ",
+            "scene.addChild(staticNode)",
+            "scene.addChild(dynamicNode)",
+            " ",
+            "let spring = SKPhysicsJointSpring.joint(withBodyA: staticNode.physicsBody!,",
+            "                                        bodyB: dynamicNode.physicsBody!,",
+            "                                        anchorA: staticNode.position,",
+            "                                        anchorB: dynamicNode.position)",
+            " ",
+            "spring.frequency = 0.5",
+            "spring.damping = 0.2",
+            " ",
+            "scene.physicsWorld.add(spring)",
+            " ",
+            "let move = SKAction.moveBy(x:0, y: 200,",
+            "                           duration: 1)",
+            "staticNode.run(move)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKAction": {
+      "abstract": [
+        {
+          "text": "An object that is run by a node to change its structure or content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAction"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAction",
+      "type": "topic",
+      "url": "/documentation/spritekit/skaction"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/isDynamic": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the physics body is moved by the physics simulation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDynamic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/isDynamic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dynamic"
+        }
+      ],
+      "role": "symbol",
+      "title": "isDynamic",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/isdynamic"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointSpring": {
+      "abstract": [
+        {
+          "text": "A joint that simulates a spring connecting two physics bodies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsJointSpring"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointSpring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsJointSpring"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPhysicsJointSpring",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsjointspring"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction/title",
+          "value": "SKAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1isDynamic/title",
+          "value": "dynamic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1isDynamic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dynamic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointSpring/title",
+          "value": "SKPhysicsJointSpring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointSpring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsJointSpring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointSpring/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsJointSpring"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/getting-started-with-spring-joints"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/getting-started-with-spring-joints"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

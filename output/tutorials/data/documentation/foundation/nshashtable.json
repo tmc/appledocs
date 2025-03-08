@@ -1,0 +1,1323 @@
+{
+  "abstract": [
+    {
+      "text": "A collection similar to a set, but with broader range of available memory semantics.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/collections"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nshashtable"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1417824,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSHashTable",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSHashTable"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "6.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "6.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.5",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Generic Class",
+    "symbolKind": "cl",
+    "title": "NSHashTable"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSHashTable"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSHashTable@ObjectType",
+              "text": "ObjectType"
+            },
+            {
+              "kind": "text",
+              "text": "> : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSHashTable@ObjectType",
+              "text": "ObjectType"
+            },
+            {
+              "kind": "text",
+              "text": " : AnyObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The hash table is modeled after ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the following differences:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It can hold weak references to its members.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Its members may be copied on input or may use pointer identity for equality and hashing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It can contain arbitrary pointers (its members are not constrained to being objects).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can configure an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " instance to operate on arbitrary pointers and not just objects, although typically you are encouraged to use the C function API for void * pointers. The object-based API (such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable/1411690-add",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") will not work for non-object pointers without type-casting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because of its options, ",
+              "type": "text"
+            },
+            {
+              "code": "NSHashTable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is not a set because it can behave differently (for example, if pointer equality is specified two ",
+              "type": "text"
+            },
+            {
+              "code": "isEqual:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " strings will both be entered).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When configuring hash tables, note that only the options listed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtableoptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " guarantee that the rest of the API will work correctly—including copying, archiving, and fast enumeration. While other ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerfunctions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " options are used for certain configurations, such as to hold arbitrary pointers, not all combinations of the options are valid. With some combinations the hash table may not work correctly, or may not even be initialized correctly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1673857",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSHashTable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is not suitable for subclassing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/collections": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/collections",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collections",
+      "type": "topic",
+      "url": "/documentation/foundation/collections"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfastenumeration": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfastenumeration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFastEnumeration",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfastenumeration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable": {
+      "abstract": [
+        {
+          "text": "A collection similar to a set, but with broader range of available memory semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHashTable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHashTable",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable/1408509-intersect": {
+      "abstract": [
+        {
+          "text": "Removes from the receiving hash table each element that isn’t a member of another given hash table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "intersect"
+        },
+        {
+          "kind": "text",
+          "text": "(NSHashTable<ObjectType>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable/1408509-intersect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "intersect(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable/1408509-intersect"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable/1410223-allobjects": {
+      "abstract": [
+        {
+          "text": "The hash table’s members.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allObjects"
+        },
+        {
+          "kind": "text",
+          "text": ": [ObjectType]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable/1410223-allobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allObjects",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable/1410223-allobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable/1410639-anyobject": {
+      "abstract": [
+        {
+          "text": "One of the objects in the hash table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "anyObject"
+        },
+        {
+          "kind": "text",
+          "text": ": ObjectType?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable/1410639-anyobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "anyObject",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable/1410639-anyobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable/1410816-isequal": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a given hash table is equal to the receiving hash table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqual"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": NSHashTable<ObjectType>) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable/1410816-isequal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqual(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable/1410816-isequal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable/1411066-init": {
+      "abstract": [
+        {
+          "text": "Returns a hash table initialized with the given attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPointerFunctions.Options, "
+        },
+        {
+          "kind": "identifier",
+          "text": "capacity"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable/1411066-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(options:capacity:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable/1411066-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable/1411690-add": {
+      "abstract": [
+        {
+          "text": "Adds a given object to the hash table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "(ObjectType?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable/1411690-add",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable/1411690-add"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable/1412241-weakobjects": {
+      "abstract": [
+        {
+          "text": "Returns a new hash table for storing weak references to its contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "weakObjects"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSHashTable<ObjectType>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable/1412241-weakobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "weakObjects()",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable/1412241-weakobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable/1413142-count": {
+      "abstract": [
+        {
+          "text": "The number of elements in the hash table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable/1413142-count",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "count",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable/1413142-count"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable/1413481-union": {
+      "abstract": [
+        {
+          "text": "Adds each element in another given hash table to the receiving hash table, if not present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "union"
+        },
+        {
+          "kind": "text",
+          "text": "(NSHashTable<ObjectType>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable/1413481-union",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "union(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable/1413481-union"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable/1414557-minus": {
+      "abstract": [
+        {
+          "text": "Removes each element in another given hash table from the receiving hash table, if present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "minus"
+        },
+        {
+          "kind": "text",
+          "text": "(NSHashTable<ObjectType>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable/1414557-minus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "minus(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable/1414557-minus"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable/1414641-setrepresentation": {
+      "abstract": [
+        {
+          "text": "A set that contains the hash table’s members.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "setRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": Set<AnyHashable>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable/1414641-setrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setRepresentation",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable/1414641-setrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable/1415113-contains": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the hash table contains a given object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "contains"
+        },
+        {
+          "kind": "text",
+          "text": "(ObjectType?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable/1415113-contains",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contains(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable/1415113-contains"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable/1415284-init": {
+      "abstract": [
+        {
+          "text": "Returns a hash table with given pointer functions options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPointerFunctions.Options)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable/1415284-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable/1415284-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable/1415369-remove": {
+      "abstract": [
+        {
+          "text": "Removes a given object from the hash table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "(ObjectType?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable/1415369-remove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable/1415369-remove"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable/1415814-removeallobjects": {
+      "abstract": [
+        {
+          "text": "Removes all objects from the hash table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllObjects"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable/1415814-removeallobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeAllObjects()",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable/1415814-removeallobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable/1416308-objectenumerator": {
+      "abstract": [
+        {
+          "text": "Returns an enumerator object that lets you access each object in the hash table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectEnumerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSEnumerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable/1416308-objectenumerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectEnumerator()",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable/1416308-objectenumerator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable/1416331-init": {
+      "abstract": [
+        {
+          "text": "Returns a hash table initialized with the given functions and capacity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "pointerFunctions"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPointerFunctions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "capacity"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable/1416331-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(pointerFunctions:capacity:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable/1416331-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable/1416474-intersects": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a given hash table intersects with the receiving hash table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "intersects"
+        },
+        {
+          "kind": "text",
+          "text": "(NSHashTable<ObjectType>) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable/1416474-intersects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "intersects(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable/1416474-intersects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable/1417398-pointerfunctions": {
+      "abstract": [
+        {
+          "text": "The pointer functions for the hash table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "pointerFunctions"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPointerFunctions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable/1417398-pointerfunctions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pointerFunctions",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable/1417398-pointerfunctions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable/1417518-issubset": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether every element in the receiving hash table is also present in another given hash table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSubset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": NSHashTable<ObjectType>) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable/1417518-issubset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isSubset(of:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable/1417518-issubset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable/1417991-member": {
+      "abstract": [
+        {
+          "text": "Determines whether the hash table contains a given object, and returns that object if it is present",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "member"
+        },
+        {
+          "kind": "text",
+          "text": "(ObjectType?) -> ObjectType?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable/1417991-member",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "member(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable/1417991-member"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable/legacy_hash_table_implementation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable/legacy_hash_table_implementation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Legacy Hash Table Implementation",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable/legacy_hash_table_implementation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtableoptions": {
+      "abstract": [
+        {
+          "text": "Components in a bit-field to specify the behavior of elements in an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHashTableOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtableoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHashTableOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtableoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptable": {
+      "abstract": [
+        {
+          "text": "A collection similar to a dictionary, but with a broader range of available memory semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMapTable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMapTable",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerarray": {
+      "abstract": [
+        {
+          "text": "A collection similar to an array, but with a broader range of available memory semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPointerArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPointerArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerfunctions": {
+      "abstract": [
+        {
+          "text": "An instance of ",
+          "type": "text"
+        },
+        {
+          "code": "NSPointerFunctions",
+          "type": "codeVoice"
+        },
+        {
+          "text": " defines callout functions appropriate for managing a pointer reference held somewhere else.  ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPointerFunctions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerfunctions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPointerFunctions",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerfunctions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nsfastenumeration",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nspointerarray",
+        "doc://com.apple.documentation/documentation/foundation/nsmaptable"
+      ],
+      "title": "Pointer Collections"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1661347",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nshashtable/1411066-init",
+        "doc://com.apple.documentation/documentation/foundation/nshashtable/1416331-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initialization"
+    },
+    {
+      "anchor": "1661404",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nshashtable/1412241-weakobjects",
+        "doc://com.apple.documentation/documentation/foundation/nshashtable/1415284-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Convenience Constructors"
+    },
+    {
+      "anchor": "1661459",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nshashtable/1410639-anyobject",
+        "doc://com.apple.documentation/documentation/foundation/nshashtable/1410223-allobjects",
+        "doc://com.apple.documentation/documentation/foundation/nshashtable/1414641-setrepresentation",
+        "doc://com.apple.documentation/documentation/foundation/nshashtable/1413142-count",
+        "doc://com.apple.documentation/documentation/foundation/nshashtable/1415113-contains",
+        "doc://com.apple.documentation/documentation/foundation/nshashtable/1417991-member",
+        "doc://com.apple.documentation/documentation/foundation/nshashtable/1416308-objectenumerator"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Content"
+    },
+    {
+      "anchor": "1661568",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nshashtable/1411690-add",
+        "doc://com.apple.documentation/documentation/foundation/nshashtable/1415369-remove",
+        "doc://com.apple.documentation/documentation/foundation/nshashtable/1415814-removeallobjects"
+      ],
+      "kind": "taskGroup",
+      "title": "Manipulating Membership"
+    },
+    {
+      "anchor": "1661611",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nshashtable/1408509-intersect",
+        "doc://com.apple.documentation/documentation/foundation/nshashtable/1416474-intersects",
+        "doc://com.apple.documentation/documentation/foundation/nshashtable/1417518-issubset",
+        "doc://com.apple.documentation/documentation/foundation/nshashtable/1410816-isequal"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing Hash Tables"
+    },
+    {
+      "anchor": "1661672",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nshashtable/1414557-minus",
+        "doc://com.apple.documentation/documentation/foundation/nshashtable/1413481-union"
+      ],
+      "kind": "taskGroup",
+      "title": "Set Functions"
+    },
+    {
+      "anchor": "1661713",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nshashtable/1417398-pointerfunctions",
+        "doc://com.apple.documentation/documentation/foundation/nspointerfunctions"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Pointer Functions"
+    },
+    {
+      "anchor": "1674071",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nshashtableoptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "2881026",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nshashtable/legacy_hash_table_implementation"
+      ],
+      "kind": "taskGroup",
+      "title": "Deprecated"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nshashtable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nshashtable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

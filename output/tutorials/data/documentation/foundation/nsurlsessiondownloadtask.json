@@ -1,0 +1,716 @@
+{
+  "abstract": [
+    {
+      "text": "A URL session task that stores downloaded data to a file.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloadtask"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1411524,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSURLSessionDownloadTask",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.9",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSURLSessionDownloadTask"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSURLSessionDownloadTask"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURLSessionTask",
+              "text": "NSURLSessionTask"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloadtask",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is a concrete subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which provides most of the methods for this class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Download tasks directly write the server’s response data to a temporary file, providing your app with progress updates as data arrives from the server. When you use download tasks in background sessions, these downloads continue even when your app is in the suspended state or otherwise not running.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can pause (cancel) download tasks and resume them later (assuming the server supports doing so). You can also resume downloads that failed because of network connectivity problems.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2934478",
+          "level": 3,
+          "text": "Download delegate behavior",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you use a download task, your delegate receives several callbacks unique to download scenarios.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "During download, the session periodically calls the delegate’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloaddelegate/1409408-urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method with status information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Upon successful completion, the session calls the delegate’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloaddelegate/1411575-urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method or completion handler. In that method, you must either open the file for reading or move it to a permanent location in your app’s sandbox container directory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Upon unsuccessful completion, the session calls the delegate’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontaskdelegate/1411610-urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method or completion handler. The only errors your delegate receives through the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "error",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter are client-side errors, such as being unable to resolve the hostname or connect to the host. To check for server-side errors, inspect the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1410586-response",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "task",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter received by this callback.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession/1409226-downloadtaskwithresumedata": {
+      "abstract": [
+        {
+          "text": "Creates a download task to resume a previously canceled or failed download.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "downloadTaskWithResumeData:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1409226-downloadtaskwithresumedata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "downloadTaskWithResumeData:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession/1409226-downloadtaskwithresumedata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411481-downloadtaskwithrequest": {
+      "abstract": [
+        {
+          "text": "Creates a download task that retrieves the contents of a URL based on the specified URL request object and saves the results to a file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "downloadTaskWithRequest:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411481-downloadtaskwithrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "downloadTaskWithRequest:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession/1411481-downloadtaskwithrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411482-downloadtaskwithurl": {
+      "abstract": [
+        {
+          "text": "Creates a download task that retrieves the contents of the specified URL and saves the results to a file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "downloadTaskWithURL:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411482-downloadtaskwithurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "downloadTaskWithURL:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession/1411482-downloadtaskwithurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411511-downloadtaskwithrequest": {
+      "abstract": [
+        {
+          "text": "Creates a download task that retrieves the contents of a URL based on the specified URL request object, saves the results to a file, and calls a handler upon completion. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "downloadTaskWithRequest:completionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411511-downloadtaskwithrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "downloadTaskWithRequest:completionHandler:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession/1411511-downloadtaskwithrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411598-downloadtaskwithresumedata": {
+      "abstract": [
+        {
+          "text": "Creates a download task to resume a previously canceled or failed download and calls a handler upon completion. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "downloadTaskWithResumeData:completionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411598-downloadtaskwithresumedata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "downloadTaskWithResumeData:completionHandler:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession/1411598-downloadtaskwithresumedata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411608-downloadtaskwithurl": {
+      "abstract": [
+        {
+          "text": "Creates a download task that retrieves the contents of the specified URL, saves the results to a file, and calls a handler upon completion. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "downloadTaskWithURL:completionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411608-downloadtaskwithurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "downloadTaskWithURL:completionHandler:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession/1411608-downloadtaskwithurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloaddelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that defines methods that URL session instances call on their delegates to handle task-level events specific to download tasks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloaddelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionDownloadDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiondownloaddelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloaddelegate/1409408-urlsession": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloaddelegate/1409408-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiondownloaddelegate/1409408-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloaddelegate/1411575-urlsession": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession:downloadTask:didFinishDownloadingToURL:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloaddelegate/1411575-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession:downloadTask:didFinishDownloadingToURL:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiondownloaddelegate/1411575-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloadtask": {
+      "abstract": [
+        {
+          "text": "A URL session task that stores downloaded data to a file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionDownloadTask",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiondownloadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloadtask/1411634-cancelbyproducingresumedata": {
+      "abstract": [
+        {
+          "text": "Cancels a download and calls a callback with resume data for later use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancelByProducingResumeData:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloadtask/1411634-cancelbyproducingresumedata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cancelByProducingResumeData:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiondownloadtask/1411634-cancelbyproducingresumedata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloadtask/3240620-init": {
+      "abstract": [
+        {
+          "text": "Initializes a download task.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloadtask/3240620-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiondownloadtask/3240620-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloadtask/3240621-new": {
+      "abstract": [
+        {
+          "text": "Creates and initializes a download task.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "new"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloadtask/3240621-new",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "new",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiondownloadtask/3240621-new"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionTask",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1410586-response": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1410586-response",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "response",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/1410586-response"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontaskdelegate/1411610-urlsession": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession:task:didCompleteWithError:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontaskdelegate/1411610-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession:task:didCompleteWithError:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontaskdelegate/1411610-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411482-downloadtaskwithurl",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411608-downloadtaskwithurl",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411481-downloadtaskwithrequest",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411511-downloadtaskwithrequest",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession/1409226-downloadtaskwithresumedata",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411598-downloadtaskwithresumedata",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloaddelegate"
+      ],
+      "title": "Adding download tasks to a session"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1660418",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloadtask/1411634-cancelbyproducingresumedata"
+      ],
+      "kind": "taskGroup",
+      "title": "Canceling a download"
+    },
+    {
+      "anchor": "3562979",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloadtask/3240620-init",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloadtask/3240621-new"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating download tasks"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurlsessiondownloadtask"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/urlsessiondownloadtask"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

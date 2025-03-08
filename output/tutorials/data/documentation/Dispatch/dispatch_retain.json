@@ -1,0 +1,470 @@
+{
+  "abstract": [
+    {
+      "text": "Increments the reference count (the retain count) of a dispatch object.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.dispatch/documentation/Dispatch"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_retain"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@dispatch_retain",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "dispatch_retain"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Dispatch"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "dispatch_retain"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.6",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "dispatch_retain"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "dispatch_retain"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_object_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@dispatch_object_t",
+              "text": "dispatch_object_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "object"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The object to retain. This parameter cannot be ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "object"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Calls to this function must be balanced with calls to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_release",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If  multiple subsystems of your application share a dispatch object, each subsystem should call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_retain",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to register its interest in the object.  The object is deallocated only when all subsystems have released their interest in the dispatch source.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that your application does not need to retain or release the global (main and concurrent) dispatch queues.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your app is built with a deployment target of macOS 10.8 and later or iOS v6.0 and later, dispatch queues are typically managed by ARC, so you do not need to retain or release the dispatch queues.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "For compatibility with existing code, this behavior is configurable. See ",
+                  "type": "text"
+                },
+                {
+                  "code": "GCD Objects and Automatic Reference Counting",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for details.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.dispatch/documentation/Dispatch": {
+      "abstract": [
+        {
+          "text": "Execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/dispatch"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_object_t": {
+      "abstract": [
+        {
+          "text": "A dispatch object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatch_object_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_object_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_object_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "dispatch_object_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_object_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_release": {
+      "abstract": [
+        {
+          "text": "Decrements the reference count (the retain count) of a dispatch object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_release"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_release",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_release",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_release"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_retain": {
+      "abstract": [
+        {
+          "text": "Increments the reference count (the retain count) of a dispatch object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_retain"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_retain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_retain",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_retain"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_set_finalizer_f": {
+      "abstract": [
+        {
+          "text": "Sets the finalizer function for a dispatch object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_set_finalizer_f"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_set_finalizer_f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_set_finalizer_f",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_set_finalizer_f"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-Memory",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_release",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_set_finalizer_f"
+      ],
+      "title": "Managing Memory"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_object_t/title",
+          "value": "dispatch_object_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_object_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_object_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_object_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_object_t"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/dispatch/dispatch_retain"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

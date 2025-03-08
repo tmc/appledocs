@@ -1,0 +1,2051 @@
+{
+  "abstract": [
+    {
+      "text": "Draw a scene without rendering hidden geometry by checking whether each object in the scene is visible.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/culling-occluded-geometry-using-the-visibility-result-buffer"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Culling occluded geometry using the visibility result buffer"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample demonstrates how to use Metal’s visibility result buffer to perform ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "fragment counting",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "occlusion culling",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The visibility result buffer stores an array of integers that contain the number of times a fragment passes the depth and stencil tests.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Before a draw call, the app sets the location of the 64-bit counter in the buffer and the hardware increments the counter during rasterization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first mode of the app shows how to use fragment counting to determine the number of pixels that pass the depth and stencil tests.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can use this information to choose the level of detail for a 3D model, or to include or exclude the model from rendering.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The second mode shows how to use the occlusion-culling technique to reduce the rendering load by eliminating invisible objects.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To use this technique, the app renders a second pass of the objects it wants to test using proxy geometry instead of the full-resolution 3D model.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It skips any object in the next frame if the number of pixels that passed the depth test is zero.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can toggle between the two modes by using the segment control in the upper-left corner of the window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The fragment-counting mode shows a stationary red sphere and a smaller green sphere, and counts the number of fragments rendered for the green sphere.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The slider on the lower-left corner of the app moves the green sphere left and right.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The top-right corner of the window shows the number of fragments drawn from the green sphere.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The number of fragments decrease to zero as the red sphere occludes the green sphere.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "1-mode1-screenshot",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The occlusion-culling mode is more complex, rendering multiple spheres and using the visibility results to skip the draw calls for occluded spheres.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It renders ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "icosahedrons",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", a 20-sided polyhedron serving as a type of proxy geometry for a sphere, to the previous frame.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the fragment count is zero because it’s ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "occluded",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (hidden), the renderer ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "culls",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (skips drawing) it in the next frame.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The slider at the bottom left moves the spheres left and right, and the label in the upper right shows the number of rendered spheres.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "2-mode2-screenshot",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app creates Metal objects, renders 3D objects, and demonstrates two ways to use the visibility result buffer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "First, it initializes the visibility result buffers and creates the sphere and icosahedron geometry.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Next, it uses shared code to position and render the sphere and icosahedron geometry.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Lastly, the app uses the state of the segment control to render either the fragment-counting mode or occlusion-culling mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run this sample, you need Xcode 12 and a physical device that supports ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/apple3",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", such as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Mac with Apple silicon running macOS 11 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An iOS device with an A9 chip or later running iOS 12 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A tvOS device with an A12 chip or later running tvOS 13 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample can only run on a physical device because it uses Metal’s counting occlusion query features that Simulator doesn’t support.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-visibility-result-buffer",
+          "level": 3,
+          "text": "Create the visibility result buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At initialization time, the app creates a set of visibility result buffers used in the fragment-counting and occlusion-culling modes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A visibility result buffer is an array of ",
+              "type": "text"
+            },
+            {
+              "code": "uint64_t",
+              "type": "codeVoice"
+            },
+            {
+              "text": " integers stored in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app allows up to three frames to be in flight with the ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLMaxBuffersInFlight",
+              "type": "codeVoice"
+            },
+            {
+              "text": " constant.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, if the app uses only a single buffer for recording and reading visibility results, a data race condition might occur if the GPU simultaneously writes to the visibility result buffer while the CPU reads from that same buffer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To prevent this, the app uses a ring of buffers that contains one more buffer than the number of frames in flight.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLNumVisibilityBuffers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " constant stores this value.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "At the end of the ",
+              "type": "text"
+            },
+            {
+              "code": "loadMetalWithView:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, the app creates the buffers using the shared resource storage mode to allow CPU access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Initialize the visibility result buffers.",
+            "for (size_t i = 0; i < AAPLNumVisibilityBuffers; ++i)",
+            "{",
+            "    _visibilityBuffer[i] = [_device newBufferWithLength:AAPLNumObjectsXYZ * sizeof(uint64_t)",
+            "                                                options:MTLResourceStorageModeShared];",
+            "    _visibilityBuffer[i].label = @\"visibilitybuffer\";",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before rendering either of the two modes, the app chooses which visibility buffer to read from and write to.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "_visibilityBufferReadIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable stores the index of the last completed visibility result buffer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "_visibilityBufferWriteIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " stores the index of the next visibility result buffer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The completion handler for the command buffer increments the read index as shown in the following code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[commandBuffer addCompletedHandler:^(id<MTLCommandBuffer> buffer)",
+            " {",
+            "    // Avoid a data race condition by updating the visibility buffer's read index when the command buffer finishes.",
+            "    self->_visibilityBufferReadIndex = (self->_visibilityBufferReadIndex + 1) % AAPLNumVisibilityBuffers;",
+            "",
+            "    // Allow the app to start another frame by dispatching the in-flight semaphore.",
+            "    dispatch_semaphore_signal(block_sema);",
+            "}];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before rendering, the ",
+              "type": "text"
+            },
+            {
+              "code": "drawInMTKView:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method updates the current ",
+              "type": "text"
+            },
+            {
+              "code": "_frameDataBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "_visibilityBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indices for the frame.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It also stores the pointer for the recently completed visibility result buffer in the ",
+              "type": "text"
+            },
+            {
+              "code": "_readFromVisibilityResultBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable to use in both modes, as shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Update the state of the constant data buffers before rendering.",
+            "_frameDataBufferIndex = (_frameDataBufferIndex + 1) % AAPLMaxBuffersInFlight;",
+            "_visibilityBufferWriteIndex = (_visibilityBufferWriteIndex + 1) % AAPLNumVisibilityBuffers;",
+            "",
+            "// Read the visibility buffer result from the previous frame.",
+            "_readFromVisibilityResultBuffer = _visibilityBuffer[_visibilityBufferReadIndex].contents;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-proxy-geometry",
+          "level": 3,
+          "text": "Create the proxy geometry",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the occlusion-culling mode, the app procedurally generates two geometric 3D primitives: a sphere and an icosahedron.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app uses an icosahedron as proxy geometry for the sphere in occlusion testing because it approximates a sphere using only 20 vertices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because proxy geometries are efficient to render, the occlusion culling uses them to quickly test visibility.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the visibility result buffer contains a nonzero value, the proxy geometry isn’t occluded and the app presumes the original geometry is also not occluded.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, to use proxy geometry for visibility testing, the 3D primitive must cover at least the same pixels as the original geometry.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For the occlusion-culling mode, the app generates an icosahedron so that it fully inscribes (contains) a sphere.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using proxy geometry that only covers the original model works well for stationary geometry but may not be sufficient for animated geometry.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the occlusion-culling mode, the sample uses the geometry visible in the current frame to determine the objects to draw on the next frame.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This is an efficient approach for apps encoding work on the CPU.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, as objects change positions, the visibility results of one frame may not be accurate for the next frame, which may lead to objects popping in on subsequent frames.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To minimize this undesirable pop-in effect, the app scales the proxy geometry with an animation-adjustment factor.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Increasing the size of the proxy geometry increases the screen area the app uses for testing the occluding geometry, making it less likely for the renderer to omit drawing occluded objects moving behind foreground objects that are visible in the next frame.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Apps that choose larger-scale factors may reduce the amount of popping in but increase the draw count of occluded objects.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Smaller-scale factors reduce the draw count but can cause objects farther away to pop into view more often.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code initializes the icosahedron radius by a scale factor of four.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the occlusion-culling mode, this factor reduces the amount of pop-in while also significantly reducing the number of spheres drawn.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// A sphere's radius that allows plenty of space between spheres with a grid spacing of two units.",
+            "const double sphereRadius = 0.7;",
+            "",
+            "/// An adjustment factor that scales up the proxy geometry size.",
+            "///",
+            "/// The sample sets the factor small enough to avoid a \"pop in\" effect when the spheres move.",
+            "/// In other words, the sphere may not be visible in the current frame, but visible in the next.",
+            "/// For example, a sphere that's moving behind another sphere may cause the occlusion query to return `false`.",
+            "/// This causes the renderer to erroneously omit the sphere in the next frame.",
+            "///",
+            "/// The app uses a simple approach that sizes up the icosahedrons by an adjustment factor.",
+            "/// Sizing up the icosahedron gives each object extra pixels for the occlusion query to return `true`.",
+            "/// Since the renderer doesn't know exactly where the objects are located on the next frame,",
+            "/// this is like giving each object a little wiggle room.",
+            "/// If the adjustment value is too small, the renderer may not draw objects that are visible in the current frame.",
+            "/// If it's too large, then renderer may draw more spheres that are hidden by nearer spheres.",
+            "/// A lower value of `1` is best for a stationary scene and does not size up the proxy geometry.",
+            "/// A higher value of `8` sizes the proxy geometry significantly and reduces the occlusion query effectiveness.",
+            "const double animationAdjustmentFactor = 4;",
+            "",
+            "/// An icosahedron size that's large enough to inscribe a sphere.",
+            "///",
+            "/// The icosahedron radius includes the previous animation adjustment.",
+            "const double icosahedronRadius = animationAdjustmentFactor * sphereRadius;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Render-the-geometry",
+          "level": 3,
+          "text": "Render the geometry",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For convenience, the app stores all the matrices and colors for each object in a single array of ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLFrameDataPerObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typedef struct",
+            "{",
+            "    matrix_float4x4 modelViewMatrix;",
+            "    matrix_float4x4 modelViewProjMatrix;",
+            "    vector_float3 color;",
+            "} AAPLFrameDataPerObject;",
+            "",
+            "typedef struct",
+            "{",
+            "    AAPLFrameDataPerObject objects[AAPLNumObjectsXYZ];",
+            "} AAPLFrameData;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vertex shader uses the ",
+              "type": "text"
+            },
+            {
+              "code": "meshIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value to get the index to retrieve the matrices and colors for each object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "During rendering, the following code shows both the ",
+              "type": "text"
+            },
+            {
+              "code": "setVertexBytes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " call to set the index and the ",
+              "type": "text"
+            },
+            {
+              "code": "drawIndexedPrimitives",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to draw the geometry.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Renders a mesh and sets the index of the mesh so the shader can reference its appearance and location data.",
+            "- (void)renderMeshWithIndex:(uint32_t)meshIndex",
+            "{",
+            "    [_renderEncoder setVertexBytes:&meshIndex",
+            "                            length:sizeof(uint32_t)",
+            "                           atIndex:AAPLBufferIndexMeshIndex];",
+            "    [_renderEncoder drawIndexedPrimitives:MTLPrimitiveTypeTriangle",
+            "                               indexCount:_curMeshIndexCount",
+            "                                indexType:MTLIndexTypeUInt32",
+            "                              indexBuffer:_curMeshIndexBuffer",
+            "                        indexBufferOffset:0];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Count-the-visible-fragments",
+          "level": 3,
+          "text": "Count the visible fragments",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The fragment-counting mode of the app counts the number of fragments rendered for the green sphere.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It has two main steps performed by the ",
+              "type": "text"
+            },
+            {
+              "code": "updateFragmentCountingMode:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "renderFragmentCountingMode:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The update method sets the projection and view matrices and the color for the first object, the red sphere.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then it sets up the matrices and color for the second object, the green sphere.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Next comes the rendering phase in the ",
+              "type": "text"
+            },
+            {
+              "code": "renderFragmentCountingMode:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Before the app renders the frame, it reads the first element from the visibility result buffer and copies it to the ",
+              "type": "text"
+            },
+            {
+              "code": "numVisibleFragments",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The view controller uses this value to update the label.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "self->_numVisibleFragments = _readFromVisibilityResultBuffer[AAPLGreenSphereIndex];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The rendering process starts with configuring the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor/visibilityResultBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the render pass descriptor to point to the current write buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Add the visibility result buffer to this render pass.",
+            "renderPassDescriptor.visibilityResultBuffer = _visibilityBuffer[_visibilityBufferWriteIndex];",
+            "",
+            "// Create a render encoder for drawing.",
+            "_renderEncoder = [commandBuffer renderCommandEncoderWithDescriptor:renderPassDescriptor];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, it sets the render pipeline, depth state, and per-frame constant data buffers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following code shows how the renderer draws the red and green spheres.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVisibilityResultMode(_:offset:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API to set the visibility result buffer mode to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLVisibilityResultMode/counting",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The offset into the buffer is defined by the constant ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLGreenSphereIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (which is set to ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), that means that the second element gets the result.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then it encodes the green sphere.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When rendering completes, the visibility result buffer contains the number of fragments that passed the depth and stencil tests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Encode the sphere's vertex data.",
+            "[self setMeshBuffers:_sphereVertices indexBuffer:_sphereIndices indexCount:_sphereIndexCount];",
+            "",
+            "// Encode the red sphere mesh for drawing.",
+            "[self renderMeshWithIndex:(uint32_t)AAPLRedSphereIndex];",
+            "",
+            "// Set the offset into the visibility result buffer.",
+            "[_renderEncoder setVisibilityResultMode:MTLVisibilityResultModeCounting",
+            "                                 offset:AAPLGreenSphereIndex * sizeof(uint64_t)];",
+            "",
+            "// Encode the green sphere for drawing.",
+            "[self renderMeshWithIndex:(uint32_t)AAPLGreenSphereIndex];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Skip-the-draw-calls-with-occlusion-culling",
+          "level": 3,
+          "text": "Skip the draw calls with occlusion culling",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the occlusion-culling mode, the app uses the visibility result buffer to determine which spheres to draw.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then it disables depth writes (but not the depth test) and tests proxy geometry against the image to generate visibility results for the next frame.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It counts the number of drawn spheres in the ",
+              "type": "text"
+            },
+            {
+              "code": "numSpheresDrawn",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property for the view controller to use to update the UI label.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Like the first mode, there’s an update method ",
+              "type": "text"
+            },
+            {
+              "code": "updateOcclusionCullingMode:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that sets the projection and model-view matrices and the color for each sphere.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "renderOcclusionCullingMode:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method divides the occlusion testing into two parts: rendering the spheres and performing the occlusion query.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the following code, the app draws sphere ",
+              "type": "text"
+            },
+            {
+              "code": "i",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the value ",
+              "type": "text"
+            },
+            {
+              "code": "isVisibleResult[i]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is not zero.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Encode the sphere's vertex data.",
+            "[self setMeshBuffers:_sphereVertices indexBuffer:_sphereIndices indexCount:_sphereIndexCount];",
+            "",
+            "// Draw a visible sphere for every corresponding visible icosahedron.",
+            "for (size_t i = 0; i < AAPLNumObjectsXYZ; ++i)",
+            "{",
+            "    // If an icosahedron is visible, draw the sphere.",
+            "    if (_readFromVisibilityResultBuffer[i])",
+            "    {",
+            "        [self renderMeshWithIndex:(uint32_t)i];",
+            "        numDrawCalls++;",
+            "    }",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After this loop, the occlusion query stage begins.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "First, the draw code disables color and depth writes using the ",
+              "type": "text"
+            },
+            {
+              "code": "_pipelineStateNoRender",
+              "type": "codeVoice"
+            },
+            {
+              "text": " pipeline state object and the ",
+              "type": "text"
+            },
+            {
+              "code": "_depthStateDisableWrites",
+              "type": "codeVoice"
+            },
+            {
+              "text": " depth stencil state.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In addition, the ",
+              "type": "text"
+            },
+            {
+              "code": "_pipelineStateNoRender",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object doesn’t have a fragment function because fragment processing isn’t necessary to get visibility results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Configure the pipeline state object and depth state to disable writing to the color and depth attachments.",
+            "[_renderEncoder setRenderPipelineState:_pipelineStateNoRender];",
+            "[_renderEncoder setDepthStencilState:_depthStateDisableWrites];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then the render method encodes all the icosahedron draw calls.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It calculates the offset into the visibility result buffer by multiplying the index of the icosahedron with the size of a ",
+              "type": "text"
+            },
+            {
+              "code": "uint64_t",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Encode the icosahedron's vertices.",
+            "[self setMeshBuffers:_icosahedronVertices indexBuffer:_icosahedronIndices indexCount:_icosahedronIndexCount];",
+            "",
+            "// Draw each icosahedron and check its visibility.",
+            "for (size_t i = 0; i < AAPLNumObjectsXYZ; ++i)",
+            "{",
+            "    [_renderEncoder setVisibilityResultMode:MTLVisibilityResultModeBoolean",
+            "                                     offset:i * sizeof(uint64_t)];",
+            "    [self renderMeshWithIndex:(uint32_t)i];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Metal renders the frame, the GPU updates the visibility result buffer with a nonzero value if any fragment passes the depth and stencil test.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Drawing with proxy geometry allows the testing to remain efficient.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "1-mode1-screenshot": {
+      "alt": "A screen shot of Mode 1 that shows a larger stationary red sphere with a smaller movable green sphere to the right of it.",
+      "identifier": "1-mode1-screenshot",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0b6cbbaf9eb5b8a1ecce906bf1ee409c/1-mode1-screenshot.png"
+        }
+      ]
+    },
+    "2-mode2-screenshot": {
+      "alt": "A screenshot of Mode 2 that shows a three-dimensional grid of spheres.",
+      "identifier": "2-mode2-screenshot",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f7e0027edf8f3aab0c96bb694d350924/2-mode2-screenshot.png"
+        }
+      ]
+    },
+    "2d558808cf51/CullingOccludedGeometryUsingTheVisibilityResultBuffer.zip": {
+      "checksum": "2d558808cf51f60bfff9a3b7fde976859d65dbd229a083c1447608738668dda55b2135f77fbc193beb96a58e460e87d545fd6c357f8f72b53299c863e3153e36",
+      "identifier": "2d558808cf51/CullingOccludedGeometryUsingTheVisibilityResultBuffer.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/2d558808cf51/CullingOccludedGeometryUsingTheVisibilityResultBuffer.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer": {
+      "abstract": [
+        {
+          "text": "A resource that stores data in a format defined by your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/apple3": {
+      "abstract": [
+        {
+          "text": "Represents the Apple family 3 GPU features that correspond to the Apple A9 and A10 GPUs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "apple3"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/apple3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLGPUFamilyApple3"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLGPUFamily.apple3",
+      "type": "topic",
+      "url": "/documentation/metal/mtlgpufamily/apple3"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVisibilityResultMode(_:offset:)": {
+      "abstract": [
+        {
+          "text": "Configures which visibility test the GPU runs and the destination for any results it generates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVisibilityResultMode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLVisibilityResultMode",
+          "text": "MTLVisibilityResultMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVisibilityResultMode(_:offset:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVisibilityResultMode:offset:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setVisibilityResultMode(_:offset:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvisibilityresultmode(_:offset:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor/visibilityResultBuffer": {
+      "abstract": [
+        {
+          "text": "A buffer where the GPU writes visibility test results when fragments pass depth and stencil tests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "visibilityResultBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor/visibilityResultBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "visibilityResultBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "visibilityResultBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpassdescriptor/visibilityresultbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVisibilityResultMode/counting": {
+      "abstract": [
+        {
+          "text": "The result records how many samples passed depth and stencil tests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "counting"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVisibilityResultMode/counting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLVisibilityResultModeCounting"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLVisibilityResultMode.counting",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvisibilityresultmode/counting"
+    },
+    "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link": {
+      "abstract": [
+        {
+          "text": "Pace rendering with minimal input latency while providing essential information to the operating system for power-efficient rendering, thermal mitigation, and the scheduling of sustainable workloads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Achieving smooth frame rates with Metal’s display link",
+      "type": "topic",
+      "url": "/documentation/metal/achieving-smooth-frame-rates-with-metal-s-display-link"
+    },
+    "doc://com.apple.metal/documentation/Metal/adjusting-the-level-of-detail-using-metal-mesh-shaders": {
+      "abstract": [
+        {
+          "text": "Choose and render meshes with several levels of detail using object and mesh shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/adjusting-the-level-of-detail-using-metal-mesh-shaders",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adjusting the level of detail using Metal mesh shaders",
+      "type": "topic",
+      "url": "/documentation/metal/adjusting-the-level-of-detail-using-metal-mesh-shaders"
+    },
+    "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing": {
+      "abstract": [
+        {
+          "text": "Determine which pixels are visible in a scene by using a depth texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Calculating Primitive Visibility Using Depth Testing",
+      "type": "topic",
+      "url": "/documentation/metal/calculating-primitive-visibility-using-depth-testing"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-a-3d-application-with-hydra-rendering": {
+      "abstract": [
+        {
+          "text": "Build a 3D application that integrates with Hydra and USD.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-3d-application-with-hydra-rendering",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a 3D application with Hydra rendering",
+      "type": "topic",
+      "url": "/documentation/metal/creating-a-3d-application-with-hydra-rendering"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-a-custom-metal-view": {
+      "abstract": [
+        {
+          "text": "Implement a lightweight view for Metal rendering that’s customized to your app’s needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-custom-metal-view",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Custom Metal View",
+      "type": "topic",
+      "url": "/documentation/metal/creating-a-custom-metal-view"
+    },
+    "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup": {
+      "abstract": [
+        {
+          "text": "Render into an offscreen texture by creating a custom render pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Customizing Render Pass Setup",
+      "type": "topic",
+      "url": "/documentation/metal/customizing-render-pass-setup"
+    },
+    "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu": {
+      "abstract": [
+        {
+          "text": "Reduce CPU overhead and simplify your command execution by reusing commands.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding Indirect Command Buffers on the CPU",
+      "type": "topic",
+      "url": "/documentation/metal/encoding-indirect-command-buffers-on-the-cpu"
+    },
+    "doc://com.apple.metal/documentation/Metal/implementing-order-independent-transparency-with-image-blocks": {
+      "abstract": [
+        {
+          "text": "Draw overlapping, transparent surfaces in any order by using tile shaders and image blocks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/implementing-order-independent-transparency-with-image-blocks",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing Order-Independent Transparency with Image Blocks",
+      "type": "topic",
+      "url": "/documentation/metal/implementing-order-independent-transparency-with-image-blocks"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-edge-rendering-quality-with-multisample-antialiasing-msaa": {
+      "abstract": [
+        {
+          "text": "Use Metal’s MSAA to enhance the rendering of edges with custom resolve options and immediate and tile-based resolve paths.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-edge-rendering-quality-with-multisample-antialiasing-msaa",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Improving edge-rendering quality with multisample antialiasing (MSAA)",
+      "type": "topic",
+      "url": "/documentation/metal/improving-edge-rendering-quality-with-multisample-antialiasing-msaa"
+    },
+    "doc://com.apple.metal/documentation/Metal/loading-textures-and-models-using-metal-fast-resource-loading": {
+      "abstract": [
+        {
+          "text": "Stream texture and buffer data directly from disk into Metal resources using fast resource loading.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/loading-textures-and-models-using-metal-fast-resource-loading",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Loading textures and models using Metal fast resource loading",
+      "type": "topic",
+      "url": "/documentation/metal/loading-textures-and-models-using-metal-fast-resource-loading"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering": {
+      "abstract": [
+        {
+          "text": "Switch dynamically between multiple GPUs to efficiently render to a display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Selecting Device Objects for Graphics Rendering",
+      "type": "topic",
+      "url": "/documentation/metal/selecting-device-objects-for-graphics-rendering"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives": {
+      "abstract": [
+        {
+          "text": "Render a simple 2D triangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using a Render Pipeline to Render Primitives",
+      "type": "topic",
+      "url": "/documentation/metal/using-a-render-pipeline-to-render-primitives"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents": {
+      "abstract": [
+        {
+          "text": "Create a MetalKit view and a render pass to draw the view’s contents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using Metal to Draw a View’s Contents",
+      "type": "topic",
+      "url": "/documentation/metal/using-metal-to-draw-a-view's-contents"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "2d558808cf51/CullingOccludedGeometryUsingTheVisibilityResultBuffer.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Render-Workflows",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents",
+        "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+        "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering",
+        "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup",
+        "doc://com.apple.metal/documentation/Metal/creating-a-custom-metal-view",
+        "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing",
+        "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu",
+        "doc://com.apple.metal/documentation/Metal/implementing-order-independent-transparency-with-image-blocks",
+        "doc://com.apple.metal/documentation/Metal/loading-textures-and-models-using-metal-fast-resource-loading",
+        "doc://com.apple.metal/documentation/Metal/adjusting-the-level-of-detail-using-metal-mesh-shaders",
+        "doc://com.apple.metal/documentation/Metal/creating-a-3d-application-with-hydra-rendering",
+        "doc://com.apple.metal/documentation/Metal/improving-edge-rendering-quality-with-multisample-antialiasing-msaa",
+        "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link"
+      ],
+      "title": "Render Workflows"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Render-Workflows",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents",
+                "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+                "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering",
+                "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup",
+                "doc://com.apple.metal/documentation/Metal/creating-a-custom-metal-view",
+                "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing",
+                "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu",
+                "doc://com.apple.metal/documentation/Metal/implementing-order-independent-transparency-with-image-blocks",
+                "doc://com.apple.metal/documentation/Metal/loading-textures-and-models-using-metal-fast-resource-loading",
+                "doc://com.apple.metal/documentation/Metal/adjusting-the-level-of-detail-using-metal-mesh-shaders",
+                "doc://com.apple.metal/documentation/Metal/creating-a-3d-application-with-hydra-rendering",
+                "doc://com.apple.metal/documentation/Metal/improving-edge-rendering-quality-with-multisample-antialiasing-msaa",
+                "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link"
+              ],
+              "title": "Render Workflows"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDescriptor~1visibilityResultBuffer/title",
+          "value": "visibilityResultBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDescriptor~1visibilityResultBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "visibilityResultBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVisibilityResultMode(_:offset:)/title",
+          "value": "setVisibilityResultMode:offset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVisibilityResultMode(_:offset:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVisibilityResultMode:offset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/title",
+          "value": "MTLBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLGPUFamily~1apple3/title",
+          "value": "MTLGPUFamilyApple3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLGPUFamily~1apple3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLGPUFamilyApple3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVisibilityResultMode~1counting/title",
+          "value": "MTLVisibilityResultModeCounting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVisibilityResultMode~1counting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVisibilityResultModeCounting"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/culling-occluded-geometry-using-the-visibility-result-buffer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/culling-occluded-geometry-using-the-visibility-result-buffer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1849 @@
+{
+  "abstract": [
+    {
+      "text": "An object that manages custom bar button items that you add to the shortcuts bar above the keyboard on iPad.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UITextInputAssistantItem",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UITextInputAssistantItem"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UITextInputAssistantItem"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UITextInputAssistantItem"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UITextInputAssistantItem"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to add app-specific actions to the shortcuts bar on iPad. The center of the shortcuts bar displays typing suggestions for the user. You can install custom bar button items that lead or trail the typing suggestions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can add custom items to the shortcuts bar on iPad only. On iPhone, the text input system ignores the contents of the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t create instances of this class directly. Instead, you get an input assistant from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/inputAssistantItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the responder object whose keyboard you want to modify. When the keyboard is onscreen, UIKit automatically searches the responder chain for a text-input assistant object. Typically, you assign the text-input assistant to the object that becomes the first responder. However, you can also assign it to a parent responder object to share a set of shortcuts among multiple children.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Organize the bar button items you create for the shortcuts bar into groups. A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object manages each group of items, and each group may contain a single item or several items. UIKit displays as many items as possible based on the available space. When there’s not enough space for all of the items, UIKit collapses each group of items down to a single representative item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code configures the items of the shortcuts bar. After creating the bar button items, this code creates a group and assigns that group to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem/leadingBarButtonGroups",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. The resulting items appear before the typing suggestions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Get a UITextView object of the current view controller.",
+                    "let item = textView.inputAssistantItem",
+                    "",
+                    "// Set up the buttons.",
+                    "let itemOne = UIBarButtonItem(",
+                    "    title: \"One\",",
+                    "    style: .plain,",
+                    "    target: self,",
+                    "    action: Selector(\"handleItemOne:\"))",
+                    "let itemTwo = UIBarButtonItem(",
+                    "    title: \"Two\",",
+                    "    style: .plain,",
+                    "    target: self,",
+                    "    action: Selector(\"handleItemTwo:\"))",
+                    "let itemThree = UIBarButtonItem(",
+                    "    title: \"Three\",",
+                    "    style: .plain,",
+                    "    target: self,",
+                    "    action: Selector(\"handleItemThree:\"))",
+                    " ",
+                    "// Use a nil action to display the individual items.",
+                    "let itemChoose = UIBarButtonItem(",
+                    "    title: \"Choose\",",
+                    "    style: .plain,",
+                    "    target: nil,",
+                    "    action: nil)",
+                    " ",
+                    "// Create the item group.",
+                    "let group = UIBarButtonItemGroup(",
+                    "    barButtonItems: [itemOne, itemTwo, itemThree],",
+                    "    representativeItem: itemChoose)",
+                    " ",
+                    "// Display the items before the typing suggestions.",
+                    "item.leadingBarButtonGroups = [group]"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Get a UITextView object of the current view controller.",
+                    "UITextInputAssistantItem* item = [self.textView inputAssistantItem];",
+                    "",
+                    "// Set up the buttons.",
+                    "UIBarButtonItem* itemOne = [[UIBarButtonItem alloc] initWithTitle:@\"One\"",
+                    "         style:UIBarButtonItemStylePlain target:self action:@selector(handleItemOne:)];",
+                    "UIBarButtonItem* itemTwo = [[UIBarButtonItem alloc] initWithTitle:@\"Two\"",
+                    "         style:UIBarButtonItemStylePlain target:self action:@selector(handleItemTwo:)];",
+                    "UIBarButtonItem* itemThree = [[UIBarButtonItem alloc] initWithTitle:@\"Three\"",
+                    "         style:UIBarButtonItemStylePlain target:self action:@selector(handleItemThree:)];",
+                    " ",
+                    "// Use a nil action to display the individual items.",
+                    "UIBarButtonItem* itemChoose = [[UIBarButtonItem alloc] initWithTitle:@\"Choose\"",
+                    "         style:UIBarButtonItemStylePlain target:nil action:nil];",
+                    " ",
+                    "// Create the item group.",
+                    "UIBarButtonItemGroup* group = [[UIBarButtonItemGroup alloc]",
+                    "       initWithBarButtonItems:@[itemOne, itemTwo, itemThree] representativeItem:itemChoose];",
+                    " ",
+                    "// Display the items before the typing suggestions.",
+                    "item.leadingBarButtonGroups = @[group];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To hide shortcuts altogether, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem/leadingBarButtonGroups",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem/trailingBarButtonGroups",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties to empty arrays. Doing so hides only the shortcuts and doesn’t hide the typing suggestions. For information on managing the typing suggestions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputTraits/autocorrectionType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup": {
+      "abstract": [
+        {
+          "text": "A group of one or more bar button items for placement on a navigation bar or shortcuts bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBarButtonItemGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBarButtonItemGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBarButtonItemGroup",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitemgroup"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDictationPhrase": {
+      "abstract": [
+        {
+          "text": "An object that represents the textual interpretation of a spoken phrase that the user dictates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDictationPhrase"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDictationPhrase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDictationPhrase"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDictationPhrase",
+      "type": "topic",
+      "url": "/documentation/uikit/uidictationphrase"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIKeyInput": {
+      "abstract": [
+        {
+          "text": "A set of methods a responder uses to implement simple text entry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIKeyInput"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKeyInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIKeyInput",
+      "type": "topic",
+      "url": "/documentation/uikit/uikeyinput"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder/inputAssistantItem": {
+      "abstract": [
+        {
+          "text": "The input assistant to use when configuring the keyboard’s shortcuts bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputAssistantItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextInputAssistantItem",
+          "text": "UITextInputAssistantItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/inputAssistantItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inputAssistantItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "inputAssistantItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder/inputassistantitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInput": {
+      "abstract": [
+        {
+          "text": "A set of methods for interacting with the text input system and enabling features in documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextInput"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextInput",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinput"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem": {
+      "abstract": [
+        {
+          "text": "An object that manages custom bar button items that you add to the shortcuts bar above the keyboard on iPad.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextInputAssistantItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextInputAssistantItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextInputAssistantItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputassistantitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem/allowsHidingShortcuts": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the user can hide the shortcuts bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsHidingShortcuts"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem/allowsHidingShortcuts",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsHidingShortcuts"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsHidingShortcuts",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputassistantitem/allowshidingshortcuts"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem/keyboardAction": {
+      "abstract": [
+        {
+          "text": "A button that appears next to the text preview in the keyboard in visionOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem/keyboardAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "keyboardActionButtonItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyboardAction",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputassistantitem/keyboardaction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem/leadingBarButtonGroups": {
+      "abstract": [
+        {
+          "text": "The array of button item groups to display before the typing suggestions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "leadingBarButtonGroups"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItemGroup",
+          "text": "UIBarButtonItemGroup"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem/leadingBarButtonGroups",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "leadingBarButtonGroups"
+        }
+      ],
+      "role": "symbol",
+      "title": "leadingBarButtonGroups",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputassistantitem/leadingbarbuttongroups"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem/trailingBarButtonGroups": {
+      "abstract": [
+        {
+          "text": "The array of button item groups to display after the typing suggestions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trailingBarButtonGroups"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItemGroup",
+          "text": "UIBarButtonItemGroup"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem/trailingBarButtonGroups",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "trailingBarButtonGroups"
+        }
+      ],
+      "role": "symbol",
+      "title": "trailingBarButtonGroups",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputassistantitem/trailingbarbuttongroups"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputContext": {
+      "abstract": [
+        {
+          "text": "An object that reports the type of input your app receives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextInputContext"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextInputContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextInputContext",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputcontext"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputDelegate": {
+      "abstract": [
+        {
+          "text": "An intermediary between a document and the text input system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextInputDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextInputDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextInputDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputMode": {
+      "abstract": [
+        {
+          "text": "The current text input mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextInputMode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextInputMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextInputMode",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputmode"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputTraits": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines features for keyboard input to a text object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextInputTraits"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputTraits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextInputTraits"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextInputTraits",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputtraits"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputTraits/autocorrectionType": {
+      "abstract": [
+        {
+          "text": "The autocorrection style for the text object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autocorrectionType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITextAutocorrectionType",
+          "text": "UITextAutocorrectionType"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputTraits/autocorrectionType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autocorrectionType"
+        }
+      ],
+      "role": "symbol",
+      "title": "autocorrectionType",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputtraits/autocorrectiontype"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Text-input",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextInput",
+        "doc://com.apple.uikit/documentation/UIKit/UITextInputDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UIKeyInput",
+        "doc://com.apple.uikit/documentation/UIKit/UITextInputTraits",
+        "doc://com.apple.uikit/documentation/UIKit/UITextInputContext",
+        "doc://com.apple.uikit/documentation/UIKit/UITextInputMode",
+        "doc://com.apple.uikit/documentation/UIKit/UIDictationPhrase"
+      ],
+      "title": "Text input"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configuring-the-shortcuts-bar",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem/leadingBarButtonGroups",
+        "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem/trailingBarButtonGroups",
+        "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem/allowsHidingShortcuts"
+      ],
+      "title": "Configuring the shortcuts bar"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem/keyboardAction"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UITextInputAssistantItem"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputAssistantItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputAssistantItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Configuring-the-shortcuts-bar",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem/leadingBarButtonGroups",
+                "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem/trailingBarButtonGroups",
+                "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem/allowsHidingShortcuts"
+              ],
+              "title": "Configuring the shortcuts bar"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem/keyboardAction"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Text-input",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextInput",
+                "doc://com.apple.uikit/documentation/UIKit/UITextInputDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UIKeyInput",
+                "doc://com.apple.uikit/documentation/UIKit/UITextInputTraits",
+                "doc://com.apple.uikit/documentation/UIKit/UITextInputContext",
+                "doc://com.apple.uikit/documentation/UIKit/UITextInputMode",
+                "doc://com.apple.uikit/documentation/UIKit/UIDictationPhrase"
+              ],
+              "title": "Text input"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UITextInputAssistantItem"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInput/title",
+          "value": "UITextInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTraits/title",
+          "value": "UITextInputTraits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTraits/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputTraits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTraits/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputTraits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputAssistantItem~1trailingBarButtonGroups/title",
+          "value": "trailingBarButtonGroups"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputAssistantItem~1trailingBarButtonGroups/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "trailingBarButtonGroups"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputMode/title",
+          "value": "UITextInputMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputAssistantItem~1leadingBarButtonGroups/title",
+          "value": "leadingBarButtonGroups"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputAssistantItem~1leadingBarButtonGroups/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "leadingBarButtonGroups"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyInput/title",
+          "value": "UIKeyInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputAssistantItem~1keyboardAction/title",
+          "value": "keyboardActionButtonItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputAssistantItem~1keyboardAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "keyboardActionButtonItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDictationPhrase/title",
+          "value": "UIDictationPhrase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDictationPhrase/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDictationPhrase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDictationPhrase/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDictationPhrase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup/title",
+          "value": "UIBarButtonItemGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItemGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItemGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputContext/title",
+          "value": "UITextInputContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTraits~1autocorrectionType/title",
+          "value": "autocorrectionType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTraits~1autocorrectionType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autocorrectionType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputAssistantItem~1allowsHidingShortcuts/title",
+          "value": "allowsHidingShortcuts"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputAssistantItem~1allowsHidingShortcuts/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsHidingShortcuts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1inputAssistantItem/title",
+          "value": "inputAssistantItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1inputAssistantItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inputAssistantItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputDelegate/title",
+          "value": "UITextInputDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputAssistantItem/title",
+          "value": "UITextInputAssistantItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputAssistantItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputAssistantItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputAssistantItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputAssistantItem"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uitextinputassistantitem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uitextinputassistantitem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

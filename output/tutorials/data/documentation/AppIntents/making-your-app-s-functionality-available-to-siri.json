@@ -1,0 +1,828 @@
+{
+  "abstract": [
+    {
+      "text": "Add assistant schemas to your app so Siri can complete requests, and integrate your app with Apple Intelligence, Spotlight, and other system experiences.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppIntents/documentation/AppIntents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AppIntents/documentation/AppIntents/making-your-app-s-functionality-available-to-siri"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Intents"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.2",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.2",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.2",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Making your app’s functionality available to Siri"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using this sample app, people can keep track of photos and videos they capture with their device and can use Siri to access app functionality.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To make its main functionality available to Siri, the app uses the App Intents framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Session 10133: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc24/10133/",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related sessions from WWDC24",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Make-app-functionality-available-to-Siri",
+          "level": 3,
+          "text": "Make app functionality available to Siri",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/app-intent-domains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to make the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEnum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implementations available to Siri as shown in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@AssistantEnum(schema: .photos.assetType)",
+            "enum AssetType: String, AppEnum {",
+            "    case photo",
+            "    case video",
+            "",
+            "    static let caseDisplayRepresentations: [AssetType : DisplayRepresentation]  = [",
+            "        .photo: \"Photo\",",
+            "        .video: \"Video\"",
+            "    ]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Make-data-available-in-Spotlight",
+          "level": 3,
+          "text": "Make data available in Spotlight",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People can use Spotlight to search for data the sample contains. To enable this functionality, the sample defines an app entity that conforms to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/IndexedEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@AssistantEntity(schema: .photos.asset)",
+            "struct AssetEntity: IndexedEntity {",
+            "",
+            "    // MARK: Static",
+            "",
+            "    static let defaultQuery = AssetQuery()",
+            "",
+            "    // MARK: Properties",
+            "",
+            "    let id: String",
+            "    let asset: Asset",
+            "",
+            "    @Property(title: \"Title\")",
+            "    var title: String?",
+            "",
+            "    var creationDate: Date?",
+            "    var location: CLPlacemark?",
+            "    var assetType: AssetType?",
+            "    var isFavorite: Bool",
+            "    var isHidden: Bool",
+            "    var hasSuggestedEdits: Bool",
+            "",
+            "    var displayRepresentation: DisplayRepresentation {",
+            "        DisplayRepresentation(",
+            "            title: title.map { \"\\($0)\" } ?? \"Unknown\",",
+            "            subtitle: assetType?.localizedStringResource ?? \"Photo\"",
+            "        )",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Make-app-entities-shareable",
+          "level": 3,
+          "text": "Make app entities shareable",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By adopting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/Transferable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, this sample makes the data it describes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as app entities more shareable and allows other apps to understand its data formats.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the sample’s ",
+              "type": "text"
+            },
+            {
+              "code": "AssetEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implements ",
+              "type": "text"
+            },
+            {
+              "code": "Transferable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to make it easy to share a photo",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as a PNG image with Siri or the share sheet:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension AssetEntity: Transferable {",
+            "",
+            "    struct AssetQuery: EntityQuery {",
+            "        @Dependency",
+            "        var library: MediaLibrary",
+            "",
+            "        @MainActor",
+            "        func entities(for identifiers: [AssetEntity.ID]) async throws -> [AssetEntity] {",
+            "            library.assets(for: identifiers).map(\\.entity)",
+            "        }",
+            "",
+            "        @MainActor",
+            "        func suggestedEntities() async throws -> [AssetEntity] {",
+            "            // Suggest the first three assets in the photo library.",
+            "            library.assets.prefix(3).map(\\.entity)",
+            "        }",
+            "    }",
+            "",
+            "    static var transferRepresentation: some TransferRepresentation {",
+            "        DataRepresentation(exportedContentType: .png) { entity in",
+            "            try await entity.asset.pngData()",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Make-onscreen-content-available-to-Siri-and-Apple-Intelligence",
+          "level": 3,
+          "text": "Make onscreen content available to Siri and Apple Intelligence",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user asks a question about onscreen content or wants to perform an action on it, Siri and Apple Intelligence can retrieve the content to respond to the question and perform the action. If the user explicitly requests it, Siri and Apple Intelligence can send content to supported third-party services. For example, someone could view a photo and use Siri to describe things a person can do with an identified object in the photo by saying or typing a phrase like “Hey Siri, what can I do with the object in this photo?”",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To integrate onscreen content with current and upcoming personal intelligence features of Siri and Apple Intelligence, the sample’s ",
+              "type": "text"
+            },
+            {
+              "code": "AssetEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/Transferable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and the ",
+              "type": "text"
+            },
+            {
+              "code": ".photos.asset",
+              "type": "codeVoice"
+            },
+            {
+              "text": " schema. When a person views a photo, the app associates the asset entity with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to make the photo available to Siri and Apple Intelligence:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var body: some View {",
+            "    // ...",
+            "    MediaView(",
+            "        image: image,",
+            "        duration: asset.duration,",
+            "        isFavorite: asset.isFavorite,",
+            "        proxy: proxy",
+            "    )",
+            "    .userActivity(",
+            "        \"com.example.apple-samplecode.AssistantSchemasExample.ViewingPhoto\",",
+            "        element: asset.entity",
+            "    ) { asset, activity in",
+            "        activity.title = \"Viewing a photo\"",
+            "        activity.appEntityIdentifier = EntityIdentifier(for: asset)",
+            "    }",
+            "    // ..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about making onscreen content available to Siri and Apple Intelligence, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/Making-onscreen-content-available-to-siri-and-apple-intelligence",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Making-on-screen-content-available-to-Siri-and-Apple-Intelligence-PageImage-card.png": {
+      "alt": "A stylized iPhone device frame with Apple Intelligence and Siri artwork in the background.",
+      "identifier": "Making-on-screen-content-available-to-Siri-and-Apple-Intelligence-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/76b142f1270da8b71f89536595d2435c/Making-on-screen-content-available-to-Siri-and-Apple-Intelligence-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b41e58e257cfb1f41fb0063e96ba83b0/Making-on-screen-content-available-to-Siri-and-Apple-Intelligence-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "a03736b6de48/MakingYourAppsFunctionalityAvailableToSiri.zip": {
+      "checksum": "a03736b6de4893af30998d1a2dd31d1a461cb0eca36e94525faf82c4c95745da381cee653155b5c8f809474be123f852ce0bae0468875a21073fdd68fa31c6f6",
+      "identifier": "a03736b6de48/MakingYourAppsFunctionalityAvailableToSiri.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/a03736b6de48/MakingYourAppsFunctionalityAvailableToSiri.zip"
+    },
+    "app-intents-PageImage-card.png": {
+      "alt": "[A hero image of an App Intents framework icon.]",
+      "identifier": "app-intents-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f45fa3b20a1dca9bc37dc1052bdd8f0b/app-intents-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8bc71c773b4be518f0665536bee92d34/app-intents-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents": {
+      "abstract": [
+        {
+          "text": "Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and enhanced action capabilities of Siri, powered by Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/appintents"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity": {
+      "abstract": [
+        {
+          "text": "An interface for exposing a custom type or app-specific concept to system experiences like Siri and the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppEntity",
+      "type": "topic",
+      "url": "/documentation/appintents/appentity"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppEnum": {
+      "abstract": [
+        {
+          "text": "An interface to express that a custom type has a predefined, static set of valid values to display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEnum"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEnum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppEnum"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppEnum",
+      "type": "topic",
+      "url": "/documentation/appintents/appenum"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent": {
+      "abstract": [
+        {
+          "text": "An interface for providing an app-specific capability that people invoke",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from system experiences like Siri and the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-actions-with-siri-and-apple-intelligence": {
+      "abstract": [
+        {
+          "text": "Create app intents, entities, and enumerations that conform to assistant schemas to tap into the enhanced action capabilities of Siri and Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-actions-with-siri-and-apple-intelligence",
+      "images": [
+        {
+          "identifier": "app-intents-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Integrating actions with Siri and Apple Intelligence",
+      "type": "topic",
+      "url": "/documentation/appintents/integrating-actions-with-siri-and-apple-intelligence"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/Making-onscreen-content-available-to-siri-and-apple-intelligence": {
+      "abstract": [
+        {
+          "text": "Enable Siri and Apple Intelligence to respond to a person’s questions and action requests for your app’s onscreen content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Making-onscreen-content-available-to-siri-and-apple-intelligence",
+      "images": [
+        {
+          "identifier": "Making-on-screen-content-available-to-Siri-and-Apple-Intelligence-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Making onscreen content available to Siri and Apple Intelligence",
+      "type": "topic",
+      "url": "/documentation/appintents/making-onscreen-content-available-to-siri-and-apple-intelligence"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/app-intent-domains": {
+      "abstract": [
+        {
+          "text": "Make your app’s actions and content available to Siri and Apple Intelligence with assistant schemas.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/app-intent-domains",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App intent domains",
+      "type": "topic",
+      "url": "/documentation/appintents/app-intent-domains"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/IndexedEntity": {
+      "abstract": [
+        {
+          "text": "`IndexedEntity` represents an App Entity decorated with an attribute set. A set of attributes that enable the system to perform structured indexing  and queries of entities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IndexedEntity"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6EntityP",
+          "text": "AppEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/IndexedEntity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IndexedEntity",
+      "type": "topic",
+      "url": "/documentation/AppIntents/IndexedEntity"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/Making-onscreen-content-available-to-siri-and-apple-intelligence": {
+      "abstract": [
+        {
+          "text": "Enable Siri and Apple Intelligence to respond to a person’s questions and action requests for your app’s onscreen content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/Making-onscreen-content-available-to-siri-and-apple-intelligence",
+      "images": [
+        {
+          "identifier": "Making-on-screen-content-available-to-Siri-and-Apple-Intelligence-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Making onscreen content available to Siri and Apple Intelligence",
+      "type": "topic",
+      "url": "/documentation/AppIntents/Making-onscreen-content-available-to-siri-and-apple-intelligence"
+    },
+    "doc://com.apple.documentation/documentation/CoreTransferable/Transferable": {
+      "abstract": [
+        {
+          "text": "A protocol that describes how a type interacts with transport APIs such as drag and drop or copy and paste.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/Transferable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transferable",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/Transferable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity": {
+      "abstract": [
+        {
+          "text": "A representation of the state of your app at a moment in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/wwdc24/10133/": {
+      "identifier": "https://developer.apple.com/wwdc24/10133/",
+      "title": "Bring your app to Siri",
+      "titleInlineContent": [
+        {
+          "text": "Bring your app to Siri",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc24/10133/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "a03736b6de48/MakingYourAppsFunctionalityAvailableToSiri.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Siri-and-Apple-Intelligence",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-actions-with-siri-and-apple-intelligence",
+        "doc://com.apple.AppIntents/documentation/AppIntents/Making-onscreen-content-available-to-siri-and-apple-intelligence",
+        "doc://com.apple.AppIntents/documentation/AppIntents/app-intent-domains"
+      ],
+      "title": "Siri and Apple Intelligence"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appintents/making-your-app-s-functionality-available-to-siri"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

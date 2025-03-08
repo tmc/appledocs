@@ -1,0 +1,2352 @@
+{
+  "abstract": [
+    {
+      "text": "Use touch input and virtual controllers to make your game available to players without controllers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamecontroller/documentation/GameController"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamecontroller/documentation/GameController/adding-touch-controls-to-games-that-support-game-controllers-in-ios"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Game Controller"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding touch controls to games that support game controllers in iOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many people play games on iOS devices without using a physical controller. You can make your game available to them by adding touch controls, even if you designed your game for a physical controller. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class leverages the Game Controller framework and optionally provides a default user interface. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " can also render custom controls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-custom-view-controller-subclass",
+          "level": 3,
+          "text": "Create a custom view controller subclass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Metal-based game typically presents content in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". An instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", known as the root view controller, manages the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Your root view controller is responsible for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance. To take responsibility, subclass from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCEventViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " rather than ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your game supports tvOS, you need to subclass from ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCEventViewController",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a custom subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", create a new file in your project using the Cocoa Touch Class template. In the “Subclass of” combination box, enter “GCEventViewController”. In the Language menu, choose Objective-C. Then, open the newly created header file and import the Game Controller framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the game uses a storyboard, ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/DefiningYourSubclass.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to use a new view controller class derived from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCEventViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Alternatively, if the game creates a root view controller programmatically, then update the code to create an instance of a new subclass derived from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCEventViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-virtual-controller",
+          "level": 3,
+          "text": "Configure the virtual controller",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you connect a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " appears in the controllers array. The elements that this controller supports are controlled by the configuration created for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To configure a virtual controller, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your subclass of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", add a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance variable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add an override to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidLoad()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method that creates the virtual controller and stores it in an instance variable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "@implementation MyGameViewController {",
+            "    GCVirtualController *_virtualController;",
+            "}",
+            "",
+            "- (void)viewDidLoad {",
+            "    [super viewDidLoad];",
+            "",
+            "    if (!_virtualController) {",
+            "        GCVirtualControllerConfiguration *config = [[GCVirtualControllerConfiguration alloc] init];",
+            "        // Add elements that your controller-handling code currently supports.",
+            "        config.elements = [NSSet setWithArray:@[",
+            "            GCInputButtonA,",
+            "            GCInputButtonB,",
+            "            GCInputButtonX,",
+            "            GCInputButtonY,",
+            "            GCInputLeftThumbstick,",
+            "            GCInputRightThumbstick]];",
+            "        _virtualController = [[GCVirtualController alloc] initWithConfiguration:config];",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Show-and-hide-the-virtual-controller",
+          "level": 3,
+          "text": "Show and hide the virtual controller",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If there are no physical controllers connected, the game shows the virtual controller by default. If the player connects a physical controller, the game hides the virtual controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To show a virtual controller when there are no physical controllers connected, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/connect(replyHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on it in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1458875-gccontrollerdiddisconnect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (Swift) or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCControllerDidDisconnectNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (Objective-C) handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (void)controllerDidDisconnect:(NSNotification *)notification {",
+            "    if (GCController.controllers.count == 0 && _virtualController != nil) {",
+            "        [_virtualController connectWithReplyHandler:nil];",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your game starts and there are no controllers connected, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/connect(replyHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the virtual controller to show it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (void)gameDidStart {",
+            "    if (GCController.controllers.count == 0 && _virtualController != nil) {",
+            "        [_virtualController connectWithReplyHandler:nil];",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To hide the virtual controller when a player connects a physical controller, call disconnect on the virtual controller in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1458856-gccontrollerdidconnect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (Swift) or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCControllerDidConnectNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (Objective-C) handler. The game might receive a connection notification for a physical controller before receiving a notification for the virtual controller because controller connections are asynchronous.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (void)controllerDidConnect:(NSNotification *)notification {",
+            "    if (_virtualController != nil) {",
+            "        BOOL hasPhysicalController = NO;",
+            "        for (GCController *controller in GCController.controllers) {",
+            "            if (controller != _virtualController.controller) {",
+            "                hasPhysicalController = YES;",
+            "                break;",
+            "            }",
+            "        }",
+            "        if (hasPhysicalController) {",
+            "            [_virtualController disconnect];",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Show-and-hide-controls",
+          "level": 3,
+          "text": "Show and hide controls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the player can’t perform certain actions in the game, hide the corresponding control elements using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/updateConfiguration(forElement:configuration:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. For example, during cutscene playback, the player can only press a button to skip playback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (void)configureVirtualControllerForCutscene:(BOOL)isInCutscene {",
+            "    if (!_virtualController) {",
+            "        return;",
+            "    }",
+            "",
+            "    // Only the X button is available when in a cutscene.",
+            "    NSArray *elementsToShowOrHide = @[",
+            "        GCInputButtonA,",
+            "        GCInputButtonB,",
+            "        GCInputButtonY,",
+            "        GCInputLeftThumbstick,",
+            "        GCInputRightThumbstick];",
+            "    for (GCInputElementName input in elementsToShowOrHide) {",
+            "        [_virtualController updateConfigurationForElement:input",
+            "                            configuration:^(GCVirtualControllerElementConfiguration *configuration) {",
+            "            configuration.hidden = isInCutscene;",
+            "            return configuration;",
+            "        }];",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Render-custom-touch-controls",
+          "level": 3,
+          "text": "Render custom touch controls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For better immersion and performance, the game can render a custom virtual controller instead of the default. Custom controls render symbols that represent their mapped actions rather than generic symbols.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When rendering custom touch controls, UIKit handles touch events and draws the results as part of the game’s user interface render pass. If your game is multithreaded, you need to pass data to your render thread in a thread-safe way because UIKit is only available on the main thread.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the hidden property to true when you create the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/Configuration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Continue to set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/Configuration/elements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property because this affects the elements of the corresponding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (void)viewDidLoad {",
+            "    [super viewDidLoad];",
+            "",
+            "    if (!_virtualController) {",
+            "        GCVirtualControllerConfiguration *configuration = [[GCVirtualControllerConfiguration alloc] init];",
+            "        // Add elements that your controller-handling code currently supports.",
+            "        configuration.elements = [NSSet setWithArray:@[",
+            "            GCInputButtonA,",
+            "            GCInputButtonB,",
+            "            GCInputButtonX,",
+            "            GCInputButtonY,",
+            "            GCInputLeftThumbstick,",
+            "            GCInputRightThumbstick]];",
+            "        configuration.hidden = YES;",
+            "        _virtualController = [[GCVirtualController alloc] initWithConfiguration:configuration];",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add code to the implementation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidLoad()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to install one or more ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects on the game’s view. For example, use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPanGestureRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to implement a direction pad or a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UILongPressGestureRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to implement a button. Set the view controller as the delegate and the target of each gesture recognizer, and store them in instance variables.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@implementation MyGameViewController {",
+            "    GCVirtualController *_virtualController;",
+            "    UIPanGestureRecognizer *_thumbstickGR;",
+            "    UILongPressGestureRecognizer *_primaryButtonGR;",
+            "}",
+            "",
+            "- (void)viewDidLoad {",
+            "    // ...",
+            "    // ... Continued from above.",
+            "    // ...",
+            "",
+            "    _thumbstickGR = [[UIPanGestureRecognizer alloc] init];",
+            "    _thumbstickGR.delegate = self;",
+            "    [_thumbstickGR addTarget:self action:@selector(thumbstickAction)];",
+            "    [self.view addGestureRecognizer:_thumbstickGR];",
+            "",
+            "    _primaryButtonGR = [[UILongPressGestureRecognizer alloc] init];",
+            "    _primaryButtonGR.minimumPressDuration = 0; // Invoke action method immediately.",
+            "    _primaryButtonGR.delegate = self;",
+            "    [_primaryButtonGR addTarget:self action:@selector(primaryButtonAction)];",
+            "    [self.view addGestureRecognizer:_primaryButtonGR];",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, declare an extension of the root view controller subclass that conforms to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In the extension, declare the action methods that the configured gesture recognizers invoke.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Declares an extension (unnamed category) of MyGameViewController.",
+            "// Place this declaration in the implementation file instead of the header file.",
+            "@interface MyGameViewController() <UIGestureRecognizerDelegate>",
+            "- (void)thumbstickAction;",
+            "- (void)primaryButtonAction;",
+            "@end"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement the action methods to interpret the location of the touch, update the virtual controller, and inform the render thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Update your user interface from the main thread, instead of game controller code, to avoid unnecessary input latency.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "code": [
+            "- (void)thumbstickAction {",
+            "    UIGestureRecognizerState state = _thumbstickGR.state;",
+            "    if (state == UIGestureRecognizerStateBegan || state == UIGestureRecognizerStateChanged) {",
+            "        CGPoint translation = [_thumbstickGR translationInView:self.view];",
+            "        CGRect bounds = [self calculateThumbstickRegionBounds];",
+            "        translation.x /= (bounds.size.width / 2);",
+            "        translation.y /= (bounds.size.height / 2);",
+            "        [_virtualController setPosition:translation forDirectionPadElement:GCInputLeftThumbstick];",
+            "        uiSystem->set_thumbstick_position_and_visibility(translation, true);",
+            "    } else {",
+            "        uiSystem->set_thumbstick_position_and_visibility(CGPointZero, false);",
+            "    }",
+            "}",
+            "",
+            "- (void)primaryButtonAction {",
+            "    UIGestureRecognizerState state = _primaryButtonGR.state;",
+            "    if (state == UIGestureRecognizerStateBegan || state == UIGestureRecognizerStateChanged) {",
+            "        [_virtualController setValue:1.0 forButtonElement:GCInputButtonX];",
+            "        uiSystem->set_primary_button_pressed(true);",
+            "    } else {",
+            "        [_virtualController setValue:0.0 forButtonElement:GCInputButtonX];",
+            "        uiSystem->set_primary_button_pressed(false);",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizerDelegate/gestureRecognizer(_:shouldReceive:)-16fuh",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method to define the bounds of the gesture recognizer. Calculate the bounding boxes of the controls based on the view’s current size, and place it within the view’s current safe area.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (CGRect)calculateThumbstickRegionBounds {",
+            "    CGRect viewBounds = self.view.bounds;",
+            "    UIEdgeInsets safeAreaInsets = self.view.safeAreaInsets;",
+            "    CGSize thumbstickRegionSize = CGSizeMake(200, 200);",
+            "    return CGRectMake(",
+            "        safeAreaInsets.left,",
+            "        viewBounds.size.height - thumbstickRegionSize.height - safeAreaInsets.bottom,",
+            "        thumbstickRegionSize.width,",
+            "        thumbstickRegionSize.height);",
+            "}",
+            "",
+            "- (CGRect)calculatePrimaryActionButtonBounds {",
+            "    CGRect viewBounds = self.view.bounds;",
+            "    UIEdgeInsets safeAreaInsets = self.view.safeAreaInsets;",
+            "    CGSize actionButtonSize = CGSizeMake(88, 88);",
+            "    return CGRectMake(",
+            "        viewBounds.size.width - actionButtonSize.width - safeAreaInsets.right,",
+            "        viewBounds.size.height - actionButtonSize.height - safeAreaInsets.bottom,",
+            "        actionButtonSize.width,",
+            "        actionButtonSize.height);",
+            "}",
+            "",
+            "- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gr shouldReceiveTouch:(UITouch *)touch {",
+            "    // Constrain the gesture recognizer to tracking one touch at any given time.",
+            "    if (gr.numberOfTouches >= 1) {",
+            "        return NO;",
+            "    }",
+            "",
+            "    CGPoint location = [touch locationInView:self.view];",
+            "    if (gr == _thumbstickGR) {",
+            "        CGRect thumbstickRegionBounds = [self calculateThumbstickRegionBounds];",
+            "        return CGRectContainsPoint(thumbstickRegionBounds, location);",
+            "    } else if (gr == _primaryButtonGR) {",
+            "        CGRect primaryActionButtonBounds = [self calculatePrimaryActionButtonBounds];",
+            "        return CGRectContainsPoint(primaryActionButtonBounds, location);",
+            "    }",
+            "",
+            "    return YES;",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Update ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1458856-gccontrollerdidconnect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (Swift) and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1458875-gccontrollerdiddisconnect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (Swift) handlers to show or hide the custom user interface when the virtual controller is connected. For Objective-C, update the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCControllerDidConnectNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCControllerDidDisconnectNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " handlers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (void)gameDidStart {",
+            "    if (GCController.controllers.count == 0 && _virtualController != nil) {",
+            "        [_virtualController connectWithReplyHandler:nil];",
+            "        uiSystem->set_visible(true);",
+            "    }",
+            "}",
+            "",
+            "- (void)controllerDidConnect:(NSNotification *)note {",
+            "    if (_virtualController != nil) {",
+            "        BOOL hasPhysicalController = NO;",
+            "        for (GCController *controller in GCController.controllers) {",
+            "            if (controller != _virtualController.controller) {",
+            "                hasPhysicalController = YES;",
+            "                break;",
+            "            }",
+            "        }",
+            "        if (hasPhysicalController) {",
+            "            [_virtualController disconnect];",
+            "            uiSystem->set_visible(false);",
+            "        }",
+            "    }",
+            "}",
+            "",
+            "- (void)controllerDidDisconnect:(NSNotification *)note {",
+            "    if (GCController.controllers.count == 0 && _virtualController != nil) {",
+            "        [_virtualController connectWithReplyHandler:nil];",
+            "        uiSystem->set_visible(true);",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "The base class for concrete gesture recognizers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIGestureRecognizer"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizerDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods implemented by the delegate of a gesture recognizer to fine-tune an app’s gesture-recognition behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizerDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIGestureRecognizerDelegate",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIGestureRecognizerDelegate"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizerDelegate/gestureRecognizer(_:shouldReceive:)-16fuh": {
+      "abstract": [
+        {
+          "text": "Asks the delegate if a gesture recognizer should receive an object representing a touch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "gestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIGestureRecognizer",
+          "text": "UIGestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shouldReceive"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "touch"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITouch",
+          "text": "UITouch"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizerDelegate/gestureRecognizer(_:shouldReceive:)-16fuh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gestureRecognizer(_:shouldReceive:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIGestureRecognizerDelegate/gestureRecognizer(_:shouldReceive:)-16fuh"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UILongPressGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets long-press gestures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILongPressGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UILongPressGestureRecognizer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UILongPressGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/UIKit/UILongPressGestureRecognizer"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIPanGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets panning gestures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPanGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPanGestureRecognizer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPanGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPanGestureRecognizer"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView": {
+      "abstract": [
+        {
+          "text": "An object that manages the content for a rectangular area on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages a view hierarchy for your UIKit app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIViewController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidLoad()": {
+      "abstract": [
+        {
+          "text": "Called after the controller’s view is loaded into memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidLoad"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidLoad()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "viewDidLoad()",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/viewDidLoad()"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1458856-gccontrollerdidconnect": {
+      "abstract": [
+        {
+          "text": "A notification that posts after a controller connects to the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCControllerDidConnect"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1458856-gccontrollerdidconnect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCControllerDidConnect",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1458856-gccontrollerdidconnect"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1458875-gccontrollerdiddisconnect": {
+      "abstract": [
+        {
+          "text": "A notification that posts after a controller disconnects from the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCControllerDidDisconnect"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1458875-gccontrollerdiddisconnect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCControllerDidDisconnect",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1458875-gccontrollerdiddisconnect"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController": {
+      "abstract": [
+        {
+          "text": "Support hardware game controllers in your game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Game Controller",
+      "type": "topic",
+      "url": "/documentation/gamecontroller"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCController": {
+      "abstract": [
+        {
+          "text": "A representation of a real game controller, a virtual controller, or a snapshot of a controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCController",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gccontroller"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCControllerDidConnectNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts after a controller connects to the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GCControllerDidConnectNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCControllerDidConnectNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCControllerDidConnectNotification",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gccontrollerdidconnectnotification"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCControllerDidDisconnectNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts after a controller disconnects from the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GCControllerDidDisconnectNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCControllerDidDisconnectNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCControllerDidDisconnectNotification",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gccontrollerdiddisconnectnotification"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCEventViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that delivers input either from the responder chain to views, or from game controllers to profiles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCEventViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCEventViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCEventViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCEventViewController",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gceventviewcontroller"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController": {
+      "abstract": [
+        {
+          "text": "A software emulation of a real controller that you configure specifically for your game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCVirtualController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCVirtualController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCVirtualController",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcvirtualcontroller"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/Configuration": {
+      "abstract": [
+        {
+          "text": "The configuration of a virtual controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/Configuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCVirtualController.Configuration",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcvirtualcontroller/configuration"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/Configuration/elements": {
+      "abstract": [
+        {
+          "text": "The input elements of a virtual controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "elements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/Configuration/elements",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "elements"
+        }
+      ],
+      "role": "symbol",
+      "title": "elements",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcvirtualcontroller/configuration/elements"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/connect(replyHandler:)": {
+      "abstract": [
+        {
+          "text": "Connects the virtual controller to the device and displays it on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "connect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "replyHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/connect(replyHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "connectWithReplyHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "connect(replyHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcvirtualcontroller/connect(replyhandler:)"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/updateConfiguration(forElement:configuration:)": {
+      "abstract": [
+        {
+          "text": "Changes the configuration for one of the virtual controller’s input elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forElement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCVirtualController",
+          "text": "GCVirtualController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCVirtualControllerElementConfiguration",
+          "text": "ElementConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCVirtualController",
+          "text": "GCVirtualController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCVirtualControllerElementConfiguration",
+          "text": "ElementConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController/updateConfiguration(forElement:configuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateConfigurationForElement:configuration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "updateConfiguration(forElement:configuration:)",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcvirtualcontroller/updateconfiguration(forelement:configuration:)"
+    },
+    "https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/DefiningYourSubclass.html": {
+      "identifier": "https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/DefiningYourSubclass.html",
+      "title": "update your main scene",
+      "titleInlineContent": [
+        {
+          "text": "update your main scene",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/DefiningYourSubclass.html"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Touch-controller",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController"
+      ],
+      "title": "Touch controller"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Touch-controller",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/GCVirtualController"
+              ],
+              "title": "Touch controller"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIGestureRecognizerDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIGestureRecognizerDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UILongPressGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UILongPressGestureRecognizer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIGestureRecognizer",
+              "text": "UIGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIResponder",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIGestureRecognizerDelegate~1gestureRecognizer(_:shouldReceive:)-16fuh/title",
+          "value": "gestureRecognizer:shouldReceiveTouch:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIGestureRecognizerDelegate~1gestureRecognizer(_:shouldReceive:)-16fuh/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "gestureRecognizer:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIGestureRecognizer",
+              "text": "UIGestureRecognizer"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "gestureRecognizer"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "shouldReceiveTouch:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UITouch",
+              "text": "UITouch"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "touch"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIGestureRecognizer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1viewDidLoad()/title",
+          "value": "viewDidLoad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1viewDidLoad()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewDidLoad"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIResponder",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1Configuration/title",
+          "value": "GCVirtualControllerConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1Configuration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCVirtualControllerConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1Configuration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCVirtualControllerConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1Configuration~1elements/title",
+          "value": "elements"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1Configuration~1elements/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "elements"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCEventViewController/title",
+          "value": "GCEventViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCEventViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCEventViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCEventViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCEventViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController/title",
+          "value": "GCController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1updateConfiguration(forElement:configuration:)/title",
+          "value": "updateConfigurationForElement:configuration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1updateConfiguration(forElement:configuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateConfigurationForElement:configuration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIPanGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIPanGestureRecognizer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIGestureRecognizer",
+              "text": "UIGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController/title",
+          "value": "GCVirtualController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCVirtualController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCVirtualController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1connect(replyHandler:)/title",
+          "value": "connectWithReplyHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCVirtualController~1connect(replyHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "connectWithReplyHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamecontroller/adding-touch-controls-to-games-that-support-game-controllers-in-ios"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamecontroller/adding-touch-controls-to-games-that-support-game-controllers-in-ios"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

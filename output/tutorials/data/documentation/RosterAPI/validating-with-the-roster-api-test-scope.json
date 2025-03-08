@@ -1,0 +1,786 @@
+{
+  "abstract": [
+    {
+      "text": "Use test data to ensure your integration with the Roster API works correctly.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.rosterapi/documentation/RosterAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.rosterapi/documentation/RosterAPI/validating-with-the-roster-api-test-scope"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Roster API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Validating with the Roster API test scope"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Testing your Roster API integration before deployment is critical to the success of your implementation. The Roster API provides a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "test scope",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " that you use to obtain sample user and class data for testing to ensure your integration is correct.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the test scope to generate an access token, then query the various endpoints of the Roster API. When the Roster API receives the request, it responds with test data that represents the dataset and provides all possible states of user and class records.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-test-scope",
+          "level": 3,
+          "text": "Configure the test scope",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "From your developer account, select Certificates, Identifiers & Profiles. When performing the steps to select the primary app identifier, choose “Roster API: Test data access” in the Organizational Data Sharing Scopes section.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ensure the service URL has the test scope configured in the Apple Developer website. The following screenshot shows where to configure the test scope:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4133355",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-the-authorization-endpoint",
+          "level": 3,
+          "text": "Test the authorization endpoint",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As explained in the WWDC 2022 session ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2022/10053/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you need to generate the grant code to get the access token.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the following URL when creating the integration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "URL: https://appleid.apple.com/auth/oauth2/v2/authorize"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the following query parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The client identifier",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "client_id",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The redirect URI you configure",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "redirect_uri",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The response type, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "code",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "response_type",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The scope of the access, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "edu.rosterapi.test.read",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "scope",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The state of the request, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "testState",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "state",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The URL opens the Apple OAuth consent screen. Enter your developer account credentials.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After successfully logging in, you receive the grant code in the registered redirect URI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Generate-the-access-and-refresh-tokens",
+          "level": 3,
+          "text": "Generate the access and refresh tokens",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With your grant code, generate the access and refresh tokens. Create the ",
+              "type": "text"
+            },
+            {
+              "code": "POST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request from your server with the following URL:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "https://appleid.apple.com/auth/oauth2/v2/token",
+            ""
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the request body, set the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The client identifier",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "client_id",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The client secret",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "client_secret",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The grant type, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "authorization_code",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "grant_type",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The grant code you receive",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "grant_code",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The redirect URI you configure",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "redirect_uri",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the header as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Content-Type: application/x-www-form-urlencoded"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This generates both the access and refresh tokens. You receive a response like the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"access_token\":\"a1b054845b71446108514503d37086c7a.0.nwsw.xuSePX9jsQ6IjTq8CqMsdw\",",
+            "    \"token_type\":\"Bearer\",",
+            "    \"expires_in\":3600,",
+            "    \"refresh_token\":\"r23b98899c8e6466493f55ab7505d24ae.0.nwsw.WkPIjDsKblacDkVc_khN2g\"",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Access tokens expire after one hour. If yours expires, you can use the refresh token you receive to create a new access token. For more information, see Handle an expired token, below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Perform-a-request",
+          "level": 3,
+          "text": "Perform a request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After receiving the access token, perform a Roster API request using the test scope. Replace ",
+              "type": "text"
+            },
+            {
+              "code": "[ACCESS_TOKEN]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the token you receive from the previous step.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "curl --request GET \\",
+            "  --url 'https://api-school.apple.com/rosterapi/v1/users?limit=2' \\",
+            "  --header 'Authorization: Bearer [ACCESS_TOKEN]'"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You receive a response like the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"users\": [",
+            "    {",
+            "      \"givenName\": \"given100\",",
+            "      \"middleName\": \"middle100\",",
+            "      \"familyName\": \"family100\",",
+            "      \"id\": \"001385.dmdTSkZEVVdLaXRjS3U2bTNJUUFMNlIzQlNHUTUz.RVB0\",",
+            "      \"grade\": \"4\",",
+            "      \"email\": \"given100family100@mytestschool.org\",",
+            "      \"roleLocationMapping\": [",
+            "        {",
+            "          \"roleName\": \"Student\",",
+            "          \"locationId\": \"LO:1234\"",
+            "        }",
+            "      ],",
+            "      \"dateCreated\": \"2020-07-06T20:32:00Z\",",
+            "      \"dateLastModified\": \"2022-12-13T19:46:46.404451216Z\"",
+            "    },",
+            "    {",
+            "      \"givenName\": \"given101\",",
+            "      \"middleName\": \"middle101\",",
+            "      \"familyName\": \"family101\",",
+            "      \"id\": \"001385.dmdTSkZEVVdLaXRjS3U2bTNJUUVMNlIzQlNHUTUz.RVB0\",",
+            "      \"roleLocationMapping\": [",
+            "        {",
+            "          \"roleName\": \"Student\",",
+            "          \"locationId\": \"LO:1234\"",
+            "        }",
+            "      ],",
+            "      \"dateCreated\": \"2020-07-06T20:32:00Z\",",
+            "      \"dateLastModified\": \"2022-12-13T19:46:46.406289073Z\"",
+            "    }",
+            "  ],",
+            "  \"nextPageToken\": \"mOG8EzKsKDOMbs2ruJa5tQ\",",
+            "  \"moreToFollow\": true",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-an-expired-access-token",
+          "level": 3,
+          "text": "Handle an expired access token",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your access token expires, use the refresh token to generate a new access token.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "URL: https://appleid.apple.com/auth/oauth2/v2/token",
+            "Request Type: POST",
+            "Request Body:",
+            "client_id=\"Your client ID\"",
+            "client_secret=\"Your Client secret\"",
+            "grant_type=refresh_token",
+            "refresh_token=\"The refresh token received\"",
+            "",
+            "Headers:",
+            "Content-Type: application/x-www-form-urlencoded"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You receive the following response:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"access_token\":\"a1b054845b71446108514503d37086c7a.0.nwsw.xuSePX9jsQ6IjTq8CqMsdw\",",
+            "    \"token_type\":\"Bearer\",",
+            "    \"expires_in\":3600",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These steps describe how to fetch sample user and class data for testing the Roster API. Follow the same steps to generate the access and refresh tokens for production. Ensure that the scopes you request for production are for ",
+              "type": "text"
+            },
+            {
+              "code": "edu.users.read",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "edu.classes.read",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.rosterapi/documentation/RosterAPI": {
+      "abstract": [
+        {
+          "text": "Read information about people and classes from an Apple School Manager organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Roster API",
+      "type": "topic",
+      "url": "/documentation/rosterapi"
+    },
+    "doc://com.apple.rosterapi/documentation/RosterAPI/obtaining-information-about-people-and-classes": {
+      "abstract": [
+        {
+          "text": "Prepare your app to request organizational information from a server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI/obtaining-information-about-people-and-classes",
+      "kind": "article",
+      "role": "article",
+      "title": "Obtaining information about people and classes",
+      "type": "topic",
+      "url": "/documentation/rosterapi/obtaining-information-about-people-and-classes"
+    },
+    "https://developer.apple.com/videos/play/wwdc2022/10053/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022/10053/",
+      "title": "Discover Sign in with Apple at Work & School",
+      "titleInlineContent": [
+        {
+          "text": "Discover Sign in with Apple at Work & School",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/10053/"
+    },
+    "media-4133355": {
+      "alt": "A screenshot showing the Certificates, Identifiers and Profiles page of the Apple developer website.",
+      "identifier": "media-4133355",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/df63cb83754f8edbf49d02d0d96ee0ec/media-4133355@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/acb35e5467e6244d4ac454deeaad1061/media-4133355~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.rosterapi/documentation/RosterAPI/obtaining-information-about-people-and-classes"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/rosterapi/validating-with-the-roster-api-test-scope"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

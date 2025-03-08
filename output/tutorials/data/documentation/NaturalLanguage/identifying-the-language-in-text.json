@@ -1,0 +1,695 @@
+{
+  "abstract": [
+    {
+      "text": "Detect the language in a piece of text by using a language recognizer.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/identifying-the-language-in-text"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Natural Language"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Identifying the language in text"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Language identification",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is the task of automatically detecting the language and script of a piece of text. In Natural Language, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " performs this task.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using a language recognizer, you can obtain the most likely language for a piece of input text, or a set of possible language candidates with their associated probabilities. You can also constrain the identification process by providing a list of hints about known probabilities for languages, or a list of languages the predictions are constrained against. You’ll find supported languages in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", but you can also define and use your own language tags.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-a-language-recognizer",
+          "level": 3,
+          "text": "Configure a language recognizer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set up a language recognizer, create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Call its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/processString(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method with the input text you want to perform language identification for. If your text has multiple parts that you want to analyze together, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/processString(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with an input string for each part before you ask for the language prediction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a language recognizer.",
+            "let recognizer = NLLanguageRecognizer()",
+            "recognizer.processString(\"This is a test, mein Freund.\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Get-the-most-likely-language",
+          "level": 3,
+          "text": "Get the most likely language",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get the most likely language for the provided input text, access the language recognizer’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/dominantLanguage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. This property is an optional value, so make sure to handle the case where the language recognizer can’t identify a dominant language.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Identify the dominant language.",
+            "if let language = recognizer.dominantLanguage {",
+            "    print(language.rawValue)",
+            "} else {",
+            "    print(\"Language not recognized\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Get-the-possible-languages",
+          "level": 3,
+          "text": "Get the possible languages",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To generate multiple possible language predictions, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/languageHypothesesWithMaximum:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Specify the maximum number of possible languages to identify.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Generate up to two language hypotheses.",
+            "let hypotheses = recognizer.languageHypotheses(withMaximum: 2)",
+            "print(hypotheses)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Constrain-the-language-identification",
+          "level": 3,
+          "text": "Constrain the language identification",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although this step isn’t required, you can provide the language recognizer with information about the text you want to identify if you already know something about it. For example, if you know that the language must be within a specific set of languages, you can specify that constraint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specifically, you can provide either or both of these constraints:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A list of languages the predictions are constrained against",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A list of known probabilities for some or all languages",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "// Specify constraints for language identification.",
+            "recognizer.languageConstraints = [.french, .english, .german,",
+            "                                  .italian, .spanish, .portuguese]",
+            "",
+            "recognizer.languageHints = [.french: 0.5,",
+            "                            .english: 0.9,",
+            "                            .german: 0.8,",
+            "                            .italian: 0.6,",
+            "                            .spanish: 0.3,",
+            "                            .portuguese: 0.2]",
+            "",
+            "let constrainedHypotheses = recognizer.languageHypotheses(withMaximum: 2)",
+            "print(constrainedHypotheses)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Identify-the-Language-for-Multiple-Texts",
+          "level": 3,
+          "text": "Identify the Language for Multiple Texts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have distinct pieces of text whose languages you want to identify separately, you need to reset the recognizer before processing the next string. Resetting the language recognizer returns it to its initial state, removing any input strings, language constraints, and hints that you previously provided.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Reset the recognizer to its initial state.",
+            "recognizer.reset()",
+            "",
+            "// Process additional strings for language identification.",
+            "recognizer.processString(\"Este es un idioma diferente.\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage": {
+      "abstract": [
+        {
+          "text": "Analyze natural language text and deduce its language-specific metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Natural Language",
+      "type": "topic",
+      "url": "/documentation/naturallanguage"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguage": {
+      "abstract": [
+        {
+          "text": "The languages that the Natural Language framework supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NLLanguage"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NLLanguage"
+        }
+      ],
+      "role": "symbol",
+      "title": "NLLanguage",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nllanguage"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer": {
+      "abstract": [
+        {
+          "text": "The language of a body of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NLLanguageRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NLLanguageRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NLLanguageRecognizer",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nllanguagerecognizer"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/dominantLanguage": {
+      "abstract": [
+        {
+          "text": "The most likely language for the processed text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dominantLanguage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLLanguage",
+          "text": "NLLanguage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/dominantLanguage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dominantLanguage"
+        }
+      ],
+      "role": "symbol",
+      "title": "dominantLanguage",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nllanguagerecognizer/dominantlanguage"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/languageHypothesesWithMaximum:": {
+      "abstract": [
+        {
+          "text": "Generates the probabilities of possible languages for the processed text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "languageHypothesesWithMaximum:"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/languageHypothesesWithMaximum:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "languageHypothesesWithMaximum:"
+        }
+      ],
+      "role": "symbol",
+      "title": "languageHypothesesWithMaximum:",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nllanguagerecognizer/languagehypotheseswithmaximum:"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/processString(_:)": {
+      "abstract": [
+        {
+          "text": "Analyzes the piece of text to determine its dominant language.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "processString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer/processString(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "processString:"
+        }
+      ],
+      "role": "symbol",
+      "title": "processString(_:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nllanguagerecognizer/processstring(_:)"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Language-identification",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguage"
+      ],
+      "title": "Language identification"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Language-identification",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguageRecognizer",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLLanguage"
+              ],
+              "title": "Language identification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguageRecognizer/title",
+          "value": "NLLanguageRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguageRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLLanguageRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguageRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLLanguageRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguage/title",
+          "value": "NLLanguage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLLanguage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLLanguage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguageRecognizer~1processString(_:)/title",
+          "value": "processString:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguageRecognizer~1processString(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "processString:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguageRecognizer~1dominantLanguage/title",
+          "value": "dominantLanguage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLLanguageRecognizer~1dominantLanguage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dominantLanguage"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/naturallanguage/identifying-the-language-in-text"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/naturallanguage/identifying-the-language-in-text"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

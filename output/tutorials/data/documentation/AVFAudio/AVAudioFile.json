@@ -1,0 +1,2307 @@
+{
+  "abstract": [
+    {
+      "text": "An object that represents an audio file that the system can open for reading or writing.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfaudio/documentation/AVFAudio"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVAudioFile",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AVAudioFile"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFAudio"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AVAudioFile"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AVAudioFile"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioFile"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Regardless of the file format, you read and write using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioPCMBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. These objects contain samples as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioCommonFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that the framework refers to as the file’s processing format. You convert to and from using the file’s actual format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reads and writes are always sequential. Random access is possible by setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/framePosition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfaudio/documentation/AVFAudio": {
+      "abstract": [
+        {
+          "text": "Play, record, and process audio; configure your app’s system audio behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFAudio",
+      "type": "topic",
+      "url": "/documentation/avfaudio"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioBuffer": {
+      "abstract": [
+        {
+          "text": "An object that represents a buffer of audio data with a format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioBuffer",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiobuffer"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioCommonFormat": {
+      "abstract": [
+        {
+          "text": "The format options that describe common audio formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioCommonFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioCommonFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioCommonFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioCommonFormat",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiocommonformat"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile": {
+      "abstract": [
+        {
+          "text": "An object that represents an audio file that the system can open for reading or writing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioFile"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioFile"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioFile",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiofile"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/close()": {
+      "abstract": [
+        {
+          "text": "Closes the audio file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "close"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/close()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "close"
+        }
+      ],
+      "role": "symbol",
+      "title": "close()",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiofile/close()"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/fileFormat": {
+      "abstract": [
+        {
+          "text": "The on-disk format of the file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioFormat",
+          "text": "AVAudioFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/fileFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fileFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "fileFormat",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiofile/fileformat"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/framePosition": {
+      "abstract": [
+        {
+          "text": "The position in the file where the next read or write operation occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "framePosition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVAudioFramePosition",
+          "text": "AVAudioFramePosition"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/framePosition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "framePosition"
+        }
+      ],
+      "role": "symbol",
+      "title": "framePosition",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiofile/frameposition"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/init(forReading:)": {
+      "abstract": [
+        {
+          "text": "Opens a file for reading using the standard, deinterleaved floating point format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forReading"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/init(forReading:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initForReading:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(forReading:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiofile/init(forreading:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/init(forReading:commonFormat:interleaved:)": {
+      "abstract": [
+        {
+          "text": "Opens a file for reading using the specified processing format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forReading"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "commonFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVAudioCommonFormat",
+          "text": "AVAudioCommonFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "interleaved"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/init(forReading:commonFormat:interleaved:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initForReading:commonFormat:interleaved:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(forReading:commonFormat:interleaved:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiofile/init(forreading:commonformat:interleaved:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/init(forWriting:settings:)": {
+      "abstract": [
+        {
+          "text": "Opens a file for writing using the specified settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forWriting"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "settings"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/init(forWriting:settings:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initForWriting:settings:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(forWriting:settings:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiofile/init(forwriting:settings:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/init(forWriting:settings:commonFormat:interleaved:)": {
+      "abstract": [
+        {
+          "text": "Opens a file for writing using a specified processing format and settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forWriting"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "settings"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "commonFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVAudioCommonFormat",
+          "text": "AVAudioCommonFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "interleaved"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/init(forWriting:settings:commonFormat:interleaved:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initForWriting:settings:commonFormat:interleaved:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(forWriting:settings:commonFormat:interleaved:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiofile/init(forwriting:settings:commonformat:interleaved:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/isOpen": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the file is open.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isOpen"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/isOpen",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isOpen"
+        }
+      ],
+      "role": "symbol",
+      "title": "isOpen",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiofile/isopen"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/length": {
+      "abstract": [
+        {
+          "text": "The number of sample frames in the file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVAudioFramePosition",
+          "text": "AVAudioFramePosition"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/length",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "length"
+        }
+      ],
+      "role": "symbol",
+      "title": "length",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiofile/length"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/processingFormat": {
+      "abstract": [
+        {
+          "text": "The processing format of the file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "processingFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioFormat",
+          "text": "AVAudioFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/processingFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "processingFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "processingFormat",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiofile/processingformat"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/read(into:)": {
+      "abstract": [
+        {
+          "text": "Reads an entire audio buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "read"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioPCMBuffer",
+          "text": "AVAudioPCMBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/read(into:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "readIntoBuffer:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "read(into:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiofile/read(into:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/read(into:frameCount:)": {
+      "abstract": [
+        {
+          "text": "Reads a portion of an audio buffer using the number of frames you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "read"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioPCMBuffer",
+          "text": "AVAudioPCMBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "frameCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVAudioFrameCount",
+          "text": "AVAudioFrameCount"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/read(into:frameCount:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "readIntoBuffer:frameCount:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "read(into:frameCount:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiofile/read(into:framecount:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/url": {
+      "abstract": [
+        {
+          "text": "The location of the audio file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/url",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "url"
+        }
+      ],
+      "role": "symbol",
+      "title": "url",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiofile/url"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/write(from:)": {
+      "abstract": [
+        {
+          "text": "Writes an audio buffer sequentially.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioPCMBuffer",
+          "text": "AVAudioPCMBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/write(from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writeFromBuffer:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "write(from:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiofile/write(from:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFileTypeKey": {
+      "abstract": [
+        {
+          "text": "A string that indicates the audio file type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioFileTypeKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFileTypeKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioFileTypeKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioFileTypeKey",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiofiletypekey"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFrameCount": {
+      "abstract": [
+        {
+          "text": "A number of audio sample frames.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioFrameCount"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFrameCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioFrameCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioFrameCount",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioframecount"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFramePosition": {
+      "abstract": [
+        {
+          "text": "A position in an audio file or stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioFramePosition"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFramePosition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioFramePosition"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioFramePosition",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioframeposition"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioPCMBuffer": {
+      "abstract": [
+        {
+          "text": "An object that represents an audio buffer you use with PCM audio formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioPCMBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioPCMBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioPCMBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioPCMBuffer",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiopcmbuffer"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioTime": {
+      "abstract": [
+        {
+          "text": "An object you use to represent a moment in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioTime"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioTime",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiotime"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/audio-settings": {
+      "abstract": [
+        {
+          "text": "Configure audio processing settings using standard key and value constants.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/audio-settings",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio settings",
+      "type": "topic",
+      "url": "/documentation/avfaudio/audio-settings"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Supporting-data-types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioBuffer",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioTime",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/audio-settings"
+      ],
+      "title": "Supporting data types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-Audio-File",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/init(forReading:)",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/init(forReading:commonFormat:interleaved:)",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/init(forWriting:settings:)",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/init(forWriting:settings:commonFormat:interleaved:)"
+      ],
+      "title": "Creating an Audio File"
+    },
+    {
+      "anchor": "Reading-and-Writing-the-Audio-Buffer",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/read(into:)",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/read(into:frameCount:)",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/write(from:)",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/close()"
+      ],
+      "title": "Reading and Writing the Audio Buffer"
+    },
+    {
+      "anchor": "Getting-Audio-File-Properties",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/url",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/fileFormat",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/processingFormat",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/length",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFramePosition",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/framePosition",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFrameCount",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFileTypeKey",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/isOpen"
+      ],
+      "title": "Getting Audio File Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.10",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AVAudioFile"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioFile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioFile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfaudio/documentation/AVFAudio"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-an-Audio-File",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/init(forReading:)",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/init(forReading:commonFormat:interleaved:)",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/init(forWriting:settings:)",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/init(forWriting:settings:commonFormat:interleaved:)"
+              ],
+              "title": "Creating an Audio File"
+            },
+            {
+              "anchor": "Reading-and-Writing-the-Audio-Buffer",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/read(into:)",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/read(into:frameCount:)",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/write(from:)",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/close()"
+              ],
+              "title": "Reading and Writing the Audio Buffer"
+            },
+            {
+              "anchor": "Getting-Audio-File-Properties",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/url",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/fileFormat",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/processingFormat",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/length",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFramePosition",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/framePosition",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFrameCount",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFileTypeKey",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile/isOpen"
+              ],
+              "title": "Getting Audio File Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Supporting-data-types",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioBuffer",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioTime",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/audio-settings"
+              ],
+              "title": "Supporting data types"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AVAudioFile"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioCommonFormat/title",
+          "value": "AVAudioCommonFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioCommonFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioCommonFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioCommonFormat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioCommonFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFramePosition/title",
+          "value": "AVAudioFramePosition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFramePosition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioFramePosition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFramePosition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioFramePosition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1read(into:)/title",
+          "value": "readIntoBuffer:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1read(into:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "readIntoBuffer:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFrameCount/title",
+          "value": "AVAudioFrameCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFrameCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioFrameCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFrameCount/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioFrameCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1read(into:frameCount:)/title",
+          "value": "readIntoBuffer:frameCount:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1read(into:frameCount:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "readIntoBuffer:frameCount:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1processingFormat/title",
+          "value": "processingFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1processingFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "processingFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile/title",
+          "value": "AVAudioFile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioFile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioFile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1init(forWriting:settings:commonFormat:interleaved:)/title",
+          "value": "initForWriting:settings:commonFormat:interleaved:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1init(forWriting:settings:commonFormat:interleaved:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initForWriting:settings:commonFormat:interleaved:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1init(forReading:)/title",
+          "value": "initForReading:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1init(forReading:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initForReading:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1fileFormat/title",
+          "value": "fileFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1fileFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fileFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1framePosition/title",
+          "value": "framePosition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1framePosition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "framePosition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioTime/title",
+          "value": "AVAudioTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioTime/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1init(forWriting:settings:)/title",
+          "value": "initForWriting:settings:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1init(forWriting:settings:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initForWriting:settings:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1isOpen/title",
+          "value": "isOpen"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1isOpen/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "isOpen"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1url/title",
+          "value": "url"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1url/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "url"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFileTypeKey/title",
+          "value": "AVAudioFileTypeKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFileTypeKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioFileTypeKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1init(forReading:commonFormat:interleaved:)/title",
+          "value": "initForReading:commonFormat:interleaved:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1init(forReading:commonFormat:interleaved:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initForReading:commonFormat:interleaved:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1length/title",
+          "value": "length"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1length/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "length"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1write(from:)/title",
+          "value": "writeFromBuffer:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1write(from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writeFromBuffer:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1close()/title",
+          "value": "close"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile~1close()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "close"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioPCMBuffer/title",
+          "value": "AVAudioPCMBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioPCMBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioPCMBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioPCMBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioPCMBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioBuffer/title",
+          "value": "AVAudioBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioBuffer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfaudio/avaudiofile"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfaudio/avaudiofile"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

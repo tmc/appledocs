@@ -1,0 +1,1388 @@
+{
+  "abstract": [
+    {
+      "text": "An object that associates virtual conferencing details with an event object in a user’s calendar.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.eventkit/documentation/EventKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceProvider"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)EKVirtualConferenceProvider",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "EKVirtualConferenceProvider"
+      }
+    ],
+    "modules": [
+      {
+        "name": "EventKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "EKVirtualConferenceProvider"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "EKVirtualConferenceProvider"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "EKVirtualConferenceProvider"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " lets apps that offer virtual conferencing services to integrate directly with events in users’ calendars. To add this support to your app, add a virtual conference extension. The principal class of the app extension is a custom subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that you create that provides the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A list of room types where events take place, such as Personal Room or Team Room",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A descriptor for a virtual conference, including a user-visible title, one or more URLs, and additional details",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Providing-Room-Details",
+          "level": 3,
+          "text": "Providing Room Details",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide a list of rooms, you provide one or more ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "room type descriptors",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " that contain details about where a virtual conference takes place. Each room type descriptor includes a user-visible title and an identifier that you choose. EventKit calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceProvider/fetchAvailableRoomTypes(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on your virtual conference provider to retrieve an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceRoomTypeDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Providing-Conference-Details",
+          "level": 3,
+          "text": "Providing Conference Details",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After EventKit has the room type descriptors, users can add an event that specifies one of your rooms as the location. To identify the virtual conference event, your virtual conference provider creates a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "virtual conference descriptor",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " that contains details about the virtual conference. The conference descriptor contains the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "One or more ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceURLDescriptor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects to specify how the user joins the virtual conference",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An optional user-visible title that EventKit may display",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An optional user-visible string with details about the virtual conference that EventKit displays",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "EventKit calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceProvider/fetchVirtualConference(identifier:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on your virtual conference provider to retrieve an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Events that use your virtual conference descriptors may sync to other devices where your app isn’t installed. To support links to your virtual conference regardless of whether your app is installed, adopt universal links in your app. Universal links let you specify HTTP URLs that open your app if it’s installed or open a corresponding web page if it’s not. For more information about adopting universal links in your app, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-universal-links-in-your-app",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Xcode/supporting-universal-links-in-your-app": {
+      "abstract": [
+        {
+          "text": "Prepare your app to respond to an incoming universal link.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-universal-links-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting universal links in your app",
+      "type": "topic",
+      "url": "/documentation/Xcode/supporting-universal-links-in-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit": {
+      "abstract": [
+        {
+          "text": "Create, view, and edit calendar and reminder events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "EventKit",
+      "type": "topic",
+      "url": "/documentation/eventkit"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceDescriptor": {
+      "abstract": [
+        {
+          "text": "Details about a virtual conference that uses a custom room type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKVirtualConferenceDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EKVirtualConferenceDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "EKVirtualConferenceDescriptor",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekvirtualconferencedescriptor"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceProvider": {
+      "abstract": [
+        {
+          "text": "An object that associates virtual conferencing details with an event object in a user’s calendar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKVirtualConferenceProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EKVirtualConferenceProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "EKVirtualConferenceProvider",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekvirtualconferenceprovider"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceProvider/fetchAvailableRoomTypes(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Provides an array of room types where events take place.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchAvailableRoomTypes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EKVirtualConferenceRoomTypeDescriptor",
+          "text": "EKVirtualConferenceRoomTypeDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceProvider/fetchAvailableRoomTypes(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchAvailableRoomTypesWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchAvailableRoomTypes(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekvirtualconferenceprovider/fetchavailableroomtypes(completionhandler:)"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceProvider/fetchVirtualConference(identifier:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Provides details about a virtual conference that takes place in a room the user selects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchVirtualConference"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@EKVirtualConferenceRoomTypeIdentifier",
+          "text": "EKVirtualConferenceRoomTypeIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EKVirtualConferenceDescriptor",
+          "text": "EKVirtualConferenceDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceProvider/fetchVirtualConference(identifier:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchVirtualConferenceForIdentifier:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchVirtualConference(identifier:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekvirtualconferenceprovider/fetchvirtualconference(identifier:completionhandler:)"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceRoomTypeDescriptor": {
+      "abstract": [
+        {
+          "text": "Details about a room where virtual conferences take place.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKVirtualConferenceRoomTypeDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceRoomTypeDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EKVirtualConferenceRoomTypeDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "EKVirtualConferenceRoomTypeDescriptor",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekvirtualconferenceroomtypedescriptor"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceURLDescriptor": {
+      "abstract": [
+        {
+          "text": "Details about how users join a virtual conference, including a title and URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKVirtualConferenceURLDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceURLDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EKVirtualConferenceURLDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "EKVirtualConferenceURLDescriptor",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekvirtualconferenceurldescriptor"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling": {
+      "abstract": [
+        {
+          "text": "The interface an app extension uses to respond to a request from a host app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExtensionRequestHandling"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionRequestHandling",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensionrequesthandling"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Virtual-conferences",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceDescriptor",
+        "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceRoomTypeDescriptor"
+      ],
+      "title": "Virtual conferences"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Providing-Rooms",
+      "identifiers": [
+        "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceProvider/fetchAvailableRoomTypes(completionHandler:)"
+      ],
+      "title": "Providing Rooms"
+    },
+    {
+      "anchor": "Providing-Virtual-Conferences",
+      "identifiers": [
+        "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceProvider/fetchVirtualConference(identifier:completionHandler:)"
+      ],
+      "title": "Providing Virtual Conferences"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "EKVirtualConferenceProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKVirtualConferenceProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKVirtualConferenceProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.eventkit/documentation/EventKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Providing-Rooms",
+              "identifiers": [
+                "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceProvider/fetchAvailableRoomTypes(completionHandler:)"
+              ],
+              "title": "Providing Rooms"
+            },
+            {
+              "anchor": "Providing-Virtual-Conferences",
+              "identifiers": [
+                "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceProvider/fetchVirtualConference(identifier:completionHandler:)"
+              ],
+              "title": "Providing Virtual Conferences"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Virtual-conferences",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceDescriptor",
+                "doc://com.apple.eventkit/documentation/EventKit/EKVirtualConferenceRoomTypeDescriptor"
+              ],
+              "title": "Virtual conferences"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "EKVirtualConferenceProvider"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKVirtualConferenceURLDescriptor/title",
+          "value": "EKVirtualConferenceURLDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKVirtualConferenceURLDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKVirtualConferenceURLDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKVirtualConferenceURLDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKVirtualConferenceURLDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKVirtualConferenceProvider~1fetchVirtualConference(identifier:completionHandler:)/title",
+          "value": "fetchVirtualConferenceForIdentifier:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKVirtualConferenceProvider~1fetchVirtualConference(identifier:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchVirtualConferenceForIdentifier:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKVirtualConferenceDescriptor/title",
+          "value": "EKVirtualConferenceDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKVirtualConferenceDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKVirtualConferenceDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKVirtualConferenceDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKVirtualConferenceDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKVirtualConferenceProvider/title",
+          "value": "EKVirtualConferenceProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKVirtualConferenceProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKVirtualConferenceProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKVirtualConferenceProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKVirtualConferenceProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKVirtualConferenceProvider~1fetchAvailableRoomTypes(completionHandler:)/title",
+          "value": "fetchAvailableRoomTypesWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKVirtualConferenceProvider~1fetchAvailableRoomTypes(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchAvailableRoomTypesWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKVirtualConferenceRoomTypeDescriptor/title",
+          "value": "EKVirtualConferenceRoomTypeDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKVirtualConferenceRoomTypeDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKVirtualConferenceRoomTypeDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKVirtualConferenceRoomTypeDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKVirtualConferenceRoomTypeDescriptor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/eventkit/ekvirtualconferenceprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/eventkit/ekvirtualconferenceprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,566 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your system to enable the debugging of custom kernel extensions from a",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "second Mac.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Apple-Silicon/documentation/apple-silicon"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/debugging-a-custom-kernel-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Debugging a Custom Kernel Extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The kernel supports every other process on the system, including the debugger itself,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so you can’t debug it using normal techniques. If you develop a kernel extension",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(kext), you have several options to debug it:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Write debug information to logs and analyze the logs later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use a second computer to debug the kernel on another Mac.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Debug or inspect a kernel core file from a kernel panic.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the Kernel Debug Kit to set up two-machine debugging and an optional core-dump",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "server. Use two-machine debugging to dynamically examine the state of your kext at",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "runtime. If you don’t save core-dump files directly to the Mac you use for debugging,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a core-dump server captures them automatically over the network.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Install-the-Kernel-Debug-Kit",
+          "level": 3,
+          "text": "Install the Kernel Debug Kit",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Kernel Debug Kit (KDK) provides the tools and support you need to debug the kernel.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This separate download includes custom versions of the kernel that include extra",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "assertions and error checking to help you catch problems.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use the KDK to perform two-machine debugging:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Connect both Macs to the same network.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Log in as an administrator on both Macs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Download the KDK for the version of macOS you’re debugging.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Install the KDK on both Mac computers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Install your kext (and the appropriate kernel) on the computer you want to debug.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The KDK includes instructions on how to install the custom kernels you use during",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "debugging. It also provides detailed instructions for setting up the connection between",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your computers. For more information, sign in and download the appropriate KDK from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/download/more/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Debug-the-Kext",
+          "level": 3,
+          "text": "Debug the Kext",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin a debugging session, designate one machine as the debugging machine and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the other as the target. Run ",
+              "type": "text"
+            },
+            {
+              "code": "lldb",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from Terminal on your debugging machine and use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "kdp-remote",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command to connect to the remote computer. The ",
+              "type": "text"
+            },
+            {
+              "code": "kdp-remote",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "accepts the hostname or IP address and creates a debugger connection to the corresponding",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Mac. Specify the name or IP address of your target Mac as the parameter to the command.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "(lldb) kdp-remote MyComputer.local"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you establish a connection, set breakpoints and step through your custom code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as you would for any other process. The debugger automatically searches any spotlight-indexed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "directories and the ",
+              "type": "text"
+            },
+            {
+              "code": "/Library/Developer/KDKs/",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory on the local system for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "symbol information to use during debugging. You can specify the location of the kernel",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "symbol files by launching ",
+              "type": "text"
+            },
+            {
+              "code": "lldb",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the path to the kernel file that contains those",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "symbols. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% lldb /Library/Developer/KDKs/<KDK Version>/System/Library/Kernels/kernel"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about two-machine debugging, see the KDK Readme file located",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the ",
+              "type": "text"
+            },
+            {
+              "code": "/Library/Developer/KDKs/<KDK Version>/",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory of the KDK.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/installing-a-custom-kernel-extension": {
+      "abstract": [
+        {
+          "text": "Install kernel extensions using a custom installer package, and help users understand",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the installation process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/installing-a-custom-kernel-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing a Custom Kernel Extension",
+      "type": "topic",
+      "url": "/documentation/apple-silicon/installing-a-custom-kernel-extension"
+    },
+    "doc://com.apple.Apple-Silicon/documentation/apple-silicon": {
+      "abstract": [
+        {
+          "text": "Get the resources you need to create software for Macs with Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Apple-Silicon/documentation/apple-silicon",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple Silicon",
+      "type": "topic",
+      "url": "/documentation/apple-silicon"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/download/more/": {
+      "identifier": "https://developer.apple.com/download/more/",
+      "title": "https://developer.apple.com/download/more/",
+      "titleInlineContent": [
+        {
+          "text": "https://developer.apple.com/download/more/",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/download/more/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Kernel-and-Drivers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/installing-a-custom-kernel-extension"
+      ],
+      "title": "Kernel and Drivers"
+    }
+  ]
+}

@@ -1,0 +1,473 @@
+{
+  "abstract": [
+    {
+      "text": "Adjust your app’s behavior and filter incoming notifications when the",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "current Focus changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppIntents/documentation/AppIntents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AppIntents/documentation/AppIntents/focus"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Intents"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Focus"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "focus-filters-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People use Focus on macOS, iOS, and iPadOS to minimize distractions. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "someone might use a Work Focus to hide notifications from personal email",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or message accounts. When someone engages a Focus, the system executes your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app’s custom ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/SetFocusFilterIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Define a version of this intent to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "update your app’s configuration and filter incoming notifications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Session 10121: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2022/10121",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related sessions from WWDC22",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Developing-WidgetKit-Strategy-PageImage-card.png": {
+      "alt": null,
+      "identifier": "Developing-WidgetKit-Strategy-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3be6cd9e9843fbca08a8c9ac15fcd915/Developing-WidgetKit-Strategy-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/42a248c60d951cca0502f29a151532a0/Developing-WidgetKit-Strategy-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents": {
+      "abstract": [
+        {
+          "text": "Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and enhanced action capabilities of Siri, powered by Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/appintents"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/ActionButton": {
+      "abstract": [
+        {
+          "text": "Enable people to run your App Shortcuts with the Action button on iPhone or to start your app’s workout or dive sessions using the Action button on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/ActionButton",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Action button on iPhone and Apple Watch",
+      "type": "topic",
+      "url": "/documentation/appintents/actionbutton"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/FocusFilterAppContext": {
+      "abstract": [
+        {
+          "text": "A type that contains app-specific contextual information for a particular Focus, such as the notification filter criteria to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "apply.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FocusFilterAppContext"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/FocusFilterAppContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FocusFilterAppContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "FocusFilterAppContext",
+      "type": "topic",
+      "url": "/documentation/appintents/focusfilterappcontext"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/FocusFilterSuggestionContext": {
+      "abstract": [
+        {
+          "text": "A type you use to suggest app configurations for a given Focus.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FocusFilterSuggestionContext"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/FocusFilterSuggestionContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FocusFilterSuggestionContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "FocusFilterSuggestionContext",
+      "type": "topic",
+      "url": "/documentation/appintents/focusfiltersuggestioncontext"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/SetFocusFilterIntent": {
+      "abstract": [
+        {
+          "text": "An interface for providing an app intent that you use to adapt your app’s behavior when Focus changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetFocusFilterIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/SetFocusFilterIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SetFocusFilterIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SetFocusFilterIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/setfocusfilterintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/SetFocusFilterIntentError": {
+      "abstract": [
+        {
+          "text": "Errors that can occur when you try to retrieve the current Focus configuration settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetFocusFilterIntentError"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/SetFocusFilterIntentError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SetFocusFilterIntentError"
+        }
+      ],
+      "role": "symbol",
+      "title": "SetFocusFilterIntentError",
+      "type": "topic",
+      "url": "/documentation/appintents/setfocusfilterintenterror"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/Developing-a-WidgetKit-strategy": {
+      "abstract": [
+        {
+          "text": "Explore features, tasks, related frameworks, and constraints as you make a plan to implement widgets, watch complications, and Live Activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/Developing-a-WidgetKit-strategy",
+      "images": [
+        {
+          "identifier": "Developing-WidgetKit-Strategy-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Developing a WidgetKit strategy",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/Developing-a-WidgetKit-strategy"
+    },
+    "doc://com.apple.documentation/documentation/appintents/focus/defining_your_app_s_focus_filter": {
+      "abstract": [
+        {
+          "text": "Customize your app’s behavior to reflect the device’s current Focus.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appintents/focus/defining_your_app_s_focus_filter",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Defining your app’s Focus filter",
+      "type": "topic",
+      "url": "/documentation/appintents/focus/defining_your_app_s_focus_filter"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "focus-filters-hero": {
+      "alt": null,
+      "identifier": "focus-filters-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5df0da09dac6ff6a8d59c38d2909275b/focus-filters-hero@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/86d8aeffc9ab80d981cbdcb333e5f5f5/focus-filters-hero~dark@2x.png"
+        }
+      ]
+    },
+    "https://developer.apple.com/videos/play/wwdc2022/10121": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022/10121",
+      "title": "Meet Focus filters",
+      "titleInlineContent": [
+        {
+          "text": "Meet Focus filters",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/10121"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Other-system-experiences",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/ActionButton",
+        "doc://com.apple.documentation/documentation/WidgetKit/Developing-a-WidgetKit-strategy"
+      ],
+      "title": "Other system experiences"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Focus-filters",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/SetFocusFilterIntent",
+        "doc://com.apple.documentation/documentation/appintents/focus/defining_your_app_s_focus_filter",
+        "doc://com.apple.AppIntents/documentation/AppIntents/FocusFilterAppContext",
+        "doc://com.apple.AppIntents/documentation/AppIntents/FocusFilterSuggestionContext"
+      ],
+      "title": "Focus filters"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/SetFocusFilterIntentError"
+      ],
+      "title": "Errors"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appintents/focus"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

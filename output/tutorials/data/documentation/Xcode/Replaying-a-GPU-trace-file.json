@@ -1,0 +1,350 @@
+{
+  "abstract": [
+    {
+      "text": "Debug and profile your app’s performance using a GPU trace file in the Metal debugger.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Replaying-a-GPU-trace-file"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Replaying a GPU trace file"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Replaying a GPU trace file allows you to debug and profile previously captured GPU commands using the Metal debugger. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-programmatically",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To replay a GPU trace file, open it in Xcode. Before clicking Replay, you can configure which device to use (if there’s more than one available), as well as configure whether to run with profiling.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-essentials-replay.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-replay",
+          "level": 3,
+          "text": "Configure replay",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have multiple devices, you need to select a device before you can replay the GPU trace file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode automatically selects the most compatible device, but you can select a different device using the Device popover.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "GPU trace files are only compatible with devices of the same type, the same GPU, and the same operating system. Otherwise, performance may vary. For example, if you capture a Metal workload on a Mac with an AMD GPU, replaying the exported GPU trace file on a Mac with the Apple M1 chip may not work or behave the same.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can optionally enable the Profile GPU Trace option to have Xcode automatically profile after replaying.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Profiling has an initial performance impact on the Metal debugger, so only enable this option when debugging your app’s performance.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can always profile later as needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode": {
+      "abstract": [
+        {
+          "text": "Analyze your app’s performance by configuring your project to use the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing a Metal workload in Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/capturing-a-metal-workload-in-xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-programmatically": {
+      "abstract": [
+        {
+          "text": "Analyze your app’s performance by invoking Metal’s frame capture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-programmatically",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing a Metal workload programmatically",
+      "type": "topic",
+      "url": "/documentation/xcode/capturing-a-metal-workload-programmatically"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Investigating-visual-artifacts": {
+      "abstract": [
+        {
+          "text": "Discover, diagnose, and fix visual artifacts in your app with the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Investigating-visual-artifacts",
+      "kind": "article",
+      "role": "article",
+      "title": "Investigating visual artifacts",
+      "type": "topic",
+      "url": "/documentation/xcode/investigating-visual-artifacts"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger": {
+      "abstract": [
+        {
+          "text": "Debug and profile your Metal workload with a GPU trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal debugger",
+      "type": "topic",
+      "url": "/documentation/xcode/metal-debugger"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Optimizing-GPU-performance": {
+      "abstract": [
+        {
+          "text": "Find and address performance bottlenecks using the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Optimizing-GPU-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing GPU performance",
+      "type": "topic",
+      "url": "/documentation/xcode/optimizing-gpu-performance"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gputools-metal-debugger-essentials-replay.png": {
+      "alt": "An Xcode screenshot of the Replay GPU Trace dialog with options to begin replaying a GPU trace file.",
+      "identifier": "gputools-metal-debugger-essentials-replay.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fe099b89c4e5d3876b33a8f85ad8de97/gputools-metal-debugger-essentials-replay.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/63299cd1e14acd0035b2afb3b4405eba/gputools-metal-debugger-essentials-replay@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/80645b97d1adf553fa694b881019a473/gputools-metal-debugger-essentials-replay~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/22e1ce69fa152c93dd32da7343899e17/gputools-metal-debugger-essentials-replay~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-programmatically",
+        "doc://com.apple.Xcode/documentation/Xcode/Investigating-visual-artifacts",
+        "doc://com.apple.Xcode/documentation/Xcode/Optimizing-GPU-performance"
+      ],
+      "title": "Essentials"
+    }
+  ]
+}

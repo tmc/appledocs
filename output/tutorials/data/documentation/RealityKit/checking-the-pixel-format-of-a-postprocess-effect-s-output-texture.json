@@ -1,0 +1,491 @@
+{
+  "abstract": [
+    {
+      "text": "Make sure your postprocess effect works on all devices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/presentation-views-and-attachments",
+        "doc://com.apple.RealityKit/documentation/RealityKit/postprocessing-effects"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/checking-the-pixel-format-of-a-postprocess-effect-s-output-texture"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Checking the pixel format of a postprocess effect’s output texture"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some device GPUs require that the output texture for postprocess effects be in a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specific format. If the current device doesn’t support ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLGPUFamily/apple2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "convert the output texture to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLPixelFormat/bgra8Unorm",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "before encoding the processed framebuffer to it. An easy way to do that, is to add",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a derived property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView/PostProcessContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using an extension:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension RealityKit.ARView.PostProcessContext {",
+            "    // Returns the output texture, ensuring that the pixel format is ",
+            "    // appropriate for the current device's GPU.",
+            "    var compatibleTargetTexture: MTLTexture! {",
+            "        if self.device.supportsFamily(.apple2) {",
+            "            return targetColorTexture",
+            "        } else {",
+            "            return targetColorTexture.makeTextureView(pixelFormat: .bgra8Unorm)!",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use this derived property instead of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView/PostProcessContext/targetColorTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when encoding the results of a postprocess effect, it ensures the effect works on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "all devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ARView/PostProcessContext": {
+      "abstract": [
+        {
+          "text": "An object the framework uses to pass data to a postprocess callback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PostProcessContext"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView/PostProcessContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PostProcessContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARView.PostProcessContext",
+      "type": "topic",
+      "url": "/documentation/realitykit/arview/postprocesscontext"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ARView/PostProcessContext/targetColorTexture": {
+      "abstract": [
+        {
+          "text": "The output texture where the postprocess callback writes the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "modified frame buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "targetColorTexture"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView/PostProcessContext/targetColorTexture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "targetColorTexture",
+      "type": "topic",
+      "url": "/documentation/realitykit/arview/postprocesscontext/targetcolortexture"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/implementing-postprocess-effects-using-metal-compute-functions": {
+      "abstract": [
+        {
+          "text": "Create custom shaders to implement postprocess effects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/implementing-postprocess-effects-using-metal-compute-functions",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing postprocess effects using Metal compute functions",
+      "type": "topic",
+      "url": "/documentation/realitykit/implementing-postprocess-effects-using-metal-compute-functions"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/passing-structured-data-to-a-metal-compute-function": {
+      "abstract": [
+        {
+          "text": "Send nontexture data from Swift to your Metal shaders using a shared header file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/passing-structured-data-to-a-metal-compute-function",
+      "kind": "article",
+      "role": "article",
+      "title": "Passing Structured Data to a Metal Compute Function",
+      "type": "topic",
+      "url": "/documentation/realitykit/passing-structured-data-to-a-metal-compute-function"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/postprocessing-effects": {
+      "abstract": [
+        {
+          "text": "Create special rendering effects for your RealityKit scenes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/postprocessing-effects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Postprocessing effects",
+      "type": "topic",
+      "url": "/documentation/realitykit/postprocessing-effects"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/presentation-views-and-attachments": {
+      "abstract": [
+        {
+          "text": "Bring RealityKit content into your app with views and renderers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/presentation-views-and-attachments",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and attachments",
+      "type": "topic",
+      "url": "/documentation/realitykit/presentation-views-and-attachments"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/using-metal-performance-shaders-to-create-custom-postprocess-effects": {
+      "abstract": [
+        {
+          "text": "Leverage the Metal Performance Shaders framework to create special rendering effects",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for your RealityKit scenes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/using-metal-performance-shaders-to-create-custom-postprocess-effects",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Metal performance shaders to create custom postprocess effects",
+      "type": "topic",
+      "url": "/documentation/realitykit/using-metal-performance-shaders-to-create-custom-postprocess-effects"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLGPUFamily/apple2": {
+      "abstract": [
+        {
+          "text": "Represents the Apple family 2 GPU features that correspond to the Apple A8 GPUs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "apple2"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLGPUFamily/apple2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLGPUFamily.apple2",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLGPUFamily/apple2"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLPixelFormat/bgra8Unorm": {
+      "abstract": [
+        {
+          "text": "Ordinary format with four 8-bit normalized unsigned integer components in BGRA order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bgra8Unorm"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLPixelFormat/bgra8Unorm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLPixelFormat.bgra8Unorm",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLPixelFormat/bgra8Unorm"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing": {
+      "abstract": [
+        {
+          "text": "Implement a variety of postprocessing techniques to alter RealityKit rendering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing Special Rendering Effects with RealityKit Postprocessing",
+      "type": "topic",
+      "url": "/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Metal-effects",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/using-metal-performance-shaders-to-create-custom-postprocess-effects",
+        "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing",
+        "doc://com.apple.RealityKit/documentation/RealityKit/passing-structured-data-to-a-metal-compute-function",
+        "doc://com.apple.RealityKit/documentation/RealityKit/implementing-postprocess-effects-using-metal-compute-functions"
+      ],
+      "title": "Metal effects"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLPixelFormat~1bgra8Unorm/title",
+          "value": "MTLPixelFormatBGRA8Unorm"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLPixelFormat~1bgra8Unorm/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormatBGRA8Unorm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLGPUFamily~1apple2/title",
+          "value": "MTLGPUFamilyApple2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLGPUFamily~1apple2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLGPUFamilyApple2"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/checking-the-pixel-format-of-a-postprocess-effect-s-output-texture"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

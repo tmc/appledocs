@@ -1,0 +1,282 @@
+{
+  "abstract": [
+    {
+      "text": "Create a local isochronous port to run the given DCL program",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/firewire",
+        "doc://com.apple.documentation/documentation/kernel/iofirewirebus"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iofirewirebus/1811054-createlocalisochport"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1811054,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "IOFireWireBus"
+    },
+    "role": "pseudoSymbol",
+    "symbolKind": "instm",
+    "title": "createLocalIsochPort"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "virtual IOFWLocalIsochPort *createLocalIsochPort("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " bool talking, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " DCLCommand *opcodes,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " DCLTaskInfo *info = 0, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " UInt32 startEvent = 0,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " UInt32 startState = 0,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " UInt32 startMask = 0) = 0; "
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Pass true to create a talker port; pass false to create a listener port.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "talking"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to your DCL program (linked list of DCLCommand structs) To use an IOFWDCL/IOFWDCLPool program, pass the DCLCommand returned by IOFWDCLPool::getProgram().",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "opcodes"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "(Optional) Pointer to DCLTaskInfo struct containing additional configuration information. If you have an IOMemoryMap for your DCL program data buffers, pass it here. You can also pass an IOWorkLoop if you want to use your own workloop to handle callbacks for the created port object.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "info"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Specifies a bus condition on which the port should start receiving/sending packets Must be kFWDCLImmediateEvent, kFWDCLCycleEvent, or kFWDCLSyBitsEvent. Pass kFWDCLImmediateEvent to start without waiting when start() is called. Pass kFWDCLCycleEvent to start() transmitting at a specified bus cycle time. Pass kFWDCLSyBitsEvent (receive only) to start receiving packets once an isochronous packet with a specified sync field arrives.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "startEvent"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Pass the value for the desired start condition, as specified by 'startEvent' kFWDCLImmediateEvent: set to 0 kFWDCLCycleEvent: the cycle timer value on which to start processing packets. For talker ports, This value will be masked by 'startMask' and packet processing will be begin on the next cycle whose lowest bits match the masked value. For listener ports, pass a 15-bit value containg to the low order two bits of cycleSeconds and the 13-bit cycleCount on which to start processing packets. kFWDCLSyBitsEvent: The value of the sync field on which to start receive packets. The value will be masked by 'startMask'. For DCLCommand based isoch ports, processing will begin on the first received packet that has an isochronous header sync field matching 'startState'. For IOFWDCL/IOFWDCLPool based ports, processing will pause on each IOFWDCL that has wait set to true until a packet that has an isochronous header sync field matching 'startState' is received.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "startState"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Returns an IOFWLocalIsochPort on success.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/firewire": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/firewire",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FireWire",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/firewire"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewirebus": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewirebus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireBus",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewirebus"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewirebus/1811054-createlocalisochport": {
+      "abstract": [
+        {
+          "text": "Create a local isochronous port to run the given DCL program",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewirebus/1811054-createlocalisochport",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "createLocalIsochPort",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewirebus/1811054-createlocalisochport"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iofirewirebus/1811054-createlocalisochport"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

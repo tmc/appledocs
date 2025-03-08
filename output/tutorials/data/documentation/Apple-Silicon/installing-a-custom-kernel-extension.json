@@ -1,0 +1,905 @@
+{
+  "abstract": [
+    {
+      "text": "Install kernel extensions using a custom installer package, and help users understand",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "the installation process.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Apple-Silicon/documentation/apple-silicon"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/installing-a-custom-kernel-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Installing a Custom Kernel Extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A kernel extension (or kext) is a bundle that performs low-level tasks. Kexts run",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in kernel space, which gives them elevated privileges and the ability to perform",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tasks that user-space apps can’t.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Always consider alternatives before creating a kext. The system provides numerous",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "APIs to minimize the need for kexts. For example, you can use the DriverKit SDK to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "implement drivers for most types of hardware. In addition, the kernel runtime environment",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "has more stringent code-level requirements, which makes the creation of kexts more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "challenging, and the consequences more severe if you do it incorrectly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about alternatives to kexts, see ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/apple_silicon/implementing_drivers_system_extensions_and_kexts",
+              "type": "text"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Load-Kexts-as-the-Final-Step-in-Your-Installer-Package",
+          "level": 3,
+          "text": "Load Kexts as the Final Step in Your Installer Package",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The most common way to install kexts is with a custom installer package. (Unlike",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "apps and system extensions, you cannot distribute kexts through the Mac App Store.)",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Typically, you use a single package to copy each kext and any supporting software",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the user’s system, and then you use scripts to load and configure the kexts for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "execution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating your installer package, load your kexts as the final step in the installation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "process using the ",
+              "type": "text"
+            },
+            {
+              "code": "kmutil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "kextload",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool. These tools initiate the kext-loading",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "process, which on macOS 11 requires getting the user’s permission and rebooting the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "user’s system. Loading them as the final step prevents the reboot from disrupting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the rest of the installation process. To avoid multiple user prompts when installing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "multiple kexts, make a single call to ",
+              "type": "text"
+            },
+            {
+              "code": "kmutil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "kextload",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and include all of your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "kexts in the parameter list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In macOS 11 and later, ",
+                  "type": "text"
+                },
+                {
+                  "code": "kmutil",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " replaces ",
+                  "type": "text"
+                },
+                {
+                  "code": "kextload",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "kextunload",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and other",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "earlier tools for loading and managing kexts. The older tools still work, but their",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "implementations now call ",
+                  "type": "text"
+                },
+                {
+                  "code": "kmutil",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about how to load kexts, run ",
+              "type": "text"
+            },
+            {
+              "code": "kmutil load -h",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in Terminal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Explain-the-Kext-Loading-Process-to-Users",
+          "level": 3,
+          "text": "Explain the Kext-Loading Process to Users",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS 11 and later, the loading of a kext requires the user to take actions outside",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of your installation package. When loading a kext, tell the user to perform the following",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "one-time setup on Apple silicon:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reboot your Mac with Apple silicon into Recovery mode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the security level to Reduced security.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow the loading of third-party kexts.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reboot back to macOS.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tell the user to perform the following steps on all Macs whenever you load or install",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a previously unused kext:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the Security & Privacy System Preferences.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Authenticate to make changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow the system to load your kext.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Wait for the system to load the kext and rebuild the auxiliary kext collection.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reboot to load the new auxiliary kext collection.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system prompts the user through most of this process, but make sure your installer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "package provides clear instructions about what to do. Rebooting is a disruptive process",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the user, and lowering the security protections may cause concern. Providing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a clear explanation of what your kext does, and why its installation is necessary",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "may alleviate some of those concerns. Providing explicit instructions for the user",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to follow also helps them navigate the reboot process. If you don’t provide these",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instructions, the user may accidentally or purposefully abort the installation process",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for your kext.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For codeless kexts, the system asks the user for permission to install the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "kext, but doesn’t reboot the user’s system.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Update-an-Existing-Kernel-Extension",
+          "level": 3,
+          "text": "Update an Existing Kernel Extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To update an existing kext, install that kext and use the ",
+              "type": "text"
+            },
+            {
+              "code": "kmutil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "kextload",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tool to initiate the loading process. For a previously approved and loaded kext,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the user must perform the following steps to update that kext:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the Security & Privacy System Preferences.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Authenticate to make changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow the system to update the kext.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reboot to install the updated kext.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user consents to update the kext, the system rebuilds the kext collection",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the updated version. However, the new collection doesn’t take effect until after",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the user reboots the system. If the user defers the reboot process, the system continues",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to run with the previous version of the kext.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Unload-a-Kernel-Extension",
+          "level": 3,
+          "text": "Unload a Kernel Extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unloading a kext on macOS 11 and later requires a call to ",
+              "type": "text"
+            },
+            {
+              "code": "kmutil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "kextunload",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "followed by a system reboot. The ",
+              "type": "text"
+            },
+            {
+              "code": "kmutil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool builds a new kext collection without",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the specified kext, but it doesn’t install that collection immediately. The system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "installs the new kext collection only after the computer reboots. As a result, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "unloaded kext actually remains active and running until the user reboots the system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more details, see the ",
+              "type": "text"
+            },
+            {
+              "code": "kmutil(8)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " man page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/debugging-a-custom-kernel-extension": {
+      "abstract": [
+        {
+          "text": "Configure your system to enable the debugging of custom kernel extensions from a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "second Mac.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/debugging-a-custom-kernel-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging a Custom Kernel Extension",
+      "type": "topic",
+      "url": "/documentation/apple-silicon/debugging-a-custom-kernel-extension"
+    },
+    "doc://com.apple.Apple-Silicon/documentation/apple-silicon": {
+      "abstract": [
+        {
+          "text": "Get the resources you need to create software for Macs with Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Apple-Silicon/documentation/apple-silicon",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple Silicon",
+      "type": "topic",
+      "url": "/documentation/apple-silicon"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Kernel-and-Drivers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/debugging-a-custom-kernel-extension"
+      ],
+      "title": "Kernel and Drivers"
+    }
+  ]
+}

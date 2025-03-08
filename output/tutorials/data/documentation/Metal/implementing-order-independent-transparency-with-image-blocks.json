@@ -1,0 +1,1636 @@
+{
+  "abstract": [
+    {
+      "text": "Draw overlapping, transparent surfaces in any order by using tile shaders and image blocks.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/implementing-order-independent-transparency-with-image-blocks"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.3",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Implementing Order-Independent Transparency with Image Blocks"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "1-OITScene",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In order to draw a convincing transparency effect, apps typically draw a scene’s transparent, 3D geometry in depth order, from farthest to nearest, relative to the camera.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These apps use the CPU to sort the geometry by depth before drawing, but this approach has some drawbacks in that it:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Can produce incorrect results when two meshes intersect",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires the app to recalculate the depth of each mesh with the CPU each time the camera or objects move within the scene",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Order-independent transparency solves these issues by:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Eliminating the need to sort meshes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Moving the computation workload to the GPU",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Evaluating the geometry’s depth on a per-fragment basis",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample takes advantage of ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "tile memory",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " available on Apple silicon GPUs to quickly evaluate the depth and color of each fragment.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Tile memory is a fast, temporary storage that shaders can use to store and retrieve information to and from other shaders.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run this sample, you need Xcode 12 and a physical device including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Mac with Apple silicon running macOS 12 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An iOS device with an A11 Bionic chip or later running iOS 15 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample can only run on a physical device because it uses Metal’s image block and tile shader features that Simulator doesn’t support.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-for-Support",
+          "level": 3,
+          "text": "Check for Support",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app checks that the device supports the features required to implement this order-independent transparency algorithm.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Check that this GPU supports raster order groups.",
+            "_supportsOrderIndependentTransparency = [_device supportsFamily:MTLGPUFamilyApple4];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The techniques implemented by this sample require Metal’s image block and tile shader features, which are a part of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/apple4",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " feature set.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Although this app does run on devices that don’t support these features, it incorrectly blends transparent geometries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-Up-Storage-for-Transparent-Fragments",
+          "level": 3,
+          "text": "Set Up Storage for Transparent Fragments",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses tile memory to store data for multiple transparent layers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "processTransparentFragment",
+              "type": "codeVoice"
+            },
+            {
+              "text": " shader draws the transparent geometry and populates the ",
+              "type": "text"
+            },
+            {
+              "code": "TransparentFragmentStore",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This structure contains a single member, ",
+              "type": "text"
+            },
+            {
+              "code": "fragmentValues",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which uses the ",
+              "type": "text"
+            },
+            {
+              "code": "[[imageblock_data]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute to specify that data for this element resides in tile memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct TransparentFragmentStore",
+            "{",
+            "    TransparentFragmentValues values [[imageblock_data]];",
+            "};"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "TransparentFragmentValues",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure stores the color and depth values for each fragment generated by transparent triangles.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because the fragment shader writes this data to tile memory, each member must be part of a raster order group.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Raster order groups allow precise control of the order of parallel fragment shader threads accessing the same pixel coordinates.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/tailor-your-apps-for-apple-gpus-and-tile-based-deferred-rendering",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct TransparentFragmentValues",
+            "{",
+            "    // Store the color of the transparent fragment.",
+            "    // Use a packed data type to reduce the size of the explicit ImageBlock.",
+            "    rgba8unorm<half4> colors [[raster_order_group(0)]] [kNumLayers];",
+            "",
+            "    // An array of transparent fragment distances from the camera.",
+            "    half depths              [[raster_order_group(0)]] [kNumLayers];",
+            "};"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "kNumLayers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " constant defines the maximum number of transparent layers the image block can store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// The number of transparent geometry layers that the app stores in image block memory.",
+            "/// Each layer consumes tile memory and increases the value of the pipeline's `imageBlockSampleLength` property.",
+            "static constexpr constant short kNumLayers = 4;"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the number of transparent layers for any pixel exceeds ",
+              "type": "text"
+            },
+            {
+              "code": "kNumLayers",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "code": "processTransparentFragment",
+              "type": "codeVoice"
+            },
+            {
+              "text": " shader drops the excess values.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The subsequent blending shader ignores those color values that yield a technically incorrect result.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Despite this, even if ",
+              "type": "text"
+            },
+            {
+              "code": "kNumLayers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " isn’t large enough, this algorithm still produces a convincing result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reserve-Tile-Memory",
+          "level": 3,
+          "text": "Reserve Tile Memory",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the sample sets up a render pass, it partitions the tile memory between storage for the ",
+              "type": "text"
+            },
+            {
+              "code": "TransparentFragmentValues",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure and render targets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the sample builds a render pipeline using the ",
+              "type": "text"
+            },
+            {
+              "code": "TransparentFragmentValues",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure, the pipeline’s ",
+              "type": "text"
+            },
+            {
+              "code": "imageblockSampleLength",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property specifies the amount of tile memory the pipeline requires.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As the value of ",
+              "type": "text"
+            },
+            {
+              "code": "kNumLayers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " increases and the structure side increases, the value of ",
+              "type": "text"
+            },
+            {
+              "code": "imageblockSampleLength",
+              "type": "codeVoice"
+            },
+            {
+              "text": " also increases.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample reserves memory in the render pass by setting the ",
+              "type": "text"
+            },
+            {
+              "code": "imageblockSampleLength",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of ",
+              "type": "text"
+            },
+            {
+              "code": "_forwardRenderPassDescriptor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the pipeline’s ",
+              "type": "text"
+            },
+            {
+              "code": "imageblockSampleLength ",
+              "type": "codeVoice"
+            },
+            {
+              "text": "property.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Once the sample builds a render pipeline using the ",
+              "type": "text"
+            },
+            {
+              "code": "TransparentFragmentStore",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure, the pipeline’s ",
+              "type": "text"
+            },
+            {
+              "code": "imageblockSampleLength",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property specifies the amount of tile memory the pipeline requires.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As the value of ",
+              "type": "text"
+            },
+            {
+              "code": "kNumLayers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " increases, the value of ",
+              "type": "text"
+            },
+            {
+              "code": "imageblockSampleLength",
+              "type": "codeVoice"
+            },
+            {
+              "text": " also increases.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set the image block's memory size.",
+            "_forwardRenderPassDescriptor.imageblockSampleLength = _transparencyPipeline.imageblockSampleLength;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample chooses the tile size for the rasterized color and depth targets by setting the ",
+              "type": "text"
+            },
+            {
+              "code": "tileWidth",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "tileHeight",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties of ",
+              "type": "text"
+            },
+            {
+              "code": "_forwardRenderPassDescriptor",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set the tile size for the fragment shader.",
+            "_forwardRenderPassDescriptor.tileWidth  = _optimalTileSize.width;",
+            "_forwardRenderPassDescriptor.tileHeight = _optimalTileSize.height;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In general, a larger tile size yields better performance because the GPU incurs less overhead to render fewer tiles.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, the GPU uses tile memory for both rasterization data and image block data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You need to balance the dimensions chosen for the tile size with that of the value for ",
+              "type": "text"
+            },
+            {
+              "code": "kNumLayers",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If these values exceed the amount of tile memory, the GPU can’t execute the tile shader in the render pass.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In that case, creation of the render pass fails.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Initialize-the-Image-Block",
+          "level": 3,
+          "text": "Initialize the Image Block",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample begins each render pass by initializing the image block structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Initialize the image block's memory before rendering.",
+            "[renderEncoder pushDebugGroup:@\"Init Image Block\"];",
+            "[renderEncoder setRenderPipelineState:_initImageBlockPipeline];",
+            "[renderEncoder dispatchThreadsPerTile:_optimalTileSize];",
+            "[renderEncoder popDebugGroup];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "initTransparentFragmentStore",
+              "type": "codeVoice"
+            },
+            {
+              "text": " kernel writes zeros to each color value in the image block and ",
+              "type": "text"
+            },
+            {
+              "code": "INFINITY",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to each depth value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Initializes an image block structure to sentinel values.",
+            "kernel void initTransparentFragmentStore",
+            "(",
+            "    imageblock<TransparentFragmentValues, imageblock_layout_explicit> blockData,",
+            "    ushort2 localThreadID[[thread_position_in_threadgroup]]",
+            ")",
+            "{",
+            "    threadgroup_imageblock TransparentFragmentValues* fragmentValues = blockData.data(localThreadID);",
+            "    for (short i = 0; i < kNumLayers; ++i)",
+            "    {",
+            "        fragmentValues->colors[i] = half4(0.0h);",
+            "        fragmentValues->depths[i] = half(INFINITY);",
+            "    }",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Layer-Transparent-Geometry",
+          "level": 3,
+          "text": "Layer Transparent Geometry",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the sample initializes the image block and renders opaque objects, it uses the ",
+              "type": "text"
+            },
+            {
+              "code": "processTransparentFragments",
+              "type": "codeVoice"
+            },
+            {
+              "text": " shader to populate the layers of the ",
+              "type": "text"
+            },
+            {
+              "code": "TransparentFragmentValues",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This fragment shader doesn’t actually render to any of the render pass attachments and only writes to the structure in the image block.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because it doesn’t write to an attachment, the pipeline disables writes to color attachments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "renderPipelineDesc.colorAttachments[AAPLRenderTargetColor].writeMask = MTLColorWriteMaskNone;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The shader inserts transparent fragment values in order of depth.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It also discards fragment values with the farthest depth value when fragment values occupy all layers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for (short i = 0; i < kNumLayers; ++i)",
+            "{",
+            "    half layerDepth = fragmentValues.depths[i];",
+            "    half4 layerColor = fragmentValues.colors[i];",
+            "",
+            "    bool insert = (depth <= layerDepth);",
+            "    fragmentValues.colors[i] = insert ? finalColor : layerColor;",
+            "    fragmentValues.depths[i] = insert ? depth : layerDepth;",
+            "",
+            "    finalColor = insert ? layerColor : finalColor;",
+            "    depth = insert ? layerDepth : depth;",
+            "}",
+            "out.values = fragmentValues;"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each index in the array represents a layer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The shader tests the depth value of the incoming fragment against the depth value of the fragment in the current layer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the depth value is less than the fragment in the current layer, the shader sets ",
+              "type": "text"
+            },
+            {
+              "code": "insert",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When ",
+              "type": "text"
+            },
+            {
+              "code": "insert",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the shader swaps the fragment values in the current layer with the tested fragment’s values.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The values replaced become the new fragment values, which the shader tests in the next iteration of the loop.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When the array fills, the shader discards the fragments with the farthest depth.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following diagram shows an example of a shader populating layers of the image block as the app renders three transparent triangles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "2-DepthDiagram",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the app first renders a green triangle whose fragments populate the first layer in the image block.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It then renders an orange triangle with depth values less than the green triangle.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The shader replaces any fragments covering the green triangle with the orange color and moves the fragments from the green triangle to the next layer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Finally, the app renders a blue triangle whose depth is in between the orange triangle and the green triangle.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The shader replaces all the values of the green triangle in the second layer and moves them to the third.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This results in an image block with fragments ordered by their depth values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Blend-Fragments-for-Transparency",
+          "level": 3,
+          "text": "Blend Fragments for Transparency",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the app layers all transparent geometry, the image block contains a list of fragment colors ordered by depth for every transparent fragment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app executes the ",
+              "type": "text"
+            },
+            {
+              "code": "blendFragments",
+              "type": "codeVoice"
+            },
+            {
+              "text": " shader by drawing a full screen quad.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This shader takes the current values in the color buffer populated by the ",
+              "type": "text"
+            },
+            {
+              "code": "processOpaqueFragments",
+              "type": "codeVoice"
+            },
+            {
+              "text": " shader.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It also takes the image block data populated by the ",
+              "type": "text"
+            },
+            {
+              "code": "processTransparentFragments",
+              "type": "codeVoice"
+            },
+            {
+              "text": " shader.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "TransparentFragmentValues fragmentValues     [[imageblock_data]],",
+            "half4                     forwardOpaqueColor [[color(AAPLRenderTargetColor), raster_order_group(0)]]"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The shader calculates the output color starting with the opaque value in the color attachment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "out.xyz = forwardOpaqueColor.xyz;"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It iterates through each layer in the image block structure, accumulating their color values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for (short i = kNumLayers - 1; i >= 0; --i)",
+            "{",
+            "    half4 layerColor = fragmentValues.colors[i];",
+            "    out.xyz = layerColor.xyz + (1.0h - layerColor.w) * out.xyz;",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resulting value is a mix of the transparent and opaque colors blended in order of their depth values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "1-OITScene": {
+      "alt": "A rendering of the order-independent transparency effect.",
+      "identifier": "1-OITScene",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f118edf6fd4ff055732604dd42bb4bc3/1-OITScene.png"
+        }
+      ]
+    },
+    "2-DepthDiagram": {
+      "alt": "A diagram that depicts the shader populating layers of the image block.",
+      "identifier": "2-DepthDiagram",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/114a8b30f1e127119ef87724e6b4bad4/2-DepthDiagram@2x.png"
+        }
+      ]
+    },
+    "6860d171ecf1/ImplementingOrderIndependentTransparencyWithImageBlocks.zip": {
+      "checksum": "6860d171ecf18915d37e31c900105470eeb3f44314c83c9770faa9475b3f2adacced51598f4564dd8392f2eb3ad7edaca2b5d7b903bc442d8efcbc7e62505216",
+      "identifier": "6860d171ecf1/ImplementingOrderIndependentTransparencyWithImageBlocks.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/6860d171ecf1/ImplementingOrderIndependentTransparencyWithImageBlocks.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/apple4": {
+      "abstract": [
+        {
+          "text": "Represents the Apple family 4 GPU features that correspond to the Apple A11 GPUs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "apple4"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/apple4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLGPUFamilyApple4"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLGPUFamily.apple4",
+      "type": "topic",
+      "url": "/documentation/metal/mtlgpufamily/apple4"
+    },
+    "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link": {
+      "abstract": [
+        {
+          "text": "Pace rendering with minimal input latency while providing essential information to the operating system for power-efficient rendering, thermal mitigation, and the scheduling of sustainable workloads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Achieving smooth frame rates with Metal’s display link",
+      "type": "topic",
+      "url": "/documentation/metal/achieving-smooth-frame-rates-with-metal-s-display-link"
+    },
+    "doc://com.apple.metal/documentation/Metal/adjusting-the-level-of-detail-using-metal-mesh-shaders": {
+      "abstract": [
+        {
+          "text": "Choose and render meshes with several levels of detail using object and mesh shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/adjusting-the-level-of-detail-using-metal-mesh-shaders",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adjusting the level of detail using Metal mesh shaders",
+      "type": "topic",
+      "url": "/documentation/metal/adjusting-the-level-of-detail-using-metal-mesh-shaders"
+    },
+    "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing": {
+      "abstract": [
+        {
+          "text": "Determine which pixels are visible in a scene by using a depth texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Calculating Primitive Visibility Using Depth Testing",
+      "type": "topic",
+      "url": "/documentation/metal/calculating-primitive-visibility-using-depth-testing"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-a-3d-application-with-hydra-rendering": {
+      "abstract": [
+        {
+          "text": "Build a 3D application that integrates with Hydra and USD.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-3d-application-with-hydra-rendering",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a 3D application with Hydra rendering",
+      "type": "topic",
+      "url": "/documentation/metal/creating-a-3d-application-with-hydra-rendering"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-a-custom-metal-view": {
+      "abstract": [
+        {
+          "text": "Implement a lightweight view for Metal rendering that’s customized to your app’s needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-custom-metal-view",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Custom Metal View",
+      "type": "topic",
+      "url": "/documentation/metal/creating-a-custom-metal-view"
+    },
+    "doc://com.apple.metal/documentation/Metal/culling-occluded-geometry-using-the-visibility-result-buffer": {
+      "abstract": [
+        {
+          "text": "Draw a scene without rendering hidden geometry by checking whether each object in the scene is visible.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/culling-occluded-geometry-using-the-visibility-result-buffer",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Culling occluded geometry using the visibility result buffer",
+      "type": "topic",
+      "url": "/documentation/metal/culling-occluded-geometry-using-the-visibility-result-buffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup": {
+      "abstract": [
+        {
+          "text": "Render into an offscreen texture by creating a custom render pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Customizing Render Pass Setup",
+      "type": "topic",
+      "url": "/documentation/metal/customizing-render-pass-setup"
+    },
+    "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu": {
+      "abstract": [
+        {
+          "text": "Reduce CPU overhead and simplify your command execution by reusing commands.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding Indirect Command Buffers on the CPU",
+      "type": "topic",
+      "url": "/documentation/metal/encoding-indirect-command-buffers-on-the-cpu"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-edge-rendering-quality-with-multisample-antialiasing-msaa": {
+      "abstract": [
+        {
+          "text": "Use Metal’s MSAA to enhance the rendering of edges with custom resolve options and immediate and tile-based resolve paths.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-edge-rendering-quality-with-multisample-antialiasing-msaa",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Improving edge-rendering quality with multisample antialiasing (MSAA)",
+      "type": "topic",
+      "url": "/documentation/metal/improving-edge-rendering-quality-with-multisample-antialiasing-msaa"
+    },
+    "doc://com.apple.metal/documentation/Metal/loading-textures-and-models-using-metal-fast-resource-loading": {
+      "abstract": [
+        {
+          "text": "Stream texture and buffer data directly from disk into Metal resources using fast resource loading.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/loading-textures-and-models-using-metal-fast-resource-loading",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Loading textures and models using Metal fast resource loading",
+      "type": "topic",
+      "url": "/documentation/metal/loading-textures-and-models-using-metal-fast-resource-loading"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering": {
+      "abstract": [
+        {
+          "text": "Switch dynamically between multiple GPUs to efficiently render to a display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Selecting Device Objects for Graphics Rendering",
+      "type": "topic",
+      "url": "/documentation/metal/selecting-device-objects-for-graphics-rendering"
+    },
+    "doc://com.apple.metal/documentation/Metal/tailor-your-apps-for-apple-gpus-and-tile-based-deferred-rendering": {
+      "abstract": [
+        {
+          "text": "Learn about characteristic Apple GPU features, including imageblocks, tile shaders, and raster order groups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/tailor-your-apps-for-apple-gpus-and-tile-based-deferred-rendering",
+      "kind": "article",
+      "role": "article",
+      "title": "Tailor Your Apps for Apple GPUs and Tile-Based Deferred Rendering",
+      "type": "topic",
+      "url": "/documentation/metal/tailor-your-apps-for-apple-gpus-and-tile-based-deferred-rendering"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives": {
+      "abstract": [
+        {
+          "text": "Render a simple 2D triangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using a Render Pipeline to Render Primitives",
+      "type": "topic",
+      "url": "/documentation/metal/using-a-render-pipeline-to-render-primitives"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents": {
+      "abstract": [
+        {
+          "text": "Create a MetalKit view and a render pass to draw the view’s contents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using Metal to Draw a View’s Contents",
+      "type": "topic",
+      "url": "/documentation/metal/using-metal-to-draw-a-view's-contents"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "6860d171ecf1/ImplementingOrderIndependentTransparencyWithImageBlocks.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Render-Workflows",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents",
+        "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+        "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering",
+        "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup",
+        "doc://com.apple.metal/documentation/Metal/creating-a-custom-metal-view",
+        "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing",
+        "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu",
+        "doc://com.apple.metal/documentation/Metal/loading-textures-and-models-using-metal-fast-resource-loading",
+        "doc://com.apple.metal/documentation/Metal/adjusting-the-level-of-detail-using-metal-mesh-shaders",
+        "doc://com.apple.metal/documentation/Metal/creating-a-3d-application-with-hydra-rendering",
+        "doc://com.apple.metal/documentation/Metal/culling-occluded-geometry-using-the-visibility-result-buffer",
+        "doc://com.apple.metal/documentation/Metal/improving-edge-rendering-quality-with-multisample-antialiasing-msaa",
+        "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link"
+      ],
+      "title": "Render Workflows"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Render-Workflows",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents",
+                "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+                "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering",
+                "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup",
+                "doc://com.apple.metal/documentation/Metal/creating-a-custom-metal-view",
+                "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing",
+                "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu",
+                "doc://com.apple.metal/documentation/Metal/loading-textures-and-models-using-metal-fast-resource-loading",
+                "doc://com.apple.metal/documentation/Metal/adjusting-the-level-of-detail-using-metal-mesh-shaders",
+                "doc://com.apple.metal/documentation/Metal/creating-a-3d-application-with-hydra-rendering",
+                "doc://com.apple.metal/documentation/Metal/culling-occluded-geometry-using-the-visibility-result-buffer",
+                "doc://com.apple.metal/documentation/Metal/improving-edge-rendering-quality-with-multisample-antialiasing-msaa",
+                "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link"
+              ],
+              "title": "Render Workflows"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLGPUFamily~1apple4/title",
+          "value": "MTLGPUFamilyApple4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLGPUFamily~1apple4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLGPUFamilyApple4"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/implementing-order-independent-transparency-with-image-blocks"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/implementing-order-independent-transparency-with-image-blocks"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

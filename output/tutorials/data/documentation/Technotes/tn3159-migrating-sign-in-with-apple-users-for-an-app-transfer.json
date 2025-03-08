@@ -1,0 +1,2124 @@
+{
+  "abstract": [
+    {
+      "text": "Migrate existing Sign in with Apple user identifiers and private email relay addresses",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "by exchanging transfer identifiers from one developer team to another",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "with the user migration info endpoint.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.technotes/documentation/Technotes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.technotes/documentation/Technotes/tn3159-migrating-sign-in-with-apple-users-for-an-app-transfer"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "TN3159: Migrating Sign in with Apple users for an app transfer"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sign in with Apple allows you to set up a user account in your system,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "complete with name, verified email address,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and unique stable identifiers that allow the user to sign in to your app with their Apple ID.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It works on iOS, macOS, tvOS, watchOS, and visionOS,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by using the native app’s bundle identifier (or App ID) as its client identifier.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also add Sign in with Apple to your website or versions of your app running on other platforms by using the Services ID as its client identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A developer team may decide to transfer a Sign in with Apple enabled app when they’ve sold the app to another developer,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or want to move it to another App Store Connect account or organization.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For Sign in with Apple apps,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you have a sixty (60) days transfer period from the date you complete the app transfer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The user migration endpoint is active for both developer accounts—the transferring team and the recipient team–—during this 60-day app transfer period.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You may obtain access tokens and generate and/or exchange transfer identifiers during this time for developer team-scoped user identifiers and private email addresses (if applicable).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To guide you through the user migration process,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "we’ll discuss the most common scenarios for an app transfer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Preparing to migrate users for an app transfer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Migrating users within the 60-day app transfer period",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Migrating users after the 60-day app transfer period",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re encountering errors during user migration,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3107-resolving-sign-in-with-apple-response-errors",
+              "isActive": true,
+              "overridingTitle": "TN3107: Resolving Sign in with Apple response errors",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "TN3107: Resolving Sign in with Apple response errors",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to learn more about the underlying cause of common errors.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you are still unable to resolve your errors,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "please continue to the scenario that matches the state of your app transfer below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Preparing-to-migrate-users-for-an-app-transfer",
+          "level": 2,
+          "text": "Preparing to migrate users for an app transfer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To prepare your team-scoped user data for the recipient for the app transfer,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you need to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/sign_in_with_apple/transferring-your-apps-and-users-to-another-team",
+              "isActive": true,
+              "overridingTitle": "generate a transfer identifier",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "generate a transfer identifier",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " (transfer ID) for each user in your database.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you have grouped your apps for Sign in with Apple,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you will need to ungroup them before initiating the transfer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Services ID associated with a primary App ID that has configured Sign in with Apple will also be transferred.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you don’t want the Service ID to be transferred to the recipient team,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/configure-app-capabilities/configure-sign-in-with-apple-for-the-web",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before initiating the transfer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the transfer IDs have been generated and the private user data has been prepared for the recipient team,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you may initiate your app transfer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about the app transfer process,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/transfer-an-app/overview-of-app-transfer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have not obtained access tokens or generated transfer identifiers,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "but have completed your app transfer within 60 days,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3159-migrating-sign-in-with-apple-users-for-an-app-transfer#Migrating-users-within-the-60-day-app-transfer-period",
+              "isActive": true,
+              "overridingTitle": "Migrating users within the 60-day app transfer period",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Migrating users within the 60-day app transfer period",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Otherwise, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3159-migrating-sign-in-with-apple-users-for-an-app-transfer#Migrating-users-after-the-60-day-app-transfer-period",
+              "isActive": true,
+              "overridingTitle": "Migrating users after the 60-day app transfer period",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Migrating users after the 60-day app transfer period",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to learn how to proceed with your user migration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Migrating-users-within-the-60-day-app-transfer-period",
+          "level": 2,
+          "text": "Migrating users within the 60-day app transfer period",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you are migrating users within the app transfer period,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the auth token and user migration info endpoints are active for both developer teams.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For teams transferring their app to another team,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3159-migrating-sign-in-with-apple-users-for-an-app-transfer#Transferring-existing-users-to-a-recipient-team",
+              "isActive": true,
+              "overridingTitle": "Transferring existing users to a recipient team",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Transferring existing users to a recipient team",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For teams receiving a transferred app from another team, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3159-migrating-sign-in-with-apple-users-for-an-app-transfer#Bringing-users-from-the-transferring-team-into-your-team",
+              "isActive": true,
+              "overridingTitle": "Bringing users from the transferring team into your team",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Bringing users from the transferring team into your team",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Migrating-users-after-the-60-day-app-transfer-period",
+          "level": 2,
+          "text": "Migrating users after the 60-day app transfer period",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’ve missed the app transfer period,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "then you’ll need to transfer the app back to the initial team and back to reactivate the auth token and user migrations info endpoints for both developer teams.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "if Team A transferred the app to Team B more than 60 days ago,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "then Team B should transfer the app back to Team A.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Once the original transfer has been reversed,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Team A should properly prepare for the migration as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3159-migrating-sign-in-with-apple-users-for-an-app-transfer#Preparing-to-migrate-users-for-an-app-transfer",
+              "isActive": true,
+              "overridingTitle": "Preparing to migrate users for an app transfer",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Preparing to migrate users for an app transfer",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Once Team A prepares the transfer IDs and user data for Team B,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "they should initiate the app transfer to Team B.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, Team B can exchange transfer IDs for team-scoped user credentials as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3159-migrating-sign-in-with-apple-users-for-an-app-transfer#Bringing-users-from-the-transferring-team-into-your-team",
+              "isActive": true,
+              "overridingTitle": "Bringing users from the transferring team into your team",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Bringing users from the transferring team into your team",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Transferring-existing-users-to-a-recipient-team",
+          "level": 2,
+          "text": "Transferring existing users to a recipient team",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Please follow the following steps to process the user migration from your team (Team A) to the recipient team (Team B):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Team A obtains access token(s)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Team A generates transfer identifers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Team A initiates app transfer to Team B",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about steps above, please see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/sign_in_with_apple/transferring-your-apps-and-users-to-another-team",
+              "isActive": true,
+              "overridingTitle": "Transferring your apps and users to another team",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Transferring your apps and users to another team",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you receive errors while obtaining access tokens or generating transfer identifiers,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "but have completed your app transfer within 60 days,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3107-resolving-sign-in-with-apple-response-errors",
+                  "isActive": true,
+                  "overridingTitle": "TN3107: Resolving Sign in with Apple response errors",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "TN3107: Resolving Sign in with Apple response errors",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Otherwise, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3159-migrating-sign-in-with-apple-users-for-an-app-transfer#Migrating-users-after-the-60-day-app-transfer-period",
+                  "isActive": true,
+                  "overridingTitle": "Migrating users after the 60-day app transfer period",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Migrating users after the 60-day app transfer period",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " to learn how to proceed with your user migration.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "1-Team-A-obtains-access-tokens",
+          "level": 3,
+          "text": "1. Team A obtains access token(s)",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two ways of obtaining access tokens for user migration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "fetching the access token for the entire developer team; or",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "using the access token received for each user when ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/signinwithapplerestapi/generate_and_validate_tokens",
+                      "isActive": true,
+                      "overridingTitle": "validating auth or refresh tokens",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "validating auth or refresh tokens",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " after the user authorization.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The request below fetches the access token for Team A.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The request also contains the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "the client ID for the transferred app or web service; and",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "the client secret created by Team A.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "curl -v POST \"https://appleid.apple.com/auth/token\" \\",
+            "-H 'Content-Type: application/x-www-form-urlencoded' \\",
+            "-d 'grant_type=client_credentials' \\",
+            "-d 'scope=user.migration' \\",
+            "-d 'client_id=CLIENT_ID' \\",
+            "-d 'client_secret=CLIENT_SECRET_ISSUED_BY_TEAM_A'"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use this approach to migrate users in batches instead of individually when validating their user session.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "There is also no rate limiting for this endpoint.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To learn more about generating a client secret for your team, please see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AccountOrganizationalDataSharing/creating-a-client-secret",
+              "isActive": true,
+              "overridingTitle": "Creating a client secret",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Creating a client secret",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2-Team-A-generates-transfer-identifers",
+          "level": 3,
+          "text": "2. Team A generates transfer identifers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The request below uses the access token for Team A,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "then generates an existing user’s transfer ID for Team B.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The request also contains the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "the existing user ID for Team A;",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "the developer team ID for Team B;",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "the client ID for the transferred app or web service; and",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "the client secret created by Team A.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "curl -v POST \"https://appleid.apple.com/auth/usermigrationinfo\" \\",
+            "-H 'Content-Type: application/x-www-form-urlencoded' \\",
+            "-H 'Authorization: Bearer ACCESS_TOKEN_FOR_TEAM_A_OR_EXISTING_USER_ID' \\",
+            "-d 'sub=EXISTING_USER_ID_FOR_TEAM_A' \\",
+            "-d 'target=DEVELOPER_TEAM_ID_FOR_TEAM_B' \\",
+            "-d 'client_id=CLIENT_ID' \\",
+            "-d 'client_secret=CLIENT_SECRET_ISSUED_BY_TEAM_A'"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "3-Team-A-initiates-app-transfer-to-Team-B",
+          "level": 3,
+          "text": "3. Team A initiates app transfer to Team B",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the transfer IDs have been generated and the private user data has been prepared for the recipient team,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you may initiate your app transfer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about the app transfer process,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/transfer-an-app/overview-of-app-transfer",
+              "isActive": true,
+              "overridingTitle": "App Store Connect Help: Transfer an app – Overview of app transfer",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "App Store Connect Help: Transfer an app – Overview of app transfer",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Bringing-users-from-the-transferring-team-into-your-team",
+          "level": 2,
+          "text": "Bringing users from the transferring team into your team",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Please follow the following steps to process the user migration from the transferring team (Team A) to your team (Team B):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Team B obtains access token(s)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Team B exchanges transfer identifers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Team B confirms successful user migration",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 4,
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about steps above, please see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/sign_in_with_apple/bringing-new-apps-and-users-into-your-team",
+              "isActive": true,
+              "overridingTitle": "Bringing new apps and users into your team",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Bringing new apps and users into your team",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4-Team-B-obtains-access-tokens",
+          "level": 3,
+          "text": "4. Team B obtains access token(s)",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two ways of obtaining access tokens for user migration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "fetching the access token for the entire developer team; or",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "using the access token received for each user when ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/signinwithapplerestapi/generate_and_validate_tokens",
+                      "isActive": true,
+                      "overridingTitle": "validating auth or refresh tokens",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "validating auth or refresh tokens",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " after the user authorization.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The request below fetches the access token for Team B.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The request also contains the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "the client ID for the transferred app or web service; and",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "the client secret created by Team B.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "curl -v POST \"https://appleid.apple.com/auth/token\" \\",
+            "-H 'Content-Type: application/x-www-form-urlencoded' \\",
+            "-d 'grant_type=client_credentials' \\",
+            "-d 'scope=user.migration' \\",
+            "-d 'client_id=CLIENT_ID' \\",
+            "-d 'client_secret=CLIENT_SECRET_ISSUED_BY_TEAM_B'"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use this approach to migrate users in batches instead of individually when validating their user session.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "There is also no rate limiting for this endpoint.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To learn more about generating a client secret for your team, please see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AccountOrganizationalDataSharing/creating-a-client-secret",
+              "isActive": true,
+              "overridingTitle": "Creating a client secret",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Creating a client secret",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "5-Team-B-exchanges-transfer-identifers",
+          "level": 3,
+          "text": "5. Team B exchanges transfer identifers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The request below uses the access token for Team B,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "then exchanges the transfer ID provided by Team A.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The request also contains the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "the transfer ID obtained from Team A;",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "the client ID for the transferred app or web service; and",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "the client secret created by Team B.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "curl -v POST \"https://appleid.apple.com/auth/usermigrationinfo\" \\",
+            "-H 'Content-Type: application/x-www-form-urlencoded' \\",
+            "-H 'Authorization: Bearer ACCESS_TOKEN_FOR_TEAM_B_OR_TRANSFER_ID' \\",
+            "-d 'transfer_sub=TRANSFER_ID_OBTAINED_FROM_TEAM_A' \\",
+            "-d 'client_id=CLIENT_ID' \\",
+            "-d 'client_secret=CLIENT_SECRET_ISSUED_BY_TEAM_B'"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "6-Team-B-confirms-successful-user-migration",
+          "level": 3,
+          "text": "6. Team B confirms successful user migration",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Within your app or web service,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can confirm the user migration was successful by checking the credential state of the user.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Its value should be ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/CredentialState/transferred",
+              "isActive": true,
+              "overridingTitle": ".transferred",
+              "overridingTitleInlineContent": [
+                {
+                  "text": ".transferred",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To learn more about this step,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/sign_in_with_apple/bringing-new-apps-and-users-into-your-team",
+              "isActive": true,
+              "overridingTitle": "Confirm the transferred credential state",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Confirm the transferred credential state",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Revision-History",
+          "level": 2,
+          "text": "Revision History",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2024-02-07",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Corrected title.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2024-01-09",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " First published.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AccountOrganizationalDataSharing/creating-a-client-secret": {
+      "abstract": [
+        {
+          "text": "Generate a signed token to identify your client application.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AccountOrganizationalDataSharing/creating-a-client-secret",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a client secret",
+      "type": "topic",
+      "url": "/documentation/AccountOrganizationalDataSharing/creating-a-client-secret"
+    },
+    "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/CredentialState/transferred": {
+      "abstract": [
+        {
+          "text": "The app has been transferred to a different team, and you need to migrate the user’s identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transferred"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/CredentialState/transferred",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ASAuthorizationAppleIDProvider.CredentialState.transferred",
+      "type": "topic",
+      "url": "/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/CredentialState/transferred"
+    },
+    "doc://com.apple.documentation/documentation/sign_in_with_apple/bringing-new-apps-and-users-into-your-team": {
+      "abstract": [
+        {
+          "text": "Receive Sign in with Apple users and associated apps from another team.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/sign_in_with_apple/bringing-new-apps-and-users-into-your-team",
+      "kind": "article",
+      "role": "article",
+      "title": "Bringing new apps and users into your team",
+      "type": "topic",
+      "url": "/documentation/sign_in_with_apple/bringing-new-apps-and-users-into-your-team"
+    },
+    "doc://com.apple.documentation/documentation/sign_in_with_apple/transferring-your-apps-and-users-to-another-team": {
+      "abstract": [
+        {
+          "text": "Migrate Sign in with Apple users to another team.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/sign_in_with_apple/transferring-your-apps-and-users-to-another-team",
+      "kind": "article",
+      "role": "article",
+      "title": "Transferring your apps and users to another team",
+      "type": "topic",
+      "url": "/documentation/sign_in_with_apple/transferring-your-apps-and-users-to-another-team"
+    },
+    "doc://com.apple.documentation/documentation/signinwithapplerestapi/generate_and_validate_tokens": {
+      "abstract": [
+        {
+          "text": "Validate an authorization grant code delivered to your app to obtain tokens, or validate an existing refresh token.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/signinwithapplerestapi/generate_and_validate_tokens",
+      "kind": "article",
+      "role": "symbol",
+      "title": "Generate and validate tokens",
+      "type": "topic",
+      "url": "/documentation/signinwithapplerestapi/generate_and_validate_tokens"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.technotes/documentation/Technotes": {
+      "abstract": [
+        {
+          "text": "Learn about specific development topics through these in-depth technical articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Technotes",
+      "type": "topic",
+      "url": "/documentation/technotes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3107-resolving-sign-in-with-apple-response-errors": {
+      "abstract": [
+        {
+          "text": "Diagnose errors received by the Sign in with Apple client, or its server infrastructure,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "by identifying the underlying causes of common error codes and explore their potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3107-resolving-sign-in-with-apple-response-errors",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3107: Resolving Sign in with Apple response errors",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3107-resolving-sign-in-with-apple-response-errors"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview": {
+      "abstract": [
+        {
+          "text": "Explore the various Wi-Fi APIs available on iOS and their expected use cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3111: iOS Wi-Fi API overview",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3111-ios-wifi-api-overview"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations": {
+      "abstract": [
+        {
+          "text": "Learn techniques to help debug any coordinate space issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3124: Debugging coordinate space issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3124-debugging-coordinate-transformations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3159-migrating-sign-in-with-apple-users-for-an-app-transfer#Bringing-users-from-the-transferring-team-into-your-team": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3159-migrating-sign-in-with-apple-users-for-an-app-transfer#Bringing-users-from-the-transferring-team-into-your-team",
+      "kind": "section",
+      "title": "Bringing users from the transferring team into your team",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3159-migrating-sign-in-with-apple-users-for-an-app-transfer#Bringing-users-from-the-transferring-team-into-your-team"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3159-migrating-sign-in-with-apple-users-for-an-app-transfer#Migrating-users-after-the-60-day-app-transfer-period": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3159-migrating-sign-in-with-apple-users-for-an-app-transfer#Migrating-users-after-the-60-day-app-transfer-period",
+      "kind": "section",
+      "title": "Migrating users after the 60-day app transfer period",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3159-migrating-sign-in-with-apple-users-for-an-app-transfer#Migrating-users-after-the-60-day-app-transfer-period"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3159-migrating-sign-in-with-apple-users-for-an-app-transfer#Migrating-users-within-the-60-day-app-transfer-period": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3159-migrating-sign-in-with-apple-users-for-an-app-transfer#Migrating-users-within-the-60-day-app-transfer-period",
+      "kind": "section",
+      "title": "Migrating users within the 60-day app transfer period",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3159-migrating-sign-in-with-apple-users-for-an-app-transfer#Migrating-users-within-the-60-day-app-transfer-period"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3159-migrating-sign-in-with-apple-users-for-an-app-transfer#Preparing-to-migrate-users-for-an-app-transfer": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3159-migrating-sign-in-with-apple-users-for-an-app-transfer#Preparing-to-migrate-users-for-an-app-transfer",
+      "kind": "section",
+      "title": "Preparing to migrate users for an app transfer",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3159-migrating-sign-in-with-apple-users-for-an-app-transfer#Preparing-to-migrate-users-for-an-app-transfer"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3159-migrating-sign-in-with-apple-users-for-an-app-transfer#Transferring-existing-users-to-a-recipient-team": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3159-migrating-sign-in-with-apple-users-for-an-app-transfer#Transferring-existing-users-to-a-recipient-team",
+      "kind": "section",
+      "title": "Transferring existing users to a recipient team",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3159-migrating-sign-in-with-apple-users-for-an-app-transfer#Transferring-existing-users-to-a-recipient-team"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store": {
+      "abstract": [
+        {
+          "text": "Learn how to configure your App Clip to prevent it from being unavailable in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3168: Making your App Clip available in the App Store",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3168-making-your-app-clip-available-app-store"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration": {
+      "abstract": [
+        {
+          "text": "Diagnose errors due to invalid Apple Pay merchant identifier configurations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifying the underlying causes of common errors and explore their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3173: Troubleshooting issues with your Apple Pay merchant identifier configuration",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose errors received while presenting the Apple Pay payment sheet on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your website by identifying the underlying causes of common errors and explore",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3174: Diagnosing issues with the Apple Pay payment sheet on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose common errors received while displaying the Apple Pay button on your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "website by identifying the underlying causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3175: Diagnosing issues with displaying the Apple Pay button on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues": {
+      "abstract": [
+        {
+          "text": "Diagnose errors that occur when processing Apple Pay payments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identify common causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3176: Troubleshooting Apple Pay payment processing issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files": {
+      "abstract": [
+        {
+          "text": "Learn how alternate groups collect audio tracks, and how to choose which audio track to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3177: Understanding alternate audio track groups in movie files",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems": {
+      "abstract": [
+        {
+          "text": "Ensure that every Mach-O image has a UUID, and that every distinct Mach-O image has its own unique UUID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3178: Checking for and resolving build UUID problems",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3178-checking-for-and-resolving-build-uuid-problems"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy": {
+      "abstract": [
+        {
+          "text": "Learn how local network privacy affects your software.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3179: Understanding local network privacy",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1": {
+      "abstract": [
+        {
+          "text": "Migrate from version 2 to version 1 of App Store Server Notifications using the Modify an App endpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3180: Reverting to App Store Server Notifications V1",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3180-reverting-app-store-server-notifications-v1"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Identify common configurations that cause unsuccessful privacy manifest validation with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3181: Debugging an invalid privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3181-debugging-invalid-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the tracking domains you use in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3182: Adding privacy tracking keys to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the APIs that can potentially fingerprint devices in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3183: Adding required reason API entries to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the data your app or third-party SDK collects in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3184: Adding data collection details to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest"
+    },
+    "https://developer.apple.com/help/account/configure-app-capabilities/configure-sign-in-with-apple-for-the-web": {
+      "identifier": "https://developer.apple.com/help/account/configure-app-capabilities/configure-sign-in-with-apple-for-the-web",
+      "title": "remove its association",
+      "titleInlineContent": [
+        {
+          "text": "remove its association",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/configure-app-capabilities/configure-sign-in-with-apple-for-the-web"
+    },
+    "https://developer.apple.com/help/app-store-connect/transfer-an-app/overview-of-app-transfer": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/transfer-an-app/overview-of-app-transfer",
+      "title": "App Store Connect Help: Transfer an app – Overview of app transfer",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect Help: Transfer an app – Overview of app transfer",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/transfer-an-app/overview-of-app-transfer"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Latest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+        "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+        "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+        "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+        "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+        "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+        "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+        "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+        "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations"
+      ],
+      "title": "Latest"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider~1CredentialState~1transferred/title",
+          "value": "ASAuthorizationAppleIDProviderCredentialTransferred"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider~1CredentialState~1transferred/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDProviderCredentialTransferred"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

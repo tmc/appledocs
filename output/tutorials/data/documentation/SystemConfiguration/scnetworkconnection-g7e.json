@@ -1,0 +1,1887 @@
+{
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkconnection-g7e"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "System Configuration"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "SCNetworkConnection"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "SCNetworkConnection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " programming interface contains functions that allow an application to control connection-oriented services defined in the system and get connection-status information. Note that these functions allow you to control and get information about existing services only. If you need to create, change, or remove services, you should use the ",
+              "type": "text"
+            },
+            {
+              "code": "SCNetworkConfiguration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " programming interface instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Currently, only PPP services can be controlled.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration": {
+      "abstract": [
+        {
+          "text": "Allow applications to access a device’s network configuration settings. Determine the reachability of the device, such as whether Wi-Fi or cell connectivity are active.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "System Configuration",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnection": {
+      "abstract": [
+        {
+          "text": "The handle to manage a connection-oriented service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnection"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkConnection",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconnection"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCallBack": {
+      "abstract": [
+        {
+          "text": "The type of callback function used when a status event is delivered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionCallBack"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCallBack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionCallBack"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkConnectionCallBack",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconnectioncallback"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionContext": {
+      "abstract": [
+        {
+          "text": "A structure containing user-specified data and callbacks for a network connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionContext"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkConnectionContext",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconnectioncontext"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCopyExtendedStatus(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the extended status of the connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionCopyExtendedStatus"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNetworkConnectionRef",
+          "text": "SCNetworkConnection"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCopyExtendedStatus(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionCopyExtendedStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkConnectionCopyExtendedStatus(_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconnectioncopyextendedstatus(_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCopyServiceID(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the service ID associated with the specified network connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionCopyServiceID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNetworkConnectionRef",
+          "text": "SCNetworkConnection"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCopyServiceID(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionCopyServiceID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkConnectionCopyServiceID(_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconnectioncopyserviceid(_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCopyStatistics(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the statistics of the specified connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionCopyStatistics"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNetworkConnectionRef",
+          "text": "SCNetworkConnection"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCopyStatistics(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionCopyStatistics"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkConnectionCopyStatistics(_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconnectioncopystatistics(_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCopyUserOptions(_:)": {
+      "abstract": [
+        {
+          "text": "Gets the user options used to start the specified connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionCopyUserOptions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNetworkConnectionRef",
+          "text": "SCNetworkConnection"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCopyUserOptions(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionCopyUserOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkConnectionCopyUserOptions(_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconnectioncopyuseroptions(_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCopyUserPreferences(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Provides the default service ID and a dictionary of user options for the specified connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionCopyUserPreferences"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ">?>, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ">?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCopyUserPreferences(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionCopyUserPreferences"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkConnectionCopyUserPreferences(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconnectioncopyuserpreferences(_:_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCreateWithServiceID(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new connection reference to use for getting the status or for connecting or disconnecting the associated service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionCreateWithServiceID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNetworkConnectionCallBack",
+          "text": "SCNetworkConnectionCallBack"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SCNetworkConnectionContext",
+          "text": "SCNetworkConnectionContext"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNetworkConnectionRef",
+          "text": "SCNetworkConnection"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCreateWithServiceID(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionCreateWithServiceID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkConnectionCreateWithServiceID(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconnectioncreatewithserviceid(_:_:_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionGetStatus(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the status of the specified network connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionGetStatus"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNetworkConnectionRef",
+          "text": "SCNetworkConnection"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SCNetworkConnectionStatus",
+          "text": "SCNetworkConnectionStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionGetStatus(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionGetStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkConnectionGetStatus(_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconnectiongetstatus(_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the type identifier of all ",
+          "type": "text"
+        },
+        {
+          "code": "SCNetworkConnection",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instances.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkConnectionGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconnectiongettypeid()"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionPPPStatus": {
+      "abstract": [
+        {
+          "text": "The PPP-specific status of the network connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionPPPStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionPPPStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionPPPStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkConnectionPPPStatus",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconnectionpppstatus"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionScheduleWithRunLoop(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Schedules the specified connection with the specified run loop.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionScheduleWithRunLoop"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNetworkConnectionRef",
+          "text": "SCNetworkConnection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFRunLoopRef",
+          "text": "CFRunLoop"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionScheduleWithRunLoop(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionScheduleWithRunLoop"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkConnectionScheduleWithRunLoop(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconnectionschedulewithrunloop(_:_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionSetDispatchQueue(_:_:)": {
+      "abstract": [
+        {
+          "text": "Specifies a dispatch queue to use for the connection’s callback function and enables notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionSetDispatchQueue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNetworkConnectionRef",
+          "text": "SCNetworkConnection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionSetDispatchQueue(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionSetDispatchQueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkConnectionSetDispatchQueue(_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconnectionsetdispatchqueue(_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionStart(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Starts the connection process for the specified network connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionStart"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNetworkConnectionRef",
+          "text": "SCNetworkConnection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionStart(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionStart"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkConnectionStart(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconnectionstart(_:_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionStatus": {
+      "abstract": [
+        {
+          "text": "The current status of the network connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkConnectionStatus",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconnectionstatus"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionStop(_:_:)": {
+      "abstract": [
+        {
+          "text": "Stops the connection process for the specified network connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionStop"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNetworkConnectionRef",
+          "text": "SCNetworkConnection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionStop(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionStop"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkConnectionStop(_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconnectionstop(_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionUnscheduleFromRunLoop(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Unschedules the specified connection from the specified run loop.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionUnscheduleFromRunLoop"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNetworkConnectionRef",
+          "text": "SCNetworkConnection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFRunLoopRef",
+          "text": "CFRunLoop"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionUnscheduleFromRunLoop(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionUnscheduleFromRunLoop"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkConnectionUnscheduleFromRunLoop(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconnectionunschedulefromrunloop(_:_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/dhcpclientpreferences": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/dhcpclientpreferences",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "DHCPClientPreferences",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/dhcpclientpreferences"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstore-gb2": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstore-gb2",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCDynamicStore",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstore-gb2"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorecopydhcpinfo-apicollection": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorecopydhcpinfo-apicollection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCDynamicStoreCopyDHCPInfo",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstorecopydhcpinfo-apicollection"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorecopyspecific": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorecopyspecific",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCDynamicStoreCopySpecific",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstorecopyspecific"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorekey": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorekey",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCDynamicStoreKey",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstorekey"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetwork": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetwork",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCNetwork",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetwork"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkconfiguration": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkconfiguration",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCNetworkConfiguration",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconfiguration"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkreachability-g7d": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkreachability-g7d",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCNetworkReachability",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkreachability-g7d"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferences-ft8": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferences-ft8",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCPreferences",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scpreferences-ft8"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencespath": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencespath",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCPreferencesPath",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scpreferencespath"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencessetspecific": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencessetspecific",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCPreferencesSetSpecific",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scpreferencessetspecific"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scschemadefinitions": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scschemadefinitions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCSchemaDefinitions",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scschemadefinitions"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/selection-options-dictionary-keys": {
+      "abstract": [
+        {
+          "text": "Keys used with the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCopyUserPreferences(_:_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " selection options dictionary.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/selection-options-dictionary-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Selection Options Dictionary Keys",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/selection-options-dictionary-keys"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/statistics-dictionary-keys": {
+      "abstract": [
+        {
+          "text": "Keys associated with values in the statistics dictionary.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/statistics-dictionary-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Statistics Dictionary Keys",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/statistics-dictionary-keys"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/system-configuration": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/system-configuration",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "System Configuration",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/system-configuration"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-constants": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SystemConfiguration Constants",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/systemconfiguration-constants"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-data-types": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-data-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SystemConfiguration Data Types",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/systemconfiguration-data-types"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-enumerations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-enumerations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SystemConfiguration Enumerations",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/systemconfiguration-enumerations"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-functions": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SystemConfiguration Functions",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/systemconfiguration-functions"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Reference",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstore-gb2",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorecopyspecific",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorekey",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetwork",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkconfiguration",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkreachability-g7d",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferences-ft8",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencespath",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencessetspecific",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scschemadefinitions",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/system-configuration",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-enumerations",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-constants",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-functions",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-data-types"
+      ],
+      "title": "Reference"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-Connection-Status-Information",
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionGetTypeID()",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCopyUserPreferences(_:_:_:)",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCopyServiceID(_:)",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionGetStatus(_:)",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCopyExtendedStatus(_:)",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCopyStatistics(_:)",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCopyUserOptions(_:)"
+      ],
+      "title": "Getting Connection-Status Information"
+    },
+    {
+      "anchor": "Starting-and-Stopping-a-Connection",
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionStart(_:_:_:)",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionStop(_:_:)"
+      ],
+      "title": "Starting and Stopping a Connection"
+    },
+    {
+      "anchor": "Scheduling-a-Connection-Reference-on-a-Run-Loop",
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionScheduleWithRunLoop(_:_:_:)",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionUnscheduleFromRunLoop(_:_:_:)"
+      ],
+      "title": "Scheduling a Connection Reference on a Run Loop"
+    },
+    {
+      "anchor": "Creating-a-Connection-Reference",
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCreateWithServiceID(_:_:_:_:)"
+      ],
+      "title": "Creating a Connection Reference"
+    },
+    {
+      "anchor": "Specifying-a-Dispatch-Queue-and-Enabling-Notifications",
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionSetDispatchQueue(_:_:)"
+      ],
+      "title": "Specifying a Dispatch Queue and Enabling Notifications"
+    },
+    {
+      "anchor": "Data-Types",
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnection",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCallBack",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionContext"
+      ],
+      "title": "Data Types"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionStatus",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionPPPStatus",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/statistics-dictionary-keys",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/selection-options-dictionary-keys"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Getting-Connection-Status-Information",
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionGetTypeID()",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCopyUserPreferences(_:_:_:)",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCopyServiceID(_:)",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionGetStatus(_:)",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCopyExtendedStatus(_:)",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCopyStatistics(_:)",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCopyUserOptions(_:)"
+              ],
+              "title": "Getting Connection-Status Information"
+            },
+            {
+              "anchor": "Starting-and-Stopping-a-Connection",
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionStart(_:_:_:)",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionStop(_:_:)"
+              ],
+              "title": "Starting and Stopping a Connection"
+            },
+            {
+              "anchor": "Scheduling-a-Connection-Reference-on-a-Run-Loop",
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionScheduleWithRunLoop(_:_:_:)",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionUnscheduleFromRunLoop(_:_:_:)"
+              ],
+              "title": "Scheduling a Connection Reference on a Run Loop"
+            },
+            {
+              "anchor": "Creating-a-Connection-Reference",
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCreateWithServiceID(_:_:_:_:)"
+              ],
+              "title": "Creating a Connection Reference"
+            },
+            {
+              "anchor": "Specifying-a-Dispatch-Queue-and-Enabling-Notifications",
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionSetDispatchQueue(_:_:)"
+              ],
+              "title": "Specifying a Dispatch Queue and Enabling Notifications"
+            },
+            {
+              "anchor": "Data-Types",
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnection",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionCallBack",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionContext"
+              ],
+              "title": "Data Types"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionStatus",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionPPPStatus",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/statistics-dictionary-keys",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/selection-options-dictionary-keys"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Reference",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/dhcpclientpreferences",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstore-gb2",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorecopydhcpinfo-apicollection",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorecopyspecific",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorekey",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetwork",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkconfiguration",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkreachability-g7d",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferences-ft8",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencespath",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencessetspecific",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scschemadefinitions",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/system-configuration",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-enumerations",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-constants"
+              ],
+              "title": "Reference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionStart(_:_:_:)/title",
+          "value": "SCNetworkConnectionStart"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionStart(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionStart"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionCreateWithServiceID(_:_:_:_:)/title",
+          "value": "SCNetworkConnectionCreateWithServiceID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionCreateWithServiceID(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionCreateWithServiceID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionCallBack/title",
+          "value": "SCNetworkConnectionCallBack"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionCallBack/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionCallBack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionCallBack/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionCallBack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionStatus/title",
+          "value": "SCNetworkConnectionStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionStop(_:_:)/title",
+          "value": "SCNetworkConnectionStop"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionStop(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionStop"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionUnscheduleFromRunLoop(_:_:_:)/title",
+          "value": "SCNetworkConnectionUnscheduleFromRunLoop"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionUnscheduleFromRunLoop(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionUnscheduleFromRunLoop"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnection/title",
+          "value": "SCNetworkConnectionRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionCopyServiceID(_:)/title",
+          "value": "SCNetworkConnectionCopyServiceID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionCopyServiceID(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionCopyServiceID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionSetDispatchQueue(_:_:)/title",
+          "value": "SCNetworkConnectionSetDispatchQueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionSetDispatchQueue(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionSetDispatchQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionCopyStatistics(_:)/title",
+          "value": "SCNetworkConnectionCopyStatistics"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionCopyStatistics(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionCopyStatistics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionPPPStatus/title",
+          "value": "SCNetworkConnectionPPPStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionPPPStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionPPPStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionPPPStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionPPPStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionGetTypeID()/title",
+          "value": "SCNetworkConnectionGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionCopyExtendedStatus(_:)/title",
+          "value": "SCNetworkConnectionCopyExtendedStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionCopyExtendedStatus(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionCopyExtendedStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionScheduleWithRunLoop(_:_:_:)/title",
+          "value": "SCNetworkConnectionScheduleWithRunLoop"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionScheduleWithRunLoop(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionScheduleWithRunLoop"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionCopyUserOptions(_:)/title",
+          "value": "SCNetworkConnectionCopyUserOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionCopyUserOptions(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionCopyUserOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionContext/title",
+          "value": "SCNetworkConnectionContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionCopyUserPreferences(_:_:_:)/title",
+          "value": "SCNetworkConnectionCopyUserPreferences"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionCopyUserPreferences(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionCopyUserPreferences"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionGetStatus(_:)/title",
+          "value": "SCNetworkConnectionGetStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionGetStatus(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionGetStatus"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/systemconfiguration/scnetworkconnection-g7e"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/systemconfiguration/scnetworkconnection-g7e"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

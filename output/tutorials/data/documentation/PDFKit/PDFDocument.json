@@ -1,0 +1,2423 @@
+{
+  "abstract": [
+    {
+      "text": "An object that represents PDF data or a PDF file and defines methods for writing, searching, and selecting PDF data.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.pdfkit/documentation/PDFKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)PDFDocument",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PDFDocument"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PDFKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PDFDocument"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.4",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "PDFDocument"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PDFDocument"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.pdfkit/documentation/PDFKit/adding-custom-graphics-to-a-pdf"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The other utility classes are either instantiated from methods in ",
+              "type": "text"
+            },
+            {
+              "code": "PDFDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as are ",
+              "type": "text"
+            },
+            {
+              "code": "PDFPage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "PDFOutline",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; or support it, as do ",
+              "type": "text"
+            },
+            {
+              "code": "PDFSelection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "PDFDestination",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You initialize a ",
+              "type": "text"
+            },
+            {
+              "code": "PDFDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object with PDF data or with a URL to a PDF file. You can then ask for the page count, add or delete pages, perform a find, or parse selected content into an ",
+              "type": "text"
+            },
+            {
+              "code": "NSString",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit": {
+      "abstract": [
+        {
+          "text": "Display and manipulate PDF documents in your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PDFKit",
+      "type": "topic",
+      "url": "/documentation/pdfkit"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument": {
+      "abstract": [
+        {
+          "text": "An object that represents PDF data or a PDF file and defines methods for writing, searching, and selecting PDF data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PDFDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PDFDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "PDFDocument",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocument"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/accessPermissions": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessPermissions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PDFAccessPermissions",
+          "text": "PDFAccessPermissions"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/accessPermissions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessPermissions"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessPermissions",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocument/accesspermissions"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/beginFindString(_:withOptions:)": {
+      "abstract": [
+        {
+          "text": "Asynchronously finds all instances of the specified string in the document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginFindString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSString",
+          "text": "NSString"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSStringCompareOptions",
+          "text": "CompareOptions"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/beginFindString(_:withOptions:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "beginFindString:withOptions:"
+        }
+      ],
+      "role": "symbol",
+      "title": "beginFindString(_:withOptions:)",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocument/beginfindstring(_:withoptions:)"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/delegate": {
+      "abstract": [
+        {
+          "text": "The object acting as the delegate for the ",
+          "type": "text"
+        },
+        {
+          "code": "PDFDocument",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)PDFDocumentDelegate",
+          "text": "PDFDocumentDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocument/delegate"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/findString(_:withOptions:)": {
+      "abstract": [
+        {
+          "text": "Synchronously finds all instances of the specified string in the document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "findString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSString",
+          "text": "NSString"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSStringCompareOptions",
+          "text": "CompareOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PDFSelection",
+          "text": "PDFSelection"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/findString(_:withOptions:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "findString:withOptions:"
+        }
+      ],
+      "role": "symbol",
+      "title": "findString(_:withOptions:)",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocument/findstring(_:withoptions:)"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/init()": {
+      "abstract": [
+        {
+          "text": "Initializes a ",
+          "type": "text"
+        },
+        {
+          "code": "PDFDocument",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/init()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocument/init()"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/init(data:)": {
+      "abstract": [
+        {
+          "text": "Initializes a ",
+          "type": "text"
+        },
+        {
+          "code": "PDFDocument",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object with the passed-in data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/init(data:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithData:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(data:)",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocument/init(data:)"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/init(url:)": {
+      "abstract": [
+        {
+          "text": "Initializes a ",
+          "type": "text"
+        },
+        {
+          "code": "PDFDocument",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object with the contents at the specified URL (if the URL is invalid, this method returns ",
+          "type": "text"
+        },
+        {
+          "code": "NULL",
+          "type": "codeVoice"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/init(url:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithURL:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(url:)",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocument/init(url:)"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/selection(from:at:to:at:with:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PDFPage",
+          "text": "PDFPage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PDFPage",
+          "text": "PDFPage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PDFSelectionGranularity",
+          "text": "PDFSelectionGranularity"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PDFSelection",
+          "text": "PDFSelection"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/selection(from:at:to:at:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectionFromPage:atPoint:toPage:atPoint:withGranularity:"
+        }
+      ],
+      "role": "symbol",
+      "title": "selection(from:at:to:at:with:)",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocument/selection(from:at:to:at:with:)"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/unlock(withPassword:)": {
+      "abstract": [
+        {
+          "text": "Attempts to unlock an encrypted document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unlock"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withPassword"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/unlock(withPassword:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unlockWithPassword:"
+        }
+      ],
+      "role": "symbol",
+      "title": "unlock(withPassword:)",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocument/unlock(withpassword:)"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentAttribute": {
+      "abstract": [
+        {
+          "text": "A structure that specifies document attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PDFDocumentAttribute"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentAttribute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PDFDocumentAttribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "PDFDocumentAttribute",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocumentattribute"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDelegate": {
+      "abstract": [
+        {
+          "text": "The delegate for the ",
+          "type": "text"
+        },
+        {
+          "code": "PDFDocument",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PDFDocumentDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PDFDocumentDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "PDFDocumentDelegate",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocumentdelegate"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidBeginFindNotification": {
+      "abstract": [
+        {
+          "text": "A notification that the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/beginFindString(_:withOptions:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/findString(_:withOptions:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method begins finding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PDFDocumentDidBeginFindNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidBeginFindNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PDFDocumentDidBeginFindNotification",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocumentdidbeginfindnotification"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidBeginPageFindNotification": {
+      "abstract": [
+        {
+          "text": "A notification that a find operation begins working on a new page of a document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PDFDocumentDidBeginPageFindNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidBeginPageFindNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PDFDocumentDidBeginPageFindNotification",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocumentdidbeginpagefindnotification"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidBeginPageWriteNotification": {
+      "abstract": [
+        {
+          "text": "A notification that a write operation begins working on a page in a document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PDFDocumentDidBeginPageWriteNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidBeginPageWriteNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PDFDocumentDidBeginPageWriteNotification",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocumentdidbeginpagewritenotification"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidBeginWriteNotification": {
+      "abstract": [
+        {
+          "text": "A notification that a write operation begins working on a document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PDFDocumentDidBeginWriteNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidBeginWriteNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PDFDocumentDidBeginWriteNotification",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocumentdidbeginwritenotification"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidEndFindNotification": {
+      "abstract": [
+        {
+          "text": "A notification that the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/beginFindString(_:withOptions:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/findString(_:withOptions:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method returns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PDFDocumentDidEndFindNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidEndFindNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PDFDocumentDidEndFindNotification",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocumentdidendfindnotification"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidEndPageFindNotification": {
+      "abstract": [
+        {
+          "text": "A notification that a find operation finishes working on a page in a document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PDFDocumentDidEndPageFindNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidEndPageFindNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PDFDocumentDidEndPageFindNotification",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocumentdidendpagefindnotification"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidEndPageWriteNotification": {
+      "abstract": [
+        {
+          "text": "A notification that a write operation finishes working on a page in a document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PDFDocumentDidEndPageWriteNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidEndPageWriteNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PDFDocumentDidEndPageWriteNotification",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocumentdidendpagewritenotification"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidEndWriteNotification": {
+      "abstract": [
+        {
+          "text": "A notification that a write operation finishes working on a document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PDFDocumentDidEndWriteNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidEndWriteNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PDFDocumentDidEndWriteNotification",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocumentdidendwritenotification"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidFindMatchNotification": {
+      "abstract": [
+        {
+          "text": "A notification that a string match is found in a document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PDFDocumentDidFindMatchNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidFindMatchNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PDFDocumentDidFindMatchNotification",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocumentdidfindmatchnotification"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidUnlockNotification": {
+      "abstract": [
+        {
+          "text": "A notification that a document unlocks after a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/unlock(withPassword:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PDFDocumentDidUnlockNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidUnlockNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PDFDocumentDidUnlockNotification",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocumentdidunlocknotification"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentPermissions": {
+      "abstract": [
+        {
+          "text": "An enumeration that specifies document permissions status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PDFDocumentPermissions"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentPermissions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PDFDocumentPermissions"
+        }
+      ],
+      "role": "symbol",
+      "title": "PDFDocumentPermissions",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocumentpermissions"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentWriteOption": {
+      "abstract": [
+        {
+          "text": "A structure that specifies file writing options for a document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PDFDocumentWriteOption"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentWriteOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PDFDocumentWriteOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "PDFDocumentWriteOption",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocumentwriteoption"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFOutline": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "code": "PDFOutline",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object is an element in a tree-structured hierarchy that can represent the structure of a PDF document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PDFOutline"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFOutline",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PDFOutline"
+        }
+      ],
+      "role": "symbol",
+      "title": "PDFOutline",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfoutline"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFPage": {
+      "abstract": [
+        {
+          "code": "PDFPage",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", a subclass of ",
+          "type": "text"
+        },
+        {
+          "code": "NSObject",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", defines methods used to render PDF pages and work with annotations, text, and selections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PDFPage"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFPage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PDFPage"
+        }
+      ],
+      "role": "symbol",
+      "title": "PDFPage",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfpage"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFSelection": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "code": "PDFSelection",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object identifies a contiguous or noncontiguous selection of text in a PDF document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PDFSelection"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFSelection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PDFSelection"
+        }
+      ],
+      "role": "symbol",
+      "title": "PDFSelection",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfselection"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/adding-custom-graphics-to-a-pdf": {
+      "abstract": [
+        {
+          "text": "Create and add custom annotation and page graphics to your PDF document.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/adding-custom-graphics-to-a-pdf",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Custom Graphics to a PDF",
+      "type": "topic",
+      "url": "/documentation/pdfkit/adding-custom-graphics-to-a-pdf"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/read-operations": {
+      "abstract": [
+        {
+          "text": "Operations that let you access documents and pages, manage document security, and work with searching and selections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/read-operations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Read Operations",
+      "type": "topic",
+      "url": "/documentation/pdfkit/read-operations"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/write-operations": {
+      "abstract": [
+        {
+          "text": "Operations that let you write document data to different locations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/write-operations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Write Operations",
+      "type": "topic",
+      "url": "/documentation/pdfkit/write-operations"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Content-Model",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFPage",
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFOutline",
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFSelection"
+      ],
+      "title": "Content Model"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializing-Documents",
+      "identifiers": [
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/init(url:)",
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/init(data:)",
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/init()"
+      ],
+      "title": "Initializing Documents"
+    },
+    {
+      "anchor": "Reading-and-Writing-PDFs",
+      "identifiers": [
+        "doc://com.apple.pdfkit/documentation/PDFKit/read-operations",
+        "doc://com.apple.pdfkit/documentation/PDFKit/write-operations"
+      ],
+      "title": "Reading and Writing PDFs"
+    },
+    {
+      "anchor": "Setting-the-Delegate",
+      "identifiers": [
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/delegate",
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDelegate"
+      ],
+      "title": "Setting the Delegate"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentPermissions",
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentAttribute",
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentWriteOption"
+      ],
+      "title": "Constants"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "identifiers": [
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/accessPermissions"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/selection(from:at:to:at:with:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.4",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PDFDocument"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.pdfkit/documentation/PDFKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializing-Documents",
+              "identifiers": [
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/init(url:)",
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/init(data:)",
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/init()"
+              ],
+              "title": "Initializing Documents"
+            },
+            {
+              "anchor": "Reading-and-Writing-PDFs",
+              "identifiers": [
+                "doc://com.apple.pdfkit/documentation/PDFKit/read-operations",
+                "doc://com.apple.pdfkit/documentation/PDFKit/write-operations"
+              ],
+              "title": "Reading and Writing PDFs"
+            },
+            {
+              "anchor": "Setting-the-Delegate",
+              "identifiers": [
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/delegate",
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDelegate"
+              ],
+              "title": "Setting the Delegate"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentPermissions",
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentAttribute",
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentWriteOption"
+              ],
+              "title": "Constants"
+            },
+            {
+              "anchor": "Notifications",
+              "identifiers": [
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidUnlockNotification",
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidBeginFindNotification",
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidEndFindNotification",
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidBeginPageFindNotification",
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidEndPageFindNotification",
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidFindMatchNotification",
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidBeginWriteNotification",
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidEndWriteNotification",
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidBeginPageWriteNotification",
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDidEndPageWriteNotification"
+              ],
+              "title": "Notifications"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "identifiers": [
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/accessPermissions"
+              ],
+              "title": "Instance Properties"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument/selection(from:at:to:at:with:)"
+              ],
+              "title": "Instance Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Content-Model",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFPage",
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFOutline",
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFSelection"
+              ],
+              "title": "Content Model"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PDFDocument"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocumentAttribute/title",
+          "value": "PDFDocumentAttribute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocumentAttribute/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFDocumentAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocumentAttribute/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFDocumentAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFPage/title",
+          "value": "PDFPage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFPage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFPage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFPage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFPage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument~1unlock(withPassword:)/title",
+          "value": "unlockWithPassword:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument~1unlock(withPassword:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unlockWithPassword:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFSelection/title",
+          "value": "PDFSelection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFSelection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFSelection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFSelection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFSelection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocumentDelegate/title",
+          "value": "PDFDocumentDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocumentDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFDocumentDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocumentDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFDocumentDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument~1selection(from:at:to:at:with:)/title",
+          "value": "selectionFromPage:atPoint:toPage:atPoint:withGranularity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument~1selection(from:at:to:at:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "selectionFromPage:atPoint:toPage:atPoint:withGranularity:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument~1accessPermissions/title",
+          "value": "accessPermissions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument~1accessPermissions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accessPermissions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFOutline/title",
+          "value": "PDFOutline"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFOutline/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFOutline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFOutline/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFOutline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument~1init()/title",
+          "value": "init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument~1init()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "init"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocumentWriteOption/title",
+          "value": "PDFDocumentWriteOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocumentWriteOption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFDocumentWriteOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocumentWriteOption/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFDocumentWriteOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument~1init(url:)/title",
+          "value": "initWithURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument~1init(url:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithURL:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocumentPermissions/title",
+          "value": "PDFDocumentPermissions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocumentPermissions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFDocumentPermissions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocumentPermissions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFDocumentPermissions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument~1findString(_:withOptions:)/title",
+          "value": "findString:withOptions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument~1findString(_:withOptions:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "findString:withOptions:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument~1beginFindString(_:withOptions:)/title",
+          "value": "beginFindString:withOptions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument~1beginFindString(_:withOptions:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginFindString:withOptions:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument~1init(data:)/title",
+          "value": "initWithData:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument~1init(data:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithData:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument/title",
+          "value": "PDFDocument"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFDocument"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/pdfkit/pdfdocument"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/pdfkit/pdfdocument"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

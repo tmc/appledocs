@@ -1,0 +1,1967 @@
+{
+  "abstract": [
+    {
+      "text": "Set up and build your alternative marketplace’s searchable index.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/alternative-marketplaces-and-web-distribution",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/marketplace-search-configurations"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/building-a-searchable-catalog-for-your-marketplace-app-for-inclusion-in-spotlight"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Building a searchable catalog for your marketplace app for inclusion in Spotlight"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple builds an index of alternative marketplace apps in order to integrate them into Spotlight. You can set up a catalog of your applications so the Applebot web crawler discovers, indexes, and then shows your apps as Spotlight results on iOS. You must implement this interface to be part of search results in Spotlight.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-basic-requirements",
+          "level": 3,
+          "text": "Understand basic requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The application catalog-crawling mechanism is based on two standard industry practices: ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://sitemaps.org",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and semantic, ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://schema.org",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "App developers for alternative marketplaces need to maintain a web presence, which means being reachable over the web, and use App Store Connect API to submit the URL of a root sitemap. To learn more see, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-marketplaceSearchDetails",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Apple uses the root sitemap for further URL discovery and traverses subsequent sitemaps when a catalog is large enough to need fragmentation, or directly uses application URLs. Each application URL needs to return an HTML document enriched with structured data annotated in accordance with schema.org’s schemas, specifically the ",
+              "type": "text"
+            },
+            {
+              "code": "MobileApplication",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type. Apple defines which fields must be populated using a mixture of standard fields and additional proprietary properties specified using the ",
+              "type": "text"
+            },
+            {
+              "code": "supportingData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field, which is described below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example catalog with two applications – an app called Backyard Birds, and another called Camping App:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "example.com",
+            "  /crawler-site",
+            "     |",
+            "     | - sitemap.xml",
+            "     | - apps -",
+            "                   | - backyard-birds.html",
+            "                   | - camping-app.html"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following items are required for the alternative marketplace:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable SSL.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Serve the sitemap and app pages from the same hostname (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "example.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the example). If you intend to operate two marketplaces, you need to use two hostnames, for example ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "www.example.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "www.example2.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Render structured data schema server-side. The schema must not require any client-side JavaScript processing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Apple infers the hostname from the root sitemap URL you configure by using ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-marketplaceDomains",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The marketplace submits the sitemap URL to App Store Connect with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-marketplaceSearchDetails",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sitemap is the root file where Applebot start its crawl and then it proceeds to the application URLs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example sitemap:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "curl -X GET https://example.com/apps/sitemap.xml ",
+            "",
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">",
+            "   <url>",
+            "      <loc>https://example.com/apps/catalog/backyard-birds.html</loc>",
+            "      <lastmod>2023-06-20</lastmod>",
+            "      <changefreq>monthly</changefreq>",
+            "      <priority>0.8</priority>",
+            "   </url>",
+            "   <url>",
+            "      <loc>https://example.com/apps/catalog/camping-app.html</loc>",
+            "      <lastmod>2023-07-10</lastmod>",
+            "      <changefreq>daily</changefreq>",
+            "      <priority>0.8</priority>",
+            "   </url>",
+            "</urlset> "
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-us/HT204683",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " web crawler fetches the list of URLs present in the sitemap and crawls them all. Each URL needs to point to an HTML document that contains structured data schemas that include essential information about the content using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://json-ld.org",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you have catalog discovery issues contact ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "mailto://applebot@apple.com",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for assistance.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example markup:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "curl -X GET https://example.com/apps/catalog/backyard-birds.html",
+            "",
+            "<!DOCTYPE html>",
+            "<html>",
+            "<head>",
+            "",
+            "<!-- This document applies to app version v0.0.1. -->",
+            "<script type=\"application/ld+json\"> ",
+            "  {",
+            "    \"@context\": \"https://schema.org/\",",
+            "    \"@type\": \"MobileApplication\",",
+            "    \"datePublished\": \"2024-02-20T11:01:11Z\",",
+            "    \"countriesSupported\": [\"PL\", \"FR\"],",
+            "    \"aggregateRating\": {",
+            "        \"@type\": \"AggregateRating\",",
+            "        \"ratingValue\": 4.8,",
+            "        \"reviewCount\": 2381453,",
+            "        \"bestRating\": 5,",
+            "        \"worstRating: 1\"",
+            "    },",
+            "    \"supportingData\": {",
+            "      \"@type\": \"DataFeed\",",
+            "      \"dataFeedElement\": [",
+            "        {",
+            "          \"@type\": \"PropertyValue\",",
+            "          \"name\": \"com.apple.alternativeDistribution.search.appleItemId\",",
+            "          \"value\": \"6448401697\"",
+            "        },",
+            "        {",
+            "          \"@type\": \"PropertyValue\",",
+            "          \"name\": \"com.apple.alternativeDistribution.search.appleVersionId\",",
+            "          \"value\": \"173757332\"",
+            "        },",
+            "        {",
+            "          \"@type\": \"PropertyValue\",",
+            "          \"name\": \"com.apple.alternativeDistribution.search.ranking.popularity\", ",
+            "          \"value\": 26.48",
+            "        }",
+            "      ]",
+            "    }",
+            "  }",
+            "</script>",
+            "",
+            "<!-- This document applies to app version v0.0.2 - note the different appleVersionId. -->",
+            "<script type=\"application/ld+json\"> ",
+            "  {",
+            "    \"@context\": \"https://schema.org/\",",
+            "    \"@type\": \"MobileApplication\",",
+            "    \"datePublished\": \"2024-02-21T09:45:01Z\",",
+            "    \"countriesSupported\": [\"PL\", \"FR\"],",
+            "    \"aggregateRating\": {",
+            "        \"@type\": \"AggregateRating\",",
+            "        \"ratingValue\": 4.5,",
+            "        \"reviewCount\": 238153,",
+            "        \"bestRating\": 5,",
+            "        \"worstRating\": 1",
+            "    },",
+            "    \"supportingData\": {",
+            "      \"@type\": \"DataFeed\",",
+            "      \"dataFeedElement\": [",
+            "        {",
+            "          \"@type\": \"PropertyValue\",",
+            "          \"name\": \"com.apple.alternativeDistribution.search.appleItemId\",",
+            "          \"value\": \"6448401697\"",
+            "        },",
+            "        {",
+            "          \"@type\": \"PropertyValue\",",
+            "          \"name\": \"com.apple.alternativeDistribution.search.appleVersionId\",",
+            "          \"value\": \"2347437814\"",
+            "        },",
+            "        {",
+            "          \"@type\": \"PropertyValue\",",
+            "          \"name\": \"com.apple.alternativeDistribution.search.ranking.popularity\", ",
+            "          \"value\": 22.12",
+            "        }",
+            "      ]",
+            "    }",
+            "  }",
+            "</script>",
+            "",
+            "<!-- This document applies to app version v0.0.3 - note the different appleVersionId, some ranking signals also changed. -->",
+            "<script type=\"application/ld+json\"> ",
+            "  {",
+            "    \"@context\": \"https://schema.org/\",",
+            "    \"@type\": \"MobileApplication\",",
+            "    \"datePublished\": \"2024-02-22T06:19:45Z\",",
+            "    \"countriesSupported\": [\"PL\", \"FR\"],",
+            "    \"aggregateRating\": {",
+            "        \"@type\": \"AggregateRating\",",
+            "        \"ratingValue\": 3.5,",
+            "        \"reviewCount\": 2814,",
+            "        \"bestRating\": 5,",
+            "        \"worstRating\": 1",
+            "    },",
+            "    \"supportingData\": {",
+            "      \"@type\": \"DataFeed\",",
+            "      \"dataFeedElement\": [",
+            "        {",
+            "          \"@type\": \"PropertyValue\",",
+            "          \"name\": \"com.apple.alternativeDistribution.search.appleItemId\",",
+            "          \"value\": \"6448401697\"",
+            "        },",
+            "        {",
+            "          \"@type\": \"PropertyValue\",",
+            "          \"name\": \"com.apple.alternativeDistribution.search.appleVersionId\",",
+            "          \"value\": \"2347437815\"",
+            "        },",
+            "        {",
+            "          \"@type\": \"PropertyValue\",",
+            "          \"name\": \"com.apple.alternativeDistribution.search.ranking.popularity\", ",
+            "          \"value\": 15.32",
+            "        }",
+            "      ]",
+            "    }",
+            "  }",
+            "</script>",
+            "</head>",
+            "",
+            "<body>",
+            "<h1>Backyard Birds</h1>",
+            "<p>Identify the birds in your backyard!</p>",
+            "<p>Category: utility</p>",
+            "</body>",
+            "",
+            "</html>"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Include-mandatory-fields",
+          "level": 3,
+          "text": "Include mandatory fields",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These fields are the exact and only fields that are mandatory for ",
+              "type": "text"
+            },
+            {
+              "code": "MobileApplication",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For more information see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://schema.org/supportingData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Field name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name in code",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Note",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App Apple ID",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.alternativeDistribution.search.appleItemId",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "string",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can find this value in the alternative distribution package’s manifest.json under the key ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "appleItemId.",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple Version ID",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.alternativeDistribution.search.appleVersionId",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "string",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can find this value in the alternative distribution package’s manifest.json under the key ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "appleVersionId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Date published",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "datePublished",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "string",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " following the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://www.iso.org/iso-8601-date-and-time-format.html",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " standard, in the format ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "YYYY-MM-DDThh:mm:ssZ",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The UTC timestamp at which time the app version published on the marketplace.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For each version of your app, provide all the fields contained in ",
+                  "type": "text"
+                },
+                {
+                  "code": "supportingData",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in a single instance of ",
+                  "type": "text"
+                },
+                {
+                  "code": "supportingData",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " that wraps all of them.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Consider-optional-fields",
+          "level": 3,
+          "text": "Consider optional fields",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Optionally, every instance ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "may",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " define additional ranking signals to facilitate surfacing the best results. These signals use ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://schema.org",
+              "isActive": true,
+              "overridingTitle": "schema.org",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "schema.org",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": "’s ",
+              "type": "text"
+            },
+            {
+              "code": "aggregateRating",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which is an app-rating value, together with the total review count and the rating range. The widest supported rating range is from 0 to 100. When using ",
+              "type": "text"
+            },
+            {
+              "code": "aggregateRating",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", all four properties are mandatory. For more information see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://schema.org/aggregateRating",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Property name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name in code",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Note",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Aggregate rating",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "aggregateRating",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "object",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "This object is not in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "supportingData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object. All four fields are mandatory. For more information, see the next table.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Country supported",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "countriesSupported",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "array",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " 2-letter country codes as defined per ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://www.iso.org/obp/ui/#search/code/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can use this array to filter the availabilty of apps per country for Spotlight.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Popularity",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.alternativeDistribution.search.ranking.popularity",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "float, 0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "100",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A higher number means a more popular app, that gives a notion of popularity in an alternative marketplace by comparing apps within a specific marketplace.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This table shows details for the ",
+              "type": "text"
+            },
+            {
+              "code": "AggregateRating",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Property name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name in code",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Note",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Rating value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ratingValue",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "float",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The overall average rating",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Review Count",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "reviewCount",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "integer",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The count of total reviews of the app",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Best rating",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "bestRating",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "integer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", 0 to 100",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The single best rating of the app",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Worst rating",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "worstRating",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "integer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", 0 to 100",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The single worst rating of the app",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example shows the ",
+              "type": "text"
+            },
+            {
+              "code": "popularity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property as part of the ",
+              "type": "text"
+            },
+            {
+              "code": "supportingData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " code block:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"supportingData\": {",
+            "    \"@type\": \"DataFeed\",",
+            "    \"dataFeedElement\": [",
+            "        {",
+            "            \"@type\": \"PropertyValue\",",
+            "            \"name\": \"com.apple.alternativeDistribution.search.ranking.popularity\",",
+            "            \"value\": 15.32",
+            "        }",
+            "    ]",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Understand-supported-countries",
+          "level": 3,
+          "text": "Understand supported countries",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Searchabilty for apps distributed on alternative marketplaces has two approaches: Applebot web crawler uses ",
+              "type": "text"
+            },
+            {
+              "code": "countriesSupported",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", while ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " uses ",
+              "type": "text"
+            },
+            {
+              "code": "searchTerritory",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "countriesSupported",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is an array that contains a list of 2-letter country codes as defined by ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.iso.org/obp/ui/#search",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Use these codes to filter the availabilty of an app per country for search. You’re responsible for setting an optional territory as necessary inside your marketplace app. To learn more about territory support, see the MarketplaceKit property ",
+              "type": "text"
+            },
+            {
+              "code": "searchTerritory",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When someone searchs inside Lookup, Safari, or Spotlight, the request context contains the territory, which you set through the ",
+              "type": "text"
+            },
+            {
+              "code": "setSearchTerritory",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance method on ",
+              "type": "text"
+            },
+            {
+              "code": "AppLibrary",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For this example, the user searches for outdoor apps. There are three apps that match the query in the table below. The user is in France, ",
+              "type": "text"
+            },
+            {
+              "code": "territory: FR,",
+              "type": "codeVoice"
+            },
+            {
+              "text": " so Spotlight returns the two apps that match ",
+              "type": "text"
+            },
+            {
+              "code": "countriesSupported.",
+              "type": "codeVoice"
+            },
+            {
+              "text": " In this example Spotlight returns Camping App and Forest Explorer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Countries supported",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Backyard Birds",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "PL, IT",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Camping App",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "PL, FR",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Forest Explorer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DE, FR",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-marketplaceSearchDetails-_id_": {
+      "abstract": [
+        {
+          "text": "Delete search detail URL for the alternative marketplace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-marketplaceSearchDetails-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DELETE /v1/marketplaceSearchDetails/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Delete a marketplace search detail URL",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/delete-v1-marketplacesearchdetails-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-marketplaceSearchDetail": {
+      "abstract": [
+        {
+          "text": "Get search detail URL for the alternative marketplace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-marketplaceSearchDetail",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/apps/{id}/marketplaceSearchDetail"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read the marketplace search detail URL",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-apps-_id_-marketplacesearchdetail"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-marketplaceSearchDetails-_id_": {
+      "abstract": [
+        {
+          "text": "Update the search detail URL for the alternative marketplace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-marketplaceSearchDetails-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PATCH /v1/marketplaceSearchDetails/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Modify a marketplace search detail URL",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/patch-v1-marketplacesearchdetails-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-marketplaceDomains": {
+      "abstract": [
+        {
+          "text": "Add an alternative marketplace domain to your account.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-marketplaceDomains",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/marketplaceDomains"
+        }
+      ],
+      "role": "symbol",
+      "title": "Add a marketplace domain",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-marketplacedomains"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-marketplaceSearchDetails": {
+      "abstract": [
+        {
+          "text": "Add a search detail URL for the alternative marketplace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-marketplaceSearchDetails",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/marketplaceSearchDetails"
+        }
+      ],
+      "role": "symbol",
+      "title": "Add a marketplace search detail URL",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-marketplacesearchdetails"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/alternative-marketplaces-and-web-distribution": {
+      "abstract": [
+        {
+          "text": "Manage keys, packages, and search for alternative app distribution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/alternative-marketplaces-and-web-distribution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Alternative Marketplaces and Web Distribution",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/alternative-marketplaces-and-web-distribution"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/marketplace-search-configurations": {
+      "abstract": [
+        {
+          "text": "Add and read information for alternative marketplace search configurations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/marketplace-search-configurations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Marketplace Search Configurations",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/marketplace-search-configurations"
+    },
+    "doc://com.apple.documentation/documentation/MarketplaceKit": {
+      "abstract": [
+        {
+          "text": "Create an alternative app marketplace, distribute your app on an alternative app marketplace, or distribute your app from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MarketplaceKit",
+      "type": "topic",
+      "url": "/documentation/MarketplaceKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://json-ld.org": {
+      "identifier": "https://json-ld.org",
+      "title": "JSON-LD format.",
+      "titleInlineContent": [
+        {
+          "text": "JSON-LD format.",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://json-ld.org"
+    },
+    "https://schema.org": {
+      "identifier": "https://schema.org",
+      "title": "structured data schemas",
+      "titleInlineContent": [
+        {
+          "text": "structured data schemas",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://schema.org"
+    },
+    "https://schema.org/aggregateRating": {
+      "identifier": "https://schema.org/aggregateRating",
+      "title": "aggregateRating",
+      "titleInlineContent": [
+        {
+          "text": "aggregateRating",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://schema.org/aggregateRating"
+    },
+    "https://schema.org/supportingData": {
+      "identifier": "https://schema.org/supportingData",
+      "title": "supportingData",
+      "titleInlineContent": [
+        {
+          "text": "supportingData",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://schema.org/supportingData"
+    },
+    "https://sitemaps.org": {
+      "identifier": "https://sitemaps.org",
+      "title": "sitemaps",
+      "titleInlineContent": [
+        {
+          "text": "sitemaps",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://sitemaps.org"
+    },
+    "https://support.apple.com/en-us/HT204683": {
+      "identifier": "https://support.apple.com/en-us/HT204683",
+      "title": "Applebot",
+      "titleInlineContent": [
+        {
+          "text": "Applebot",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/HT204683"
+    },
+    "https://www.iso.org/iso-8601-date-and-time-format.html": {
+      "identifier": "https://www.iso.org/iso-8601-date-and-time-format.html",
+      "title": "ISO 8601",
+      "titleInlineContent": [
+        {
+          "text": "ISO 8601",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.iso.org/iso-8601-date-and-time-format.html"
+    },
+    "https://www.iso.org/obp/ui/#search": {
+      "identifier": "https://www.iso.org/obp/ui/#search",
+      "title": "ISO 3166-1 alpha-2",
+      "titleInlineContent": [
+        {
+          "text": "ISO 3166-1 alpha-2",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.iso.org/obp/ui/#search"
+    },
+    "https://www.iso.org/obp/ui/#search/code/": {
+      "identifier": "https://www.iso.org/obp/ui/#search/code/",
+      "title": "ISO 3166-1 alpha-2",
+      "titleInlineContent": [
+        {
+          "text": "ISO 3166-1 alpha-2",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.iso.org/obp/ui/#search/code/"
+    },
+    "mailto://applebot@apple.com": {
+      "identifier": "mailto://applebot@apple.com",
+      "title": "applebot@apple.com",
+      "titleInlineContent": [
+        {
+          "text": "applebot@apple.com",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "mailto://applebot@apple.com"
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-search-URLs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-marketplaceSearchDetails",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-marketplaceSearchDetail",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-marketplaceSearchDetails-_id_",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-marketplaceSearchDetails-_id_"
+      ],
+      "title": "Managing search URLs"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/building-a-searchable-catalog-for-your-marketplace-app-for-inclusion-in-spotlight"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

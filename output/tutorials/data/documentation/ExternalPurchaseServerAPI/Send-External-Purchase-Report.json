@@ -1,0 +1,701 @@
+{
+  "abstract": [
+    {
+      "text": "Report required information about external purchase tokens and associated transactions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/Send-External-Purchase-Report"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:external_purchase_server_api:put:v1-reports",
+    "modules": [
+      {
+        "name": "External Purchase Server API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Send External Purchase Report"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0.0",
+        "name": "External Purchase Server API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Send External Purchase Report"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "PUT"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.storekit.apple.com/externalPurchase/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/reports"
+        }
+      ]
+    },
+    {
+      "kind": "restEndpoint",
+      "title": "Sandbox URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "PUT"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.storekit-sandbox.apple.com/externalPurchase/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/reports"
+        }
+      ]
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/ExternalPurchaseReport",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "data:external_purchase_server_api:ExternalPurchaseReport",
+          "text": "ExternalPurchaseReport"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The request body that contains the report information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The report was received and passed validation checks successfully.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/SendReportSuccessResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:external_purchase_server_api:SendReportSuccessResponse",
+              "text": "SendReportSuccessResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The report failed because the request was malformed, a duplicate request, or if the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/SendReportErrorResponse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object is present that the line item validation failed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/SendReportErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:external_purchase_server_api:SendReportErrorResponse",
+              "text": "SendReportErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The JSON Web Token (JWT) in the authorization header is invalid.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": []
+        },
+        {
+          "content": [],
+          "status": 429,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Server error. Try again later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": []
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportcorrections",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportwithtransactions",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportwithouttransactions"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call this endpoint to report an external purchase token that your app or website receives, and the transactions and events associated with the token. For information on the reporting requirements, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/support/apps-using-alternative-payment-providers-in-the-eu#commission-reports-and-payments",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " section of the article Using alternative payment options on the App Store in the European Union.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To send the report, add your data to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/ExternalPurchaseReport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " request body. For more information about creating reports, see the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportwithtransactions",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportwithouttransactions",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportcorrections",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The server indicates it successfully received your report by returning an ",
+              "type": "text"
+            },
+            {
+              "code": "HTTP 200",
+              "type": "codeVoice"
+            },
+            {
+              "text": " response with your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/requestIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/SendReportSuccessResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you receive an ",
+              "type": "text"
+            },
+            {
+              "code": "HTTP 400",
+              "type": "codeVoice"
+            },
+            {
+              "text": " error response with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/SendReportErrorResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, the server didn’t successfully receive any of the data in the report. Fix the errors listed in the response object, and resubmit the full report using the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/requestIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The server also sends an ",
+              "type": "text"
+            },
+            {
+              "code": "HTTP 400",
+              "type": "codeVoice"
+            },
+            {
+              "text": " error if the request is a duplicate, or if it’s malformed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Testing-in-the-sandbox-environment",
+          "level": 3,
+          "text": "Testing in the sandbox environment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call this endpoint using its sandbox URL only for tokens that the system generates in the sandbox environment. For more information about identifying sandbox tokens, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/receiving-and-decoding-external-purchase-tokens",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The sandbox tokens and any test transaction data you submit through the sandbox URLs of the External Purchase Server API are not actual transactions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/StoreKit/receiving-and-decoding-external-purchase-tokens": {
+      "abstract": [
+        {
+          "text": "Receive tokens for external purchases that you use to report transactions to Apple.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/receiving-and-decoding-external-purchase-tokens",
+      "kind": "article",
+      "role": "article",
+      "title": "Receiving and decoding external purchase tokens",
+      "type": "topic",
+      "url": "/documentation/StoreKit/receiving-and-decoding-external-purchase-tokens"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI": {
+      "abstract": [
+        {
+          "text": "Send and manage reports you send to Apple for tokens you receive when your app provides external purchases for digital goods and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "External Purchase Server API",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/ExternalPurchaseReport": {
+      "abstract": [
+        {
+          "text": "The contents of an external purchase report for a single token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExternalPurchaseReport"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/ExternalPurchaseReport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExternalPurchaseReport"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExternalPurchaseReport",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/externalpurchasereport"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/Send-External-Purchase-Report": {
+      "abstract": [
+        {
+          "text": "Report required information about external purchase tokens and associated transactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/Send-External-Purchase-Report",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Send External Purchase Report"
+        }
+      ],
+      "role": "symbol",
+      "title": "Send External Purchase Report",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/send-external-purchase-report"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/SendReportErrorResponse": {
+      "abstract": [
+        {
+          "text": "An error response that indicates your external purchase report didn’t succeed, including error details for the line items in your report.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SendReportErrorResponse"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/SendReportErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SendReportErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "SendReportErrorResponse",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/sendreporterrorresponse"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/SendReportSuccessResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains the request identifier and indicates the server successfully received your external purchase report.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SendReportSuccessResponse"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/SendReportSuccessResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SendReportSuccessResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "SendReportSuccessResponse",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/sendreportsuccessresponse"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportcorrections": {
+      "abstract": [
+        {
+          "text": "Submit a report with corrections if you find errors in, or have adjustments to, a successfully submitted transaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportcorrections",
+      "kind": "article",
+      "role": "article",
+      "title": "Reporting corrections",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/reportcorrections"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportwithouttransactions": {
+      "abstract": [
+        {
+          "text": "Create reports for external purchase tokens that didn’t result in completed transactions, or tokens that you learn of from an App Store server notification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportwithouttransactions",
+      "kind": "article",
+      "role": "article",
+      "title": "Reporting unrecognized tokens and tokens without transactions",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/reportwithouttransactions"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportwithtransactions": {
+      "abstract": [
+        {
+          "text": "Create reports for external purchase tokens that result in completed transactions, including one-time charges, subscriptions and renewals, and refunds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportwithtransactions",
+      "kind": "article",
+      "role": "article",
+      "title": "Reporting tokens with transactions",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/reportwithtransactions"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/requestIdentifier": {
+      "abstract": [
+        {
+          "text": "A UUID that uniquely identifies an external purchase report.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestIdentifier"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/requestIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestIdentifier",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/requestidentifier"
+    },
+    "https://developer.apple.com/support/apps-using-alternative-payment-providers-in-the-eu#commission-reports-and-payments": {
+      "identifier": "https://developer.apple.com/support/apps-using-alternative-payment-providers-in-the-eu#commission-reports-and-payments",
+      "title": "Commission, transaction reports, and payments",
+      "titleInlineContent": [
+        {
+          "text": "Commission, transaction reports, and payments",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/apps-using-alternative-payment-providers-in-the-eu#commission-reports-and-payments"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "External-purchase-reporting",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/ExternalPurchaseReport",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/SendReportSuccessResponse",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/SendReportErrorResponse"
+      ],
+      "title": "External purchase reporting"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/externalpurchaseserverapi/send-external-purchase-report"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

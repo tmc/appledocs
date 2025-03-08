@@ -1,0 +1,1866 @@
+{
+  "abstract": [
+    {
+      "text": "The object you use to manage the setup, configuration, and teardown of your networking driver.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUserNetworkEthernet",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "IOUserNetworkEthernet"
+      }
+    ],
+    "modules": [
+      {
+        "name": "NetworkingDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "IOUserNetworkEthernet"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "IOUserNetworkEthernet"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOUserNetworkEthernet"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Subclass ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserNetworkEthernet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and override the methods you need to implement your driver’s behavior. Your subclass manages your driver’s overall life cycle, and facilitates communication between the hardware and the rest of the system. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to establish a link to your hardware and to create the data structures needed to manage incoming and outgoing data packets. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180713-stop",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to clean up the data structures you create in your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Override other methods of this class, and of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " parent class, as needed to enable your interface and implement other network-related behaviors. For example, you might want to override the inherited ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1532866-setpowerstate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to respond to power-level changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-the-Drivers-Personality-Information",
+          "level": 3,
+          "text": "Specify the Driver’s Personality Information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you subclass ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserNetworkEthernet",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", update the ",
+              "type": "text"
+            },
+            {
+              "code": "IOKitPersonalities",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key of your driver extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file with information to match your driver to appropriate hardware. For this class, always include the keys and values in the following table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Discussion",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "IOClass",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "IOProviderClass",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The provider class information. For USB-based network interfaces, specify ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/USBDriverKit/IOUSBHostInterface",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "IOUserClass",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of your custom subclass.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The bundle identifier of your driver.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "CFBundleIdentifierKernel",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.apple.iokit.IOSkywalkFamily",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may add other keys to assist with the matching process. For example, you might include the ",
+              "type": "text"
+            },
+            {
+              "code": "bInterfaceClass",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "bInterfaceProtocol",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "bInterfaceSubClass",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keys to match against specific USB device attributes. The USB specification defines which keys to include when matching your driver to a USB device. For information about the specific key combinations, see ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Universal Serial Bus Common Class Specification",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " at ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.usb.org",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleIdentifier",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/CFBundleIdentifier"
+    },
+    "doc://com.apple.documentation/documentation/USBDriverKit/IOUSBHostInterface": {
+      "abstract": [
+        {
+          "text": "A provider object that manages interactions with an interface of the USB device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOUSBHostInterface"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/USBDriverKit/IOUSBHostInterface",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUSBHostInterface",
+      "type": "topic",
+      "url": "/documentation/USBDriverKit/IOUSBHostInterface"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice": {
+      "abstract": [
+        {
+          "text": "The base class for managing the setup and registration of your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1532866-setpowerstate": {
+      "abstract": [
+        {
+          "text": "Requests a power managed driver to change the power state of its device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1532866-setpowerstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPowerState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1532866-setpowerstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start": {
+      "abstract": [
+        {
+          "text": "Starts the current service and associates it with the specified provider.  ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Start",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180710-start"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180713-stop": {
+      "abstract": [
+        {
+          "text": "Stops the service associated with the specified provider. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180713-stop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Stop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180713-stop"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for Ethernet networking devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "NetworkingDriverKit",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet": {
+      "abstract": [
+        {
+          "text": "The object you use to manage the setup, configuration, and teardown of your networking driver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserNetworkEthernet"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkEthernet",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/GetHardwareAssists-4kj3q": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetHardwareAssists"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/GetHardwareAssists-4kj3q",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetHardwareAssists",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/gethardwareassists-4kj3q"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/GetMaxTransferUnit-mvla": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetMaxTransferUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/GetMaxTransferUnit-mvla",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetMaxTransferUnit",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/getmaxtransferunit-mvla"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/RegisterEthernetInterface-4jqw8": {
+      "abstract": [
+        {
+          "text": "Registers your driver with the networking stack.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "RegisterEthernetInterface"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/RegisterEthernetInterface-4jqw8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RegisterEthernetInterface",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/registerethernetinterface-4jqw8"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/RegisterEthernetInterface-fffz": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "RegisterEthernetInterface"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/RegisterEthernetInterface-fffz",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RegisterEthernetInterface",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/registerethernetinterface-fffz"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/ReportAvailableMediaTypes": {
+      "abstract": [
+        {
+          "text": "Tells the system what types of networking media your driver supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ReportAvailableMediaTypes"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/ReportAvailableMediaTypes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ReportAvailableMediaTypes",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/reportavailablemediatypes"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/ReportDataBandwidths-10ssx": {
+      "abstract": [
+        {
+          "text": "Reports the input and output bandwidth between the device and your driver to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ReportDataBandwidths"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/ReportDataBandwidths-10ssx",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ReportDataBandwidths",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/reportdatabandwidths-10ssx"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/ReportLinkQuality-4noh0": {
+      "abstract": [
+        {
+          "text": "Reports the quality of the link between the device and your driver to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ReportLinkQuality"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/ReportLinkQuality-4noh0",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ReportLinkQuality",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/reportlinkquality-4noh0"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/ReportLinkStatus-5cxiq": {
+      "abstract": [
+        {
+          "text": "Reports the status of the link between the device and your driver to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ReportLinkStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/ReportLinkStatus-5cxiq",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ReportLinkStatus",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/reportlinkstatus-5cxiq"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/ReportNicProxyLimits-9yg2x": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ReportNicProxyLimits"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/ReportNicProxyLimits-9yg2x",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ReportNicProxyLimits",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/reportnicproxylimits-9yg2x"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SelectMediaType": {
+      "abstract": [
+        {
+          "text": "Selects the media type to use when communicating with the network stack.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SelectMediaType"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SelectMediaType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SelectMediaType",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/selectmediatype"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetAllMulticastModeEnable-5rtva": {
+      "abstract": [
+        {
+          "text": "Enables or disables multicast support for your service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetAllMulticastModeEnable"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetAllMulticastModeEnable-5rtva",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetAllMulticastModeEnable",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/setallmulticastmodeenable-5rtva"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetHardwareAssists-5dvbf": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetHardwareAssists"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetHardwareAssists-5dvbf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetHardwareAssists",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/sethardwareassists-5dvbf"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetInterfaceEnable-3v24g": {
+      "abstract": [
+        {
+          "text": "Enables or disables your service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetInterfaceEnable"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetInterfaceEnable-3v24g",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetInterfaceEnable",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/setinterfaceenable-3v24g"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetMTU": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetMTU"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetMTU",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetMTU",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/setmtu"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetMulticastAddresses-7wjbn": {
+      "abstract": [
+        {
+          "text": "Sets the device addresses to use for multicast filtering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetMulticastAddresses"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetMulticastAddresses-7wjbn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetMulticastAddresses",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/setmulticastaddresses-7wjbn"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetPromiscuousModeEnable-82bt": {
+      "abstract": [
+        {
+          "text": "Enables or disables support for monitoriong all network packets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetPromiscuousModeEnable"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetPromiscuousModeEnable-82bt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetPromiscuousModeEnable",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/setpromiscuousmodeenable-82bt"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetSoftwareVlanSupport": {
+      "abstract": [
+        {
+          "text": "Enables software VLAN support.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetSoftwareVlanSupport"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetSoftwareVlanSupport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetSoftwareVlanSupport",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/setsoftwarevlansupport"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetTxPacketHeadroom": {
+      "abstract": [
+        {
+          "text": "Reserves the specified number of bytes at the front of each packet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetTxPacketHeadroom"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetTxPacketHeadroom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetTxPacketHeadroom",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/settxpacketheadroom"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetTxPacketTailroom": {
+      "abstract": [
+        {
+          "text": "Reserves the specified number of bytes at the end of each packet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetTxPacketTailroom"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetTxPacketTailroom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetTxPacketTailroom",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/settxpackettailroom"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetWakeOnMagicPacketEnable": {
+      "abstract": [
+        {
+          "text": "Enables or disables support for waking up the device when a specially formatted packet arrives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetWakeOnMagicPacketEnable"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetWakeOnMagicPacketEnable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetWakeOnMagicPacketEnable",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/setwakeonmagicpacketenable"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetWakeOnMagicPacketSupport": {
+      "abstract": [
+        {
+          "text": "Tells the system whether the device supports being woken up when a specially formatted packet arrives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetWakeOnMagicPacketSupport"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetWakeOnMagicPacketSupport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetWakeOnMagicPacketSupport",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/setwakeonmagicpacketsupport"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/addHardwareCountsWithInterfaceStatistics": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "addHardwareCountsWithInterfaceStatistics"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/addHardwareCountsWithInterfaceStatistics",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addHardwareCountsWithInterfaceStatistics",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/addhardwarecountswithinterfacestatistics"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/bpfAttach": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "bpfAttach"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/bpfAttach",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bpfAttach",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/bpfattach"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/bpfTap": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "bpfTap"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/bpfTap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bpfTap",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/bpftap"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/bpfTapInputPacket": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "bpfTapInputPacket"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/bpfTapInputPacket",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bpfTapInputPacket",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/bpftapinputpacket"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/bpfTapOutputPacket": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "bpfTapOutputPacket"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/bpfTapOutputPacket",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bpfTapOutputPacket",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/bpftapoutputpacket"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/free": {
+      "abstract": [
+        {
+          "text": "Performs any final cleanup for the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/free"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getBSDName": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getBSDName"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getBSDName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBSDName",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/getbsdname"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getBSDNamePrefix": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getBSDNamePrefix"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getBSDNamePrefix",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBSDNamePrefix",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/getbsdnameprefix"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getBSDUnitNumber": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getBSDUnitNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getBSDUnitNumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBSDUnitNumber",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/getbsdunitnumber"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getFeatureFlags": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getFeatureFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getFeatureFlags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getFeatureFlags",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/getfeatureflags"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getHardwareAddress": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getHardwareAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getHardwareAddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getHardwareAddress",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/gethardwareaddress"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getHardwareAssists-7o0q0": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getHardwareAssists"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getHardwareAssists-7o0q0",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getHardwareAssists",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/gethardwareassists-7o0q0"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getInitialMedia": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getInitialMedia"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getInitialMedia",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getInitialMedia",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/getinitialmedia"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getInterfaceSubFamily": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getInterfaceSubFamily"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getInterfaceSubFamily",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getInterfaceSubFamily",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/getinterfacesubfamily"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getMaxTransferUnit-3iokl": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getMaxTransferUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getMaxTransferUnit-3iokl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMaxTransferUnit",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/getmaxtransferunit-3iokl"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getSupportedMediaArray": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getSupportedMediaArray"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getSupportedMediaArray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getSupportedMediaArray",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/getsupportedmediaarray"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getTSOOptions": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getTSOOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getTSOOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getTSOOptions",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/gettsooptions"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getTxDataOffset": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getTxDataOffset"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getTxDataOffset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getTxDataOffset",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/gettxdataoffset"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/handleChosenMedia": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "handleChosenMedia"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/handleChosenMedia",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleChosenMedia",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/handlechosenmedia"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/hwConfigNicProxyData-345tz": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "hwConfigNicProxyData"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/hwConfigNicProxyData-345tz",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hwConfigNicProxyData",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/hwconfignicproxydata-345tz"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/hwConfigNicProxyData-7u8wb": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "hwConfigNicProxyData"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/hwConfigNicProxyData-7u8wb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hwConfigNicProxyData",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/hwconfignicproxydata-7u8wb"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/init": {
+      "abstract": [
+        {
+          "text": "Handles the basic initialization of the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/init"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/processInterfaceCommand": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "processInterfaceCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/processInterfaceCommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "processInterfaceCommand",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/processinterfacecommand"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/registerEthernetInterface-8pzu9": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "registerEthernetInterface"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/registerEthernetInterface-8pzu9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerEthernetInterface",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/registerethernetinterface-8pzu9"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/registerEthernetInterface-948c9": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "registerEthernetInterface"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/registerEthernetInterface-948c9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerEthernetInterface",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/registerethernetinterface-948c9"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/reportDataBandwidths-95d7h": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "reportDataBandwidths"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/reportDataBandwidths-95d7h",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reportDataBandwidths",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/reportdatabandwidths-95d7h"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/reportLinkQuality-2tcue": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "reportLinkQuality"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/reportLinkQuality-2tcue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reportLinkQuality",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/reportlinkquality-2tcue"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/reportLinkStatus-4qtrf": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "reportLinkStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/reportLinkStatus-4qtrf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reportLinkStatus",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/reportlinkstatus-4qtrf"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/reportNicProxyLimits-6p2r1": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "reportNicProxyLimits"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/reportNicProxyLimits-6p2r1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reportNicProxyLimits",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/reportnicproxylimits-6p2r1"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setAllMulticastModeEnable-3aocm": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setAllMulticastModeEnable"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setAllMulticastModeEnable-3aocm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAllMulticastModeEnable",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/setallmulticastmodeenable-3aocm"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setHardwareAddress": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setHardwareAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setHardwareAddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setHardwareAddress",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/sethardwareaddress"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setHardwareAssists-2uqz7": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setHardwareAssists"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setHardwareAssists-2uqz7",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setHardwareAssists",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/sethardwareassists-2uqz7"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setHardwareAssists-3vpkr": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setHardwareAssists"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setHardwareAssists-3vpkr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setHardwareAssists",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/sethardwareassists-3vpkr"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setInterfaceEnable-6pfsx": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setInterfaceEnable"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setInterfaceEnable-6pfsx",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setInterfaceEnable",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/setinterfaceenable-6pfsx"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setMaxTransferUnit": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setMaxTransferUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setMaxTransferUnit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setMaxTransferUnit",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/setmaxtransferunit"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setMulticastAddresses-1o4z3": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setMulticastAddresses"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setMulticastAddresses-1o4z3",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setMulticastAddresses",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/setmulticastaddresses-1o4z3"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setPowerState": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setPowerState"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setPowerState",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPowerState",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/setpowerstate"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setPromiscuousModeEnable-34fjm": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setPromiscuousModeEnable"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setPromiscuousModeEnable-34fjm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPromiscuousModeEnable",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/setpromiscuousmodeenable-34fjm"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/start": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "start"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "start",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/start"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/stop": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "stop"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/stop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stop",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/stop"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/updateInterfaceDescriptor": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "updateInterfaceDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/updateInterfaceDescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updateInterfaceDescriptor",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/updateinterfacedescriptor"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkLinkQuality": {
+      "abstract": [
+        {
+          "text": "A type for specifying the quality of your device’s connection to the host.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserNetworkLinkQuality"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkLinkQuality",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkLinkQuality",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworklinkquality"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkLinkStatus": {
+      "abstract": [
+        {
+          "text": "A type for specifying the state of your device’s connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserNetworkLinkStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkLinkStatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkLinkStatus",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworklinkstatus"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkMACAddress": {
+      "abstract": [
+        {
+          "text": "A hardware address for a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserNetworkMACAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkMACAddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkMACAddress",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkmacaddress"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkMediaType": {
+      "abstract": [
+        {
+          "text": "A structure describing a specific Ethernet type and configuration that your driver supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserNetworkMediaType"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkMediaType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkMediaType",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkmediatype"
+    },
+    "doc://com.externally.resolved.symbol/c:@S@IOService": {
+      "abstract": [
+        {
+          "text": "The base class for managing the setup and registration of your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@S@IOService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice"
+    },
+    "https://www.usb.org": {
+      "identifier": "https://www.usb.org",
+      "title": "https://www.usb.org",
+      "titleInlineContent": [
+        {
+          "text": "https://www.usb.org",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.usb.org"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:@S@IOService"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Configuring-the-Driver-Service",
+      "identifiers": [
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/init",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/free",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/RegisterEthernetInterface-4jqw8"
+      ],
+      "title": "Configuring the Driver Service"
+    },
+    {
+      "anchor": "Declaring-the-Supported-Media-Types",
+      "identifiers": [
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/ReportAvailableMediaTypes",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SelectMediaType",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkMediaType"
+      ],
+      "title": "Declaring the Supported Media Types"
+    },
+    {
+      "anchor": "Enabling-Your-Service",
+      "identifiers": [
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetInterfaceEnable-3v24g"
+      ],
+      "title": "Enabling Your Service"
+    },
+    {
+      "anchor": "Configuring-Link-Attributes",
+      "identifiers": [
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetTxPacketHeadroom",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetTxPacketTailroom",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetSoftwareVlanSupport",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetMulticastAddresses-7wjbn",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetAllMulticastModeEnable-5rtva",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetPromiscuousModeEnable-82bt",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetWakeOnMagicPacketSupport",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetWakeOnMagicPacketEnable",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkMACAddress"
+      ],
+      "title": "Configuring Link Attributes"
+    },
+    {
+      "anchor": "Reporting-the-Connection-Status",
+      "identifiers": [
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/ReportLinkStatus-5cxiq",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/ReportLinkQuality-4noh0",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/ReportDataBandwidths-10ssx",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkLinkStatus",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkLinkQuality"
+      ],
+      "title": "Reporting the Connection Status"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/GetHardwareAssists-4kj3q",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/GetMaxTransferUnit-mvla",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/RegisterEthernetInterface-fffz",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/ReportNicProxyLimits-9yg2x",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetHardwareAssists-5dvbf",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SetMTU",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/addHardwareCountsWithInterfaceStatistics",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/bpfAttach",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/bpfTap",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/bpfTapInputPacket",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/bpfTapOutputPacket",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getBSDName",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getBSDNamePrefix",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getBSDUnitNumber",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getFeatureFlags",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getHardwareAddress",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getHardwareAssists-7o0q0",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getInitialMedia",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getInterfaceSubFamily",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getMaxTransferUnit-3iokl",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getSupportedMediaArray",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getTSOOptions",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/getTxDataOffset",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/handleChosenMedia",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/hwConfigNicProxyData-345tz",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/hwConfigNicProxyData-7u8wb",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/processInterfaceCommand",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/registerEthernetInterface-8pzu9",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/registerEthernetInterface-948c9",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/reportDataBandwidths-95d7h",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/reportLinkQuality-2tcue",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/reportLinkStatus-4qtrf",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/reportNicProxyLimits-6p2r1",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setAllMulticastModeEnable-3aocm",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setHardwareAddress",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setHardwareAssists-2uqz7",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setHardwareAssists-3vpkr",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setInterfaceEnable-6pfsx",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setMaxTransferUnit",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setMulticastAddresses-1o4z3",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setPowerState",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/setPromiscuousModeEnable-34fjm",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/start",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/stop",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/updateInterfaceDescriptor"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkingdriverkit/iousernetworkethernet"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

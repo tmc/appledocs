@@ -1,0 +1,1729 @@
+{
+  "abstract": [
+    {
+      "text": "A mutable string with associated attributes (such as visual style, hyperlinks, or accessibility data) for portions of its text.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1413423,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSMutableAttributedString",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSMutableAttributedString"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "3.2",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "3.2",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSMutableAttributedString"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSMutableAttributedString"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSAttributedString",
+              "text": "NSAttributedString"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSMutableAttributedString",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class declares additional methods for mutating the content of an attributed string. You can add and remove characters (raw strings) and attributes separately or together as attributed strings. See the class description for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information about attributed strings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSMutableAttributedString",
+              "type": "codeVoice"
+            },
+            {
+              "text": " adds two primitive methods to those of ",
+              "type": "text"
+            },
+            {
+              "code": "NSAttributedString",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". These primitive methods provide the basis for all the other methods in its class. The primitive ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1418451-replacecharacters",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method replaces a range of characters with those from a string, leaving all attribute information outside that range intact. The primitive ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1412179-setattributes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method sets attributes and values for a given range of characters, replacing any previous attributes and values for that range.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS, AppKit also uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSParagraphStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and its subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMutableParagraphStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to encapsulate the paragraph or ruler attributes used by the ",
+              "type": "text"
+            },
+            {
+              "code": "NSAttributedString",
+              "type": "codeVoice"
+            },
+            {
+              "text": " classes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that the default font for ",
+              "type": "text"
+            },
+            {
+              "code": "NSAttributedString",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects is Helvetica 12-point, which may differ from the macOS system font, so you may wish to create the string with non-default attributes suitable for your application using, for example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring/1408136-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In iOS, this class is used primarily in conjunction with the Core Text framework.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "iOS Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSMutableAttributedString",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is “toll-free bridged” with its Core Foundation counterpart, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutableattributedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1745091",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1745091": {
+      "identifier": "devLink-1745091",
+      "title": "Toll-Free Bridging",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMutableParagraphStyle": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMutableParagraphStyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableParagraphStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/nsmutableparagraphstyle"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSParagraphStyle": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSParagraphStyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSParagraphStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/nsparagraphstyle"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutableattributedstring": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutableattributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFMutableAttributedString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutableattributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring": {
+      "abstract": [
+        {
+          "text": "A value type for a string with associated attributes for portions of its text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring": {
+      "abstract": [
+        {
+          "text": "A portion of an attributed string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "AttributedSubstring"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributedSubstring",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsattributedstring": {
+      "abstract": [
+        {
+          "text": "A string of text that manages data, layout, and stylistic information for ranges of characters to support rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsattributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsattributedstring/1408136-init": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring/1408136-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(string:attributes:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsattributedstring/1408136-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring": {
+      "abstract": [
+        {
+          "text": "A mutable string with associated attributes (such as visual style, hyperlinks, or accessibility data) for portions of its text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableAttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableAttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1409691-removeattribute": {
+      "abstract": [
+        {
+          "text": "Removes the named attribute from the characters in the specified range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAttribute"
+        },
+        {
+          "kind": "text",
+          "text": "(NSAttributedString.Key, "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1409691-removeattribute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeAttribute(_:range:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1409691-removeattribute"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1410610-deletecharacters": {
+      "abstract": [
+        {
+          "text": "Deletes the characters in the given range along with their associated attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "deleteCharacters"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1410610-deletecharacters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deleteCharacters(in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1410610-deletecharacters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1411853-beginediting": {
+      "abstract": [
+        {
+          "text": "Begins the buffering of changes to the string’s characters and attributes. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginEditing"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1411853-beginediting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginEditing()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1411853-beginediting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1411894-setattributedstring": {
+      "abstract": [
+        {
+          "text": "Replaces the receiver’s entire contents with the characters and attributes of the given attributed string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAttributedString"
+        },
+        {
+          "kind": "text",
+          "text": "(NSAttributedString)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1411894-setattributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAttributedString(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1411894-setattributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1412179-setattributes": {
+      "abstract": [
+        {
+          "text": "Sets the attributes for the characters in the specified range to the specified attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "([NSAttributedString.Key : Any]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1412179-setattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAttributes(_:range:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1412179-setattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1414304-addattributes": {
+      "abstract": [
+        {
+          "text": "Adds the given collection of attributes to the characters in the specified range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "([NSAttributedString.Key : Any], "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1414304-addattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addAttributes(_:range:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1414304-addattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1414947-insert": {
+      "abstract": [
+        {
+          "text": "Inserts the characters and attributes of the given attributed string into the receiver at the given index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "insert"
+        },
+        {
+          "kind": "text",
+          "text": "(NSAttributedString, "
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1414947-insert",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insert(_:at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1414947-insert"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1416707-endediting": {
+      "abstract": [
+        {
+          "text": "Ends the buffering of changes to the string’s characters and attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "endEditing"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1416707-endediting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endEditing()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1416707-endediting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1416955-mutablestring": {
+      "abstract": [
+        {
+          "text": "The character contents of the receiver as a mutable string object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "mutableString"
+        },
+        {
+          "kind": "text",
+          "text": ": NSMutableString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1416955-mutablestring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mutableString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1416955-mutablestring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1417045-replacecharacters": {
+      "abstract": [
+        {
+          "text": "Replaces the characters and attributes in a given range with the characters and attributes of the given attributed string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceCharacters"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange, "
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": NSAttributedString)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1417045-replacecharacters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replaceCharacters(in:with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1417045-replacecharacters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1417080-addattribute": {
+      "abstract": [
+        {
+          "text": "Adds an attribute with the given name and value to the characters in the specified range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAttribute"
+        },
+        {
+          "kind": "text",
+          "text": "(NSAttributedString.Key, "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1417080-addattribute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addAttribute(_:value:range:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1417080-addattribute"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1417879-append": {
+      "abstract": [
+        {
+          "text": "Adds the characters and attributes of a given attributed string to the end of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "append"
+        },
+        {
+          "kind": "text",
+          "text": "(NSAttributedString)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1417879-append",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "append(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1417879-append"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1418451-replacecharacters": {
+      "abstract": [
+        {
+          "text": "Replaces the characters in the given range with the characters of the given string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceCharacters"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange, "
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1418451-replacecharacters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replaceCharacters(in:with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1418451-replacecharacters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1508389-updateattachments": {
+      "abstract": [
+        {
+          "text": "Updates all attachments based on files contained in the RTFD file package at the specified file path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateAttachments"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fromPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1508389-updateattachments",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updateAttachments(fromPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1508389-updateattachments"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1524892-read": {
+      "abstract": [
+        {
+          "text": "Sets the contents of attributed string using the contents of the specified file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "read"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [NSAttributedString.DocumentReadingOptionKey : Any], "
+        },
+        {
+          "kind": "identifier",
+          "text": "documentAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSDictionary?>?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1524892-read",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "read(from:options:documentAttributes:error:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1524892-read"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1525145-read": {
+      "abstract": [
+        {
+          "text": "Sets the contents of the receiver from the specified data object",
+          "type": "text"
+        },
+        {
+          "code": ".",
+          "type": "codeVoice"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "read"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": Data, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any], "
+        },
+        {
+          "kind": "identifier",
+          "text": "documentAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSDictionary?>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1525145-read",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "read(from:options:documentAttributes:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1525145-read"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1526389-fixattachmentattribute": {
+      "abstract": [
+        {
+          "text": "Cleans up attachment attributes in the specified range and removes all attachment attributes assigned to characters except the designated attachment character.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fixAttachmentAttribute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1526389-fixattachmentattribute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fixAttachmentAttribute(in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1526389-fixattachmentattribute"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1527082-fixparagraphstyleattribute": {
+      "abstract": [
+        {
+          "text": "Fixes the paragraph style attributes in the specified range and assigns a paragraph style to all characters in the paragraph.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fixParagraphStyleAttribute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1527082-fixparagraphstyleattribute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fixParagraphStyleAttribute(in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1527082-fixparagraphstyleattribute"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1529906-subscriptrange": {
+      "abstract": [
+        {
+          "text": "Decrements the value of the superscript attribute for characters in the specified range by one.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptRange"
+        },
+        {
+          "kind": "text",
+          "text": "(NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1529906-subscriptrange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptRange(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1529906-subscriptrange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1530210-unscriptrange": {
+      "abstract": [
+        {
+          "text": "Removes the superscript attribute from the characters in the specified range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "unscriptRange"
+        },
+        {
+          "kind": "text",
+          "text": "(NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1530210-unscriptrange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unscriptRange(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1530210-unscriptrange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1530762-setalignment": {
+      "abstract": [
+        {
+          "text": "Sets the alignment characteristic of the paragraph style attribute for the specified range of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAlignment"
+        },
+        {
+          "kind": "text",
+          "text": "(NSTextAlignment, "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1530762-setalignment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAlignment(_:range:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1530762-setalignment"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1530903-read": {
+      "abstract": [
+        {
+          "text": "Sets the contents of receiver from the file at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "read"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any], "
+        },
+        {
+          "kind": "identifier",
+          "text": "documentAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSDictionary?>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1530903-read",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "read(from:options:documentAttributes:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1530903-read"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1532734-applyfonttraits": {
+      "abstract": [
+        {
+          "text": "Applies the specified font-related attributes to characters in the string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyFontTraits"
+        },
+        {
+          "kind": "text",
+          "text": "(NSFontTraitMask, "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1532734-applyfonttraits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applyFontTraits(_:range:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1532734-applyfonttraits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1532923-setbasewritingdirection": {
+      "abstract": [
+        {
+          "text": "Sets the base writing direction for the characters to the specified direction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBaseWritingDirection"
+        },
+        {
+          "kind": "text",
+          "text": "(NSWritingDirection, "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1532923-setbasewritingdirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setBaseWritingDirection(_:range:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1532923-setbasewritingdirection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1533592-superscriptrange": {
+      "abstract": [
+        {
+          "text": "Increments the value of the superscript attribute for characters in the specified range by one.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "superscriptRange"
+        },
+        {
+          "kind": "text",
+          "text": "(NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1533592-superscriptrange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "superscriptRange(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1533592-superscriptrange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1533823-fixattributes": {
+      "abstract": [
+        {
+          "text": "Cleans up font, paragraph style, and attachment attributes within the given range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fixAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1533823-fixattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fixAttributes(in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1533823-fixattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1534303-fixfontattribute": {
+      "abstract": [
+        {
+          "text": "Fixes the font attribute in the specified range and assigns default fonts where appropriate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fixFontAttribute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1534303-fixfontattribute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fixFontAttribute(in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1534303-fixfontattribute"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1535465-read": {
+      "abstract": [
+        {
+          "text": "Sets the contents of the attributed string using the specified data object",
+          "type": "text"
+        },
+        {
+          "code": ".",
+          "type": "codeVoice"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "read"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": Data, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [NSAttributedString.DocumentReadingOptionKey : Any], "
+        },
+        {
+          "kind": "identifier",
+          "text": "documentAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSDictionary?>?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1535465-read",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "read(from:options:documentAttributes:error:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1535465-read"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1620496-read": {
+      "abstract": [
+        {
+          "text": "Sets the contents of the receiver from the file at the given URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "read"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fromFileURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any], "
+        },
+        {
+          "kind": "identifier",
+          "text": "documentAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSDictionary?>?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1620496-read",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "read(fromFileURL:options:documentAttributes:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1620496-read"
+    },
+    "doc://com.apple.documentation/documentation/foundation/strings_and_text": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strings and Text",
+      "type": "topic",
+      "url": "/documentation/foundation/strings_and_text"
+    },
+    "doc://com.apple.documentation/documentation/foundation/strings_and_text/attributed_string_supporting_types": {
+      "abstract": [
+        {
+          "text": "Types that the attributed string, attributed substring, and helper types extend or conform to, for sharing common functionality.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/strings_and_text/attributed_string_supporting_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Attributed String Supporting Types",
+      "type": "topic",
+      "url": "/documentation/foundation/strings_and_text/attributed_string_supporting_types"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsattributedstring"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/attributedstring",
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring",
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text/attributed_string_supporting_types",
+        "doc://com.apple.documentation/documentation/foundation/nsattributedstring"
+      ],
+      "title": "Strings with Metadata"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1653875",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1416955-mutablestring"
+      ],
+      "kind": "taskGroup",
+      "title": "Retrieving Character Information"
+    },
+    {
+      "anchor": "1653916",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1418451-replacecharacters",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1410610-deletecharacters"
+      ],
+      "kind": "taskGroup",
+      "title": "Changing Characters"
+    },
+    {
+      "anchor": "1653959",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1412179-setattributes",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1417080-addattribute",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1414304-addattributes",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1409691-removeattribute",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1532734-applyfonttraits",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1530762-setalignment",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1532923-setbasewritingdirection",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1529906-subscriptrange",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1533592-superscriptrange",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1530210-unscriptrange"
+      ],
+      "kind": "taskGroup",
+      "title": "Changing Attributes"
+    },
+    {
+      "anchor": "1654119",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1417879-append",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1414947-insert",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1417045-replacecharacters",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1411894-setattributedstring"
+      ],
+      "kind": "taskGroup",
+      "title": "Changing Characters and Attributes"
+    },
+    {
+      "anchor": "1654219",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1411853-beginediting",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1416707-endediting"
+      ],
+      "kind": "taskGroup",
+      "title": "Grouping Changes"
+    },
+    {
+      "anchor": "1654267",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1508389-updateattachments"
+      ],
+      "kind": "taskGroup",
+      "title": "Updating Attachment Contents "
+    },
+    {
+      "anchor": "1654306",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1533823-fixattributes",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1526389-fixattachmentattribute",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1534303-fixfontattribute",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1527082-fixparagraphstyleattribute"
+      ],
+      "kind": "taskGroup",
+      "title": "Fixing Attributes After Changes "
+    },
+    {
+      "anchor": "1654400",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1535465-read",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1524892-read"
+      ],
+      "kind": "taskGroup",
+      "title": "Reading Content"
+    },
+    {
+      "anchor": "1654462",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1525145-read",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1530903-read",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1620496-read"
+      ],
+      "kind": "taskGroup",
+      "title": "Deprecated"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsmutableattributedstring"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsmutableattributedstring"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

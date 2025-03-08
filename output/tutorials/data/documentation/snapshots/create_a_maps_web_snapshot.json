@@ -1,0 +1,1601 @@
+{
+  "abstract": [
+    {
+      "text": "Generates a map image with characteristics that you provide in the query parameters.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/snapshots"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/snapshots/create_a_maps_web_snapshot"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3233336,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:snapshots:get:api-v1-snapshot",
+    "modules": [
+      {
+        "name": "Maps Web Snapshots"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": true,
+        "current": "1.0",
+        "introducedAt": "1.0",
+        "name": "Maps Web Snapshots"
+      }
+    ],
+    "role": "restRequestSymbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpGet",
+    "title": "Create a Maps Web Snapshot"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://snapshot.apple-mapkit.com"
+        },
+        {
+          "kind": "path",
+          "text": "/api/v1/snapshot"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Only use this parameter if you don’t provide a token parameter. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "strong"
+                },
+                {
+                  "text": "Your Apple Developer Team ID. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "teamId",
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Only use this parameter if you don’t provide a token parameter.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "strong"
+                },
+                {
+                  "text": " Your MapKit JS Key ID. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "keyId",
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Only use this parameter if you don’t provide a token parameter.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "strong"
+                },
+                {
+                  "text": " A Base64, URL-encoded signature that signs the request path and query parameters. The signature must be the last parameter in the request URL; otherwise, the request returns status code ",
+                  "type": "text"
+                },
+                {
+                  "code": "401 Unauthorized",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "signature",
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The center of the map. You can specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "center",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " as coordinates, as an address, or with the string ",
+                  "type": "text"
+                },
+                {
+                  "code": "auto",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " when you add annotations and overlays. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Provide coordinates as a string with the latitude and longitude separated by a comma, such as:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "code": [
+                "center=\"37.78,-122.42\""
+              ],
+              "metadata": {
+                "anchor": "3259696",
+                "title": "Listing 1"
+              },
+              "syntax": "other",
+              "type": "codeListing"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If you specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "center",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " as coordinates, the latitude must be in the range ",
+                  "type": "text"
+                },
+                {
+                  "code": "(-90, 90)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and longitude must be in the range ",
+                  "type": "text"
+                },
+                {
+                  "code": "(-180, 180)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A geocoded address is a valid value for the ",
+                  "type": "text"
+                },
+                {
+                  "code": "center",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter, such as:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "code": [
+                "center=\"1 Apple Park Way in Cupertino, California\""
+              ],
+              "metadata": {
+                "anchor": "3259698",
+                "title": "Listing 2"
+              },
+              "syntax": "other",
+              "type": "codeListing"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The string ",
+                  "type": "text"
+                },
+                {
+                  "code": "auto",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is also a valid value for the ",
+                  "type": "text"
+                },
+                {
+                  "code": "center",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter, for example:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "code": [
+                "center=\"auto\""
+              ],
+              "metadata": {
+                "anchor": "3694075",
+                "title": "Listing 3"
+              },
+              "syntax": "other",
+              "type": "codeListing"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If you specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "center=”auto”",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the Web Map Snapshot API returns a map that includes all overlays or annotations. The API requires ",
+                  "type": "text"
+                },
+                {
+                  "code": "annotations",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "overlays",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " when you use ",
+                  "type": "text"
+                },
+                {
+                  "code": "center=”auto”",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "center",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "title": "Default",
+              "value": "12"
+            },
+            {
+              "kind": "maximum",
+              "title": "Maximum Value",
+              "value": "20"
+            },
+            {
+              "kind": "minimum",
+              "title": "Minimum Value",
+              "value": "3"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The zoom level of the map.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The Web Map Snapshot API ignores the ",
+                  "type": "text"
+                },
+                {
+                  "code": "z",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter when you specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "auto",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for the ",
+                  "type": "text"
+                },
+                {
+                  "code": "center",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter, or when you specify both ",
+                  "type": "text"
+                },
+                {
+                  "code": "spn",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "z",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameters.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "z",
+          "type": [
+            {
+              "kind": "text",
+              "text": "float"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "float"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A comma-separated coordinate span that indicates how much of the map Web Map Snapshots API displays around the map’s center. The latitude must be in the range of ",
+                  "type": "text"
+                },
+                {
+                  "code": "(0, 90)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and the longitude must be in the range ",
+                  "type": "text"
+                },
+                {
+                  "code": "(0, 180)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". The latitude and longitude delta parameters must be positive numbers; the API treats negative numbers as ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The Web Map Snapshot API ignores the ",
+                  "type": "text"
+                },
+                {
+                  "code": "spn",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter if you specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "auto",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for the ",
+                  "type": "text"
+                },
+                {
+                  "code": "center",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter. If you provide both ",
+                  "type": "text"
+                },
+                {
+                  "code": "z",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "spn",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameters, the value for ",
+                  "type": "text"
+                },
+                {
+                  "code": "spn",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " takes precedence over ",
+                  "type": "text"
+                },
+                {
+                  "code": "z",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "spn",
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "title": "Default",
+              "value": "600x400"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The size of the image in pixels. Specify the ",
+                  "type": "text"
+                },
+                {
+                  "code": "size",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " as width and height integers separated by the character ",
+                  "type": "text"
+                },
+                {
+                  "code": "x",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". For example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "640x480",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " creates an image 640 pixels wide and 480 pixels tall.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The width and height must be within the range of ",
+                  "type": "text"
+                },
+                {
+                  "code": "[50, 640]",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "size",
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "title": "Default",
+              "value": "1"
+            },
+            {
+              "kind": "maximum",
+              "title": "Maximum Value",
+              "value": "3"
+            },
+            {
+              "kind": "minimum",
+              "title": "Minimum Value",
+              "value": "1"
+            },
+            {
+              "kind": "allowedValues",
+              "title": "Possible values",
+              "values": [
+                "1",
+                "2",
+                "3"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The pixel density of the image. ",
+                  "type": "text"
+                },
+                {
+                  "code": "scale=2",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " returns an image intended for 2x Retina displays. Setting ",
+                  "type": "text"
+                },
+                {
+                  "code": "scale",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to values greater than ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " increases the number of pixels in the generated image.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "scale",
+          "type": [
+            {
+              "kind": "text",
+              "text": "int32"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "int32"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "title": "Default",
+              "value": "standard"
+            },
+            {
+              "kind": "allowedValues",
+              "title": "Possible values",
+              "values": [
+                "standard",
+                "hybrid",
+                "satellite",
+                "mutedStandard"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The map type. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "t",
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "title": "Default",
+              "value": "light"
+            },
+            {
+              "kind": "allowedValues",
+              "title": "Possible values",
+              "values": [
+                "light",
+                "dark"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The color scheme of the map. The ",
+                  "type": "text"
+                },
+                {
+                  "code": "dark",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " color scheme only applies to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "standard",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "mutedStandard",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " map types.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "colorScheme",
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "title": "Default",
+              "value": "1"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A Boolean value that indicates whether to show points of interest on the map. To hide points of interest, set ",
+                  "type": "text"
+                },
+                {
+                  "code": "poi=0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "poi",
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "title": "Default",
+              "value": "en-US"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The language that Maps Web Snapshots API uses for labels on the map. Supported values are locale IDs, such as ",
+                  "type": "text"
+                },
+                {
+                  "code": "en-GB",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "es-MX",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "lang",
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of annotations to display on the map, which you specify as JSON ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/snapshots/annotation",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " objects. Annotations layer on top of the map in the order you specify in the request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "annotations",
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/snapshots/annotation",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:snapshots:Annotation",
+              "text": "Annotation"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ],
+          "typeDetails": [
+            {
+              "arrayMode": true,
+              "baseType": "dictionary"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of overlays to display on the map, which you specify as an array of JSON ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/snapshots/overlay",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " objects.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "overlays",
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/snapshots/overlay",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:snapshots:Overlay",
+              "text": "Overlay"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ],
+          "typeDetails": [
+            {
+              "arrayMode": true,
+              "baseType": "dictionary"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A JSON array of overlay styles. This object allows you to reuse style values on different overlays.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "overlayStyles",
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/snapshots/overlaystyle",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:snapshots:OverlayStyle",
+              "text": "OverlayStyle"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ],
+          "typeDetails": [
+            {
+              "arrayMode": true,
+              "baseType": "dictionary"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of custom images to annotate the map, specified as an array of JSON ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/snapshots/image",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " objects.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [],
+              "type": "paragraph"
+            }
+          ],
+          "name": "imgs",
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/snapshots/image",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:snapshots:Image",
+              "text": "Image"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ],
+          "typeDetails": [
+            {
+              "arrayMode": true,
+              "baseType": "dictionary"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Only use this parameter if you don’t provide a token parameter.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "strong"
+                },
+                {
+                  "text": " The ",
+                  "type": "text"
+                },
+                {
+                  "code": "referer",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " string value to match against the request’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "Referer",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header value. Requests that don’t match the ",
+                  "type": "text"
+                },
+                {
+                  "code": "referer",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter fail with HTTP status code ",
+                  "type": "text"
+                },
+                {
+                  "code": "401 Unauthorized",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Set a referrer restriction through the ",
+                  "type": "text"
+                },
+                {
+                  "code": "referer",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "referer",
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Only use this parameter if you don’t provide a token parameter.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "strong"
+                },
+                {
+                  "text": " The time in seconds from epoch at which the request expires. Expired requests fail with HTTP status code ",
+                  "type": "text"
+                },
+                {
+                  "code": "401 Unauthorized",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Set an expiration through the ",
+                  "type": "text"
+                },
+                {
+                  "code": "expires",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "expires",
+          "type": [
+            {
+              "kind": "text",
+              "text": "int64"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "int64"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A developer’s Maps token. For information on how to create a Maps token, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/creating-a-maps-token",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "token",
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful and the Maps Web Snapshots API returned a map image as ",
+                  "type": "text"
+                },
+                {
+                  "code": "image/png",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimetype": "image/png",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "kind": "text",
+              "text": "binary"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request is invalid.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimetype": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This request contains invalid authorization credentials.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimetype": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The URL for this request exceeds the maximum number of characters allowed. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimetype": "application/json",
+          "reason": "Request Entity Too Large",
+          "status": 413,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You exceeded the rate limit for your API key. You need to wait and try the request again.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimetype": "application/json",
+          "status": 429,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request failed. This may be due to a temporary outage. Check the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-3616872",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for up-to-date information on the Web Map Snapshot API.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimetype": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": []
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the Snapshot URL query parameters to define characteristics of the map image such as dimensions, language, color scheme, and more.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must sign every Snapshot URL request and include the signature as the final parameter. For details and example code, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key": {
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Maps identifier and a private key",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/creating-a-maps-identifier-and-a-private-key"
+    },
+    "doc://com.apple.documentation/documentation/snapshots": {
+      "identifier": "doc://com.apple.documentation/documentation/snapshots",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Maps Web Snapshots",
+      "type": "topic",
+      "url": "/documentation/snapshots"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/annotation": {
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/annotation",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "Annotation",
+      "type": "topic",
+      "url": "/documentation/snapshots/annotation"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/create_a_maps_web_snapshot": {
+      "abstract": [
+        {
+          "text": "Generates a map image with characteristics that you provide in the query parameters.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/create_a_maps_web_snapshot",
+      "kind": "symbol",
+      "role": "restRequestSymbol",
+      "title": "Create a Maps Web Snapshot",
+      "type": "topic",
+      "url": "/documentation/snapshots/create_a_maps_web_snapshot"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/create_a_maps_web_snapshot#3259696": {
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/create_a_maps_web_snapshot#3259696",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/snapshots/create_a_maps_web_snapshot#3259696"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/create_a_maps_web_snapshot#3259698": {
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/create_a_maps_web_snapshot#3259698",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/snapshots/create_a_maps_web_snapshot#3259698"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/create_a_maps_web_snapshot#3694075": {
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/create_a_maps_web_snapshot#3694075",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/snapshots/create_a_maps_web_snapshot#3694075"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot": {
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating a URL and Signature to Create a Maps Web Snapshot",
+      "type": "topic",
+      "url": "/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/image": {
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/image",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "Image",
+      "type": "topic",
+      "url": "/documentation/snapshots/image"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/overlay": {
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/overlay",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "Overlay",
+      "type": "topic",
+      "url": "/documentation/snapshots/overlay"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/overlaystyle": {
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/overlaystyle",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "OverlayStyle",
+      "type": "topic",
+      "url": "/documentation/snapshots/overlaystyle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/creating-a-maps-token": {
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/creating-a-maps-token",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Maps token",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/creating-a-maps-token"
+    },
+    "link-3616872": {
+      "identifier": "link-3616872",
+      "kind": "article",
+      "role": "link",
+      "title": "Apple Developer System Status Page",
+      "type": "topic",
+      "url": "https://developer.apple.com/system-status/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/snapshots/create_a_maps_web_snapshot"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

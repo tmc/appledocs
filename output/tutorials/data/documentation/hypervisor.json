@@ -1,0 +1,887 @@
+{
+  "abstract": [
+    {
+      "text": "Build virtualization solutions on top of a lightweight hypervisor, without third-party kernel extensions.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/hypervisor"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1613108,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "Hypervisor",
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.10",
+        "name": "macOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "title": "Hypervisor"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Hypervisor provides C APIs so you can interact with virtualization technologies in user space, without writing kernel extensions (KEXTs). As a result, the apps you create using this framework are suitable for distribution on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3699125",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this framework to create and control hardware-facilitated virtual machines and virtual processors (VMs and vCPUs) from your entitled, sandboxed, user-space process. Hypervisor abstracts virtual machines as processes, and virtual processors as threads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3572034",
+          "level": 3,
+          "text": "Requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Hypervisor framework has the following requirements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The Hypervisor framework requires hardware support to virtualize hardware resources. On Apple silicon, that includes the Virtualization Extensions. On Intel-based Mac computers, the framework supports machines with an Intel VT-x feature set that includes Extended Page Tables (EPT) and Unrestricted Mode.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "At runtime, determine whether the Hypervisor APIs are available on a particular machine with the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/kernel/sys#3571071",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " command, passing ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "kern.hv_support",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " as an argument.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Supported hardware",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "All process must have the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.security.hypervisor",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " entitlement to use Hypervisor API.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Entitlements",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3627361",
+          "level": 3,
+          "text": "Virtual Resource Mapping",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A guest is an operating system that runs on top of the virtual hardware. The operating system and processes that run the virtualized hardware are together called the host. Virtual hardware in the guest maps to specific resources on the host.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each virtual machine corresponds to a process on the host. There can only be one virtual machine at a time per process; the virtual machine creates it with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441424-hv_vm_create",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Virtual CPUs (vCPUs) in a virtual machine map to POSIX threads. Create a new vCPU for the current thread with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441691-hv_vcpu_create",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The vCPU runs when the thread calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441231-hv_vcpu_run",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Hypervisor maps the physical memory in the guest to virtual memory of the host process. Create a new memory mapping with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441187-hv_vm_map",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Access to memory outside the mapped range causes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441231-hv_vcpu_run",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to exit. Emulate memory-mapped hardware by emulating the memory access on exit and re-enter the guest with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441231-hv_vcpu_run",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1676671",
+          "level": 3,
+          "text": "Example VM Life Cycle",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure illustrates a simplified life cycle of creating and running a virtual machine with one or more virtual CPUs using the Hypervisor API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2916425",
+              "metadata": {
+                "abstract": [
+                  {
+                    "text": "An example life cycle of creating and running a virtual machine with one or more virtual CPUs.",
+                    "type": "text"
+                  }
+                ],
+                "anchor": "2916425",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At the start of a task:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a VM with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441424-hv_vm_create",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Map a region in the virtual address space of the current task into the guest physical address space of the VM with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441187-hv_vm_map",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create one or more POSIX threads with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pthread_create(_:_:_:_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In each thread:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a virtual CPU with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441691-hv_vcpu_create",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441231-hv_vcpu_run",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to run the vCPU.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a thread receives an exit event:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Handle the event.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Re-enter the guest with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441231-hv_vcpu_run",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or destroy the vCPU with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441507-hv_vcpu_destroy",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After all threads finish:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Unmap the memory region with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441378-hv_vm_unmap",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Destroy the VM with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441356-hv_vm_destroy",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.security.hypervisor": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.security.hypervisor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.security.hypervisor",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.security.hypervisor"
+    },
+    "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.security.hypervisor": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app creates and manages virtual machines.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.security.hypervisor",
+      "kind": "symbol",
+      "name": "com.apple.security.hypervisor",
+      "role": "symbol",
+      "title": "com.apple.security.hypervisor",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.security.hypervisor"
+    },
+    "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.vm.device-access": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app captures USB devices and uses them in the guest-operating system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.vm.device-access",
+      "kind": "symbol",
+      "name": "com.apple.vm.device-access",
+      "role": "symbol",
+      "title": "com.apple.vm.device-access",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.vm.device-access"
+    },
+    "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.vm.hypervisor": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app creates and manages virtual machines.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.vm.hypervisor",
+      "kind": "symbol",
+      "name": "com.apple.vm.hypervisor",
+      "role": "symbol",
+      "title": "com.apple.vm.hypervisor",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.vm.hypervisor"
+    },
+    "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.vm.networking": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the app manages virtual network interfaces without escalating privileges to the root user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.vm.networking",
+      "kind": "symbol",
+      "name": "com.apple.vm.networking",
+      "role": "symbol",
+      "title": "com.apple.vm.networking",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.vm.networking"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441187-hv_vm_map": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441187-hv_vm_map",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vm_map(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441187-hv_vm_map"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441231-hv_vcpu_run": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441231-hv_vcpu_run",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_run(_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441231-hv_vcpu_run"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441356-hv_vm_destroy": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441356-hv_vm_destroy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vm_destroy()",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441356-hv_vm_destroy"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441378-hv_vm_unmap": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441378-hv_vm_unmap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vm_unmap(_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441378-hv_vm_unmap"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441424-hv_vm_create": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441424-hv_vm_create",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vm_create(_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441424-hv_vm_create"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441507-hv_vcpu_destroy": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441507-hv_vcpu_destroy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_destroy(_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441507-hv_vcpu_destroy"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441691-hv_vcpu_create": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441691-hv_vcpu_create",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_create(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441691-hv_vcpu_create"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/apple_silicon": {
+      "abstract": [
+        {
+          "text": "Create and run virtual machines on Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/apple_silicon",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Silicon",
+      "type": "topic",
+      "url": "/documentation/hypervisor/apple_silicon"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hypervisor_constants": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hypervisor_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hypervisor constants",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hypervisor_constants"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hypervisor_data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hypervisor_data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hypervisor Data Types",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hypervisor_data_types"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hypervisor_functions": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hypervisor_functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hypervisor Functions",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hypervisor_functions"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hypervisor_structures": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hypervisor_structures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hypervisor structures",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hypervisor_structures"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac": {
+      "abstract": [
+        {
+          "text": "Create and run virtual machines on Intel-based Mac computers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Intel-based Mac",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac"
+    },
+    "doc://com.apple.documentation/documentation/kernel/sys": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/sys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "sys",
+      "type": "topic",
+      "url": "/documentation/kernel/sys"
+    },
+    "doc://com.apple.documentation/documentation/kernel/sys#3571071": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/sys#3571071",
+      "kind": "article",
+      "role": "task",
+      "title": "sysctl",
+      "type": "section",
+      "url": "/documentation/kernel/sys#3571071"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-3699125": {
+      "identifier": "link-3699125",
+      "kind": "article",
+      "role": "link",
+      "title": "Mac App Store",
+      "type": "topic",
+      "url": "https://www.appstore.com/"
+    },
+    "link-media-2916425": {
+      "identifier": "link-media-2916425",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/hypervisor#2916425"
+    },
+    "media-2916425": {
+      "abstract": [
+        {
+          "text": "An example life cycle of creating and running a virtual machine with one or more virtual CPUs.",
+          "type": "text"
+        }
+      ],
+      "alt": "A flow diagram that represents the life cycle of a virtual machine.",
+      "identifier": "media-2916425",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f7344dbd5a/e960d911-a9fe-4678-9a10-45f268db1970.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "3624748",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/apple_silicon",
+        "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac"
+      ],
+      "kind": "taskGroup",
+      "title": "Platforms"
+    },
+    {
+      "anchor": "3579290",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.security.hypervisor",
+        "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.vm.hypervisor",
+        "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.vm.networking",
+        "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.vm.device-access"
+      ],
+      "kind": "taskGroup",
+      "title": "Entitlements"
+    },
+    {
+      "anchor": "3610822",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/hypervisor_structures",
+        "doc://com.apple.documentation/documentation/hypervisor/hypervisor_constants",
+        "doc://com.apple.documentation/documentation/hypervisor/hypervisor_functions",
+        "doc://com.apple.documentation/documentation/hypervisor/hypervisor_data_types"
+      ],
+      "kind": "taskGroup",
+      "title": "Reference"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/hypervisor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/hypervisor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

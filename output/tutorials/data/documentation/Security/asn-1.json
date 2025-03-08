@@ -1,0 +1,943 @@
+{
+  "abstract": [
+    {
+      "text": "Encode and decode Distinguished Encoding Rules (DER) and Basic Encoding Rules (BER) data streams.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/asn-1"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "ASN.1"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use an ASN.1 coder to encode and decode both DER and BER data streams based on templates that you supply, which in turn are based upon ASN.1 specifications. You must import this API explicitly:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "import Security.SecAsn1Coder",
+                    "import Security.SecAsn1Templates"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "#import <Security/SecAsn1Coder.h>",
+                    "#import <Security/SecAsn1Templates.h>"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecAsn1AlgId": {
+      "abstract": [
+        {
+          "text": "A structure identifying an ASN.1 algorithm by its OID, and its corresponding parameters.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAsn1AlgId"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAsn1AlgId",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecAsn1AlgId"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecAsn1AlgId",
+      "type": "topic",
+      "url": "/documentation/security/secasn1algid"
+    },
+    "doc://com.apple.security/documentation/Security/SecAsn1AllocCopy": {
+      "abstract": [
+        {
+          "text": "Allocates memory for an item’s data field in the coder object’s memory pool and copies in a block of data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecAsn1AllocCopy"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAsn1AllocCopy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecAsn1AllocCopy",
+      "type": "topic",
+      "url": "/documentation/security/secasn1alloccopy"
+    },
+    "doc://com.apple.security/documentation/Security/SecAsn1AllocCopyItem": {
+      "abstract": [
+        {
+          "text": "Allocates memory for an item’s data field in the coder object’s memory pool and copies in a block of data from another item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecAsn1AllocCopyItem"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAsn1AllocCopyItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecAsn1AllocCopyItem",
+      "type": "topic",
+      "url": "/documentation/security/secasn1alloccopyitem"
+    },
+    "doc://com.apple.security/documentation/Security/SecAsn1AllocItem": {
+      "abstract": [
+        {
+          "text": "Allocates memory for an item’s data field in the coder object’s memory pool.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecAsn1AllocItem"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAsn1AllocItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecAsn1AllocItem",
+      "type": "topic",
+      "url": "/documentation/security/secasn1allocitem"
+    },
+    "doc://com.apple.security/documentation/Security/SecAsn1CoderCreate": {
+      "abstract": [
+        {
+          "text": "Creates an ASN.1 coder object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecAsn1CoderCreate"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAsn1CoderCreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecAsn1CoderCreate",
+      "type": "topic",
+      "url": "/documentation/security/secasn1codercreate"
+    },
+    "doc://com.apple.security/documentation/Security/SecAsn1CoderRef": {
+      "abstract": [
+        {
+          "text": "An object that represents an ASN.1 coder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecAsn1CoderRef"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAsn1CoderRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecAsn1CoderRef",
+      "type": "topic",
+      "url": "/documentation/security/secasn1coderref"
+    },
+    "doc://com.apple.security/documentation/Security/SecAsn1CoderRelease": {
+      "abstract": [
+        {
+          "text": "Destroys an ASN.1 coder object and releases all of its memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecAsn1CoderRelease"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAsn1CoderRelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecAsn1CoderRelease",
+      "type": "topic",
+      "url": "/documentation/security/secasn1coderrelease"
+    },
+    "doc://com.apple.security/documentation/Security/SecAsn1Decode": {
+      "abstract": [
+        {
+          "text": "Decodes untyped DER data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecAsn1Decode"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAsn1Decode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecAsn1Decode",
+      "type": "topic",
+      "url": "/documentation/security/secasn1decode"
+    },
+    "doc://com.apple.security/documentation/Security/SecAsn1DecodeData": {
+      "abstract": [
+        {
+          "text": "Decodes an ASN.1 item in DER format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecAsn1DecodeData"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAsn1DecodeData",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecAsn1DecodeData",
+      "type": "topic",
+      "url": "/documentation/security/secasn1decodedata"
+    },
+    "doc://com.apple.security/documentation/Security/SecAsn1EncodeItem": {
+      "abstract": [
+        {
+          "text": "Encodes data in DER format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecAsn1EncodeItem"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAsn1EncodeItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecAsn1EncodeItem",
+      "type": "topic",
+      "url": "/documentation/security/secasn1encodeitem"
+    },
+    "doc://com.apple.security/documentation/Security/SecAsn1Item": {
+      "abstract": [
+        {
+          "text": "A structure holding DER encoded data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAsn1Item"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAsn1Item",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecAsn1Item"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecAsn1Item",
+      "type": "topic",
+      "url": "/documentation/security/secasn1item"
+    },
+    "doc://com.apple.security/documentation/Security/SecAsn1Malloc": {
+      "abstract": [
+        {
+          "text": "Allocates memory in the coder object’s memory pool.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecAsn1Malloc"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAsn1Malloc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecAsn1Malloc",
+      "type": "topic",
+      "url": "/documentation/security/secasn1malloc"
+    },
+    "doc://com.apple.security/documentation/Security/SecAsn1Oid": {
+      "abstract": [
+        {
+          "text": "An object identifier.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAsn1Oid"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAsn1Oid",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecAsn1Oid"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecAsn1Oid",
+      "type": "topic",
+      "url": "/documentation/security/secasn1oid"
+    },
+    "doc://com.apple.security/documentation/Security/SecAsn1OidCompare": {
+      "abstract": [
+        {
+          "text": "Compares two decoded object identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecAsn1OidCompare"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAsn1OidCompare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecAsn1OidCompare",
+      "type": "topic",
+      "url": "/documentation/security/secasn1oidcompare"
+    },
+    "doc://com.apple.security/documentation/Security/SecAsn1PubKeyInfo": {
+      "abstract": [
+        {
+          "text": "A structure containing a public key and its associated algorithm.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAsn1PubKeyInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAsn1PubKeyInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecAsn1PubKeyInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecAsn1PubKeyInfo",
+      "type": "topic",
+      "url": "/documentation/security/secasn1pubkeyinfo"
+    },
+    "doc://com.apple.security/documentation/Security/SecAsn1TemplateChooser": {
+      "abstract": [
+        {
+          "text": "Dynamically provides the sub-template to use during encode or decode.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAsn1TemplateChooser"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAsn1TemplateChooser",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecAsn1TemplateChooser"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecAsn1TemplateChooser",
+      "type": "topic",
+      "url": "/documentation/security/secasn1templatechooser"
+    },
+    "doc://com.apple.security/documentation/Security/SecAsn1TemplateChooserPtr": {
+      "abstract": [
+        {
+          "text": "A pointer to the template chooser function.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAsn1TemplateChooserPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAsn1TemplateChooserPtr",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecAsn1TemplateChooserPtr"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecAsn1TemplateChooserPtr",
+      "type": "topic",
+      "url": "/documentation/security/secasn1templatechooserptr"
+    },
+    "doc://com.apple.security/documentation/Security/SecAsn1Template_struct": {
+      "abstract": [
+        {
+          "text": "A structure that defines one element of a BER or DER encoding.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAsn1Template_struct"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAsn1Template_struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecAsn1Template_struct"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecAsn1Template_struct",
+      "type": "topic",
+      "url": "/documentation/security/secasn1template_struct"
+    },
+    "doc://com.apple.security/documentation/Security/generic-templates": {
+      "abstract": [
+        {
+          "text": "Use templates for each of the simple types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/generic-templates",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Generic Templates",
+      "type": "topic",
+      "url": "/documentation/security/generic-templates"
+    },
+    "doc://com.apple.security/documentation/Security/type-tags": {
+      "abstract": [
+        {
+          "text": "Recognize BER and DER values for ASN.1 identifier octets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/type-tags",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Type Tags",
+      "type": "topic",
+      "url": "/documentation/security/type-tags"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Encoding",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecAsn1Item",
+        "doc://com.apple.security/documentation/Security/SecAsn1Template_struct",
+        "doc://com.apple.security/documentation/Security/SecAsn1Template_struct",
+        "doc://com.apple.security/documentation/Security/SecAsn1TemplateChooser",
+        "doc://com.apple.security/documentation/Security/SecAsn1TemplateChooserPtr",
+        "doc://com.apple.security/documentation/Security/type-tags"
+      ],
+      "title": "Encoding"
+    },
+    {
+      "anchor": "OID-Comparison",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecAsn1Oid"
+      ],
+      "title": "OID Comparison"
+    },
+    {
+      "anchor": "Public-Key-Info",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecAsn1AlgId",
+        "doc://com.apple.security/documentation/Security/SecAsn1PubKeyInfo"
+      ],
+      "title": "Public Key Info"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Coder-Creation",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecAsn1CoderCreate",
+                "doc://com.apple.security/documentation/Security/SecAsn1CoderRelease",
+                "doc://com.apple.security/documentation/Security/SecAsn1CoderRef"
+              ],
+              "title": "Coder Creation"
+            },
+            {
+              "anchor": "Encoding",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecAsn1EncodeItem",
+                "doc://com.apple.security/documentation/Security/SecAsn1Item",
+                "doc://com.apple.security/documentation/Security/SecAsn1Template_struct",
+                "doc://com.apple.security/documentation/Security/SecAsn1Template_struct",
+                "doc://com.apple.security/documentation/Security/SecAsn1TemplateChooser",
+                "doc://com.apple.security/documentation/Security/SecAsn1TemplateChooserPtr",
+                "doc://com.apple.security/documentation/Security/generic-templates",
+                "doc://com.apple.security/documentation/Security/type-tags"
+              ],
+              "title": "Encoding"
+            },
+            {
+              "anchor": "Decoding",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecAsn1Decode",
+                "doc://com.apple.security/documentation/Security/SecAsn1DecodeData"
+              ],
+              "title": "Decoding"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "You don’t explicitly free any of the memory allocated in a coder object’s memory pool using these functions. Instead, that memory is automatically freed when you destroy the coder with a call to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/SecAsn1CoderRelease",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Memory-Management",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecAsn1Malloc",
+                "doc://com.apple.security/documentation/Security/SecAsn1AllocItem",
+                "doc://com.apple.security/documentation/Security/SecAsn1AllocCopy",
+                "doc://com.apple.security/documentation/Security/SecAsn1AllocCopyItem"
+              ],
+              "title": "Memory Management"
+            },
+            {
+              "anchor": "OID-Comparison",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecAsn1OidCompare",
+                "doc://com.apple.security/documentation/Security/SecAsn1Oid"
+              ],
+              "title": "OID Comparison"
+            },
+            {
+              "anchor": "Public-Key-Info",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecAsn1AlgId",
+                "doc://com.apple.security/documentation/Security/SecAsn1PubKeyInfo"
+              ],
+              "title": "Public Key Info"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAsn1AlgId/title",
+          "value": "SecAsn1AlgId"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAsn1AlgId/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAsn1AlgId"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAsn1AlgId/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAsn1AlgId"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAsn1TemplateChooserPtr/title",
+          "value": "SecAsn1TemplateChooserPtr"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAsn1TemplateChooserPtr/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAsn1TemplateChooserPtr"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAsn1TemplateChooserPtr/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAsn1TemplateChooserPtr"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAsn1TemplateChooser/title",
+          "value": "SecAsn1TemplateChooser"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAsn1TemplateChooser/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAsn1TemplateChooser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAsn1TemplateChooser/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAsn1TemplateChooser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAsn1PubKeyInfo/title",
+          "value": "SecAsn1PubKeyInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAsn1PubKeyInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAsn1PubKeyInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAsn1PubKeyInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAsn1PubKeyInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAsn1Item/title",
+          "value": "SecAsn1Item"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAsn1Item/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAsn1Item"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAsn1Item/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAsn1Item"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAsn1Template_struct/title",
+          "value": "SecAsn1Template_struct"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAsn1Template_struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAsn1Template_struct"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAsn1Template_struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAsn1Template_struct"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAsn1Oid/title",
+          "value": "SecAsn1Oid"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAsn1Oid/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAsn1Oid"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAsn1Oid/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAsn1Oid"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/asn-1"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/asn-1"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

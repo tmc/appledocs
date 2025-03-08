@@ -1,0 +1,684 @@
+{
+  "abstract": [
+    {
+      "text": "Support Dark Mode, reduce memory and power usage, and ensure feature compatibility to improve your web extension experience in Safari and web apps.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/optimizing-your-web-extension-for-safari"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Optimizing your web extension for Safari"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add support for Dark Mode in your user interface so that your web extension fits in with the user’s selection of a light or dark overall scheme. Use a nonpersistent background page or service worker so that Safari can determine when to keep it in memory or unload it based on system memory usage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As you update your Safari web extension to take advantage of new features that Safari supports, specify the Safari versions that your web extension is compatible with to avoid confusing your users.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Improve-your-extension-experience-in-iOS",
+          "level": 3,
+          "text": "Improve your extension experience in iOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are important differences in Safari between macOS and iOS that your extension needs to address to give users the best possible experience in iOS:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Users interact with the screen using their fingers instead of a mouse. Use pointer events instead of mouse events to handle touch interactions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "There are a number of different screen sizes for different devices and orientations. Make full page extensions and pop-up pages responsive to different sizes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Some users prefer larger type on small screens. Support Dynamic Type in your web pages to let the user specify type size.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS doesn’t support some APIs. To prevent throwing exceptions, check for the existence of APIs in iOS before using them.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Edit-the-CSS-files-to-support-Dark-Mode",
+          "level": 3,
+          "text": "Edit the CSS files to support Dark Mode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable basic support for Dark Mode in your extension’s visual elements, add the following code to your CSS files:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ":root {",
+            "    color-scheme: light dark;",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This allows Safari to automatically adjust the visual element’s background color, text colors, and form element colors. For more information about how to customize your Dark Mode experience, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://webkit.org/blog/8840/dark-mode-support-in-webkit/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reduce-memory-and-power-usage-with-a-nonpersistent-background-page",
+          "level": 3,
+          "text": "Reduce memory and power usage with a nonpersistent background page",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider making your background page nonpersistent in macOS when it’s primarily event-driven and responds to user interactions. In iOS, you must make your background page nonpersistent. Safari unloads your nonpersistent background page when the user isn’t directly interacting with the extension, which reduces memory usage and improves battery life. Your background page must be nonpersistent or you must declare your background script as a service worker if you’re using manifest version 3. Use a service worker for better compatibility with other browsers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make your background page nonpersistent by setting the ",
+              "type": "text"
+            },
+            {
+              "code": "persistent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute to ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in your extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "manifest.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"background\": {",
+            "    \"scripts\": [\"background.js\"],",
+            "    \"persistent\": false",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Or, declare your background script as a service worker.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"background\": {",
+            "    \"service_worker\": \"background.js\"",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you make your background page nonpersistent:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add event listeners in the top level of your background page.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Storage",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " API to save and restore state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Alarms",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " API instead of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "setTimeout",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Make your background page persistent in macOS if you use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "webRequest",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " API in it, due to the frequency of callbacks that might fail if Safari unloads the background page.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Ensure-feature-compatibility-by-specifying-versions",
+          "level": 3,
+          "text": "Ensure feature compatibility by specifying versions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you build features in your web extension that need a specific version of Safari, specify the required versions in your ",
+              "type": "text"
+            },
+            {
+              "code": "manifest.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"browser_specific_settings\": {",
+            "    \"safari\": {",
+            "        \"strict_min_version\": \"14.0\",",
+            "        \"strict_max_version\": \"14.*\"",
+            "    }",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide a specific version number in ",
+              "type": "text"
+            },
+            {
+              "code": "strict_min_version",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if you have a minimum Safari version requirement. Provide a specific version number in ",
+              "type": "text"
+            },
+            {
+              "code": "strict_max_version",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to limit the latest version of Safari that can use your Safari web extension. Use a wildcard symbol (",
+              "type": "text"
+            },
+            {
+              "code": "*",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") in ",
+              "type": "text"
+            },
+            {
+              "code": "strict_max_version",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (for example, ",
+              "type": "text"
+            },
+            {
+              "code": "14.*)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to indicate that your extension works in any minor version of Safari 14, but isn’t compatible with newer versions of Safari.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In iOS, the iOS version and Safari version numbers are the same.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Review your manifest and web extension API usage periodically to see if there are new features Safari supports that you want to implement in your web extension. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/assessing-your-safari-web-extension-s-browser-compatibility",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/adopting-new-safari-web-extension-apis": {
+      "abstract": [
+        {
+          "text": "Improve your web extension in Safari with a non-persistent background page and new tab-override customization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adopting-new-safari-web-extension-apis",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adopting New Safari Web Extension APIs",
+      "type": "topic",
+      "url": "/documentation/safariservices/adopting-new-safari-web-extension-apis"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/assessing-your-safari-web-extension-s-browser-compatibility": {
+      "abstract": [
+        {
+          "text": "Review your Safari web extension implementation plan, manifest keys, and JavaScript API usage for compatibility with other browsers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/assessing-your-safari-web-extension-s-browser-compatibility",
+      "kind": "article",
+      "role": "article",
+      "title": "Assessing your Safari web extension’s browser compatibility",
+      "type": "topic",
+      "url": "/documentation/safariservices/assessing-your-safari-web-extension-s-browser-compatibility"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions": {
+      "abstract": [
+        {
+          "text": "Create web extensions that work in Safari and other browsers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari web extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-web-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/syncing-safari-web-extensions-across-devices-and-platforms": {
+      "abstract": [
+        {
+          "text": "Let users install your extension on one device and then use and manage the extension on all their other iOS and macOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/syncing-safari-web-extensions-across-devices-and-platforms",
+      "kind": "article",
+      "role": "article",
+      "title": "Syncing Safari web extensions across devices and platforms",
+      "type": "topic",
+      "url": "/documentation/safariservices/syncing-safari-web-extensions-across-devices-and-platforms"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Use developer resources to investigate and resolve common problems with Safari web extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-web-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Troubleshooting your Safari web extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/troubleshooting-your-safari-web-extension"
+    },
+    "https://webkit.org/blog/8840/dark-mode-support-in-webkit/": {
+      "identifier": "https://webkit.org/blog/8840/dark-mode-support-in-webkit/",
+      "title": "Dark Mode Support in WebKit",
+      "titleInlineContent": [
+        {
+          "text": "Dark Mode Support in WebKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://webkit.org/blog/8840/dark-mode-support-in-webkit/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Extension-improvements",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/adopting-new-safari-web-extension-apis",
+        "doc://com.apple.safariservices/documentation/SafariServices/syncing-safari-web-extensions-across-devices-and-platforms",
+        "doc://com.apple.safariservices/documentation/SafariServices/assessing-your-safari-web-extension-s-browser-compatibility",
+        "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-web-extension"
+      ],
+      "title": "Extension improvements"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Extension-improvements",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/adopting-new-safari-web-extension-apis",
+                "doc://com.apple.safariservices/documentation/SafariServices/syncing-safari-web-extensions-across-devices-and-platforms",
+                "doc://com.apple.safariservices/documentation/SafariServices/assessing-your-safari-web-extension-s-browser-compatibility",
+                "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-web-extension"
+              ],
+              "title": "Extension improvements"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/optimizing-your-web-extension-for-safari"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/optimizing-your-web-extension-for-safari"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

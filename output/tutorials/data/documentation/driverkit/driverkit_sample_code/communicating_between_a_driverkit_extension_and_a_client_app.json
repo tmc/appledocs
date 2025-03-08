@@ -1,0 +1,2084 @@
+{
+  "abstract": [
+    {
+      "text": "Send and receive different kinds of data securely by validating inputs and asynchronously by storing and using a callback.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app"
+  },
+  "kind": "article",
+  "legacy_identifier": 3699115,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "DriverKit"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "14.0",
+        "name": "macOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      },
+      {
+        "current": "24.4",
+        "introducedAt": "20.0",
+        "name": "DriverKit"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Communicating between a DriverKit extension and a client app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project shows how a DriverKit extension (dext) receives data from an app client running on macOS or iPadOS. The sample handles both scalar data and structures, and has two code paths for each type: an insecure version, and a “checked” version that validates traits like data size and input count.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample also demonstrates registering and executing a callback function, so the driver can call the client asynchronously.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This version updates the sample to run in iPadOS. DriverKit on iPadOS requires an iPad with an M-series chip.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample project contains two targets:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DriverKitSampleApp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " - A  SwiftUI app for macOS and iPadOS. Use this app to install or update the driver, and then to call the driver directly.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NullDriver",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " - The dext itself, which responds to client calls and optionally checks that each call sends the expected data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "4324300",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the sample code project, you first need to build and run ",
+              "type": "text"
+            },
+            {
+              "code": "DriverKitSampleApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which installs the driver.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can set up the project to build with automatic signing (recommended) or manual signing. To use automatic signing:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Temporarily turn off SIP, as described in the article ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/disabling-and-enabling-system-integrity-protection",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". After you’ve done this, confirm that SIP is disabled with the Terminal command ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "csrutil status",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and enter dext development mode with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "systemextensionsctl developer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", as described in the article ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DriverKitUserClientSample",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " project and use the “Signing & Capabilities” tab to set the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DriverKitSampleApp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NullDriver",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " targets to “Automatically manage signing”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the “Build Settings” tab, change the “Code Signing Identity” value to “Sign to Run Locally” for both targets.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Also in “Build Settings”, add a new build setting with the name ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AD_HOC_CODE_SIGNING_ALLOWED",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and the value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "YES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for Debug schemes. This build setting is already present in the downloadable version of the project; you need to add it to your own projects to build and run them automatically.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to build with manual signing instead, do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose new bundle identifiers for the app and driver. The bundle identifiers included with the project already have App IDs associated with them, so you need unique identifiers to create your own App IDs. Use a reverse-DNS format for your identifier, as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/preparing-your-app-for-distribution",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Xcode Project navigator, choose the project and use the Signing & Capabilities tab to replace the existing bundle identfier with your chosen identifier for each of the targets.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Request entitlements, as described in  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". For ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DriverKitSampleApp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", you need the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.system-extension.install",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.communicates-with-drivers",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " entitlements. For ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NullDriver",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", you need the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " entitlement and the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.allow-any-userclient-access",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " entitlements. This latter macOS-only entitlement allows any app to connect to the driver as a user client. Although this simplifies running the sample code, in your own apps you may prefer to use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.userclient-access",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". This entitlement goes on the app rather than the driver, and lists bundle identifiers of drivers it can connect to.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "developer.apple.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", select Account and visit the “Certificates, Identifiers, and Profiles” section. Select “Identifiers” and create new App IDs for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DriverKitSampleApp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NullDriver",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". For the Bundle ID, choose “explicit”, and use the names you chose in the first step. When you reach the “Capabilities” step, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DriverKitSampleApp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " needs the “Communicates with Drivers” and “System Extension” capabilities. For ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NullDriver",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", under the “Capabilities” tab, enable the “DriverKit (development)” capability, and under the “Additional Capabilities” tab, enable “DriverKit” and “DriverKit Allow Any UserClient Access”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For each of the App IDs you created in the previous steps, select Profiles to create a new provisioning profile. You need one for the macOS and iOS host app, and one for the driver. When creating the driver’s profile, be sure to select DriverKit App Development as the profile type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Download each profile and add it to Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the “Signing & Capabilities” tab, set each target to manual code signing and select the newly-created profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "4324301",
+          "level": 3,
+          "text": "Install and run the driver extension on macOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the sample app in macOS, use the scheme selector to select the ",
+              "type": "text"
+            },
+            {
+              "code": "DriverKitSampleApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " scheme and the My Mac destination. Build the target, then copy the app to the Applications folder and launch the app. For simplicity, you can run the app directly from Xcode instead, without moving the app bundle to the Applications folder each time. To do this, use the ",
+              "type": "text"
+            },
+            {
+              "code": "systemextensionsctl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command to enable system extensions developer mode, as explained in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "DriverKitSampleApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " target declares the ",
+              "type": "text"
+            },
+            {
+              "code": "NullDriver",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a dependency, so building the app target builds the dext and its installer together. When run, the ",
+              "type": "text"
+            },
+            {
+              "code": "DriverKitSampleApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " shows a single window with a text label that says “NullDriver isn’t loaded”. Below this, it shows an “Install Dext” button, and a “Communicate with Dext” button. Click “Install Dext” to perform the installation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To install the dext on macOS, the app uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework to install and activate the dext, as described in ",
+              "type": "text"
+            },
+            {
+              "code": "Installing System Extensions and Drivers",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let request = OSSystemExtensionRequest",
+            "    .activationRequest(forExtensionWithIdentifier: dextIdentifier,",
+            "                       queue: .main)",
+            "request.delegate = self",
+            "OSSystemExtensionManager.shared.submitRequest(request)"
+          ],
+          "metadata": {
+            "anchor": "4324283",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This call may prompt a “System Extension Blocked” dialog, which explains that ",
+                  "type": "text"
+                },
+                {
+                  "code": "DriverKitSampleApp",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " tried to install a new system extension. To complete the installation, open System Preferences and go to the Security & Privacy pane. Unlock the pane if necessary, and click “Allow” to complete the installation. To confirm installation of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "NullDriver",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " extension, run ",
+                  "type": "text"
+                },
+                {
+                  "code": "systemextensionsctl list",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in Terminal.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "4324302",
+          "level": 3,
+          "text": "Run the sample in iPadOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the sample app in iPadOS, connect an iPad with an M-series chip to your Mac. Use the scheme selector to select the ",
+              "type": "text"
+            },
+            {
+              "code": "DriverKitSampleApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " scheme and the name of your iPad as the destination. Run the app directly from Xcode to launch it on your iPad.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iPadOS, the ",
+              "type": "text"
+            },
+            {
+              "code": "DriverKitSampleApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " app doesn’t show the Driver Manager section because the app isn’t responsible for installing the driver like it is in macOS. Instead, open the Settings app, navigate to Privacy & Security > Drivers, and enable the driver there. You can also navigate to this settings panel by tapping “Open Settings to Enable Driver” in DriverKitSampleApp.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4324303",
+          "level": 3,
+          "text": "Call the driver from the client",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After installing the driver and granting it permission to run in the Settings app, you can use DriverKitSampleApp to communicate with the driver. Click the “Communicate with Dext” button to connect to the driver.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To find the driver, the host app uses the ",
+              "type": "text"
+            },
+            {
+              "code": "dextIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to create a matching dictionary and registers this with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/iokit/1514362-ioserviceaddmatchingnotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When the system finds a running driver with the matching identifier, it calls the app’s ",
+              "type": "text"
+            },
+            {
+              "code": "DeviceAdded",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CFMutableDictionaryRef matchingDictionary = IOServiceNameMatching(dextIdentifier);",
+            "if (matchingDictionary == NULL)",
+            "{",
+            "    fprintf(stderr, \"Failed to initialize matchingDictionary.\\n\");",
+            "    UserClientTeardown();",
+            "    return false;",
+            "}",
+            "matchingDictionary = (CFMutableDictionaryRef)CFRetain(matchingDictionary);",
+            "matchingDictionary = (CFMutableDictionaryRef)CFRetain(matchingDictionary);",
+            "",
+            "ret = IOServiceAddMatchingNotification(globalNotificationPort, kIOFirstMatchNotification, matchingDictionary, DeviceAdded, refcon, &globalDeviceAddedIter);",
+            "if (ret != kIOReturnSuccess)",
+            "{",
+            "    fprintf(stderr, \"Add matching notification failed with error: 0x%08x.\\n\", ret);",
+            "    UserClientTeardown();",
+            "    return false;",
+            "}",
+            "DeviceAdded(refcon, globalDeviceAddedIter);"
+          ],
+          "metadata": {
+            "anchor": "4324286",
+            "title": "Listing 2"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When ",
+              "type": "text"
+            },
+            {
+              "code": "DeviceAdded",
+              "type": "codeVoice"
+            },
+            {
+              "text": " runs, it iterates over matching services until it finds one that it can connect to with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/iokit/1514515-ioserviceopen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If the ",
+              "type": "text"
+            },
+            {
+              "code": "IOServiceOpen",
+              "type": "codeVoice"
+            },
+            {
+              "text": " call succeeds, the app calls an internal ",
+              "type": "text"
+            },
+            {
+              "code": "SwiftDeviceAdded",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to update the SwiftUI data model with a connection to the driver.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "void DeviceAdded(void* refcon, io_iterator_t iterator)",
+            "{",
+            "    kern_return_t ret = kIOReturnSuccess;",
+            "    io_connect_t connection = IO_OBJECT_NULL;",
+            "    io_service_t device = IO_OBJECT_NULL;",
+            "    bool attemptedToMatchDevice = false;",
+            "",
+            "    while ((device = IOIteratorNext(iterator)) != IO_OBJECT_NULL)",
+            "    {",
+            "        attemptedToMatchDevice = true;",
+            "",
+            "        // Open a connection to this user client as a server to that client, and store the instance in \"service\"",
+            "        ret = IOServiceOpen(device, mach_task_self_, 0, &connection);",
+            "",
+            "        if (ret == kIOReturnSuccess)",
+            "        {",
+            "            fprintf(stdout, \"Opened connection to dext.\\n\");",
+            "        }",
+            "        else",
+            "        {",
+            "            fprintf(stderr, \"Failed opening connection to dext with error: 0x%08x.\\n\", ret);",
+            "            IOObjectRelease(device);",
+            "            return;",
+            "        }",
+            "",
+            "        SwiftDeviceAdded(refcon, connection);",
+            "",
+            "        IOObjectRelease(device);",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4324287",
+            "title": "Listing 3"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The SwiftUI “Driver Communication” view shows three sets of buttons, along with a “Manage Dext” button to return to the installer view. The sets of buttons that communicate with the driver are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "“Unchecked” — “Scalar”, “Struct”, and “Large Struct”",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "“Checked” — “Scalar” and “Struct”",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "“Async” — “Assign Callback” and “Async Action”",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you click or tap one of these buttons, the “Waiting for action” label changes to “Request returned successfully” if the call to the driver succeeds. If an error occurs, the label says “Request returned an error, check the logs for details”. If you launched the app from Xcode, view the Console to see the data sent to and returned from the driver.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The buttons in the Unchecked and Checked sections exercise different code paths that send scalar values and structures to the dext. Note that these are synchronous calls that block until the driver returns a result. The buttons in the Async section perform asynchronous operations that allow the driver to call back to the client after a delay.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each of these options uses the connection in calls to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/iokit/1514793-ioconnectcallscalarmethod",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/iokit/1514274-ioconnectcallstructmethod",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/iokit/1514403-ioconnectcallasyncstructmethod",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/iokit/1514240-ioconnectcallmethod",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/iokit/1514418-ioconnectcallasyncmethod",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which this sample doesn’t use). For example, the following listing shows the Scalar call from the Unchecked button group, which sends an array of 16 ",
+              "type": "text"
+            },
+            {
+              "code": "uint64_t",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values, and receives a different array back.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "kern_return_t ret = kIOReturnSuccess;",
+            "",
+            "// IOConnectCallScalarMethod will fail intentionally for any inputCount or outputCount greater than 16.",
+            "const uint32_t arraySize = 16;",
+            "const uint64_t input[arraySize] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };",
+            "",
+            "uint32_t outputArraySize = arraySize;",
+            "uint64_t output[arraySize] = {};",
+            "",
+            "ret = IOConnectCallScalarMethod(connection, MessageType_Scalar, input, arraySize, output, &outputArraySize);",
+            "if (ret != kIOReturnSuccess)",
+            "{",
+            "    printf(\"IOConnectCallScalarMethod failed with error: 0x%08x.\\n\", ret);",
+            "    PrintErrorDetails(ret);",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4324288",
+            "title": "Listing 4"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The other options are all similar, differing only in which ",
+              "type": "text"
+            },
+            {
+              "code": "IOConnect...",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function they call and the type of data they send.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4324304",
+          "level": 3,
+          "text": "Validate arguments to driver function calls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NullDriver",
+              "type": "codeVoice"
+            },
+            {
+              "text": " receives calls from the client in its overridden ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/iouserclient/3325619-externalmethod",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. The Unchecked options in the SwiftUI view perform calls that the driver passes unchecked to its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/iouserclient/3325619-externalmethod",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implementation. In practice, it’s important that a driver validates its inputs before passing them along, to make sure the data is the expected size and contains reasonable values. ",
+              "type": "text"
+            },
+            {
+              "code": "NullDriver",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has functions that check scalar and structure calls, which are exercised by the Checked buttons in the SwiftUI app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The “checked” methods in ",
+              "type": "text"
+            },
+            {
+              "code": "NullDriver",
+              "type": "codeVoice"
+            },
+            {
+              "text": " — ",
+              "type": "text"
+            },
+            {
+              "code": "CheckedScalar",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "CheckedStruct",
+              "type": "codeVoice"
+            },
+            {
+              "text": " —  use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/iouserclientmethoddispatch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to describe the expected fields of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/iouserclientmethodarguments",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The sample stores these dispatch instances in an array called ",
+              "type": "text"
+            },
+            {
+              "code": "externalMethodChecks",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, the dispatch instance for the checked scalar call expects to receive and return 16 scalar values, as seen below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[ExternalMethodType_CheckedScalar] =",
+            "{",
+            "    .function = (IOUserClientMethodFunction) &NullDriverUserClient::StaticHandleExternalCheckedScalar,",
+            "    .checkCompletionExists = false, // Since this call doesn't use a callback, this value is false and IOUserClientMethodArguments.completion must be 0.",
+            "    .checkScalarInputCount = 16,",
+            "    .checkStructureInputSize = 0,",
+            "    .checkScalarOutputCount = 16,",
+            "    .checkStructureOutputSize = 0,",
+            "},"
+          ],
+          "metadata": {
+            "anchor": "4324290",
+            "title": "Listing 5"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After fetching the appropriate  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/iouserclientmethoddispatch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance from the array, the driver passes it in its call to the superclass’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/iouserclient/3325619-externalmethod",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " along with the method selector and its arguments. If the number of arguments or return values don’t match what’s in the dispatch instance, the call fails and returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnbadargument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Checking client calls like this prevents a malicious call to the driver from using attack vectors like buffer overruns.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4324305",
+          "level": 3,
+          "text": "Prepare for driver-to-client callbacks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "DriverKitSampleApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " also shows how to communicate from the driver to the client by using a callback function. The Assign Callback button sets up a callback to make an asynchronous call to the client, and then invokes the callback after a short delay to simulate the driver acting on its own. After registering a callback with this button, calls to Async Action re-invoke the callback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NullDriver",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class defines ",
+              "type": "text"
+            },
+            {
+              "code": "NullDriver_IVars",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the DriverKit structure that holds the driver’s instance variables. ",
+              "type": "text"
+            },
+            {
+              "code": "NullDriver_IVars",
+              "type": "codeVoice"
+            },
+            {
+              "text": " stores the callback action, as well as a dispatch queue and a timer dispatch source to use when calling back to the client.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct NullDriverUserClient_IVars {",
+            "    OSAction* callbackAction = nullptr;",
+            "    IODispatchQueue* dispatchQueue = nullptr;",
+            "    IOTimerDispatchSource* dispatchSource = nullptr;",
+            "    OSAction* simulatedAsyncDeviceResponseAction = nullptr;",
+            "};"
+          ],
+          "metadata": {
+            "anchor": "4324292",
+            "title": "Listing 6"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NullDriver",
+              "type": "codeVoice"
+            },
+            {
+              "text": " initializes the ",
+              "type": "text"
+            },
+            {
+              "code": "dispatchQueue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "dispatchSource",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in its ",
+              "type": "text"
+            },
+            {
+              "code": "Start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implementation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The driver’s implementation of ",
+              "type": "text"
+            },
+            {
+              "code": "Start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " also sets up the ",
+              "type": "text"
+            },
+            {
+              "code": "ivars",
+              "type": "codeVoice"
+            },
+            {
+              "text": " member ",
+              "type": "text"
+            },
+            {
+              "code": "simulatedAsyncDeviceResponseAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which the example uses to simulate asynchronous processing that happens on real hardware. This ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/osaction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " refers to an asynchronous timer callback to the ",
+              "type": "text"
+            },
+            {
+              "code": "SimulatedAsyncEvent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function defined in the ",
+              "type": "text"
+            },
+            {
+              "code": ".iig",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "virtual void SimulatedAsyncEvent(OSAction* action, uint64_t time) TYPE(IOTimerDispatchSource::TimerOccurred);"
+          ],
+          "metadata": {
+            "anchor": "4324293",
+            "title": "Listing 7"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This declaration takes the same arguments as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/iotimerdispatchsource/3180736-timeroccurred",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method that that the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/type",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  macro wraps. By declaring the callback’s name as ",
+              "type": "text"
+            },
+            {
+              "code": "SimulatedAsyncEvent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/type",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro synthesizes ",
+              "type": "text"
+            },
+            {
+              "code": "CreateActionSimulatedAsyncEvent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the function that creates the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/osaction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The driver’s ",
+              "type": "text"
+            },
+            {
+              "code": "Start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implementation then calls this synthesized method to initialize the ",
+              "type": "text"
+            },
+            {
+              "code": "simulatedAsyncDeviceResponseAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " member of the ",
+              "type": "text"
+            },
+            {
+              "code": "ivars",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ret = CreateActionSimulatedAsyncEvent(sizeof(DataStruct), &ivars->simulatedAsyncDeviceResponseAction);",
+            "if (ret != kIOReturnSuccess)",
+            "{",
+            "    Log(\"Start() - Failed to create action for simulated async event with error: 0x%08x.\", ret);",
+            "    goto Exit;",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4324294",
+            "title": "Listing 8"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4324306",
+          "level": 3,
+          "text": "Retain and use the callback to notify the client",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the driver is running and it receives a request from the client to register a callback, it calls ",
+              "type": "text"
+            },
+            {
+              "code": "NullDriver::RegisterAsyncCallback",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This method stores the completion, if it exists, in the ",
+              "type": "text"
+            },
+            {
+              "code": "ivars",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure, like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if (arguments->completion == nullptr)",
+            "{",
+            "    Log(\"Got a null completion.\");",
+            "    return kIOReturnBadArgument;",
+            "}",
+            "",
+            "// Save the completion for later.",
+            "// If not saved, then it might be freed before the asychronous return.",
+            "ivars->callbackAction = arguments->completion;",
+            "ivars->callbackAction->retain();"
+          ],
+          "metadata": {
+            "anchor": "4324296",
+            "title": "Listing 9"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, the ",
+              "type": "text"
+            },
+            {
+              "code": "NullDriver::RegisterAsyncCallback",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method sets up a delayed callback to the client to simulate a hardware delay, allowing it to return quickly, by using the ",
+              "type": "text"
+            },
+            {
+              "code": "simulatedAsyncDeviceResponseAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "input = (DataStruct*)arguments->structureInput->getBytesNoCopy();",
+            "",
+            "// Retain action memory for later work.",
+            "void* osActionRetainedMemory = ivars->simulatedAsyncDeviceResponseAction->GetReference();",
+            "memcpy(osActionRetainedMemory, input, sizeof(DataStruct));",
+            "",
+            "output.foo = input->foo + 1;",
+            "output.bar = input->bar + 10;",
+            "",
+            "arguments->structureOutput = OSData::withBytes(&output, sizeof(DataStruct));",
+            "",
+            "// Dispatch action that waits five to seven seconds and then calls the callback.",
+            "const uint64_t fiveSecondsInNanoSeconds = 5000000000;",
+            "const uint64_t twoSecondsInNanoSeconds = 2000000000;",
+            "uint64_t currentTime = clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW);",
+            "",
+            "Log(\"Sleeping async...\");",
+            "ivars->dispatchSource->WakeAtTime(kIOTimerClockMonotonicRaw, currentTime + fiveSecondsInNanoSeconds, twoSecondsInNanoSeconds);"
+          ],
+          "metadata": {
+            "anchor": "4324297",
+            "title": "Listing 10"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the driver stores the callback, the client app can perform multiple simulated callbacks with the Async Action. This calls ",
+              "type": "text"
+            },
+            {
+              "code": "NullDriver::HandleAsyncRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which is largely similar to the delayed call performed in the previous listing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The driver must register the callback function before the client makes an asynchronous request, or the kernel may panic.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Xcode/documentation/Xcode/preparing-your-app-for-distribution": {
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/preparing-your-app-for-distribution",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your app for distribution",
+      "type": "topic",
+      "url": "/documentation/xcode/preparing-your-app-for-distribution"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.allow-any-userclient-access": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.allow-any-userclient-access",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.allow-any-userclient-access",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.allow-any-userclient-access"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.communicates-with-drivers": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.communicates-with-drivers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Communicates with Drivers",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.communicates-with-drivers"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.userclient-access": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.userclient-access",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.userclient-access",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.userclient-access"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.system-extension.install": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.system-extension.install",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "System Extension Entitlement",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.system-extension.install"
+    },
+    "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.userclient-access": {
+      "abstract": [
+        {
+          "text": "An array of strings that represent macOS driver extensions that may communicate with other DriverKit services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.userclient-access",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.userclient-access",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.userclient-access",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.userclient-access"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging and testing system extensions",
+      "type": "topic",
+      "url": "/documentation/driverkit/debugging_and_testing_system_extensions"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app": {
+      "abstract": [
+        {
+          "text": "Send and receive different kinds of data securely by validating inputs and asynchronously by storing and using a callback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Communicating between a DriverKit extension and a client app",
+      "type": "topic",
+      "url": "/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324283": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324283",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324283"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324286": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324286",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324286"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324287": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324287",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324287"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324288": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324288",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324288"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324290": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324290",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324290"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324292": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324292",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 6",
+      "type": "section",
+      "url": "/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324292"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324293": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324293",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 7",
+      "type": "section",
+      "url": "/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324293"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324294": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324294",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 8",
+      "type": "section",
+      "url": "/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324294"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324296": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324296",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 9",
+      "type": "section",
+      "url": "/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324296"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324297": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324297",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 10",
+      "type": "section",
+      "url": "/documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app#4324297"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iotimerdispatchsource/3180736-timeroccurred": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimerOccurred"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iotimerdispatchsource/3180736-timeroccurred",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TimerOccurred",
+      "type": "topic",
+      "url": "/documentation/driverkit/iotimerdispatchsource/3180736-timeroccurred"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iouserclient/3325619-externalmethod": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExternalMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iouserclient/3325619-externalmethod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExternalMethod",
+      "type": "topic",
+      "url": "/documentation/driverkit/iouserclient/3325619-externalmethod"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iouserclientmethodarguments": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iouserclientmethodarguments",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserClientMethodArguments",
+      "type": "topic",
+      "url": "/documentation/driverkit/iouserclientmethodarguments"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iouserclientmethoddispatch": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iouserclientmethoddispatch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserClientMethodDispatch",
+      "type": "topic",
+      "url": "/documentation/driverkit/iouserclientmethoddispatch"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/kioreturnbadargument": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnbadargument",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOReturnBadArgument",
+      "type": "topic",
+      "url": "/documentation/driverkit/kioreturnbadargument"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osaction": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSAction",
+      "type": "topic",
+      "url": "/documentation/driverkit/osaction"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting Entitlements for DriverKit Development",
+      "type": "topic",
+      "url": "/documentation/driverkit/requesting_entitlements_for_driverkit_development"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/type": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/type",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TYPE",
+      "type": "topic",
+      "url": "/documentation/driverkit/type"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514240-ioconnectcallmethod": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514240-ioconnectcallmethod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOConnectCallMethod(_:_:_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514240-ioconnectcallmethod"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514274-ioconnectcallstructmethod": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514274-ioconnectcallstructmethod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOConnectCallStructMethod(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514274-ioconnectcallstructmethod"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514362-ioserviceaddmatchingnotification": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514362-ioserviceaddmatchingnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOServiceAddMatchingNotification(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514362-ioserviceaddmatchingnotification"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514403-ioconnectcallasyncstructmethod": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514403-ioconnectcallasyncstructmethod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOConnectCallAsyncStructMethod(_:_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514403-ioconnectcallasyncstructmethod"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514418-ioconnectcallasyncmethod": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514418-ioconnectcallasyncmethod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOConnectCallAsyncMethod(_:_:_:_:_:_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514418-ioconnectcallasyncmethod"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514515-ioserviceopen": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514515-ioserviceopen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOServiceOpen(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514515-ioserviceopen"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514793-ioconnectcallscalarmethod": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514793-ioconnectcallscalarmethod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOConnectCallScalarMethod(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514793-ioconnectcallscalarmethod"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security/disabling-and-enabling-system-integrity-protection": {
+      "identifier": "doc://com.apple.security/documentation/Security/disabling-and-enabling-system-integrity-protection",
+      "kind": "article",
+      "role": "article",
+      "title": "Disabling and Enabling System Integrity Protection",
+      "type": "topic",
+      "url": "/documentation/security/disabling-and-enabling-system-integrity-protection"
+    },
+    "doc://com.apple.systemextensions/documentation/SystemExtensions": {
+      "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions",
+      "kind": "article",
+      "role": "collection",
+      "title": "System Extensions",
+      "type": "topic",
+      "url": "/documentation/systemextensions"
+    },
+    "https://docs-assets.developer.apple.com/published/6518632214/CommunicatingBetweenADriverKitExtensionAndAClientApp.zip": {
+      "checksum": "eadf066fa2542c36df92b66510677eaa0b7486c20c722e34abc65a606254b2a5f4baaa47a254f67fb88fe8cf94e55977196205e04824a19ff482a672fdedb732",
+      "identifier": "https://docs-assets.developer.apple.com/published/6518632214/CommunicatingBetweenADriverKitExtensionAndAClientApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/6518632214/CommunicatingBetweenADriverKitExtensionAndAClientApp.zip"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/6518632214/CommunicatingBetweenADriverKitExtensionAndAClientApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.userclient-access"
+      ],
+      "title": "External drivers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/driverkit/communicating_between_a_driverkit_extension_and_a_client_app",
+        "documentation/pcidriverkit/communicating_between_a_driverkit_extension_and_a_client_app",
+        "documentation/hiddriverkit/communicating_between_a_driverkit_extension_and_a_client_app",
+        "documentation/usbdriverkit/communicating_between_a_driverkit_extension_and_a_client_app",
+        "documentation/serialdriverkit/communicating_between_a_driverkit_extension_and_a_client_app",
+        "documentation/usbserialdriverkit/communicating_between_a_driverkit_extension_and_a_client_app",
+        "documentation/networkingdriverkit/communicating_between_a_driverkit_extension_and_a_client_app",
+        "documentation/scsicontrollerdriverkit/communicating_between_a_driverkit_extension_and_a_client_app",
+        "documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app",
+        "documentation/hiddriverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app",
+        "documentation/usbdriverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app",
+        "documentation/pcidriverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app",
+        "documentation/serialdriverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app",
+        "documentation/usbserialdriverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app",
+        "documentation/scsicontrollerdriverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/driverkit/driverkit_sample_code/communicating_between_a_driverkit_extension_and_a_client_app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

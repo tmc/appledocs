@@ -1,0 +1,1031 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a single kernel object using a Metal Shading Language (MSL) kernel function.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage",
+        "doc://com.apple.documentation/documentation/coreimage/cikernel"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/cikernel/2880194-init"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2880194,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CIKernel(cm)kernelWithFunctionName:fromMetalLibraryData:error:",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "init"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "identifier",
+        "text": "functionName"
+      },
+      {
+        "kind": "text",
+        "text": ": String, "
+      },
+      {
+        "kind": "identifier",
+        "text": "fromMetalLibraryData"
+      },
+      {
+        "kind": "text",
+        "text": ": Data)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "parent": {
+      "title": "CIKernel"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Initializer",
+    "symbolKind": "instctr",
+    "title": "init(functionName:fromMetalLibraryData:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "convenience"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "init"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "functionName"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "name"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SS",
+              "text": "String"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "fromMetalLibraryData"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "data"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation4DataV",
+              "text": "Data"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The name of the function in the Metal shading language.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "functionName"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A metallib file compiled with the Core Image Standard Library.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "fromMetalLibraryData"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method allows you to use MSL as the shader language for a Core Image kernel. Since MSL based kernels are precompiled, initializing them is faster than their than Core Image Kernel Language (CIKL) counterparts and Xcode can provide error diagnostics during development rather than at runtime. MSL is a more modern language than CIKL, and you can write shader code that uses arrays, structs and matrices. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MSL based kernels still support concatenation and tiling and can work in the same filter graph as traditional CIKL kernels. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2923853",
+          "level": 3,
+          "text": "Specifying Compiler and Linker Options",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use MSL as the shader language for a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you must specify some options in Xcode under the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Build Settings",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " tab of your project's target. The first option you need to specify is an ",
+              "type": "text"
+            },
+            {
+              "code": "-fcikernel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag in the Other Metal Compiler Flags option. The second is to add a user-defined setting with a key called ",
+              "type": "text"
+            },
+            {
+              "code": "MTLLINKER_FLAGS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with a value of ",
+              "type": "text"
+            },
+            {
+              "code": "-cikernel:",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2929842",
+              "metadata": {
+                "abstract": [
+                  {
+                    "text": "Specifying Compiler and Linker Options in Xcode.",
+                    "type": "text"
+                  }
+                ],
+                "anchor": "2929842",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2923855",
+          "level": 3,
+          "text": "Creating a General Kernel in Swift",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how you can create a general kernel based on a Metal function named ",
+              "type": "text"
+            },
+            {
+              "code": "myKernel",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first step is to create a ",
+              "type": "text"
+            },
+            {
+              "code": "Data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object that represents the the default Metal library. If you have built this in Xcode, it will be called ",
+              "type": "text"
+            },
+            {
+              "code": "default.metallib",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and can be loaded using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1737744",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type's ",
+              "type": "text"
+            },
+            {
+              "code": "url",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the representation of the Metal library and the function name ",
+              "type": "text"
+            },
+            {
+              "code": "myKernel",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you initialize a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard",
+            "    let url = Bundle.main.url(forResource: \"default\", withExtension: \"metallib\"),",
+            "    let data = try? Data(contentsOf: url) else {",
+            "    fatalError(\"Unable to get metallib\")",
+            "}",
+            " ",
+            "guard let generalKernel = try? CIKernel(functionName: \"myKernel\", fromMetalLibraryData: data) else {",
+            "    fatalError(\"Unable to create CIKernel from myKernel\")",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "2923856",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code to create general, color, warp and blend filters is identical.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2922588",
+          "level": 3,
+          "text": "Metal Shading Language Extensions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Image provides a set of language extensions to MSL in ",
+              "type": "text"
+            },
+            {
+              "code": "CIKernelMetalLib.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". These extensions include three new data types for working with images: ",
+              "type": "text"
+            },
+            {
+              "code": "sampler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (for accessing the input image), ",
+              "type": "text"
+            },
+            {
+              "code": "sample_t",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (represents a single color sample from the input image), and ",
+              "type": "text"
+            },
+            {
+              "code": "destination ",
+              "type": "codeVoice"
+            },
+            {
+              "text": "(for accessing the output image). The extensions also include convenience functions such as color conversion and premultiply / unpremultiply. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Whereas in CIKL, you typically called global functions when working with, for example, coordinates and samples, these functions are implemented as member functions on the new types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table shows a summary of CIKL global functions and their equivalent MSL functions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "both",
+          "metadata": {
+            "anchor": "2922589",
+            "title": "Table 1"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Core Image Kernel Language",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Metal Shading Language",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Get destination coordinate",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "destCoord()",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "dest.coord()",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Transform coordinate to sampler space",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "samplerTransform(src, p)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "src.transform(p)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Get destination coordinate in sampler space",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "samplerCoord(src)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "src.coord()",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sample from source image",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "sample(src, p)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "src.sample(p)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Get extent of source image",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "samplerExtent(src)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "src.extent()",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1737744": {
+      "identifier": "devLink-1737744",
+      "title": "Bundle",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/Bundle.html#//apple_ref/doc/uid/TP40008195-CH4"
+    },
+    "doc://com.apple.Swift/documentation/Swift/String": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/swift/string"
+    },
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIKernel",
+      "type": "topic",
+      "url": "/documentation/coreimage/cikernel"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel/2880194-init": {
+      "abstract": [
+        {
+          "text": "Creates a single kernel object using a Metal Shading Language (MSL) kernel function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "functionName"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "fromMetalLibraryData"
+        },
+        {
+          "kind": "text",
+          "text": ": Data)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel/2880194-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(functionName:fromMetalLibraryData:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cikernel/2880194-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel/2880194-init#2922589": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel/2880194-init#2922589",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 1",
+      "type": "section",
+      "url": "/documentation/coreimage/cikernel/2880194-init#2922589"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel/2880194-init#2923856": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel/2880194-init#2923856",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/coreimage/cikernel/2880194-init#2923856"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel/2880195-init": {
+      "abstract": [
+        {
+          "text": "Creates a single kernel object using a Metal Shading Language kernel function with optional pixel format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "functionName"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "fromMetalLibraryData"
+        },
+        {
+          "kind": "text",
+          "text": ": Data, "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputPixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFormat)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel/2880195-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(functionName:fromMetalLibraryData:outputPixelFormat:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cikernel/2880195-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel/3577535-kernelnames": {
+      "abstract": [
+        {
+          "text": "Return an array of strings containing the names of all of the kernels contained in the Metal library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "kernelNames"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fromMetalLibraryData"
+        },
+        {
+          "kind": "text",
+          "text": ": Data) -> [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel/3577535-kernelnames",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kernelNames(fromMetalLibraryData:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cikernel/3577535-kernelnames"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel/3857565-kernels": {
+      "abstract": [
+        {
+          "text": "Load kernels from a Metal language string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "kernels"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withMetalString"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [CIKernel]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel/3857565-kernels",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kernels(withMetalString:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cikernel/3857565-kernels"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Data",
+      "type": "topic",
+      "url": "/documentation/foundation/data"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-media-2929842": {
+      "identifier": "link-media-2929842",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/coreimage/cikernel/2880194-init#2929842"
+    },
+    "media-2929842": {
+      "abstract": [
+        {
+          "text": "Specifying Compiler and Linker Options in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "media-2929842",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2f2d4199d4/15241eb8-8ec6-4d66-a6ad-5d97105475ab.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cikernel/2880195-init",
+        "doc://com.apple.documentation/documentation/coreimage/cikernel/3577535-kernelnames",
+        "doc://com.apple.documentation/documentation/coreimage/cikernel/3857565-kernels"
+      ],
+      "title": "Creating a Kernel Using Metal Shading Language"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/cikernel/2880194-kernelwithfunctionname"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/cikernel/2880194-init"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

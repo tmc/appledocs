@@ -1,0 +1,3347 @@
+{
+  "abstract": [
+    {
+      "text": "Tell a view how to arrange itself within a view hierarchy by adjusting its size,",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "position, alignment, padding, and so on.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View-fundamentals",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Layout"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Layout modifiers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use layout modifiers to fine tune the placement of views in a view hierarchy.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can adjust or constrain the size, position, and alignment of a view. You",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can also add padding around a view, and indicate how the view interacts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with system-defined safe areas.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get started arranging views, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-fundamentals",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To make adjustments to a basic layout, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "View-Fundamentals-PageImage-card.png": {
+      "alt": "A conceptual illustration showing a view decomposed into different components.",
+      "identifier": "View-Fundamentals-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a9155d8ac081b19cb86c95247d8b043d/View-Fundamentals-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c29763670d863f869160a7df932dc4e1/View-Fundamentals-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments": {
+      "abstract": [
+        {
+          "text": "Make fine adjustments to alignment, spacing, padding, and other layout parameters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layout adjustments",
+      "type": "topic",
+      "url": "/documentation/swiftui/layout-adjustments"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-fundamentals": {
+      "abstract": [
+        {
+          "text": "Arrange views inside built-in layout containers like stacks and grids.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layout fundamentals",
+      "type": "topic",
+      "url": "/documentation/swiftui/layout-fundamentals"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/List": {
+      "abstract": [
+        {
+          "text": "A container that presents rows of data arranged in a single column,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "optionally providing the ability to select one or more members.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "List"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/List",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "List"
+        }
+      ],
+      "role": "symbol",
+      "title": "List",
+      "type": "topic",
+      "url": "/documentation/swiftui/list"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/swiftui/view"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Graphics-and-Rendering": {
+      "abstract": [
+        {
+          "text": "Affect the way the system draws a view, for example by scaling or masking a view,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "or by applying graphical effects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Graphics-and-Rendering",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Graphics and rendering modifiers",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-graphics-and-rendering"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-fundamentals": {
+      "abstract": [
+        {
+          "text": "Define the visual elements of your app using a hierarchy of views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-fundamentals",
+      "images": [
+        {
+          "identifier": "View-Fundamentals-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View fundamentals",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-fundamentals"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-style-modifiers": {
+      "abstract": [
+        {
+          "text": "Apply built-in styles to different types of views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-style-modifiers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Style modifiers",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-style-modifiers"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/alignmentGuide(_:computeValue:)": {
+      "abstract": [
+        {
+          "text": "Sets the view’s horizontal alignment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alignmentGuide"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "computeValue"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/alignmentGuide(_:computeValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alignmentGuide(_:computeValue:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/alignmentguide(_:computevalue:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/containerRelativeFrame(_:alignment:)": {
+      "abstract": [
+        {
+          "text": "Positions this view within an invisible frame with a size relative",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to the nearest container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "containerRelativeFrame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4AxisO",
+          "text": "Axis"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4AxisO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AlignmentV",
+          "text": "Alignment"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/containerRelativeFrame(_:alignment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containerRelativeFrame(_:alignment:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/containerrelativeframe(_:alignment:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/containerRelativeFrame(_:alignment:_:)": {
+      "abstract": [
+        {
+          "text": "Positions this view within an invisible frame with a size relative",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to the nearest container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "containerRelativeFrame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4AxisO",
+          "text": "Axis"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4AxisO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AlignmentV",
+          "text": "Alignment"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4AxisO",
+          "text": "Axis"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/containerRelativeFrame(_:alignment:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containerRelativeFrame(_:alignment:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/containerrelativeframe(_:alignment:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/containerRelativeFrame(_:count:span:spacing:alignment:)": {
+      "abstract": [
+        {
+          "text": "Positions this view within an invisible frame with a size relative",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to the nearest container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "containerRelativeFrame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4AxisO",
+          "text": "Axis"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4AxisO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "span"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "spacing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AlignmentV",
+          "text": "Alignment"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/containerRelativeFrame(_:count:span:spacing:alignment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containerRelativeFrame(_:count:span:spacing:alignment:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/containerrelativeframe(_:count:span:spacing:alignment:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contentMargins(_:_:for:)": {
+      "abstract": [
+        {
+          "text": "Configures the content margin for a provided placement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentMargins"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contentMargins(_:_:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentMargins(_:_:for:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/contentmargins(_:_:for:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contentMargins(_:for:)": {
+      "abstract": [
+        {
+          "text": "Configures the content margin for a provided placement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentMargins"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI22ContentMarginPlacementV",
+          "text": "ContentMarginPlacement"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contentMargins(_:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentMargins(_:for:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/contentmargins(_:for:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/coordinateSpace(_:)": {
+      "abstract": [
+        {
+          "text": "Assigns a name to the view’s coordinate space, so other code can operate",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "on dimensions like points and sizes relative to the named space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "coordinateSpace"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20NamedCoordinateSpaceV",
+          "text": "NamedCoordinateSpace"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/coordinateSpace(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "coordinateSpace(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/coordinatespace(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/fixedSize()": {
+      "abstract": [
+        {
+          "text": "Fixes this view at its ideal size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fixedSize"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/fixedSize()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fixedSize()",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/fixedsize()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/fixedSize(horizontal:vertical:)": {
+      "abstract": [
+        {
+          "text": "Fixes this view at its ideal size in the specified dimensions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fixedSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "horizontal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "vertical"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/fixedSize(horizontal:vertical:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fixedSize(horizontal:vertical:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/fixedsize(horizontal:vertical:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(depth:alignment:)": {
+      "abstract": [
+        {
+          "text": "Positions this view within an invisible frame with the specified depth.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "depth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14DepthAlignmentV",
+          "text": "DepthAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(depth:alignment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frame(depth:alignment:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/frame(depth:alignment:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(minDepth:idealDepth:maxDepth:alignment:)": {
+      "abstract": [
+        {
+          "text": "Positions this view within an invisible frame having the specified depth",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "minDepth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "idealDepth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxDepth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14DepthAlignmentV",
+          "text": "DepthAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(minDepth:idealDepth:maxDepth:alignment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frame(minDepth:idealDepth:maxDepth:alignment:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/frame(mindepth:idealdepth:maxdepth:alignment:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(minWidth:idealWidth:maxWidth:minHeight:idealHeight:maxHeight:alignment:)": {
+      "abstract": [
+        {
+          "text": "Positions this view within an invisible frame having the specified size",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "minWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "idealWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "minHeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "idealHeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxHeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AlignmentV",
+          "text": "Alignment"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(minWidth:idealWidth:maxWidth:minHeight:idealHeight:maxHeight:alignment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frame(minWidth:idealWidth:maxWidth:minHeight:idealHeight:maxHeight:alignment:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(width:height:alignment:)": {
+      "abstract": [
+        {
+          "text": "Positions this view within an invisible frame with the specified size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AlignmentV",
+          "text": "Alignment"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(width:height:alignment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frame(width:height:alignment:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/frame(width:height:alignment:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridCellAnchor(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies a custom alignment anchor for a view that acts as a grid cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gridCellAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9UnitPointV",
+          "text": "UnitPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridCellAnchor(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gridCellAnchor(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/gridcellanchor(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridCellColumns(_:)": {
+      "abstract": [
+        {
+          "text": "Tells a view that acts as a cell in a grid to span the specified",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "number of columns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gridCellColumns"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridCellColumns(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gridCellColumns(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/gridcellcolumns(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridCellUnsizedAxes(_:)": {
+      "abstract": [
+        {
+          "text": "Asks grid layouts not to offer the view extra size in the specified",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "axes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gridCellUnsizedAxes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4AxisO",
+          "text": "Axis"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4AxisO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridCellUnsizedAxes(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gridCellUnsizedAxes(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/gridcellunsizedaxes(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridColumnAlignment(_:)": {
+      "abstract": [
+        {
+          "text": "Overrides the default horizontal alignment of the grid column that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the view appears in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gridColumnAlignment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19HorizontalAlignmentV",
+          "text": "HorizontalAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridColumnAlignment(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gridColumnAlignment(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/gridcolumnalignment(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/ignoresSafeArea(_:edges:)": {
+      "abstract": [
+        {
+          "text": "Expands the safe area of a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ignoresSafeArea"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15SafeAreaRegionsV",
+          "text": "SafeAreaRegions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "edges"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO",
+          "text": "Edge"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/ignoresSafeArea(_:edges:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ignoresSafeArea(_:edges:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/ignoressafearea(_:edges:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/layoutDirectionBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the behavior of this view for different layout directions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layoutDirectionBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI23LayoutDirectionBehaviorO",
+          "text": "LayoutDirectionBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/layoutDirectionBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "layoutDirectionBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/layoutdirectionbehavior(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/layoutPriority(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the priority by which a parent layout should apportion space to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "this child.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layoutPriority"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/layoutPriority(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "layoutPriority(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/layoutpriority(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/layoutValue(key:value:)": {
+      "abstract": [
+        {
+          "text": "Associates a value with a custom layout property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layoutValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "K"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "K"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "K"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14LayoutValueKeyP0D0Qa",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/layoutValue(key:value:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "layoutValue(key:value:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/layoutvalue(key:value:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowInsets(_:)": {
+      "abstract": [
+        {
+          "text": "Applies an inset to the rows in a list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listRowInsets"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10EdgeInsetsV",
+          "text": "EdgeInsets"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowInsets(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listRowInsets(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/listrowinsets(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowSpacing(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the vertical spacing between two adjacent rows in a List.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listRowSpacing"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowSpacing(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listRowSpacing(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/listrowspacing(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listSectionSpacing(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the spacing between adjacent sections in a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/List",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " to a custom",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listSectionSpacing"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listSectionSpacing(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "listSectionSpacing(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/listsectionspacing(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/offset(_:)": {
+      "abstract": [
+        {
+          "text": "Offset this view by the horizontal and vertical amount specified in the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "offset parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/offset(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offset(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/offset(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/offset(x:y:)": {
+      "abstract": [
+        {
+          "text": "Offset this view by the specified horizontal and vertical distances.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/offset(x:y:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offset(x:y:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/offset(x:y:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/offset(z:)": {
+      "abstract": [
+        {
+          "text": "Brings a view forward in Z by the provided distance in points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "z"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/offset(z:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offset(z:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/offset(z:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/padding(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a different padding amount to each edge of this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "padding"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/padding(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "padding(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/padding(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/padding(_:_:)": {
+      "abstract": [
+        {
+          "text": "Adds an equal padding amount to specific edges of this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "padding"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO",
+          "text": "Edge"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/padding(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "padding(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/padding(_:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/padding3D(_:)": {
+      "abstract": [
+        {
+          "text": "Pads this view using the edge insets you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "padding3D"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/padding3D(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "padding3D(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/padding3d(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/padding3D(_:_:)": {
+      "abstract": [
+        {
+          "text": "Pads this view using the edge insets you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "padding3D"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI6Edge3DO",
+          "text": "Edge3D"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI6Edge3DO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/padding3D(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "padding3D(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/padding3d(_:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/position(_:)": {
+      "abstract": [
+        {
+          "text": "Positions the center of this view at the specified point in its parent’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "position"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/position(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "position(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/position(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/position(x:y:)": {
+      "abstract": [
+        {
+          "text": "Positions the center of this view at the specified coordinates in its",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "parent’s coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "position"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/position(x:y:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "position(x:y:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/position(x:y:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/safeAreaInset(edge:alignment:spacing:content:)": {
+      "abstract": [
+        {
+          "text": "Shows the specified content beside the modified view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "safeAreaInset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "edge"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "spacing"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/safeAreaInset(edge:alignment:spacing:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "safeAreaInset(edge:alignment:spacing:content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/safeareainset(edge:alignment:spacing:content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/safeAreaPadding(_:)": {
+      "abstract": [
+        {
+          "text": "Adds the provided insets into the safe area of this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "safeAreaPadding"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/safeAreaPadding(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "safeAreaPadding(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/safeareapadding(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/safeAreaPadding(_:_:)": {
+      "abstract": [
+        {
+          "text": "Adds the provided insets into the safe area of this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "safeAreaPadding"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO",
+          "text": "Edge"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/safeAreaPadding(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "safeAreaPadding(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/safeareapadding(_:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scenePadding(_:)": {
+      "abstract": [
+        {
+          "text": "Adds padding to the specified edges of this view using an amount that’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "appropriate for the current scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scenePadding"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO",
+          "text": "Edge"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scenePadding(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scenePadding(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/scenepadding(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scenePadding(_:edges:)": {
+      "abstract": [
+        {
+          "text": "Adds a specified kind of padding to the specified edges of this view",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "using an amount that’s appropriate for the current scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scenePadding"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12ScenePaddingV",
+          "text": "ScenePadding"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "edges"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO",
+          "text": "Edge"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scenePadding(_:edges:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scenePadding(_:edges:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/scenepadding(_:edges:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/zIndex(_:)": {
+      "abstract": [
+        {
+          "text": "Controls the display order of overlapping views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zIndex"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/zIndex(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "zIndex(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/zindex(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Drawing-views",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View-style-modifiers",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Graphics-and-Rendering"
+      ],
+      "title": "Drawing views"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Size",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(width:height:alignment:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(depth:alignment:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(minWidth:idealWidth:maxWidth:minHeight:idealHeight:maxHeight:alignment:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(minDepth:idealDepth:maxDepth:alignment:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/containerRelativeFrame(_:alignment:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/containerRelativeFrame(_:alignment:_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/containerRelativeFrame(_:count:span:spacing:alignment:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/fixedSize()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/fixedSize(horizontal:vertical:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/layoutPriority(_:)"
+      ],
+      "title": "Size"
+    },
+    {
+      "anchor": "Position",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/position(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/position(x:y:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/offset(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/offset(x:y:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/offset(z:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/coordinateSpace(_:)"
+      ],
+      "title": "Position"
+    },
+    {
+      "anchor": "Alignment",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/alignmentGuide(_:computeValue:)"
+      ],
+      "title": "Alignment"
+    },
+    {
+      "anchor": "Padding-and-spacing",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/padding(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/padding(_:_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/padding3D(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/padding3D(_:_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowInsets(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scenePadding(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scenePadding(_:edges:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listRowSpacing(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/listSectionSpacing(_:)"
+      ],
+      "title": "Padding and spacing"
+    },
+    {
+      "anchor": "Grid-configuration",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridCellColumns(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridCellAnchor(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridCellUnsizedAxes(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridColumnAlignment(_:)"
+      ],
+      "title": "Grid configuration"
+    },
+    {
+      "anchor": "Safe-area-and-margins",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/ignoresSafeArea(_:edges:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/safeAreaInset(edge:alignment:spacing:content:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/safeAreaPadding(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/safeAreaPadding(_:_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contentMargins(_:for:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contentMargins(_:_:for:)"
+      ],
+      "title": "Safe area and margins"
+    },
+    {
+      "anchor": "Layer-order",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/zIndex(_:)"
+      ],
+      "title": "Layer order"
+    },
+    {
+      "anchor": "Layout-direction",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/layoutDirectionBehavior(_:)"
+      ],
+      "title": "Layout direction"
+    },
+    {
+      "anchor": "Custom-layout-characteristics",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/layoutValue(key:value:)"
+      ],
+      "title": "Custom layout characteristics"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/view-layout"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1287 @@
+{
+  "abstract": [
+    {
+      "text": "A type that represents the sending side of an HPKE message exchange.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "CryptoKit",
+    "externalID": "s:9CryptoKit4HPKEO6SenderV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Sender"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Apple CryptoKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Sender"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "HPKE.Sender"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Sender"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create encrypted messages, initialize a ",
+              "type": "text"
+            },
+            {
+              "code": "Sender",
+              "type": "codeVoice"
+            },
+            {
+              "text": " specifying the appropriate cipher suite,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the recipient’s public key, and the additional cryptographic material relevant to your chosen mode of operation.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/seal(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/seal(_:authenticating:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the ",
+              "type": "text"
+            },
+            {
+              "code": "Sender",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance for each message",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in turn to retrieve its ciphertext. The recipient of the messages needs to process them in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "same order as the ",
+              "type": "text"
+            },
+            {
+              "code": "Sender",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", using the same encryption mode, cipher suite, and key schedule information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(",
+              "type": "text"
+            },
+            {
+              "code": "info",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), as well as the ",
+              "type": "text"
+            },
+            {
+              "code": "Sender",
+              "type": "codeVoice"
+            },
+            {
+              "text": "’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/encapsulatedKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CryptoKit/documentation/CryptoKit": {
+      "abstract": [
+        {
+          "text": "Perform cryptographic operations securely and efficiently.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple CryptoKit",
+      "type": "topic",
+      "url": "/documentation/cryptokit"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE": {
+      "abstract": [
+        {
+          "text": "A container for hybrid public key encryption (HPKE) operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HPKE"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HPKE"
+        }
+      ],
+      "role": "symbol",
+      "title": "HPKE",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hpke"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Recipient": {
+      "abstract": [
+        {
+          "text": "A type that represents the receiving side of an HPKE message exchange.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Recipient"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Recipient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Recipient"
+        }
+      ],
+      "role": "symbol",
+      "title": "HPKE.Recipient",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hpke/recipient"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender": {
+      "abstract": [
+        {
+          "text": "A type that represents the sending side of an HPKE message exchange.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sender"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sender"
+        }
+      ],
+      "role": "symbol",
+      "title": "HPKE.Sender",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hpke/sender"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/encapsulatedKey": {
+      "abstract": [
+        {
+          "text": "The encapsulated symmetric key that the recipient uses to decrypt messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encapsulatedKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/encapsulatedKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encapsulatedKey",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hpke/sender/encapsulatedkey"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/exportSecret(context:outputByteCount:)": {
+      "abstract": [
+        {
+          "text": "Exports a secret given domain-separation context and the desired output length.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exportSecret"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputByteCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit12SymmetricKeyV",
+          "text": "SymmetricKey"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/exportSecret(context:outputByteCount:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exportSecret(context:outputByteCount:)",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hpke/sender/exportsecret(context:outputbytecount:)"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/init(recipientKey:ciphersuite:info:)": {
+      "abstract": [
+        {
+          "text": "Creates a sender in base mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "PK"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "recipientKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "PK"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ciphersuite"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit4HPKEO",
+          "text": "HPKE"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit4HPKEO11CiphersuiteV",
+          "text": "Ciphersuite"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "info"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/init(recipientKey:ciphersuite:info:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(recipientKey:ciphersuite:info:)",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hpke/sender/init(recipientkey:ciphersuite:info:)"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/init(recipientKey:ciphersuite:info:authenticatedBy:)": {
+      "abstract": [
+        {
+          "text": "Creates a sender in authentication mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "SK"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "recipientKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SK"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit25DiffieHellmanKeyAgreementP06PublicE0Qa",
+          "text": "PublicKey"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ciphersuite"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit4HPKEO",
+          "text": "HPKE"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit4HPKEO11CiphersuiteV",
+          "text": "Ciphersuite"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "info"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "authenticatedBy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SK"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/init(recipientKey:ciphersuite:info:authenticatedBy:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(recipientKey:ciphersuite:info:authenticatedBy:)",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hpke/sender/init(recipientkey:ciphersuite:info:authenticatedby:)"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/init(recipientKey:ciphersuite:info:authenticatedBy:presharedKey:presharedKeyIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Creates a sender in authentication and preshared key mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "SK"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "recipientKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SK"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit25DiffieHellmanKeyAgreementP06PublicE0Qa",
+          "text": "PublicKey"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ciphersuite"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit4HPKEO",
+          "text": "HPKE"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit4HPKEO11CiphersuiteV",
+          "text": "Ciphersuite"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "info"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "authenticatedBy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SK"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "presharedKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit12SymmetricKeyV",
+          "text": "SymmetricKey"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "presharedKeyIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/init(recipientKey:ciphersuite:info:authenticatedBy:presharedKey:presharedKeyIdentifier:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(recipientKey:ciphersuite:info:authenticatedBy:presharedKey:presharedKeyIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hpke/sender/init(recipientkey:ciphersuite:info:authenticatedby:presharedkey:presharedkeyidentifier:)"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/init(recipientKey:ciphersuite:info:presharedKey:presharedKeyIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Creates a sender in preshared key (PSK) mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "PK"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "recipientKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "PK"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ciphersuite"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit4HPKEO",
+          "text": "HPKE"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit4HPKEO11CiphersuiteV",
+          "text": "Ciphersuite"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "info"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "presharedKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit12SymmetricKeyV",
+          "text": "SymmetricKey"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "presharedKeyIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/init(recipientKey:ciphersuite:info:presharedKey:presharedKeyIdentifier:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(recipientKey:ciphersuite:info:presharedKey:presharedKeyIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hpke/sender/init(recipientkey:ciphersuite:info:presharedkey:presharedkeyidentifier:)"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/seal(_:)": {
+      "abstract": [
+        {
+          "text": "Encrypts the given cleartext message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "seal"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "M"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "M"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/seal(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "seal(_:)",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hpke/sender/seal(_:)"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/seal(_:authenticating:)": {
+      "abstract": [
+        {
+          "text": "Encrypts the given cleartext message and attaches additional authenticated data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "seal"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "M"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "AD"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "M"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "authenticating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "AD"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/seal(_:authenticating:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "seal(_:authenticating:)",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hpke/sender/seal(_:authenticating:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sending-and-receiving-messages",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Recipient"
+      ],
+      "title": "Sending and receiving messages"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/init(recipientKey:ciphersuite:info:)",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/init(recipientKey:ciphersuite:info:authenticatedBy:)",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/init(recipientKey:ciphersuite:info:authenticatedBy:presharedKey:presharedKeyIdentifier:)",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/init(recipientKey:ciphersuite:info:presharedKey:presharedKeyIdentifier:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/encapsulatedKey"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/exportSecret(context:outputByteCount:)",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/seal(_:)",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HPKE/Sender/seal(_:authenticating:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cryptokit/hpke/sender"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,476 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ios-ipados-release-notes/documentation/ios-ipados-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-16_1-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "iOS 16.1 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The iOS 16.1 SDK provides support to develop apps for iPhone and iPad running iOS 16.1. The SDK comes bundled with Xcode 14.1 RC, available from ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/download/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For information on the compatibility requirements for Xcode 14.1, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-14_1-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Home",
+          "level": 3,
+          "text": "Home",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-issues",
+          "level": 4,
+          "text": "Known issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You might receive an alert to turn on Wi-Fi when pairing a Matter accessory. (98460235)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Ensure your device is connected to your Wi-Fi network.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Adjusting the color or color temperature might result in an unexpected color set on a Matter accessory. (98578966)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Accessory details might not open if a Matter accessory is unreachable. (99232316)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device that initiates the pairing needs to use the same iCloud account as the home hub. Only the owner of a home, not an invited user, can pair Matter accessories. (76012945)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Memory-Allocation",
+          "level": 3,
+          "text": "Memory Allocation",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system memory allocator ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "free",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " operation zeroes out all deallocated blocks in iOS 16.1 beta or later. Invalid accesses to free memory might result in new crashes or corruption, including:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Read-after-free bugs that previously observed the old contents of a block may now observe zeroes instead",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Write-after-free bugs may now cause subsequent calls to ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "calloc",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " to return non-zero memory",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To debug these issues, use Address Sanitizer and Guard Malloc (see ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "libgmalloc(3)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "). (97449075)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "StoreKit",
+          "level": 3,
+          "text": "StoreKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where restoring transactions wouldn’t prompt for authentication or restore any transactions if there was no App Store account signed in. (99506258)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where purchasing or restoring in-app transactions with hosted content would block new purchases or restores from processing. (100117681)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-14_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-14_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 14.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/Xcode-Release-Notes/xcode-14_1-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-16-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-16-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS 16 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-16-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-16_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-16_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 16.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-ipados-16_2-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-16_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-16_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 16.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-ipados-16_3-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-16_4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-16_4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 16.4 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-ipados-16_4-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-16_5-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-16_5-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 16.5 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-ipados-16_5-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-16_6-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-16_6-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 16.6 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-ipados-16_6-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ipados-16-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ipados-16-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iPadOS 16 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ipados-16-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/ios-ipados-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the iOS & iPadOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/ios-ipados-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "iOS & iPadOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes"
+    },
+    "https://developer.apple.com/download/": {
+      "identifier": "https://developer.apple.com/download/",
+      "title": "Beta Software Downloads",
+      "titleInlineContent": [
+        {
+          "text": "Beta Software Downloads",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/download/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "iOS--iPadOS-16",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-16_6-release-notes",
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-16_5-release-notes",
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-16_4-release-notes",
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-16_3-release-notes",
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-16_2-release-notes",
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-16-release-notes",
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ipados-16-release-notes"
+      ],
+      "title": "iOS & iPadOS 16"
+    }
+  ]
+}

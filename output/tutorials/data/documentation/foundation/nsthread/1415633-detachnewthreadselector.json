@@ -1,0 +1,563 @@
+{
+  "abstract": [
+    {
+      "text": "Detaches a new thread and uses the specified selector as the thread entry point.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+        "doc://com.apple.documentation/documentation/foundation/nsthread"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsthread/1415633-detachnewthreadselector"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1415633,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSThread(cm)detachNewThreadSelector:toTarget:withObject:",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSThread"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "clm",
+    "title": "detachNewThreadSelector:toTarget:withObject:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "+ ("
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "identifier",
+              "text": "detachNewThreadSelector:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "SEL"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "selector"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "toTarget:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "id"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "target"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "withObject:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "id"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "argument"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The selector for the message to send to the target. This selector must take only one argument and must not have a return value.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "aSelector"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The object that will receive the message ",
+                  "type": "text"
+                },
+                {
+                  "code": "aSelector",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " on the new thread.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "aTarget"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The single argument passed to the target. May be ",
+                  "type": "text"
+                },
+                {
+                  "code": "nil",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "anArgument"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The objects ",
+              "type": "text"
+            },
+            {
+              "code": "aTarget",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "anArgument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are retained during the execution of the detached thread, then released. The detached thread is exited (using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsthread/1409404-exit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method) as soon as ",
+              "type": "text"
+            },
+            {
+              "code": "aTarget",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has completed executing the ",
+              "type": "text"
+            },
+            {
+              "code": "aSelector",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If this thread is the first thread detached in the application, this method posts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nswillbecomemultithreadednotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with object ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the default notification center.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsthread": {
+      "abstract": [
+        {
+          "text": "A thread of execution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsthread",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSThread",
+      "type": "topic",
+      "url": "/documentation/foundation/nsthread"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsthread/1409404-exit": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "exit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsthread/1409404-exit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exit",
+      "type": "topic",
+      "url": "/documentation/foundation/nsthread/1409404-exit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsthread/1410679-currentthread": {
+      "abstract": [
+        {
+          "text": "Returns the thread object representing the current thread of execution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsthread/1410679-currentthread",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentThread",
+      "type": "topic",
+      "url": "/documentation/foundation/nsthread/1410679-currentthread"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsthread/1410702-ismultithreaded": {
+      "abstract": [
+        {
+          "text": "Returns whether the application is multithreaded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMultiThreaded"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsthread/1410702-ismultithreaded",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isMultiThreaded",
+      "type": "topic",
+      "url": "/documentation/foundation/nsthread/1410702-ismultithreaded"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsthread/1415633-detachnewthreadselector": {
+      "abstract": [
+        {
+          "text": "Detaches a new thread and uses the specified selector as the thread entry point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "detachNewThreadSelector:toTarget:withObject:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsthread/1415633-detachnewthreadselector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detachNewThreadSelector:toTarget:withObject:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsthread/1415633-detachnewthreadselector"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsthread/1418166-start": {
+      "abstract": [
+        {
+          "text": "Starts the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsthread/1418166-start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "start",
+      "type": "topic",
+      "url": "/documentation/foundation/nsthread/1418166-start"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsthread/1418421-main": {
+      "abstract": [
+        {
+          "text": "The main entry point routine for the thread. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "main"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsthread/1418421-main",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "main",
+      "type": "topic",
+      "url": "/documentation/foundation/nsthread/1418421-main"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nswillbecomemultithreadednotification": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nswillbecomemultithreadednotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSWillBecomeMultiThreadedNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nswillbecomemultithreadednotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/processes_and_threads": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Processes and Threads",
+      "type": "topic",
+      "url": "/documentation/foundation/processes_and_threads"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsthread/1418166-start",
+        "doc://com.apple.documentation/documentation/foundation/nsthread/1418421-main"
+      ],
+      "title": "Starting a Thread"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsthread/1410702-ismultithreaded",
+        "doc://com.apple.documentation/documentation/foundation/nsthread/1410679-currentthread"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsthread/1415633-detachnewthreadselector"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/thread/1415633-detachnewthreadselector"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

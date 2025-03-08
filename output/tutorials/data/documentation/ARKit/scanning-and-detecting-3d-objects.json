@@ -1,0 +1,2081 @@
+{
+  "abstract": [
+    {
+      "text": "Record spatial features of real-world objects, then use the results to find those objects in the user’s environment and trigger AR content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+        "doc://com.apple.arkit/documentation/ARKit/content-anchors"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/scanning-and-detecting-3d-objects"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Scanning and Detecting 3D Objects"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "One way to build compelling AR experiences is to recognize features of the user’s environment and use them to trigger the appearance of virtual content. For example, a museum app might add interactive 3D visualizations when the user points their device at a displayed sculpture or artifact.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 12, you can create such AR experiences by enabling ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "object detection",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " in ARKit: Your app provides ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "reference objects",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which encode three-dimensional spatial features of known real-world objects, and ARKit tells your app when and where it detects the corresponding real-world objects during an AR session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project provides multiple ways to make use of object detection:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run the app to scan a real-world object and export a reference object file, which you can use in your own apps to detect that object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARObjectScanningConfiguration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " classes as demonstrated in this sample app to record reference objects as part of your own asset production pipeline.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/detectionObjects",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in a world-tracking AR session to recognize a reference object and create AR interactions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "ARKit requires an iOS device with A9 processor or later. ARKit is not supported in iOS Simulator.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-your-physical-environment-to-enhance-object-scanning",
+          "level": 2,
+          "text": "Configure your physical environment to enhance object scanning",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set up your physical environment according to the following guidelines. Use these recommendations as a target configuration even if it’s unreachable in the specific circumstances of your scanning environment. You can scan objects outside of these specifications if necessary, but they provide ARKit with the conditions most conducive to object scanning.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Light the object with an illuminance of 250 to 400 lux, and ensure that it’s well-lit from all sides.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide a light temperature of around ~6500 Kelvin (D65)––similar with daylight. Avoid warm or any other colored light sources.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the object in front of a matte, middle gray background.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Scan-real-world-objects-with-an-ios-app",
+          "level": 2,
+          "text": "Scan real-world objects with an ios app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The programming steps to scan and define a reference object that ARKit can use for detection are simple. (See “Create a Reference Object in an AR Session” below.) However, the fidelity of the reference object you create, and thus your success at detecting that reference object in your own apps, depends on your physical interactions with the object when scanning. Build and run this app on your iOS device to walk through a series of steps for getting high-quality scan data, resulting in reference object files that you can use for detection in your own apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "ScannerAppUIFlow",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Choose an iOS Device.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " For easy object scanning, use a recent, high-performance iOS device. Scanned objects can be detected on any ARKit-supported device, but the process of creating a high-quality scan is faster and smoother on a high-performance device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Position the object.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " When first run, the app displays a box that roughly estimates the size of whatever real-world objects appear centered in the camera view. Position the object you want to scan on a surface free of other objects (like an empty tabletop). Then move your device so that the object appears centered in the box, and tap the Next button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Define bounding box.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Before scanning, you need to tell the app what region of the world contains the object you want to scan. Drag to move the box around in 3D, or press and hold on a side of the box and then drag to resize it. (Or, if you leave the box untouched, you can move around the object and the app will attempt to automatically fit a box around it.) Make sure the bounding box contains only features of the object you want to scan (not those from the environment it’s in), then tap the Scan button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Scan the object.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Move around to look at the object from different angles. For best results, move slowly and avoid abrupt motions. The app highlights parts of the bounding box to indicate when you’ve scanned enough to recognize the object from the corresponding direction. Be sure to scan on all sides from which you want users of your app to be able to recognize the object. The app automatically proceeds to the next step when a scan is complete, or you can tap the Stop button to proceed manually.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Adjust origin.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " The app displays x, y, and z coordinate axis lines showing the object’s anchor point, or ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "origin",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ". Drag the circles to move the origin relative to the object. In this step you can also use the Add (+) button to load a 3D model in USDZ format. The app displays the model as it would appear in AR upon detecting the real-world object, and uses the model’s size to adjust the scale of the reference object. Tap the Test button when done.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Test and export.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " The app has now created an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and has reconfigured its session to detect it. Look at the real-world object from different angles, in various environments and lighting conditions, to verify that ARKit reliably recognizes its position and orientation. Tap the Export button to open a share sheet for saving the finished ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".arobject",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file. For example, you can easily send it to your development Mac using AirDrop, or send it to the Files app to save it to iCloud Drive.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " contains only the spatial feature information needed for ARKit to recognize the real-world object, and is not a displayable 3D reconstruction of that object.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Detect-reference-objects-in-an-ar-experience",
+          "level": 2,
+          "text": "Detect reference objects in an ar experience",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use an Xcode asset catalog to bundle reference objects in an app for use in detection:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your project’s asset catalog, then use the Add button (+) to add a new AR resource group.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".arobject",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " files from the Finder into the newly created resource group.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optionally, for each reference object, use the inspector to provide a descriptive name for your own use.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Put all objects you want to look for in the same session into a resource group, and use separate resource groups to hold sets of objects for use in separate sessions. For example, a museum app might use separate sessions (and thus separate resource groups) for recognizing displays in different wings of the museum.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable object detection in an AR session, load the reference objects you want to detect as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances, provide those objects for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/detectionObjects",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and run an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with that configuration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let configuration = ARWorldTrackingConfiguration()",
+            "guard let referenceObjects = ARReferenceObject.referenceObjects(inGroupNamed: \"gallery\", bundle: nil) else {",
+            "    fatalError(\"Missing expected asset catalog resources.\")",
+            "}",
+            "configuration.detectionObjects = referenceObjects",
+            "sceneView.session.run(configuration)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When ARKit detects one of your reference objects, the session automatically adds a corresponding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARObjectAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to its list of anchors. To respond to an object being recognized, implement an appropriate ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSKViewDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method that reports the new anchor being added to the session. For example, in a SceneKit-based app you can implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate/renderer(_:didAdd:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to add a 3D asset to the scene, automatically matching the position and orientation of the anchor:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {",
+            "    if let objectAnchor = anchor as? ARObjectAnchor {",
+            "        node.addChildNode(self.model)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For best results with object scanning and detection, follow these tips:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ARKit looks for areas of clear, stable visual detail when scanning and detecting objects. Detailed, textured objects work better for detection than plain or reflective objects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Object scanning and detection is optimized for objects small enough to fit on a tabletop.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An object to be detected must have the same shape as the scanned reference object. Rigid objects work better for detection than soft bodies or items that bend, twist, fold, or otherwise change shape.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Detection works best when the lighting conditions for the real-world object to be detected are similar to those in which the original object was scanned. Consistent indoor lighting works best.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Create-a-reference-object-in-an-AR-session",
+          "level": 2,
+          "text": "Create a reference object in an AR session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app provides one way to create reference objects. You can also scan reference objects in your own app—for example, to build asset management tools for defining AR content that goes into other apps you create.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A reference object encodes a slice of the internal spatial-mapping data that ARKit uses to track a device’s position and orientation. To enable the high-quality data collection required for object scanning, run a session with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARObjectScanningConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let configuration = ARObjectScanningConfiguration()",
+            "configuration.planeDetection = .horizontal",
+            "sceneView.session.run(configuration, options: .resetTracking)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During your object-scanning AR session, scan the object from various angles to make sure you collect enough spatial data to recognize it. (If you’re building your own object-scanning tools, help users walk through the same steps this sample app provides.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After scanning, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/createReferenceObject(transform:center:extent:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to produce an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from a region of the user environment mapped by the session:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Extract the reference object based on the position & orientation of the bounding box.",
+            "sceneView.session.createReferenceObject(",
+            "    transform: boundingBox.simdWorldTransform,",
+            "    center: SIMD3<Float>(), extent: boundingBox.extent,",
+            "    completionHandler: { object, error in",
+            "        if let referenceObject = object {",
+            "            // Adjust the object's origin with the user-provided transform.",
+            "            self.scannedReferenceObject = referenceObject.applyingTransform(origin.simdTransform)",
+            "            self.scannedReferenceObject!.name = self.scannedObject.scanName",
+            "            ",
+            "            if let referenceObjectToMerge = ViewController.instance?.referenceObjectToMerge {",
+            "                ViewController.instance?.referenceObjectToMerge = nil",
+            "                ",
+            "                // Show activity indicator during the merge.",
+            "                ViewController.instance?.showAlert(title: \"\", message: \"Merging previous scan into this scan...\", buttonTitle: nil)",
+            "                ",
+            "                // Try to merge the object which was just scanned with the existing one.",
+            "                self.scannedReferenceObject?.mergeInBackground(with: referenceObjectToMerge, completion: { (mergedObject, error) in",
+            "",
+            "                    if let mergedObject = mergedObject {",
+            "                        self.scannedReferenceObject = mergedObject",
+            "                        ViewController.instance?.showAlert(title: \"Merge successful\",",
+            "                                                           message: \"The previous scan has been merged into this scan.\", buttonTitle: \"OK\")",
+            "                        creationFinished(self.scannedReferenceObject)",
+            "",
+            "                    } else {",
+            "                        print(\"Error: Failed to merge scans. \\(error?.localizedDescription ?? \"\")\")",
+            "                        let message = \"\"\"",
+            "                                Merging the previous scan into this scan failed. Please make sure that",
+            "                                there is sufficient overlap between both scans and that the lighting",
+            "                                environment hasn't changed drastically.",
+            "                                Which scan do you want to use for testing?",
+            "                                \"\"\"",
+            "                        let thisScan = UIAlertAction(title: \"Use This Scan\", style: .default) { _ in",
+            "                            creationFinished(self.scannedReferenceObject)",
+            "                        }",
+            "                        let previousScan = UIAlertAction(title: \"Use Previous Scan\", style: .default) { _ in",
+            "                            self.scannedReferenceObject = referenceObjectToMerge",
+            "                            creationFinished(self.scannedReferenceObject)",
+            "                        }",
+            "                        ViewController.instance?.showAlert(title: \"Merge failed\", message: message, actions: [thisScan, previousScan])",
+            "                    }",
+            "                })",
+            "            } else {",
+            "                creationFinished(self.scannedReferenceObject)",
+            "            }",
+            "        } else {",
+            "            print(\"Error: Failed to create reference object. \\(error!.localizedDescription)\")",
+            "            creationFinished(nil)",
+            "        }",
+            "    })"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When detecting a reference object, ARKit reports its position based on the origin the reference object defines. If you want to place virtual content that appears to sit on the same surface as the real-world object, make sure the reference object’s origin is placed at the point where the real-world object sits. To adjust the origin after capturing an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/applyingTransform(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you obtain an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can either use it immediately for detection (see “Detect Reference Objects in an AR Experience” above) or save it as an ",
+              "type": "text"
+            },
+            {
+              "code": ".arobject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file for use in later sessions or other ARKit-based apps. To save an object to a file, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/export(to:previewImage:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. In that method, you can provide a picture of the real-world object for Xcode to use as a preview image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "47d19b69ba73/ScanningAndDetecting3DObjects.zip": {
+      "checksum": "47d19b69ba734def81bf10017dbe8d440bcad06a57f07d5e9345e8ebccad392018a48e387db9e3c324e5924f69b8c9252d09df0cef3ed93884f8d24b97ea069a",
+      "identifier": "47d19b69ba73/ScanningAndDetecting3DObjects.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/47d19b69ba73/ScanningAndDetecting3DObjects.zip"
+    },
+    "ScannerAppUIFlow": {
+      "alt": "Screenshots of the five steps in using the sample app to scan a real-world object: prepare, define bounding box, scan, adjust origin, then test and export.",
+      "identifier": "ScannerAppUIFlow",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9f9a84d5a383990a5fe16d343c6104c0/ScannerAppUIFlow.png"
+        }
+      ]
+    },
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARObjectAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor for a real-world 3D object that ARKit detects in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARObjectAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARObjectAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARObjectAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARObjectAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/arobjectanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARObjectScanningConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that recognizes objects and collects high-fidelity data about specific objects using the rear-facing camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARObjectScanningConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARObjectScanningConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARObjectScanningConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARObjectScanningConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/arobjectscanningconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject": {
+      "abstract": [
+        {
+          "text": "The description of a 3D object that you want ARKit to detect in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARReferenceObject"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARReferenceObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARReferenceObject",
+      "type": "topic",
+      "url": "/documentation/arkit/arreferenceobject"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/applyingTransform(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new reference object created by applying the specified transform to this reference object’s geometric data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyingTransform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_float4x4",
+          "text": "simd_float4x4"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARReferenceObject",
+          "text": "ARReferenceObject"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/applyingTransform(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "referenceObjectByApplyingTransform:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applyingTransform(_:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arreferenceobject/applyingtransform(_:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/export(to:previewImage:)": {
+      "abstract": [
+        {
+          "text": "Writes a binary representation of the object to the specified file URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "export"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "previewImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/export(to:previewImage:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "exportObjectToURL:previewImage:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "export(to:previewImage:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arreferenceobject/export(to:previewimage:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate": {
+      "abstract": [
+        {
+          "text": "Methods you can implement to mediate the automatic synchronization of SceneKit content with an AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSCNViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSCNViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSCNViewDelegate",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnviewdelegate"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate/renderer(_:didAdd:for:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a SceneKit node corresponding to a new AR anchor has been added to the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderer"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SCNSceneRenderer",
+          "text": "SCNSceneRenderer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAdd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNNode",
+          "text": "SCNNode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARAnchor",
+          "text": "ARAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate/renderer(_:didAdd:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderer:didAddNode:forAnchor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "renderer(_:didAdd:for:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnviewdelegate/renderer(_:didadd:for:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSKViewDelegate": {
+      "abstract": [
+        {
+          "text": "Methods you can implement to mediate the automatic synchronization of SpriteKit content with an AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSKViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSKViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSKViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSKViewDelegate",
+      "type": "topic",
+      "url": "/documentation/arkit/arskviewdelegate"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession": {
+      "abstract": [
+        {
+          "text": "The object that manages the major tasks associated with every AR experience, such as motion tracking, camera passthrough, and image analysis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSession"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSession",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/createReferenceObject(transform:center:extent:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Creates a reference object (for 3D object detection) from the specified region of the session’s world space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "createReferenceObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_float4x4",
+          "text": "simd_float4x4"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "extent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARReferenceObject",
+          "text": "ARReferenceObject"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/createReferenceObject(transform:center:extent:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "createReferenceObjectWithTransform:center:extent:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "createReferenceObject(transform:center:extent:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/createreferenceobject(transform:center:extent:completionhandler:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate": {
+      "abstract": [
+        {
+          "text": "Methods you can implement to receive captured video frame images and tracking state from an AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSessionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSessionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessiondelegate"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that tracks the position of a device in relation to objects in the environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARWorldTrackingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARWorldTrackingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARWorldTrackingConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/detectionObjects": {
+      "abstract": [
+        {
+          "text": "A set of 3D objects that the framework attempts to detect in the user’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectionObjects"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARReferenceObject",
+          "text": "ARReferenceObject"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/detectionObjects",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "detectionObjects"
+        }
+      ],
+      "role": "symbol",
+      "title": "detectionObjects",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/detectionobjects"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/content-anchors": {
+      "abstract": [
+        {
+          "text": "Identify items in the physical environment, including planar surfaces, images, physical objects, body positions, and faces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/content-anchors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Content Anchors",
+      "type": "topic",
+      "url": "/documentation/arkit/content-anchors"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/visualizing-and-interacting-with-a-reconstructed-scene": {
+      "abstract": [
+        {
+          "text": "Estimate the shape of the physical environment using a polygonal mesh.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/visualizing-and-interacting-with-a-reconstructed-scene",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Visualizing and interacting with a reconstructed scene",
+      "type": "topic",
+      "url": "/documentation/arkit/visualizing-and-interacting-with-a-reconstructed-scene"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "47d19b69ba73/ScanningAndDetecting3DObjects.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Physical-Objects",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/visualizing-and-interacting-with-a-reconstructed-scene",
+        "doc://com.apple.arkit/documentation/ARKit/ARObjectAnchor",
+        "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject"
+      ],
+      "title": "Physical Objects"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Physical-Objects",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/visualizing-and-interacting-with-a-reconstructed-scene",
+                "doc://com.apple.arkit/documentation/ARKit/ARObjectAnchor",
+                "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject"
+              ],
+              "title": "Physical Objects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1applyingTransform(_:)/title",
+          "value": "referenceObjectByApplyingTransform:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1applyingTransform(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "referenceObjectByApplyingTransform:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/title",
+          "value": "ARWorldTrackingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSKViewDelegate/title",
+          "value": "ARSKViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSKViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSKViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSKViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSKViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1detectionObjects/title",
+          "value": "detectionObjects"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1detectionObjects/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "detectionObjects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARObjectAnchor/title",
+          "value": "ARObjectAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARObjectAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARObjectAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARObjectAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARObjectAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject/title",
+          "value": "ARReferenceObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARReferenceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARReferenceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1createReferenceObject(transform:center:extent:completionHandler:)/title",
+          "value": "createReferenceObjectWithTransform:center:extent:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1createReferenceObject(transform:center:extent:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "createReferenceObjectWithTransform:center:extent:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNViewDelegate/title",
+          "value": "ARSCNViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate/title",
+          "value": "ARSessionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSessionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSessionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1export(to:previewImage:)/title",
+          "value": "exportObjectToURL:previewImage:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1export(to:previewImage:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "exportObjectToURL:previewImage:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNViewDelegate~1renderer(_:didAdd:for:)/title",
+          "value": "renderer:didAddNode:forAnchor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNViewDelegate~1renderer(_:didAdd:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "renderer:didAddNode:forAnchor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/title",
+          "value": "ARSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARObjectScanningConfiguration/title",
+          "value": "ARObjectScanningConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARObjectScanningConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARObjectScanningConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARObjectScanningConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARObjectScanningConfiguration"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/scanning-and-detecting-3d-objects"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/scanning-and-detecting-3d-objects"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

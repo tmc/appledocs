@@ -1,0 +1,3339 @@
+{
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/corefoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/corefoundation/cfurl-rd7"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1666471,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Foundation"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "CFURL"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "CFURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " opaque type provides facilities for creating, parsing, and dereferencing URL strings. ",
+              "type": "text"
+            },
+            {
+              "code": "CFURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is useful to applications that need to use URLs to access resources, including local files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "CFURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object is composed of two parts—a base URL, which can be ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and a string that is resolved relative to the base URL. A ",
+              "type": "text"
+            },
+            {
+              "code": "CFURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object whose string is fully resolved without a base URL is considered absolute; all others are considered relative.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "CFURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is “toll-free bridged” with its Cocoa Foundation counterpart, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This means that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. In other words, in a method where you see an ",
+              "type": "text"
+            },
+            {
+              "code": "NSURL *",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, you can pass in a ",
+              "type": "text"
+            },
+            {
+              "code": "CFURLRef",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and in a function where you see a ",
+              "type": "text"
+            },
+            {
+              "code": "CFURLRef",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, you can pass in an ",
+              "type": "text"
+            },
+            {
+              "code": "NSURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance. This also applies to concrete subclasses of ",
+              "type": "text"
+            },
+            {
+              "code": "NSURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1744898",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information on toll-free bridging.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting in OS X v10.6, the ",
+              "type": "text"
+            },
+            {
+              "code": "CFURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " opaque type provides a facility for creating and using bookmarks. A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "bookmark",
+                  "type": "text"
+                }
+              ],
+              "type": "newTerm"
+            },
+            {
+              "text": " provides a persistent reference to a file-system resource. When you resolve a bookmark, you obtain a URL to the resource’s current location. A bookmark’s association with a file-system resource (typically a file or folder) usually continues to work if the user moves or renames the resource, or if the user relaunches your app or restarts the system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a macOS app that adopts App Sandbox, to gain persistent access to a file-system resource you must use a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "security-scoped bookmark",
+                  "type": "text"
+                }
+              ],
+              "type": "newTerm"
+            },
+            {
+              "text": ". Such a bookmark preserves, across app launches, a user’s intent to give your app access to a resource. For details on how this works, including information on the entitlements you need in your Xcode project, read ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1745846",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1745822",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you resolve a security-scoped bookmark, you get a security-scoped URL. The file system resource that the URL points to is not available for use inside your app’s sandbox until you call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543318-cfurlstartaccessingsecurityscope",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function (or its Cocoa equivalent, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1417051-startaccessingsecurityscopedreso",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method) on the URL.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you no longer need access to a resource that you obtained using security scope (typically, after you close the resource) you must call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542381-cfurlstopaccessingsecurityscoped",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method (or its Cocoa equivalent, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1413736-stopaccessingsecurityscopedresou",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method) on the resource’s URL.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You must balance every call to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543318-cfurlstartaccessingsecurityscope",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method with a corresponding call to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542381-cfurlstopaccessingsecurityscoped",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method. If you fail to relinquish your access when you no longer need a file-system resource, your app leaks kernel resources. If sufficient kernel resources are leaked, your app loses its ability to add file-system locations to its sandbox, such as via Powerbox or security-scoped bookmarks, until relaunched.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The functions for using security-scoped bookmarks are described in this document in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurl#1667152",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For a general introduction to using bookmarks in macOS, read ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1744786",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1744715",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you copy a security-scoped URL (as obtained from a security-scoped bookmark), the copy has the security scope of the original. You gain access to the file-system resource (that the URL points to) just as you would with the original URL: by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543318-cfurlstartaccessingsecurityscope",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function (or its Cocoa equivalent).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need a security-scoped URL’s path as a string value (as provided by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542826-cfurlgetstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function), such as to provide to an API that requires a string value, obtain the path from the URL as needed. Note, however, that a string-based path obtained from a security-scoped URL ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "does not",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " have security scope and you cannot use that string to obtain access a security-scoped resource.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "CFURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fails to create an object if the string passed is not well-formed (that is, if it does not comply with RFC 2396). Examples of cases that will not succeed are strings containing space characters and high-bit characters. If a function fails to create a ",
+              "type": "text"
+            },
+            {
+              "code": "CFURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, it returns ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which you must be prepared to handle. If you create ",
+              "type": "text"
+            },
+            {
+              "code": "CFURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects using file system paths, you should use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543314-cfurlcreatefromfilesystemreprese",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542053-cfurlcreatefromfilesystemreprese",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " functions, which handle the subtle differences between URL paths and file system paths.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For functions that read and write data from a URL, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/core_foundation_url_access_utilities",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1744715": {
+      "identifier": "devLink-1744715",
+      "title": "File System Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010672"
+    },
+    "devLink-1744786": {
+      "identifier": "devLink-1744786",
+      "title": "Locating Files Using Bookmarks",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/AccessingFilesandDirectories/AccessingFilesandDirectories.html#//apple_ref/doc/uid/TP40010672-CH3-SW10"
+    },
+    "devLink-1744898": {
+      "identifier": "devLink-1744898",
+      "title": "Toll-Free Bridged Types",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677"
+    },
+    "devLink-1745822": {
+      "identifier": "devLink-1745822",
+      "title": "App Sandbox Design Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AboutAppSandbox/AboutAppSandbox.html#//apple_ref/doc/uid/TP40011183"
+    },
+    "devLink-1745846": {
+      "identifier": "devLink-1745846",
+      "title": "Security-Scoped Bookmarks and Persistent Resource Access",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AppSandboxInDepth/AppSandboxInDepth.html#//apple_ref/doc/uid/TP40011183-CH3-SW16"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Foundation",
+      "type": "topic",
+      "url": "/documentation/corefoundation"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1541515-cfurlgetfilesystemrepresentation": {
+      "abstract": [
+        {
+          "text": "Fills a buffer with the file system's native string representation of a given URL's path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLGetFileSystemRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, Bool, UnsafeMutablePointer<UInt8>!, CFIndex) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1541515-cfurlgetfilesystemrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLGetFileSystemRepresentation(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1541515-cfurlgetfilesystemrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1541551-cfurlgetbytes": {
+      "abstract": [
+        {
+          "text": "Returns by reference the byte representation of a URL object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLGetBytes"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, UnsafeMutablePointer<UInt8>!, CFIndex) -> CFIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1541551-cfurlgetbytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLGetBytes(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1541551-cfurlgetbytes"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1541581-cfurlcopyfilesystempath": {
+      "abstract": [
+        {
+          "text": "Returns the path portion of a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyFileSystemPath"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, CFURLPathStyle) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1541581-cfurlcopyfilesystempath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyFileSystemPath(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1541581-cfurlcopyfilesystempath"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1541607-cfurlsetresourcepropertyforkey": {
+      "abstract": [
+        {
+          "text": "Sets the URL’s resource property for a given key to a given value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLSetResourcePropertyForKey"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, CFString!, CFTypeRef!, UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1541607-cfurlsetresourcepropertyforkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLSetResourcePropertyForKey(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1541607-cfurlsetresourcepropertyforkey"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1541648-cfurlcreatecopyappendingpathexte": {
+      "abstract": [
+        {
+          "text": "Creates a copy of a given URL and appends a path extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateCopyAppendingPathExtension"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFURL!, CFString!) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1541648-cfurlcreatecopyappendingpathexte",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateCopyAppendingPathExtension(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1541648-cfurlcreatecopyappendingpathexte"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1541737-cfurlwritebookmarkdatatofile": {
+      "abstract": [
+        {
+          "text": "Creates an alias file on disk at a specified location with specified bookmark data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLWriteBookmarkDataToFile"
+        },
+        {
+          "kind": "text",
+          "text": "(CFData!, CFURL!, CFURLBookmarkFileCreationOptions, UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1541737-cfurlwritebookmarkdatatofile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLWriteBookmarkDataToFile(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1541737-cfurlwritebookmarkdatatofile"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1541959-cfurlclearresourcepropertycache": {
+      "abstract": [
+        {
+          "text": "Removes all cached resource values and temporary resource values from the URL object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLClearResourcePropertyCache"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1541959-cfurlclearresourcepropertycache",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLClearResourcePropertyCache(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1541959-cfurlclearresourcepropertycache"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1541974-cfurlcreatestringbyreplacingperc": {
+      "abstract": [
+        {
+          "text": "Creates a new string by replacing any percent escape sequences with their character equivalent.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateStringByReplacingPercentEscapesUsingEncoding"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFString!, CFString!, CFStringEncoding) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1541974-cfurlcreatestringbyreplacingperc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateStringByReplacingPercentEscapesUsingEncoding(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1541974-cfurlcreatestringbyreplacingperc"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1541982-cfurlcopypath": {
+      "abstract": [
+        {
+          "text": "Returns the path portion of a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyPath"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1541982-cfurlcopypath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyPath(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1541982-cfurlcopypath"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542053-cfurlcreatefromfilesystemreprese": {
+      "abstract": [
+        {
+          "text": "Creates a ",
+          "type": "text"
+        },
+        {
+          "code": "CFURL",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object from a native character string path relative to a base URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateFromFileSystemRepresentationRelativeToBase"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, UnsafePointer<UInt8>!, CFIndex, Bool, CFURL!) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542053-cfurlcreatefromfilesystemreprese",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateFromFileSystemRepresentationRelativeToBase(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542053-cfurlcreatefromfilesystemreprese"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542054-cfurlclearresourcepropertycachef": {
+      "abstract": [
+        {
+          "text": "Removes the cached resource value identified by a given key from the URL object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLClearResourcePropertyCacheForKey"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, CFString!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542054-cfurlclearresourcepropertycachef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLClearResourcePropertyCacheForKey(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542054-cfurlclearresourcepropertycachef"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542055-cfurlcreatewithstring": {
+      "abstract": [
+        {
+          "text": "Creates a ",
+          "type": "text"
+        },
+        {
+          "code": "CFURL",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object using a given ",
+          "type": "text"
+        },
+        {
+          "code": "CFString",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateWithString"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFString!, CFURL!) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542055-cfurlcreatewithstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateWithString(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542055-cfurlcreatewithstring"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542075-cfurlcreatewithbytes": {
+      "abstract": [
+        {
+          "text": "Creates a ",
+          "type": "text"
+        },
+        {
+          "code": "CFURL",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object using a given character bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateWithBytes"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, UnsafePointer<UInt8>!, CFIndex, CFStringEncoding, CFURL!) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542075-cfurlcreatewithbytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateWithBytes(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542075-cfurlcreatewithbytes"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542076-cfurlcreatefilepathurl": {
+      "abstract": [
+        {
+          "text": "Returns a new file path URL that refers to the same resource as a specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateFilePathURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFURL!, UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFURL>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542076-cfurlcreatefilepathurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateFilePathURL(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542076-cfurlcreatefilepathurl"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542114-cfurlcopyresourcespecifier": {
+      "abstract": [
+        {
+          "text": "Returns any additional resource specifiers after the path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyResourceSpecifier"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542114-cfurlcopyresourcespecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyResourceSpecifier(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542114-cfurlcopyresourcespecifier"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542127-cfurlcreatecopyappendingpathcomp": {
+      "abstract": [
+        {
+          "text": "Creates a copy of a given URL and appends a path component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateCopyAppendingPathComponent"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFURL!, CFString!, Bool) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542127-cfurlcreatecopyappendingpathcomp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateCopyAppendingPathComponent(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542127-cfurlcreatecopyappendingpathcomp"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542129-cfurlcreatebookmarkdatafromalias": {
+      "abstract": [
+        {
+          "text": "Initializes and returns bookmark data derived from an alias record.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateBookmarkDataFromAliasRecord"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFData!) -> Unmanaged<CFData>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542129-cfurlcreatebookmarkdatafromalias",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateBookmarkDataFromAliasRecord(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542129-cfurlcreatebookmarkdatafromalias"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542131-cfurlcanbedecomposed": {
+      "abstract": [
+        {
+          "text": "Determines if the given URL conforms to RFC 1808 and therefore can be decomposed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCanBeDecomposed"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542131-cfurlcanbedecomposed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCanBeDecomposed(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542131-cfurlcanbedecomposed"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542154-cfurlgetbaseurl": {
+      "abstract": [
+        {
+          "text": "Returns the base URL of a given URL if it exists.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLGetBaseURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542154-cfurlgetbaseurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLGetBaseURL(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542154-cfurlgetbaseurl"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542229-cfurlhasdirectorypath": {
+      "abstract": [
+        {
+          "text": "Determines if a given URL's path represents a directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLHasDirectoryPath"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542229-cfurlhasdirectorypath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLHasDirectoryPath(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542229-cfurlhasdirectorypath"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542357-cfurlgetportnumber": {
+      "abstract": [
+        {
+          "text": "Returns the port number from a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLGetPortNumber"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542357-cfurlgetportnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLGetPortNumber(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542357-cfurlgetportnumber"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542370-cfurlcopyresourcepropertiesforke": {
+      "abstract": [
+        {
+          "text": "Returns the resource values for the properties identified by specified array of keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyResourcePropertiesForKeys"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, CFArray!, UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFDictionary>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542370-cfurlcopyresourcepropertiesforke",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyResourcePropertiesForKeys(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542370-cfurlcopyresourcepropertiesforke"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542381-cfurlstopaccessingsecurityscoped": {
+      "abstract": [
+        {
+          "text": "In an app that adopts App Sandbox, revokes access to the resource pointed to by a security-scoped URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLStopAccessingSecurityScopedResource"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542381-cfurlstopaccessingsecurityscoped",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLStopAccessingSecurityScopedResource(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542381-cfurlstopaccessingsecurityscoped"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542384-cfurlsettemporaryresourcepropert": {
+      "abstract": [
+        {
+          "text": "Sets a temporary resource value on the URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLSetTemporaryResourcePropertyForKey"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, CFString!, CFTypeRef!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542384-cfurlsettemporaryresourcepropert",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLSetTemporaryResourcePropertyForKey(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542384-cfurlsettemporaryresourcepropert"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542465-cfurlcopyscheme": {
+      "abstract": [
+        {
+          "text": "Returns the scheme portion of a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyScheme"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542465-cfurlcopyscheme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyScheme(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542465-cfurlcopyscheme"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542469-cfurlcopylastpathcomponent": {
+      "abstract": [
+        {
+          "text": "Returns the last path component of a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyLastPathComponent"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542469-cfurlcopylastpathcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyLastPathComponent(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542469-cfurlcopylastpathcomponent"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542665-cfurlcreatestringbyaddingpercent": {
+      "abstract": [
+        {
+          "text": "Creates a copy of a string, replacing certain characters with the equivalent percent escape sequence based on the specified encoding.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateStringByAddingPercentEscapes"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFString!, CFString!, CFString!, CFStringEncoding) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542665-cfurlcreatestringbyaddingpercent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateStringByAddingPercentEscapes(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542665-cfurlcreatestringbyaddingpercent"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542692-cfurlcopyusername": {
+      "abstract": [
+        {
+          "text": "Returns the user name from a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyUserName"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542692-cfurlcopyusername",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyUserName(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542692-cfurlcopyusername"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542764-cfurlcopyresourcepropertyforkey": {
+      "abstract": [
+        {
+          "text": "Returns the value of a given resource property of a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyResourcePropertyForKey"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, CFString!, UnsafeMutableRawPointer!, UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542764-cfurlcopyresourcepropertyforkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyResourcePropertyForKey(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542764-cfurlcopyresourcepropertyforkey"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542792-cfurlcopyquerystring": {
+      "abstract": [
+        {
+          "text": "Returns the query string of a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyQueryString"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, CFString!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542792-cfurlcopyquerystring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyQueryString(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542792-cfurlcopyquerystring"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542795-cfurlcreateabsoluteurlwithbytes": {
+      "abstract": [
+        {
+          "text": "Creates a new ",
+          "type": "text"
+        },
+        {
+          "code": "CFURL",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object by resolving the relative portion of a URL, specified as bytes, against its given base URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateAbsoluteURLWithBytes"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, UnsafePointer<UInt8>!, CFIndex, CFStringEncoding, CFURL!, Bool) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542795-cfurlcreateabsoluteurlwithbytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateAbsoluteURLWithBytes(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542795-cfurlcreateabsoluteurlwithbytes"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542826-cfurlgetstring": {
+      "abstract": [
+        {
+          "text": "Returns the URL as a ",
+          "type": "text"
+        },
+        {
+          "code": "CFString",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLGetString"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542826-cfurlgetstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLGetString(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542826-cfurlgetstring"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542836-cfurlcreatecopydeletingpathexten": {
+      "abstract": [
+        {
+          "text": "Creates a copy of a given URL with its last path extension removed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateCopyDeletingPathExtension"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFURL!) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542836-cfurlcreatecopydeletingpathexten",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateCopyDeletingPathExtension(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542836-cfurlcreatecopydeletingpathexten"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542923-cfurlcreatebookmarkdata": {
+      "abstract": [
+        {
+          "text": "Returns bookmark data for a URL, created with specified options and resource values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateBookmarkData"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFURL!, CFURLBookmarkCreationOptions, CFArray!, CFURL!, UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFData>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542923-cfurlcreatebookmarkdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateBookmarkData(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542923-cfurlcreatebookmarkdata"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542938-cfurlcreatestringbyreplacingperc": {
+      "abstract": [
+        {
+          "text": "Creates a new string by replacing any percent escape sequences with their character equivalent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateStringByReplacingPercentEscapes"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFString!, CFString!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542938-cfurlcreatestringbyreplacingperc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateStringByReplacingPercentEscapes(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542938-cfurlcreatestringbyreplacingperc"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542947-cfurlsetresourcepropertiesforkey": {
+      "abstract": [
+        {
+          "text": "Sets the URL’s resource properties for a given set of keys to a given set of values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLSetResourcePropertiesForKeys"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, CFDictionary!, UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542947-cfurlsetresourcepropertiesforkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLSetResourcePropertiesForKeys(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542947-cfurlsetresourcepropertiesforkey"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542952-cfurlcopystrictpath": {
+      "abstract": [
+        {
+          "text": "Returns the path portion of a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyStrictPath"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, UnsafeMutablePointer<DarwinBoolean>!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542952-cfurlcopystrictpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyStrictPath(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542952-cfurlcopystrictpath"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543031-cfurlcreateresourcepropertyforke": {
+      "abstract": [
+        {
+          "text": "Returns the value of a resource property from specified bookmark data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateResourcePropertyForKeyFromBookmarkData"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFString!, CFData!) -> Unmanaged<CFTypeRef>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543031-cfurlcreateresourcepropertyforke",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateResourcePropertyForKeyFromBookmarkData(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543031-cfurlcreateresourcepropertyforke"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543146-cfurlgetbyterangeforcomponent": {
+      "abstract": [
+        {
+          "text": "Returns the range of the specified component in the bytes of a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLGetByteRangeForComponent"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, CFURLComponentType, UnsafeMutablePointer<CFRange>!) -> CFRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543146-cfurlgetbyterangeforcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLGetByteRangeForComponent(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543146-cfurlgetbyterangeforcomponent"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543199-cfurlcreatecopydeletinglastpathc": {
+      "abstract": [
+        {
+          "text": "Creates a copy of a given URL with the last path component deleted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateCopyDeletingLastPathComponent"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFURL!) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543199-cfurlcreatecopydeletinglastpathc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateCopyDeletingLastPathComponent(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543199-cfurlcreatecopydeletinglastpathc"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543250-cfurlcreatewithfilesystempath": {
+      "abstract": [
+        {
+          "text": "Creates a ",
+          "type": "text"
+        },
+        {
+          "code": "CFURL",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object using a local file system path string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateWithFileSystemPath"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFString!, CFURLPathStyle, Bool) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543250-cfurlcreatewithfilesystempath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateWithFileSystemPath(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543250-cfurlcreatewithfilesystempath"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543252-cfurlcreatebyresolvingbookmarkda": {
+      "abstract": [
+        {
+          "text": "Returns a new URL made by resolving bookmark data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateByResolvingBookmarkData"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFData!, CFURLBookmarkResolutionOptions, CFURL!, CFArray!, UnsafeMutablePointer<DarwinBoolean>!, UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFURL>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543252-cfurlcreatebyresolvingbookmarkda",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateByResolvingBookmarkData(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543252-cfurlcreatebyresolvingbookmarkda"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543258-cfurlcreatebookmarkdatafromfile": {
+      "abstract": [
+        {
+          "text": "Initializes and returns bookmark data derived from a file pointed to by a specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateBookmarkDataFromFile"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFURL!, UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFData>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543258-cfurlcreatebookmarkdatafromfile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateBookmarkDataFromFile(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543258-cfurlcreatebookmarkdatafromfile"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543262-cfurlcopyparameterstring": {
+      "abstract": [
+        {
+          "text": "Returns the parameter string from a given URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyParameterString"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, CFString!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543262-cfurlcopyparameterstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyParameterString(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543262-cfurlcopyparameterstring"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543269-cfurlcopypathextension": {
+      "abstract": [
+        {
+          "text": "Returns the path extension of a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyPathExtension"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543269-cfurlcopypathextension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyPathExtension(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543269-cfurlcopypathextension"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543276-cfurlcreatedata": {
+      "abstract": [
+        {
+          "text": "Creates a ",
+          "type": "text"
+        },
+        {
+          "code": "CFData",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object containing the content of a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateData"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFURL!, CFStringEncoding, Bool) -> CFData!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543276-cfurlcreatedata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateData(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543276-cfurlcreatedata"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543282-cfurlcreatefilereferenceurl": {
+      "abstract": [
+        {
+          "text": "Returns a new file reference URL that points to the same resource as a specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateFileReferenceURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFURL!, UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Unmanaged<CFURL>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543282-cfurlcreatefilereferenceurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateFileReferenceURL(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543282-cfurlcreatefilereferenceurl"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543314-cfurlcreatefromfilesystemreprese": {
+      "abstract": [
+        {
+          "text": "Creates a new ",
+          "type": "text"
+        },
+        {
+          "code": "CFURL",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object for a file system entity using the native representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateFromFileSystemRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, UnsafePointer<UInt8>!, CFIndex, Bool) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543314-cfurlcreatefromfilesystemreprese",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateFromFileSystemRepresentation(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543314-cfurlcreatefromfilesystemreprese"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543318-cfurlstartaccessingsecurityscope": {
+      "abstract": [
+        {
+          "text": "In an app that has adopted App Sandbox, makes the resource pointed to by a security-scoped URL available to the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLStartAccessingSecurityScopedResource"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543318-cfurlstartaccessingsecurityscope",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLStartAccessingSecurityScopedResource(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543318-cfurlstartaccessingsecurityscope"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543482-cfurlgettypeid": {
+      "abstract": [
+        {
+          "text": "Returns the type identifier for the ",
+          "type": "text"
+        },
+        {
+          "code": "CFURL",
+          "type": "codeVoice"
+        },
+        {
+          "text": " opaque type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543482-cfurlgettypeid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543482-cfurlgettypeid"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543510-cfurlcopypassword": {
+      "abstract": [
+        {
+          "text": "Returns the password of a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyPassword"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543510-cfurlcopypassword",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyPassword(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543510-cfurlcopypassword"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543550-cfurlcopyhostname": {
+      "abstract": [
+        {
+          "text": "Returns the host name of a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyHostName"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543550-cfurlcopyhostname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyHostName(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543550-cfurlcopyhostname"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543552-cfurlcreatewithfilesystempathrel": {
+      "abstract": [
+        {
+          "text": "Creates a ",
+          "type": "text"
+        },
+        {
+          "code": "CFURL",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object using a local file system path string relative to a base URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateWithFileSystemPathRelativeToBase"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFString!, CFURLPathStyle, Bool, CFURL!) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543552-cfurlcreatewithfilesystempathrel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateWithFileSystemPathRelativeToBase(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543552-cfurlcreatewithfilesystempathrel"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543590-cfurlcopyabsoluteurl": {
+      "abstract": [
+        {
+          "text": "Creates a new ",
+          "type": "text"
+        },
+        {
+          "code": "CFURL",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object by resolving the relative portion of a URL against its base.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyAbsoluteURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543590-cfurlcopyabsoluteurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyAbsoluteURL(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543590-cfurlcopyabsoluteurl"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543621-cfurlcreateresourcepropertiesfor": {
+      "abstract": [
+        {
+          "text": "Returns the resource values for properties identified by a specified array of keys contained in specified bookmark data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateResourcePropertiesForKeysFromBookmarkData"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFArray!, CFData!) -> Unmanaged<CFDictionary>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543621-cfurlcreateresourcepropertiesfor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateResourcePropertiesForKeysFromBookmarkData(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543621-cfurlcreateresourcepropertiesfor"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543642-cfurlcopyfragment": {
+      "abstract": [
+        {
+          "text": "Returns the fragment from a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyFragment"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, CFString!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543642-cfurlcopyfragment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyFragment(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543642-cfurlcopyfragment"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543666-cfurlresourceisreachable": {
+      "abstract": [
+        {
+          "text": "Returns whether the resource pointed to by a file URL can be reached.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLResourceIsReachable"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543666-cfurlresourceisreachable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLResourceIsReachable(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543666-cfurlresourceisreachable"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543732-cfurlcopynetlocation": {
+      "abstract": [
+        {
+          "text": "Returns the net location portion of a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyNetLocation"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543732-cfurlcopynetlocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyNetLocation(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543732-cfurlcopynetlocation"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1584385-cfurlcreatefromfsref": {
+      "abstract": [
+        {
+          "text": "Creates a URL from a given directory or file.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCreateFromFSRef"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, OpaquePointer!) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1584385-cfurlcreatefromfsref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCreateFromFSRef(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1584385-cfurlcreatefromfsref"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1584387-cfurlgetfsref": {
+      "abstract": [
+        {
+          "text": "Converts a given URL to a file or directory object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLGetFSRef"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, OpaquePointer!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1584387-cfurlgetfsref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLGetFSRef(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1584387-cfurlgetfsref"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfallocator-s29": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfallocator-s29",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFAllocator",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfallocator-s29"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfarray-s28": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfarray-s28",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFArray",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfarray-s28"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfattributedstring-s1s": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfattributedstring-s1s",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFAttributedString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfattributedstring-s1s"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbag-s1l": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbag-s1l",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBag",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbag-s1l"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbinaryheap-s11": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbinaryheap-s11",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBinaryHeap",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbinaryheap-s11"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbitvector-s0t": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbitvector-s0t",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBitVector",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbitvector-s0t"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfboolean-s0p": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfboolean-s0p",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBoolean",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfboolean-s0p"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbundle-s0a": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbundle-s0a",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBundle",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbundle-s0a"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfcalendar-s01": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfcalendar-s01",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFCalendar",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfcalendar-s01"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfcharacterset-rvm": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfcharacterset-rvm",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFCharacterSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfcharacterset-rvm"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdata-rv9": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdata-rv9",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFData",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdata-rv9"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdate-rv5": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdate-rv5",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFDate",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdate-rv5"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdateformatter-rv6": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdateformatter-rv6",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFDateFormatter",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdateformatter-rv6"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFDictionary",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdictionary-rum"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cferror-ru8": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cferror-ru8",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFError",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cferror-ru8"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cffiledescriptor-ru3": {
+      "abstract": [
+        {
+          "text": "The CFFileDescriptor provides an opaque type to monitor file descriptors for read and write activity via CFRunLoop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cffiledescriptor-ru3",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFFileDescriptor",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cffiledescriptor-ru3"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cflocale-rsj": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cflocale-rsj",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFLocale",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cflocale-rsj"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmachport-rsc": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmachport-rsc",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMachPort",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmachport-rsc"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmessageport-rs2": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmessageport-rs2",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMessagePort",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmessageport-rs2"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablearray-rrk": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablearray-rrk",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableArray",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablearray-rrk"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutableattributedstring-rqp": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutableattributedstring-rqp",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableAttributedString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutableattributedstring-rqp"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablebag-rqn": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablebag-rqn",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableBag",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablebag-rqn"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablebitvector-rqf": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablebitvector-rqf",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableBitVector",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablebitvector-rqf"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablecharacterset-rq3": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablecharacterset-rq3",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableCharacterSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablecharacterset-rq3"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutabledata-rps": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutabledata-rps",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableData",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutabledata-rps"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutabledictionary-rpl": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutabledictionary-rpl",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableDictionary",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutabledictionary-rpl"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutableset-rpe": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutableset-rpe",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutableset-rpe"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablestring-rn7": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablestring-rn7",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablestring-rn7"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfnotificationcenter-rkv": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfnotificationcenter-rkv",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFNotificationCenter",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfnotificationcenter-rkv"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfnull-rkr": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfnull-rkr",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFNull",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfnull-rkr"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFNumber",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfnumber-rjd"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfnumberformatter-rjs": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfnumberformatter-rjs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFNumberFormatter",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfnumberformatter-rjs"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfplugin-rip": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfplugin-rip",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFPlugIn",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfplugin-rip"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfplugininstance-rja": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfplugininstance-rja",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFPlugInInstance",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfplugininstance-rja"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfpropertylist-rif": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfpropertylist-rif",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFPropertyList",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfpropertylist-rif"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfreadstream-ri6": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfreadstream-ri6",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFReadStream",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfreadstream-ri6"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunloop-rht": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloop-rht",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFRunLoop",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunloop-rht"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunloopobserver-ri3": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloopobserver-ri3",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFRunLoopObserver",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunloopobserver-ri3"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunloopsource-rhr": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloopsource-rhr",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFRunLoopSource",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunloopsource-rhr"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimer-rhk": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimer-rhk",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFRunLoopTimer",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunlooptimer-rhk"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfset-rgt": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfset-rgt",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfset-rgt"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfsocket-rg7": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfsocket-rg7",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFSocket",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfsocket-rg7"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstring-rfh"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstringtokenizer-rf8": {
+      "abstract": [
+        {
+          "text": "CFStringTokenizer allows you to tokenize strings into words, sentences or paragraphs in a language-neutral way. It supports languages such as Japanese and Chinese that do not delimit words by spaces, as well as de-compounding German compounds. You can obtain Latin transcription for tokens. It also provides language identification API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstringtokenizer-rf8",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFStringTokenizer",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstringtokenizer-rf8"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cftimezone-rec": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cftimezone-rec",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFTimeZone",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cftimezone-rec"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cftree-rds": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cftree-rds",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFTree",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cftree-rds"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cftype": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cftype",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFType",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cftype"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurl": {
+      "abstract": [
+        {
+          "text": "A reference to a CFURL object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURL",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfurl"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurl#1667152": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurl#1667152",
+      "kind": "article",
+      "role": "task",
+      "title": "Working with Bookmark Data",
+      "type": "section",
+      "url": "/documentation/corefoundation/cfurl#1667152"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurl-rd7": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurl-rd7",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFURL",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfurl-rd7"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurl/bookmark_data_creation_options": {
+      "abstract": [
+        {
+          "text": "Options used when creating bookmark data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurl/bookmark_data_creation_options",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Bookmark Data Creation Options",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfurl/bookmark_data_creation_options"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurl/bookmark_data_resolution_options": {
+      "abstract": [
+        {
+          "text": "Options used when resolving bookmark data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurl/bookmark_data_resolution_options",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Bookmark Data Resolution Options",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfurl/bookmark_data_resolution_options"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurl/cferror_userinfo_dictionary_keys": {
+      "abstract": [
+        {
+          "text": "Keys in the userInfo dictionary of a ",
+          "type": "text"
+        },
+        {
+          "code": "CFError",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object when certain CFURL functions return an error.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurl/cferror_userinfo_dictionary_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFError userInfo Dictionary Keys",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfurl/cferror_userinfo_dictionary_keys"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurl/common_file_system_resource_keys": {
+      "abstract": [
+        {
+          "text": "Keys that are applicable to file system URLs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurl/common_file_system_resource_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Common File System Resource Keys",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfurl/common_file_system_resource_keys"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurl/file_property_keys": {
+      "abstract": [
+        {
+          "text": "Keys that apply to properties of files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurl/file_property_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File Property Keys",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfurl/file_property_keys"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurl/file_resource_types": {
+      "abstract": [
+        {
+          "text": "Possible values for the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfurlfileresourcetypekey",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " key.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurl/file_resource_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File Resource Types",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfurl/file_resource_types"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurl/icloud_constants": {
+      "abstract": [
+        {
+          "text": "These constants can be used to determining whether a file is stored in the cloud and to obtain information about its status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurl/icloud_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "iCloud Constants",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfurl/icloud_constants"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurl/volume_property_keys": {
+      "abstract": [
+        {
+          "text": "Keys that apply to volumes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurl/volume_property_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Volume Property Keys",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfurl/volume_property_keys"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurlbookmarkcreationoptions": {
+      "abstract": [
+        {
+          "text": "Type for bookmark data creation options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLBookmarkCreationOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurlbookmarkcreationoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLBookmarkCreationOptions",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfurlbookmarkcreationoptions"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurlbookmarkfilecreationoptions": {
+      "abstract": [
+        {
+          "text": "Type for bookmark file creation options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLBookmarkFileCreationOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurlbookmarkfilecreationoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLBookmarkFileCreationOptions",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfurlbookmarkfilecreationoptions"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurlbookmarkresolutionoptions": {
+      "abstract": [
+        {
+          "text": "Type for bookmark data resolution options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLBookmarkResolutionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurlbookmarkresolutionoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLBookmarkResolutionOptions",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfurlbookmarkresolutionoptions"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurlcomponenttype": {
+      "abstract": [
+        {
+          "text": "The types of components in a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLComponentType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurlcomponenttype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLComponentType",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfurlcomponenttype"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurlpathstyle": {
+      "abstract": [
+        {
+          "text": "Options you can use to determine how CFURL functions parse a file system path name. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLPathStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurlpathstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLPathStyle",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfurlpathstyle"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfusernotification-rd5": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfusernotification-rd5",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFUserNotification",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfusernotification-rd5"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfuuid-rci": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfuuid-rci",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFUUID",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfuuid-rci"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfwritestream-rc8": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfwritestream-rc8",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFWriteStream",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfwritestream-rc8"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfxmlnode-rbu": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfxmlnode-rbu",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFXMLNode",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfxmlnode-rbu"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfxmlparser-rc1": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfxmlparser-rc1",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFXMLParser",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfxmlparser-rc1"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfxmltree-rbh": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfxmltree-rbh",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFXMLTree",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfxmltree-rbh"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/core_foundation_url_access_utilities": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/core_foundation_url_access_utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Foundation URL Access Utilities",
+      "type": "topic",
+      "url": "/documentation/corefoundation/core_foundation_url_access_utilities"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/kcfurlfileresourcetypekey": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfurlfileresourcetypekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCFURLFileResourceTypeKey",
+      "type": "topic",
+      "url": "/documentation/corefoundation/kcfurlfileresourcetypekey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1413736-stopaccessingsecurityscopedresou": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1413736-stopaccessingsecurityscopedresou",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stopAccessingSecurityScopedResource()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1413736-stopaccessingsecurityscopedresou"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1417051-startaccessingsecurityscopedreso": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1417051-startaccessingsecurityscopedreso",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startAccessingSecurityScopedResource()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1417051-startaccessingsecurityscopedreso"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfallocator-s29",
+        "doc://com.apple.documentation/documentation/corefoundation/cfarray-s28",
+        "doc://com.apple.documentation/documentation/corefoundation/cfattributedstring-s1s",
+        "doc://com.apple.documentation/documentation/corefoundation/cfbag-s1l",
+        "doc://com.apple.documentation/documentation/corefoundation/cfbinaryheap-s11",
+        "doc://com.apple.documentation/documentation/corefoundation/cfbitvector-s0t",
+        "doc://com.apple.documentation/documentation/corefoundation/cfboolean-s0p",
+        "doc://com.apple.documentation/documentation/corefoundation/cfbundle-s0a",
+        "doc://com.apple.documentation/documentation/corefoundation/cfcalendar-s01",
+        "doc://com.apple.documentation/documentation/corefoundation/cfcharacterset-rvm",
+        "doc://com.apple.documentation/documentation/corefoundation/cfdata-rv9",
+        "doc://com.apple.documentation/documentation/corefoundation/cfdate-rv5",
+        "doc://com.apple.documentation/documentation/corefoundation/cfdateformatter-rv6",
+        "doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum",
+        "doc://com.apple.documentation/documentation/corefoundation/cferror-ru8",
+        "doc://com.apple.documentation/documentation/corefoundation/cffiledescriptor-ru3",
+        "doc://com.apple.documentation/documentation/corefoundation/cflocale-rsj",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmachport-rsc",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmessageport-rs2",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablearray-rrk",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutableattributedstring-rqp",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablebag-rqn",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablebitvector-rqf",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablecharacterset-rq3",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutabledata-rps",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutabledictionary-rpl",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutableset-rpe",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablestring-rn7",
+        "doc://com.apple.documentation/documentation/corefoundation/cfnotificationcenter-rkv",
+        "doc://com.apple.documentation/documentation/corefoundation/cfnull-rkr",
+        "doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd",
+        "doc://com.apple.documentation/documentation/corefoundation/cfnumberformatter-rjs",
+        "doc://com.apple.documentation/documentation/corefoundation/cfplugin-rip",
+        "doc://com.apple.documentation/documentation/corefoundation/cfplugininstance-rja",
+        "doc://com.apple.documentation/documentation/corefoundation/cfpropertylist-rif",
+        "doc://com.apple.documentation/documentation/corefoundation/cfreadstream-ri6",
+        "doc://com.apple.documentation/documentation/corefoundation/cfrunloop-rht",
+        "doc://com.apple.documentation/documentation/corefoundation/cfrunloopobserver-ri3",
+        "doc://com.apple.documentation/documentation/corefoundation/cfrunloopsource-rhr",
+        "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimer-rhk",
+        "doc://com.apple.documentation/documentation/corefoundation/cfset-rgt",
+        "doc://com.apple.documentation/documentation/corefoundation/cfsocket-rg7",
+        "doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh",
+        "doc://com.apple.documentation/documentation/corefoundation/cfstringtokenizer-rf8",
+        "doc://com.apple.documentation/documentation/corefoundation/cftimezone-rec",
+        "doc://com.apple.documentation/documentation/corefoundation/cftree-rds",
+        "doc://com.apple.documentation/documentation/corefoundation/cftype",
+        "doc://com.apple.documentation/documentation/corefoundation/cfusernotification-rd5",
+        "doc://com.apple.documentation/documentation/corefoundation/cfuuid-rci",
+        "doc://com.apple.documentation/documentation/corefoundation/cfwritestream-rc8",
+        "doc://com.apple.documentation/documentation/corefoundation/cfxmlnode-rbu",
+        "doc://com.apple.documentation/documentation/corefoundation/cfxmlparser-rc1",
+        "doc://com.apple.documentation/documentation/corefoundation/cfxmltree-rbh"
+      ],
+      "title": "Opaque Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1666499",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1543590-cfurlcopyabsoluteurl",
+        "doc://com.apple.documentation/documentation/corefoundation/1542795-cfurlcreateabsoluteurlwithbytes",
+        "doc://com.apple.documentation/documentation/corefoundation/1543252-cfurlcreatebyresolvingbookmarkda",
+        "doc://com.apple.documentation/documentation/corefoundation/1542127-cfurlcreatecopyappendingpathcomp",
+        "doc://com.apple.documentation/documentation/corefoundation/1541648-cfurlcreatecopyappendingpathexte",
+        "doc://com.apple.documentation/documentation/corefoundation/1543199-cfurlcreatecopydeletinglastpathc",
+        "doc://com.apple.documentation/documentation/corefoundation/1542836-cfurlcreatecopydeletingpathexten",
+        "doc://com.apple.documentation/documentation/corefoundation/1542076-cfurlcreatefilepathurl",
+        "doc://com.apple.documentation/documentation/corefoundation/1543282-cfurlcreatefilereferenceurl",
+        "doc://com.apple.documentation/documentation/corefoundation/1543314-cfurlcreatefromfilesystemreprese",
+        "doc://com.apple.documentation/documentation/corefoundation/1542053-cfurlcreatefromfilesystemreprese",
+        "doc://com.apple.documentation/documentation/corefoundation/1584385-cfurlcreatefromfsref",
+        "doc://com.apple.documentation/documentation/corefoundation/1542075-cfurlcreatewithbytes",
+        "doc://com.apple.documentation/documentation/corefoundation/1543250-cfurlcreatewithfilesystempath",
+        "doc://com.apple.documentation/documentation/corefoundation/1543552-cfurlcreatewithfilesystempathrel",
+        "doc://com.apple.documentation/documentation/corefoundation/1542055-cfurlcreatewithstring"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a CFURL"
+    },
+    {
+      "anchor": "1666700",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1542131-cfurlcanbedecomposed",
+        "doc://com.apple.documentation/documentation/corefoundation/1541581-cfurlcopyfilesystempath",
+        "doc://com.apple.documentation/documentation/corefoundation/1543642-cfurlcopyfragment",
+        "doc://com.apple.documentation/documentation/corefoundation/1543550-cfurlcopyhostname",
+        "doc://com.apple.documentation/documentation/corefoundation/1542469-cfurlcopylastpathcomponent",
+        "doc://com.apple.documentation/documentation/corefoundation/1543732-cfurlcopynetlocation",
+        "doc://com.apple.documentation/documentation/corefoundation/1543262-cfurlcopyparameterstring",
+        "doc://com.apple.documentation/documentation/corefoundation/1543510-cfurlcopypassword",
+        "doc://com.apple.documentation/documentation/corefoundation/1541982-cfurlcopypath",
+        "doc://com.apple.documentation/documentation/corefoundation/1543269-cfurlcopypathextension",
+        "doc://com.apple.documentation/documentation/corefoundation/1542792-cfurlcopyquerystring",
+        "doc://com.apple.documentation/documentation/corefoundation/1542114-cfurlcopyresourcespecifier",
+        "doc://com.apple.documentation/documentation/corefoundation/1542465-cfurlcopyscheme",
+        "doc://com.apple.documentation/documentation/corefoundation/1542952-cfurlcopystrictpath",
+        "doc://com.apple.documentation/documentation/corefoundation/1542692-cfurlcopyusername",
+        "doc://com.apple.documentation/documentation/corefoundation/1542357-cfurlgetportnumber",
+        "doc://com.apple.documentation/documentation/corefoundation/1542229-cfurlhasdirectorypath"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing the Parts of a URL"
+    },
+    {
+      "anchor": "1666910",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1543276-cfurlcreatedata",
+        "doc://com.apple.documentation/documentation/corefoundation/1542665-cfurlcreatestringbyaddingpercent",
+        "doc://com.apple.documentation/documentation/corefoundation/1542938-cfurlcreatestringbyreplacingperc",
+        "doc://com.apple.documentation/documentation/corefoundation/1541974-cfurlcreatestringbyreplacingperc",
+        "doc://com.apple.documentation/documentation/corefoundation/1541515-cfurlgetfilesystemrepresentation",
+        "doc://com.apple.documentation/documentation/corefoundation/1584387-cfurlgetfsref",
+        "doc://com.apple.documentation/documentation/corefoundation/1542826-cfurlgetstring"
+      ],
+      "kind": "taskGroup",
+      "title": "Converting URLs to Other Representations"
+    },
+    {
+      "anchor": "1666997",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1542154-cfurlgetbaseurl",
+        "doc://com.apple.documentation/documentation/corefoundation/1541551-cfurlgetbytes",
+        "doc://com.apple.documentation/documentation/corefoundation/1543146-cfurlgetbyterangeforcomponent",
+        "doc://com.apple.documentation/documentation/corefoundation/1543482-cfurlgettypeid",
+        "doc://com.apple.documentation/documentation/corefoundation/1543666-cfurlresourceisreachable"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting URL Properties"
+    },
+    {
+      "anchor": "1667059",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1541959-cfurlclearresourcepropertycache",
+        "doc://com.apple.documentation/documentation/corefoundation/1542054-cfurlclearresourcepropertycachef",
+        "doc://com.apple.documentation/documentation/corefoundation/1542370-cfurlcopyresourcepropertiesforke",
+        "doc://com.apple.documentation/documentation/corefoundation/1542764-cfurlcopyresourcepropertyforkey",
+        "doc://com.apple.documentation/documentation/corefoundation/1543621-cfurlcreateresourcepropertiesfor",
+        "doc://com.apple.documentation/documentation/corefoundation/1543031-cfurlcreateresourcepropertyforke",
+        "doc://com.apple.documentation/documentation/corefoundation/1542947-cfurlsetresourcepropertiesforkey",
+        "doc://com.apple.documentation/documentation/corefoundation/1541607-cfurlsetresourcepropertyforkey",
+        "doc://com.apple.documentation/documentation/corefoundation/1542384-cfurlsettemporaryresourcepropert"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting and Setting File System Resource Properties"
+    },
+    {
+      "anchor": "1667152",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1542923-cfurlcreatebookmarkdata",
+        "doc://com.apple.documentation/documentation/corefoundation/1542129-cfurlcreatebookmarkdatafromalias",
+        "doc://com.apple.documentation/documentation/corefoundation/1543258-cfurlcreatebookmarkdatafromfile",
+        "doc://com.apple.documentation/documentation/corefoundation/1541737-cfurlwritebookmarkdatatofile",
+        "doc://com.apple.documentation/documentation/corefoundation/1543318-cfurlstartaccessingsecurityscope",
+        "doc://com.apple.documentation/documentation/corefoundation/1542381-cfurlstopaccessingsecurityscoped"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Bookmark Data"
+    },
+    {
+      "anchor": "1667215",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfurlbookmarkcreationoptions",
+        "doc://com.apple.documentation/documentation/corefoundation/cfurlbookmarkfilecreationoptions",
+        "doc://com.apple.documentation/documentation/corefoundation/cfurlbookmarkresolutionoptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Bookmark Data Types"
+    },
+    {
+      "anchor": "1667248",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfurl"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1667272",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfurl/bookmark_data_creation_options",
+        "doc://com.apple.documentation/documentation/corefoundation/cfurl/bookmark_data_resolution_options"
+      ],
+      "kind": "taskGroup",
+      "title": "Bookmark Data Constants"
+    },
+    {
+      "anchor": "1667401",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfurl/common_file_system_resource_keys",
+        "doc://com.apple.documentation/documentation/corefoundation/cfurl/file_resource_types",
+        "doc://com.apple.documentation/documentation/corefoundation/cfurl/file_property_keys",
+        "doc://com.apple.documentation/documentation/corefoundation/cfurl/icloud_constants",
+        "doc://com.apple.documentation/documentation/corefoundation/cfurl/volume_property_keys",
+        "doc://com.apple.documentation/documentation/corefoundation/cfurl/cferror_userinfo_dictionary_keys"
+      ],
+      "kind": "taskGroup",
+      "title": "File System Constants"
+    },
+    {
+      "anchor": "1668425",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfurlcomponenttype",
+        "doc://com.apple.documentation/documentation/corefoundation/cfurlpathstyle"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/corefoundation/cfurl"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/corefoundation/cfurl-rd7"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

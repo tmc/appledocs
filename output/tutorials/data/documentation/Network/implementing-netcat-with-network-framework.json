@@ -1,0 +1,4096 @@
+{
+  "abstract": [
+    {
+      "text": "Build a simple ",
+      "type": "text"
+    },
+    {
+      "code": "netcat",
+      "type": "codeVoice"
+    },
+    {
+      "text": " tool that establishes network connections and transfers data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.network/documentation/Network"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.network/documentation/Network/implementing-netcat-with-network-framework"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Network"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "10.14",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Implementing netcat with Network Framework"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "netcat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool (abbreviated ",
+              "type": "text"
+            },
+            {
+              "code": "nc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on macOS) is a UNIX tool that lets you:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Establish outbound TCP and UDP connections.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Listen for inbound TCP and UDP connections.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Transfer data between a network connection and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stdin",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stdout",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code shows how you can build ",
+              "type": "text"
+            },
+            {
+              "code": "nwcat",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which provides this functionality and also adds TLS and Bonjour support.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "nwcat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool supports two modes: one that makes an outbound connection and one that listens for an inbound connection.  You select the mode using command-line arguments.  To make an outbound connection to port 80 on ",
+              "type": "text"
+            },
+            {
+              "code": "example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you run:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "$ nwcat example.com 80"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To listen for an inbound connection, you supply the ",
+              "type": "text"
+            },
+            {
+              "code": "-l",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option and the port number to listen on:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "$ nwcat -l 12345"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, ",
+              "type": "text"
+            },
+            {
+              "code": "nwcat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses TCP. The ",
+              "type": "text"
+            },
+            {
+              "code": "-u",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument switches to UDP, and the ",
+              "type": "text"
+            },
+            {
+              "code": "-t",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument adds TLS to TCP connections and DTLS to UDP connections. The ",
+              "type": "text"
+            },
+            {
+              "code": "-b",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument enables use of Bonjour service names rather than host names.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-an-Outbound-Connection",
+          "level": 3,
+          "text": "Create an Outbound Connection",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Network framework, a bidirectional flow of data is represented as a connection object (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/nw_connection_t",
+              "isActive": true,
+              "overridingTitle": "nw_connection_t",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "nw_connection_t",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ").  If you’re using TCP, there’s a direct mapping between the connection object and the underlying TCP connection. If you’re using UDP, a connection object represents a bidirectional flow of datagrams between a local port and a port on a specific remote peer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an outbound connection object, you must supply a parameters object (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/nw_parameters_t",
+              "isActive": true,
+              "overridingTitle": "nw_parameters_t",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "nw_parameters_t",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ") and an endpoint (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/nw_endpoint_type_t",
+              "isActive": true,
+              "overridingTitle": "nw_endpoint_type_t",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "nw_endpoint_type_t",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Create a Parameters Object.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " A parameters object, of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/nw_parameters_t",
+              "isActive": true,
+              "overridingTitle": "nw_parameters_t",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "nw_parameters_t",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", holds all the parameters necessary to configure a network connection.  These include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The protocols involved, like TCP or UDP, or whether to enable TLS.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Any options for those protocols.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Any constraints on the connection, like whether or not to use the cellular interface.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a parameters object, call either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/nw_parameters_create_secure_tcp(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/nw_parameters_create_secure_udp(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " convenience function, depending on whether you want to use TCP or UDP.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "nw_parameters_configure_protocol_block_t configure_tls = NW_PARAMETERS_DISABLE_PROTOCOL;",
+            "if (g_use_udp) {",
+            "    parameters = nw_parameters_create_secure_udp(",
+            "        configure_tls,",
+            "        NW_PARAMETERS_DEFAULT_CONFIGURATION",
+            "    );",
+            "} else {",
+            "    parameters = nw_parameters_create_secure_tcp(",
+            "        configure_tls,",
+            "        NW_PARAMETERS_DEFAULT_CONFIGURATION",
+            "    );",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These functions take two arguments:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The first configures the security protocol for the connection.  Pass ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NW_PARAMETERS_DISABLE_PROTOCOL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to use no security.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The second configures the transport protocol for the connection.  Pass ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NW_PARAMETERS_DEFAULT_CONFIGURATION",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to get a default configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you’re curious about enabling TLS or configuring protocol options, look at the ",
+                  "type": "text"
+                },
+                {
+                  "code": "create_outbound_connection",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " function for examples of these more advanced features. For example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "nwcat",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " supports setting a TLS pre-shared key for both TLS listeners and clients.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Create an Endpoint.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " An endpoint, of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/nw_endpoint_type_t",
+              "isActive": true,
+              "overridingTitle": "nw_endpoint_type_t",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "nw_endpoint_type_t",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", holds a network host or service name.  For an outbound connection, the endpoint determines the remote host to which you want to connect.  In most cases this consists of a host name and a port number, but there are other options.  For example, you can also create endpoints that target a Bonjour service.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "code": "nwcat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool, the user supplies a host name and a port number via command-line arguments, and you will need to create an endpoint from those two strings.  You do this by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/nw_endpoint_create_host(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "nw_endpoint_t endpoint = nw_endpoint_create_host(name, port);"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These strings support both symbolic and numeric values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The host name can be a DNS name, like ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "example.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or the string representation of an IP address, like ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"203.0.113.7\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for IPv4 or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"2606:2800:220:1:248:1893:25c8:1946\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for IPv6.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The port can be a numeric value, like ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"80\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or a service name, like ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"https\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you pass in a DNS name, the connection object takes care of DNS resolution for you, handling the complex issue of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://tools.ietf.org/html/rfc8305",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".  For outbound connections there’s no need to do your own DNS resolution, and in most cases doing so will result in a worse user experience.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Create the Connection Object.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": "  Once you have your parameters object and endpoint, you can create a connection object by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/nw_connection_create(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "nw_connection_t connection = nw_connection_create(endpoint, parameters);"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Start the Connection.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " To start the connection establishment process:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.network/documentation/Network/nw_connection_set_queue(_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Dispatch/dispatch_queue_t",
+                      "isActive": true,
+                      "overridingTitle": "dispatch_queue_t",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "dispatch_queue_t",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on which all callbacks will be scheduled.  For a simple application like ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nwcat",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", you can use the main queue for your callbacks.  A more complex application would typically use a custom serial queue instead.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Install any update handler blocks. The most important of these is the state changed handler, discussed below.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Start the connection by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.network/documentation/Network/nw_connection_start(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must set your queue before starting the connection, and you cannot change the queue after that.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "void",
+            "start_connection(nw_connection_t connection)",
+            "{",
+            "    nw_connection_set_queue(connection, dispatch_get_main_queue());",
+            "    nw_retain(connection);",
+            "    nw_connection_set_state_changed_handler(connection, ^(nw_connection_state_t state, nw_error_t error) {",
+            "        … your state changed handler …",
+            "    });",
+            "    nw_connection_start(connection);",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The connection object closes the underlying network connection when its last reference is released.  Thus, you must retain the connection object, by calling ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.network/documentation/Network/nw_retain",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", until you’re done with the connection.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A state changed handler is a block that’s called by the connection object whenever the connection state changes.  For a simple application, like ",
+              "type": "text"
+            },
+            {
+              "code": "nwcat",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you can use a very simple state changed handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if (state == nw_connection_state_waiting) {",
+            "    … tell the user that a connection couldn’t be opened but will retry when conditions are favourable …",
+            "} else if (state == nw_connection_state_failed) {",
+            "    … tell the user that the connection has failed irrecoverably …",
+            "} else if (state == nw_connection_state_ready) {",
+            "    … tell the user that you are connected …",
+            "} else if (state == nw_connection_state_cancelled) {",
+            "    nw_release(connection);",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make sure you handle the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/nw_connection_state_cancelled",
+              "isActive": true,
+              "overridingTitle": "nw_connection_state_cancelled",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "nw_connection_state_cancelled",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " state.  Once the connection is no longer needed, you have to release the reference you took when you started the connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Listen-for-an-Inbound-Connection",
+          "level": 3,
+          "text": "Listen for an Inbound Connection",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A listener object, of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/nw_listener_t",
+              "isActive": true,
+              "overridingTitle": "nw_listener_t",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "nw_listener_t",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", listens for inbound connections and creates a new connection object for each one.  To create a listener object you must supply a parameters object (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/nw_parameters_t",
+              "isActive": true,
+              "overridingTitle": "nw_parameters_t",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "nw_parameters_t",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ") to indicate what protocols to use and information about the local endpoint on which you want to listen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Create a Parameters Object.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Creating a parameters object for a listener object is very similar to creating a parameters object for an outbound connection. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/nw_parameters_create_secure_tcp(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/nw_parameters_create_secure_udp(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " convenience functions to define which protocols you want your listener to use. These parameters will be applied to any inbound connections your listener accepts. For example, if you enable TLS in the parameters object, all inbound connections will negotiate TLS once you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/nw_connection_start(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Set a Local Endpoint.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " A listener object must know what local endpoint to listen on, that is, the endpoint to which clients must connect.  The local endpoint can include a port number and an interface address, both of which are optional.  If you don’t specify a port number, the system chooses a port for you.  If you don’t specify an interface address, the system listens on all interfaces and addresses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most applications don’t need to listen on a specific interface address and thus can create a listener using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/nw_listener_create_with_port(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " convenience function.  However, ",
+              "type": "text"
+            },
+            {
+              "code": "nwcat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " allows the user to specify an interface address (via a command line argument) and thus you have to use a slightly more complex technique.  If the user has specified an interface address or a port, you can call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/nw_endpoint_create_host(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create an endpoint representing the address to listen on, and then call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/nw_parameters_set_local_endpoint(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to apply that to your parameters object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if (address || port) {",
+            "    nw_endpoint_t local_endpoint = nw_endpoint_create_host(address ? address : \"::\", port ? port : \"0\");",
+            "    nw_parameters_set_local_endpoint(parameters, local_endpoint);",
+            "    nw_release(local_endpoint);",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/nw_endpoint_create_host(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create an endpoint for the local address, keep the following in mind:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "port",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter can either be a numeric string, like ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"443\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or a service name, like ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"https\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you pass ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"0\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "port",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter the system will choose a port on your behalf.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Create the Listener Object.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Once you’ve set up your parameters object, you can create a listener object by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/nw_listener_create(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "nw_listener_t listener = nw_listener_create(parameters);"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Start the Listener.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Starting a listener object is much like starting a connection object, with one significant difference: in addition to setting a state changed handler, you must also set a new connection handler, which is called whenever the listener object receives a new inbound connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "nw_listener_set_queue(listener, dispatch_get_main_queue());",
+            "nw_retain(listener);",
+            "nw_listener_set_state_changed_handler(listener, ^(nw_listener_state_t state, nw_error_t error) {",
+            "    … your state changed handler …",
+            "});",
+            "nw_listener_set_new_connection_handler(listener, ^(nw_connection_t connection) {",
+            "    … your new connection handler …",
+            "});",
+            "nw_listener_start(listener);"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Accept or Reject Inbound Connections.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Your new connection handler is responsible for either starting the network connection or rejecting it.  The ",
+              "type": "text"
+            },
+            {
+              "code": "nwcat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command can only handle one connection at a time, so if there’s already a network connection in place, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/nw_connection_cancel(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to reject the new connection.  If not, retain the network connection and then run the connection using the same ",
+              "type": "text"
+            },
+            {
+              "code": "start_connection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function you used in the outbound case.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if (g_inbound_connection != NULL) {",
+            "    nw_connection_cancel(connection);",
+            "} else {",
+            "    g_inbound_connection = connection;",
+            "    nw_retain(g_inbound_connection);",
+            "",
+            "    start_connection(g_inbound_connection);",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Transfer-Data",
+          "level": 3,
+          "text": "Transfer Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you have created and started a connection, either outbound or inbound, you’ll need code to transfer data on that connection.  Each connection has two directions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Inbound data is received from the network connection and written to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stdout",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Outbound data is read from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stdin",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and sent to the network connection.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both directions are asynchronous.  When receiving data from the network, you supply a completion handler that’s called when data is available.  Similarly, when writing data to the network, you supply a completion handler that’s called when the data has been accepted for transmission.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When working with asynchronous networking, you need to consider flow control.  For example, if you receive data from the network faster than you can write it to ",
+              "type": "text"
+            },
+            {
+              "code": "stdout",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you’ll waste a lot of memory buffering that data.  You’ll have similar problems if you read data from ",
+              "type": "text"
+            },
+            {
+              "code": "stdin",
+              "type": "codeVoice"
+            },
+            {
+              "text": " faster than you can send it over the network.  You can solve this problem by using asynchronous routines for reading from ",
+              "type": "text"
+            },
+            {
+              "code": "stdin",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and writing to ",
+              "type": "text"
+            },
+            {
+              "code": "stdout",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  The basic strategy is this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Start an asynchronous read.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the read completes, start an asynchronous write.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the write completes, set up the next asynchronous read, which starts again at step 1.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use a similar strategy for both inbound and outbound data, but there are some subtle differences, discussed in the sections that follow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Receive Data.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " You can receive data with code like this.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "void",
+            "receive_loop(nw_connection_t connection)",
+            "{",
+            "    nw_connection_receive(connection, 1, UINT32_MAX, ^(dispatch_data_t content, nw_content_context_t context, bool is_complete, nw_error_t receive_error) {",
+            "",
+            "        nw_retain(context);",
+            "        dispatch_block_t schedule_next_receive = ^{",
+            "            … discussed below …",
+            "            nw_release(context);",
+            "        };",
+            "",
+            "        if (content != NULL) {",
+            "            schedule_next_receive = Block_copy(schedule_next_receive);",
+            "            dispatch_write(STDOUT_FILENO, content, dispatch_get_main_queue(), ^(__unused dispatch_data_t _Nullable data, int stdout_error) {",
+            "                if (stdout_error != 0) {",
+            "                    … error logging …",
+            "                } else {",
+            "                    schedule_next_receive();",
+            "                }",
+            "                Block_release(schedule_next_receive);",
+            "            });",
+            "        } else {",
+            "            // No content, so directly schedule the next receive",
+            "            schedule_next_receive();",
+            "        }",
+            "    });",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "While this function is called ",
+                  "type": "text"
+                },
+                {
+                  "code": "receive_loop",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", it’s not actually a loop.  Rather, it’s the asynchronous equivalent of a loop, bouncing between an asynchronous receive from the network and an asynchronous write to ",
+                  "type": "text"
+                },
+                {
+                  "code": "stdout",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The function starts by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/nw_connection_receive(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which is an asynchronous function that receives data from the connection object.  The function has two parameters that control the minimum and maximum amount of data to be received.  The exact amount of data received isn’t relevant here, so pass ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "UINT32_MAX",
+              "type": "codeVoice"
+            },
+            {
+              "text": " respectively.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The minimum and maximum receive parameters are useful when you’re implementing a record-oriented protocol. Many network protocols transfer records over a TCP stream by sending a record length followed by the record.  If you’re working with such a protocol, you can perform an initial receive for the length field and then, once you know the length of the record, do a second receive for the full record body.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the receive is complete, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/nw_connection_receive(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " calls the completion handler that you pass it.  The completion handler has four parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Dispatch/dispatch_data_t",
+                      "isActive": true,
+                      "overridingTitle": "dispatch_data_t",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "dispatch_data_t",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " which, if not ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NULL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", contains the data received.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A content context, discussed below.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "is_complete",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter that is true if the data received is the last part of a logical unit of data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "receive_error",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter, which is not ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NULL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " if an error occurred during the receive process.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A content context, of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/nw_content_context_t",
+              "isActive": true,
+              "overridingTitle": "nw_content_context_t",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "nw_content_context_t",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", holds extra information about the data received.  A typical application that uses only TCP can often ignore this value entirely.  However, a ",
+              "type": "text"
+            },
+            {
+              "code": "netcat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implementation must work equally well with TCP and UDP, and you need the content context to do that.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The completion handler you pass to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/nw_connection_receive(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " does the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It processes any data that was received by starting an asynchronous write to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stdout",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When that asynchronous write completes—or immediately if there was no content—it calls ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "schedule_next_receive",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to continue the receive.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In ",
+              "type": "text"
+            },
+            {
+              "code": "schedule_next_receive",
+              "type": "codeVoice"
+            },
+            {
+              "text": " you must handle three cases:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you just received the end of the data stream, call ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "exit",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to terminate the program.  This is how the program stops when the remote peer closes the network connection.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the receive failed with an error, handle that error.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Otherwise, start the next asynchronous receive by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "receive_loop",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "nw_retain(context);",
+            "dispatch_block_t schedule_next_receive = ^{",
+            "    if (is_complete &&",
+            "        (context == NULL || nw_content_context_get_is_final(context))) {",
+            "        exit(0);",
+            "    }",
+            "    if (receive_error == NULL) {",
+            "        receive_loop(connection);",
+            "    } else {",
+            "        … error logging …",
+            "    }",
+            "    nw_release(context);",
+            "};"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You must process any received data before checking for the other states (end of data stream or error) because it’s possible for your completion handler to be called with both data and one of the other states.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To check for the end of the data stream:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Generally, you can use the technique shown by ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "schedule_next_receive",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", that is, check both the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "is_complete",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " flag and that the context is marked as final or is not present.  This technique works correctly for both TCP and UDP, and thus is necessary for a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "netcat",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " implementation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you only handle TCP, you can simply test the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "is_complete",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " flag.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Send Data.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Your send code should have the same basic structure as your receive code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "void",
+            "send_loop(nw_connection_t connection)",
+            "{",
+            "    dispatch_read(STDIN_FILENO, 8192, dispatch_get_main_queue(), ^(dispatch_data_t _Nonnull read_data, int stdin_error) {",
+            "        if (stdin_error != 0) {",
+            "            … error logging …",
+            "        } else if (read_data == NULL) {",
+            "            … handle end of file …",
+            "        } else {",
+            "            nw_connection_send(connection, read_data, NW_CONNECTION_DEFAULT_MESSAGE_CONTEXT, true, ^(nw_error_t  _Nullable error) {",
+            "                if (error != NULL) {",
+            "                    … error logging …",
+            "                } else {",
+            "                    send_loop(connection);",
+            "                }",
+            "            });",
+            "        }",
+            "    });",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are, however, some subtle differences:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If, as in this case, you support UDP, you must limit the amount of data you read from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stdin",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".  If you read more than 64 Kibibytes (KiB), the resulting read won’t fit in a single UDP datagram.  This code use a 8 KiB limit.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You must tell the network connection to send the data as a single message by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.network/documentation/Network/nw_connection_send(_:_:_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NW_CONNECTION_DEFAULT_MESSAGE_CONTEXT",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and passing true to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "is_complete",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter.  This approach is appropriate for both TCP and UDP connections.  For TCP connections, message boundaries don’t affect how the protocol sends data, but the boundaries are required for sending UDP datagrams.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Finally, when you receive an end of file from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stdin",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", you must close the send side of your connection.  The code for this is shown below.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "nw_connection_send(connection, NULL, NW_CONNECTION_FINAL_MESSAGE_CONTEXT, true, ^(nw_error_t  _Nullable error) {",
+                    "    if (error != NULL) {",
+                    "        … handle error …",
+                    "    }",
+                    "    // Stop reading from stdin, so don't schedule another send_loop",
+                    "});"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "This passes a special context, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NW_CONNECTION_FINAL_MESSAGE_CONTEXT",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and passes true to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "is_complete",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".  Together, these actions indicate that no more data will be sent, allowing the network connection to close the sending side of the connection.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Dispatch/dispatch_data_t": {
+      "abstract": [
+        {
+          "text": "An immutable object representing a contiguous or sparse region of memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatch_data_t"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "__DispatchData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Dispatch/dispatch_data_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_data_t",
+      "type": "topic",
+      "url": "/documentation/Dispatch/dispatch_data_t"
+    },
+    "doc://com.apple.documentation/documentation/Dispatch/dispatch_queue_t": {
+      "abstract": [
+        {
+          "text": "A lightweight object to which your application submits blocks for subsequent execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)OS_dispatch_queue",
+          "text": "DispatchQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Dispatch/dispatch_queue_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_queue_t",
+      "type": "topic",
+      "url": "/documentation/Dispatch/dispatch_queue_t"
+    },
+    "doc://com.apple.documentation/documentation/Network/nw_connection_state_cancelled": {
+      "abstract": [
+        {
+          "text": "The connection has been canceled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_connection_state_cancelled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@nw_connection_state_t",
+          "text": "nw_connection_state_t"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/nw_connection_state_cancelled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nw_connection_state_cancelled",
+      "type": "topic",
+      "url": "/documentation/Network/nw_connection_state_cancelled"
+    },
+    "doc://com.apple.documentation/documentation/Network/nw_connection_t": {
+      "abstract": [
+        {
+          "text": "A bidirectional data connection between a local endpoint and a remote endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_connection_t"
+        },
+        {
+          "kind": "text",
+          "text": " = any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)OS_nw_connection",
+          "text": "OS_nw_connection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/nw_connection_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nw_connection_t",
+      "type": "topic",
+      "url": "/documentation/Network/nw_connection_t"
+    },
+    "doc://com.apple.documentation/documentation/Network/nw_content_context_t": {
+      "abstract": [
+        {
+          "text": "A representation of a message to send or receive, containing protocol metadata and send properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_t"
+        },
+        {
+          "kind": "text",
+          "text": " = any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)OS_nw_content_context",
+          "text": "OS_nw_content_context"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/nw_content_context_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nw_content_context_t",
+      "type": "topic",
+      "url": "/documentation/Network/nw_content_context_t"
+    },
+    "doc://com.apple.documentation/documentation/Network/nw_endpoint_type_t": {
+      "abstract": [
+        {
+          "text": "The type of a network endpoint, such as a host or a service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_endpoint_type_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/nw_endpoint_type_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nw_endpoint_type_t",
+      "type": "topic",
+      "url": "/documentation/Network/nw_endpoint_type_t"
+    },
+    "doc://com.apple.documentation/documentation/Network/nw_listener_t": {
+      "abstract": [
+        {
+          "text": "An object you use to listen for incoming network connections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_listener_t"
+        },
+        {
+          "kind": "text",
+          "text": " = any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)OS_nw_listener",
+          "text": "OS_nw_listener"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/nw_listener_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nw_listener_t",
+      "type": "topic",
+      "url": "/documentation/Network/nw_listener_t"
+    },
+    "doc://com.apple.documentation/documentation/Network/nw_parameters_t": {
+      "abstract": [
+        {
+          "text": "An object that stores the protocols to use for connections, options for sending data, and network path constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_t"
+        },
+        {
+          "kind": "text",
+          "text": " = any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)OS_nw_parameters",
+          "text": "OS_nw_parameters"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/nw_parameters_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nw_parameters_t",
+      "type": "topic",
+      "url": "/documentation/Network/nw_parameters_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.network/documentation/Network": {
+      "abstract": [
+        {
+          "text": "Create network connections to send and receive data using transport and security protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/network"
+    },
+    "doc://com.apple.network/documentation/Network/nw_browser_t": {
+      "abstract": [
+        {
+          "text": "An object you use to browse for available network services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_browser_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_browser_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_browser_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_browser_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_browser_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_connection_cancel(_:)": {
+      "abstract": [
+        {
+          "text": "Cancels the connection and gracefully disconnects any established network protocols.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_connection_cancel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_connection_t",
+          "text": "nw_connection_t"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_connection_cancel(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_connection_cancel"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_connection_cancel(_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_connection_cancel(_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_connection_create(_:_:)": {
+      "abstract": [
+        {
+          "text": "Initializes a new connection to a remote endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_connection_create"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_endpoint_t",
+          "text": "nw_endpoint_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_parameters_t",
+          "text": "nw_parameters_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_connection_t",
+          "text": "nw_connection_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_connection_create(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_connection_create"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_connection_create(_:_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_connection_create(_:_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_connection_group_t": {
+      "abstract": [
+        {
+          "text": "An object you use to communicate with a group of endpoints, such as an IP multicast group on a local network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_connection_group_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_connection_group_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_connection_group_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_connection_group_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_connection_group_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_connection_receive(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Schedules a single receive completion handler, with a range indicating how many bytes the handler can receive at one time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_connection_receive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_connection_t",
+          "text": "nw_connection_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_connection_receive_completion_t",
+          "text": "nw_connection_receive_completion_t"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_connection_receive(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_connection_receive"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_connection_receive(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_connection_receive(_:_:_:_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_connection_send(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sends data on a connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_connection_send"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_connection_t",
+          "text": "nw_connection_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "dispatch_data_t"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_content_context_t",
+          "text": "nw_content_context_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_connection_send_completion_t",
+          "text": "nw_connection_send_completion_t"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_connection_send(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_connection_send"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_connection_send(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_connection_send(_:_:_:_:_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_connection_set_queue(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the queue on which all connection events are delivered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_connection_set_queue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_connection_t",
+          "text": "nw_connection_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_connection_set_queue(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_connection_set_queue"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_connection_set_queue(_:_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_connection_set_queue(_:_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_connection_start(_:)": {
+      "abstract": [
+        {
+          "text": "Starts establishing a connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_connection_start"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_connection_t",
+          "text": "nw_connection_t"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_connection_start(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_connection_start"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_connection_start(_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_connection_start(_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_connection_t": {
+      "abstract": [
+        {
+          "text": "A bidirectional data connection between a local endpoint and a remote endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_connection_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_connection_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_connection_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_connection_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_connection_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_endpoint_create_host(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a network endpoint with a hostname and port, where the hostname may be interpreted as an IP address.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_endpoint_create_host"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_endpoint_t",
+          "text": "nw_endpoint_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_endpoint_create_host(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_endpoint_create_host"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_endpoint_create_host(_:_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_endpoint_create_host(_:_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_ethernet_channel_t": {
+      "abstract": [
+        {
+          "text": "An object you use to send and receive custom Ethernet frames.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_ethernet_channel_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_ethernet_channel_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_ethernet_channel_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_ethernet_channel_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_ethernet_channel_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_listener_create(_:)": {
+      "abstract": [
+        {
+          "text": "Initializes a network listener, which will select a random port.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_listener_create"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_parameters_t",
+          "text": "nw_parameters_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_listener_t",
+          "text": "nw_listener_t"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_listener_create(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_listener_create"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_listener_create(_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_listener_create(_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_listener_create_with_port(_:_:)": {
+      "abstract": [
+        {
+          "text": "Initializes a network listener with a specified local port.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_listener_create_with_port"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_parameters_t",
+          "text": "nw_parameters_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_listener_t",
+          "text": "nw_listener_t"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_listener_create_with_port(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_listener_create_with_port"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_listener_create_with_port(_:_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_listener_create_with_port(_:_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_listener_t": {
+      "abstract": [
+        {
+          "text": "An object you use to listen for incoming network connections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_listener_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_listener_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_listener_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_listener_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_listener_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_parameters_create_secure_tcp(_:_:)": {
+      "abstract": [
+        {
+          "text": "Initializes parameters for TLS or TCP connections and listeners.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_create_secure_tcp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_parameters_configure_protocol_block_t",
+          "text": "nw_parameters_configure_protocol_block_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_parameters_configure_protocol_block_t",
+          "text": "nw_parameters_configure_protocol_block_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_parameters_t",
+          "text": "nw_parameters_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_parameters_create_secure_tcp(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_create_secure_tcp"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_parameters_create_secure_tcp(_:_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_parameters_create_secure_tcp(_:_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_parameters_create_secure_udp(_:_:)": {
+      "abstract": [
+        {
+          "text": "Initializes parameters for DTLS or UDP connections and listeners.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_create_secure_udp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_parameters_configure_protocol_block_t",
+          "text": "nw_parameters_configure_protocol_block_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_parameters_configure_protocol_block_t",
+          "text": "nw_parameters_configure_protocol_block_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_parameters_t",
+          "text": "nw_parameters_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_parameters_create_secure_udp(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_create_secure_udp"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_parameters_create_secure_udp(_:_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_parameters_create_secure_udp(_:_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_parameters_set_local_endpoint(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets a specific local IP address and port to use for connections and listeners.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_set_local_endpoint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_parameters_t",
+          "text": "nw_parameters_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_endpoint_t",
+          "text": "nw_endpoint_t"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_parameters_set_local_endpoint(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_set_local_endpoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_parameters_set_local_endpoint(_:_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_parameters_set_local_endpoint(_:_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_retain": {
+      "abstract": [
+        {
+          "text": "Adds a reference count to a Network.framework object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "nw_retain"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_retain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nw_retain",
+      "type": "topic",
+      "url": "/documentation/network/nw_retain"
+    },
+    "f1d9686fa841/ImplementingWithNetworkFramework.zip": {
+      "checksum": "f1d9686fa841439c5b9e431c33c30bf0cc3a69167a1d7af4f0891b941a79cb9ce9cf779739cf771b59b6974e9524671de2f5ae8940dc14e8ba4937ef8a23cd33",
+      "identifier": "f1d9686fa841/ImplementingWithNetworkFramework.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/f1d9686fa841/ImplementingWithNetworkFramework.zip"
+    },
+    "https://tools.ietf.org/html/rfc8305": {
+      "identifier": "https://tools.ietf.org/html/rfc8305",
+      "title": "deciding what IP address to connect to",
+      "titleInlineContent": [
+        {
+          "text": "deciding what IP address to connect to",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc8305"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "f1d9686fa841/ImplementingWithNetworkFramework.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Connections-and-Listeners",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/nw_connection_t",
+        "doc://com.apple.network/documentation/Network/nw_listener_t",
+        "doc://com.apple.network/documentation/Network/nw_browser_t",
+        "doc://com.apple.network/documentation/Network/nw_connection_group_t",
+        "doc://com.apple.network/documentation/Network/nw_ethernet_channel_t"
+      ],
+      "title": "Connections and Listeners"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_create(_:_:)/title",
+          "value": "nw_connection_create"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_create(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_create"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_group_t/title",
+          "value": "nw_connection_group_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_group_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_group_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_group_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_group_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_create_secure_tcp(_:_:)/title",
+          "value": "nw_parameters_create_secure_tcp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_create_secure_tcp(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_parameters_create_secure_tcp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_t/title",
+          "value": "nw_connection_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_listener_create_with_port(_:_:)/title",
+          "value": "nw_listener_create_with_port"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_listener_create_with_port(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_listener_create_with_port"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_endpoint_create_host(_:_:)/title",
+          "value": "nw_endpoint_create_host"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_endpoint_create_host(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_endpoint_create_host"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_ethernet_channel_t/title",
+          "value": "nw_ethernet_channel_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_ethernet_channel_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_ethernet_channel_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_ethernet_channel_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_ethernet_channel_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_receive(_:_:_:_:)/title",
+          "value": "nw_connection_receive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_receive(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_receive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Network~1nw_listener_t/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSObjectobjc(pl)OS_nw_listener",
+              "text": "NSObject<OS_nw_listener>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "nw_listener_t"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Network~1nw_connection_state_cancelled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_state_cancelled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_set_queue(_:_:)/title",
+          "value": "nw_connection_set_queue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_set_queue(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_set_queue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_listener_t/title",
+          "value": "nw_listener_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_listener_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_listener_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_listener_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_listener_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_cancel(_:)/title",
+          "value": "nw_connection_cancel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_cancel(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_cancel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Network~1nw_content_context_t/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSObjectobjc(pl)OS_nw_content_context",
+              "text": "NSObject<OS_nw_content_context>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "nw_content_context_t"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_set_local_endpoint(_:_:)/title",
+          "value": "nw_parameters_set_local_endpoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_set_local_endpoint(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_parameters_set_local_endpoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browser_t/title",
+          "value": "nw_browser_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browser_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_browser_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browser_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_browser_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Network~1nw_parameters_t/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSObjectobjc(pl)OS_nw_parameters",
+              "text": "NSObject<OS_nw_parameters>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "nw_parameters_t"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Dispatch~1dispatch_queue_t/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSObjectobjc(pl)OS_dispatch_queue",
+              "text": "NSObject<OS_dispatch_queue>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "dispatch_queue_t"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_create_secure_udp(_:_:)/title",
+          "value": "nw_parameters_create_secure_udp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_create_secure_udp(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_parameters_create_secure_udp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Network~1nw_endpoint_type_t/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " { ... } "
+            },
+            {
+              "kind": "identifier",
+              "text": "nw_endpoint_type_t"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_send(_:_:_:_:_:)/title",
+          "value": "nw_connection_send"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_send(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_send"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_listener_create(_:)/title",
+          "value": "nw_listener_create"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_listener_create(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_listener_create"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Dispatch~1dispatch_data_t/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSObjectobjc(pl)OS_dispatch_data",
+              "text": "NSObject<OS_dispatch_data>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "dispatch_data_t"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Network~1nw_connection_t/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSObjectobjc(pl)OS_nw_connection",
+              "text": "NSObject<OS_nw_connection>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "nw_connection_t"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_start(_:)/title",
+          "value": "nw_connection_start"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_start(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_start"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/network/implementing-netcat-with-network-framework"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

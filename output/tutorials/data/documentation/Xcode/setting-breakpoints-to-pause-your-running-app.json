@@ -1,0 +1,1468 @@
+{
+  "abstract": [
+    {
+      "text": "Specify where your app pauses when running the debugger to investigate bugs.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/setting-breakpoints-to-pause-your-running-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Setting breakpoints to pause your running app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you identify a place in your source code where you want to investigate a bug,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "set a breakpoint to pause the debugger so you can inspect your variables and step",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "through your code to isolate the bug.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To locate crashes or other bugs where it is difficult to know where to set a breakpoint,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use symbolic or issue breakpoints to pause on specific problem conditions and quickly",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "identify where a bug occurs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For bugs that occur after several iterations or only under certain circumstances,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specify conditions on your breakpoint. If you want to log information at specific",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "points in your app or receive notifications when a line of code executes, use breakpoint",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "actions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-where-to-pause-your-app",
+          "level": 3,
+          "text": "Specify where to pause your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Navigate to a line in your code where you want execution to pause, then click the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "gutter or line number in the source editor to set a breakpoint. Xcode displays a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "breakpoint icon to indicate the location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "setting-breakpoints-to-pause-your-running-app-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Drag a breakpoint up or down to move it to another location; drag it away from the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "gutter to remove it. Click the breakpoint icon in the debug area toolbar to activate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or deactivate all breakpoints.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Manage-breakpoints-across-your-app",
+          "level": 3,
+          "text": "Manage breakpoints across your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you have many breakpoints set across several source code files, click the Breakpoint",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Navigator button in the navigator area of the main window to open the Breakpoint",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "navigator to view and manage all breakpoints.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "setting-breakpoints-to-pause-your-running-app-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Click a breakpoint label in the Breakpoint navigator to quickly navigate to the breakpoint",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the source editor. Pressing the Delete key after selecting a breakpoint label",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "deletes the breakpoint from your code. Click a breakpoint icon in the Breakpoint",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "navigator to enable or disable it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To easily find a frequently used breakpoint in the navigator, Control-click the breakpoint",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "label, choose Edit Breakpoint, and enter a name for it. Then use the filter at the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "bottom of the Breakpoint navigator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use the filter to find breakpoints by symbols in the line of code for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the breakpoint. The filter tools provide options for showing only modified breakpoints",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and showing only enabled breakpoints.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-conditions-for-pausing-your-app",
+          "level": 3,
+          "text": "Specify conditions for pausing your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For bugs that occur after a certain number of iterations, or under limited conditions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that require repetitive actions, it’s cumbersome to pause at the breakpoint and press",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Continue button repeatedly until the bug occurs. There are two approaches to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "handle this type of situation more efficiently in the debugger.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a bug that occurs after a certain number of iterations, set the debugger to ignore",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the breakpoint for some iterations. Control-click the breakpoint, choose Edit Breakpoint,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and specify the number of times to ignore the breakpoint before stopping.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "setting-breakpoints-to-pause-your-running-app-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a bug that occurs under limited conditions, set the debugger to pause on a breakpoint",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when an expression is true. Control-click the breakpoint, choose Edit Breakpoint,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and enter a condition using variables available in the local scope.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "setting-breakpoints-to-pause-your-running-app-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The debugger evaluates the expression each time it reaches the breakpoint in execution,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and pauses only if the expression is true.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Pause-on-a-symbol-outside-your-code",
+          "level": 3,
+          "text": "Pause on a symbol outside your code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To debug some issues, you need to pause on a symbol that your source code doesn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "define. For example, when you encounter an Auto Layout issue, the error message recommends",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "setting a breakpoint on ",
+              "type": "text"
+            },
+            {
+              "code": "UIViewAlertForUnsatisfiableConstraints",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To do that, use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a symbolic breakpoint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Breakpoint navigator, click the Add button (+) in the lower-left corner, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "choose Symbolic Breakpoint. Enter the object and symbol in the Symbol field, using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the format of the example text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "setting-breakpoints-to-pause-your-running-app-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The debugger pauses when the app or your code calls the symbol you specify. The example",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "symbol ",
+              "type": "text"
+            },
+            {
+              "code": "UIViewAlertForUnsatisfiableConstraints",
+              "type": "codeVoice"
+            },
+            {
+              "text": " typically pauses in the application’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "main",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method and not on a line in your code. When this happens, use the console",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to view an Auto Layout trace with ",
+              "type": "text"
+            },
+            {
+              "code": "po [[UIWindow keyWindow] _autolayoutTrace]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Some symbols receive calls very frequently and pausing on each can be unmanageable.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Add a condition to the breakpoint to reduce the frequency of calls, or disable the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "symbolic breakpoint until you reach a breakpoint in your code where you want to start",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "diagnosing the issue, and then enable the symbolic breakpoint.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Pause-on-an-uncaught-Swift-error-or-Objective-C-exception",
+          "level": 3,
+          "text": "Pause on an uncaught Swift error or Objective-C exception",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app encounters an unhandled Swift Error or Objective-C exception, it crashes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Frequently, the stack trace doesn’t point directly to where the problem occurs. Set",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a breakpoint to pause on an uncaught Swift Error or Objective-C exception so you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can locate the problem.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an unhandled Swift error causes a crash, the debugger shows a fatal error on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the line with the ",
+              "type": "text"
+            },
+            {
+              "code": "try!",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and not where the error originally occurs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "setting-breakpoints-to-pause-your-running-app-6",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the thrown error has a helpful error message, that may be enough information to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "resolve the problem. If not, add a Swift error breakpoint to pause on the line that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "throws the error. In the Breakpoint navigator, click the Add button (+) in the lower-left",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "corner, and choose Swift Error Breakpoint. The app then pauses on the thrown error",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instead of the ",
+              "type": "text"
+            },
+            {
+              "code": "try!",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "setting-breakpoints-to-pause-your-running-app-7",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an uncaught Objective-C error causes a crash, the debugger shows the crash in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "AppDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "main",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "setting-breakpoints-to-pause-your-running-app-8",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add an Objective-C exception breakpoint to pause on the line where the crash occurs",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instead of ",
+              "type": "text"
+            },
+            {
+              "code": "main",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". In the Breakpoint navigator, click the Add button (+) in the lower-left",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "corner, and choose Exception Breakpoint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "setting-breakpoints-to-pause-your-running-app-9",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Pause-automatically-when-the-system-detects-a-runtime-issue",
+          "level": 3,
+          "text": "Pause automatically when the system detects a runtime issue",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode has tools called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "sanitizers",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to detect several different types of runtime",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "issues: updating the user interface outside the main thread, updating variables from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "different threads unsafely, accessing addresses unsafely, and executing code that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "results in undefined behavior. Configure your scheme to enable sanitizers to detect",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "these issues with static analysis at build time. When you disable the sanitizers",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and your app encounters one of these issues, your app crashes and Xcode may not clearly",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "identify where the issue occurs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "setting-breakpoints-to-pause-your-running-app-10",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To pause your app and investigate, click the Add button (+) in the lower-left corner",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the Breakpoint navigator,  choose Runtime Issue Breakpoint, and select the type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of runtime issue for the breakpoint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "setting-breakpoints-to-pause-your-running-app-11",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enable the sanitizer for the issue and run your app. The sanitizer identifies lines",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of code where it expects runtime issues to occur. When the app pauses at your runtime",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "breakpoint, investigate why the issue occurs. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Log-variable-values-run-scripts-or-play-sounds-at-a-breakpoint",
+          "level": 3,
+          "text": "Log variable values, run scripts, or play sounds at a breakpoint",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of writing code to log variable values and details about your app’s execution,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use breakpoint actions to log messages and to perform debugger commands that print",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variable values to the console.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Breakpoint actions can also play sounds when the debugger reaches a breakpoint, which",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is useful for knowing when code executes without pausing. Breakpoint actions can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "execute AppleScripts or shell scripts to perform helpful debugging tasks like taking",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a screenshot or saving some app data for analysis.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To perform an action with a breakpoint, Control-click the breakpoint, either in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "source editor or in the Breakpoint navigator, choose Edit Breakpoint, click Add Action,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "choose an action and provide any additional information necessary. For example, provide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a message for the Log Message action, or a command and parameters for the Debugger",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Command action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "setting-breakpoints-to-pause-your-running-app-12",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To perform more than one action at a breakpoint, click the Add button (+) to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "right of an existing action to add another action. To continue executing your app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "without pausing after performing your action, select the “Automatically continue",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "after evaluating actions” option.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early": {
+      "abstract": [
+        {
+          "text": "Identify runtime crashes and undefined behaviors in your app during testing using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Xcode’s sanitizer tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Diagnosing memory, thread, and crash issues early",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-memory-thread-and-crash-issues-early"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes": {
+      "abstract": [
+        {
+          "text": "Find patterns in crash reports that identify common problems, and investigate the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "issue based on the pattern.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Identifying the cause of common crashes",
+      "type": "topic",
+      "url": "/documentation/xcode/identifying-the-cause-of-common-crashes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/stepping-through-code-and-inspecting-variables-to-isolate-bugs": {
+      "abstract": [
+        {
+          "text": "Find the cause of your bugs by watching variables change as you step through your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "source code in the debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/stepping-through-code-and-inspecting-variables-to-isolate-bugs",
+      "kind": "article",
+      "role": "article",
+      "title": "Stepping through code and inspecting variables to isolate bugs",
+      "type": "topic",
+      "url": "/documentation/xcode/stepping-through-code-and-inspecting-variables-to-isolate-bugs"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "setting-breakpoints-to-pause-your-running-app-1": {
+      "alt": "Xcode displays two blue breakpoint markers on line numbers for two lines of code. Xcode also displays a light blue, disabled breakpoint marker on a line number for a line of code.",
+      "identifier": "setting-breakpoints-to-pause-your-running-app-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/490252326a8f9805eb9fde4456d57996/setting-breakpoints-to-pause-your-running-app-1@2x.png"
+        }
+      ]
+    },
+    "setting-breakpoints-to-pause-your-running-app-10": {
+      "alt": "Xcode displaying an app crashed due to a main thread runtime issue.",
+      "identifier": "setting-breakpoints-to-pause-your-running-app-10",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c116f770ce869e3713a69387f090ac48/setting-breakpoints-to-pause-your-running-app-10@2x.png"
+        }
+      ]
+    },
+    "setting-breakpoints-to-pause-your-running-app-11": {
+      "alt": "Xcode displaying an app paused on a line of code that updates the user interface from a background thread.",
+      "identifier": "setting-breakpoints-to-pause-your-running-app-11",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4bcb34b738e31a681d15e095f8187a8d/setting-breakpoints-to-pause-your-running-app-11@2x.png"
+        }
+      ]
+    },
+    "setting-breakpoints-to-pause-your-running-app-12": {
+      "alt": "Xcode displaying a breakpoint with a debugger command action. The debugger command is “po indexPath”.",
+      "identifier": "setting-breakpoints-to-pause-your-running-app-12",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f6ac0431871e13b8fe9ede7c698b989b/setting-breakpoints-to-pause-your-running-app-12@2x.png"
+        }
+      ]
+    },
+    "setting-breakpoints-to-pause-your-running-app-2": {
+      "alt": "Xcode displays the Breakpoint Navigator with a list of example breakpoints.",
+      "identifier": "setting-breakpoints-to-pause-your-running-app-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/70451144e5b8dc66bad23f08c6db7da2/setting-breakpoints-to-pause-your-running-app-2@2x.png"
+        }
+      ]
+    },
+    "setting-breakpoints-to-pause-your-running-app-3": {
+      "alt": "Xcode showing an example of a breakpoint with a setting of “Ignore 8 times before stopping”.",
+      "identifier": "setting-breakpoints-to-pause-your-running-app-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dad9eae6778dcfc42e7429814d48d7a8/setting-breakpoints-to-pause-your-running-app-3@2x.png"
+        }
+      ]
+    },
+    "setting-breakpoints-to-pause-your-running-app-4": {
+      "alt": "Xcode showing an example of a breakpoint with a condition set to “indexPath.row > 8”.",
+      "identifier": "setting-breakpoints-to-pause-your-running-app-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f18819b4ae5ea07a1818a26608630723/setting-breakpoints-to-pause-your-running-app-4@2x.png"
+        }
+      ]
+    },
+    "setting-breakpoints-to-pause-your-running-app-5": {
+      "alt": "Xcode showing a symbolic breakpoint with the symbol UIViewAlertForUnsatisfiableConstraints.",
+      "identifier": "setting-breakpoints-to-pause-your-running-app-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/14845c07ec221953ba10cfcee28e0273/setting-breakpoints-to-pause-your-running-app-5@2x.png"
+        }
+      ]
+    },
+    "setting-breakpoints-to-pause-your-running-app-6": {
+      "alt": "Xcode displaying an app crashed with an uncaught Swift error.",
+      "identifier": "setting-breakpoints-to-pause-your-running-app-6",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/36ed0fd739771f57f0e06b5b785e4405/setting-breakpoints-to-pause-your-running-app-6@2x.png"
+        }
+      ]
+    },
+    "setting-breakpoints-to-pause-your-running-app-7": {
+      "alt": "Xcode displaying an app paused at a Swift error breakpoint, showing a line of code throwing a Swift error.",
+      "identifier": "setting-breakpoints-to-pause-your-running-app-7",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/78b461c0ead40074865f1390ff73aadc/setting-breakpoints-to-pause-your-running-app-7@2x.png"
+        }
+      ]
+    },
+    "setting-breakpoints-to-pause-your-running-app-8": {
+      "alt": "Xcode displaying an app crashed due to an uncaught Objective-C exception, with an error message describing a problem dequeueing a table view cell.",
+      "identifier": "setting-breakpoints-to-pause-your-running-app-8",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/304c61cfdc887b277265ad35ac35bdd3/setting-breakpoints-to-pause-your-running-app-8@2x.png"
+        }
+      ]
+    },
+    "setting-breakpoints-to-pause-your-running-app-9": {
+      "alt": "Xcode displaying an app paused on a line of code that dequeues a reusable cell for a table view with an invalid identifier, generating an Objective-C exception.",
+      "identifier": "setting-breakpoints-to-pause-your-running-app-9",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d485505f90a9c5c3b472b5dfc9359451/setting-breakpoints-to-pause-your-running-app-9@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Breakpoints-and-variables",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/stepping-through-code-and-inspecting-variables-to-isolate-bugs"
+      ],
+      "title": "Breakpoints and variables"
+    }
+  ]
+}

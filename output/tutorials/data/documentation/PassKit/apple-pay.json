@@ -1,0 +1,2417 @@
+{
+  "abstract": [
+    {
+      "text": "Request and process Apple Pay payments in your app.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 1"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 1"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.passkit/documentation/PassKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.passkit/documentation/PassKit/apple-pay"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "PassKit (Apple Pay and Wallet)"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Apple Pay"
+  },
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.in-app-payments": {
+      "abstract": [
+        {
+          "text": "A list of merchant IDs your app uses for Apple Pay support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.in-app-payments",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Merchant IDs Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.in-app-payments"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.passkit/documentation/PassKit": {
+      "abstract": [
+        {
+          "text": "Process Apple Pay payments in your app, and create and distribute passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PassKit (Apple Pay and Wallet)",
+      "type": "topic",
+      "url": "/documentation/passkit"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAddressField": {
+      "abstract": [
+        {
+          "text": "Billing or shipping address fields.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKAddressField"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAddressField",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKAddressField"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKAddressField",
+      "type": "topic",
+      "url": "/documentation/passkit/pkaddressfield"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKApplePayLaterAvailability": {
+      "abstract": [
+        {
+          "text": "Values you use to enable or disable Apple Pay Later for a specific transaction.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKApplePayLaterAvailability"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKApplePayLaterAvailability",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKApplePayLaterAvailability"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKApplePayLaterAvailability",
+      "type": "topic",
+      "url": "/documentation/passkit/pkapplepaylateravailability"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest": {
+      "abstract": [
+        {
+          "text": "A class that represents a request to set up an automatic reload payment, such as a store card top-up or a prepaid account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKAutomaticReloadPaymentRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKAutomaticReloadPaymentRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKAutomaticReloadPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/passkit/pkautomaticreloadpaymentrequest"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKDeferredPaymentRequest": {
+      "abstract": [
+        {
+          "text": "An object that represents a request to set up a deferred payment, such as a hotel booking or a pre-order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKDeferredPaymentRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKDeferredPaymentRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKDeferredPaymentRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKDeferredPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/passkit/pkdeferredpaymentrequest"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKDisbursementError": {
+      "abstract": [
+        {
+          "text": "A structure that describes errors that can occur while processing the disbursement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKDisbursementError"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKDisbursementError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKDisbursementError"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKDisbursementError",
+      "type": "topic",
+      "url": "/documentation/passkit/pkdisbursementerror"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKDisbursementError/Code": {
+      "abstract": [
+        {
+          "text": "Values that describe errors that can occur while processing the disbursement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKDisbursementError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKDisbursementError.Code",
+      "type": "topic",
+      "url": "/documentation/passkit/pkdisbursementerror/code"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKDisbursementErrorDomain": {
+      "abstract": [
+        {
+          "text": "The error domain to use for errors with in-app disbursements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKDisbursementErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKDisbursementErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKDisbursementErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKDisbursementErrorDomain",
+      "type": "topic",
+      "url": "/documentation/passkit/pkdisbursementerrordomain"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKDisbursementErrorKey": {
+      "abstract": [
+        {
+          "text": "Values that describe errors that can occur when processing disbursements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKDisbursementErrorKey"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKDisbursementErrorKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKDisbursementErrorKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKDisbursementErrorKey",
+      "type": "topic",
+      "url": "/documentation/passkit/pkdisbursementerrorkey"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKDisbursementRequest": {
+      "abstract": [
+        {
+          "text": "An object that represents a request to disburse funds from a merchant to an individual.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKDisbursementRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKDisbursementRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKDisbursementRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKDisbursementRequest",
+      "type": "topic",
+      "url": "/documentation/passkit/pkdisbursementrequest"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPayment": {
+      "abstract": [
+        {
+          "text": "Represents the result of authorizing a payment request and contains payment information, encrypted in the payment token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPayment"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPayment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPayment"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPayment",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpayment"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationController": {
+      "abstract": [
+        {
+          "text": "An object that presents a sheet that prompts the user to authorize a payment request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationController"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentAuthorizationController",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationcontroller"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult": {
+      "abstract": [
+        {
+          "text": "An object that reports the status code and errors for a payment authorization request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationResult"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentAuthorizationResult",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationresult"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewController": {
+      "abstract": [
+        {
+          "text": "An object that presents a sheet that prompts the user to authorize a payment request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentAuthorizationViewController",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationviewcontroller"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentButton": {
+      "abstract": [
+        {
+          "text": "An object that displays a button either to trigger payments through Apple Pay or to prompt the user to set up a card.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentButton"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentButton",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentbutton"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentError": {
+      "abstract": [
+        {
+          "text": "An error type that you create to indicate problems with address or contact information on an Apple Pay sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentError"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentError"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentError",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymenterror"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code": {
+      "abstract": [
+        {
+          "text": "An error code that you provide to indicate problems with address or contact information on an Apple Pay sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentError.Code",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymenterror/code"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentErrorDomain": {
+      "abstract": [
+        {
+          "text": "The error domain for specific errors associated with Apple Pay in-app or web payments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentErrorDomain",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymenterrordomain"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentErrorKey": {
+      "abstract": [
+        {
+          "text": "Additional details about an error on the Apple Pay sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentErrorKey"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentErrorKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentErrorKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentErrorKey",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymenterrorkey"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentInformationEventExtension": {
+      "abstract": [
+        {
+          "text": "An abstract superclass for an extension to collect payment information and sign transaction data in a QR code purchase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentInformationEventExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentInformationEventExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentInformationEventExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentInformationEventExtension",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentinformationeventextension"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentInformationRequestHandling": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentInformationRequestHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentInformationRequestHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentInformationRequestHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentInformationRequestHandling",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentinformationrequesthandling"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentOrderDetails": {
+      "abstract": [
+        {
+          "text": "Optional metadata with payment order details for the placed order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentOrderDetails"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentOrderDetails",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentOrderDetails"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentOrderDetails",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentorderdetails"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest": {
+      "abstract": [
+        {
+          "text": "An object that represents a request for payment, including details about payment-processing capabilities, the payment amount, and shipping information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/ApplePayLaterAvailability-swift.enum": {
+      "abstract": [
+        {
+          "text": "Values you use to enable or disable Apple Pay Later for a specific transaction.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ApplePayLaterAvailability"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/ApplePayLaterAvailability-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ApplePayLaterAvailability"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentRequest.ApplePayLaterAvailability",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest/applepaylateravailability-swift.enum"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/applePayLaterAvailability-3dxrt": {
+      "abstract": [
+        {
+          "text": "A value that indicates whether Apple Pay Later is available for a transaction.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applePayLaterAvailability"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentRequest",
+          "text": "PKPaymentRequest"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So16PKPaymentRequestC7PassKitE25ApplePayLaterAvailabilityO",
+          "text": "ApplePayLaterAvailability"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/applePayLaterAvailability-3dxrt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applePayLaterAvailability",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest/applepaylateravailability-3dxrt"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/applePayLaterAvailability-inpf": {
+      "abstract": [
+        {
+          "text": "A value that indicates whether Apple Pay Later is available for a transaction.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "applePayLaterAvailability"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/applePayLaterAvailability-inpf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applePayLaterAvailability",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest/applepaylateravailability-inpf"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestCouponCodeUpdate": {
+      "abstract": [
+        {
+          "text": "An object that updates the payment request after the coupon code changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequestCouponCodeUpdate"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestCouponCodeUpdate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequestCouponCodeUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentRequestCouponCodeUpdate",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequestcouponcodeupdate"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestMerchantSessionUpdate": {
+      "abstract": [
+        {
+          "text": "An object that updates a payment request with a merchant validation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequestMerchantSessionUpdate"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestMerchantSessionUpdate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequestMerchantSessionUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentRequestMerchantSessionUpdate",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequestmerchantsessionupdate"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestPaymentMethodUpdate": {
+      "abstract": [
+        {
+          "text": "An object that updates the payment request after the payment method changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequestPaymentMethodUpdate"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestPaymentMethodUpdate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequestPaymentMethodUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentRequestPaymentMethodUpdate",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequestpaymentmethodupdate"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestShippingContactUpdate": {
+      "abstract": [
+        {
+          "text": "An object that updates the payment request after the shipping contact information changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequestShippingContactUpdate"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestShippingContactUpdate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequestShippingContactUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentRequestShippingContactUpdate",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequestshippingcontactupdate"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestShippingMethodUpdate": {
+      "abstract": [
+        {
+          "text": "An object that updates the payment request after the shipping method changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequestShippingMethodUpdate"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestShippingMethodUpdate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequestShippingMethodUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentRequestShippingMethodUpdate",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequestshippingmethodupdate"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestUpdate": {
+      "abstract": [
+        {
+          "text": "The base class for updating the payment request after the user makes changes on the payment sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequestUpdate"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestUpdate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequestUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentRequestUpdate",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequestupdate"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentTokenContext": {
+      "abstract": [
+        {
+          "text": "A class that defines the context for a single payment token in a payment request for multimerchant payments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentTokenContext"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentTokenContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentTokenContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentTokenContext",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymenttokencontext"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentRequest": {
+      "abstract": [
+        {
+          "text": "A class that represents a request to set up a recurring payment, typically a subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKRecurringPaymentRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKRecurringPaymentRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKRecurringPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/passkit/pkrecurringpaymentrequest"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PayWithApplePayButton": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PayWithApplePayButton"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PayWithApplePayButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PayWithApplePayButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "PayWithApplePayButton",
+      "type": "topic",
+      "url": "/documentation/passkit/paywithapplepaybutton"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PayWithApplePayButtonLabel": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PayWithApplePayButtonLabel"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PayWithApplePayButtonLabel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PayWithApplePayButtonLabel"
+        }
+      ],
+      "role": "symbol",
+      "title": "PayWithApplePayButtonLabel",
+      "type": "topic",
+      "url": "/documentation/passkit/paywithapplepaybuttonlabel"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PayWithApplePayButtonStyle": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PayWithApplePayButtonStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PayWithApplePayButtonStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PayWithApplePayButtonStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "PayWithApplePayButtonStyle",
+      "type": "topic",
+      "url": "/documentation/passkit/paywithapplepaybuttonstyle"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/complying-with-regional-regulations": {
+      "abstract": [
+        {
+          "text": "Check regional regulations for possible requirements for your Apple Pay-based implementation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/complying-with-regional-regulations",
+      "kind": "article",
+      "role": "article",
+      "title": "Complying with regional regulations",
+      "type": "topic",
+      "url": "/documentation/passkit/complying-with-regional-regulations"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/offering-apple-pay-in-your-app": {
+      "abstract": [
+        {
+          "text": "Collect payments with iPhone and Apple Watch using Apple Pay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/offering-apple-pay-in-your-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Offering Apple Pay in Your App",
+      "type": "topic",
+      "url": "/documentation/passkit/offering-apple-pay-in-your-app"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/payment-token-format-reference": {
+      "abstract": [
+        {
+          "text": "Verify an Apple Pay payment token and validate a transaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/payment-token-format-reference",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Payment token format reference",
+      "type": "topic",
+      "url": "/documentation/passkit/payment-token-format-reference"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/setting-up-apple-pay": {
+      "abstract": [
+        {
+          "text": "Fulfill the requirements to provide Apple Pay as a payment option on your website or in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/setting-up-apple-pay",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up Apple Pay",
+      "type": "topic",
+      "url": "/documentation/passkit/setting-up-apple-pay"
+    },
+    "https://developer.apple.com/ios/human-interface-guidelines/": {
+      "identifier": "https://developer.apple.com/ios/human-interface-guidelines/",
+      "title": "iOS Human Interface Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "iOS Human Interface Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/ios/human-interface-guidelines/"
+    },
+    "https://developer.apple.com/library/archive/ApplePay_Guide/index.html#//apple_ref/doc/uid/TP40014764": {
+      "identifier": "https://developer.apple.com/library/archive/ApplePay_Guide/index.html#//apple_ref/doc/uid/TP40014764",
+      "title": "Apple Pay Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "Apple Pay Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/ApplePay_Guide/index.html#//apple_ref/doc/uid/TP40014764"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "https://developer.apple.com/library/archive/ApplePay_Guide/index.html#//apple_ref/doc/uid/TP40014764",
+        "https://developer.apple.com/ios/human-interface-guidelines/"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Apple-Pay-setup",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/setting-up-apple-pay",
+        "doc://com.apple.passkit/documentation/PassKit/offering-apple-pay-in-your-app",
+        "doc://com.apple.passkit/documentation/PassKit/complying-with-regional-regulations"
+      ],
+      "title": "Apple Pay setup"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Determine if the device supports Apple Pay and whether the user has added payment cards.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Apple-Pay-availability",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationController",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewController"
+      ],
+      "title": "Apple Pay availability"
+    },
+    {
+      "anchor": "Apple-Pay-buttons",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentButton",
+        "doc://com.apple.passkit/documentation/PassKit/PayWithApplePayButton",
+        "doc://com.apple.passkit/documentation/PassKit/PayWithApplePayButtonLabel",
+        "doc://com.apple.passkit/documentation/PassKit/PayWithApplePayButtonStyle"
+      ],
+      "title": "Apple Pay buttons"
+    },
+    {
+      "anchor": "Payment-requests",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest",
+        "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentRequest",
+        "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest",
+        "doc://com.apple.passkit/documentation/PassKit/PKDeferredPaymentRequest",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentTokenContext"
+      ],
+      "title": "Payment requests"
+    },
+    {
+      "anchor": "Disbursement-requests",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKDisbursementRequest"
+      ],
+      "title": "Disbursement requests"
+    },
+    {
+      "anchor": "Payment-sheet-interactions-and-authorization",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentOrderDetails",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationController",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewController",
+        "doc://com.apple.passkit/documentation/PassKit/PKPayment"
+      ],
+      "title": "Payment sheet interactions and authorization"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Process the user’s changes and update the payment sheet.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Payment-sheet-updates",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestMerchantSessionUpdate",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestPaymentMethodUpdate",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestShippingContactUpdate",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestShippingMethodUpdate",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestCouponCodeUpdate",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestUpdate"
+      ],
+      "title": "Payment sheet updates"
+    },
+    {
+      "anchor": "QR-transaction-information",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentInformationEventExtension",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentInformationRequestHandling"
+      ],
+      "title": "QR transaction information"
+    },
+    {
+      "anchor": "Entitlements",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.in-app-payments"
+      ],
+      "title": "Entitlements"
+    },
+    {
+      "anchor": "Payment-token-format",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/payment-token-format-reference"
+      ],
+      "title": "Payment token format"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Provide granular error information for contact and address data.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKDisbursementError",
+        "doc://com.apple.passkit/documentation/PassKit/PKDisbursementErrorKey",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentError",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentErrorKey",
+        "doc://com.apple.passkit/documentation/PassKit/PKDisbursementError/Code",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentErrorDomain",
+        "doc://com.apple.passkit/documentation/PassKit/PKDisbursementErrorDomain"
+      ],
+      "title": "Errors"
+    },
+    {
+      "anchor": "Deprecated",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/applePayLaterAvailability-3dxrt",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/ApplePayLaterAvailability-swift.enum",
+        "doc://com.apple.passkit/documentation/PassKit/PKAddressField",
+        "doc://com.apple.passkit/documentation/PassKit/PKApplePayLaterAvailability"
+      ],
+      "title": "Deprecated"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Apple-Pay-setup",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/setting-up-apple-pay",
+                "doc://com.apple.passkit/documentation/PassKit/offering-apple-pay-in-your-app",
+                "doc://com.apple.passkit/documentation/PassKit/complying-with-regional-regulations"
+              ],
+              "title": "Apple Pay setup"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Determine if the device supports Apple Pay and whether the user has added payment cards.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Apple-Pay-availability",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationController",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewController"
+              ],
+              "title": "Apple Pay availability"
+            },
+            {
+              "anchor": "Apple-Pay-buttons",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentButton"
+              ],
+              "title": "Apple Pay buttons"
+            },
+            {
+              "anchor": "Payment-requests",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest",
+                "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentRequest",
+                "doc://com.apple.passkit/documentation/PassKit/PKAutomaticReloadPaymentRequest",
+                "doc://com.apple.passkit/documentation/PassKit/PKDeferredPaymentRequest",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentTokenContext"
+              ],
+              "title": "Payment requests"
+            },
+            {
+              "anchor": "Disbursement-requests",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKDisbursementRequest"
+              ],
+              "title": "Disbursement requests"
+            },
+            {
+              "anchor": "Payment-sheet-interactions-and-authorization",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentOrderDetails",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationController",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewController",
+                "doc://com.apple.passkit/documentation/PassKit/PKPayment"
+              ],
+              "title": "Payment sheet interactions and authorization"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Process the user’s changes and update the payment sheet.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Payment-sheet-updates",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestMerchantSessionUpdate",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestPaymentMethodUpdate",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestShippingContactUpdate",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestShippingMethodUpdate",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestCouponCodeUpdate",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequestUpdate"
+              ],
+              "title": "Payment sheet updates"
+            },
+            {
+              "anchor": "QR-transaction-information",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentInformationEventExtension",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentInformationRequestHandling"
+              ],
+              "title": "QR transaction information"
+            },
+            {
+              "anchor": "Entitlements",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.in-app-payments"
+              ],
+              "title": "Entitlements"
+            },
+            {
+              "anchor": "Payment-token-format",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/payment-token-format-reference"
+              ],
+              "title": "Payment token format"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Provide granular error information for contact and address data.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Errors",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKDisbursementErrorKey",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentError/Code",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentErrorKey",
+                "doc://com.apple.passkit/documentation/PassKit/PKDisbursementError/Code",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentErrorDomain",
+                "doc://com.apple.passkit/documentation/PassKit/PKDisbursementErrorDomain"
+              ],
+              "title": "Errors"
+            },
+            {
+              "anchor": "Deprecated",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/applePayLaterAvailability-inpf",
+                "doc://com.apple.passkit/documentation/PassKit/PKAddressField",
+                "doc://com.apple.passkit/documentation/PassKit/PKApplePayLaterAvailability"
+              ],
+              "title": "Deprecated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "https://developer.apple.com/library/archive/ApplePay_Guide/index.html#//apple_ref/doc/uid/TP40014764",
+                "https://developer.apple.com/ios/human-interface-guidelines/"
+              ],
+              "title": "Related Documentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAutomaticReloadPaymentRequest/title",
+          "value": "PKAutomaticReloadPaymentRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAutomaticReloadPaymentRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAutomaticReloadPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAutomaticReloadPaymentRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAutomaticReloadPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/title",
+          "value": "PKPaymentRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequestCouponCodeUpdate/title",
+          "value": "PKPaymentRequestCouponCodeUpdate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequestCouponCodeUpdate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequestCouponCodeUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequestCouponCodeUpdate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequestCouponCodeUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentButton/title",
+          "value": "PKPaymentButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequestShippingMethodUpdate/title",
+          "value": "PKPaymentRequestShippingMethodUpdate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequestShippingMethodUpdate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequestShippingMethodUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequestShippingMethodUpdate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequestShippingMethodUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentInformationEventExtension/title",
+          "value": "PKPaymentInformationEventExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentInformationEventExtension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentInformationEventExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentInformationEventExtension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentInformationEventExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentErrorKey/title",
+          "value": "PKPaymentErrorKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentErrorKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentErrorKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentErrorKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentErrorKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentTokenContext/title",
+          "value": "PKPaymentTokenContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentTokenContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentTokenContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentTokenContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentTokenContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequestMerchantSessionUpdate/title",
+          "value": "PKPaymentRequestMerchantSessionUpdate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequestMerchantSessionUpdate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequestMerchantSessionUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequestMerchantSessionUpdate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequestMerchantSessionUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPayment/title",
+          "value": "PKPayment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPayment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPayment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPayment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPayment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentOrderDetails/title",
+          "value": "PKPaymentOrderDetails"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentOrderDetails/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentOrderDetails"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentOrderDetails/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentOrderDetails"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDisbursementRequest/title",
+          "value": "PKDisbursementRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDisbursementRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKDisbursementRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDisbursementRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKDisbursementRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddressField/title",
+          "value": "PKAddressField"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddressField/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddressField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKAddressField/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKAddressField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDisbursementError~1Code/title",
+          "value": "PKDisbursementErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDisbursementError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKDisbursementErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDisbursementError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKDisbursementErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentError~1Code/title",
+          "value": "PKPaymentErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentErrorDomain/title",
+          "value": "PKPaymentErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDisbursementErrorKey/title",
+          "value": "PKDisbursementErrorKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDisbursementErrorKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKDisbursementErrorKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDisbursementErrorKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKDisbursementErrorKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewController/title",
+          "value": "PKPaymentAuthorizationViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationController/title",
+          "value": "PKPaymentAuthorizationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDisbursementErrorDomain/title",
+          "value": "PKDisbursementErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDisbursementErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKDisbursementErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentInformationRequestHandling/title",
+          "value": "PKPaymentInformationRequestHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentInformationRequestHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentInformationRequestHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentInformationRequestHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentInformationRequestHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationResult/title",
+          "value": "PKPaymentAuthorizationResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKRecurringPaymentRequest/title",
+          "value": "PKRecurringPaymentRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKRecurringPaymentRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKRecurringPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKRecurringPaymentRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKRecurringPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequestShippingContactUpdate/title",
+          "value": "PKPaymentRequestShippingContactUpdate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequestShippingContactUpdate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequestShippingContactUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequestShippingContactUpdate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequestShippingContactUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKApplePayLaterAvailability/title",
+          "value": "PKApplePayLaterAvailability"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKApplePayLaterAvailability/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKApplePayLaterAvailability"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKApplePayLaterAvailability/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKApplePayLaterAvailability"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequestUpdate/title",
+          "value": "PKPaymentRequestUpdate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequestUpdate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequestUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequestUpdate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequestUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDeferredPaymentRequest/title",
+          "value": "PKDeferredPaymentRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDeferredPaymentRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKDeferredPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDeferredPaymentRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKDeferredPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequestPaymentMethodUpdate/title",
+          "value": "PKPaymentRequestPaymentMethodUpdate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequestPaymentMethodUpdate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequestPaymentMethodUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequestPaymentMethodUpdate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequestPaymentMethodUpdate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/passkit/apple-pay"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/passkit/apple-pay"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

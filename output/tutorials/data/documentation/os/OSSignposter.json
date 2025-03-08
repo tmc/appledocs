@@ -1,0 +1,1859 @@
+{
+  "abstract": [
+    {
+      "text": "An object for measuring task performance using the unified logging system.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.os/documentation/os"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.os/documentation/os/OSSignposter"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:2os12OSSignposterV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "OSSignposter"
+      }
+    ],
+    "modules": [
+      {
+        "name": "os"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "OSSignposter"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "OSSignposter"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "OSSignposter"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.os/documentation/os/recording-performance-data"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Signposts allow you to record meaningful information about the duration of your app’s tasks using the same subsystems and categories that you use for logging. Use ",
+              "type": "text"
+            },
+            {
+              "code": "OSSignposter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to create signposted intervals in your code, and then use Instruments’ ",
+              "type": "text"
+            },
+            {
+              "code": "os_signposts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instrument to record those intervals as you run your app and perform the actions to measure. Instruments displays signpost data visually in a timeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3855979",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a signposted interval, create a signpost ID — an identifier that disambiguates intervals that have the same name, subsystem, and category, and that exist within the same scope — and then add a call to one of the class’s ",
+              "type": "text"
+            },
+            {
+              "code": "beginInterval",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods just before the code you want to measure. Retain the interval state it returns, and end the interval by passing that state to one of the class’s ",
+              "type": "text"
+            },
+            {
+              "code": "endInterval",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods, which you call immediately after the measured code. A signposter uses interval state to enforce a number of runtime assertions, the behavior of which depends on your app’s build configuration. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OSSignpostIntervalState",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". A signposted interval consists of one begin call and one end call only.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "OSSignposter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " also provides functionality to signpost a closure, and to emit individual signposts that don’t have a duration that you can use to highlight points of interest, such as when the user taps a button or performs a specific gesture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.os/documentation/os": {
+      "abstract": [
+        {
+          "text": "Coordinate the scheduling and synchronization of your app’s tasks, and log information to the console to diagnose issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "os",
+      "type": "topic",
+      "url": "/documentation/os"
+    },
+    "doc://com.apple.os/documentation/os/OSSignpostID": {
+      "abstract": [
+        {
+          "text": "An identifier that disambiguates signposted intervals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSSignpostID"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignpostID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSSignpostID"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSSignpostID",
+      "type": "topic",
+      "url": "/documentation/os/ossignpostid"
+    },
+    "doc://com.apple.os/documentation/os/OSSignpostIntervalState": {
+      "abstract": [
+        {
+          "text": "An object that tracks the state of a signposted interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSSignpostIntervalState"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignpostIntervalState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSSignpostIntervalState"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSSignpostIntervalState",
+      "type": "topic",
+      "url": "/documentation/os/ossignpostintervalstate"
+    },
+    "doc://com.apple.os/documentation/os/OSSignpostType": {
+      "abstract": [
+        {
+          "text": "The different kinds of signpost.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSSignpostType"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignpostType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSSignpostType"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSSignpostType",
+      "type": "topic",
+      "url": "/documentation/os/ossignposttype"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter": {
+      "abstract": [
+        {
+          "text": "An object for measuring task performance using the unified logging system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSSignposter"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSSignposter"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSSignposter",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/beginAnimationInterval(_:id:)": {
+      "abstract": [
+        {
+          "text": "Begins a signposted interval for measuring an animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginAnimationInterval"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSSignpostIDV",
+          "text": "OSSignpostID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os23OSSignpostIntervalStateC",
+          "text": "OSSignpostIntervalState"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/beginAnimationInterval(_:id:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginAnimationInterval(_:id:)",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/beginanimationinterval(_:id:)"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/beginAnimationInterval(_:id:_:)": {
+      "abstract": [
+        {
+          "text": "Begins a signposted interval for measuring an animation, and attaches a message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginAnimationInterval"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSSignpostIDV",
+          "text": "OSSignpostID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os16SignpostMetadataa",
+          "text": "SignpostMetadata"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os23OSSignpostIntervalStateC",
+          "text": "OSSignpostIntervalState"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/beginAnimationInterval(_:id:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginAnimationInterval(_:id:_:)",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/beginanimationinterval(_:id:_:)"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/beginInterval(_:id:)": {
+      "abstract": [
+        {
+          "text": "Begins a signposted interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginInterval"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSSignpostIDV",
+          "text": "OSSignpostID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os23OSSignpostIntervalStateC",
+          "text": "OSSignpostIntervalState"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/beginInterval(_:id:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginInterval(_:id:)",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/begininterval(_:id:)"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/beginInterval(_:id:_:)": {
+      "abstract": [
+        {
+          "text": "Begins a signposted interval and attaches the specified message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginInterval"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSSignpostIDV",
+          "text": "OSSignpostID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os16SignpostMetadataa",
+          "text": "SignpostMetadata"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os23OSSignpostIntervalStateC",
+          "text": "OSSignpostIntervalState"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/beginInterval(_:id:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginInterval(_:id:_:)",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/begininterval(_:id:_:)"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/disabled": {
+      "abstract": [
+        {
+          "text": "A shared signposter that doesn’t emit signposts at runtime.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "disabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSSignposterV",
+          "text": "OSSignposter"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/disabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "disabled",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/disabled"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/emitEvent(_:id:)": {
+      "abstract": [
+        {
+          "text": "Marks a point of interest in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "emitEvent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSSignpostIDV",
+          "text": "OSSignpostID"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/emitEvent(_:id:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "emitEvent(_:id:)",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/emitevent(_:id:)"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/emitEvent(_:id:_:)": {
+      "abstract": [
+        {
+          "text": "Marks a point of interest in time and attaches the specified message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "emitEvent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSSignpostIDV",
+          "text": "OSSignpostID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os16SignpostMetadataa",
+          "text": "SignpostMetadata"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/emitEvent(_:id:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "emitEvent(_:id:_:)",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/emitevent(_:id:_:)"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/endInterval(_:_:)": {
+      "abstract": [
+        {
+          "text": "Ends the signposted interval that corresponds to the specified name and state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endInterval"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os23OSSignpostIntervalStateC",
+          "text": "OSSignpostIntervalState"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/endInterval(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endInterval(_:_:)",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/endinterval(_:_:)"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/endInterval(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Ends a signposted interval and attaches the specified message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endInterval"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os23OSSignpostIntervalStateC",
+          "text": "OSSignpostIntervalState"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os16SignpostMetadataa",
+          "text": "SignpostMetadata"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/endInterval(_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endInterval(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/endinterval(_:_:_:)"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/init()": {
+      "abstract": [
+        {
+          "text": "Creates a signposter that uses the default subsystem.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/init()"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/init(logHandle:)": {
+      "abstract": [
+        {
+          "text": "Creates a signposter that uses the subsystem and category of an existing log.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "logHandle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)OS_os_log",
+          "text": "OSLog"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/init(logHandle:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(logHandle:)",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/init(loghandle:)"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/init(logger:)": {
+      "abstract": [
+        {
+          "text": "Creates a signposter that uses the subsystem and category of an existing logger.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "logger"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os6LoggerV",
+          "text": "Logger"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/init(logger:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(logger:)",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/init(logger:)"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/init(subsystem:category:)-4vdri": {
+      "abstract": [
+        {
+          "text": "Creates a signposter that uses the specified subsystem and system-defined log category.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "subsystem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "category"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)OS_os_log",
+          "text": "OSLog"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So9OS_os_logC0B0E8CategoryV",
+          "text": "Category"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/init(subsystem:category:)-4vdri",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(subsystem:category:)",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/init(subsystem:category:)-4vdri"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/init(subsystem:category:)-94xpb": {
+      "abstract": [
+        {
+          "text": "Creates a signposter that uses the specified subsystem and category.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "subsystem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "category"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/init(subsystem:category:)-94xpb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(subsystem:category:)",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/init(subsystem:category:)-94xpb"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/isEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the signposter can emit signposts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/isEnabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEnabled",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/isenabled"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/makeSignpostID()": {
+      "abstract": [
+        {
+          "text": "Returns an identifier that’s unique within the scope of the signposter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeSignpostID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSSignpostIDV",
+          "text": "OSSignpostID"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/makeSignpostID()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeSignpostID()",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/makesignpostid()"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/makeSignpostID(from:)": {
+      "abstract": [
+        {
+          "text": "Returns an identifier that the signposter derives from the specified object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeSignpostID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9AnyObjecta",
+          "text": "AnyObject"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSSignpostIDV",
+          "text": "OSSignpostID"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/makeSignpostID(from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeSignpostID(from:)",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/makesignpostid(from:)"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/withIntervalSignpost(_:id:_:around:)": {
+      "abstract": [
+        {
+          "text": "Measures the execution of a closure and attaches the specified message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withIntervalSignpost"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSSignpostIDV",
+          "text": "OSSignpostID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os16SignpostMetadataa",
+          "text": "SignpostMetadata"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "around"
+        },
+        {
+          "kind": "text",
+          "text": ": () "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/withIntervalSignpost(_:id:_:around:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withIntervalSignpost(_:id:_:around:)",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/withintervalsignpost(_:id:_:around:)"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/withIntervalSignpost(_:id:around:)": {
+      "abstract": [
+        {
+          "text": "Measures the execution of the specified closure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withIntervalSignpost"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSSignpostIDV",
+          "text": "OSSignpostID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "around"
+        },
+        {
+          "kind": "text",
+          "text": ": () "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/withIntervalSignpost(_:id:around:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withIntervalSignpost(_:id:around:)",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/withintervalsignpost(_:id:around:)"
+    },
+    "doc://com.apple.os/documentation/os/SignpostMetadata": {
+      "abstract": [
+        {
+          "text": "The type that represents a message you attach to a signpost.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SignpostMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/SignpostMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SignpostMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "SignpostMetadata",
+      "type": "topic",
+      "url": "/documentation/os/signpostmetadata"
+    },
+    "doc://com.apple.os/documentation/os/legacy-signpost-symbols": {
+      "abstract": [
+        {
+          "text": "Migrate your code away from using these legacy symbols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/legacy-signpost-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Legacy Signpost Symbols",
+      "type": "topic",
+      "url": "/documentation/os/legacy-signpost-symbols"
+    },
+    "doc://com.apple.os/documentation/os/os_signpost_id_t": {
+      "abstract": [
+        {
+          "text": "An identifier you use to distinguish between signposts that have the same name and destination log.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "os_signpost_id_t"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_signpost_id_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "os_signpost_id_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "os_signpost_id_t",
+      "type": "topic",
+      "url": "/documentation/os/os_signpost_id_t"
+    },
+    "doc://com.apple.os/documentation/os/recording-performance-data": {
+      "abstract": [
+        {
+          "text": "Add signposts to record interesting time-based events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/recording-performance-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Recording Performance Data",
+      "type": "topic",
+      "url": "/documentation/os/recording-performance-data"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "media-3855979": {
+      "alt": "An image that shows several signposted intervals on a timeline in Instruments. The first interval has a highlight and displays the OS signpost icon at its start and end. The icons represent the calls in code that begin and end the signposted interval.",
+      "identifier": "media-3855979",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/79b69e2516a36b5482a43e514c95a48b/media-3855979@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a1e6465115e60c2da9f93943043b0938/media-3855979~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Measure-Events",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/recording-performance-data",
+        "doc://com.apple.os/documentation/os/legacy-signpost-symbols",
+        "doc://com.apple.os/documentation/os/OSSignpostType",
+        "doc://com.apple.os/documentation/os/os_signpost_id_t"
+      ],
+      "title": "Measure Events"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Signposter",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSSignposter/init()",
+        "doc://com.apple.os/documentation/os/OSSignposter/init(subsystem:category:)-94xpb",
+        "doc://com.apple.os/documentation/os/OSSignposter/init(subsystem:category:)-4vdri",
+        "doc://com.apple.os/documentation/os/OSSignposter/init(logger:)",
+        "doc://com.apple.os/documentation/os/OSSignposter/init(logHandle:)",
+        "doc://com.apple.os/documentation/os/OSSignposter/disabled"
+      ],
+      "title": "Creating a Signposter"
+    },
+    {
+      "anchor": "Getting-State",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSSignposter/isEnabled"
+      ],
+      "title": "Getting State"
+    },
+    {
+      "anchor": "Generating-Signpost-IDs",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSSignposter/makeSignpostID()",
+        "doc://com.apple.os/documentation/os/OSSignposter/makeSignpostID(from:)",
+        "doc://com.apple.os/documentation/os/OSSignpostID"
+      ],
+      "title": "Generating Signpost IDs"
+    },
+    {
+      "anchor": "Starting-a-Signposted-Interval",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSSignposter/beginInterval(_:id:)",
+        "doc://com.apple.os/documentation/os/OSSignposter/beginInterval(_:id:_:)",
+        "doc://com.apple.os/documentation/os/OSSignposter/beginAnimationInterval(_:id:)",
+        "doc://com.apple.os/documentation/os/OSSignposter/beginAnimationInterval(_:id:_:)",
+        "doc://com.apple.os/documentation/os/OSSignpostIntervalState",
+        "doc://com.apple.os/documentation/os/SignpostMetadata"
+      ],
+      "title": "Starting a Signposted Interval"
+    },
+    {
+      "anchor": "Stopping-a-Signposted-Interval",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSSignposter/endInterval(_:_:)",
+        "doc://com.apple.os/documentation/os/OSSignposter/endInterval(_:_:_:)"
+      ],
+      "title": "Stopping a Signposted Interval"
+    },
+    {
+      "anchor": "Measuring-a-Closure",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSSignposter/withIntervalSignpost(_:id:around:)",
+        "doc://com.apple.os/documentation/os/OSSignposter/withIntervalSignpost(_:id:_:around:)"
+      ],
+      "title": "Measuring a Closure"
+    },
+    {
+      "anchor": "Emitting-Individual-Signposts",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSSignposter/emitEvent(_:id:)",
+        "doc://com.apple.os/documentation/os/OSSignposter/emitEvent(_:id:_:)"
+      ],
+      "title": "Emitting Individual Signposts"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1os_signpost_id_t/title",
+          "value": "os_signpost_id_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1os_signpost_id_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "os_signpost_id_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1os_signpost_id_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "os_signpost_id_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1OSSignpostType/title",
+          "value": "os_signpost_type_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1OSSignpostType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "os_signpost_type_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1OSSignpostType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "os_signpost_type_t"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/os/ossignposter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

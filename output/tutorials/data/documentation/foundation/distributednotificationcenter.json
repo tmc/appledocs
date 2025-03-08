@@ -1,0 +1,1208 @@
+{
+  "abstract": [
+    {
+      "text": "A notification dispatch mechanism that enables the broadcast of notifications across task boundaries.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/notifications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1409481,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSDistributedNotificationCenter",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "DistributedNotificationCenter"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "DistributedNotificationCenter"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "DistributedNotificationCenter"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSNotificationCenter",
+              "text": "NotificationCenter"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " instance broadcasts ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects to objects in other tasks that have registered for the notification with their task’s default distributed notification center.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1770614",
+          "level": 3,
+          "text": "Principal Attributes",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Notification dispatch table.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "inlineHead"
+                    },
+                    {
+                      "text": " See “Class at a Glance” > “Principal Attributes” in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for information about the dispatch table.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In addition to the notification name and sender, dispatch table entries for distributed notification centers specify when the notification center delivers notifications to its observers. See the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1418360-postnotificationname",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter#1651293",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/suspensionbehavior",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for details.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "1770615",
+          "level": 3,
+          "text": "Commonly Used Methods",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Accesses the default distributed notification center.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1412063-default",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Registers an object to receive a notification with a specified behavior when notification delivery is suspended.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1414136-addobserver",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Creates and posts a notification.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1418360-postnotificationname",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Specifies that an object no longer wants to receive certain notifications.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1416236-removeobserver",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "1770616",
+          "level": 3,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each task has a default distributed notification center that you access with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1412063-default",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method. There may be different types of distributed notification centers. Currently there is a single type—",
+              "type": "text"
+            },
+            {
+              "code": "NSLocalNotificationCenterType",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This type of distributed notification center handles notifications that can be sent between tasks on a single computer. For communication between tasks on different computers, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1695985",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Posting a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "distributed notification",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is an expensive operation. The notification gets sent to a system-wide server that distributes it to all the tasks that have objects registered for distributed notifications. The latency between posting the notification and the notification’s arrival in another task is unbounded. In fact, when too many notifications are posted and the server’s queue fills up, notifications may be dropped.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Distributed notifications are delivered via a task’s run loop. A task must be running a run loop in one of the “common” modes, such as ",
+              "type": "text"
+            },
+            {
+              "code": "NSDefaultRunLoopMode",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", to receive a distributed notification. For multithreaded applications running in macOS 10.3 and later, distributed notifications are always delivered to the main thread. For multithreaded applications running in OS X v10.2.8 and earlier, notifications are delivered to the thread that first used the distributed notifications API, which in most cases is the main thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "code": "NSDistributedNotificationCenter",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " does not implement a secure communications protocol. When using distributed notifications, your app should treat any data passed in the notification as untrusted. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1719231",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for general guidance on secure coding practices.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "code": "NSDistributedNotificationCenter",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " objects should not be used to send notifications between threads within the same task. Use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1695985",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1414900-performselector",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", instead. You can also setup an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/port",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object to receive and distribute messages from other threads.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1695985": {
+      "identifier": "devLink-1695985",
+      "title": "Distributed Objects Programming Topics",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DistrObjects/DistrObjects.html#//apple_ref/doc/uid/10000102i"
+    },
+    "devLink-1719231": {
+      "identifier": "devLink-1719231",
+      "title": "Security Overview",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/Security_Overview/Introduction/Introduction.html#//apple_ref/doc/uid/TP30000976"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter": {
+      "abstract": [
+        {
+          "text": "A notification dispatch mechanism that enables the broadcast of notifications across task boundaries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "DistributedNotificationCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DistributedNotificationCenter",
+      "type": "topic",
+      "url": "/documentation/foundation/distributednotificationcenter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter#1651293": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter#1651293",
+      "kind": "article",
+      "role": "task",
+      "title": "Suspending and Resuming Notification Delivery",
+      "type": "section",
+      "url": "/documentation/foundation/distributednotificationcenter#1651293"
+    },
+    "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1407301-suspended": {
+      "abstract": [
+        {
+          "text": "Suspends or resumes notification delivery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "suspended"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1407301-suspended",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "suspended",
+      "type": "topic",
+      "url": "/documentation/foundation/distributednotificationcenter/1407301-suspended"
+    },
+    "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1410991-post": {
+      "abstract": [
+        {
+          "text": "Creates a notification, and posts it to the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "post"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name, "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": String?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1410991-post",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "post(name:object:)",
+      "type": "topic",
+      "url": "/documentation/foundation/distributednotificationcenter/1410991-post"
+    },
+    "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1412063-default": {
+      "abstract": [
+        {
+          "text": "Returns the default distributed notification center, representing the local notification center for the computer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "`default`"
+        },
+        {
+          "kind": "text",
+          "text": "() -> DistributedNotificationCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1412063-default",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "default()",
+      "type": "topic",
+      "url": "/documentation/foundation/distributednotificationcenter/1412063-default"
+    },
+    "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1414136-addobserver": {
+      "abstract": [
+        {
+          "text": "Adds an entry to the receiver’s dispatch table with a specific observer and suspended-notifications behavior, and optional notification name and sender.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "selector"
+        },
+        {
+          "kind": "text",
+          "text": ": Selector, "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "suspensionBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ": DistributedNotificationCenter.SuspensionBehavior)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1414136-addobserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addObserver(_:selector:name:object:suspensionBehavior:)",
+      "type": "topic",
+      "url": "/documentation/foundation/distributednotificationcenter/1414136-addobserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1414151-addobserver": {
+      "abstract": [
+        {
+          "text": "Adds an entry to the notification center's dispatch table with an observer, a selector, and an optional notification name and sender.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "selector"
+        },
+        {
+          "kind": "text",
+          "text": ": Selector, "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": String?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1414151-addobserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addObserver(_:selector:name:object:)",
+      "type": "topic",
+      "url": "/documentation/foundation/distributednotificationcenter/1414151-addobserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1415403-fortype": {
+      "abstract": [
+        {
+          "text": "Returns the distributed notification center for a particular notification center type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "forType"
+        },
+        {
+          "kind": "text",
+          "text": "(DistributedNotificationCenter.CenterType) -> DistributedNotificationCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1415403-fortype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "forType(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/distributednotificationcenter/1415403-fortype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1416236-removeobserver": {
+      "abstract": [
+        {
+          "text": "Removes matching entries from the receiver’s dispatch table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": String?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1416236-removeobserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObserver(_:name:object:)",
+      "type": "topic",
+      "url": "/documentation/foundation/distributednotificationcenter/1416236-removeobserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1416995-post": {
+      "abstract": [
+        {
+          "text": "Creates a notification with information, and posts it to the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "post"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name, "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1416995-post",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "post(name:object:userInfo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/distributednotificationcenter/1416995-post"
+    },
+    "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1417581-postnotificationname": {
+      "abstract": [
+        {
+          "text": "Creates a notification with information, and posts it to the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "postNotificationName"
+        },
+        {
+          "kind": "text",
+          "text": "(NSNotification.Name, "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": DistributedNotificationCenter.Options)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1417581-postnotificationname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "postNotificationName(_:object:userInfo:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/distributednotificationcenter/1417581-postnotificationname"
+    },
+    "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1418360-postnotificationname": {
+      "abstract": [
+        {
+          "text": "Creates a notification with information and an immediate-delivery specifier, and posts it to the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "postNotificationName"
+        },
+        {
+          "kind": "text",
+          "text": "(NSNotification.Name, "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "deliverImmediately"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1418360-postnotificationname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "postNotificationName(_:object:userInfo:deliverImmediately:)",
+      "type": "topic",
+      "url": "/documentation/foundation/distributednotificationcenter/1418360-postnotificationname"
+    },
+    "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/centertype": {
+      "abstract": [
+        {
+          "text": "This constant specifies the notification center type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "DistributedNotificationCenter.CenterType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/centertype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DistributedNotificationCenter.CenterType",
+      "type": "topic",
+      "url": "/documentation/foundation/distributednotificationcenter/centertype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/options": {
+      "abstract": [
+        {
+          "text": "These constants specify the behavior of notifications posted using the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1417581-postnotificationname",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "DistributedNotificationCenter.Options"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/options",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DistributedNotificationCenter.Options",
+      "type": "topic",
+      "url": "/documentation/foundation/distributednotificationcenter/options"
+    },
+    "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/suspensionbehavior": {
+      "abstract": [
+        {
+          "text": "These constants specify the types of notification delivery suspension behaviors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "DistributedNotificationCenter.SuspensionBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/suspensionbehavior",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DistributedNotificationCenter.SuspensionBehavior",
+      "type": "topic",
+      "url": "/documentation/foundation/distributednotificationcenter/suspensionbehavior"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NotificationCenter",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notifications": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notifications",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Notifications",
+      "type": "topic",
+      "url": "/documentation/foundation/notifications"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/port": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/port",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Port",
+      "type": "topic",
+      "url": "/documentation/foundation/port"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1414900-performselector": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1414900-performselector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performSelector(onMainThread:with:waitUntilDone:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1414900-performselector"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/notificationcenter"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1651163",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1412063-default",
+        "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1415403-fortype"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Distributed Notification Centers"
+    },
+    {
+      "anchor": "1651200",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1414151-addobserver",
+        "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1414136-addobserver",
+        "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1416236-removeobserver"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing Observers"
+    },
+    {
+      "anchor": "1651246",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1410991-post",
+        "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1416995-post",
+        "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1418360-postnotificationname",
+        "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1417581-postnotificationname"
+      ],
+      "kind": "taskGroup",
+      "title": "Posting Notifications"
+    },
+    {
+      "anchor": "1651293",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/1407301-suspended"
+      ],
+      "kind": "taskGroup",
+      "title": "Suspending and Resuming Notification Delivery"
+    },
+    {
+      "anchor": "1651340",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/options",
+        "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/centertype",
+        "doc://com.apple.documentation/documentation/foundation/distributednotificationcenter/suspensionbehavior"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsdistributednotificationcenter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/distributednotificationcenter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

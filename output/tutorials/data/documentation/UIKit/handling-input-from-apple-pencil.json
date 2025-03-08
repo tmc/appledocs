@@ -1,0 +1,838 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how to detect and respond to touches from Apple Pencil.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/handling-input-from-apple-pencil"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Handling input from Apple Pencil"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UIKit reports touches from Apple Pencil in the same way it reports touches from a person’s fingers. Specifically, UIKit delivers a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object containing the location of the touch in your app. However, a touch object originating from Apple Pencil contains additional information, including the azimuth and altitude of Apple Pencil and the amount of force recorded at its tip.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3004388",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because Apple Pencil is a separate device, there’s a delay between the time Apple Pencil gathers altitude, azimuth, and force values and the time that those values are reported to your app. As a result, UIKit may provide ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "estimated",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " values for those properties initially, and then provide the real values at a later time. If you use altitude, azimuth, or force information from Apple Pencil, you must explicitly handle estimated properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Devices that work with Apple Pencil can report touches at up to 240 Hz. Because UIKit usually reports touches at around 60 Hz, any additional touches are coalesced into a single touch representing the last location. For information about how to get the additional touch data, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/getting-high-fidelity-input-with-coalesced-touches",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Handle-estimated-properties",
+          "level": 3,
+          "text": "Handle estimated properties",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When UIKit has only an estimate of a property’s value, it includes a flag in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch/estimatedPropertiesExpectingUpdates",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the corresponding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. When handling a touch event, check that property to determine if you need to update the touch information later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a touch object contains estimated properties, UIKit also provides a value in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch/estimationUpdateIndex",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property that you can use to identify the touch later. Use the value in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch/estimationUpdateIndex",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property as a key to a dictionary that you maintain. Set the value of that key to the app-specific object that you use to store the touch information. When UIKit later reports the real values, use the index to look up your app-specific object and replace the estimated values with the real values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows the ",
+              "type": "text"
+            },
+            {
+              "code": "addSamples",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method of an app that captures touch data. For each touch, the method creates a custom ",
+              "type": "text"
+            },
+            {
+              "code": "StrokeSample",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object with the touch information. If the force value of the touch is only an estimate, the ",
+              "type": "text"
+            },
+            {
+              "code": "registerForEstimates",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method caches the sample in a dictionary using the value in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch/estimationUpdateIndex",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property as the key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var estimates : [NSNumber : StrokeSample]",
+            " ",
+            "func addSamples(for touches: [UITouch]) {",
+            "   if let stroke = strokeCollection?.activeStroke {",
+            "      for touch in touches {",
+            "         if touch == touches.last {",
+            "            let sample = StrokeSample(point: touch.location(in: self), ",
+            "                                 forceValue: touch.force)",
+            "            stroke.add(sample: sample)",
+            "            registerForEstimates(touch: touch, sample: sample)",
+            "         } else {",
+            "            let sample = StrokeSample(point: touch.location(in: self), ",
+            "                                 forceValue: touch.force, coalesced: true)",
+            "            stroke.add(sample: sample)",
+            "            registerForEstimates(touch: touch, sample: sample)",
+            "         }",
+            "      }",
+            "      self.setNeedsDisplay()",
+            "   }",
+            "}",
+            " ",
+            "func registerForEstimates(touch : UITouch, sample : StrokeSample) {",
+            "   if touch.estimatedPropertiesExpectingUpdates.contains(.force) {",
+            "      estimates[touch.estimationUpdateIndex!] = sample",
+            "   }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When UIKit receives the actual values for a touch, it calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/touchesEstimatedPropertiesUpdated(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of your responder or gesture recognizer. Use that method to replace estimated data with the real values provided by UIKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows an example of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/touchesEstimatedPropertiesUpdated(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, which updates the force value for the cached ",
+              "type": "text"
+            },
+            {
+              "code": "StrokeSample",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects created in the previous code example. The method uses the value in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch/estimationUpdateIndex",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to retrieve the ",
+              "type": "text"
+            },
+            {
+              "code": "StrokeSample",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object from the ",
+              "type": "text"
+            },
+            {
+              "code": "estimates",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary. It then updates the force value and removes the sample from the dictionary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func touchesEstimatedPropertiesUpdated(_ touches: Set<UITouch>) {",
+            "   for touch in touches {",
+            "      // If the force value is no longer an estimate, update it.",
+            "      if !touch.estimatedPropertiesExpectingUpdates.contains(.force) {",
+            "         let index = touch.estimationUpdateIndex!",
+            "         var sample = estimates[index]",
+            "         sample?.force = touch.force",
+            " ",
+            "         // Remove the key and value from the dictionary.",
+            "         estimates.removeValue(forKey: index)",
+            "      }",
+            "   }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/ApplePencil/handling-double-taps-from-apple-pencil": {
+      "abstract": [
+        {
+          "text": "Detect and respond to double taps a person makes on Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ApplePencil/handling-double-taps-from-apple-pencil",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling double taps from Apple Pencil",
+      "type": "topic",
+      "url": "/documentation/ApplePencil/handling-double-taps-from-apple-pencil"
+    },
+    "doc://com.apple.documentation/documentation/ApplePencil/handling-squeezes-from-apple-pencil": {
+      "abstract": [
+        {
+          "text": "Detect and respond to squeezes a person makes on Apple Pencil Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ApplePencil/handling-squeezes-from-apple-pencil",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling squeezes from Apple Pencil",
+      "type": "topic",
+      "url": "/documentation/ApplePencil/handling-squeezes-from-apple-pencil"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder/touchesEstimatedPropertiesUpdated(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the responder that updated values were received for previously estimated properties or that an update is no longer expected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "touchesEstimatedPropertiesUpdated"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITouch",
+          "text": "UITouch"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/touchesEstimatedPropertiesUpdated(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "touchesEstimatedPropertiesUpdated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "touchesEstimatedPropertiesUpdated(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder/touchesestimatedpropertiesupdated(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITouch": {
+      "abstract": [
+        {
+          "text": "An object representing the location, size, movement, and force of a touch occurring on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITouch"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITouch"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITouch",
+      "type": "topic",
+      "url": "/documentation/uikit/uitouch"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITouch/estimatedPropertiesExpectingUpdates": {
+      "abstract": [
+        {
+          "text": "The set of touch properties for which updated values are expected in the future.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "estimatedPropertiesExpectingUpdates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITouch",
+          "text": "UITouch"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITouchProperties",
+          "text": "Properties"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch/estimatedPropertiesExpectingUpdates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "estimatedPropertiesExpectingUpdates"
+        }
+      ],
+      "role": "symbol",
+      "title": "estimatedPropertiesExpectingUpdates",
+      "type": "topic",
+      "url": "/documentation/uikit/uitouch/estimatedpropertiesexpectingupdates"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITouch/estimationUpdateIndex": {
+      "abstract": [
+        {
+          "text": "An index number that lets you correlate an updated touch with the original touch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "estimationUpdateIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch/estimationUpdateIndex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "estimationUpdateIndex"
+        }
+      ],
+      "role": "symbol",
+      "title": "estimationUpdateIndex",
+      "type": "topic",
+      "url": "/documentation/uikit/uitouch/estimationupdateindex"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions": {
+      "abstract": [
+        {
+          "text": "Handle user interactions like double tap and squeeze on Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pencil interactions",
+      "type": "topic",
+      "url": "/documentation/uikit/apple-pencil-interactions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/computing-the-perpendicular-force-of-apple-pencil": {
+      "abstract": [
+        {
+          "text": "Adjust the force values reported by Apple Pencil so that they’re consistent with 3D Touch force values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/computing-the-perpendicular-force-of-apple-pencil",
+      "kind": "article",
+      "role": "article",
+      "title": "Computing the perpendicular force of Apple Pencil",
+      "type": "topic",
+      "url": "/documentation/uikit/computing-the-perpendicular-force-of-apple-pencil"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/getting-high-fidelity-input-with-coalesced-touches": {
+      "abstract": [
+        {
+          "text": "Learn how to support high-precision touches in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/getting-high-fidelity-input-with-coalesced-touches",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Getting high-fidelity input with coalesced touches",
+      "type": "topic",
+      "url": "/documentation/uikit/getting-high-fidelity-input-with-coalesced-touches"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures": {
+      "abstract": [
+        {
+          "text": "Encapsulate your app’s event-handling logic in gesture recognizers so that you can reuse that code throughout your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Touches, presses, and gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/touches-presses-and-gestures"
+    },
+    "media-3004388": {
+      "alt": "An illustration of how azimuth (shown on the left) and altitude (shown on the right) are determined when using Apple Pencil on a screen.",
+      "identifier": "media-3004388",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/346399f07002dc4ec8bcf9cb91af19b4/media-3004388@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/ApplePencil/handling-double-taps-from-apple-pencil",
+        "doc://com.apple.documentation/documentation/ApplePencil/handling-squeezes-from-apple-pencil"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Related-articles",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/computing-the-perpendicular-force-of-apple-pencil"
+      ],
+      "title": "Related articles"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Related-articles",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/computing-the-perpendicular-force-of-apple-pencil"
+              ],
+              "title": "Related articles"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/title",
+          "value": "UITouch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITouch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITouch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1touchesEstimatedPropertiesUpdated(_:)/title",
+          "value": "touchesEstimatedPropertiesUpdated:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1touchesEstimatedPropertiesUpdated(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "touchesEstimatedPropertiesUpdated:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch~1estimatedPropertiesExpectingUpdates/title",
+          "value": "estimatedPropertiesExpectingUpdates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch~1estimatedPropertiesExpectingUpdates/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "estimatedPropertiesExpectingUpdates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch~1estimationUpdateIndex/title",
+          "value": "estimationUpdateIndex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch~1estimationUpdateIndex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "estimationUpdateIndex"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/handling-input-from-apple-pencil"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/handling-input-from-apple-pencil"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

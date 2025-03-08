@@ -1,0 +1,983 @@
+{
+  "abstract": [
+    {
+      "text": "Simulate a bokeh effect by applying dilation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/adding-a-bokeh-effect-to-images"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.3",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Adding a bokeh effect to images"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app creates a bokeh effect, where parts of an image that are out of focus adopt the shape of the lens’s aperture. The app dynamically generates a polygon-shaped kernel — also known as a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "structuring element",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " — and applies a morphology operation to an image based on that kernel. The following sample shows a photograph after the app has applied dilation with a triangular kernel:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "triangle_dilation_result_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Kernels are 1D or 2D matrices of values that the morphology operation subtracts from a corresponding pixel value in the image. The final value of each transformed pixel is either the lightest result (for dilation) or darkest result (for erosion) of each subtraction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "morphology_diagram_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following formula shows how a dilation operation calculates the value for the pixel at the center of the grid. The operation subtracts each of the nine kernel values from the image’s corresponding pixel and returns the maximum value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "dilation_formula_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Generate-the-structuring-element",
+          "level": 3,
+          "text": "Generate the structuring element",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "MorphologyTransformer.makeBokehStructuringElement(ofRadius:atAngle:withSides:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/StructuringElement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure. Within that structure, the ",
+              "type": "text"
+            },
+            {
+              "code": "diaphragmBladeCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable defines the number of sides. For example, to create a hexagon-shaped bokeh effect, the sample app calls the ",
+              "type": "text"
+            },
+            {
+              "code": "MorphologyTransformer.makeBokehStructuringElement(ofRadius:atAngle:withSides:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method with the number of sides set to ",
+              "type": "text"
+            },
+            {
+              "code": "6",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// The number of edges on the bokeh polygon.",
+            "@Published var diaphragmBladeCount = 6.0 {",
+            "    didSet {",
+            "        Task(priority: .userInitiated) {",
+            "            await applyBokeh()",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "code": [
+            "let bokeh = Self.makeBokehStructuringElement(ofRadius: Int(bokehRadius),",
+            "                                             atAngle: angle,",
+            "                                             withSides: Int(diaphragmBladeCount))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "bokeh",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the following values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "bokeh_kernel_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-the-dilation",
+          "level": 3,
+          "text": "Apply the dilation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To optimize the dilation operations, the sample app calls the planar morphology function, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyMorphology(operation:destination:)-1aqer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", concurrently on the three planar pixel buffers that represent the individual red, green, and blue channels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about improving your app’s performance by converting image buffer formats from interleaved to planar, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code calls the three functions inside a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/withTaskGroup(of:returning:isolation:body:)",
+              "isActive": true,
+              "overridingTitle": "withtaskgroup(of:returning:isolation:body:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "withtaskgroup(of:returning:isolation:body:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " closure:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Apply dilation to the red channel.",
+            "group.addTask(priority: .userInitiated) { [self] in",
+            "    sourceRedBuffer.applyMorphology(operation: .dilate(structuringElement: bokeh),",
+            "                                    destination: destinationRedBuffer)",
+            "}",
+            "",
+            "/// Apply dilation to the green channel.",
+            "group.addTask(priority: .userInitiated) { [self] in",
+            "    sourceGreenBuffer.applyMorphology(operation: .dilate(structuringElement: bokeh),",
+            "                                      destination: destinationGreenBuffer)",
+            "}",
+            "",
+            "/// Apply dilation to the blue channel.",
+            "group.addTask(priority: .userInitiated) { [self] in",
+            "    sourceBlueBuffer.applyMorphology(operation: .dilate(structuringElement: bokeh),",
+            "                                     destination: destinationBlueBuffer)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, the destination buffer contains the dilation result:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "hexagon_dilation_result_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "91872ae2b1fd/AddingABokehEffectToImages.zip": {
+      "checksum": "91872ae2b1fd28a26bd4d18fc1b5ddf674345fd652ffeb6d643486f3000f885aaaf4dc25933d7f43adb2d40167da41a80faf395db71ec0720f1f85c7a47e2808",
+      "identifier": "91872ae2b1fd/AddingABokehEffectToImages.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/91872ae2b1fd/AddingABokehEffectToImages.zip"
+    },
+    "bokeh_kernel_2x.png": {
+      "alt": "A diagram depicting the hexagonal dilation kernel from the preceding code sample. In a square grid, cells containing the value 255 surround a cluster of shaded cells containing the value 0, representing the six-sided kernel.",
+      "identifier": "bokeh_kernel_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/11ecce222d643ddf194b46ca5e9df859/bokeh_kernel_2x.png"
+        }
+      ]
+    },
+    "dilation_formula_2x.png": {
+      "alt": "A mathematical formula that represents pixel dilation to create a bokeh effect. A matrix of nine values, representing the structuring element, is subtracted from another matrix of nine values, representing a pixel from the original image. The operation returns a maximum value of 3, resulting in dilation.",
+      "identifier": "dilation_formula_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/94b08043ee377262252087f7f05f83e5/dilation_formula_2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/blurring-an-image": {
+      "abstract": [
+        {
+          "text": "Filter an image by convolving it with custom and high-speed kernels.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/blurring-an-image",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Blurring an image",
+      "type": "topic",
+      "url": "/documentation/accelerate/blurring-an-image"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/convolution": {
+      "abstract": [
+        {
+          "text": "Apply a convolution kernel to an image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/convolution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Convolution",
+      "type": "topic",
+      "url": "/documentation/accelerate/convolution"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/morphology": {
+      "abstract": [
+        {
+          "text": "Dilate and erode images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/morphology",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Morphology",
+      "type": "topic",
+      "url": "/documentation/accelerate/morphology"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance": {
+      "abstract": [
+        {
+          "text": "Improve your app’s performance by converting image buffer formats from interleaved to planar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing image-processing performance",
+      "type": "topic",
+      "url": "/documentation/accelerate/optimizing-image-processing-performance"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyMorphology(operation:destination:)-1aqer": {
+      "abstract": [
+        {
+          "text": "Applies a morphology operation to the buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "MultiplePlanePixelFormat",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "Format.ComponentType",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Float",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", and ",
+            "type": "text"
+          },
+          {
+            "code": "Format.PlanarPixelFormat.ComponentType",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Float",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyMorphology"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "operation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO19MorphologyOperationO",
+          "text": "MorphologyOperation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate11PixelFormatP13ComponentTypeQa",
+          "text": "ComponentType"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyMorphology(operation:destination:)-1aqer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applyMorphology(operation:destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/applymorphology(operation:destination:)-1aqer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/StructuringElement": {
+      "abstract": [
+        {
+          "text": "A 2D matrix that represents a morphology kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StructuringElement"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/StructuringElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StructuringElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.StructuringElement",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/structuringelement"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.documentation/documentation/Swift/withTaskGroup(of:returning:isolation:body:)": {
+      "abstract": [
+        {
+          "text": "Starts a new scope that can contain a dynamic number of child tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "@backDeployed(before: macOS 15.0, iOS 18.0, watchOS 11.0, tvOS 18.0, visionOS 2.0)\n"
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withTaskGroup"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ChildTaskResult"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "GroupResult"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "childTaskResultType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ChildTaskResult"
+        },
+        {
+          "kind": "text",
+          "text": ".Type = ChildTaskResult.self, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "returning"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "returnType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "GroupResult"
+        },
+        {
+          "kind": "text",
+          "text": ".Type = GroupResult.self, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isolation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "isolated"
+        },
+        {
+          "kind": "text",
+          "text": " (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScA",
+          "text": "Actor"
+        },
+        {
+          "kind": "text",
+          "text": ")? = #isolation, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScG",
+          "text": "TaskGroup"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ChildTaskResult"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "GroupResult"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "GroupResult"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ChildTaskResult"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/withTaskGroup(of:returning:isolation:body:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withTaskGroup(of:returning:isolation:body:)",
+      "type": "topic",
+      "url": "/documentation/Swift/withTaskGroup(of:returning:isolation:body:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "hexagon_dilation_result_2x.png": {
+      "alt": "A photograph showing the results of pixel dilation from the preceding code sample. Many small, hexagonal kernels together form the larger image of a bowl of fruit.",
+      "identifier": "hexagon_dilation_result_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d311a1d7c2c4691c2fa946a3b4a2be21/hexagon_dilation_result_2x.png"
+        }
+      ]
+    },
+    "morphology_diagram_2x.png": {
+      "alt": "A diagram that depicts the dilation of a kernel to create a bokeh effect. In the background, a grid of pixel values represent the original image. An additional grid of pixel values, representing the structuring element, is overlaid on the first grid. In the foreground, another grid shows the new pixel values resulting from the morphology operation.",
+      "identifier": "morphology_diagram_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5f2005580d64cc3ce80dfbf66d42bbf8/morphology_diagram_2x.png"
+        }
+      ]
+    },
+    "triangle_dilation_result_2x.png": {
+      "alt": "A photograph showing the results of a bokeh effect. Many small, triangular kernels together form the larger image of a bowl of fruit.",
+      "identifier": "triangle_dilation_result_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0446e9f3d6c912e710e66e77111c3532/triangle_dilation_result_2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "91872ae2b1fd/AddingABokehEffectToImages.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Convolution-and-Morphology",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/blurring-an-image",
+        "doc://com.apple.accelerate/documentation/Accelerate/convolution",
+        "doc://com.apple.accelerate/documentation/Accelerate/morphology"
+      ],
+      "title": "Convolution and Morphology"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

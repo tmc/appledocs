@@ -1,0 +1,335 @@
+{
+  "abstract": [
+    {
+      "text": "A data storage container you use to persist information across different sessions.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/playgroundsupport"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundkeyvaluestore"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3029532,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17PlaygroundSupport0A13KeyValueStoreC",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "PlaygroundKeyValueStore"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Playground Support"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "13.2",
+        "introducedAt": "10.2",
+        "name": "Xcode"
+      },
+      {
+        "current": "4.0",
+        "introducedAt": "2.0",
+        "name": "Swift Playgrounds"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "PlaygroundKeyValueStore"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Swift Playgrounds"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PlaygroundKeyValueStore"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The key-value store is available only in Swift Playgrounds and is persistent only in playground books.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below sets the value of the key “animal” in the playground key-value store to “Llama” and then retrieves the value of that key back from the key-value store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Store a value.",
+            "PlaygroundKeyValueStore.current.keyValueStore[\"animal\"] = .string(\"Llama\")",
+            "",
+            "// Retreive that same value.\t ",
+            "var theAnimal: String? = nil",
+            "if let keyValue = PlaygroundKeyValueStore.current.keyValueStore[\"animal\"],",
+            "    case .string(let animalType) = keyValue {",
+            "    theAnimal = animalType",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3034545",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/playgroundsupport": {
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Playground Support",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundkeyvaluestore": {
+      "abstract": [
+        {
+          "text": "A data storage container you use to persist information across different sessions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaygroundKeyValueStore"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundkeyvaluestore",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundKeyValueStore",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundkeyvaluestore"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundkeyvaluestore#3034545": {
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundkeyvaluestore#3034545",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/playgroundsupport/playgroundkeyvaluestore#3034545"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundkeyvaluestore/3029533-current": {
+      "abstract": [
+        {
+          "text": "A reference to the key-value store for the current playground book.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "current"
+        },
+        {
+          "kind": "text",
+          "text": ": PlaygroundKeyValueStore"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundkeyvaluestore/3029533-current",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "current",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundkeyvaluestore/3029533-current"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundkeyvaluestore/3029534-subscript": {
+      "abstract": [
+        {
+          "text": "Reads or stores the value associated with the given key in the key-value store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "(String) -> PlaygroundValue?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundkeyvaluestore/3029534-subscript",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundkeyvaluestore/3029534-subscript"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundshareddatadirectory": {
+      "abstract": [
+        {
+          "text": "The path to the directory containing data shared between all playgrounds in Xcode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "playgroundSharedDataDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundshareddatadirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "playgroundSharedDataDirectory",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundshareddatadirectory"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundvalue": {
+      "abstract": [
+        {
+          "text": "The types you can save in the key-value store or send in messages to live views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaygroundValue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PlaygroundValue",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundvalue"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundvalue",
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundshareddatadirectory"
+      ],
+      "title": "Data Persistence"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3034542",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundkeyvaluestore/3029533-current",
+        "doc://com.apple.documentation/documentation/playgroundsupport/playgroundkeyvaluestore/3029534-subscript"
+      ],
+      "kind": "taskGroup",
+      "title": "Persisting Data"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/playgroundsupport/playgroundkeyvaluestore"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

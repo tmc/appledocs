@@ -1,0 +1,1187 @@
+{
+  "abstract": [
+    {
+      "text": "An object that stores sample buffers from a multipass encoding session.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSilo-api-collection"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Video Toolbox"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "VTFrameSilo"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A frame silo object starts out empty and is populated by calls to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloAddSampleBuffer(_:sampleBuffer:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to add sample buffers in ascending decode order. After the first full pass, additional passes may be performed to replace sample buffers. Each such pass must begin with a call to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloSetTimeRangesForNextPass(_:timeRangeCount:timeRangeArray:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which takes a list of time ranges. Samples in these time ranges are deleted, and calls to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloAddSampleBuffer(_:sampleBuffer:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " can then be made to provide replacements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloCallFunctionForEachSampleBuffer(_:in:refcon:callback:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloCallBlockForEachSampleBuffer(_:in:handler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to retrieve sample buffers. The frame silo object may write sample buffers and data to the backing file between addition and retrieval; don’t expect to get identical object pointers back.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample buffers are ordered by decode timestamp.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox": {
+      "abstract": [
+        {
+          "text": "Work directly with hardware-accelerated video encoding and decoding capabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Video Toolbox",
+      "type": "topic",
+      "url": "/documentation/videotoolbox"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSession-api-collection": {
+      "abstract": [
+        {
+          "text": "An object that compresses video data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSession-api-collection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VTCompressionSession",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtcompressionsession-api-collection"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTDecompressionSession-api-collection": {
+      "abstract": [
+        {
+          "text": "An object that decompresses video data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTDecompressionSession-api-collection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VTDecompressionSession",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtdecompressionsession-api-collection"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSilo": {
+      "abstract": [
+        {
+          "text": "An object that stores a large number of sample buffers, as produced by a multipass compression session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTFrameSilo"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSilo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTFrameSilo"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTFrameSilo",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtframesilo"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloAddSampleBuffer(_:sampleBuffer:)": {
+      "abstract": [
+        {
+          "text": "Adds a sample buffer to a frame silo object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTFrameSiloAddSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTFrameSiloRef",
+          "text": "VTFrameSilo"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSampleBufferRef",
+          "text": "CMSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloAddSampleBuffer(_:sampleBuffer:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTFrameSiloAddSampleBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTFrameSiloAddSampleBuffer(_:sampleBuffer:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtframesiloaddsamplebuffer(_:samplebuffer:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloCallBlockForEachSampleBuffer(_:in:handler:)": {
+      "abstract": [
+        {
+          "text": "Retrieves sample buffers from a frame silo object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTFrameSiloCallBlockForEachSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTFrameSiloRef",
+          "text": "VTFrameSilo"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSampleBufferRef",
+          "text": "CMSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloCallBlockForEachSampleBuffer(_:in:handler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTFrameSiloCallBlockForEachSampleBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTFrameSiloCallBlockForEachSampleBuffer(_:in:handler:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtframesilocallblockforeachsamplebuffer(_:in:handler:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloCallFunctionForEachSampleBuffer(_:in:refcon:callback:)": {
+      "abstract": [
+        {
+          "text": "Retrieves sample buffers from a frame silo object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTFrameSiloCallFunctionForEachSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTFrameSiloRef",
+          "text": "VTFrameSilo"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "refcon"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "callback"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSampleBufferRef",
+          "text": "CMSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloCallFunctionForEachSampleBuffer(_:in:refcon:callback:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTFrameSiloCallFunctionForEachSampleBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTFrameSiloCallFunctionForEachSampleBuffer(_:in:refcon:callback:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtframesilocallfunctionforeachsamplebuffer(_:in:refcon:callback:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloCreate(allocator:fileURL:timeRange:options:frameSiloOut:)": {
+      "abstract": [
+        {
+          "text": "Creates a frame silo object using a temporary file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTFrameSiloCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "allocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fileURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timeRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "frameSiloOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTFrameSiloRef",
+          "text": "VTFrameSilo"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloCreate(allocator:fileURL:timeRange:options:frameSiloOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTFrameSiloCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTFrameSiloCreate(allocator:fileURL:timeRange:options:frameSiloOut:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtframesilocreate(allocator:fileurl:timerange:options:framesiloout:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloGetProgressOfCurrentPass(_:progressOut:)": {
+      "abstract": [
+        {
+          "text": "Gets the progress of the current pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTFrameSiloGetProgressOfCurrentPass"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTFrameSiloRef",
+          "text": "VTFrameSilo"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "progressOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7Float32a",
+          "text": "Float32"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloGetProgressOfCurrentPass(_:progressOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTFrameSiloGetProgressOfCurrentPass"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTFrameSiloGetProgressOfCurrentPass(_:progressOut:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtframesilogetprogressofcurrentpass(_:progressout:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Retrieves the Core Foundation type identifier for the frame silo object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTFrameSiloGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTFrameSiloGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTFrameSiloGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtframesilogettypeid()"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloSetTimeRangesForNextPass(_:timeRangeCount:timeRangeArray:)": {
+      "abstract": [
+        {
+          "text": "Begins a new pass of samples to be added to a frame silo object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTFrameSiloSetTimeRangesForNextPass"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTFrameSiloRef",
+          "text": "VTFrameSilo"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timeRangeCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMItemCount",
+          "text": "CMItemCount"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timeRangeArray"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloSetTimeRangesForNextPass(_:timeRangeCount:timeRangeArray:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTFrameSiloSetTimeRangesForNextPass"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTFrameSiloSetTimeRangesForNextPass(_:timeRangeCount:timeRangeArray:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtframesilosettimerangesfornextpass(_:timerangecount:timerangearray:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTMultiPassStorage-api-collection": {
+      "abstract": [
+        {
+          "text": "An object that stores video encoding metadata from a multipass encoding session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTMultiPassStorage-api-collection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VTMultiPassStorage",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtmultipassstorage-api-collection"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-live-streaming": {
+      "abstract": [
+        {
+          "text": "Configure a compression session to encode video for live streaming.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-live-streaming",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding video for live streaming",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/encoding-video-for-live-streaming"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-low-latency-conferencing": {
+      "abstract": [
+        {
+          "text": "Configure a compression session to optimize encoding for video-conferencing apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-low-latency-conferencing",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding video for low-latency conferencing",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/encoding-video-for-low-latency-conferencing"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-offline-transcoding": {
+      "abstract": [
+        {
+          "text": "Configure a compression session to transcode video in offline workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-offline-transcoding",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding video for offline transcoding",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/encoding-video-for-offline-transcoding"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Compression",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-low-latency-conferencing",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-live-streaming",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-offline-transcoding",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSession-api-collection",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTDecompressionSession-api-collection",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTMultiPassStorage-api-collection"
+      ],
+      "title": "Compression"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-Frame-Silos",
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloCreate(allocator:fileURL:timeRange:options:frameSiloOut:)"
+      ],
+      "title": "Creating Frame Silos"
+    },
+    {
+      "anchor": "Configuring-Frame-Silos",
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloAddSampleBuffer(_:sampleBuffer:)",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloSetTimeRangesForNextPass(_:timeRangeCount:timeRangeArray:)",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloCallBlockForEachSampleBuffer(_:in:handler:)",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloCallFunctionForEachSampleBuffer(_:in:refcon:callback:)"
+      ],
+      "title": "Configuring Frame Silos"
+    },
+    {
+      "anchor": "Inspecting-Frame-Silos",
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloGetProgressOfCurrentPass(_:progressOut:)",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloGetTypeID()"
+      ],
+      "title": "Inspecting Frame Silos"
+    },
+    {
+      "anchor": "Data-Types",
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSilo"
+      ],
+      "title": "Data Types"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-Frame-Silos",
+              "identifiers": [
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloCreate(allocator:fileURL:timeRange:options:frameSiloOut:)"
+              ],
+              "title": "Creating Frame Silos"
+            },
+            {
+              "anchor": "Configuring-Frame-Silos",
+              "identifiers": [
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloAddSampleBuffer(_:sampleBuffer:)",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloSetTimeRangesForNextPass(_:timeRangeCount:timeRangeArray:)",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloCallBlockForEachSampleBuffer(_:in:handler:)",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloCallFunctionForEachSampleBuffer(_:in:refcon:callback:)"
+              ],
+              "title": "Configuring Frame Silos"
+            },
+            {
+              "anchor": "Inspecting-Frame-Silos",
+              "identifiers": [
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloGetProgressOfCurrentPass(_:progressOut:)",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSiloGetTypeID()"
+              ],
+              "title": "Inspecting Frame Silos"
+            },
+            {
+              "anchor": "Data-Types",
+              "identifiers": [
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSilo"
+              ],
+              "title": "Data Types"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Compression",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-low-latency-conferencing",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-live-streaming",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-offline-transcoding",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSession-api-collection",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTDecompressionSession-api-collection",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTMultiPassStorage-api-collection"
+              ],
+              "title": "Compression"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTFrameSiloCallBlockForEachSampleBuffer(_:in:handler:)/title",
+          "value": "VTFrameSiloCallBlockForEachSampleBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTFrameSiloCallBlockForEachSampleBuffer(_:in:handler:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTFrameSiloCallBlockForEachSampleBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTFrameSiloCreate(allocator:fileURL:timeRange:options:frameSiloOut:)/title",
+          "value": "VTFrameSiloCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTFrameSiloCreate(allocator:fileURL:timeRange:options:frameSiloOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTFrameSiloCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTFrameSiloAddSampleBuffer(_:sampleBuffer:)/title",
+          "value": "VTFrameSiloAddSampleBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTFrameSiloAddSampleBuffer(_:sampleBuffer:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTFrameSiloAddSampleBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTFrameSilo/title",
+          "value": "VTFrameSiloRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTFrameSilo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTFrameSiloRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTFrameSilo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTFrameSiloRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTFrameSiloGetTypeID()/title",
+          "value": "VTFrameSiloGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTFrameSiloGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTFrameSiloGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTFrameSiloSetTimeRangesForNextPass(_:timeRangeCount:timeRangeArray:)/title",
+          "value": "VTFrameSiloSetTimeRangesForNextPass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTFrameSiloSetTimeRangesForNextPass(_:timeRangeCount:timeRangeArray:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTFrameSiloSetTimeRangesForNextPass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTFrameSiloGetProgressOfCurrentPass(_:progressOut:)/title",
+          "value": "VTFrameSiloGetProgressOfCurrentPass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTFrameSiloGetProgressOfCurrentPass(_:progressOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTFrameSiloGetProgressOfCurrentPass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTFrameSiloCallFunctionForEachSampleBuffer(_:in:refcon:callback:)/title",
+          "value": "VTFrameSiloCallFunctionForEachSampleBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTFrameSiloCallFunctionForEachSampleBuffer(_:in:refcon:callback:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTFrameSiloCallFunctionForEachSampleBuffer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/videotoolbox/vtframesilo-api-collection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/videotoolbox/vtframesilo-api-collection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

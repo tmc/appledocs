@@ -1,0 +1,2407 @@
+{
+  "abstract": [
+    {
+      "text": "A session for an in-progress activity that synchronizes content among participant devices.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:15GroupActivities0A7SessionC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "GroupSession"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Group Activities"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GroupSession"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "GroupSession"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "final"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GroupSession"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "ActivityType"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "ActivityType"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivity",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:15GroupActivities0A8ActivityP",
+              "text": "GroupActivity"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/joining-and-managing-a-shared-activity",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/adding-spatial-persona-support-to-an-activity",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/synchronizing-data-during-a-shareplay-activity"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "GroupSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object contains details about the user’s currently selected",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "activity, its status, and its participants. When a participant engages in an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "activity, the system binds a session to that activity for you.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You use the session object to synchronize your app’s activity-related content,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including your app’s UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t create ",
+              "type": "text"
+            },
+            {
+              "code": "GroupSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects directly. Instead, the system creates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sessions and makes them available to your app asynchronously.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "AsyncSequence",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type returned by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivity/sessions()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of your activity to retrieve new sessions when they become",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before the system can create a session object, your app must create a ",
+              "type": "text"
+            },
+            {
+              "code": "GroupActivity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object and activate it. For information about how to configure group activities,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Start-and-Stop-the-Session",
+          "level": 3,
+          "text": "Start and Stop the Session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you receive a new session object, it’s initially in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/State-swift.enum/waiting",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As soon as your app is ready to begin the associated activity, call the session’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/join()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Joining a session validates the connection and starts the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "synchronization process between the current device and other participants’",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "devices. If your app successfully joins the session, the session transitions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/State-swift.enum/joined",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user quits your app, or navigates away from the shared activity, call",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the session’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/leave()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Leaving a session gracefully transitions it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/State-swift.enum/invalidated(reason:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state, and informs the system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that the user isn’t currently engaged in the activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.GroupActivities/documentation/GroupActivities": {
+      "abstract": [
+        {
+          "text": "Create app-specific activities your users can share and experience together.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Group Activities",
+      "type": "topic",
+      "url": "/documentation/groupactivities"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/CustomMessageIdentifiable": {
+      "abstract": [
+        {
+          "text": "A type that assigns a custom ID string to messages you send to other devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomMessageIdentifiable"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/CustomMessageIdentifiable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomMessageIdentifiable"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomMessageIdentifiable",
+      "type": "topic",
+      "url": "/documentation/groupactivities/custommessageidentifiable"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivity": {
+      "abstract": [
+        {
+          "text": "A type that can advertise your app’s activities to other participants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroupActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroupActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupActivity",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupactivity"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivity/sessions()": {
+      "abstract": [
+        {
+          "text": "Returns the sessions for this activity as an asynchronous sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sessions"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A8ActivityPAAE8Sessionsa",
+          "text": "Sessions"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivity/sessions()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sessions()",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupactivity/sessions()"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession": {
+      "abstract": [
+        {
+          "text": "A session for an in-progress activity that synchronizes content among participant devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroupSession"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroupSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSession",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/$activeParticipants": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "$activeParticipants"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublishedV",
+          "text": "Published"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities11ParticipantV",
+          "text": "Participant"
+        },
+        {
+          "kind": "text",
+          "text": ">>."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublishedV9PublisherV",
+          "text": "Publisher"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/$activeParticipants",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "$activeParticipants",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/$activeparticipants"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/$activity": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "$activity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublishedV",
+          "text": "Published"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ActivityType"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublishedV9PublisherV",
+          "text": "Publisher"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/$activity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "$activity",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/$activity"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/$state": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "$state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublishedV",
+          "text": "Published"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A7SessionC",
+          "text": "GroupSession"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ActivityType"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A7SessionC5StateO",
+          "text": "State"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublishedV9PublisherV",
+          "text": "Publisher"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/$state",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "$state",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/$state"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/CustomStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/CustomStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/customstringconvertible-implementations"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/Event": {
+      "abstract": [
+        {
+          "text": "A session-related event to display in the system UI.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "ActivityType",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "GroupActivity",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Event"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/Event",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Event"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSession.Event",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/event"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/ObjectWillChangePublisher": {
+      "abstract": [
+        {
+          "text": "The type of publisher that emits before the object has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ObjectWillChangePublisher"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/ObjectWillChangePublisher",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ObjectWillChangePublisher"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSession.ObjectWillChangePublisher",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/objectwillchangepublisher"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/ObservableObject-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/ObservableObject-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ObservableObject Implementations",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/observableobject-implementations"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/Sessions": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence of sessions you use to manage a specific activity.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "ActivityType",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "GroupActivity",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sessions"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/Sessions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sessions"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSession.Sessions",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/sessions"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/State-swift.enum": {
+      "abstract": [
+        {
+          "text": "The possible states of a session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/State-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSession.State",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/state-swift.enum"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/State-swift.enum/invalidated(reason:)": {
+      "abstract": [
+        {
+          "text": "A state that indicates the session is no longer valid and can’t be used",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for shared activities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidated"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "reason"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/State-swift.enum/invalidated(reason:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GroupSession.State.invalidated(reason:)",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/state-swift.enum/invalidated(reason:)"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/State-swift.enum/joined": {
+      "abstract": [
+        {
+          "text": "An active state that indicates the session allows data synchronization between devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "joined"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/State-swift.enum/joined",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GroupSession.State.joined",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/state-swift.enum/joined"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/State-swift.enum/waiting": {
+      "abstract": [
+        {
+          "text": "An idle state that indicates the session is waiting for the app to join the activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "waiting"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/State-swift.enum/waiting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GroupSession.State.waiting",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/state-swift.enum/waiting"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/activeParticipants": {
+      "abstract": [
+        {
+          "text": "The set of participants currently engaged in the activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeParticipants"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities11ParticipantV",
+          "text": "Participant"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/activeParticipants",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "activeParticipants",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/activeparticipants"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/activity": {
+      "abstract": [
+        {
+          "text": "The current activity associated with the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ActivityType"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/activity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "activity",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/activity"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/description": {
+      "abstract": [
+        {
+          "text": "A textual representation of this instance.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "ActivityType",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "GroupActivity",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/description"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/end()": {
+      "abstract": [
+        {
+          "text": "Ends the activity for the entire group and stops the transfer",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of synchronized data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/end()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "end()",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/end()"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/id": {
+      "abstract": [
+        {
+          "text": "The unique identifier of the current session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/id",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "id",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/id"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/isLocallyInitiated": {
+      "abstract": [
+        {
+          "text": "A Boolean value that is true if the current session was created by the local participant.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isLocallyInitiated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/isLocallyInitiated",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isLocallyInitiated",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/islocallyinitiated"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/join()": {
+      "abstract": [
+        {
+          "text": "Starts the shared activity on the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "join"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/join()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "join()",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/join()"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/leave()": {
+      "abstract": [
+        {
+          "text": "Leaves the current activity and stops receiving synchronized data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "leave"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/leave()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "leave()",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/leave()"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/localParticipant": {
+      "abstract": [
+        {
+          "text": "The participant on the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localParticipant"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities11ParticipantV",
+          "text": "Participant"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/localParticipant",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localParticipant",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/localparticipant"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/objectWillChange": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "ObjectWillChangePublisher",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "ObservableObjectPublisher",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectWillChange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine25ObservableObjectPublisherC",
+          "text": "ObservableObjectPublisher"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/objectWillChange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectWillChange",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/objectwillchange"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/postEvent(_:)": {
+      "abstract": [
+        {
+          "text": "Posts an event to the system, which displays the information in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the system UI.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "ActivityType",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "GroupActivity",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "postEvent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A7SessionC",
+          "text": "GroupSession"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ActivityType"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A7SessionC5EventV",
+          "text": "Event"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/postEvent(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "postEvent(_:)",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/postevent(_:)"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/requestForegroundPresentation()": {
+      "abstract": [
+        {
+          "text": "Tells the system that your app needs to be in the foreground to continue an activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestForegroundPresentation"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/requestForegroundPresentation()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestForegroundPresentation()",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/requestforegroundpresentation()"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/sceneSessionIdentifier": {
+      "abstract": [
+        {
+          "text": "The persistent identifier of the session’s associated scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sceneSessionIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/sceneSessionIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sceneSessionIdentifier",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/scenesessionidentifier"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/showNotice(_:)": {
+      "abstract": [
+        {
+          "text": "Posts an event to the system, which displays the information in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the system UI.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "ActivityType",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "GroupActivity",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showNotice"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A12SessionEventV",
+          "text": "GroupSessionEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/showNotice(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "showNotice(_:)",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/shownotice(_:)"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/state-swift.property": {
+      "abstract": [
+        {
+          "text": "The current state of the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A7SessionC",
+          "text": "GroupSession"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ActivityType"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A7SessionC5StateO",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/state-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "state",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/state-swift.property"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/systemCoordinator": {
+      "abstract": [
+        {
+          "text": "The system coordinator associated with an active session.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "ActivityType",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "GroupActivity",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities17SystemCoordinatorC",
+          "text": "SystemCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/systemCoordinator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "systemCoordinator",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/systemcoordinator"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent": {
+      "abstract": [
+        {
+          "text": "A session-related event that appears in the system UI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroupSessionEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroupSessionEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSessionEvent",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionevent"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/Participant": {
+      "abstract": [
+        {
+          "text": "An active participant in a group session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Participant"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/Participant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Participant"
+        }
+      ],
+      "role": "symbol",
+      "title": "Participant",
+      "type": "topic",
+      "url": "/documentation/groupactivities/participant"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/adding-spatial-persona-support-to-an-activity": {
+      "abstract": [
+        {
+          "text": "Update your SharePlay activities to support spatial Personas and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the shared context when running in visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/adding-spatial-persona-support-to-an-activity",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding spatial Persona support to an activity",
+      "type": "topic",
+      "url": "/documentation/groupactivities/adding-spatial-persona-support-to-an-activity"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/joining-and-managing-a-shared-activity": {
+      "abstract": [
+        {
+          "text": "Configure the session when a SharePlay activity starts, and handle events",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that occur during the lifetime of the activity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/joining-and-managing-a-shared-activity",
+      "kind": "article",
+      "role": "article",
+      "title": "Joining and managing a shared activity",
+      "type": "topic",
+      "url": "/documentation/groupactivities/joining-and-managing-a-shared-activity"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/synchronizing-data-during-a-shareplay-activity": {
+      "abstract": [
+        {
+          "text": "Send custom messages and data between devices to synchronize content for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your activity, and incorporate messages your app receives from other",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "participants.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/synchronizing-data-during-a-shareplay-activity",
+      "kind": "article",
+      "role": "article",
+      "title": "Synchronizing data during a SharePlay activity",
+      "type": "topic",
+      "url": "/documentation/groupactivities/synchronizing-data-during-a-shareplay-activity"
+    },
+    "doc://com.apple.documentation/documentation/groupactivities/drawing_content_in_a_group_session": {
+      "abstract": [
+        {
+          "text": "Invite your friends to draw on a shared canvas while on a FaceTime call.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/groupactivities/drawing_content_in_a_group_session",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Drawing content in a group session",
+      "type": "topic",
+      "url": "/documentation/groupactivities/drawing_content_in_a_group_session"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:7Combine16ObservableObjectP": {
+      "abstract": [
+        {
+          "text": "A type of object with a publisher that emits before the object has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ObservableObject"
+        },
+        {
+          "kind": "text",
+          "text": " : AnyObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7Combine16ObservableObjectP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ObservableObject",
+      "type": "topic",
+      "url": "/documentation/Combine/ObservableObject"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:7Combine16ObservableObjectP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Session-management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/joining-and-managing-a-shared-activity",
+        "doc://com.apple.documentation/documentation/groupactivities/drawing_content_in_a_group_session",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/CustomMessageIdentifiable",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/Participant"
+      ],
+      "title": "Session management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-the-current-session",
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/Sessions"
+      ],
+      "title": "Getting the current session"
+    },
+    {
+      "anchor": "Joining-and-leaving-the-session",
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/join()",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/leave()",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/end()"
+      ],
+      "title": "Joining and leaving the session"
+    },
+    {
+      "anchor": "Accessing-the-shared-activity",
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/activity"
+      ],
+      "title": "Accessing the shared activity"
+    },
+    {
+      "anchor": "Getting-the-session-details",
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/state-swift.property",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/State-swift.enum",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/id",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/description"
+      ],
+      "title": "Getting the session details"
+    },
+    {
+      "anchor": "Getting-the-participants",
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/localParticipant",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/activeParticipants"
+      ],
+      "title": "Getting the participants"
+    },
+    {
+      "anchor": "Getting-the-scene-association-identifier",
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/sceneSessionIdentifier"
+      ],
+      "title": "Getting the scene-association identifier"
+    },
+    {
+      "anchor": "Getting-the-participants-attention",
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/requestForegroundPresentation()"
+      ],
+      "title": "Getting the participant’s attention"
+    },
+    {
+      "anchor": "Notifying-participants-of-playback-changes",
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/showNotice(_:)",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionEvent"
+      ],
+      "title": "Notifying participants of playback changes"
+    },
+    {
+      "anchor": "Publishing-changes",
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/objectWillChange"
+      ],
+      "title": "Publishing changes"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/Event"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/$activeParticipants",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/$activity",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/$state",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/isLocallyInitiated",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/systemCoordinator"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/postEvent(_:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/ObjectWillChangePublisher"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/CustomStringConvertible-Implementations",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/ObservableObject-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/groupactivities/groupsession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

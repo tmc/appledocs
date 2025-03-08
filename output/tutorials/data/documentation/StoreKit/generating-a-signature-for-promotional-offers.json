@@ -1,0 +1,1147 @@
+{
+  "abstract": [
+    {
+      "text": "Create a signature to validate a promotional offer using your private key.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/generating-a-signature-for-promotional-offers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Generating a signature for promotional offers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can create a signature on your server, you need to complete the one-time setup to generate a private key in App Store Connect, as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/setting-up-promotional-offers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " describes. Always use a secure connection when sending data, including the signature, between your app and server. For more information on ensuring your data’s security, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/preventing-insecure-network-connections",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create the signature, you use parameters that identify the product and the offer, parameters your server generates, and your private key. To generate the signature, you combine the required parameters, then sign and encode the resulting string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Combine-the-parameters",
+          "level": 3,
+          "text": "Combine the parameters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the first step of generating the signature, you need the following parameters, most of which you also supply for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentDiscount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The app bundle identifier.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "appBundleID",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A string that identifies the private key you use to generate the signature. You can find this identifier in App Store Connect ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "https://appstoreconnect.apple.com/access/api/subs",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " in the Key ID column for the subscription key you generate.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "keyIdentifier",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The subscription product identifier, ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProduct/productIdentifier",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ". The app can provide this value.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "productIdentifier",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The subscription discount identifier, ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProductDiscount/identifier",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ". The app can provide this value.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "offerIdentifier",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An optional string value that you define; may be an empty string. If your app uses ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment/applicationUsername",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ", provide ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "applicationUsername",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". If your app uses ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/appAccountToken",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ", provide ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "appAccountToken",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". The string representation of the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "appAccountToken",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " must be lowercase.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "applicationUsername or appAccountToken",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A one-time ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "UUID",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " value that your server generates. Generate a new ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "nonce",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " for every signature. The string representation of the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "nonce",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " you use in the signature must be lowercase.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "nonce",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A timestamp your server generates in UNIX time format, in milliseconds. The timestamp keeps the offer active for 24 hours.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "timestamp",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Use lowercase for the string representation of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "nonce",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and the ",
+                  "type": "text"
+                },
+                {
+                  "code": "appAccountToken",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Combine the parameters into a UTF-8 string with an invisible separator (",
+              "type": "text"
+            },
+            {
+              "code": "'\\u2063'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") between them in the same order as the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "appBundleId + '\\u2063' + keyIdentifier + '\\u2063' + productIdentifier + '\\u2063' + offerIdentifier + '\\u2063' + appAccountToken + '\\u2063' + nonce + '\\u2063' + timestamp"
+          ],
+          "syntax": "http",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you provide ",
+              "type": "text"
+            },
+            {
+              "code": "applicationUsername",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instead of ",
+              "type": "text"
+            },
+            {
+              "code": "appAccountToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", replace it accordingly in the UTF-8 string above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Sign-the-combined-string",
+          "level": 3,
+          "text": "Sign the combined string",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sign the combined UTF-8 string with the following key and algorithm:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your PKCS #8 private key (downloaded from App Store Connect) that corresponds to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "keyIdentifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the UTF-8 string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Elliptic Curve Digital Signature Algorithm (ECDSA) with a SHA-256 hash",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The result is a Digital Encoding Rules (DER)-formatted binary value, which is the signature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Validate-locally-and-encode-the-signature",
+          "level": 3,
+          "text": "Validate locally and encode the signature",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider validating your signatures locally to ensure your signing process works correctly. You can create a public key derivative of your private key to test against. One way to create this key is by running the ",
+              "type": "text"
+            },
+            {
+              "code": "openSSL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command from the terminal app, as the example below shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "openssl ec -in {downloaded_private_key} -pubout -out public_key.pem"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use Base64 encoding for the binary signature you generated to obtain the final signature string to send to the App Store for validation. The signature string resembles the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MEQCIEQlmZRNfYzKBSE8QnhLTIHZZZWCFgZpRqRxHss65KoFAiAJgJKjdrWdkLUOCCjuEx2RmFS7daRzSVZRVZ8RyMyUXg=="
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Respond-to-the-request",
+          "level": 3,
+          "text": "Respond to the request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Respond to the app’s request for the signature over a secure connection, providing the encoded signature string, the ",
+              "type": "text"
+            },
+            {
+              "code": "nonce",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "code": "timestamp",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the ",
+              "type": "text"
+            },
+            {
+              "code": "keyIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Note that each payload, signature, and ",
+              "type": "text"
+            },
+            {
+              "code": "nonce",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is only valid for one buy request, even if the buy fails.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app#Create-a-Signature",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for information about the app’s request and how it uses the signature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Security/preventing-insecure-network-connections": {
+      "abstract": [
+        {
+          "text": "Enforce secure network links in your app by relying on App Transport Security.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/preventing-insecure-network-connections",
+      "kind": "article",
+      "role": "article",
+      "title": "Preventing Insecure Network Connections",
+      "type": "topic",
+      "url": "/documentation/Security/preventing-insecure-network-connections"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment/applicationUsername": {
+      "abstract": [
+        {
+          "text": "A string that associates the transaction with a user account on your service.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationUsername"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment/applicationUsername",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applicationUsername"
+        }
+      ],
+      "role": "symbol",
+      "title": "applicationUsername",
+      "type": "topic",
+      "url": "/documentation/storekit/skmutablepayment/applicationusername"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentDiscount": {
+      "abstract": [
+        {
+          "text": "The signed discount to apply to a payment.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPaymentDiscount"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentDiscount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPaymentDiscount"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPaymentDiscount",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentdiscount"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKProduct/productIdentifier": {
+      "abstract": [
+        {
+          "text": "The string that identifies the product to the Apple App Store.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "productIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProduct/productIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "productIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "productIdentifier",
+      "type": "topic",
+      "url": "/documentation/storekit/skproduct/productidentifier"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKProductDiscount/identifier": {
+      "abstract": [
+        {
+          "text": "A string used to uniquely identify a discount offer for a product.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProductDiscount/identifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/storekit/skproductdiscount/identifier"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/appAccountToken": {
+      "abstract": [
+        {
+          "text": "A UUID that associates the transaction with a user on your own service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appAccountToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/appAccountToken",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appAccountToken",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/appaccounttoken"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/generating-a-promotional-offer-signature-on-the-server": {
+      "abstract": [
+        {
+          "text": "Generate a signature using your private key and lightweight cryptography libraries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/generating-a-promotional-offer-signature-on-the-server",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Generating a Promotional Offer Signature on the Server",
+      "type": "topic",
+      "url": "/documentation/storekit/generating-a-promotional-offer-signature-on-the-server"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app": {
+      "abstract": [
+        {
+          "text": "Offer discounted pricing for auto-renewable subscription products to eligible subscribers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing promotional offers in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/implementing-promotional-offers-in-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app#Create-a-Signature": {
+      "abstract": [],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app#Create-a-Signature",
+      "kind": "section",
+      "title": "Create a Signature",
+      "type": "topic",
+      "url": "/documentation/storekit/implementing-promotional-offers-in-your-app#Create-a-Signature"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/original-api-for-in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/setting-up-promotional-offers": {
+      "abstract": [
+        {
+          "text": "Generate a key and configure offers for auto-renewable subscriptions in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/setting-up-promotional-offers",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up promotional offers",
+      "type": "topic",
+      "url": "/documentation/storekit/setting-up-promotional-offers"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers": {
+      "abstract": [
+        {
+          "text": "Offer customers additional time-based content and services through purchases they make within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Subscriptions and offers",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptions-and-offers"
+    },
+    "https://appstoreconnect.apple.com/access/api/subs": {
+      "identifier": "https://appstoreconnect.apple.com/access/api/subs",
+      "title": "Users and Access > Keys",
+      "titleInlineContent": [
+        {
+          "text": "Users and Access > Keys",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com/access/api/subs"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Promotional-offers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/setting-up-promotional-offers",
+        "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app",
+        "doc://com.apple.storekit/documentation/StoreKit/generating-a-promotional-offer-signature-on-the-server",
+        "doc://com.apple.storekit/documentation/StoreKit/SKPaymentDiscount"
+      ],
+      "title": "Promotional offers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Promotional-offers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/setting-up-promotional-offers",
+                "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app",
+                "doc://com.apple.storekit/documentation/StoreKit/generating-a-promotional-offer-signature-on-the-server",
+                "doc://com.apple.storekit/documentation/StoreKit/SKPaymentDiscount"
+              ],
+              "title": "Promotional offers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKMutablePayment~1applicationUsername/title",
+          "value": "applicationUsername"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKMutablePayment~1applicationUsername/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "applicationUsername"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentDiscount/title",
+          "value": "SKPaymentDiscount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentDiscount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentDiscount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentDiscount/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentDiscount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductDiscount~1identifier/title",
+          "value": "identifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductDiscount~1identifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "identifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProduct~1productIdentifier/title",
+          "value": "productIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProduct~1productIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "productIdentifier"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/generating-a-signature-for-promotional-offers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/generating-a-signature-for-promotional-offers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

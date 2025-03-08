@@ -1,0 +1,932 @@
+{
+  "abstract": [
+    {
+      "text": "Reduces noise by sharpening the edges of objects.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage",
+        "doc://com.apple.documentation/documentation/coreimage/blur_filters"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/blur_filters"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/quartz"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/quartz",
+        "doc://com.apple.documentation/documentation/quartz/imagekit",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/blur_filters"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228372-noisereduction"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3228372,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CIFilter(cm)noiseReductionFilter",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class func "
+      },
+      {
+        "kind": "identifier",
+        "text": "noiseReduction"
+      },
+      {
+        "kind": "text",
+        "text": "() -> any CIFilter & CINoiseReduction"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "parent": {
+      "title": "CIFilter"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.15",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "clm",
+    "title": "noiseReduction()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "noiseReduction"
+            },
+            {
+              "kind": "text",
+              "text": "() -> "
+            },
+            {
+              "kind": "text",
+              "text": "any "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CIFilter",
+              "text": "CIFilter"
+            },
+            {
+              "kind": "text",
+              "text": " & "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cinoisereduction",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)CINoiseReduction",
+              "text": "CINoiseReduction"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The blurred image. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method applies the noise reduction filter to an image. The effect calculates changes in luminance below the noise level and locally blurs the area. Values above the threshold are determined to be edges, and become sharpened.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The morphology noise reduction filter uses the following properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "float",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " representing the amount of noise reduction as an ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "noiseLevel",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "float",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " representing the sharpness of the final image as an ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "sharpness",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " representing the input image to apply the filter to.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "inputImage",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates a filter that reduces noise in the input image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    func noiseReduction(inputImage: CIImage) -> CIImage? {",
+            "",
+            "        let noiseReductionfilter = CIFilter.noiseReduction()",
+            "        noiseReductionfilter.inputImage = inputImage",
+            "        noiseReductionfilter.noiseLevel = 0.2",
+            "        noiseReductionfilter.sharpness = 0.4",
+            "        return noiseReductionfilter.outputImage",
+            "    }"
+          ],
+          "metadata": {
+            "anchor": "3533663",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3544968",
+              "metadata": {
+                "anchor": "3544968",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/blur_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/blur_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Blur Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/blur_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFilter",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228277-bokehblur": {
+      "abstract": [
+        {
+          "text": "Applies a bokeh effect to an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "bokehBlur"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIBokehBlur"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228277-bokehblur",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bokehBlur()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228277-bokehblur"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228278-boxblur": {
+      "abstract": [
+        {
+          "text": "Applies a square-shaped blur to an area of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "boxBlur"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIBoxBlur"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228278-boxblur",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "boxBlur()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228278-boxblur"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228311-discblur": {
+      "abstract": [
+        {
+          "text": "Applies a circle-shaped blur to an area of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "discBlur"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIDiscBlur"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228311-discblur",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "discBlur()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228311-discblur"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228331-gaussianblur": {
+      "abstract": [
+        {
+          "text": "Blurs an image with a Gaussian distribution pattern.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "gaussianBlur"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIGaussianBlur"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228331-gaussianblur",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gaussianBlur()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228331-gaussianblur"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228355-maskedvariableblur": {
+      "abstract": [
+        {
+          "text": "Blurs a specified portion of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "maskedVariableBlur"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIMaskedVariableBlur"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228355-maskedvariableblur",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maskedVariableBlur()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228355-maskedvariableblur"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228358-median": {
+      "abstract": [
+        {
+          "text": "Calculates the median of an image to refine detail.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "median"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIMedian"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228358-median",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "median()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228358-median"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228364-morphologygradient": {
+      "abstract": [
+        {
+          "text": "Detects and highlights edges of objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "morphologyGradient"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIMorphologyGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228364-morphologygradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "morphologyGradient()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228364-morphologygradient"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228365-morphologymaximum": {
+      "abstract": [
+        {
+          "text": "Blurs a circular area by enlarging contrasting pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "morphologyMaximum"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIMorphologyMaximum"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228365-morphologymaximum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "morphologyMaximum()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228365-morphologymaximum"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228366-morphologyminimum": {
+      "abstract": [
+        {
+          "text": "Blurs a circular area by reducing contrasting pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "morphologyMinimum"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIMorphologyMinimum"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228366-morphologyminimum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "morphologyMinimum()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228366-morphologyminimum"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228367-morphologyrectanglemaximum": {
+      "abstract": [
+        {
+          "text": "Blurs a rectangular area by enlarging contrasting pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "morphologyRectangleMaximum"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIMorphologyRectangleMaximum"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228367-morphologyrectanglemaximum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "morphologyRectangleMaximum()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228367-morphologyrectanglemaximum"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228368-morphologyrectangleminimum": {
+      "abstract": [
+        {
+          "text": "Blurs a rectangular area by reducing contrasting pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "morphologyRectangleMinimum"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIMorphologyRectangleMinimum"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228368-morphologyrectangleminimum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "morphologyRectangleMinimum()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228368-morphologyrectangleminimum"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228369-motionblur": {
+      "abstract": [
+        {
+          "text": "Creates motion blur on an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "motionBlur"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIMotionBlur"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228369-motionblur",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "motionBlur()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228369-motionblur"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228372-noisereduction": {
+      "abstract": [
+        {
+          "text": "Reduces noise by sharpening the edges of objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "noiseReduction"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CINoiseReduction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228372-noisereduction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "noiseReduction()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228372-noisereduction"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228372-noisereduction#3533663": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228372-noisereduction#3533663",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/coreimage/cifilter/3228372-noisereduction#3533663"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228434-zoomblur": {
+      "abstract": [
+        {
+          "text": "Creates a zoom blur centered around a single point on the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "zoomBlur"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIZoomBlur"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228434-zoomblur",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "zoomBlur()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228434-zoomblur"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/blur_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/blur_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Blur Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/blur_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImage",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cinoisereduction": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cinoisereduction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CINoiseReduction",
+      "type": "topic",
+      "url": "/documentation/coreimage/cinoisereduction"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumber": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumber"
+    },
+    "doc://com.apple.documentation/documentation/quartz": {
+      "identifier": "doc://com.apple.documentation/documentation/quartz",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Quartz",
+      "type": "topic",
+      "url": "/documentation/quartz"
+    },
+    "doc://com.apple.documentation/documentation/quartz/imagekit": {
+      "identifier": "doc://com.apple.documentation/documentation/quartz/imagekit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ImageKit",
+      "type": "topic",
+      "url": "/documentation/quartz/imagekit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-media-3544968": {
+      "identifier": "link-media-3544968",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/coreimage/cifilter/3228372-noisereduction#3544968"
+    },
+    "media-3544968": {
+      "alt": "Two photographs of a beach at sunset with multiple palm trees. The photo on the left is in focus. In the photo on the right, a noise reduction filter has been applied, and the edges of the objects such as the palm fronds have more sharpness and detail.",
+      "identifier": "media-3544968",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/48cc46db0f/rendered2x-1582929037.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228277-bokehblur",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228278-boxblur",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228311-discblur",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228331-gaussianblur",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228355-maskedvariableblur",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228358-median",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228364-morphologygradient",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228365-morphologymaximum",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228366-morphologyminimum",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228367-morphologyrectanglemaximum",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228368-morphologyrectangleminimum",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228369-motionblur",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228434-zoomblur"
+      ],
+      "title": "Filters"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/cifilter/3228372-noisereductionfilter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/cifilter/3228372-noisereduction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

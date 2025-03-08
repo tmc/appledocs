@@ -1,0 +1,3110 @@
+{
+  "abstract": [
+    {
+      "text": "A representation of a smart card.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)TKSmartCard",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "TKSmartCard"
+      }
+    ],
+    "modules": [
+      {
+        "name": "CryptoTokenKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "TKSmartCard"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "TKSmartCard"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "TKSmartCard"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class provides an interface for managing sessions with a smart card, transmitting requests, and facilitating user interaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object when a smart card is inserted into a slot, by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardSlot/makeSmartCard()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on the corresponding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardSlot",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. To start communicating with the smart card, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/beginSession(reply:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. Once an exclusive session has been established, you transmit data using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/transmit(_:reply:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. After you’ve finished communicating with a smart card, you call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/endSession()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the smart card is physically removed from its slot, the session object becomes invalid, and any further calls to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/transmit(_:reply:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " will return an error. You can use Key-Value Observing on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/isValid",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to be notified when a smart card is invalidated, due to being removed from the slot or another reason.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit": {
+      "abstract": [
+        {
+          "text": "Access security tokens and the cryptographic assets they store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CryptoTokenKit",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard": {
+      "abstract": [
+        {
+          "text": "A representation of a smart card.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TKSmartCard"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TKSmartCard"
+        }
+      ],
+      "role": "symbol",
+      "title": "TKSmartCard",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/allowedProtocols": {
+      "abstract": [
+        {
+          "text": "The protocols allowed for communication with the Smart Card. ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardProtocol/any",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " by default.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowedProtocols"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@TKSmartCardProtocol",
+          "text": "TKSmartCardProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/allowedProtocols",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowedProtocols"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowedProtocols",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard/allowedprotocols"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/beginSession(reply:)": {
+      "abstract": [
+        {
+          "text": "Begins a session with the Smart Card.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginSession"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "reply"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/beginSession(reply:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "beginSessionWithReply:"
+        }
+      ],
+      "role": "symbol",
+      "title": "beginSession(reply:)",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard/beginsession(reply:)"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/cla": {
+      "abstract": [
+        {
+          "text": "The CLA byte used for APDU transmission. ",
+          "type": "text"
+        },
+        {
+          "code": "0x00",
+          "type": "codeVoice"
+        },
+        {
+          "text": " by default.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cla"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/cla",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cla"
+        }
+      ],
+      "role": "symbol",
+      "title": "cla",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard/cla"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/context": {
+      "abstract": [
+        {
+          "text": "User-specified information. This property is automatically set to ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if the Smart Card is removed or another ",
+          "type": "text"
+        },
+        {
+          "code": "TKSmartCard",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object begins a session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "context"
+        }
+      ],
+      "role": "symbol",
+      "title": "context",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard/context"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/currentProtocol": {
+      "abstract": [
+        {
+          "text": "The protocol used for communication with the Smart Card. Returns ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardProtocol/TKSmartCardProtocolNone",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " if no session is currently established.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@TKSmartCardProtocol",
+          "text": "TKSmartCardProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/currentProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentProtocol",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard/currentprotocol"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/endSession()": {
+      "abstract": [
+        {
+          "text": "Completes any pending transmissions and ends the session to the Smart Card.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endSession"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/endSession()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "endSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "endSession()",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard/endsession()"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/inSessionWithError:executeBlock:": {
+      "abstract": [
+        {
+          "text": "Synchronously begins a session, executes the given block, and ends the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "inSessionWithError:executeBlock:"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/inSessionWithError:executeBlock:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inSessionWithError:executeBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "inSessionWithError:executeBlock:",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard/insessionwitherror:executeblock:"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/isSensitive": {
+      "abstract": [
+        {
+          "text": "Whether sessions established for the Smart Card should be considered sensitive. ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/swift/false",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " by default.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSensitive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/isSensitive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sensitive"
+        }
+      ],
+      "role": "symbol",
+      "title": "isSensitive",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard/issensitive"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/isValid": {
+      "abstract": [
+        {
+          "text": "Whether the Smart Card is valid and accessible from its slot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isValid"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/isValid",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "valid"
+        }
+      ],
+      "role": "symbol",
+      "title": "isValid",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard/isvalid"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/send(ins:p1:p2:data:le:)": {
+      "abstract": [
+        {
+          "text": "Synchronously transmits an APDU command to the card and returns the response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "send"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ins"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "p1"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "p2"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "le"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> (sw"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt16V",
+          "text": "UInt16"
+        },
+        {
+          "kind": "text",
+          "text": ", response"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/send(ins:p1:p2:data:le:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "send(ins:p1:p2:data:le:)",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard/send(ins:p1:p2:data:le:)"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/send(ins:p1:p2:data:le:reply:)": {
+      "abstract": [
+        {
+          "text": "Asynchronously transmits an APDU command to the card, returning the response in a completion handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "send"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ins"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "p1"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "p2"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "le"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "reply"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt16V",
+          "text": "UInt16"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/send(ins:p1:p2:data:le:reply:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "send(ins:p1:p2:data:le:reply:)",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard/send(ins:p1:p2:data:le:reply:)"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/sendIns:p1:p2:data:le:reply:": {
+      "abstract": [
+        {
+          "text": "Asynchronously transmits an APDU command to the card, returning the response in a completion handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendIns:p1:p2:data:le:reply:"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/sendIns:p1:p2:data:le:reply:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sendIns:p1:p2:data:le:reply:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sendIns:p1:p2:data:le:reply:",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard/sendins:p1:p2:data:le:reply:"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/sendIns:p1:p2:data:le:sw:error:": {
+      "abstract": [
+        {
+          "text": "Synchronously transmits an APDU command to the card and returns the response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendIns:p1:p2:data:le:sw:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/sendIns:p1:p2:data:le:sw:error:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sendIns:p1:p2:data:le:sw:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sendIns:p1:p2:data:le:sw:error:",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard/sendins:p1:p2:data:le:sw:error:"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/slot": {
+      "abstract": [
+        {
+          "text": "The slot in which the Smart Card is inserted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "slot"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)TKSmartCardSlot",
+          "text": "TKSmartCardSlot"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/slot",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "slot"
+        }
+      ],
+      "role": "symbol",
+      "title": "slot",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard/slot"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/transmit(_:reply:)": {
+      "abstract": [
+        {
+          "text": "Transmits data in Application Protocol Data Unit (APDU) format to the Smart Card.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transmit"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "reply"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/transmit(_:reply:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transmitRequest:reply:"
+        }
+      ],
+      "role": "symbol",
+      "title": "transmit(_:reply:)",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard/transmit(_:reply:)"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/useCommandChaining": {
+      "abstract": [
+        {
+          "text": "Whether to use command chaining of APDU with a data field longer than 255 bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useCommandChaining"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/useCommandChaining",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "useCommandChaining"
+        }
+      ],
+      "role": "symbol",
+      "title": "useCommandChaining",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard/usecommandchaining"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/useExtendedLength": {
+      "abstract": [
+        {
+          "text": "Whether to use extended length APDU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useExtendedLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/useExtendedLength",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "useExtendedLength"
+        }
+      ],
+      "role": "symbol",
+      "title": "useExtendedLength",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard/useextendedlength"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/userInteractionForSecurePINChange(_:apdu:currentPINByteOffset:newPINByteOffset:)": {
+      "abstract": [
+        {
+          "text": "Creates a new user interaction object for secure PIN change using the smart card reader facilities (typically a HW keypad).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInteractionForSecurePINChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)TKSmartCardPINFormat",
+          "text": "TKSmartCardPINFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "apdu"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "currentPINByteOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "newPINByteOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)TKSmartCardUserInteractionForSecurePINChange",
+          "text": "TKSmartCardUserInteractionForSecurePINChange"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/userInteractionForSecurePINChange(_:apdu:currentPINByteOffset:newPINByteOffset:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userInteractionForSecurePINChangeWithPINFormat:APDU:currentPINByteOffset:newPINByteOffset:"
+        }
+      ],
+      "role": "symbol",
+      "title": "userInteractionForSecurePINChange(_:apdu:currentPINByteOffset:newPINByteOffset:)",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard/userinteractionforsecurepinchange(_:apdu:currentpinbyteoffset:newpinbyteoffset:)"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/userInteractionForSecurePINVerification(_:apdu:pinByteOffset:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns a new user interaction object for secure PIN verification using the Smart Card reader facilities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInteractionForSecurePINVerification"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)TKSmartCardPINFormat",
+          "text": "TKSmartCardPINFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "apdu"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pinByteOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)TKSmartCardUserInteractionForSecurePINVerification",
+          "text": "TKSmartCardUserInteractionForSecurePINVerification"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/userInteractionForSecurePINVerification(_:apdu:pinByteOffset:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userInteractionForSecurePINVerificationWithPINFormat:APDU:PINByteOffset:"
+        }
+      ],
+      "role": "symbol",
+      "title": "userInteractionForSecurePINVerification(_:apdu:pinByteOffset:)",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard/userinteractionforsecurepinverification(_:apdu:pinbyteoffset:)"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/withSession(_:)": {
+      "abstract": [
+        {
+          "text": "Synchronously begins a session, executes the given closure, and ends the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withSession"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">(() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/withSession(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withSession(_:)",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard/withsession(_:)"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardPINFormat": {
+      "abstract": [
+        {
+          "text": "The formatting properties for a PIN, such as character encoding and length constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardPINFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardPINFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardPINFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "TKSmartCardPINFormat",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcardpinformat"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardProtocol": {
+      "abstract": [
+        {
+          "text": "Smart Card transmission protocols.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "TKSmartCardProtocol",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcardprotocol"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardProtocol/TKSmartCardProtocolNone": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardProtocolNone"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardProtocol/TKSmartCardProtocolNone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TKSmartCardProtocolNone",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcardprotocol/tksmartcardprotocolnone"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardProtocol/any": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "any"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@TKSmartCardProtocol",
+          "text": "TKSmartCardProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardProtocol/any",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardProtocolAny"
+        }
+      ],
+      "role": "symbol",
+      "title": "any",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcardprotocol/any"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardSlot": {
+      "abstract": [
+        {
+          "text": "A single smart card reader slot in the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardSlot"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardSlot",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardSlot"
+        }
+      ],
+      "role": "symbol",
+      "title": "TKSmartCardSlot",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcardslot"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardSlot/makeSmartCard()": {
+      "abstract": [
+        {
+          "text": "Creates a new ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object representing the currently inserted Smart Card.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeSmartCard"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)TKSmartCard",
+          "text": "TKSmartCard"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardSlot/makeSmartCard()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "makeSmartCard"
+        }
+      ],
+      "role": "symbol",
+      "title": "makeSmartCard()",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcardslot/makesmartcard()"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardSlotManager": {
+      "abstract": [
+        {
+          "text": "An interface to all available smart card reader slots.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardSlotManager"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardSlotManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardSlotManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "TKSmartCardSlotManager",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcardslotmanager"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardUserInteraction": {
+      "abstract": [
+        {
+          "text": "The base class for encapsulating user interaction with a Smart Card reader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardUserInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardUserInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardUserInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "TKSmartCardUserInteraction",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcarduserinteraction"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardUserInteractionForPINOperation": {
+      "abstract": [
+        {
+          "text": "A representation of user interaction for secure PIN operations on a Smart Card reader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardUserInteractionForPINOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardUserInteractionForPINOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardUserInteractionForPINOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "TKSmartCardUserInteractionForPINOperation",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcarduserinteractionforpinoperation"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardUserInteractionForSecurePINChange": {
+      "abstract": [
+        {
+          "text": "A representation of the user interaction for secure PIN change operations on a Smart Card reader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardUserInteractionForSecurePINChange"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardUserInteractionForSecurePINChange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardUserInteractionForSecurePINChange"
+        }
+      ],
+      "role": "symbol",
+      "title": "TKSmartCardUserInteractionForSecurePINChange",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcarduserinteractionforsecurepinchange"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardUserInteractionForSecurePINVerification": {
+      "abstract": [
+        {
+          "text": "A representation of the user interaction for secure PIN change verification on a Smart Card reader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardUserInteractionForSecurePINVerification"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardUserInteractionForSecurePINVerification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardUserInteractionForSecurePINVerification"
+        }
+      ],
+      "role": "symbol",
+      "title": "TKSmartCardUserInteractionForSecurePINVerification",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcarduserinteractionforsecurepinverification"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/using-cryptographic-assets-stored-on-a-smart-card": {
+      "abstract": [
+        {
+          "text": "Access certificates, keys, and identities stored on a smart card as if they were part of the keychain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/using-cryptographic-assets-stored-on-a-smart-card",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Cryptographic Assets Stored on a Smart Card",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/using-cryptographic-assets-stored-on-a-smart-card"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Smart-Cards",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/using-cryptographic-assets-stored-on-a-smart-card",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardSlotManager",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardSlot"
+      ],
+      "title": "Smart Cards"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configuring-the-Smart-Card",
+      "identifiers": [
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/slot",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/isValid",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/isSensitive",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/context"
+      ],
+      "title": "Configuring the Smart Card"
+    },
+    {
+      "anchor": "Setting-the-Communication-Protocol",
+      "identifiers": [
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/allowedProtocols",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/currentProtocol",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardProtocol"
+      ],
+      "title": "Setting the Communication Protocol"
+    },
+    {
+      "anchor": "Communicating-with-the-Smart-Card",
+      "identifiers": [
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/beginSession(reply:)",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/transmit(_:reply:)",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/endSession()"
+      ],
+      "title": "Communicating with the Smart Card"
+    },
+    {
+      "anchor": "Managing-User-Interaction",
+      "identifiers": [
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/userInteractionForSecurePINVerification(_:apdu:pinByteOffset:)",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/userInteractionForSecurePINChange(_:apdu:currentPINByteOffset:newPINByteOffset:)",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardPINFormat",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardUserInteraction",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardUserInteractionForPINOperation",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardUserInteractionForSecurePINChange",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardUserInteractionForSecurePINVerification"
+      ],
+      "title": "Managing User Interaction"
+    },
+    {
+      "anchor": "Configuring-APDU-Behavior",
+      "identifiers": [
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/cla",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/useExtendedLength",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/useCommandChaining"
+      ],
+      "title": "Configuring APDU Behavior"
+    },
+    {
+      "anchor": "Transmitting-Data",
+      "identifiers": [
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/send(ins:p1:p2:data:le:reply:)",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/send(ins:p1:p2:data:le:)",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/withSession(_:)"
+      ],
+      "title": "Transmitting Data"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.10",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "TKSmartCard"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Configuring-the-Smart-Card",
+              "identifiers": [
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/slot",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/isValid",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/isSensitive",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/context"
+              ],
+              "title": "Configuring the Smart Card"
+            },
+            {
+              "anchor": "Setting-the-Communication-Protocol",
+              "identifiers": [
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/allowedProtocols",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/currentProtocol",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardProtocol"
+              ],
+              "title": "Setting the Communication Protocol"
+            },
+            {
+              "anchor": "Communicating-with-the-Smart-Card",
+              "identifiers": [
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/beginSession(reply:)",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/transmit(_:reply:)",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/endSession()"
+              ],
+              "title": "Communicating with the Smart Card"
+            },
+            {
+              "anchor": "Managing-User-Interaction",
+              "identifiers": [
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/userInteractionForSecurePINVerification(_:apdu:pinByteOffset:)",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/userInteractionForSecurePINChange(_:apdu:currentPINByteOffset:newPINByteOffset:)",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardPINFormat",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardUserInteraction",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardUserInteractionForPINOperation",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardUserInteractionForSecurePINChange",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardUserInteractionForSecurePINVerification"
+              ],
+              "title": "Managing User Interaction"
+            },
+            {
+              "anchor": "Configuring-APDU-Behavior",
+              "identifiers": [
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/cla",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/useExtendedLength",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/useCommandChaining"
+              ],
+              "title": "Configuring APDU Behavior"
+            },
+            {
+              "anchor": "Transmitting-Data",
+              "identifiers": [
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/sendIns:p1:p2:data:le:reply:",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/sendIns:p1:p2:data:le:sw:error:",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/inSessionWithError:executeBlock:"
+              ],
+              "title": "Transmitting Data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Smart-Cards",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/using-cryptographic-assets-stored-on-a-smart-card",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardSlotManager",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardSlot"
+              ],
+              "title": "Smart Cards"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "TKSmartCard"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1transmit(_:reply:)/title",
+          "value": "transmitRequest:reply:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1transmit(_:reply:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "transmitRequest:reply:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardSlotManager/title",
+          "value": "TKSmartCardSlotManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardSlotManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardSlotManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardSlotManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardSlotManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardUserInteractionForPINOperation/title",
+          "value": "TKSmartCardUserInteractionForPINOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardUserInteractionForPINOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardUserInteractionForPINOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardUserInteractionForPINOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardUserInteractionForPINOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardProtocol/title",
+          "value": "TKSmartCardProtocol"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardProtocol"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardProtocol"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1context/title",
+          "value": "context"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1context/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "context"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1userInteractionForSecurePINVerification(_:apdu:pinByteOffset:)/title",
+          "value": "userInteractionForSecurePINVerificationWithPINFormat:APDU:PINByteOffset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1userInteractionForSecurePINVerification(_:apdu:pinByteOffset:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "userInteractionForSecurePINVerificationWithPINFormat:APDU:PINByteOffset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardUserInteractionForSecurePINVerification/title",
+          "value": "TKSmartCardUserInteractionForSecurePINVerification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardUserInteractionForSecurePINVerification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardUserInteractionForSecurePINVerification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardUserInteractionForSecurePINVerification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardUserInteractionForSecurePINVerification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1isSensitive/title",
+          "value": "sensitive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1isSensitive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sensitive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1cla/title",
+          "value": "cla"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1cla/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cla"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1allowedProtocols/title",
+          "value": "allowedProtocols"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1allowedProtocols/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowedProtocols"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardSlot/title",
+          "value": "TKSmartCardSlot"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardSlot/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardSlot"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardSlot/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardSlot"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1currentProtocol/title",
+          "value": "currentProtocol"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1currentProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentProtocol"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardUserInteraction/title",
+          "value": "TKSmartCardUserInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardUserInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardUserInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardUserInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardUserInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard/title",
+          "value": "TKSmartCard"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1beginSession(reply:)/title",
+          "value": "beginSessionWithReply:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1beginSession(reply:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginSessionWithReply:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardUserInteractionForSecurePINChange/title",
+          "value": "TKSmartCardUserInteractionForSecurePINChange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardUserInteractionForSecurePINChange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardUserInteractionForSecurePINChange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardUserInteractionForSecurePINChange/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardUserInteractionForSecurePINChange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1endSession()/title",
+          "value": "endSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1endSession()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "endSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1useCommandChaining/title",
+          "value": "useCommandChaining"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1useCommandChaining/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "useCommandChaining"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1useExtendedLength/title",
+          "value": "useExtendedLength"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1useExtendedLength/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "useExtendedLength"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardPINFormat/title",
+          "value": "TKSmartCardPINFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardPINFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardPINFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardPINFormat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardPINFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardSlot~1makeSmartCard()/title",
+          "value": "makeSmartCard"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardSlot~1makeSmartCard()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "makeSmartCard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1userInteractionForSecurePINChange(_:apdu:currentPINByteOffset:newPINByteOffset:)/title",
+          "value": "userInteractionForSecurePINChangeWithPINFormat:APDU:currentPINByteOffset:newPINByteOffset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1userInteractionForSecurePINChange(_:apdu:currentPINByteOffset:newPINByteOffset:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "userInteractionForSecurePINChangeWithPINFormat:APDU:currentPINByteOffset:newPINByteOffset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1isValid/title",
+          "value": "valid"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1isValid/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "valid"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1slot/title",
+          "value": "slot"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1slot/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "slot"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardProtocol~1any/title",
+          "value": "TKSmartCardProtocolAny"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardProtocol~1any/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardProtocolAny"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cryptotokenkit/tksmartcard"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/cryptotokenkit/tksmartcard"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

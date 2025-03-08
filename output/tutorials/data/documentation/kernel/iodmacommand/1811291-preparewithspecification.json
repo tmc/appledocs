@@ -1,0 +1,605 @@
+{
+  "abstract": [
+    {
+      "text": "Prepare the memory for an I/O transfer with a new specification.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811291-preparewithspecification"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1811291,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "IODMACommand"
+    },
+    "role": "pseudoSymbol",
+    "symbolKind": "instm",
+    "title": "prepareWithSpecification"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "virtual IOReturn prepareWithSpecification("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " SegmentFunction outSegFunc, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " UInt8 numAddressBits, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " UInt64 maxSegmentSize, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " MappingOptions mappingOptions = kMapped, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " UInt64 maxTransferSize = 0, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " UInt32 alignment = 1, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " IOMapper *mapper = 0, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " UInt64 offset = 0, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " UInt64 length = 0, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " bool flushCache = true, "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " bool synchronize = true); "
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "SegmentFunction to call to output one physical segment. A set of nine commonly required segment functions are provided.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "outSegFunc"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Number of bits that the hardware uses on its internal address bus. Typically 32 but may be more on modern hardware. A 0 implies no-restriction other than that implied by the output segment function.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "numAddressBits"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Maximum allowable size for one segment. Defaults to 0 which means any size.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "maxSegmentSize"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "is the type of mapping that is required to translate an IOMemoryDescriptor into the desired number of bits. For instance if your hardware only supports 32 bits but must run on machines with > 4G of RAM some mapping will be required. Number of bits will be specified in numAddressBits, see below.This parameter can take 3 values:- kNonCoherent - used for non-coherent hardware transfers, Mapped - Validate that all I/O bus generated addresses are within the number of addressing bits specified, Bypassed indicates that bypassed addressing is required, this is used when the hardware transferes are into coherent memory but no mapping is required. See also prepare() for failure cases.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "mappingOptions"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Maximum size of an entire transfer. Defaults to 0 indicating no maximum.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "maxTransferSize"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Alignment restriction, in bytes, on I/O bus addresses. Defaults to single byte alignment.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "alignment"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For mapping types kMapped & kBypassed mapper is used to define the hardware that will perform the mapping, defaults to the system mapper.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "mapper"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "defines the starting offset in the memory descriptor the DMA command will operate on. genIOVMSegments will produce its results based on the offset and length passed to the prepare method.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "offset"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "defines the ending position in the memory descriptor the DMA command will operate on. genIOVMSegments will produce its results based on the offset and length passed to the prepare method.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "length"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Flush the caches for the memory descriptor and make certain that the memory cycles are complete. Defaults to true for kNonCoherent and is ignored by the other types.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "flushCache"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Copy any buffered data back from the target IOMemoryDescriptor. Defaults to true, if synchronize() is being used to explicitly copy data, passing false may avoid an unneeded copy.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "synchronize"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An IOReturn code. Can fail if the mapping type is not recognised, if one of the 3 mandatory parameters are set to 0, if a 32 bit output function is selected when more than 32 bits of address is required or, if kBypassed is requested on a machine that doesn't support bypassing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Allocate the mapping resources neccessary for this transfer, specifying a sub range of the IOMemoryDescriptor that will be the target of the I/O. The complete() method frees these resources. Data may be copied to buffers for kIODirectionOut memory descriptors, depending on hardware mapping resource availabilty or alignment restrictions. It should be noted that the this function may block and should only be called on the clients context, i.e never call this routine while gated; also the call itself is not thread safe though this should be an issue as each IODMACommand is independant.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODMACommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547719-synchronize": {
+      "abstract": [
+        {
+          "text": "Bring IOMemoryDescriptor and IODMACommand buffers into sync.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "synchronize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547719-synchronize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "synchronize",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547719-synchronize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547728-prepare": {
+      "abstract": [
+        {
+          "text": "Prepare the memory for an I/O transfer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepare"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547728-prepare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepare",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547728-prepare"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547730-complete": {
+      "abstract": [
+        {
+          "text": "Complete processing of DMA mappings after an I/O transfer is finished.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "complete"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547730-complete",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "complete",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547730-complete"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547733-preparewithspecification": {
+      "abstract": [
+        {
+          "text": "Prepare the memory for an I/O transfer with a new specification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareWithSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547733-preparewithspecification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepareWithSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547733-preparewithspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811081-complete": {
+      "abstract": [
+        {
+          "text": "Complete processing of DMA mappings after an I/O transfer is finished.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811081-complete",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "complete",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811081-complete"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811284-prepare": {
+      "abstract": [
+        {
+          "text": "Prepare the memory for an I/O transfer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811284-prepare",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "prepare",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811284-prepare"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811291-preparewithspecification": {
+      "abstract": [
+        {
+          "text": "Prepare the memory for an I/O transfer with a new specification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811291-preparewithspecification",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "prepareWithSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811291-preparewithspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811316-synchronize": {
+      "abstract": [
+        {
+          "text": "Bring IOMemoryDescriptor and IODMACommand buffers into sync.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811316-synchronize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "synchronize",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1811316-synchronize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/3516451-preparewithspecification": {
+      "abstract": [
+        {
+          "text": "Prepare the memory for an I/O transfer with a new specification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareWithSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/3516451-preparewithspecification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepareWithSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/3516451-preparewithspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/memory"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811284-prepare",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547728-prepare",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547733-preparewithspecification",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/3516451-preparewithspecification",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811081-complete",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547730-complete",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1811316-synchronize",
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547719-synchronize"
+      ],
+      "title": "Preparing the Transfer Operation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iodmacommand/1811291-preparewithspecification",
+        "documentation/driverkit/iodmacommand/1811291-preparewithspecification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

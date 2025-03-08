@@ -1,0 +1,545 @@
+{
+  "abstract": [
+    {
+      "text": "Use Instruments to assess whether your app or its third-party SDKs connect to domains that may profile users.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/detecting-when-your-app-contacts-domains-that-may-be-profiling-users"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Detecting when your app contacts domains that may be profiling users"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The operating system maintains a list of DNS domains that may be following people across multiple apps and websites to combine their activity into a profile. Use Instruments to discover whether your app contacts these domains — because of code you wrote or code that’s included in a third-party SDK your app links to — so that you can assess whether the domains are used for tracking as defined under the App Tracking Transparency framework. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store/user-privacy-and-data-use/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Analyze-your-apps-networking-behavior",
+          "level": 3,
+          "text": "Analyze your app’s networking behavior",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode and Instruments provide the tools you need to analyze your app’s network connections.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In particular, you use Instruments to record HTTP traffic to and from your app, and the later analyze that for any unexpected activity.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your app project in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Product > Profile. Xcode builds your app for profiling, and opens it in Instruments.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Instruments, choose the Network template.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Record.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Instruments presents an alert, warning you that recording HTTP traffic may expose sensitive and personal information. If you accept this risk, click Record Anyway. Instruments launches your app, and begins profiling.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Exercise the features of your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When you’re done, switch back to Instruments and click Stop.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "detecting-potential-profiling-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Review-your-apps-connections-to-domains-that-may-be-profiling-users",
+          "level": 3,
+          "text": "Review your app’s connections to domains that may be profiling users",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app makes an HTTP request to a domain on the operating system list of DNS domains that may be following people across multiple apps and websites to combine their activity into a profile, the Points of Interest instrument records the activity.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A fault pin in the Points on Interest track in the timeline shows when your app made a request to the domain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Instruments, select the Points of Interest track.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Detail area shows a list of the occasions when your app made HTTP requests to these domains.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Select the entry in the Start column for a point of interest to move the tracking head to that time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Instruments focuses on the time your app made the HTTP request, so you can explore other tracks to learn more about your app’s behavior when it made the request.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information on using Instruments to analyze HTTP traffic, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "detecting-potential-profiling-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Declare-tracking-domains-in-your-apps-privacy-manifest",
+          "level": 3,
+          "text": "Declare tracking domains in your app’s privacy manifest",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you determine that the domains your app connects to are using data sent from your app to track people, declare them in your privacy manifest and ask for permission to track under the App Tracking Transparency framework. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store/user-privacy-and-data-use/",
+              "isActive": true,
+              "overridingTitle": "User Privacy and Data Use",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "User Privacy and Data Use",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The operating system blocks network requests to declared tracking domains when the user has not granted tracking permission.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you are not expecting your app to track, consider removing the code or contacting the third-party SDK developer whose code is contacting the domain. If the third-party SDK has a privacy manifest, the manifest may also provide you with details about whether the third-party SDK is engaged in tracking. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/describing-data-use-in-privacy-manifests",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "detecting-potential-profiling-1": {
+      "alt": "A screenshot of Instruments, showing a dialog presented when you record HTTP traffic with networking instruments.",
+      "identifier": "detecting-potential-profiling-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c9cb8c9fd16af6de79f3aa1ecdeffa1e/detecting-potential-profiling-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e870e0d60ec45638ef0e058df6d3ace7/detecting-potential-profiling-1~dark@2x.png"
+        }
+      ]
+    },
+    "detecting-potential-profiling-2": {
+      "alt": "A screenshot of Instruments, showing points of interest in the timeline where the app has contacted domains that may be following people across multiple apps and websites to combine their activity into a profile. A point of interest is selected in the detail view.",
+      "identifier": "detecting-potential-profiling-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a43f4573c5bfbce5b7d5880c3e412063/detecting-potential-profiling-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4b9482d7c5ef7d042cc0e80c2ec22e52/detecting-potential-profiling-2~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-in-the-appearance-of-your-running-app": {
+      "abstract": [
+        {
+          "text": "Inspect your running app to investigate issues in the appearance and placement of the content it displays.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-in-the-appearance-of-your-running-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Diagnosing issues in the appearance of a running app",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-issues-in-the-appearance-of-your-running-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early": {
+      "abstract": [
+        {
+          "text": "Identify runtime crashes and undefined behaviors in your app during testing using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Xcode’s sanitizer tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Diagnosing memory, thread, and crash issues early",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-memory-thread-and-crash-issues-early"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/describing-data-use-in-privacy-manifests": {
+      "abstract": [
+        {
+          "text": "Declare the data collected by your app or by third-party SDKs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/describing-data-use-in-privacy-manifests",
+      "kind": "article",
+      "role": "article",
+      "title": "Describing data use in privacy manifests",
+      "type": "topic",
+      "url": "/documentation/BundleResources/describing-data-use-in-privacy-manifests"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments": {
+      "abstract": [
+        {
+          "text": "Measure HTTP-based network performance and usage of your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing HTTP traffic with Instruments",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/app-store/user-privacy-and-data-use/": {
+      "identifier": "https://developer.apple.com/app-store/user-privacy-and-data-use/",
+      "title": "User Privacy and Data Use",
+      "titleInlineContent": [
+        {
+          "text": "User Privacy and Data Use",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/user-privacy-and-data-use/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Debugging-strategies",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-in-the-appearance-of-your-running-app",
+        "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments"
+      ],
+      "title": "Debugging strategies"
+    }
+  ]
+}

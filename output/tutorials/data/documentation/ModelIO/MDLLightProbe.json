@@ -1,0 +1,1838 @@
+{
+  "abstract": [
+    {
+      "text": "A light source described in terms of the variations in color and intensity of its illumination in all directions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.modelio/documentation/ModelIO"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MDLLightProbe",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MDLLightProbe"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Model I/O"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MDLLightProbe"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "MDLLightProbe"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MDLLightProbe"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A light probe represents this variation either as a cube map texture or as a set of spherical harmonic coefficients. In addition to describing such light sources, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides methods for generating light probe textures based on the contents of a scene and for generating spherical harmonic coefficients from a texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A light probe consists of two cube map textures, where each texel represents the color and intensity of light in a particular direction from the cube’s center:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/reflectiveTexture",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " cube map, also known as an ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "environment map",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ", contains a rendering of a scene as viewed from the light probe’s position. A renderer can use this texture to create reflections on surfaces with metallic materials.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/irradianceTexture",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " cube map contains samples of the total light arriving at the light probe’s position from every direction. A renderer can use this texture to create diffuse lighting effects. You can derive an irradiance map from an environment map with methods on the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTexture",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class, or when creating a light probe with the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/init(textureSize:forLocation:lightsToConsider:objectsToConsider:reflectiveCubemap:irradianceCubemap:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using cube map textures for light-probe-based rendering offers great visual fidelity, but adversely affects performance due to the cost of texture lookups during rendering. In addition, a cube map texture often contains more detail than is necessary for lighting. A set of spherical harmonic coefficients can represent the same information with less detail, and can be used in shader calculations with much less performance cost. To use spherical harmonics, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/generateSphericalHarmonics(fromIrradiance:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, then access the generated data in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/sphericalHarmonicsCoefficients",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO": {
+      "abstract": [
+        {
+          "text": "Import, export, and manipulate 3D models using a common infrastructure that integrates MetalKit, GLKit, and SceneKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Model I/O",
+      "type": "topic",
+      "url": "/documentation/modelio"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLAreaLight": {
+      "abstract": [
+        {
+          "text": "A light source that illuminates a 3D scene from an area with a specific shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLAreaLight"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAreaLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLAreaLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLAreaLight",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlarealight"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLLight": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for objects that describe light sources in a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLLight"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLLight",
+      "type": "topic",
+      "url": "/documentation/modelio/mdllight"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe": {
+      "abstract": [
+        {
+          "text": "A light source described in terms of the variations in color and intensity of its illumination in all directions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLLightProbe"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLLightProbe"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLLightProbe",
+      "type": "topic",
+      "url": "/documentation/modelio/mdllightprobe"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/generateSphericalHarmonics(fromIrradiance:)": {
+      "abstract": [
+        {
+          "text": "Generates spherical harmonics information based on the light probe’s irradiance texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "generateSphericalHarmonics"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromIrradiance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/generateSphericalHarmonics(fromIrradiance:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "generateSphericalHarmonicsFromIrradiance:"
+        }
+      ],
+      "role": "symbol",
+      "title": "generateSphericalHarmonics(fromIrradiance:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdllightprobe/generatesphericalharmonics(fromirradiance:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/init(reflectiveTexture:irradianceTexture:)": {
+      "abstract": [
+        {
+          "text": "Initializes a light probe with the specified cube map textures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "reflectiveTexture"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLTexture",
+          "text": "MDLTexture"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "irradianceTexture"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLTexture",
+          "text": "MDLTexture"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/init(reflectiveTexture:irradianceTexture:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithReflectiveTexture:irradianceTexture:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(reflectiveTexture:irradianceTexture:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdllightprobe/init(reflectivetexture:irradiancetexture:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/init(textureSize:forLocation:lightsToConsider:objectsToConsider:reflectiveCubemap:irradianceCubemap:)": {
+      "abstract": [
+        {
+          "text": "Creates a light probe representing the shading environment at a specific point in a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "textureSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLTransform",
+          "text": "MDLTransform"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lightsToConsider"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLLight",
+          "text": "MDLLight"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "objectsToConsider"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLObject",
+          "text": "MDLObject"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "reflectiveCubemap"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLTexture",
+          "text": "MDLTexture"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "irradianceCubemap"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLTexture",
+          "text": "MDLTexture"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/init(textureSize:forLocation:lightsToConsider:objectsToConsider:reflectiveCubemap:irradianceCubemap:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lightProbeWithTextureSize:forLocation:lightsToConsider:objectsToConsider:reflectiveCubemap:irradianceCubemap:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(textureSize:forLocation:lightsToConsider:objectsToConsider:reflectiveCubemap:irradianceCubemap:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdllightprobe/init(texturesize:forlocation:lightstoconsider:objectstoconsider:reflectivecubemap:irradiancecubemap:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/irradianceTexture": {
+      "abstract": [
+        {
+          "text": "A cube map texture that contains samples of the total light arriving at the light probe’s position from every direction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "irradianceTexture"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLTexture",
+          "text": "MDLTexture"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/irradianceTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "irradianceTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "irradianceTexture",
+      "type": "topic",
+      "url": "/documentation/modelio/mdllightprobe/irradiancetexture"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/reflectiveTexture": {
+      "abstract": [
+        {
+          "text": "A cube map texture that contains a rendering of a scene as seen from the light probe’s position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reflectiveTexture"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MDLTexture",
+          "text": "MDLTexture"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/reflectiveTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reflectiveTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "reflectiveTexture",
+      "type": "topic",
+      "url": "/documentation/modelio/mdllightprobe/reflectivetexture"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/sphericalHarmonicsCoefficients": {
+      "abstract": [
+        {
+          "text": "Data containing the spherical harmonics coefficients for the light.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sphericalHarmonicsCoefficients"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/sphericalHarmonicsCoefficients",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sphericalHarmonicsCoefficients"
+        }
+      ],
+      "role": "symbol",
+      "title": "sphericalHarmonicsCoefficients",
+      "type": "topic",
+      "url": "/documentation/modelio/mdllightprobe/sphericalharmonicscoefficients"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/sphericalHarmonicsLevel": {
+      "abstract": [
+        {
+          "text": "The number of levels of spherical harmonics information in the light probe.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sphericalHarmonicsLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/sphericalHarmonicsLevel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sphericalHarmonicsLevel"
+        }
+      ],
+      "role": "symbol",
+      "title": "sphericalHarmonicsLevel",
+      "type": "topic",
+      "url": "/documentation/modelio/mdllightprobe/sphericalharmonicslevel"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbeIrradianceDataSource": {
+      "abstract": [
+        {
+          "text": "Adopt this protocol to provide information for use in automatic placement of light probes around a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLLightProbeIrradianceDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbeIrradianceDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLLightProbeIrradianceDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLLightProbeIrradianceDataSource",
+      "type": "topic",
+      "url": "/documentation/modelio/mdllightprobeirradiancedatasource"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLNamed": {
+      "abstract": [
+        {
+          "text": "The common interface for Model I/O objects that expose a human-readable name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLNamed"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLNamed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLNamed"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLNamed",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlnamed"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLPhotometricLight": {
+      "abstract": [
+        {
+          "text": "A light source whose shape, direction, and intensity of illumination are determined by a photometric profile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLPhotometricLight"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLPhotometricLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLPhotometricLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLPhotometricLight",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlphotometriclight"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLPhysicallyPlausibleLight": {
+      "abstract": [
+        {
+          "text": "A light source for use in shading models based on real-world physics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLPhysicallyPlausibleLight"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLPhysicallyPlausibleLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLPhysicallyPlausibleLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLPhysicallyPlausibleLight",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlphysicallyplausiblelight"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTexture": {
+      "abstract": [
+        {
+          "text": "A source of texel data to be used in rendering material surface appearances.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLTexture",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltexture"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLLight"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLNamed",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Lights",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLLight",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLAreaLight",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbeIrradianceDataSource",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLPhotometricLight",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLPhysicallyPlausibleLight"
+      ],
+      "title": "Lights"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Light-Probe",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/init(reflectiveTexture:irradianceTexture:)"
+      ],
+      "title": "Creating a Light Probe"
+    },
+    {
+      "anchor": "Working-with-Textures",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/reflectiveTexture",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/irradianceTexture"
+      ],
+      "title": "Working with Textures"
+    },
+    {
+      "anchor": "Working-with-Spherical-Harmonics",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/generateSphericalHarmonics(fromIrradiance:)",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/sphericalHarmonicsCoefficients",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/sphericalHarmonicsLevel"
+      ],
+      "title": "Working with Spherical Harmonics"
+    },
+    {
+      "anchor": "Generating-Light-Probes-from-Scene-Contents",
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/init(textureSize:forLocation:lightsToConsider:objectsToConsider:reflectiveCubemap:irradianceCubemap:)"
+      ],
+      "title": "Generating Light Probes from Scene Contents"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MDLLightProbe"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLLightProbe"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLLightProbe"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.modelio/documentation/ModelIO"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Light-Probe",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/init(reflectiveTexture:irradianceTexture:)"
+              ],
+              "title": "Creating a Light Probe"
+            },
+            {
+              "anchor": "Working-with-Textures",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/reflectiveTexture",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/irradianceTexture"
+              ],
+              "title": "Working with Textures"
+            },
+            {
+              "anchor": "Working-with-Spherical-Harmonics",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/generateSphericalHarmonics(fromIrradiance:)",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/sphericalHarmonicsCoefficients",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/sphericalHarmonicsLevel"
+              ],
+              "title": "Working with Spherical Harmonics"
+            },
+            {
+              "anchor": "Generating-Light-Probes-from-Scene-Contents",
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbe/init(textureSize:forLocation:lightsToConsider:objectsToConsider:reflectiveCubemap:irradianceCubemap:)"
+              ],
+              "title": "Generating Light Probes from Scene Contents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLLight"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Lights",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLLight",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLAreaLight",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLLightProbeIrradianceDataSource",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLPhotometricLight",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLPhysicallyPlausibleLight"
+              ],
+              "title": "Lights"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MDLLightProbe"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLLight",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)MDLLight",
+                    "text": "MDLLight"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbe~1generateSphericalHarmonics(fromIrradiance:)/title",
+          "value": "generateSphericalHarmonicsFromIrradiance:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbe~1generateSphericalHarmonics(fromIrradiance:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "generateSphericalHarmonicsFromIrradiance:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbe/title",
+          "value": "MDLLightProbe"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbe/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLLightProbe"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbe/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLLightProbe"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAreaLight/title",
+          "value": "MDLAreaLight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAreaLight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAreaLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAreaLight/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAreaLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbe~1init(textureSize:forLocation:lightsToConsider:objectsToConsider:reflectiveCubemap:irradianceCubemap:)/title",
+          "value": "lightProbeWithTextureSize:forLocation:lightsToConsider:objectsToConsider:reflectiveCubemap:irradianceCubemap:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbe~1init(textureSize:forLocation:lightsToConsider:objectsToConsider:reflectiveCubemap:irradianceCubemap:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "lightProbeWithTextureSize:forLocation:lightsToConsider:objectsToConsider:reflectiveCubemap:irradianceCubemap:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTexture/title",
+          "value": "MDLTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTexture/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbe~1init(reflectiveTexture:irradianceTexture:)/title",
+          "value": "initWithReflectiveTexture:irradianceTexture:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbe~1init(reflectiveTexture:irradianceTexture:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithReflectiveTexture:irradianceTexture:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPhysicallyPlausibleLight/title",
+          "value": "MDLPhysicallyPlausibleLight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPhysicallyPlausibleLight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLPhysicallyPlausibleLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPhysicallyPlausibleLight/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLPhysicallyPlausibleLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbe~1sphericalHarmonicsLevel/title",
+          "value": "sphericalHarmonicsLevel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbe~1sphericalHarmonicsLevel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sphericalHarmonicsLevel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbe~1reflectiveTexture/title",
+          "value": "reflectiveTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbe~1reflectiveTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "reflectiveTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLNamed/title",
+          "value": "MDLNamed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLNamed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLNamed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLNamed/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLNamed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbeIrradianceDataSource/title",
+          "value": "MDLLightProbeIrradianceDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbeIrradianceDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLLightProbeIrradianceDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbeIrradianceDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLLightProbeIrradianceDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLight/title",
+          "value": "MDLLight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLight/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbe~1irradianceTexture/title",
+          "value": "irradianceTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbe~1irradianceTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "irradianceTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPhotometricLight/title",
+          "value": "MDLPhotometricLight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPhotometricLight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLPhotometricLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLPhotometricLight/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLPhotometricLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbe~1sphericalHarmonicsCoefficients/title",
+          "value": "sphericalHarmonicsCoefficients"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLLightProbe~1sphericalHarmonicsCoefficients/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sphericalHarmonicsCoefficients"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/modelio/mdllightprobe"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/modelio/mdllightprobe"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

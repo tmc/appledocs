@@ -1,0 +1,4901 @@
+{
+  "abstract": [
+    {
+      "text": "The way a view changes over time to create a smooth visual transition from",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "one state to another.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI9AnimationV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Animation"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Animation"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Animation"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Animation"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Unifying-your-app-s-animations"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "Animation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provides a visual transition of a view when a state value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "changes from one value to another. The characteristics of this transition",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "vary according to the animation type. For instance, a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/linear",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " animation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provides a mechanical feel to the animation because its speed is consistent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from start to finish. In contrast, an animation that uses easing, like",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/easeOut",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", offers a more natural feel by varying the acceleration",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the animation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To apply an animation to a view, add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/animation(_:value:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier, and specify both an animation type and the value to animate. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Circle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view in the following code performs an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/easeIn",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " animation each time the state variable ",
+              "type": "text"
+            },
+            {
+              "code": "scale",
+              "type": "codeVoice"
+            },
+            {
+              "text": " changes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ContentView: View {",
+            "    @State private var scale = 0.5",
+            "",
+            "    var body: some View {",
+            "        VStack {",
+            "            Circle()",
+            "                .scaleEffect(scale)",
+            "                .animation(.easeIn, value: scale)",
+            "            HStack {",
+            "                Button(\"+\") { scale += 0.1 }",
+            "                Button(\"-\") { scale -= 0.1 }",
+            "            }",
+            "        }",
+            "        .padding()",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "identifier": "animation-01-overview-easein.mp4",
+          "type": "video"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the value of ",
+              "type": "text"
+            },
+            {
+              "code": "scale",
+              "type": "codeVoice"
+            },
+            {
+              "text": " changes, the modifier",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scaleEffect(_:anchor:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " resizes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Circle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " according to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "new value. SwiftUI can animate the transition between sizes because",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Circle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Shape",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. Shapes in SwiftUI conform to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animatable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, which describes how to animate a property of a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to adding an animation to a view, you can also configure the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "animation by applying animation modifiers to the animation type. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, you can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Delay the start of the animation by using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/delay(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " modifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Repeat the animation by using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/repeatCount(_:autoreverses:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/repeatForever(autoreverses:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " modifiers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the speed of the animation by using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/speed(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " modifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Circle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view in the following code repeats",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/easeIn",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " animation three times by using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/repeatCount(_:autoreverses:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ContentView: View {",
+            "    @State private var scale = 0.5",
+            "",
+            "    var body: some View {",
+            "        VStack {",
+            "            Circle()",
+            "                .scaleEffect(scale)",
+            "                .animation(.easeIn.repeatCount(3), value: scale)",
+            "            HStack {",
+            "                Button(\"+\") { scale += 0.1 }",
+            "                Button(\"-\") { scale -= 0.1 }",
+            "            }",
+            "        }",
+            "        .padding()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "identifier": "animation-02-overview-easein-repeat.mp4",
+          "type": "video"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A view can also perform an animation when a binding value changes. To",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specify the animation type on a binding, call its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Binding/animation(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method. For example, the view in the following code performs a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/linear",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " animation, moving the box truck between the leading and trailing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "edges of the view. The truck moves each time a person clicks the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Toggle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "control, which changes the value of the ",
+              "type": "text"
+            },
+            {
+              "code": "$isTrailing",
+              "type": "codeVoice"
+            },
+            {
+              "text": " binding.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ContentView: View {",
+            "    @State private var isTrailing = false",
+            "",
+            "    var body: some View {",
+            "       VStack(alignment: isTrailing ? .trailing : .leading) {",
+            "            Image(systemName: \"box.truck\")",
+            "                .font(.system(size: 64))",
+            "",
+            "            Toggle(\"Move to trailing edge\",",
+            "                   isOn: $isTrailing.animation(.linear))",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "identifier": "animation-03-overview-binding.mp4",
+          "type": "video"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "Unifying-your-app-s-animations-PageImage-card.png": {
+      "alt": "A conceptual illustration of a disclosure indicator, shown animating frame by frame from its collapsed position to its expanded position.",
+      "identifier": "Unifying-your-app-s-animations-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/db26bd6bfe171a450c126a68c3bd92d4/Unifying-your-app-s-animations-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3559438f813d2163ecacac3918dbff5f/Unifying-your-app-s-animations-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "animation-01-overview-easein.mp4": {
+      "alt": "A video that shows a circle enlarging then shrinking to its original size using an ease-in animation.",
+      "identifier": "animation-01-overview-easein.mp4",
+      "poster": "animation-01-overview-easein.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/34ec79a70db68c2dbae9696c36ef0130/animation-01-overview-easein.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b23b3a59d2ec493e212c85d76ae3e299/animation-01-overview-easein~dark.mp4"
+        }
+      ]
+    },
+    "animation-01-overview-easein.png": {
+      "alt": null,
+      "identifier": "animation-01-overview-easein.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/87c9501addd808e0b2d8945d230d55b4/animation-01-overview-easein@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/759c33b01be98da87924d8d0e46c2f63/animation-01-overview-easein~dark@2x.png"
+        }
+      ]
+    },
+    "animation-02-overview-easein-repeat.mp4": {
+      "alt": "A video that shows a circle that repeats the ease-in animation three times: enlarging, then shrinking, then enlarging again. The animation reverses causing the circle to shrink, then enlarge, then shrink to its original size.",
+      "identifier": "animation-02-overview-easein-repeat.mp4",
+      "poster": "animation-02-overview-easein-repeat.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9f65185c42939643e0015b3c43c3ba06/animation-02-overview-easein-repeat.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/def5a486ce10980e860986c02b558ca7/animation-02-overview-easein-repeat~dark.mp4"
+        }
+      ]
+    },
+    "animation-02-overview-easein-repeat.png": {
+      "alt": null,
+      "identifier": "animation-02-overview-easein-repeat.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/37a29a04a98a542799c64689c01b71e8/animation-02-overview-easein-repeat@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2ada6b90e0d225098078cbc9669dcc2c/animation-02-overview-easein-repeat~dark@2x.png"
+        }
+      ]
+    },
+    "animation-03-overview-binding.mp4": {
+      "alt": "A video that shows a box truck that moves from the leading edge of a view to the trailing edge. The box truck then returns to the view's leading edge.",
+      "identifier": "animation-03-overview-binding.mp4",
+      "poster": "animation-03-overview-binding.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1947a485dbc1be9da809257483e5ff23/animation-03-overview-binding.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2fb10a967b96dc370b9a97839267e7ae/animation-03-overview-binding~dark.mp4"
+        }
+      ]
+    },
+    "animation-03-overview-binding.png": {
+      "alt": null,
+      "identifier": "animation-03-overview-binding.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ddf67fc959b0892b50416eb2ccdb2c23/animation-03-overview-binding@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77449b1fd8c6c0f5be0266f4606e1f4f/animation-03-overview-binding~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animatable": {
+      "abstract": [
+        {
+          "text": "A type that describes how to animate a property of a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Animatable"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Animatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Animatable",
+      "type": "topic",
+      "url": "/documentation/swiftui/animatable"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation": {
+      "abstract": [
+        {
+          "text": "The way a view changes over time to create a smooth visual transition from",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "one state to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Animation"
+        }
+      ],
+      "role": "symbol",
+      "title": "Animation",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/animate(value:time:context:)": {
+      "abstract": [
+        {
+          "text": "Calculates the current value of the animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "time"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16AnimationContextV",
+          "text": "AnimationContext"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/animate(value:time:context:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "animate(value:time:context:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/animate(value:time:context:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/base": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "base"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15CustomAnimationP",
+          "text": "CustomAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/base",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "base",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/base"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/bouncy": {
+      "abstract": [
+        {
+          "text": "A spring animation with a predefined duration and higher amount of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "bounce.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bouncy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/bouncy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bouncy",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/bouncy"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/bouncy(duration:extraBounce:)": {
+      "abstract": [
+        {
+          "text": "A spring animation with a predefined duration and higher amount of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "bounce that can be tuned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bouncy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "extraBounce"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/bouncy(duration:extraBounce:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bouncy(duration:extraBounce:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/bouncy(duration:extrabounce:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/default": {
+      "abstract": [
+        {
+          "text": "A default animation instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "`default`"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/default",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "default",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/default"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/delay(_:)": {
+      "abstract": [
+        {
+          "text": "Delays the start of the animation by the specified number of seconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delay"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/delay(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delay(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/delay(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/easeIn": {
+      "abstract": [
+        {
+          "text": "An animation that starts slowly and then increases speed towards the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "end of the movement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "easeIn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/easeIn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "easeIn",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/easein"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/easeIn(duration:)": {
+      "abstract": [
+        {
+          "text": "An animation with a specified duration that starts slowly and then",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "increases speed towards the end of the movement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "easeIn"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/easeIn(duration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "easeIn(duration:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/easein(duration:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/easeInOut": {
+      "abstract": [
+        {
+          "text": "An animation that combines the behaviors of in and out easing",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "easeInOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/easeInOut",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "easeInOut",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/easeinout"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/easeInOut(duration:)": {
+      "abstract": [
+        {
+          "text": "An animation with a specified duration that combines the behaviors of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in and out easing animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "easeInOut"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/easeInOut(duration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "easeInOut(duration:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/easeinout(duration:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/easeOut": {
+      "abstract": [
+        {
+          "text": "An animation that starts quickly and then slows towards the end of the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "movement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "easeOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/easeOut",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "easeOut",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/easeout"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/easeOut(duration:)": {
+      "abstract": [
+        {
+          "text": "An animation with a specified duration that starts quickly and then",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "slows towards the end of the movement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "easeOut"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/easeOut(duration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "easeOut(duration:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/easeout(duration:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/init(_:)": {
+      "abstract": [
+        {
+          "text": "Create an ",
+          "type": "text"
+        },
+        {
+          "code": "Animation",
+          "type": "codeVoice"
+        },
+        {
+          "text": " that contains the specified custom animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/init(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/init(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/interactiveSpring": {
+      "abstract": [
+        {
+          "text": "A convenience for a ",
+          "type": "text"
+        },
+        {
+          "code": "spring",
+          "type": "codeVoice"
+        },
+        {
+          "text": " animation with a lower",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "duration",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value, intended for driving interactive animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interactiveSpring"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/interactiveSpring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interactiveSpring",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/interactivespring"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/interactiveSpring(duration:extraBounce:blendDuration:)": {
+      "abstract": [
+        {
+          "text": "A convenience for a ",
+          "type": "text"
+        },
+        {
+          "code": "spring",
+          "type": "codeVoice"
+        },
+        {
+          "text": " animation with a lower",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "response",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value, intended for driving interactive animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interactiveSpring"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "extraBounce"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blendDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/interactiveSpring(duration:extraBounce:blendDuration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interactiveSpring(duration:extraBounce:blendDuration:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/interactivespring(duration:extrabounce:blendduration:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/interactiveSpring(response:dampingFraction:blendDuration:)": {
+      "abstract": [
+        {
+          "text": "A convenience for a ",
+          "type": "text"
+        },
+        {
+          "code": "spring",
+          "type": "codeVoice"
+        },
+        {
+          "text": " animation with a lower",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "response",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value, intended for driving interactive animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interactiveSpring"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "response"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dampingFraction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blendDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/interactiveSpring(response:dampingFraction:blendDuration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interactiveSpring(response:dampingFraction:blendDuration:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/interactivespring(response:dampingfraction:blendduration:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/interpolatingSpring": {
+      "abstract": [
+        {
+          "text": "An interpolating spring animation that uses a damped spring",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "model to produce values in the range [0, 1] that are then used",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to interpolate within the [from, to] range of the animated",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "property. Preserves velocity across overlapping animations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "adding the effects of each animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interpolatingSpring"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/interpolatingSpring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interpolatingSpring",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/interpolatingspring"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/interpolatingSpring(_:initialVelocity:)": {
+      "abstract": [
+        {
+          "text": "An interpolating spring animation that uses a damped spring",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "model to produce values in the range of one to zero.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interpolatingSpring"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI6SpringV",
+          "text": "Spring"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "initialVelocity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/interpolatingSpring(_:initialVelocity:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interpolatingSpring(_:initialVelocity:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/interpolatingspring(_:initialvelocity:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/interpolatingSpring(duration:bounce:initialVelocity:)": {
+      "abstract": [
+        {
+          "text": "An interpolating spring animation that uses a damped spring",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "model to produce values in the range [0, 1] that are then used",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to interpolate within the [from, to] range of the animated",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "property. Preserves velocity across overlapping animations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "adding the effects of each animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interpolatingSpring"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bounce"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "initialVelocity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/interpolatingSpring(duration:bounce:initialVelocity:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interpolatingSpring(duration:bounce:initialVelocity:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/interpolatingspring(duration:bounce:initialvelocity:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/interpolatingSpring(mass:stiffness:damping:initialVelocity:)": {
+      "abstract": [
+        {
+          "text": "An interpolating spring animation that uses a damped spring",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "model to produce values in the range [0, 1] that are then used",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to interpolate within the [from, to] range of the animated",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "property. Preserves velocity across overlapping animations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "adding the effects of each animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interpolatingSpring"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "mass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stiffness"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "damping"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "initialVelocity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/interpolatingSpring(mass:stiffness:damping:initialVelocity:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interpolatingSpring(mass:stiffness:damping:initialVelocity:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/interpolatingspring(mass:stiffness:damping:initialvelocity:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/linear": {
+      "abstract": [
+        {
+          "text": "An animation that moves at a constant speed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "linear"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/linear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "linear",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/linear"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/linear(duration:)": {
+      "abstract": [
+        {
+          "text": "An animation that moves at a constant speed during a specified",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "linear"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/linear(duration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "linear(duration:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/linear(duration:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/logicallyComplete(after:)": {
+      "abstract": [
+        {
+          "text": "Causes the animation to report logical completion after the specified",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "duration, if it has not already logically completed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "logicallyComplete"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/logicallyComplete(after:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "logicallyComplete(after:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/logicallycomplete(after:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/repeatCount(_:autoreverses:)": {
+      "abstract": [
+        {
+          "text": "Repeats the animation for a specific number of times.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "repeatCount"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "autoreverses"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/repeatCount(_:autoreverses:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "repeatCount(_:autoreverses:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/repeatcount(_:autoreverses:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/repeatForever(autoreverses:)": {
+      "abstract": [
+        {
+          "text": "Repeats the animation for the lifespan of the view containing the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "repeatForever"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "autoreverses"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/repeatForever(autoreverses:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "repeatForever(autoreverses:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/repeatforever(autoreverses:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/shouldMerge(previous:value:time:context:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the current animation",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "should merge with a previous animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldMerge"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "previous"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "time"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16AnimationContextV",
+          "text": "AnimationContext"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/shouldMerge(previous:value:time:context:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shouldMerge(previous:value:time:context:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/shouldmerge(previous:value:time:context:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/smooth": {
+      "abstract": [
+        {
+          "text": "A smooth spring animation with a predefined duration and no bounce.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "smooth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/smooth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "smooth",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/smooth"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/smooth(duration:extraBounce:)": {
+      "abstract": [
+        {
+          "text": "A smooth spring animation with a predefined duration and no bounce",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that can be tuned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "smooth"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "extraBounce"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/smooth(duration:extraBounce:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "smooth(duration:extraBounce:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/smooth(duration:extrabounce:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/snappy": {
+      "abstract": [
+        {
+          "text": "A spring animation with a predefined duration and small amount of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "bounce that feels more snappy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "snappy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/snappy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "snappy",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/snappy"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/snappy(duration:extraBounce:)": {
+      "abstract": [
+        {
+          "text": "A spring animation with a predefined duration and small amount of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "bounce that feels more snappy and can be tuned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "snappy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "extraBounce"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/snappy(duration:extraBounce:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "snappy(duration:extraBounce:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/snappy(duration:extrabounce:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/speed(_:)": {
+      "abstract": [
+        {
+          "text": "Changes the duration of an animation by adjusting its speed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "speed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/speed(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "speed(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/speed(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/spring": {
+      "abstract": [
+        {
+          "text": "A persistent spring animation. When mixed with other ",
+          "type": "text"
+        },
+        {
+          "code": "spring()",
+          "type": "codeVoice"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "or ",
+          "type": "text"
+        },
+        {
+          "code": "interactiveSpring()",
+          "type": "codeVoice"
+        },
+        {
+          "text": " animations on the same property, each",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "animation will be replaced by their successor, preserving",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "velocity from one animation to the next. Optionally blends the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "response values between springs over a time period.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spring"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/spring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "spring",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/spring"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/spring(_:blendDuration:)": {
+      "abstract": [
+        {
+          "text": "A persistent spring animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spring"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI6SpringV",
+          "text": "Spring"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blendDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/spring(_:blendDuration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "spring(_:blendDuration:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/spring(_:blendduration:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/spring(duration:bounce:blendDuration:)": {
+      "abstract": [
+        {
+          "text": "A persistent spring animation. When mixed with other ",
+          "type": "text"
+        },
+        {
+          "code": "spring()",
+          "type": "codeVoice"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "or ",
+          "type": "text"
+        },
+        {
+          "code": "interactiveSpring()",
+          "type": "codeVoice"
+        },
+        {
+          "text": " animations on the same property, each",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "animation will be replaced by their successor, preserving",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "velocity from one animation to the next. Optionally blends the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "duration values between springs over a time period.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spring"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bounce"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blendDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/spring(duration:bounce:blendDuration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "spring(duration:bounce:blendDuration:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/spring(duration:bounce:blendduration:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/spring(response:dampingFraction:blendDuration:)": {
+      "abstract": [
+        {
+          "text": "A persistent spring animation. When mixed with other ",
+          "type": "text"
+        },
+        {
+          "code": "spring()",
+          "type": "codeVoice"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "or ",
+          "type": "text"
+        },
+        {
+          "code": "interactiveSpring()",
+          "type": "codeVoice"
+        },
+        {
+          "text": " animations on the same property, each",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "animation will be replaced by their successor, preserving",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "velocity from one animation to the next. Optionally blends the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "response values between springs over a time period.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spring"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "response"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dampingFraction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blendDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/spring(response:dampingFraction:blendDuration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "spring(response:dampingFraction:blendDuration:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/spring(response:dampingfraction:blendduration:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/timingCurve(_:_:_:_:duration:)": {
+      "abstract": [
+        {
+          "text": "An animation created from a cubic Bézier timing curve.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timingCurve"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/timingCurve(_:_:_:_:duration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timingCurve(_:_:_:_:duration:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/timingcurve(_:_:_:_:duration:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/timingCurve(_:duration:)": {
+      "abstract": [
+        {
+          "text": "Creates a new animation with speed controlled by the given curve.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timingCurve"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9UnitCurveV",
+          "text": "UnitCurve"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/timingCurve(_:duration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timingCurve(_:duration:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/timingcurve(_:duration:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/velocity(value:time:context:)": {
+      "abstract": [
+        {
+          "text": "Calculates the current velocity of the animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "velocity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "time"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16AnimationContextV",
+          "text": "AnimationContext"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/velocity(value:time:context:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "velocity(value:time:context:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animation/velocity(value:time:context:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationCompletionCriteria": {
+      "abstract": [
+        {
+          "text": "The criteria that determines when an animation is considered finished.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationCompletionCriteria"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationCompletionCriteria",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationCompletionCriteria"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationCompletionCriteria",
+      "type": "topic",
+      "url": "/documentation/swiftui/animationcompletioncriteria"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Binding/animation(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies an animation to perform when the binding value changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Binding/animation(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "animation(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/binding/animation(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Circle": {
+      "abstract": [
+        {
+          "text": "A circle centered on the frame of the view containing it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Circle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Circle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Circle"
+        }
+      ],
+      "role": "symbol",
+      "title": "Circle",
+      "type": "topic",
+      "url": "/documentation/swiftui/circle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Shape": {
+      "abstract": [
+        {
+          "text": "A 2D shape that you can use when drawing a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Shape"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Shape",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Shape"
+        }
+      ],
+      "role": "symbol",
+      "title": "Shape",
+      "type": "topic",
+      "url": "/documentation/swiftui/shape"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Toggle": {
+      "abstract": [
+        {
+          "text": "A control that toggles between on and off states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Toggle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Toggle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Toggle"
+        }
+      ],
+      "role": "symbol",
+      "title": "Toggle",
+      "type": "topic",
+      "url": "/documentation/swiftui/toggle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Unifying-your-app-s-animations": {
+      "abstract": [
+        {
+          "text": "Create a consistent UI animation experience across SwiftUI, UIKit, and AppKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Unifying-your-app-s-animations",
+      "images": [
+        {
+          "identifier": "Unifying-your-app-s-animations-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Unifying your app’s animations",
+      "type": "topic",
+      "url": "/documentation/swiftui/unifying-your-app-s-animations"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/animation(_:value:)": {
+      "abstract": [
+        {
+          "text": "Applies the given animation to this view when the specified value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/animation(_:value:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "animation(_:value:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/animation(_:value:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scaleEffect(_:anchor:)": {
+      "abstract": [
+        {
+          "text": "Scales this view’s rendered output by the given amount in both the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "horizontal and vertical directions, relative to an anchor point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scaleEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "anchor"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scaleEffect(_:anchor:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scaleEffect(_:anchor:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/scaleeffect(_:anchor:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/withAnimation(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the result of recomputing the view’s body with the provided",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        },
+        {
+          "kind": "text",
+          "text": "?, () "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/withAnimation(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withAnimation(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/withanimation(_:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/withAnimation(_:completionCriteria:_:completion:)": {
+      "abstract": [
+        {
+          "text": "Returns the result of recomputing the view’s body with the provided",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "animation, and runs the completion when all animations are complete.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionCriteria"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI27AnimationCompletionCriteriaV",
+          "text": "AnimationCompletionCriteria"
+        },
+        {
+          "kind": "text",
+          "text": ", () "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/withAnimation(_:completionCriteria:_:completion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withAnimation(_:completionCriteria:_:completion:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/withanimation(_:completioncriteria:_:completion:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s17CustomReflectableP": {
+      "abstract": [
+        {
+          "text": "A type that explicitly supplies its own mirror.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomReflectable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s17CustomReflectableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomReflectable",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomReflectable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s17CustomReflectableP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Adding-state-based-animation-to-an-action",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/withAnimation(_:_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/withAnimation(_:completionCriteria:_:completion:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationCompletionCriteria"
+      ],
+      "title": "Adding state-based animation to an action"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-the-default-animation",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/default"
+      ],
+      "title": "Getting the default animation"
+    },
+    {
+      "anchor": "Getting-linear-animations",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/linear",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/linear(duration:)"
+      ],
+      "title": "Getting linear animations"
+    },
+    {
+      "anchor": "Getting-eased-animations",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/easeIn",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/easeIn(duration:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/easeOut",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/easeOut(duration:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/easeInOut",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/easeInOut(duration:)"
+      ],
+      "title": "Getting eased animations"
+    },
+    {
+      "anchor": "Getting-built-in-spring-animations",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/bouncy",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/bouncy(duration:extraBounce:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/smooth",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/smooth(duration:extraBounce:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/snappy",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/snappy(duration:extraBounce:)"
+      ],
+      "title": "Getting built-in spring animations"
+    },
+    {
+      "anchor": "Customizing-spring-animations",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/spring",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/spring(_:blendDuration:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/spring(duration:bounce:blendDuration:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/spring(response:dampingFraction:blendDuration:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/interactiveSpring",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/interactiveSpring(response:dampingFraction:blendDuration:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/interpolatingSpring",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/interpolatingSpring(_:initialVelocity:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/interpolatingSpring(duration:bounce:initialVelocity:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/interpolatingSpring(mass:stiffness:damping:initialVelocity:)"
+      ],
+      "title": "Customizing spring animations"
+    },
+    {
+      "anchor": "Creating-custom-animations",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/init(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/timingCurve(_:duration:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/timingCurve(_:_:_:_:duration:)"
+      ],
+      "title": "Creating custom animations"
+    },
+    {
+      "anchor": "Configuring-an-animation",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/delay(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/repeatCount(_:autoreverses:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/repeatForever(autoreverses:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/speed(_:)"
+      ],
+      "title": "Configuring an animation"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/base"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/animate(value:time:context:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/logicallyComplete(after:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/shouldMerge(previous:value:time:context:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/velocity(value:time:context:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Type-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animation/interactiveSpring(duration:extraBounce:blendDuration:)"
+      ],
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/animation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

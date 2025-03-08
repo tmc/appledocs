@@ -1,0 +1,572 @@
+{
+  "abstract": [
+    {
+      "text": "Securely store an identity in the keychain.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+        "doc://com.apple.security/documentation/Security/identities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/storing-an-identity-in-the-keychain"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Storing an Identity in the Keychain"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You store an identity in or retrieve an identity from a keychain much as you would a certificate, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/storing-a-certificate-in-the-keychain",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Private keys have a one-to-many relationship with certificates. That is, a single private key can be paired with multiple certificates, but a given certificate corresponds to exactly one private key. As a result, the fields that distinguish one identity from another are the same as those of the certificate it contains. As a result, working with identities as keychain items is very much like working with certificates, with a few minor adjustments:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/SecIdentity",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects instead of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/SecCertificate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/kSecClassIdentity",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instead of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/kSecClassCertificate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/kSecClass",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " attribute.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificate": {
+      "abstract": [
+        {
+          "text": "An abstract Core Foundation-type object representing an X.509 certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificate"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCertificate",
+      "type": "topic",
+      "url": "/documentation/security/seccertificate"
+    },
+    "doc://com.apple.security/documentation/Security/SecIdentity": {
+      "abstract": [
+        {
+          "text": "An abstract Core Foundation-type object representing an identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecIdentity"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecIdentity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecIdentity"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecIdentity",
+      "type": "topic",
+      "url": "/documentation/security/secidentity"
+    },
+    "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services": {
+      "abstract": [
+        {
+          "text": "Establish trust using certificates and cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificate, Key, and Trust Services",
+      "type": "topic",
+      "url": "/documentation/security/certificate-key-and-trust-services"
+    },
+    "doc://com.apple.security/documentation/Security/identities": {
+      "abstract": [
+        {
+          "text": "Combine certificates and cryptographic keys into identities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/identities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Identities",
+      "type": "topic",
+      "url": "/documentation/security/identities"
+    },
+    "doc://com.apple.security/documentation/Security/kSecClass": {
+      "abstract": [
+        {
+          "text": "A dictionary key whose value is the item’s class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecClass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecClass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecClass"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecClass",
+      "type": "topic",
+      "url": "/documentation/security/ksecclass"
+    },
+    "doc://com.apple.security/documentation/Security/kSecClassCertificate": {
+      "abstract": [
+        {
+          "text": "The value that indicates a certificate item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecClassCertificate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecClassCertificate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecClassCertificate"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecClassCertificate",
+      "type": "topic",
+      "url": "/documentation/security/ksecclasscertificate"
+    },
+    "doc://com.apple.security/documentation/Security/kSecClassIdentity": {
+      "abstract": [
+        {
+          "text": "The value that indicates an identity item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecClassIdentity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecClassIdentity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecClassIdentity"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecClassIdentity",
+      "type": "topic",
+      "url": "/documentation/security/ksecclassidentity"
+    },
+    "doc://com.apple.security/documentation/Security/storing-a-certificate-in-the-keychain": {
+      "abstract": [
+        {
+          "text": "Store a certificate in the keychain for safekeeping.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/storing-a-certificate-in-the-keychain",
+      "kind": "article",
+      "role": "article",
+      "title": "Storing a Certificate in the Keychain",
+      "type": "topic",
+      "url": "/documentation/security/storing-a-certificate-in-the-keychain"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecClassIdentity/title",
+          "value": "kSecClassIdentity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecClassIdentity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecClassIdentity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentity/title",
+          "value": "SecIdentityRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecIdentityRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecIdentityRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecClass/title",
+          "value": "kSecClass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecClass/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecClass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificate/title",
+          "value": "SecCertificateRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecClassCertificate/title",
+          "value": "kSecClassCertificate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecClassCertificate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecClassCertificate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/storing-an-identity-in-the-keychain"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/storing-an-identity-in-the-keychain"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

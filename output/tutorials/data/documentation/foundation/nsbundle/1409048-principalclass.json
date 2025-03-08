@@ -1,0 +1,597 @@
+{
+  "abstract": [
+    {
+      "text": "The bundle’s principal class.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/resources",
+        "doc://com.apple.documentation/documentation/foundation/nsbundle"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsbundle/1409048-principalclass"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1409048,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSBundle(py)principalClass",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSBundle"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "principalClass"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": "(readonly) "
+            },
+            {
+              "kind": "keyword",
+              "text": "Class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "principalClass"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This property is set after ensuring that the code containing the definition of the class is dynamically loaded. If the bundle encounters errors in loading or if it can’t find the executable code file in the bundle directory, this property is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The principal class typically controls all the other classes in the bundle; it should mediate between those classes and classes external to the bundle. Classes (and categories) are loaded from just one file within the bundle directory. The bundle obtains the name of the code file to load from the dictionary returned from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundle/1413477-infodictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", using “",
+              "type": "text"
+            },
+            {
+              "code": "NSExecutable",
+              "type": "codeVoice"
+            },
+            {
+              "text": "” as the key. The bundle determines its principal class in one of two ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It first looks in its own information dictionary, which extracts the information encoded in the bundle’s property list (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "). The bundle obtains the principal class from the dictionary using the key ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrincipalClass",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". For non-loadable bundles (applications and frameworks), if the principal class is not specified in the property list, this property is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the principal class is not specified in the information dictionary, the bundle identifies the first class loaded as the principal class. When several classes are linked into a dynamically loadable file, the default principal class is the first one listed on the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ld",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command line. In the following example, Reporter would be the principal class:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "ld -o myBundle -r Reporter.o NotePad.o QueryList.o"
+          ],
+          "metadata": {
+            "anchor": "2555539",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The order of classes in Xcode’s project browser is the order in which they will be linked. To designate the principal class, control-drag the file containing its implementation to the top of the list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a side effect of code loading, the receiver posts ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundledidloadnotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " after all classes and categories have been loaded; see ",
+              "type": "text"
+            },
+            {
+              "code": "Notifications",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for details. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following method obtains a bundle by specifying its path (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundle/1495012-bundlewithpath",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), then loads the bundle with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundle/1409048-principalclass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and uses the principal class object to allocate and initialize an instance of that class:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (void)loadBundle:(id)sender",
+            "{",
+            "    Class exampleClass;",
+            "    id newInstance;",
+            "    NSString *path = @\"/tmp/Projects/BundleExample/BundleExample.bundle\";",
+            "    NSBundle *bundleToLoad = [NSBundle bundleWithPath:path];",
+            "    if (exampleClass = bundleToLoad.principalClass) {",
+            "        newInstance = [[exampleClass alloc] init];",
+            "        [newInstance doSomething];",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "2555541",
+            "title": "Listing 2"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundle": {
+      "abstract": [
+        {
+          "text": "A representation of the code and resources stored in a bundle directory on disk. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBundle",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundle/1407299-classnamed": {
+      "abstract": [
+        {
+          "text": "Returns the ",
+          "type": "text"
+        },
+        {
+          "code": "Class",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object for the specified name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "classNamed:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundle/1407299-classnamed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "classNamed:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundle/1407299-classnamed"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundle/1409048-principalclass": {
+      "abstract": [
+        {
+          "text": "The bundle’s principal class.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundle/1409048-principalclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "principalClass",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundle/1409048-principalclass"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundle/1409048-principalclass#2555539": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundle/1409048-principalclass#2555539",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsbundle/1409048-principalclass#2555539"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundle/1409048-principalclass#2555541": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundle/1409048-principalclass#2555541",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/nsbundle/1409048-principalclass#2555541"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundle/1413477-infodictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary, constructed from the bundle’s ",
+          "type": "text"
+        },
+        {
+          "code": "Info.plist",
+          "type": "codeVoice"
+        },
+        {
+          "text": " file, that contains information about the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundle/1413477-infodictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "infoDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundle/1413477-infodictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundle/1415927-load": {
+      "abstract": [
+        {
+          "text": "Dynamically loads the bundle’s executable code into a running program, if the code has not already been loaded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "load"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundle/1415927-load",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "load",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundle/1415927-load"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundle/1495012-bundlewithpath": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "bundleWithPath:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundle/1495012-bundlewithpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bundleWithPath:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundle/1495012-bundlewithpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundledidloadnotification": {
+      "abstract": [
+        {
+          "text": "A notification that lets observers know when classes are dynamically loaded.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundledidloadnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBundleDidLoadNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundledidloadnotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsloadedclasses": {
+      "abstract": [
+        {
+          "text": "A constant used as a key for the ",
+          "type": "text"
+        },
+        {
+          "code": "userInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " dictionary of a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundledidloadnotification",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " notification that corresponds to an array of names of each class that was loaded.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsloadedclasses",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLoadedClasses",
+      "type": "topic",
+      "url": "/documentation/foundation/nsloadedclasses"
+    },
+    "doc://com.apple.documentation/documentation/foundation/resources": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/resources",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resources",
+      "type": "topic",
+      "url": "/documentation/foundation/resources"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsbundle/1407299-classnamed",
+        "doc://com.apple.documentation/documentation/foundation/nsbundledidloadnotification",
+        "doc://com.apple.documentation/documentation/foundation/nsloadedclasses"
+      ],
+      "title": "Getting Classes from a Bundle"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsbundle/1415927-load",
+        "doc://com.apple.documentation/documentation/foundation/nsbundle/1413477-infodictionary"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsbundle/1409048-principalclass"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/bundle/1409048-principalclass"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

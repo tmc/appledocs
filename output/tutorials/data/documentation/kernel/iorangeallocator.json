@@ -1,0 +1,677 @@
+{
+  "abstract": [
+    {
+      "text": "A utility class to manage allocations from a range.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iorangeallocator"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1451684,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IORangeAllocator",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IORangeAllocator"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IORangeAllocator"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSObject",
+              "text": "OSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The IORangeAllocator class provides functions for allocating ranges, at a fixed or any offset, and freeing them back to a free list. It is useful for describing ranges of memory or address space without requiring storage in the memory - information describing the free elements is kept elsewhere. Ranges are described by a start offset and a size. IORangeAllocator is optionally protected against multithreaded access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575291-iomallocaligned": {
+      "abstract": [
+        {
+          "text": "Allocates wired memory in the kernel map, with an alignment restriction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575291-iomallocaligned",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMallocAligned",
+      "type": "topic",
+      "url": "/documentation/kernel/1575291-iomallocaligned"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575326-iomalloc": {
+      "abstract": [
+        {
+          "text": "Allocates general purpose, wired memory in the kernel map.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575326-iomalloc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMalloc",
+      "type": "topic",
+      "url": "/documentation/kernel/1575326-iomalloc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575327-iomallocpageable": {
+      "abstract": [
+        {
+          "text": "Allocates pageable memory in the kernel map.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575327-iomallocpageable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMallocPageable",
+      "type": "topic",
+      "url": "/documentation/kernel/1575327-iomallocpageable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/3074962-iomalloczero": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/3074962-iomalloczero",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMallocZero",
+      "type": "topic",
+      "url": "/documentation/kernel/3074962-iomalloczero"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/memory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator": {
+      "abstract": [
+        {
+          "text": "A utility class to manage allocations from a range.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORangeAllocator",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527740-allocelement": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocElement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527740-allocelement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocElement",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator/1527740-allocelement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527742-setfragmentcapacityincrement": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFragmentCapacityIncrement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527742-setfragmentcapacityincrement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setFragmentCapacityIncrement",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator/1527742-setfragmentcapacityincrement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527746-allocate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527746-allocate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocate",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator/1527746-allocate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527748-allocaterange": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocateRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527748-allocaterange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocateRange",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator/1527748-allocaterange"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527750-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527750-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator/1527750-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527751-getfragmentcount": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getFragmentCount"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527751-getfragmentcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getFragmentCount",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator/1527751-getfragmentcount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527752-deallocelement": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deallocElement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527752-deallocelement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deallocElement",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator/1527752-deallocelement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527754-withrange": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527754-withrange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withRange",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator/1527754-withrange"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527756-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527756-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator/1527756-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527758-deallocate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deallocate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527758-deallocate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deallocate",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator/1527758-deallocate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527760-getfreecount": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getFreeCount"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527760-getfreecount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getFreeCount",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator/1527760-getfreecount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527761-serialize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "serialize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527761-serialize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "serialize",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator/1527761-serialize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527763-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527763-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator/1527763-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527765-getfragmentcapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getFragmentCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527765-getfragmentcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getFragmentCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator/1527765-getfragmentcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810255-allocate": {
+      "abstract": [
+        {
+          "text": "Allocates from the free list, at any offset.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810255-allocate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "allocate",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator/1810255-allocate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810314-allocaterange": {
+      "abstract": [
+        {
+          "text": "Allocates from the free list, at a set offset.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810314-allocaterange",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "allocateRange",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator/1810314-allocaterange"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810361-deallocate": {
+      "abstract": [
+        {
+          "text": "Deallocates a range to the free list.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810361-deallocate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "deallocate",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator/1810361-deallocate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810407-getfragmentcapacity": {
+      "abstract": [
+        {
+          "text": "Accessor to return the number of free fragments in the range.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810407-getfragmentcapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getFragmentCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator/1810407-getfragmentcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810456-getfragmentcount": {
+      "abstract": [
+        {
+          "text": "Accessor to return the number of free fragments in the range.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810456-getfragmentcount",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getFragmentCount",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator/1810456-getfragmentcount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810490-getfreecount": {
+      "abstract": [
+        {
+          "text": "Totals the sizes of the free fragments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810490-getfreecount",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getFreeCount",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator/1810490-getfreecount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810534-init": {
+      "abstract": [
+        {
+          "text": "Standard initializer for IORangeAllocator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810534-init",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator/1810534-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810575-setfragmentcapacityincrement": {
+      "abstract": [
+        {
+          "text": "Sets the count of fragments the free list will increase by when full.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810575-setfragmentcapacityincrement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setFragmentCapacityIncrement",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator/1810575-setfragmentcapacityincrement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810621-withrange": {
+      "abstract": [
+        {
+          "text": "Standard factory method for IORangeAllocator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810621-withrange",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withRange",
+      "type": "topic",
+      "url": "/documentation/kernel/iorangeallocator/1810621-withrange"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1575326-iomalloc",
+        "doc://com.apple.documentation/documentation/kernel/1575291-iomallocaligned",
+        "doc://com.apple.documentation/documentation/kernel/1575327-iomallocpageable",
+        "doc://com.apple.documentation/documentation/kernel/3074962-iomalloczero"
+      ],
+      "title": "Allocation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1674781",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810255-allocate",
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810314-allocaterange",
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810361-deallocate",
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810407-getfragmentcapacity",
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810456-getfragmentcount",
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810490-getfreecount",
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810534-init",
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810575-setfragmentcapacityincrement",
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1810621-withrange"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "2857334",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527740-allocelement",
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527746-allocate",
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527748-allocaterange",
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527752-deallocelement",
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527758-deallocate",
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527750-free",
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527765-getfragmentcapacity",
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527751-getfragmentcount",
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527760-getfreecount",
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527763-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527756-init",
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527761-serialize",
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527742-setfragmentcapacityincrement"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2857335",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iorangeallocator/1527754-withrange"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iorangeallocator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

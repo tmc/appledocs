@@ -1,0 +1,1770 @@
+{
+  "abstract": [
+    {
+      "text": "A discrete part of an entire transcription, as identified by the speech recognizer.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.speech/documentation/Speech"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SFTranscriptionSegment",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SFTranscriptionSegment"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Speech"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SFTranscriptionSegment"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SFTranscriptionSegment"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SFTranscriptionSegment"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to get details about a part of an overall ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.speech/documentation/Speech/SFTranscription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " represents an utterance, which is a vocalized word or group of words that represent a single meaning to the speech recognizer (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t create transcription object segments directly. Instead, you access them from a transcription’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.speech/documentation/Speech/SFTranscription/segments",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A transcription segment includes the following information:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The text of the utterance, plus any alternative interpretations of the spoken word.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The character range of the segment within the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.speech/documentation/Speech/SFTranscription/formattedString",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " of its parent ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.speech/documentation/Speech/SFTranscription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/confidence",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " value, indicating how likely it is that the specified string matches the audible speech.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/timestamp",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/duration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " value, indicating the position of the segment within the provided audio stream.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.speech/documentation/Speech": {
+      "abstract": [
+        {
+          "text": "Perform speech recognition on live or prerecorded audio, and receive transcriptions, alternative interpretations, and confidence levels of the results.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Speech",
+      "type": "topic",
+      "url": "/documentation/speech"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFSpeechRecognitionMetadata": {
+      "abstract": [
+        {
+          "text": "The metadata of speech in the audio of a speech recognition request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSpeechRecognitionMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechRecognitionMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSpeechRecognitionMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSpeechRecognitionMetadata",
+      "type": "topic",
+      "url": "/documentation/speech/sfspeechrecognitionmetadata"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFSpeechRecognitionResult": {
+      "abstract": [
+        {
+          "text": "An object that contains the partial or final results of a speech recognition request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSpeechRecognitionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechRecognitionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSpeechRecognitionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSpeechRecognitionResult",
+      "type": "topic",
+      "url": "/documentation/speech/sfspeechrecognitionresult"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFSpeechRecognizer": {
+      "abstract": [
+        {
+          "text": "An object you use to check for the availability of the speech recognition service, and to initiate the speech recognition process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSpeechRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSpeechRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSpeechRecognizer",
+      "type": "topic",
+      "url": "/documentation/speech/sfspeechrecognizer"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFTranscription": {
+      "abstract": [
+        {
+          "text": "A textual representation of the specified speech in its entirety, as recognized by the speech recognizer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFTranscription"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFTranscription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFTranscription"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFTranscription",
+      "type": "topic",
+      "url": "/documentation/speech/sftranscription"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFTranscription/formattedString": {
+      "abstract": [
+        {
+          "text": "The entire transcription of utterances, formatted into a single, user-displayable string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formattedString"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFTranscription/formattedString",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "formattedString"
+        }
+      ],
+      "role": "symbol",
+      "title": "formattedString",
+      "type": "topic",
+      "url": "/documentation/speech/sftranscription/formattedstring"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFTranscription/segments": {
+      "abstract": [
+        {
+          "text": "An array of transcription segments that represent the parts of the transcription, as identified by the speech recognizer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "segments"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SFTranscriptionSegment",
+          "text": "SFTranscriptionSegment"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFTranscription/segments",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "segments"
+        }
+      ],
+      "role": "symbol",
+      "title": "segments",
+      "type": "topic",
+      "url": "/documentation/speech/sftranscription/segments"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment": {
+      "abstract": [
+        {
+          "text": "A discrete part of an entire transcription, as identified by the speech recognizer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFTranscriptionSegment"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFTranscriptionSegment"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFTranscriptionSegment",
+      "type": "topic",
+      "url": "/documentation/speech/sftranscriptionsegment"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/alternativeSubstrings": {
+      "abstract": [
+        {
+          "text": "An array of alternate interpretations of the utterance in the transcription segment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alternativeSubstrings"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/alternativeSubstrings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "alternativeSubstrings"
+        }
+      ],
+      "role": "symbol",
+      "title": "alternativeSubstrings",
+      "type": "topic",
+      "url": "/documentation/speech/sftranscriptionsegment/alternativesubstrings"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/confidence": {
+      "abstract": [
+        {
+          "text": "The level of confidence the speech recognizer has in its recognition of the speech transcribed for the segment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "confidence"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/confidence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "confidence"
+        }
+      ],
+      "role": "symbol",
+      "title": "confidence",
+      "type": "topic",
+      "url": "/documentation/speech/sftranscriptionsegment/confidence"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/duration": {
+      "abstract": [
+        {
+          "text": "The number of seconds it took for the user to speak the utterance represented by the segment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/duration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "duration"
+        }
+      ],
+      "role": "symbol",
+      "title": "duration",
+      "type": "topic",
+      "url": "/documentation/speech/sftranscriptionsegment/duration"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/substring": {
+      "abstract": [
+        {
+          "text": "The string representation of the utterance in the transcription segment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "substring"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/substring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "substring"
+        }
+      ],
+      "role": "symbol",
+      "title": "substring",
+      "type": "topic",
+      "url": "/documentation/speech/sftranscriptionsegment/substring"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/substringRange": {
+      "abstract": [
+        {
+          "text": "The range information for the transcription segment’s substring, relative to the overall transcription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "substringRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/substringRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "substringRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "substringRange",
+      "type": "topic",
+      "url": "/documentation/speech/sftranscriptionsegment/substringrange"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/timestamp": {
+      "abstract": [
+        {
+          "text": "The start time of the segment in the processed audio stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timestamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/timestamp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timestamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "timestamp",
+      "type": "topic",
+      "url": "/documentation/speech/sftranscriptionsegment/timestamp"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/voiceAnalytics": {
+      "abstract": [
+        {
+          "text": "An analysis of the transcription segment’s vocal properties.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "voiceAnalytics"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SFVoiceAnalytics",
+          "text": "SFVoiceAnalytics"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/voiceAnalytics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "voiceAnalytics"
+        }
+      ],
+      "role": "symbol",
+      "title": "voiceAnalytics",
+      "type": "topic",
+      "url": "/documentation/speech/sftranscriptionsegment/voiceanalytics"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Transcription-results",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.speech/documentation/Speech/SFSpeechRecognitionResult",
+        "doc://com.apple.speech/documentation/Speech/SFSpeechRecognitionMetadata",
+        "doc://com.apple.speech/documentation/Speech/SFTranscription"
+      ],
+      "title": "Transcription results"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Transcribing-the-Segment",
+      "identifiers": [
+        "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/substring",
+        "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/substringRange",
+        "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/alternativeSubstrings"
+      ],
+      "title": "Transcribing the Segment"
+    },
+    {
+      "anchor": "Assessing-the-Recognition-Confidence-Level",
+      "identifiers": [
+        "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/confidence"
+      ],
+      "title": "Assessing the Recognition Confidence Level"
+    },
+    {
+      "anchor": "Getting-the-Audio-Timing-Information",
+      "identifiers": [
+        "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/timestamp",
+        "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/duration"
+      ],
+      "title": "Getting the Audio Timing Information"
+    },
+    {
+      "anchor": "Deprecated",
+      "identifiers": [
+        "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/voiceAnalytics"
+      ],
+      "title": "Deprecated"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SFTranscriptionSegment"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFTranscriptionSegment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFTranscriptionSegment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.speech/documentation/Speech"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Transcribing-the-Segment",
+              "identifiers": [
+                "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/substring",
+                "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/substringRange",
+                "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/alternativeSubstrings"
+              ],
+              "title": "Transcribing the Segment"
+            },
+            {
+              "anchor": "Assessing-the-Recognition-Confidence-Level",
+              "identifiers": [
+                "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/confidence"
+              ],
+              "title": "Assessing the Recognition Confidence Level"
+            },
+            {
+              "anchor": "Getting-the-Audio-Timing-Information",
+              "identifiers": [
+                "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/timestamp",
+                "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/duration"
+              ],
+              "title": "Getting the Audio Timing Information"
+            },
+            {
+              "anchor": "Deprecated",
+              "identifiers": [
+                "doc://com.apple.speech/documentation/Speech/SFTranscriptionSegment/voiceAnalytics"
+              ],
+              "title": "Deprecated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Transcription-results",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.speech/documentation/Speech/SFSpeechRecognitionResult",
+                "doc://com.apple.speech/documentation/Speech/SFSpeechRecognitionMetadata",
+                "doc://com.apple.speech/documentation/Speech/SFTranscription"
+              ],
+              "title": "Transcription results"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SFTranscriptionSegment"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognizer/title",
+          "value": "SFSpeechRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSpeechRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSpeechRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscription~1segments/title",
+          "value": "segments"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscription~1segments/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "segments"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognitionMetadata/title",
+          "value": "SFSpeechRecognitionMetadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognitionMetadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSpeechRecognitionMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognitionMetadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSpeechRecognitionMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscriptionSegment~1confidence/title",
+          "value": "confidence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscriptionSegment~1confidence/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "confidence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognitionResult/title",
+          "value": "SFSpeechRecognitionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognitionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSpeechRecognitionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognitionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSpeechRecognitionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscriptionSegment~1duration/title",
+          "value": "duration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscriptionSegment~1duration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "duration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscription~1formattedString/title",
+          "value": "formattedString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscription~1formattedString/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "formattedString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscriptionSegment~1timestamp/title",
+          "value": "timestamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscriptionSegment~1timestamp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "timestamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscriptionSegment~1substringRange/title",
+          "value": "substringRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscriptionSegment~1substringRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "substringRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscriptionSegment~1voiceAnalytics/title",
+          "value": "voiceAnalytics"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscriptionSegment~1voiceAnalytics/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "voiceAnalytics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscriptionSegment~1substring/title",
+          "value": "substring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscriptionSegment~1substring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "substring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscription/title",
+          "value": "SFTranscription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFTranscription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFTranscription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscriptionSegment/title",
+          "value": "SFTranscriptionSegment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscriptionSegment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFTranscriptionSegment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscriptionSegment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFTranscriptionSegment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscriptionSegment~1alternativeSubstrings/title",
+          "value": "alternativeSubstrings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFTranscriptionSegment~1alternativeSubstrings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "alternativeSubstrings"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/speech/sftranscriptionsegment"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/speech/sftranscriptionsegment"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

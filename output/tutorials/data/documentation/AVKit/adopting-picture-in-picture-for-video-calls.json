@@ -1,0 +1,1579 @@
+{
+  "abstract": [
+    {
+      "text": "Add multitasking capability to your video-call apps by using Picture in Picture (PiP).",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avkit/documentation/AVKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-for-video-calls"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adopting Picture in Picture for video calls"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use PiP in your video-call apps so users can multitask with other apps while on video calls. When a user enables PiP, your app scales down to a corner of the screen, so they can see the Home Screen and interact with other apps. In iOS 15 and later, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides PiP support for video-calling apps, which enables you to deliver a familiar video-calling experience that behaves like FaceTime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In iOS 16 and later, you can use the camera in Picture in Picture mode by enabling a capture session’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/isMultitaskingCameraAccessEnabled",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property. Apps that have a deployment target earlier than iOS 16 require the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.avfoundation.multitasking-camera-access",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " entitlement to use the camera in PiP mode.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-a-source-view",
+          "level": 3,
+          "text": "Create a source view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Providing PiP support begins by choosing a source view to display inside the video-call view controller. You need to add a ",
+              "type": "text"
+            },
+            {
+              "code": "UIView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "AVPictureInPictureVideoCallViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", so use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoPreviewLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVSampleBufferDisplayLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " depending on your need. In iOS 18 and later, you may also use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as your source view. Video-calling apps need to display the remote view, so use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVSampleBufferDisplayLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to do so.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class SampleBufferVideoCallView: UIView {",
+            "    override class var layerClass: AnyClass {",
+            "        AVSampleBufferDisplayLayer.self",
+            "    }",
+            "    ",
+            "    var sampleBufferDisplayLayer: AVSampleBufferDisplayLayer {",
+            "        layer as! AVSampleBufferDisplayLayer",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-video-call-controller",
+          "level": 3,
+          "text": "Create a video-call controller",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display your source view, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureVideoCallViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and add your source as a subview.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let pipVideoCallViewController = AVPictureInPictureVideoCallViewController()",
+            "pipVideoCallViewController.preferredContentSize = CGSize(width: 1080, height: 1920)",
+            "pipVideoCallViewController.view.addSubview(sampleBufferVideoCallView)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureController/isPictureInPictureSupported()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine whether the current device supports PiP playback. If PiP isn’t supported on the current device, attempting to initialize a PiP controller returns ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-PiP-controller-using-a-content-source",
+          "level": 3,
+          "text": "Create a PiP controller using a content source",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you need to create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureController/ContentSource-swift.class",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that represents the source of the content the system displays. A content source requires a video-call view controller, and a source view that contains the content you associate with the video call.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let pipContentSource = AVPictureInPictureController.ContentSource(",
+            "                            activeVideoCallSourceView: videoCallViewSourceView, ",
+            "                            contentViewController: pipVideoCallViewController)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Avoid unintentionally starting PiP by setting the content source on your PiP controller to ",
+                  "type": "text"
+                },
+                {
+                  "code": "nil",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or by releasing your PiP controller, when the active call ends.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After creating a content source, use it to initialize ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". By default, PiP starts when a user moves to the background if your source view is full-screen, or you set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureController/canStartPictureInPictureAutomaticallyFromInline",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If your app is in the foreground, you can start PiP by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureController/startPictureInPicture()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let pipController = AVPictureInPictureController(contentSource: pipContentSource)",
+            "pipController.canStartPictureInPictureAutomaticallyFromInline = true",
+            "pipController.delegate = self"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system uses the source view to determine the source frame for the PiP animation, and the restore target for either when the user returns to the app or PiP stops.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The PiP window doesn’t receive touch events when you use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureVideoCallViewController",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", so you can’t customize the window’s user interface by adding buttons.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Observe-PiP-life-cycle-events",
+          "level": 3,
+          "text": "Observe PiP life cycle events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you use PiP, you respond to life-cycle events by observing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureControllerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This allows you to handle your app’s user interface based on the PiP state, along with observing for potential errors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system interrupts your capture session when the system or user stashes PiP, so observe ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/wasInterruptedNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/InterruptionReason/videoDeviceNotAvailableInBackground",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to handle the interruption.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app is in PiP mode, it can’t assume control of the camera. For example, Camera.app assumes control of the camera when it’s opened, and the system returns camera control when Camera.app finishes with it. You observe ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/wasInterruptedNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/InterruptionReason/videoDeviceInUseByAnotherClient",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to handle the interruption.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avkit/documentation/AVKit": {
+      "abstract": [
+        {
+          "text": "Create user interfaces for media playback, complete with transport controls, chapter navigation, picture-in-picture support, and display of subtitles and closed captions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVKit",
+      "type": "topic",
+      "url": "/documentation/avkit"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureController": {
+      "abstract": [
+        {
+          "text": "A controller that responds to user-initiated Picture in Picture playback of video in a floating, resizable window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPictureInPictureController"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPictureInPictureController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPictureInPictureController",
+      "type": "topic",
+      "url": "/documentation/avkit/avpictureinpicturecontroller"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureController/ContentSource-swift.class": {
+      "abstract": [
+        {
+          "text": "An object that represents the source of the content to present in Picture in Picture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentSource"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureController/ContentSource-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPictureInPictureController.ContentSource",
+      "type": "topic",
+      "url": "/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureController/canStartPictureInPictureAutomaticallyFromInline": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether Picture in Picture starts automatically when the controller embeds its content inline and the app transitions to the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canStartPictureInPictureAutomaticallyFromInline"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureController/canStartPictureInPictureAutomaticallyFromInline",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canStartPictureInPictureAutomaticallyFromInline"
+        }
+      ],
+      "role": "symbol",
+      "title": "canStartPictureInPictureAutomaticallyFromInline",
+      "type": "topic",
+      "url": "/documentation/avkit/avpictureinpicturecontroller/canstartpictureinpictureautomaticallyfrominline"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureController/isPictureInPictureSupported()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the current device supports Picture in Picture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPictureInPictureSupported"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureController/isPictureInPictureSupported()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isPictureInPictureSupported"
+        }
+      ],
+      "role": "symbol",
+      "title": "isPictureInPictureSupported()",
+      "type": "topic",
+      "url": "/documentation/avkit/avpictureinpicturecontroller/ispictureinpicturesupported()"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureController/startPictureInPicture()": {
+      "abstract": [
+        {
+          "text": "Starts Picture in Picture, if possible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startPictureInPicture"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureController/startPictureInPicture()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startPictureInPicture"
+        }
+      ],
+      "role": "symbol",
+      "title": "startPictureInPicture()",
+      "type": "topic",
+      "url": "/documentation/avkit/avpictureinpicturecontroller/startpictureinpicture()"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureControllerDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol to adopt to respond to Picture in Picture events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPictureInPictureControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPictureInPictureControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPictureInPictureControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/avkit/avpictureinpicturecontrollerdelegate"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureVideoCallViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that presents content from a video call in Picture in Picture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPictureInPictureVideoCallViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureVideoCallViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPictureInPictureVideoCallViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPictureInPictureVideoCallViewController",
+      "type": "topic",
+      "url": "/documentation/avkit/avpictureinpicturevideocallviewcontroller"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/accessing-the-camera-while-multitasking-on-ipad": {
+      "abstract": [
+        {
+          "text": "Operate the camera in Split View, Slide Over, Picture in Picture, and Stage Manager modes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/accessing-the-camera-while-multitasking-on-ipad",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing the camera while multitasking on iPad",
+      "type": "topic",
+      "url": "/documentation/avkit/accessing-the-camera-while-multitasking-on-ipad"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-in-a-custom-player": {
+      "abstract": [
+        {
+          "text": "Add controls to your custom player user interface to invoke Picture in Picture (PiP) playback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-in-a-custom-player",
+      "kind": "article",
+      "role": "article",
+      "title": "Adopting Picture in Picture in a Custom Player",
+      "type": "topic",
+      "url": "/documentation/avkit/adopting-picture-in-picture-in-a-custom-player"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-in-a-standard-player": {
+      "abstract": [
+        {
+          "text": "Add Picture in Picture (PiP) playback to your app using a player view controller.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-in-a-standard-player",
+      "kind": "article",
+      "role": "article",
+      "title": "Adopting Picture in Picture in a Standard Player",
+      "type": "topic",
+      "url": "/documentation/avkit/adopting-picture-in-picture-in-a-standard-player"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-playback-in-tvos": {
+      "abstract": [
+        {
+          "text": "Add advanced multitasking capabilities to your video apps by using Picture in Picture playback in tvOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-playback-in-tvos",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adopting Picture in Picture Playback in tvOS",
+      "type": "topic",
+      "url": "/documentation/avkit/adopting-picture-in-picture-playback-in-tvos"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/InterruptionReason/videoDeviceInUseByAnotherClient": {
+      "abstract": [
+        {
+          "text": "An interruption caused by the video device temporarily being made unavailable (for example, when used by another capture session).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoDeviceInUseByAnotherClient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/InterruptionReason/videoDeviceInUseByAnotherClient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureSession.InterruptionReason.videoDeviceInUseByAnotherClient",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureSession/InterruptionReason/videoDeviceInUseByAnotherClient"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/InterruptionReason/videoDeviceNotAvailableInBackground": {
+      "abstract": [
+        {
+          "text": "An interruption caused by the app being sent to the background while using a camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoDeviceNotAvailableInBackground"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/InterruptionReason/videoDeviceNotAvailableInBackground",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureSession.InterruptionReason.videoDeviceNotAvailableInBackground",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureSession/InterruptionReason/videoDeviceNotAvailableInBackground"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/isMultitaskingCameraAccessEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the capture session enables access to the camera while multitasking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMultitaskingCameraAccessEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/isMultitaskingCameraAccessEnabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isMultitaskingCameraAccessEnabled",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureSession/isMultitaskingCameraAccessEnabled"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/wasInterruptedNotification": {
+      "abstract": [
+        {
+          "text": "A notification the system posts when it interrupts a capture session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wasInterruptedNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/wasInterruptedNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wasInterruptedNotification",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureSession/wasInterruptedNotification"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoPreviewLayer": {
+      "abstract": [
+        {
+          "text": "A Core Animation layer that displays video from a camera device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureVideoPreviewLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoPreviewLayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureVideoPreviewLayer",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureVideoPreviewLayer"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVSampleBufferDisplayLayer": {
+      "abstract": [
+        {
+          "text": "An object that displays compressed or uncompressed video frames.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVSampleBufferDisplayLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVSampleBufferDisplayLayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVSampleBufferDisplayLayer",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVSampleBufferDisplayLayer"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.avfoundation.multitasking-camera-access": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an app may continue using the camera at the same time as another foreground app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.avfoundation.multitasking-camera-access",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.avfoundation.multitasking-camera-access",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.avfoundation.multitasking-camera-access"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit/MTKView": {
+      "abstract": [
+        {
+          "text": "A specialized view that creates, configures, and displays Metal objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTKView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKView",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKView"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Picture-in-Picture",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-playback-in-tvos",
+        "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-in-a-standard-player",
+        "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-in-a-custom-player",
+        "doc://com.apple.avkit/documentation/AVKit/accessing-the-camera-while-multitasking-on-ipad",
+        "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureController"
+      ],
+      "title": "Picture in Picture"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Picture-in-Picture",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-playback-in-tvos",
+                "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-in-a-standard-player",
+                "doc://com.apple.avkit/documentation/AVKit/adopting-picture-in-picture-in-a-custom-player",
+                "doc://com.apple.avkit/documentation/AVKit/accessing-the-camera-while-multitasking-on-ipad",
+                "doc://com.apple.avkit/documentation/AVKit/AVPictureInPictureController"
+              ],
+              "title": "Picture in Picture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1wasInterruptedNotification/title",
+          "value": "AVCaptureSessionWasInterruptedNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1wasInterruptedNotification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "NSNotificationName"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSessionWasInterruptedNotification"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureVideoPreviewLayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureVideoPreviewLayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CALayer",
+              "text": "CALayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPictureInPictureControllerDelegate/title",
+          "value": "AVPictureInPictureControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPictureInPictureControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPictureInPictureControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPictureInPictureControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPictureInPictureControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPictureInPictureVideoCallViewController/title",
+          "value": "AVPictureInPictureVideoCallViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPictureInPictureVideoCallViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPictureInPictureVideoCallViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPictureInPictureVideoCallViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPictureInPictureVideoCallViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPictureInPictureController~1ContentSource-swift.class/title",
+          "value": "AVPictureInPictureControllerContentSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPictureInPictureController~1ContentSource-swift.class/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPictureInPictureControllerContentSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPictureInPictureController~1ContentSource-swift.class/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPictureInPictureControllerContentSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPictureInPictureController~1canStartPictureInPictureAutomaticallyFromInline/title",
+          "value": "canStartPictureInPictureAutomaticallyFromInline"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPictureInPictureController~1canStartPictureInPictureAutomaticallyFromInline/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "canStartPictureInPictureAutomaticallyFromInline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPictureInPictureController/title",
+          "value": "AVPictureInPictureController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPictureInPictureController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPictureInPictureController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPictureInPictureController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPictureInPictureController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1InterruptionReason~1videoDeviceInUseByAnotherClient/title",
+          "value": "AVCaptureSessionInterruptionReasonVideoDeviceInUseByAnotherClient"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1InterruptionReason~1videoDeviceInUseByAnotherClient/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSessionInterruptionReasonVideoDeviceInUseByAnotherClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVSampleBufferDisplayLayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVSampleBufferDisplayLayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CALayer",
+              "text": "CALayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1isMultitaskingCameraAccessEnabled/title",
+          "value": "multitaskingCameraAccessEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1isMultitaskingCameraAccessEnabled/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "getter"
+            },
+            {
+              "kind": "text",
+              "text": "="
+            },
+            {
+              "kind": "identifier",
+              "text": "isMultitaskingCameraAccessEnabled"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "multitaskingCameraAccessEnabled"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPictureInPictureController~1isPictureInPictureSupported()/title",
+          "value": "isPictureInPictureSupported"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPictureInPictureController~1isPictureInPictureSupported()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "isPictureInPictureSupported"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTKView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPictureInPictureController~1startPictureInPicture()/title",
+          "value": "startPictureInPicture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPictureInPictureController~1startPictureInPicture()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startPictureInPicture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1InterruptionReason~1videoDeviceNotAvailableInBackground/title",
+          "value": "AVCaptureSessionInterruptionReasonVideoDeviceNotAvailableInBackground"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1InterruptionReason~1videoDeviceNotAvailableInBackground/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSessionInterruptionReasonVideoDeviceNotAvailableInBackground"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avkit/adopting-picture-in-picture-for-video-calls"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avkit/adopting-picture-in-picture-for-video-calls"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

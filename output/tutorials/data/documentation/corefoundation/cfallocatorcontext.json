@@ -1,0 +1,783 @@
+{
+  "abstract": [
+    {
+      "text": "A structure that defines the context or operating environment for an allocator (CFAllocator) object. Every Core Foundation allocator object must have a context defined for it.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/corefoundation",
+        "doc://com.apple.documentation/documentation/corefoundation/cfallocator-s29"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1521178,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@SA@CFAllocatorContext",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "CFAllocatorContext"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "CFAllocatorContext"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CFAllocatorContext"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See the ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1696119",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " topic for information on creating a custom CFAllocator object and, as part of that procedure, the steps for creating a properly initialized ",
+              "type": "text"
+            },
+            {
+              "code": "CFAllocatorContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1696119": {
+      "identifier": "devLink-1696119",
+      "title": "Memory Management Programming Guide for Core Foundation",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/CFMemoryMgmt.html#//apple_ref/doc/uid/10000127i"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Foundation",
+      "type": "topic",
+      "url": "/documentation/corefoundation"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1521299-cfallocatordeallocate": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521299-cfallocatordeallocate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFAllocatorDeallocate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1521299-cfallocatordeallocate"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfallocator-s29": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfallocator-s29",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFAllocator",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfallocator-s29"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521148-release": {
+      "abstract": [
+        {
+          "text": "A prototype for a function callback that releases the data pointed to by the ",
+          "type": "text"
+        },
+        {
+          "code": "info",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field. In implementing this function, release (or free) the data you have defined for the allocator context. You may set this function pointer to ",
+          "type": "text"
+        },
+        {
+          "code": "NULL",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", but doing so might result in memory leaks. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "release"
+        },
+        {
+          "kind": "text",
+          "text": ": CFAllocatorReleaseCallBack!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521148-release",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "release",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfallocatorcontext/1521148-release"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521161-version": {
+      "abstract": [
+        {
+          "text": "An integer of type ",
+          "type": "text"
+        },
+        {
+          "code": "CFIndex",
+          "type": "codeVoice"
+        },
+        {
+          "text": ". Assign the version number of the allocator. Currently the only valid value is 0. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "version"
+        },
+        {
+          "kind": "text",
+          "text": ": CFIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521161-version",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "version",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfallocatorcontext/1521161-version"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521186-info": {
+      "abstract": [
+        {
+          "text": "An untyped pointer to program-defined data. Allocate memory for this data and assign a pointer to it. This data is often control information for the allocator. You may assign ",
+          "type": "text"
+        },
+        {
+          "code": "NULL",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "info"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521186-info",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "info",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfallocatorcontext/1521186-info"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521222-reallocate": {
+      "abstract": [
+        {
+          "text": "A prototype for a function callback that reallocates memory of a requested size for an existing block of memory. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "reallocate"
+        },
+        {
+          "kind": "text",
+          "text": ": CFAllocatorReallocateCallBack!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521222-reallocate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reallocate",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfallocatorcontext/1521222-reallocate"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521286-allocate": {
+      "abstract": [
+        {
+          "text": "A prototype for a function callback that allocates memory of a requested size. In implementing this function, allocate a block of memory of at least ",
+          "type": "text"
+        },
+        {
+          "code": "size",
+          "type": "codeVoice"
+        },
+        {
+          "text": " bytes and return a pointer to the start of the block. The ",
+          "type": "text"
+        },
+        {
+          "code": "hint",
+          "type": "codeVoice"
+        },
+        {
+          "text": " argument is a bitfield that you should currently not use (that is, assign 0). The ",
+          "type": "text"
+        },
+        {
+          "code": "size",
+          "type": "codeVoice"
+        },
+        {
+          "text": " parameter should always be greater than 0. If it is not, or if problems in allocation occur, return ",
+          "type": "text"
+        },
+        {
+          "code": "NULL",
+          "type": "codeVoice"
+        },
+        {
+          "text": ". This function pointer may not be assigned ",
+          "type": "text"
+        },
+        {
+          "code": "NULL",
+          "type": "codeVoice"
+        },
+        {
+          "text": ". ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocate"
+        },
+        {
+          "kind": "text",
+          "text": ": CFAllocatorAllocateCallBack!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521286-allocate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocate",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfallocatorcontext/1521286-allocate"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521301-copydescription": {
+      "abstract": [
+        {
+          "text": "A prototype for a function callback that provides a description of the data pointed to by the ",
+          "type": "text"
+        },
+        {
+          "code": "info",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field. In implementing this function, return a reference to a CFString object that describes your allocator, particularly some characteristics of your program-defined data. You may set this function pointer to ",
+          "type": "text"
+        },
+        {
+          "code": "NULL",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", in which case Core Foundation will provide a rudimentary description. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": CFAllocatorCopyDescriptionCallBack!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521301-copydescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copyDescription",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfallocatorcontext/1521301-copydescription"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521307-preferredsize": {
+      "abstract": [
+        {
+          "text": "A prototype for a function callback that determines whether there is enough free memory to satisfy a request. In implementing this function, return the actual size the allocator is likely to allocate given a request for a block of memory of size ",
+          "type": "text"
+        },
+        {
+          "code": "size",
+          "type": "codeVoice"
+        },
+        {
+          "text": ". The ",
+          "type": "text"
+        },
+        {
+          "code": "hint",
+          "type": "codeVoice"
+        },
+        {
+          "text": " argument is a bitfield that you should currently not use. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredSize"
+        },
+        {
+          "kind": "text",
+          "text": ": CFAllocatorPreferredSizeCallBack!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521307-preferredsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preferredSize",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfallocatorcontext/1521307-preferredsize"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521339-deallocate": {
+      "abstract": [
+        {
+          "text": "A prototype for a function callback that deallocates a given block of memory. In implementing this function, make the block of memory pointed to by ",
+          "type": "text"
+        },
+        {
+          "code": "ptr",
+          "type": "codeVoice"
+        },
+        {
+          "text": " available for subsequent reuse by the allocator but unavailable for continued use by the program. The ",
+          "type": "text"
+        },
+        {
+          "code": "ptr",
+          "type": "codeVoice"
+        },
+        {
+          "text": " parameter cannot be ",
+          "type": "text"
+        },
+        {
+          "code": "NULL",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and if the ",
+          "type": "text"
+        },
+        {
+          "code": "ptr",
+          "type": "codeVoice"
+        },
+        {
+          "text": " parameter is not a block of memory that has been previously allocated by the allocator, the results are undefined; abnormal program termination can occur. You can set this callback to ",
+          "type": "text"
+        },
+        {
+          "code": "NULL",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", in which case the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521299-cfallocatordeallocate",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " function has no effect. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "deallocate"
+        },
+        {
+          "kind": "text",
+          "text": ": CFAllocatorDeallocateCallBack!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521339-deallocate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deallocate",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfallocatorcontext/1521339-deallocate"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521359-retain": {
+      "abstract": [
+        {
+          "text": "A prototype for a function callback that retains the data pointed to by the ",
+          "type": "text"
+        },
+        {
+          "code": "info",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field. In implementing this function, retain the data you have defined for the allocator context in this field. (This might make sense only if the data is a Core Foundation object.) You may set this function pointer to ",
+          "type": "text"
+        },
+        {
+          "code": "NULL",
+          "type": "codeVoice"
+        },
+        {
+          "text": ". ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "retain"
+        },
+        {
+          "kind": "text",
+          "text": ": CFAllocatorRetainCallBack!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521359-retain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "retain",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfallocatorcontext/1521359-retain"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1542851-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1542851-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfallocatorcontext/1542851-init"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1780517-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "version"
+        },
+        {
+          "kind": "text",
+          "text": ": CFIndex, "
+        },
+        {
+          "kind": "identifier",
+          "text": "info"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer!, "
+        },
+        {
+          "kind": "identifier",
+          "text": "retain"
+        },
+        {
+          "kind": "text",
+          "text": ": CFAllocatorRetainCallBack!, "
+        },
+        {
+          "kind": "identifier",
+          "text": "release"
+        },
+        {
+          "kind": "text",
+          "text": ": CFAllocatorReleaseCallBack!, "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": CFAllocatorCopyDescriptionCallBack!, "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocate"
+        },
+        {
+          "kind": "text",
+          "text": ": CFAllocatorAllocateCallBack!, "
+        },
+        {
+          "kind": "identifier",
+          "text": "reallocate"
+        },
+        {
+          "kind": "text",
+          "text": ": CFAllocatorReallocateCallBack!, "
+        },
+        {
+          "kind": "identifier",
+          "text": "deallocate"
+        },
+        {
+          "kind": "text",
+          "text": ": CFAllocatorDeallocateCallBack!, "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredSize"
+        },
+        {
+          "kind": "text",
+          "text": ": CFAllocatorPreferredSizeCallBack!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1780517-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(version:info:retain:release:copyDescription:allocate:reallocate:deallocate:preferredSize:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfallocatorcontext/1780517-init"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "2857450",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1542851-init",
+        "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1780517-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "2857451",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521286-allocate",
+        "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521301-copydescription",
+        "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521339-deallocate",
+        "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521186-info",
+        "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521307-preferredsize",
+        "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521222-reallocate",
+        "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521148-release",
+        "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521359-retain",
+        "doc://com.apple.documentation/documentation/corefoundation/cfallocatorcontext/1521161-version"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/corefoundation/cfallocatorcontext"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/corefoundation/cfallocatorcontext"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

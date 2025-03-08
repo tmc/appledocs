@@ -1,0 +1,7620 @@
+{
+  "abstract": [
+    {
+      "text": "A type that can be compared using the relational operators ",
+      "type": "text"
+    },
+    {
+      "code": "<",
+      "type": "codeVoice"
+    },
+    {
+      "text": ", ",
+      "type": "text"
+    },
+    {
+      "code": "<=",
+      "type": "codeVoice"
+    },
+    {
+      "text": ", ",
+      "type": "text"
+    },
+    {
+      "code": ">=",
+      "type": "codeVoice"
+    },
+    {
+      "text": ",",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "and ",
+      "type": "text"
+    },
+    {
+      "code": ">",
+      "type": "codeVoice"
+    },
+    {
+      "text": ".",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/Comparable"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:SL",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Comparable"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Comparable"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "Comparable"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Comparable"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Equatable",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SQ",
+              "text": "Equatable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Comparable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol is used for types that have an inherent order,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as numbers and strings. Many types in the standard library already",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "conform to the ",
+              "type": "text"
+            },
+            {
+              "code": "Comparable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol. Add ",
+              "type": "text"
+            },
+            {
+              "code": "Comparable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conformance to your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "own custom types when you want to be able to compare instances using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "relational operators or use standard library methods that are designed for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Comparable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The most familiar use of relational operators is to compare numbers, as in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let currentTemp = 73",
+            "",
+            "if currentTemp >= 90 {",
+            "    print(\"It's a scorcher!\")",
+            "} else if currentTemp < 65 {",
+            "    print(\"Might need a sweater today.\")",
+            "} else {",
+            "    print(\"Seems like picnic weather!\")",
+            "}",
+            "// Prints \"Seems like picnic weather!\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use special versions of some sequence and collection operations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when working with a ",
+              "type": "text"
+            },
+            {
+              "code": "Comparable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type. For example, if your array’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "elements conform to ",
+              "type": "text"
+            },
+            {
+              "code": "Comparable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you can call the ",
+              "type": "text"
+            },
+            {
+              "code": "sort()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method without",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using arguments to sort the elements of your array in ascending order.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var measurements = [1.1, 1.5, 2.9, 1.2, 1.5, 1.3, 1.2]",
+            "measurements.sort()",
+            "print(measurements)",
+            "// Prints \"[1.1, 1.2, 1.2, 1.3, 1.5, 1.5, 2.9]\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Conforming-to-the-Comparable-Protocol",
+          "level": 1,
+          "text": "Conforming to the Comparable Protocol",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Types with Comparable conformance implement the less-than operator (",
+              "type": "text"
+            },
+            {
+              "code": "<",
+              "type": "codeVoice"
+            },
+            {
+              "text": ")",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the equal-to operator (",
+              "type": "text"
+            },
+            {
+              "code": "==",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). These two operations impose a strict",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "total order on the values of a type, in which exactly one of the following",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "must be true for any two values ",
+              "type": "text"
+            },
+            {
+              "code": "a",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "b",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "a == b",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "a < b",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "b < a",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition, the following conditions must hold:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "a < a",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is always ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "false",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (Irreflexivity)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "a < b",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " implies ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "!(b < a)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (Asymmetry)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "a < b",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "b < c",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " implies ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "a < c",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (Transitivity)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add ",
+              "type": "text"
+            },
+            {
+              "code": "Comparable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conformance to your custom types, define the ",
+              "type": "text"
+            },
+            {
+              "code": "<",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "==",
+              "type": "codeVoice"
+            },
+            {
+              "text": " operators as static methods of your types. The ",
+              "type": "text"
+            },
+            {
+              "code": "==",
+              "type": "codeVoice"
+            },
+            {
+              "text": " operator is a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "requirement of the ",
+              "type": "text"
+            },
+            {
+              "code": "Equatable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol, which ",
+              "type": "text"
+            },
+            {
+              "code": "Comparable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extends—see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that protocol’s documentation for more information about equality in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Swift. Because default implementations of the remainder of the relational",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "operators are provided by the standard library, you’ll be able to use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "!=",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": ">",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "<=",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": ">=",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with instances of your type without any further",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As an example, here’s an implementation of a ",
+              "type": "text"
+            },
+            {
+              "code": "Date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure that stores",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the year, month, and day of a date:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Date {",
+            "    let year: Int",
+            "    let month: Int",
+            "    let day: Int",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add ",
+              "type": "text"
+            },
+            {
+              "code": "Comparable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conformance to ",
+              "type": "text"
+            },
+            {
+              "code": "Date",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", first declare conformance to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Comparable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and implement the ",
+              "type": "text"
+            },
+            {
+              "code": "<",
+              "type": "codeVoice"
+            },
+            {
+              "text": " operator function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension Date: Comparable {",
+            "    static func < (lhs: Date, rhs: Date) -> Bool {",
+            "        if lhs.year != rhs.year {",
+            "            return lhs.year < rhs.year",
+            "        } else if lhs.month != rhs.month {",
+            "            return lhs.month < rhs.month",
+            "        } else {",
+            "            return lhs.day < rhs.day",
+            "        }",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function uses the least specific nonmatching property of the date to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "determine the result of the comparison. For example, if the two ",
+              "type": "text"
+            },
+            {
+              "code": "year",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "properties are equal but the two ",
+              "type": "text"
+            },
+            {
+              "code": "month",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties are not, the date with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the lesser value for ",
+              "type": "text"
+            },
+            {
+              "code": "month",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the lesser of the two dates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, implement the ",
+              "type": "text"
+            },
+            {
+              "code": "==",
+              "type": "codeVoice"
+            },
+            {
+              "text": " operator function, the requirement inherited from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "Equatable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    static func == (lhs: Date, rhs: Date) -> Bool {",
+            "        return lhs.year == rhs.year && lhs.month == rhs.month",
+            "            && lhs.day == rhs.day",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Two ",
+              "type": "text"
+            },
+            {
+              "code": "Date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances are equal if each of their corresponding properties is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "equal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now that ",
+              "type": "text"
+            },
+            {
+              "code": "Date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conforms to ",
+              "type": "text"
+            },
+            {
+              "code": "Comparable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you can compare instances of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type with any of the relational operators. The following example compares",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the date of the first moon landing with the release of David Bowie’s song",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "“Space Oddity”:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let spaceOddity = Date(year: 1969, month: 7, day: 11)   // July 11, 1969",
+            "let moonLanding = Date(year: 1969, month: 7, day: 20)   // July 20, 1969",
+            "if moonLanding > spaceOddity {",
+            "    print(\"Major Tom stepped through the door first.\")",
+            "} else {",
+            "    print(\"David Bowie was following in Neil Armstrong's footsteps.\")",
+            "}",
+            "// Prints \"Major Tom stepped through the door first.\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that the ",
+              "type": "text"
+            },
+            {
+              "code": ">",
+              "type": "codeVoice"
+            },
+            {
+              "text": " operator provided by the standard library is used in this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, not the ",
+              "type": "text"
+            },
+            {
+              "code": "<",
+              "type": "codeVoice"
+            },
+            {
+              "text": " operator implemented above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A conforming type may contain a subset of values which are treated",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "as exceptional—that is, values that are outside the domain of",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "meaningful arguments for the purposes of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Comparable",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " protocol. For",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "example, the special “not a number” value for floating-point types",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "(",
+                  "type": "text"
+                },
+                {
+                  "code": "FloatingPoint.nan",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ") compares as neither less than, greater than, nor",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "equal to any normal floating-point value. Exceptional values need not",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "take part in the strict total order.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AnyIndex": {
+      "abstract": [
+        {
+          "text": "A wrapper over an underlying index that hides the specific underlying type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnyIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AnyIndex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnyIndex"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnyIndex",
+      "type": "topic",
+      "url": "/documentation/swift/anyindex"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AutoreleasingUnsafeMutablePointer": {
+      "abstract": [
+        {
+          "text": "A mutable pointer addressing an Objective-C reference that doesn’t own its",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AutoreleasingUnsafeMutablePointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AutoreleasingUnsafeMutablePointer",
+      "type": "topic",
+      "url": "/documentation/swift/autoreleasingunsafemutablepointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint": {
+      "abstract": [
+        {
+          "text": "A radix-2 (binary) floating-point type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BinaryFloatingPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BinaryFloatingPoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "BinaryFloatingPoint",
+      "type": "topic",
+      "url": "/documentation/swift/binaryfloatingpoint"
+    },
+    "doc://com.apple.Swift/documentation/Swift/BinaryInteger": {
+      "abstract": [
+        {
+          "text": "An integer type with a binary representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BinaryInteger"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryInteger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BinaryInteger"
+        }
+      ],
+      "role": "symbol",
+      "title": "BinaryInteger",
+      "type": "topic",
+      "url": "/documentation/swift/binaryinteger"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character": {
+      "abstract": [
+        {
+          "text": "A single extended grapheme cluster that approximates a user-perceived",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "character.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Character"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Character"
+        }
+      ],
+      "role": "symbol",
+      "title": "Character",
+      "type": "topic",
+      "url": "/documentation/swift/character"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ClosedRange/Index": {
+      "abstract": [
+        {
+          "text": "A type that represents a position in the collection.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Bound",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Strideable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Bound.Stride",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "SignedInteger",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Index"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ClosedRange/Index",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Index"
+        }
+      ],
+      "role": "symbol",
+      "title": "ClosedRange.Index",
+      "type": "topic",
+      "url": "/documentation/swift/closedrange/index"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CollectionDifference/Index": {
+      "abstract": [
+        {
+          "text": "The position of a collection difference.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "ChangeElement",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Index"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CollectionDifference/Index",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Index"
+        }
+      ],
+      "role": "symbol",
+      "title": "CollectionDifference.Index",
+      "type": "topic",
+      "url": "/documentation/swift/collectiondifference/index"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Comparable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared using the relational operators ",
+          "type": "text"
+        },
+        {
+          "code": "<",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": "<=",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": ">=",
+          "type": "codeVoice"
+        },
+        {
+          "text": ",",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and ",
+          "type": "text"
+        },
+        {
+          "code": ">",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Comparable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Comparable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Comparable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Comparable",
+      "type": "topic",
+      "url": "/documentation/swift/comparable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Comparable/...(_:)-1quco": {
+      "abstract": [
+        {
+          "text": "Returns a partial range up to, and including, its upper bound.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "..."
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s19PartialRangeThroughV",
+          "text": "PartialRangeThrough"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Comparable/...(_:)-1quco",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "...(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/comparable/'...(_:)-1quco"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Comparable/...(_:)-6mvrh": {
+      "abstract": [
+        {
+          "text": "Returns a partial range extending upward from a lower bound.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "..."
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s16PartialRangeFromV",
+          "text": "PartialRangeFrom"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Comparable/...(_:)-6mvrh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "...(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/comparable/'...(_:)-6mvrh"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Comparable/...(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a closed range that contains both of its bounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "..."
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SN",
+          "text": "ClosedRange"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Comparable/...(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "...(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/comparable/'...(_:_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Comparable/.._(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a partial range up to, but not including, its upper bound.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "..<"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s16PartialRangeUpToV",
+          "text": "PartialRangeUpTo"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Comparable/.._(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "..<(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/comparable/'.._(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Comparable/.._(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a half-open range that contains its lower bound but not its upper",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "bound.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "..<"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Comparable/.._(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "..<(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/comparable/'.._(_:_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Comparable/_(_:_:)-8j02g": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the value of the first",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "argument is greater than that of the second argument.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 5,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": ">"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Comparable/_(_:_:)-8j02g",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": ">(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/comparable/_(_:_:)-8j02g"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Comparable/_(_:_:)-9jp4d": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the value of the first",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "argument is less than that of the second argument.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 4,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "<"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Comparable/_(_:_:)-9jp4d",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "<(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/comparable/_(_:_:)-9jp4d"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Comparable/_=(_:_:)-4hu01": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the value of the first",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "argument is greater than or equal to that of the second argument.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 5,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": ">="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Comparable/_=(_:_:)-4hu01",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": ">=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/comparable/_=(_:_:)-4hu01"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Comparable/_=(_:_:)-buc5": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the value of the first",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "argument is less than or equal to that of the second argument.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 5,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "<="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Comparable/_=(_:_:)-buc5",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "<=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/comparable/_=(_:_:)-buc5"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContinuousClock/Instant": {
+      "abstract": [
+        {
+          "text": "A continuous point in time used for ",
+          "type": "text"
+        },
+        {
+          "code": "ContinuousClock",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Instant"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContinuousClock/Instant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Instant"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContinuousClock.Instant",
+      "type": "topic",
+      "url": "/documentation/swift/continuousclock/instant"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Dictionary/Index": {
+      "abstract": [
+        {
+          "text": "The position of a key-value pair in a dictionary.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Key",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Hashable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", and ",
+            "type": "text"
+          },
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Index"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Dictionary/Index",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Index"
+        }
+      ],
+      "role": "symbol",
+      "title": "Dictionary.Index",
+      "type": "topic",
+      "url": "/documentation/swift/dictionary/index"
+    },
+    "doc://com.apple.Swift/documentation/Swift/DiscontiguousSlice/Index": {
+      "abstract": [
+        {
+          "text": "A position in a ",
+          "type": "text"
+        },
+        {
+          "code": "DiscontiguousSlice",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Collection",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Index"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/DiscontiguousSlice/Index",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Index"
+        }
+      ],
+      "role": "symbol",
+      "title": "DiscontiguousSlice.Index",
+      "type": "topic",
+      "url": "/documentation/swift/discontiguousslice/index"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Double": {
+      "abstract": [
+        {
+          "text": "A double-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Double",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Double"
+        }
+      ],
+      "role": "symbol",
+      "title": "Double",
+      "type": "topic",
+      "url": "/documentation/swift/double"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration": {
+      "abstract": [
+        {
+          "text": "A representation of high precision time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Duration"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Duration"
+        }
+      ],
+      "role": "symbol",
+      "title": "Duration",
+      "type": "topic",
+      "url": "/documentation/swift/duration"
+    },
+    "doc://com.apple.Swift/documentation/Swift/DurationProtocol": {
+      "abstract": [
+        {
+          "text": "A type that defines a duration for a given ",
+          "type": "text"
+        },
+        {
+          "code": "InstantProtocol",
+          "type": "codeVoice"
+        },
+        {
+          "text": " type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DurationProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/DurationProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DurationProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "DurationProtocol",
+      "type": "topic",
+      "url": "/documentation/swift/durationprotocol"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Equatable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Equatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/swift/equatable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/FixedWidthInteger": {
+      "abstract": [
+        {
+          "text": "An integer type that uses a fixed size for every instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FixedWidthInteger"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/FixedWidthInteger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FixedWidthInteger"
+        }
+      ],
+      "role": "symbol",
+      "title": "FixedWidthInteger",
+      "type": "topic",
+      "url": "/documentation/swift/fixedwidthinteger"
+    },
+    "doc://com.apple.Swift/documentation/Swift/FlattenSequence/Index": {
+      "abstract": [
+        {
+          "text": "A position in a FlattenCollection",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Collection",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Base.Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Collection",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Index"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/FlattenSequence/Index",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Index"
+        }
+      ],
+      "role": "symbol",
+      "title": "FlattenSequence.Index",
+      "type": "topic",
+      "url": "/documentation/swift/flattensequence/index"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Float": {
+      "abstract": [
+        {
+          "text": "A single-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Float",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Float"
+        }
+      ],
+      "role": "symbol",
+      "title": "Float",
+      "type": "topic",
+      "url": "/documentation/swift/float"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Float16": {
+      "abstract": [
+        {
+          "text": "A half-precision (16b), floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Float16"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Float16",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Float16"
+        }
+      ],
+      "role": "symbol",
+      "title": "Float16",
+      "type": "topic",
+      "url": "/documentation/swift/float16"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Float80": {
+      "abstract": [
+        {
+          "text": "An extended-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Float80"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Float80",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Float80"
+        }
+      ],
+      "role": "symbol",
+      "title": "Float80",
+      "type": "topic",
+      "url": "/documentation/swift/float80"
+    },
+    "doc://com.apple.Swift/documentation/Swift/FloatingPoint": {
+      "abstract": [
+        {
+          "text": "A floating-point numeric type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FloatingPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/FloatingPoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FloatingPoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "FloatingPoint",
+      "type": "topic",
+      "url": "/documentation/swift/floatingpoint"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Identifiable": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Identifiable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/swift/identifiable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/InstantProtocol": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "InstantProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/InstantProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InstantProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "InstantProtocol",
+      "type": "topic",
+      "url": "/documentation/swift/instantprotocol"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Int": {
+      "abstract": [
+        {
+          "text": "A signed integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Int"
+        }
+      ],
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/swift/int"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Int128": {
+      "abstract": [
+        {
+          "text": "A 128-bit signed integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int128"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int128",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Int128"
+        }
+      ],
+      "role": "symbol",
+      "title": "Int128",
+      "type": "topic",
+      "url": "/documentation/swift/int128"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Int16": {
+      "abstract": [
+        {
+          "text": "A 16-bit signed integer value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int16"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int16",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Int16"
+        }
+      ],
+      "role": "symbol",
+      "title": "Int16",
+      "type": "topic",
+      "url": "/documentation/swift/int16"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Int32": {
+      "abstract": [
+        {
+          "text": "A 32-bit signed integer value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int32",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Int32"
+        }
+      ],
+      "role": "symbol",
+      "title": "Int32",
+      "type": "topic",
+      "url": "/documentation/swift/int32"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Int64": {
+      "abstract": [
+        {
+          "text": "A 64-bit signed integer value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int64"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int64",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Int64"
+        }
+      ],
+      "role": "symbol",
+      "title": "Int64",
+      "type": "topic",
+      "url": "/documentation/swift/int64"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Int8": {
+      "abstract": [
+        {
+          "text": "An 8-bit signed integer value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int8"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int8",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Int8"
+        }
+      ],
+      "role": "symbol",
+      "title": "Int8",
+      "type": "topic",
+      "url": "/documentation/swift/int8"
+    },
+    "doc://com.apple.Swift/documentation/Swift/JobPriority": {
+      "abstract": [
+        {
+          "text": "The priority of this job.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JobPriority"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/JobPriority",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JobPriority"
+        }
+      ],
+      "role": "symbol",
+      "title": "JobPriority",
+      "type": "topic",
+      "url": "/documentation/swift/jobpriority"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LazyPrefixWhileSequence/Index": {
+      "abstract": [
+        {
+          "text": "A position in a ",
+          "type": "text"
+        },
+        {
+          "code": "LazyPrefixWhileCollection",
+          "type": "codeVoice"
+        },
+        {
+          "text": " or",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "LazyPrefixWhileBidirectionalCollection",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instance.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Collection",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Index"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LazyPrefixWhileSequence/Index",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Index"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyPrefixWhileSequence.Index",
+      "type": "topic",
+      "url": "/documentation/swift/lazyprefixwhilesequence/index"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never": {
+      "abstract": [
+        {
+          "text": "A type that has no values and can’t be constructed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Never"
+        }
+      ],
+      "role": "symbol",
+      "title": "Never",
+      "type": "topic",
+      "url": "/documentation/swift/never"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ObjectIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a class instance or metatype.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ObjectIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ObjectIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ObjectIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "ObjectIdentifier",
+      "type": "topic",
+      "url": "/documentation/swift/objectidentifier"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ReversedCollection/Index": {
+      "abstract": [
+        {
+          "text": "An index that traverses the same positions as an underlying index,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "with inverted traversal direction.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "BidirectionalCollection",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Index"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ReversedCollection/Index",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Index"
+        }
+      ],
+      "role": "symbol",
+      "title": "ReversedCollection.Index",
+      "type": "topic",
+      "url": "/documentation/swift/reversedcollection/index"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Set/Index": {
+      "abstract": [
+        {
+          "text": "The position of an element in a set.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Hashable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Index"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Set/Index",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Index"
+        }
+      ],
+      "role": "symbol",
+      "title": "Set.Index",
+      "type": "topic",
+      "url": "/documentation/swift/set/index"
+    },
+    "doc://com.apple.Swift/documentation/Swift/SignedInteger": {
+      "abstract": [
+        {
+          "text": "An integer type that can represent both positive and negative values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SignedInteger"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/SignedInteger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SignedInteger"
+        }
+      ],
+      "role": "symbol",
+      "title": "SignedInteger",
+      "type": "topic",
+      "url": "/documentation/swift/signedinteger"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Strideable": {
+      "abstract": [
+        {
+          "text": "A type representing continuous, one-dimensional values that can be offset",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and measured.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Strideable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Strideable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Strideable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Strideable",
+      "type": "topic",
+      "url": "/documentation/swift/strideable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/String": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/swift/string"
+    },
+    "doc://com.apple.Swift/documentation/Swift/String/Index": {
+      "abstract": [
+        {
+          "text": "A position of a character or code unit in a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Index"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/String/Index",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Index"
+        }
+      ],
+      "role": "symbol",
+      "title": "String.Index",
+      "type": "topic",
+      "url": "/documentation/swift/string/index"
+    },
+    "doc://com.apple.Swift/documentation/Swift/StringProtocol": {
+      "abstract": [
+        {
+          "text": "A type that can represent a string as a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StringProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/StringProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StringProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "StringProtocol",
+      "type": "topic",
+      "url": "/documentation/swift/stringprotocol"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Substring": {
+      "abstract": [
+        {
+          "text": "A slice of a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Substring"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Substring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Substring"
+        }
+      ],
+      "role": "symbol",
+      "title": "Substring",
+      "type": "topic",
+      "url": "/documentation/swift/substring"
+    },
+    "doc://com.apple.Swift/documentation/Swift/SuspendingClock/Instant": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Instant"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/SuspendingClock/Instant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Instant"
+        }
+      ],
+      "role": "symbol",
+      "title": "SuspendingClock.Instant",
+      "type": "topic",
+      "url": "/documentation/swift/suspendingclock/instant"
+    },
+    "doc://com.apple.Swift/documentation/Swift/TaskPriority": {
+      "abstract": [
+        {
+          "text": "The priority of a task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TaskPriority"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/TaskPriority",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TaskPriority"
+        }
+      ],
+      "role": "symbol",
+      "title": "TaskPriority",
+      "type": "topic",
+      "url": "/documentation/swift/taskpriority"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UInt": {
+      "abstract": [
+        {
+          "text": "An unsigned integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UInt",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UInt"
+        }
+      ],
+      "role": "symbol",
+      "title": "UInt",
+      "type": "topic",
+      "url": "/documentation/swift/uint"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UInt128": {
+      "abstract": [
+        {
+          "text": "A 128-bit unsigned integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UInt128"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UInt128",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UInt128"
+        }
+      ],
+      "role": "symbol",
+      "title": "UInt128",
+      "type": "topic",
+      "url": "/documentation/swift/uint128"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UInt16": {
+      "abstract": [
+        {
+          "text": "A 16-bit unsigned integer value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UInt16"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UInt16",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UInt16"
+        }
+      ],
+      "role": "symbol",
+      "title": "UInt16",
+      "type": "topic",
+      "url": "/documentation/swift/uint16"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UInt32": {
+      "abstract": [
+        {
+          "text": "A 32-bit unsigned integer value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UInt32",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UInt32"
+        }
+      ],
+      "role": "symbol",
+      "title": "UInt32",
+      "type": "topic",
+      "url": "/documentation/swift/uint32"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UInt64": {
+      "abstract": [
+        {
+          "text": "A 64-bit unsigned integer value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UInt64",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UInt64"
+        }
+      ],
+      "role": "symbol",
+      "title": "UInt64",
+      "type": "topic",
+      "url": "/documentation/swift/uint64"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UInt8": {
+      "abstract": [
+        {
+          "text": "An 8-bit unsigned integer value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UInt8"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UInt8",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UInt8"
+        }
+      ],
+      "role": "symbol",
+      "title": "UInt8",
+      "type": "topic",
+      "url": "/documentation/swift/uint8"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Unicode/CanonicalCombiningClass": {
+      "abstract": [
+        {
+          "text": "The classification of a scalar used in the Canonical Ordering Algorithm",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "defined by the Unicode Standard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CanonicalCombiningClass"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Unicode/CanonicalCombiningClass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CanonicalCombiningClass"
+        }
+      ],
+      "role": "symbol",
+      "title": "Unicode.CanonicalCombiningClass",
+      "type": "topic",
+      "url": "/documentation/swift/unicode/canonicalcombiningclass"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Unicode/Scalar": {
+      "abstract": [
+        {
+          "text": "A Unicode scalar value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Scalar"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Unicode/Scalar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Scalar"
+        }
+      ],
+      "role": "symbol",
+      "title": "Unicode.Scalar",
+      "type": "topic",
+      "url": "/documentation/swift/unicode/scalar"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutablePointer": {
+      "abstract": [
+        {
+          "text": "A pointer for accessing and manipulating data of a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "specific type.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Pointee",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutablePointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutablePointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutablePointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnsafeMutablePointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablepointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer": {
+      "abstract": [
+        {
+          "text": "A raw pointer for accessing and manipulating untyped data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnsafeMutableRawPointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafePointer": {
+      "abstract": [
+        {
+          "text": "A pointer for accessing data of a specific type.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Pointee",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafePointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafePointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnsafePointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnsafePointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafepointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeRawPointer": {
+      "abstract": [
+        {
+          "text": "A raw pointer for accessing untyped data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeRawPointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnsafeRawPointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnsafeRawPointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsaferawpointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsignedInteger": {
+      "abstract": [
+        {
+          "text": "An integer type that can represent only nonnegative values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsignedInteger"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsignedInteger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnsignedInteger"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnsignedInteger",
+      "type": "topic",
+      "url": "/documentation/swift/unsignedinteger"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_(_:_:)-1b1cu": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "before the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "<"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "((), ()) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_(_:_:)-1b1cu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "<(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_(_:_:)-1b1cu"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_(_:_:)-23151": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "before the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "<"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": "), ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_(_:_:)-23151",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "<(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_(_:_:)-23151"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_(_:_:)-3ewuy": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "after the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": ">"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": "), ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_(_:_:)-3ewuy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": ">(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_(_:_:)-3ewuy"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_(_:_:)-3hhjy": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "before the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "<"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": "), ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_(_:_:)-3hhjy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "<(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_(_:_:)-3hhjy"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_(_:_:)-4ck5h": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "before the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "<"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": "), ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_(_:_:)-4ck5h",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "<(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_(_:_:)-4ck5h"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_(_:_:)-4xg09": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "after the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": ">"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": "), ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_(_:_:)-4xg09",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": ">(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_(_:_:)-4xg09"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_(_:_:)-5gb41": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "after the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": ">"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": "), ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_(_:_:)-5gb41",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": ">(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_(_:_:)-5gb41"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_(_:_:)-6p1tf": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "before the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "<"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": "), ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_(_:_:)-6p1tf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "<(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_(_:_:)-6p1tf"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_(_:_:)-7p512": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "after the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": ">"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": "), ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_(_:_:)-7p512",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": ">(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_(_:_:)-7p512"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_(_:_:)-8mgtp": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "before the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "<"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": "), ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_(_:_:)-8mgtp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "<(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_(_:_:)-8mgtp"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_(_:_:)-kqsy": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "after the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": ">"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": "), ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_(_:_:)-kqsy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": ">(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_(_:_:)-kqsy"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_(_:_:)-yktb": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "after the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": ">"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "((), ()) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_(_:_:)-yktb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": ">(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_(_:_:)-yktb"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-16p1e": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "before or the same as the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "<="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "((), ()) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-16p1e",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "<=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_=(_:_:)-16p1e"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-1ak1k": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "after or the same as the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": ">="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "((), ()) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-1ak1k",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": ">=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_=(_:_:)-1ak1k"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-1hzxz": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "before or the same as the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "<="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": "), ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-1hzxz",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "<=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_=(_:_:)-1hzxz"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-1n7oc": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "after or the same as the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": ">="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": "), ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-1n7oc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": ">=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_=(_:_:)-1n7oc"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-3jpod": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "before or the same as the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "<="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": "), ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-3jpod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "<=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_=(_:_:)-3jpod"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-43xgn": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "after or the same as the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": ">="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": "), ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-43xgn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": ">=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_=(_:_:)-43xgn"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-6i1ov": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "after or the same as the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": ">="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": "), ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-6i1ov",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": ">=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_=(_:_:)-6i1ov"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-6kea2": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "before or the same as the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "<="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": "), ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-6kea2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "<=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_=(_:_:)-6kea2"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-6kwvw": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "after or the same as the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": ">="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": "), ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-6kwvw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": ">=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_=(_:_:)-6kwvw"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-7n746": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "before or the same as the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "<="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": "), ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-7n746",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "<=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_=(_:_:)-7n746"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-7p28b": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "after or the same as the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": ">="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": "), ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-7p28b",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": ">=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_=(_:_:)-7p28b"
+    },
+    "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-8u5uu": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the first tuple is ordered",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "before or the same as the second in a lexicographical ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "<="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": "), ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "A"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-8u5uu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "<=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/_=(_:_:)-8u5uu"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Equatable"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint",
+        "doc://com.apple.Swift/documentation/Swift/BinaryInteger",
+        "doc://com.apple.Swift/documentation/Swift/DurationProtocol",
+        "doc://com.apple.Swift/documentation/Swift/FixedWidthInteger",
+        "doc://com.apple.Swift/documentation/Swift/FloatingPoint",
+        "doc://com.apple.Swift/documentation/Swift/InstantProtocol",
+        "doc://com.apple.Swift/documentation/Swift/SignedInteger",
+        "doc://com.apple.Swift/documentation/Swift/Strideable",
+        "doc://com.apple.Swift/documentation/Swift/StringProtocol",
+        "doc://com.apple.Swift/documentation/Swift/UnsignedInteger"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/AnyIndex",
+        "doc://com.apple.Swift/documentation/Swift/AutoreleasingUnsafeMutablePointer",
+        "doc://com.apple.Swift/documentation/Swift/Character",
+        "doc://com.apple.Swift/documentation/Swift/ClosedRange/Index",
+        "doc://com.apple.Swift/documentation/Swift/CollectionDifference/Index",
+        "doc://com.apple.Swift/documentation/Swift/ContinuousClock/Instant",
+        "doc://com.apple.Swift/documentation/Swift/Dictionary/Index",
+        "doc://com.apple.Swift/documentation/Swift/DiscontiguousSlice/Index",
+        "doc://com.apple.Swift/documentation/Swift/Double",
+        "doc://com.apple.Swift/documentation/Swift/Duration",
+        "doc://com.apple.Swift/documentation/Swift/FlattenSequence/Index",
+        "doc://com.apple.Swift/documentation/Swift/Float",
+        "doc://com.apple.Swift/documentation/Swift/Float16",
+        "doc://com.apple.Swift/documentation/Swift/Float80",
+        "doc://com.apple.Swift/documentation/Swift/Int",
+        "doc://com.apple.Swift/documentation/Swift/Int128",
+        "doc://com.apple.Swift/documentation/Swift/Int16",
+        "doc://com.apple.Swift/documentation/Swift/Int32",
+        "doc://com.apple.Swift/documentation/Swift/Int64",
+        "doc://com.apple.Swift/documentation/Swift/Int8",
+        "doc://com.apple.Swift/documentation/Swift/JobPriority",
+        "doc://com.apple.Swift/documentation/Swift/LazyPrefixWhileSequence/Index",
+        "doc://com.apple.Swift/documentation/Swift/Never",
+        "doc://com.apple.Swift/documentation/Swift/ObjectIdentifier",
+        "doc://com.apple.Swift/documentation/Swift/ReversedCollection/Index",
+        "doc://com.apple.Swift/documentation/Swift/Set/Index",
+        "doc://com.apple.Swift/documentation/Swift/String",
+        "doc://com.apple.Swift/documentation/Swift/String/Index",
+        "doc://com.apple.Swift/documentation/Swift/Substring",
+        "doc://com.apple.Swift/documentation/Swift/SuspendingClock/Instant",
+        "doc://com.apple.Swift/documentation/Swift/TaskPriority",
+        "doc://com.apple.Swift/documentation/Swift/UInt",
+        "doc://com.apple.Swift/documentation/Swift/UInt128",
+        "doc://com.apple.Swift/documentation/Swift/UInt16",
+        "doc://com.apple.Swift/documentation/Swift/UInt32",
+        "doc://com.apple.Swift/documentation/Swift/UInt64",
+        "doc://com.apple.Swift/documentation/Swift/UInt8",
+        "doc://com.apple.Swift/documentation/Swift/Unicode/CanonicalCombiningClass",
+        "doc://com.apple.Swift/documentation/Swift/Unicode/Scalar",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutablePointer",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer",
+        "doc://com.apple.Swift/documentation/Swift/UnsafePointer",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeRawPointer"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Equality-and-Ordering",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Equatable",
+        "doc://com.apple.Swift/documentation/Swift/Identifiable"
+      ],
+      "title": "Equality and Ordering"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Range-Expressions",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Comparable/...(_:_:)",
+        "doc://com.apple.Swift/documentation/Swift/Comparable/...(_:)-6mvrh",
+        "doc://com.apple.Swift/documentation/Swift/Comparable/...(_:)-1quco"
+      ],
+      "title": "Range Expressions"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Compare tuples of between two and six ",
+          "type": "text"
+        },
+        {
+          "code": "Comparable",
+          "type": "codeVoice"
+        },
+        {
+          "text": " elements using these comparative",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "operators.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Tuple-Comparison",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/_(_:_:)-1b1cu",
+        "doc://com.apple.Swift/documentation/Swift/_(_:_:)-4ck5h",
+        "doc://com.apple.Swift/documentation/Swift/_(_:_:)-23151",
+        "doc://com.apple.Swift/documentation/Swift/_(_:_:)-6p1tf",
+        "doc://com.apple.Swift/documentation/Swift/_(_:_:)-3hhjy",
+        "doc://com.apple.Swift/documentation/Swift/_(_:_:)-8mgtp",
+        "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-16p1e",
+        "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-3jpod",
+        "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-8u5uu",
+        "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-6kea2",
+        "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-1hzxz",
+        "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-7n746",
+        "doc://com.apple.Swift/documentation/Swift/_(_:_:)-yktb",
+        "doc://com.apple.Swift/documentation/Swift/_(_:_:)-4xg09",
+        "doc://com.apple.Swift/documentation/Swift/_(_:_:)-7p512",
+        "doc://com.apple.Swift/documentation/Swift/_(_:_:)-5gb41",
+        "doc://com.apple.Swift/documentation/Swift/_(_:_:)-3ewuy",
+        "doc://com.apple.Swift/documentation/Swift/_(_:_:)-kqsy",
+        "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-1ak1k",
+        "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-6kwvw",
+        "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-7p28b",
+        "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-43xgn",
+        "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-6i1ov",
+        "doc://com.apple.Swift/documentation/Swift/_=(_:_:)-1n7oc"
+      ],
+      "title": "Tuple Comparison"
+    },
+    {
+      "anchor": "Operators",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Comparable/.._(_:)",
+        "doc://com.apple.Swift/documentation/Swift/Comparable/.._(_:_:)",
+        "doc://com.apple.Swift/documentation/Swift/Comparable/_(_:_:)-8j02g",
+        "doc://com.apple.Swift/documentation/Swift/Comparable/_(_:_:)-9jp4d",
+        "doc://com.apple.Swift/documentation/Swift/Comparable/_=(_:_:)-4hu01",
+        "doc://com.apple.Swift/documentation/Swift/Comparable/_=(_:_:)-buc5"
+      ],
+      "title": "Operators"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/comparable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

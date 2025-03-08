@@ -1,0 +1,1106 @@
+{
+  "abstract": [
+    {
+      "text": "Updates the list item’s accessory image.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.carplay/documentation/CarPlay",
+        "doc://com.apple.carplay/documentation/CarPlay/CPListItem"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.carplay/documentation/CarPlay/CPListItem/setAccessoryImage(_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CPListItem(im)setAccessoryImage:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "setAccessoryImage"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)UIImage",
+        "text": "UIImage"
+      },
+      {
+        "kind": "text",
+        "text": "?)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "CarPlay"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "setAccessoryImage:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "setAccessoryImage(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "setAccessoryImage"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "accessoryImage"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)UIImage",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIImage",
+              "text": "UIImage"
+            },
+            {
+              "kind": "text",
+              "text": "?)"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The image to display in the item’s trailing region.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "accessoryImage"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide an image that is display-ready. If necessary, provide light and dark variants using an asset catalog, or use an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImageAsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and register an image for each interface style. To properly size your image, use the display scale of the vehicle’s primary screen, which you access from your interface controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPInterfaceController/carTraitCollection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. At runtime, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListItem/maximumImageSize",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine the maximum size for a list item’s accessory image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CarPlay doesn’t support animated images. If you provide an animated image, CarPlay uses only the first image in the animation sequence.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CarPlay sets the ",
+              "type": "text"
+            },
+            {
+              "code": "accessoryType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property’s value to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListItemAccessoryType/none",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when you call this method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.carplay/documentation/CarPlay": {
+      "abstract": [
+        {
+          "text": "Integrate CarPlay in apps related to audio, communication, navigation, parking, EV charging, food ordering, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CarPlay",
+      "type": "topic",
+      "url": "/documentation/carplay"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPInterfaceController/carTraitCollection": {
+      "abstract": [
+        {
+          "text": "The trait collection of the vehicle’s primary screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "carTraitCollection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITraitCollection",
+          "text": "UITraitCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPInterfaceController/carTraitCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "carTraitCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "carTraitCollection",
+      "type": "topic",
+      "url": "/documentation/carplay/cpinterfacecontroller/cartraitcollection"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListItem": {
+      "abstract": [
+        {
+          "text": "A selectable row in a list template.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPListItem"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPListItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPListItem",
+      "type": "topic",
+      "url": "/documentation/carplay/cplistitem"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListItem/accessoryImage": {
+      "abstract": [
+        {
+          "text": "The image that the list item displays in its trailing region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListItem/accessoryImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessoryImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessoryImage",
+      "type": "topic",
+      "url": "/documentation/carplay/cplistitem/accessoryimage"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListItem/accessoryType": {
+      "abstract": [
+        {
+          "text": "The accessory that the list item displays in its trailing region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CPListItemAccessoryType",
+          "text": "CPListItemAccessoryType"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListItem/accessoryType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessoryType"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessoryType",
+      "type": "topic",
+      "url": "/documentation/carplay/cplistitem/accessorytype"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListItem/maximumImageSize": {
+      "abstract": [
+        {
+          "text": "The maximum size of a list item’s image and accessory image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumImageSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListItem/maximumImageSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumImageSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumImageSize",
+      "type": "topic",
+      "url": "/documentation/carplay/cplistitem/maximumimagesize"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListItem/setAccessoryImage(_:)": {
+      "abstract": [
+        {
+          "text": "Updates the list item’s accessory image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAccessoryImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListItem/setAccessoryImage(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setAccessoryImage:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setAccessoryImage(_:)",
+      "type": "topic",
+      "url": "/documentation/carplay/cplistitem/setaccessoryimage(_:)"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListItemAccessoryType": {
+      "abstract": [
+        {
+          "text": "The accessory types that a list item can display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPListItemAccessoryType"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListItemAccessoryType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPListItemAccessoryType"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPListItemAccessoryType",
+      "type": "topic",
+      "url": "/documentation/carplay/cplistitemaccessorytype"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPListItemAccessoryType/none": {
+      "abstract": [
+        {
+          "text": "Don’t show an accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "none"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPListItemAccessoryType/none",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPListItemAccessoryTypeNone"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPListItemAccessoryType.none",
+      "type": "topic",
+      "url": "/documentation/carplay/cplistitemaccessorytype/none"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIImageAsset": {
+      "abstract": [
+        {
+          "text": "A container for a collection of images that represent multiple ways of describing a single piece of artwork.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImageAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImageAsset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIImageAsset",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIImageAsset"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)UIImage": {
+      "abstract": [
+        {
+          "text": "An object that manages image data in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImage"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)UIImage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIImage",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIImage"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-Accessories",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/CPListItem/accessoryType",
+        "doc://com.apple.carplay/documentation/CarPlay/CPListItemAccessoryType",
+        "doc://com.apple.carplay/documentation/CarPlay/CPListItem/accessoryImage"
+      ],
+      "title": "Managing Accessories"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "setAccessoryImage:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setAccessoryImage:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.carplay/documentation/CarPlay",
+                "doc://com.apple.carplay/documentation/CarPlay/CPListItem"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Managing-Accessories",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/CPListItem/accessoryType",
+                "doc://com.apple.carplay/documentation/CarPlay/CPListItemAccessoryType",
+                "doc://com.apple.carplay/documentation/CarPlay/CPListItem/accessoryImage"
+              ],
+              "title": "Managing Accessories"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "setAccessoryImage:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)UIImage",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)UIImage",
+                    "text": "UIImage"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "accessoryImage"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The image to display in the item’s trailing region.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "accessoryImage"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListItem~1setAccessoryImage(_:)/title",
+          "value": "setAccessoryImage:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListItem~1setAccessoryImage(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setAccessoryImage:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListItem/title",
+          "value": "CPListItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPListItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPListItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListItem~1maximumImageSize/title",
+          "value": "maximumImageSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListItem~1maximumImageSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maximumImageSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPInterfaceController~1carTraitCollection/title",
+          "value": "carTraitCollection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPInterfaceController~1carTraitCollection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "carTraitCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListItemAccessoryType~1none/title",
+          "value": "CPListItemAccessoryTypeNone"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListItemAccessoryType~1none/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPListItemAccessoryTypeNone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImageAsset/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIImageAsset"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListItemAccessoryType/title",
+          "value": "CPListItemAccessoryType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListItemAccessoryType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPListItemAccessoryType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListItemAccessoryType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPListItemAccessoryType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListItem~1accessoryImage/title",
+          "value": "accessoryImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListItem~1accessoryImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accessoryImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListItem~1accessoryType/title",
+          "value": "accessoryType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPListItem~1accessoryType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accessoryType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)UIImage/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIImage"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/carplay/cplistitem/setaccessoryimage(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/carplay/cplistitem/setaccessoryimage(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

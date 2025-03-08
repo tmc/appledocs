@@ -1,0 +1,365 @@
+{
+  "abstract": [
+    {
+      "text": "Metadata that determines the lighting environment of virtual content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets",
+        "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/preferrediblversion"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "preferredIblVersion"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This metadata selects one of two predefined options for the scene’s image-based lighting (IBL). AR Quick Look in iOS 16 and later observes this property to enhance the brightness, contrast, and visual definition of a scene’s virtual content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A value of ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicates the classic lighting environment, and a value of ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicates the new lighting environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4107512",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you omit the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preferrediblversion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " metadata or give it a value of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the system checks the asset’s creation timestamp. A timestamp of July 1, 2022, or later results in the new lighting environment; otherwise, the scene features classic lighting for backward compatibility. The system checks the timestamp of the ",
+              "type": "text"
+            },
+            {
+              "code": ".usd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " asset within the ",
+              "type": "text"
+            },
+            {
+              "code": ".usdz",
+              "type": "codeVoice"
+            },
+            {
+              "text": " archive, not the archive’s file creation date.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Declaration",
+          "level": 3,
+          "text": "Declaration",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "int preferredIblVersion = 0"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Select-the-scenes-image-based-lighting",
+          "level": 3,
+          "text": "Select the scene’s image-based lighting",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following ",
+              "type": "text"
+            },
+            {
+              "code": ".usda",
+              "type": "codeVoice"
+            },
+            {
+              "text": " definition chooses the new lighting environment:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// asset.usda",
+            "#usda 1.0",
+            "(",
+            "    customLayerData = {",
+            "        dictionary Apple = {",
+            "            int preferredIblVersion = 2",
+            "        }",
+            "    }",
+            ")",
+            ""
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "RealityKit doesn’t observe the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preferrediblversion",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " metadata, but you configure the same lighting environment manually. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/ARKit/specifying-a-lighting-environment-in-ar-quick-look",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for more information about matching AR Quick Look’s lighting environment in RealityKit apps.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/preferrediblversion": {
+      "abstract": [
+        {
+          "text": "Metadata that determines the lighting environment of virtual content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preferrediblversion",
+      "kind": "article",
+      "role": "article",
+      "title": "preferredIblVersion",
+      "type": "topic",
+      "url": "/documentation/realitykit/preferrediblversion"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets": {
+      "abstract": [
+        {
+          "text": "Import and use 3D scenes by importing USD files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USD Assets",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitykit-usd-assets"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scenelibrary": {
+      "abstract": [
+        {
+          "text": "Metadata that partitions an asset into scene-based units.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scenelibrary",
+      "kind": "article",
+      "role": "article",
+      "title": "sceneLibrary",
+      "type": "topic",
+      "url": "/documentation/realitykit/scenelibrary"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar": {
+      "abstract": [
+        {
+          "text": "Add augmented reality functionality to your 3D content using USDZ schemas.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USDZ schemas for AR",
+      "type": "topic",
+      "url": "/documentation/realitykit/usdz-schemas-for-ar"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/specifying-a-lighting-environment-in-ar-quick-look": {
+      "abstract": [
+        {
+          "text": "Add metadata to your USDZ file to specify its lighting characteristics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/specifying-a-lighting-environment-in-ar-quick-look",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying a lighting environment in AR Quick Look",
+      "type": "topic",
+      "url": "/documentation/ARKit/specifying-a-lighting-environment-in-ar-quick-look"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-4107512": {
+      "alt": "An image of two 3D assets side by side. On the left, a 3D asset of a biplane toy features shine, refections, and a callout that reads Preferred IBL version = 1. On the right, a 3D asset of the same biplane toy features even more shine and refections, and its callout reads Preferred IBL version = 2.",
+      "identifier": "media-4107512",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/154637bb579c9c2245cd2aa987caf6a4/media-4107512.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Scenes-and-lighting",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/ARKit/specifying-a-lighting-environment-in-ar-quick-look",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scenelibrary"
+      ],
+      "title": "Scenes and lighting"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/preferrediblversion"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

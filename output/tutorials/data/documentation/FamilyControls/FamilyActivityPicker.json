@@ -1,0 +1,1177 @@
+{
+  "abstract": [
+    {
+      "text": "A view in which users specify applications, web domains,",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "and categories without revealing their choices to the app.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.FamilyControls/documentation/FamilyControls"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:14FamilyControls0A14ActivityPickerV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "FamilyActivityPicker"
+      }
+    ],
+    "modules": [
+      {
+        "name": "FamilyControls"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "FamilyActivityPicker"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "FamilyActivityPicker"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "FamilyActivityPicker"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To prompt the user for their selection,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "create a binding to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivitySelection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and use the binding to create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can then display the picker like any SwiftUI view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ExampleView: View {",
+            "    @State var selection = FamilyActivitySelection()",
+            "",
+            "    var body: some View {",
+            "        VStack {",
+            "            Image(systemName: \"eye\")",
+            "                .font(.system(size: 76.0))",
+            "                .padding()",
+            "",
+            "            FamilyActivityPicker(selection: $selection)",
+            "",
+            "            Image(systemName: \"hourglass\")",
+            "                .font(.system(size: 76.0))",
+            "                .padding()",
+            "        }",
+            "        .onChange(of: selection) { newSelection in",
+            "            let applications = selection.applications",
+            "            let categories = selection.categories",
+            "            let webDomains = selection.webDomains",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A ",
+                  "type": "text"
+                },
+                {
+                  "code": "FamilyControls/FamilyActivityPicker",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " shown on a parent device only displays",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "applications and websites from authorized child devices within the Family Sharing Group.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "A ",
+                  "type": "text"
+                },
+                {
+                  "code": "FamilyControls/FamilyActivityPicker",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " shown on an individually authorized device",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "includes applications and websites from that same device.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To streamline this process,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "call  the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker/familyActivityPicker(isPresented:selection:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier on a view in your user interface.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This modifier displays the picker view as a sheet over your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "user interface when the ",
+              "type": "text"
+            },
+            {
+              "code": "isPresented",
+              "type": "codeVoice"
+            },
+            {
+              "text": " binding is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ExampleView: View {",
+            "    @State var selection = FamilyActivitySelection()",
+            "    @State var isPresented = false",
+            "",
+            "   var body: some View {",
+            "       Button(\"Present FamilyActivityPicker\") { isPresented = true }",
+            "       .familyActivityPicker(isPresented: $isPresented,",
+            "                             selection: $selection)",
+            "       .onChange(of: selection) { newSelection in",
+            "           let applications = selection.applications",
+            "           let categories = selection.categories",
+            "           let webDomains = selection.webDomains",
+            "       }",
+            "   }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you present the ",
+              "type": "text"
+            },
+            {
+              "code": "FamilyActivityPicker",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system displays a view where the user can select categories, applications, and web domains.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As soon as the user confirms their selection,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system updates the ",
+              "type": "text"
+            },
+            {
+              "code": "FamilyActivitySelection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " binding with the user’s selections.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To protect the user’s privacy,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system uses opaque values to represent the selections.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app passes the selected values to the appropriate instances and methods",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ManagedSettings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DeviceActivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " frameworks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.FamilyControls/documentation/FamilyControls": {
+      "abstract": [
+        {
+          "text": "Authorize your app to provide parental controls on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "FamilyControls",
+      "type": "topic",
+      "url": "/documentation/familycontrols"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker": {
+      "abstract": [
+        {
+          "text": "A view in which users specify applications, web domains,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and categories without revealing their choices to the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FamilyActivityPicker"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FamilyActivityPicker"
+        }
+      ],
+      "role": "symbol",
+      "title": "FamilyActivityPicker",
+      "type": "topic",
+      "url": "/documentation/familycontrols/familyactivitypicker"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker-View-Modifiers": {
+      "abstract": [
+        {
+          "text": "Apply standard modifiers to configure the family activity picker view",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and the views it contains.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker-View-Modifiers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View Modifiers",
+      "type": "topic",
+      "url": "/documentation/familycontrols/familyactivitypicker-view-modifiers"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker/Body-swift.typealias": {
+      "abstract": [
+        {
+          "text": "The type of view representing the body of this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Body"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker/Body-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Body"
+        }
+      ],
+      "role": "symbol",
+      "title": "FamilyActivityPicker.Body",
+      "type": "topic",
+      "url": "/documentation/familycontrols/familyactivitypicker/body-swift.typealias"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker/View-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker/View-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View Implementations",
+      "type": "topic",
+      "url": "/documentation/familycontrols/familyactivitypicker/view-implementations"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker/body-swift.property": {
+      "abstract": [
+        {
+          "text": "The content and behavior of the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker/body-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "body",
+      "type": "topic",
+      "url": "/documentation/familycontrols/familyactivitypicker/body-swift.property"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker/familyActivityPicker(isPresented:selection:)": {
+      "abstract": [
+        {
+          "text": "Presents an activity picker view as a sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "familyActivityPicker"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "isPresented"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "selection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14FamilyControls0A17ActivitySelectionV",
+          "text": "FamilyActivitySelection"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker/familyActivityPicker(isPresented:selection:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "familyActivityPicker(isPresented:selection:)",
+      "type": "topic",
+      "url": "/documentation/familycontrols/familyactivitypicker/familyactivitypicker(ispresented:selection:)"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker/init(headerText:footerText:selection:)": {
+      "abstract": [
+        {
+          "text": "Creates a new activity picker with optional header and footer text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "headerText"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "footerText"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "selection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14FamilyControls0A17ActivitySelectionV",
+          "text": "FamilyActivitySelection"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker/init(headerText:footerText:selection:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(headerText:footerText:selection:)",
+      "type": "topic",
+      "url": "/documentation/familycontrols/familyactivitypicker/init(headertext:footertext:selection:)"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker/init(selection:)": {
+      "abstract": [
+        {
+          "text": "Creates a new activity picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "selection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14FamilyControls0A17ActivitySelectionV",
+          "text": "FamilyActivitySelection"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker/init(selection:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(selection:)",
+      "type": "topic",
+      "url": "/documentation/familycontrols/familyactivitypicker/init(selection:)"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivitySelection": {
+      "abstract": [
+        {
+          "text": "A collection of applications, categories, and web domains selected by the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FamilyActivitySelection"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivitySelection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FamilyActivitySelection"
+        }
+      ],
+      "role": "symbol",
+      "title": "FamilyActivitySelection",
+      "type": "topic",
+      "url": "/documentation/familycontrols/familyactivityselection"
+    },
+    "doc://com.apple.documentation/documentation/DeviceActivity": {
+      "abstract": [
+        {
+          "text": "Monitor device activity with your app extension while maintaining user privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DeviceActivity",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DeviceActivity",
+      "type": "topic",
+      "url": "/documentation/DeviceActivity"
+    },
+    "doc://com.apple.documentation/documentation/ManagedSettings": {
+      "abstract": [
+        {
+          "text": "Access and change settings with your app while maintaining user privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ManagedSettings",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ManagedSettings",
+      "type": "topic",
+      "url": "/documentation/ManagedSettings"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-Selected-Apps-and-Web-Domains",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivitySelection"
+      ],
+      "title": "User-Selected Apps and Web Domains"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-Activity-Pickers",
+      "identifiers": [
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker/init(selection:)",
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker/familyActivityPicker(isPresented:selection:)"
+      ],
+      "title": "Creating Activity Pickers"
+    },
+    {
+      "anchor": "Accessing-the-Content",
+      "identifiers": [
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker/body-swift.property",
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker/Body-swift.typealias"
+      ],
+      "title": "Accessing the Content"
+    },
+    {
+      "anchor": "Adding-View-Modifiers",
+      "identifiers": [
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker-View-Modifiers"
+      ],
+      "title": "Adding View Modifiers"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker/init(headerText:footerText:selection:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker/View-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/familycontrols/familyactivitypicker"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

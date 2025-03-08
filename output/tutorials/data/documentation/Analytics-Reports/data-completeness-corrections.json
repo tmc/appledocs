@@ -1,0 +1,1447 @@
+{
+  "abstract": [
+    {
+      "text": "Understand how the Analytics Reports API provides complete data sets.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devpubs.analytics-reports/documentation/analytics-reports"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/data-completeness-corrections"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Data Completeness and Corrections"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Analytics Reports framework delivers new portions of report content as instances. Each instance can contain one or more batches of data, to accommodate late-arriving events, or in rare cases, data corrections. Each data batch has a start date, represented by the Date column, and a length of time, represented by ",
+              "type": "text"
+            },
+            {
+              "code": "granularity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the instance. ",
+              "type": "text"
+            },
+            {
+              "code": "processingDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the date when Apple creates a new report instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These reports use this data completeness approach:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/airplay-errors",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/airplay-performance",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-clip-usage",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-crashes",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-installs-performance",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-sessions",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-discovery-and-engagement",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-download",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-installs",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-pre-order",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-purchase",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/browser-choice-screen-engagement",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/streaming-downloads-performance",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/streaming-playback-performance",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For reports not listed here, see the Completeness section in each report.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if you review a report instance with ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "daily",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "granularity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and a ",
+              "type": "text"
+            },
+            {
+              "code": "processingDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of ",
+              "type": "text"
+            },
+            {
+              "code": "2024-04-01",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you might find that the Date column contains multiple dates, going back as far as the completeness threshold for that report. In this case you might find records with ",
+              "type": "text"
+            },
+            {
+              "code": "2024-03-31",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "2024-03-30",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the Date column, and possibly more.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instances from a more recent ",
+              "type": "text"
+            },
+            {
+              "code": "processingDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " overwrite instances with an earlier ",
+              "type": "text"
+            },
+            {
+              "code": "processingDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The report instance with a ",
+              "type": "text"
+            },
+            {
+              "code": "processingDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of ",
+              "type": "text"
+            },
+            {
+              "code": "2024-04-01",
+              "type": "codeVoice"
+            },
+            {
+              "text": " overwrites a set of records for a ",
+              "type": "text"
+            },
+            {
+              "code": "Date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of ",
+              "type": "text"
+            },
+            {
+              "code": "2024-03-30",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from a report instance with a ",
+              "type": "text"
+            },
+            {
+              "code": "processingDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of ",
+              "type": "text"
+            },
+            {
+              "code": "2024-03-31",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Don’t merge records for a Date of ",
+              "type": "text"
+            },
+            {
+              "code": "2024-03-30",
+              "type": "codeVoice"
+            },
+            {
+              "text": " across two report instances to avoid double counting. Use the latest instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can choose to wait until data is finalized (see the Completeness description in the Overview on each report page) and download once.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In rare cases of data corrections, you might receive new record sets for a date in the past, beyond the completeness threshold.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Platforms",
+          "level": 2,
+          "text": "Platforms",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In reports with data from iPad, the Device column shows ",
+              "type": "text"
+            },
+            {
+              "code": "iPad",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the Platform version column shows ",
+              "type": "text"
+            },
+            {
+              "code": "iOS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the corresponding version number.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Data-completeness-for-daily-weekly-and-monthly-reports",
+          "level": 2,
+          "text": "Data completeness for daily, weekly, and monthly reports",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example the report has a completeness of two days.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can wait 2 days and download final complete daily set of records for Date of 2024-03-30 from the report instance with ",
+              "type": "text"
+            },
+            {
+              "code": "processingDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of 2024-04-01 and with daily ",
+              "type": "text"
+            },
+            {
+              "code": "granularity",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The Daily, Weekly, and Monthly report tables below show what data you can expect in each ",
+              "type": "text"
+            },
+            {
+              "code": "processingDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and when you can expect to see complete data sets for a given date.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "These are not fields in reports, but descriptions of what you might read in your reports.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Daily-Reports",
+          "level": 3,
+          "text": "Daily Reports",
+          "type": "heading"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Processing date in API",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Date column in report",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Completed partition",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "What you can expect",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-04-01",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-03-30",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-03-30",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Full, complete data for events that happened on 3/30.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-04-01",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-03-31",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-03-30",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Full, but not complete, data for events that happened on 3/31.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-04-02",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-03-31",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-03-31",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Full, complete data for events that happened on 3/31.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-04-02",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-04-01",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-03-31",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Full, but not complete, data for events that happened on 4/1.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-04-03",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-04-01",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-04-01",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Full, complete data for events that happened on 4/1.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-04-03",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-04-02",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-04-01",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Full, but not complete, data for events that happened on 4/2.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Weekly-Reports",
+          "level": 3,
+          "text": "Weekly Reports",
+          "type": "heading"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Processing date",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Date column in report",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Completed partition",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "What you can expect",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-04-05",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-03-25",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-03-25",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Full, complete data for events that happened in week 3/25–3/31.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-04-12",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-04-01",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-04-01",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Full, complete data for events that happened in week 4/1–4/7.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Monthly-Reports",
+          "level": 3,
+          "text": "Monthly Reports",
+          "type": "heading"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Processing date",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Date column in report",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Completed partition",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "What you can expect",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-04-05",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-03-01",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-03-01",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Full, complete data for events that happened in the month of March.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-05-05",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-04-01",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-04-01",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Full, complete data for events that happened in the month of April.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/airplay-errors": {
+      "abstract": [
+        {
+          "text": "Analyze AirPlay errors in your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/airplay-errors",
+      "kind": "article",
+      "role": "article",
+      "title": "AirPlay Errors",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/airplay-errors"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/airplay-performance": {
+      "abstract": [
+        {
+          "text": "Review AirPlay performance in your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/airplay-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "AirPlay Performance",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/airplay-performance"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-clip-usage": {
+      "abstract": [
+        {
+          "text": "Analyze how users engage with your App Clips.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-clip-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "App Clip Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-clip-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-crashes": {
+      "abstract": [
+        {
+          "text": "Review crashes for your App Store apps based on app version and device type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-crashes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Crashes",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-crashes"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-download": {
+      "abstract": [
+        {
+          "text": "Analyze how many times people download your app on the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-download",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Downloads",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-download"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-installs": {
+      "abstract": [
+        {
+          "text": "Analyze details on the number of times users install and delete your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-installs",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Installations and Deletions",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-installs"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-installs-performance": {
+      "abstract": [
+        {
+          "text": "Analyze details about installation success and failure rates for your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-installs-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "App Installs Performance",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-installs-performance"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-sessions": {
+      "abstract": [
+        {
+          "text": "Analyze how often people open your App Store apps, and the average session duration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-sessions",
+      "kind": "article",
+      "role": "article",
+      "title": "App Sessions",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-sessions"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-discovery-and-engagement": {
+      "abstract": [
+        {
+          "text": "Analyze how users interact with your app on the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-discovery-and-engagement",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Discovery and Engagement",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-store-discovery-and-engagement"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-pre-order": {
+      "abstract": [
+        {
+          "text": "Analyze details on the number of pre-orders that people place and cancel for your app on the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-pre-order",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Pre-orders",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-store-pre-order"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-purchase": {
+      "abstract": [
+        {
+          "text": "Analyze total revenue generated by your apps on the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-purchase",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Purchases",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-store-purchase"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/browser-choice-screen-engagement": {
+      "abstract": [
+        {
+          "text": "Measure how often your web browser app is being selected as the default from the browser choice screen  on iOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/browser-choice-screen-engagement",
+      "kind": "article",
+      "role": "article",
+      "title": "Browser Choice Screen Engagement (iOS versions before 18.2)",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/browser-choice-screen-engagement"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/privacy": {
+      "abstract": [
+        {
+          "text": "Understand measures that help protect user privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "Protecting user privacy in report data",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/privacy"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/streaming-downloads-performance": {
+      "abstract": [
+        {
+          "text": "Review download performance when using the AVAssetDownloadTask APIs in your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/streaming-downloads-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Streaming Downloads Performance",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/streaming-downloads-performance"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/streaming-playback-performance": {
+      "abstract": [
+        {
+          "text": "Review playback performance when using the AVPlayerItem APIs in your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/streaming-playback-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Streaming Playback Performance",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/streaming-playback-performance"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/analytics-reports": {
+      "abstract": [
+        {
+          "text": "A list of app development reports, their field descriptions, and glossaries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/analytics-reports",
+      "kind": "article",
+      "role": "collection",
+      "title": "Analytics Reports",
+      "type": "topic",
+      "url": "/documentation/analytics-reports"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/privacy"
+      ],
+      "title": "Essentials"
+    }
+  ]
+}

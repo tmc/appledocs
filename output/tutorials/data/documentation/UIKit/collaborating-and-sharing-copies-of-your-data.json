@@ -1,0 +1,1834 @@
+{
+  "abstract": [
+    {
+      "text": "Share data and collaborate with people from your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/view-controllers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/collaborating-and-sharing-copies-of-your-data"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Collaborating and sharing copies of your data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can share data from your app using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. There are numerous options for packaging your data and instantiating the activity view controller. One approach is to create one or more ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects for the data you want to share. Use the item providers to create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and then use the configuration to create your activity view controller. You can then present the view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create an item provider for your data.",
+            "let itemProvider = NSItemProvider(item: noteText.text as NSString,",
+            "                                  typeIdentifier: \"public.utf8-plain-text\")",
+            "",
+            "// Create an activity item configuration from the item provider.",
+            "let configuration =",
+            "UIActivityItemsConfiguration(itemProviders: [itemProvider])",
+            "",
+            "// Create the activity view controller from the configuration.",
+            "let shareSheet = UIActivityViewController(activityItemsConfiguration: configuration)",
+            "",
+            "// Present the share sheet.",
+            "present(shareSheet, animated:true) {}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This displays the share sheet, letting someone share a copy of the data with other apps on the device. The options that appear in the share sheet vary depending on the type of data that you’re sharing. The example above shares a UTF-8 string, so the share sheet shows apps that can accept text, like Messages, Mail, and Notes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4403929",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-collaboration-for-iCloud-documents",
+          "level": 3,
+          "text": "Enable collaboration for iCloud documents",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example above shares a copy of your app’s data. You can also enable collaboration so that the recipients can see an updated view of the data, and even make their own changes to it, depending on the permissions in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable collaboration, you need shareable content, such as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A URL to an iCloud document (see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1411653-url",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Data stored in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CloudKit",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A custom collaboration architecture that supports universal links (see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2022/10093",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to enable collaboration for an iCloud document, you need a URL to a file in your app’s iCloud container. Create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, and call its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4011315-registerfilerepresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, passing the URL as the ",
+              "type": "text"
+            },
+            {
+              "code": "for:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the ",
+              "type": "text"
+            },
+            {
+              "code": "openInPlace:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create an empty item provider.",
+            "let itemProvider = NSItemProvider()",
+            "",
+            "// Add the URL to a file saved in the iCloud document container.",
+            "itemProvider",
+            "    .registerFileRepresentation(for: .utf8PlainText,",
+            "                                openInPlace: true) { completion in",
+            "    completion(url, true, nil)",
+            "    return nil",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then create and display the activity view controller as in the first code example. This time, the share sheet has a pop-up menu for selecting a sharing mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4403933",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-the-copying-and-collaboration-of-CloudKit-data",
+          "level": 3,
+          "text": "Enable the copying and collaboration of CloudKit data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because CloudKit doesn’t store its data as files, it requires a different approach for both sharing copies and collaborating. To share a copy of CloudKit data, you need to create a shareable representation of the data. Then register that data with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For example, if you want to share your app’s data as UTF-8 text, you can use the previous example to create an item provider for your text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable collaboration, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKShare",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when collaboration starts. You also need your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKContainer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKAllowedSharingOptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that define the permissions you’re granting to collaborators.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create an item provider.",
+            "let itemProvider = NSItemProvider()",
+            "",
+            "// Create and save a new share.",
+            "itemProvider.registerCKShare(container: container,",
+            "                             allowedSharingOptions: CKAllowedSharingOptions.standard) {",
+            "    ",
+            "    // Create your share.",
+            "    let newShare = CKShare(rootRecord: recordToShare)",
+            "    ",
+            "    // Configure the share, save it, and handle any errors here.",
+            "    ",
+            "    // Return the newly saved share.",
+            "    return newShare",
+            "    ",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To invite new collaborators to an existing share, create an item provider and register the share.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create an item provider.",
+            "let itemProvider = NSItemProvider()",
+            "",
+            "// Register an existing share.",
+            "itemProvider",
+            "    .registerCKShare(",
+            "        savedShare,",
+            "        container: container,",
+            "        allowedSharingOptions: CKAllowedSharingOptions.standard",
+            "    )"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about collaboration in CloudKit, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit/sharing-cloudkit-data-with-other-icloud-users",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Restrict-the-sharing-mode",
+          "level": 3,
+          "text": "Restrict the sharing mode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, if your item provider supports both copying and collaborating, the share sheet shows a pop-up menu, letting people select a sharing mode. In iOS 18 and later, you can restrict sharing to only one of the two modes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To restrict the sharing mode, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityViewController/CollaborationModeRestriction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and assign it to your configuration’s metadata. You can access the metadata using the configuration’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfiguration/perItemMetadataProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Iterate through the metadata keys.",
+            "configuration.perItemMetadataProvider = { _, key in",
+            "    switch key {",
+            "    case .collaborationModeRestrictions:",
+            "        // If it's the collaboration mode restriction key, return an array",
+            "        // containing a collaboration mode restriction object.",
+            "        let modeRestriction = UIActivityViewController.CollaborationModeRestriction(",
+            "            disabledMode: .collaborate",
+            "        )",
+            "        return [modeRestriction]",
+            "    default:",
+            "        return nil",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, create and present the share sheet as before. This produces a share sheet that displays only the allowed sharing mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4413126",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can show both sharing options, but display an alert when someone selects the restricted mode. This alert can also include a recovery suggestion to help people enable the restricted mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Iterate through the metadata keys.",
+            "configuration.perItemMetadataProvider = { _, key in",
+            "    switch key {",
+            "    case .collaborationModeRestrictions:",
+            "        // Set the title and text for the alert. Optionally, you can set the title and provide",
+            "        // a launch URL for the recovery action.",
+            "        let modeRestriction = UIActivityViewController.CollaborationModeRestriction(",
+            "            disabledMode: .collaborate,",
+            "            alertTitle: \"File Locked\",",
+            "            alertMessage: \"You need to unlock the file before you can share it for collaboration.\",",
+            "            alertDismissButtonTitle: \"Cancel\",",
+            "            alertRecoverySuggestionButtonTitle: \"Unlock\",",
+            "            alertRecoverySuggestionButtonLaunch: unlockURL",
+            "        )",
+            "        return [modeRestriction]",
+            "    default:",
+            "        return nil",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this case, the share sheet shows the pop-up menu with the allowed sharing mode already selected. When someone tries to change the sharing mode to the restricted mode, the system displays an alert. If they then tap the recovery button, it calls your scene delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate/scene(_:openURLContexts:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, passing in the provided URL. For more information about using launch URLs, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/defining-a-custom-url-scheme-for-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-the-people-to-share-with",
+          "level": 3,
+          "text": "Specify the people to share with",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 18 and later, you can also specify recipients for the shared data. Create an ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/sirikit/inperson",
+              "type": "text"
+            },
+            {
+              "text": " instance for each recipient and add them to your activity configuration’s metadata.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Gather data about the recipient.",
+            "var name = PersonNameComponents()",
+            "name.givenName = myBFF.givenName",
+            "name.familyName = myBFF.familyName",
+            "",
+            "let displayName = myBFF.givenName",
+            "let email = myBFF.email",
+            "let image = INImage(imageData: myBFF.image)",
+            "",
+            "// Create an `INPerson` instance for the recipient.",
+            "let recipient = INPerson(",
+            "    personHandle: .init(value: email, type: .emailAddress),",
+            "    nameComponents: name,",
+            "    displayName: displayName,",
+            "    image: image,",
+            "    contactIdentifier: nil,",
+            "    customIdentifier: nil)",
+            "",
+            "// Iterate through the metadata keys.",
+            "configuration.perItemMetadataProvider = { _, key in",
+            "    switch key {",
+            "        // Set the share recipients to an array of `INPerson` instances.",
+            "    case .shareRecipients:",
+            "        return [recipient]",
+            "    default:",
+            "        return nil",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The share sheet then populates the recipient’s data in apps that accept recipients, such as Mail and Messages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4413127",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a person selects a different recipient from the share sheet, that selection overrides your specified recipients. If they select an app that doesn’t accept recipients, the system ignores your recipient.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also hide the other recipients from the share sheet by setting the activity view controller’s ",
+              "type": "text"
+            },
+            {
+              "code": "excludedActivityViewTypes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "UIActivityViewTypesPeopleSuggestions",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Hide the suggested recipients.",
+            "shareSheet.excludedActivityViewTypes = .peopleSuggestions"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/CloudKit"
+    },
+    "doc://com.apple.documentation/documentation/CloudKit/CKAllowedSharingOptions": {
+      "abstract": [
+        {
+          "text": "An object that controls participant access and permission options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKAllowedSharingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKAllowedSharingOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKAllowedSharingOptions",
+      "type": "topic",
+      "url": "/documentation/CloudKit/CKAllowedSharingOptions"
+    },
+    "doc://com.apple.documentation/documentation/CloudKit/CKContainer": {
+      "abstract": [
+        {
+          "text": "A conduit to your app’s databases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKContainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKContainer",
+      "type": "topic",
+      "url": "/documentation/CloudKit/CKContainer"
+    },
+    "doc://com.apple.documentation/documentation/CloudKit/CKShare": {
+      "abstract": [
+        {
+          "text": "A specialized record type that manages a collection of shared records.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKShare"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKShare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKShare",
+      "type": "topic",
+      "url": "/documentation/CloudKit/CKShare"
+    },
+    "doc://com.apple.documentation/documentation/CloudKit/sharing-cloudkit-data-with-other-icloud-users": {
+      "abstract": [
+        {
+          "text": "Create and share private CloudKit data with other users by implementing the sharing UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit/sharing-cloudkit-data-with-other-icloud-users",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Sharing CloudKit Data with Other iCloud Users",
+      "type": "topic",
+      "url": "/documentation/CloudKit/sharing-cloudkit-data-with-other-icloud-users"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/defining-a-custom-url-scheme-for-your-app": {
+      "abstract": [
+        {
+          "text": "Use specially formatted URLs to link to content within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/defining-a-custom-url-scheme-for-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining a custom URL scheme for your app",
+      "type": "topic",
+      "url": "/documentation/Xcode/defining-a-custom-url-scheme-for-your-app"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1411653-url": {
+      "abstract": [
+        {
+          "text": "Returns the URL for the iCloud container associated with the specified identifier and establishes access to that container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forUbiquityContainerIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String?) -> URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1411653-url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url(forUbiquityContainerIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1411653-url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider": {
+      "abstract": [
+        {
+          "text": "An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSItemProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSItemProvider",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4011315-registerfilerepresentation": {
+      "abstract": [
+        {
+          "text": "Registers a file-backed representation for an item with item visibility, an open-in-place option, and a load handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerFileRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": UTType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "visibility"
+        },
+        {
+          "kind": "text",
+          "text": ": NSItemProviderRepresentationVisibility, "
+        },
+        {
+          "kind": "identifier",
+          "text": "openInPlace"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((URL?, Bool, (any Error)?) -> Void) -> Progress?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4011315-registerfilerepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerFileRepresentation(for:visibility:openInPlace:loadHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/4011315-registerfilerepresentation"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivity": {
+      "abstract": [
+        {
+          "text": "An abstract class that you subclass to implement app-specific services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActivity",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivity"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityItemProvider": {
+      "abstract": [
+        {
+          "text": "A proxy for data that passes to an activity view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActivityItemProvider",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityitemprovider"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource": {
+      "abstract": [
+        {
+          "text": "A set of methods that an activity view controller uses to retrieve the data items to act on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemSource"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActivityItemSource",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityitemsource"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that allows a responder to export data through a variety of interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActivityItemsConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityitemsconfiguration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfiguration/perItemMetadataProvider": {
+      "abstract": [
+        {
+          "text": "A closure that provides metadata for each activity item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "perItemMetadataProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIActivityItemsConfigurationMetadataKey",
+          "text": "UIActivityItemsConfigurationMetadataKey"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfiguration/perItemMetadataProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "perItemMetadataProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "perItemMetadataProvider",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityitemsconfiguration/peritemmetadataprovider"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding": {
+      "abstract": [
+        {
+          "text": "An interface that provides a source for shareable content to fulfill user requests to share current content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfigurationProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfigurationProviding"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActivityItemsConfigurationProviding",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityitemsconfigurationproviding"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that you use to offer standard services from your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActivityViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActivityViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityViewController/CollaborationModeRestriction": {
+      "abstract": [
+        {
+          "text": "An object that disables the sharing mode and optionally displays an alert.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CollaborationModeRestriction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityViewController/CollaborationModeRestriction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CollaborationModeRestriction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActivityViewController.CollaborationModeRestriction",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityviewcontroller/collaborationmoderestriction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate/scene(_:openURLContexts:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to open one or more URLs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIScene",
+          "text": "UIScene"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "openURLContexts"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIOpenURLContext",
+          "text": "UIOpenURLContext"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate/scene(_:openURLContexts:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scene:openURLContexts:"
+        }
+      ],
+      "role": "symbol",
+      "title": "scene(_:openURLContexts:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscenedelegate/scene(_:openurlcontexts:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-controllers": {
+      "abstract": [
+        {
+          "text": "Manage your interface using view controllers and facilitate navigation around your app’s content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View controllers",
+      "type": "topic",
+      "url": "/documentation/uikit/view-controllers"
+    },
+    "https://developer.apple.com/videos/play/wwdc2022/10093": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022/10093",
+      "title": "Integrate your custom collaboration app in Messages",
+      "titleInlineContent": [
+        {
+          "text": "Integrate your custom collaboration app in Messages",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/10093"
+    },
+    "media-4403929": {
+      "alt": "An iPhone screenshot showing the share sheet for a plain UTF-8 text file.",
+      "identifier": "media-4403929",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c3684ad96b4797af5d30687b5a174215/media-4403929@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/15339ce2c33470a722f8f30b6b10fda1/media-4403929~dark@2x.png"
+        }
+      ]
+    },
+    "media-4403933": {
+      "alt": "An iPhone screenshot of the share sheet showing the options to either send a copy or to collaborate.",
+      "identifier": "media-4403933",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/682d707ab6b3aecbc599b65b4edf3bf6/media-4403933@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2b54f80e60ae8ba5e4cec8e1fa7eb817/media-4403933~dark@2x.png"
+        }
+      ]
+    },
+    "media-4413126": {
+      "alt": "Two iPhone screenshots. The left screenshot shows the share sheet for copying only, the right for sharing only.",
+      "identifier": "media-4413126",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc4575a41189271b9024dab1a77f2fc3/media-4413126@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/abe006d65b3ae73aa7a252cb2fc948fb/media-4413126~dark@2x.png"
+        }
+      ]
+    },
+    "media-4413127": {
+      "alt": "An iPhone screenshot of a new email with the recipient and content automatically populated.",
+      "identifier": "media-4413127",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cdb4c2e0eb96422b41f468cb92dd3351/media-4413127@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8af44a60ddd2ef9dd1c9e4537d27fa70/media-4413127~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Activities-interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityItemProvider",
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource",
+        "doc://com.apple.uikit/documentation/UIKit/UIActivity",
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding"
+      ],
+      "title": "Activities interface"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Activities-interface",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIActivityViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UIActivityItemProvider",
+                "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource",
+                "doc://com.apple.uikit/documentation/UIKit/UIActivity",
+                "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding"
+              ],
+              "title": "Activities interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemSource/title",
+          "value": "UIActivityItemSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfiguration/title",
+          "value": "UIActivityItemsConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CloudKit~1CKShare/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CKShare"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CKRecord",
+              "text": "CKRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemProvider/title",
+          "value": "UIActivityItemProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfiguration~1perItemMetadataProvider/title",
+          "value": "perItemMetadataProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfiguration~1perItemMetadataProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "perItemMetadataProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/title",
+          "value": "UIActivityItemsConfigurationProviding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfigurationProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfigurationProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneDelegate~1scene(_:openURLContexts:)/title",
+          "value": "scene:openURLContexts:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneDelegate~1scene(_:openURLContexts:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "scene:openURLContexts:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CloudKit~1CKContainer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CKContainer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1filemanager~11411653-url/title",
+          "value": "URLForUbiquityContainerIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityViewController~1CollaborationModeRestriction/title",
+          "value": "UIActivityCollaborationModeRestriction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityViewController~1CollaborationModeRestriction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityCollaborationModeRestriction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityViewController~1CollaborationModeRestriction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityCollaborationModeRestriction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CloudKit~1CKAllowedSharingOptions/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CKAllowedSharingOptions"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityViewController/title",
+          "value": "UIActivityViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivity/title",
+          "value": "UIActivity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivity"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/collaborating-and-sharing-copies-of-your-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/collaborating-and-sharing-copies-of-your-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

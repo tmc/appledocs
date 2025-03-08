@@ -1,0 +1,1240 @@
+{
+  "abstract": [
+    {
+      "text": "An opaque data container for large storage in MPS CNN filters.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpadding"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnfilternode",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpadding"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2867039,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MPSState",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "MPSState"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "MPSState"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPSState"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some MPS CNN kernels produce additional information beyond an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". These may be pooling indices where the result came from, convolution weights, or other information not contained in the usual ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " result from a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object typically contains one or more expensive ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects such as textures or buffers to store this information. It provides a base class with interfaces for managing this storage. Child classes may add additional functionality specific to their contents. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects are temporary. Temporary state objects, for example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporarymatrix",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", are for very short lived storage, perhaps just a few lines of code within the scope of a single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". They are very efficient for storage, as several temporary objects can share the same memory over the course of a command buffer. This can improve both memory usage and time spent in the kernel wiring down memory and such. You may find that some large CNN tasks can not be computed without them, as nontemporary storage would simply take up too much memory. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In exchange, the lifetime of the underlying storage in temporary ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects needs to be carefully managed. ARC often waits until the end of scope to release objects. Temporary storage often needs to be released sooner than that. Consequently the lifetime of the data in the underlying Metal resources is managed by a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2867042-readcount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Each time a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " reads a temporary ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2867042-readcount",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is automatically decremented. When it reaches 0, the underlying storage is recycled for use by other MPS temporary objects, and the data is becomes undefined. If you need to consume the data multiple times, you should set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2867042-readcount",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to a larger number to prevent the data from becoming undefined. You may set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2867042-readcount",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to 0 yourself to return the storage to MPS, if for any reason, you realize that the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object will no longer be used. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The contents of a temporary ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object are only valid from creation to the time the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2867042-readcount",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " reaches 0. The data is only valid for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " on which it was created. Nontemporary ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects are valid on any ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " on the same device until they are released. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Convolutional Neural Network Kernels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/convolutional_neural_network_kernels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnkernel"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImage",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnfilternode": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnfilternode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNFilterNode",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnfilternode"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNGraph",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpadding": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpadding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNPadding",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpadding"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSState",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2867042-readcount": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "readCount"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2867042-readcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readCount",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate/2867042-readcount"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2867114-istemporary": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isTemporary"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2867114-istemporary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isTemporary",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate/2867114-istemporary"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2867179-label": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2867179-label",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "label",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate/2867179-label"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942390-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "resource"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MTLResource)?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942390-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(resource:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate/2942390-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942391-temporarystate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "temporaryState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLCommandBuffer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bufferSize"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942391-temporarystate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "temporaryState(with:bufferSize:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate/2942391-temporarystate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942392-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bufferSize"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942392-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(device:bufferSize:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate/2942392-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942393-temporarystate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "temporaryState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLCommandBuffer) -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942393-temporarystate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "temporaryState(with:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate/2942393-temporarystate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942394-destinationimagedescriptor": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "destinationImageDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forSourceImages"
+        },
+        {
+          "kind": "text",
+          "text": ": [MPSImage], "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceStates"
+        },
+        {
+          "kind": "text",
+          "text": ": [MPSState]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSKernel, "
+        },
+        {
+          "kind": "identifier",
+          "text": "suggestedDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSImageDescriptor) -> MPSImageDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942394-destinationimagedescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "destinationImageDescriptor(forSourceImages:sourceStates:for:suggestedDescriptor:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate/2942394-destinationimagedescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942395-temporarystate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "temporaryState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLCommandBuffer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": MTLTextureDescriptor) -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942395-temporarystate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "temporaryState(with:textureDescriptor:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate/2942395-temporarystate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942396-synchronize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "synchronize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLCommandBuffer)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942396-synchronize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "synchronize(on:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate/2942396-synchronize"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942397-resourcesize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "resourceSize"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942397-resourcesize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resourceSize()",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate/2942397-resourcesize"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942398-resource": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "resource"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MTLResource)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942398-resource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resource",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate/2942398-resource"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942400-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice, "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": MTLTextureDescriptor)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942400-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(device:textureDescriptor:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate/2942400-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947895-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "resources"
+        },
+        {
+          "kind": "text",
+          "text": ": [any MTLResource]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947895-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(resources:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate/2947895-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947899-textureinfo": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureInfo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> MPSStateTextureInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947899-textureinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textureInfo(at:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate/2947899-textureinfo"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947900-resourcecount": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "resourceCount"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947900-resourcecount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resourceCount",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate/2947900-resourcecount"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947902-resourcetype": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "resourceType"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> MPSStateResourceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947902-resourcetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resourceType(at:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate/2947902-resourcetype"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947908-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice, "
+        },
+        {
+          "kind": "identifier",
+          "text": "resourceList"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSStateResourceList)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947908-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(device:resourceList:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate/2947908-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947913-buffersize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "bufferSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947913-buffersize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bufferSize(at:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate/2947913-buffersize"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947915-temporarystate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "temporaryState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLCommandBuffer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "resourceList"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSStateResourceList) -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947915-temporarystate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "temporaryState(with:resourceList:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate/2947915-temporarystate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947916-resource": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "resource"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocateMemory"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool) -> (any MTLResource)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947916-resource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resource(at:allocateMemory:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate/2947916-resource"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSTemporaryImage",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpstemporaryimage"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporarymatrix": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporarymatrix",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSTemporaryMatrix",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpstemporarymatrix"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Objects that Simplify the Creation of Neural Networks",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLCommandBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLResource",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "2868845",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2867114-istemporary",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2867179-label",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2867042-readcount",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942398-resource",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947900-resourcecount"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "2942760",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942392-init",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947908-init",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942400-init",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942390-init",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947895-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "2942762",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947913-buffersize",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942394-destinationimagedescriptor",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947916-resource",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942397-resourcesize",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947902-resourcetype",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942396-synchronize",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947899-textureinfo"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2942763",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942393-temporarystate",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942391-temporarystate",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2947915-temporarystate",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate/2942395-temporarystate"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsstate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsstate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

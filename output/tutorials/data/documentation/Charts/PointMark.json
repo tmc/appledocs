@@ -1,0 +1,1591 @@
+{
+  "abstract": [
+    {
+      "text": "Chart content that represents data using points.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Charts/documentation/Charts"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Charts/documentation/Charts/PointMark"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:6Charts9PointMarkV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PointMark"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift Charts"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PointMark"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "PointMark"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PointMark"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.Charts/documentation/Charts/Creating-a-chart-using-Swift-Charts"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create different kinds of point charts using the ",
+              "type": "text"
+            },
+            {
+              "code": "PointMark",
+              "type": "codeVoice"
+            },
+            {
+              "text": " chart content. One common chart you can build with point marks is a scatter plot which displays the relationship between two numerical data properties. To build a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scatter plot use the ",
+              "type": "text"
+            },
+            {
+              "code": "init(x:y:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Provide a ",
+              "type": "text"
+            },
+            {
+              "code": ".value",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for both the ",
+              "type": "text"
+            },
+            {
+              "code": "x",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "y",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameters with a string, used as a label for the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data, and the data element to be plotted. The following example plots the ",
+              "type": "text"
+            },
+            {
+              "code": "wingLength",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "wingHeight",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties with x and y,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "respectively:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Insect {",
+            "    let name: String",
+            "    let family: String",
+            "    let wingLength: Double",
+            "    let wingWidth: Double",
+            "    let weight: Double",
+            "}",
+            "",
+            "var data: [Insect] = [",
+            "    Insect(name: \"Hepialidae\", family: \"Lepidoptera\", wingLength: 61, wingWidth: 52, weight: 22),",
+            "    Insect(name: \"Danaidae\", family: \"Lepidoptera\", wingLength: 60, wingWidth: 48, weight: 24),",
+            "    Insect(name: \"Riodinidae\", family: \"Lepidoptera\", wingLength: 53, wingWidth: 43, weight: 18),",
+            "    // ...",
+            "]",
+            "",
+            "var body: some View {",
+            "    Chart(data) {",
+            "        PointMark(",
+            "            x: .value(\"Wing Length\", $0.wingLength),",
+            "            y: .value(\"Wing Width\", $0.wingWidth)",
+            "        )",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "PointMarkSwift.PointMarkScatterChart.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Adding-Additional-Data-Fields",
+          "level": 3,
+          "text": "Adding Additional Data Fields",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift Charts provides three additional modifiers for point mark that each allow you to plot an additional property to a unique visual channel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Modifier",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Visual Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent/foregroundStyle(by:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "plot an additional property with color",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent/symbol(by:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "plot an additional property with symbols",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent/symbolSize(by:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "plot an additional property with size",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to plot the ",
+              "type": "text"
+            },
+            {
+              "code": "family",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property from the previous example’s ",
+              "type": "text"
+            },
+            {
+              "code": "Insect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure as a color, add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent/foregroundStyle(by:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Chart(data) {",
+            "    PointMark(",
+            "        x: .value(\"Wing Length\", $0.wingLength),",
+            "        y: .value(\"Wing Width\", $0.wingWidth)",
+            "    )",
+            "    .foregroundStyle(by: .value(\"Family\", $0.family))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "PointMarkSwift.PointMarkScatterChartModifiedForegroundColor.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The foreground style modifier automatically generates a color scale that provides each mark with a color that reflects its value property. To learn how to modify the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "default color scale, see ",
+              "type": "text"
+            },
+            {
+              "code": "ScaleModifiers",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The modifier also provides a default legend. To learn how to modify or disable the legend, see ",
+              "type": "text"
+            },
+            {
+              "code": "ChartLegend",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can distinguish families with different symbols by plotting the ",
+              "type": "text"
+            },
+            {
+              "code": "family",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent/symbol(by:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Chart(data) {",
+            "    PointMark(",
+            "        x: .value(\"Wing Length\", $0.wingLength),",
+            "        y: .value(\"Wing Length\", $0.wingWidth)",
+            "    )",
+            "    .symbol(by: .value(\"Family\", $0.family))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "PointMarkSwift.PointMarkScatterChartModifiedSymbol.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "PointMarkSwift.PointMarkScatterChart.png": {
+      "alt": "A scatter plot with wing width plotted on the x-axis and wing height plotted on the y-axis. There are 12 points on the chart that demonstrate a roughly linear relationship between wing width and height.",
+      "identifier": "PointMarkSwift.PointMarkScatterChart.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fca032573a6787a1f164ba898618e71a/PointMarkSwift.PointMarkScatterChart@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b9db27a0921cc629bd474fc6bc302435/PointMarkSwift.PointMarkScatterChart~dark@2x.png"
+        }
+      ]
+    },
+    "PointMarkSwift.PointMarkScatterChartModifiedForegroundColor.png": {
+      "alt": "A scatter plot with wing width plotted on the x-axis, wing height plotted on the y-axis, and insect family mapped to a color. There are 12 points on the chart that demonstrate a roughly linear relationship between wing width and height. The points appear in 3 clusters of 4 points each, where the points in each cluster have a different color. The cluster in the lower left has blue points. The cluster in the middle has green points. The cluster in the upper right has orange points. A legend below the plot maps each color to a different insect family. The mappings are Diptera in blue, Hymenoptera in green, and Lepidoptera in orange.",
+      "identifier": "PointMarkSwift.PointMarkScatterChartModifiedForegroundColor.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49e25992043ab6be4716951a42c79ec0/PointMarkSwift.PointMarkScatterChartModifiedForegroundColor@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0f44912779367a68261caa60571e7dd8/PointMarkSwift.PointMarkScatterChartModifiedForegroundColor~dark@2x.png"
+        }
+      ]
+    },
+    "PointMarkSwift.PointMarkScatterChartModifiedSymbol.png": {
+      "alt": "A scatter plot with wing width plotted on the x-axis, wing height plotted on the y-axis, and insect family mapped to a symbol. There are 12 points on the chart that demonstrate a roughly linear relationship between wing width and height. The points appear in 3 clusters of 4 points each, where the points in each cluster have different symbols. The cluster in the lower left has circular points. The cluster in the middle has square points. The cluster in the upper right has triangular points. A legend below the plot maps each symbol to a different insect family. The mappings are circles for Diptera, squares for Hymenoptera, and triangles for Lepidoptera.",
+      "identifier": "PointMarkSwift.PointMarkScatterChartModifiedSymbol.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/222692d8e981eed4acae351940ac42c8/PointMarkSwift.PointMarkScatterChartModifiedSymbol@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e0f85205ad86a2746e5b4b054703caf5/PointMarkSwift.PointMarkScatterChartModifiedSymbol~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Charts/documentation/Charts": {
+      "abstract": [
+        {
+          "text": "Construct and customize charts on every Apple platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift Charts",
+      "type": "topic",
+      "url": "/documentation/charts"
+    },
+    "doc://com.apple.Charts/documentation/Charts/AreaMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using the area of one or more regions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AreaMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/AreaMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AreaMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "AreaMark",
+      "type": "topic",
+      "url": "/documentation/charts/areamark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/BarMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using bars.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BarMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/BarMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BarMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "BarMark",
+      "type": "topic",
+      "url": "/documentation/charts/barmark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/ChartContent": {
+      "abstract": [
+        {
+          "text": "A type that represents the content that you draw on a chart.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChartContent"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChartContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ChartContent",
+      "type": "topic",
+      "url": "/documentation/charts/chartcontent"
+    },
+    "doc://com.apple.Charts/documentation/Charts/ChartContent/foregroundStyle(by:)": {
+      "abstract": [
+        {
+          "text": "Represents data using a foreground style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "foregroundStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts12ChartContentP",
+          "text": "ChartContent"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent/foregroundStyle(by:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "foregroundStyle(by:)",
+      "type": "topic",
+      "url": "/documentation/charts/chartcontent/foregroundstyle(by:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/ChartContent/symbol(by:)": {
+      "abstract": [
+        {
+          "text": "Represents data using different kinds of symbols.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "symbol"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts12ChartContentP",
+          "text": "ChartContent"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent/symbol(by:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "symbol(by:)",
+      "type": "topic",
+      "url": "/documentation/charts/chartcontent/symbol(by:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/ChartContent/symbolSize(by:)": {
+      "abstract": [
+        {
+          "text": "Represents data using symbol sizes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "symbolSize"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts12ChartContentP",
+          "text": "ChartContent"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent/symbolSize(by:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "symbolSize(by:)",
+      "type": "topic",
+      "url": "/documentation/charts/chartcontent/symbolsize(by:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/Creating-a-chart-using-Swift-Charts": {
+      "abstract": [
+        {
+          "text": "Make a chart by combining chart building blocks in SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/Creating-a-chart-using-Swift-Charts",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a chart using Swift Charts",
+      "type": "topic",
+      "url": "/documentation/charts/creating-a-chart-using-swift-charts"
+    },
+    "doc://com.apple.Charts/documentation/Charts/LineMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using a sequence of connected line segments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LineMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/LineMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LineMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "LineMark",
+      "type": "topic",
+      "url": "/documentation/charts/linemark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/PointMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PointMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/PointMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PointMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "PointMark",
+      "type": "topic",
+      "url": "/documentation/charts/pointmark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/PointMark/init(x:y:)-44ke9": {
+      "abstract": [
+        {
+          "text": "Creates a point mark that plots values to x and y.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/PointMark/init(x:y:)-44ke9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(x:y:)",
+      "type": "topic",
+      "url": "/documentation/charts/pointmark/init(x:y:)-44ke9"
+    },
+    "doc://com.apple.Charts/documentation/Charts/PointMark/init(x:y:)-9dswq": {
+      "abstract": [
+        {
+          "text": "Creates a point mark with fixed x position and plots values with y.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/PointMark/init(x:y:)-9dswq",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(x:y:)",
+      "type": "topic",
+      "url": "/documentation/charts/pointmark/init(x:y:)-9dswq"
+    },
+    "doc://com.apple.Charts/documentation/Charts/PointMark/init(x:y:)-9hppd": {
+      "abstract": [
+        {
+          "text": "Creates a point mark that plots a value on x with fixed y position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/PointMark/init(x:y:)-9hppd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(x:y:)",
+      "type": "topic",
+      "url": "/documentation/charts/pointmark/init(x:y:)-9hppd"
+    },
+    "doc://com.apple.Charts/documentation/Charts/RectangleMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using rectangles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RectangleMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/RectangleMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RectangleMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "RectangleMark",
+      "type": "topic",
+      "url": "/documentation/charts/rectanglemark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/RuleMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using a single horizontal or vertical rule.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RuleMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/RuleMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RuleMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "RuleMark",
+      "type": "topic",
+      "url": "/documentation/charts/rulemark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/SectorMark": {
+      "abstract": [
+        {
+          "text": "A sector of a pie or donut chart, which shows how individual categories make up a meaningful total.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SectorMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/SectorMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SectorMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "SectorMark",
+      "type": "topic",
+      "url": "/documentation/charts/sectormark"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Charts/documentation/Charts/ChartContent",
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Marks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Charts/documentation/Charts/AreaMark",
+        "doc://com.apple.Charts/documentation/Charts/LineMark",
+        "doc://com.apple.Charts/documentation/Charts/RectangleMark",
+        "doc://com.apple.Charts/documentation/Charts/RuleMark",
+        "doc://com.apple.Charts/documentation/Charts/BarMark",
+        "doc://com.apple.Charts/documentation/Charts/SectorMark"
+      ],
+      "title": "Marks"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-point-mark",
+      "identifiers": [
+        "doc://com.apple.Charts/documentation/Charts/PointMark/init(x:y:)-44ke9"
+      ],
+      "title": "Creating a point mark"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Charts/documentation/Charts/PointMark/init(x:y:)-9dswq",
+        "doc://com.apple.Charts/documentation/Charts/PointMark/init(x:y:)-9hppd"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/charts/pointmark"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

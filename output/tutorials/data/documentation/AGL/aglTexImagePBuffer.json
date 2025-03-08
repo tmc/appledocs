@@ -1,0 +1,822 @@
+{
+  "abstract": [
+    {
+      "text": "Binds the contents of a pixel buffer to a data source for a texture object.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.agl/documentation/AGL"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.agl/documentation/AGL/aglTexImagePBuffer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@aglTexImagePBuffer",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "aglTexImagePBuffer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AGL"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "aglTexImagePBuffer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.7",
+        "introducedAt": "10.3",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "aglTexImagePBuffer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@GLboolean",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@GLboolean",
+              "text": "GLboolean"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "aglTexImagePBuffer"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.agl/documentation/AGL/AGLContext",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AGLContext",
+              "text": "AGLContext"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "ctx"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.agl/documentation/AGL/AGLPbuffer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AGLPbuffer",
+              "text": "AGLPbuffer"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "pbuffer"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@GLint",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@GLint",
+              "text": "GLint"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "source"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A rendering context, which is the target context for the texture operation. This is the context that you plan to render content to. This is not the context attached to the pixel buffer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "ctx"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A  pixel buffer object.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "pbuffer"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The source buffer to texture from, which should be a valid OpenGL buffer such as ",
+                  "type": "text"
+                },
+                {
+                  "code": "GL_FRONT",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "GL_BACK",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and should be compatible with the buffer and renderer attributes that you used to create the rendering context attached to the pixel buffer. This means that the pixel buffer must possess the buffer in question for the texturing operation to succeed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "source"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Returns ",
+              "type": "text"
+            },
+            {
+              "code": "GL_FALSE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if it fails for any reason, ",
+              "type": "text"
+            },
+            {
+              "code": "GL_TRUE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " otherwise. If an error occurs, call the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.agl/documentation/AGL/aglGetError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine what the error is.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must generate and bind a texture name (using standard OpenGL texturing calls) that is compatible with the pixel buffer  texture target.  Don’t supply a texture object that was used previously for nonpixel buffer texturing operations unless a you first call the OpenGL function ",
+              "type": "text"
+            },
+            {
+              "code": "glDeleteTextures",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and then regenerate the texture name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you modify the content of a pixel buffer  that uses mipmap levels, you must call this function again before drawing with the pixel buffer, to ensure that the content is synchronized with OpenGL. For pixel buffers without mipmaps, simply rebind  to the texture object to synchronize content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "No OpenGL texturing calls that modify a pixel buffer texture content are permitted (such as ",
+              "type": "text"
+            },
+            {
+              "code": "glTexSubImage2D",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "glCopyTexImage2D",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") with the pixel buffer texture as the destination. It ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "is",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " permitted to use texturing commands to read data ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "from",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " a pixel buffer texture, such as ",
+              "type": "text"
+            },
+            {
+              "code": "glCopyTexImage2D",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", with the pixel buffer texture as the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "source",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". It is also legal to use OpenGL functions such as ",
+              "type": "text"
+            },
+            {
+              "code": "glReadPixels",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to read the contents of a pixel buffer directly through the pixel buffer context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that texturing with the ",
+              "type": "text"
+            },
+            {
+              "code": "aglTexImagePBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function can fail to produce the intended results without error in the same way other OpenGL texturing commands can normally fail. The function fails if you do not enable the proper texture target, set an incompatible filter mode, or other conditions described in the OpenGL specification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t need to share a context when a pixel buffer object is a texture source. You can use independent pixel formats and OpenGL contexts for both the pixel buffer and the target drawable object without sharing resources, and still texture using a pixel buffer in the target context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For details on how to use a pixel buffer object as a texture source, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/OpenGL-MacProgGuide/opengl_intro/opengl_intro.html#//apple_ref/doc/uid/TP40001987",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.agl/documentation/AGL": {
+      "abstract": [
+        {
+          "text": "Create and manage OpenGL rendering contexts for use in macOS, and perform operations on drawable objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AGL",
+      "type": "topic",
+      "url": "/documentation/agl"
+    },
+    "doc://com.apple.agl/documentation/AGL/AGLContext": {
+      "abstract": [
+        {
+          "text": "Represents a pointer to an opaque AGL context object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AGLContext"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/AGLContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AGLContext",
+      "type": "topic",
+      "url": "/documentation/agl/aglcontext"
+    },
+    "doc://com.apple.agl/documentation/AGL/AGLPbuffer": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AGLPbuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/AGLPbuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AGLPbuffer",
+      "type": "topic",
+      "url": "/documentation/agl/aglpbuffer"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglCreatePBuffer": {
+      "abstract": [
+        {
+          "text": "Creates a  pixel buffer of the specified size, compatible with the specified texture target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglCreatePBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglCreatePBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglCreatePBuffer",
+      "type": "topic",
+      "url": "/documentation/agl/aglcreatepbuffer"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglDescribePBuffer": {
+      "abstract": [
+        {
+          "text": "Retrieves information that describes the specified pixel buffer object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglDescribePBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglDescribePBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglDescribePBuffer",
+      "type": "topic",
+      "url": "/documentation/agl/agldescribepbuffer"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglDestroyPBuffer": {
+      "abstract": [
+        {
+          "text": "Releases the resources associated with a pixel buffer object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglDestroyPBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglDestroyPBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglDestroyPBuffer",
+      "type": "topic",
+      "url": "/documentation/agl/agldestroypbuffer"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetError": {
+      "abstract": [
+        {
+          "text": "Returns an AGL error code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetError"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetError",
+      "type": "topic",
+      "url": "/documentation/agl/aglgeterror"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetPBuffer": {
+      "abstract": [
+        {
+          "text": "Retrieves a pixel buffer and its parameters for a specified rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetPBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetPBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetPBuffer",
+      "type": "topic",
+      "url": "/documentation/agl/aglgetpbuffer"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglSetPBuffer": {
+      "abstract": [
+        {
+          "text": "Attaches a pixel buffer object to a rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglSetPBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglSetPBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglSetPBuffer",
+      "type": "topic",
+      "url": "/documentation/agl/aglsetpbuffer"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglTexImagePBuffer": {
+      "abstract": [
+        {
+          "text": "Binds the contents of a pixel buffer to a data source for a texture object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglTexImagePBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglTexImagePBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglTexImagePBuffer",
+      "type": "topic",
+      "url": "/documentation/agl/aglteximagepbuffer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@GLboolean": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLboolean"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@GLboolean",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GLboolean",
+      "type": "topic",
+      "url": "/documentation/OpenGLES/GLboolean"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@GLint": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLint"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@GLint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GLint",
+      "type": "topic",
+      "url": "/documentation/OpenGLES/GLint"
+    },
+    "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/OpenGL-MacProgGuide/opengl_intro/opengl_intro.html#//apple_ref/doc/uid/TP40001987": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/OpenGL-MacProgGuide/opengl_intro/opengl_intro.html#//apple_ref/doc/uid/TP40001987",
+      "title": "OpenGL Programming Guide for Mac",
+      "titleInlineContent": [
+        {
+          "text": "OpenGL Programming Guide for Mac",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/OpenGL-MacProgGuide/opengl_intro/opengl_intro.html#//apple_ref/doc/uid/TP40001987"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-Pixel-Buffers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.agl/documentation/AGL/aglCreatePBuffer",
+        "doc://com.apple.agl/documentation/AGL/aglDestroyPBuffer",
+        "doc://com.apple.agl/documentation/AGL/aglDescribePBuffer",
+        "doc://com.apple.agl/documentation/AGL/aglGetPBuffer",
+        "doc://com.apple.agl/documentation/AGL/aglSetPBuffer"
+      ],
+      "title": "Managing Pixel Buffers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@GLboolean/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@uint8_t",
+              "text": "uint8_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GLboolean"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@GLint/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@int32_t",
+              "text": "int32_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GLint"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/agl/aglteximagepbuffer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

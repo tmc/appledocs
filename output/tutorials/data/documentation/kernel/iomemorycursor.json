@@ -1,0 +1,563 @@
+{
+  "abstract": [
+    {
+      "text": "A mechanism to convert memory references to physical addresses.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iomemorycursor"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1401000,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOMemoryCursor",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOMemoryCursor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOMemoryCursor"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSObject",
+              "text": "OSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The IOMemoryCursor declares the super class that all specific memory cursors must inherit from, but a memory cursor can be created without a specific format subclass by just providing a segment function to the initializers. This class does the difficult stuff of dividing a memory descriptor into a physical scatter/gather list appropriate for the target hardware.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A driver is expected to create a memory cursor and configure it to the limitations of its DMA hardware; for instance the memory cursor used by the FireWire SBP-2 protocol has a maximum physical segment size of 2^16 - 1 but the actual transfer size is unlimited. Thus it would create a cursor with a maxSegmentSize of 65535 and a maxTransfer size of UINT_MAX. It would also provide a SegmentFunction that can output a pagelist entry.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Below is the simplest example of a SegmentFunction:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "void IONaturalMemoryCursor::outputSegment(PhysicalSegment segment,",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "void * outSegments,",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UInt32 outSegmentIndex)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "{",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "((PhysicalSegment *) outSegments)[outSegmentIndex] = segment;",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "}",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobigmemorycursor": {
+      "abstract": [
+        {
+          "text": "An IOMemoryCursor subclass that outputs a vector of PhysicalSegments in the big endian byte order.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobigmemorycursor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBigMemoryCursor",
+      "type": "topic",
+      "url": "/documentation/kernel/iobigmemorycursor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/segmentfunction": {
+      "abstract": [
+        {
+          "text": "A C function that translates a 64-bit segment and outputs a single desired segment to the specified array. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/segmentfunction",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "SegmentFunction",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/segmentfunction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/memory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iolittlememorycursor": {
+      "abstract": [
+        {
+          "text": "An IOMemoryCursor subclass that outputs a vector of PhysicalSegments in the little endian byte order.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iolittlememorycursor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOLittleMemoryCursor",
+      "type": "topic",
+      "url": "/documentation/kernel/iolittlememorycursor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorycursor": {
+      "abstract": [
+        {
+          "text": "A mechanism to convert memory references to physical addresses.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorycursor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMemoryCursor",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorycursor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorycursor/1400980-genphysicalsegments": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "genPhysicalSegments"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorycursor/1400980-genphysicalsegments",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "genPhysicalSegments",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorycursor/1400980-genphysicalsegments"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorycursor/1400994-withspecification": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorycursor/1400994-withspecification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorycursor/1400994-withspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorycursor/1401008-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorycursor/1401008-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorycursor/1401008-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorycursor/1401022-initwithspecification": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorycursor/1401022-initwithspecification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorycursor/1401022-initwithspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorycursor/1812441-genphysicalsegments": {
+      "abstract": [
+        {
+          "text": "Generates a physical scatter/gather list given a memory descriptor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorycursor/1812441-genphysicalsegments",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "genPhysicalSegments",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorycursor/1812441-genphysicalsegments"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorycursor/1812445-initwithspecification": {
+      "abstract": [
+        {
+          "text": "Primary initializer for the IOMemoryCursor class.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorycursor/1812445-initwithspecification",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorycursor/1812445-initwithspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorycursor/1812453-withspecification": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an IOMemoryCursor in one operation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorycursor/1812453-withspecification",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withSpecification",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorycursor/1812453-withspecification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorycursor/alignmask": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorycursor/alignmask",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "alignMask",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorycursor/alignmask"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorycursor/maxsegmentsize": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorycursor/maxsegmentsize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "maxSegmentSize",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorycursor/maxsegmentsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorycursor/maxtransfersize": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorycursor/maxtransfersize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "maxTransferSize",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorycursor/maxtransfersize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorycursor/miscellaneous_defines": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorycursor/miscellaneous_defines",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Miscellaneous Defines",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorycursor/miscellaneous_defines"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorycursor/outseg": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorycursor/outseg",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "outSeg",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorycursor/outseg"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorycursor/physicalsegment": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorycursor/physicalsegment",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "PhysicalSegment",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorycursor/physicalsegment"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionaturalmemorycursor": {
+      "abstract": [
+        {
+          "text": "An IOMemoryCursor subclass that outputs a vector of PhysicalSegments in the natural byte orientation for the CPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionaturalmemorycursor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IONaturalMemoryCursor",
+      "type": "topic",
+      "url": "/documentation/kernel/ionaturalmemorycursor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iobigmemorycursor",
+        "doc://com.apple.documentation/documentation/kernel/iolittlememorycursor",
+        "doc://com.apple.documentation/documentation/kernel/ionaturalmemorycursor"
+      ],
+      "title": "Cursors"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1818698",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomemorycursor/1812441-genphysicalsegments",
+        "doc://com.apple.documentation/documentation/kernel/iomemorycursor/1812445-initwithspecification",
+        "doc://com.apple.documentation/documentation/kernel/iomemorycursor/1812453-withspecification"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1818703",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iodmacommand/segmentfunction"
+      ],
+      "kind": "taskGroup",
+      "title": "Callbacks"
+    },
+    {
+      "anchor": "1818709",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomemorycursor/miscellaneous_defines"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "1818715",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomemorycursor/physicalsegment"
+      ],
+      "kind": "taskGroup",
+      "title": "DataTypes"
+    },
+    {
+      "anchor": "1818719",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomemorycursor/outseg",
+        "doc://com.apple.documentation/documentation/kernel/iomemorycursor/maxtransfersize",
+        "doc://com.apple.documentation/documentation/kernel/iomemorycursor/maxsegmentsize",
+        "doc://com.apple.documentation/documentation/kernel/iomemorycursor/alignmask"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Variables"
+    },
+    {
+      "anchor": "2860884",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomemorycursor/1400980-genphysicalsegments",
+        "doc://com.apple.documentation/documentation/kernel/iomemorycursor/1401008-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/iomemorycursor/1401022-initwithspecification"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2860885",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomemorycursor/1400994-withspecification"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iomemorycursor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

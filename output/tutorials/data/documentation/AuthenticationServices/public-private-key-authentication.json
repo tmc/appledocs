@@ -1,0 +1,1997 @@
+{
+  "abstract": [
+    {
+      "text": "Register and authenticate users with passkeys and security keys, without using passwords.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/public-private-key-authentication"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Authentication Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Public-Private Key Authentication"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Eliminating passwords simplifies account creation and authentication for apps and websites. Additionally, it reduces risks that arise from the reuse of one password across multiple services, brute force attacks, and social engineering that bad actors use to obtain credential information. By implementing public-private authentication according to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.w3.org/TR/webauthn-2/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " specification, your users no longer need to remember complicated passwords or rely on password managers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of using a password, your macOS, iOS, or iPadOS device, known as the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "authenticator",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", generates a public-private key pair at account creation time, and sends the public key to the server. The server, known as the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "relying party",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", holds the public key for subsequent authentication, and uses ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "assertion",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to challenge the authenticator to prove its identity is valid.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two forms of public-private key authentication: ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "passkeys",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "security keys.",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " With passkeys, the device stores its public-private key pair in the user’s iCloud Keychain and syncs the keys across the user’s devices. Security keys store the public-private key pair on a physical medium, such as a security card or a USB key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Make it easy for users to log into apps and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Authentication Services",
+      "type": "topic",
+      "url": "/documentation/authenticationservices"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialAssertion": {
+      "abstract": [
+        {
+          "text": "A class that represents the platform credential assertion type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPlatformPublicKeyCredentialAssertion"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialAssertion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPlatformPublicKeyCredentialAssertion"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationPlatformPublicKeyCredentialAssertion",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationplatformpublickeycredentialassertion"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialAssertionRequest": {
+      "abstract": [
+        {
+          "text": "The concrete assertion request type for platform credentials.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialAssertionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationPlatformPublicKeyCredentialAssertionRequest",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationplatformpublickeycredentialassertionrequest"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that holds the credential.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPlatformPublicKeyCredentialDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPlatformPublicKeyCredentialDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationPlatformPublicKeyCredentialDescriptor",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationplatformpublickeycredentialdescriptor"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialProvider": {
+      "abstract": [
+        {
+          "text": "A mechanism for providing public key credential requests to an app or service with iCloud Keychain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPlatformPublicKeyCredentialProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPlatformPublicKeyCredentialProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationPlatformPublicKeyCredentialProvider",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationplatformpublickeycredentialprovider"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialRegistration": {
+      "abstract": [
+        {
+          "text": "A newly created platform credential that results from a credential registration request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPlatformPublicKeyCredentialRegistration"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialRegistration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPlatformPublicKeyCredentialRegistration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationPlatformPublicKeyCredentialRegistration",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationplatformpublickeycredentialregistration"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest": {
+      "abstract": [
+        {
+          "text": "The object for registering a new platform public key credential.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationplatformpublickeycredentialregistrationrequest"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialAssertion": {
+      "abstract": [
+        {
+          "text": "An interface for establishing a public key-based assertion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPublicKeyCredentialAssertion"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialAssertion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPublicKeyCredentialAssertion"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationPublicKeyCredentialAssertion",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationpublickeycredentialassertion"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialAssertionRequest": {
+      "abstract": [
+        {
+          "text": "An interface for requesting a public key-based credential assertion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPublicKeyCredentialAssertionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialAssertionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPublicKeyCredentialAssertionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationPublicKeyCredentialAssertionRequest",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationpublickeycredentialassertionrequest"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialAttestationKind": {
+      "abstract": [
+        {
+          "text": "A structure that defines the types of attestations a developer can request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPublicKeyCredentialAttestationKind"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialAttestationKind",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPublicKeyCredentialAttestationKind"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationPublicKeyCredentialAttestationKind",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationpublickeycredentialattestationkind"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialDescriptor": {
+      "abstract": [
+        {
+          "text": "An interface that defines the credential identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPublicKeyCredentialDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPublicKeyCredentialDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationPublicKeyCredentialDescriptor",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationpublickeycredentialdescriptor"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialParameters": {
+      "abstract": [
+        {
+          "text": "An object that provides required parameters for the credential during registration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPublicKeyCredentialParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPublicKeyCredentialParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationPublicKeyCredentialParameters",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationpublickeycredentialparameters"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialRegistration": {
+      "abstract": [
+        {
+          "text": "An interface that credential registration requests adhere to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPublicKeyCredentialRegistration"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialRegistration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPublicKeyCredentialRegistration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationPublicKeyCredentialRegistration",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationpublickeycredentialregistration"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialRegistrationRequest": {
+      "abstract": [
+        {
+          "text": "An interface that defines properties for a credential registration request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPublicKeyCredentialRegistrationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialRegistrationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPublicKeyCredentialRegistrationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationPublicKeyCredentialRegistrationRequest",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationpublickeycredentialregistrationrequest"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialResidentKeyPreference": {
+      "abstract": [
+        {
+          "text": "A structure that specifies the relying party’s preference for resident key storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPublicKeyCredentialResidentKeyPreference"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialResidentKeyPreference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPublicKeyCredentialResidentKeyPreference"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationPublicKeyCredentialResidentKeyPreference",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationpublickeycredentialresidentkeypreference"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialUserVerificationPreference": {
+      "abstract": [
+        {
+          "text": "A structure that defines the relying party’s user verification preference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPublicKeyCredentialUserVerificationPreference"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialUserVerificationPreference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationPublicKeyCredentialUserVerificationPreference"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationPublicKeyCredentialUserVerificationPreference",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationpublickeycredentialuserverificationpreference"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialAssertion": {
+      "abstract": [
+        {
+          "text": "A class that represents the security key credential assertion type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationSecurityKeyPublicKeyCredentialAssertion"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialAssertion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationSecurityKeyPublicKeyCredentialAssertion"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationSecurityKeyPublicKeyCredentialAssertion",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialassertion"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest": {
+      "abstract": [
+        {
+          "text": "A class that defines the assertion request type for security key credentials.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialassertionrequest"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that holds public key credential transport information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptor"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor/Transport": {
+      "abstract": [
+        {
+          "text": "A structure that defines the security key credential transport type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transport"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor/Transport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Transport"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor.Transport",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptor/transport"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor/Transport/allSupported": {
+      "abstract": [
+        {
+          "text": "An array of currently supported transport types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor",
+          "text": "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport",
+          "text": "Transport"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor/Transport/allSupported",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports"
+        }
+      ],
+      "role": "symbol",
+      "title": "allSupported",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptor/transport/allsupported"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialProvider": {
+      "abstract": [
+        {
+          "text": "A mechanism for providing public key credential requests to an app or service with a physical security key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationSecurityKeyPublicKeyCredentialProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationSecurityKeyPublicKeyCredentialProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationSecurityKeyPublicKeyCredentialProvider",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialprovider"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialRegistration": {
+      "abstract": [
+        {
+          "text": "A newly created security key credential that results from a credential registration request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationSecurityKeyPublicKeyCredentialRegistration"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialRegistration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationSecurityKeyPublicKeyCredentialRegistration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationSecurityKeyPublicKeyCredentialRegistration",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialregistration"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest": {
+      "abstract": [
+        {
+          "text": "The object for registering a new security key credential.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialregistrationrequest"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASCOSEAlgorithmIdentifier": {
+      "abstract": [
+        {
+          "text": "An identifier for the algorithm that a credential’s key pair uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASCOSEAlgorithmIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASCOSEAlgorithmIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASCOSEAlgorithmIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASCOSEAlgorithmIdentifier",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/ascosealgorithmidentifier"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASCOSEEllipticCurveIdentifier": {
+      "abstract": [
+        {
+          "text": "A structure that contains the elliptic curve identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASCOSEEllipticCurveIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASCOSEEllipticCurveIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASCOSEEllipticCurveIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASCOSEEllipticCurveIdentifier",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/ascoseellipticcurveidentifier"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASPublicKeyCredential": {
+      "abstract": [
+        {
+          "text": "An interface that defines the properties of the public key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASPublicKeyCredential"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASPublicKeyCredential",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASPublicKeyCredential"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASPublicKeyCredential",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/aspublickeycredential"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/connecting-to-a-service-with-passkeys": {
+      "abstract": [
+        {
+          "text": "Allow users to sign in to a service without typing a password.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/connecting-to-a-service-with-passkeys",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Connecting to a service with passkeys",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/connecting-to-a-service-with-passkeys"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/passkey-use-in-web-browsers": {
+      "abstract": [
+        {
+          "text": "Register and authenticate website users by using passkeys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/passkey-use-in-web-browsers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Passkey use in web browsers",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/passkey-use-in-web-browsers"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-passkeys": {
+      "abstract": [
+        {
+          "text": "Eliminate passwords for your users when they sign in to apps and websites.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-passkeys",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting passkeys",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/supporting-passkeys"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-security-key-authentication-using-physical-keys": {
+      "abstract": [
+        {
+          "text": "Allow users to authenticate using NFC, USB, and Lightning security keys in your app or service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-security-key-authentication-using-physical-keys",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Security Key Authentication Using Physical Keys",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/supporting-security-key-authentication-using-physical-keys"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://www.w3.org/TR/webauthn-2/": {
+      "identifier": "https://www.w3.org/TR/webauthn-2/",
+      "title": "W3C Web Authentication",
+      "titleInlineContent": [
+        {
+          "text": "W3C Web Authentication",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.w3.org/TR/webauthn-2/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Passkeys",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/passkey-use-in-web-browsers",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/connecting-to-a-service-with-passkeys"
+      ],
+      "title": "Passkeys"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Fundamentals",
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/connecting-to-a-service-with-passkeys",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-passkeys",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-security-key-authentication-using-physical-keys"
+      ],
+      "title": "Fundamentals"
+    },
+    {
+      "anchor": "Account-registration",
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialRegistration",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialRegistration",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialRegistration",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialRegistrationRequest",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest"
+      ],
+      "title": "Account registration"
+    },
+    {
+      "anchor": "Account-authentication",
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialAssertion",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialAssertion",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialAssertion",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialAssertionRequest",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialAssertionRequest",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest"
+      ],
+      "title": "Account authentication"
+    },
+    {
+      "anchor": "Credential-providers",
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialProvider",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialProvider"
+      ],
+      "title": "Credential providers"
+    },
+    {
+      "anchor": "Request-configuration",
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASPublicKeyCredential",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialParameters",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASCOSEAlgorithmIdentifier",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASCOSEEllipticCurveIdentifier",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialAttestationKind",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialResidentKeyPreference",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialUserVerificationPreference",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialDescriptor",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialDescriptor",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor/Transport",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor/Transport/allSupported"
+      ],
+      "title": "Request configuration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Fundamentals",
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/connecting-to-a-service-with-passkeys",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-passkeys",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-security-key-authentication-using-physical-keys"
+              ],
+              "title": "Fundamentals"
+            },
+            {
+              "anchor": "Account-registration",
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialRegistration",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialRegistration",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialRegistration",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialRegistrationRequest",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest"
+              ],
+              "title": "Account registration"
+            },
+            {
+              "anchor": "Account-authentication",
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialAssertion",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialAssertion",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialAssertion",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialAssertionRequest",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialAssertionRequest",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest"
+              ],
+              "title": "Account authentication"
+            },
+            {
+              "anchor": "Credential-providers",
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialProvider",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialProvider"
+              ],
+              "title": "Credential providers"
+            },
+            {
+              "anchor": "Request-configuration",
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASPublicKeyCredential",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialParameters",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASCOSEAlgorithmIdentifier",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASCOSEEllipticCurveIdentifier",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialAttestationKind",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialResidentKeyPreference",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialUserVerificationPreference",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialDescriptor",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialDescriptor",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor/Transport",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor/Transport/allSupported"
+              ],
+              "title": "Request configuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Passkeys",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/passkey-use-in-web-browsers"
+              ],
+              "title": "Passkeys"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor~1Transport/title",
+          "value": "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor~1Transport/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor~1Transport/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialDescriptor/title",
+          "value": "ASAuthorizationPublicKeyCredentialDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPublicKeyCredentialDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPublicKeyCredentialDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialRegistration/title",
+          "value": "ASAuthorizationSecurityKeyPublicKeyCredentialRegistration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialRegistration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationSecurityKeyPublicKeyCredentialRegistration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialRegistration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationSecurityKeyPublicKeyCredentialRegistration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialRegistrationRequest/title",
+          "value": "ASAuthorizationPublicKeyCredentialRegistrationRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialRegistrationRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPublicKeyCredentialRegistrationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialRegistrationRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPublicKeyCredentialRegistrationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASPublicKeyCredential/title",
+          "value": "ASPublicKeyCredential"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASPublicKeyCredential/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASPublicKeyCredential"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASPublicKeyCredential/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASPublicKeyCredential"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest/title",
+          "value": "ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialAssertionRequest/title",
+          "value": "ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialAssertionRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialAssertionRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPlatformPublicKeyCredentialAssertionRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialAssertionRequest/title",
+          "value": "ASAuthorizationPublicKeyCredentialAssertionRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialAssertionRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPublicKeyCredentialAssertionRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialAssertionRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPublicKeyCredentialAssertionRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialAttestationKind/title",
+          "value": "ASAuthorizationPublicKeyCredentialAttestationKind"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialAttestationKind/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPublicKeyCredentialAttestationKind"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialAttestationKind/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPublicKeyCredentialAttestationKind"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest/title",
+          "value": "ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialProvider/title",
+          "value": "ASAuthorizationPlatformPublicKeyCredentialProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPlatformPublicKeyCredentialProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPlatformPublicKeyCredentialProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor~1Transport~1allSupported/title",
+          "value": "ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor~1Transport~1allSupported/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialParameters/title",
+          "value": "ASAuthorizationPublicKeyCredentialParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPublicKeyCredentialParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPublicKeyCredentialParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialDescriptor/title",
+          "value": "ASAuthorizationPlatformPublicKeyCredentialDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPlatformPublicKeyCredentialDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPlatformPublicKeyCredentialDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialAssertion/title",
+          "value": "ASAuthorizationPlatformPublicKeyCredentialAssertion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialAssertion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPlatformPublicKeyCredentialAssertion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialAssertion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPlatformPublicKeyCredentialAssertion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest/title",
+          "value": "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialProvider/title",
+          "value": "ASAuthorizationSecurityKeyPublicKeyCredentialProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationSecurityKeyPublicKeyCredentialProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationSecurityKeyPublicKeyCredentialProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor/title",
+          "value": "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialResidentKeyPreference/title",
+          "value": "ASAuthorizationPublicKeyCredentialResidentKeyPreference"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialResidentKeyPreference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPublicKeyCredentialResidentKeyPreference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialResidentKeyPreference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPublicKeyCredentialResidentKeyPreference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialRegistration/title",
+          "value": "ASAuthorizationPlatformPublicKeyCredentialRegistration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialRegistration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPlatformPublicKeyCredentialRegistration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialRegistration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPlatformPublicKeyCredentialRegistration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialRegistration/title",
+          "value": "ASAuthorizationPublicKeyCredentialRegistration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialRegistration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPublicKeyCredentialRegistration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialRegistration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPublicKeyCredentialRegistration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialAssertion/title",
+          "value": "ASAuthorizationSecurityKeyPublicKeyCredentialAssertion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialAssertion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationSecurityKeyPublicKeyCredentialAssertion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationSecurityKeyPublicKeyCredentialAssertion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationSecurityKeyPublicKeyCredentialAssertion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASCOSEAlgorithmIdentifier/title",
+          "value": "ASCOSEAlgorithmIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASCOSEAlgorithmIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASCOSEAlgorithmIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASCOSEAlgorithmIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASCOSEAlgorithmIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASCOSEEllipticCurveIdentifier/title",
+          "value": "ASCOSEEllipticCurveIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASCOSEEllipticCurveIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASCOSEEllipticCurveIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASCOSEEllipticCurveIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASCOSEEllipticCurveIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialUserVerificationPreference/title",
+          "value": "ASAuthorizationPublicKeyCredentialUserVerificationPreference"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialUserVerificationPreference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPublicKeyCredentialUserVerificationPreference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialUserVerificationPreference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPublicKeyCredentialUserVerificationPreference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialAssertion/title",
+          "value": "ASAuthorizationPublicKeyCredentialAssertion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialAssertion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPublicKeyCredentialAssertion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPublicKeyCredentialAssertion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationPublicKeyCredentialAssertion"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/authenticationservices/public-private-key-authentication"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/authenticationservices/public-private-key-authentication"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

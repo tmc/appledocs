@@ -1,0 +1,912 @@
+{
+  "abstract": [
+    {
+      "text": "An object that maps URL requests to cached response objects.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsurlcache"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1408402,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSURLCache",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.2",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSURLCache"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSURLCache"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class implements the caching of responses to URL load requests, by mapping ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscachedurlresponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. It provides a composite in-memory and on-disk cache, and lets you manipulate the sizes of both the in-memory and on-disk portions. You can also control the path where cache data is persistently stored.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In iOS, the on-disk cache may be purged when the system runs low on disk space, but only when your app is not running.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "2317483",
+          "level": 3,
+          "text": "Thread safety",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 8 and later, and macOS 10.10 and later, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is thread safe.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " instance methods can safely be called from multiple execution contexts at the same time, be aware that methods like  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache/1411817-cachedresponseforrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache/1410340-storecachedresponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " have an unavoidable race condition when attempting to read or write responses for the same request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Subclasses of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " must implement overridden methods in such a thread-safe manner.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2940723",
+          "level": 3,
+          "text": "Subclassing notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class is meant to be used as-is, but you can subclass it when you have specific needs. For example, you might want to screen which responses are cached, or reimplement the storage mechanism for security or other reasons.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When overriding methods of this class, be aware that methods that take a ",
+              "type": "text"
+            },
+            {
+              "code": "task",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter are preferred by the system to those that do not. Therefore, you should override the task-based methods when subclassing, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Storing responses in the cache — Override the task-based ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache/1414434-storecachedresponse",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", instead of or in addition to the request-based ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache/1410340-storecachedresponse",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Getting responses from the cache — Override ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache/1409184-getcachedresponsefordatatask",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", instead of or in addition to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache/1411817-cachedresponseforrequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Removing cached responses — Override the task-based ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache/1412258-removecachedresponsefordatatask",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", instead of or in addition to the request-based ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache/1415377-removecachedresponseforrequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscachedurlresponse": {
+      "abstract": [
+        {
+          "text": "A cached response to a URL request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscachedurlresponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCachedURLResponse",
+      "type": "topic",
+      "url": "/documentation/foundation/nscachedurlresponse"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcache": {
+      "abstract": [
+        {
+          "text": "An object that maps URL requests to cached response objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLCache",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcache"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcache/1407771-currentdiskusage": {
+      "abstract": [
+        {
+          "text": "The current size of the on-disk cache, in bytes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache/1407771-currentdiskusage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentDiskUsage",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcache/1407771-currentdiskusage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcache/1408199-currentmemoryusage": {
+      "abstract": [
+        {
+          "text": "The current size of the in-memory cache, in bytes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache/1408199-currentmemoryusage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentMemoryUsage",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcache/1408199-currentmemoryusage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcache/1409184-getcachedresponsefordatatask": {
+      "abstract": [
+        {
+          "text": "Gets the cached URL response for a data task, passing it to the provided completion handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCachedResponseForDataTask:completionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache/1409184-getcachedresponsefordatatask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCachedResponseForDataTask:completionHandler:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcache/1409184-getcachedresponsefordatatask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcache/1409781-memorycapacity": {
+      "abstract": [
+        {
+          "text": "The capacity of the in-memory cache, in bytes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache/1409781-memorycapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "memoryCapacity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcache/1409781-memorycapacity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcache/1410340-storecachedresponse": {
+      "abstract": [
+        {
+          "text": "Stores a cached URL response for a specified request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "storeCachedResponse:forRequest:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache/1410340-storecachedresponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "storeCachedResponse:forRequest:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcache/1410340-storecachedresponse"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcache/1411817-cachedresponseforrequest": {
+      "abstract": [
+        {
+          "text": "Returns the cached URL response in the cache for the specified URL request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "cachedResponseForRequest:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache/1411817-cachedresponseforrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cachedResponseForRequest:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcache/1411817-cachedresponseforrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcache/1412258-removecachedresponsefordatatask": {
+      "abstract": [
+        {
+          "text": "Removes the cached URL response for a specified data task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeCachedResponseForDataTask:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache/1412258-removecachedresponsefordatatask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeCachedResponseForDataTask:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcache/1412258-removecachedresponsefordatatask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcache/1413377-sharedurlcache": {
+      "abstract": [
+        {
+          "text": "The shared URL cache instance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache/1413377-sharedurlcache",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sharedURLCache",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcache/1413377-sharedurlcache"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcache/1413505-diskcapacity": {
+      "abstract": [
+        {
+          "text": "The capacity of the on-disk cache, in bytes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache/1413505-diskcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "diskCapacity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcache/1413505-diskcapacity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcache/1414434-storecachedresponse": {
+      "abstract": [
+        {
+          "text": "Stores a cached URL response for a specified data task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "storeCachedResponse:forDataTask:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache/1414434-storecachedresponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "storeCachedResponse:forDataTask:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcache/1414434-storecachedresponse"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcache/1415231-removecachedresponsessincedate": {
+      "abstract": [
+        {
+          "text": "Clears the given cache of any cached responses since the provided date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeCachedResponsesSinceDate:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache/1415231-removecachedresponsessincedate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeCachedResponsesSinceDate:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcache/1415231-removecachedresponsessincedate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcache/1415377-removecachedresponseforrequest": {
+      "abstract": [
+        {
+          "text": "Removes the cached URL response for a specified URL request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeCachedResponseForRequest:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache/1415377-removecachedresponseforrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeCachedResponseForRequest:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcache/1415377-removecachedresponseforrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcache/1415637-initwithmemorycapacity": {
+      "abstract": [
+        {
+          "text": "Creates a URL cache object with the specified values.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithMemoryCapacity:diskCapacity:diskPath:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache/1415637-initwithmemorycapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithMemoryCapacity:diskCapacity:diskPath:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcache/1415637-initwithmemorycapacity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcache/1417802-removeallcachedresponses": {
+      "abstract": [
+        {
+          "text": "Clears the receiver’s cache, removing all stored cached URL responses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllCachedResponses"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache/1417802-removeallcachedresponses",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeAllCachedResponses",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcache/1417802-removeallcachedresponses"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcache/3240612-initwithmemorycapacity": {
+      "abstract": [
+        {
+          "text": "Creates a URL cache object with the specified memory and disk capacities, in the specified directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithMemoryCapacity:diskCapacity:directoryURL:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache/3240612-initwithmemorycapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithMemoryCapacity:diskCapacity:directoryURL:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcache/3240612-initwithmemorycapacity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/accessing_cached_data": {
+      "abstract": [
+        {
+          "text": "Control how URL requests make use of previously cached data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/accessing_cached_data",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing cached data",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/accessing_cached_data"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/accessing_cached_data",
+        "doc://com.apple.documentation/documentation/foundation/nscachedurlresponse"
+      ],
+      "title": "Cache behavior"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1665706",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlcache/1413377-sharedurlcache"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting and setting shared cache"
+    },
+    {
+      "anchor": "1665778",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlcache/3240612-initwithmemorycapacity",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcache/1415637-initwithmemorycapacity"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a new cache object"
+    },
+    {
+      "anchor": "1665840",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlcache/1411817-cachedresponseforrequest",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcache/1410340-storecachedresponse",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcache/1409184-getcachedresponsefordatatask",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcache/1414434-storecachedresponse"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting and storing cached objects"
+    },
+    {
+      "anchor": "1665899",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlcache/1415377-removecachedresponseforrequest",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcache/1412258-removecachedresponsefordatatask",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcache/1415231-removecachedresponsessincedate",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcache/1417802-removeallcachedresponses"
+      ],
+      "kind": "taskGroup",
+      "title": "Removing cached objects"
+    },
+    {
+      "anchor": "1665948",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlcache/1407771-currentdiskusage",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcache/1413505-diskcapacity"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting and setting on-disk cache properties"
+    },
+    {
+      "anchor": "1666013",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlcache/1408199-currentmemoryusage",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcache/1409781-memorycapacity"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting and setting in-memory cache properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurlcache"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/urlcache"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

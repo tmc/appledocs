@@ -1,0 +1,486 @@
+{
+  "abstract": [
+    {
+      "text": "Character set containing the characters the scanner ignores when looking for a scannable element.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+        "doc://com.apple.documentation/documentation/foundation/scanner"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/scanner/1410204-characterstobeskipped"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1410204,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSScanner(py)charactersToBeSkipped",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "var "
+      },
+      {
+        "kind": "identifier",
+        "text": "charactersToBeSkipped"
+      },
+      {
+        "kind": "text",
+        "text": ": CharacterSet?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "Scanner"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "charactersToBeSkipped"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "charactersToBeSkipped"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/characterset",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation12CharacterSetV",
+              "text": "CharacterSet"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Characters to be skipped are skipped prior to the scanner examining the target. For example, if a scanner ignores spaces and you send it a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1410914-scanint32",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " message, it skips spaces until it finds a decimal digit or other character. While an element is being scanned, no characters are skipped. If you scan for something made of characters in the set to be skipped (for example, using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1410914-scanint32",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when the set of characters to be skipped is the decimal digits), the result is undefined.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The characters to be skipped are treated as single values. A scanner doesn’t apply its case sensitivity setting to these characters and doesn’t attempt to match composed character sequences with anything in the set of characters to be skipped (though it does match pre-composed characters individually). If you want to skip all vowels while scanning a string, for example, you can set the characters to be skipped to those in the string “AEIOUaeiou” (plus any accented variants with pre-composed characters).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default set to skip is the whitespace and newline character set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CharacterSet",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscharacterset/1413732-whitespacesandnewlines": {
+      "abstract": [
+        {
+          "text": "A character set containing characters in Unicode General Category Z*, ",
+          "type": "text"
+        },
+        {
+          "code": "U+000A",
+          "type": "codeVoice"
+        },
+        {
+          "text": " ~ ",
+          "type": "text"
+        },
+        {
+          "code": "U+000D",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", and ",
+          "type": "text"
+        },
+        {
+          "code": "U+0085",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "whitespacesAndNewlines"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscharacterset/1413732-whitespacesandnewlines",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "whitespacesAndNewlines",
+      "type": "topic",
+      "url": "/documentation/foundation/nscharacterset/1413732-whitespacesandnewlines"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner": {
+      "abstract": [
+        {
+          "text": "A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Scanner",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1409488-casesensitive": {
+      "abstract": [
+        {
+          "text": "Flag that indicates whether the receiver distinguishes case in the characters it scans.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "caseSensitive"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1409488-casesensitive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "caseSensitive",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1409488-casesensitive"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1409531-locale": {
+      "abstract": [
+        {
+          "text": "The locale to use when scanning.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1409531-locale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "locale",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1409531-locale"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1410204-characterstobeskipped": {
+      "abstract": [
+        {
+          "text": "Character set containing the characters the scanner ignores when looking for a scannable element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "charactersToBeSkipped"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1410204-characterstobeskipped",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "charactersToBeSkipped",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1410204-characterstobeskipped"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1410914-scanint32": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1410914-scanint32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanInt32(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1410914-scanint32"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1413294-scanlocation": {
+      "abstract": [
+        {
+          "text": "The character position at which the receiver will begin its next scanning operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1413294-scanlocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanLocation",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1413294-scanlocation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/strings_and_text": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strings and Text",
+      "type": "topic",
+      "url": "/documentation/foundation/strings_and_text"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/scanner/1413294-scanlocation",
+        "doc://com.apple.documentation/documentation/foundation/scanner/1409488-casesensitive",
+        "doc://com.apple.documentation/documentation/foundation/scanner/1409531-locale"
+      ],
+      "title": "Configuring a Scanner"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscharacterset/1413732-whitespacesandnewlines"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsscanner/1410204-characterstobeskipped"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/scanner/1410204-characterstobeskipped"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

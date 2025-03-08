@@ -1,0 +1,620 @@
+{
+  "abstract": [
+    {
+      "text": "Discover who signed a framework, and take action when that changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/build-system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/verifying-the-origin-of-your-xcframeworks"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Verifying the origin of your XCFrameworks"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you add third-party binary SDKs to your target as XCFrameworks, the behaviors of those packages become part of the behavior of your product. An attacker who’s able to inject a compromised version of the SDK into your project could change your app’s behavior and cause security and privacy issues for your developers, testers, and people who use your product.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use Xcode to inspect the information in the code signature embedded in an XCFramework when you add it to your project. The build system fails with an error if the code signature’s subsequently removed, becomes invalid, or a different developer signs an update to the framework. If any of these happens, take action to resolve the issue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspect-a-dependencys-code-signing-identity",
+          "level": 3,
+          "text": "Inspect a dependency’s code signing identity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Xcode, select your dependency’s XCFramework folder in the Project navigator. The File inspector shows you the XCFramework’s code signing status. If the framework is signed with an Apple Developer certificate, the inspector also shows which team signed the framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "verifying-the-origin-of-your-xcframeworks-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the XCFramework is signed by a self-issued code signing identity, the inspector shows the SHA-256 fingerprint of the certificate in the framework’s code signature. Verify that the certificate fingerprint matches the value you expect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "verifying-the-origin-of-your-xcframeworks-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Diagnose-build-failures-caused-by-code-signature-changes",
+          "level": 3,
+          "text": "Diagnose build failures caused by code signature changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An XCFramework’s code signature can change for legitimate reasons, like:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "the provider of a third-party SDK transfers ownership of the SDK to another organization, who release a version that’s signed with the new organization’s Team ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "you switch from a vendor-supplied distribution of an XCFramework to a version that you build and sign yourself.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A changed code signature can also indicate that the XCFramework has been tampered with, or another actor has injected their own code into your system, pretending it’s a version of the XCFramework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the code signature for an XCFramework changes, Xcode shows the changed code signature information in the File inspector.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "verifying-the-origin-of-your-xcframeworks-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you attempt to build the software without resolving the changed code signature information, the build system produces an error. Work with the XCFramework’s provider to determine whether the change is expected. If the change is expected, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Switch to the Issues navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the error that says “[XCFramework name] is not signed with the expected identity and may have been compromised”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the dialog that appears, click Accept Change.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "verifying-the-origin-of-your-xcframeworks-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your team and the SDK provider can’t account for the change to the XCFramework’s code signature, restore a version of the framework with the expected code signature, or remove the framework from your project. To restore the framework to a version with the expected code signature, do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the dialog, click Move to Trash.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Switch to or open a new Finder window.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag a replacement copy of the XCFramework from a trusted source to the Finder folder that contained the copy you deleted.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Switch to Xcode, and verify that the XCFramework’s signature is valid in the File inspector.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you encounter an unexpected code signature change in an XCFramework, it’s possible that an attacker is exploiting a security vulnerability in your infrastructure. Audit the origins for your XCFrameworks to ensure you obtained them from official sources. You also need to audit your software development and deployment environment carefully, even if you revert the XCFramework to a correctly-signed version.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode also warns you if the XCFramework is signed with an expired or revoked code signing identity, even if the identity hasn’t changed since you added the XCFramework to your project. If this happens, work with the SDK provider to obtain a new version of the framework that’s signed by a valid code signing identity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Diagnose-failures-caused-when-a-code-signature-is-removed",
+          "level": 3,
+          "text": "Diagnose failures caused when a code signature is removed",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If someone removes the code signature for an XCFramework, Xcode shows the change in the File inspector.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "verifying-the-origin-of-your-xcframeworks-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The build system fails with an error if you attempt to build the software without resolving the removed code signature. Determine why the code signature is missing from the XCFramework. If you no longer expect the XCFramework to be signed, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Switch to the Issues navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the error that says “[XCFramework name] is not signed with the expected identity and may have been compromised”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the dialog that appears, click Accept Change.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "verifying-the-origin-of-your-xcframeworks-6",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-system": {
+      "abstract": [
+        {
+          "text": "Compile your code into a binary format, and customize your project settings to build your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Build system",
+      "type": "topic",
+      "url": "/documentation/xcode/build-system"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "verifying-the-origin-of-your-xcframeworks-1": {
+      "alt": "A screenshot of Xcode. An XCFramework folder is selected in the Project navigator, and the File inspector shows that the XCFramework is signed, and identifies your team in the code signature.",
+      "identifier": "verifying-the-origin-of-your-xcframeworks-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/61df9da7f5438ac1bb76a9a8d97ef9d9/verifying-the-origin-of-your-xcframeworks-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2af49e0c3a68e993795f9cbfbf80766a/verifying-the-origin-of-your-xcframeworks-1~dark@2x.png"
+        }
+      ]
+    },
+    "verifying-the-origin-of-your-xcframeworks-2": {
+      "alt": "A screenshot of Xcode. An XCFramework folder is selected in the Project navigator, and the File inspector shows that the XCFramework is signed using a self-signed certificate, and shows the certificate’s SHA-256 checksum.",
+      "identifier": "verifying-the-origin-of-your-xcframeworks-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8490bfd701b433405a9adce86f4e3148/verifying-the-origin-of-your-xcframeworks-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ebb9d2c213cad161d04540e5e7bf672e/verifying-the-origin-of-your-xcframeworks-2~dark@2x.png"
+        }
+      ]
+    },
+    "verifying-the-origin-of-your-xcframeworks-3": {
+      "alt": "A screenshot of Xcode. An XCFramework folder is selected in the Project navigator, and the File inspector shows that the Team ID in the XCFramework’s code signature has changed from the expected value.",
+      "identifier": "verifying-the-origin-of-your-xcframeworks-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0f7df4b2b5ec65cb64772d2f5a88e2fa/verifying-the-origin-of-your-xcframeworks-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/31d4db1b3ca90dec613a7746c4106990/verifying-the-origin-of-your-xcframeworks-3~dark@2x.png"
+        }
+      ]
+    },
+    "verifying-the-origin-of-your-xcframeworks-4": {
+      "alt": "A screenshot of Xcode. The Issues navigator reports an error due to an XCFramework’s code signature not matching the expected value. A dialog presents more information about the changed code signature, with options to cancel, move the framework to Trash, or accept the change.",
+      "identifier": "verifying-the-origin-of-your-xcframeworks-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/041bf53d85785f212ff5248de5f463fd/verifying-the-origin-of-your-xcframeworks-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b78266f79d3ce2c465341693e48ea6b8/verifying-the-origin-of-your-xcframeworks-4~dark@2x.png"
+        }
+      ]
+    },
+    "verifying-the-origin-of-your-xcframeworks-5": {
+      "alt": "A screenshot of Xcode. An XCFramework folder is selected in the Project navigator, and the File inspector shows that the XCFramework’s code signature is missing, when a code signature is expected.",
+      "identifier": "verifying-the-origin-of-your-xcframeworks-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/819f7e3332015583fa4f04a85d520616/verifying-the-origin-of-your-xcframeworks-5@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c1f56840a61f32576692817a03f9621f/verifying-the-origin-of-your-xcframeworks-5~dark@2x.png"
+        }
+      ]
+    },
+    "verifying-the-origin-of-your-xcframeworks-6": {
+      "alt": "A screenshot of Xcode. The Issues navigator reports an error due to an XCFramework missing a code signature. A dialog presents more information about the missing code signature, with options to cancel, move the framework to Trash, or accept the change.",
+      "identifier": "verifying-the-origin-of-your-xcframeworks-6",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f491f3644b3ff6ac4916fb0ad5659ee7/verifying-the-origin-of-your-xcframeworks-6@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c161e480ef5096362667f6343fcb3ce3/verifying-the-origin-of-your-xcframeworks-6~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": []
+}

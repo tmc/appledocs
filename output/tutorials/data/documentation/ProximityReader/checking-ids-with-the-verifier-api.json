@@ -1,0 +1,418 @@
+{
+  "abstract": [
+    {
+      "text": "Read and verify mobile driver’s license information without any additional hardware.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ProximityReader/documentation/ProximityReader/checking-ids-with-the-verifier-api"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ProximityReader"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Checking IDs with the Verifier API"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC23 session 10114: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc23/10114/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The project contains two targets:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "VerifierAPISample-DisplayRequest",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": This target is configured to perform a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDriversLicenseDisplayRequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "VerifierAPISample-DataRequest",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": This target is configured to perform a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDriversLicenseDataRequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "b2924d5d3840/CheckingIDsWithTheVerifierAPI.zip": {
+      "checksum": "b2924d5d3840b8d2b2916f2c71c805eb715638e9beff1d443e58de4daf1ecdfaf842707fdd2220e8c34105b5f69b37fb022389acf9b2c2deb001c933d5d67e5b",
+      "identifier": "b2924d5d3840/CheckingIDsWithTheVerifierAPI.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/b2924d5d3840/CheckingIDsWithTheVerifierAPI.zip"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader": {
+      "abstract": [
+        {
+          "text": "Read contactless physical and digital wallet cards using your iPhone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ProximityReader",
+      "type": "topic",
+      "url": "/documentation/proximityreader"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReader": {
+      "abstract": [
+        {
+          "text": "An object for configuring mobile document reading on the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MobileDocumentReader"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MobileDocumentReader"
+        }
+      ],
+      "role": "symbol",
+      "title": "MobileDocumentReader",
+      "type": "topic",
+      "url": "/documentation/proximityreader/mobiledocumentreader"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderSession": {
+      "abstract": [
+        {
+          "text": "The object you use to start reading a mobile document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MobileDocumentReaderSession"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MobileDocumentReaderSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "MobileDocumentReaderSession",
+      "type": "topic",
+      "url": "/documentation/proximityreader/mobiledocumentreadersession"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDriversLicenseDataRequest": {
+      "abstract": [
+        {
+          "text": "A mobile driver’s license request that retrieves elements from the holder and returns the validated document elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MobileDriversLicenseDataRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDriversLicenseDataRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MobileDriversLicenseDataRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MobileDriversLicenseDataRequest",
+      "type": "topic",
+      "url": "/documentation/proximityreader/mobiledriverslicensedatarequest"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDriversLicenseDisplayRequest": {
+      "abstract": [
+        {
+          "text": "A mobile driver’s license request that retrieves elements from the holder",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and displays the results onscreen for visual inspection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MobileDriversLicenseDisplayRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDriversLicenseDisplayRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MobileDriversLicenseDisplayRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MobileDriversLicenseDisplayRequest",
+      "type": "topic",
+      "url": "/documentation/proximityreader/mobiledriverslicensedisplayrequest"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/adopting-the-verifier-api-in-your-iphone-app": {
+      "abstract": [
+        {
+          "text": "Configure and test ID Verifier support in your app for reading mobile documents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/adopting-the-verifier-api-in-your-iphone-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adopting the Verifier API in your iPhone app",
+      "type": "topic",
+      "url": "/documentation/proximityreader/adopting-the-verifier-api-in-your-iphone-app"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/generating-reader-tokens-for-the-verifier-api": {
+      "abstract": [
+        {
+          "text": "Configure your server to generate reader tokens to prepare a device for mobile document reading.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/generating-reader-tokens-for-the-verifier-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating reader tokens for the Verifier API",
+      "type": "topic",
+      "url": "/documentation/proximityreader/generating-reader-tokens-for-the-verifier-api"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/wwdc23/10114/": {
+      "identifier": "https://developer.apple.com/wwdc23/10114/",
+      "title": "What’s new in Wallet and Apple Pay",
+      "titleInlineContent": [
+        {
+          "text": "What’s new in Wallet and Apple Pay",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc23/10114/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "b2924d5d3840/CheckingIDsWithTheVerifierAPI.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Mobile-document-reader",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/adopting-the-verifier-api-in-your-iphone-app",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/generating-reader-tokens-for-the-verifier-api",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReader",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderSession"
+      ],
+      "title": "Mobile document reader"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/proximityreader/checking-ids-with-the-verifier-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

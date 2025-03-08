@@ -1,0 +1,1422 @@
+{
+  "abstract": [
+    {
+      "text": "Add actions to an Xcode Cloud workflow to build, test, analyze, and archive your app or framework when it performs a build.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud",
+        "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud-Workflow-Reference"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-Xcode-Cloud-Workflow-s-Actions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring your Xcode Cloud workflow’s actions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With Xcode Cloud, you can create custom workflows to adopt a flexible continuous integration and delivery (CI/CD) practice. For example, configure a workflow that verifies changes by building and testing your app or framework, a workflow that performs in-depth verifications, another workflow to regularly deliver a new version of your app to testers, and so on. At the core of each workflow are the actions Xcode Cloud performs during a build.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re new to creating custom workflows, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Developing-a-Workflow-Strategy-for-Xcode-Cloud",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information on other workflow settings, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud-Workflow-Reference",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You need to use Xcode to initially configure your project or workspace to use Xcode Cloud. However, after you’ve started your first build, you can edit and create workflows in either Xcode or ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information about Xcode Cloud workflows, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/wwdc21/10268",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/wwdc21/10269",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Review-actions",
+          "level": 3,
+          "text": "Review actions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A workflow can perform one or many actions that match your project or workflow’s scheme actions. Choose from the following actions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Test",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Analyze",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Archive",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, configure a workflow to perform the build, test, and archive actions for each platform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A good practice to follow when using Xcode Cloud is to create a set of workflows with each performing different actions. For example, you could have one workflow for building and testing actions whenever there’s a change to a branch or pull request, and you could have a second workflow that performs build, test, analyze, and archive actions whenever you merge code into your ",
+              "type": "text"
+            },
+            {
+              "code": "main",
+              "type": "codeVoice"
+            },
+            {
+              "text": " branch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Configuring-Your-Xcode-Cloud-Workflow-s-Actions-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Xcode Cloud performs an action, it:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Creates a temporary build environment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Clones your source code from the connected repository.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolves dependencies.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Runs custom build scripts, if applicable, as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Writing-Custom-Build-Scripts",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Performs the action.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Saves artifacts.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Xcode Cloud performs each action separately in a temporary build environment. As a result, an action’s artifacts might not be available to other actions. For example, a test action’s test result bundle isn’t available to other actions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-an-action-to-a-workflow",
+          "level": 3,
+          "text": "Add an action to a workflow",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add an action to a workflow, first open or create a workflow in Xcode or in the Xcode Cloud tab on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com",
+              "isActive": true,
+              "overridingTitle": "App Store Connect",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "App Store Connect",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " website. Click the Add button (+) next to Actions, choose an action, enter required information, choose from available settings, and save the workflow. Then, manually start a new build or wait for Xcode Cloud to start a new build.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following screenshot shows Xcode’s Edit Workflow sheet for a workflow that performs all four available actions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Configuring-Your-Xcode-Cloud-Workflow-s-Actions-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-build-action",
+          "level": 3,
+          "text": "Add a build action",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Verifying that a change always compiles is one of the key tasks of a CI/CD. With Xcode Cloud, you can perform this verification automatically with a build action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure a workflow’s build action to a workflow:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open or create a workflow in Xcode or in the Xcode Cloud tab on the App Store Connect website.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button next to Actions, and choose Build.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose a platform and a scheme; for example, choose macOS and your macOS app’s corresponding scheme to build your Mac app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose whether you want to build the app for any device or any simulator destinations. For a Mac app, choose between building macOS and Mac Catalyst destinations.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following screenshot shows an Xcode Cloud workflow for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/swiftui/fruta_building_a_feature-rich_app_with_swiftui",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It includes two build actions: one action builds the iOS app, and the other action builds the macOS app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Configuring-Your-Xcode-Cloud-Workflow-s-Actions-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Xcode Cloud performs a build action, it accesses your source code and runs the ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild build",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command to create the build product. Upon completion, Xcode Cloud makes the following artifacts available: the build product, build logs, and the result bundle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-test-action",
+          "level": 3,
+          "text": "Add a test action",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Verifying a change by running your tests is another key task of a CI/CD practice. While every project comes with its unique requirements, it usually makes sense to configure two workflows that perform a test action:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A workflow that frequently runs basic, short running tests.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A workflow that runs more extensive, long-running tests less frequently.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Adding a test action builds your app or framework for testing. You don’t need to add a build action to run your tests.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a test action to a workflow:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open or create a workflow in Xcode or in the Xcode Cloud tab on the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://appstoreconnect.apple.com",
+                      "isActive": true,
+                      "overridingTitle": "App Store Connect",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "App Store Connect",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " website.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button next to Actions, and choose Test.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose a platform and a scheme for the test action.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Decide if you want a build to fail when the test action fails, then choose “Required To Pass” or “Not Required to Pass,” accordingly.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Use Scheme Settings if you want the test action to use the selected scheme’s configuration. Alternatively, choose a test plan if you use them. For more information on test plans, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2019/413/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10221/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add at least one destination by clicking the Add button. Available destinations depend on the workflow’s environment setting. A higher number of destinations increases the time it takes Xcode Cloud to complete a build.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following screenshot shows an Xcode Cloud workflow for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/swiftui/fruta_building_a_feature-rich_app_with_swiftui",
+              "isActive": true,
+              "overridingTitle": "Fruta app",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Fruta app",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". It includes two test actions: one action tests the iOS app, and the other action tests the macOS app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Configuring-Your-Xcode-Cloud-Workflow-s-Actions-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A test action runs in two separate phases: In the first phase, Xcode Cloud accesses your source code and creates test products using the ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild build-for-testing",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command. In the second phase, Xcode Cloud uses the test products it creates in the first phase to run your tests using the ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild test-without-building",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The source code isn’t available when Xcode Cloud runs your tests in the second phase.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Xcode Cloud completes the test action, it makes test products and the result bundle with the test results available as artifacts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information on using Xcode Cloud to run your tests, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/wwdc22/110361",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-an-analyze-action",
+          "level": 3,
+          "text": "Add an analyze action",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to building and testing your code, analyzing it with Xcode can help you verify that your code is free from memory leaks and other issues. However, because analyzing code takes time, you might not do it regularly, causing issues to accumulate. Adding an analyze action to an Xcode Cloud workflow ensures you regularly analyze your code to identify errors before they become issues.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add an analyze action to a workflow:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open or create a workflow in Xcode or in the Xcode Cloud tab on the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://appstoreconnect.apple.com",
+                      "isActive": true,
+                      "overridingTitle": "App Store Connect",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "App Store Connect",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " website.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button next to Actions, and choose Analyze.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose a platform and a scheme for the analyze action.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Decide if you want a build to fail if the analyze action fails and choose Required To Pass or Not Required to Pass accordingly.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Xcode Cloud performs the analyze action, it accesses your source code and runs the ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild analyze",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command to perform static code analysis. Upon completion, Xcode Cloud makes the build logs available as artifacts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-an-archive-action",
+          "level": 3,
+          "text": "Add an archive action",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re ready to distribute your app or framework to testers or to release it, you typically archive your app or framework with Xcode. To automate this task, add the archive action to an Xcode Cloud workflow. In fact, the archive action is a requirement for distributing a new version of your app to testers with TestFlight or for release on the App Store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you configure a workflow to archive an app, the Deployment Preparation setting is a key setting. It determines how Xcode Cloud signs your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Choose from the following options:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The exported app archive isn’t eligible for distribution with TestFlight or for release on the App Store. Use this setting if you don’t configure the workflow to distribute an app.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "None",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The exported app archive is eligible for distribution to testers with TestFlight. Because the app archive isn’t eligible for release on the App Store, use this setting to prepare the exported app archive for distribution within your team or for distribution to internal testers with TestFlight. For example, choose it for nightly builds, pull requests, or development branches.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "TestFlight (Internal Testing Only)",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The exported app archive is eligible for distribution to testers with TestFlight and for release on the App Store. Choose this option for builds you distribute to external testers and that you plan to make available on the App Store. Note that external testing is subject to beta app review.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "TestFlight and App Store",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add an archive action to a workflow:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open or create a workflow in Xcode or in the Xcode Cloud tab in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://appstoreconnect.apple.com",
+                      "isActive": true,
+                      "overridingTitle": "App Store Connect",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "App Store Connect",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button next to Actions, and choose Archive.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose a platform and a scheme.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose the option for the Deployment Preparation setting that fits your needs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Xcode Cloud performs the archive action, it accesses your code and runs the ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild archive",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command to create an exported app archive or framework bundle. Upon completion, Xcode Cloud makes the exported app archive or framework bundle and the build logs available as artifacts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Configuring-Your-Xcode-Cloud-Workflow-s-Actions-1": {
+      "alt": "An illustration that shows the different steps Xcode Cloud performs as part of an action.",
+      "identifier": "Configuring-Your-Xcode-Cloud-Workflow-s-Actions-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0afec4810e2050809f0c42ba211c2a3f/Configuring-Your-Xcode-Cloud-Workflow-s-Actions-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ce0b4735d9548c365488ac45d28e5f51/Configuring-Your-Xcode-Cloud-Workflow-s-Actions-1~dark@2x.png"
+        }
+      ]
+    },
+    "Configuring-Your-Xcode-Cloud-Workflow-s-Actions-2": {
+      "alt": "A screenshot of Xcode’s Edit Workflow sheet for a workflow that performs all four available actions.",
+      "identifier": "Configuring-Your-Xcode-Cloud-Workflow-s-Actions-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/55b95c6caf84cce6829eaae92d8fb8e8/Configuring-Your-Xcode-Cloud-Workflow-s-Actions-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2bd47b3c54f9ec23b5637c9a37b718cf/Configuring-Your-Xcode-Cloud-Workflow-s-Actions-2~dark@2x.png"
+        }
+      ]
+    },
+    "Configuring-Your-Xcode-Cloud-Workflow-s-Actions-3": {
+      "alt": "A screenshot that shows a workflow in Xcode with two build actions: one build action for the macOS app and one build action for the iOS app.",
+      "identifier": "Configuring-Your-Xcode-Cloud-Workflow-s-Actions-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/da28e12048d60f6e72c45475abf22e30/Configuring-Your-Xcode-Cloud-Workflow-s-Actions-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/683e5926cb53e19913d169ad31f837cf/Configuring-Your-Xcode-Cloud-Workflow-s-Actions-3~dark@2x.png"
+        }
+      ]
+    },
+    "Configuring-Your-Xcode-Cloud-Workflow-s-Actions-4": {
+      "alt": "A screenshot that shows a workflow in Xcode with two test actions: a test action for the iOS app and another test action for the macOS app.",
+      "identifier": "Configuring-Your-Xcode-Cloud-Workflow-s-Actions-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0a4d155813ece3cbc70d8f2e4a216021/Configuring-Your-Xcode-Cloud-Workflow-s-Actions-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/86438f5eb7f358a5de1729fb0345b4fe/Configuring-Your-Xcode-Cloud-Workflow-s-Actions-4~dark@2x.png"
+        }
+      ]
+    },
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Developing-a-Workflow-Strategy-for-Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Review how you can best create custom Xcode Cloud workflows to refine your continuous integration and delivery practice.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Developing-a-Workflow-Strategy-for-Xcode-Cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Developing a workflow strategy for Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/developing-a-workflow-strategy-for-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Writing-Custom-Build-Scripts": {
+      "abstract": [
+        {
+          "text": "Extend your Xcode Cloud workflows with custom build scripts that perform custom tasks or install additional tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Writing-Custom-Build-Scripts",
+      "kind": "article",
+      "role": "article",
+      "title": "Writing custom build scripts",
+      "type": "topic",
+      "url": "/documentation/xcode/writing-custom-build-scripts"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Automatically build, test, and distribute your apps with Xcode Cloud to verify changes and create high-quality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud-Workflow-Reference": {
+      "abstract": [
+        {
+          "text": "Configure metadata, start conditions, actions, post-actions, and more to create custom Xcode Cloud workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud-Workflow-Reference",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Xcode Cloud workflow reference",
+      "type": "topic",
+      "url": "/documentation/xcode/xcode-cloud-workflow-reference"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://appstoreconnect.apple.com": {
+      "identifier": "https://appstoreconnect.apple.com",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com"
+    },
+    "https://developer.apple.com/documentation/swiftui/fruta_building_a_feature-rich_app_with_swiftui": {
+      "identifier": "https://developer.apple.com/documentation/swiftui/fruta_building_a_feature-rich_app_with_swiftui",
+      "title": "Fruta app",
+      "titleInlineContent": [
+        {
+          "text": "Fruta app",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/swiftui/fruta_building_a_feature-rich_app_with_swiftui"
+    },
+    "https://developer.apple.com/videos/play/wwdc2019/413/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2019/413/",
+      "title": "Testing in Xcode",
+      "titleInlineContent": [
+        {
+          "text": "Testing in Xcode",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2019/413/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10221/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10221/",
+      "title": "Get your test results faster",
+      "titleInlineContent": [
+        {
+          "text": "Get your test results faster",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10221/"
+    },
+    "https://developer.apple.com/wwdc21/10268": {
+      "identifier": "https://developer.apple.com/wwdc21/10268",
+      "title": "Explore Xcode Cloud workflows",
+      "titleInlineContent": [
+        {
+          "text": "Explore Xcode Cloud workflows",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc21/10268"
+    },
+    "https://developer.apple.com/wwdc21/10269": {
+      "identifier": "https://developer.apple.com/wwdc21/10269",
+      "title": "Customize your advanced Xcode Cloud workflows",
+      "titleInlineContent": [
+        {
+          "text": "Customize your advanced Xcode Cloud workflows",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc21/10269"
+    },
+    "https://developer.apple.com/wwdc22/110361": {
+      "identifier": "https://developer.apple.com/wwdc22/110361",
+      "title": "Author fast and reliable tests for Xcode Cloud",
+      "titleInlineContent": [
+        {
+          "text": "Author fast and reliable tests for Xcode Cloud",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc22/110361"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": []
+}

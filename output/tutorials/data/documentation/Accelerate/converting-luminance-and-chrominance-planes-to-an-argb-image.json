@@ -1,0 +1,2036 @@
+{
+  "abstract": [
+    {
+      "text": "Create a displayable ARGB image using the luminance and chrominance information from your device’s camera.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/converting-luminance-and-chrominance-planes-to-an-argb-image"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.3",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Converting luminance and chrominance planes to an ARGB image"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As an alternative to the any-to-any conversion technique that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/using-vimage-pixel-buffers-to-generate-video-effects",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " describes, vImage provides low-level functions for creating RGB images from the separate luminance and chrominance planes that an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession",
+              "isActive": true,
+              "overridingTitle": "AVCaptureSession",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AVCaptureSession",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instance provides. These functions offer better performance and more granular configuration than using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-YpCbCr-to-ARGB-information",
+          "level": 3,
+          "text": "Configure the YpCbCr-to-ARGB information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_YpCbCrToARGB_GenerateConversion(_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "generates the information that vImage requires to convert the luminance and chrominance planes to a single ARGB image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Video-range YpCbCr formats often don’t use very low and very high values. For example, an 8-bit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "video range format typically uses the range ",
+              "type": "text"
+            },
+            {
+              "code": "16...235",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for luminance and ",
+              "type": "text"
+            },
+            {
+              "code": "16...240",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for chrominance.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The generate conversion function accepts a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure that defines the pixel range.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code example populates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrToARGB",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure with the required conversion information for video-range 8-bit pixels:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var infoYpCbCrToARGB = vImage_YpCbCrToARGB()",
+            "",
+            "func configureYpCbCrToARGBInfo() {",
+            "    var pixelRange = vImage_YpCbCrPixelRange(Yp_bias: 16,",
+            "                                             CbCr_bias: 128,",
+            "                                             YpRangeMax: 235,",
+            "                                             CbCrRangeMax: 240,",
+            "                                             YpMax: 235,",
+            "                                             YpMin: 16,",
+            "                                             CbCrMax: 240,",
+            "                                             CbCrMin: 16)",
+            "",
+            "    var ypCbCrToARGBMatrix = vImage_YpCbCrToARGBMatrix(Yp: 1.0,",
+            "                                                       Cr_R: 1.402, Cr_G: -0.7141363,",
+            "                                                       Cb_G: -0.3441363, Cb_B: 1.772)",
+            "    ",
+            "    _ = vImageConvert_YpCbCrToARGB_GenerateConversion(",
+            "        &ypCbCrToARGBMatrix,",
+            "        &pixelRange,",
+            "        &infoYpCbCrToARGB,",
+            "        kvImage422CbYpCrYp8,",
+            "        kvImageARGB8888,",
+            "        vImage_Flags(kvImageNoFlags))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Lock-the-Core-Video-pixel-buffer",
+          "level": 3,
+          "text": "Lock the Core Video pixel buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before the sample app accesses the pixel data that AVFoundation supplies as a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/cvpixelbuffer-q2e",
+              "isActive": true,
+              "overridingTitle": "CVPixelBuffer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CVPixelBuffer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", it calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBufferLockBaseAddress(_:_:)",
+              "isActive": true,
+              "overridingTitle": "CVPixelBufferLockBaseAddress(_:_:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CVPixelBufferLockBaseAddress(_:_:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to lock the pixel buffer and make the underlying memory available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the YpCbCr-to-RGB conversion is complete, the code calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBufferUnlockBaseAddress(_:_:)",
+              "isActive": true,
+              "overridingTitle": "CVPixelBufferUnlockBaseAddress(_:_:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CVPixelBufferUnlockBaseAddress(_:_:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to unlock the pixel buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "convertYpCbCrToRGB(cvPixelBuffer:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function performs the YpCbCr-to-RGB conversion.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CVPixelBufferLockBaseAddress(",
+            "    pixelBuffer,",
+            "    CVPixelBufferLockFlags.readOnly)",
+            "",
+            "convertYpCbCrToRGB(cvPixelBuffer: pixelBuffer)",
+            "",
+            "CVPixelBufferUnlockBaseAddress(",
+            "    pixelBuffer,",
+            "    CVPixelBufferLockFlags.readOnly)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-source-luminance-and-chrominance-pixel-buffers",
+          "level": 3,
+          "text": "Create the source luminance and chrominance pixel buffers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "convertYpCbCrToRGB(cvPixelBuffer:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function creates two pixel buffers that share memory with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/cvpixelbuffer-q2e",
+              "isActive": true,
+              "overridingTitle": "CVPixelBuffer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CVPixelBuffer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". The Core Video pixel",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "buffer contains two planes: the plane at index ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains one channel that represents the luminance component,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the plane at index ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains two interleaved channels that represent the two chrominance components.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/init(referencing:planeIndex:overrideSize:pixelFormat:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function initializes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that references a single plane of a multiple-plane Core Video pixel buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let lumaPixelBuffer = vImage.PixelBuffer(referencing: cvPixelBuffer,",
+            "                                         planeIndex: 0,",
+            "                                         pixelFormat: vImage.Planar8.self)",
+            "",
+            "let chromaPixelBuffer = vImage.PixelBuffer(referencing: cvPixelBuffer,",
+            "                                           planeIndex: 1,",
+            "                                           pixelFormat: vImage.Interleaved8x2.self)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Adjust-the-contrast-of-the-image",
+          "level": 3,
+          "text": "Adjust the contrast of the image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app provides a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Slider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for changing the contrast of the final image. The following code example uses the tone-mapping",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "technique that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/adjusting-saturation-and-applying-tone-mapping",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " describes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if contrast != 1 {",
+            "    lumaPixelBuffer.applyGamma(.halfPrecision(contrast),",
+            "                               destination: lumaPixelBuffer)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Convert-the-YpCbCr-image-to-an-ARGB-image",
+          "level": 3,
+          "text": "Convert the YpCbCr image to an ARGB image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/convert(lumaSource:chromaSource:conversionInfo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " converts the luminance and chrominance information in ",
+              "type": "text"
+            },
+            {
+              "code": "lumaPixelBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "chromaPixelBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to an ARGB image. This pixel buffer method calls the underlying vImage ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_420Yp8_CbCr8ToARGB8888(_:_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "argbPixelBuffer.convert(lumaSource: lumaPixelBuffer,",
+            "                        chromaSource: chromaPixelBuffer,",
+            "                        conversionInfo: infoYpCbCrToARGB)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "adb628145c36/ConvertingLuminanceAndChrominancePlanesToAnARGBImage.zip": {
+      "checksum": "adb628145c36f078c70b2de88c369e89213b1b4273227518d8349c9766a197b0d6e3876fa757c3e4e2804078a4da6195d2baf4ab157ea749d9c3269a77aba61d",
+      "identifier": "adb628145c36/ConvertingLuminanceAndChrominancePlanesToAnARGBImage.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/adb628145c36/ConvertingLuminanceAndChrominancePlanesToAnARGBImage.zip"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/adjusting-saturation-and-applying-tone-mapping": {
+      "abstract": [
+        {
+          "text": "Convert an RGB image to discrete luminance and chrominance channels, and apply color and contrast treatments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/adjusting-saturation-and-applying-tone-mapping",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adjusting saturation and applying tone mapping",
+      "type": "topic",
+      "url": "/documentation/accelerate/adjusting-saturation-and-applying-tone-mapping"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-color-transforms-to-images-with-a-multidimensional-lookup-table": {
+      "abstract": [
+        {
+          "text": "Precompute translation values to optimize color space conversion and other pointwise operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-color-transforms-to-images-with-a-multidimensional-lookup-table",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying color transforms to images with a multidimensional lookup table",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-color-transforms-to-images-with-a-multidimensional-lookup-table"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-conversion-workflow": {
+      "abstract": [
+        {
+          "text": "Learn the fundamentals of the convert-any-to-any function by converting a CMYK image to an RGB image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-conversion-workflow",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a basic image conversion workflow",
+      "type": "topic",
+      "url": "/documentation/accelerate/building-a-basic-image-conversion-workflow"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/conversion": {
+      "abstract": [
+        {
+          "text": "Convert an image to a different format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/conversion",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Conversion",
+      "type": "topic",
+      "url": "/documentation/accelerate/conversion"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/converting-color-images-to-grayscale": {
+      "abstract": [
+        {
+          "text": "Convert an RGB image to grayscale using matrix multiplication.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/converting-color-images-to-grayscale",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Converting color images to grayscale",
+      "type": "topic",
+      "url": "/documentation/accelerate/converting-color-images-to-grayscale"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/using-vimage-pixel-buffers-to-generate-video-effects": {
+      "abstract": [
+        {
+          "text": "Render real-time video effects with the vImage Pixel Buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/using-vimage-pixel-buffers-to-generate-video-effects",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using vImage pixel buffers to generate video effects",
+      "type": "topic",
+      "url": "/documentation/accelerate/using-vimage-pixel-buffers-to-generate-video-effects"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, bit depth, and number of channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.PixelBuffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/convert(lumaSource:chromaSource:conversionInfo:)": {
+      "abstract": [
+        {
+          "text": "Populates the pixel buffer with ARGB data from the given luminance and chrominance pixel buffers.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Interleaved8x4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "lumaSource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7Planar8V",
+          "text": "Planar8"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "chromaSource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO14Interleaved8x2V",
+          "text": "Interleaved8x2"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "conversionInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_YpCbCrToARGB",
+          "text": "vImage_YpCbCrToARGB"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/convert(lumaSource:chromaSource:conversionInfo:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convert(lumaSource:chromaSource:conversionInfo:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/convert(lumasource:chromasource:conversioninfo:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/init(referencing:planeIndex:overrideSize:pixelFormat:)": {
+      "abstract": [
+        {
+          "text": "Initializes a pixel buffer by refencing the data from a single plane of a multiplane Core Video pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "SinglePlanePixelFormat",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "referencing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "planeIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "overrideSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO4SizeV",
+          "text": "Size"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": ".Type)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/init(referencing:planeIndex:overrideSize:pixelFormat:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(referencing:planeIndex:overrideSize:pixelFormat:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/init(referencing:planeindex:overridesize:pixelformat:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_420Yp8_CbCr8ToARGB8888(_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Converts a planar Yp buffer and a 2-channel CbCr buffer to an 8-bit-per-channel, 4-channel ARGB buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_420Yp8_CbCr8ToARGB8888"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_YpCbCrToARGB",
+          "text": "vImage_YpCbCrToARGB"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_420Yp8_CbCr8ToARGB8888(_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_420Yp8_CbCr8ToARGB8888"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageConvert_420Yp8_CbCr8ToARGB8888(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconvert_420yp8_cbcr8toargb8888(_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_YpCbCrToARGB_GenerateConversion(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Generates the information that describes the conversion from YpCbCr to ARGB.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_YpCbCrToARGB_GenerateConversion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_YpCbCrToARGBMatrix",
+          "text": "vImage_YpCbCrToARGBMatrix"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_YpCbCrPixelRange",
+          "text": "vImage_YpCbCrPixelRange"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_YpCbCrToARGB",
+          "text": "vImage_YpCbCrToARGB"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@vImageYpCbCrType",
+          "text": "vImageYpCbCrType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@vImageARGBType",
+          "text": "vImageARGBType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_YpCbCrToARGB_GenerateConversion(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_YpCbCrToARGB_GenerateConversion"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageConvert_YpCbCrToARGB_GenerateConversion(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconvert_ypcbcrtoargb_generateconversion(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter": {
+      "abstract": [
+        {
+          "text": "A description of a conversion from one image format to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageConverter"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageConverter"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageConverter",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconverter"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange": {
+      "abstract": [
+        {
+          "text": "The description of range and clamping information for YpCbCr pixel formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_YpCbCrPixelRange"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_YpCbCrPixelRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_YpCbCrPixelRange",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_ypcbcrpixelrange"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrToARGB": {
+      "abstract": [
+        {
+          "text": "The information that describes the conversion from YpCbCr to ARGB.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_YpCbCrToARGB"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrToARGB",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_YpCbCrToARGB"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_YpCbCrToARGB",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_ypcbcrtoargb"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession": {
+      "abstract": [
+        {
+          "text": "An object that configures capture behavior and coordinates the flow of data from input devices to capture outputs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureSession",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureSession"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBufferLockBaseAddress(_:_:)": {
+      "abstract": [
+        {
+          "text": "Locks the base address of the pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVPixelBufferLockBaseAddress"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "pixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "lockFlags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CVPixelBufferLockFlags",
+          "text": "CVPixelBufferLockFlags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVReturn",
+          "text": "CVReturn"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBufferLockBaseAddress(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVPixelBufferLockBaseAddress(_:_:)",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/CVPixelBufferLockBaseAddress(_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBufferUnlockBaseAddress(_:_:)": {
+      "abstract": [
+        {
+          "text": "Unlocks the base address of the pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVPixelBufferUnlockBaseAddress"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "pixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "unlockFlags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CVPixelBufferLockFlags",
+          "text": "CVPixelBufferLockFlags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVReturn",
+          "text": "CVReturn"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBufferUnlockBaseAddress(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVPixelBufferUnlockBaseAddress(_:_:)",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/CVPixelBufferUnlockBaseAddress(_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/cvpixelbuffer-q2e": {
+      "abstract": [
+        {
+          "text": "An image buffer that holds pixels in main memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/cvpixelbuffer-q2e",
+      "kind": "article",
+      "role": "article",
+      "title": "CVPixelBuffer",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/cvpixelbuffer-q2e"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Slider": {
+      "abstract": [
+        {
+          "text": "A control for selecting a value from a bounded linear range of values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Slider"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ValueLabel"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ValueLabel"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Slider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Slider",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Slider"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "adb628145c36/ConvertingLuminanceAndChrominancePlanesToAnARGBImage.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Conversion-Between-Image-Formats",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-conversion-workflow",
+        "doc://com.apple.accelerate/documentation/Accelerate/converting-color-images-to-grayscale",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-color-transforms-to-images-with-a-multidimensional-lookup-table",
+        "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-conversion-workflow",
+        "doc://com.apple.accelerate/documentation/Accelerate/conversion"
+      ],
+      "title": "Conversion Between Image Formats"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1CVPixelBufferLockBaseAddress(_:_:)/title",
+          "value": "CVPixelBufferLockBaseAddress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1CVPixelBufferLockBaseAddress(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CVReturn",
+              "text": "CVReturn"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CVPixelBufferLockBaseAddress"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CVPixelBufferRef",
+              "text": "CVPixelBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "pixelBuffer"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@CVPixelBufferLockFlags",
+              "text": "CVPixelBufferLockFlags"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "lockFlags"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConverter/title",
+          "value": "vImageConverterRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConverter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConverterRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConverter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConverterRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange/title",
+          "value": "vImage_YpCbCrPixelRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_YpCbCrPixelRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_YpCbCrPixelRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrToARGB/title",
+          "value": "vImage_YpCbCrToARGB"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrToARGB/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_YpCbCrToARGB"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrToARGB/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_YpCbCrToARGB"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1CVPixelBufferUnlockBaseAddress(_:_:)/title",
+          "value": "CVPixelBufferUnlockBaseAddress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1CVPixelBufferUnlockBaseAddress(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CVReturn",
+              "text": "CVReturn"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CVPixelBufferUnlockBaseAddress"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CVPixelBufferRef",
+              "text": "CVPixelBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "pixelBuffer"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@CVPixelBufferLockFlags",
+              "text": "CVPixelBufferLockFlags"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "unlockFlags"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_YpCbCrToARGB_GenerateConversion(_:_:_:_:_:_:)/title",
+          "value": "vImageConvert_YpCbCrToARGB_GenerateConversion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_YpCbCrToARGB_GenerateConversion(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConvert_YpCbCrToARGB_GenerateConversion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_420Yp8_CbCr8ToARGB8888(_:_:_:_:_:_:_:)/title",
+          "value": "vImageConvert_420Yp8_CbCr8ToARGB8888"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_420Yp8_CbCr8ToARGB8888(_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConvert_420Yp8_CbCr8ToARGB8888"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

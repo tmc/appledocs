@@ -1,0 +1,1050 @@
+{
+  "abstract": [
+    {
+      "text": "Specify values that represent general color spaces.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1560701-abstract_color_space_constants"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1560701,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Abstract Color Space Constants"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The data type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmbitmap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " defines a bitmap for an image whose colors can be matched with the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805108-cwmatchcolors",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or color-checked with the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805111-cwcheckcolors",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "space",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field of the ",
+              "type": "text"
+            },
+            {
+              "code": "CMBitmap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type definition identifies the color space in which the colors of the bitmap image are specified. A color space is characterized by a number of components or dimensions, with each component carrying a numeric value. These values together make up the color value. A color space also specifies the format in which the color value is stored. For bitmaps in which color values are packed, the ",
+              "type": "text"
+            },
+            {
+              "code": "space",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field of the ",
+              "type": "text"
+            },
+            {
+              "code": "CMBitmap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data type holds a constant that defines the color space and the packing format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the ",
+              "type": "text"
+            },
+            {
+              "code": "CWMatchBitmap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to perform color matching successfully, the color space specified in the ",
+              "type": "text"
+            },
+            {
+              "code": "CMBitmap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data type’s ",
+              "type": "text"
+            },
+            {
+              "code": "space",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field must correspond to the color space specified in the profile’s ",
+              "type": "text"
+            },
+            {
+              "code": "dataColorSpace",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field. The source bitmap and source profile values must match and the destination bitmap and destination profile values must match. For the ",
+              "type": "text"
+            },
+            {
+              "code": "CWCheckBitMap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to perform color checking successfully, the source profile’s ",
+              "type": "text"
+            },
+            {
+              "code": "dataColorSpace",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field value and the ",
+              "type": "text"
+            },
+            {
+              "code": "space",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field value of the source bitmap must specify the same color space. These functions will execute successfully as long as the color spaces are the same without regard for the packing format specified by the bitmap.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This enumeration defines constants for abstract color spaces which, when combined with a packing format constant as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1560270-color_packing_for_color_spaces",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", can be used in the ",
+              "type": "text"
+            },
+            {
+              "code": "space",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field of the ",
+              "type": "text"
+            },
+            {
+              "code": "CMBitmap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure. The combined constants are shown in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmbitmapcolorspace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1819559",
+          "level": 3,
+          "text": "Version-Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The constants ",
+              "type": "text"
+            },
+            {
+              "code": "cmRGBASpace",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "cmGrayASpace",
+              "type": "codeVoice"
+            },
+            {
+              "text": " were moved to this enum from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmbitmapcolorspace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ColorSync version 2.5.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmalphapmulspace": {
+      "abstract": [
+        {
+          "text": "A premultiplied alpha channel component is added to the color value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmAlphaPmulSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmalphapmulspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmAlphaPmulSpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmalphapmulspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmalphaspace": {
+      "abstract": [
+        {
+          "text": "An alpha channel component is added to the color value. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmAlphaSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmalphaspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmAlphaSpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmalphaspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmbitmap": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmbitmap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMBitmap",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmbitmap"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmbitmapcolorspace": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmbitmapcolorspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMBitmapColorSpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmbitmapcolorspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmcmykspace": {
+      "abstract": [
+        {
+          "text": "A CMYK color space composed of cyan, magenta, yellow, and black. A bitmap never uses this constant alone. Instead, this color space is always combined with a packing format describing the amount of storage per component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmCMYKSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmcmykspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmCMYKSpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmcmykspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmgamutresultspace": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmGamutResultSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmgamutresultspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmGamutResultSpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmgamutresultspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmgrayapmulspace": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmGrayAPmulSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmgrayapmulspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmGrayAPmulSpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmgrayapmulspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmgrayaspace": {
+      "abstract": [
+        {
+          "text": "A luminance color space with two components, a gray component followed by an alpha channel component. Each component value is 16 bits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmGrayASpace"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmgrayaspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmGrayASpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmgrayaspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmgrayspace": {
+      "abstract": [
+        {
+          "text": "A luminance color space with a single component, gray. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmGraySpace"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmgrayspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmGraySpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmgrayspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmhlsspace": {
+      "abstract": [
+        {
+          "text": "An HLS color space composed of hue, lightness, and saturation components. A bitmap never uses this constant alone. Instead, this color space is always combined with a packing format describing the amount of storage per component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmHLSSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmhlsspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmHLSSpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmhlsspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmhsvspace": {
+      "abstract": [
+        {
+          "text": "An HSV color space composed of hue, saturation, and value components. A bitmap never uses this constant alone. Instead, this color space is always combined with a packing format describing the amount of storage per component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmHSVSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmhsvspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmHSVSpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmhsvspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmlabspace": {
+      "abstract": [
+        {
+          "text": "An L*a*b* color space composed of L*, a*, b* components. A bitmap never uses this constant alone. Instead, this color space is always combined with a packing format describing the amount of storage per component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmLABSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmlabspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmLABSpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmlabspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmluvspace": {
+      "abstract": [
+        {
+          "text": "An L*u*v* color space composed of L*, u*, and v* components. A bitmap never uses this constant alone. Instead, this color space is always combined with a packing format describing the amount of storage per component. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmLUVSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmluvspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmLUVSpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmluvspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmmceightspace": {
+      "abstract": [
+        {
+          "text": "An eight-channel multichannel (HiFi) data color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmMCEightSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmmceightspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmMCEightSpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmmceightspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmmcfivespace": {
+      "abstract": [
+        {
+          "text": "A five-channel multichannel (HiFi) data color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmMCFiveSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmmcfivespace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmMCFiveSpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmmcfivespace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmmcsevenspace": {
+      "abstract": [
+        {
+          "text": "A seven-channel multichannel (HiFi) data color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmMCSevenSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmmcsevenspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmMCSevenSpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmmcsevenspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmmcsixspace": {
+      "abstract": [
+        {
+          "text": "A six-channel multichannel (HiFi) data color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmMCSixSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmmcsixspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmMCSixSpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmmcsixspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmnamedindexedspace": {
+      "abstract": [
+        {
+          "text": "A named indexed color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmNamedIndexedSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmnamedindexedspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmNamedIndexedSpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmnamedindexedspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmnospace": {
+      "abstract": [
+        {
+          "text": "The ColorSync Manager does not use this constant.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmNoSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmnospace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmNoSpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmnospace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmreservedspace1": {
+      "abstract": [
+        {
+          "text": "This field is reserved for use by QuickDraw GX. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmReservedSpace1"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmreservedspace1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmReservedSpace1",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmreservedspace1"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmreservedspace2": {
+      "abstract": [
+        {
+          "text": "This field is reserved for use by QuickDraw GX.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmReservedSpace2"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmreservedspace2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmReservedSpace2",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmreservedspace2"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmrgbapmulspace": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmRGBAPmulSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmrgbapmulspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmRGBAPmulSpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmrgbapmulspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmrgbaspace": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmRGBASpace"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmrgbaspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmRGBASpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmrgbaspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmrgbspace": {
+      "abstract": [
+        {
+          "text": "An RGB color space composed of red, green, and blue components. A bitmap never uses this constant alone. Instead, this color space is always combined with a packing format describing the amount of storage per component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmRGBSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmrgbspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmRGBSpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmrgbspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmxyzspace": {
+      "abstract": [
+        {
+          "text": "An XYZ color space composed of X, Y, and Z components. A bitmap never uses this constant alone. Instead, this color space is always combined with a packing format describing the amount of storage per component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmXYZSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmxyzspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmXYZSpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmxyzspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmyxyspace": {
+      "abstract": [
+        {
+          "text": "A Yxy color space composed of Y, x, and y components. A bitmap never uses this constant alone. Instead, this color space is always combined with a packing format describing the amount of storage per component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmYXYSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmyxyspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmYXYSpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmyxyspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ColorSync Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1560270-color_packing_for_color_spaces": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1560270-color_packing_for_color_spaces",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Color Packing for Color Spaces",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1560270-color_packing_for_color_spaces"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805108-cwmatchcolors": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805108-cwmatchcolors",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CWMatchColors",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805108-cwmatchcolors"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805111-cwcheckcolors": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805111-cwcheckcolors",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CWCheckColors",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805111-cwcheckcolors"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1610097",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/cmnospace",
+        "doc://com.apple.documentation/documentation/applicationservices/cmrgbspace",
+        "doc://com.apple.documentation/documentation/applicationservices/cmcmykspace",
+        "doc://com.apple.documentation/documentation/applicationservices/cmhsvspace",
+        "doc://com.apple.documentation/documentation/applicationservices/cmhlsspace",
+        "doc://com.apple.documentation/documentation/applicationservices/cmyxyspace",
+        "doc://com.apple.documentation/documentation/applicationservices/cmxyzspace",
+        "doc://com.apple.documentation/documentation/applicationservices/cmluvspace",
+        "doc://com.apple.documentation/documentation/applicationservices/cmlabspace",
+        "doc://com.apple.documentation/documentation/applicationservices/cmreservedspace1",
+        "doc://com.apple.documentation/documentation/applicationservices/cmgrayspace",
+        "doc://com.apple.documentation/documentation/applicationservices/cmreservedspace2",
+        "doc://com.apple.documentation/documentation/applicationservices/cmgamutresultspace",
+        "doc://com.apple.documentation/documentation/applicationservices/cmnamedindexedspace",
+        "doc://com.apple.documentation/documentation/applicationservices/cmmcfivespace",
+        "doc://com.apple.documentation/documentation/applicationservices/cmmcsixspace",
+        "doc://com.apple.documentation/documentation/applicationservices/cmmcsevenspace",
+        "doc://com.apple.documentation/documentation/applicationservices/cmmceightspace",
+        "doc://com.apple.documentation/documentation/applicationservices/cmalphapmulspace",
+        "doc://com.apple.documentation/documentation/applicationservices/cmalphaspace",
+        "doc://com.apple.documentation/documentation/applicationservices/cmrgbaspace",
+        "doc://com.apple.documentation/documentation/applicationservices/cmgrayaspace",
+        "doc://com.apple.documentation/documentation/applicationservices/cmrgbapmulspace",
+        "doc://com.apple.documentation/documentation/applicationservices/cmgrayapmulspace"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/1560701-abstract_color_space_constants"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/applicationservices/colorsync_manager/1560701-abstract_color_space_constants"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

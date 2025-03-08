@@ -1,0 +1,3692 @@
+{
+  "abstract": [
+    {
+      "text": "Let players measure their own progress and compare their skills with friends and others.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamekit/documentation/GameKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamekit/documentation/GameKit/encourage-progress-and-competition-with-leaderboards"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "GameKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Encourage progress and competition with leaderboards"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use leaderboards to record player scores, which they can view in their Game Center",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "account and directly in your game using built-in Game Center or custom interfaces.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Game Center even encourages engagement by notifying players when their friends pass",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "their scores.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4285793",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You configure a classic or recurring leaderboard in Xcode and submit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scores from your code. A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "classic leaderboard",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " retains the scores until you delete",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the leaderboard. A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "recurring leaderboard",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " automatically resets the board on the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "intervals you specify. For example, use a classic leaderboard for the best all-time",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scores and a recurring leaderboard for periodic competitions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also combine individual leaderboards into sets, creating a hierarchy of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "leaderboards. For example, use leaderboard sets to aggregate the scores from different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "levels and configurations in your game. However, once you add a leaderboard set,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you need to organize all other individual leaderboards into sets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance on all types of leaderboards, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/game-center#Leaderboards",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For additional information on recurring leaderboards, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/creating-recurring-leaderboards",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-leaderboards-and-leaderboard-sets",
+          "level": 3,
+          "text": "Configure leaderboards and leaderboard sets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can use leaderboards in your code, you can configure them in Xcode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and sync the configuration updates you make with App Store Connect. Begin configuring",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "leaderboards by creating a GameKit configuration file. In Xcode, choose File > New >",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "File from Template. Select GameKit File, and click Next. In the sheet that appears,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "enter a name for the configuration and click Create.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’ve already configured leaderboards in App Store Connect, click More (…) at",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the bottom of the left column. Then choose Pull from App Store Connect. Select the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "bundle ID or Game Center group for your game from the list, and click pull. Resource",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "details appear in the editor on the right.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a new leaderboard, click Add (+) at the bottom of the left column, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "choose Leaderboard. For each leaderboard, you specify details like the score format,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "submission type, and whether the data resets and starts again after a period of time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Decide on a style for your leaderboard identifiers, because you won’t be able to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "change them at a later time. Before you begin, have at least one localized name",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and image, which Game Center presents to the player, ready to upload for a language.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Reorganize the list of leaderboards and leaderboard sets that Xcode",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "displays in the order you want Game Center to present them.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A leaderboard set organizes many leaderboards into a single unit. For example, for a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "game with many levels, use a leaderboard set to organize the leaderboards for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "each level. You can have up to 100 leaderboards without using leaderboard sets. When",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you use leaderboard sets, you can have up to 500 leaderboards across 100 leaderboard",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You must have at least one leaderboard for your app before you can",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "create a leaderboard set. If you choose to use leaderboard sets, you must include",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "all future leaderboards in a leaderboard set.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you add a leaderboard to an unreleased version of your game or sign the game",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with a development certificate, Game Center annotates the leaderboard with a prerelease",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "indicator. To change a leaderboard’s app version, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/configure-game-center/add-leaderboards-to-your-app-version",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you’ve already pushed your configuration changes to App Store Connect,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "removing a leaderboard or leaderboard set from the local configuration file",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "doesn’t remove the leaderboard or leaderboard set from App Store Connect.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about the information you enter in App Store Connect, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/reference/leaderboards#leaderboard-properties",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-leaderboards-by-using-the-Progress-Manager",
+          "level": 3,
+          "text": "Test leaderboards by using the Progress Manager",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you begin testing your GameKit configuration, you need to enable Debug Mode.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In Xcode, choose Product > Scheme > Edit Scheme. From the Run configuration,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "select Options and toggle Enable Debug Mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin testing your leaderboard configuration, open the game Progress Manager.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In Xcode, choose Debug > GameKit > Manage Game Progress. From the top left of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "window that appears, select the physical device you use for testing, and the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "project you want to debug. The test data stays local to your machine and doesn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "rely on App Store Connect to test.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After selecting the device and app, choose the leaderboard you want to test. When you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "change a player’s score in a leaderboard, the system sends an update to your app so you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "verify that the leaderboard changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to reset the progress for your achievements and leaderboards,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "click the reset button at the top of the Progress Manager. You can’t access previous",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "occurrences of achievements and leaderboards after resetting the Progress Manager.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Choose-a-score-format",
+          "level": 3,
+          "text": "Choose a score format",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Game Center formats the scores that you submit as integer values depending on the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "leaderboard configuration you enter in Xcode. On the Add Leaderboard",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "page, choose a score format — such as fixed points, elapsed time, or money — that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "makes sense for your game. For example, if you choose these formats, Game Center",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "formats the values as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Score format type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Score value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Format result",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed Point - To 1 Decimal",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1234",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "123.4",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed Point - To 2 Decimals",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "5678",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "56.78",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed Point - To 3 Decimals",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "10,000",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "10.000",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Elapsed Time - To the Minute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "3623",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (seconds)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "60:23",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Elapsed Time - To the Second",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "10,000",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (seconds)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "2:46:40",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Elapsed Time - To the Hundredth of a Second",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "10,000",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (centiseconds)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0:01:40:00",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Money - Whole Numbers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "123",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "$123",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Money - To 2 Decimals",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "141",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "$1.41",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Optionally, enter a range of allowable values in the Score Range fields that matches",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the score format. For elapsed time values, enter a range in seconds or centiseconds",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(Elapsed Time - To the Hundredth of a Second). For example, if you choose Elapsed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Time - To the Minute and want the maximum value to be 10 minutes, enter ",
+              "type": "text"
+            },
+            {
+              "code": "600",
+              "type": "codeVoice"
+            },
+            {
+              "text": " seconds",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the To field. Then check whether the formatted range values that appear below the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "range text fields are in the score format you want.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "add-leaderboard",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-unit-to-the-score-format-or-choose-a-currency-symbol",
+          "level": 3,
+          "text": "Add a unit to the score format or choose a currency symbol",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can further format the scores when you add a language to the leaderboard configuration",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in Xcode. You need to add at least one language to save the leaderboard",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On the Add Language page, append a unit to the score that Game Center formats, such",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as ",
+              "type": "text"
+            },
+            {
+              "code": "pts,",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "lbs",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "meters",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", by entering the localized strings for the units in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Score Format Suffix text fields. For money values, you can choose a localized",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "currency symbol from the Score Format menu.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Submit-scores-to-leaderboards",
+          "level": 3,
+          "text": "Submit scores to leaderboards",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To submit a score to one or more leaderboards, use the ",
+              "type": "text"
+            },
+            {
+              "code": "GKLeaderboard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/submitScore(_:context:player:leaderboardIDs:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "class method. Pass one or more leaderboard IDs, as well as the score, context, and player.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Submit a score to one or more leaderboards.",
+            "try await GKLeaderboard.submitScore(points, ",
+            "                                    context: 0, ",
+            "                                    player: GKLocalPlayer.local,",
+            "                                    leaderboardIDs: [\"my.leaderboard.id\"]) "
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you load all leaderboards using the ",
+              "type": "text"
+            },
+            {
+              "code": "GKLeaderboard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/loadLeaderboards(IDs:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "class method, as the next section describes, you can submit the score to specific",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "leaderboards using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/submitScore(_:context:player:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Optionally, use the ",
+              "type": "text"
+            },
+            {
+              "code": "context",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter in both of these methods to store game-specific",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information. For example, pass a flag that contains information about how the player",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "earned the score, such as the vehicle they drive in a racing game.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Fetch-leaderboards-and-leaderboard-sets",
+          "level": 3,
+          "text": "Fetch leaderboards and leaderboard sets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To fetch one or more individual leaderboards, pass the leaderboard IDs to the ",
+              "type": "text"
+            },
+            {
+              "code": "GKLeaderboard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/loadLeaderboards(IDs:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Fetch the leaderboards.",
+            "let leaderboards = try await GKLeaderboard.loadLeaderboards(IDs: [\"my.leaderboard.id\"])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To fetch specific occurrences of a recurring leaderboard, use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/loadPreviousOccurrence(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To fetch leaderboard sets, use the ",
+              "type": "text"
+            },
+            {
+              "code": "GKLeaderboardSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardSet/loadLeaderboardSets(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method. Then",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to fetch individual leaderboards in a set, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardSet/loadLeaderboards(handler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-the-scores-from-leaderboards",
+          "level": 3,
+          "text": "Get the scores from leaderboards",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To load the scores that the local player and others earn from a leaderboard, use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "GKLeaderboard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/loadEntries(for:timeScope:range:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Filter the scores using the ",
+              "type": "text"
+            },
+            {
+              "code": "playerScope",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "timeScope",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "range",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameters you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pass to this method. For example, to get scores that friends of the local player",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "earned in the past week, pass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/PlayerScope-swift.enum/friendsOnly",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as the ",
+              "type": "text"
+            },
+            {
+              "code": "for",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/TimeScope-swift.enum/week",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the ",
+              "type": "text"
+            },
+            {
+              "code": "timeScope",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Fetch the friend scores.",
+            "let result = try await leaderboard.loadEntries(for: GKLeaderboard.PlayerScope.friendsOnly,",
+            "                                               timeScope: GKLeaderboard.TimeScope.week, ",
+            "                                               range: NSMakeRange(1, 100))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get all player scores in that time period, pass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/PlayerScope-swift.enum/global",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as the ",
+              "type": "text"
+            },
+            {
+              "code": "for",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then use the properties of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/Entry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances that this method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "returns to get details about the individual scores, including the players who earned",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-leaderboards",
+          "level": 3,
+          "text": "Display leaderboards",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display a leaderboard or leaderboard set in your custom game interface, load",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the leaderboard or leaderboard set and use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/title",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to get the localized name. To get the image representation that you upload to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "App Store Connect, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/loadImage(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Load the leaderboard image.",
+            "let image = try await leaderboard.loadImage()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, display the leaderboard in the familiar Game Center interface. To learn more, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/displaying-the-game-center-dashboard#Display-a-single-leaderboard",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-default-leaderboard",
+          "level": 3,
+          "text": "Set the default leaderboard",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can set the default leaderboard for an individual player during your game. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, change the default leaderboard when the player advances to a different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "level in your game.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To change the local player’s default leaderboard, use the ",
+              "type": "text"
+            },
+            {
+              "code": "GKLocalPlayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/setDefaultLeaderboardIdentifier(_:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To get the identifier for the default leaderboard in your code, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/loadDefaultLeaderboardIdentifier(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Otherwise, you set the default leaderboard for all players in App Store Connect when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you configure leaderboards. Xcode doesn’t support setting a default leaderboard. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the steps to change the default leaderboard in App Store Connect,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/configure-game-center/configure-leaderboards-and-achievements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "add-leaderboard": {
+      "alt": "A screenshot of the Add Leaderboard sheet in Xcode. The score format is set to Elapsed Time - To the Hundredth of a Second, with 360000 centiseconds entered as the maximum value in the score range, formatted as 1:00:00.00.",
+      "identifier": "add-leaderboard",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/02c72dd4834ea2d545434aad90263db4/add-leaderboard@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/03bd8dba73ea367b26e221bf55a120c6/add-leaderboard~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit": {
+      "abstract": [
+        {
+          "text": "Enable players to interact with friends, compare leaderboard ranks, earn achievements, and participate in multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameKit",
+      "type": "topic",
+      "url": "/documentation/gamekit"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard": {
+      "abstract": [
+        {
+          "text": "A leaderboard for a game that Game Center stores.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKLeaderboard"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKLeaderboard"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKLeaderboard",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkleaderboard"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/Entry": {
+      "abstract": [
+        {
+          "text": "Information about a single score by a player on a leaderboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Entry"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/Entry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Entry"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKLeaderboard.Entry",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkleaderboard/entry"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/PlayerScope-swift.enum/friendsOnly": {
+      "abstract": [
+        {
+          "text": "Loads only data for friends of the local player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "friendsOnly"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/PlayerScope-swift.enum/friendsOnly",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKLeaderboardPlayerScopeFriendsOnly"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKLeaderboard.PlayerScope.friendsOnly",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkleaderboard/playerscope-swift.enum/friendsonly"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/PlayerScope-swift.enum/global": {
+      "abstract": [
+        {
+          "text": "Loads data for all players of the game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "global"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/PlayerScope-swift.enum/global",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKLeaderboardPlayerScopeGlobal"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKLeaderboard.PlayerScope.global",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkleaderboard/playerscope-swift.enum/global"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/TimeScope-swift.enum/week": {
+      "abstract": [
+        {
+          "text": "Loads data for the past week.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "week"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/TimeScope-swift.enum/week",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKLeaderboardTimeScopeWeek"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKLeaderboard.TimeScope.week",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkleaderboard/timescope-swift.enum/week"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/loadEntries(for:timeScope:range:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Returns the scores for the local player and other players for the specified type of player, time period, and ranks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadEntries"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKLeaderboard",
+          "text": "GKLeaderboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@GKLeaderboardPlayerScope",
+          "text": "PlayerScope"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timeScope"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKLeaderboard",
+          "text": "GKLeaderboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@GKLeaderboardTimeScope",
+          "text": "TimeScope"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKLeaderboard",
+          "text": "GKLeaderboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKLeaderboardEntry",
+          "text": "Entry"
+        },
+        {
+          "kind": "text",
+          "text": "?, ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKLeaderboard",
+          "text": "GKLeaderboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKLeaderboardEntry",
+          "text": "Entry"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/loadEntries(for:timeScope:range:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadEntriesForPlayerScope:timeScope:range:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadEntries(for:timeScope:range:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkleaderboard/loadentries(for:timescope:range:completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/loadImage(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Loads the image for the leaderboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/loadImage(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadImageWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadImage(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkleaderboard/loadimage(completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/loadLeaderboards(IDs:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Loads leaderboards for the specified leaderboard IDs that Game Center uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadLeaderboards"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "IDs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKLeaderboard",
+          "text": "GKLeaderboard"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/loadLeaderboards(IDs:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadLeaderboardsWithIDs:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadLeaderboards(IDs:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkleaderboard/loadleaderboards(ids:completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/loadPreviousOccurrence(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Loads the previous recurring leaderboard occurrence that the player submits a score to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadPreviousOccurrence"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKLeaderboard",
+          "text": "GKLeaderboard"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/loadPreviousOccurrence(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadPreviousOccurrenceWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadPreviousOccurrence(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkleaderboard/loadpreviousoccurrence(completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/submitScore(_:context:player:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Submits a score to the leaderboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "submitScore"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "player"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/submitScore(_:context:player:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "submitScore:context:player:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "submitScore(_:context:player:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkleaderboard/submitscore(_:context:player:completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/submitScore(_:context:player:leaderboardIDs:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Submits a score to multiple leaderboards.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "submitScore"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "player"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "leaderboardIDs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/submitScore(_:context:player:leaderboardIDs:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "submitScore:context:player:leaderboardIDs:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "submitScore(_:context:player:leaderboardIDs:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkleaderboard/submitscore(_:context:player:leaderboardids:completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/title": {
+      "abstract": [
+        {
+          "text": "The localized title for the leaderboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/title",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "title"
+        }
+      ],
+      "role": "symbol",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkleaderboard/title"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardScore": {
+      "abstract": [
+        {
+          "text": "Information about a player’s score on a leaderboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKLeaderboardScore"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardScore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKLeaderboardScore"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKLeaderboardScore",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkleaderboardscore"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardSet": {
+      "abstract": [
+        {
+          "text": "Organizes leaderboards into logical and coherent groups.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKLeaderboardSet"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardSet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKLeaderboardSet"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKLeaderboardSet",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkleaderboardset"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardSet/loadLeaderboardSets(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Loads all of the leaderboard sets you configure for your game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadLeaderboardSets"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKLeaderboardSet",
+          "text": "GKLeaderboardSet"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardSet/loadLeaderboardSets(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadLeaderboardSetsWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadLeaderboardSets(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkleaderboardset/loadleaderboardsets(completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardSet/loadLeaderboards(handler:)": {
+      "abstract": [
+        {
+          "text": "Loads the leaderboards in the leaderboard set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadLeaderboards"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKLeaderboard",
+          "text": "GKLeaderboard"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardSet/loadLeaderboards(handler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadLeaderboardsWithHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadLeaderboards(handler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkleaderboardset/loadleaderboards(handler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/loadDefaultLeaderboardIdentifier(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Loads the identifier for the local player’s default leaderboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadDefaultLeaderboardIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/loadDefaultLeaderboardIdentifier(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadDefaultLeaderboardIdentifierWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadDefaultLeaderboardIdentifier(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gklocalplayer/loaddefaultleaderboardidentifier(completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/setDefaultLeaderboardIdentifier(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Sets the local player’s default leaderboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDefaultLeaderboardIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/setDefaultLeaderboardIdentifier(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setDefaultLeaderboardIdentifier:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setDefaultLeaderboardIdentifier(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gklocalplayer/setdefaultleaderboardidentifier(_:completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/adding-recurring-leaderboards-to-your-game": {
+      "abstract": [
+        {
+          "text": "Encourage competition in your games by adding leaderboards that have a duration and repeat.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/adding-recurring-leaderboards-to-your-game",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adding Recurring Leaderboards to Your Game",
+      "type": "topic",
+      "url": "/documentation/gamekit/adding-recurring-leaderboards-to-your-game"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/creating-recurring-leaderboards": {
+      "abstract": [
+        {
+          "text": "Create a leaderboard for your game that ranks player scores based on a schedule.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/creating-recurring-leaderboards",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating recurring leaderboards",
+      "type": "topic",
+      "url": "/documentation/gamekit/creating-recurring-leaderboards"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/displaying-the-game-center-dashboard#Display-a-single-leaderboard": {
+      "abstract": [],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/displaying-the-game-center-dashboard#Display-a-single-leaderboard",
+      "kind": "section",
+      "title": "Display a single leaderboard",
+      "type": "topic",
+      "url": "/documentation/gamekit/displaying-the-game-center-dashboard#Display-a-single-leaderboard"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/game-center#Leaderboards": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/game-center#Leaderboards",
+      "title": "Human Interface Guidelines > Technologies > Game Center > Leaderboards",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines > Technologies > Game Center > Leaderboards",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/game-center#Leaderboards"
+    },
+    "https://developer.apple.com/help/app-store-connect/configure-game-center/add-leaderboards-to-your-app-version": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/configure-game-center/add-leaderboards-to-your-app-version",
+      "title": "Add leaderboards to an app version",
+      "titleInlineContent": [
+        {
+          "text": "Add leaderboards to an app version",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/configure-game-center/add-leaderboards-to-your-app-version"
+    },
+    "https://developer.apple.com/help/app-store-connect/configure-game-center/configure-leaderboards-and-achievements": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/configure-game-center/configure-leaderboards-and-achievements",
+      "title": "Configure leaderboards and achievements > Set a default leaderboard",
+      "titleInlineContent": [
+        {
+          "text": "Configure leaderboards and achievements > Set a default leaderboard",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/configure-game-center/configure-leaderboards-and-achievements"
+    },
+    "https://developer.apple.com/help/app-store-connect/reference/leaderboards#leaderboard-properties": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/reference/leaderboards#leaderboard-properties",
+      "title": "Leaderboard properties",
+      "titleInlineContent": [
+        {
+          "text": "Leaderboard properties",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/reference/leaderboards#leaderboard-properties"
+    },
+    "media-4285793": {
+      "alt": "Three images of an iPhone screen in portrait layout, showing the Leaderboards section of Game Center, the best scores of an individual leaderboard, and a notification to a player that their friend passed their score.",
+      "identifier": "media-4285793",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6cc8995ce2829bc3a39c7b2057866692/media-4285793@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d4e4ba1fd063a0e32f3a71cb930f81da/media-4285793~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Leaderboards",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/creating-recurring-leaderboards",
+        "doc://com.apple.gamekit/documentation/GameKit/adding-recurring-leaderboards-to-your-game",
+        "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard",
+        "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardSet",
+        "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardScore"
+      ],
+      "title": "Leaderboards"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Leaderboards",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/creating-recurring-leaderboards",
+                "doc://com.apple.gamekit/documentation/GameKit/adding-recurring-leaderboards-to-your-game",
+                "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard",
+                "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardSet",
+                "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardScore"
+              ],
+              "title": "Leaderboards"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboardScore/title",
+          "value": "GKLeaderboardScore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboardScore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLeaderboardScore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboardScore/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLeaderboardScore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1Entry/title",
+          "value": "GKLeaderboardEntry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1Entry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLeaderboardEntry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1Entry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLeaderboardEntry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1PlayerScope-swift.enum~1friendsOnly/title",
+          "value": "GKLeaderboardPlayerScopeFriendsOnly"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1PlayerScope-swift.enum~1friendsOnly/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLeaderboardPlayerScopeFriendsOnly"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1loadEntries(for:timeScope:range:completionHandler:)/title",
+          "value": "loadEntriesForPlayerScope:timeScope:range:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1loadEntries(for:timeScope:range:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadEntriesForPlayerScope:timeScope:range:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard/title",
+          "value": "GKLeaderboard"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLeaderboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLeaderboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1loadPreviousOccurrence(completionHandler:)/title",
+          "value": "loadPreviousOccurrenceWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1loadPreviousOccurrence(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadPreviousOccurrenceWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1PlayerScope-swift.enum~1global/title",
+          "value": "GKLeaderboardPlayerScopeGlobal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1PlayerScope-swift.enum~1global/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLeaderboardPlayerScopeGlobal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer~1loadDefaultLeaderboardIdentifier(completionHandler:)/title",
+          "value": "loadDefaultLeaderboardIdentifierWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer~1loadDefaultLeaderboardIdentifier(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadDefaultLeaderboardIdentifierWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1title/title",
+          "value": "title"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1title/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "title"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1TimeScope-swift.enum~1week/title",
+          "value": "GKLeaderboardTimeScopeWeek"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1TimeScope-swift.enum~1week/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLeaderboardTimeScopeWeek"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1submitScore(_:context:player:completionHandler:)/title",
+          "value": "submitScore:context:player:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1submitScore(_:context:player:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "submitScore:context:player:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboardSet/title",
+          "value": "GKLeaderboardSet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboardSet/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLeaderboardSet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboardSet/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLeaderboardSet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1submitScore(_:context:player:leaderboardIDs:completionHandler:)/title",
+          "value": "submitScore:context:player:leaderboardIDs:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1submitScore(_:context:player:leaderboardIDs:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "submitScore:context:player:leaderboardIDs:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboardSet~1loadLeaderboards(handler:)/title",
+          "value": "loadLeaderboardsWithHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboardSet~1loadLeaderboards(handler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadLeaderboardsWithHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboardSet~1loadLeaderboardSets(completionHandler:)/title",
+          "value": "loadLeaderboardSetsWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboardSet~1loadLeaderboardSets(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadLeaderboardSetsWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1loadLeaderboards(IDs:completionHandler:)/title",
+          "value": "loadLeaderboardsWithIDs:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1loadLeaderboards(IDs:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadLeaderboardsWithIDs:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer~1setDefaultLeaderboardIdentifier(_:completionHandler:)/title",
+          "value": "setDefaultLeaderboardIdentifier:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer~1setDefaultLeaderboardIdentifier(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setDefaultLeaderboardIdentifier:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1loadImage(completionHandler:)/title",
+          "value": "loadImageWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1loadImage(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadImageWithCompletionHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamekit/encourage-progress-and-competition-with-leaderboards"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamekit/encourage-progress-and-competition-with-leaderboards"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

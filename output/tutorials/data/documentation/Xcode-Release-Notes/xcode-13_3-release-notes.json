@@ -1,0 +1,4256 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_3-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Xcode 13.3 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "type": "thematicBreak"
+        },
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode 13.3 includes SDKs for iOS 15.4, iPadOS 15.4, tvOS 15.4, watchOS 8.5, and macOS Monterey 12.3.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Xcode 13.3 release supports on-device debugging for iOS 15.4, iPadOS 15.4, tvOS 15.4, watchOS 8.5 and later.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode 13.3 requires a Mac running macOS Monterey 12 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "App-Store-Integration",
+          "level": 3,
+          "text": "App Store Integration",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Mitigated several Log4J 2 vulnerabilities by updating Log4J 2 jar files to version 2.17.1.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://logging.apache.org/log4j/2.x/security.html",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (86489820)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Apple-Clang-Compiler",
+          "level": 3,
+          "text": "Apple Clang Compiler",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Several C++20 and C++2b papers have been implemented:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "using",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " declaration can now be used for enums, enum classes, and their members.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "The compiler can deduce the ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "size_t",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " and ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "ssize_t",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " types based on new literal suffixes (",
+                              "type": "text"
+                            },
+                            {
+                              "code": "uz",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ", ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "z",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": "), for example ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "for (auto i = 0uz; i < vector.size(); ++i) {}",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ".",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "If a lambda declaration takes no parameters, the open and close parentheses () can now be omitted in all contexts including mutable lambdas.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Duplicate attributes are now allowed by the compiler.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Any trailing whitespace after ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "\\",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " is non-significant.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Concatenations of string-literals with different encoding prefixes are now ill-formed, for example, ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "auto s = L\"\" U\"\";",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ". (89022082)",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Clang now follows the C++ standard’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "[intro.progress]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " requirement. As a result, the compiler can remove infinite loops without side effects. Consider using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-fno-finite-loops",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " if your code has infinite loops without observable side effects that the compiler must preserve. (84717970)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Exporting an app that uses Swift’s concurrency features from an archive with bitcode might fail when the app targets iOS 13.0 – iOS 14.7, watchOS 6.0 – watchOS 7.6, or tvOS 13.0 – 14.7. (89271047)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Either uncheck the box ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Rebuild from bitcode",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " when exporting the app from an archive or disable bitcode (iOS only).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Code that uses 16-byte (128-bit) atomic compare/exchange operations (for example with C++ ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "std::atomic::compare_exchange_*",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") on ARM64 processors may corrupt the atomic variable if you do not use the return value. (88127379)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Assign the result to a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "volatile",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " local variable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Build-System",
+          "level": 3,
+          "text": "Build System",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The build system and Swift compiler have a new mode that better utilizes available cores, resulting in faster builds for Swift projects.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "The mode is opt-in, and you can enable it globally with the following user default:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "defaults write com.apple.dt.XCBuild EnableSwiftBuildSystemIntegration 1"
+                  ],
+                  "syntax": "shell",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Please report any issues with the new build system mode through Feedback Assistant. (87898478)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a crash that occurred when building projects containing file paths with non-ASCII characters. (83694706)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode no longer passes ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-stdlib=libstdc++",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to Clang, because Clang no longer supports that library on Apple platforms. If your project defines the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CLANG_CXX_LIBRARY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " build setting, remove it because it no longer does anything. (83768231)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Building and uploading nonconsumable in-app purchase content for Apple to host is no longer supported. Existing content that’s hosted by Apple isn’t affected. To enable smaller app bundles, faster downloads, and richer app content, use on-demand resources to host your content on the App Store separately from the app bundle. For details, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/index.html",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (84121695)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where the number of total build tasks in the status bar continued to increase when repeatedly rebuilding a project after a failed or canceled build. (42333715) (FB5714215)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Objective-C modernizer is now supported when using the new build system. (45011912) (FB5530174)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Xcode SwiftUI Previews occasionally fails with an error message about a modified ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".h",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, such as “file ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Header.h",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " has been modified since the module file ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Module.pcm",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " was built: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "mtime",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " changed.” (85938686)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The build system no longer incorrectly reports a successful build when an input to a build task is missing. (86028889)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Apple Watch app targets may fail to build in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ValidateEmbeddedBinary",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " step with the error message: “error: The value of CFBundleShortVersionString in your WatchKit app’s Info.plist (1.0) does not match the value in your companion app’s Info.plist ((null)). These values are required to match.” (89240826)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Debugging",
+          "level": 3,
+          "text": "Debugging",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When compiling with optimizations turned off, the Swift compiler and Clang no longer eliminate redundant branch instructions on ARM64 targets. This improves debuggability by enabling more breakpoint locations, at the expense of producing slightly larger binaries when compiling with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-Onone",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (79515454)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where Playgrounds sometimes fails to execute when importing frameworks from the workspace by using the “Build active scheme” option. (85431564)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Devices",
+          "level": 3,
+          "text": "Devices",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Activating an iOS and watchOS pair from the Devices and Simulator window causes Xcode to crash. (89262466)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Documentation",
+          "level": 3,
+          "text": "Documentation",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode can now build documentation from your Swift code in executable targets, like apps and command-line tools. (79155998) (FB9156246)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where symbol declarations unintentionally included access level modifiers like “public” and “open”. (85280786)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Instruments",
+          "level": 3,
+          "text": "Instruments",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Improved the accuracy of leak scanning in Instruments, Xcode’s memory graph debugger, and the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "leaks",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command line. The system now scans object references inside multi-payload enum cases more accurately, allowing more precise memory leak analysis and the identification of strong, weak, and unowned reference types. (33836721)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "xctrace",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " now has the ability to symbolicate previously captured trace files with user-specified dSYMs. Please see ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "man xctrace",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xctrace help symbolicate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for details and syntax examples.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For example:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "xctrace symbolicate --input input.trace --output symbolicated.trace --dsym SomeLibrary.dSYM"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "(47648946) (FB5647641)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Instruments now has less of an effect on an application’s launch, making metrics gathered with the App Launch template more representative of its actual behavior. (62136401)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "atos",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " now allows for symbolicating addresses in the form of binary offsets in cases where the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-offset",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " flag is provided or when no load address or slide is specified.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For example:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "atos -arch arm64 -o Example.app/Contents/MacOS/Example 0x00fdae30"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "(75121237)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Instruments removed the Console view from trace documents. To see output and errors during a trace, add the stdout/stderr instrument from the library. The new stdout/stderr instrument has improved performance and reliability, but it’s no longer active by default. (81732320)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Instruments now displays run issues in a toolbar popover instead of displaying them in the detail area. In addition, run issues also appear in the ruler above the timeline to indicate when they occurred. (81732387)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The find field in the Instruments detail area now properly synchronizes with find fields across the system. In addition, you can use Command-E on selected text in the extended detail view on the right to populate the detail area’s find field. (15486760) (FB5917381)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a bug where the CPU Profiler instrument’s recordings didn’t start when targeting a Mac with Apple silicon. (84244734) (FB9703079)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a UI issue where Instruments’ Packages preference tab incorrectly allowed for horizontal scrolling. (84359511) (FB9711254)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Linking",
+          "level": 3,
+          "text": "Linking",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The new chained fixups format is the default linking method when targeting macOS 11 or later, iOS 13.4 or later, watchOS 7.0 or later, and tvOS 14.0 or later. This new format results in smaller ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "LINKEDIT",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " segments in binaries. When targeting earlier operating system releases, the linker continues to generate the traditional opcode format in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "LINKEDIT",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for fixups, rebases, and binds. (85572905)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: When profiling Rosetta 2 apps with Instruments or other tools, stack traces may include extra invalid unsymbolicated frames such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0x3",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (87207828)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Localization",
+          "level": 3,
+          "text": "Localization",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where Xcode duplicated keys in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".stringsdict",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " files alongside their corresponding ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".strings",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file key when exporting for localization. As part of this change, Xcode copies comments from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".strings",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " files to the resulting ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".stringsdict",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " translation unit and marks the corresponding ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".strings",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " unit as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "translate=\"no\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the exported XLIFF. (38238225)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "genstrings",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " was unable to print diagnostics with Unicode characters. (85229466)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Log and diagnostic messages now appear in the Report navigator when importing and exporting for localization. (18023462)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now override build settings from the command-line tool when using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to import and export localizations. (75221589)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Organizer",
+          "level": 3,
+          "text": "Organizer",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode now automatically sends you Smart Insights Notifications for your apps if you have 10 or fewer apps and if you haven’t previously subscribed to any apps. To activate this feature, click the Regressions item or any of the Metrics items in Organizer. (86535781)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "symbolicatecrash",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " script is deprecated. Instead, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "atos",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command-line tool. For more information about this tool, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (82929755)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Playgrounds",
+          "level": 3,
+          "text": "Playgrounds",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: You may not be able to edit local network and ATS capability entries in Swift Playgrounds projects when running in macOS Big Sur 11. (89169927)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swift Playgrounds projects in Xcode may not launch unless a bundle ID is set in the project. (88832659)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Set a bundle ID in the Signing & Capabilities tab of the project editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When you add a new Playground to an open workspace via the “File / New Playground …” menu, it may not open properly. (88929244)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Close and re-open the workspace. Or add a Playground using “File / New File …” instead.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Adding a macOS capability to a Swift Playgrounds app project may cause the project to fail to load in Swift Playgrounds.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Remove any macOS capabilities.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Previews",
+          "level": 3,
+          "text": "Previews",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Previews may fail for a SwiftUI view that’s in a Mac Catalyst framework or package that isn’t also embedded within an app. (88895960)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": To preview a SwiftUI view in Mac Catalyst, make sure the view’s framework or package is embedded in the app. Also make sure the active scheme contains both the app target and the view’s framework or package.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Text fields in live previews for Mac Catalyst might not initially activate when you click on them. (89029611)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Try clicking again or Control-click in order to activate the text field.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Project-Navigator",
+          "level": 3,
+          "text": "Project Navigator",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where some Xcode projects opened in a red “missing” state after Xcode crashed and reopened. (70526957) (FB8816939)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Xcode declares the wrong type identifier for GPX files (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.topographix.gpx",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instead of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.topografix.gpx",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "). This can interrupt other applications that operate on ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.topografix.gpx",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " files. (86333977) (FB9804569)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Simulator",
+          "level": 3,
+          "text": "Simulator",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apps may terminate unexpectedly when running in a watchOS 5.3 simulator. (89453856)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Debugging an app might fail the first time Simulator launches. (78621968)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Try debugging the App Extension again after Simulator launches. You may need to delete your iOS app from Simulator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Source-Control",
+          "level": 3,
+          "text": "Source Control",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode now supports using ED25519 public key signatures to perform git operations. You can select an existing ED25519 key from the Accounts tab in Xcode Preferences. (88897990)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Multi-line comments containing parentheses may result in inaccurate diffs being displayed on the command-line and in the Code Review in Xcode’s source editor. (61163230)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Changes navigator’s pull request file list may not auto-refresh when you add commits to a branch with an associated pull request. (75502462)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Manually select commit from Pull Request Commit menu or relaunch Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Source-Editor",
+          "level": 3,
+          "text": "Source Editor",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Code completion now suggests enum instances for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "if case .",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (69842729)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Code completion no longer auto-imports a module when completing a nonaccessible symbol. (85480026)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where “Add documentation” didn’t work on functions with generic parameters. (56540593)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue that caused Xcode to hang when closing a project. (74228821)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue with structured selection where Command-clicking on a function declaration in a protocol included the next function. (75201756)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue that caused Xcode to hang when switching schemes. (75392935)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where code completion didn’t highlight or suggest initializers. (76405775)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where Xcode could hang in projects with a large amount of import statements. (76435758)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed issues with code completion, quick help, and jump-to-definition for property wrappers. (77622064)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where Xcode could hang when presenting code completion for the first time. (77651767)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where code completion auto-imported a module when naming a closure argument. (79307862) (FB9176668)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where code completion showed a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "super.",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " snippet at invalid positions. (82176257)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where syntax highlighting displayed types as constants. (84007681)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where syntax highlighting became stale. (84307235)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where an optional type in a generic function caused indentation issues. (84931808) (FB9735705)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where code completion showed duplicate suggestions for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "for in...",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "switch...",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " snippet. (84965766) (FB9737092)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where code completion incorrectly showed “This completion is from a module that’s not imported.” (85479784)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where code completion showed duplicated tuple members. (85512121)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue that caused Xcode to hang when opening a Swift package containing a large file with no extension. (85763867) (FB9781957)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where code completion inserted the wrong type placeholder. (86829101)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an indentation issue for methods with keyword parameter labels spread across multiple lines. (87490908)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Code completion no longer auto-imports test or app targets. (87585202)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where Source Editor didn’t syntax highlight custom attributes with arguments for wrapped properties. (87611350)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a number of issues with the indentation of chained SwiftUI modifiers. (87612104)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "StoreKit",
+          "level": 3,
+          "text": "StoreKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Within StoreKit configuration files, you can now copy, paste, and duplicate products, subscription groups, subscription offers, and localizations. (63724339)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now configure offers for codes in StoreKit configuration files when using StoreKit Testing in Xcode. You can redeem these offers when testing on devices running iOS 15.4 or later. (82929135)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now toggle a new mode in StoreKit configuration files called Billing Retry on Renewal. This mode causes subscriptions to enter a simulated Billing Retry period when a subscription is set to renew. This mode works on devices and simulators running iOS 15.4, macOS Monterey 12.3, watchOS 8.5, or tvOS 15.4. (83938223)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now test subscription price increases on devices or simulators running iOS 15.4, macOS Monterey 12.3, watchOS 8.5, and tvOS 15.4. You can test requesting and responding to price increase consent on a subscription transaction using the transaction manager.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "When testing subscription price increases on a device running iOS 15.4 or later, each request for price increase consent simulates calling the payment queue delegate method  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKPaymentQueueDelegate/paymentQueueShouldShowPriceConsent(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (84318402)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When opening the Find navigator’s results within a StoreKit configuration file, Xcode now opens the location of the configuration file where the results were found. (63911714)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed how StoreKit Testing displays multiple item selections in Xcode. (74015062) (FB8991179)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where the StoreKit Testing in Xcode editor didn’t horizontally scroll on small windows. (74015131) (FB8991182)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Swift-56",
+          "level": 3,
+          "text": "Swift 5.6",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swift now allows existential types written with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "any",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " keyword. An existential type is a type that can hold a value of any type conforming to a specific protocol. The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "any",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " keyword creates a syntactic distinction between existential types and protocol conformance constraints. The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "any",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " keyword is an important syntactic indicator that you’re using an existential type, because there are fundamental limitations on the capabilities of these types, such as the inability to conform to protocols. For example:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "protocol P {}",
+                    "// generic syntax",
+                    "func generic<T>(value: T) where T: P {",
+                    "  ...",
+                    "}",
+                    "// existential syntax",
+                    "func existential(value: any P) {",
+                    "   ...",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "(",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0335-existential-any.md",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", 88597544)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now include type placeholders in type expressions and annotations. Type placeholders direct the compiler to set the type for that position according to the usual type inference rules. To use a type placeholder, enter an underscore (”_”) instead of the type name. (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0315-placeholder-types.md",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", 87734998)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For example:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "// This is OK--the compiler can infer the key type as `Int`.",
+                    "let dict: [_: String] = [0: \"zero\", 1: \"one\", 2: \"two”]"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now write inverted availability conditions using the new ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "#unavailable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " keyword. (87734695)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For example:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "if #unavailable(iOS 15.0) {",
+                    "    // Old functionality",
+                    "} else {",
+                    "    // iOS 15 functionality ",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Swift compiler now accepts limited pointer type mismatches when directly calling functions imported from C as long as the C language allows those pointer types to alias. Consequently, any Swift ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Unsafe[Mutable]Pointer<T>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Unsafe[Mutable]RawPointer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " may be passed to C function arguments declared as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "[signed|unsigned] char *",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Swift ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Unsafe[Mutable]Pointer<T>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " can also be passed to C function arguments with an integer type that differs from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "T",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " only in its signedness. (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0324-c-lang-pointer-arg-conversion.md",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", 87735396)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For example, after importing a C function declaration:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "long long decode_int64(const char *ptr_to_int64);"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swift can now directly pass a raw pointer as the function argument.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For example:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "func decodeAsInt64(data: Data) -> Int64 {",
+                    "    data.withUnsafeBytes { (bytes: UnsafeRawBufferPointer) in",
+                    "        decode_int64(bytes.baseAddress!)",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "References to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Self",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or so-called “",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Self",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " requirements” in the type signatures of protocol members are now correctly detected in the parent of a nested type. As a result, you can’t declare these protocol members on protocols. (87735517)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For example:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "struct Outer<T> {",
+                    "  struct Inner {}",
+                    "}",
+                    "",
+                    "protocol P {}",
+                    "extension P {",
+                    "  func method(arg: Outer<Self>.Inner) {}",
+                    "}",
+                    "",
+                    "func test(p: P) {",
+                    "  // error: 'method' has a 'Self' requirement and can’t be used on a value of",
+                    "  // protocol type (use a generic constraint instead).",
+                    "  _ = p.method",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swift now provides an incremental migration path for data race safety. APIs can adopt concurrency without breaking clients that haven’t adopted concurrency. An existing declaration can introduce concurrency-related annotations (such as making its closure parameters ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@Sendable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") and use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@preconcurrency",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute to maintain its behavior for clients who haven’t adopted concurrency:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "// module A",
+                    "@preconcurrency func runOnSeparateTask(_ workItem: @Sendable () -> Void)",
+                    "// module B",
+                    "import A",
+                    "class MyCounter {",
+                    "  var value = 0",
+                    "}",
+                    "func doesNotUseConcurrency(counter: MyCounter) {",
+                    "  runOnSeparateTask {",
+                    "    counter.value += 1 // no warning, because this code hasn't adopted concurrency",
+                    "  }",
+                    "}",
+                    "func usesConcurrency(counter: MyCounter) async {",
+                    "  runOnSeparateTask {",
+                    "    counter.value += 1 // warning: capture of non-Sendable type 'MyCounter'",
+                    "  }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can enable warnings about data race safety within a module by setting the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-warn-concurrency",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " compiler option. When using a module that doesn’t",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "provide ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Sendable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " annotations yet, you can suppress warnings for types from that",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "module by marking the import with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@preconcurrency",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ":",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "/// module C",
+                    "public struct Point {",
+                    "  public var x, y: Double",
+                    "}",
+                    "// module D",
+                    "@preconcurrency import C",
+                    "func centerView(at location: Point) {",
+                    "  Task {",
+                    "    await mainView.center(at: location) // no warning about non-Sendable 'Point' because the @preconcurrency import suppresses it",
+                    "  }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "(",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0337-support-incremental-migration-to-concurrency-checking.md",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", 88597842)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The conformance of the unsafe pointer types (e.g., ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UnsafePointer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UnsafeMutableBufferPointer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Sendable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " protocols has been removed, because Swift can’t safely transfer pointers across task or actor boundaries. (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0331-remove-sendable-from-unsafepointer.md",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", 88598449)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The standard library now provides the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/withUnsafeTemporaryAllocation(of:capacity:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/withUnsafeTemporaryAllocation(byteCount:alignment:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " functions. You can use these functions to cheaply allocate raw storage for a brief duration. The system allocates storage on the stack if possible. (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0322-temporary-buffers.md",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", 88598790)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apps that use back-deployed Swift Concurrency on operating systems prior to macOS 10.15, iOS 13, tvOS 13, or watchOS 6 no longer crash on launch. (87789769)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "As part of SE-327, in Swift 5 mode a warning is now emitted if the default-value expression of an instance-member property requires global-actor isolation. Previously, the isolation granted by the type checker matched the isolation of the property itself, but at runtime that isn’t guaranteed. In Swift 6, such default-value expressions become an error if they require isolation. For more details, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0327-actor-initializers.md#stored-property-isolation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (87620832)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For example:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "@MainActor",
+                    "func partyGenerator() -> [PartyMember] { fatalError(\"todo\") }",
+                    "",
+                    "class Party {",
+                    "  @MainActor var members: [PartyMember] = partyGenerator()",
+                    "  //                                      ^~~~~~~~~~~~~~~~",
+                    "  // warning: expression requiring global actor 'MainActor' cannot",
+                    "  //          appear in default-value expression of property 'members'",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To fix this warning, move the expression into an initializer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "func partyGenerator() -> [PartyMember] { fatalError(\"todo\") }",
+                    "",
+                    "class Party {",
+                    "  @MainActor var members: [PartyMember]",
+                    "",
+                    "  @MainActor init() {",
+                    "    members = partyGenerator()",
+                    "  }",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Applications linking to RealityKit with iOS 15 or macOS Monterey 12 SDKs fail to launch in previous operating systems. (79584511)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Add ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "OTHER_LDFLAGS = -weak_framework RealityFoundation",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to your Xcode project settings to allow running RealityKit apps in older operating systems.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Swift-Package-Manager",
+          "level": 3,
+          "text": "Swift Package Manager",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swift Packages now support build tool plugins, as defined in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0303-swiftpm-extensible-build-tools.md",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0325-swiftpm-additional-plugin-apis.md",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". This allows packages to define plugins that can specify tools that should run during a build operation, for example to generate source code. This is supported in both ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "swift",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "package",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and in Xcode’s support for packages. (79876749)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "swift",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "package",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command now supports command plugins, as defined in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0332-swiftpm-command-plugins.md",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". This allows Packages to define commands that can be invoked using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "swift",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "package",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command line to perform custom actions on the package. (82895553)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: An error emitted by a build tool package plugin wasn’t being shown in the package log. (83715966)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An error emitted by a build tool package plugin doesn’t prevent a build operation that relies on the outputs from the plugin from starting. This can cause build errors related to the missing files that the plugin would have produced. (87842335)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Swift-Packages",
+          "level": 3,
+          "text": "Swift Packages",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Archiving an Xcode product that uses a build tool package plugin built from source failed with an error that the tool can’t be found. (88735684)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Making changes to one or more packages in a workspace and then starting a build may cause Xcode to crash. (90286753)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ":  To avoid this issue, set the following user default in Terminal:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "defaults write com.apple.dt.Xcode XPMAvoidUpdatingUnchangedPackages No"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Testing",
+          "level": 3,
+          "text": "Testing",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When running tests repeatedly, the test runner now prints the current iteration number to the console. (83848153)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed several issues with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xccov",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command-line tool. The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "--file",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " argument is no longer required with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "view",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command. If you don’t specify ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "--file",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the tool outputs all information from the specified archive rather than enumerating each file’s contents individually. ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xccov",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " also now supports JSON output with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "--json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " argument when viewing archives’ contents. (82004604)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "xcodebuild",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " now supports an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".xctestproducts",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " bundle format for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "build-for-testing",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "test-without-building",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " actions. Using a bundle makes it easier to run tests, particularly when transporting tests between systems. Use the new ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-testProductsPath",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " argument to set the path to the bundle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For example, performing a build with a command like:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "xcodebuild build-for-testing -project MyProject.xcodeproj -scheme App -testProductsPath ./App.xctestproducts"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "produces an App.xctestproducts bundle directory that you can then use to run tests with a command like:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "xcodebuild test-without-building -testProductPath ./App.xctestproducts -destination [...]"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-testPlan",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " argument to specify the name of the test plan to build or run. (85612917)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "XCTest now supports resetting the authorization status of the “Local Network” protected resource during UI testing. (64828023) (FB7801261)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Xcode-Cloud",
+          "level": 3,
+          "text": "Xcode Cloud",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When configuring a project or workspace to use Xcode Cloud, the Default workflow may select the wrong scheme for the archive action. (78776640)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Edit the workflow and select the correct scheme.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 13 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-13-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 13.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-13_1-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 13.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-13_2-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_2_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_2_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 13.2.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-13_2_1-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_3_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_3_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 13.3.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-13_3_1-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 13.4 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-13_4-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_4_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_4_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 13.4.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-13_4_1-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/SKPaymentQueueDelegate/paymentQueueShouldShowPriceConsent(_:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate whether to immediately display a price consent sheet.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentQueueShouldShowPriceConsent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "paymentQueue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKPaymentQueue",
+          "text": "SKPaymentQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKPaymentQueueDelegate/paymentQueueShouldShowPriceConsent(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "paymentQueueShouldShowPriceConsent(_:)",
+      "type": "topic",
+      "url": "/documentation/StoreKit/SKPaymentQueueDelegate/paymentQueueShouldShowPriceConsent(_:)"
+    },
+    "doc://com.apple.documentation/documentation/Swift/withUnsafeTemporaryAllocation(byteCount:alignment:_:)": {
+      "abstract": [
+        {
+          "text": "Provides scoped access to a raw buffer pointer with the specified byte count and alignment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withUnsafeTemporaryAllocation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "byteCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sw",
+          "text": "UnsafeMutableRawBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Copyable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/withUnsafeTemporaryAllocation(byteCount:alignment:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withUnsafeTemporaryAllocation(byteCount:alignment:_:)",
+      "type": "topic",
+      "url": "/documentation/Swift/withUnsafeTemporaryAllocation(byteCount:alignment:_:)"
+    },
+    "doc://com.apple.documentation/documentation/Swift/withUnsafeTemporaryAllocation(of:capacity:_:)": {
+      "abstract": [
+        {
+          "text": "Provides scoped access to a buffer pointer to memory of the specified type and with the specified capacity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withUnsafeTemporaryAllocation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "capacity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sr",
+          "text": "UnsafeMutableBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Copyable, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Copyable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/withUnsafeTemporaryAllocation(of:capacity:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withUnsafeTemporaryAllocation(of:capacity:_:)",
+      "type": "topic",
+      "url": "/documentation/Swift/withUnsafeTemporaryAllocation(of:capacity:_:)"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Replace hexadecimal addresses in a crash report with function names and line numbers that correspond to your app’s code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding identifiable symbol names to a crash report",
+      "type": "topic",
+      "url": "/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/index.html": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/index.html",
+      "title": "On-Demand Resources Essentials",
+      "titleInlineContent": [
+        {
+          "text": "On-Demand Resources Essentials",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/index.html"
+    },
+    "https://github.com/apple/swift-evolution/blob/main/proposals/0303-swiftpm-extensible-build-tools.md": {
+      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0303-swiftpm-extensible-build-tools.md",
+      "title": "SE-0303",
+      "titleInlineContent": [
+        {
+          "text": "SE-0303",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/swift-evolution/blob/main/proposals/0303-swiftpm-extensible-build-tools.md"
+    },
+    "https://github.com/apple/swift-evolution/blob/main/proposals/0315-placeholder-types.md": {
+      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0315-placeholder-types.md",
+      "title": "SE-0315",
+      "titleInlineContent": [
+        {
+          "text": "SE-0315",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/swift-evolution/blob/main/proposals/0315-placeholder-types.md"
+    },
+    "https://github.com/apple/swift-evolution/blob/main/proposals/0322-temporary-buffers.md": {
+      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0322-temporary-buffers.md",
+      "title": "SE-0322",
+      "titleInlineContent": [
+        {
+          "text": "SE-0322",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/swift-evolution/blob/main/proposals/0322-temporary-buffers.md"
+    },
+    "https://github.com/apple/swift-evolution/blob/main/proposals/0324-c-lang-pointer-arg-conversion.md": {
+      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0324-c-lang-pointer-arg-conversion.md",
+      "title": "SE-0324",
+      "titleInlineContent": [
+        {
+          "text": "SE-0324",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/swift-evolution/blob/main/proposals/0324-c-lang-pointer-arg-conversion.md"
+    },
+    "https://github.com/apple/swift-evolution/blob/main/proposals/0325-swiftpm-additional-plugin-apis.md": {
+      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0325-swiftpm-additional-plugin-apis.md",
+      "title": "SE-0325",
+      "titleInlineContent": [
+        {
+          "text": "SE-0325",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/swift-evolution/blob/main/proposals/0325-swiftpm-additional-plugin-apis.md"
+    },
+    "https://github.com/apple/swift-evolution/blob/main/proposals/0327-actor-initializers.md#stored-property-isolation": {
+      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0327-actor-initializers.md#stored-property-isolation",
+      "title": "SE-327",
+      "titleInlineContent": [
+        {
+          "text": "SE-327",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/swift-evolution/blob/main/proposals/0327-actor-initializers.md#stored-property-isolation"
+    },
+    "https://github.com/apple/swift-evolution/blob/main/proposals/0331-remove-sendable-from-unsafepointer.md": {
+      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0331-remove-sendable-from-unsafepointer.md",
+      "title": "SE-0331",
+      "titleInlineContent": [
+        {
+          "text": "SE-0331",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/swift-evolution/blob/main/proposals/0331-remove-sendable-from-unsafepointer.md"
+    },
+    "https://github.com/apple/swift-evolution/blob/main/proposals/0332-swiftpm-command-plugins.md": {
+      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0332-swiftpm-command-plugins.md",
+      "title": "SE-0332",
+      "titleInlineContent": [
+        {
+          "text": "SE-0332",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/swift-evolution/blob/main/proposals/0332-swiftpm-command-plugins.md"
+    },
+    "https://github.com/apple/swift-evolution/blob/main/proposals/0335-existential-any.md": {
+      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0335-existential-any.md",
+      "title": "SE-0335",
+      "titleInlineContent": [
+        {
+          "text": "SE-0335",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/swift-evolution/blob/main/proposals/0335-existential-any.md"
+    },
+    "https://github.com/apple/swift-evolution/blob/main/proposals/0337-support-incremental-migration-to-concurrency-checking.md": {
+      "identifier": "https://github.com/apple/swift-evolution/blob/main/proposals/0337-support-incremental-migration-to-concurrency-checking.md",
+      "title": "SE-0337",
+      "titleInlineContent": [
+        {
+          "text": "SE-0337",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/swift-evolution/blob/main/proposals/0337-support-incremental-migration-to-concurrency-checking.md"
+    },
+    "https://logging.apache.org/log4j/2.x/security.html": {
+      "identifier": "https://logging.apache.org/log4j/2.x/security.html",
+      "title": "https://logging.apache.org/log4j/2.x/security.html",
+      "titleInlineContent": [
+        {
+          "text": "https://logging.apache.org/log4j/2.x/security.html",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://logging.apache.org/log4j/2.x/security.html"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Xcode-13",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_4_1-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_4-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_3_1-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_2_1-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_2-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_1-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13-release-notes"
+      ],
+      "title": "Xcode 13"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1StoreKit~1SKPaymentQueueDelegate~1paymentQueueShouldShowPriceConsent(_:)/title",
+          "value": "paymentQueueShouldShowPriceConsent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1StoreKit~1SKPaymentQueueDelegate~1paymentQueueShouldShowPriceConsent(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentQueueShouldShowPriceConsent:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)SKPaymentQueue",
+              "text": "SKPaymentQueue"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "paymentQueue"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

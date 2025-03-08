@@ -1,0 +1,1233 @@
+{
+  "abstract": [
+    {
+      "text": "Use Core Data in both a single-threaded and multithreaded app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coredata/documentation/CoreData"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coredata/documentation/CoreData/using-core-data-in-the-background"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Data"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using Core Data in the background"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Data works in a multithreaded environment. However, not every object under the Core Data framework is thread safe. To use Core Data in a multithreaded environment, ensure that:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Bind managed object contexts to the thread (queue) that they’re initialization on.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Bind managed objects that you retrieve from a context to the same queue as the context.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Comparing-Main-Queue-and-Private-Queue-Contexts",
+          "level": 3,
+          "text": "Comparing Main Queue and Private Queue Contexts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two types of managed object contexts: main queue and private queue. You define the type of context when you initialize it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A main queue context (as defined by a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContextConcurrencyType/mainQueueConcurrencyType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") is specifically for use with your application interface. Only use it on the main queue of your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A private queue context (as defined by a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContextConcurrencyType/privateQueueConcurrencyType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") creates its own queue upon initialization. Only use it on that queue. Because the queue is private and internal to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, you can only access it through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/perform(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/performAndWait(_:)-ypye",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Initializing-and-configuring-a-context",
+          "level": 3,
+          "text": "Initializing and configuring a context",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/init(concurrencyType:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create a new context. For example, to create a private queue context:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a private queue context.",
+            "let context = NSManagedObjectContext(.privateQueue)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The parameter you pass during initialization determines what type of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " you receive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentContainer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you configure the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentContainer/viewContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property as a main queue (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContextConcurrencyType/mainQueueConcurrencyType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") context, and configure the contexts associated with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentContainer/performBackgroundTask(_:)-39sch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentContainer/newBackgroundContext()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as a private queue (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContextConcurrencyType/privateQueueConcurrencyType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Avoiding-problems",
+          "level": 3,
+          "text": "Avoiding problems",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In general, avoid doing data processing on the main queue that’s not user-related.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Data processing can be CPU-intensive, and if it’s performed on the main queue, it can result in unresponsiveness in the user interface. If your application processes data, such as importing data into Core Data from JSON, create a private queue context and perform the import on the private context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Don’t pass managed object instances between queues.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Doing so can result in corruption of the data and termination of the app. When it’s necessary to hand off a managed object reference from one queue to another, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You retrieve the managed object ID of a managed object by calling the ",
+              "type": "text"
+            },
+            {
+              "code": "objectID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " accessor on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coredata/documentation/CoreData": {
+      "abstract": [
+        {
+          "text": "Persist or cache data on a single device, or sync data to multiple devices with CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Data",
+      "type": "topic",
+      "url": "/documentation/coredata"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObject": {
+      "abstract": [
+        {
+          "text": "The base class that all Core Data model objects inherit from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSManagedObject"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSManagedObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSManagedObject",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobject"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext": {
+      "abstract": [
+        {
+          "text": "An object space to manipulate and track changes to managed objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSManagedObjectContext"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSManagedObjectContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSManagedObjectContext",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobjectcontext"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/init(concurrencyType:)": {
+      "abstract": [
+        {
+          "text": "Creates a context that uses the specified concurrency type.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "concurrencyType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSManagedObjectContextConcurrencyType",
+          "text": "NSManagedObjectContextConcurrencyType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/init(concurrencyType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithConcurrencyType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(concurrencyType:)",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobjectcontext/init(concurrencytype:)"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/perform(_:)": {
+      "abstract": [
+        {
+          "text": "Asynchronously performs the specified closure on the context’s queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "(() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/perform(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "performBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "perform(_:)",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobjectcontext/perform(_:)"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/performAndWait(_:)-ypye": {
+      "abstract": [
+        {
+          "text": "Synchronously performs the specified closure on the context’s queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performAndWait"
+        },
+        {
+          "kind": "text",
+          "text": "(() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/performAndWait(_:)-ypye",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "performBlockAndWait:"
+        }
+      ],
+      "role": "symbol",
+      "title": "performAndWait(_:)",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobjectcontext/performandwait(_:)-ypye"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContextConcurrencyType/mainQueueConcurrencyType": {
+      "abstract": [
+        {
+          "text": "Specifies that the context will be associated with the main queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mainQueueConcurrencyType"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContextConcurrencyType/mainQueueConcurrencyType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSMainQueueConcurrencyType"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobjectcontextconcurrencytype/mainqueueconcurrencytype"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContextConcurrencyType/privateQueueConcurrencyType": {
+      "abstract": [
+        {
+          "text": "Specifies that the context will be associated with a private dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "privateQueueConcurrencyType"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContextConcurrencyType/privateQueueConcurrencyType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPrivateQueueConcurrencyType"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSManagedObjectContextConcurrencyType.privateQueueConcurrencyType",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobjectcontextconcurrencytype/privatequeueconcurrencytype"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectID": {
+      "abstract": [
+        {
+          "text": "A compact, universal identifier for a managed object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSManagedObjectID"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSManagedObjectID"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSManagedObjectID",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobjectid"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentContainer": {
+      "abstract": [
+        {
+          "text": "A container that encapsulates the Core Data stack in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPersistentContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPersistentContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPersistentContainer",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistentcontainer"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentContainer/newBackgroundContext()": {
+      "abstract": [
+        {
+          "text": "Returns a new managed object context that executes on a private queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "newBackgroundContext"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSManagedObjectContext",
+          "text": "NSManagedObjectContext"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentContainer/newBackgroundContext()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newBackgroundContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "newBackgroundContext()",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistentcontainer/newbackgroundcontext()"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentContainer/performBackgroundTask(_:)-39sch": {
+      "abstract": [
+        {
+          "text": "Executes a closure on a private queue using an ephemeral managed object context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performBackgroundTask"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSManagedObjectContext",
+          "text": "NSManagedObjectContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentContainer/performBackgroundTask(_:)-39sch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "performBackgroundTask:"
+        }
+      ],
+      "role": "symbol",
+      "title": "performBackgroundTask(_:)",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistentcontainer/performbackgroundtask(_:)-39sch"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentContainer/viewContext": {
+      "abstract": [
+        {
+          "text": "The main queue’s managed object context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSManagedObjectContext",
+          "text": "NSManagedObjectContext"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentContainer/viewContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewContext",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistentcontainer/viewcontext"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/batch-processing": {
+      "abstract": [
+        {
+          "text": "Use batch processes to manage large data changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/batch-processing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Batch processing",
+      "type": "topic",
+      "url": "/documentation/coredata/batch-processing"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/conflict-resolution": {
+      "abstract": [
+        {
+          "text": "Detect and resolve conflicts that occur when data is changed on multiple threads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/conflict-resolution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Conflict resolution",
+      "type": "topic",
+      "url": "/documentation/coredata/conflict-resolution"
+    },
+    "doc://com.apple.documentation/documentation/swiftui/loading_and_displaying_a_large_data_feed": {
+      "abstract": [
+        {
+          "text": "Consume data in the background, and lower memory use by batching imports and preventing duplicate records.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swiftui/loading_and_displaying_a_large_data_feed",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Loading and Displaying a Large Data Feed",
+      "type": "topic",
+      "url": "/documentation/swiftui/loading_and_displaying_a_large_data_feed"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Background-tasks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/swiftui/loading_and_displaying_a_large_data_feed",
+        "doc://com.apple.coredata/documentation/CoreData/conflict-resolution",
+        "doc://com.apple.coredata/documentation/CoreData/batch-processing"
+      ],
+      "title": "Background tasks"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Background-tasks",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/conflict-resolution",
+                "doc://com.apple.coredata/documentation/CoreData/batch-processing"
+              ],
+              "title": "Background tasks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1init(concurrencyType:)/title",
+          "value": "initWithConcurrencyType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1init(concurrencyType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithConcurrencyType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContextConcurrencyType~1mainQueueConcurrencyType/title",
+          "value": "NSMainQueueConcurrencyType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContextConcurrencyType~1mainQueueConcurrencyType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMainQueueConcurrencyType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentContainer/title",
+          "value": "NSPersistentContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1performAndWait(_:)-ypye/title",
+          "value": "performBlockAndWait:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1performAndWait(_:)-ypye/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "performBlockAndWait:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext/title",
+          "value": "NSManagedObjectContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSManagedObjectContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSManagedObjectContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1perform(_:)/title",
+          "value": "performBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1perform(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "performBlock:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentContainer~1newBackgroundContext()/title",
+          "value": "newBackgroundContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentContainer~1newBackgroundContext()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newBackgroundContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContextConcurrencyType~1privateQueueConcurrencyType/title",
+          "value": "NSPrivateQueueConcurrencyType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContextConcurrencyType~1privateQueueConcurrencyType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrivateQueueConcurrencyType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentContainer~1performBackgroundTask(_:)-39sch/title",
+          "value": "performBackgroundTask:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentContainer~1performBackgroundTask(_:)-39sch/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "performBackgroundTask:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentContainer~1viewContext/title",
+          "value": "viewContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentContainer~1viewContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "viewContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectID/title",
+          "value": "NSManagedObjectID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSManagedObjectID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSManagedObjectID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObject/title",
+          "value": "NSManagedObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSManagedObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSManagedObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coredata/using-core-data-in-the-background"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coredata/using-core-data-in-the-background"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

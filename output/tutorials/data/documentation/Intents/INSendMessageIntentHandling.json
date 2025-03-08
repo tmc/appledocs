@@ -1,0 +1,1818 @@
+{
+  "abstract": [
+    {
+      "text": "An interface to handle sending messages to one or more designated users.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/Intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)INSendMessageIntentHandling",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "INSendMessageIntentHandling"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "INSendMessageIntentHandling"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.2",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "INSendMessageIntentHandling"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INSendMessageIntentHandling"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.sirikit/documentation/SiriKit/dispatching-intents-to-handlers"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the methods of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to resolve, confirm, and handle requests to send text or audio messages to the designated users. Adopt this protocol in an object of your Intents extension that is capable of sending the messages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Siri delivers an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to your handler when the user asks to send a message using your app. The provided intent object contains the recipients and content of the message. Use the methods of this protocol to resolve the parameters and to validate that sending the message is possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INMessagesDomainHandling": {
+      "abstract": [
+        {
+          "text": "An interface for adopting all of the protocols in the messages domain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INMessagesDomainHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INMessagesDomainHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INMessagesDomainHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INMessagesDomainHandling",
+      "type": "topic",
+      "url": "/documentation/intents/inmessagesdomainhandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INOutgoingMessageType": {
+      "abstract": [
+        {
+          "text": "The format of the message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INOutgoingMessageType"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INOutgoingMessageType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INOutgoingMessageType"
+        }
+      ],
+      "role": "symbol",
+      "title": "INOutgoingMessageType",
+      "type": "topic",
+      "url": "/documentation/intents/inoutgoingmessagetype"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendMessageAttachment": {
+      "abstract": [
+        {
+          "text": "A file to include in a message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSendMessageAttachment"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendMessageAttachment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSendMessageAttachment"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSendMessageAttachment",
+      "type": "topic",
+      "url": "/documentation/intents/insendmessageattachment"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntent": {
+      "abstract": [
+        {
+          "text": "A request to send a message to the designated recipients.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSendMessageIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSendMessageIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSendMessageIntent",
+      "type": "topic",
+      "url": "/documentation/intents/insendmessageintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentDonationMetadata": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSendMessageIntentDonationMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentDonationMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSendMessageIntentDonationMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSendMessageIntentDonationMetadata",
+      "type": "topic",
+      "url": "/documentation/intents/insendmessageintentdonationmetadata"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling": {
+      "abstract": [
+        {
+          "text": "An interface to handle sending messages to one or more designated users.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSendMessageIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSendMessageIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSendMessageIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/insendmessageintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/confirm(intent:completion:)": {
+      "abstract": [
+        {
+          "text": "Confirms that you can send the message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "confirm"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "intent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INSendMessageIntent",
+          "text": "INSendMessageIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INSendMessageIntentResponse",
+          "text": "INSendMessageIntentResponse"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/confirm(intent:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "confirmSendMessage:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "confirm(intent:completion:)",
+      "type": "topic",
+      "url": "/documentation/intents/insendmessageintenthandling/confirm(intent:completion:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/handle(intent:completion:)": {
+      "abstract": [
+        {
+          "text": "Sends the message to the specified recipients.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "intent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INSendMessageIntent",
+          "text": "INSendMessageIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INSendMessageIntentResponse",
+          "text": "INSendMessageIntentResponse"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/handle(intent:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleSendMessage:completion:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "handle(intent:completion:)",
+      "type": "topic",
+      "url": "/documentation/intents/insendmessageintenthandling/handle(intent:completion:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveContent(for:with:)": {
+      "abstract": [
+        {
+          "text": "Resolves the contents of the message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolveContent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INSendMessageIntent",
+          "text": "INSendMessageIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INStringResolutionResult",
+          "text": "INStringResolutionResult"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveContent(for:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resolveContentForSendMessage:withCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "resolveContent(for:with:)",
+      "type": "topic",
+      "url": "/documentation/intents/insendmessageintenthandling/resolvecontent(for:with:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveGroupName(for:with:)": {
+      "abstract": [
+        {
+          "text": "Resolves the name of the group receiving the message.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolveGroupName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INSendMessageIntent",
+          "text": "INSendMessageIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INStringResolutionResult",
+          "text": "INStringResolutionResult"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveGroupName(for:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resolveGroupNameForSendMessage:withCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "resolveGroupName(for:with:)",
+      "type": "topic",
+      "url": "/documentation/intents/insendmessageintenthandling/resolvegroupname(for:with:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveOutgoingMessageType(for:with:)": {
+      "abstract": [
+        {
+          "text": "Determines what type of message to send.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolveOutgoingMessageType"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INSendMessageIntent",
+          "text": "INSendMessageIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INOutgoingMessageTypeResolutionResult",
+          "text": "INOutgoingMessageTypeResolutionResult"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveOutgoingMessageType(for:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resolveOutgoingMessageTypeForSendMessage:withCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "resolveOutgoingMessageType(for:with:)",
+      "type": "topic",
+      "url": "/documentation/intents/insendmessageintenthandling/resolveoutgoingmessagetype(for:with:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveRecipients(for:with:)-2yejx": {
+      "abstract": [
+        {
+          "text": "Resolves the recipients of the message.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolveRecipients"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INSendMessageIntent",
+          "text": "INSendMessageIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INPersonResolutionResult",
+          "text": "INPersonResolutionResult"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveRecipients(for:with:)-2yejx",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resolveRecipientsForSendMessage:withCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "resolveRecipients(for:with:)",
+      "type": "topic",
+      "url": "/documentation/intents/insendmessageintenthandling/resolverecipients(for:with:)-2yejx"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveRecipients(for:with:)-609yw": {
+      "abstract": [
+        {
+          "text": "Resolves the user’s input when it isn’t clear who the recipients of the message are.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolveRecipients"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INSendMessageIntent",
+          "text": "INSendMessageIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INSendMessageRecipientResolutionResult",
+          "text": "INSendMessageRecipientResolutionResult"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveRecipients(for:with:)-609yw",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resolveRecipientsForSendMessage:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "resolveRecipients(for:with:)",
+      "type": "topic",
+      "url": "/documentation/intents/insendmessageintenthandling/resolverecipients(for:with:)-609yw"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveSpeakableGroupName(for:with:)": {
+      "abstract": [
+        {
+          "text": "Resolves the name of the group receiving the message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolveSpeakableGroupName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INSendMessageIntent",
+          "text": "INSendMessageIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INSpeakableStringResolutionResult",
+          "text": "INSpeakableStringResolutionResult"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveSpeakableGroupName(for:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resolveSpeakableGroupNameForSendMessage:withCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "resolveSpeakableGroupName(for:with:)",
+      "type": "topic",
+      "url": "/documentation/intents/insendmessageintenthandling/resolvespeakablegroupname(for:with:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a send message intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSendMessageIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSendMessageIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSendMessageIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/insendmessageintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/dispatching-intents-to-handlers": {
+      "abstract": [
+        {
+          "text": "Provide SiriKit with an intent handler capable of handling a specific intent.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/dispatching-intents-to-handlers",
+      "kind": "article",
+      "role": "article",
+      "title": "Dispatching intents to handlers",
+      "type": "topic",
+      "url": "/documentation/sirikit/dispatching-intents-to-handlers"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INMessagesDomainHandling"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sending-a-Message",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentResponse",
+        "doc://com.apple.sirikit/documentation/Intents/INOutgoingMessageType",
+        "doc://com.apple.sirikit/documentation/Intents/INSendMessageAttachment",
+        "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentDonationMetadata"
+      ],
+      "title": "Sending a Message"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Resolving-the-Intent-Parameters",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveRecipients(for:with:)-609yw",
+        "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveOutgoingMessageType(for:with:)",
+        "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveContent(for:with:)",
+        "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveSpeakableGroupName(for:with:)"
+      ],
+      "title": "Resolving the Intent Parameters"
+    },
+    {
+      "anchor": "Confirming-the-Response",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/confirm(intent:completion:)"
+      ],
+      "title": "Confirming the Response"
+    },
+    {
+      "anchor": "Handling-the-Intent",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/handle(intent:completion:)"
+      ],
+      "title": "Handling the Intent"
+    },
+    {
+      "anchor": "Deprecated-Methods",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveRecipients(for:with:)-2yejx",
+        "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveGroupName(for:with:)"
+      ],
+      "title": "Deprecated Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.2",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "INSendMessageIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.sirikit/documentation/Intents"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Resolving-the-Intent-Parameters",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveRecipients(for:with:)-609yw",
+                "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveOutgoingMessageType(for:with:)",
+                "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveContent(for:with:)",
+                "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveSpeakableGroupName(for:with:)"
+              ],
+              "title": "Resolving the Intent Parameters"
+            },
+            {
+              "anchor": "Confirming-the-Response",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/confirm(intent:completion:)"
+              ],
+              "title": "Confirming the Response"
+            },
+            {
+              "anchor": "Handling-the-Intent",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/handle(intent:completion:)"
+              ],
+              "title": "Handling the Intent"
+            },
+            {
+              "anchor": "Deprecated-Methods",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveRecipients(for:with:)-2yejx",
+                "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentHandling/resolveGroupName(for:with:)"
+              ],
+              "title": "Deprecated Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INMessagesDomainHandling"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Sending-a-Message",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntent",
+                "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentResponse",
+                "doc://com.apple.sirikit/documentation/Intents/INOutgoingMessageType",
+                "doc://com.apple.sirikit/documentation/Intents/INSendMessageAttachment",
+                "doc://com.apple.sirikit/documentation/Intents/INSendMessageIntentDonationMetadata"
+              ],
+              "title": "Sending a Message"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "INSendMessageIntentHandling"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentHandling~1handle(intent:completion:)/title",
+          "value": "handleSendMessage:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentHandling~1handle(intent:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleSendMessage:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentHandling~1resolveOutgoingMessageType(for:with:)/title",
+          "value": "resolveOutgoingMessageTypeForSendMessage:withCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentHandling~1resolveOutgoingMessageType(for:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resolveOutgoingMessageTypeForSendMessage:withCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentHandling/title",
+          "value": "INSendMessageIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentHandling~1resolveSpeakableGroupName(for:with:)/title",
+          "value": "resolveSpeakableGroupNameForSendMessage:withCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentHandling~1resolveSpeakableGroupName(for:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resolveSpeakableGroupNameForSendMessage:withCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageAttachment/title",
+          "value": "INSendMessageAttachment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageAttachment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageAttachment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessagesDomainHandling/title",
+          "value": "INMessagesDomainHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessagesDomainHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessagesDomainHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessagesDomainHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessagesDomainHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentHandling~1resolveRecipients(for:with:)-609yw/title",
+          "value": "resolveRecipientsForSendMessage:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentHandling~1resolveRecipients(for:with:)-609yw/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resolveRecipientsForSendMessage:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentResponse/title",
+          "value": "INSendMessageIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentHandling~1resolveContent(for:with:)/title",
+          "value": "resolveContentForSendMessage:withCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentHandling~1resolveContent(for:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resolveContentForSendMessage:withCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentHandling~1resolveRecipients(for:with:)-2yejx/title",
+          "value": "resolveRecipientsForSendMessage:withCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentHandling~1resolveRecipients(for:with:)-2yejx/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resolveRecipientsForSendMessage:withCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentHandling~1confirm(intent:completion:)/title",
+          "value": "confirmSendMessage:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentHandling~1confirm(intent:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "confirmSendMessage:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INOutgoingMessageType/title",
+          "value": "INOutgoingMessageType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INOutgoingMessageType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INOutgoingMessageType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INOutgoingMessageType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INOutgoingMessageType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentHandling~1resolveGroupName(for:with:)/title",
+          "value": "resolveGroupNameForSendMessage:withCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentHandling~1resolveGroupName(for:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resolveGroupNameForSendMessage:withCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntent/title",
+          "value": "INSendMessageIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentDonationMetadata/title",
+          "value": "INSendMessageIntentDonationMetadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentDonationMetadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageIntentDonationMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSendMessageIntentDonationMetadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSendMessageIntentDonationMetadata"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/intents/insendmessageintenthandling"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/intents/insendmessageintenthandling"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1006 @@
+{
+  "abstract": [
+    {
+      "text": "Enable lightweight migrations to keep your data model and the underlying data in a consistent state.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coredata/documentation/CoreData"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coredata/documentation/CoreData/migrating-your-data-model-automatically"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Data"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Migrating your data model automatically"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Data can typically perform an automatic data migration, referred to as lightweight migration. Lightweight migration infers the migration from the differences between the source and the destination managed object models.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Generating-an-inferred-mapping-model",
+          "level": 3,
+          "text": "Generating an inferred mapping model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To perform automatic lightweight migration, Core Data needs to be able to find the source and destination managed object models at runtime. It looks for models in the bundles returned by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1413705-allbundles",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1408056-allframeworks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class. Core Data then analyzes the schema changes to persistent entities and properties, and generates an inferred mapping model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Generating an inferred mapping model requires changes to fit an obvious migration pattern, for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Addition of an attribute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Removal of an attribute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A nonoptional attribute becoming optional",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An optional attribute becoming non-optional, and defining a default value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Renaming an entity or property",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Managing-changes-to-entities-and-properties",
+          "level": 3,
+          "text": "Managing changes to entities and properties",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you rename an entity or property, you can set the renaming identifier in the destination model to the name of the corresponding property or entity in the source model. Use the Xcode Data Modeling tool’s property inspector (for either an entity or a property) to set the renaming identifier in the managed object model. For example, you can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Rename a Car entity to Automobile",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Rename a Car’s color attribute to paintColor",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The renaming identifier creates a canonical name, so set the renaming identifier to the name of the property in the source model (unless that property already has a renaming identifier). This means you can rename a property in version 2 of a model, then rename it again in version 3. The renaming will work correctly going from version 2 to version 3, or from version 1 to version 3.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Managing-changes-to-relationships",
+          "level": 3,
+          "text": "Managing changes to relationships",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Lightweight migration can also manage changes to relationships and to the type of relationship. You can add a new relationship or delete an existing relationship. You can also rename a relationship by using a renaming identifier, just like an attribute.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition, you can change a relationship from a to-one to a to-many, or a nonordered to-many to an ordered (and vice versa).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Managing-changes-to-hierarchies",
+          "level": 3,
+          "text": "Managing changes to hierarchies",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add, remove, and rename entities in the hierarchy. You can also create a new parent or child entity and move properties up and down the entity hierarchy. You can move entities out of a hierarchy, but you can’t merge entity hierarchies. If two existing entities don’t share a common parent in the source, they can’t share a common parent in the destination.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Confirming-whether-Core-Data-can-infer-the-model",
+          "level": 3,
+          "text": "Confirming whether Core Data can infer the model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to determine in advance whether Core Data can infer the mapping model between the source and destination models without actually doing the work of migration, you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSMappingModel/inferredMappingModel(forSourceModel:destinationModel:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. The method returns the inferred model if Core Data is able to create it; otherwise, it returns ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your data change exceeds the capabilities of automatic migration, you can perform a heavyweight migration (often referred to as manual migration).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Requesting-lightweight-migration",
+          "level": 3,
+          "text": "Requesting lightweight migration",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You request automatic lightweight migration using the options dictionary that you pass into ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentStoreCoordinator/addPersistentStore(ofType:configurationName:at:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Set values corresponding to both the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSMigratePersistentStoresAutomaticallyOption",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSInferMappingModelAutomaticallyOption",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " keys to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a persistent store coordinator with a managed object model.",
+            "let coordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)",
+            "",
+            "// Create a URL to the data store.",
+            "",
+            "do {",
+            "    // Set the options to enable lightweight data migrations.",
+            "    let options = [NSMigratePersistentStoresAutomaticallyOption: true,",
+            "                         NSInferMappingModelAutomaticallyOption: true]",
+            "    ",
+            "    // Set the options when you add the store to the coordinator.",
+            "    _ = try coordinator.addPersistentStore(type: .sqlite,",
+            "                                           at: storeURL,",
+            "                                           options: options)",
+            "} catch {",
+            "    // Handle the error appropriately. It's useful to use",
+            "    // `fatalError(_:file:line:)` during development.",
+            "    fatalError(\"Failed to add persistent store: \\(error.localizedDescription)\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With these settings in place, Core Data attempts a lightweight migration when it detects the persistent store no longer matches the current model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coredata/documentation/CoreData": {
+      "abstract": [
+        {
+          "text": "Persist or cache data on a single device, or sync data to multiple devices with CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Data",
+      "type": "topic",
+      "url": "/documentation/coredata"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSInferMappingModelAutomaticallyOption": {
+      "abstract": [
+        {
+          "text": "Key to attempt to create the mapping model automatically.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSInferMappingModelAutomaticallyOption"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSInferMappingModelAutomaticallyOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSInferMappingModelAutomaticallyOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSInferMappingModelAutomaticallyOption",
+      "type": "topic",
+      "url": "/documentation/coredata/nsinfermappingmodelautomaticallyoption"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSMappingModel/inferredMappingModel(forSourceModel:destinationModel:)": {
+      "abstract": [
+        {
+          "text": "Returns a newly created mapping model that will migrate data from the source to the destination model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inferredMappingModel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forSourceModel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSManagedObjectModel",
+          "text": "NSManagedObjectModel"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationModel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSManagedObjectModel",
+          "text": "NSManagedObjectModel"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSMappingModel",
+          "text": "NSMappingModel"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSMappingModel/inferredMappingModel(forSourceModel:destinationModel:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inferredMappingModelForSourceModel:destinationModel:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "inferredMappingModel(forSourceModel:destinationModel:)",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmappingmodel/inferredmappingmodel(forsourcemodel:destinationmodel:)"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSMigratePersistentStoresAutomaticallyOption": {
+      "abstract": [
+        {
+          "text": "Key to automatically attempt to migrate versioned stores.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMigratePersistentStoresAutomaticallyOption"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSMigratePersistentStoresAutomaticallyOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSMigratePersistentStoresAutomaticallyOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSMigratePersistentStoresAutomaticallyOption",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmigratepersistentstoresautomaticallyoption"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentStoreCoordinator/addPersistentStore(ofType:configurationName:at:options:)": {
+      "abstract": [
+        {
+          "text": "Adds a specific type of persistent store at the provided location.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addPersistentStore"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configurationName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPersistentStore",
+          "text": "NSPersistentStore"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentStoreCoordinator/addPersistentStore(ofType:configurationName:at:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addPersistentStoreWithType:configuration:URL:options:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addPersistentStore(ofType:configurationName:at:options:)",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistentstorecoordinator/addpersistentstore(oftype:configurationname:at:options:)"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/manual-migrations": {
+      "abstract": [
+        {
+          "text": "Migrate elaborate data models with changes that go beyond the capabilities of both lightweight and staged migrations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/manual-migrations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Manual migrations",
+      "type": "topic",
+      "url": "/documentation/coredata/manual-migrations"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/staged-migrations": {
+      "abstract": [
+        {
+          "text": "Migrate complex data models containing changes that are incompatible with lightweight migrations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/staged-migrations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Staged migrations",
+      "type": "topic",
+      "url": "/documentation/coredata/staged-migrations"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle": {
+      "abstract": [
+        {
+          "text": "A representation of the code and resources stored in a bundle directory on disk. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bundle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bundle",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1408056-allframeworks": {
+      "abstract": [
+        {
+          "text": "Returns an array of all of the application’s bundles that represent frameworks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allFrameworks"
+        },
+        {
+          "kind": "text",
+          "text": ": [Bundle]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1408056-allframeworks",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allFrameworks",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1408056-allframeworks"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1413705-allbundles": {
+      "abstract": [
+        {
+          "text": "Returns an array of all the application’s non-framework bundles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allBundles"
+        },
+        {
+          "kind": "text",
+          "text": ": [Bundle]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1413705-allbundles",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allBundles",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1413705-allbundles"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Data-model-migration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/staged-migrations",
+        "doc://com.apple.coredata/documentation/CoreData/manual-migrations"
+      ],
+      "title": "Data model migration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Data-model-migration",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/staged-migrations",
+                "doc://com.apple.coredata/documentation/CoreData/manual-migrations"
+              ],
+              "title": "Data model migration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSInferMappingModelAutomaticallyOption/title",
+          "value": "NSInferMappingModelAutomaticallyOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSInferMappingModelAutomaticallyOption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSInferMappingModelAutomaticallyOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1bundle/title",
+          "value": "NSBundle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSMigratePersistentStoresAutomaticallyOption/title",
+          "value": "NSMigratePersistentStoresAutomaticallyOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSMigratePersistentStoresAutomaticallyOption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMigratePersistentStoresAutomaticallyOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSMappingModel~1inferredMappingModel(forSourceModel:destinationModel:)/title",
+          "value": "inferredMappingModelForSourceModel:destinationModel:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSMappingModel~1inferredMappingModel(forSourceModel:destinationModel:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "inferredMappingModelForSourceModel:destinationModel:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentStoreCoordinator~1addPersistentStore(ofType:configurationName:at:options:)/title",
+          "value": "addPersistentStoreWithType:configuration:URL:options:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentStoreCoordinator~1addPersistentStore(ofType:configurationName:at:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addPersistentStoreWithType:configuration:URL:options:error:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coredata/migrating-your-data-model-automatically"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coredata/migrating-your-data-model-automatically"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

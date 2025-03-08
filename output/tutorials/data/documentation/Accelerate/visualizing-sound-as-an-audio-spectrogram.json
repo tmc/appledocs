@@ -1,0 +1,1834 @@
+{
+  "abstract": [
+    {
+      "text": "Share image data between vDSP and vImage to visualize audio that a device microphone captures.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/visualizing-sound-as-an-audio-spectrogram"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Visualizing sound as an audio spectrogram"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project captures audio from a macOS device’s microphone and uses a combination of routines from vImage and vDSP to render the audio as an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "audio spectrogram",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". Audio spectrograms visualize audio in 2D using one axis to represent time and the other axis to represent frequency. Color represents the amplitude of the time-frequency pair.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use audio spectrograms for signal analysis. For example, a spectrogram can help identify audio issues, such as low- or high-frequency noise, or short-impulse noises like clicks and pops that may not be immediately obvious to the human ear. Spectrograms can also assist in audio classification using neural networks for tasks such as bird song and speech recognition.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The image below shows the audio spectrogram that this sample created from the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Stargate Opening",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " sound effect in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.apple.com/ios/garageband/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The horizontal axis represents time, and the vertical axis represents frequency. The sample calculates the color that represents amplitude using a procedurally generated multidimensional lookup table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "stargateOpening.jpeg",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates an audio spectrogram by performing a discrete cosine transform (DCT) on audio samples. The DCT computes the frequency components of an audio signal and represents the audio as a series of amplitudes at the component frequencies. DCTs are related to Fourier transforms, but use real values rather than complex values. You can learn more about Fourier transforms at ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/finding-the-component-frequencies-in-a-composite-sine-wave",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The spectrogram scrolls horizontally so that the most recent sample renders on the right side of the device’s screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each sample buffer that AVFoundation provides, the app appends that data to the ",
+              "type": "text"
+            },
+            {
+              "code": "rawAudioData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array.  At the same time, the app applies a DCT to the first ",
+              "type": "text"
+            },
+            {
+              "code": "sampleCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements of ",
+              "type": "text"
+            },
+            {
+              "code": "rawAudioData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and produces a single-precision frequency-domain representation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code appends the newly generated frequency-domain values to ",
+              "type": "text"
+            },
+            {
+              "code": "frequencyDomainValues",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and discards ",
+              "type": "text"
+            },
+            {
+              "code": "sampleCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements from the beginning. It is this appending and discarding of data that generates the scrolling effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A vImage pixel buffer, ",
+              "type": "text"
+            },
+            {
+              "code": "planarImageBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", shares data with ",
+              "type": "text"
+            },
+            {
+              "code": "frequencyDomainValues",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the multidimensional lookup table uses that as a planar source to populate three additional planar buffers that represent the red, green, and blue channels of the spectrogram image. The sample app interleaves the red, green, and blue planar buffers to display the RGB spectrogram image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before exploring the code, build and run the app to familiarize yourself with the different visual results it generates from different sounds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-the-spectrogram-size",
+          "level": 3,
+          "text": "Define the spectrogram size",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample defines two constants that specify the size of the spectrogram.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "sampleCount",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " defines the number of individual samples that pass to the DCT, and the resolution of the displayed frequencies.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "bufferCount",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " controls the number of displayed buffers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample also specifies a hop size that controls the overlap between frames of data and ensures that the spectrogram doesn’t lose any audio information at the start and end of each sample.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// The number of samples per frame — the height of the spectrogram.",
+            "static let sampleCount = 1024",
+            "",
+            "/// The number of displayed buffers — the width of the spectrogram.",
+            "static let bufferCount = 768",
+            "",
+            "/// Determines the overlap between frames.",
+            "static let hopCount = 512"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Process-the-audio-data",
+          "level": 3,
+          "text": "Process the audio data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "processData(values:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function processes the first ",
+              "type": "text"
+            },
+            {
+              "code": "sampleCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " samples from  ",
+              "type": "text"
+            },
+            {
+              "code": "rawAudioData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by performing the DCT and appending the frequency-domain representation data to the array that creates the vImage buffer and, ultimately, the audio spectrogram image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To avoid recreating working arrays with each iteration, the following code creates reusable buffers that ",
+              "type": "text"
+            },
+            {
+              "code": "processData(values:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// A reusable array that contains the current frame of time-domain audio data as single-precision",
+            "/// values.",
+            "var timeDomainBuffer = [Float](repeating: 0,",
+            "                               count: sampleCount)",
+            "",
+            "/// A resuable array that contains the frequency-domain representation of the current frame of",
+            "/// audio data.",
+            "var frequencyDomainBuffer = [Float](repeating: 0,",
+            "                                    count: sampleCount)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/convertElements(of:to:)-93xn9",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to convert 16-bit integer audio samples to single-precision floating-point values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "vDSP.convertElements(of: values,",
+            "                     to: &timeDomainBuffer)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To reduce spectral leakage, the sample multiplies the signal by a Hann window and performs the DCT. The following code generates the window:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let hanningWindow = vDSP.window(ofType: Float.self,",
+            "                                usingSequence: .hanningDenormalized,",
+            "                                count: sampleCount,",
+            "                                isHalfWindow: false)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about using windows to reduce spectral leakage, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/reducing-spectral-leakage-with-windowing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code multiplies the time-domain data by the Hann window and performs the forward DCT:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "vDSP.multiply(timeDomainBuffer,",
+            "              hanningWindow,",
+            "              result: &timeDomainBuffer)",
+            "",
+            "forwardDCT.transform(timeDomainBuffer,",
+            "                     result: &frequencyDomainBuffer)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-the-pseudocolor-multidimensional-lookup-tables",
+          "level": 3,
+          "text": "Define the pseudocolor multidimensional lookup tables",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that the sample uses to create the pseudocolor rendering. The function returns dark blue for low values, graduates through red, and returns full-brightness green for ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static var multidimensionalLookupTable: vImage.MultidimensionalLookupTable = {",
+            "    let entriesPerChannel = UInt8(32)",
+            "    let srcChannelCount = 1",
+            "    let destChannelCount = 3",
+            "    ",
+            "    let lookupTableElementCount = Int(pow(Float(entriesPerChannel),",
+            "                                          Float(srcChannelCount))) *",
+            "    Int(destChannelCount)",
+            "    ",
+            "    let tableData = [UInt16](unsafeUninitializedCapacity: lookupTableElementCount) {",
+            "        buffer, count in",
+            "        ",
+            "        /// Supply the samples in the range `0...65535`. The transform function",
+            "        /// interpolates these to the range `0...1`.",
+            "        let multiplier = CGFloat(UInt16.max)",
+            "        var bufferIndex = 0",
+            "        ",
+            "        for gray in ( 0 ..< entriesPerChannel) {",
+            "            /// Create normalized red, green, and blue values in the range `0...1`.",
+            "            let normalizedValue = CGFloat(gray) / CGFloat(entriesPerChannel - 1)",
+            "          ",
+            "            // Define `hue` that's blue at `0.0` to red at `1.0`.",
+            "            let hue = 0.6666 - (0.6666 * normalizedValue)",
+            "            let brightness = sqrt(normalizedValue)",
+            "            ",
+            "            let color = NSColor(hue: hue,",
+            "                                saturation: 1,",
+            "                                brightness: brightness,",
+            "                                alpha: 1)",
+            "            ",
+            "            var red = CGFloat()",
+            "            var green = CGFloat()",
+            "            var blue = CGFloat()",
+            "            ",
+            "            color.getRed(&red,",
+            "                         green: &green,",
+            "                         blue: &blue,",
+            "                         alpha: nil)",
+            " ",
+            "            buffer[ bufferIndex ] = UInt16(green * multiplier)",
+            "            bufferIndex += 1",
+            "            buffer[ bufferIndex ] = UInt16(red * multiplier)",
+            "            bufferIndex += 1",
+            "            buffer[ bufferIndex ] = UInt16(blue * multiplier)",
+            "            bufferIndex += 1",
+            "        }",
+            "        ",
+            "        count = lookupTableElementCount",
+            "    }",
+            "    ",
+            "    let entryCountPerSourceChannel = [UInt8](repeating: entriesPerChannel,",
+            "                                             count: srcChannelCount)",
+            "    ",
+            "    return vImage.MultidimensionalLookupTable(entryCountPerSourceChannel: entryCountPerSourceChannel,",
+            "                                              destinationChannelCount: destChannelCount,",
+            "                                              data: tableData)",
+            "}()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image shows the color that the function returns with inputs from ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " through ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "brgColormap.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-the-vImage-pixel-buffers-to-display-the-audio-spectrogram",
+          "level": 3,
+          "text": "Prepare the vImage pixel buffers to display the audio spectrogram",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display the audio spectrogram, the app creates a temporary planar ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that shares memory with the frequency-domain values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code applies the multidimensional lookup table to the grayscale information in the temporary buffer to populate three planar buffers that represent the red, green, and blue channels. Because the vImage functions that generate a Core Graphics image from a pixel buffer require an interleaved buffer, the code interleaves the red, green, and blue buffer into ",
+              "type": "text"
+            },
+            {
+              "code": "rgbImageBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func makeAudioSpectrogramImage() -> CGImage {",
+            "    frequencyDomainValues.withUnsafeMutableBufferPointer {",
+            "        ",
+            "        let planarImageBuffer = vImage.PixelBuffer(",
+            "            data: $0.baseAddress!,",
+            "            width: AudioSpectrogram.sampleCount,",
+            "            height: AudioSpectrogram.bufferCount,",
+            "            byteCountPerRow: AudioSpectrogram.sampleCount * MemoryLayout<Float>.stride,",
+            "            pixelFormat: vImage.PlanarF.self)",
+            "        ",
+            "        AudioSpectrogram.multidimensionalLookupTable.apply(",
+            "            sources: [planarImageBuffer],",
+            "            destinations: [redBuffer, greenBuffer, blueBuffer],",
+            "            interpolation: .half)",
+            "        ",
+            "        rgbImageBuffer.interleave(",
+            "            planarSourceBuffers: [redBuffer, greenBuffer, blueBuffer])",
+            "    }",
+            "    ",
+            "    return rgbImageBuffer.makeCGImage(cgImageFormat: rgbImageFormat) ?? AudioSpectrogram.emptyCGImage",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Compute-the-mel-spectrum-using-linear-algebra",
+          "level": 3,
+          "text": "Compute the mel spectrum using linear algebra",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the linear audio spectrogram, the sample app provides a mode to render audio as a mel spectrogram. The ",
+              "type": "text"
+            },
+            {
+              "code": "computeMelSpectrogram(values:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function rescales the frequency-domain buffer from a linear scale to the mel scale.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The mel scale is a scale of pitches that human hearing generally perceives to be equidistant from each other. As frequency increases, the interval, in hertz, between mel scale values (or simply ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "mels",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ") increases. The name ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "mel",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " derives from ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "melody",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and indicates that the scale is based on the comparison between pitches. The mel spectrogram remaps the values in hertz to the mel scale.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The linear audio spectrogram is ideally suited for use cases where all frequencies have equal importance, while mel spectrograms are better suited when modeling human hearing perception. Mel spectrogram data is also suited for use in audio classification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A mel spectrogram differs from a linearly scaled audio spectrogram in two ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A mel spectrogram logarithmically renders frequencies above a certain threshold (the ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "corner frequency",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": "). For example, in the linearly scaled spectrogram, the vertical space between 1000 Hz and 2000 Hz is half of the vertical space between 2000 Hz and 4000 Hz. In the mel spectrogram, the space between those ranges is approximately the same. This scaling is analogous to human hearing, where it’s easier to distinguish between similar low frequency sounds than similar high frequency sounds.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A mel spectrogram computes its output by multiplying frequency-domain values by a filter bank.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample builds the filter bank from a series of overlapping triangular windows at a series of evenly spaced mels. The number of elements in a single frame in a mel spectrogram is equal to the number of filters in the filter bank.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image shows the linear audio spectrogram and the mel spectrogram of the same linearly increasing and decreasing tone. The tone starts at 20 Hz, rises to 22,050 Hz, and drops back to 20 Hz. The image shows that the audio spectrogram represents the objective signal, but the mel spectrogram mirrors human perception, that is, the curve flattens \u001fand indicates reduced differentiation between high frequencies.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "linear_vs_mel.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this case, the mel spectrogram consists of 40 filters, so the spectrogram has a lower vertical resolution than the linear spectrogram.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-the-mel-frequencies",
+          "level": 3,
+          "text": "Define the mel frequencies",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates an array, ",
+              "type": "text"
+            },
+            {
+              "code": "melFilterBankFrequencies",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", that contains the indices of ",
+              "type": "text"
+            },
+            {
+              "code": "frequencyDomainBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that represent the mel scale frequencies. For example, if the Nyquist frequency is 22,050 Hz and ",
+              "type": "text"
+            },
+            {
+              "code": "frequencyDomainBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains 1024 elements, a value of 512 in ",
+              "type": "text"
+            },
+            {
+              "code": "melFilterBankFrequencies",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents 11,025 Hz.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "static MelSpectrogram.populateMelFilterBankFrequencies(_:maximumFrequency:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function populates ",
+              "type": "text"
+            },
+            {
+              "code": "melFilterBankFrequencies",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the logarithmically increasing indices based on the linearly interpolated increasing mel frequencies in  ",
+              "type": "text"
+            },
+            {
+              "code": "melFilterBankFrequencies",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func frequencyToMel(_ frequency: Float) -> Float {",
+            "    return 2595 * log10(1 + (frequency / 700))",
+            "}",
+            "",
+            "func melToFrequency(_ mel: Float) -> Float {",
+            "    return 700 * (pow(10, mel / 2595) - 1)",
+            "}",
+            "",
+            "let minMel = frequencyToMel(frequencyRange.lowerBound)",
+            "let maxMel = frequencyToMel(frequencyRange.upperBound)",
+            "let bankWidth = (maxMel - minMel) / Float(filterBankCount - 1)",
+            "",
+            "let melFilterBankFrequencies: [Int] = stride(from: minMel, to: maxMel, by: bankWidth).map {",
+            "    let mel = Float($0)",
+            "    let frequency = melToFrequency(mel)",
+            "    ",
+            "    return Int((frequency / frequencyRange.upperBound) * Float(sampleCount))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following line chart shows 16 generated mel frequencies as squares and the corresponding frequencies in hertz as circles:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "accelerate-mel-hertz_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-filter-bank",
+          "level": 3,
+          "text": "Create the filter bank",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates the filter bank matrix with ",
+              "type": "text"
+            },
+            {
+              "code": "filterBankCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " rows and ",
+              "type": "text"
+            },
+            {
+              "code": "sampleCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " columns. Each row contains a triangular window that starts at the previous frequency, peaks at the current frequency, and ends at the next frequency. For example, the following graphic illustrates the values for a filter bank that contains 16 values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "accelerate-filter-bank_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "static MelSpectrogram.populateFilterBank(_:melFilterBankFrequencies:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function populates the ",
+              "type": "text"
+            },
+            {
+              "code": "filterBank",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. The function uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vgen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to generate the attack and decay phases of each triangle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for i in 0 ..< melFilterBankFrequencies.count {",
+            "    ",
+            "    let row = i * sampleCount",
+            "    ",
+            "    let startFrequency = melFilterBankFrequencies[ max(0, i - 1) ]",
+            "    let centerFrequency = melFilterBankFrequencies[ i ]",
+            "    let endFrequency = (i + 1) < melFilterBankFrequencies.count ?",
+            "    melFilterBankFrequencies[ i + 1 ] : sampleCount - 1",
+            "    ",
+            "    let attackWidth = centerFrequency - startFrequency + 1",
+            "    let decayWidth = endFrequency - centerFrequency + 1",
+            "    ",
+            "    // Create the attack phase of the triangle.",
+            "    if attackWidth > 0 {",
+            "        vDSP_vgen(&endValue,",
+            "                  &baseValue,",
+            "                  filterBank.baseAddress!.advanced(by: row + startFrequency),",
+            "                  1,",
+            "                  vDSP_Length(attackWidth))",
+            "    }",
+            "    ",
+            "    // Create the decay phase of the triangle.",
+            "    if decayWidth > 0 {",
+            "        vDSP_vgen(&baseValue,",
+            "                  &endValue,",
+            "                  filterBank.baseAddress!.advanced(by: row + centerFrequency),",
+            "                  1,",
+            "                  vDSP_Length(decayWidth))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Use-a-matrix-multiply-to-compute-the-mel-spectrogram",
+          "level": 3,
+          "text": "Use a matrix multiply to compute the mel spectrogram",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample performs a matrix multiply of each frame of frequency-domain data with the filter bank to produce a frame of mel-scaled values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image shows the matrix multiply. The frame of 1024 frequency-domain values is multiplied by 16 overlapping triangular windows, returning the 16-element mel-scaled values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "accelerate-matrix-multiply_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/cblas_sgemm(_:_:_:_:_:_:_:_:_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to perform the matrix multiply:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "values.withUnsafeBufferPointer { frequencyDomainValuesPtr in",
+            "    cblas_sgemm(CblasRowMajor,",
+            "                CblasTrans, CblasTrans,",
+            "                1,",
+            "                Int32(MelSpectrogram.filterBankCount),",
+            "                Int32(sampleCount),",
+            "                1,",
+            "                frequencyDomainValuesPtr.baseAddress,",
+            "                1,",
+            "                filterBank.baseAddress, Int32(sampleCount),",
+            "                0,",
+            "                sgemmResult.baseAddress, Int32(MelSpectrogram.filterBankCount))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, the sample adds the result of the matrix multiply in ",
+              "type": "text"
+            },
+            {
+              "code": "sgemmResult",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "code": "melSpectrumValues",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that contain ",
+              "type": "text"
+            },
+            {
+              "code": "bufferCount * filterBankCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "accelerate-filter-bank_2x.png": {
+      "alt": "A graph of 16 stacked horizontal lines, each with a small triangle that indicates nonzero entries. The triangle of the top line is narrow and on the left. Each subsequent line has a slightly wider triangle, shifted to the right.",
+      "identifier": "accelerate-filter-bank_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/69a09b4d526095dc6fc4772e779b5f1d/accelerate-filter-bank_2x.png"
+        }
+      ]
+    },
+    "accelerate-matrix-multiply_2x.png": {
+      "alt": "A diagram showing the matrix multiply of the 1024-element frequency-domain array on the left multiplied by the filter bank in the center. The result is the 16-element mel spectrogram on the right.",
+      "identifier": "accelerate-matrix-multiply_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/42aff1ccf3490b8f965f8ae207ef1c15/accelerate-matrix-multiply_2x.png"
+        }
+      ]
+    },
+    "accelerate-mel-hertz_2x.png": {
+      "alt": "A line chart with a vertical scale measured in hertz and a range of zero to 20,000. The chart contains two lines. A straight line represents 16 mel frequencies, and a curved line below the mel line represents the corresponding frequency in hertz.",
+      "identifier": "accelerate-mel-hertz_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e35ca67b0816bf856f4629dae56da6a2/accelerate-mel-hertz_2x.png"
+        }
+      ]
+    },
+    "brgColormap.png": {
+      "alt": "Image of a horizontal gradient that transitions from dark blue, through red, to green.",
+      "identifier": "brgColormap.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4120db1dde17b7b1361574dc4e8a800c/brgColormap.png"
+        }
+      ]
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-biquadratic-filters-to-a-music-loop": {
+      "abstract": [
+        {
+          "text": "Change the frequency response of an audio signal using a cascaded biquadratic filter.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-biquadratic-filters-to-a-music-loop",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Applying biquadratic filters to a music loop",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-biquadratic-filters-to-a-music-loop"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/biquadratic-iir-filters": {
+      "abstract": [
+        {
+          "text": "Apply biquadratic filters to single-channel and multichannel data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/biquadratic-iir-filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Biquadratic IIR filters",
+      "type": "topic",
+      "url": "/documentation/accelerate/biquadratic-iir-filters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/cblas_sgemm(_:_:_:_:_:_:_:_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Multiplies two matrices (single-precision).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cblas_sgemm"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CBLAS_ORDER",
+          "text": "CBLAS_ORDER"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CBLAS_TRANSPOSE",
+          "text": "CBLAS_TRANSPOSE"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CBLAS_TRANSPOSE",
+          "text": "CBLAS_TRANSPOSE"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@__LAPACK_int",
+          "text": "__LAPACK_int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@__LAPACK_int",
+          "text": "__LAPACK_int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@__LAPACK_int",
+          "text": "__LAPACK_int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@__LAPACK_int",
+          "text": "__LAPACK_int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@__LAPACK_int",
+          "text": "__LAPACK_int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@__LAPACK_int",
+          "text": "__LAPACK_int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/cblas_sgemm(_:_:_:_:_:_:_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cblas_sgemm"
+        }
+      ],
+      "role": "symbol",
+      "title": "cblas_sgemm(_:_:_:_:_:_:_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/cblas_sgemm(_:_:_:_:_:_:_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/discrete-cosine-transforms": {
+      "abstract": [
+        {
+          "text": "Transform vectors of temporal and spatial domain real values to the frequency domain, and vice versa.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/discrete-cosine-transforms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Discrete Cosine transforms",
+      "type": "topic",
+      "url": "/documentation/accelerate/discrete-cosine-transforms"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/equalizing-audio-with-discrete-cosine-transforms-dcts": {
+      "abstract": [
+        {
+          "text": "Change the frequency response of an audio signal by manipulating frequency-domain data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/equalizing-audio-with-discrete-cosine-transforms-dcts",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Equalizing audio with discrete cosine transforms (DCTs)",
+      "type": "topic",
+      "url": "/documentation/accelerate/equalizing-audio-with-discrete-cosine-transforms-dcts"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/finding-the-component-frequencies-in-a-composite-sine-wave": {
+      "abstract": [
+        {
+          "text": "Use 1D fast Fourier transform to compute the frequency components of a signal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/finding-the-component-frequencies-in-a-composite-sine-wave",
+      "kind": "article",
+      "role": "article",
+      "title": "Finding the component frequencies in a composite sine wave",
+      "type": "topic",
+      "url": "/documentation/accelerate/finding-the-component-frequencies-in-a-composite-sine-wave"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/reducing-spectral-leakage-with-windowing": {
+      "abstract": [
+        {
+          "text": "Multiply signal data by window sequence values when performing transforms with noninteger period signals.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/reducing-spectral-leakage-with-windowing",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing spectral leakage with windowing",
+      "type": "topic",
+      "url": "/documentation/accelerate/reducing-spectral-leakage-with-windowing"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/convertElements(of:to:)-93xn9": {
+      "abstract": [
+        {
+          "text": "Converts 16-bit signed integers to single-precision values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertElements"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/convertElements(of:to:)-93xn9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convertElements(of:to:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/convertelements(of:to:)-93xn9"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vgen": {
+      "abstract": [
+        {
+          "text": "Generates a single-precision vector that contains monotonically incrementing or decrementing values within a range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_vgen"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vgen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_vgen",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_vgen"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable": {
+      "abstract": [
+        {
+          "text": "A multidimensional lookup table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MultidimensionalLookupTable"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MultidimensionalLookupTable"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.MultidimensionalLookupTable",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/multidimensionallookuptable"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, bit depth, and number of channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.PixelBuffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "f94b8999a49f/VisualizingSoundAsAnAudioSpectrogram.zip": {
+      "checksum": "f94b8999a49fb28e72948f63b6569cd3a625f256f3675d9d68fa44d3d9d650a60255f6adab53bf522affa54d3645e159eb03fe3d7f95252d2111188df4459f22",
+      "identifier": "f94b8999a49f/VisualizingSoundAsAnAudioSpectrogram.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/f94b8999a49f/VisualizingSoundAsAnAudioSpectrogram.zip"
+    },
+    "https://www.apple.com/ios/garageband/": {
+      "identifier": "https://www.apple.com/ios/garageband/",
+      "title": "GarageBand",
+      "titleInlineContent": [
+        {
+          "text": "GarageBand",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.apple.com/ios/garageband/"
+    },
+    "linear_vs_mel.png": {
+      "alt": "A pair of images showing a linear audio spectrogram on the left and a mel audio spectrogram on the right. The shape of the linear spectrogram resembles a triangle. The shape of the mel spectrogram resembles a dome.",
+      "identifier": "linear_vs_mel.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6491913be1417e3593347b72c77cae00/linear_vs_mel.png"
+        }
+      ]
+    },
+    "stargateOpening.jpeg": {
+      "alt": "A screenshot of an audio spectrogram showing a series of vertically stacked diagonal lines that rise and fall, representing the tones of the sampled sound effect.",
+      "identifier": "stargateOpening.jpeg",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/485fb74f8694c3e396e025955ad66e8e/stargateOpening.jpeg"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "f94b8999a49f/VisualizingSoundAsAnAudioSpectrogram.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Audio-Processing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-biquadratic-filters-to-a-music-loop",
+        "doc://com.apple.accelerate/documentation/Accelerate/equalizing-audio-with-discrete-cosine-transforms-dcts",
+        "doc://com.apple.accelerate/documentation/Accelerate/biquadratic-iir-filters",
+        "doc://com.apple.accelerate/documentation/Accelerate/discrete-cosine-transforms"
+      ],
+      "title": "Audio Processing"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1cblas_sgemm(_:_:_:_:_:_:_:_:_:_:_:_:_:_:)/title",
+          "value": "cblas_sgemm"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1cblas_sgemm(_:_:_:_:_:_:_:_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cblas_sgemm"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

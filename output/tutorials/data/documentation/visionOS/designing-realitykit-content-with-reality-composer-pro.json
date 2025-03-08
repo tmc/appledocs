@@ -1,0 +1,2548 @@
+{
+  "abstract": [
+    {
+      "text": "Design RealityKit scenes for your visionOS app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Designing RealityKit content with Reality Composer Pro"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use Reality Composer Pro to visually design, edit, and preview RealityKit content. In Reality Composer Pro, you can create one or more scenes, which  act as a container for RealityKit content. Scenes contain hierarchies of entities, which are virtual objects such as 3D models.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 4
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "RCPro-Icon-MacOS.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 5,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to helping you compose scenes, Reality Composer Pro also gives you the ability to add and configure components — even custom components that you’ve written — to the entities in your scenes and also lets you create complex materials and effects using a node-based material editor called Shader Graph.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Launch-Reality-Composer-Pro",
+          "level": 3,
+          "text": "Launch Reality Composer Pro",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a visionOS project in Xcode, it also contains a default Reality Composer Pro project named ",
+              "type": "text"
+            },
+            {
+              "code": "RealityKitContent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " within the Packages folder, which is a Swift package. The ",
+              "type": "text"
+            },
+            {
+              "code": "RealityKitContent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " package can include images, 3D models, and other assets like audio and video files. The assets you add to your project go in the ",
+              "type": "text"
+            },
+            {
+              "code": "RealityKitContent.rkassets",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bundle, while your source code goes into its Sources directory. The package also contains a file called ",
+              "type": "text"
+            },
+            {
+              "code": "Package.realitycomposerpro",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which is the actual Reality Composer Pro project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To launch Reality Composer Pro, double-click the ",
+              "type": "text"
+            },
+            {
+              "code": "Package.realitycomposerpro",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in the Project navigator, or click the Open in Reality Composer Pro button. If your project doesn’t already have a Reality Composer Pro project, you can launch Reality Composer Pro directly by choosing Xcode > Open Developer Tool > Reality Composer Pro.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For efficiency, store all of your RealityKit assets in Reality Composer Pro projects. Xcode compiles Reality Composer Pro projects into a more efficient format when you build your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Loading assets from a ",
+                  "type": "text"
+                },
+                {
+                  "code": ".reality",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file is considerably faster and more resource efficient than loading individual asset files.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Orient-yourself-in-Reality-Composer-Pro",
+          "level": 3,
+          "text": "Orient yourself in Reality Composer Pro",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Reality Composer Pro window has several sections. The top-half displays the active scene. If you have multiple scenes, the window shows a tab bar at the top with one tab for each open scene. A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "scene",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " in Reality Composer Pro is an entity hierarchy stored in a ",
+              "type": "text"
+            },
+            {
+              "code": ".usda",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The left side of the top pane contains the hierarchy browser, which shows a tree representation of the entities in the active scene. You can toggle it using the top-left toolbar button to reveal errors and warnings. The middle pane is the 3D View, which shows a 3D representation of the active scene. The top-right is the inspector, which shows configurable values for the item selected in the 3D view, hierarchy view, or Shader Graph, depending on which has focus.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A Reality Composer Pro scene can represent an entire RealityKit scene, and you can have multiple scenes in your Reality Composer Pro project, each driving a different ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in the same app. A scene can also contain a collection of entities to use as a building block. For example, if you had an airplane model, you might build a scene for it that contains its 3D model, a particle effect to make smoke come out its engine, and audio entities or components that represent the various sounds a plane makes. Your app could then load those combined assets and use them together anywhere it needs.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The bottom half of Reality Composer Pro contains the following four tabs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Displays all of the assets in your project.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Project Browser",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An advanced, node-based material editor.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Shader Graph",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A tool for combining sound assets.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Audio Mixer",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Information about the currently open scene, such as the number of entities, vertices, and animations it contains.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Statistics",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "RCPro-BiplaneWindow.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reality Composer Pro projects start with a single empty scene called ",
+              "type": "text"
+            },
+            {
+              "code": "Scene",
+              "type": "codeVoice"
+            },
+            {
+              "text": " which is stored in a file called ",
+              "type": "text"
+            },
+            {
+              "code": "Scene.usda",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You can create as many additional scenes as you need by choosing File > New > Scene. New scenes open as tabs along the top of the window, and they also appear in the Project Browser as ",
+              "type": "text"
+            },
+            {
+              "code": ".usda",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you close a scene’s tab and need to re-open it, double-click on the scene’s ",
+              "type": "text"
+            },
+            {
+              "code": ".usda",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in the Project Browser. If you no longer need a scene, delete its ",
+              "type": "text"
+            },
+            {
+              "code": ".usda",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file from the Project Browser or remove it from your project’s ",
+              "type": "text"
+            },
+            {
+              "code": ".rkassets",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bundle in Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To delete a scene:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Close the scene tab by selecting File > Close Tab",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the scene’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".usda",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file in the Project Browser",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-click the scene’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".usda",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file  the Project Browser.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Delete from the contextual menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Move to Trash.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This removes the scene’s ",
+              "type": "text"
+            },
+            {
+              "code": ".usda",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the scene tab at the top of the window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-assets-to-your-project",
+          "level": 3,
+          "text": "Add assets to your project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Reality Composer Pro, you design scenes by first importing assets into your project. Then add assets to scenes and move, rotate, and scale them. The Project Browser tab displays all of the asset files in your project. You can add new assets by dragging them to the Project Browser or by choosing File > Import and select the assets to add to your project. To add an asset from the Project Browser to the current scene, drag it to the 3D view in the center of the window, or to the hierarchy view in the top-left of the window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Reality Composer Pro projects can contain assets not used in any scene. Such assets are still compiled into your app and can be loaded at runtime and take full advantage of the efficient loading process for ",
+                  "type": "text"
+                },
+                {
+                  "code": ".reality",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " files.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reality Composer Pro can represent many assets as entities, but it can’t represent all assets that way; for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "USDZ models do become an entity or entity hierarchy when you add them to a scene.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Image files do not become an entity. Reality Composer Pro only uses image assets indirectly, such as being the source texture for materials you build in Shader Graph. If you drag assets that Reality Composer Pro can’t turn into an entity, nothing happens.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add any 3D models, animations, sounds, and image files you need to your project. You can organize your assets into subfolders to make the Project Browser more manageable as your project grows in size.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reality Composer Pro has a library of assets that you can use in your own apps. You can access the library by clicking the Add button (+) in the toolbar. Click the icon of the down-arrow inside a circle next to an asset to download the asset to Reality Composer Pro. When the download finishes, you can double-click or drag the asset into your project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "rcpro-library-cropped.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Reality Composer Pro treats your imported assets as read-only.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Changes you make to assets in a scene only affect that scene’s copy of the asset. The changes you make are stored in the scene’s ",
+              "type": "text"
+            },
+            {
+              "code": ".usda",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, not in the original asset. That means you can work without fear of inadvertently changing other scenes. If you plan to make significant changes to an imported 3D model, such as by replacing its materials with dynamic Shader Graph materials, import the model as a",
+              "type": "text"
+            },
+            {
+              "code": ".usdc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file instead of as a ",
+              "type": "text"
+            },
+            {
+              "code": ".usdz",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, and then separately import just the supporting assets you need to avoid Xcode compiling assets that you don’t need into your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Compose-scenes-from-assets",
+          "level": 3,
+          "text": "Compose scenes from assets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All RealityKit entities in a scene exist at a specific position, orientation, and scale, even if that entity has no visual representation. When you click to select an entity in the 3D view or hierarchy view, Reality Composer Pro displays:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A manipulator over the entity in the 3D view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Any configurable values from the entity’s components in the inspector on the right.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can use the manipulator to move, rotate, and scale the selected entity.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To move the selected entity around the 3D scene, drag the small colored cone that corresponds to the axis you want to move it along. Alternatively, you can drag the entity itself to move it freely relative to your viewing angle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To rotate the selected entity, click on the manipulator’s rotation control, which looks like a circle, and drag in a circular motion.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Reality Composer Pro’s manipulator only shows one rotation control at a time.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "To rotate an entity on one of the other axes, click the cone corresponding to the axis you want to rotate. For example, if you want to rotate the entity on the ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "X",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " axis, tap the red cone to bring up the red rotation handle for that axis.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To scale the selected entity uniformly, click the rotation circle and drag away from the entity origin to scale it up, or toward the entity origin to scale it down. Because it scales uniformly, it doesn’t matter which rotation handle Reality Composer Pro is showing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "identifier": "RCPro-Manipulator.mp4",
+          "type": "video"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In the manipulator, Red indicates the X axis, Green indicates the Y axis, and Blue indicates the Z axis.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Alternatively, you can make the same changes to the selected entity by typing new values into the transform component of the inspector. The transform component stores the position, rotation, and scale for an entity. The manipulator is just a visual way to change the values on this component.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 4
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "RCPRo-TransformInspector.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 2
+            }
+          ],
+          "numberOfColumns": 6,
+          "type": "row"
+        },
+        {
+          "anchor": "Activate-and-deactivate-scene-entities",
+          "level": 3,
+          "text": "Activate and deactivate scene entities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reality Composer Pro scenes can get quite complex and sometimes contain overlapping entities, which can be difficult to work with. To simplify a scene, you can deactivate entities to remove them from the 3D view. Deactivate entities by Control-clicking them and selecting Deactivate from the contextual menu. The entity still exists in your project and is shown in the hierarchy view, albeit grayed out and without any child entities. It won’t, however, appear in the 3D view. Xcode doesn’t compile deactivated entities into your app’s bundle, so it’s important to re-activate any entities your app needs before saving your project. To reactivate an entity, Control-click the entity in the hierarchy view and select Activate from the contextual menu.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-components-to-entities",
+          "level": 3,
+          "text": "Add components to entities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit follows a design pattern called Entity-Component-System (ECS). In ECS, you store data on an entity using components and then implement entity behavior by writing systems that use the data from those components. You can add and configure components to entities in Reality Composer Pro, including both built-in components like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ParticleEmitterComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and custom components that you write and place in the Sources folder of your Reality Composer Pro Swift package. You can also create new components in Reality Composer Pro and edit them in Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about ECS, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.visionOS/documentation/visionOS/understanding-the-realitykit-modular-architecture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To add a component to an entity, select that entity in the hierarchy view or 3D view. At the bottom-right of the inspector window, click Add Component. A list of available components appears with New Component at the top. If you select the first item, Reality Composer Pro creates a new component class in the Sources folder, and optionally a new system class. It also adds the component to the selected entity. If you select any other item in the list, it adds that component to the selected entity if it doesn’t already have that component.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 5
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "RCPro-NewComponent.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 3
+            }
+          ],
+          "numberOfColumns": 8,
+          "type": "row"
+        },
+        {
+          "anchor": "Create-or-modify-entity-hierarchies",
+          "level": 3,
+          "text": "Create or modify entity hierarchies",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reality Composer Pro scenes are hierarchies of RealityKit entities. You can change the relationship between entities in the hierarchy browser except for parts of the hierarchy imported from a ",
+              "type": "text"
+            },
+            {
+              "code": ".usdz",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, which Reality Composer Pro treats as a read-only file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To change the relationship between entities, or to create a relationship between two currently unrelated entities, use the hierarchy view and drag an entity onto the entity that you want it to be part of. If you want an entity to become a root entity, drag it to the Root transform at the top of the hierarchy view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Modify-or-create-new-materials",
+          "level": 3,
+          "text": "Modify or create new materials",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you import a USDZ model into Reality Composer Pro, it creates a RealityKit material for every physically-based rendering (PBR) material the asset contains. Reality Composer Pro displays materials in the hierarchy view just like it displays entities, except it uses a paintbrush icon. Reality Composer Pro doesn’t display materials in the 3D view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The library in Reality Composer Pro contains materials for several common real-world surfaces like metal, wood, and denim that you can import into your project.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you select a PBR material in the hierarchy view, you can edit it using the inspector. You can replace images, colors, or values for any of the PBR attributes with another image, color, or value of your choosing. Any changes you make to a material affects any entity that’s bound to that material. You can also create new materials from scratch by clicking the Add button (+) at the bottom of the scene hierarchy and choosing Material.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 5
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "RCPro-MaterialInspector.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 3
+            }
+          ],
+          "numberOfColumns": 8,
+          "type": "row"
+        },
+        {
+          "anchor": "Build-materials-in-Shader-Graph",
+          "level": 3,
+          "text": "Build materials in Shader Graph",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "PBR materials are great at reproducing real-world surfaces. However, they can’t represent nonrealistic materials like cartoon shaders, and they can’t contain logic. This means that you can’t animate a PBR material or have it react to input from your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reality Composer Pro offers a second type of material called a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "custom material",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". You can build and edit custom materials using the Shader Graph tab. Shader Graph provides a tremendous amount of control over materials and allows you to do things that would otherwise require writing Metal shaders. For more information on writing Metal shaders, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "RealityKit doesn’t represent Reality Composer Pro custom materials as an instance of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/RealityKit/CustomMaterial",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", as you might expect. Instead, RealityKit represents these materials as ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/RealityKit/ShaderGraphMaterial",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instances.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "RCPro-ShaderGraphWindow.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The materials you build in the editor can affect both the look of an entity and its shape. If you build a node graph and connect it to the Custom Surface pin on the output node, that node graph controls the surface appearance of the model and roughly equates to writing Metal code in a fragment shader. If you build a node graph and connect it to the Custom Geometry Modifier output pin, those nodes control the shape of the entity, which equates to Metal code running in a vertex shader.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Nodes represent values and operations and serve the same purpose as either a variable or constant, or a function in Metal. If you need the sine of a value, for example, connect the value’s output node to the input pin of a ",
+              "type": "text"
+            },
+            {
+              "code": "Sin",
+              "type": "codeVoice"
+            },
+            {
+              "text": " node. Add new nodes to the graph by double-clicking the background of the Shader Graph view or click the New Node button on the right side of the screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Some nodes, like ",
+                  "type": "text"
+                },
+                {
+                  "code": "Sin",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", are universal and can be used with either output pin. Other nodes are specific to either the Custom Surface or Geometry Modifier outputs. If a node name starts with Geometry Modifier, you can only connect it to the Geometry Modifier output pin. If the node’s name starts with “Surface”, you can only connect it to the Custom Surface output pin.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To unlock the real power of Shader Graph, you need to be able to change values on the material from Swift code. Shader Graph allows you to do this by creating ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "promoted inputs",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which are parameters you can set and read from Swift to change your material at runtime. If you have a feature that you want to turn on and off, you might create a Boolean input parameter and have conditional logic based on its value. If you want to smoothly interpolate between two colors, you might create a ",
+              "type": "text"
+            },
+            {
+              "code": "Float",
+              "type": "codeVoice"
+            },
+            {
+              "text": " input parameter and use it to control how to interpolate between the two colors. You can Control-click on a constant node and select Promote to turn it into a promoted input. You can also turn a promoted input back into a constant by Control-clicking it and selecting Demote.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you don’t have an existing constant to promote, you can create new promoted inputs using the inspector. The New Input button only shows up in the inspector when you select a material in the hierarchy view but have no nodes selected in the Shader Graph tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 5
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "RCPro-InputParameter.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 3
+            }
+          ],
+          "numberOfColumns": 8,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To change the value of an input parameter from Swift code, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ShaderGraphMaterial/setParameter(name:value:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", passing the name of the parameter and the new value. Note that parameter names are case sensitive, so your ",
+              "type": "text"
+            },
+            {
+              "code": "name",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string must exactly match what you called the parameter in Shader Graph.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For examples of Shader Graph use, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.visionOS/documentation/visionOS/diorama",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.visionOS/documentation/visionOS/happybeam",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-references-to-reuse-assets",
+          "level": 3,
+          "text": "Use references to reuse assets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your project has multiple scenes that share assets, you can use references to avoid creating duplicate assets. A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "reference",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " acts like an alias in Finder — it points to the original asset and functions just as if it were another copy of that asset.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create references using the inspector. By default, the references section is hidden for entities and materials that don’t have any references. To add a new reference to an asset or material that doesn’t have one, choose Reality Composer Pro > Settings and uncheck Hide Empty References.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 5
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "RCPro-References.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 3
+            }
+          ],
+          "numberOfColumns": 8,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a reference, click the Add button (+) at the bottom of the references section in the inspector, choose the ",
+              "type": "text"
+            },
+            {
+              "code": ".usda",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file for the scene that contains the asset, then choose the asset you want to link to. After you do that, the selected entity or material becomes a copy of the one you linked to.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you make changes to a linked asset, those changes will affect every linked reference.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Preview-scenes-on-device",
+          "level": 3,
+          "text": "Preview scenes on device",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have an Apple Vision Pro connected to your Mac, choose Preview > Play or click the preview button in the Reality Composer Pro toolbar to view your scene on device. The Preview button is the left-most button on the right side of the toolbar — the one with an Apple Vision Pro icon. If you have multiple Apple Vision Pro devices connected, choose which device to use by clicking the pull-down menu next to the Preview button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Load-Reality-Composer-Pro-scenes-in-RealityKit",
+          "level": 3,
+          "text": "Load Reality Composer Pro scenes in RealityKit",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Loading a Reality Composer Pro scene is nearly identical to loading a USDZ asset from your app bundle, except you have to specify the Reality Composer Pro package bundle instead. You typically do this in the ",
+              "type": "text"
+            },
+            {
+              "code": "make",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer. Reality Composer Pro packages define a global constant that points to its bundle, which is named after the project with “Bundle” appended to it. In the default Xcode visionOS template, the Reality Composer Pro project is called ",
+              "type": "text"
+            },
+            {
+              "code": "RealityKitContent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", so the global bundle variable is called ",
+              "type": "text"
+            },
+            {
+              "code": "realityKitContentBundle",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "RealityView { content in",
+            "    if let scene = try? await Entity.load(named: \"Biplane\", ",
+            "                                          in: realityKitContentBundle) {",
+            "        myDataModel.add(scene) ",
+            "        content.add(scene)",
+            "    }",
+            "} update: { content in",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The code above saves a reference to the root node. This isn’t required, but with ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", unlike ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " on iOS and macOS, you don’t have ready access to the scene content, so it’s often handy to maintain your own reference to the root entity of your scene in your app’s data model.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When RealityKit finishes loading the scene, the ",
+              "type": "text"
+            },
+            {
+              "code": "scene",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable contains the root entity of the scene you specified. Add it to ",
+              "type": "text"
+            },
+            {
+              "code": "content",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and RealityKit displays it to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "BOT-anist-PageImage-card.png": {
+      "alt": "A screenshot from the Apple Vision Pro simulator with a single floating window. The window contains a robot on the right side, and controls to customize the robots appearance on the left.",
+      "identifier": "BOT-anist-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d9f7d85cd82f76e6fd53df7302f0424a/BOT-anist-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "Diorama-intro.png": {
+      "alt": "A screenshot showing a virtual trail map diorama in a living room setting.",
+      "identifier": "Diorama-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/80d69390976dca0e5d70a493312d475a/Diorama-intro@2x.png"
+        }
+      ]
+    },
+    "Happy-Beam-intro.png": {
+      "alt": "A screenshot showing the Happy Beam game. A player makes a heart gesture with their hands, a beam projects from it aimed at nearby clouds, and a scoreboard window shows seven points.",
+      "identifier": "Happy-Beam-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/52b497b6d705af322726d7371dee6ddd/Happy-Beam-intro@2x.png"
+        }
+      ]
+    },
+    "RCPRo-TransformInspector.png": {
+      "alt": "A screenshot showing the transform component in the inspector. It contains three rows called Position, Rotation, and Scale, each of which has three small text boxes next to it.",
+      "identifier": "RCPRo-TransformInspector.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7b5f0d38d8eed0dccb6f2ff43185b834/RCPRo-TransformInspector@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/08fc944092621a658ef35a3578adf14d/RCPRo-TransformInspector~dark@2x.png"
+        }
+      ]
+    },
+    "RCPro-BiplaneWindow.png": {
+      "alt": "A screenshot of a Reality Composer Pro project window. The window has a single tab at the top called Biplane. The window is divided vertically into two sections. The top section has three panes: a hierarchical view of the 3D scene on the left, an toy airplane model in the middle, and an inspector on the right. The bottom section has four tabs, labeled Project Browser, Shader Graph, Audio Mixer, and Statistics. Project Browser is currently selected, and it is also divided into three sections with a hierarchy on the left, a grid of icons in the middle, and an inspector on the right showing the entity hierarchy for the asset selected in the middle.",
+      "identifier": "RCPro-BiplaneWindow.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0838e5075126ee9f4025dae677c6c63f/RCPro-BiplaneWindow@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e6d31f6e17f93c7fafe3e125f120b289/RCPro-BiplaneWindow~dark@2x.png"
+        }
+      ]
+    },
+    "RCPro-Icon-MacOS.png": {
+      "alt": "The Reality Composer Pro icon, which contains a gray box with yellow lines drawn on it. Yellow light emanates from the box.",
+      "identifier": "RCPro-Icon-MacOS.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a8fbec81e4ba61e054c36e4db6d3ade1/RCPro-Icon-MacOS@2x.png"
+        }
+      ]
+    },
+    "RCPro-InputParameter.png": {
+      "alt": "A screenshot showing the New Input button in the inspector.",
+      "identifier": "RCPro-InputParameter.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4ce7a23f746a6c3895147e3438497fc3/RCPro-InputParameter@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b6b6136cf1b3a14fe5cf420a40f8af4a/RCPro-InputParameter~dark@2x.png"
+        }
+      ]
+    },
+    "RCPro-Manipulator-poster.png": {
+      "alt": null,
+      "identifier": "RCPro-Manipulator-poster.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2b2c2d63b04ed272e2a07dd7437dde01/RCPro-Manipulator-poster@2x.png"
+        }
+      ]
+    },
+    "RCPro-Manipulator.mp4": {
+      "alt": "A video that demonstrates using Reality Composer Pro's manipulator controls.",
+      "identifier": "RCPro-Manipulator.mp4",
+      "poster": "RCPro-Manipulator-poster.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a2f7bf8aeb88fefc2f4b3eeeab034fc9/RCPro-Manipulator.mp4"
+        }
+      ]
+    },
+    "RCPro-MaterialInspector.png": {
+      "alt": "A screenshot showing the PBR material editor in the inspector.",
+      "identifier": "RCPro-MaterialInspector.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6db58f252d9932c3783d077545bc725b/RCPro-MaterialInspector@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0f6cb811d88416ba949431da6c7c773c/RCPro-MaterialInspector~dark@2x.png"
+        }
+      ]
+    },
+    "RCPro-NewComponent.png": {
+      "alt": "A screenshot showing a pop-up window with a search field at the top, followed by a row labeled New Component, followed by rows for Anchoring, Character Controller, Input Target, Model Debug Options, and Particle Emitter components.",
+      "identifier": "RCPro-NewComponent.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6c979d99a675e4d2810d225b640976cc/RCPro-NewComponent@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ad9a4f60c3fd7b45f665bd6091a1f81a/RCPro-NewComponent~dark@2x.png"
+        }
+      ]
+    },
+    "RCPro-References.png": {
+      "alt": "A screenshot showing the reference section of the inspector.",
+      "identifier": "RCPro-References.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5d956fb010e3a500894050e58024a9ae/RCPro-References@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a5c418ad184c483cc61a5f6edb2bae4e/RCPro-References~dark@2x.png"
+        }
+      ]
+    },
+    "RCPro-ShaderGraphWindow.png": {
+      "alt": "A screenshot showing a complex graph of nodes in the Shader Graph tab.",
+      "identifier": "RCPro-ShaderGraphWindow.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1994cf8e5f506e92a38542f52d2c41a8/RCPro-ShaderGraphWindow@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/395ff773d8c919770662b73321760993/RCPro-ShaderGraphWindow~dark@2x.png"
+        }
+      ]
+    },
+    "Swift-Splash-intro.png": {
+      "alt": "",
+      "identifier": "Swift-Splash-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b5da9880ce266b0858346d694e3a7018/Swift-Splash-intro@2x.png"
+        }
+      ]
+    },
+    "building-an-immersive-media-viewing-experience-PageImage-card.png": {
+      "alt": "A screenshot of destination video's custom studio environment.",
+      "identifier": "building-an-immersive-media-viewing-experience-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bbc286b58cd06b23756a1cb51a493360/building-an-immersive-media-viewing-experience-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b110534afd700b8b77992bd7f4184ae6/building-an-immersive-media-viewing-experience-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/Metal"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ARView": {
+      "abstract": [
+        {
+          "text": "A view that enables you to display an AR experience with RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@objc"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARView",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ARView"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/CustomMaterial": {
+      "abstract": [
+        {
+          "text": "A material that works with custom Metal shader functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/CustomMaterial",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomMaterial",
+      "type": "topic",
+      "url": "/documentation/RealityKit/CustomMaterial"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ParticleEmitterComponent": {
+      "abstract": [
+        {
+          "text": "A component that emits particles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ParticleEmitterComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ParticleEmitterComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ParticleEmitterComponent",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ParticleEmitterComponent"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/RealityView": {
+      "abstract": [
+        {
+          "text": "A view that contains RealityKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RealityView",
+      "type": "topic",
+      "url": "/documentation/RealityKit/RealityView"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ShaderGraphMaterial": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShaderGraphMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ShaderGraphMaterial",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ShaderGraphMaterial",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ShaderGraphMaterial"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ShaderGraphMaterial/setParameter(name:value:)": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "mutating"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setParameter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "newValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18MaterialParametersV",
+          "text": "MaterialParameters"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18MaterialParametersV5ValueO",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ShaderGraphMaterial/setParameter(name:value:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setParameter(name:value:)",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ShaderGraphMaterial/setParameter(name:value:)"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app": {
+      "abstract": [
+        {
+          "text": "Use attachments to place 2D content relative to 3D content in your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Combining 2D and 3D views in an immersive app",
+      "type": "topic",
+      "url": "/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/BOT-anist": {
+      "abstract": [
+        {
+          "text": "Build a multiplatform app that uses windows, volumes, and animations to create a robot botanist’s greenhouse.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/BOT-anist",
+      "images": [
+        {
+          "identifier": "BOT-anist-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "BOT-anist",
+      "type": "topic",
+      "url": "/documentation/visionos/bot-anist"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/building-an-immersive-media-viewing-experience": {
+      "abstract": [
+        {
+          "text": "Add a deeper level of immersion to media playback in your app with RealityKit and Reality Composer Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/building-an-immersive-media-viewing-experience",
+      "images": [
+        {
+          "identifier": "building-an-immersive-media-viewing-experience-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building an immersive media viewing experience",
+      "type": "topic",
+      "url": "/documentation/visionos/building-an-immersive-media-viewing-experience"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/capturing-screenshots-and-video-from-your-apple-vision-pro-for-2d-viewing": {
+      "abstract": [
+        {
+          "text": "Create screenshots and record high-quality video of your visionOS app and its surroundings for app previews.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/capturing-screenshots-and-video-from-your-apple-vision-pro-for-2d-viewing",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing screenshots and video from Apple Vision Pro for 2D viewing",
+      "type": "topic",
+      "url": "/documentation/visionos/capturing-screenshots-and-video-from-your-apple-vision-pro-for-2d-viewing"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/diorama": {
+      "abstract": [
+        {
+          "text": "Design scenes for your visionOS app using Reality Composer Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/diorama",
+      "images": [
+        {
+          "identifier": "Diorama-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Diorama",
+      "type": "topic",
+      "url": "/documentation/visionos/diorama"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment": {
+      "abstract": [
+        {
+          "text": "Create a more immersive experience by adding video reflections in a custom environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment",
+      "images": [
+        {
+          "identifier": "lightspill-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Enabling video reflections in an immersive environment",
+      "type": "topic",
+      "url": "/documentation/visionos/enabling-video-reflections-in-an-immersive-environment"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/happybeam": {
+      "abstract": [
+        {
+          "text": "Leverage a Full Space to create a fun game using ARKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/happybeam",
+      "images": [
+        {
+          "identifier": "Happy-Beam-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Happy Beam",
+      "type": "topic",
+      "url": "/documentation/visionos/happybeam"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/implementing-object-tracking-in-your-visionOS-app": {
+      "abstract": [
+        {
+          "text": "Create engaging interactions by training models to recognize and track real-world objects in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/implementing-object-tracking-in-your-visionOS-app",
+      "images": [
+        {
+          "identifier": "implementing-object-tracking-in-your-visionOS-app.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing object tracking in your visionOS app",
+      "type": "topic",
+      "url": "/documentation/visionos/implementing-object-tracking-in-your-visionos-app"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/placing-entities-using-head-and-device-transform": {
+      "abstract": [
+        {
+          "text": "Query and react to changes in the position and rotation of Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/placing-entities-using-head-and-device-transform",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Placing entities using head and device transform",
+      "type": "topic",
+      "url": "/documentation/visionos/placing-entities-using-head-and-device-transform"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/swift-splash": {
+      "abstract": [
+        {
+          "text": "Use RealityKit to create an interactive ride in visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/swift-splash",
+      "images": [
+        {
+          "identifier": "Swift-Splash-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Swift Splash",
+      "type": "topic",
+      "url": "/documentation/visionos/swift-splash"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/understanding-the-realitykit-modular-architecture": {
+      "abstract": [
+        {
+          "text": "Learn how everything fits together in RealityKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/understanding-the-realitykit-modular-architecture",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding the modular architecture of RealityKit",
+      "type": "topic",
+      "url": "/documentation/visionos/understanding-the-realitykit-modular-architecture"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/understanding-transforms": {
+      "abstract": [
+        {
+          "text": "Learn how to use Transforms to move, scale, and rotate entities in RealityKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/understanding-transforms",
+      "kind": "article",
+      "role": "article",
+      "title": "Using transforms to move, scale, and rotate entities",
+      "type": "topic",
+      "url": "/documentation/visionos/understanding-transforms"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "implementing-object-tracking-in-your-visionOS-app.png": {
+      "alt": "An illustration of a globe within a bounding box.",
+      "identifier": "implementing-object-tracking-in-your-visionOS-app.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49a7917ef036b2daf610527590ce056d/implementing-object-tracking-in-your-visionOS-app@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3e16e39548ccdcc1d5a21b2f18755c7b/implementing-object-tracking-in-your-visionOS-app~dark@2x.png"
+        }
+      ]
+    },
+    "lightspill-PageImage-card.png": {
+      "alt": "A screenshot that shows the app's video player in the Studio environment in visionOS. The screenshot shows the contents of the video player reflecting onto the surrounding environment.",
+      "identifier": "lightspill-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/87e397de07459c756d21eb0c441569f7/lightspill-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "rcpro-library-cropped.png": {
+      "alt": "A screenshot showing Reality Composer Pro's library window.",
+      "identifier": "rcpro-library-cropped.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/254710e01fa59567a0913456bc970333/rcpro-library-cropped~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/68c8d792b69ef000f6c70a0b8724ee44/rcpro-library-cropped@2x.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "RealityKit-and-Reality-Composer-Pro",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/BOT-anist",
+        "doc://com.apple.visionOS/documentation/visionOS/swift-splash",
+        "doc://com.apple.visionOS/documentation/visionOS/diorama",
+        "doc://com.apple.visionOS/documentation/visionOS/building-an-immersive-media-viewing-experience",
+        "doc://com.apple.visionOS/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment",
+        "doc://com.apple.documentation/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app",
+        "doc://com.apple.visionOS/documentation/visionOS/understanding-the-realitykit-modular-architecture",
+        "doc://com.apple.visionOS/documentation/visionOS/understanding-transforms",
+        "doc://com.apple.visionOS/documentation/visionOS/capturing-screenshots-and-video-from-your-apple-vision-pro-for-2d-viewing",
+        "doc://com.apple.visionOS/documentation/visionOS/implementing-object-tracking-in-your-visionOS-app",
+        "doc://com.apple.visionOS/documentation/visionOS/placing-entities-using-head-and-device-transform"
+      ],
+      "title": "RealityKit and Reality Composer Pro"
+    }
+  ]
+}

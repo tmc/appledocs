@@ -1,0 +1,354 @@
+{
+  "abstract": [
+    {
+      "text": "Understand how ClassKit interacts with different kinds of users.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.classkit/documentation/ClassKit",
+        "doc://com.apple.classkit/documentation/ClassKit/enabling-classkit-in-your-app"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.classkit/documentation/ClassKit/about-classkit-and-user-roles"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ClassKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "About ClassKit and user roles"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you adopt ClassKit, you enable your app to participate in an educational ecosystem where teachers create assignments and students report progress. Users of your app can choose to participate in this ecosystem by signing in to a device running your app with a Managed Apple ID. This is a special Apple ID provided to the user by a school enrolled in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.apple.com/education/it/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It identifies its owner as either a student or a teacher. Other users of your app, using a standard Apple ID, don’t participate in this ecosystem at all. This creates three distinct classes of users that your app deals with: students, teachers, and unmanaged users. ClassKit modulates its behavior according to the current user’s role.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "ClassKit-doesnt-share-the-users-role-with-your-app",
+          "level": 3,
+          "text": "ClassKit doesn’t share the user’s role with your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some of the data you provide to ClassKit is specific to the user’s role. For example, only teachers need to store a complete enumeration of all possible assignments (so they can assign them from the Schoolwork app), whereas only students need to record progress as they move through assignments. Users without a Managed Apple ID don’t need to record any data at all.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, to ensure privacy, ClassKit doesn’t share the role of the current user, or even whether the current user has a Managed Apple ID, with your app. To prevent leaking information to your app, all ClassKit interactions, including delegate callbacks and error messages, look the same no matter what the user’s role. This means you can build a single implementation that works for any user. ClassKit efficiently ignores data that it doesn’t need.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, your implementation should always report progress through every unit of assignable content. ClassKit takes care to drop any progress data reported for a teacher, an unmanaged user, and even a student that hasn’t yet received an assignment corresponding to that content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For more information about handling privacy in your app, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/classkit/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "ClassKit-alerts-students-that-their-progress-is-measured",
+          "level": 3,
+          "text": "ClassKit alerts students that their progress is measured",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a student runs your app, ClassKit alerts the student on your behalf that progress is shared with teachers by briefly showing a message over your content. For a student in a class called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Dev Class",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " using an app called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "GreatPlays",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", the overlay looks like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2959671",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t need to take any special action in your app for this message to appear.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the message indicates, ClassKit only retains progress on tasks that have explicitly been assigned by a teacher. Even for a student, ClassKit discards any usage data not explicitly requested in the form of an assignment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Other users—teachers and those without managed accounts—don’t receive this warning, because ClassKit discards all progress data that you attempt to record for them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.classkit/documentation/ClassKit": {
+      "abstract": [
+        {
+          "text": "Enable teachers to assign activities from your app’s content and to view student progress.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClassKit",
+      "type": "topic",
+      "url": "/documentation/classkit"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/enabling-classkit-in-your-app": {
+      "abstract": [
+        {
+          "text": "Prepare your app and your development environment to adopt ClassKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/enabling-classkit-in-your-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Enabling ClassKit in your app",
+      "type": "topic",
+      "url": "/documentation/classkit/enabling-classkit-in-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/classkit/": {
+      "identifier": "https://developer.apple.com/classkit/",
+      "title": "Privacy Requirements for Apps Using ClassKit",
+      "titleInlineContent": [
+        {
+          "text": "Privacy Requirements for Apps Using ClassKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/classkit/"
+    },
+    "https://www.apple.com/education/it/": {
+      "identifier": "https://www.apple.com/education/it/",
+      "title": "Apple School Manager",
+      "titleInlineContent": [
+        {
+          "text": "Apple School Manager",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.apple.com/education/it/"
+    },
+    "media-2959671": {
+      "alt": "Screenshot of the Student Progress overlay shown when recording progress in your app that adopts ClassKit.",
+      "identifier": "media-2959671",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6c2eedd22ece4112c903d55144cfa490/media-2959671@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6c2eedd22ece4112c903d55144cfa490/media-2959671~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/classkit/about-classkit-and-user-roles"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/classkit/about-classkit-and-user-roles"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

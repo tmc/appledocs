@@ -1,0 +1,752 @@
+{
+  "abstract": [
+    {
+      "text": "Acquire a presentment intent assertion instance from the system.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corenfc/documentation/CoreNFC",
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCPresentmentIntentAssertion"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corenfc/documentation/CoreNFC/NFCPresentmentIntentAssertion/acquire()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7CoreNFC29NFCPresentmentIntentAssertionC7acquireACyYaKFZ",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "static"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "acquire"
+      },
+      {
+        "kind": "text",
+        "text": "() "
+      },
+      {
+        "kind": "keyword",
+        "text": "async"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "throws"
+      },
+      {
+        "kind": "text",
+        "text": " -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:7CoreNFC29NFCPresentmentIntentAssertionC",
+        "text": "NFCPresentmentIntentAssertion"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core NFC"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iPadOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "method",
+    "title": "acquire()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "acquire"
+            },
+            {
+              "kind": "text",
+              "text": "() "
+            },
+            {
+              "kind": "keyword",
+              "text": "async"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            },
+            {
+              "kind": "text",
+              "text": " -> "
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCPresentmentIntentAssertion",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7CoreNFC29NFCPresentmentIntentAssertionC",
+              "text": "NFCPresentmentIntentAssertion"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A presentment intent assertion instance you use to prevent the default contactless app from launching.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The returned object remains valid until any of the following occur:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app goes into the background.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The maximum presentment intent assertion duration expires.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The object deinitializes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the system can’t create a presentment intent assertion object, this method throws an error of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCPresentmentIntentAssertion/Error",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Check to see if the device is capable of using NFC with the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCReaderSession-swift.class",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " class property ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCReaderSession-swift.class/readingAvailable",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Attempting to acquire a presentment intent assertion on a device that can’t use NFC raises ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Swift/fatalError(_:file:line:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corenfc/documentation/CoreNFC": {
+      "abstract": [
+        {
+          "text": "Detect NFC tags, read messages that contain NDEF data, and save data to writable tags.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core NFC",
+      "type": "topic",
+      "url": "/documentation/corenfc"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCPresentmentIntentAssertion": {
+      "abstract": [
+        {
+          "text": "An object that signals your app’s intention to make exclusive use of the device’s contactless features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NFCPresentmentIntentAssertion"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCPresentmentIntentAssertion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NFCPresentmentIntentAssertion"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCPresentmentIntentAssertion",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfcpresentmentintentassertion"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCPresentmentIntentAssertion/Error": {
+      "abstract": [
+        {
+          "text": "An error type that indicates problems with the presentment intent assertion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCPresentmentIntentAssertion/Error",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCPresentmentIntentAssertion.Error",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfcpresentmentintentassertion/error"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCPresentmentIntentAssertion/acquire()": {
+      "abstract": [
+        {
+          "text": "Acquire a presentment intent assertion instance from the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "acquire"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7CoreNFC29NFCPresentmentIntentAssertionC",
+          "text": "NFCPresentmentIntentAssertion"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCPresentmentIntentAssertion/acquire()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "acquire()",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfcpresentmentintentassertion/acquire()"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCReaderSession-swift.class": {
+      "abstract": [
+        {
+          "text": "The abstract base class that represents a reader session for detecting NFC tags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NFCReaderSession"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCReaderSession-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NFCReaderSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCReaderSession",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfcreadersession-swift.class"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCReaderSession-swift.class/readingAvailable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the device supports NFC tag reading.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readingAvailable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCReaderSession-swift.class/readingAvailable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "readingAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "readingAvailable",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfcreadersession-swift.class/readingavailable"
+    },
+    "doc://com.apple.documentation/documentation/Swift/fatalError(_:file:line:)": {
+      "abstract": [
+        {
+          "text": "Unconditionally prints a given message and stops execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fatalError"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "message"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " = String(), "
+        },
+        {
+          "kind": "externalParam",
+          "text": "file"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "keyword",
+          "text": "#file"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "line"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "keyword",
+          "text": "#line"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5NeverO",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/fatalError(_:file:line:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fatalError(_:file:line:)",
+      "type": "topic",
+      "url": "/documentation/Swift/fatalError(_:file:line:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCReaderSession-swift.class/title",
+          "value": "NFCReaderSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCReaderSession-swift.class/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCReaderSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCReaderSession-swift.class/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCReaderSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCReaderSession-swift.class~1readingAvailable/title",
+          "value": "readingAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCReaderSession-swift.class~1readingAvailable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "readingAvailable"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corenfc/nfcpresentmentintentassertion/acquire()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2648 @@
+{
+  "abstract": [
+    {
+      "text": "An object that facilitates the sharing of content with social media services, or with apps like Mail or Safari.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSSharingService"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSSharingService",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSSharingService"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSSharingService"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.8",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSSharingService"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSSharingService"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingService",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object provides a consistent user experience for sharing items—",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects, video (through file URLs), of any object that implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboardWriting",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol—in macOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For any item or group of items, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingService",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " displays a sheet with the content to share. A sharing service can create a post on a social network like Twitter or Facebook, send a message by email or iMessage, upload videos to viewing services, or send a file using AirDrop.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingService",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects directly in your app. The following example shows how to create a button that shares content directly to a social media service.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (void)awakeFromNib",
+            "{",
+            "    NSSharingService * service = [NSSharingService sharingServiceNamed:NSSharingServiceNamePostOnTwitter];",
+            "    [myShareOnTwitterButton setTitle:service.title];",
+            "    [myShareOnTwitterButton setEnabled:[service canPerformWithItems:nil]];",
+            "}",
+            " ",
+            " ",
+            "- (IBAction)shareOnTwitter:(id)sender",
+            "{",
+            "    // Items to share",
+            "    NSAttributedString *text = [self.textView attributedString];",
+            "    NSImage *image = [self.imageView image];",
+            "    NSArray * shareItems = [NSArray arrayWithObjects:text, image, nil];",
+            " ",
+            "    NSSharingService *service = [NSSharingService sharingServiceNamed:NSSharingServiceNamePostOnTwitter];",
+            "    service.delegate = self;",
+            "    [service performWithItems:shareItems];",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCloudSharingServiceDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods for responding to the life cycle events of the cloud-sharing service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCloudSharingServiceDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCloudSharingServiceDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCloudSharingServiceDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCloudSharingServiceDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nscloudsharingservicedelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage": {
+      "abstract": [
+        {
+          "text": "A high-level interface for manipulating image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSImage"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSImage",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboardWriting": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines the interface for retrieving a representation of an object that can be written to a pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardWriting"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboardWriting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardWriting"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboardWriting",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboardwriting"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPreviewRepresentableActivityItem": {
+      "abstract": [
+        {
+          "text": "An interface you adopt in custom objects that you want to share using the macOS share sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPreviewRepresentableActivityItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPreviewRepresentableActivityItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPreviewRepresentableActivityItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPreviewRepresentableActivityItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nspreviewrepresentableactivityitem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSServicesMenuRequestor": {
+      "abstract": [
+        {
+          "text": "A set of methods that support interaction with items users can share through a sharing service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSServicesMenuRequestor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSServicesMenuRequestor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSServicesMenuRequestor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSServicesMenuRequestor",
+      "type": "topic",
+      "url": "/documentation/appkit/nsservicesmenurequestor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSharingService": {
+      "abstract": [
+        {
+          "text": "An object that facilitates the sharing of content with social media services, or with apps like Mail or Safari.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSharingService"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingService",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSharingService"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSharingService",
+      "type": "topic",
+      "url": "/documentation/appkit/nssharingservice"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSharingService/CloudKitOptions": {
+      "abstract": [
+        {
+          "text": "Constants that describe how a participant can configure a CloudKit share.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CloudKitOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingService/CloudKitOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CloudKitOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSharingService.CloudKitOptions",
+      "type": "topic",
+      "url": "/documentation/appkit/nssharingservice/cloudkitoptions"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSharingService/Name": {
+      "abstract": [
+        {
+          "text": "Constants that describe the sharing services that macOS supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingService/Name",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Name"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSharingService.Name",
+      "type": "topic",
+      "url": "/documentation/appkit/nssharingservice/name"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSharingService/accountName": {
+      "abstract": [
+        {
+          "text": "The account name used for posting on Twitter or Sina Weibo.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accountName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingService/accountName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accountName"
+        }
+      ],
+      "role": "symbol",
+      "title": "accountName",
+      "type": "topic",
+      "url": "/documentation/appkit/nssharingservice/accountname"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSharingService/alternateImage": {
+      "abstract": [
+        {
+          "text": "The alternate image representing the sharing service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alternateImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingService/alternateImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "alternateImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "alternateImage",
+      "type": "topic",
+      "url": "/documentation/appkit/nssharingservice/alternateimage"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSharingService/attachmentFileURLs": {
+      "abstract": [
+        {
+          "text": "An array of NSURL objects representing the files that were shared.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attachmentFileURLs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingService/attachmentFileURLs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attachmentFileURLs"
+        }
+      ],
+      "role": "symbol",
+      "title": "attachmentFileURLs",
+      "type": "topic",
+      "url": "/documentation/appkit/nssharingservice/attachmentfileurls"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSharingService/canPerform(withItems:)": {
+      "abstract": [
+        {
+          "text": "Returns whether the service can share all the specified items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canPerform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingService/canPerform(withItems:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canPerformWithItems:"
+        }
+      ],
+      "role": "symbol",
+      "title": "canPerform(withItems:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nssharingservice/canperform(withitems:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSharingService/delegate": {
+      "abstract": [
+        {
+          "text": "Specifies the delegate of the sharing service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSSharingServiceDelegate",
+          "text": "NSSharingServiceDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingService/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nssharingservice/delegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSharingService/image": {
+      "abstract": [
+        {
+          "text": "The primary image representing the sharing service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingService/image",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "image"
+        }
+      ],
+      "role": "symbol",
+      "title": "image",
+      "type": "topic",
+      "url": "/documentation/appkit/nssharingservice/image"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSharingService/init(named:)": {
+      "abstract": [
+        {
+          "text": "Returns a sharing service instance representing the specified service name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSharingService",
+          "text": "NSSharingService"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSharingServiceName",
+          "text": "Name"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingService/init(named:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharingServiceNamed:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(named:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nssharingservice/init(named:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSharingService/init(title:image:alternateImage:handler:)": {
+      "abstract": [
+        {
+          "text": "Creates a custom sharing service object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alternateImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingService/init(title:image:alternateImage:handler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithTitle:image:alternateImage:handler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(title:image:alternateImage:handler:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nssharingservice/init(title:image:alternateimage:handler:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSharingService/menuItemTitle": {
+      "abstract": [
+        {
+          "text": "The title of the service in the Share menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "menuItemTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingService/menuItemTitle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "menuItemTitle"
+        }
+      ],
+      "role": "symbol",
+      "title": "menuItemTitle",
+      "type": "topic",
+      "url": "/documentation/appkit/nssharingservice/menuitemtitle"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSharingService/messageBody": {
+      "abstract": [
+        {
+          "text": "The message body as a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "messageBody"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingService/messageBody",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "messageBody"
+        }
+      ],
+      "role": "symbol",
+      "title": "messageBody",
+      "type": "topic",
+      "url": "/documentation/appkit/nssharingservice/messagebody"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSharingService/perform(withItems:)": {
+      "abstract": [
+        {
+          "text": "Manually performs the service on the provided items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingService/perform(withItems:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "performWithItems:"
+        }
+      ],
+      "role": "symbol",
+      "title": "perform(withItems:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nssharingservice/perform(withitems:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSharingService/permanentLink": {
+      "abstract": [
+        {
+          "text": "A permanent URL (permalink) that your app can use to access the post.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "permanentLink"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingService/permanentLink",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "permanentLink"
+        }
+      ],
+      "role": "symbol",
+      "title": "permanentLink",
+      "type": "topic",
+      "url": "/documentation/appkit/nssharingservice/permanentlink"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSharingService/recipients": {
+      "abstract": [
+        {
+          "text": "An array containing the user handles of the desired recipients.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recipients"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingService/recipients",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "recipients"
+        }
+      ],
+      "role": "symbol",
+      "title": "recipients",
+      "type": "topic",
+      "url": "/documentation/appkit/nssharingservice/recipients"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSharingService/sharingServices(forItems:)": {
+      "abstract": [
+        {
+          "text": "Returns a list of sharing services which could share all the provided items together.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sharingServices"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSharingService",
+          "text": "NSSharingService"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingService/sharingServices(forItems:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharingServicesForItems:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sharingServices(forItems:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nssharingservice/sharingservices(foritems:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSharingService/subject": {
+      "abstract": [
+        {
+          "text": "The subject of the post.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subject"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingService/subject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "subject"
+        }
+      ],
+      "role": "symbol",
+      "title": "subject",
+      "type": "topic",
+      "url": "/documentation/appkit/nssharingservice/subject"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSharingService/title": {
+      "abstract": [
+        {
+          "text": "The title of the sharing service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingService/title",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "title"
+        }
+      ],
+      "role": "symbol",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/appkit/nssharingservice/title"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSharingServiceDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods that you use to customize the position and animation of a share sheet, and to be notified whether the item is successfully shared.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSharingServiceDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingServiceDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSharingServiceDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSharingServiceDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nssharingservicedelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSharingServicePicker": {
+      "abstract": [
+        {
+          "text": "A list of sharing services that the user can choose from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSharingServicePicker"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingServicePicker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSharingServicePicker"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSharingServicePicker",
+      "type": "topic",
+      "url": "/documentation/appkit/nssharingservicepicker"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSharingServicePickerToolbarItem": {
+      "abstract": [
+        {
+          "text": "A toolbar item that displays the macOS share sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSharingServicePickerToolbarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSharingServicePickerToolbarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSharingServicePickerToolbarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSharingServicePickerToolbarItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nssharingservicepickertoolbaritem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/services-functions": {
+      "abstract": [
+        {
+          "text": "Configure the contents of your app’s Services menu.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/services-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Services Functions",
+      "type": "topic",
+      "url": "/documentation/appkit/services-functions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "abstract": [
+        {
+          "text": "A static, plain-text Unicode string object which you use when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl": {
+      "abstract": [
+        {
+          "text": "An object representing the location of a resource that bridges to ; use  when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-Services",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSharingServicePicker",
+        "doc://com.apple.appkit/documentation/AppKit/NSPreviewRepresentableActivityItem",
+        "doc://com.apple.appkit/documentation/AppKit/NSSharingServicePickerToolbarItem",
+        "doc://com.apple.appkit/documentation/AppKit/NSServicesMenuRequestor",
+        "doc://com.apple.appkit/documentation/AppKit/NSCloudSharingServiceDelegate",
+        "doc://com.apple.appkit/documentation/AppKit/services-functions"
+      ],
+      "title": "App Services"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Sharing-Service",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSharingService/init(named:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSSharingService/init(title:image:alternateImage:handler:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSSharingService/Name"
+      ],
+      "title": "Creating a Sharing Service"
+    },
+    {
+      "anchor": "Managing-the-Delegate",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSharingService/delegate",
+        "doc://com.apple.appkit/documentation/AppKit/NSSharingServiceDelegate"
+      ],
+      "title": "Managing the Delegate"
+    },
+    {
+      "anchor": "Querying-Service-Availability",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSharingService/sharingServices(forItems:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSSharingService/canPerform(withItems:)"
+      ],
+      "title": "Querying Service Availability"
+    },
+    {
+      "anchor": "Getting-the-Services-Details",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSharingService/accountName",
+        "doc://com.apple.appkit/documentation/AppKit/NSSharingService/alternateImage",
+        "doc://com.apple.appkit/documentation/AppKit/NSSharingService/image",
+        "doc://com.apple.appkit/documentation/AppKit/NSSharingService/title"
+      ],
+      "title": "Getting the Service’s Details"
+    },
+    {
+      "anchor": "Configuring-the-Service",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSharingService/menuItemTitle",
+        "doc://com.apple.appkit/documentation/AppKit/NSSharingService/recipients",
+        "doc://com.apple.appkit/documentation/AppKit/NSSharingService/subject"
+      ],
+      "title": "Configuring the Service"
+    },
+    {
+      "anchor": "Sharing-Items",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSharingService/perform(withItems:)"
+      ],
+      "title": "Sharing Items"
+    },
+    {
+      "anchor": "Providing-CloudKit-Share-Options",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSharingService/CloudKitOptions"
+      ],
+      "title": "Providing CloudKit Share Options"
+    },
+    {
+      "anchor": "Getting-the-Shared-Items",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSharingService/attachmentFileURLs",
+        "doc://com.apple.appkit/documentation/AppKit/NSSharingService/messageBody",
+        "doc://com.apple.appkit/documentation/AppKit/NSSharingService/permanentLink"
+      ],
+      "title": "Getting the Shared Items"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.8",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSSharingService"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSharingService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSharingService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Sharing-Service",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSharingService/init(named:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSSharingService/init(title:image:alternateImage:handler:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSSharingService/Name"
+              ],
+              "title": "Creating a Sharing Service"
+            },
+            {
+              "anchor": "Managing-the-Delegate",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSharingService/delegate",
+                "doc://com.apple.appkit/documentation/AppKit/NSSharingServiceDelegate"
+              ],
+              "title": "Managing the Delegate"
+            },
+            {
+              "anchor": "Querying-Service-Availability",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSharingService/sharingServices(forItems:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSSharingService/canPerform(withItems:)"
+              ],
+              "title": "Querying Service Availability"
+            },
+            {
+              "anchor": "Getting-the-Services-Details",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSharingService/accountName",
+                "doc://com.apple.appkit/documentation/AppKit/NSSharingService/alternateImage",
+                "doc://com.apple.appkit/documentation/AppKit/NSSharingService/image",
+                "doc://com.apple.appkit/documentation/AppKit/NSSharingService/title"
+              ],
+              "title": "Getting the Service’s Details"
+            },
+            {
+              "anchor": "Configuring-the-Service",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSharingService/menuItemTitle",
+                "doc://com.apple.appkit/documentation/AppKit/NSSharingService/recipients",
+                "doc://com.apple.appkit/documentation/AppKit/NSSharingService/subject"
+              ],
+              "title": "Configuring the Service"
+            },
+            {
+              "anchor": "Sharing-Items",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSharingService/perform(withItems:)"
+              ],
+              "title": "Sharing Items"
+            },
+            {
+              "anchor": "Providing-CloudKit-Share-Options",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSharingService/CloudKitOptions"
+              ],
+              "title": "Providing CloudKit Share Options"
+            },
+            {
+              "anchor": "Getting-the-Shared-Items",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSharingService/attachmentFileURLs",
+                "doc://com.apple.appkit/documentation/AppKit/NSSharingService/messageBody",
+                "doc://com.apple.appkit/documentation/AppKit/NSSharingService/permanentLink"
+              ],
+              "title": "Getting the Shared Items"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "App-Services",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSharingServicePicker",
+                "doc://com.apple.appkit/documentation/AppKit/NSPreviewRepresentableActivityItem",
+                "doc://com.apple.appkit/documentation/AppKit/NSSharingServicePickerToolbarItem",
+                "doc://com.apple.appkit/documentation/AppKit/NSServicesMenuRequestor",
+                "doc://com.apple.appkit/documentation/AppKit/NSCloudSharingServiceDelegate",
+                "doc://com.apple.appkit/documentation/AppKit/services-functions"
+              ],
+              "title": "App Services"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSSharingService"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsstring/abstract",
+          "value": [
+            {
+              "text": "A static, plain-text Unicode string object.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSServicesMenuRequestor/title",
+          "value": "NSServicesMenuRequestor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSServicesMenuRequestor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSServicesMenuRequestor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSServicesMenuRequestor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSServicesMenuRequestor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1sharingServices(forItems:)/title",
+          "value": "sharingServicesForItems:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1sharingServices(forItems:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "sharingServicesForItems:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1subject/title",
+          "value": "subject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1subject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "subject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1title/title",
+          "value": "title"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1title/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "title"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingServicePicker/title",
+          "value": "NSSharingServicePicker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingServicePicker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSharingServicePicker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingServicePicker/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSharingServicePicker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardWriting/title",
+          "value": "NSPasteboardWriting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardWriting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardWriting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardWriting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardWriting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1recipients/title",
+          "value": "recipients"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1recipients/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "recipients"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1permanentLink/title",
+          "value": "permanentLink"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1permanentLink/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "permanentLink"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1CloudKitOptions/title",
+          "value": "NSCloudKitSharingServiceOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1CloudKitOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCloudKitSharingServiceOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1CloudKitOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCloudKitSharingServiceOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsurl/abstract",
+          "value": [
+            {
+              "text": "An object that represents the location of a resource, such as an item on a remote server or the path to a local file. ",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/title",
+          "value": "NSImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1accountName/title",
+          "value": "accountName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1accountName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accountName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1init(title:image:alternateImage:handler:)/title",
+          "value": "initWithTitle:image:alternateImage:handler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1init(title:image:alternateImage:handler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithTitle:image:alternateImage:handler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1init(named:)/title",
+          "value": "sharingServiceNamed:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1init(named:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "sharingServiceNamed:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPreviewRepresentableActivityItem/title",
+          "value": "NSPreviewRepresentableActivityItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPreviewRepresentableActivityItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPreviewRepresentableActivityItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPreviewRepresentableActivityItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPreviewRepresentableActivityItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1canPerform(withItems:)/title",
+          "value": "canPerformWithItems:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1canPerform(withItems:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "canPerformWithItems:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingServiceDelegate/title",
+          "value": "NSSharingServiceDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingServiceDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSharingServiceDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingServiceDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSharingServiceDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1messageBody/title",
+          "value": "messageBody"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1messageBody/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "messageBody"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1menuItemTitle/title",
+          "value": "menuItemTitle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1menuItemTitle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "menuItemTitle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService/title",
+          "value": "NSSharingService"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSharingService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSharingService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1alternateImage/title",
+          "value": "alternateImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1alternateImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "alternateImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1Name/title",
+          "value": "NSSharingServiceName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1Name/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSharingServiceName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1Name/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSharingServiceName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1image/title",
+          "value": "image"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1image/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "image"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1attachmentFileURLs/title",
+          "value": "attachmentFileURLs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1attachmentFileURLs/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "attachmentFileURLs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1perform(withItems:)/title",
+          "value": "performWithItems:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingService~1perform(withItems:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "performWithItems:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCloudSharingServiceDelegate/title",
+          "value": "NSCloudSharingServiceDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCloudSharingServiceDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCloudSharingServiceDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCloudSharingServiceDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCloudSharingServiceDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingServicePickerToolbarItem/title",
+          "value": "NSSharingServicePickerToolbarItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingServicePickerToolbarItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSharingServicePickerToolbarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSharingServicePickerToolbarItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSharingServicePickerToolbarItem"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nssharingservice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nssharingservice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1240 @@
+{
+  "abstract": [
+    {
+      "text": "Use the scoped identifiers that GameKit provides you as player IDs when transmitting or saving player data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamekit/documentation/GameKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamekit/documentation/GameKit/protecting-the-player-s-privacy-using-scoped-identifiers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "GameKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Protecting the player’s privacy using scoped identifiers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you store player data outside of Game Center, use the scoped player identifiers that GameKit provides for you to identify the local player’s data — not their name and avatar, which may change, or other personal information that’s private. The identifiers that Game Center provides are persistent and scoped to your game instances.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "GameKit scopes the identifiers of other players in the game instance to each leaderboard object or to each multiplayer match object, not your game instances (except for friend identifiers as described below). Therefore, in a multiplayer game, save the game data for the local player only, not the data for the other players in the match.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance on protecting the player’s privacy, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/privacy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Authenticate-the-local-player",
+          "level": 3,
+          "text": "Authenticate the local player",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can get a scoped identifier, authenticate the local player who is running your game on the device. During the authentication process, the player signs in to their Game Center account if they haven’t already done so. Identifiers for an authenticated player are persistent; that is, the values are the same across all instances of your game. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/authenticating-a-player",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-the-local-players-scoped-identifier",
+          "level": 3,
+          "text": "Get the local player’s scoped identifier",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After authentication, you can get a unique identifier for the local player from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " shared object using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayer/gamePlayerID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Get the scoped local player identifier.",
+            "let identifier = GKLocalPlayer.local.gamePlayerID"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to track a player across multiple games belonging to your developer team, you can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayer/teamPlayerID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property instead. Game Center scopes this property to instances of all games that use the same Team ID. But if you transfer your game to another team, the value of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayer/teamPlayerID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayer/teamPlayerID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or the deprecated, non-scoped ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayer/playerID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, you need to provide details on your game’s privacy practices in App Store Connect. To learn more, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store/app-privacy-details/#data-type",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If authentication fails, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayer/gamePlayerID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayer/teamPlayerID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties return a temporary identifier that’s not persistent. If you need unique and persistent identifiers, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayer/scopedIDsArePersistent()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method before accessing the properties. Don’t rely on the format of the identifiers to determine whether they’re persistent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Later, you can use either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayer/gamePlayerID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayer/teamPlayerID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " values in GameKit calls to identify the player.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-scoped-identifiers-for-friends-of-the-local-player",
+          "level": 3,
+          "text": "Get scoped identifiers for friends of the local player",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have permission from the local player to access their friends list, you can also get scoped identifiers for their friends. The friend identifiers are persistent and scoped to game instances the local player and their friends run.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You get the scoped identifiers for the friends from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects that the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/loadFriends(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method returns using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayer/gamePlayerID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. In the game instances that mutual friends run, the identifiers for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects that the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/loadFriends(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method returns are the same:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Load the local player's friends.",
+            "let players = try await GKLocalPlayer.local.loadFriends()",
+            "",
+            "// Get scoped identifiers for the mutual friends.",
+            "for player in players {",
+            "    let let identifier = player.gamePlayerID",
+            "    // Save or use the scoped identifiers.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For details on loading the local player’s friends, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/connecting-players-with-their-friends-in-your-game#Providing-a-reason-to-access-the-friends-list",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/connecting-players-with-their-friends-in-your-game#Accessing-the-players-friends",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1515396-gkplayerauthenticationdidchangen": {
+      "abstract": [
+        {
+          "text": "A notification that posts after GameKit authenticates the local player. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKPlayerAuthenticationDidChangeNotificationName"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1515396-gkplayerauthenticationdidchangen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKPlayerAuthenticationDidChangeNotificationName",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1515396-gkplayerauthenticationdidchangen"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1520710-gkplayerdidchangenotificationnam": {
+      "abstract": [
+        {
+          "text": "A notification that posts when a player object’s data changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKPlayerDidChangeNotificationName"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1520710-gkplayerdidchangenotificationnam",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKPlayerDidChangeNotificationName",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1520710-gkplayerdidchangenotificationnam"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit": {
+      "abstract": [
+        {
+          "text": "Enable players to interact with friends, compare leaderboard ranks, earn achievements, and participate in multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameKit",
+      "type": "topic",
+      "url": "/documentation/gamekit"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKBasePlayer": {
+      "abstract": [
+        {
+          "text": "A class that provides common data and methods for the different player objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKBasePlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKBasePlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKBasePlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKBasePlayer",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkbaseplayer"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer": {
+      "abstract": [
+        {
+          "text": "The local player who signs in to Game Center on the device running the game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKLocalPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKLocalPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKLocalPlayer",
+      "type": "topic",
+      "url": "/documentation/gamekit/gklocalplayer"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/loadFriends(_:)": {
+      "abstract": [
+        {
+          "text": "Loads the local player’s friends list if the local player and their friends grant access.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadFriends"
+        },
+        {
+          "kind": "text",
+          "text": "((["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/loadFriends(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadFriends:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadFriends(_:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gklocalplayer/loadfriends(_:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayerListener": {
+      "abstract": [
+        {
+          "text": "A protocol that handles events for Game Center players.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKLocalPlayerListener"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayerListener",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKLocalPlayerListener"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKLocalPlayerListener",
+      "type": "topic",
+      "url": "/documentation/gamekit/gklocalplayerlistener"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKPlayer": {
+      "abstract": [
+        {
+          "text": "A remote player who the local player running your game can invite and communicate with through Game Center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKPlayer",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkplayer"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKPlayer/gamePlayerID": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a player of the game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gamePlayerID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayer/gamePlayerID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gamePlayerID"
+        }
+      ],
+      "role": "symbol",
+      "title": "gamePlayerID",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkplayer/gameplayerid"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKPlayer/playerID": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a player of the game.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playerID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayer/playerID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playerID"
+        }
+      ],
+      "role": "symbol",
+      "title": "playerID",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkplayer/playerid"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKPlayer/scopedIDsArePersistent()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value depending on whether the player identifiers are persistent across game instances or unique to the game instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scopedIDsArePersistent"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayer/scopedIDsArePersistent()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scopedIDsArePersistent"
+        }
+      ],
+      "role": "symbol",
+      "title": "scopedIDsArePersistent()",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkplayer/scopedidsarepersistent()"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKPlayer/teamPlayerID": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a player of all the games that you distribute using your developer account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "teamPlayerID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayer/teamPlayerID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "teamPlayerID"
+        }
+      ],
+      "role": "symbol",
+      "title": "teamPlayerID",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkplayer/teamplayerid"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKPlayerAuthenticationDidChangeNotificationName": {
+      "abstract": [
+        {
+          "text": "A notification that posts after GameKit authenticates the local player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GKPlayerAuthenticationDidChangeNotificationName"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayerAuthenticationDidChangeNotificationName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKPlayerAuthenticationDidChangeNotificationName",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkplayerauthenticationdidchangenotificationname"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKPlayerDidChangeNotificationName": {
+      "abstract": [
+        {
+          "text": "A notification that posts when a player object’s data changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GKPlayerDidChangeNotificationName"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayerDidChangeNotificationName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKPlayerDidChangeNotificationName",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkplayerdidchangenotificationname"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/authenticating-a-player": {
+      "abstract": [
+        {
+          "text": "Confirm player credentials and device capabilities and check for account restrictions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/authenticating-a-player",
+      "kind": "article",
+      "role": "article",
+      "title": "Authenticating a player",
+      "type": "topic",
+      "url": "/documentation/gamekit/authenticating-a-player"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/connecting-players-with-their-friends-in-your-game": {
+      "abstract": [
+        {
+          "text": "Give players the ability to connect and interact with friends in your game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/connecting-players-with-their-friends-in-your-game",
+      "kind": "article",
+      "role": "article",
+      "title": "Connecting players with their friends in your game",
+      "type": "topic",
+      "url": "/documentation/gamekit/connecting-players-with-their-friends-in-your-game"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/connecting-players-with-their-friends-in-your-game#Accessing-the-players-friends": {
+      "abstract": [],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/connecting-players-with-their-friends-in-your-game#Accessing-the-players-friends",
+      "kind": "section",
+      "title": "Accessing the player’s friends",
+      "type": "topic",
+      "url": "/documentation/gamekit/connecting-players-with-their-friends-in-your-game#Accessing-the-players-friends"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/connecting-players-with-their-friends-in-your-game#Providing-a-reason-to-access-the-friends-list": {
+      "abstract": [],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/connecting-players-with-their-friends-in-your-game#Providing-a-reason-to-access-the-friends-list",
+      "kind": "section",
+      "title": "Providing a reason to access the friends list",
+      "type": "topic",
+      "url": "/documentation/gamekit/connecting-players-with-their-friends-in-your-game#Providing-a-reason-to-access-the-friends-list"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/saving-the-player-s-game-data-to-an-icloud-account": {
+      "abstract": [
+        {
+          "text": "Save game data during play or after a game in the player’s iCloud account that’s accessible from any device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/saving-the-player-s-game-data-to-an-icloud-account",
+      "kind": "article",
+      "role": "article",
+      "title": "Saving the player’s game data to an iCloud account",
+      "type": "topic",
+      "url": "/documentation/gamekit/saving-the-player-s-game-data-to-an-icloud-account"
+    },
+    "https://developer.apple.com/app-store/app-privacy-details/#data-type": {
+      "identifier": "https://developer.apple.com/app-store/app-privacy-details/#data-type",
+      "title": "App privacy details on the App Store",
+      "titleInlineContent": [
+        {
+          "text": "App privacy details on the App Store",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/app-privacy-details/#data-type"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/privacy": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/privacy",
+      "title": "Human Interface Guidelines > Privacy",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines > Privacy",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/privacy"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Players",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/connecting-players-with-their-friends-in-your-game",
+        "doc://com.apple.gamekit/documentation/GameKit/saving-the-player-s-game-data-to-an-icloud-account",
+        "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer",
+        "doc://com.apple.gamekit/documentation/GameKit/GKPlayer",
+        "doc://com.apple.gamekit/documentation/GameKit/GKBasePlayer",
+        "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayerListener",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1515396-gkplayerauthenticationdidchangen",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1520710-gkplayerdidchangenotificationnam"
+      ],
+      "title": "Players"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Players",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/connecting-players-with-their-friends-in-your-game",
+                "doc://com.apple.gamekit/documentation/GameKit/saving-the-player-s-game-data-to-an-icloud-account",
+                "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer",
+                "doc://com.apple.gamekit/documentation/GameKit/GKPlayer",
+                "doc://com.apple.gamekit/documentation/GameKit/GKBasePlayer",
+                "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayerListener",
+                "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1515396-gkplayerauthenticationdidchangen",
+                "doc://com.apple.gamekit/documentation/GameKit/GKPlayerAuthenticationDidChangeNotificationName",
+                "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1520710-gkplayerdidchangenotificationnam",
+                "doc://com.apple.gamekit/documentation/GameKit/GKPlayerDidChangeNotificationName"
+              ],
+              "title": "Players"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKPlayer~1gamePlayerID/title",
+          "value": "gamePlayerID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKPlayer~1gamePlayerID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gamePlayerID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKBasePlayer/title",
+          "value": "GKBasePlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKBasePlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKBasePlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKBasePlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKBasePlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKPlayer~1scopedIDsArePersistent()/title",
+          "value": "scopedIDsArePersistent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKPlayer~1scopedIDsArePersistent()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "scopedIDsArePersistent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer/title",
+          "value": "GKLocalPlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLocalPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLocalPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer~1loadFriends(_:)/title",
+          "value": "loadFriends:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer~1loadFriends(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadFriends:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKPlayer~1playerID/title",
+          "value": "playerID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKPlayer~1playerID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "playerID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKPlayer~1teamPlayerID/title",
+          "value": "teamPlayerID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKPlayer~1teamPlayerID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "teamPlayerID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayerListener/title",
+          "value": "GKLocalPlayerListener"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayerListener/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLocalPlayerListener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayerListener/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLocalPlayerListener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKPlayer/title",
+          "value": "GKPlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKPlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKPlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKPlayer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamekit/protecting-the-player-s-privacy-using-scoped-identifiers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamekit/protecting-the-player-s-privacy-using-scoped-identifiers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

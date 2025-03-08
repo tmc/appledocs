@@ -1,0 +1,495 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a new speech channel.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/1461367-newspeechchannel"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1461367,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@NewSpeechChannel",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "NewSpeechChannel"
+      },
+      {
+        "kind": "text",
+        "text": "(UnsafeMutablePointer<VoiceSpec>?, UnsafeMutablePointer<SpeechChannel?>) -> OSErr"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "13.0",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "NewSpeechChannel(_:_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NewSpeechChannel"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "voice"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutablePointer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sp",
+              "text": "UnsafeMutablePointer"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/voicespec",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@VoiceSpec",
+              "text": "VoiceSpec"
+            },
+            {
+              "kind": "text",
+              "text": ">?"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "chan"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutablePointer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sp",
+              "text": "UnsafeMutablePointer"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechchannel",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SpeechChannel",
+              "text": "SpeechChannel"
+            },
+            {
+              "kind": "text",
+              "text": "?>"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSErr",
+              "text": "OSErr"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to the voice specification structure corresponding to the voice to be used for the new speech channel. Pass ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to create a speech channel using the system default voice.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Specifying a voice means the initial speaking rate is determined by the synthesizer’s default speaking rate; passing ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " means the speaking rate is automatically set to the rate the user specifies in Speech preferences.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "voice"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On return, a pointer to a valid speech channel.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "chan"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager#1659745",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NewSpeechChannel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functionallocates memory for a speech channel structure and sets the speechchannel variable pointed to by the ",
+              "type": "text"
+            },
+            {
+              "code": "chan",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameterto point to this speech channel structure. The Speech SynthesisManager automatically locates and opens a connection to the propersynthesizer for the voice specified by the ",
+              "type": "text"
+            },
+            {
+              "code": "voice",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There is no predefined limit to the number of speech channelsan application can create. However, system constraints on availableRAM, processor loading, and number of available sound channels limitthe number of speech channels actually possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your application should not attempt to manipulate the datapointed to by a variable of type ",
+              "type": "text"
+            },
+            {
+              "code": "SpeechChannel",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".The internal format that the Speech Synthesis Manager uses for speech channeldata is not documented and may change in future versions of systemsoftware. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutablePointer": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutablePointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnsafeMutablePointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablepointer"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461367-newspeechchannel": {
+      "abstract": [
+        {
+          "text": "Creates a new speech channel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "NewSpeechChannel"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<VoiceSpec>?, UnsafeMutablePointer<SpeechChannel?>) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461367-newspeechchannel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NewSpeechChannel(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461367-newspeechchannel"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462081-disposespeechchannel": {
+      "abstract": [
+        {
+          "text": "Disposes of an existing speech channel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "DisposeSpeechChannel"
+        },
+        {
+          "kind": "text",
+          "text": "(SpeechChannel) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462081-disposespeechchannel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DisposeSpeechChannel(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462081-disposespeechchannel"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Speech Synthesis Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager#1659745": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager#1659745",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/applicationservices/speech_synthesis_manager#1659745"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechchannel": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechchannel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechChannel",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechchannel"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/voicespec": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/voicespec",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VoiceSpec",
+      "type": "topic",
+      "url": "/documentation/applicationservices/voicespec"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1462081-disposespeechchannel"
+      ],
+      "title": "Managing Speech Channels"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/1461367-newspeechchannel"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/applicationservices/1461367-newspeechchannel"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

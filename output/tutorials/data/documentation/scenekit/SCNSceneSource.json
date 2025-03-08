@@ -1,0 +1,2660 @@
+{
+  "abstract": [
+    {
+      "text": "An object that manages the data-reading tasks associated with loading scene contents from a file or data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.scenekit/documentation/SceneKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SCNSceneSource",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SCNSceneSource"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SceneKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SCNSceneSource"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SCNSceneSource"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCNSceneSource"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.scenekit/documentation/SceneKit/animating-scenekit-content"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use a scene source to examine the contents of a scene file or to selectively extract certain elements of a scene without keeping the entire scene and all the assets it contains.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SceneKit can read scene contents from a file in a supported format, or from an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object holding the contents of such a file. Supported formats include the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Format",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Filename Extension",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supported in",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Digital Asset Exchange",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ".dae",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS 10.8 and later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Alembic",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ".abc",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS 10.10 and later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SceneKit compressed scene",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ".dae",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".abc",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS 10.10 and later ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " iOS 8.0 and later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SceneKit archive",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ".scn",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS 10.10 and later ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " iOS 8.0 and later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you include a scene file in DAE or Alembic format in your Xcode project, Xcode automatically converts the file to SceneKit’s compressed scene format for use in the built app. The compressed file retains its original ",
+              "type": "text"
+            },
+            {
+              "code": ".dae",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": ".abc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class can also load SceneKit archive files, which you create in the Xcode scene editor or programmatically by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to serialize an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and the scene graph it contains.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For best results, place scene files that ship in your app bundle in a folder with the ",
+                  "type": "text"
+                },
+                {
+                  "code": ".scnassets",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " extension, and place image files referenced as textures from those scenes in an Asset Catalog. Xcode then optimizes the scene and texture resources for best performance on each target device, and prepares your texture resources for delivery features such as App Thinning and On-Demand Resources.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsdata": {
+      "abstract": [
+        {
+          "text": "A static byte buffer that bridges to ; use  when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver": {
+      "abstract": [
+        {
+          "text": "An encoder that stores an object’s data to an archive referenced by keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSKeyedArchiver"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyedArchiver",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedarchiver"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit": {
+      "abstract": [
+        {
+          "text": "Create 3D games and add 3D content to apps using high-level scene descriptions, and easily add animations, physics simulation, particle effects, and realistic physically based rendering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SceneKit",
+      "type": "topic",
+      "url": "/documentation/scenekit"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/1573761-scene-file-consistency-check-err": {
+      "abstract": [
+        {
+          "text": "Error codes that identify errors found during a scene-file-format consistency check.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/1573761-scene-file-consistency-check-err",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scene File Consistency Check Error Codes",
+      "type": "topic",
+      "url": "/documentation/scenekit/1573761-scene-file-consistency-check-err"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNScene": {
+      "abstract": [
+        {
+          "text": "A container for the node hierarchy and global properties that together form a displayable 3D scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNScene"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNScene",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscene"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource": {
+      "abstract": [
+        {
+          "text": "An object that manages the data-reading tasks associated with loading scene contents from a file or data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNSceneSource"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNSceneSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNSceneSource",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenesource"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/LoadingOption": {
+      "abstract": [
+        {
+          "text": "Options for creating scene sources and loading the scenes they contain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LoadingOption"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/LoadingOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LoadingOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNSceneSource.LoadingOption",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenesource/loadingoption"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/data": {
+      "abstract": [
+        {
+          "text": "The data object from which the scene source loads scene content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/data",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "data"
+        }
+      ],
+      "role": "symbol",
+      "title": "data",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenesource/data"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/entries(passingTest:)": {
+      "abstract": [
+        {
+          "text": "Loads and returns all objects in the scene source that pass the test in a given block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "entries"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "passingTest"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8ObjCBoolV",
+          "text": "ObjCBool"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/entries(passingTest:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "entriesPassingTest:"
+        }
+      ],
+      "role": "symbol",
+      "title": "entries(passingTest:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenesource/entries(passingtest:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/entryWithIdentifier(_:withClass:)": {
+      "abstract": [
+        {
+          "text": "Loads and returns a specific object in the scene source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "entryWithIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withClass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/entryWithIdentifier(_:withClass:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "entryWithIdentifier(_:withClass:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenesource/entrywithidentifier(_:withclass:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/entryWithIdentifier:withClass:": {
+      "abstract": [
+        {
+          "text": "Loads and returns a specific object in the scene source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "entryWithIdentifier:withClass:"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/entryWithIdentifier:withClass:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "entryWithIdentifier:withClass:"
+        }
+      ],
+      "role": "symbol",
+      "title": "entryWithIdentifier:withClass:",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenesource/entrywithidentifier:withclass:"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/identifiersOfEntries(withClass:)": {
+      "abstract": [
+        {
+          "text": "Returns the identifiers for all objects in the scene source of the specified class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifiersOfEntries"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withClass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/identifiersOfEntries(withClass:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identifiersOfEntriesWithClass:"
+        }
+      ],
+      "role": "symbol",
+      "title": "identifiersOfEntries(withClass:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenesource/identifiersofentries(withclass:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/init(data:options:)": {
+      "abstract": [
+        {
+          "text": "Initializes a scene source for reading the scene graph contained in an ",
+          "type": "text"
+        },
+        {
+          "code": "NSData",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNSceneSource",
+          "text": "SCNSceneSource"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNSceneSourceLoadingOption",
+          "text": "LoadingOption"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/init(data:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithData:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(data:options:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenesource/init(data:options:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/init(url:options:)": {
+      "abstract": [
+        {
+          "text": "Initializes a scene source for reading the scene graph from a specified file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNSceneSource",
+          "text": "SCNSceneSource"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNSceneSourceLoadingOption",
+          "text": "LoadingOption"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/init(url:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithURL:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(url:options:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenesource/init(url:options:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/property(forKey:)": {
+      "abstract": [
+        {
+          "text": "Returns metadata about the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "property"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/property(forKey:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "propertyForKey:"
+        }
+      ],
+      "role": "symbol",
+      "title": "property(forKey:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenesource/property(forkey:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/scene(options:)": {
+      "abstract": [
+        {
+          "text": "Instantiates a scene from the scene source with the specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNSceneSource",
+          "text": "SCNSceneSource"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNSceneSourceLoadingOption",
+          "text": "LoadingOption"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNScene",
+          "text": "SCNScene"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/scene(options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sceneWithOptions:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "scene(options:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenesource/scene(options:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/scene(options:statusHandler:)": {
+      "abstract": [
+        {
+          "text": "Loads the entire scene graph from the scene source and calls the specified block to provide progress information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNSceneSource",
+          "text": "SCNSceneSource"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNSceneSourceLoadingOption",
+          "text": "LoadingOption"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "statusHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNSceneSourceStatusHandler",
+          "text": "SCNSceneSourceStatusHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNScene",
+          "text": "SCNScene"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/scene(options:statusHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sceneWithOptions:statusHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "scene(options:statusHandler:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenesource/scene(options:statushandler:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/sceneSourceWithData:options:": {
+      "abstract": [
+        {
+          "text": "Creates a scene source that reads the scene graph contained in an ",
+          "type": "text"
+        },
+        {
+          "code": "NSData",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "sceneSourceWithData:options:"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/sceneSourceWithData:options:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sceneSourceWithData:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sceneSourceWithData:options:",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenesource/scenesourcewithdata:options:"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/sceneSourceWithURL:options:": {
+      "abstract": [
+        {
+          "text": "Creates a scene source that reads the scene graph from a specified file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "sceneSourceWithURL:options:"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/sceneSourceWithURL:options:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sceneSourceWithURL:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sceneSourceWithURL:options:",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenesource/scenesourcewithurl:options:"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/url": {
+      "abstract": [
+        {
+          "text": "The URL identifying the file from which the scene source was created.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/url",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "url"
+        }
+      ],
+      "role": "symbol",
+      "title": "url",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenesource/url"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSourceAssetContributorsKey": {
+      "abstract": [
+        {
+          "text": "The file contributors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNSceneSourceAssetContributorsKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSourceAssetContributorsKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNSceneSourceAssetContributorsKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNSceneSourceAssetContributorsKey",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenesourceassetcontributorskey"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSourceAssetUnitKey": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNSceneSourceAssetUnitKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSourceAssetUnitKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNSceneSourceAssetUnitKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNSceneSourceAssetUnitKey",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenesourceassetunitkey"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSourceStatus": {
+      "abstract": [
+        {
+          "text": "Constants identifying phases of SceneKit’s scene loading process, used in a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSourceStatusHandler",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNSceneSourceStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSourceStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNSceneSourceStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNSceneSourceStatus",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenesourcestatus"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSourceStatusHandler": {
+      "abstract": [
+        {
+          "text": "The signature for the block that SceneKit calls periodically to report progress while loading a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNSceneSourceStatusHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSourceStatusHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNSceneSourceStatusHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNSceneSourceStatusHandler",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenesourcestatushandler"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/animating-scenekit-content": {
+      "abstract": [
+        {
+          "text": "Learn about implicit animations, explicit animations, and actions, and when to choose each in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/animating-scenekit-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Animating SceneKit Content",
+      "type": "topic",
+      "url": "/documentation/scenekit/animating-scenekit-content"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/contributor-keys": {
+      "abstract": [
+        {
+          "text": "Metadata identifying the user and authoring tool that created a scene file, used with the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSourceAssetContributorsKey",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " key.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/contributor-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Contributor Keys",
+      "type": "topic",
+      "url": "/documentation/scenekit/contributor-keys"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/scene-file-consistency-error-keys": {
+      "abstract": [
+        {
+          "text": "Keys identifying errors found during a scene-file-format consistency check.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/scene-file-consistency-error-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scene File Consistency Error Keys",
+      "type": "topic",
+      "url": "/documentation/scenekit/scene-file-consistency-error-keys"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/scene-loading-error-keys": {
+      "abstract": [],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/scene-loading-error-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scene Loading Error Keys",
+      "type": "topic",
+      "url": "/documentation/scenekit/scene-loading-error-keys"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/scene-source-properties": {
+      "abstract": [
+        {
+          "text": "The metadata properties associated with a scene file, used by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/property(forKey:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/scene-source-properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scene Source Properties",
+      "type": "topic",
+      "url": "/documentation/scenekit/scene-source-properties"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/unit-dictionary-keys": {
+      "abstract": [
+        {
+          "text": "Metadata describing the unit of measurement used in a scene file, used with the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSourceAssetUnitKey",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " key.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/unit-dictionary-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Unit Dictionary Keys",
+      "type": "topic",
+      "url": "/documentation/scenekit/unit-dictionary-keys"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Scene-Source",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/init(url:options:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/init(data:options:)"
+      ],
+      "title": "Creating a Scene Source"
+    },
+    {
+      "anchor": "Loading-a-Complete-Scene",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/scene(options:statusHandler:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/scene(options:)"
+      ],
+      "title": "Loading a Complete Scene"
+    },
+    {
+      "anchor": "Loading-and-Inspecting-Scene-Elements",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/identifiersOfEntries(withClass:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/entryWithIdentifier(_:withClass:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/entries(passingTest:)"
+      ],
+      "title": "Loading and Inspecting Scene Elements"
+    },
+    {
+      "anchor": "Getting-Information-about-the-Scene",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/url",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/data",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/property(forKey:)"
+      ],
+      "title": "Getting Information about the Scene"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/LoadingOption",
+        "doc://com.apple.scenekit/documentation/SceneKit/scene-source-properties",
+        "doc://com.apple.scenekit/documentation/SceneKit/contributor-keys",
+        "doc://com.apple.scenekit/documentation/SceneKit/unit-dictionary-keys",
+        "doc://com.apple.scenekit/documentation/SceneKit/scene-loading-error-keys",
+        "doc://com.apple.scenekit/documentation/SceneKit/scene-file-consistency-error-keys",
+        "doc://com.apple.scenekit/documentation/SceneKit/1573761-scene-file-consistency-check-err",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSourceStatusHandler",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSourceStatus"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SCNSceneSource"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.scenekit/documentation/SceneKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Scene-Source",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/sceneSourceWithURL:options:",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/sceneSourceWithData:options:",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/init(url:options:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/init(data:options:)"
+              ],
+              "title": "Creating a Scene Source"
+            },
+            {
+              "anchor": "Loading-a-Complete-Scene",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/scene(options:statusHandler:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/scene(options:)"
+              ],
+              "title": "Loading a Complete Scene"
+            },
+            {
+              "anchor": "Loading-and-Inspecting-Scene-Elements",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/identifiersOfEntries(withClass:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/entryWithIdentifier:withClass:",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/entries(passingTest:)"
+              ],
+              "title": "Loading and Inspecting Scene Elements"
+            },
+            {
+              "anchor": "Getting-Information-about-the-Scene",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/url",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/data",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/property(forKey:)"
+              ],
+              "title": "Getting Information about the Scene"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource/LoadingOption",
+                "doc://com.apple.scenekit/documentation/SceneKit/scene-source-properties",
+                "doc://com.apple.scenekit/documentation/SceneKit/contributor-keys",
+                "doc://com.apple.scenekit/documentation/SceneKit/unit-dictionary-keys",
+                "doc://com.apple.scenekit/documentation/SceneKit/scene-loading-error-keys",
+                "doc://com.apple.scenekit/documentation/SceneKit/scene-file-consistency-error-keys",
+                "doc://com.apple.scenekit/documentation/SceneKit/1573761-scene-file-consistency-check-err",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSourceStatusHandler",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSourceStatus"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SCNSceneSource"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSourceAssetUnitKey/title",
+          "value": "SCNSceneSourceAssetUnitKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSourceAssetUnitKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneSourceAssetUnitKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSourceStatus/title",
+          "value": "SCNSceneSourceStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSourceStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneSourceStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSourceStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneSourceStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource/title",
+          "value": "SCNSceneSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNScene/title",
+          "value": "SCNScene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNScene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNScene/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource~1init(data:options:)/title",
+          "value": "initWithData:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource~1init(data:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithData:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource~1LoadingOption/title",
+          "value": "SCNSceneSourceLoadingOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource~1LoadingOption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneSourceLoadingOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource~1LoadingOption/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneSourceLoadingOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource~1identifiersOfEntries(withClass:)/title",
+          "value": "identifiersOfEntriesWithClass:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource~1identifiersOfEntries(withClass:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "identifiersOfEntriesWithClass:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsdata/abstract",
+          "value": [
+            {
+              "text": "A static byte buffer in memory.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource~1init(url:options:)/title",
+          "value": "initWithURL:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource~1init(url:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithURL:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource~1property(forKey:)/title",
+          "value": "propertyForKey:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource~1property(forKey:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "propertyForKey:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource~1scene(options:statusHandler:)/title",
+          "value": "sceneWithOptions:statusHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource~1scene(options:statusHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sceneWithOptions:statusHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSourceStatusHandler/title",
+          "value": "SCNSceneSourceStatusHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSourceStatusHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneSourceStatusHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSourceStatusHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneSourceStatusHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource~1entries(passingTest:)/title",
+          "value": "entriesPassingTest:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource~1entries(passingTest:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "entriesPassingTest:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource~1url/title",
+          "value": "url"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource~1url/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "url"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource~1scene(options:)/title",
+          "value": "sceneWithOptions:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource~1scene(options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sceneWithOptions:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSourceAssetContributorsKey/title",
+          "value": "SCNSceneSourceAssetContributorsKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSourceAssetContributorsKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneSourceAssetContributorsKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource~1data/title",
+          "value": "data"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneSource~1data/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "data"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/scenekit/scnscenesource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/scenekit/scnscenesource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

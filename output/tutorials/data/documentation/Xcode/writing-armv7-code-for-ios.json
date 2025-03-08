@@ -1,0 +1,512 @@
+{
+  "abstract": [
+    {
+      "text": "Create ARMv7 assembly language instructions that adhere to the application binary",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "interface (ABI) that iOS supports.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/application-binary-interfaces"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/writing-armv7-code-for-ios"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Writing ARMv7 code for iOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The calling conventions for the ARMv7 and ARMv6 environments are nearly identical.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As a result, any app you build for the ARMv7 environment is capable of running in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ARMv6 environment and vice versa. However, some ARMv7 environment features deviate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from, or extend, the features of the ARMv6 environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Preserve-specific-registers-in-ARMv7",
+          "level": 3,
+          "text": "Preserve specific registers in ARMv7",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ARMv7 architecture preserves the same registers as the ARMv6 architecture, except",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the changes and additions in the following table:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Preserved",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "VFP register",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "D0-D7",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Also known as Q0-Q3 on ARMv7. These registers are accessible from Thumb mode on ARMv7.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "D8-D15",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Also known as Q4-Q7 on ARMv7. These registers are accessible from Thumb mode on ARMv7.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "D16-D31",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Also known as Q8-Q15. These registers are available only in ARMv7.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional register preservation guidance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/writing-armv6-code-for-ios#Preserve-specific-registers-in-ARMv6",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Generate-ARM-or-Thumb-code-from-the-same-assembly",
+          "level": 3,
+          "text": "Generate ARM or Thumb code from the same assembly",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The version of Thumb in ARMv7 is compatible with ARM assembly instructions.  Specifically,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Thumb is capable of saving and restoring the contents of the VFP registers, and ARMv7",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "assembly uses a unified set of mnemonics.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a prolog that saves key registers, including several",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "VFP registers. It also allocates 36 bytes for local storage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "push add  {r4-r7, lr}     // save LR, R7, R4-R6.",
+            "add       r7, sp, #12     // Adjust R7 to point to saved R7.",
+            "push      {r8, r10, r11}  // Save remaining GPRs (R8, R10, R11).",
+            "vstmdb    sp!, {d8-d15}   // Save VFP/Advanced SIMD registers D8 ",
+            "                          // (aka S16-S31, Q4-Q7).",
+            "sub       sp, sp, #36     // Allocate space for local storage."
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows the epilog that restores the registers saved by the preceding",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "prolog:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "add       sp, sp, #36     // Deallocate space for local storage.",
+            "vldmia    sp!, {d8-d15}   // Restore VFP/Advanced SIMD registers.",
+            "pop       {r8, r10, r11}  // Restore R8-R11.",
+            "pop       {r4-r7, pc}     // Restore R4-R6, saved R7, and ",
+            "                          // return to saved LR"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/application-binary-interfaces": {
+      "abstract": [
+        {
+          "text": "Write assembly instructions that adhere to the application binary interfaces of Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/application-binary-interfaces",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Application binary interfaces",
+      "type": "topic",
+      "url": "/documentation/xcode/application-binary-interfaces"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/writing-armv6-code-for-ios": {
+      "abstract": [
+        {
+          "text": "Create ARMv6 assembly language instructions that adhere to the application binary",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "interface (ABI) that iOS supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/writing-armv6-code-for-ios",
+      "kind": "article",
+      "role": "article",
+      "title": "Writing ARMv6 code for iOS",
+      "type": "topic",
+      "url": "/documentation/xcode/writing-armv6-code-for-ios"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/writing-armv6-code-for-ios#Preserve-specific-registers-in-ARMv6": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/writing-armv6-code-for-ios#Preserve-specific-registers-in-ARMv6",
+      "kind": "section",
+      "title": "Preserve specific registers in ARMv6",
+      "type": "topic",
+      "url": "/documentation/xcode/writing-armv6-code-for-ios#Preserve-specific-registers-in-ARMv6"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "iOS-interfaces",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/writing-armv6-code-for-ios"
+      ],
+      "title": "iOS interfaces"
+    }
+  ]
+}

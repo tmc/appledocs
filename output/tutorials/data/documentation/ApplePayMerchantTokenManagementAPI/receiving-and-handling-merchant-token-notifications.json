@@ -1,0 +1,1026 @@
+{
+  "abstract": [
+    {
+      "text": "Implement an endpoint to receive and handle merchant token life-cycle updates from Apple Pay.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/ApplePayMerchantTokenManagementAPI/receiving-and-handling-merchant-token-notifications"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Pay Merchant Token Management API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Receiving and handling merchant token notifications"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "merchant token",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " associates a payment card, merchant, and user. Apple Pay issues a merchant token when a customer initiates a purchase using Apple Pay in your app or on your website. When your app or website creates a payment request for a recurring payment or an automatic-reload payment, you pass your server’s notification URL in the ",
+              "type": "text"
+            },
+            {
+              "code": "tokenNotificationURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. When a life-cycle event affects the token — for example, the card’s expiration date changes, or the user or issuer deletes the token — Apple Pay sends you a notification with a unique event identifier to that ",
+              "type": "text"
+            },
+            {
+              "code": "tokenNotificationURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MerchantTokenNotificationServices/Send-Merchant-Token-Event",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint at the ",
+              "type": "text"
+            },
+            {
+              "code": "tokenNotificationURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " you provide to receive and handle merchant token updates from Apple Pay.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-your-server-for-Apple-Pays-requirements",
+          "level": 3,
+          "text": "Configure your server for Apple Pay’s requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To incorporate Apple Pay, your server needs to adhere to the following requirements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "HTTPS support",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A valid SSL certificate",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Support for the Transport Layer Security (TLS) 1.2 protocol, and at least one of the required cipher suites",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A strict allow list for Apple Pay IP addresses for merchant validation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A strict allow list for Apple IP addresses for domain verification",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about meeting these requirements for your server, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-allow-lists",
+          "level": 3,
+          "text": "Create allow lists",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For inbound merchant token notifications from Apple, allow the following IP addresses:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "17.58.0.0/18",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "17.58.192.0/18",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For merchant token event endpoints, allow the following URLs and IP addresses:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Domain name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Primary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Disaster recovery",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apple-pay-gateway-nc-pod*.apple.com",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "17.171.78.0 / 23",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "17.141.128.0 / 23",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apple-pay-gateway-pr-pod*.apple.com",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "17.141.128.0 / 23",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "17.171.78.0 / 23",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apple-pay-gateway-stage.apple.com",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "17.171.85.44",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "NA",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apple-pay-gateway-cert.apple.com",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "17.171.85.7",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "NA",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Set up these allow lists for receiving and handling merchant token events in addition to the lists in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " that you set up generally for Apple Pay.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Enable-your-token-notification-endpoint",
+          "level": 3,
+          "text": "Enable your token notification endpoint",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add an endpoint that accepts a ",
+              "type": "text"
+            },
+            {
+              "code": "GET",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request in the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "https://merchant.example.com/your-endpoint-for-notification/notification/merchantToken/{eventId}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Replace ",
+              "type": "text"
+            },
+            {
+              "code": "merchant.example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with your server’s domain and top level domain (TLD) and ",
+              "type": "text"
+            },
+            {
+              "code": "your-endpoint-for-notification",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with your server’s path to the endpoint. Apple Pay appends the path component ",
+              "type": "text"
+            },
+            {
+              "code": "notification/merchantToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and a unique event identifier as a path component after ",
+              "type": "text"
+            },
+            {
+              "code": "notification/merchantToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide the first part of the notification URL to payment requests that accept a ",
+              "type": "text"
+            },
+            {
+              "code": "tokenNotificationURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "https://merchant.example.com/your-endpoint-for-notification"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the endpoint, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MerchantTokenNotificationServices/Send-Merchant-Token-Event",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about payment requests that accept ",
+              "type": "text"
+            },
+            {
+              "code": "tokenNotificationURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a parameter, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PassKit/PKAutomaticReloadPaymentRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PassKit/PKRecurringPaymentRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayautomaticreloadpaymentrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrecurringpaymentrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Receive-and-handle-notifications",
+          "level": 3,
+          "text": "Receive and handle notifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a life-cycle event occurs to a card associated with a merchant token, Apple Pay sends a ",
+              "type": "text"
+            },
+            {
+              "code": "GET",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request to your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MerchantTokenNotificationServices/Send-Merchant-Token-Event",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint. Use the unique event identifier that Apple Pay sends and your merchant identifier to fetch information about this notification’s event. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MerchantTokenNotificationServices/Merchant-Token-Event-Retrieval",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Process the event in your system with the appropriate action. Respond with ",
+              "type": "text"
+            },
+            {
+              "code": "200",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "OK",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if your endpoint successfully receives the notification, even if your endpoint can’t find the related merchant token or event identifier. Respond with ",
+              "type": "text"
+            },
+            {
+              "code": "500",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Internal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Server",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Error",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if your endpoint isn’t able to process the notification request. Apple Pay immediately retries the notification up to three times if the response isn’t ",
+              "type": "text"
+            },
+            {
+              "code": "200",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices": {
+      "abstract": [
+        {
+          "text": "Retrieve and manage payment life-cycle events for your Apple Pay merchant tokens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Pay Merchant Token Management API",
+      "type": "topic",
+      "url": "/documentation/merchanttokennotificationservices"
+    },
+    "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/Send-Merchant-Token-Event": {
+      "abstract": [
+        {
+          "text": "Receive and handle merchant token life-cycle updates from Apple Pay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/Send-Merchant-Token-Event",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Send Merchant Token Event"
+        }
+      ],
+      "role": "symbol",
+      "title": "Send Merchant Token Event",
+      "type": "topic",
+      "url": "/documentation/merchanttokennotificationservices/send-merchant-token-event"
+    },
+    "doc://com.apple.documentation/documentation/MerchantTokenNotificationServices/Merchant-Token-Event-Retrieval": {
+      "abstract": [
+        {
+          "text": "Get the details of a merchant token event after receiving a notification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MerchantTokenNotificationServices/Merchant-Token-Event-Retrieval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Get Details of a Merchant Token Event",
+      "type": "topic",
+      "url": "/documentation/MerchantTokenNotificationServices/Merchant-Token-Event-Retrieval"
+    },
+    "doc://com.apple.documentation/documentation/MerchantTokenNotificationServices/Send-Merchant-Token-Event": {
+      "abstract": [
+        {
+          "text": "Receive and handle merchant token life-cycle updates from Apple Pay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MerchantTokenNotificationServices/Send-Merchant-Token-Event",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Send Merchant Token Event",
+      "type": "topic",
+      "url": "/documentation/MerchantTokenNotificationServices/Send-Merchant-Token-Event"
+    },
+    "doc://com.apple.documentation/documentation/PassKit/PKAutomaticReloadPaymentRequest": {
+      "abstract": [
+        {
+          "text": "A class that represents a request to set up an automatic reload payment, such as a store card top-up or a prepaid account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKAutomaticReloadPaymentRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PassKit/PKAutomaticReloadPaymentRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PKAutomaticReloadPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/PassKit/PKAutomaticReloadPaymentRequest"
+    },
+    "doc://com.apple.documentation/documentation/PassKit/PKRecurringPaymentRequest": {
+      "abstract": [
+        {
+          "text": "A class that represents a request to set up a recurring payment, typically a subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKRecurringPaymentRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PassKit/PKRecurringPaymentRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PKRecurringPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/PassKit/PKRecurringPaymentRequest"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayautomaticreloadpaymentrequest": {
+      "abstract": [
+        {
+          "text": "A dictionary that represents a request to set up an automatic reload payment, such as a store card top-up or a prepaid account.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayautomaticreloadpaymentrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayAutomaticReloadPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayautomaticreloadpaymentrequest"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrecurringpaymentrequest": {
+      "abstract": [
+        {
+          "text": "A dictionary that represents a request to set up a recurring payment, typically a subscription.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrecurringpaymentrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayRecurringPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayrecurringpaymentrequest"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server": {
+      "abstract": [
+        {
+          "text": "Set up your server for secure communications with Apple Pay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up Your Server",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/setting_up_your_server"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Merchant-token-notification-handling",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/Send-Merchant-Token-Event"
+      ],
+      "title": "Merchant token notification handling"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1PassKit~1PKAutomaticReloadPaymentRequest/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PKAutomaticReloadPaymentRequest"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1PassKit~1PKRecurringPaymentRequest/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PKRecurringPaymentRequest"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applepaymerchanttokenmanagementapi/receiving-and-handling-merchant-token-notifications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

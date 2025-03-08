@@ -1,0 +1,2022 @@
+{
+  "abstract": [
+    {
+      "text": "A ",
+      "type": "text"
+    },
+    {
+      "code": "WebScriptObject",
+      "type": "codeVoice"
+    },
+    {
+      "text": " object is an Objective-C wrapper for a scripting object passed to your application from the scripting environment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.webkit/documentation/WebKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.webkit/documentation/WebKit/WebScriptObject"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)WebScriptObject",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "WebScriptObject"
+      }
+    ],
+    "modules": [
+      {
+        "name": "WebKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "WebScriptObject"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.14",
+        "introducedAt": "10.4",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "WebScriptObject"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WebScriptObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can not create a ",
+              "type": "text"
+            },
+            {
+              "code": "WebScriptObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object directly. You get a window ",
+              "type": "text"
+            },
+            {
+              "code": "WebScriptObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object by sending ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WebView/windowScriptObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to your ",
+              "type": "text"
+            },
+            {
+              "code": "WebView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use key-value coding methods—for example, ",
+              "type": "text"
+            },
+            {
+              "code": "setValue:forKey:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "valueForKey:",
+              "type": "codeVoice"
+            },
+            {
+              "text": "—to get and set properties of a ",
+              "type": "text"
+            },
+            {
+              "code": "WebScriptObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. You can also access properties by index using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/setWebScriptValueAt(_:value:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/webScriptValue(at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/removeWebScriptKey(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to remove a scripting object property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Not all properties and methods of a class are exported. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1413490-setvalue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1413457-value",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods to intercept access to properties that are not exported. Similarly, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1528562-invokeundefinedmethod",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to intercept method invocations that are not exported.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want access to properties and methods defined in your own classes, use the methods in the WebScripting informal protocol to specify the properties and methods the class should export to WebKit’s JavaScript environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/callWebScriptMethod(_:withArguments:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/evaluateWebScript(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods to execute scripts in the scripting environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1413457-value": {
+      "abstract": [
+        {
+          "text": "Invoked by  when it finds no property corresponding to a given key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forUndefinedKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1413457-value",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "value(forUndefinedKey:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1413457-value"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1413490-setvalue": {
+      "abstract": [
+        {
+          "text": "Invoked by  when it finds no property for a given key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setValue"
+        },
+        {
+          "kind": "text",
+          "text": "(Any?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forUndefinedKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1413490-setvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setValue(_:forUndefinedKey:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1413490-setvalue"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1528562-invokeundefinedmethod": {
+      "abstract": [
+        {
+          "text": "Handles undefined method invocation from the scripting environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "invokeUndefinedMethod"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fromWebScript"
+        },
+        {
+          "kind": "text",
+          "text": ": String!, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withArguments"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any]!) -> Any!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1528562-invokeundefinedmethod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invokeUndefinedMethod(fromWebScript:withArguments:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1528562-invokeundefinedmethod"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/webscripting": {
+      "abstract": [
+        {
+          "text": "`WebScripting` is an informal protocol that defines methods that classes can implement to export their interfaces to a WebScript environment such as JavaScript.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/webscripting",
+      "kind": "article",
+      "role": "article",
+      "title": "WebScripting",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/webscripting"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.webkit/documentation/WebKit": {
+      "abstract": [
+        {
+          "text": "Integrate web content seamlessly into your app, and customize content interactions to meet your app’s needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WebKit",
+      "type": "topic",
+      "url": "/documentation/webkit"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/DOMObject": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DOMObject"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/DOMObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DOMObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "DOMObject",
+      "type": "topic",
+      "url": "/documentation/webkit/domobject"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebScriptObject": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "code": "WebScriptObject",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object is an Objective-C wrapper for a scripting object passed to your application from the scripting environment.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WebScriptObject"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebScriptObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WebScriptObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "WebScriptObject",
+      "type": "topic",
+      "url": "/documentation/webkit/webscriptobject"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/callWebScriptMethod(_:withArguments:)": {
+      "abstract": [
+        {
+          "text": "Returns the result of executing a method in the scripting environment.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "callWebScriptMethod"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withArguments"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/callWebScriptMethod(_:withArguments:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "callWebScriptMethod:withArguments:"
+        }
+      ],
+      "role": "symbol",
+      "title": "callWebScriptMethod(_:withArguments:)",
+      "type": "topic",
+      "url": "/documentation/webkit/webscriptobject/callwebscriptmethod(_:witharguments:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/evaluateWebScript(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the result of evaluating a script in the scripting environment.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluateWebScript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/evaluateWebScript(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "evaluateWebScript:"
+        }
+      ],
+      "role": "symbol",
+      "title": "evaluateWebScript(_:)",
+      "type": "topic",
+      "url": "/documentation/webkit/webscriptobject/evaluatewebscript(_:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/jsObject()": {
+      "abstract": [
+        {
+          "text": "Returns the JavaScript object corresponding to the receiver.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "jsObject"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@JSObjectRef",
+          "text": "JSObjectRef"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/jsObject()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JSObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "jsObject()",
+      "type": "topic",
+      "url": "/documentation/webkit/webscriptobject/jsobject()"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/jsValue()": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "jsValue"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)JSValue",
+          "text": "JSValue"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/jsValue()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JSValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "jsValue()",
+      "type": "topic",
+      "url": "/documentation/webkit/webscriptobject/jsvalue()"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/removeWebScriptKey(_:)": {
+      "abstract": [
+        {
+          "text": "Removes a property from a scripting environment.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeWebScriptKey"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/removeWebScriptKey(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeWebScriptKey:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeWebScriptKey(_:)",
+      "type": "topic",
+      "url": "/documentation/webkit/webscriptobject/removewebscriptkey(_:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/setException(_:)": {
+      "abstract": [
+        {
+          "text": "Raises a scripting environment exception in the context of the current object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setException"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/setException(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setException:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setException(_:)",
+      "type": "topic",
+      "url": "/documentation/webkit/webscriptobject/setexception(_:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/setWebScriptValueAt(_:value:)": {
+      "abstract": [
+        {
+          "text": "Sets the value of a property at the specified index.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setWebScriptValueAt"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/setWebScriptValueAt(_:value:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setWebScriptValueAtIndex:value:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setWebScriptValueAt(_:value:)",
+      "type": "topic",
+      "url": "/documentation/webkit/webscriptobject/setwebscriptvalueat(_:value:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/stringRepresentation()": {
+      "abstract": [
+        {
+          "text": "Returns a string representation of the receiver.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/stringRepresentation()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stringRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "stringRepresentation()",
+      "type": "topic",
+      "url": "/documentation/webkit/webscriptobject/stringrepresentation()"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/throwException(_:)": {
+      "abstract": [
+        {
+          "text": "Raises an exception in the current script execution context.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "throwException"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/throwException(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "throwException:"
+        }
+      ],
+      "role": "symbol",
+      "title": "throwException(_:)",
+      "type": "topic",
+      "url": "/documentation/webkit/webscriptobject/throwexception(_:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/webScriptValue(at:)": {
+      "abstract": [
+        {
+          "text": "Returns the value of a property at the specified index.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "webScriptValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/webScriptValue(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "webScriptValueAtIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "webScriptValue(at:)",
+      "type": "topic",
+      "url": "/documentation/webkit/webscriptobject/webscriptvalue(at:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebUndefined": {
+      "abstract": [
+        {
+          "code": "WebUndefined",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects are simply used to represent the JavaScript “undefined” value in methods when bridging between JavaScript and Objective-C. For example, if you invoke a JavaScript function that returns the JavaScript “undefined” value, then a ",
+          "type": "text"
+        },
+        {
+          "code": "WebUndefined",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object is returned to the Objective-C calling context.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WebUndefined"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebUndefined",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WebUndefined"
+        }
+      ],
+      "role": "symbol",
+      "title": "WebUndefined",
+      "type": "topic",
+      "url": "/documentation/webkit/webundefined"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebView/windowScriptObject": {
+      "abstract": [
+        {
+          "text": "The receiver’s window object from the scripting environment.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowScriptObject"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WebScriptObject",
+          "text": "WebScriptObject"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebView/windowScriptObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "windowScriptObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "windowScriptObject",
+      "type": "topic",
+      "url": "/documentation/webkit/webview/windowscriptobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://developer.apple.com/library/archive/documentation/AppleApplications/Conceptual/SafariJSProgTopics/index.html#//apple_ref/doc/uid/TP40001483": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/AppleApplications/Conceptual/SafariJSProgTopics/index.html#//apple_ref/doc/uid/TP40001483",
+      "title": "WebKit DOM Programming Topics",
+      "titleInlineContent": [
+        {
+          "text": "WebKit DOM Programming Topics",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/AppleApplications/Conceptual/SafariJSProgTopics/index.html#//apple_ref/doc/uid/TP40001483"
+    },
+    "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DisplayWebContent/DisplayWebContent.html#//apple_ref/doc/uid/10000164i": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DisplayWebContent/DisplayWebContent.html#//apple_ref/doc/uid/10000164i",
+      "title": "WebKit Objective-C Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "WebKit Objective-C Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DisplayWebContent/DisplayWebContent.html#//apple_ref/doc/uid/10000164i"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/DOMObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "https://developer.apple.com/library/archive/documentation/AppleApplications/Conceptual/SafariJSProgTopics/index.html#//apple_ref/doc/uid/TP40001483",
+        "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DisplayWebContent/DisplayWebContent.html#//apple_ref/doc/uid/10000164i"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Incorporating-Scripts-Legacy",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/webscripting",
+        "doc://com.apple.webkit/documentation/WebKit/WebUndefined"
+      ],
+      "title": "Incorporating Scripts (Legacy)"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-and-setting-properties",
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/jsObject()",
+        "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/removeWebScriptKey(_:)",
+        "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/webScriptValue(at:)",
+        "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/setWebScriptValueAt(_:value:)"
+      ],
+      "title": "Getting and setting properties"
+    },
+    {
+      "anchor": "Executing-scripts",
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/callWebScriptMethod(_:withArguments:)",
+        "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/evaluateWebScript(_:)"
+      ],
+      "title": "Executing scripts"
+    },
+    {
+      "anchor": "Raising-exceptions",
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/throwException(_:)",
+        "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/setException(_:)"
+      ],
+      "title": "Raising exceptions"
+    },
+    {
+      "anchor": "Getting-a-string-representation",
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/stringRepresentation()"
+      ],
+      "title": "Getting a string representation"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/jsValue()"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "10.14",
+              "introducedAt": "10.4",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "WebScriptObject"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebScriptObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebScriptObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.webkit/documentation/WebKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Getting-and-setting-properties",
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/jsObject()",
+                "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/removeWebScriptKey(_:)",
+                "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/webScriptValue(at:)",
+                "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/setWebScriptValueAt(_:value:)"
+              ],
+              "title": "Getting and setting properties"
+            },
+            {
+              "anchor": "Executing-scripts",
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/callWebScriptMethod(_:withArguments:)",
+                "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/evaluateWebScript(_:)"
+              ],
+              "title": "Executing scripts"
+            },
+            {
+              "anchor": "Raising-exceptions",
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/throwException(_:)",
+                "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/setException(_:)"
+              ],
+              "title": "Raising exceptions"
+            },
+            {
+              "anchor": "Getting-a-string-representation",
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/stringRepresentation()"
+              ],
+              "title": "Getting a string representation"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/WebScriptObject/jsValue()"
+              ],
+              "title": "Instance Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/DOMObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "https://developer.apple.com/library/archive/documentation/AppleApplications/Conceptual/SafariJSProgTopics/index.html#//apple_ref/doc/uid/TP40001483",
+                "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DisplayWebContent/DisplayWebContent.html#//apple_ref/doc/uid/10000164i"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Incorporating-Scripts-Legacy",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/objectivec/nsobject/webscripting",
+                "doc://com.apple.webkit/documentation/WebKit/WebUndefined"
+              ],
+              "title": "Incorporating Scripts (Legacy)"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "WebScriptObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebScriptObject~1jsObject()/title",
+          "value": "JSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebScriptObject~1jsObject()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "JSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11528562-invokeundefinedmethod/title",
+          "value": "invokeUndefinedMethodFromWebScript:withArguments:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebScriptObject/title",
+          "value": "WebScriptObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebScriptObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebScriptObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebScriptObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebScriptObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebScriptObject~1callWebScriptMethod(_:withArguments:)/title",
+          "value": "callWebScriptMethod:withArguments:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebScriptObject~1callWebScriptMethod(_:withArguments:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "callWebScriptMethod:withArguments:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1DOMObject/title",
+          "value": "DOMObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1DOMObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DOMObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1DOMObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DOMObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebScriptObject~1stringRepresentation()/title",
+          "value": "stringRepresentation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebScriptObject~1stringRepresentation()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stringRepresentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11413457-value/title",
+          "value": "valueForUndefinedKey:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebScriptObject~1removeWebScriptKey(_:)/title",
+          "value": "removeWebScriptKey:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebScriptObject~1removeWebScriptKey(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeWebScriptKey:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebScriptObject~1jsValue()/title",
+          "value": "JSValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebScriptObject~1jsValue()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "JSValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebScriptObject~1evaluateWebScript(_:)/title",
+          "value": "evaluateWebScript:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebScriptObject~1evaluateWebScript(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "evaluateWebScript:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebScriptObject~1throwException(_:)/title",
+          "value": "throwException:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebScriptObject~1throwException(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "throwException:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebScriptObject~1webScriptValue(at:)/title",
+          "value": "webScriptValueAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebScriptObject~1webScriptValue(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "webScriptValueAtIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11413490-setvalue/title",
+          "value": "setValue:forUndefinedKey:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebScriptObject~1setException(_:)/title",
+          "value": "setException:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebScriptObject~1setException(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setException:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebScriptObject~1setWebScriptValueAt(_:value:)/title",
+          "value": "setWebScriptValueAtIndex:value:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebScriptObject~1setWebScriptValueAt(_:value:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setWebScriptValueAtIndex:value:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebView~1windowScriptObject/title",
+          "value": "windowScriptObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebView~1windowScriptObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "windowScriptObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebUndefined/title",
+          "value": "WebUndefined"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebUndefined/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebUndefined"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebUndefined/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebUndefined"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/webkit/webscriptobject"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/webkit/webscriptobject"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

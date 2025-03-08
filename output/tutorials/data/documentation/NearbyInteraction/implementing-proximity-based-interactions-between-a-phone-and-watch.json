@@ -1,0 +1,376 @@
+{
+  "abstract": [
+    {
+      "text": "Interact with a nearby Apple Watch by measuring its distance to a paired iPhone.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/implementing-proximity-based-interactions-between-a-phone-and-watch"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Nearby Interaction"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "8.0",
+        "name": "watchOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Implementing proximity-based interactions between a phone and watch"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC21 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc21/10165",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can run this sample either in the simulator or on paired devices.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When running on paired devices, both the watch and iPhone must contain the U1 chip.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run on paired devices:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the WatchNIDemo target, then change the bundle ID to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<Your iOS app bundle ID>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Select the right team to let Xcode automatically manage your provisioning profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Repeat step 1 for the WatchKit app and WatchKit Extension target. The bundle IDs should be ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<Your iOS app bundle ID>.watchkitapp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<Your iOS app bundle ID>.watchkitapp.watchkitextension",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " respectively.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Next, for the WatchKit app target, select the Info tab, and change the value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "WKCompanionAppBundleIdentifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<Your iOS app bundle ID>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Finally, open the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file of the WatchKit Extension target, navigate to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSExtension",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " > ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSExtensionAttributes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " > ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "WKAppBundleIdentifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key, and change the value of the key to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<Your iOS app bundle ID>.watchkitapp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "7b697253e49e/ImplementingProximityBasedInteractionsBetweenAPhoneAndWatch.zip": {
+      "checksum": "7b697253e49eae877b7f5263ba6b9c5ccb3bbf367321907af753b59c5bebaceeee4f327c6e92252acaacab8c3ede0470f267f162cddcada44e61ba60fcb50066",
+      "identifier": "7b697253e49e/ImplementingProximityBasedInteractionsBetweenAPhoneAndWatch.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/7b697253e49e/ImplementingProximityBasedInteractionsBetweenAPhoneAndWatch.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction": {
+      "abstract": [
+        {
+          "text": "Locate and interact with nearby devices using identifiers, distance, and direction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Nearby Interaction",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction"
+    },
+    "https://developer.apple.com/wwdc21/10165": {
+      "identifier": "https://developer.apple.com/wwdc21/10165",
+      "title": "10165: Explore Nearby Interaction with Third-Party Accessories",
+      "titleInlineContent": [
+        {
+          "text": "10165: Explore Nearby Interaction with Third-Party Accessories",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc21/10165"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "7b697253e49e/ImplementingProximityBasedInteractionsBetweenAPhoneAndWatch.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/nearbyinteraction/implementing-proximity-based-interactions-between-a-phone-and-watch"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/nearbyinteraction/implementing-proximity-based-interactions-between-a-phone-and-watch"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

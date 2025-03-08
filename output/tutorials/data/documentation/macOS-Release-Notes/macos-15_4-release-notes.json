@@ -1,0 +1,1425 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-15_4-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "macOS Sequoia 15.4 Beta 2 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The macOS 15.4 SDK provides support to develop apps for Mac computers running Sequoia 15.4 beta 2. The SDK comes bundled with Xcode 16.3, available from the Mac App Store. For information on the compatibility requirements for Xcode 16.3, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "/documentation/Xcode-Release-Notes/xcode-16_3-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apple-Intelligence",
+          "level": 3,
+          "text": "Apple Intelligence",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "After restoring macOS 15.4, some Apple Intelligence features might not be available or you might see “Downloading support…”.  (145297891)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Restarting your device might resolve the issue.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Automatic-Assessment-Configuration",
+          "level": 3,
+          "text": "Automatic Assessment Configuration",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixes an issue in which an assessment session could be interrupted in high memory use conditions  (144416806)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "FSKit",
+          "level": 3,
+          "text": "FSKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "FSKit is now available, enabling delivery of user space file systems as Application Extensions. These file systems support integration with DiskArbitration.  (44900760)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Game-Controller",
+          "level": 3,
+          "text": "Game Controller",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Game controllers might stop responding when accessibility features, such as Voice Over, are enabled.  (141497799)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "libxml2",
+          "level": 3,
+          "text": "libxml2",
+          "type": "heading"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The custom allocation API for libxml2 is deprecated starting in macOS Sequoia 15.4, iOS 18.4, tvOS 18.4, visionOS 2.4, and tvOS 18.4.  If this API is not used, no changes are required.  If this API is currently used, make changes to call ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "malloc()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instead of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlMalloc()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlMallocAtomic()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; call ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "realloc()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instead of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlRealloc()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; call ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "free()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instead of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlFree()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and call ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "strdup()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instead of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlMemStrdup()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".  Stop calling ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlMemSetup()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlMemGet()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlGcMemSetup()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlGcMemGet()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to set custom allocation functions.  Do not set global variables ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlMalloc",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlMallocAtomic",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlRealloc",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlFree",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlMemStrdup",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".  Internally, libxml2 and libxslt will now use the system allocator instead of this API, so do not rely on these libraries using the custom allocation API.  (138404994)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Podcasts",
+          "level": 3,
+          "text": "Podcasts",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Podcasts Search provides suggestions as you type to help you find what you’re looking for.  (144169175)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "SCSIControllerDriverKit",
+          "level": 3,
+          "text": "SCSIControllerDriverKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Four new API’s have been introduced: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UserMapBundledParallelTaskCommandAndResponseBuffers",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "BundledParallelTaskCompletion",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UserProcessBundledParallelTasks",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UserCompleteBundledParallelTask",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "These APIs introduce the concepts of bundled I/Os and shared memory, for parallel task command and response buffers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The shared memory addresses the RPC copy overhead. Bundled I/O enables the exchange of multiple I/Os in a single API call (in both submission and completion path), instead of handing over one I/O at a time between DriverKit and DriverExtension. This helps mitigate the DriverKit latencies while interacting with DriverExtension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "IOUserSCSIParallelInterfaceController.iig",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file explains the concepts of I/O bundling and shared memory for parallel task and response buffers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If DriverExtension has considerably lower I/O performance compared to the KernelExtension for workloads with high queue depths or very small I/O sizes (i.e. 4KB), try using these new APIs.  (134516478)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "SD-Card-Reader",
+          "level": 3,
+          "text": "SD Card Reader",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple silicon Macs with an internal SD card reader now support SDUC cards larger than 2TB.  (122898691)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "StoreKit",
+          "level": 3,
+          "text": "StoreKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "New StoreKit APIs support ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/in-app-purchase/advanced-commerce-api/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in-app purchases.  (118528943)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "By using the new purchase option API ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "introductoryOfferEligibility(compactJWS:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", you can now set a preference for whether an introductory offer should be redeemed during a purchase. This API requires you to sign a payload on your server in order to either apply the offer (even if the customer is not eligible) or block it.  (136152740)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "New properties ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "appTransactionID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "originalPlatform",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "period",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " are now available in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/apptransaction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/transaction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/transaction/offer-swift.struct",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/renewalinfo",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".  (136395697)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Platform",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " symbol used by originalPlatform in AppTransaction has been moved to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AppStore.Platform",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".  (143632084)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: The introductory offer eligibility preference API in PurchaseOption has been renamed to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "introductoryOfferEligibility(compactJWS:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".  (143905053)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/transaction/currententitlement(for:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is now deprecated. This API returns the latest transaction that entitles the user to a product, which may not include transactions originated for family shared subscriptions. Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Transaction.currentEntitlements(for:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " method to get all the transactions that entitle the user to a product.  (138320205)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "SwiftUI",
+          "level": 3,
+          "text": "SwiftUI",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: A color set by the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "tint(_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " modifier does not override the tint color of buttons in that view’s confirmation dialogs and alerts.  (138774306)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: For apps compiled against iOS 18.4 beta, applying ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "defaultVisibility(.hidden)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to customizable toolbar items does not hide the item by default on iOS.  (139815290)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: When NavigationStack or NavigationSplitView content updates, the environment is not invalidated unless properties in the environment have changed.  (139855826)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".onPreferenceChange",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " modifier’s closure argument is required to be ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@Sendable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This might cause concurrency diagnostics that’s unnecessary if the closure needs to access main actor-isolated values. This particular closure shouldn’t have to be this restrictive.  (145238570)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On macOS, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".sheet",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".alert",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".confirmationDialog",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " modals conditionally allow app termination (via the menu item, ⌘Q, Software Update, etc.) in some configurations.   (141551605)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " For macOS 15.4 beta, modals listed above will allow app quit while presented under specific conditions. If you strictly need to block app quit in macOS 15.4 beta, you can temporarily mark the dialog as critical with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "dialogSeverity",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ensure the sheet toolbar has > 1 button (or no buttons with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".confirmationAction",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "cancellationAction",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " placements), or ensure the dialog has > 1 action button in it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "System-Calls",
+          "level": 3,
+          "text": "System Calls",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "fileport_makeport(2) and fileport_makefd(2) are now APIs with manual pages.  (66571768) (FB8270900)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "UIWritingToolsCoordinator",
+          "level": 3,
+          "text": "UIWritingToolsCoordinator",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In macOS 15.4 beta, NSWritingToolsCoordinatorDelegate method ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-writingToolsCoordinator:requestsRangeInContextWithIdentifierForPoint:completion:",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is marked as optional and will not be called.  (142681236)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " When building on macOS 15.4 beta and deploying to macOS 15.2, implement the deprecated NSWritingToolsCoordinatorDelegate method ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-writingToolsCoordinator:requestsRangeInContextWithIdentifierForPoint:completion:",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". If you are not deploying earlier than macOS 15.4, do not implement this method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "URLSession",
+          "level": 3,
+          "text": "URLSession",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To enable the new HTTP loading mode, set ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "usesClassicLoadingMode",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to false on URLSessionConfiguration. The new loading mode will become the default in a future release.  (89390075)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Virtual-Machines",
+          "level": 3,
+          "text": "Virtual Machines",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Upon update to macOS 15.4 beta 1, M4 Macs will be unable to launch virtual machines and attempts will result in a system restart.  (145309647) (FB16542958)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Do not launch virtual machines. If virtual machine applications launch upon login, boot to Safe Mode and disable in system settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "WebKit",
+          "level": 3,
+          "text": "WebKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Updated ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "WKWebExtension",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in Swift with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "async",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " initializers for better concurrency and usability.  (145318999)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Writing-Tools",
+          "level": 3,
+          "text": "Writing Tools",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "After generating a list, key point, table, or summary in the pop-over, selecting “Replace” results in an error message.  (145186545)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " The generated content can be copied and pasted. User can manually replace the selected text with the generated text.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "/documentation/Xcode-Release-Notes/xcode-16_3-release-notes": {
+      "identifier": "/documentation/Xcode-Release-Notes/xcode-16_3-release-notes",
+      "title": "Xcode 16.3 Release Notes",
+      "titleInlineContent": [
+        {
+          "text": "Xcode 16.3 Release Notes",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "/documentation/Xcode-Release-Notes/xcode-16_3-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-15-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-15-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Sequoia 15 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-15-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-15_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-15_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Sequoia 15.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-15_1-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-15_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-15_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Sequoia 15.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-15_2-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-15_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-15_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Sequoia 15.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-15_3-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the macOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "macOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes"
+    },
+    "https://developer.apple.com/documentation/storekit/apptransaction": {
+      "identifier": "https://developer.apple.com/documentation/storekit/apptransaction",
+      "title": "AppTransaction",
+      "titleInlineContent": [
+        {
+          "text": "AppTransaction",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/apptransaction"
+    },
+    "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/renewalinfo": {
+      "identifier": "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/renewalinfo",
+      "title": "Product.SubscriptionInfo.RenewalInfo",
+      "titleInlineContent": [
+        {
+          "text": "Product.SubscriptionInfo.RenewalInfo",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/renewalinfo"
+    },
+    "https://developer.apple.com/documentation/storekit/transaction": {
+      "identifier": "https://developer.apple.com/documentation/storekit/transaction",
+      "title": "Transaction",
+      "titleInlineContent": [
+        {
+          "text": "Transaction",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/transaction"
+    },
+    "https://developer.apple.com/documentation/storekit/transaction/currententitlement(for:)": {
+      "identifier": "https://developer.apple.com/documentation/storekit/transaction/currententitlement(for:)",
+      "title": "Transaction.currentEntitlement(for:)",
+      "titleInlineContent": [
+        {
+          "code": "Transaction.currentEntitlement(for:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/transaction/currententitlement(for:)"
+    },
+    "https://developer.apple.com/documentation/storekit/transaction/offer-swift.struct": {
+      "identifier": "https://developer.apple.com/documentation/storekit/transaction/offer-swift.struct",
+      "title": "Transaction.Offer",
+      "titleInlineContent": [
+        {
+          "text": "Transaction.Offer",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/transaction/offer-swift.struct"
+    },
+    "https://developer.apple.com/in-app-purchase/advanced-commerce-api/": {
+      "identifier": "https://developer.apple.com/in-app-purchase/advanced-commerce-api/",
+      "title": "Advanced Commerce API",
+      "titleInlineContent": [
+        {
+          "text": "Advanced Commerce API",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/in-app-purchase/advanced-commerce-api/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "macOS-15",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-15_3-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-15_2-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-15_1-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-15-release-notes"
+      ],
+      "title": "macOS 15"
+    }
+  ]
+}

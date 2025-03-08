@@ -1,0 +1,957 @@
+{
+  "abstract": [
+    {
+      "text": "A specialized reference clock that synchronizes with audio sources.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremedia/documentation/CoreMedia"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremedia/documentation/CoreMedia/cmaudioclock-api"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Media"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "CMAudioClock APIs"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An audio clock is a specialized ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMClock",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that you use to synchronize with audio sources. For details on clocks and synchronization, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMClock",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremedia/documentation/CoreMedia": {
+      "abstract": [
+        {
+          "text": "Represent time-based audio-visual assets with essential data types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Media",
+      "type": "topic",
+      "url": "/documentation/coremedia"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioClockCreate(allocator:clockOut:)": {
+      "abstract": [
+        {
+          "text": "Creates a clock that advances at the same rate as audio output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMAudioClockCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "allocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "clockOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockRef",
+          "text": "CMClock"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioClockCreate(allocator:clockOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAudioClockCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMAudioClockCreate(allocator:clockOut:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmaudioclockcreate(allocator:clockout:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioDeviceClockCreate(allocator:deviceUID:clockOut:)": {
+      "abstract": [
+        {
+          "text": "Creates a clock that tracks playback through a Core Audio device with the specified unique identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMAudioDeviceClockCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "allocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "deviceUID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "clockOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockRef",
+          "text": "CMClock"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioDeviceClockCreate(allocator:deviceUID:clockOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAudioDeviceClockCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMAudioDeviceClockCreate(allocator:deviceUID:clockOut:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmaudiodeviceclockcreate(allocator:deviceuid:clockout:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioDeviceClockCreateFromAudioDeviceID(allocator:deviceID:clockOut:)": {
+      "abstract": [
+        {
+          "text": "Creates a clock that tracks playback through a Core Audio device with the specified identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMAudioDeviceClockCreateFromAudioDeviceID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "allocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "deviceID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioDeviceID",
+          "text": "AudioDeviceID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "clockOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockRef",
+          "text": "CMClock"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioDeviceClockCreateFromAudioDeviceID(allocator:deviceID:clockOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAudioDeviceClockCreateFromAudioDeviceID"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMAudioDeviceClockCreateFromAudioDeviceID(allocator:deviceID:clockOut:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmaudiodeviceclockcreatefromaudiodeviceid(allocator:deviceid:clockout:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioDeviceClockGetAudioDevice(_:deviceUIDOut:deviceIDOut:trackingDefaultDeviceOut:)": {
+      "abstract": [
+        {
+          "text": "Returns the Core Audio device the clock is tracking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMAudioDeviceClockGetAudioDevice"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockRef",
+          "text": "CMClock"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "deviceUIDOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SA",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?>?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "deviceIDOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioDeviceID",
+          "text": "AudioDeviceID"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trackingDefaultDeviceOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Darwin0A7BooleanV",
+          "text": "DarwinBoolean"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioDeviceClockGetAudioDevice(_:deviceUIDOut:deviceIDOut:trackingDefaultDeviceOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAudioDeviceClockGetAudioDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMAudioDeviceClockGetAudioDevice(_:deviceUIDOut:deviceIDOut:trackingDefaultDeviceOut:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmaudiodeviceclockgetaudiodevice(_:deviceuidout:deviceidout:trackingdefaultdeviceout:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioDeviceClockSetAudioDeviceID(_:deviceID:)": {
+      "abstract": [
+        {
+          "text": "Changes the Core Audio device the clock is tracking by specifying a new device identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMAudioDeviceClockSetAudioDeviceID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockRef",
+          "text": "CMClock"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "deviceID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioDeviceID",
+          "text": "AudioDeviceID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioDeviceClockSetAudioDeviceID(_:deviceID:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAudioDeviceClockSetAudioDeviceID"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMAudioDeviceClockSetAudioDeviceID(_:deviceID:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmaudiodeviceclocksetaudiodeviceid(_:deviceid:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioDeviceClockSetAudioDeviceUID(_:deviceUID:)": {
+      "abstract": [
+        {
+          "text": "Changes the Core Audio device the clock is tracking by specifying a new device unique identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMAudioDeviceClockSetAudioDeviceUID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockRef",
+          "text": "CMClock"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "deviceUID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioDeviceClockSetAudioDeviceUID(_:deviceUID:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAudioDeviceClockSetAudioDeviceUID"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMAudioDeviceClockSetAudioDeviceUID(_:deviceUID:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmaudiodeviceclocksetaudiodeviceuid(_:deviceuid:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMClock": {
+      "abstract": [
+        {
+          "text": "An object that represents a source of time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMClock"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMClock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMClock"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMClock",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmclock"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/cmclock-api": {
+      "abstract": [
+        {
+          "text": "A reference clock you use to synchronize applications and devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/cmclock-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CMClock APIs",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmclock-api"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/cmtimebase-api": {
+      "abstract": [
+        {
+          "text": "A model of a timeline under application control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/cmtimebase-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CMTimebase APIs",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebase-api"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Media-Synchronization",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/cmclock-api",
+        "doc://com.apple.coremedia/documentation/CoreMedia/cmtimebase-api"
+      ],
+      "title": "Media Synchronization"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-Audio-Clocks",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioClockCreate(allocator:clockOut:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioDeviceClockCreate(allocator:deviceUID:clockOut:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioDeviceClockCreateFromAudioDeviceID(allocator:deviceID:clockOut:)"
+      ],
+      "title": "Creating Audio Clocks"
+    },
+    {
+      "anchor": "Configuring-Audio-Clocks",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioDeviceClockGetAudioDevice(_:deviceUIDOut:deviceIDOut:trackingDefaultDeviceOut:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioDeviceClockSetAudioDeviceUID(_:deviceUID:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioDeviceClockSetAudioDeviceID(_:deviceID:)"
+      ],
+      "title": "Configuring Audio Clocks"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-Audio-Clocks",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioClockCreate(allocator:clockOut:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioDeviceClockCreate(allocator:deviceUID:clockOut:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioDeviceClockCreateFromAudioDeviceID(allocator:deviceID:clockOut:)"
+              ],
+              "title": "Creating Audio Clocks"
+            },
+            {
+              "anchor": "Configuring-Audio-Clocks",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioDeviceClockGetAudioDevice(_:deviceUIDOut:deviceIDOut:trackingDefaultDeviceOut:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioDeviceClockSetAudioDeviceUID(_:deviceUID:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMAudioDeviceClockSetAudioDeviceID(_:deviceID:)"
+              ],
+              "title": "Configuring Audio Clocks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Media-Synchronization",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/cmclock-api",
+                "doc://com.apple.coremedia/documentation/CoreMedia/cmtimebase-api"
+              ],
+              "title": "Media Synchronization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMAudioClockCreate(allocator:clockOut:)/title",
+          "value": "CMAudioClockCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMAudioClockCreate(allocator:clockOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAudioClockCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMAudioDeviceClockCreate(allocator:deviceUID:clockOut:)/title",
+          "value": "CMAudioDeviceClockCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMAudioDeviceClockCreate(allocator:deviceUID:clockOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAudioDeviceClockCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMAudioDeviceClockSetAudioDeviceUID(_:deviceUID:)/title",
+          "value": "CMAudioDeviceClockSetAudioDeviceUID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMAudioDeviceClockSetAudioDeviceUID(_:deviceUID:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAudioDeviceClockSetAudioDeviceUID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMAudioDeviceClockSetAudioDeviceID(_:deviceID:)/title",
+          "value": "CMAudioDeviceClockSetAudioDeviceID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMAudioDeviceClockSetAudioDeviceID(_:deviceID:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAudioDeviceClockSetAudioDeviceID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMAudioDeviceClockCreateFromAudioDeviceID(allocator:deviceID:clockOut:)/title",
+          "value": "CMAudioDeviceClockCreateFromAudioDeviceID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMAudioDeviceClockCreateFromAudioDeviceID(allocator:deviceID:clockOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAudioDeviceClockCreateFromAudioDeviceID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMClock/title",
+          "value": "CMClockRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMClock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMClockRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMClock/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMClockRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMAudioDeviceClockGetAudioDevice(_:deviceUIDOut:deviceIDOut:trackingDefaultDeviceOut:)/title",
+          "value": "CMAudioDeviceClockGetAudioDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMAudioDeviceClockGetAudioDevice(_:deviceUIDOut:deviceIDOut:trackingDefaultDeviceOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAudioDeviceClockGetAudioDevice"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremedia/cmaudioclock-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremedia/cmaudioclock-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

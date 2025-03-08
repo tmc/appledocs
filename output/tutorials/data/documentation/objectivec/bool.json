@@ -1,0 +1,392 @@
+{
+  "abstract": [
+    {
+      "text": "Type to represent a Boolean value.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/objectivec",
+        "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/objectivec",
+        "doc://com.apple.documentation/documentation/objectivec/objective-c_data_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/objectivec/bool"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1575461,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@BOOL",
+    "modules": [
+      {
+        "name": "Objective-C Runtime"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.1",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "tdef",
+    "title": "BOOL"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "bool"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "BOOL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is explicitly signed so ",
+              "type": "text"
+            },
+            {
+              "code": "@encode(BOOL)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "c",
+              "type": "codeVoice"
+            },
+            {
+              "text": " rather than ",
+              "type": "text"
+            },
+            {
+              "code": "C",
+              "type": "codeVoice"
+            },
+            {
+              "text": " even if ",
+              "type": "text"
+            },
+            {
+              "code": "-funsigned-char",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is used.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For values, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/boolean_values",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1817698",
+          "level": 3,
+          "text": "Special Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Since the type of ",
+              "type": "text"
+            },
+            {
+              "code": "BOOL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is actually ",
+              "type": "text"
+            },
+            {
+              "code": "char",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it does not behave in the same way as a C ",
+              "type": "text"
+            },
+            {
+              "code": "_Bool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value or a C++ ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "bool",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " value. For example, the conditional in the following code will be false on i386 (and true on PPC):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (BOOL)value {",
+            "    return 256;",
+            "}",
+            "// then",
+            "if ([self value]) doStuff();"
+          ],
+          "metadata": {
+            "anchor": "2557073",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By contrast, the conditional in the following code will be true on all platforms (even where ",
+              "type": "text"
+            },
+            {
+              "code": "sizeof(bool) == 1",
+              "type": "codeVoice"
+            },
+            {
+              "text": "):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (bool)value {",
+            "    return 256;",
+            "}",
+            "// then",
+            "if ([self value]) doStuff();"
+          ],
+          "metadata": {
+            "anchor": "2557074",
+            "title": "Listing 2"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/objectivec": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Objective-C Runtime",
+      "type": "topic",
+      "url": "/documentation/objectivec"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/bool": {
+      "abstract": [
+        {
+          "text": "Type to represent a Boolean value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/bool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BOOL",
+      "type": "topic",
+      "url": "/documentation/objectivec/bool"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/bool#2557073": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/bool#2557073",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/objectivec/bool#2557073"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/bool#2557074": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/bool#2557074",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/objectivec/bool#2557074"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/objective-c_data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/objective-c_data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Objective-C Data Types",
+      "type": "topic",
+      "url": "/documentation/objectivec/objective-c_data_types"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Objective-C Runtime",
+      "type": "topic",
+      "url": "/documentation/objectivec/objective-c_runtime"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/boolean_values": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/objective-c_runtime/boolean_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Boolean Values",
+      "type": "topic",
+      "url": "/documentation/objectivec/objective-c_runtime/boolean_values"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/objectivec/bool"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

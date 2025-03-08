@@ -1,0 +1,712 @@
+{
+  "abstract": [
+    {
+      "text": "Work around a recoverable trust failure.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+        "doc://com.apple.security/documentation/Security/trust"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/configuring-a-trust"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring a Trust"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default procedure described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/evaluating-a-trust-and-parsing-the-result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is often sufficient for evaluating trust, but sometimes you need finer-grained control. Whether in response to a recoverable trust failure or based on prior knowledge of the situation, the certificate, key, and trust services API allows you to customize trust evaluation to deal with certain common scenarios.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, by default, trust evaluation compares the validity dates of a certificate against the current date to see whether a certificate is operative. If a certificate used to sign a document is currently expired, trust fails. But if the same certificate was valid at the time the document was signed, you might want to consider the certificate valid for this purpose. If you know the signing date, you can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecTrustSetVerifyDate(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to change the evaluation date to match. Do this after creating the trust but before running the evaluation (or rerunning it after a recoverable failure). For example, if the document is exactly one year old:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let newDate = Date.init(timeIntervalSinceNow: -60*60*24*365)",
+                    "SecTrustSetVerifyDate(trust, newDate as CFDate)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "NSDate* newDate = [NSDate dateWithTimeIntervalSinceNow:-60*60*24*365];SecTrustSetVerifyDate(trust, (__bridge CFDateRef)newDate);"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Running the evaluation now may succeed if the evaluation date is within the window of the certificate’s validity period. Or it may fail for some other reason that you need to investigate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Besides the problem of expiration dates, another common trust evaluation problem arises from using a custom, self-signed root certificate as an anchor. By default, the system trusts as an anchor only the root certificates packaged with the operating system (see the lists for ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-us/HT204132",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-us/HT202858",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), but you can supplement this list. If you bundle a self-signed certificate with your app, you can indicate to the system that you trust it for use as an anchor by making a call to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecTrustSetAnchorCertificates(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let anchorCert = <# a certificate #>",
+                    "let anchors = [ anchorCert ]",
+                    "SecTrustSetAnchorCertificates(trust, anchors as CFArray)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "SecCertificateRef anchorCert = <# a certificate #>;",
+                    "NSArray* anchors = @[ (__bridge id)anchorCert ];",
+                    "SecTrustSetAnchorCertificates(trust,(__bridge CFTypeRef)anchors);"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you make this call, you tell the system to consider only the named certificate or certificates as potential anchors for this trust. If you want to enable the usual set of anchors as well, you use an additional call to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecTrustSetAnchorCertificatesOnly(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function, with a value of false for the second argument. Note that these calls affect only the referenced trust. Other trust evaluations, both in your app and elsewhere on the device, are unaffected.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you approve an anchor certificate for a trust using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecTrustSetAnchorCertificates(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function, you don’t need to name it explicitly in the certificate array passed to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecTrustCreateWithCertificates(_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function, because the system automatically adds it to the certificate chain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustCreateWithCertificates(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a trust management object based on certificates and policies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustCreateWithCertificates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustRef",
+          "text": "SecTrust"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustCreateWithCertificates(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustCreateWithCertificates"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustCreateWithCertificates(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectrustcreatewithcertificates(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustSetAnchorCertificates(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the anchor certificates used when evaluating a trust management object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustSetAnchorCertificates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustRef",
+          "text": "SecTrust"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustSetAnchorCertificates(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustSetAnchorCertificates"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustSetAnchorCertificates(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectrustsetanchorcertificates(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustSetAnchorCertificatesOnly(_:_:)": {
+      "abstract": [
+        {
+          "text": "Reenables trusting built-in anchor certificates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustSetAnchorCertificatesOnly"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustRef",
+          "text": "SecTrust"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustSetAnchorCertificatesOnly(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustSetAnchorCertificatesOnly"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustSetAnchorCertificatesOnly(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectrustsetanchorcertificatesonly(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustSetVerifyDate(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the date and time against which the certificates in a trust management object are verified.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustSetVerifyDate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustRef",
+          "text": "SecTrust"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDateRef",
+          "text": "CFDate"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustSetVerifyDate(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustSetVerifyDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustSetVerifyDate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectrustsetverifydate(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services": {
+      "abstract": [
+        {
+          "text": "Establish trust using certificates and cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificate, Key, and Trust Services",
+      "type": "topic",
+      "url": "/documentation/security/certificate-key-and-trust-services"
+    },
+    "doc://com.apple.security/documentation/Security/evaluating-a-trust-and-parsing-the-result": {
+      "abstract": [
+        {
+          "text": "Learn what to expect when evaluating a trust object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/evaluating-a-trust-and-parsing-the-result",
+      "kind": "article",
+      "role": "article",
+      "title": "Evaluating a Trust and Parsing the Result",
+      "type": "topic",
+      "url": "/documentation/security/evaluating-a-trust-and-parsing-the-result"
+    },
+    "doc://com.apple.security/documentation/Security/trust": {
+      "abstract": [
+        {
+          "text": "Evaluate trust based on a given policy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/trust",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Trust",
+      "type": "topic",
+      "url": "/documentation/security/trust"
+    },
+    "https://support.apple.com/en-us/HT202858": {
+      "identifier": "https://support.apple.com/en-us/HT202858",
+      "title": "macOS",
+      "titleInlineContent": [
+        {
+          "text": "macOS",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/HT202858"
+    },
+    "https://support.apple.com/en-us/HT204132": {
+      "identifier": "https://support.apple.com/en-us/HT204132",
+      "title": "iOS",
+      "titleInlineContent": [
+        {
+          "text": "iOS",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/HT204132"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustSetAnchorCertificates(_:_:)/title",
+          "value": "SecTrustSetAnchorCertificates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustSetAnchorCertificates(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustSetAnchorCertificates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustSetAnchorCertificatesOnly(_:_:)/title",
+          "value": "SecTrustSetAnchorCertificatesOnly"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustSetAnchorCertificatesOnly(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustSetAnchorCertificatesOnly"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustCreateWithCertificates(_:_:_:)/title",
+          "value": "SecTrustCreateWithCertificates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustCreateWithCertificates(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustCreateWithCertificates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustSetVerifyDate(_:_:)/title",
+          "value": "SecTrustSetVerifyDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustSetVerifyDate(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustSetVerifyDate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/configuring-a-trust"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/configuring-a-trust"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

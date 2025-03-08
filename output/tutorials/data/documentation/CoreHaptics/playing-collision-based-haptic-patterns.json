@@ -1,0 +1,1093 @@
+{
+  "abstract": [
+    {
+      "text": "Play a custom haptic pattern whose strength depends on an object’s collision speed.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-collision-based-haptic-patterns"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Haptics"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Playing Collision-Based Haptic Patterns"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code project, HapticBounce, demonstrates how to play a haptic with audio when a bouncing sphere collides with the edges of the screen. The sample app shows how to vary the volume of the synthesized audio signal and the intensity of the transient haptic pattern based on the sphere’s velocity during impact.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although the sample app uses UIKit Dynamics and UIKit for simplicity and familiarity with UIKit classes, but your app can also use a 2D engine like SpriteKit to represent interactive object collisions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "HapticBounce requires Xcode 11 or later. Simulator doesn’t support a haptic interface, so build and run this sample on an iPhone 8, 8 Plus, X, XR, XS, or XS Max running iOS 13 or later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-App-to-Play-Haptics",
+          "level": 3,
+          "text": "Configure the App to Play Haptics",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Check for device compatibility and set up an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEngine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", as the sample demonstrates when you launch the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create and configure a haptic engine.",
+            "do {",
+            "    engine = try CHHapticEngine()",
+            "} catch let error {",
+            "    fatalError(\"Engine Creation Error: \\(error)\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/preparing-your-app-to-play-haptics",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information about setting up the engine.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-the-Objects-in-UIKit-Dynamics",
+          "level": 3,
+          "text": "Define the Objects in UIKit Dynamics",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Express the walls as boundaries in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UICollisionBehavior",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the sphere.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "wallCollisions = UICollisionBehavior(items: [sphereView])",
+            "wallCollisions.collisionDelegate = self",
+            "",
+            "// Express walls using vertices.",
+            "let upperLeft = CGPoint(x: -1, y: -1)",
+            "let upperRight = CGPoint(x: windowWidth + 1, y: -1)",
+            "let lowerRight = CGPoint(x: windowWidth + 1, y: windowHeight + 1)",
+            "let lowerLeft = CGPoint(x: -1, y: windowHeight + 1)",
+            "",
+            "// Each wall is a straight line shifted one pixel offscreen, to give an impression of existing at the boundary.",
+            "",
+            "// Left edge of the screen:",
+            "wallCollisions.addBoundary(withIdentifier: NSString(\"leftWall\"),",
+            "                           from: upperLeft,",
+            "                           to: lowerLeft)",
+            "",
+            "// Right edge of the screen:",
+            "wallCollisions.addBoundary(withIdentifier: NSString(\"rightWall\"),",
+            "                           from: upperRight,",
+            "                           to: lowerRight)",
+            "",
+            "// Top edge of the screen:",
+            "wallCollisions.addBoundary(withIdentifier: NSString(\"topWall\"),",
+            "                           from: upperLeft,",
+            "                           to: upperRight)",
+            "",
+            "// Bottom edge of the screen:",
+            "wallCollisions.addBoundary(withIdentifier: NSString(\"bottomWall\"),",
+            "                           from: lowerRight,",
+            "                           to: lowerLeft)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each bounce against the wall is a dynamic item behavior, which lets you tweak the elasticity to match the haptic effect. An animator of class ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDynamicAnimator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ties together all of these dynamic objects with gravity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "animator = UIDynamicAnimator(referenceView: view)",
+            "",
+            "// Add bounce, gravity, and collision behavior.",
+            "animator.addBehavior(bounce)",
+            "animator.addBehavior(gravity)",
+            "animator.addBehavior(wallCollisions)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "HapticBounce uses the device’s accelerometer to move the sphere. It adjusts the accelerometer by responding to motion updates in a completion handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Manage motion events in a separate queue off the main thread.",
+            "motionQueue = OperationQueue()",
+            "motionData = CMAccelerometerData()",
+            "motionManager = CMMotionManager()",
+            "",
+            "guard let manager = motionManager else { return }",
+            "",
+            "manager.startDeviceMotionUpdates(to: motionQueue) { deviceMotion, error in",
+            "    guard let motion = deviceMotion else { return }",
+            "    ",
+            "    let gravity = motion.gravity",
+            "    ",
+            "    // Dispatch gravity updates to main queue, since they affect UI.",
+            "    DispatchQueue.main.async {",
+            "        self.gravity.gravityDirection = CGVector(dx: gravity.x * 3.5,",
+            "                                                 dy: -gravity.y * 3.5)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Play-Variable-Haptic-Patterns-on-Collision",
+          "level": 3,
+          "text": "Play Variable Haptic Patterns on Collision",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the sphere collides with a wall, the dynamics framework sends a callback to its delegate. ",
+              "type": "text"
+            },
+            {
+              "code": "ViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implements this delegate, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UICollisionBehaviorDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to respond to collisions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To vary the haptic at the point of collision, check the sphere’s velocity and map it to a normalized (0 to 1) intensity and sharpness value, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Map the bounce velocity to intensity & sharpness.",
+            "let velocity = bounce.linearVelocity(for: item)",
+            "let xVelocity = Float(velocity.x)",
+            "let yVelocity = Float(velocity.y)",
+            "",
+            "// Normalize magnitude to map one number to haptic parameters:",
+            "let magnitude = sqrtf(xVelocity * xVelocity + yVelocity * yVelocity)",
+            "let normalizedMagnitude = min(max(Float(magnitude) / kMaxVelocity, 0.0), 1.0)",
+            "",
+            "// Create a haptic pattern player from normalized magnitude.",
+            "let hapticPlayer = try playerForMagnitude(normalizedMagnitude)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample sets ",
+              "type": "text"
+            },
+            {
+              "code": "kMaxVelocity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " based on experimentation dropping the sphere from a maximum possible height, but you can adjust the value to create a stronger or weaker intensity pattern.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On each impact, you can create a haptic player, an inexpensive operation, on the spot, using the desired haptic parameters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let pattern = try CHHapticPattern(events: [audioEvent, hapticEvent], parameters: [])",
+            "return try engine.makePlayer(with: pattern)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting the player plays the haptic.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Start player, fire and forget",
+            "try hapticPlayer?.start(atTime: CHHapticTimeImmediate)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Synthesize-Audio-to-Play-With-the-Haptic",
+          "level": 3,
+          "text": "Synthesize Audio to Play With the Haptic",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to playing haptic patterns, the haptic engine also synthesizes audio. The engine in HapticBounce plays this audio by adding an audio event to the same haptic player as the haptic event, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let volume = linearInterpolation(alpha: magnitude, min: 0.1, max: 0.4)",
+            "let decay: Float = linearInterpolation(alpha: magnitude, min: 0.0, max: 0.1)",
+            "let audioEvent = CHHapticEvent(eventType: .audioContinuous, parameters: [",
+            "    CHHapticEventParameter(parameterID: .audioPitch, value: -0.15),",
+            "    CHHapticEventParameter(parameterID: .audioVolume, value: volume),",
+            "    CHHapticEventParameter(parameterID: .decayTime, value: decay),",
+            "    CHHapticEventParameter(parameterID: .sustained, value: 0)",
+            "], relativeTime: 0)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of adjusting haptic intensity and sharpness based on the sphere’s velocity, you vary audio volume and pitch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corehaptics/documentation/CoreHaptics": {
+      "abstract": [
+        {
+          "text": "Compose and play haptic patterns to customize your iOS app’s haptic feedback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Haptics",
+      "type": "topic",
+      "url": "/documentation/corehaptics"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticDynamicParameter": {
+      "abstract": [
+        {
+          "text": "A value that you send to a haptic pattern player to alter a property value during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticDynamicParameter"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticDynamicParameter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticDynamicParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticDynamicParameter",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticdynamicparameter"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEngine": {
+      "abstract": [
+        {
+          "text": "An object that represents the connection to the haptic server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEngine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticEngine"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticEngine",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticengine"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent": {
+      "abstract": [
+        {
+          "text": "An object that describes a single haptic or audio event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticEvent",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticevent"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEventParameter": {
+      "abstract": [
+        {
+          "text": "A static parameter value that represents a single property of the haptic pattern.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticEventParameter"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEventParameter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticEventParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticEventParameter",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticeventparameter"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticParameterCurve": {
+      "abstract": [
+        {
+          "text": "A curve that you send to a haptic pattern player to alter a property value gradually during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticParameterCurve"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticParameterCurve",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticParameterCurve"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticParameterCurve",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticparametercurve"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/delivering-rich-app-experiences-with-haptics": {
+      "abstract": [
+        {
+          "text": "Enhance your app’s experience by incorporating haptic and sound feedback into key interactive moments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/delivering-rich-app-experiences-with-haptics",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Delivering Rich App Experiences with Haptics",
+      "type": "topic",
+      "url": "/documentation/corehaptics/delivering-rich-app-experiences-with-haptics"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/preparing-your-app-to-play-haptics": {
+      "abstract": [
+        {
+          "text": "Set up your app to play haptics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/preparing-your-app-to-play-haptics",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your app to play haptics",
+      "type": "topic",
+      "url": "/documentation/corehaptics/preparing-your-app-to-play-haptics"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/updating-continuous-and-transient-haptic-parameters-in-real-time": {
+      "abstract": [
+        {
+          "text": "Generate continuous and transient haptic patterns in response to user touch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/updating-continuous-and-transient-haptic-parameters-in-real-time",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Updating Continuous and Transient Haptic Parameters in Real Time",
+      "type": "topic",
+      "url": "/documentation/corehaptics/updating-continuous-and-transient-haptic-parameters-in-real-time"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UICollisionBehavior": {
+      "abstract": [
+        {
+          "text": "An object that confers to a specified array of dynamic items the ability to engage in collisions with each other and with the behavior’s specified boundaries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollisionBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UICollisionBehavior",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICollisionBehavior",
+      "type": "topic",
+      "url": "/documentation/UIKit/UICollisionBehavior"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UICollisionBehaviorDelegate": {
+      "abstract": [
+        {
+          "text": "To respond to UIKit dynamic item collisions, configure a custom class to adopt the [`UICollisionBehaviorDelegate`](doc://com.apple.uikit/documentation/UIKit/UICollisionBehaviorDelegate) protocol. Then, in a collision behavior (an instance of the [`UICollisionBehavior`](doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior) class), set the delegate to be an instance of your custom class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollisionBehaviorDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UICollisionBehaviorDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICollisionBehaviorDelegate",
+      "type": "topic",
+      "url": "/documentation/UIKit/UICollisionBehaviorDelegate"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIDynamicAnimator": {
+      "abstract": [
+        {
+          "text": "An object that provides physics-related capabilities and animations for its dynamic items, and provides the context for those animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDynamicAnimator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDynamicAnimator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIDynamicAnimator",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIDynamicAnimator"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "fd8a00b4273b/PlayingCollisionBasedHapticPatterns.zip": {
+      "checksum": "fd8a00b4273b13f7e9fcddc8015ec7866d89881f9dc40d48a72833189e66d48635b7620d882038a7bd1c26861afee4b5a24c3f62700340a6172d041bb866fcc6",
+      "identifier": "fd8a00b4273b/PlayingCollisionBasedHapticPatterns.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/fd8a00b4273b/PlayingCollisionBasedHapticPatterns.zip"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "fd8a00b4273b/PlayingCollisionBasedHapticPatterns.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Programmatic-haptics",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/delivering-rich-app-experiences-with-haptics",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/updating-continuous-and-transient-haptic-parameters-in-real-time",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEventParameter",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticDynamicParameter",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticParameterCurve"
+      ],
+      "title": "Programmatic haptics"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Programmatic-haptics",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/delivering-rich-app-experiences-with-haptics",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/updating-continuous-and-transient-haptic-parameters-in-real-time",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEventParameter",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticDynamicParameter",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticParameterCurve"
+              ],
+              "title": "Programmatic haptics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEngine/title",
+          "value": "CHHapticEngine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEngine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEngine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEngine/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEngine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIDynamicAnimator/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIDynamicAnimator"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticDynamicParameter/title",
+          "value": "CHHapticDynamicParameter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticDynamicParameter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticDynamicParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticDynamicParameter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticDynamicParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UICollisionBehaviorDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UICollisionBehaviorDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent/title",
+          "value": "CHHapticEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEventParameter/title",
+          "value": "CHHapticEventParameter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEventParameter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEventParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEventParameter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEventParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UICollisionBehavior/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UICollisionBehavior"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIDynamicBehavior",
+              "text": "UIDynamicBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticParameterCurve/title",
+          "value": "CHHapticParameterCurve"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticParameterCurve/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticParameterCurve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticParameterCurve/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticParameterCurve"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corehaptics/playing-collision-based-haptic-patterns"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corehaptics/playing-collision-based-haptic-patterns"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

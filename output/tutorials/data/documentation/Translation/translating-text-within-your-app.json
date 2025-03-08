@@ -1,0 +1,2201 @@
+{
+  "abstract": [
+    {
+      "text": "Display simple system translations and create custom translation experiences.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Translation/documentation/Translation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Translation/documentation/Translation/translating-text-within-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "PageImage.png",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Translation"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Translating text within your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the Translation framework, you can offer in-app translations from one language to another. To display simple system translations in your app, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/translationPresentation(isPresented:text:attachmentAnchor:arrowEdge:replacementAction:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " translation overlay.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a more customizable translation experience, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and its associated translation methods. With the customizable translation APIs, the framework asks a person for permission to download the language translation models, if necessary. You can translate strings efficiently, while checking for language availability before offering a translation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project provides the ",
+              "type": "text"
+            },
+            {
+              "code": "TranslatingText",
+              "type": "codeVoice"
+            },
+            {
+              "text": " sample app to demonstrate various methods of translating text. It consists of the following translation demos:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Translate Text",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Replace Text",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Single String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Batch All at Once",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Batch as a Sequence",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Language Availability",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Prepare for Translation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC24 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2024/10117/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the sample code project, download and install Xcode 16 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project runs only in macOS and on physical iOS devices. It doesn’t translate text in iOS or iPadOS simulators.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the sample code project in macOS, select My Mac from the Xcode toolbar scheme menu, and then choose Project > Run.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the sample code on a physical iOS device:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Upgrade your device to iOS 18 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your device from the Xcode toolbar scheme menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "TranslatingText",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "TranslatingText",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " target and select your team from the Team menu in the Signing & Capabilities pane to let Xcode automatically manage your provisioning profile. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://help.apple.com/xcode/mac/current/#/dev23aab79b4",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Project > Run.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Translate-text-with-the-simple-translation-overlay",
+          "level": 3,
+          "text": "Translate text with the simple translation overlay",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Translate Text demo shows how to offer a translation using the system UI. The code example below indicates what happens when a person clicks the Translate button in that demo. First, the sample defines a variable to control when the system UI appears using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/State",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property wrapper. Then it defines a variable representing the text to translate. Finally, it passes the ",
+              "type": "text"
+            },
+            {
+              "code": "State",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property wrapper that controls when the system UI displays along with the text to translate to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/translationPresentation(isPresented:text:attachmentAnchor:arrowEdge:replacementAction:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function that attaches to the view containing the text to translate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ViewTranslationView: View {",
+            "    // Define the condition to display the translation UI.",
+            "    @State private var showTranslation = false",
+            "",
+            "    // Define the text you want to translate.",
+            "    var originalText = \"Hallo, Welt!\"",
+            "",
+            "    var body: some View {",
+            "        VStack {",
+            "            Text(verbatim: originalText)",
+            "            Button(\"Translate\") {",
+            "                showTranslation.toggle()",
+            "            }",
+            "        }",
+            "        // Offer a system UI translation.",
+            "        .translationPresentation(isPresented: $showTranslation,",
+            "                                 text: originalText)",
+            "        .navigationTitle(\"Translate\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Replace Text demo also uses the system UI, and replaces the original text with the translated text by adding the ",
+              "type": "text"
+            },
+            {
+              "code": "replacementAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " trailing closure to the function. This closure runs after the translation occurs when a person clicks the Translate button. The sample then replaces the input text with the translated text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".translationPresentation(isPresented: $showTranslation, text: originalText) { translatedText in",
+            "    originalText = translatedText",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Offer-a-custom-translation",
+          "level": 3,
+          "text": "Offer a custom translation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more control over the translation experience, you can create your own in-app translation experiences using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, along with its associated translation functions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Single String demo shows how to translate a single string of text and update a view. Its code example below defines a ",
+              "type": "text"
+            },
+            {
+              "code": "State",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property wrapper for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/Configuration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object in the view offering the translation, and passes it to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/translationTask(_:action:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. Then it uses the ",
+              "type": "text"
+            },
+            {
+              "code": "session",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance the task returns to call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/translate(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and passes in the string of text to translate. Finally, it updates the view using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/Response/targetText",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property from the response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct SingleStringView: View {",
+            "    @State private var sourceText = \"Hallo, Welt!\"",
+            "    @State private var targetText = \"\"",
+            "",
+            "    // Define a configuration.",
+            "    @State private var configuration: TranslationSession.Configuration?",
+            "",
+            "    var body: some View {",
+            "        VStack {",
+            "            TextField(\"Enter text to translate\", text: $sourceText)",
+            "                .textFieldStyle(.roundedBorder)",
+            "            Button(\"Translate\") {",
+            "                triggerTranslation()",
+            "            }",
+            "            Text(verbatim: targetText)",
+            "        }",
+            "        // Pass the configuration to the task.",
+            "        .translationTask(configuration) { session in",
+            "            do {",
+            "                // Use the session the task provides to translate the text.",
+            "                let response = try await session.translate(sourceText)",
+            "",
+            "                // Update the view with the translated result.",
+            "                targetText = response.targetText",
+            "            } catch {",
+            "                // Handle any errors.",
+            "            }",
+            "        }",
+            "        .padding()",
+            "        .navigationTitle(\"Single string\")",
+            "    }",
+            "",
+            "    private func triggerTranslation() {",
+            "        guard configuration == nil else {",
+            "            configuration?.invalidate()",
+            "            return",
+            "        }",
+            "",
+            "        // Let the framework automatically determine the language pairing.",
+            "        configuration = .init()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This pattern of defining a configuration as a ",
+              "type": "text"
+            },
+            {
+              "code": "State",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property wrapper and invalidating its state is recommended for triggering new translations. Storing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/Configuration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in a model object also works.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Translate-batches-of-strings",
+          "level": 3,
+          "text": "Translate batches of strings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To translate multiple strings between the same languages, it’s most efficient to use one of the batch translation functions of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can translate a batch of strings and get the results all at once, or you can receive them incrementally as they arrive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To keep your UI clean and uncluttered, you can also do this work in a view model, as the Batch All at Once demo shows. Its code example defines a ",
+              "type": "text"
+            },
+            {
+              "code": "State",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property wrapper for a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/Configuration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object in the view offering the translation, and attaches the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/translationTask(_:action:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to the view containing the text to translate. Using the ",
+              "type": "text"
+            },
+            {
+              "code": "session",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance from the task, it calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/translations(from:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function in the view model. The view model maps all the strings to translate in an array of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/Request",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and sets the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/Request/sourceText",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the request to the string to translate. Then the sample calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/translations(from:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the session object and passes in the array of requests to translate. Finally, it maps each response object that returns to the corresponding index in the original array of text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "struct BatchOfStringsView: View {",
+                    "    @Environment(ViewModel.self) var viewModel",
+                    "",
+                    "    // Define a configuration.",
+                    "    @State private var configuration: TranslationSession.Configuration?",
+                    "",
+                    "    var body: some View {",
+                    "        VStack {",
+                    "            ForEach(viewModel.foodItems, id: \\.self) { item in",
+                    "                Text(item)",
+                    "                    .padding()",
+                    "            }",
+                    "            HStack {",
+                    "                Button(\"Translate\") {",
+                    "                    triggerTranslation()",
+                    "                }",
+                    "                Button(\"Reset\") {",
+                    "                    viewModel.reset()",
+                    "                }",
+                    "            }",
+                    "        }",
+                    "        .translationTask(configuration) { session in",
+                    "            // Use the session the task provides to translate the text.",
+                    "            await viewModel.translateAllAtOnce(using: session)",
+                    "        }",
+                    "        .onAppear {",
+                    "            viewModel.reset()",
+                    "        }",
+                    "        .padding()",
+                    "        .navigationTitle(\"Batch all at once\")",
+                    "    }",
+                    "",
+                    "    private func triggerTranslation() {",
+                    "        if configuration == nil {",
+                    "            // Set the language pairing.",
+                    "            configuration = .init(source: Locale.Language(identifier: \"de\"),",
+                    "                                  target: Locale.Language(identifier: \"en\"))",
+                    "        } else {",
+                    "            // Invalidate the previous configuration.",
+                    "            configuration?.invalidate()",
+                    "        }",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "View"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "extension ViewModel {",
+                    "    func translateAllAtOnce(using session: TranslationSession) async {",
+                    "        Task { @MainActor in",
+                    "            let requests: [TranslationSession.Request] = foodItems.map {",
+                    "                // Map each item into a request.",
+                    "                TranslationSession.Request(sourceText: $0)",
+                    "            }",
+                    "",
+                    "            do {",
+                    "                let responses = try await session.translations(from: requests)",
+                    "                foodItems = responses.map {",
+                    "                    // Update each item with the translated result.",
+                    "                    $0.targetText",
+                    "                }",
+                    "            } catch {",
+                    "                // Handle any errors.",
+                    "            }",
+                    "        }",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "View model"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When translating a group of strings using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/translations(from:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function, the responses return in the same order you send them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-the-results-as-they-arrive",
+          "level": 3,
+          "text": "Display the results as they arrive",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to translate multiple strings of text and display the results as they arrive, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/translate(batch:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Batch as a Sequence demo is the same as the Batch All at Once demo except for the way it matches translation requests to responses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this process, the responses can return in a different order than you send them. So the Batch as a Sequence demo tracks which request corresponds with which response by assigning a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/Request/clientIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to each sent request — in this case, the index of the item to translate in the array. The client identifier returns with the same value in the response. When the response returns, the sample uses the client identifier to associate the request with the response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension ViewModel {",
+            "    func translateSequence(using session: TranslationSession) async {",
+            "        Task { @MainActor in",
+            "            let requests: [TranslationSession.Request] = foodItems.enumerated().map { (index, string) in",
+            "                // Assign each request a client identifier.",
+            "                    .init(sourceText: string, clientIdentifier: \"\\(index)\")",
+            "            }",
+            "",
+            "            do {",
+            "                for try await response in session.translate(batch: requests) {",
+            "                    // Use the returned client identifier (the index) to map the request to the response.",
+            "                    guard let index = Int(response.clientIdentifier ?? \"\") else { continue }",
+            "                    foodItems[index] = response.targetText",
+            "                }",
+            "            } catch {",
+            "                // Handle any errors.",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Check-for-language-availability",
+          "level": 3,
+          "text": "Check for language availability",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Language Availability demo shows how to check whether the framework supports a specific language pairing before offering it to people. A person selects a source and a target language from a picker, and the sample passes that language pairing to a function in the view model that checks whether the framework supports that pairing. The view then updates the display when the model sets the ",
+              "type": "text"
+            },
+            {
+              "code": "isTranslationSupported",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension ViewModel {",
+            "    func checkLanguageSupport(from source: Locale.Language, to target: Locale.Language) async {",
+            "        let availability = LanguageAvailability()",
+            "        let status = await availability.status(from: source, to: target)",
+            "",
+            "        switch status {",
+            "        case .installed, .supported:",
+            "            isTranslationSupported = true",
+            "        case .unsupported:",
+            "            isTranslationSupported = false",
+            "        @unknown default:",
+            "            print(\"Not supported\")",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The framework doesn’t support translation between the same language, such as British English (en-GB) and U.S. English (en-US).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Prepare-for-translation",
+          "level": 3,
+          "text": "Prepare for translation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you know which languages a translation needs, you can download the language models before offering the translation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Prepare for Translation demo shows how to initiate the download of a language pairing by creating a ",
+              "type": "text"
+            },
+            {
+              "code": "TranslationSession.Configuration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance with the source and target language to download. The sample then calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/prepareTranslation()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the session the translation task returns. If the languages aren’t already downloaded, a view appears that requests permission to download them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct PrepareTranslationView: View {",
+            "",
+            "    // Define the pairing of languages you want to download.",
+            "    @State private var configuration = TranslationSession.Configuration(",
+            "        source: Locale.Language(identifier: \"pt_BR\"),",
+            "        target: Locale.Language(identifier: \"ko_KR\")",
+            "    )",
+            "",
+            "    @State private var buttonTapped = false",
+            "",
+            "    var body: some View {",
+            "        VStack(spacing: 20) {",
+            "            Text(\"Tap the button to start downloading languages before offering a translation.\")",
+            "            Button(\"Prepare\") {",
+            "                configuration.invalidate()",
+            "                buttonTapped = true",
+            "            }",
+            "        }",
+            "        .translationTask(configuration) { session in",
+            "            if buttonTapped {",
+            "                do {",
+            "                    // Display a sheet asking the user's permission",
+            "                    // to start downloading the language pairing.",
+            "                    try await session.prepareTranslation()",
+            "                } catch {",
+            "                    // Handle any errors.",
+            "                }",
+            "            }",
+            "        }",
+            "        .padding()",
+            "        .navigationTitle(\"Prepare translation\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For testing, you can delete locally downloaded models in macOS by choosing System Settings > General > Language & Region > Translation Languages. In iOS, you can manage your downloaded languages by choosing Settings > Apps > Translate > Downloaded Languages if you have the system Translate app installed locally on your device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "PageImage.png": {
+      "alt": null,
+      "identifier": "PageImage.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/aeb60f3a726d6640527277aa56f05254/PageImage@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0b9f3ef4c41a9696756a18e54968756b/PageImage~dark@2x.png"
+        }
+      ]
+    },
+    "bb1d83066795/TranslatingTextWithinYourApp.zip": {
+      "checksum": "bb1d8306679534238ca470eef0e287efa20c133f3172223ba72bba72a1ef848942d198108501fa22f3e4143b044dcbe3b9faa3c6450f95e2f5a7a34a0aeddebc",
+      "identifier": "bb1d83066795/TranslatingTextWithinYourApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/bb1d83066795/TranslatingTextWithinYourApp.zip"
+    },
+    "doc://com.apple.Translation/documentation/Translation": {
+      "abstract": [
+        {
+          "text": "Translate text in your app from one language to another.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Translation",
+      "type": "topic",
+      "url": "/documentation/translation"
+    },
+    "doc://com.apple.Translation/documentation/Translation/TranslationSession": {
+      "abstract": [
+        {
+          "text": "A class that performs translations between a pair of languages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TranslationSession"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TranslationSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "TranslationSession",
+      "type": "topic",
+      "url": "/documentation/translation/translationsession"
+    },
+    "doc://com.apple.Translation/documentation/Translation/TranslationSession/Configuration": {
+      "abstract": [
+        {
+          "text": "A type containing the information to use when performing a translation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/Configuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "TranslationSession.Configuration",
+      "type": "topic",
+      "url": "/documentation/translation/translationsession/configuration"
+    },
+    "doc://com.apple.Translation/documentation/Translation/TranslationSession/Request": {
+      "abstract": [
+        {
+          "text": "A translation request containing a single item of text to translate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Request"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/Request",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Request"
+        }
+      ],
+      "role": "symbol",
+      "title": "TranslationSession.Request",
+      "type": "topic",
+      "url": "/documentation/translation/translationsession/request"
+    },
+    "doc://com.apple.Translation/documentation/Translation/TranslationSession/Request/clientIdentifier": {
+      "abstract": [
+        {
+          "text": "An optional unique identifier to associate a translation request with its response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clientIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/Request/clientIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clientIdentifier",
+      "type": "topic",
+      "url": "/documentation/translation/translationsession/request/clientidentifier"
+    },
+    "doc://com.apple.Translation/documentation/Translation/TranslationSession/Request/sourceText": {
+      "abstract": [
+        {
+          "text": "The input text the framework translates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceText"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/Request/sourceText",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sourceText",
+      "type": "topic",
+      "url": "/documentation/translation/translationsession/request/sourcetext"
+    },
+    "doc://com.apple.Translation/documentation/Translation/TranslationSession/Response/targetText": {
+      "abstract": [
+        {
+          "text": "The result of the translation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "targetText"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/Response/targetText",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "targetText",
+      "type": "topic",
+      "url": "/documentation/translation/translationsession/response/targettext"
+    },
+    "doc://com.apple.Translation/documentation/Translation/TranslationSession/prepareTranslation()": {
+      "abstract": [
+        {
+          "text": "Asks the user for permission to download translation languages without doing any translations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareTranslation"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/prepareTranslation()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepareTranslation()",
+      "type": "topic",
+      "url": "/documentation/translation/translationsession/preparetranslation()"
+    },
+    "doc://com.apple.Translation/documentation/Translation/TranslationSession/translate(_:)": {
+      "abstract": [
+        {
+          "text": "Translates a single string of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "translate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Translation0A7SessionC",
+          "text": "TranslationSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Translation0A7SessionC8ResponseV",
+          "text": "Response"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/translate(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "translate(_:)",
+      "type": "topic",
+      "url": "/documentation/translation/translationsession/translate(_:)"
+    },
+    "doc://com.apple.Translation/documentation/Translation/TranslationSession/translate(batch:)": {
+      "abstract": [
+        {
+          "text": "Translates multiple strings of text of the same language, returning a sequence of responses as they’re available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "translate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "batch"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Translation0A7SessionC",
+          "text": "TranslationSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Translation0A7SessionC7RequestV",
+          "text": "Request"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Translation0A7SessionC",
+          "text": "TranslationSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Translation0A7SessionC13BatchResponseV",
+          "text": "BatchResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/translate(batch:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "translate(batch:)",
+      "type": "topic",
+      "url": "/documentation/translation/translationsession/translate(batch:)"
+    },
+    "doc://com.apple.Translation/documentation/Translation/TranslationSession/translations(from:)": {
+      "abstract": [
+        {
+          "text": "Translates multiple strings of text of the same language, returning the results all at once when complete.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "translations"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Translation0A7SessionC",
+          "text": "TranslationSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Translation0A7SessionC7RequestV",
+          "text": "Request"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Translation0A7SessionC",
+          "text": "TranslationSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Translation0A7SessionC8ResponseV",
+          "text": "Response"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.Translation/documentation/Translation/TranslationSession/translations(from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "translations(from:)",
+      "type": "topic",
+      "url": "/documentation/translation/translationsession/translations(from:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/State": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that can read and write a value managed by SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@propertyWrapper"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "State"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/State",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "State",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/State"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/translationPresentation(isPresented:text:attachmentAnchor:arrowEdge:replacementAction:)": {
+      "abstract": [
+        {
+          "text": "Presents a translation popover when a given condition is true.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "translationPresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "isPresented"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "text"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attachmentAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI23PopoverAttachmentAnchorO",
+          "text": "PopoverAttachmentAnchor"
+        },
+        {
+          "kind": "text",
+          "text": " = .rect(.bounds), "
+        },
+        {
+          "kind": "externalParam",
+          "text": "arrowEdge"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO",
+          "text": "Edge"
+        },
+        {
+          "kind": "text",
+          "text": " = .top, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "replacementAction"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/translationPresentation(isPresented:text:attachmentAnchor:arrowEdge:replacementAction:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "translationPresentation(isPresented:text:attachmentAnchor:arrowEdge:replacementAction:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/translationPresentation(isPresented:text:attachmentAnchor:arrowEdge:replacementAction:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/translationTask(_:action:)": {
+      "abstract": [
+        {
+          "text": "Adds a task to perform before this view appears or when the translation configuration changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "translationTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Translation0A7SessionC",
+          "text": "TranslationSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Translation0A7SessionC13ConfigurationV",
+          "text": "Configuration"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Translation0A7SessionC",
+          "text": "TranslationSession"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/translationTask(_:action:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "translationTask(_:action:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/translationTask(_:action:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/translationTask(source:target:action:)": {
+      "abstract": [
+        {
+          "text": "Adds a task to perform before this view appears or when the specified source or target languages change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "translationTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "source"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV",
+          "text": "Locale"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV8LanguageV",
+          "text": "Language"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "target"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV",
+          "text": "Locale"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV8LanguageV",
+          "text": "Language"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Translation0A7SessionC",
+          "text": "TranslationSession"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/translationTask(source:target:action:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "translationTask(source:target:action:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/translationTask(source:target:action:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/videos/play/wwdc2024/10117/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2024/10117/",
+      "title": "10117: Meet the Translation API",
+      "titleInlineContent": [
+        {
+          "text": "10117: Meet the Translation API",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2024/10117/"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev23aab79b4": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev23aab79b4",
+      "title": "Assign a project to a team",
+      "titleInlineContent": [
+        {
+          "text": "Assign a project to a team",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev23aab79b4"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "bb1d83066795/TranslatingTextWithinYourApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/SwiftUI/View/translationPresentation(isPresented:text:attachmentAnchor:arrowEdge:replacementAction:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/translationTask(_:action:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/translationTask(source:target:action:)",
+        "doc://com.apple.Translation/documentation/Translation/TranslationSession"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/translation/translating-text-within-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

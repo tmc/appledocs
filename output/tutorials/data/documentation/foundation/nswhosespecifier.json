@@ -1,0 +1,945 @@
+{
+  "abstract": [
+    {
+      "text": "A specifier that indicates every object in a collection matching a condition.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/scripting_support"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nswhosespecifier"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1414338,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSWhoseSpecifier",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSWhoseSpecifier"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSWhoseSpecifier"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSWhoseSpecifier"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSScriptObjectSpecifier",
+              "text": "NSScriptObjectSpecifier"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSWhoseSpecifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " specifies every object in a collection (or every element in a container) that matches the condition defined by a single Boolean expression or multiple Boolean expressions connected by logical operators. ",
+              "type": "text"
+            },
+            {
+              "code": "NSWhoseSpecifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is unique among object specifiers in that its top-level container is typically not the application object but an evaluated object specifier involved in the tested-for condition. An ",
+              "type": "text"
+            },
+            {
+              "code": "NSWhoseSpecifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object encapsulates a “test” object for defining this condition. A test object is instantiated from a subclass of the abstract ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptwhosetest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, whose one declared method is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptwhosetest/1393877-istrue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". See \"Boolean Expressions and Logical Operations\" in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the descriptions in NSComparisonMethods and NSScriptingComparisonMethods for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The set of elements specified by an ",
+              "type": "text"
+            },
+            {
+              "code": "NSWhoseSpecifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object can be a subset of those that pass the ",
+              "type": "text"
+            },
+            {
+              "code": "NSWhoseSpecifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object's test. This subset is specified by the various sub-element properties of the ",
+              "type": "text"
+            },
+            {
+              "code": "NSWhoseSpecifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object . Consider as an example the specifier ",
+              "type": "text"
+            },
+            {
+              "code": "paragraphs where color of third word is blue",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This would be represented by an ",
+              "type": "text"
+            },
+            {
+              "code": "NSWhoseSpecifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object  that uses a test specifier and another object specifier to identify a subset of the objects with the specified property. That is, the specifier’s property is ",
+              "type": "text"
+            },
+            {
+              "code": "paragraphs",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; the test specifier is an index specifier with property ",
+              "type": "text"
+            },
+            {
+              "code": "words",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "index 3",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; and the qualifier is a key value qualifier for key ",
+              "type": "text"
+            },
+            {
+              "code": "color",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and value ",
+              "type": "text"
+            },
+            {
+              "code": "[NSColor blueColor]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The test object specifier (",
+              "type": "text"
+            },
+            {
+              "code": "word at index 3",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") is evaluated for each object (paragraph) using that object as the container; the resulting objects (if any) are tested with the qualifier (",
+              "type": "text"
+            },
+            {
+              "code": "color blue",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSWhoseSpecifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is part of Cocoa’s built-in script handling. You don’t normally subclass it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsindexspecifier": {
+      "abstract": [
+        {
+          "text": "A specifier representing an object in a collection (or container) with an index number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSIndexSpecifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexspecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSIndexSpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsindexspecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmiddlespecifier": {
+      "abstract": [
+        {
+          "text": "A specifier indicating the middle object in a collection or, if not a one-to-many relationship, the sole object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMiddleSpecifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmiddlespecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMiddleSpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmiddlespecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnamespecifier": {
+      "abstract": [
+        {
+          "text": "A specifier for an object in a collection (or container) by name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNameSpecifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnamespecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNameSpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnamespecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspositionalspecifier": {
+      "abstract": [
+        {
+          "text": "A specifier for an insertion point in a container relative to another object in the container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPositionalSpecifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspositionalspecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPositionalSpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nspositionalspecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspropertyspecifier": {
+      "abstract": [
+        {
+          "text": "A specifier for a simple attribute value, a one-to-one relationship, or all elements of a to-many relationship.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPropertySpecifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspropertyspecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPropertySpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nspropertyspecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsrandomspecifier": {
+      "abstract": [
+        {
+          "text": "A specifier for an arbitrary object in a collection or, if not a one-to-many relationship, the sole object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRandomSpecifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrandomspecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRandomSpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrandomspecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsrangespecifier": {
+      "abstract": [
+        {
+          "text": "A specifier for a range of objects in a container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRangeSpecifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrangespecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRangeSpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrangespecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsrelativespecifier": {
+      "abstract": [
+        {
+          "text": "A specifier that indicates an object in a collection by its position relative to another object. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRelativeSpecifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrelativespecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRelativeSpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrelativespecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier": {
+      "abstract": [
+        {
+          "text": "An abstract class used to represent natural language expressions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSScriptObjectSpecifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScriptObjectSpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptobjectspecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptwhosetest": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptwhosetest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScriptWhoseTest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptwhosetest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptwhosetest/1393877-istrue": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptwhosetest/1393877-istrue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isTrue()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptwhosetest/1393877-istrue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuniqueidspecifier": {
+      "abstract": [
+        {
+          "text": "A specifier for an object in a collection (or container) by unique ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUniqueIDSpecifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuniqueidspecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUniqueIDSpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuniqueidspecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nswhosespecifier": {
+      "abstract": [
+        {
+          "text": "A specifier that indicates every object in a collection matching a condition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWhoseSpecifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nswhosespecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSWhoseSpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nswhosespecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/1407761-endsubelementidentifier": {
+      "abstract": [
+        {
+          "text": "Sets the end sub-element identifier for the specifier to the value of a given sub-element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "endSubelementIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": NSWhoseSpecifier.SubelementIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/1407761-endsubelementidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endSubelementIdentifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nswhosespecifier/1407761-endsubelementidentifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/1412173-init": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSWhoseSpecifier",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object initialized with the given attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "containerClassDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": NSScriptClassDescription, "
+        },
+        {
+          "kind": "identifier",
+          "text": "containerSpecifier"
+        },
+        {
+          "kind": "text",
+          "text": ": NSScriptObjectSpecifier?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "test"
+        },
+        {
+          "kind": "text",
+          "text": ": NSScriptWhoseTest)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/1412173-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(containerClassDescription:containerSpecifier:key:test:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nswhosespecifier/1412173-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/1412482-test": {
+      "abstract": [
+        {
+          "text": "Returns the test object encapsulated by the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "test"
+        },
+        {
+          "kind": "text",
+          "text": ": NSScriptWhoseTest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/1412482-test",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "test",
+      "type": "topic",
+      "url": "/documentation/foundation/nswhosespecifier/1412482-test"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/1413408-startsubelementidentifier": {
+      "abstract": [
+        {
+          "text": "Returns the start sub-element identifier for the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "startSubelementIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": NSWhoseSpecifier.SubelementIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/1413408-startsubelementidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startSubelementIdentifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nswhosespecifier/1413408-startsubelementidentifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/1416686-endsubelementindex": {
+      "abstract": [
+        {
+          "text": "Sets the index position of the last sub-element within the range of objects being tested that pass the specifier’s test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "endSubelementIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/1416686-endsubelementindex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endSubelementIndex",
+      "type": "topic",
+      "url": "/documentation/foundation/nswhosespecifier/1416686-endsubelementindex"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/1417856-startsubelementindex": {
+      "abstract": [
+        {
+          "text": "Returns the index position of the first sub-element within the range of objects being tested that pass the receiver's test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "startSubelementIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/1417856-startsubelementindex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startSubelementIndex",
+      "type": "topic",
+      "url": "/documentation/foundation/nswhosespecifier/1417856-startsubelementindex"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/1418262-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/1418262-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nswhosespecifier/1418262-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/subelementidentifier": {
+      "abstract": [
+        {
+          "code": "NSWhoseSpecifier",
+          "type": "codeVoice"
+        },
+        {
+          "text": " uses these constants to specify sub-elements within the collection of objects being tested that pass the specifier’s test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWhoseSpecifier.SubelementIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/subelementidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSWhoseSpecifier.SubelementIdentifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nswhosespecifier/subelementidentifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scripting_support": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scripting_support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scripting Support",
+      "type": "topic",
+      "url": "/documentation/foundation/scripting_support"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier",
+        "doc://com.apple.documentation/documentation/foundation/nspropertyspecifier",
+        "doc://com.apple.documentation/documentation/foundation/nspositionalspecifier",
+        "doc://com.apple.documentation/documentation/foundation/nsrandomspecifier",
+        "doc://com.apple.documentation/documentation/foundation/nsrangespecifier",
+        "doc://com.apple.documentation/documentation/foundation/nsuniqueidspecifier",
+        "doc://com.apple.documentation/documentation/foundation/nsnamespecifier",
+        "doc://com.apple.documentation/documentation/foundation/nsmiddlespecifier",
+        "doc://com.apple.documentation/documentation/foundation/nsindexspecifier",
+        "doc://com.apple.documentation/documentation/foundation/nsrelativespecifier"
+      ],
+      "title": "Object Specifiers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1770342",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/1412173-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializing a whose specifier"
+    },
+    {
+      "anchor": "1770344",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/1407761-endsubelementidentifier",
+        "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/1416686-endsubelementindex",
+        "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/1413408-startsubelementidentifier",
+        "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/1417856-startsubelementindex",
+        "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/1412482-test"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing information about a whose specifier"
+    },
+    {
+      "anchor": "1660193",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/subelementidentifier"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "2860955",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nswhosespecifier/1418262-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nswhosespecifier"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nswhosespecifier"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,442 @@
+{
+  "abstract": [
+    {
+      "text": "Gets resource values from URLs of ‘promised’ items.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+        "doc://com.apple.documentation/documentation/foundation/url"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/url/1779804-promiseditemresourcevalues"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1779804,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation3URLV26promisedItemResourceValues7forKeysAA011URLResourceF0VShySo16NSURLResourceKeyaG_tKF",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "promisedItemResourceValues"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "identifier",
+        "text": "forKeys"
+      },
+      {
+        "kind": "text",
+        "text": ": Set<URLResourceKey>) -> URLResourceValues"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "URL"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.10",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "6.0.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "structm",
+    "title": "promisedItemResourceValues(forKeys:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "promisedItemResourceValues"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "forKeys"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "keys"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Set",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sh",
+              "text": "Set"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcekey",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSURLResourceKey",
+              "text": "URLResourceKey"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            },
+            {
+              "kind": "text",
+              "text": " -> "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation17URLResourceValuesV",
+              "text": "URLResourceValues"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A promised item is not guaranteed to have its contents in the file system until you use ",
+              "type": "text"
+            },
+            {
+              "code": "FileCoordinator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to perform a coordinated read on its URL, which causes the contents to be downloaded or otherwise generated. Promised item URLs are returned by various APIs, including currently: NSMetadataQueryUbiquitousDataScope NSMetadataQueryUbiquitousDocumentsScope A ",
+              "type": "text"
+            },
+            {
+              "code": "FilePresenter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " presenting the contents of the directory located by -URLForUbiquitousContainerIdentifier: or a subdirectory thereof",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following methods behave identically to their similarly named methods above (",
+              "type": "text"
+            },
+            {
+              "code": "func resourceValues(forKeys:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", etc.), except that they allow you to get resource values and check for presence regardless of whether the promised item’s contents currently exist at the URL. You must use these APIs instead of the normal URL resource value APIs if and only if any of the following are true: You are using a URL that you know came directly from one of the above APIs You are inside the accessor block of a coordinated read or write that used NSFileCoordinatorReadingImmediatelyAvailableMetadataOnly, NSFileCoordinatorWritingForDeleting, NSFileCoordinatorWritingForMoving, or NSFileCoordinatorWritingContentIndependentMetadataOnly",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most of the URL resource value keys will work with these APIs. However, there are some that are tied to the item’s contents that will not work, such as ",
+              "type": "text"
+            },
+            {
+              "code": "contentAccessDateKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "generationIdentifierKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If one of these keys is used, the method will return a ",
+              "type": "text"
+            },
+            {
+              "code": "URLResourceValues",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value, but the value for that property will be nil.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Set": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Set",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Set",
+      "type": "topic",
+      "url": "/documentation/swift/set"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Numbers, Data, and Basic Values",
+      "type": "topic",
+      "url": "/documentation/foundation/numbers_data_and_basic_values"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url": {
+      "abstract": [
+        {
+          "text": "A value that identifies the location of a resource, such as an item on a remote server or the path to a local file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL",
+      "type": "topic",
+      "url": "/documentation/foundation/url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1779781-checkpromiseditemisreachable": {
+      "abstract": [
+        {
+          "text": "Returns whether the promised item URL’s resource exists and is reachable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "checkPromisedItemIsReachable"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779781-checkpromiseditemisreachable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "checkPromisedItemIsReachable()",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1779781-checkpromiseditemisreachable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1779804-promiseditemresourcevalues": {
+      "abstract": [
+        {
+          "text": "Gets resource values from URLs of ‘promised’ items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "promisedItemResourceValues"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": Set<URLResourceKey>) -> URLResourceValues"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779804-promiseditemresourcevalues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "promisedItemResourceValues(forKeys:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1779804-promiseditemresourcevalues"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcekey": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLResourceKey",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcekey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcevalues": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcevalues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLResourceValues",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcevalues"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/1779781-checkpromiseditemisreachable"
+      ],
+      "title": "Working with promised items"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/url/1779804-promiseditemresourcevalues"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

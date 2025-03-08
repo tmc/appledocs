@@ -1,0 +1,284 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how vImage resamples image data during geometric operations.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/resampling-in-vimage"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Resampling in vImage"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most vImage geometric functions use resampling kernels, which combine data from a target pixel and other nearby pixels to calculate a value for the destination pixel. Resampling image data reduces unwanted artifacts, like interference patterns, in the destination image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This procedure is somewhat similar to that used for convolution. However—in contrast to convolution—for geometric operations, the resampling kernel itself is resampled during the process of pairing kernel values against the sampled pixel data. The kernel is evaluated at both fractional and integral pixel locations. This has implications for the nature of the kernel—which must be supplied as a function rather than as a matrix. A resampling kernel function is also called a resampling filter, or simply a filter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For almost all geometric operations, vImage supplies a default resampling filter unless you set the flag ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageHighQualityResampling",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", in which case vImage uses a higher-quality filter. However, the performance of that filter may be slower.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The reflection and high-level rotation functions don’t resample. The shear functions can either use a default resampling filter or, if you require more control, a custom filter that you provide.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/image-shearing": {
+      "abstract": [
+        {
+          "text": "Shear images horizontally and vertically.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/image-shearing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Image shearing",
+      "type": "topic",
+      "url": "/documentation/accelerate/image-shearing"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageHighQualityResampling": {
+      "abstract": [
+        {
+          "text": "A flag that uses a higher-quality, slower resampling filter for geometry operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageHighQualityResampling"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageHighQualityResampling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageHighQualityResampling"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageHighQualityResampling",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimagehighqualityresampling"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/reducing-artifacts-with-custom-resampling-filters": {
+      "abstract": [
+        {
+          "text": "Implement custom linear interpolation to prevent the ringing effects associated with scaling an image with the default Lanczos algorithm.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/reducing-artifacts-with-custom-resampling-filters",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Reducing artifacts with custom resampling filters",
+      "type": "topic",
+      "url": "/documentation/accelerate/reducing-artifacts-with-custom-resampling-filters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations": {
+      "abstract": [
+        {
+          "text": "Apply image manipulation operations to vImage buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage Operations",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-operations"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/image-shearing"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Image-Resampling",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/reducing-artifacts-with-custom-resampling-filters",
+        "doc://com.apple.accelerate/documentation/Accelerate/image-shearing"
+      ],
+      "title": "Image Resampling"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageHighQualityResampling/title",
+          "value": "kvImageHighQualityResampling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageHighQualityResampling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageHighQualityResampling"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

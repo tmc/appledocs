@@ -1,0 +1,1590 @@
+{
+  "abstract": [
+    {
+      "text": "Returns the best representation for the device with the specified characteristics.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/bestRepresentation(for:context:hints:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSImage/bestRepresentationForDevice:"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSImage(im)bestRepresentationForDevice:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "- "
+      },
+      {
+        "kind": "identifier",
+        "text": "bestRepresentationForDevice:"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "bestRepresentationForDevice:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.6",
+        "introducedAt": "10.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "bestRepresentationForDevice:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImageRep",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSImageRep",
+              "text": "NSImageRep"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "bestRepresentationForDevice:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSDictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSDictionary",
+              "text": "NSDictionary"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "deviceDescription"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A dictionary of attributes for the specified device, or ",
+                  "type": "text"
+                },
+                {
+                  "code": "nil",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to specify the current device. For a list of dictionary keys and values appropriate to display and print devices, see the constants in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSScreen",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "deviceDescription"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The image representation that most closely matches the specified criteria.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If ",
+              "type": "text"
+            },
+            {
+              "code": "deviceDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", this method uses the attributes of the device on which the content is to be drawn.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on how the “best” representation is chosen, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Images/Images.html#//apple_ref/doc/uid/TP40003290-CH208",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " chapter of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage": {
+      "abstract": [
+        {
+          "text": "A high-level interface for manipulating image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSImage"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSImage",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/bestRepresentation(for:context:hints:)": {
+      "abstract": [
+        {
+          "text": "Returns the best representation of the image for the specified rectangle using the provided hints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bestRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSGraphicsContext",
+          "text": "NSGraphicsContext"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "hints"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImageRep",
+          "text": "NSImageRep"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSImageHintKey",
+          "text": "HintKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImageRep",
+          "text": "NSImageRep"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/bestRepresentation(for:context:hints:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bestRepresentationForRect:context:hints:"
+        }
+      ],
+      "role": "symbol",
+      "title": "bestRepresentation(for:context:hints:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/bestrepresentation(for:context:hints:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/bestRepresentationForDevice:": {
+      "abstract": [
+        {
+          "text": "Returns the best representation for the device with the specified characteristics.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "bestRepresentationForDevice:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/bestRepresentationForDevice:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bestRepresentationForDevice:"
+        }
+      ],
+      "role": "symbol",
+      "title": "bestRepresentationForDevice:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/bestrepresentationfordevice:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:": {
+      "abstract": [
+        {
+          "text": "Composites a portion of the image to the specified point in the current coordinate system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:fromRect:operation:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:fromRect:operation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "compositeToPoint:fromRect:operation:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/compositetopoint:fromrect:operation:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:fraction:": {
+      "abstract": [
+        {
+          "text": "Composites a portion of the image at the specified opacity to the current coordinate system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:fromRect:operation:fraction:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:fraction:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:fromRect:operation:fraction:"
+        }
+      ],
+      "role": "symbol",
+      "title": "compositeToPoint:fromRect:operation:fraction:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/compositetopoint:fromrect:operation:fraction:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:operation:": {
+      "abstract": [
+        {
+          "text": "Composites the entire image to the specified point in the current coordinate system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:operation:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:operation:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:operation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "compositeToPoint:operation:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/compositetopoint:operation:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:operation:fraction:": {
+      "abstract": [
+        {
+          "text": "Composites the entire image at the specified opacity in the current coordinate system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:operation:fraction:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:operation:fraction:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:operation:fraction:"
+        }
+      ],
+      "role": "symbol",
+      "title": "compositeToPoint:operation:fraction:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/compositetopoint:operation:fraction:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/dissolveToPoint:fraction:": {
+      "abstract": [
+        {
+          "text": "Composites the entire image to the specified location using the source-over operator.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "dissolveToPoint:fraction:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/dissolveToPoint:fraction:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dissolveToPoint:fraction:"
+        }
+      ],
+      "role": "symbol",
+      "title": "dissolveToPoint:fraction:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/dissolvetopoint:fraction:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/dissolveToPoint:fromRect:fraction:": {
+      "abstract": [
+        {
+          "text": "Composites a portion of the image to the specified location using the source-over operator.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "dissolveToPoint:fromRect:fraction:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/dissolveToPoint:fromRect:fraction:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dissolveToPoint:fromRect:fraction:"
+        }
+      ],
+      "role": "symbol",
+      "title": "dissolveToPoint:fromRect:fraction:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/dissolvetopoint:fromrect:fraction:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/init(iconRef:)": {
+      "abstract": [
+        {
+          "text": "Initializes the image object with a Carbon-style icon resource.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "iconRef"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IconRef",
+          "text": "IconRef"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/init(iconRef:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithIconRef:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(iconRef:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/init(iconref:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/isDataRetained": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that incidates whether the image retains its source image data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDataRetained"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/isDataRetained",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isDataRetained"
+        }
+      ],
+      "role": "symbol",
+      "title": "isDataRetained",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/isdataretained"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/isValid": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether it is possible to draw an image representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isValid"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/isValid",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "valid"
+        }
+      ],
+      "role": "symbol",
+      "title": "isValid",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/isvalid"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/lockFocus()": {
+      "abstract": [
+        {
+          "text": "Prepares the image to receive drawing commands.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockFocus"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/lockFocus()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lockFocus"
+        }
+      ],
+      "role": "symbol",
+      "title": "lockFocus()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/lockfocus()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/lockFocusFlipped(_:)": {
+      "abstract": [
+        {
+          "text": "Prepares the image to receive drawing commands using the specified flipped state.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockFocusFlipped"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/lockFocusFlipped(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lockFocusFlipped:"
+        }
+      ],
+      "role": "symbol",
+      "title": "lockFocusFlipped(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/lockfocusflipped(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/lockFocusOnRepresentation:": {
+      "abstract": [
+        {
+          "text": "Prepares the specified image representation to receive drawing commands.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockFocusOnRepresentation:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/lockFocusOnRepresentation:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lockFocusOnRepresentation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "lockFocusOnRepresentation:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/lockfocusonrepresentation:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/matchesOnMultipleResolution": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether image representations whose resolution is an integral multiple of the device resolution are a match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchesOnMultipleResolution"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/matchesOnMultipleResolution",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matchesOnMultipleResolution"
+        }
+      ],
+      "role": "symbol",
+      "title": "matchesOnMultipleResolution",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/matchesonmultipleresolution"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/prefersColorMatch": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the image prefers to choose image representations using color-matching or resolution-matching.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prefersColorMatch"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/prefersColorMatch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "prefersColorMatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "prefersColorMatch",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/preferscolormatch"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/representations": {
+      "abstract": [
+        {
+          "text": "An array containing all of the image object’s image representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "representations"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImageRep",
+          "text": "NSImageRep"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/representations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "representations"
+        }
+      ],
+      "role": "symbol",
+      "title": "representations",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/representations"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/scalesWhenResized": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether to scale image representations to fit the image’s size.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scalesWhenResized"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/scalesWhenResized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scalesWhenResized"
+        }
+      ],
+      "role": "symbol",
+      "title": "scalesWhenResized",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/scaleswhenresized"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/setDataRetained:": {
+      "abstract": [
+        {
+          "text": "Sets whether the image retains its source image data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDataRetained:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/setDataRetained:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setDataRetained:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setDataRetained:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/setdataretained:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/setScalesWhenResized:": {
+      "abstract": [
+        {
+          "text": "Sets whether to scale different-sized image representations to fit the image’s size.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setScalesWhenResized:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/setScalesWhenResized:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setScalesWhenResized:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setScalesWhenResized:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/setscaleswhenresized:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/unlockFocus()": {
+      "abstract": [
+        {
+          "text": "Removes the focus from the image.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unlockFocus"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/unlockFocus()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unlockFocus"
+        }
+      ],
+      "role": "symbol",
+      "title": "unlockFocus()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/unlockfocus()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImageRep": {
+      "abstract": [
+        {
+          "text": "A semiabstract superclass that provides subclasses that you use to draw an image from a particular type of source data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSImageRep"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImageRep",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSImageRep"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSImageRep",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimagerep"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSScreen": {
+      "abstract": [
+        {
+          "text": "An object that describes the attributes of a computer’s monitor or screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSScreen"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSScreen",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSScreen"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSScreen",
+      "type": "topic",
+      "url": "/documentation/appkit/nsscreen"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSDictionary": {
+      "abstract": [
+        {
+          "text": "An object representing a static collection of key-value pairs, for use instead of a  constant in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDictionary"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSDictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary"
+    },
+    "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Images/Images.html#//apple_ref/doc/uid/TP40003290-CH208": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Images/Images.html#//apple_ref/doc/uid/TP40003290-CH208",
+      "title": "Images",
+      "titleInlineContent": [
+        {
+          "text": "Images",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Images/Images.html#//apple_ref/doc/uid/TP40003290-CH208"
+    },
+    "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290",
+      "title": "Cocoa Drawing Guide",
+      "titleInlineContent": [
+        {
+          "text": "Cocoa Drawing Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/isValid",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/representations",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/matchesOnMultipleResolution",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/prefersColorMatch"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/lockFocus()",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/lockFocusFlipped(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/unlockFocus()",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/init(iconRef:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/lockFocusOnRepresentation:",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:operation:",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:fraction:",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:operation:fraction:",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/dissolveToPoint:fraction:",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/dissolveToPoint:fromRect:fraction:",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/setScalesWhenResized:",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/scalesWhenResized",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/setDataRetained:",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/isDataRetained"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1prefersColorMatch/title",
+          "value": "prefersColorMatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1prefersColorMatch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "prefersColorMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1isValid/title",
+          "value": "valid"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1isValid/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "valid"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1lockFocusFlipped(_:)/title",
+          "value": "lockFocusFlipped:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1lockFocusFlipped(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "lockFocusFlipped:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1matchesOnMultipleResolution/title",
+          "value": "matchesOnMultipleResolution"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1matchesOnMultipleResolution/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "matchesOnMultipleResolution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1bestRepresentation(for:context:hints:)/title",
+          "value": "bestRepresentationForRect:context:hints:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1bestRepresentation(for:context:hints:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "bestRepresentationForRect:context:hints:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1unlockFocus()/title",
+          "value": "unlockFocus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1unlockFocus()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unlockFocus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep/title",
+          "value": "NSImageRep"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageRep"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageRep/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageRep"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1lockFocus()/title",
+          "value": "lockFocus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1lockFocus()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "lockFocus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/title",
+          "value": "NSImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSScreen/title",
+          "value": "NSScreen"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSScreen/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSScreen"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSScreen/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSScreen"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1init(iconRef:)/title",
+          "value": "initWithIconRef:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1init(iconRef:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithIconRef:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1representations/title",
+          "value": "representations"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1representations/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "representations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)NSDictionary/abstract",
+          "value": [
+            {
+              "text": "A static collection of objects associated with unique keys.",
+              "type": "text"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsimage/bestrepresentationfordevice:"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

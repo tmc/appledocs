@@ -1,0 +1,1334 @@
+{
+  "abstract": [
+    {
+      "text": "A transformer that concatenates every numerical column in a dataframe into to a shaped array for each row.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:18CreateMLComponents18ColumnConcatenatorV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ColumnConcatenator"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Create ML Components"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ColumnConcatenator"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "ColumnConcatenator"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ColumnConcatenator"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Scalar"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Scalar"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:6CoreML19MLShapedArrayScalarP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:6CoreML19MLShapedArrayScalarP",
+              "text": "MLShapedArrayScalar"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Scalar"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SB",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SB",
+              "text": "BinaryFloatingPoint"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resulting concatenated column contains ",
+              "type": "text"
+            },
+            {
+              "code": "MLShapedArray<Scalar>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements. For example",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "┏━━━┳━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┓",
+            "┃   ┃ label    ┃ price   ┃ rooms ┃ A     ┃ B     ┃ C     ┃",
+            "┃   ┃ <String> ┃ <Int>   ┃ <Int> ┃ <Int> ┃ <Int> ┃ <Int> ┃",
+            "┡━━━╇━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━┩",
+            "│ 0 │ good     │ 850,000 │     4 │     1 │     0 │     0 │",
+            "│ 1 │ bad      │ 700,000 │     3 │     0 │     1 │     0 │",
+            "│ 2 │ bad      │ 650,000 │     3 │     0 │     0 │     1 │",
+            "│ 3 │ good     │ 600,000 │     2 │     0 │     1 │     0 │",
+            "└───┴──────────┴─────────┴───────┴───────┴───────┴───────┘"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "would be concatenated as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "┏━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┓",
+            "┃   ┃ label    ┃ features               ┃",
+            "┃   ┃ <String> ┃ <MLShapedArray<Float>> ┃",
+            "┡━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━┩",
+            "│ 0 │ good     │ [850,000, 4, 1, 0, 0]  │",
+            "│ 1 │ bad      │ [700,000, 3, 0, 1, 0]  │",
+            "│ 2 │ bad      │ [650,000, 3, 0, 0, 1]  │",
+            "│ 3 │ good     │ [600,000, 2, 0, 1, 0]  │",
+            "└───┴──────────┴────────────────────────┘"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Non-numerical columns are left in the data frame unchanged. Supported numeric types are ",
+              "type": "text"
+            },
+            {
+              "code": "Int",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "UInt8",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "Float",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "code": "Double",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Arrays and shaped arrays of those types as supported, but every array in a given column must have the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "same shape and shaped arrays across columns must have the same shape except for the last dimension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents": {
+      "abstract": [
+        {
+          "text": "Create more customizable machine learning models in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML Components",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator": {
+      "abstract": [
+        {
+          "text": "A transformer that concatenates every numerical column in a dataframe into to a shaped array for each row.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ColumnConcatenator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ColumnConcatenator"
+        }
+      ],
+      "role": "symbol",
+      "title": "ColumnConcatenator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/columnconcatenator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/CustomDebugStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/CustomDebugStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomDebugStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/columnconcatenator/customdebugstringconvertible-implementations"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/Input": {
+      "abstract": [
+        {
+          "text": "The input type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Input"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/Input",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Input"
+        }
+      ],
+      "role": "symbol",
+      "title": "ColumnConcatenator.Input",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/columnconcatenator/input"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/Output": {
+      "abstract": [
+        {
+          "text": "The output type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Output"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/Output",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Output"
+        }
+      ],
+      "role": "symbol",
+      "title": "ColumnConcatenator.Output",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/columnconcatenator/output"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/TabularTransformer-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/TabularTransformer-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "TabularTransformer Implementations",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/columnconcatenator/tabulartransformer-implementations"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/Transformer-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/Transformer-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Transformer Implementations",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/columnconcatenator/transformer-implementations"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/applied(to:eventHandler:)": {
+      "abstract": [
+        {
+          "text": "Combines every numerical column in a data frame into to a shaped array for each row.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applied"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabularData0B5FrameV",
+          "text": "DataFrame"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "eventHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents12EventHandlera",
+          "text": "EventHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabularData0B5FrameV",
+          "text": "DataFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/applied(to:eventHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applied(to:eventHandler:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/columnconcatenator/applied(to:eventhandler:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/columnSelection": {
+      "abstract": [
+        {
+          "text": "The selection of columns to concatenate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "columnSelection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents15ColumnSelectionO",
+          "text": "ColumnSelection"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/columnSelection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "columnSelection",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/columnconcatenator/columnselection"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/concatenatedColumnName": {
+      "abstract": [
+        {
+          "text": "The name of the concatenated column containing the shaped arrays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "concatenatedColumnName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/concatenatedColumnName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "concatenatedColumnName",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/columnconcatenator/concatenatedcolumnname"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/init(columnSelection:concatenatedColumnName:)": {
+      "abstract": [
+        {
+          "text": "Creates a concatenator that concatenates numeric columns into a new column of ML shaped array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "columnSelection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents15ColumnSelectionO",
+          "text": "ColumnSelection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "concatenatedColumnName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/init(columnSelection:concatenatedColumnName:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(columnSelection:concatenatedColumnName:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/columnconcatenator/init(columnselection:concatenatedcolumnname:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnSelection": {
+      "abstract": [
+        {
+          "text": "A selection of columns from a data frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ColumnSelection"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnSelection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ColumnSelection"
+        }
+      ],
+      "role": "symbol",
+      "title": "ColumnSelection",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/columnselection"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnSelector": {
+      "abstract": [
+        {
+          "text": "An operation that applies an estimator to a selection of columns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ColumnSelector"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnSelector",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ColumnSelector"
+        }
+      ],
+      "role": "symbol",
+      "title": "ColumnSelector",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/columnselector"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnSelectorTransformer": {
+      "abstract": [
+        {
+          "text": "A transformer that applies a base transformer to specific columns in a data frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ColumnSelectorTransformer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnSelectorTransformer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ColumnSelectorTransformer"
+        }
+      ],
+      "role": "symbol",
+      "title": "ColumnSelectorTransformer",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/columnselectortransformer"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedTabularEstimator": {
+      "abstract": [
+        {
+          "text": "A supervised tabular estimator that composes a preprocessing transformer and a supervised tabular estimator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreprocessingSupervisedTabularEstimator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedTabularEstimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreprocessingSupervisedTabularEstimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreprocessingSupervisedTabularEstimator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingsupervisedtabularestimator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingTabularEstimator": {
+      "abstract": [
+        {
+          "text": "An estimator that composes a preprocessing transformer and an estimator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreprocessingTabularEstimator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingTabularEstimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreprocessingTabularEstimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreprocessingTabularEstimator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingtabularestimator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingUpdatableSupervisedTabularEstimator": {
+      "abstract": [
+        {
+          "text": "An updatable supervised estimator that composes a preprocessing transformer and an updatable supervised estimator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreprocessingUpdatableSupervisedTabularEstimator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingUpdatableSupervisedTabularEstimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreprocessingUpdatableSupervisedTabularEstimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreprocessingUpdatableSupervisedTabularEstimator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingupdatablesupervisedtabularestimator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingUpdatableTabularEstimator": {
+      "abstract": [
+        {
+          "text": "An updatable estimator that composes a preprocessing transformer and an updatable estimator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreprocessingUpdatableTabularEstimator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingUpdatableTabularEstimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreprocessingUpdatableTabularEstimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreprocessingUpdatableTabularEstimator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessingupdatabletabularestimator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedTabularEstimator": {
+      "abstract": [
+        {
+          "text": "A tabular estimator that creates a transformer by fitting to a data set in a data frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SupervisedTabularEstimator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedTabularEstimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SupervisedTabularEstimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "SupervisedTabularEstimator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/supervisedtabularestimator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TabularEstimator": {
+      "abstract": [
+        {
+          "text": "A tabular estimator that creates a transformer by fitting to a data set in a data frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabularEstimator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TabularEstimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabularEstimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabularEstimator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/tabularestimator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TabularTransformer": {
+      "abstract": [
+        {
+          "text": "A tabular transformer that transforms a data frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabularTransformer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TabularTransformer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabularTransformer"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabularTransformer",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/tabulartransformer"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Transformer": {
+      "abstract": [
+        {
+          "text": "A transformer that takes an input and produces an output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transformer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Transformer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Transformer"
+        }
+      ],
+      "role": "symbol",
+      "title": "Transformer",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/transformer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:6CoreML19MLShapedArrayScalarP": {
+      "abstract": [
+        {
+          "text": "A type that associates a scalar with a shaped array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLShapedArrayScalar"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:6CoreML19MLShapedArrayScalarP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLShapedArrayScalar",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLShapedArrayScalar"
+    },
+    "doc://com.externally.resolved.symbol/s:SB": {
+      "abstract": [
+        {
+          "text": "A radix-2 (binary) floating-point type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BinaryFloatingPoint"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s25ExpressibleByFloatLiteralP",
+          "text": "ExpressibleByFloatLiteral"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SF",
+          "text": "FloatingPoint"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SB",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BinaryFloatingPoint",
+      "type": "topic",
+      "url": "/documentation/Swift/BinaryFloatingPoint"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TabularTransformer",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Transformer"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Tabular-components",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TabularTransformer",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TabularEstimator",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedTabularEstimator",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnSelector",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnSelectorTransformer",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnSelection",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingSupervisedTabularEstimator",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingTabularEstimator",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingUpdatableSupervisedTabularEstimator",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessingUpdatableTabularEstimator"
+      ],
+      "title": "Tabular components"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-the-concatenator",
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/init(columnSelection:concatenatedColumnName:)"
+      ],
+      "title": "Creating the concatenator"
+    },
+    {
+      "anchor": "Getting-the-properties",
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/columnSelection",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/concatenatedColumnName"
+      ],
+      "title": "Getting the properties"
+    },
+    {
+      "anchor": "Applying",
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/applied(to:eventHandler:)"
+      ],
+      "title": "Applying"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/Input",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/Output"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/CustomDebugStringConvertible-Implementations",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/TabularTransformer-Implementations",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ColumnConcatenator/Transformer-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createmlcomponents/columnconcatenator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

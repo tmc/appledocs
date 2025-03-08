@@ -1,0 +1,2240 @@
+{
+  "abstract": [
+    {
+      "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Original API for In-App Purchase"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The In-App Purchase APIs, including the original API and the Swift-based ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API, allow you to offer customers the opportunity to purchase in-app content and features. Customers can make the purchases within your app, and find your promoted products on the App Store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The StoreKit framework connects to the App Store on your app’s behalf to prompt for, and securely process, payments. The framework then notifies your app, which delivers the purchased products. To validate purchases, you can verify receipts on your server with the App Store or on the device. For auto-renewable subscriptions, the App Store can also notify your server of key subscription events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3039996",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about In-App Purchases, including configuration, testing, marketing, and more, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/in-app-purchase/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-In-App-Purchases-in-App-Store-Connect",
+          "level": 3,
+          "text": "Configure In-App Purchases in App Store Connect",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use the In-App Purchase API, you need to configure the products in App Store Connect. As you develop your app, you can add or remove products and refine or reconfigure existing products. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/overview-for-configuring-in-app-purchases",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also offer apps and In-App Purchases that run on multiple platforms as a single purchase. For more information about universal purchase, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/app-store-connect/#/dev2cd126805",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-product-types",
+          "level": 3,
+          "text": "Understand product types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are four In-App Purchase types you can offer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Consumables",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " are a type that are depleted after one use. Customers can purchase them multiple times.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Non-consumables",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " are a type that customers purchase once. They don’t expire. Non-consumable In-App Purchases can offer Family Sharing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Auto-renewable subscriptions",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " to services or content are a type that customers purchase once and that renew automatically on a recurring basis until customers decide to cancel. Auto-renewable subscriptions can offer Family Sharing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Non-renewing subscriptions",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " to services or content provide access over a limited duration and don’t renew automatically. Customers need to purchase a new subscription after it concludes if they want to retain access.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can sync and restore non-consumables and auto-renewable subscriptions across devices using StoreKit. When a customer purchases an auto-renewable or non-renewing subscription, your app is responsible for making it available across all the person’s devices, and for restoring past purchases.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode": {
+      "abstract": [
+        {
+          "text": "Prepare your test environment to test in-app purchases with data you configure locally.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up StoreKit Testing in Xcode",
+      "type": "topic",
+      "url": "/documentation/Xcode/setting-up-storekit-testing-in-xcode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1407276-appstorereceipturl": {
+      "abstract": [
+        {
+          "text": "The file URL for the bundle’s App Store receipt.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "appStoreReceiptURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1407276-appstorereceipturl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appStoreReceiptURL",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1407276-appstorereceipturl"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKDownload": {
+      "abstract": [
+        {
+          "text": "Downloadable content associated with a product.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKDownload"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKDownload",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKDownload"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKDownload",
+      "type": "topic",
+      "url": "/documentation/storekit/skdownload"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKError": {
+      "abstract": [
+        {
+          "text": "StoreKit error descriptions, codes, and domains.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKError"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKError"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKError",
+      "type": "topic",
+      "url": "/documentation/storekit/skerror"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKError/Code": {
+      "abstract": [
+        {
+          "text": "Error codes for StoreKit errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKError.Code",
+      "type": "topic",
+      "url": "/documentation/storekit/skerror/code"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKErrorDomain": {
+      "abstract": [
+        {
+          "text": "The error domain name for StoreKit errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKErrorDomain",
+      "type": "topic",
+      "url": "/documentation/storekit/skerrordomain"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment": {
+      "abstract": [
+        {
+          "text": "A mutable request to the App Store to process payment for additional functionality that your app offers.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKMutablePayment"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKMutablePayment"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKMutablePayment",
+      "type": "topic",
+      "url": "/documentation/storekit/skmutablepayment"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPayment": {
+      "abstract": [
+        {
+          "text": "A request to the App Store to process payment for additional functionality that your app offers.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPayment"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPayment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPayment"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPayment",
+      "type": "topic",
+      "url": "/documentation/storekit/skpayment"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue": {
+      "abstract": [
+        {
+          "text": "A queue of payment transactions for the App Store to process.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPaymentQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPaymentQueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPaymentQueue",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentqueue"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueueDelegate": {
+      "abstract": [
+        {
+          "text": "The protocol that provides information needed to complete transactions.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPaymentQueueDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueueDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPaymentQueueDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPaymentQueueDelegate",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentqueuedelegate"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransaction": {
+      "abstract": [
+        {
+          "text": "An object in the payment queue.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPaymentTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPaymentTransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPaymentTransaction",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymenttransaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver": {
+      "abstract": [
+        {
+          "text": "A set of methods that process transactions, unlock purchased functionality, and continue promoted In-App Purchases.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPaymentTransactionObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPaymentTransactionObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPaymentTransactionObserver",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymenttransactionobserver"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver/paymentQueue(_:didRevokeEntitlementsForProductIdentifiers:)": {
+      "abstract": [
+        {
+          "text": "Tells an observer that the customer is no longer entitled to one or more Family Sharing purchases.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentQueue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKPaymentQueue",
+          "text": "SKPaymentQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didRevokeEntitlementsForProductIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver/paymentQueue(_:didRevokeEntitlementsForProductIdentifiers:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentQueue:didRevokeEntitlementsForProductIdentifiers:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentQueue(_:didRevokeEntitlementsForProductIdentifiers:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymenttransactionobserver/paymentqueue(_:didrevokeentitlementsforproductidentifiers:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKProduct": {
+      "abstract": [
+        {
+          "text": "Information about a registered product in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKProduct"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProduct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKProduct"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKProduct",
+      "type": "topic",
+      "url": "/documentation/storekit/skproduct"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKProduct/isFamilyShareable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the product is available for Family Sharing in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isFamilyShareable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProduct/isFamilyShareable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isFamilyShareable"
+        }
+      ],
+      "role": "symbol",
+      "title": "isFamilyShareable",
+      "type": "topic",
+      "url": "/documentation/storekit/skproduct/isfamilyshareable"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKProductStorePromotionController": {
+      "abstract": [
+        {
+          "text": "A product promotion controller for customizing the order and visibility of In-App Purchases per device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKProductStorePromotionController"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProductStorePromotionController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKProductStorePromotionController"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKProductStorePromotionController",
+      "type": "topic",
+      "url": "/documentation/storekit/skproductstorepromotioncontroller"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKProductsRequest": {
+      "abstract": [
+        {
+          "text": "An object that can retrieve localized information from the App Store about a specified list of products.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKProductsRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProductsRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKProductsRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKProductsRequest",
+      "type": "topic",
+      "url": "/documentation/storekit/skproductsrequest"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKProductsResponse": {
+      "abstract": [
+        {
+          "text": "An App Store response to a request for information about a list of products.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKProductsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProductsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKProductsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKProductsResponse",
+      "type": "topic",
+      "url": "/documentation/storekit/skproductsresponse"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKReceiptRefreshRequest": {
+      "abstract": [
+        {
+          "text": "A request to the App Store to get the app receipt, which represents the customer’s transactions with your app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKReceiptRefreshRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKReceiptRefreshRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKReceiptRefreshRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKReceiptRefreshRequest",
+      "type": "topic",
+      "url": "/documentation/storekit/skreceiptrefreshrequest"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKRequest": {
+      "abstract": [
+        {
+          "text": "An abstract class that represents a request to the App Store.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKRequest",
+      "type": "topic",
+      "url": "/documentation/storekit/skrequest"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKStorefront": {
+      "abstract": [
+        {
+          "text": "An object containing the location and unique identifier of an Apple App Store storefront.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKStorefront"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStorefront",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKStorefront"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKStorefront",
+      "type": "topic",
+      "url": "/documentation/storekit/skstorefront"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKTerminateForInvalidReceipt()": {
+      "abstract": [
+        {
+          "text": "Terminates an app if the license to use the app has expired.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKTerminateForInvalidReceipt"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKTerminateForInvalidReceipt()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKTerminateForInvalidReceipt"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKTerminateForInvalidReceipt()",
+      "type": "topic",
+      "url": "/documentation/storekit/skterminateforinvalidreceipt()"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/choosing-a-receipt-validation-technique": {
+      "abstract": [
+        {
+          "text": "Select the type of receipt validation, on the device or on your server, that works for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/choosing-a-receipt-validation-technique",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a receipt validation technique",
+      "type": "topic",
+      "url": "/documentation/storekit/choosing-a-receipt-validation-technique"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/choosing-a-storekit-api-for-in-app-purchases": {
+      "abstract": [
+        {
+          "text": "Use the latest API to support In-App Purchases in new or existing apps, or the original API to support In-App Purchases in earlier operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/choosing-a-storekit-api-for-in-app-purchases",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a StoreKit API for In-App Purchases",
+      "type": "topic",
+      "url": "/documentation/storekit/choosing-a-storekit-api-for-in-app-purchases"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/fetching-product-information-from-the-app-store": {
+      "abstract": [
+        {
+          "text": "Retrieve up-to-date information about the products for sale in your app to display to your customers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/fetching-product-information-from-the-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "Fetching product information from the App Store",
+      "type": "topic",
+      "url": "/documentation/storekit/fetching-product-information-from-the-app-store"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/finishing-a-transaction": {
+      "abstract": [
+        {
+          "text": "Finish the transaction to complete the purchase process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/finishing-a-transaction",
+      "kind": "article",
+      "role": "article",
+      "title": "Finishing a transaction",
+      "type": "topic",
+      "url": "/documentation/storekit/finishing-a-transaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/handling-errors": {
+      "abstract": [
+        {
+          "text": "Determine the underlying cause of errors that result from StoreKit requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/handling-errors",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling errors",
+      "type": "topic",
+      "url": "/documentation/storekit/handling-errors"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/handling-refund-notifications": {
+      "abstract": [
+        {
+          "text": "Respond to notifications about customer refunds for consumable, non-consumable, and non-renewing subscription products.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/handling-refund-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling refund notifications",
+      "type": "topic",
+      "url": "/documentation/storekit/handling-refund-notifications"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/loading-in-app-product-identifiers": {
+      "abstract": [
+        {
+          "text": "Load the unique identifiers for your in-app products to retrieve product information from the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/loading-in-app-product-identifiers",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading in-app product identifiers",
+      "type": "topic",
+      "url": "/documentation/storekit/loading-in-app-product-identifiers"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/offering-completing-and-restoring-in-app-purchases": {
+      "abstract": [
+        {
+          "text": "Fetch, display, purchase, validate, and finish transactions in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/offering-completing-and-restoring-in-app-purchases",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Offering, completing, and restoring in-app purchases",
+      "type": "topic",
+      "url": "/documentation/storekit/offering-completing-and-restoring-in-app-purchases"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/persisting-a-purchase": {
+      "abstract": [
+        {
+          "text": "Keep a persistent record of a purchase to continue making the product available as needed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/persisting-a-purchase",
+      "kind": "article",
+      "role": "article",
+      "title": "Persisting a purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/persisting-a-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/processing-a-transaction": {
+      "abstract": [
+        {
+          "text": "Register a transaction queue observer to get and handle transaction updates from the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/processing-a-transaction",
+      "kind": "article",
+      "role": "article",
+      "title": "Processing a transaction",
+      "type": "topic",
+      "url": "/documentation/storekit/processing-a-transaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/promoting-in-app-purchases": {
+      "abstract": [
+        {
+          "text": "Show promoted In-App Purchases on your product page and handle purchases that customers initiate on the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/promoting-in-app-purchases",
+      "kind": "article",
+      "role": "article",
+      "title": "Promoting In-App Purchases",
+      "type": "topic",
+      "url": "/documentation/storekit/promoting-in-app-purchases"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/requesting-a-payment-from-the-app-store": {
+      "abstract": [
+        {
+          "text": "Submit a payment request to the App Store when a customer selects a product to buy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/requesting-a-payment-from-the-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting a payment from the App Store",
+      "type": "topic",
+      "url": "/documentation/storekit/requesting-a-payment-from-the-app-store"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/restoring-purchased-products": {
+      "abstract": [
+        {
+          "text": "Give customers functionality that restores their purchases in your app to maintain access to purchased content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/restoring-purchased-products",
+      "kind": "article",
+      "role": "article",
+      "title": "Restoring purchased products",
+      "type": "topic",
+      "url": "/documentation/storekit/restoring-purchased-products"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/setting-up-the-transaction-observer-for-the-payment-queue": {
+      "abstract": [
+        {
+          "text": "Enable your app to receive and handle transactions by adding an observer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/setting-up-the-transaction-observer-for-the-payment-queue",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up the transaction observer for the payment queue",
+      "type": "topic",
+      "url": "/documentation/storekit/setting-up-the-transaction-observer-for-the-payment-queue"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers": {
+      "abstract": [
+        {
+          "text": "Offer customers additional time-based content and services through purchases they make within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Subscriptions and offers",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptions-and-offers"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/supporting-family-sharing-in-your-app": {
+      "abstract": [
+        {
+          "text": "Provide service to share subscriptions and non-consumable products to family members.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/supporting-family-sharing-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Family Sharing in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/supporting-family-sharing-in-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox": {
+      "abstract": [
+        {
+          "text": "Verify your implementation of In-App Purchases by testing your code throughout its development.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing at all stages of development with Xcode and the sandbox",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-in-xcode": {
+      "abstract": [
+        {
+          "text": "Use locally configured product data to test and debug your In-App Purchases implementation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing In-App Purchases in Xcode",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-in-app-purchases-in-xcode"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox": {
+      "abstract": [
+        {
+          "text": "Test your implementation of In-App Purchases using real product information and server-to-server transactions in the sandbox environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing In-App Purchases with sandbox",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-in-app-purchases-with-sandbox"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-promoted-in-app-purchases": {
+      "abstract": [
+        {
+          "text": "Test your In-App Purchases before making your app available in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-promoted-in-app-purchases",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing promoted In-App Purchases",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-promoted-in-app-purchases"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-refund-requests": {
+      "abstract": [
+        {
+          "text": "Test your app’s implementation of refund requests, and your app’s and server’s handling of approved and declined refunds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-refund-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing refund requests",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-refund-requests"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/unlocking-purchased-content": {
+      "abstract": [
+        {
+          "text": "Deliver content to the customer after validating the purchase.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/unlocking-purchased-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Unlocking purchased content",
+      "type": "topic",
+      "url": "/documentation/storekit/unlocking-purchased-content"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/validating-receipts-with-the-app-store": {
+      "abstract": [
+        {
+          "text": "Verify transactions with the App Store on a secure server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/validating-receipts-with-the-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "Validating receipts with the App Store",
+      "type": "topic",
+      "url": "/documentation/storekit/validating-receipts-with-the-app-store"
+    },
+    "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/overview-for-configuring-in-app-purchases": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/overview-for-configuring-in-app-purchases",
+      "title": "Configure In-App Purchase settings",
+      "titleInlineContent": [
+        {
+          "text": "Configure In-App Purchase settings",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/overview-for-configuring-in-app-purchases"
+    },
+    "https://developer.apple.com/in-app-purchase/": {
+      "identifier": "https://developer.apple.com/in-app-purchase/",
+      "title": "In-App Purchase",
+      "titleInlineContent": [
+        {
+          "text": "In-App Purchase",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/in-app-purchase/"
+    },
+    "https://help.apple.com/app-store-connect/#/dev2cd126805": {
+      "identifier": "https://help.apple.com/app-store-connect/#/dev2cd126805",
+      "title": "App Store Connect Help",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect Help",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/app-store-connect/#/dev2cd126805"
+    },
+    "media-3039996": {
+      "alt": "A diagram of the interactions between StoreKit, your app, the App Store, and your server that occur during a transaction.",
+      "identifier": "media-3039996",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3cddba76b6de9f552b4afc2d69fd0799/media-3039996@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ae92f04b4f95d6e3ffe803ae1a987704/media-3039996~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Deprecated",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/choosing-a-storekit-api-for-in-app-purchases"
+      ],
+      "title": "Deprecated"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/setting-up-the-transaction-observer-for-the-payment-queue",
+        "doc://com.apple.storekit/documentation/StoreKit/offering-completing-and-restoring-in-app-purchases",
+        "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue",
+        "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver",
+        "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueueDelegate",
+        "doc://com.apple.storekit/documentation/StoreKit/SKRequest"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Product-information",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/loading-in-app-product-identifiers",
+        "doc://com.apple.storekit/documentation/StoreKit/fetching-product-information-from-the-app-store",
+        "doc://com.apple.storekit/documentation/StoreKit/SKProductsRequest",
+        "doc://com.apple.storekit/documentation/StoreKit/SKProductsResponse",
+        "doc://com.apple.storekit/documentation/StoreKit/SKProduct"
+      ],
+      "title": "Product information"
+    },
+    {
+      "anchor": "Storefronts",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/SKStorefront"
+      ],
+      "title": "Storefronts"
+    },
+    {
+      "anchor": "Purchases",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/requesting-a-payment-from-the-app-store",
+        "doc://com.apple.storekit/documentation/StoreKit/processing-a-transaction",
+        "doc://com.apple.storekit/documentation/StoreKit/SKPayment",
+        "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment",
+        "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransaction"
+      ],
+      "title": "Purchases"
+    },
+    {
+      "anchor": "Purchase-validation",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/choosing-a-receipt-validation-technique",
+        "doc://com.apple.storekit/documentation/StoreKit/validating-receipts-with-the-app-store",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1407276-appstorereceipturl",
+        "doc://com.apple.storekit/documentation/StoreKit/SKReceiptRefreshRequest"
+      ],
+      "title": "Purchase validation"
+    },
+    {
+      "anchor": "Content-delivery",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/unlocking-purchased-content",
+        "doc://com.apple.storekit/documentation/StoreKit/persisting-a-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/finishing-a-transaction",
+        "doc://com.apple.storekit/documentation/StoreKit/SKDownload"
+      ],
+      "title": "Content delivery"
+    },
+    {
+      "anchor": "Refunds",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/handling-refund-notifications",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-refund-requests"
+      ],
+      "title": "Refunds"
+    },
+    {
+      "anchor": "Providing-access-to-previously-purchased-products",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/restoring-purchased-products",
+        "doc://com.apple.storekit/documentation/StoreKit/SKReceiptRefreshRequest",
+        "doc://com.apple.storekit/documentation/StoreKit/SKRequest",
+        "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransaction",
+        "doc://com.apple.storekit/documentation/StoreKit/SKTerminateForInvalidReceipt()"
+      ],
+      "title": "Providing access to previously purchased products"
+    },
+    {
+      "anchor": "Family-Sharing",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/supporting-family-sharing-in-your-app",
+        "doc://com.apple.storekit/documentation/StoreKit/SKProduct/isFamilyShareable",
+        "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver/paymentQueue(_:didRevokeEntitlementsForProductIdentifiers:)"
+      ],
+      "title": "Family Sharing"
+    },
+    {
+      "anchor": "Subscriptions",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers"
+      ],
+      "title": "Subscriptions"
+    },
+    {
+      "anchor": "Promotions",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/promoting-in-app-purchases",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-promoted-in-app-purchases",
+        "doc://com.apple.storekit/documentation/StoreKit/SKProductStorePromotionController"
+      ],
+      "title": "Promotions"
+    },
+    {
+      "anchor": "Testing-In-App-Purchases",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox",
+        "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-in-xcode",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox"
+      ],
+      "title": "Testing In-App Purchases"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/handling-errors",
+        "doc://com.apple.storekit/documentation/StoreKit/SKError/Code",
+        "doc://com.apple.storekit/documentation/StoreKit/SKError",
+        "doc://com.apple.storekit/documentation/StoreKit/SKErrorDomain"
+      ],
+      "title": "Errors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/setting-up-the-transaction-observer-for-the-payment-queue",
+                "doc://com.apple.storekit/documentation/StoreKit/offering-completing-and-restoring-in-app-purchases",
+                "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue",
+                "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver",
+                "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueueDelegate",
+                "doc://com.apple.storekit/documentation/StoreKit/SKRequest"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Product-information",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/loading-in-app-product-identifiers",
+                "doc://com.apple.storekit/documentation/StoreKit/fetching-product-information-from-the-app-store",
+                "doc://com.apple.storekit/documentation/StoreKit/SKProductsRequest",
+                "doc://com.apple.storekit/documentation/StoreKit/SKProductsResponse",
+                "doc://com.apple.storekit/documentation/StoreKit/SKProduct"
+              ],
+              "title": "Product information"
+            },
+            {
+              "anchor": "Storefronts",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/SKStorefront"
+              ],
+              "title": "Storefronts"
+            },
+            {
+              "anchor": "Purchases",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/requesting-a-payment-from-the-app-store",
+                "doc://com.apple.storekit/documentation/StoreKit/processing-a-transaction",
+                "doc://com.apple.storekit/documentation/StoreKit/SKPayment",
+                "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment",
+                "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransaction"
+              ],
+              "title": "Purchases"
+            },
+            {
+              "anchor": "Purchase-validation",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/choosing-a-receipt-validation-technique",
+                "doc://com.apple.storekit/documentation/StoreKit/validating-receipts-with-the-app-store",
+                "doc://com.apple.documentation/documentation/foundation/bundle/1407276-appstorereceipturl",
+                "doc://com.apple.storekit/documentation/StoreKit/SKReceiptRefreshRequest"
+              ],
+              "title": "Purchase validation"
+            },
+            {
+              "anchor": "Content-delivery",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/unlocking-purchased-content",
+                "doc://com.apple.storekit/documentation/StoreKit/persisting-a-purchase",
+                "doc://com.apple.storekit/documentation/StoreKit/finishing-a-transaction",
+                "doc://com.apple.storekit/documentation/StoreKit/SKDownload"
+              ],
+              "title": "Content delivery"
+            },
+            {
+              "anchor": "Refunds",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/handling-refund-notifications",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-refund-requests"
+              ],
+              "title": "Refunds"
+            },
+            {
+              "anchor": "Providing-access-to-previously-purchased-products",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/restoring-purchased-products",
+                "doc://com.apple.storekit/documentation/StoreKit/SKReceiptRefreshRequest",
+                "doc://com.apple.storekit/documentation/StoreKit/SKRequest",
+                "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransaction",
+                "doc://com.apple.storekit/documentation/StoreKit/SKTerminateForInvalidReceipt()"
+              ],
+              "title": "Providing access to previously purchased products"
+            },
+            {
+              "anchor": "Family-Sharing",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/supporting-family-sharing-in-your-app",
+                "doc://com.apple.storekit/documentation/StoreKit/SKProduct/isFamilyShareable",
+                "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver/paymentQueue(_:didRevokeEntitlementsForProductIdentifiers:)"
+              ],
+              "title": "Family Sharing"
+            },
+            {
+              "anchor": "Subscriptions",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers"
+              ],
+              "title": "Subscriptions"
+            },
+            {
+              "anchor": "Promotions",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/promoting-in-app-purchases",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-promoted-in-app-purchases",
+                "doc://com.apple.storekit/documentation/StoreKit/SKProductStorePromotionController"
+              ],
+              "title": "Promotions"
+            },
+            {
+              "anchor": "Testing-In-App-Purchases",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox",
+                "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-in-xcode",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox"
+              ],
+              "title": "Testing In-App Purchases"
+            },
+            {
+              "anchor": "Errors",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/handling-errors",
+                "doc://com.apple.storekit/documentation/StoreKit/SKError/Code",
+                "doc://com.apple.storekit/documentation/StoreKit/SKErrorDomain"
+              ],
+              "title": "Errors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Deprecated",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/choosing-a-storekit-api-for-in-app-purchases"
+              ],
+              "title": "Deprecated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKError~1Code/title",
+          "value": "SKErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKReceiptRefreshRequest/title",
+          "value": "SKReceiptRefreshRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKReceiptRefreshRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKReceiptRefreshRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKReceiptRefreshRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKReceiptRefreshRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKTerminateForInvalidReceipt()/title",
+          "value": "SKTerminateForInvalidReceipt"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKTerminateForInvalidReceipt()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTerminateForInvalidReceipt"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductsRequest/title",
+          "value": "SKProductsRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductsRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKProductsRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductsRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKProductsRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductStorePromotionController/title",
+          "value": "SKProductStorePromotionController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductStorePromotionController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKProductStorePromotionController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductStorePromotionController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKProductStorePromotionController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProduct/title",
+          "value": "SKProduct"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProduct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKProduct"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProduct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKProduct"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKRequest/title",
+          "value": "SKRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKErrorDomain/title",
+          "value": "SKErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueueDelegate/title",
+          "value": "SKPaymentQueueDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueueDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentQueueDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueueDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentQueueDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKMutablePayment/title",
+          "value": "SKMutablePayment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKMutablePayment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKMutablePayment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKMutablePayment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKMutablePayment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransaction/title",
+          "value": "SKPaymentTransaction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransaction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentTransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransaction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentTransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionObserver/title",
+          "value": "SKPaymentTransactionObserver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionObserver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentTransactionObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionObserver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentTransactionObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStorefront/title",
+          "value": "SKStorefront"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStorefront/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKStorefront"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStorefront/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKStorefront"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProduct~1isFamilyShareable/title",
+          "value": "isFamilyShareable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProduct~1isFamilyShareable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "isFamilyShareable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductsResponse/title",
+          "value": "SKProductsResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductsResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKProductsResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductsResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKProductsResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKDownload/title",
+          "value": "SKDownload"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKDownload/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKDownload"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKDownload/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKDownload"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionObserver~1paymentQueue(_:didRevokeEntitlementsForProductIdentifiers:)/title",
+          "value": "paymentQueue:didRevokeEntitlementsForProductIdentifiers:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionObserver~1paymentQueue(_:didRevokeEntitlementsForProductIdentifiers:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentQueue:didRevokeEntitlementsForProductIdentifiers:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue/title",
+          "value": "SKPaymentQueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPayment/title",
+          "value": "SKPayment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPayment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPayment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPayment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPayment"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/original-api-for-in-app-purchase"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/original-api-for-in-app-purchase"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

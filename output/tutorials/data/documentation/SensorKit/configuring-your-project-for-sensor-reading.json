@@ -1,0 +1,1280 @@
+{
+  "abstract": [
+    {
+      "text": "Add metadata to your app to attain system and user permission to access sensor data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sensorkit/documentation/SensorKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sensorkit/documentation/SensorKit/configuring-your-project-for-sensor-reading"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SensorKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring your project for sensor reading"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If Apple approves your idea for a research-study app, you can read sensor data from devices after receiving the userʼs permission. Once Apple approves your app, you receive an entitlement that enables your app to read sensor data. In accordance with the approval, you also need to comply with Appleʼs privacy policy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app attempts to read sensor information for the first time on a person’s device, the system presents a sheet that explains your app’s research study and the information your app collects. The sheet prompts people to approve access to personal information at a granular level, and your app needs to tell people which information is essential to the study. You supply the study purpose, requested sensors, and privacy policy URL in the project’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.apple.com/legal/privacy/data/en/sensor-usage-data/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Request-the-sensor-reader-entitlement",
+          "level": 3,
+          "text": "Request the sensor reader entitlement",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use SensorKit, the OS requires the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.sensorkit.reader.allow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " entitlement in your app’s code signature. Apple only grants the entitlement for approved research studies. If you’re interested in accessing SensorKit data for your study, submit a research proposal and request the entitlement. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.researchandcare.org/resources/accessing-sensorkit-data/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-manual-provisioning-profile",
+          "level": 3,
+          "text": "Create a manual provisioning profile",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode requires a manual provisioning profile that includes an explicit App ID to code-sign your app with the sensor reader entitlement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create the explicit App ID, sign in to Apple Developer, register an App ID for your SensorKit project, and enable the sensor reader entitlement under Additional Capabilities on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/account/resources/certificates/list",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " page. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/manage-identifiers/register-an-app-id",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create the manual provisioning profile, select Profiles from the sidebar, click the add button (+) in the upper-left, and select the iOS App Development profile type. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/manage-profiles/create-a-development-provisioning-profile",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Install the provisioning profile by downloading it and dragging it on to the Xcode icon in the Dock. Alternatively, you can select the Download Manual Profiles option by choosing Xcode > Preferences > Accounts and selecting your Apple ID and applicable team. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/?/deva899b4fe5#/deva899b4fe5",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-Xcode-for-signing",
+          "level": 3,
+          "text": "Configure Xcode for signing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define a bundle ID in Xcode for your App ID by selecting your target in the project editor and clicking General. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/deve21d0239c",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3924188",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a new property list file to your project named ",
+              "type": "text"
+            },
+            {
+              "code": "[Your App Name].entitlements",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if it doesn’t already exist. Add a key titled ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.developer.sensorkit.reader.allow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the type Array, and add a string value for each sensor your app uses:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+            "<plist version=\"1.0\">",
+            "<dict> ",
+            "    <key>com.apple.developer.sensorkit.reader.allow</key>",
+            "    <array> ",
+            "        <string>on-wrist</string>",
+            "        <string>ambient-light-sensor</string>",
+            "        <string>motion-accelerometer</string>",
+            "        <string>motion-rotation-rate</string>",
+            "        <string>visits</string>",
+            "        <string>pedometer</string>",
+            "        <string>device-usage</string>",
+            "        <string>messages-usage</string>",
+            "        <string>phone-usage</string>",
+            "        <string>keyboard-metrics</string> ",
+            "</array></dict></plist>"
+          ],
+          "syntax": "plist",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code-signing entitlements file for the above raw property list appears as follows in Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3924189",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To sign your app with the manual provisioning profile and sensor reader entitlement, set your targetʼs build settings as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Code Signing Entitlements to the entitlements file",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Code Signing Identity to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Apple Developer",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Code Signing Style to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Manual",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provisioning Profile to the manual provisioning profile you created",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3924190",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Describe-the-purpose-of-your-study",
+          "level": 3,
+          "text": "Describe the purpose of your study",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system presents the Research Sensor & Usage Data Request sheet that introduces your appʼs study to people. Define a short description of your appʼs research purpose with the usage description ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>NSSensorKitUsageDescription</key>",
+            "<string>This is my app&apos;s SensorKit usage description.</string>"
+          ],
+          "syntax": "plist",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sheet displays the research purpose in the App Research Purpose banner.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3928456",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Link-your-apps-privacy-policy",
+          "level": 3,
+          "text": "Link your app’s privacy policy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a link to your privacy-policy webpage in your projectʼs ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSensorKitPrivacyPolicyURL",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>NSSensorKitPrivacyPolicyURL</key>",
+            "<string>https://my-site.example.com/privacy-policy/</string>"
+          ],
+          "syntax": "plist",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sheet displays a link to your app’s privacy policy below the description of your study.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3683202",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Explain-how-your-app-uses-the-data",
+          "level": 3,
+          "text": "Explain how your app uses the data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sheet also explains what your app intends to do with the information it collects with a particular sensor. You provide this intent per sensor by adding the sensorʼs usage-detail key in your appʼs ",
+              "type": "text"
+            },
+            {
+              "code": "info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSensorKitUsageDetail/SRSensorUsageMotion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key when you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/accelerometer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. For the other sensor-specific usage keys, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property descriptions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>NSSensorKitUsageDetail</key>",
+            "<dict> ",
+            "    <key>SRSensorUsageMotion</key>",
+            "    <dict> ",
+            "        <key>Description</key> ",
+            "        <string>This describes how my app uses motion data.</string>",
+            "    </dict> ",
+            "</dict>"
+          ],
+          "syntax": "plist",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin reading sensor data, call ",
+              "type": "text"
+            },
+            {
+              "code": "requestAuthorization(sensors:completion:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to pass in the sensors your app records.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// A sensor for ambient light information.",
+            "let reader = SRSensorReader(sensor: .ambientLightSensor)",
+            "",
+            "// Displays the authorization approval prompt. ",
+            "func requestAuthorization() {",
+            "    SRSensorReader.requestAuthorization(",
+            "        sensors [.ambientLightSensor]) { (error: Error?) in",
+            "        if let error = error {",
+            "            fatalError(\"Sensor authorization failed due to: \\(error)\") ",
+            "        } else {",
+            "            print(\"\"\"",
+            "                User dismissed the authorization prompt. ",
+            "                Awaiting authorization status changes.",
+            "            \"\"\") ",
+            "        } } }",
+            "",
+            "// Sets up the view. ",
+            "override func viewDidLoad() {",
+            "",
+            "    // Listen for authorization status changes.",
+            "    reader.delegate = self",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first time your app requests authorization for a particular sensor, the sheet prompts for user approval and displays the sensorʼs corresponding usage-detail string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3683199",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-the-sensors-your-app-requires",
+          "level": 3,
+          "text": "Specify the sensors your app requires",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Through the sheet, people approve each sensor individually by tapping Allow Collection & Sharing or Don’t Allow Collection & Sharing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3683201",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By specifying whether your study requires one or more of the sensors, people can opt out, participate partially, or fully opt in. To indicate that your study requires a sensor, add a Boolean key titled ",
+              "type": "text"
+            },
+            {
+              "code": "Required",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the sensorʼs usage-detail dictionary with a value of ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>SRSensorUsageMotion</key>",
+            "<dict> ",
+            "    ... ",
+            "    <key>Required</key> ",
+            "    <true/>",
+            "</dict>"
+          ],
+          "syntax": "plist",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For sensor information that’s optional to your study, you can omit the ",
+              "type": "text"
+            },
+            {
+              "code": "Required",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key or set its value to ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a person disapproves of a required sensor, the system warns them that the study requires the information. In the prompt, they have the option to not enroll or to reconsider by tapping Change Choice.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3683200",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After a person answers the prompt, they can adjust authorization status per sensor later by choosing Settings > Privacy > Research Sensor & Usage Data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.sensorkit.reader.allow": {
+      "abstract": [
+        {
+          "text": "The necessary entitlement to access sensor data that’s required by your app’s preapproved research study.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.sensorkit.reader.allow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.sensorkit.reader.allow",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.sensorkit.reader.allow"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSensorKitPrivacyPolicyURL": {
+      "abstract": [
+        {
+          "text": "A hyperlink to a webpage that displays the privacy policy for your app’s research study.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSensorKitPrivacyPolicyURL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSensorKitPrivacyPolicyURL",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSSensorKitPrivacyPolicyURL"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSensorKitUsageDetail/SRSensorUsageMotion": {
+      "abstract": [
+        {
+          "text": "A collection of properties that explain your app’s need to observe motion data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSensorKitUsageDetail/SRSensorUsageMotion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SRSensorUsageMotion",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSSensorKitUsageDetail/SRSensorUsageMotion"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit": {
+      "abstract": [
+        {
+          "text": "Retrieve data and derived metrics from sensors on an iPhone, or paired Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SensorKit",
+      "type": "topic",
+      "url": "/documentation/sensorkit"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor": {
+      "abstract": [
+        {
+          "text": "The sensors an app can read.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SRSensor"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRSensor"
+        }
+      ],
+      "role": "symbol",
+      "title": "SRSensor",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensor"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/accelerometer": {
+      "abstract": [
+        {
+          "text": "A sensor that provides acceleration motion data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accelerometer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SRSensor",
+          "text": "SRSensor"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor/accelerometer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRSensorAccelerometer"
+        }
+      ],
+      "role": "symbol",
+      "title": "accelerometer",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensor/accelerometer"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader": {
+      "abstract": [
+        {
+          "text": "An object that establishes user authorization and records data for a particular sensor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SRSensorReader"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRSensorReader"
+        }
+      ],
+      "role": "symbol",
+      "title": "SRSensorReader",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensorreader"
+    },
+    "https://developer.apple.com/account/resources/certificates/list": {
+      "identifier": "https://developer.apple.com/account/resources/certificates/list",
+      "title": "Certificates, Identifiers, & Profiles",
+      "titleInlineContent": [
+        {
+          "text": "Certificates, Identifiers, & Profiles",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/account/resources/certificates/list"
+    },
+    "https://developer.apple.com/help/account/manage-identifiers/register-an-app-id": {
+      "identifier": "https://developer.apple.com/help/account/manage-identifiers/register-an-app-id",
+      "title": "Register an App ID",
+      "titleInlineContent": [
+        {
+          "text": "Register an App ID",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/manage-identifiers/register-an-app-id"
+    },
+    "https://developer.apple.com/help/account/manage-profiles/create-a-development-provisioning-profile": {
+      "identifier": "https://developer.apple.com/help/account/manage-profiles/create-a-development-provisioning-profile",
+      "title": "Create a development provisioning profile",
+      "titleInlineContent": [
+        {
+          "text": "Create a development provisioning profile",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/manage-profiles/create-a-development-provisioning-profile"
+    },
+    "https://help.apple.com/xcode/mac/current/#/deve21d0239c": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/deve21d0239c",
+      "title": "Set the bundle ID",
+      "titleInlineContent": [
+        {
+          "text": "Set the bundle ID",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/deve21d0239c"
+    },
+    "https://help.apple.com/xcode/mac/current/?/deva899b4fe5#/deva899b4fe5": {
+      "identifier": "https://help.apple.com/xcode/mac/current/?/deva899b4fe5#/deva899b4fe5",
+      "title": "Download manual provisioning profiles",
+      "titleInlineContent": [
+        {
+          "text": "Download manual provisioning profiles",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/?/deva899b4fe5#/deva899b4fe5"
+    },
+    "https://www.apple.com/legal/privacy/data/en/sensor-usage-data/": {
+      "identifier": "https://www.apple.com/legal/privacy/data/en/sensor-usage-data/",
+      "title": "Sensor & Usage Data & Privacy",
+      "titleInlineContent": [
+        {
+          "text": "Sensor & Usage Data & Privacy",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.apple.com/legal/privacy/data/en/sensor-usage-data/"
+    },
+    "https://www.researchandcare.org/resources/accessing-sensorkit-data/": {
+      "identifier": "https://www.researchandcare.org/resources/accessing-sensorkit-data/",
+      "title": "Accessing SensorKit Data",
+      "titleInlineContent": [
+        {
+          "text": "Accessing SensorKit Data",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.researchandcare.org/resources/accessing-sensorkit-data/"
+    },
+    "media-3683199": {
+      "alt": "Screenshot of the Research Sensor & Usage Data Request sheet’s second page. A banner reads “How the study will use this data” above text that reads, “This describes how my app uses motion data.”",
+      "identifier": "media-3683199",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c5f5159fb33c1a5c9b45136890b92e34/media-3683199@2x.png"
+        }
+      ]
+    },
+    "media-3683200": {
+      "alt": "Screenshot of the Research Sensor & Usage Data Request sheet’s second page. A model prompt displays text explaining that a sensor the user disallowed is required for the study, followed by two buttons. The upper button reads “Don’t Enroll in Study”. The lower button reads, “Change Choice”. ",
+      "identifier": "media-3683200",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fe9bacde05a71fb8244fb0b0c6d6c4bf/media-3683200@2x.png"
+        }
+      ]
+    },
+    "media-3683201": {
+      "alt": "Screenshot of the Research Sensor & Usage Data Request sheet’s second page that highlights two buttons at the bottom. The upper button reads “Allow Collection & Sharing”. The lower button reads, “Don’t Allow Collection and Sharing”.",
+      "identifier": "media-3683201",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9dfd6a81c4382a107e5d9faa6b9c6393/media-3683201@2x.png"
+        }
+      ]
+    },
+    "media-3683202": {
+      "alt": "Screenshot of the Research Sensor & Usage Data Request sheet that introduces the app’s study. The View App Privacy Policy link is highlighted below the app’s research purpose.",
+      "identifier": "media-3683202",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f9d7a9b0eac3c48762a1b034566ebed1/media-3683202@2x.png"
+        }
+      ]
+    },
+    "media-3924188": {
+      "alt": "Screenshot of the project target’s General tab. Under the Identity section, the Bundle Identifier text field reflects a value that matches the App ID associated with the provisioning profile.",
+      "identifier": "media-3924188",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/91ee9ae6f487ded7a99f5cfb70a36b54/media-3924188@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7e3129eee137b54a1138f795579fcda8/media-3924188~dark@2x.png"
+        }
+      ]
+    },
+    "media-3924189": {
+      "alt": "Screenshot of the code signing entitlements property list file in Xcode. The list’s root node contains a Array key titled com.apple.developer.sensorkit.reader.allow. The array contains String values for each sensor the app requests, which are: on-wrist, ambient-light-sensor, motion-accelerometer, motion-rotation-rate, visits, pedometer, device-usage, messages-usage, phone-usage, and keyboard-metrics.",
+      "identifier": "media-3924189",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0f02fccfc21f1537d4dfac88eca00fd0/media-3924189@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d41949972ea18a48592b968d72e82f60/media-3924189~dark@2x.png"
+        }
+      ]
+    },
+    "media-3924190": {
+      "alt": "Screenshot of the project target’s build settings. The code signing entitlements setting reflects the custom code signing entitlements file name. The code signing identity is set to iOS developer. Code signing style is manual. And the provisioning profile build setting reflects the name of the explicit provisioning profile.",
+      "identifier": "media-3924190",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62ff7067e9c673a6bf589fbd7215b42a/media-3924190@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/30a3fa51df64186e79317981a0122b2c/media-3924190~dark@2x.png"
+        }
+      ]
+    },
+    "media-3928456": {
+      "alt": "Screenshot of the Research Sensor & Usage Data Request sheet that introduces the app’s study. The sheet displays the app’s SensorKit usage description under the App Research Purpose banner.",
+      "identifier": "media-3928456",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/87538d610da299dfd44a740a01ab3eb1/media-3928456@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Setup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader"
+      ],
+      "title": "Setup"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Setup",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader"
+              ],
+              "title": "Setup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader/title",
+          "value": "SRSensorReader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensorReader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensorReader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor/title",
+          "value": "SRSensor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1accelerometer/title",
+          "value": "SRSensorAccelerometer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor~1accelerometer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensorAccelerometer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/sensorkit/configuring-your-project-for-sensor-reading"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/sensorkit/configuring-your-project-for-sensor-reading"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

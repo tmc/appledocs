@@ -1,0 +1,1214 @@
+{
+  "abstract": [
+    {
+      "text": "A protocol that describes a bookmark someone can add to their Home Screen.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)SFAddToHomeScreenActivityItem",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SFAddToHomeScreenActivityItem"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SFAddToHomeScreenActivityItem"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.1",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "SFAddToHomeScreenActivityItem"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SFAddToHomeScreenActivityItem"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a bookmark to someone’s Home Screen from your browser app, create an object that conforms to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and present a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that includes the activity item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your browser app uses WebKit, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " always represents a bookmark. To let someone add a web app to their Home Screen, add a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " activity items instead of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". WebKit inspects the website’s metadata to decide whether the item represents a bookmark or a web app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your browser app includes an alternative browser engine, pass detailed information about the bookmark to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem/getHomeScreenWebAppInfo(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the bookmark represents a web app, include the web app manifest, and cookies that the system uses when someone opens the web app from their Home Screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " is only available to web browsers. For more information on creating a web browser, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Xcode/preparing-your-app-to-be-the-default-browser",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that you use to offer standard services from your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIActivityViewController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIActivityViewController"
+    },
+    "doc://com.apple.documentation/documentation/WebKit/WKWebView": {
+      "abstract": [
+        {
+          "text": "An object that displays interactive web content, such as for an in-app browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKWebView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKWebView",
+      "type": "topic",
+      "url": "/documentation/WebKit/WKWebView"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/preparing-your-app-to-be-the-default-browser": {
+      "abstract": [
+        {
+          "text": "Configure your browser app so users can set it as the default on their device instead of Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/preparing-your-app-to-be-the-default-browser",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your app to be the default web browser",
+      "type": "topic",
+      "url": "/documentation/Xcode/preparing-your-app-to-be-the-default-browser"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem": {
+      "abstract": [
+        {
+          "text": "A protocol that describes a bookmark someone can add to their Home Screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFAddToHomeScreenActivityItem"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFAddToHomeScreenActivityItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFAddToHomeScreenActivityItem",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfaddtohomescreenactivityitem"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem/getHomeScreenWebAppInfo(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Provides information about a web app to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getHomeScreenWebAppInfo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SFAddToHomeScreenInfo",
+          "text": "SFAddToHomeScreenInfo"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem/getHomeScreenWebAppInfo(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getHomeScreenWebAppInfoWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getHomeScreenWebAppInfo(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfaddtohomescreenactivityitem/gethomescreenwebappinfo(completionhandler:)"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem/getWebAppManifest(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Provides the web app’s manifest to the system, if the bookmark represents a web app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getWebAppManifest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)BEWebAppManifest",
+          "text": "BEWebAppManifest"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem/getWebAppManifest(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getWebAppManifestWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getWebAppManifest(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfaddtohomescreenactivityitem/getwebappmanifest(completionhandler:)"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem/iconItemProvider": {
+      "abstract": [
+        {
+          "text": "An object that conveys the bookmark’s icon to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "iconItemProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSItemProvider",
+          "text": "NSItemProvider"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem/iconItemProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "iconItemProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "iconItemProvider",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfaddtohomescreenactivityitem/iconitemprovider"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem/title": {
+      "abstract": [
+        {
+          "text": "The bookmark’s title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem/title",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "title"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfaddtohomescreenactivityitem/title"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem/url": {
+      "abstract": [
+        {
+          "text": "The bookmark’s URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem/url",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "URL"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "url",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfaddtohomescreenactivityitem/url"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenInfo": {
+      "abstract": [
+        {
+          "text": "A class that provides information about a web app that someone adds to their Home Screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFAddToHomeScreenInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFAddToHomeScreenInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFAddToHomeScreenInfo",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfaddtohomescreeninfo"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Describing-a-bookmark-or-web-app",
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem/iconItemProvider",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem/title",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem/url"
+      ],
+      "title": "Describing a bookmark or web app"
+    },
+    {
+      "anchor": "Providing-information-about-a-web-app-to-the-system",
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem/getHomeScreenWebAppInfo(completionHandler:)",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenInfo",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem/getWebAppManifest(completionHandler:)"
+      ],
+      "title": "Providing information about a web app to the system"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.4",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.4",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.4",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.1",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SFAddToHomeScreenActivityItem"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFAddToHomeScreenActivityItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFAddToHomeScreenActivityItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.safariservices/documentation/SafariServices"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Describing-a-bookmark-or-web-app",
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem/iconItemProvider",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem/title",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem/url"
+              ],
+              "title": "Describing a bookmark or web app"
+            },
+            {
+              "anchor": "Providing-information-about-a-web-app-to-the-system",
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem/getHomeScreenWebAppInfo(completionHandler:)",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenInfo",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFAddToHomeScreenActivityItem/getWebAppManifest(completionHandler:)"
+              ],
+              "title": "Providing information about a web app to the system"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SFAddToHomeScreenActivityItem"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFAddToHomeScreenActivityItem/title",
+          "value": "SFAddToHomeScreenActivityItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFAddToHomeScreenActivityItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFAddToHomeScreenActivityItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFAddToHomeScreenActivityItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFAddToHomeScreenActivityItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFAddToHomeScreenActivityItem~1url/title",
+          "value": "URL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFAddToHomeScreenActivityItem~1url/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "URL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFAddToHomeScreenActivityItem~1iconItemProvider/title",
+          "value": "iconItemProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFAddToHomeScreenActivityItem~1iconItemProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "iconItemProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKWebView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKWebView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSView",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFAddToHomeScreenActivityItem~1getWebAppManifest(completionHandler:)/title",
+          "value": "getWebAppManifestWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFAddToHomeScreenActivityItem~1getWebAppManifest(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getWebAppManifestWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFAddToHomeScreenActivityItem~1getHomeScreenWebAppInfo(completionHandler:)/title",
+          "value": "getHomeScreenWebAppInfoWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFAddToHomeScreenActivityItem~1getHomeScreenWebAppInfo(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getHomeScreenWebAppInfoWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFAddToHomeScreenInfo/title",
+          "value": "SFAddToHomeScreenInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFAddToHomeScreenInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFAddToHomeScreenInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFAddToHomeScreenInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFAddToHomeScreenInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIActivityViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIActivityViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFAddToHomeScreenActivityItem~1title/title",
+          "value": "title"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFAddToHomeScreenActivityItem~1title/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "title"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/sfaddtohomescreenactivityitem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/sfaddtohomescreenactivityitem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

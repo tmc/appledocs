@@ -1,0 +1,1459 @@
+{
+  "abstract": [
+    {
+      "text": "Transform vectors of temporal and spatial domain complex values to the frequency domain, and vice versa.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/discrete-fourier-transforms"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Discrete Fourier transforms"
+  },
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/discrete-cosine-transforms": {
+      "abstract": [
+        {
+          "text": "Transform vectors of temporal and spatial domain real values to the frequency domain, and vice versa.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/discrete-cosine-transforms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Discrete Cosine transforms",
+      "type": "topic",
+      "url": "/documentation/accelerate/discrete-cosine-transforms"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms": {
+      "abstract": [
+        {
+          "text": "Transform vectors and matrices of temporal and spatial domain complex values to the frequency domain, and vice versa.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Fast Fourier transforms",
+      "type": "topic",
+      "url": "/documentation/accelerate/fast-fourier-transforms"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/finding-the-component-frequencies-in-a-composite-sine-wave": {
+      "abstract": [
+        {
+          "text": "Use 1D fast Fourier transform to compute the frequency components of a signal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/finding-the-component-frequencies-in-a-composite-sine-wave",
+      "kind": "article",
+      "role": "article",
+      "title": "Finding the component frequencies in a composite sine wave",
+      "type": "topic",
+      "url": "/documentation/accelerate/finding-the-component-frequencies-in-a-composite-sine-wave"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/halftone-descreening-with-2d-fast-fourier-transform": {
+      "abstract": [
+        {
+          "text": "Reduce or remove periodic artifacts from images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/halftone-descreening-with-2d-fast-fourier-transform",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Halftone descreening with 2D fast Fourier transform",
+      "type": "topic",
+      "url": "/documentation/accelerate/halftone-descreening-with-2d-fast-fourier-transform"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-interleaved-complex-data": {
+      "abstract": [
+        {
+          "text": "Optimize discrete Fourier transform (DFT) performance with the vDSP interleaved DFT routines.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-interleaved-complex-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing Fourier transforms on interleaved-complex data",
+      "type": "topic",
+      "url": "/documentation/accelerate/performing-fourier-transforms-on-interleaved-complex-data"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-multiple-signals": {
+      "abstract": [
+        {
+          "text": "Use Accelerate’s multiple-signal fast Fourier transform (FFT) functions to transform multiple signals with a single function call.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-multiple-signals",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing Fourier Transforms on Multiple Signals",
+      "type": "topic",
+      "url": "/documentation/accelerate/performing-fourier-transforms-on-multiple-signals"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/reducing-spectral-leakage-with-windowing": {
+      "abstract": [
+        {
+          "text": "Multiply signal data by window sequence values when performing transforms with noninteger period signals.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/reducing-spectral-leakage-with-windowing",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing spectral leakage with windowing",
+      "type": "topic",
+      "url": "/documentation/accelerate/reducing-spectral-leakage-with-windowing"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/signal-extraction-from-noise": {
+      "abstract": [
+        {
+          "text": "Use Accelerate’s discrete cosine transform to remove noise from a signal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/signal-extraction-from-noise",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Signal extraction from noise",
+      "type": "topic",
+      "url": "/documentation/accelerate/signal-extraction-from-noise"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/understanding-data-packing-for-fourier-transforms": {
+      "abstract": [
+        {
+          "text": "Format source data for the vDSP Fourier functions, and interpret the results.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/understanding-data-packing-for-fourier-transforms",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding data packing for Fourier transforms",
+      "type": "topic",
+      "url": "/documentation/accelerate/understanding-data-packing-for-fourier-transforms"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/DFT": {
+      "abstract": [
+        {
+          "text": "A single- and double-precision discrete Fourier transform.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DFT"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/DFT",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DFT"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP.DFT",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/dft"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/DFTTransformType": {
+      "abstract": [
+        {
+          "text": "Discrete Fourier transform types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DFTTransformType"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/DFTTransformType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DFTTransformType"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP.DFTTransformType",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/dfttransformtype"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/DiscreteFourierTransform": {
+      "abstract": [
+        {
+          "text": "An object that provides forward and inverse discrete Fourier transforms on single- or double-precision collections of interleaved or split-complex data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DiscreteFourierTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/DiscreteFourierTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DiscreteFourierTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP.DiscreteFourierTransform",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/discretefouriertransform"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_DestroySetup": {
+      "abstract": [
+        {
+          "text": "Releases a single-precision setup structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_DestroySetup"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_DestroySetup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_DFT_DestroySetup",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_destroysetup"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_DestroySetupD": {
+      "abstract": [
+        {
+          "text": "Releases a double-precision setup structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_DestroySetupD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_DestroySetupD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_DFT_DestroySetupD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_destroysetupd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Direction": {
+      "abstract": [
+        {
+          "text": "An enumeration that specifies whether to perform a forward or inverse DFT.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_Direction"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Direction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_Direction"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP_DFT_Direction",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_direction"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Execute": {
+      "abstract": [
+        {
+          "text": "Calculates the discrete single-precision Fourier transform for a vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_Execute"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Execute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_DFT_Execute",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_execute"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_ExecuteD": {
+      "abstract": [
+        {
+          "text": "Calculates the discrete double-precision Fourier transform for a vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_ExecuteD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_ExecuteD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_DFT_ExecuteD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_executed"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_CreateSetup(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a setup structure that contains precalculated data for forward and inverse, single-precision interleaved discrete Fourier transform (DFT) functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_Interleaved_CreateSetup"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vDSP_DFT_Interleaved_Setup",
+          "text": "vDSP_DFT_Interleaved_Setup"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vDSP_Length",
+          "text": "vDSP_Length"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@vDSP_DFT_Direction",
+          "text": "vDSP_DFT_Direction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@vDSP_DFT_RealtoComplex",
+          "text": "vDSP_DFT_RealtoComplex"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vDSP_DFT_Interleaved_Setup",
+          "text": "vDSP_DFT_Interleaved_Setup"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_CreateSetup(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_Interleaved_CreateSetup"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP_DFT_Interleaved_CreateSetup(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_interleaved_createsetup(_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_CreateSetupD(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a setup structure that contains precalculated data for forward and inverse, double-precision interleaved discrete Fourier transform (DFT) functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_Interleaved_CreateSetupD"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vDSP_DFT_Interleaved_SetupD",
+          "text": "vDSP_DFT_Interleaved_SetupD"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vDSP_Length",
+          "text": "vDSP_Length"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@vDSP_DFT_Direction",
+          "text": "vDSP_DFT_Direction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@vDSP_DFT_RealtoComplex",
+          "text": "vDSP_DFT_RealtoComplex"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vDSP_DFT_Interleaved_SetupD",
+          "text": "vDSP_DFT_Interleaved_SetupD"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_CreateSetupD(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_Interleaved_CreateSetupD"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP_DFT_Interleaved_CreateSetupD(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_interleaved_createsetupd(_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_DestroySetup(_:)": {
+      "abstract": [
+        {
+          "text": "Releases a single-precision discrete Fourier transform (DFT) setup structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_Interleaved_DestroySetup"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vDSP_DFT_Interleaved_Setup",
+          "text": "vDSP_DFT_Interleaved_Setup"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_DestroySetup(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_Interleaved_DestroySetup"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP_DFT_Interleaved_DestroySetup(_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_interleaved_destroysetup(_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_DestroySetupD(_:)": {
+      "abstract": [
+        {
+          "text": "Releases a double-precision discrete Fourier transform (DFT) setup structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_Interleaved_DestroySetupD"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vDSP_DFT_Interleaved_SetupD",
+          "text": "vDSP_DFT_Interleaved_SetupD"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_DestroySetupD(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_Interleaved_DestroySetupD"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP_DFT_Interleaved_DestroySetupD(_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_interleaved_destroysetupd(_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_Execute(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Calculates the single-precision discrete Fourier transform (DFT)  for a vector of interleaved complex values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_Interleaved_Execute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vDSP_DFT_Interleaved_Setup",
+          "text": "vDSP_DFT_Interleaved_Setup"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@DSPComplex",
+          "text": "DSPComplex"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@DSPComplex",
+          "text": "DSPComplex"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_Execute(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_Interleaved_Execute"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP_DFT_Interleaved_Execute(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_interleaved_execute(_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_ExecuteD(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Calculates the double-precision discrete Fourier transform (DFT) for a vector of interleaved complex values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_Interleaved_ExecuteD"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vDSP_DFT_Interleaved_SetupD",
+          "text": "vDSP_DFT_Interleaved_SetupD"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@DSPDoubleComplex",
+          "text": "DSPDoubleComplex"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@DSPDoubleComplex",
+          "text": "DSPDoubleComplex"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_ExecuteD(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_Interleaved_ExecuteD"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP_DFT_Interleaved_ExecuteD(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_interleaved_executed(_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_Setup": {
+      "abstract": [
+        {
+          "text": "An opaque type that contains setup information for an interleaved single-precision discrete Fourier transform (DFT).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_Interleaved_Setup"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_Setup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_Interleaved_Setup"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP_DFT_Interleaved_Setup",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_interleaved_setup"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_SetupD": {
+      "abstract": [
+        {
+          "text": "An opaque type that contains setup information for an interleaved double-precision discrete Fourier transform (DFT).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_Interleaved_SetupD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_SetupD",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_Interleaved_SetupD"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP_DFT_Interleaved_SetupD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_interleaved_setupd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_RealtoComplex": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_RealtoComplex"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_RealtoComplex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_RealtoComplex"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP_DFT_RealtoComplex",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_realtocomplex"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Setup": {
+      "abstract": [
+        {
+          "text": "An opaque type that contains setup information for a single-precision discrete Fourier transform (DFT).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_Setup"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Setup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_Setup"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP_DFT_Setup",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_setup"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_SetupD": {
+      "abstract": [
+        {
+          "text": "An opaque type that contains setup information for a double-precision discrete Fourier transform (DFT).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_SetupD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_SetupD",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_SetupD"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP_DFT_SetupD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_setupd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zop_CreateSetup": {
+      "abstract": [
+        {
+          "text": "Returns a setup structure that contains precalculated data for forward and inverse, complex, single-precision DFT functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_zop_CreateSetup"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zop_CreateSetup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_DFT_zop_CreateSetup",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_zop_createsetup"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zop_CreateSetupD": {
+      "abstract": [
+        {
+          "text": "Returns a setup structure that contains precalculated data for forward and inverse, complex, double-precision DFT functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_zop_CreateSetupD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zop_CreateSetupD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_DFT_zop_CreateSetupD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_zop_createsetupd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zrop_CreateSetup": {
+      "abstract": [
+        {
+          "text": "Returns a setup structure that contains precalculated data for forward and inverse, real, single-precision DFT functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_zrop_CreateSetup"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zrop_CreateSetup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_DFT_zrop_CreateSetup",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_zrop_createsetup"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zrop_CreateSetupD": {
+      "abstract": [
+        {
+          "text": "Returns a setup structure that contains precalculated data for forward and inverse, real, double-precision DFT functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_zrop_CreateSetupD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zrop_CreateSetupD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_DFT_zrop_CreateSetupD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_zrop_createsetupd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library": {
+      "abstract": [
+        {
+          "text": "Perform basic arithmetic operations and common digital signal processing (DSP) routines on large vectors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vDSP",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp-library"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Fourier-and-Cosine-Transforms",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/understanding-data-packing-for-fourier-transforms",
+        "doc://com.apple.accelerate/documentation/Accelerate/finding-the-component-frequencies-in-a-composite-sine-wave",
+        "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-interleaved-complex-data",
+        "doc://com.apple.accelerate/documentation/Accelerate/reducing-spectral-leakage-with-windowing",
+        "doc://com.apple.accelerate/documentation/Accelerate/signal-extraction-from-noise",
+        "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-multiple-signals",
+        "doc://com.apple.accelerate/documentation/Accelerate/halftone-descreening-with-2d-fast-fourier-transform",
+        "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms",
+        "doc://com.apple.accelerate/documentation/Accelerate/discrete-cosine-transforms"
+      ],
+      "title": "Fourier and Cosine Transforms"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Objects-that-simplify-discrete-Fourier-transforms",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/DiscreteFourierTransform",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/DFTTransformType",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/DFT"
+      ],
+      "title": "Objects that simplify discrete Fourier transforms"
+    },
+    {
+      "anchor": "Interleaved-discrete-Fourier-transform-functions",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-interleaved-complex-data",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_CreateSetup(_:_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_CreateSetupD(_:_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_Execute(_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_ExecuteD(_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_DestroySetup(_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_DestroySetupD(_:)"
+      ],
+      "title": "Interleaved discrete Fourier transform functions"
+    },
+    {
+      "anchor": "Real-discrete-Fourier-transform-setup",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zrop_CreateSetup",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zrop_CreateSetupD"
+      ],
+      "title": "Real discrete Fourier transform setup"
+    },
+    {
+      "anchor": "Complex-discrete-Fourier-transform-setup",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zop_CreateSetup",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zop_CreateSetupD"
+      ],
+      "title": "Complex discrete Fourier transform setup"
+    },
+    {
+      "anchor": "Functions-to-perform-discrete-Fourier-transforms",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Execute",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_ExecuteD"
+      ],
+      "title": "Functions to perform discrete Fourier transforms"
+    },
+    {
+      "anchor": "Discrete-Fourier-transform-cleanup",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_DestroySetup",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_DestroySetupD"
+      ],
+      "title": "Discrete Fourier transform cleanup"
+    },
+    {
+      "anchor": "Data-types",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_Setup",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Interleaved_SetupD",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Setup",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_SetupD"
+      ],
+      "title": "Data types"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_Direction"
+      ],
+      "title": "Constants"
+    },
+    {
+      "anchor": "Enumerations",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_RealtoComplex"
+      ],
+      "title": "Enumerations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_SetupD/title",
+          "value": "vDSP_DFT_SetupD"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_SetupD/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_DFT_SetupD"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_SetupD/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_DFT_SetupD"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Interleaved_ExecuteD(_:_:_:)/title",
+          "value": "vDSP_DFT_Interleaved_ExecuteD"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Interleaved_ExecuteD(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_DFT_Interleaved_ExecuteD"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Interleaved_SetupD/title",
+          "value": "vDSP_DFT_Interleaved_SetupD"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Interleaved_SetupD/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_DFT_Interleaved_SetupD"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Interleaved_SetupD/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_DFT_Interleaved_SetupD"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Setup/title",
+          "value": "vDSP_DFT_Setup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Setup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_DFT_Setup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Setup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_DFT_Setup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Interleaved_DestroySetupD(_:)/title",
+          "value": "vDSP_DFT_Interleaved_DestroySetupD"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Interleaved_DestroySetupD(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_DFT_Interleaved_DestroySetupD"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Interleaved_Setup/title",
+          "value": "vDSP_DFT_Interleaved_Setup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Interleaved_Setup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_DFT_Interleaved_Setup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Interleaved_Setup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_DFT_Interleaved_Setup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Interleaved_CreateSetupD(_:_:_:_:)/title",
+          "value": "vDSP_DFT_Interleaved_CreateSetupD"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Interleaved_CreateSetupD(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_DFT_Interleaved_CreateSetupD"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Interleaved_CreateSetup(_:_:_:_:)/title",
+          "value": "vDSP_DFT_Interleaved_CreateSetup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Interleaved_CreateSetup(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_DFT_Interleaved_CreateSetup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Interleaved_DestroySetup(_:)/title",
+          "value": "vDSP_DFT_Interleaved_DestroySetup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Interleaved_DestroySetup(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_DFT_Interleaved_DestroySetup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_RealtoComplex/title",
+          "value": "vDSP_DFT_RealtoComplex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_RealtoComplex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_DFT_RealtoComplex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_RealtoComplex/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_DFT_RealtoComplex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Interleaved_Execute(_:_:_:)/title",
+          "value": "vDSP_DFT_Interleaved_Execute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Interleaved_Execute(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_DFT_Interleaved_Execute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Direction/title",
+          "value": "vDSP_DFT_Direction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Direction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_DFT_Direction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_DFT_Direction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_DFT_Direction"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,934 @@
+{
+  "abstract": [
+    {
+      "text": "Enable people to move or duplicate items by issuing Copy and Paste commands.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Clipboard"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Clipboard"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When people issue standard Copy and Cut commands, they expect to move",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "items to the system’s Clipboard, from which they can paste the items into",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "another place in the same app or into another app. Your app can participate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in this activity if you add view modifiers that indicate how to respond to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the standard commands.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "clipboard-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your copy and paste modifiers, provide or accept types that conform to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/Transferable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol, or that inherit from the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When possible, prefer using transferable items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "clipboard-hero": {
+      "alt": null,
+      "identifier": "clipboard-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0c2b0415a2783976458448b003e0705f/clipboard-hero@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Drag-and-drop": {
+      "abstract": [
+        {
+          "text": "Enable people to move or duplicate items by dragging them from one location to another.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Drag-and-drop",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Drag and drop",
+      "type": "topic",
+      "url": "/documentation/swiftui/drag-and-drop"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Focus": {
+      "abstract": [
+        {
+          "text": "Identify and control which visible object responds to user interaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Focus",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Focus",
+      "type": "topic",
+      "url": "/documentation/swiftui/focus"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Gestures": {
+      "abstract": [
+        {
+          "text": "Define interactions from taps, clicks, and swipes to fine-grained gestures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Gestures",
+      "type": "topic",
+      "url": "/documentation/swiftui/gestures"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Input-events": {
+      "abstract": [
+        {
+          "text": "Respond to input from a hardware device, like a keyboard or a Touch Bar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Input-events",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Input events",
+      "type": "topic",
+      "url": "/documentation/swiftui/input-events"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/System-events": {
+      "abstract": [
+        {
+          "text": "React to system events, like opening a URL.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/System-events",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "System events",
+      "type": "topic",
+      "url": "/documentation/swiftui/system-events"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/copyable(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies a list of items to copy in response to the system’s Copy",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "command.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/copyable(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copyable(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/copyable(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/cuttable(for:action:)": {
+      "abstract": [
+        {
+          "text": "Specifies an action that moves items to the Clipboard in response to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the system’s Cut command.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cuttable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/cuttable(for:action:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cuttable(for:action:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/cuttable(for:action:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onCopyCommand(perform:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform in response to the system’s Copy command.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onCopyCommand"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSItemProvider",
+          "text": "NSItemProvider"
+        },
+        {
+          "kind": "text",
+          "text": "])?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onCopyCommand(perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onCopyCommand(perform:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/oncopycommand(perform:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onCutCommand(perform:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform in response to the system’s Cut command.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onCutCommand"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSItemProvider",
+          "text": "NSItemProvider"
+        },
+        {
+          "kind": "text",
+          "text": "])?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onCutCommand(perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onCutCommand(perform:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/oncutcommand(perform:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onPasteCommand(of:perform:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform in response to the system’s Paste command.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onPasteCommand"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onPasteCommand(of:perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onPasteCommand(of:perform:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/onpastecommand(of:perform:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onPasteCommand(of:validator:perform:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform in response to the system’s Paste command with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "items that you validate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onPasteCommand"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "validator"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onPasteCommand(of:validator:perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onPasteCommand(of:validator:perform:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/onpastecommand(of:validator:perform:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/pasteDestination(for:action:validator:)": {
+      "abstract": [
+        {
+          "text": "Specifies an action that adds validated items to a view in response to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the system’s Paste command.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pasteDestination"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "validator"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/pasteDestination(for:action:validator:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pasteDestination(for:action:validator:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/pastedestination(for:action:validator:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreTransferable/Transferable": {
+      "abstract": [
+        {
+          "text": "A protocol that describes how a type interacts with transport APIs such as drag and drop or copy and paste.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/Transferable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transferable",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/Transferable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider": {
+      "abstract": [
+        {
+          "text": "An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSItemProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSItemProvider",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Event-handling",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Gestures",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Input-events",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Drag-and-drop",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Focus",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/System-events"
+      ],
+      "title": "Event handling"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Copying-transferable-items",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/copyable(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/cuttable(for:action:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/pasteDestination(for:action:validator:)"
+      ],
+      "title": "Copying transferable items"
+    },
+    {
+      "anchor": "Copying-items-using-item-providers",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onCopyCommand(perform:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onCutCommand(perform:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onPasteCommand(of:perform:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onPasteCommand(of:validator:perform:)"
+      ],
+      "title": "Copying items using item providers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/clipboard"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,928 @@
+{
+  "abstract": [
+    {
+      "text": "A formatter that creates string representations of time intervals.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/dates_and_times"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1410635,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSDateIntervalFormatter",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "DateIntervalFormatter"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.10",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "DateIntervalFormatter"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "DateIntervalFormatter"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/formatter",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSFormatter",
+              "text": "Formatter"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object creates user-readable strings from pairs of dates. Use a date interval formatter to create user-readable strings of the form ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "<start>",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "code": " - ",
+              "type": "codeVoice"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "<end>",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " for your app’s interface, where ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "<start>",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "<end>",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " are date values that you supply. The formatter uses locale and language information, along with custom formatting options, to define the content of the resulting string. You can specify different styles for the date and time information in each date value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use this class, create an instance, configure its properties, and call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1418368-string",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to generate a string. The properties of this class let you configure the calendar and specify the style to apply to date and time values. Given a current date of January 16, 2015, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter#1661547",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " shows how to configure a formatter object and generate the string “1/16/15 - 1/17/15”. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let formatter = DateIntervalFormatter()",
+            "formatter.dateStyle = .short",
+            "formatter.timeStyle = .none",
+            "",
+            "// Create two dates that are exactly 1 day apart.",
+            "let startDate = Date()",
+            "let endDate = Date(timeInterval: 86400, since: startDate)",
+            "",
+            "// Use the configured formatter to generate the string.",
+            "let outputString = formatter.string(from: startDate, to: endDate)"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Configuring a formatter object",
+                "type": "text"
+              }
+            ],
+            "anchor": "2556957",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Always set to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1409519-datestyle",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1415655-timestyle",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " properties to appropriate values before generating any strings. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1418368-string",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method may be called safely from any thread of your app. It is also safe to share a single instance of this class from multiple threads, with the caveat that you should not change the configuration of the object while another thread is using it to generate a string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In Swift, you can use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/date/intervalformatstyle",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " rather than ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": ". The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " API offers a declarative idiom for customizing the formatting of various types. Also, Foundation caches identical ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " instances, so you don’t need to pass them around your app, or risk wasting memory with duplicate formatters.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Formatting",
+      "type": "topic",
+      "url": "/documentation/foundation/data_formatting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/intervalformatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/intervalformatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date.IntervalFormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/date/intervalformatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/datecomponentsformatter": {
+      "abstract": [
+        {
+          "text": "A formatter that creates string representations of quantities of time. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "DateComponentsFormatter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/datecomponentsformatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DateComponentsFormatter",
+      "type": "topic",
+      "url": "/documentation/foundation/datecomponentsformatter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateformatter": {
+      "abstract": [
+        {
+          "text": "A formatter that converts between dates and their textual representations. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "DateFormatter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateformatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DateFormatter",
+      "type": "topic",
+      "url": "/documentation/foundation/dateformatter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateintervalformatter": {
+      "abstract": [
+        {
+          "text": "A formatter that creates string representations of time intervals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "DateIntervalFormatter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DateIntervalFormatter",
+      "type": "topic",
+      "url": "/documentation/foundation/dateintervalformatter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateintervalformatter#1661547": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter#1661547",
+      "kind": "article",
+      "role": "task",
+      "title": "Configuring the Formatter Options",
+      "type": "section",
+      "url": "/documentation/foundation/dateintervalformatter#1661547"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateintervalformatter#2556957": {
+      "abstract": [
+        {
+          "text": "Configuring a formatter object",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter#2556957",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/dateintervalformatter#2556957"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1407373-datetemplate": {
+      "abstract": [
+        {
+          "text": "The template for formatting one date and time value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "dateTemplate"
+        },
+        {
+          "kind": "text",
+          "text": ": String!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1407373-datetemplate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dateTemplate",
+      "type": "topic",
+      "url": "/documentation/foundation/dateintervalformatter/1407373-datetemplate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1409519-datestyle": {
+      "abstract": [
+        {
+          "text": "The style to use when formatting day, month, and year information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "dateStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": DateIntervalFormatter.Style"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1409519-datestyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dateStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/dateintervalformatter/1409519-datestyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1409992-locale": {
+      "abstract": [
+        {
+          "text": "The locale to use when formatting date and time values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1409992-locale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "locale",
+      "type": "topic",
+      "url": "/documentation/foundation/dateintervalformatter/1409992-locale"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1410228-timezone": {
+      "abstract": [
+        {
+          "text": "The time zone with which to specify time values. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeZone"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeZone!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1410228-timezone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeZone",
+      "type": "topic",
+      "url": "/documentation/foundation/dateintervalformatter/1410228-timezone"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1415655-timestyle": {
+      "abstract": [
+        {
+          "text": "The style to use when formatting hour, minute, and second information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": DateIntervalFormatter.Style"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1415655-timestyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/dateintervalformatter/1415655-timestyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1417984-calendar": {
+      "abstract": [
+        {
+          "text": "The calendar to use for date values. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "calendar"
+        },
+        {
+          "kind": "text",
+          "text": ": Calendar!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1417984-calendar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "calendar",
+      "type": "topic",
+      "url": "/documentation/foundation/dateintervalformatter/1417984-calendar"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1418368-string": {
+      "abstract": [
+        {
+          "text": "Returns a formatted string based on the specified start and end dates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": Date, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": Date) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1418368-string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "string(from:to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/dateintervalformatter/1418368-string"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1642848-string": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": DateInterval) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1642848-string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "string(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/dateintervalformatter/1642848-string"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/style": {
+      "abstract": [
+        {
+          "text": "Formatting styles for individual date and time values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "DateIntervalFormatter.Style"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/style",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DateIntervalFormatter.Style",
+      "type": "topic",
+      "url": "/documentation/foundation/dateintervalformatter/style"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dates_and_times": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dates and Times",
+      "type": "topic",
+      "url": "/documentation/foundation/dates_and_times"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Formatter",
+      "type": "topic",
+      "url": "/documentation/foundation/formatter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/iso8601dateformatter": {
+      "abstract": [
+        {
+          "text": "A formatter that converts between dates and their ISO 8601 string representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "ISO8601DateFormatter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/iso8601dateformatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ISO8601DateFormatter",
+      "type": "topic",
+      "url": "/documentation/foundation/iso8601dateformatter"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/formatter"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/dateformatter",
+        "doc://com.apple.documentation/documentation/foundation/datecomponentsformatter",
+        "doc://com.apple.documentation/documentation/foundation/iso8601dateformatter"
+      ],
+      "title": "Date Formatting"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1661524",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1418368-string"
+      ],
+      "kind": "taskGroup",
+      "title": "Formatting a String"
+    },
+    {
+      "anchor": "1661547",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1409519-datestyle",
+        "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1415655-timestyle",
+        "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1407373-datetemplate",
+        "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1417984-calendar",
+        "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1409992-locale",
+        "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1410228-timezone"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring the Formatter Options"
+    },
+    {
+      "anchor": "1674001",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/style"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "2855551",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/dateintervalformatter/1642848-string"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsdateintervalformatter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/dateintervalformatter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

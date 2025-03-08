@@ -1,0 +1,1122 @@
+{
+  "abstract": [
+    {
+      "text": "Import a reference object file and track a real-world object in your visionOS app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS",
+        "doc://com.apple.visionOS/documentation/visionOS/implementing-object-tracking-in-your-visionOS-app"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-arkit"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using a reference object with ARKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use reference objects in your visionOS app to track real-world objects in a person’s surroundings.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "With this capability, you can attach virtual content to those real-world objects to create engaging experiences.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, with a reference object, you can track a household item and add virtual content to it, like highlighting a part and showing how to fix it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a reference object, first, you obtain a 3D model asset, train a machine learning model with that 3D model asset in Create ML, and then import the resulting reference object file into your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can use ARKit to import the reference object file, track objects and handle changes to the scene, and adjust the object-tracking properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about creating a reference object file, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.visionOS/documentation/visionOS/implementing-object-tracking-in-your-visionOS-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Import-the-reference-object-file",
+          "level": 3,
+          "text": "Import the reference object file",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit offers two methods for importing a reference object file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the first method, you include the reference object file in your Xcode project, and your app loads it directly from the bundle.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the second, the URL-based loader allows your app to load reference object files from other sources, like a website download.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/visionos/exploring_object_tracking_with_arkit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/arkit/objecttrackingprovider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to track your reference object in a spatial location and receive ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/arkit/objectanchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " updates.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "ObjectTrackingProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " gets the live position and orientation of the real-world object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To receive this data and begin tracking, configure an ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/arkit/arkitsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func configureAndRunObjectTracking() async -> ObjectTrackingProvider? {",
+            "    let referenceObjects = referenceObjectLoader.enabledReferenceObjects",
+            "",
+            "    guard !referenceObjects.isEmpty else {",
+            "        fatalError(\"No reference objects to start tracking\")",
+            "    }",
+            "",
+            "    // Run a new provider each time when entering the immersive space.",
+            "    let objectTracking = ObjectTrackingProvider(referenceObjects: referenceObjects)",
+            "    do {",
+            "        // Begin an `ARKitSession` with the provider.",
+            "        try await arkitSession.run([objectTracking])",
+            "    } catch {",
+            "        print(\"Error: \\(error)\")",
+            "        return nil",
+            "    }",
+            "    self.objectTracking = objectTracking",
+            "    return objectTracking",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-changes-in-the-scene",
+          "level": 3,
+          "text": "Handle changes in the scene",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As your app tracks the reference object file, ARKit sends asynchronous updates when it detects changes in a person’s surroundings.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Your app needs to account for those changes and update the scene accordingly.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "anchor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents the position of your real-world object within Apple Vision Pro.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/arkit/anchorupdate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure provides events about the anchors, including adding a new anchor, removing an anchor, and updates on an anchor’s pose and tracking state.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can place visualizations at those anchors to render content on your real-world objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Task {",
+            "    let objectTracking = await appState.configureAndRunObjectTracking()",
+            "    guard let objectTracking else {",
+            "        return",
+            "    }",
+            "    ",
+            "    // Wait for object anchor updates.",
+            "    for await anchorUpdate in objectTracking.anchorUpdates {",
+            "        let anchor = anchorUpdate.anchor",
+            "        let referenceObject = anchor.referenceObject",
+            "        ",
+            "        switch anchorUpdate.event {",
+            "        case .added: ",
+            "            // The system detects a new object anchor.",
+            "            print(\"Added: \\(anchor)\")",
+            "        case .updated:",
+            "            if anchor.isTracked {",
+            "                // The update for the detected anchor.",
+            "                print(\"Updated tracked anchor: \\(anchor)\")",
+            "            } else {",
+            "                // The system is no longer tracking the object anchor.",
+            "                print(\"Anchor is untracked: \\(anchor)\")",
+            "            }",
+            "        case .removed: ",
+            "            // The system removed the object anchor.",
+            "            print(\"Removed: \\(anchor)\")",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Adjust-the-object-tracking-properties-for-your-app",
+          "level": 3,
+          "text": "Adjust the object-tracking properties for your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit offers ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/bundleresources/entitlements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for enhanced platform control to create powerful spatial experiences.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Specifically for object tracking, you can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_arkit_object-tracking-parameter-adjustment_allow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to track more objects with a higher frequency.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The object-tracking properties are adjustable only for Enterprise apps. For more information on the Enterprise program, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/programs/enterprise/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the entitlement within your app, select your Xcode project and click the Signing & Capabilities tab.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Click the Add Capability button (+), scroll to the Object Tracking Parameter Adjustment option, and double-click it to add it to your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This creates an entitlement file with the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.developer.arkit.object-tracking-parameter-adjustment.allow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "capabilities",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on how to add capabilities in your app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/xcode/adding-capabilities-to-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "key",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, you need to configure the parameters. Start by initializing a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/arkit/objecttrackingprovider/4380078-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to configure the object tracking.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var trackingConfiguration = ObjectTrackingProvider.TrackingConfiguration()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With a tracking configuration in place, you can optimize the detection parameters for your app by adjusting the following properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The maximum number of instances that you can track across different object types at the same time.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "https://developer.apple.com/documentation/arkit/objecttrackingprovider/trackingconfiguration/4380072-maximumtrackableinstances",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The maximum number of instances of each reference object type. The default value is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "https://developer.apple.com/documentation/arkit/objecttrackingprovider/trackingconfiguration/4380071-maximuminstancesperreferenceobje",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The frequency for detecting objects to track.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "https://developer.apple.com/documentation/arkit/objecttrackingprovider/trackingconfiguration/4380069-detectionrate",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The frequency for tracking an object while it remains stationary.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "https://developer.apple.com/documentation/arkit/objecttrackingprovider/trackingconfiguration/4380074-stationaryobjecttrackingrate",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The frequency for tracking an object while it’s in motion.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "https://developer.apple.com/documentation/arkit/objecttrackingprovider/trackingconfiguration/4380073-movingobjecttrackingrate",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "code": "TrackingConfiguration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to adjust the values of these properties in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "trackingConfiguration.maximumInstancesPerReferenceObject = 2"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an ",
+              "type": "text"
+            },
+            {
+              "code": "ObjectTrackingProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", configuring both your reference objects and the properties for adjustment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "dataProvider = ObjectTrackingProvider(referenceObjects: referenceObjects,",
+            "                                      trackingConfiguration: trackingConfiguration)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin tracking, create an ",
+              "type": "text"
+            },
+            {
+              "code": "ARKitSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with your ",
+              "type": "text"
+            },
+            {
+              "code": "ObjectTrackingProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do {",
+            "    // Begin an `ARKitSession` with the provider.",
+            "    try await arkitSession.run([dataProvider])",
+            "} catch {",
+            "    print(\"Error: \\(error)\")",
+            "    return nil",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The object-tracking parameter adjustment key doesn’t allow you to change the maximum of 10 reference objects that the system can detect at once.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "capabilities": {
+      "alt": "An Xcode screenshot of the Capabilities library dialog with the Object Tracking Parameter Adjustment option selected.",
+      "identifier": "capabilities",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7aaf40e61871a5623726a9361cab6ecb/capabilities@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1774c34fddb26a7dc7fa8324c0e852f5/capabilities~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/implementing-object-tracking-in-your-visionOS-app": {
+      "abstract": [
+        {
+          "text": "Create engaging interactions by training models to recognize and track real-world objects in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/implementing-object-tracking-in-your-visionOS-app",
+      "images": [
+        {
+          "identifier": "implementing-object-tracking-in-your-visionOS-app.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing object tracking in your visionOS app",
+      "type": "topic",
+      "url": "/documentation/visionos/implementing-object-tracking-in-your-visionos-app"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-reality-composer-pro": {
+      "abstract": [
+        {
+          "text": "Import a reference object file to track a real-world object in your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-reality-composer-pro",
+      "kind": "article",
+      "role": "article",
+      "title": "Using a reference object with Reality Composer Pro",
+      "type": "topic",
+      "url": "/documentation/visionos/using-a-reference-object-with-reality-composer-pro"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-realitykit": {
+      "abstract": [
+        {
+          "text": "Import a reference object file to track a real-world object in your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-realitykit",
+      "kind": "article",
+      "role": "article",
+      "title": "Using a reference object with RealityKit",
+      "type": "topic",
+      "url": "/documentation/visionos/using-a-reference-object-with-realitykit"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "https://developer.apple.com/documentation/arkit/anchorupdate": {
+      "identifier": "https://developer.apple.com/documentation/arkit/anchorupdate",
+      "title": "AnchorUpdate",
+      "titleInlineContent": [
+        {
+          "code": "AnchorUpdate",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/arkit/anchorupdate"
+    },
+    "https://developer.apple.com/documentation/arkit/arkitsession": {
+      "identifier": "https://developer.apple.com/documentation/arkit/arkitsession",
+      "title": "ARKitSession",
+      "titleInlineContent": [
+        {
+          "code": "ARKitSession",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/arkit/arkitsession"
+    },
+    "https://developer.apple.com/documentation/arkit/objectanchor": {
+      "identifier": "https://developer.apple.com/documentation/arkit/objectanchor",
+      "title": "ObjectAnchor",
+      "titleInlineContent": [
+        {
+          "code": "ObjectAnchor",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/arkit/objectanchor"
+    },
+    "https://developer.apple.com/documentation/arkit/objecttrackingprovider": {
+      "identifier": "https://developer.apple.com/documentation/arkit/objecttrackingprovider",
+      "title": "ObjectTrackingProvider",
+      "titleInlineContent": [
+        {
+          "code": "ObjectTrackingProvider",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/arkit/objecttrackingprovider"
+    },
+    "https://developer.apple.com/documentation/arkit/objecttrackingprovider/4380078-init": {
+      "identifier": "https://developer.apple.com/documentation/arkit/objecttrackingprovider/4380078-init",
+      "title": "TrackingConfiguation",
+      "titleInlineContent": [
+        {
+          "code": "TrackingConfiguation",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/arkit/objecttrackingprovider/4380078-init"
+    },
+    "https://developer.apple.com/documentation/arkit/objecttrackingprovider/trackingconfiguration/4380069-detectionrate": {
+      "identifier": "https://developer.apple.com/documentation/arkit/objecttrackingprovider/trackingconfiguration/4380069-detectionrate",
+      "title": "detectionRate",
+      "titleInlineContent": [
+        {
+          "code": "detectionRate",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/arkit/objecttrackingprovider/trackingconfiguration/4380069-detectionrate"
+    },
+    "https://developer.apple.com/documentation/arkit/objecttrackingprovider/trackingconfiguration/4380071-maximuminstancesperreferenceobje": {
+      "identifier": "https://developer.apple.com/documentation/arkit/objecttrackingprovider/trackingconfiguration/4380071-maximuminstancesperreferenceobje",
+      "title": "maximumInstancesPerReferenceObject",
+      "titleInlineContent": [
+        {
+          "code": "maximumInstancesPerReferenceObject",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/arkit/objecttrackingprovider/trackingconfiguration/4380071-maximuminstancesperreferenceobje"
+    },
+    "https://developer.apple.com/documentation/arkit/objecttrackingprovider/trackingconfiguration/4380072-maximumtrackableinstances": {
+      "identifier": "https://developer.apple.com/documentation/arkit/objecttrackingprovider/trackingconfiguration/4380072-maximumtrackableinstances",
+      "title": "maximumTrackableInstances",
+      "titleInlineContent": [
+        {
+          "code": "maximumTrackableInstances",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/arkit/objecttrackingprovider/trackingconfiguration/4380072-maximumtrackableinstances"
+    },
+    "https://developer.apple.com/documentation/arkit/objecttrackingprovider/trackingconfiguration/4380073-movingobjecttrackingrate": {
+      "identifier": "https://developer.apple.com/documentation/arkit/objecttrackingprovider/trackingconfiguration/4380073-movingobjecttrackingrate",
+      "title": "movingObjectTrackingRate",
+      "titleInlineContent": [
+        {
+          "code": "movingObjectTrackingRate",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/arkit/objecttrackingprovider/trackingconfiguration/4380073-movingobjecttrackingrate"
+    },
+    "https://developer.apple.com/documentation/arkit/objecttrackingprovider/trackingconfiguration/4380074-stationaryobjecttrackingrate": {
+      "identifier": "https://developer.apple.com/documentation/arkit/objecttrackingprovider/trackingconfiguration/4380074-stationaryobjecttrackingrate",
+      "title": "stationaryObjectTrackingRate",
+      "titleInlineContent": [
+        {
+          "code": "stationaryObjectTrackingRate",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/arkit/objecttrackingprovider/trackingconfiguration/4380074-stationaryobjecttrackingrate"
+    },
+    "https://developer.apple.com/documentation/bundleresources/entitlements": {
+      "identifier": "https://developer.apple.com/documentation/bundleresources/entitlements",
+      "title": "Entitlements",
+      "titleInlineContent": [
+        {
+          "code": "Entitlements",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/bundleresources/entitlements"
+    },
+    "https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_arkit_object-tracking-parameter-adjustment_allow": {
+      "identifier": "https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_arkit_object-tracking-parameter-adjustment_allow",
+      "title": "Object-tracking parameter adjustment",
+      "titleInlineContent": [
+        {
+          "code": "Object-tracking parameter adjustment",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_arkit_object-tracking-parameter-adjustment_allow"
+    },
+    "https://developer.apple.com/documentation/visionos/exploring_object_tracking_with_arkit": {
+      "identifier": "https://developer.apple.com/documentation/visionos/exploring_object_tracking_with_arkit",
+      "title": "Exploring object tracking with ARKit",
+      "titleInlineContent": [
+        {
+          "text": "Exploring object tracking with ARKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/visionos/exploring_object_tracking_with_arkit"
+    },
+    "https://developer.apple.com/documentation/xcode/adding-capabilities-to-your-app": {
+      "identifier": "https://developer.apple.com/documentation/xcode/adding-capabilities-to-your-app",
+      "title": "Adding capabilities to your app",
+      "titleInlineContent": [
+        {
+          "text": "Adding capabilities to your app",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/xcode/adding-capabilities-to-your-app"
+    },
+    "https://developer.apple.com/programs/enterprise/": {
+      "identifier": "https://developer.apple.com/programs/enterprise/",
+      "title": "Apple Developer Enterprise Program",
+      "titleInlineContent": [
+        {
+          "text": "Apple Developer Enterprise Program",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/programs/enterprise/"
+    },
+    "implementing-object-tracking-in-your-visionOS-app.png": {
+      "alt": "An illustration of a globe within a bounding box.",
+      "identifier": "implementing-object-tracking-in-your-visionOS-app.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49a7917ef036b2daf610527590ce056d/implementing-object-tracking-in-your-visionOS-app@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3e16e39548ccdcc1d5a21b2f18755c7b/implementing-object-tracking-in-your-visionOS-app~dark@2x.png"
+        }
+      ]
+    },
+    "key": {
+      "alt": "An Xcode screenshot showing the com.apple.developer.arkit.object-tracking-parameter-adjustment.allow key selected in the Signing & Capabilities pane.",
+      "identifier": "key",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4c9655dccb89c6e9039bc0309c7739e2/key@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7169fbbef64089fc745f39fc77880ac3/key~dark@2x.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Object-tracking-within-an-app",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-reality-composer-pro",
+        "doc://com.apple.visionOS/documentation/visionOS/using-a-reference-object-with-realitykit"
+      ],
+      "title": "Object tracking within an app"
+    }
+  ]
+}

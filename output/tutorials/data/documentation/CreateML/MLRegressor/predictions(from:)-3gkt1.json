@@ -1,0 +1,637 @@
+{
+  "abstract": [
+    {
+      "text": "Predicts the target value from the provided data.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use DataFrame instead of MLDataTable.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateML/documentation/CreateML",
+        "doc://com.apple.CreateML/documentation/CreateML/MLRegressor"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/predictions(from:)-3gkt1"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:8CreateML11MLRegressorO11predictions4fromAA15MLUntypedColumnVAA11MLDataTableV_tKF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "predictions"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "from"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:8CreateML11MLDataTableV",
+        "text": "MLDataTable"
+      },
+      {
+        "kind": "text",
+        "text": ") "
+      },
+      {
+        "kind": "keyword",
+        "text": "throws"
+      },
+      {
+        "kind": "text",
+        "text": " -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:8CreateML15MLUntypedColumnV",
+        "text": "MLUntypedColumn"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Create ML"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "13.0",
+        "introducedAt": "10.14",
+        "message": "Use DataFrame instead of MLDataTable.",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "predictions(from:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "predictions"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "from"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "data"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:8CreateML11MLDataTableV",
+              "text": "MLDataTable"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            },
+            {
+              "kind": "text",
+              "text": " -> "
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:8CreateML15MLUntypedColumnV",
+              "text": "MLUntypedColumn"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The data you want the model to make predictions from.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "data"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A column of values predicted by the regressor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the supplied data doesn’t match the expected columns (noted by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/featureColumns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property),",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this method throws an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLCreateError/type(reason:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateML/documentation/CreateML": {
+      "abstract": [
+        {
+          "text": "Create machine learning models for use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML",
+      "type": "topic",
+      "url": "/documentation/createml"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLCreateError/type(reason:)": {
+      "abstract": [
+        {
+          "text": "An error that indicates a missing or incorrect type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "reason"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLCreateError/type(reason:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLCreateError.type(reason:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlcreateerror/type(reason:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable": {
+      "abstract": [
+        {
+          "text": "A table of data for training or evaluating a machine learning model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLDataTable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLDataTable",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRegressor": {
+      "abstract": [
+        {
+          "text": "A model you train to estimate continuous values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLRegressor"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLRegressor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLRegressor",
+      "type": "topic",
+      "url": "/documentation/createml/mlregressor"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/featureColumns": {
+      "abstract": [
+        {
+          "text": "The names of the columns you selected at initialization to train the regressor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "featureColumns"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/featureColumns",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "featureColumns",
+      "type": "topic",
+      "url": "/documentation/createml/mlregressor/featurecolumns"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/predictions(from:)-3gkt1": {
+      "abstract": [
+        {
+          "text": "Predicts the target value from the provided data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predictions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML15MLUntypedColumnV",
+          "text": "MLUntypedColumn"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/predictions(from:)-3gkt1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "predictions(from:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlregressor/predictions(from:)-3gkt1"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/predictions(from:)-6e6ti": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predictions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabularData0B5FrameV",
+          "text": "DataFrame"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabularData9AnyColumnV",
+          "text": "AnyColumn"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/predictions(from:)-6e6ti",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "predictions(from:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlregressor/predictions(from:)-6e6ti"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn": {
+      "abstract": [
+        {
+          "text": "A column of untyped values in a data table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLUntypedColumn"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLUntypedColumn",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLUntypedColumn"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLUntypedColumn",
+      "type": "topic",
+      "url": "/documentation/createml/mluntypedcolumn"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Testing-a-regressor",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/predictions(from:)-6e6ti"
+      ],
+      "title": "Testing a regressor"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createml/mlregressor/predictions(from:)-3gkt1"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

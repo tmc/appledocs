@@ -1,0 +1,1972 @@
+{
+  "abstract": [
+    {
+      "text": "Informs the table view that the number of records in its data source has changed.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableView"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSTableView/noteNumberOfRowsChanged()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSTableView(im)noteNumberOfRowsChanged",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "noteNumberOfRowsChanged"
+      },
+      {
+        "kind": "text",
+        "text": "()"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "noteNumberOfRowsChanged"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "noteNumberOfRowsChanged()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "noteNumberOfRowsChanged"
+            },
+            {
+              "kind": "text",
+              "text": "()"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method allows the table view to update the scrollers in its scroll view without actually reloading data into the table view. It’s useful for a data source that continually receives data in the background over a period of time, in which case the table view can remain responsive to the user while the data is received.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol specification for information on the messages an ",
+              "type": "text"
+            },
+            {
+              "code": "NSTableView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object sends to its data source.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When using ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "-based table views this method should be avoided. The table will query the data source for the new number of rows, and properly insert (or remove) rows at the end of the table as necessary with an animation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "When using ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCell",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "-based table views this method tells the table that there may be more (or less) rows available and to reload state based on that information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "This method does not work for ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", and should not be called.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCell": {
+      "abstract": [
+        {
+          "text": "A mechanism for displaying text or images in a view object without the overhead of a full ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " subclass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCell"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCell"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCell",
+      "type": "topic",
+      "url": "/documentation/appkit/nscell"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOutlineView": {
+      "abstract": [
+        {
+          "text": "A view that uses a row-and-column format to display hierarchical data like directories and files that can be expanded and collapsed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSOutlineView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOutlineView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSOutlineView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSOutlineView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsoutlineview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableView": {
+      "abstract": [
+        {
+          "text": "A set of related records, displayed in rows that represent individual records and columns that represent the attributes of those records.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTableView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTableView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTableView",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableView/column(at:)": {
+      "abstract": [
+        {
+          "text": "Returns the index of the column the specified point lies in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "column"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableView/column(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "columnAtPoint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "column(at:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableview/column(at:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableView/columnAutoresizingStyle-swift.property": {
+      "abstract": [
+        {
+          "text": "The table view’s column autoresizing style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "columnAutoresizingStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableView",
+          "text": "NSTableView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTableViewColumnAutoresizingStyle",
+          "text": "ColumnAutoresizingStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableView/columnAutoresizingStyle-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "columnAutoresizingStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "columnAutoresizingStyle",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableview/columnautoresizingstyle-swift.property"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableView/columnIndexes(in:)": {
+      "abstract": [
+        {
+          "text": "Returns the indexes of the table view’s columns that intersect the specified rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "columnIndexes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation8IndexSetV",
+          "text": "IndexSet"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableView/columnIndexes(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "columnIndexesInRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "columnIndexes(in:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableview/columnindexes(in:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableView/frameOfCell(atColumn:row:)": {
+      "abstract": [
+        {
+          "text": "Returns a rectangle locating the cell that lies at the intersection of the specified column and row.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frameOfCell"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "row"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableView/frameOfCell(atColumn:row:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "frameOfCellAtColumn:row:"
+        }
+      ],
+      "role": "symbol",
+      "title": "frameOfCell(atColumn:row:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableview/frameofcell(atcolumn:row:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableView/noteHeightOfRows(withIndexesChanged:)": {
+      "abstract": [
+        {
+          "text": "Informs the table view that the rows specified in ",
+          "type": "text"
+        },
+        {
+          "code": "indexSet",
+          "type": "codeVoice"
+        },
+        {
+          "text": " have changed height.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "noteHeightOfRows"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIndexesChanged"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation8IndexSetV",
+          "text": "IndexSet"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableView/noteHeightOfRows(withIndexesChanged:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "noteHeightOfRowsWithIndexesChanged:"
+        }
+      ],
+      "role": "symbol",
+      "title": "noteHeightOfRows(withIndexesChanged:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableview/noteheightofrows(withindexeschanged:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableView/noteNumberOfRowsChanged()": {
+      "abstract": [
+        {
+          "text": "Informs the table view that the number of records in its data source has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "noteNumberOfRowsChanged"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableView/noteNumberOfRowsChanged()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "noteNumberOfRowsChanged"
+        }
+      ],
+      "role": "symbol",
+      "title": "noteNumberOfRowsChanged()",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableview/notenumberofrowschanged()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableView/rect(ofColumn:)": {
+      "abstract": [
+        {
+          "text": "Returns the rectangle containing the column at the specified index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableView/rect(ofColumn:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rectOfColumn:"
+        }
+      ],
+      "role": "symbol",
+      "title": "rect(ofColumn:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableview/rect(ofcolumn:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableView/rect(ofRow:)": {
+      "abstract": [
+        {
+          "text": "Returns the rectangle containing the row at the specified index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofRow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableView/rect(ofRow:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rectOfRow:"
+        }
+      ],
+      "role": "symbol",
+      "title": "rect(ofRow:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableview/rect(ofrow:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableView/reloadData()": {
+      "abstract": [
+        {
+          "text": "Marks the table view as needing redisplay, so it will reload the data for visible cells and draw the new values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadData"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableView/reloadData()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reloadData"
+        }
+      ],
+      "role": "symbol",
+      "title": "reloadData()",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableview/reloaddata()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableView/row(at:)": {
+      "abstract": [
+        {
+          "text": "Returns the index of the row the specified point lies in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "row"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableView/row(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rowAtPoint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "row(at:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableview/row(at:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableView/rows(in:)": {
+      "abstract": [
+        {
+          "text": "Returns a range of indexes for the rows that lie wholly or partially within the vertical boundaries of the specified rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rows"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableView/rows(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rowsInRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "rows(in:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableview/rows(in:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableView/sizeLastColumnToFit()": {
+      "abstract": [
+        {
+          "text": "Resizes the last column so the table view fits exactly within its enclosing clip view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sizeLastColumnToFit"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableView/sizeLastColumnToFit()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sizeLastColumnToFit"
+        }
+      ],
+      "role": "symbol",
+      "title": "sizeLastColumnToFit()",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableview/sizelastcolumntofit()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableView/sizeToFit()": {
+      "abstract": [
+        {
+          "text": "Sizes the  table view based on a uniform column autoresizing style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sizeToFit"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableView/sizeToFit()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sizeToFit"
+        }
+      ],
+      "role": "symbol",
+      "title": "sizeToFit()",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableview/sizetofit()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableView/tile()": {
+      "abstract": [
+        {
+          "text": "Properly sizes the table view and its header view and marks it as needing display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tile"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableView/tile()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tile"
+        }
+      ],
+      "role": "symbol",
+      "title": "tile()",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableview/tile()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableView/userInterfaceLayoutDirection": {
+      "abstract": [
+        {
+          "text": "The layout direction of the user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInterfaceLayoutDirection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSUserInterfaceLayoutDirection",
+          "text": "NSUserInterfaceLayoutDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableView/userInterfaceLayoutDirection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userInterfaceLayoutDirection"
+        }
+      ],
+      "role": "symbol",
+      "title": "userInterfaceLayoutDirection",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableview/userinterfacelayoutdirection"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource": {
+      "abstract": [
+        {
+          "text": "A set of methods that a table view uses to provide data to a table view and to allow the editing of the table view’s data source object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTableViewDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTableViewDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTableViewDataSource",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableviewdatasource"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/numberOfRows(in:)": {
+      "abstract": [
+        {
+          "text": "Returns the number of records managed for ",
+          "type": "text"
+        },
+        {
+          "code": "aTableView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " by the data source object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfRows"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableView",
+          "text": "NSTableView"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/numberOfRows(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "numberOfRowsInTableView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "numberOfRows(in:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableviewdatasource/numberofrows(in:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTableView/reloadData()",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/numberOfRows(in:)"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Layout-Support",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTableView/userInterfaceLayoutDirection",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableView/rect(ofColumn:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableView/rect(ofRow:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableView/rows(in:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableView/columnIndexes(in:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableView/column(at:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableView/row(at:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableView/frameOfCell(atColumn:row:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableView/columnAutoresizingStyle-swift.property",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableView/sizeLastColumnToFit()",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableView/tile()",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableView/sizeToFit()",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableView/noteHeightOfRows(withIndexesChanged:)"
+      ],
+      "title": "Layout Support"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "noteNumberOfRowsChanged"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "noteNumberOfRowsChanged"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit",
+                "doc://com.apple.appkit/documentation/AppKit/NSTableView"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTableView/reloadData()",
+                "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/numberOfRows(in:)"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Layout-Support",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTableView/userInterfaceLayoutDirection",
+                "doc://com.apple.appkit/documentation/AppKit/NSTableView/rect(ofColumn:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTableView/rect(ofRow:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTableView/rows(in:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTableView/columnIndexes(in:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTableView/column(at:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTableView/row(at:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTableView/frameOfCell(atColumn:row:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTableView/columnAutoresizingStyle-swift.property",
+                "doc://com.apple.appkit/documentation/AppKit/NSTableView/sizeLastColumnToFit()",
+                "doc://com.apple.appkit/documentation/AppKit/NSTableView/tile()",
+                "doc://com.apple.appkit/documentation/AppKit/NSTableView/sizeToFit()",
+                "doc://com.apple.appkit/documentation/AppKit/NSTableView/noteHeightOfRows(withIndexesChanged:)"
+              ],
+              "title": "Layout Support"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "noteNumberOfRowsChanged"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1reloadData()/title",
+          "value": "reloadData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1reloadData()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reloadData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1numberOfRows(in:)/title",
+          "value": "numberOfRowsInTableView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1numberOfRows(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "numberOfRowsInTableView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1noteNumberOfRowsChanged()/title",
+          "value": "noteNumberOfRowsChanged"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1noteNumberOfRowsChanged()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "noteNumberOfRowsChanged"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCell/title",
+          "value": "NSCell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCell/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView/title",
+          "value": "NSTableView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTableView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTableView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1sizeLastColumnToFit()/title",
+          "value": "sizeLastColumnToFit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1sizeLastColumnToFit()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sizeLastColumnToFit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1frameOfCell(atColumn:row:)/title",
+          "value": "frameOfCellAtColumn:row:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1frameOfCell(atColumn:row:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "frameOfCellAtColumn:row:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1rows(in:)/title",
+          "value": "rowsInRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1rows(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "rowsInRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1columnAutoresizingStyle-swift.property/title",
+          "value": "columnAutoresizingStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1columnAutoresizingStyle-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "columnAutoresizingStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource/title",
+          "value": "NSTableViewDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTableViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTableViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1rect(ofColumn:)/title",
+          "value": "rectOfColumn:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1rect(ofColumn:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "rectOfColumn:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineView/title",
+          "value": "NSOutlineView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSOutlineView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOutlineView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSOutlineView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/title",
+          "value": "NSView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1columnIndexes(in:)/title",
+          "value": "columnIndexesInRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1columnIndexes(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "columnIndexesInRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1rect(ofRow:)/title",
+          "value": "rectOfRow:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1rect(ofRow:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "rectOfRow:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1row(at:)/title",
+          "value": "rowAtPoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1row(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "rowAtPoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1column(at:)/title",
+          "value": "columnAtPoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1column(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "columnAtPoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1sizeToFit()/title",
+          "value": "sizeToFit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1sizeToFit()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sizeToFit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1userInterfaceLayoutDirection/title",
+          "value": "userInterfaceLayoutDirection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1userInterfaceLayoutDirection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userInterfaceLayoutDirection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1tile()/title",
+          "value": "tile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1tile()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1noteHeightOfRows(withIndexesChanged:)/title",
+          "value": "noteHeightOfRowsWithIndexesChanged:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableView~1noteHeightOfRows(withIndexesChanged:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "noteHeightOfRowsWithIndexesChanged:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nstableview/notenumberofrowschanged()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nstableview/notenumberofrowschanged()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

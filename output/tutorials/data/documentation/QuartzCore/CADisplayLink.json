@@ -1,0 +1,2463 @@
+{
+  "abstract": [
+    {
+      "text": "A timer object that allows your app to synchronize its drawing to the refresh rate of the display.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.quartzcore/documentation/QuartzCore"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CADisplayLink",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CADisplayLink"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Animation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CADisplayLink"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.1",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.1",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CADisplayLink"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CADisplayLink"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/optimizing-promotion-refresh-rates-for-iphone-13-pro-and-ipad-pro"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app initializes a new display link by providing a target object and a selector to call when the system updates the screen. To synchronize your display loop with the display, your application adds it to a run loop using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/add(to:forMode:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you associate the display link with a run loop, the system calls the selector on the target when the screen’s contents need to update. The target can read the display link’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/timestamp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to retrieve the time the system displayed the previous frame. For example, an app that displays movies might use ",
+              "type": "text"
+            },
+            {
+              "code": "timestamp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to calculate which video frame to display next. An app that performs its own animations might use ",
+              "type": "text"
+            },
+            {
+              "code": "timestamp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to determine where and how visible objects appear in the upcoming frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/duration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property provides the amount of time between frames at the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIScreen/maximumFramesPerSecond",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To calculate the actual frame duration, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/targetTimestamp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " - ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/timestamp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can use this value in your app to calculate the frame rate of the display, the approximate time the system displays the next frame, and to adjust the drawing behavior so that the next frame is ready in time to display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can disable notifications by setting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/isPaused",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Also, if your app can’t provide frames in the time the system provides, you may want to choose a slower frame rate. An app with a slower but consistent frame rate appears smoother to the user than an app that skips frames. You can define the number of frames per second by setting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/preferredFramesPerSecond",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app finishes with a display link, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/invalidate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to remove it from all run loops and to disassociate it from the target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code listing below shows how to create a display link and add it to the current run loop. The display link invokes the step function, which prints the target timestamp with each screen update.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func createDisplayLink() {",
+                    "    let displaylink = CADisplayLink(target: self,",
+                    "                                    selector: #selector(step))",
+                    "    ",
+                    "    displaylink.add(to: .current,",
+                    "                    forMode: .defaultRunLoopMode)",
+                    "}",
+                    "     ",
+                    "func step(displaylink: CADisplayLink) {",
+                    "    print(displaylink.targetTimestamp)",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)createDisplayLink {",
+                    "    CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self",
+                    "                                                             selector:@selector(step:)];",
+                    "    [displayLink addToRunLoop:[NSRunLoop currentRunLoop]",
+                    "                      forMode:NSRunLoopCommonModes];",
+                    "}",
+                    "",
+                    "- (void)step:(CADisplayLink *)sender {",
+                    "    NSLog(@\"%f\", sender.targetTimestamp);",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You shouldn’t subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Preferred-and-Actual-Frame-Rates",
+          "level": 3,
+          "text": "Preferred and Actual Frame Rates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You control a display link’s frame rate (the number of times the system calls the selector of its target, per second) by setting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/preferredFramesPerSecond",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". However, the actual frames per second may differ from the preferred value you set; actual frame rates are always a factor of the maximum refresh rate of the device. For example, if your device’s maximum refresh rate is 60 frames per second (defined by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIScreen/maximumFramesPerSecond",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), actual frame rates include 15, 20, 30, and 60 frames per second. If you set a display link’s preferred frame rate to a value higher than the maximum, the actual frame rate is the maximum.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 15, frame rate availability can change due to the system factoring in the system policy and user preference — including Low Power Mode, critical thermal state, and accessibility settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system rounds, to the nearest factor, preferred frame rates that aren’t a divisor of the maximum frame rate. For example, setting a preferred frame rate to either 26 or 35 frames per second on a device with a maximum refresh rate of 60 frames per second yields an actual frame rate of 30 times per second.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code listing below shows how to calculate the actual frame rate by dividing 1 by your display link’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/timestamp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subtracted from its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/targetTimestamp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Calculate the actual frame rate.",
+                    "let actualFramesPerSecond = 1 / (displaylink.targetTimestamp - displaylink.timestamp)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Calculate the actual frame rate.",
+                    "double actualFramesPerSecond = 1 / (displaylink.targetTimestamp - displaylink.timestamp);"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your app needs more control over refresh rate to ensure smooth rendering of frames, use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLink",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and the information from ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instances to render frames.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/UIKit/UIScreen/maximumFramesPerSecond": {
+      "abstract": [
+        {
+          "text": "The maximum number of frames per second a screen can render.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumFramesPerSecond"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIScreen/maximumFramesPerSecond",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maximumFramesPerSecond",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIScreen/maximumFramesPerSecond"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/presenting-content-on-a-connected-display": {
+      "abstract": [
+        {
+          "text": "Fill connected displays with additional content from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/presenting-content-on-a-connected-display",
+      "kind": "article",
+      "role": "article",
+      "title": "Presenting content on a connected display",
+      "type": "topic",
+      "url": "/documentation/UIKit/presenting-content-on-a-connected-display"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore": {
+      "abstract": [
+        {
+          "text": "Render, compose, and animate visual elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Animation",
+      "type": "topic",
+      "url": "/documentation/quartzcore"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CACurrentMediaTime()": {
+      "abstract": [
+        {
+          "text": "Returns the current absolute time, in seconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CACurrentMediaTime"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTimeInterval",
+          "text": "CFTimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CACurrentMediaTime()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CACurrentMediaTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "CACurrentMediaTime()",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cacurrentmediatime()"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink": {
+      "abstract": [
+        {
+          "text": "A timer object that allows your app to synchronize its drawing to the refresh rate of the display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CADisplayLink"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CADisplayLink"
+        }
+      ],
+      "role": "symbol",
+      "title": "CADisplayLink",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cadisplaylink"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/add(to:forMode:)": {
+      "abstract": [
+        {
+          "text": "Registers the display link with a run loop.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSRunLoop",
+          "text": "RunLoop"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSRunLoop",
+          "text": "RunLoop"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRunLoopMode",
+          "text": "Mode"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/add(to:forMode:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addToRunLoop:forMode:"
+        }
+      ],
+      "role": "symbol",
+      "title": "add(to:forMode:)",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cadisplaylink/add(to:formode:)"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/duration": {
+      "abstract": [
+        {
+          "text": "The time interval between screen refresh updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTimeInterval",
+          "text": "CFTimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/duration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "duration"
+        }
+      ],
+      "role": "symbol",
+      "title": "duration",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cadisplaylink/duration"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/frameInterval": {
+      "abstract": [
+        {
+          "text": "The number of frames that must pass before the display link notifies the target again.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frameInterval"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/frameInterval",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "frameInterval"
+        }
+      ],
+      "role": "symbol",
+      "title": "frameInterval",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cadisplaylink/frameinterval"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/init(target:selector:)": {
+      "abstract": [
+        {
+          "text": "Creates a display link for a target that calls its selector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "target"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "selector"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/init(target:selector:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "displayLinkWithTarget:selector:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(target:selector:)",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cadisplaylink/init(target:selector:)"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/invalidate()": {
+      "abstract": [
+        {
+          "text": "Removes the display link from all run loop modes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/invalidate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        }
+      ],
+      "role": "symbol",
+      "title": "invalidate()",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cadisplaylink/invalidate()"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/isPaused": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the system suspends the display link’s notifications to the target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPaused"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/isPaused",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paused"
+        }
+      ],
+      "role": "symbol",
+      "title": "isPaused",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cadisplaylink/ispaused"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/preferredFrameRateRange": {
+      "abstract": [
+        {
+          "text": "A range of frequencies your app allows for frame updates, affecting how often the system invokes your delegate’s callback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredFrameRateRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CAFrameRateRange",
+          "text": "CAFrameRateRange"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/preferredFrameRateRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredFrameRateRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredFrameRateRange",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cadisplaylink/preferredframeraterange"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/preferredFramesPerSecond": {
+      "abstract": [
+        {
+          "text": "A frequency your app prefers for frame updates, affecting how often the system invokes your delegate’s callback.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredFramesPerSecond"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/preferredFramesPerSecond",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredFramesPerSecond"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredFramesPerSecond",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cadisplaylink/preferredframespersecond"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/remove(from:forMode:)": {
+      "abstract": [
+        {
+          "text": "Removes the display link from the run loop for the given mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSRunLoop",
+          "text": "RunLoop"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSRunLoop",
+          "text": "RunLoop"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRunLoopMode",
+          "text": "Mode"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/remove(from:forMode:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeFromRunLoop:forMode:"
+        }
+      ],
+      "role": "symbol",
+      "title": "remove(from:forMode:)",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cadisplaylink/remove(from:formode:)"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/targetTimestamp": {
+      "abstract": [
+        {
+          "text": "The time interval that represents when the next frame displays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "targetTimestamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTimeInterval",
+          "text": "CFTimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/targetTimestamp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "targetTimestamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "targetTimestamp",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cadisplaylink/targettimestamp"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/timestamp": {
+      "abstract": [
+        {
+          "text": "The time interval that represents when the last frame displayed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timestamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTimeInterval",
+          "text": "CFTimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/timestamp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timestamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "timestamp",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cadisplaylink/timestamp"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming": {
+      "abstract": [
+        {
+          "text": "Methods that model a hierarchical timing system, allowing objects to map time between their parent and local time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMediaTiming"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAMediaTiming"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAMediaTiming",
+      "type": "topic",
+      "url": "/documentation/quartzcore/camediatiming"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTimingFunction": {
+      "abstract": [
+        {
+          "text": "A function that defines the pacing of an animation as a timing curve.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMediaTimingFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTimingFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAMediaTimingFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAMediaTimingFunction",
+      "type": "topic",
+      "url": "/documentation/quartzcore/camediatimingfunction"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLink": {
+      "abstract": [
+        {
+          "text": "A class your Metal app uses to register for callbacks to synchronize its animations for a display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMetalDisplayLink"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLink",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAMetalDisplayLink"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAMetalDisplayLink",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametaldisplaylink"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLink/Update": {
+      "abstract": [
+        {
+          "text": "Stores information about a single update from a Metal display link instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Update"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLink/Update",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Update"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAMetalDisplayLink.Update",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametaldisplaylink/update"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLinkDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol your app implements to respond to callbacks from Core Animation for a Metal display link.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMetalDisplayLinkDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLinkDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAMetalDisplayLinkDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAMetalDisplayLinkDelegate",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametaldisplaylinkdelegate"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer": {
+      "abstract": [
+        {
+          "text": "A Core Animation layer that Metal can render into, typically displayed onscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMetalLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAMetalLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAMetalLayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/optimizing-promotion-refresh-rates-for-iphone-13-pro-and-ipad-pro": {
+      "abstract": [
+        {
+          "text": "Provide custom animated content for ProMotion displays.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/optimizing-promotion-refresh-rates-for-iphone-13-pro-and-ipad-pro",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing ProMotion refresh rates for iPhone 13 Pro and iPad Pro",
+      "type": "topic",
+      "url": "/documentation/quartzcore/optimizing-promotion-refresh-rates-for-iphone-13-pro-and-ipad-pro"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/UIKit/presenting-content-on-a-connected-display"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Animation-Timing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CACurrentMediaTime()",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTimingFunction",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLink",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLink/Update",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLinkDelegate"
+      ],
+      "title": "Animation Timing"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Display-Link",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/init(target:selector:)"
+      ],
+      "title": "Creating a Display Link"
+    },
+    {
+      "anchor": "Configuring-a-Display-Link",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/duration",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/preferredFrameRateRange",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/preferredFramesPerSecond",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/isPaused",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/timestamp",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/targetTimestamp",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/frameInterval"
+      ],
+      "title": "Configuring a Display Link"
+    },
+    {
+      "anchor": "Scheduling-a-Display-Link-to-Send-Notifications",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/add(to:forMode:)",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/remove(from:forMode:)",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/invalidate()"
+      ],
+      "title": "Scheduling a Display Link to Send Notifications"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.1",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.1",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CADisplayLink"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CADisplayLink"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CADisplayLink"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.quartzcore/documentation/QuartzCore"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Display-Link",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/init(target:selector:)"
+              ],
+              "title": "Creating a Display Link"
+            },
+            {
+              "anchor": "Configuring-a-Display-Link",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/duration",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/preferredFrameRateRange",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/preferredFramesPerSecond",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/isPaused",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/timestamp",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/targetTimestamp",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/frameInterval"
+              ],
+              "title": "Configuring a Display Link"
+            },
+            {
+              "anchor": "Scheduling-a-Display-Link-to-Send-Notifications",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/add(to:forMode:)",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/remove(from:forMode:)",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink/invalidate()"
+              ],
+              "title": "Scheduling a Display Link to Send Notifications"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/UIKit/presenting-content-on-a-connected-display"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Animation-Timing",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CACurrentMediaTime()",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTimingFunction",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLink",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLink/Update",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLinkDelegate"
+              ],
+              "title": "Animation Timing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CADisplayLink"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIScreen~1maximumFramesPerSecond/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSInteger",
+              "text": "NSInteger"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "maximumFramesPerSecond"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink/title",
+          "value": "CADisplayLink"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CADisplayLink"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CADisplayLink"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalDisplayLinkDelegate/title",
+          "value": "CAMetalDisplayLinkDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalDisplayLinkDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalDisplayLinkDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalDisplayLinkDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalDisplayLinkDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalDisplayLink/title",
+          "value": "CAMetalDisplayLink"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalDisplayLink/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalDisplayLink"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalDisplayLink/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalDisplayLink"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalDisplayLink~1Update/title",
+          "value": "CAMetalDisplayLinkUpdate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalDisplayLink~1Update/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalDisplayLinkUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalDisplayLink~1Update/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalDisplayLinkUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink~1preferredFrameRateRange/title",
+          "value": "preferredFrameRateRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink~1preferredFrameRateRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredFrameRateRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink~1remove(from:forMode:)/title",
+          "value": "removeFromRunLoop:forMode:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink~1remove(from:forMode:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeFromRunLoop:forMode:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming/title",
+          "value": "CAMediaTiming"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMediaTiming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMediaTiming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink~1preferredFramesPerSecond/title",
+          "value": "preferredFramesPerSecond"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink~1preferredFramesPerSecond/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredFramesPerSecond"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink~1duration/title",
+          "value": "duration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink~1duration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "duration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink~1targetTimestamp/title",
+          "value": "targetTimestamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink~1targetTimestamp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "targetTimestamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink~1frameInterval/title",
+          "value": "frameInterval"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink~1frameInterval/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "frameInterval"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CACurrentMediaTime()/title",
+          "value": "CACurrentMediaTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CACurrentMediaTime()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CACurrentMediaTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTimingFunction/title",
+          "value": "CAMediaTimingFunction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTimingFunction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMediaTimingFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTimingFunction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMediaTimingFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer/title",
+          "value": "CAMetalLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink~1timestamp/title",
+          "value": "timestamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink~1timestamp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "timestamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink~1init(target:selector:)/title",
+          "value": "displayLinkWithTarget:selector:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink~1init(target:selector:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "displayLinkWithTarget:selector:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink~1add(to:forMode:)/title",
+          "value": "addToRunLoop:forMode:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink~1add(to:forMode:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addToRunLoop:forMode:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink~1isPaused/title",
+          "value": "paused"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink~1isPaused/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "paused"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink~1invalidate()/title",
+          "value": "invalidate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink~1invalidate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "invalidate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quartzcore/cadisplaylink"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/quartzcore/cadisplaylink"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

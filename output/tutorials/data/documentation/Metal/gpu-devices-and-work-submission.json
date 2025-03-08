@@ -1,0 +1,899 @@
+{
+  "abstract": [
+    {
+      "text": "Find any available GPU, submit work to it with command buffers, suspend work, and coordinate between multiple GPUs.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "GPU Devices and Work Submission"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use any available GPU’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance in addition to the default instance that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCreateSystemDefaultDevice()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns. For each device instance, get its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandQueue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, and create one or more ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances to send work to the GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system suspends your app, use the command queue to finish command buffers already in progress. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/preparing-your-metal-app-to-run-in-the-background",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer": {
+      "abstract": [
+        {
+          "text": "A container that stores a sequence of GPU commands that you encode into it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBufferDescriptor": {
+      "abstract": [
+        {
+          "text": "A configuration that customizes the behavior for a new command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBufferDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBufferDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBufferDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBufferDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbufferdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBufferError-swift.struct": {
+      "abstract": [
+        {
+          "text": "The command buffer error codes that indicate why the GPU doesn’t finish executing a command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBufferError"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBufferError-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBufferError"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBufferError",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffererror-swift.struct"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBufferError-swift.struct/Code": {
+      "abstract": [
+        {
+          "text": "Error codes that indicate why a GPU is unable to finish running a command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBufferError-swift.struct/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBufferError.Code",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffererror-swift.struct/code"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBufferErrorDomain": {
+      "abstract": [
+        {
+          "text": "The domain for Metal command buffer errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBufferErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBufferErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBufferErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBufferErrorDomain",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffererrordomain"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An encoder that writes GPU commands into a command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandQueue": {
+      "abstract": [
+        {
+          "text": "An instance you use to create, submit, and schedule command buffers to a specific GPU device to run the commands within those buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandQueue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandQueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandQueue",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandqueue"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandQueueDescriptor": {
+      "abstract": [
+        {
+          "text": "A configuration that customizes the behavior for a new command queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandQueueDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandQueueDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandQueueDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandQueueDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandqueuedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCreateSystemDefaultDevice()": {
+      "abstract": [
+        {
+          "text": "Returns the device instance Metal selects as the default.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCreateSystemDefaultDevice"
+        },
+        {
+          "kind": "text",
+          "text": "() -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDevice",
+          "text": "MTLDevice"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCreateSystemDefaultDevice()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCreateSystemDefaultDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCreateSystemDefaultDevice()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcreatesystemdefaultdevice()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    },
+    "doc://com.apple.metal/documentation/Metal/detecting-gpu-features-and-metal-software-versions": {
+      "abstract": [
+        {
+          "text": "Use the device object’s properties to determine how you perform tasks in Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/detecting-gpu-features-and-metal-software-versions",
+      "kind": "article",
+      "role": "article",
+      "title": "Detecting GPU Features and Metal Software Versions",
+      "type": "topic",
+      "url": "/documentation/metal/detecting-gpu-features-and-metal-software-versions"
+    },
+    "doc://com.apple.metal/documentation/Metal/getting-the-default-gpu": {
+      "abstract": [
+        {
+          "text": "Select the system’s default GPU device on which to run your Metal code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/getting-the-default-gpu",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting the Default GPU",
+      "type": "topic",
+      "url": "/documentation/metal/getting-the-default-gpu"
+    },
+    "doc://com.apple.metal/documentation/Metal/multi-gpu-systems": {
+      "abstract": [
+        {
+          "text": "Locate and work with internal and external GPUs and their displays, video memory, and performance tradeoffs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/multi-gpu-systems",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Multi-GPU Systems",
+      "type": "topic",
+      "url": "/documentation/metal/multi-gpu-systems"
+    },
+    "doc://com.apple.metal/documentation/Metal/preparing-your-metal-app-to-run-in-the-background": {
+      "abstract": [
+        {
+          "text": "Prepare your app to move into the background by pausing future GPU use and ensuring previous work is scheduled.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/preparing-your-metal-app-to-run-in-the-background",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing Your Metal App to Run in the Background",
+      "type": "topic",
+      "url": "/documentation/metal/preparing-your-metal-app-to-run-in-the-background"
+    },
+    "doc://com.apple.metal/documentation/Metal/setting-up-a-command-structure": {
+      "abstract": [
+        {
+          "text": "Discover how Metal executes commands on a GPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/setting-up-a-command-structure",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up a Command Structure",
+      "type": "topic",
+      "url": "/documentation/metal/setting-up-a-command-structure"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Locating-and-Inspecting-a-GPU-Device",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/getting-the-default-gpu",
+        "doc://com.apple.metal/documentation/Metal/detecting-gpu-features-and-metal-software-versions",
+        "doc://com.apple.metal/documentation/Metal/MTLCreateSystemDefaultDevice()",
+        "doc://com.apple.metal/documentation/Metal/MTLDevice",
+        "doc://com.apple.metal/documentation/Metal/multi-gpu-systems"
+      ],
+      "title": "Locating and Inspecting a GPU Device"
+    },
+    {
+      "anchor": "Submitting-Work-to-a-GPU",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/setting-up-a-command-structure",
+        "doc://com.apple.metal/documentation/Metal/MTLCommandQueue",
+        "doc://com.apple.metal/documentation/Metal/MTLCommandQueueDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBufferDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBufferError-swift.struct",
+        "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder"
+      ],
+      "title": "Submitting Work to a GPU"
+    },
+    {
+      "anchor": "Suspending-Work-on-a-GPU",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/preparing-your-metal-app-to-run-in-the-background"
+      ],
+      "title": "Suspending Work on a GPU"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Locating-and-Inspecting-a-GPU-Device",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/getting-the-default-gpu",
+                "doc://com.apple.metal/documentation/Metal/detecting-gpu-features-and-metal-software-versions",
+                "doc://com.apple.metal/documentation/Metal/MTLCreateSystemDefaultDevice()",
+                "doc://com.apple.metal/documentation/Metal/MTLDevice",
+                "doc://com.apple.metal/documentation/Metal/multi-gpu-systems"
+              ],
+              "title": "Locating and Inspecting a GPU Device"
+            },
+            {
+              "anchor": "Submitting-Work-to-a-GPU",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/setting-up-a-command-structure",
+                "doc://com.apple.metal/documentation/Metal/MTLCommandQueue",
+                "doc://com.apple.metal/documentation/Metal/MTLCommandQueueDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBufferDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBufferErrorDomain",
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBufferError-swift.struct/Code",
+                "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder"
+              ],
+              "title": "Submitting Work to a GPU"
+            },
+            {
+              "anchor": "Suspending-Work-on-a-GPU",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/preparing-your-metal-app-to-run-in-the-background"
+              ],
+              "title": "Suspending Work on a GPU"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferDescriptor/title",
+          "value": "MTLCommandBufferDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBufferDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBufferDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandEncoder/title",
+          "value": "MTLCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCreateSystemDefaultDevice()/title",
+          "value": "MTLCreateSystemDefaultDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCreateSystemDefaultDevice()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCreateSystemDefaultDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/title",
+          "value": "MTLCommandBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferErrorDomain/title",
+          "value": "MTLCommandBufferErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBufferErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandQueue/title",
+          "value": "MTLCommandQueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandQueue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandQueue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandQueueDescriptor/title",
+          "value": "MTLCommandQueueDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandQueueDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandQueueDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandQueueDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandQueueDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferError-swift.struct~1Code/title",
+          "value": "MTLCommandBufferError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferError-swift.struct~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBufferError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferError-swift.struct~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBufferError"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/gpu-devices-and-work-submission"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/gpu-devices-and-work-submission"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

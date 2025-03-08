@@ -1,0 +1,915 @@
+{
+  "abstract": [
+    {
+      "text": "Describe the data your app or third-party SDK collects and the reasons required APIs it uses.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "added",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "added",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.bundleresources/documentation/BundleResources"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.bundleresources/documentation/BundleResources/privacy-manifest-files"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Bundle Resources"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Privacy manifest files"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps and third-party SDKs — distributed as XCFrameworks, Swift packages, or Xcode projects — can contain a privacy manifest file, named ",
+              "type": "text"
+            },
+            {
+              "code": "PrivacyInfo.xcprivacy",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The privacy manifest is a property list that records the following information:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The types of data collected by your app or third-party SDK. You need to provide this information for your app or third-party SDK on all platforms.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The required reasons APIs your app or third-party SDK uses. You need to provide this information for your app or third-party SDK on iOS, iPadOS, tvOS, visionOS, and watchOS.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each type of data your app or third-party SDK collects and category of required reasons API it uses, the app or third-party SDK needs to record the reasons in its bundled privacy manifest file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You need to include a privacy manifest file in your third-party SDK if it’s listed in “SDKs that require a privacy manifest and signature,” in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/support/third-party-SDK-requirements/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Otherwise, include a privacy manifest file in your third-party SDK if it uses required reasons API, collects data about the person using apps that include the third-party SDK, enables the app to collect data about people using the app, or contacts tracking domains. Providing a privacy manifest file helps app developers to understand the API use and data-collection practices of your third-party SDK.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-a-privacy-manifest",
+          "level": 3,
+          "text": "Create a privacy manifest",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add the privacy manifest to your app or third-party SDK in Xcode, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose File > New File.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Scroll down to the Resource section, and select App Privacy File type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check your app or third-party SDK’s target in the Targets list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Create.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the file is named ",
+              "type": "text"
+            },
+            {
+              "code": "PrivacyInfo.xcprivacy",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; this is the required file name for bundled privacy manifests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You need to add the privacy manifest file to your target’s resources for Xcode to use it when you generate a privacy report. If you distribute your third-party SDK as a static library, use the support for static frameworks in Xcode 15 or later to bundle resources, including the privacy manifest file. Create a framework target in Xcode that builds your product, set its Mach-O type build setting to “Static Library,” and add the privacy manifest file to your target’s bundle resources along with any other resources, for example, image files.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At the top level of this property list file, add the following keys to the dictionary:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A Boolean that indicates whether your app or third-party SDK uses data for tracking as defined under the App Tracking Transparency framework. For more information, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "https://developer.apple.com/app-store/user-privacy-and-data-use/",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/App-Privacy-Configuration/NSPrivacyTracking",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An array of strings that lists the internet domains your app or third-party SDK connects to that engage in tracking. If the user has not granted tracking permission through the App Tracking Transparency framework, network requests to these domains fail and your app receives an error.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/App-Privacy-Configuration/NSPrivacyTrackingDomains",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide a list of internet domains in ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyTrackingDomains",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", set ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyTracking",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An array of dictionaries that describes the data types your app or third-party SDK collects. For information on the keys and values to use in the dictionaries, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/describing-data-use-in-privacy-manifests",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/App-Privacy-Configuration/NSPrivacyCollectedDataTypes",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An array of dictionaries that describe the API types your app or third-party SDK accesses that have been designated as APIs that require reasons to access. For information on the keys and values to use in the dictionaries, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/describing-use-of-required-reason-api",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/App-Privacy-Configuration/NSPrivacyAccessedAPITypes",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources": {
+      "abstract": [
+        {
+          "text": "Resources located in an app, framework, or plugin bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Bundle Resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/App-Privacy-Configuration": {
+      "abstract": [
+        {
+          "text": "A data structure that represents the root object in a privacy manifest file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/App-Privacy-Configuration",
+      "kind": "symbol",
+      "name": "App Privacy Configuration",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "App Privacy Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "App Privacy Configuration",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/app-privacy-configuration"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/App-Privacy-Configuration/NSPrivacyAccessedAPITypes": {
+      "abstract": [
+        {
+          "text": "A list of dictionaries that report the privacy accessed API your app or third-party SDK uses.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy Accessed API Types",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/App-Privacy-Configuration/NSPrivacyAccessedAPITypes",
+      "kind": "symbol",
+      "name": "NSPrivacyAccessedAPITypes",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPrivacyAccessedAPITypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPrivacyAccessedAPITypes",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/app-privacy-configuration/nsprivacyaccessedapitypes"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/App-Privacy-Configuration/NSPrivacyCollectedDataTypes": {
+      "abstract": [
+        {
+          "text": "A list of dictionaries that report the categories of private data your app or third-party SDK collects.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy Nutrition Label Types",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/App-Privacy-Configuration/NSPrivacyCollectedDataTypes",
+      "kind": "symbol",
+      "name": "NSPrivacyCollectedDataTypes",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPrivacyCollectedDataTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPrivacyCollectedDataTypes",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/app-privacy-configuration/nsprivacycollecteddatatypes"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/App-Privacy-Configuration/NSPrivacyTracking": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether your app or third-party SDK uses data for tracking.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy Tracking Enabled",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/App-Privacy-Configuration/NSPrivacyTracking",
+      "kind": "symbol",
+      "name": "NSPrivacyTracking",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPrivacyTracking"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPrivacyTracking",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/app-privacy-configuration/nsprivacytracking"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/App-Privacy-Configuration/NSPrivacyTrackingDomains": {
+      "abstract": [
+        {
+          "text": "A list of the internet domains your app or third-party SDK uses for tracking.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy Tracking Domains",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/App-Privacy-Configuration/NSPrivacyTrackingDomains",
+      "kind": "symbol",
+      "name": "NSPrivacyTrackingDomains",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPrivacyTrackingDomains"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPrivacyTrackingDomains",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/app-privacy-configuration/nsprivacytrackingdomains"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements": {
+      "abstract": [
+        {
+          "text": "Key-value pairs that grant an executable permission to use a service or technology.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements",
+      "kind": "symbol",
+      "name": "Entitlements",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Entitlements"
+        }
+      ],
+      "role": "symbol",
+      "title": "Entitlements",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List": {
+      "abstract": [
+        {
+          "text": "A resource containing key-value pairs that identify and configure a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+      "kind": "symbol",
+      "name": "Information Property List",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Information Property List"
+        }
+      ],
+      "role": "symbol",
+      "title": "Information Property List",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/adding-a-privacy-manifest-to-your-app-or-third-party-sdk": {
+      "abstract": [
+        {
+          "text": "Report the data you collect and the required reasons API you use in your app or third-party SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/adding-a-privacy-manifest-to-your-app-or-third-party-sdk",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a privacy manifest to your app or third-party SDK",
+      "type": "topic",
+      "url": "/documentation/bundleresources/adding-a-privacy-manifest-to-your-app-or-third-party-sdk"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/describing-data-use-in-privacy-manifests": {
+      "abstract": [
+        {
+          "text": "Declare the data collected by your app or by third-party SDKs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/describing-data-use-in-privacy-manifests",
+      "kind": "article",
+      "role": "article",
+      "title": "Describing data use in privacy manifests",
+      "type": "topic",
+      "url": "/documentation/bundleresources/describing-data-use-in-privacy-manifests"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/describing-use-of-required-reason-api": {
+      "abstract": [
+        {
+          "text": "Ensure your use of covered API is consistent with policy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/describing-use-of-required-reason-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Describing use of required reason API",
+      "type": "topic",
+      "url": "/documentation/bundleresources/describing-use-of-required-reason-api"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/app-store/user-privacy-and-data-use/": {
+      "identifier": "https://developer.apple.com/app-store/user-privacy-and-data-use/",
+      "title": "User Privacy and Data Use",
+      "titleInlineContent": [
+        {
+          "text": "User Privacy and Data Use",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/user-privacy-and-data-use/"
+    },
+    "https://developer.apple.com/support/third-party-SDK-requirements/": {
+      "identifier": "https://developer.apple.com/support/third-party-SDK-requirements/",
+      "title": "Upcoming third-party SDK requirements",
+      "titleInlineContent": [
+        {
+          "text": "Upcoming third-party SDK requirements",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/third-party-SDK-requirements/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Property-Lists",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List"
+      ],
+      "title": "Property Lists"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/adding-a-privacy-manifest-to-your-app-or-third-party-sdk",
+        "doc://com.apple.bundleresources/documentation/BundleResources/describing-data-use-in-privacy-manifests",
+        "doc://com.apple.bundleresources/documentation/BundleResources/describing-use-of-required-reason-api",
+        "doc://com.apple.bundleresources/documentation/BundleResources/App-Privacy-Configuration"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/adding-a-privacy-manifest-to-your-app-or-third-party-sdk",
+                "doc://com.apple.bundleresources/documentation/BundleResources/describing-data-use-in-privacy-manifests",
+                "doc://com.apple.bundleresources/documentation/BundleResources/describing-use-of-required-reason-api",
+                "doc://com.apple.bundleresources/documentation/BundleResources/App-Privacy-Configuration"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Property-Lists",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List"
+              ],
+              "title": "Property Lists"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1App-Privacy-Configuration~1NSPrivacyTracking/title",
+          "value": "NSPrivacyTracking"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1App-Privacy-Configuration~1NSPrivacyTracking/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrivacyTracking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1App-Privacy-Configuration~1NSPrivacyAccessedAPITypes/title",
+          "value": "NSPrivacyAccessedAPITypes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1App-Privacy-Configuration~1NSPrivacyAccessedAPITypes/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrivacyAccessedAPITypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements/title",
+          "value": "Entitlements"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Entitlements"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1App-Privacy-Configuration~1NSPrivacyCollectedDataTypes/title",
+          "value": "NSPrivacyCollectedDataTypes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1App-Privacy-Configuration~1NSPrivacyCollectedDataTypes/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrivacyCollectedDataTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/title",
+          "value": "Information Property List"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Information Property List"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1App-Privacy-Configuration~1NSPrivacyTrackingDomains/title",
+          "value": "NSPrivacyTrackingDomains"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1App-Privacy-Configuration~1NSPrivacyTrackingDomains/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrivacyTrackingDomains"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1App-Privacy-Configuration/title",
+          "value": "App Privacy Configuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1App-Privacy-Configuration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "App Privacy Configuration"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/bundleresources/privacy-manifest-files"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/bundleresources/privacy-manifest-files"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

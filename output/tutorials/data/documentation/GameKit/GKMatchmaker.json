@@ -1,0 +1,3084 @@
+{
+  "abstract": [
+    {
+      "text": "An object that creates matches with other players without presenting an interface to the players.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamekit/documentation/GameKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)GKMatchmaker",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "GKMatchmaker"
+      }
+    ],
+    "modules": [
+      {
+        "name": "GameKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GKMatchmaker"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.1",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.1",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.8",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "GKMatchmaker"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GKMatchmaker"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game",
+        "doc://com.apple.gamekit/documentation/GameKit/finding-players-with-similar-skill-levels"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "GKMatchmaker",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class to auto-match players for a quicker game start, programmatically invite specific players, or implement your own interface for players to invite other players. If you want to present a familiar matchmaking GameKit interface to players, instead use either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedMatchmakerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you host a game on your own server, you can also use this class to find Game Center players. That is, you implement the networking and communication between the players through your own servers not Game Center.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To find players using this class, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and configure it according to the parameters of your game. Then, pass the match request and a handler using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/findMatch(for:withCompletionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/findPlayers(forHostedMatchRequest:withCompletionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method for hosted games, to the shared ",
+              "type": "text"
+            },
+            {
+              "code": "GKMatchmaker",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "GameKit calls the handler when players accept their invitations. Implement the handler to set the delegate of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that GameKit sends and start the game when there are enough players.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the match doesn’t have enough players (for example, some players decline their invitations), you can create another match request and call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/addPlayers(to:matchRequest:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method repeatedly until the match’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch/expectedPlayerCount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is zero. When you have enough players to start the match, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/finishMatchmaking(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to end the matchmaking process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you provide a SharePlay interface for inviting players, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/startGroupActivity(playerHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/stopGroupActivity()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods to create a group activity on behalf of the player.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit": {
+      "abstract": [
+        {
+          "text": "Enable players to interact with friends, compare leaderboard ranks, earn achievements, and participate in multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameKit",
+      "type": "topic",
+      "url": "/documentation/gamekit"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKInvite": {
+      "abstract": [
+        {
+          "text": "An invitation to join a match sent to the local player from another player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKInvite"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKInvite",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKInvite"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKInvite",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkinvite"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKInviteEventListener": {
+      "abstract": [
+        {
+          "text": "A protocol that handles invite events from Game Center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKInviteEventListener"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKInviteEventListener",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKInviteEventListener"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKInviteEventListener",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkinviteeventlistener"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatch": {
+      "abstract": [
+        {
+          "text": "A peer-to-peer network between a group of players that sign into Game Center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKMatch"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKMatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKMatch",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatch"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatch/expectedPlayerCount": {
+      "abstract": [
+        {
+          "text": "The remaining number of players invited but not yet connected to the match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "expectedPlayerCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch/expectedPlayerCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "expectedPlayerCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "expectedPlayerCount",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatch/expectedplayercount"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest": {
+      "abstract": [
+        {
+          "text": "An object that encapsulates the parameters to create a real-time or turn-based match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKMatchRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKMatchRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKMatchRequest",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchrequest"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchedPlayers": {
+      "abstract": [
+        {
+          "text": "An object that represents matchmaking results, including the players that join the match and their properties that matchmaking rules uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKMatchedPlayers"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchedPlayers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKMatchedPlayers"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKMatchedPlayers",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchedplayers"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker": {
+      "abstract": [
+        {
+          "text": "An object that creates matches with other players without presenting an interface to the players.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKMatchmaker"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKMatchmaker"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKMatchmaker",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/addPlayers(to:matchRequest:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Invites additional players to an existing match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addPlayers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKMatch",
+          "text": "GKMatch"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "matchRequest"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKMatchRequest",
+          "text": "GKMatchRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/addPlayers(to:matchRequest:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addPlayersToMatch:matchRequest:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addPlayers(to:matchRequest:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker/addplayers(to:matchrequest:completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/cancel()": {
+      "abstract": [
+        {
+          "text": "Cancels a matchmaking request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/cancel()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        }
+      ],
+      "role": "symbol",
+      "title": "cancel()",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker/cancel()"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/cancelPendingInvite(to:)": {
+      "abstract": [
+        {
+          "text": "Cancels a pending invitation to another player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancelPendingInvite"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/cancelPendingInvite(to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cancelPendingInviteToPlayer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "cancelPendingInvite(to:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker/cancelpendinginvite(to:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/findMatch(for:withCompletionHandler:)": {
+      "abstract": [
+        {
+          "text": "Initiates a request to find players for a peer-to-peer match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "findMatch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKMatchRequest",
+          "text": "GKMatchRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKMatch",
+          "text": "GKMatch"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/findMatch(for:withCompletionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "findMatchForRequest:withCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "findMatch(for:withCompletionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker/findmatch(for:withcompletionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/findMatchedPlayers(_:withCompletionHandler:)": {
+      "abstract": [
+        {
+          "text": "Initiates a request to find players for a hosted match that uses matchmaking rules.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "findMatchedPlayers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKMatchRequest",
+          "text": "GKMatchRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKMatchedPlayers",
+          "text": "GKMatchedPlayers"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/findMatchedPlayers(_:withCompletionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "findMatchedPlayers:withCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "findMatchedPlayers(_:withCompletionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker/findmatchedplayers(_:withcompletionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/findPlayers(forHostedMatchRequest:withCompletionHandler:)": {
+      "abstract": [
+        {
+          "text": "Initiates a request to find players for a hosted match.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "findPlayers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forHostedMatchRequest"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKMatchRequest",
+          "text": "GKMatchRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/findPlayers(forHostedMatchRequest:withCompletionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "findPlayersForHostedMatchRequest:withCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "findPlayers(forHostedMatchRequest:withCompletionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker/findplayers(forhostedmatchrequest:withcompletionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/findPlayers(forHostedRequest:withCompletionHandler:)": {
+      "abstract": [
+        {
+          "text": "Initiates a request to find players for a hosted match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "findPlayers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forHostedRequest"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKMatchRequest",
+          "text": "GKMatchRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/findPlayers(forHostedRequest:withCompletionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "findPlayersForHostedRequest:withCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "findPlayers(forHostedRequest:withCompletionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker/findplayers(forhostedrequest:withcompletionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/finishMatchmaking(for:)": {
+      "abstract": [
+        {
+          "text": "Informs the server when programmatic matchmaking finishes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "finishMatchmaking"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKMatch",
+          "text": "GKMatch"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/finishMatchmaking(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "finishMatchmakingForMatch:"
+        }
+      ],
+      "role": "symbol",
+      "title": "finishMatchmaking(for:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker/finishmatchmaking(for:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/match(for:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Creates a match from an invitation that the local player accepts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "match"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKInvite",
+          "text": "GKInvite"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKMatch",
+          "text": "GKMatch"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/match(for:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matchForInvite:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "match(for:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker/match(for:completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/queryActivity(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Finds the number of players, across player groups, who recently requested a match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "queryActivity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/queryActivity(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "queryActivityWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "queryActivity(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker/queryactivity(completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/queryPlayerGroupActivity(_:withCompletionHandler:)": {
+      "abstract": [
+        {
+          "text": "Finds the number of players in a player group who recently requested a match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "queryPlayerGroupActivity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/queryPlayerGroupActivity(_:withCompletionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "queryPlayerGroupActivity:withCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "queryPlayerGroupActivity(_:withCompletionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker/queryplayergroupactivity(_:withcompletionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/queryQueueActivity(_:withCompletionHandler:)": {
+      "abstract": [
+        {
+          "text": "Finds the number of players in a specific queue who recently requested a match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "queryQueueActivity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/queryQueueActivity(_:withCompletionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "queryQueueActivity:withCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "queryQueueActivity(_:withCompletionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker/queryqueueactivity(_:withcompletionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/shared()": {
+      "abstract": [
+        {
+          "text": "Returns the singleton matchmaker instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKMatchmaker",
+          "text": "GKMatchmaker"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/shared()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharedMatchmaker"
+        }
+      ],
+      "role": "symbol",
+      "title": "shared()",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker/shared()"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/startBrowsingForNearbyPlayers(handler:)": {
+      "abstract": [
+        {
+          "text": "Finds nearby players through Bluetooth or WiFi on the same subnet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startBrowsingForNearbyPlayers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/startBrowsingForNearbyPlayers(handler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startBrowsingForNearbyPlayersWithHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startBrowsingForNearbyPlayers(handler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker/startbrowsingfornearbyplayers(handler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/startGroupActivity(playerHandler:)": {
+      "abstract": [
+        {
+          "text": "Begins a SharePlay activity for your game when a FaceTime call is active.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startGroupActivity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "playerHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/startGroupActivity(playerHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startGroupActivityWithPlayerHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startGroupActivity(playerHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker/startgroupactivity(playerhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/stopBrowsingForNearbyPlayers()": {
+      "abstract": [
+        {
+          "text": "Stops finding nearby players.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopBrowsingForNearbyPlayers"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/stopBrowsingForNearbyPlayers()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopBrowsingForNearbyPlayers"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopBrowsingForNearbyPlayers()",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker/stopbrowsingfornearbyplayers()"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/stopGroupActivity()": {
+      "abstract": [
+        {
+          "text": "Ends a SharePlay activity for the entire group, which the local player activates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopGroupActivity"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/stopGroupActivity()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopGroupActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopGroupActivity()",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker/stopgroupactivity()"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewController": {
+      "abstract": [
+        {
+          "text": "An interface that allows a player to invite other players to a real-time game and automatch to fill any empty slots.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKMatchmakerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKMatchmakerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKMatchmakerViewController",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmakerviewcontroller"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedMatchmakerViewController": {
+      "abstract": [
+        {
+          "text": "An interface that allows a player to invite other players to a turn-based match and automatch to fill any empty slots.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKTurnBasedMatchmakerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedMatchmakerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKTurnBasedMatchmakerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKTurnBasedMatchmakerViewController",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkturnbasedmatchmakerviewcontroller"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/adding-voice-chat-to-multiplayer-games": {
+      "abstract": [
+        {
+          "text": "Enable players to voice chat with all, or groups of, players in a multiplayer game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/adding-voice-chat-to-multiplayer-games",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding voice chat to multiplayer games",
+      "type": "topic",
+      "url": "/documentation/gamekit/adding-voice-chat-to-multiplayer-games"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/creating-real-time-games": {
+      "abstract": [
+        {
+          "text": "Develop games where multiple players interact in real time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/creating-real-time-games",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating real-time games",
+      "type": "topic",
+      "url": "/documentation/gamekit/creating-real-time-games"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/exchanging-data-between-players-in-real-time-games": {
+      "abstract": [
+        {
+          "text": "Send data between players in a real-time multiplayer game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/exchanging-data-between-players-in-real-time-games",
+      "kind": "article",
+      "role": "article",
+      "title": "Exchanging data between players in real-time games",
+      "type": "topic",
+      "url": "/documentation/gamekit/exchanging-data-between-players-in-real-time-games"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game": {
+      "abstract": [
+        {
+          "text": "Discover and invite other players to participate in a real-time game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game",
+      "kind": "article",
+      "role": "article",
+      "title": "Finding multiple players for a game",
+      "type": "topic",
+      "url": "/documentation/gamekit/finding-multiple-players-for-a-game"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/finding-players-with-similar-skill-levels": {
+      "abstract": [
+        {
+          "text": "Add a rule to find players in a range of skill levels to balance competitive gameplay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/finding-players-with-similar-skill-levels",
+      "kind": "article",
+      "role": "article",
+      "title": "Finding players with similar skill levels",
+      "type": "topic",
+      "url": "/documentation/gamekit/finding-players-with-similar-skill-levels"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/gkmatchmaker-deprecated-symbols": {
+      "abstract": [],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/gkmatchmaker-deprecated-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated Symbols",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker-deprecated-symbols"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules": {
+      "abstract": [
+        {
+          "text": "Game Center applies different type of rules you create in a particular order to find the best matches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Matchmaking rules",
+      "type": "topic",
+      "url": "/documentation/gamekit/matchmaking-rules"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Real-time-games",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/creating-real-time-games",
+        "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game",
+        "doc://com.apple.gamekit/documentation/GameKit/exchanging-data-between-players-in-real-time-games",
+        "doc://com.apple.gamekit/documentation/GameKit/adding-voice-chat-to-multiplayer-games",
+        "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewController",
+        "doc://com.apple.gamekit/documentation/GameKit/GKInviteEventListener",
+        "doc://com.apple.gamekit/documentation/GameKit/GKInvite",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatch"
+      ],
+      "title": "Real-time games"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Retrieving-the-shared-matchmaker",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/shared()"
+      ],
+      "title": "Retrieving the shared matchmaker"
+    },
+    {
+      "anchor": "Receiving-invitations-from-other-players",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/match(for:completionHandler:)"
+      ],
+      "title": "Receiving invitations from other players"
+    },
+    {
+      "anchor": "Matching-players",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/findMatch(for:withCompletionHandler:)",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/findPlayers(forHostedRequest:withCompletionHandler:)",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/findMatchedPlayers(_:withCompletionHandler:)",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchedPlayers",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/addPlayers(to:matchRequest:completionHandler:)",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/finishMatchmaking(for:)",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/cancel()",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/cancelPendingInvite(to:)"
+      ],
+      "title": "Matching players"
+    },
+    {
+      "anchor": "Finding-players-who-request-matches",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/queryActivity(completionHandler:)",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/queryPlayerGroupActivity(_:withCompletionHandler:)",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/queryQueueActivity(_:withCompletionHandler:)"
+      ],
+      "title": "Finding players who request matches"
+    },
+    {
+      "anchor": "Looking-for-nearby-players",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/startBrowsingForNearbyPlayers(handler:)",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/stopBrowsingForNearbyPlayers()"
+      ],
+      "title": "Looking for nearby players"
+    },
+    {
+      "anchor": "Starting-matches-using-SharePlay",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/startGroupActivity(playerHandler:)",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/stopGroupActivity()"
+      ],
+      "title": "Starting matches using SharePlay"
+    },
+    {
+      "anchor": "Deprecated",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/gkmatchmaker-deprecated-symbols"
+      ],
+      "title": "Deprecated"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.1",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.1",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.8",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "GKMatchmaker"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchmaker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchmaker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.gamekit/documentation/GameKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Retrieving-the-shared-matchmaker",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/shared()"
+              ],
+              "title": "Retrieving the shared matchmaker"
+            },
+            {
+              "anchor": "Receiving-invitations-from-other-players",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/match(for:completionHandler:)"
+              ],
+              "title": "Receiving invitations from other players"
+            },
+            {
+              "anchor": "Matching-players",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/findMatch(for:withCompletionHandler:)",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/findPlayers(forHostedRequest:withCompletionHandler:)",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/findMatchedPlayers(_:withCompletionHandler:)",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchedPlayers",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/addPlayers(to:matchRequest:completionHandler:)",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/finishMatchmaking(for:)",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/cancel()",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/cancelPendingInvite(to:)"
+              ],
+              "title": "Matching players"
+            },
+            {
+              "anchor": "Finding-players-who-request-matches",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/queryActivity(completionHandler:)",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/queryPlayerGroupActivity(_:withCompletionHandler:)",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/queryQueueActivity(_:withCompletionHandler:)"
+              ],
+              "title": "Finding players who request matches"
+            },
+            {
+              "anchor": "Looking-for-nearby-players",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/startBrowsingForNearbyPlayers(handler:)",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/stopBrowsingForNearbyPlayers()"
+              ],
+              "title": "Looking for nearby players"
+            },
+            {
+              "anchor": "Starting-matches-using-SharePlay",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/startGroupActivity(playerHandler:)",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/stopGroupActivity()"
+              ],
+              "title": "Starting matches using SharePlay"
+            },
+            {
+              "anchor": "Deprecated",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/gkmatchmaker-deprecated-symbols"
+              ],
+              "title": "Deprecated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Real-time-games",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/creating-real-time-games",
+                "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game",
+                "doc://com.apple.gamekit/documentation/GameKit/exchanging-data-between-players-in-real-time-games",
+                "doc://com.apple.gamekit/documentation/GameKit/adding-voice-chat-to-multiplayer-games",
+                "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewController",
+                "doc://com.apple.gamekit/documentation/GameKit/GKInviteEventListener",
+                "doc://com.apple.gamekit/documentation/GameKit/GKInvite",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatch"
+              ],
+              "title": "Real-time games"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "GKMatchmaker"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1finishMatchmaking(for:)/title",
+          "value": "finishMatchmakingForMatch:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1finishMatchmaking(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "finishMatchmakingForMatch:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1stopGroupActivity()/title",
+          "value": "stopGroupActivity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1stopGroupActivity()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopGroupActivity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKInviteEventListener/title",
+          "value": "GKInviteEventListener"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKInviteEventListener/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKInviteEventListener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKInviteEventListener/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKInviteEventListener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1findMatch(for:withCompletionHandler:)/title",
+          "value": "findMatchForRequest:withCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1findMatch(for:withCompletionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "findMatchForRequest:withCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1queryPlayerGroupActivity(_:withCompletionHandler:)/title",
+          "value": "queryPlayerGroupActivity:withCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1queryPlayerGroupActivity(_:withCompletionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "queryPlayerGroupActivity:withCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchRequest/title",
+          "value": "GKMatchRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchedPlayers/title",
+          "value": "GKMatchedPlayers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchedPlayers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchedPlayers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchedPlayers/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchedPlayers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1startBrowsingForNearbyPlayers(handler:)/title",
+          "value": "startBrowsingForNearbyPlayersWithHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1startBrowsingForNearbyPlayers(handler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startBrowsingForNearbyPlayersWithHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1findPlayers(forHostedRequest:withCompletionHandler:)/title",
+          "value": "findPlayersForHostedRequest:withCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1findPlayers(forHostedRequest:withCompletionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "findPlayersForHostedRequest:withCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1findPlayers(forHostedMatchRequest:withCompletionHandler:)/title",
+          "value": "findPlayersForHostedMatchRequest:withCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1findPlayers(forHostedMatchRequest:withCompletionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "findPlayersForHostedMatchRequest:withCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1findMatchedPlayers(_:withCompletionHandler:)/title",
+          "value": "findMatchedPlayers:withCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1findMatchedPlayers(_:withCompletionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "findMatchedPlayers:withCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKInvite/title",
+          "value": "GKInvite"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKInvite/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKInvite"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKInvite/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKInvite"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1cancel()/title",
+          "value": "cancel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1cancel()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cancel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch/title",
+          "value": "GKMatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedMatchmakerViewController/title",
+          "value": "GKTurnBasedMatchmakerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedMatchmakerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedMatchmakerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedMatchmakerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedMatchmakerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1expectedPlayerCount/title",
+          "value": "expectedPlayerCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1expectedPlayerCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "expectedPlayerCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1startGroupActivity(playerHandler:)/title",
+          "value": "startGroupActivityWithPlayerHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1startGroupActivity(playerHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startGroupActivityWithPlayerHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1addPlayers(to:matchRequest:completionHandler:)/title",
+          "value": "addPlayersToMatch:matchRequest:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1addPlayers(to:matchRequest:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addPlayersToMatch:matchRequest:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1queryQueueActivity(_:withCompletionHandler:)/title",
+          "value": "queryQueueActivity:withCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1queryQueueActivity(_:withCompletionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "queryQueueActivity:withCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1match(for:completionHandler:)/title",
+          "value": "matchForInvite:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1match(for:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "matchForInvite:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1stopBrowsingForNearbyPlayers()/title",
+          "value": "stopBrowsingForNearbyPlayers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1stopBrowsingForNearbyPlayers()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopBrowsingForNearbyPlayers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1queryActivity(completionHandler:)/title",
+          "value": "queryActivityWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1queryActivity(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "queryActivityWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1cancelPendingInvite(to:)/title",
+          "value": "cancelPendingInviteToPlayer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1cancelPendingInvite(to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cancelPendingInviteToPlayer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1shared()/title",
+          "value": "sharedMatchmaker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1shared()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "sharedMatchmaker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmakerViewController/title",
+          "value": "GKMatchmakerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmakerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchmakerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmakerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchmakerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker/title",
+          "value": "GKMatchmaker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchmaker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchmaker"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamekit/gkmatchmaker"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamekit/gkmatchmaker"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

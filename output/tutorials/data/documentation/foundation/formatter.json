@@ -1,0 +1,897 @@
+{
+  "abstract": [
+    {
+      "text": "An abstract class that declares an interface for objects that create, interpret, and validate the textual representation of values.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/formatter"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1415836,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSFormatter",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "Formatter"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "Formatter"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Formatter"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Foundation framework provides several concrete subclasses of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/formatter",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", including ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bytecountformatter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/dateformatter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/datecomponentsformatter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/measurementformatter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/numberformatter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/personnamecomponentsformatter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In Swift, you can use implementations of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " rather than ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/formatter",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": ". The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " API offers a declarative idiom for customizing the formatting of various types. Also, Foundation caches identical ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " instances, so you don’t need to pass them around your app, or risk wasting memory with duplicate formatters.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1651107",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/formatter",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is intended for subclassing. A custom formatter can restrict the input and enhance the display of data in novel ways. For example, you could have a custom formatter that ensures that serial numbers entered by a user conform to predefined formats. Before you decide to create a custom formatter, make sure that you cannot configure the public subclasses to satisfy your requirements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For instructions on how to create your own custom formatter, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1696768",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1696768": {
+      "identifier": "devLink-1696768",
+      "title": "Creating a Custom Formatter",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DataFormatting/Articles/CreatingACustomFormatter.html#//apple_ref/doc/uid/20000196"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bytecountformatter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bytecountformatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ByteCountFormatter",
+      "type": "topic",
+      "url": "/documentation/foundation/bytecountformatter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Formatting",
+      "type": "topic",
+      "url": "/documentation/foundation/data_formatting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/datecomponentsformatter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/datecomponentsformatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DateComponentsFormatter",
+      "type": "topic",
+      "url": "/documentation/foundation/datecomponentsformatter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateformatter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateformatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DateFormatter",
+      "type": "topic",
+      "url": "/documentation/foundation/dateformatter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateintervalformatter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DateIntervalFormatter",
+      "type": "topic",
+      "url": "/documentation/foundation/dateintervalformatter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatter": {
+      "abstract": [
+        {
+          "text": "An abstract class that declares an interface for objects that create, interpret, and validate the textual representation of values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Formatter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Formatter",
+      "type": "topic",
+      "url": "/documentation/foundation/formatter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatter/1408927-getobjectvalue": {
+      "abstract": [
+        {
+          "text": "The default implementation of this method raises an exception.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "getObjectValue"
+        },
+        {
+          "kind": "text",
+          "text": "(AutoreleasingUnsafeMutablePointer<AnyObject?>?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "errorDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatter/1408927-getobjectvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getObjectValue(_:for:errorDescription:)",
+      "type": "topic",
+      "url": "/documentation/foundation/formatter/1408927-getobjectvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatter/1409478-attributedstring": {
+      "abstract": [
+        {
+          "text": "The default implementation returns ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to indicate that the formatter object does not provide an attributed string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributedString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withDefaultAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": [NSAttributedString.Key : Any]?) -> NSAttributedString?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatter/1409478-attributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributedString(for:withDefaultAttributes:)",
+      "type": "topic",
+      "url": "/documentation/foundation/formatter/1409478-attributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatter/1415263-ispartialstringvalid": {
+      "abstract": [
+        {
+          "text": "This method should be implemented in subclasses that want to validate user changes to a string in a field, where the user changes are not necessarily at the end of the string, and preserve the selection (or set a different one, such as selecting the erroneous part of the string the user has typed).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPartialStringValid"
+        },
+        {
+          "kind": "text",
+          "text": "(AutoreleasingUnsafeMutablePointer<NSString>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "proposedSelectedRange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRangePointer?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "originalString"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "originalSelectedRange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange, "
+        },
+        {
+          "kind": "identifier",
+          "text": "errorDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatter/1415263-ispartialstringvalid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isPartialStringValid(_:proposedSelectedRange:originalString:originalSelectedRange:errorDescription:)",
+      "type": "topic",
+      "url": "/documentation/foundation/formatter/1415263-ispartialstringvalid"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatter/1415993-string": {
+      "abstract": [
+        {
+          "text": "The default implementation of this method raises an exception.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatter/1415993-string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "string(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/formatter/1415993-string"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatter/1416333-editingstring": {
+      "abstract": [
+        {
+          "text": "The default implementation of this method invokes ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/formatter/1415993-string",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "editingString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": Any) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatter/1416333-editingstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "editingString(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/formatter/1416333-editingstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatter/1417993-ispartialstringvalid": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a partial string is valid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPartialStringValid"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "newEditingString"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSString?>?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "errorDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatter/1417993-ispartialstringvalid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isPartialStringValid(_:newEditingString:errorDescription:)",
+      "type": "topic",
+      "url": "/documentation/foundation/formatter/1417993-ispartialstringvalid"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatter/context": {
+      "abstract": [
+        {
+          "text": "The formatting context for a formatter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "Formatter.Context"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatter/context",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Formatter.Context",
+      "type": "topic",
+      "url": "/documentation/foundation/formatter/context"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatter/displaying_human-friendly_content": {
+      "abstract": [
+        {
+          "text": "Convert data into readable strings or Swift objects using formatters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatter/displaying_human-friendly_content",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Displaying Human-Friendly Content",
+      "type": "topic",
+      "url": "/documentation/foundation/formatter/displaying_human-friendly_content"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatter/unitstyle": {
+      "abstract": [
+        {
+          "text": "Specifies the width of the unit, determining the textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "Formatter.UnitStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatter/unitstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Formatter.UnitStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/formatter/unitstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/measurementformatter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/measurementformatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MeasurementFormatter",
+      "type": "topic",
+      "url": "/documentation/foundation/measurementformatter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numberformatter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numberformatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NumberFormatter",
+      "type": "topic",
+      "url": "/documentation/foundation/numberformatter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/personnamecomponentsformatter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/personnamecomponentsformatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PersonNameComponentsFormatter",
+      "type": "topic",
+      "url": "/documentation/foundation/personnamecomponentsformatter"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscoding",
+        "doc://com.apple.documentation/documentation/foundation/nscopying"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "3639612",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/formatter/displaying_human-friendly_content"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Formatters"
+    },
+    {
+      "anchor": "1651123",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/formatter/1415993-string",
+        "doc://com.apple.documentation/documentation/foundation/formatter/1409478-attributedstring",
+        "doc://com.apple.documentation/documentation/foundation/formatter/1416333-editingstring"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Textual Representations of Object Values"
+    },
+    {
+      "anchor": "1651150",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/formatter/1408927-getobjectvalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Object Values for Textual Representations"
+    },
+    {
+      "anchor": "1651174",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/formatter/1417993-ispartialstringvalid",
+        "doc://com.apple.documentation/documentation/foundation/formatter/1415263-ispartialstringvalid"
+      ],
+      "kind": "taskGroup",
+      "title": "Validating Partial Strings"
+    },
+    {
+      "anchor": "1679573",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/formatter/context",
+        "doc://com.apple.documentation/documentation/foundation/formatter/unitstyle"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsformatter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/formatter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

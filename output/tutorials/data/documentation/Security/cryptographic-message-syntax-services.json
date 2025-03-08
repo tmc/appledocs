@@ -1,0 +1,4191 @@
+{
+  "abstract": [
+    {
+      "text": "Cryptographically sign and encrypt S/MIME messages.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/cryptographic-message-syntax-services"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Cryptographic Message Syntax Services"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you want to exchange data securely using the Multipurpose Internet Mail Extensions (MIME) protocol, you use the version of the protocol known as S/MIME defined in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/rfc3851",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This allows you to, among other things, ensure data integrity through digital signatures and data confidentiality through encryption. S/MIME in turn relies on the Cryptographic Message Syntax (CMS) protocol defined in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/rfc3852",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to carry out these operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Cryptographic message syntax services provides encoder objects that perform encryption using the CMS protocol’s enveloped-data content type and sign using the signed-data content type. When a message is both signed and encrypted, the enveloped data content contains the signed data content. That is, the message is first signed and then the signed content is encrypted.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/CMSCertificateChainMode": {
+      "abstract": [
+        {
+          "text": "Constants that can be set to specify what certificates to include in a signed message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSCertificateChainMode"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSCertificateChainMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSCertificateChainMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSCertificateChainMode",
+      "type": "topic",
+      "url": "/documentation/security/cmscertificatechainmode"
+    },
+    "doc://com.apple.security/documentation/Security/CMSDecoder": {
+      "abstract": [
+        {
+          "text": "An opaque reference to a CMS decoder object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSDecoder"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSDecoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSDecoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSDecoder",
+      "type": "topic",
+      "url": "/documentation/security/cmsdecoder"
+    },
+    "doc://com.apple.security/documentation/Security/CMSDecoderCopyAllCerts(_:_:)": {
+      "abstract": [
+        {
+          "text": "Obtains an array of all of the certificates in a message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCopyAllCerts"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSDecoderRef",
+          "text": "CMSDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSDecoderCopyAllCerts(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCopyAllCerts"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSDecoderCopyAllCerts(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsdecodercopyallcerts(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSDecoderCopyContent(_:_:)": {
+      "abstract": [
+        {
+          "text": "Obtains the message content, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCopyContent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSDecoderRef",
+          "text": "CMSDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSDecoderCopyContent(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCopyContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSDecoderCopyContent(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsdecodercopycontent(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSDecoderCopyDetachedContent(_:_:)": {
+      "abstract": [
+        {
+          "text": "Obtains the detached content specified with the ",
+          "type": "text"
+        },
+        {
+          "code": "CMSDecoderSetDetachedContent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCopyDetachedContent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSDecoderRef",
+          "text": "CMSDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSDecoderCopyDetachedContent(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCopyDetachedContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSDecoderCopyDetachedContent(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsdecodercopydetachedcontent(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSDecoderCopyEncapsulatedContentType(_:_:)": {
+      "abstract": [
+        {
+          "text": "Obtains the object identifier for the encapsulated data of a signed message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCopyEncapsulatedContentType"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSDecoderRef",
+          "text": "CMSDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSDecoderCopyEncapsulatedContentType(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCopyEncapsulatedContentType"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSDecoderCopyEncapsulatedContentType(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsdecodercopyencapsulatedcontenttype(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerCert(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Obtains the certificate of the specified signer of a CMS message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCopySignerCert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSDecoderRef",
+          "text": "CMSDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCertificateRef",
+          "text": "SecCertificate"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerCert(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCopySignerCert"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSDecoderCopySignerCert(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsdecodercopysignercert(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerEmailAddress(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Obtains the email address of the specified signer of a CMS message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCopySignerEmailAddress"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSDecoderRef",
+          "text": "CMSDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerEmailAddress(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCopySignerEmailAddress"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSDecoderCopySignerEmailAddress(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsdecodercopysigneremailaddress(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerSigningTime(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Obtains the signing time of a CMS message, if present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCopySignerSigningTime"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSDecoderRef",
+          "text": "CMSDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAbsoluteTime",
+          "text": "CFAbsoluteTime"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerSigningTime(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCopySignerSigningTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSDecoderCopySignerSigningTime(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsdecodercopysignersigningtime(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerStatus(_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Obtains the status of a CMS message’s signature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCopySignerStatus"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSDecoderRef",
+          "text": "CMSDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CMSSignerStatus",
+          "text": "CMSSignerStatus"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustRef",
+          "text": "SecTrust"
+        },
+        {
+          "kind": "text",
+          "text": "?>?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerStatus(_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCopySignerStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSDecoderCopySignerStatus(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsdecodercopysignerstatus(_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerTimestamp(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the timestamp of a signer of a CMS message, if present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCopySignerTimestamp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSDecoderRef",
+          "text": "CMSDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAbsoluteTime",
+          "text": "CFAbsoluteTime"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerTimestamp(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCopySignerTimestamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSDecoderCopySignerTimestamp(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsdecodercopysignertimestamp(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerTimestampCertificates(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns an array containing the certificates from a timestamp response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCopySignerTimestampCertificates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSDecoderRef",
+          "text": "CMSDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerTimestampCertificates(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCopySignerTimestampCertificates"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSDecoderCopySignerTimestampCertificates(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsdecodercopysignertimestampcertificates(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerTimestampWithPolicy(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the timestamp of a signer of a CMS message using a given policy, if present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCopySignerTimestampWithPolicy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSDecoderRef",
+          "text": "CMSDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAbsoluteTime",
+          "text": "CFAbsoluteTime"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerTimestampWithPolicy(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCopySignerTimestampWithPolicy"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSDecoderCopySignerTimestampWithPolicy(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsdecodercopysignertimestampwithpolicy(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSDecoderCreate(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a CMSDecoder reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSDecoderRef",
+          "text": "CMSDecoder"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSDecoderCreate(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSDecoderCreate(_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsdecodercreate(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSDecoderFinalizeMessage(_:)": {
+      "abstract": [
+        {
+          "text": "Indicates that there is no more data to decode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderFinalizeMessage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSDecoderRef",
+          "text": "CMSDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSDecoderFinalizeMessage(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderFinalizeMessage"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSDecoderFinalizeMessage(_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsdecoderfinalizemessage(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSDecoderGetNumSigners(_:_:)": {
+      "abstract": [
+        {
+          "text": "Obtains the number of signers of a message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderGetNumSigners"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSDecoderRef",
+          "text": "CMSDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSDecoderGetNumSigners(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderGetNumSigners"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSDecoderGetNumSigners(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsdecodergetnumsigners(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSDecoderGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the type identifier for the CMSDecoder opaque type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSDecoderGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSDecoderGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/security/cmsdecodergettypeid()"
+    },
+    "doc://com.apple.security/documentation/Security/CMSDecoderIsContentEncrypted(_:_:)": {
+      "abstract": [
+        {
+          "text": "Determines whether a CMS message was encrypted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderIsContentEncrypted"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSDecoderRef",
+          "text": "CMSDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Darwin0A7BooleanV",
+          "text": "DarwinBoolean"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSDecoderIsContentEncrypted(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderIsContentEncrypted"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSDecoderIsContentEncrypted(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsdecoderiscontentencrypted(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSDecoderSetDetachedContent(_:_:)": {
+      "abstract": [
+        {
+          "text": "Specifies the message’s detached content, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderSetDetachedContent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSDecoderRef",
+          "text": "CMSDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSDecoderSetDetachedContent(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderSetDetachedContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSDecoderSetDetachedContent(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsdecodersetdetachedcontent(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSDecoderSetSearchKeychain(_:_:)": {
+      "abstract": [
+        {
+          "text": "Specifies the keychains to search for intermediate certificates to be used in verifying a signed message’s signer certificates.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderSetSearchKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSDecoderRef",
+          "text": "CMSDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSDecoderSetSearchKeychain(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderSetSearchKeychain"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSDecoderSetSearchKeychain(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsdecodersetsearchkeychain(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSDecoderUpdateMessage(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Feeds raw bytes of the message to be decoded into the decoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderUpdateMessage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSDecoderRef",
+          "text": "CMSDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSDecoderUpdateMessage(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSDecoderUpdateMessage"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSDecoderUpdateMessage(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsdecoderupdatemessage(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncode": {
+      "abstract": [
+        {
+          "text": "Encodes a message and obtains the result in one high-level function call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncode"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMSEncode",
+      "type": "topic",
+      "url": "/documentation/security/cmsencode"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncodeContent(_:_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Encodes a message and obtains the result in one high-level function call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSEncodeContent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CMSSignedAttributes",
+          "text": "CMSSignedAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncodeContent(_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncodeContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSEncodeContent(_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsencodecontent(_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncoder": {
+      "abstract": [
+        {
+          "text": "Opaque reference to a CMS encoder object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSEncoder",
+      "type": "topic",
+      "url": "/documentation/security/cmsencoder"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncoderAddRecipients(_:_:)": {
+      "abstract": [
+        {
+          "text": "Specifies a message is to be encrypted and specifies the recipients of the message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderAddRecipients"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSEncoderRef",
+          "text": "CMSEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncoderAddRecipients(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderAddRecipients"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSEncoderAddRecipients(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsencoderaddrecipients(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncoderAddSignedAttributes(_:_:)": {
+      "abstract": [
+        {
+          "text": "Specifies attributes for a signed message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderAddSignedAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSEncoderRef",
+          "text": "CMSEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CMSSignedAttributes",
+          "text": "CMSSignedAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncoderAddSignedAttributes(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderAddSignedAttributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSEncoderAddSignedAttributes(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsencoderaddsignedattributes(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncoderAddSigners(_:_:)": {
+      "abstract": [
+        {
+          "text": "Specifies signers of the message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderAddSigners"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSEncoderRef",
+          "text": "CMSEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncoderAddSigners(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderAddSigners"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSEncoderAddSigners(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsencoderaddsigners(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncoderAddSupportingCerts(_:_:)": {
+      "abstract": [
+        {
+          "text": "Adds certificates to a message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderAddSupportingCerts"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSEncoderRef",
+          "text": "CMSEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncoderAddSupportingCerts(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderAddSupportingCerts"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSEncoderAddSupportingCerts(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsencoderaddsupportingcerts(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncoderCopyEncapsulatedContentType(_:_:)": {
+      "abstract": [
+        {
+          "text": "Obtains the object identifier for the encapsulated data of a signed message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderCopyEncapsulatedContentType"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSEncoderRef",
+          "text": "CMSEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncoderCopyEncapsulatedContentType(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderCopyEncapsulatedContentType"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSEncoderCopyEncapsulatedContentType(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsencodercopyencapsulatedcontenttype(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncoderCopyEncodedContent(_:_:)": {
+      "abstract": [
+        {
+          "text": "Finishes encoding the message and obtains the encoded result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderCopyEncodedContent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSEncoderRef",
+          "text": "CMSEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncoderCopyEncodedContent(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderCopyEncodedContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSEncoderCopyEncodedContent(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsencodercopyencodedcontent(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncoderCopyRecipients(_:_:)": {
+      "abstract": [
+        {
+          "text": "Obtains the array of recipients specified with the ",
+          "type": "text"
+        },
+        {
+          "code": "CMSEncoderAddRecipients",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderCopyRecipients"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSEncoderRef",
+          "text": "CMSEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncoderCopyRecipients(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderCopyRecipients"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSEncoderCopyRecipients(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsencodercopyrecipients(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncoderCopySignerTimestamp(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the timestamp of a signer of a CMS message, if present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderCopySignerTimestamp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSEncoderRef",
+          "text": "CMSEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAbsoluteTime",
+          "text": "CFAbsoluteTime"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncoderCopySignerTimestamp(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderCopySignerTimestamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSEncoderCopySignerTimestamp(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsencodercopysignertimestamp(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncoderCopySignerTimestampWithPolicy(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the timestamp of a signer of a CMS message using a particular policy, if present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderCopySignerTimestampWithPolicy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSEncoderRef",
+          "text": "CMSEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAbsoluteTime",
+          "text": "CFAbsoluteTime"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncoderCopySignerTimestampWithPolicy(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderCopySignerTimestampWithPolicy"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSEncoderCopySignerTimestampWithPolicy(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsencodercopysignertimestampwithpolicy(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncoderCopySigners(_:_:)": {
+      "abstract": [
+        {
+          "text": "Obtains the array of signers specified with the ",
+          "type": "text"
+        },
+        {
+          "code": "CMSEncoderAddSigners",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderCopySigners"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSEncoderRef",
+          "text": "CMSEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncoderCopySigners(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderCopySigners"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSEncoderCopySigners(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsencodercopysigners(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncoderCopySupportingCerts(_:_:)": {
+      "abstract": [
+        {
+          "text": "Obtains the certificates added to a message with ",
+          "type": "text"
+        },
+        {
+          "code": "CMSEncoderAddSupportingCerts",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderCopySupportingCerts"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSEncoderRef",
+          "text": "CMSEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncoderCopySupportingCerts(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderCopySupportingCerts"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSEncoderCopySupportingCerts(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsencodercopysupportingcerts(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncoderCreate(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a CMSEncoder reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSEncoderRef",
+          "text": "CMSEncoder"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncoderCreate(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSEncoderCreate(_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsencodercreate(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncoderGetCertificateChainMode(_:_:)": {
+      "abstract": [
+        {
+          "text": "Obtains a constant that indicates which certificates are to be included in a signed CMS message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderGetCertificateChainMode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSEncoderRef",
+          "text": "CMSEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CMSCertificateChainMode",
+          "text": "CMSCertificateChainMode"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncoderGetCertificateChainMode(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderGetCertificateChainMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSEncoderGetCertificateChainMode(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsencodergetcertificatechainmode(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncoderGetHasDetachedContent(_:_:)": {
+      "abstract": [
+        {
+          "text": "Indicates whether the message is to have detached content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderGetHasDetachedContent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSEncoderRef",
+          "text": "CMSEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Darwin0A7BooleanV",
+          "text": "DarwinBoolean"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncoderGetHasDetachedContent(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderGetHasDetachedContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSEncoderGetHasDetachedContent(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsencodergethasdetachedcontent(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncoderGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the type identifier for the CMSEncoder opaque type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncoderGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSEncoderGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/security/cmsencodergettypeid()"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncoderSetCertificateChainMode(_:_:)": {
+      "abstract": [
+        {
+          "text": "Specifies which certificates to include in a signed CMS message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderSetCertificateChainMode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSEncoderRef",
+          "text": "CMSEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CMSCertificateChainMode",
+          "text": "CMSCertificateChainMode"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncoderSetCertificateChainMode(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderSetCertificateChainMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSEncoderSetCertificateChainMode(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsencodersetcertificatechainmode(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncoderSetEncapsulatedContentType": {
+      "abstract": [
+        {
+          "text": "Specifies an object identifier for the encapsulated data of a signed message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderSetEncapsulatedContentType"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncoderSetEncapsulatedContentType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMSEncoderSetEncapsulatedContentType",
+      "type": "topic",
+      "url": "/documentation/security/cmsencodersetencapsulatedcontenttype"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncoderSetEncapsulatedContentTypeOID(_:_:)": {
+      "abstract": [
+        {
+          "text": "Specifies an object identifier for the encapsulated data of a signed message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderSetEncapsulatedContentTypeOID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSEncoderRef",
+          "text": "CMSEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncoderSetEncapsulatedContentTypeOID(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderSetEncapsulatedContentTypeOID"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSEncoderSetEncapsulatedContentTypeOID(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsencodersetencapsulatedcontenttypeoid(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncoderSetHasDetachedContent(_:_:)": {
+      "abstract": [
+        {
+          "text": "Specifies whether the signed data is to be separate from the message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderSetHasDetachedContent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSEncoderRef",
+          "text": "CMSEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncoderSetHasDetachedContent(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderSetHasDetachedContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSEncoderSetHasDetachedContent(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsencodersethasdetachedcontent(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncoderSetSignerAlgorithm(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the digest algorithm to use for the signer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderSetSignerAlgorithm"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSEncoderRef",
+          "text": "CMSEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncoderSetSignerAlgorithm(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderSetSignerAlgorithm"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSEncoderSetSignerAlgorithm(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsencodersetsigneralgorithm(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSEncoderUpdateContent(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Feeds content bytes into the encoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderUpdateContent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSEncoderRef",
+          "text": "CMSEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSEncoderUpdateContent(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSEncoderUpdateContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSEncoderUpdateContent(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/cmsencoderupdatecontent(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/CMSSignedAttributes": {
+      "abstract": [
+        {
+          "text": "Optional attributes you can add to a signed message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSSignedAttributes"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSSignedAttributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSSignedAttributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSSignedAttributes",
+      "type": "topic",
+      "url": "/documentation/security/cmssignedattributes"
+    },
+    "doc://com.apple.security/documentation/Security/CMSSignerStatus": {
+      "abstract": [
+        {
+          "text": "The constants that indicate the status of the signature and signer information in a signed message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSSignerStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CMSSignerStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSSignerStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSSignerStatus",
+      "type": "topic",
+      "url": "/documentation/security/cmssignerstatus"
+    },
+    "https://tools.ietf.org/html/rfc3851": {
+      "identifier": "https://tools.ietf.org/html/rfc3851",
+      "title": "RFC 3851",
+      "titleInlineContent": [
+        {
+          "text": "RFC 3851",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc3851"
+    },
+    "https://tools.ietf.org/html/rfc3852": {
+      "identifier": "https://tools.ietf.org/html/rfc3852",
+      "title": "RFC 3852",
+      "titleInlineContent": [
+        {
+          "text": "RFC 3852",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc3852"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "The-Encoder",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/CMSEncoderCreate(_:)",
+        "doc://com.apple.security/documentation/Security/CMSEncoder",
+        "doc://com.apple.security/documentation/Security/CMSEncoderGetTypeID()"
+      ],
+      "title": "The Encoder"
+    },
+    {
+      "anchor": "Message-Creation",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/CMSEncoderAddSigners(_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSEncoderAddRecipients(_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSEncoderSetHasDetachedContent(_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSEncoderSetEncapsulatedContentTypeOID(_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSEncoderAddSupportingCerts(_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSEncoderAddSignedAttributes(_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSSignedAttributes",
+        "doc://com.apple.security/documentation/Security/CMSEncoderSetCertificateChainMode(_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSCertificateChainMode",
+        "doc://com.apple.security/documentation/Security/CMSEncoderSetSignerAlgorithm(_:_:)"
+      ],
+      "title": "Message Creation"
+    },
+    {
+      "anchor": "Message-Characteristics",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/CMSEncoderCopySigners(_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSEncoderCopyRecipients(_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSEncoderGetHasDetachedContent(_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSEncoderCopyEncapsulatedContentType(_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSEncoderCopySupportingCerts(_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSEncoderGetCertificateChainMode(_:_:)"
+      ],
+      "title": "Message Characteristics"
+    },
+    {
+      "anchor": "Encoding",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/CMSEncoderUpdateContent(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSEncoderCopyEncodedContent(_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSEncodeContent(_:_:_:_:_:_:_:_:)"
+      ],
+      "title": "Encoding"
+    },
+    {
+      "anchor": "The-Decoder",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/CMSDecoderCreate(_:)",
+        "doc://com.apple.security/documentation/Security/CMSDecoder",
+        "doc://com.apple.security/documentation/Security/CMSDecoderGetTypeID()"
+      ],
+      "title": "The Decoder"
+    },
+    {
+      "anchor": "Decoding",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/CMSDecoderUpdateMessage(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSDecoderFinalizeMessage(_:)",
+        "doc://com.apple.security/documentation/Security/CMSDecoderSetDetachedContent(_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSDecoderCopyDetachedContent(_:_:)"
+      ],
+      "title": "Decoding"
+    },
+    {
+      "anchor": "Signature-Verification",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/CMSDecoderSetSearchKeychain(_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSDecoderGetNumSigners(_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerEmailAddress(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerCert(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerStatus(_:_:_:_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSSignerStatus"
+      ],
+      "title": "Signature Verification"
+    },
+    {
+      "anchor": "Message-Content",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/CMSDecoderIsContentEncrypted(_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSDecoderCopyEncapsulatedContentType(_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSDecoderCopyAllCerts(_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSDecoderCopyContent(_:_:)"
+      ],
+      "title": "Message Content"
+    },
+    {
+      "anchor": "Timestamps",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerSigningTime(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerTimestamp(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerTimestampCertificates(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerTimestampWithPolicy(_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSEncoderCopySignerTimestamp(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/CMSEncoderCopySignerTimestampWithPolicy(_:_:_:_:)"
+      ],
+      "title": "Timestamps"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "The-Encoder",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/CMSEncoderCreate(_:)",
+                "doc://com.apple.security/documentation/Security/CMSEncoder",
+                "doc://com.apple.security/documentation/Security/CMSEncoderGetTypeID()"
+              ],
+              "title": "The Encoder"
+            },
+            {
+              "anchor": "Message-Creation",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/CMSEncoderAddSigners(_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSEncoderAddRecipients(_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSEncoderSetHasDetachedContent(_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSEncoderSetEncapsulatedContentTypeOID(_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSEncoderSetEncapsulatedContentType",
+                "doc://com.apple.security/documentation/Security/CMSEncoderAddSupportingCerts(_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSEncoderAddSignedAttributes(_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSSignedAttributes",
+                "doc://com.apple.security/documentation/Security/CMSEncoderSetCertificateChainMode(_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSCertificateChainMode",
+                "doc://com.apple.security/documentation/Security/CMSEncoderSetSignerAlgorithm(_:_:)"
+              ],
+              "title": "Message Creation"
+            },
+            {
+              "anchor": "Message-Characteristics",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/CMSEncoderCopySigners(_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSEncoderCopyRecipients(_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSEncoderGetHasDetachedContent(_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSEncoderCopyEncapsulatedContentType(_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSEncoderCopySupportingCerts(_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSEncoderGetCertificateChainMode(_:_:)"
+              ],
+              "title": "Message Characteristics"
+            },
+            {
+              "anchor": "Encoding",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/CMSEncoderUpdateContent(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSEncoderCopyEncodedContent(_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSEncodeContent(_:_:_:_:_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSEncode"
+              ],
+              "title": "Encoding"
+            },
+            {
+              "anchor": "The-Decoder",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/CMSDecoderCreate(_:)",
+                "doc://com.apple.security/documentation/Security/CMSDecoder",
+                "doc://com.apple.security/documentation/Security/CMSDecoderGetTypeID()"
+              ],
+              "title": "The Decoder"
+            },
+            {
+              "anchor": "Decoding",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/CMSDecoderUpdateMessage(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSDecoderFinalizeMessage(_:)",
+                "doc://com.apple.security/documentation/Security/CMSDecoderSetDetachedContent(_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSDecoderCopyDetachedContent(_:_:)"
+              ],
+              "title": "Decoding"
+            },
+            {
+              "anchor": "Signature-Verification",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/CMSDecoderSetSearchKeychain(_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSDecoderGetNumSigners(_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerEmailAddress(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerCert(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerStatus(_:_:_:_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSSignerStatus"
+              ],
+              "title": "Signature Verification"
+            },
+            {
+              "anchor": "Message-Content",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/CMSDecoderIsContentEncrypted(_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSDecoderCopyEncapsulatedContentType(_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSDecoderCopyAllCerts(_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSDecoderCopyContent(_:_:)"
+              ],
+              "title": "Message Content"
+            },
+            {
+              "anchor": "Timestamps",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerSigningTime(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerTimestamp(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerTimestampCertificates(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSDecoderCopySignerTimestampWithPolicy(_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSEncoderCopySignerTimestamp(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/CMSEncoderCopySignerTimestampWithPolicy(_:_:_:_:)"
+              ],
+              "title": "Timestamps"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderAddSigners(_:_:)/title",
+          "value": "CMSEncoderAddSigners"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderAddSigners(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSEncoderAddSigners"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSCertificateChainMode/title",
+          "value": "CMSCertificateChainMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSCertificateChainMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSCertificateChainMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSCertificateChainMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSCertificateChainMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderSetHasDetachedContent(_:_:)/title",
+          "value": "CMSEncoderSetHasDetachedContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderSetHasDetachedContent(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSEncoderSetHasDetachedContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSSignedAttributes/title",
+          "value": "CMSSignedAttributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSSignedAttributes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSSignedAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSSignedAttributes/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSSignedAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderAddRecipients(_:_:)/title",
+          "value": "CMSEncoderAddRecipients"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderAddRecipients(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSEncoderAddRecipients"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCopySignerTimestampWithPolicy(_:_:_:_:)/title",
+          "value": "CMSDecoderCopySignerTimestampWithPolicy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCopySignerTimestampWithPolicy(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSDecoderCopySignerTimestampWithPolicy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCopySignerTimestampCertificates(_:_:_:)/title",
+          "value": "CMSDecoderCopySignerTimestampCertificates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCopySignerTimestampCertificates(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSDecoderCopySignerTimestampCertificates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCreate(_:)/title",
+          "value": "CMSDecoderCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCreate(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSDecoderCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderSetCertificateChainMode(_:_:)/title",
+          "value": "CMSEncoderSetCertificateChainMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderSetCertificateChainMode(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSEncoderSetCertificateChainMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderCopySupportingCerts(_:_:)/title",
+          "value": "CMSEncoderCopySupportingCerts"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderCopySupportingCerts(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSEncoderCopySupportingCerts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCopySignerEmailAddress(_:_:_:)/title",
+          "value": "CMSDecoderCopySignerEmailAddress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCopySignerEmailAddress(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSDecoderCopySignerEmailAddress"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderSetSearchKeychain(_:_:)/title",
+          "value": "CMSDecoderSetSearchKeychain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderSetSearchKeychain(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSDecoderSetSearchKeychain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderCopySigners(_:_:)/title",
+          "value": "CMSEncoderCopySigners"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderCopySigners(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSEncoderCopySigners"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderCreate(_:)/title",
+          "value": "CMSEncoderCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderCreate(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSEncoderCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderSetEncapsulatedContentTypeOID(_:_:)/title",
+          "value": "CMSEncoderSetEncapsulatedContentTypeOID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderSetEncapsulatedContentTypeOID(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSEncoderSetEncapsulatedContentTypeOID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCopyEncapsulatedContentType(_:_:)/title",
+          "value": "CMSDecoderCopyEncapsulatedContentType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCopyEncapsulatedContentType(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSDecoderCopyEncapsulatedContentType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCopySignerCert(_:_:_:)/title",
+          "value": "CMSDecoderCopySignerCert"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCopySignerCert(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSDecoderCopySignerCert"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderCopySignerTimestamp(_:_:_:)/title",
+          "value": "CMSEncoderCopySignerTimestamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderCopySignerTimestamp(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSEncoderCopySignerTimestamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderGetTypeID()/title",
+          "value": "CMSDecoderGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSDecoderGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderSetSignerAlgorithm(_:_:)/title",
+          "value": "CMSEncoderSetSignerAlgorithm"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderSetSignerAlgorithm(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSEncoderSetSignerAlgorithm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderFinalizeMessage(_:)/title",
+          "value": "CMSDecoderFinalizeMessage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderFinalizeMessage(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSDecoderFinalizeMessage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderCopySignerTimestampWithPolicy(_:_:_:_:)/title",
+          "value": "CMSEncoderCopySignerTimestampWithPolicy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderCopySignerTimestampWithPolicy(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSEncoderCopySignerTimestampWithPolicy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderSetDetachedContent(_:_:)/title",
+          "value": "CMSDecoderSetDetachedContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderSetDetachedContent(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSDecoderSetDetachedContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderIsContentEncrypted(_:_:)/title",
+          "value": "CMSDecoderIsContentEncrypted"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderIsContentEncrypted(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSDecoderIsContentEncrypted"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderCopyEncapsulatedContentType(_:_:)/title",
+          "value": "CMSEncoderCopyEncapsulatedContentType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderCopyEncapsulatedContentType(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSEncoderCopyEncapsulatedContentType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderUpdateContent(_:_:_:)/title",
+          "value": "CMSEncoderUpdateContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderUpdateContent(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSEncoderUpdateContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderAddSignedAttributes(_:_:)/title",
+          "value": "CMSEncoderAddSignedAttributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderAddSignedAttributes(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSEncoderAddSignedAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCopyContent(_:_:)/title",
+          "value": "CMSDecoderCopyContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCopyContent(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSDecoderCopyContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCopySignerStatus(_:_:_:_:_:_:_:)/title",
+          "value": "CMSDecoderCopySignerStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCopySignerStatus(_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSDecoderCopySignerStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCopyDetachedContent(_:_:)/title",
+          "value": "CMSDecoderCopyDetachedContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCopyDetachedContent(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSDecoderCopyDetachedContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderCopyRecipients(_:_:)/title",
+          "value": "CMSEncoderCopyRecipients"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderCopyRecipients(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSEncoderCopyRecipients"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderGetHasDetachedContent(_:_:)/title",
+          "value": "CMSEncoderGetHasDetachedContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderGetHasDetachedContent(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSEncoderGetHasDetachedContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCopySignerSigningTime(_:_:_:)/title",
+          "value": "CMSDecoderCopySignerSigningTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCopySignerSigningTime(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSDecoderCopySignerSigningTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoder/title",
+          "value": "CMSDecoderRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSDecoderRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSDecoderRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoder/title",
+          "value": "CMSEncoderRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSEncoderRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSEncoderRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderGetTypeID()/title",
+          "value": "CMSEncoderGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSEncoderGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderGetNumSigners(_:_:)/title",
+          "value": "CMSDecoderGetNumSigners"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderGetNumSigners(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSDecoderGetNumSigners"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSSignerStatus/title",
+          "value": "CMSSignerStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSSignerStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSSignerStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSSignerStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSSignerStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderUpdateMessage(_:_:_:)/title",
+          "value": "CMSDecoderUpdateMessage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderUpdateMessage(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSDecoderUpdateMessage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncodeContent(_:_:_:_:_:_:_:_:)/title",
+          "value": "CMSEncodeContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncodeContent(_:_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSEncodeContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderAddSupportingCerts(_:_:)/title",
+          "value": "CMSEncoderAddSupportingCerts"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderAddSupportingCerts(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSEncoderAddSupportingCerts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderCopyEncodedContent(_:_:)/title",
+          "value": "CMSEncoderCopyEncodedContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderCopyEncodedContent(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSEncoderCopyEncodedContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderGetCertificateChainMode(_:_:)/title",
+          "value": "CMSEncoderGetCertificateChainMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSEncoderGetCertificateChainMode(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSEncoderGetCertificateChainMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCopyAllCerts(_:_:)/title",
+          "value": "CMSDecoderCopyAllCerts"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCopyAllCerts(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSDecoderCopyAllCerts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCopySignerTimestamp(_:_:_:)/title",
+          "value": "CMSDecoderCopySignerTimestamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CMSDecoderCopySignerTimestamp(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSDecoderCopySignerTimestamp"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/cryptographic-message-syntax-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/cryptographic-message-syntax-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

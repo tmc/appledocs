@@ -1,0 +1,3128 @@
+{
+  "abstract": [
+    {
+      "text": "Common protocol to which all distributed actors conform implicitly.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Distributed"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Distributed/DistributedActor"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:11Distributed0A5ActorP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "DistributedActor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Distributed"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "DistributedActor"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "DistributedActor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "DistributedActor"
+            },
+            {
+              "kind": "text",
+              "text": " : AnyObject, "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SH",
+              "text": "Hashable"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Identifiable",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s12IdentifiableP",
+              "text": "Identifiable"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s8SendableP",
+              "text": "Sendable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "DistributedActor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol generalizes over all distributed actor types.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Distributed actor types implicitly conform to this protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is not possible to conform to this protocol by any other declaration other than a ",
+              "type": "text"
+            },
+            {
+              "code": "distributed actor",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is possible to require a type to conform to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol by refining it with another protocol,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or by using a generic constraint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Synthesized-properties",
+          "level": 2,
+          "text": "Synthesized properties",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For every concrete distributed actor declaration, the compiler synthesizes two properties: ",
+              "type": "text"
+            },
+            {
+              "code": "actorSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "They witness the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/actorSystem-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/id",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol requirements of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is not possible to implement these properties explicitly in user code.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These properties are ",
+              "type": "text"
+            },
+            {
+              "code": "nonisolated",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and accessible even if the instance is ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "remote",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "because ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "all",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " distributed actor references must store the actor system remote calls",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "will be delivered through, as well as the id identifying the target of those calls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "The-ActorSystem-associated-type",
+          "level": 2,
+          "text": "The ActorSystem associated type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every distributed actor must declare what type of actor system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it is part of by implementing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/ActorSystem-swift.associatedtype",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " associated type requirement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This causes a number of other properties of the actor to be inferred:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/SerializationRequirement",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " that will be used at compile time to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "verify ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "distributed",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " target declarations are well formed,",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "if the distributed actor is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Codable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", based on the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " being Codable or not,",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "the type of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/ActorSystem-swift.associatedtype",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " accepted in the synthesized default initializer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A distributed actor must declare what type of actor system it is ready to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "work with by fulfilling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/ActorSystem-swift.associatedtype",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type member requirement:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "distributed actor Greeter {",
+            "  typealias ActorSystem = GreetingSystem // which conforms to DistributedActorSystem",
+            "",
+            "  func greet() -> String { \"Hello!\" }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "The-DefaultDistributedActorSystem-type-alias",
+          "level": 3,
+          "text": "The DefaultDistributedActorSystem type alias",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Since it is fairly common to only be using one specific type of actor system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "within a module or entire codebase, it is possible to declare the default type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of actor system all distributed actors will be using in a module by declaring",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a ",
+              "type": "text"
+            },
+            {
+              "code": "DefaultDistributedActorSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " module wide typealias:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import Distributed",
+            "import AmazingActorSystemLibrary",
+            "",
+            "typealias DefaultDistributedActorSystem = AmazingActorSystem",
+            "",
+            "distributed actor Greeter {} // ActorSystem == AmazingActorSystem"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This declaration makes all ",
+              "type": "text"
+            },
+            {
+              "code": "distributed actor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " declarations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that do not explicitly specify an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/ActorSystem-swift.associatedtype",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type alias to assume the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "AmazingActorSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as their ",
+              "type": "text"
+            },
+            {
+              "code": "ActorSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is possible for a specific actor to override the system it is using,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by declaring an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/ActorSystem-swift.associatedtype",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type alias as usual:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typealias DefaultDistributedActorSystem = AmazingActorSystem",
+            "",
+            "distributed actor Amazing {",
+            "  // ActorSystem == AmazingActorSystem",
+            "}",
+            "",
+            "distributed actor Superb {",
+            "  typealias ActorSystem = SuperbActorSystem",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In general the ",
+              "type": "text"
+            },
+            {
+              "code": "DefaultDistributedActorSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " should not be declared public,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as picking the default should be left up to each specific module of a project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Default-initializer",
+          "level": 2,
+          "text": "Default initializer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While classes and actors receive a synthesized ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "argument-free default",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "initializer",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "code": "init()",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), distributed actors synthesize a default initializer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that accepts a distributed actor system the actor is part of: ",
+              "type": "text"
+            },
+            {
+              "code": "init(actorSystem:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The accepted actor system must be of the ",
+              "type": "text"
+            },
+            {
+              "code": "Self.ActorSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type, which",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "must conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. This is required",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "because distributed actors are always managed by a concrete",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "distributed actor system and cannot exist on their own without one.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is possible to explicitly declare a parameter-free initializer (",
+              "type": "text"
+            },
+            {
+              "code": "init()",
+              "type": "codeVoice"
+            },
+            {
+              "text": "),",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "however the ",
+              "type": "text"
+            },
+            {
+              "code": "actorSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property still must be assigned a concrete actor",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system instance the actor shall be part of.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In general it is recommended to always have an ",
+              "type": "text"
+            },
+            {
+              "code": "actorSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the last non-defaulted non-closure parameter in every actor’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "initializer parameter list. This way it is simple to swap in a “test actor",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system” instance in unit tests, and avoid relying on global state which could",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "make testing more difficult.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Implicit-properties",
+          "level": 2,
+          "text": "Implicit properties",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every concrete ",
+              "type": "text"
+            },
+            {
+              "code": "distributed actor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type receives two synthesized properties,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which implement the protocol requirements of this protocol: ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "actorSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Property-Actor-System",
+          "level": 3,
+          "text": "Property: Actor System",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/actorSystem-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is an important part of every distributed actor’s lifecycle management.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both initialization as well as de-initialization require interactions with the actor system,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and it is the actor system that handles all remote interactions of an actor, by both sending",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or receiving remote calls made on the actor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/actorSystem-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property must be assigned in every designated initializer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of a distributed actor explicitly. It is highly recommended to make it a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parameter of every distributed actor initializer, and simply forward the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "value to the stored property, like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "init(name: String, actorSystem: Self.ActorSystem) {",
+            "  self.name = name",
+            "  self.actorSystem = actorSystem",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Forgetting to initialize the actor system, will result in a compile time error:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// BAD",
+            "init(name: String, actorSystem: Self.ActorSystem) {",
+            "  self.name = name",
+            "  // BAD, will cause compile-time error; the `actorSystem` was not initialized.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Property-Distributed-Actor-Identity",
+          "level": 3,
+          "text": "Property: Distributed Actor Identity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/id",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is assigned by the actor system during the distributed actor’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "initialization, and cannot be set or mutated by the actor itself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/id",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is the effective identity of the actor, and is used in equality checks,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as well as the actor’s synthesized ",
+              "type": "text"
+            },
+            {
+              "code": "Codable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conformance if the ",
+              "type": "text"
+            },
+            {
+              "code": "ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "conforms to ",
+              "type": "text"
+            },
+            {
+              "code": "Codable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Automatic-Conformances",
+          "level": 2,
+          "text": "Automatic Conformances",
+          "type": "heading"
+        },
+        {
+          "anchor": "Hashable-and-Identifiable-conformance",
+          "level": 3,
+          "text": "Hashable and Identifiable conformance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every distributed actor conforms to the ",
+              "type": "text"
+            },
+            {
+              "code": "Hashable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "Identifiable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocols.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Its identity is strictly driven by its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/id",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and therefore hash and equality",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "implementations directly delegate to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/id",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Comparing a local distributed actor instance and a remote reference to it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(both using the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/id",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") always returns true, as they both conceptually",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "point at the same distributed actor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is not possible to implement these protocols relying on the actual actor’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "state, because it may be remote and the state may not be available. In other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "words, since these protocols must be implemented using ",
+              "type": "text"
+            },
+            {
+              "code": "nonisolated",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functions,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "only ",
+              "type": "text"
+            },
+            {
+              "code": "nonisolated",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "actorSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties are accessible for their",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "implementations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Implicit-Codable-conformance",
+          "level": 3,
+          "text": "Implicit Codable conformance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If created with an actor system whose ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystem/ActorID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "Codable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "compiler will synthesize code for the concrete distributed actor to conform",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to ",
+              "type": "text"
+            },
+            {
+              "code": "Codable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This is necessary to support distributed calls where the ",
+              "type": "text"
+            },
+            {
+              "code": "SerializationRequirement",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is ",
+              "type": "text"
+            },
+            {
+              "code": "Codable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and thus users may want to pass actors as arguments to remote calls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The synthesized implementations use a single ",
+              "type": "text"
+            },
+            {
+              "code": "SingleValueEncodingContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "encode/decode the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/id",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the actor. The ",
+              "type": "text"
+            },
+            {
+              "code": "Decoder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " required",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Decoder/init(from:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is implemented by retrieving an actor system from the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "decoders’ ",
+              "type": "text"
+            },
+            {
+              "code": "userInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", effectively like as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "decoder.userInfo[.actorSystemKey] as? ActorSystem",
+            "",
+            "The such obtained actor system is then used to ``resolve(id:using:)`` the decoded ``ID``.",
+            "",
+            "Use the ``CodingUserInfoKey/actorSystemKey`` to provide the necessary",
+            "actor system for the decoding initializer when decoding a distributed actor.",
+            "",
+            "- SeeAlso: ``DistributedActorSystem``",
+            "- SeeAlso: ``Actor``",
+            "- SeeAlso: ``AnyActor``"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Distributed": {
+      "abstract": [
+        {
+          "text": "Build systems that run distributed code across multiple processes and devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Distributed",
+      "type": "topic",
+      "url": "/documentation/distributed"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActor": {
+      "abstract": [
+        {
+          "text": "Common protocol to which all distributed actors conform implicitly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DistributedActor"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DistributedActor"
+        }
+      ],
+      "role": "symbol",
+      "title": "DistributedActor",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactor"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActor/ActorSystem-swift.associatedtype": {
+      "abstract": [
+        {
+          "text": "The type of transport used to communicate with actors of this type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActorSystem"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Distributed0A11ActorSystemP",
+          "text": "DistributedActorSystem"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/ActorSystem-swift.associatedtype",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "ActorSystem",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactor/actorsystem-swift.associatedtype"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActor/SerializationRequirement": {
+      "abstract": [
+        {
+          "text": "The serialization requirement to apply to all distributed declarations inside the actor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SerializationRequirement"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/SerializationRequirement",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "SerializationRequirement",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactor/serializationrequirement"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActor/actorSystem-swift.property": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystem",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " that is managing this distributed actor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "actorSystem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Distributed0A5ActorP0B6SystemQa",
+          "text": "ActorSystem"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/actorSystem-swift.property",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "actorSystem",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactor/actorsystem-swift.property"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActor/asLocalActor": {
+      "abstract": [
+        {
+          "text": "Produces an erased ",
+          "type": "text"
+        },
+        {
+          "code": "any Actor",
+          "type": "codeVoice"
+        },
+        {
+          "text": " reference to this known to be local distributed actor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "asLocalActor"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScA",
+          "text": "Actor"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/asLocalActor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "asLocalActor",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactor/aslocalactor"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActor/assertIsolated(_:file:line:)": {
+      "abstract": [
+        {
+          "text": "Stops program execution if the current task is not executing on this",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "actor’s serial executor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "assertIsolated"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "file"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "line"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/assertIsolated(_:file:line:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "assertIsolated(_:file:line:)",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactor/assertisolated(_:file:line:)"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActor/assumeIsolated(_:file:line:)": {
+      "abstract": [
+        {
+          "text": "Assume that the current task is executing on this (local) distributed",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "actor’s serial executor, or stop program execution otherwise.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "assumeIsolated"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "keyword",
+          "text": "isolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "file"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "line"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/assumeIsolated(_:file:line:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "assumeIsolated(_:file:line:)",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactor/assumeisolated(_:file:line:)"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActor/encode(to:)": {
+      "abstract": [
+        {
+          "text": "Encodes the ",
+          "type": "text"
+        },
+        {
+          "code": "actor.id",
+          "type": "codeVoice"
+        },
+        {
+          "text": " as a single value into the passed ",
+          "type": "text"
+        },
+        {
+          "code": "encoder",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "ID",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Encodable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7EncoderP",
+          "text": "Encoder"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/encode(to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:)",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactor/encode(to:)"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActor/id": {
+      "abstract": [
+        {
+          "text": "Logical identity of this distributed actor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/id",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "id",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactor/id"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActor/init(from:)": {
+      "abstract": [
+        {
+          "text": "Initializes an instance of this distributed actor by decoding its ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/id",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ",",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and passing it to the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystem",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " obtained from ",
+          "type": "text"
+        },
+        {
+          "code": "decoder.userInfo[actorSystemKey]",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "ID",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Decodable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7DecoderP",
+          "text": "Decoder"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/init(from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:)",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactor/init(from:)"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActor/preconditionIsolated(_:file:line:)": {
+      "abstract": [
+        {
+          "text": "Stops program execution if the current task is not executing on this",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "actor’s serial executor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preconditionIsolated"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "file"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "line"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/preconditionIsolated(_:file:line:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preconditionIsolated(_:file:line:)",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactor/preconditionisolated(_:file:line:)"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActor/resolve(id:using:)": {
+      "abstract": [
+        {
+          "text": "Resolves the passed in ",
+          "type": "text"
+        },
+        {
+          "code": "id",
+          "type": "codeVoice"
+        },
+        {
+          "text": " against the ",
+          "type": "text"
+        },
+        {
+          "code": "system",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", returning",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "either a local or remote actor reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolve"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Distributed0A5ActorP0B6SystemQa",
+          "text": "ActorSystem"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/resolve(id:using:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "resolve(id:using:)",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactor/resolve(id:using:)"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActor/unownedExecutor": {
+      "abstract": [
+        {
+          "text": "Retrieve the executor for this distributed actor as an optimized,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "unowned reference. This API is equivalent to ",
+          "type": "text"
+        },
+        {
+          "code": "Actor/unownedExecutor",
+          "type": "codeVoice"
+        },
+        {
+          "text": ",",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "however, by default, it intentionally returns ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if this actor is a reference",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to a remote distributed actor, because the executor for remote references",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "is effectively never g",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unownedExecutor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sce",
+          "text": "UnownedSerialExecutor"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/unownedExecutor",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "unownedExecutor",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactor/unownedexecutor"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActor/whenLocal(_:)": {
+      "abstract": [
+        {
+          "text": "Executes the passed ‘body’ only when the distributed actor is local instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "whenLocal"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "keyword",
+          "text": "isolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/whenLocal(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "whenLocal(_:)",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactor/whenlocal(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystem": {
+      "abstract": [
+        {
+          "text": "A distributed actor system underpins and implements all functionality of distributed actors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DistributedActorSystem"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DistributedActorSystem"
+        }
+      ],
+      "role": "symbol",
+      "title": "DistributedActorSystem",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactorsystem"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystem/ActorID": {
+      "abstract": [
+        {
+          "text": "The type ID that will be assigned to any distributed actor managed by this actor system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActorID"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystem/ActorID",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "ActorID",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactorsystem/actorid"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/Resolvable()": {
+      "abstract": [
+        {
+          "text": "Enables the attached to protocol to be resolved as remote distributed",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "actor reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Resolvable"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/Resolvable()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Resolvable()",
+      "type": "topic",
+      "url": "/documentation/distributed/resolvable()"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/buildDefaultDistributedRemoteActorExecutor(_:)": {
+      "abstract": [
+        {
+          "text": "Obtain the unowned ",
+          "type": "text"
+        },
+        {
+          "code": "SerialExecutor",
+          "type": "codeVoice"
+        },
+        {
+          "text": " that is used by by remote distributed actor references.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "The executor is shared between all remote default executor remote distributed actors,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and it will crash if any job is enqueued on it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buildDefaultDistributedRemoteActorExecutor"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Act"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Act"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sce",
+          "text": "UnownedSerialExecutor"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/buildDefaultDistributedRemoteActorExecutor(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buildDefaultDistributedRemoteActorExecutor(_:)",
+      "type": "topic",
+      "url": "/documentation/distributed/builddefaultdistributedremoteactorexecutor(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Equatable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Equatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/swift/equatable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a ",
+          "type": "text"
+        },
+        {
+          "code": "Hasher",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Identifiable": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Identifiable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/swift/identifiable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Equatable",
+        "doc://com.apple.Swift/documentation/Swift/Hashable",
+        "doc://com.apple.Swift/documentation/Swift/Identifiable",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Distributed-Actors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystem",
+        "doc://com.apple.Swift/documentation/Distributed/Resolvable()",
+        "doc://com.apple.Swift/documentation/Distributed/buildDefaultDistributedRemoteActorExecutor(_:)"
+      ],
+      "title": "Distributed Actors"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Associated-Types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Distributed/DistributedActor/ActorSystem-swift.associatedtype",
+        "doc://com.apple.Swift/documentation/Distributed/DistributedActor/SerializationRequirement"
+      ],
+      "title": "Associated Types"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Distributed/DistributedActor/init(from:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Distributed/DistributedActor/actorSystem-swift.property",
+        "doc://com.apple.Swift/documentation/Distributed/DistributedActor/asLocalActor",
+        "doc://com.apple.Swift/documentation/Distributed/DistributedActor/id",
+        "doc://com.apple.Swift/documentation/Distributed/DistributedActor/unownedExecutor"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Distributed/DistributedActor/assertIsolated(_:file:line:)",
+        "doc://com.apple.Swift/documentation/Distributed/DistributedActor/assumeIsolated(_:file:line:)",
+        "doc://com.apple.Swift/documentation/Distributed/DistributedActor/encode(to:)",
+        "doc://com.apple.Swift/documentation/Distributed/DistributedActor/preconditionIsolated(_:file:line:)",
+        "doc://com.apple.Swift/documentation/Distributed/DistributedActor/whenLocal(_:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Type-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Distributed/DistributedActor/resolve(id:using:)"
+      ],
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/distributed/distributedactor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

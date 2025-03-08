@@ -1,0 +1,887 @@
+{
+  "abstract": [
+    {
+      "text": "Empower users to interact with their devices through voice, intelligent suggestions, and personalized workflows.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/SiriKit"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "3.2",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Technology",
+    "title": "SiriKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Intents and IntentsUI frameworks drive interactions that start with “Hey Siri…”, Shortcuts actions, and widget configuration. The system also incorporates intents and user activities your app donates into contextual suggestions in Maps, Calendar, Watch complications, widgets, and search results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3849683",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the standard intents that the system provides to empower actions users already ask Siri to do, such as playing music or sending a text message. You can also offer your app’s unique capabilities throughout the system by designing custom intents. For more details about defining custom intents, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SiriKit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can process intents directly in your app, or in an Intents app extension. For guidance on setting up an app extension and sharing information between your app and extension, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SiriKit/structuring-your-code-to-support-app-extensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display branding or other customized content in Siri and Maps after you fulfill a user request, create a custom view controller in an IntentsUI app extension. See ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/sirikit/creating_an_intents_ui_extension",
+              "type": "text"
+            },
+            {
+              "text": " for more details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "With a person’s permission, an installed health research app that uses ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SensorKit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " entitlements may collect Face Metrics data while your SiriKit app is in use. To prevent SensorKit from collecting Face Metrics data while your app is in use, you can set the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/SRResearchDataGeneration",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " information property list key to ",
+                  "type": "text"
+                },
+                {
+                  "code": "NO",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/SRResearchDataGeneration": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether use of an app contributes data to SensorKit while the user is enrolled in a health research study.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/SRResearchDataGeneration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SRResearchDataGeneration",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/SRResearchDataGeneration"
+    },
+    "doc://com.apple.documentation/documentation/SensorKit": {
+      "abstract": [
+        {
+          "text": "Retrieve data and derived metrics from sensors on an iPhone, or paired Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SensorKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SensorKit",
+      "type": "topic",
+      "url": "/documentation/SensorKit"
+    },
+    "doc://com.apple.documentation/documentation/SiriKit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app": {
+      "abstract": [
+        {
+          "text": "Add custom intents and parameters to help users interact more quickly and effectively with Siri and the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SiriKit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding User Interactivity with Siri Shortcuts and the Shortcuts App",
+      "type": "topic",
+      "url": "/documentation/SiriKit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app"
+    },
+    "doc://com.apple.documentation/documentation/SiriKit/structuring-your-code-to-support-app-extensions": {
+      "abstract": [
+        {
+          "text": "Move your back-end services to a private framework so your app and app extensions can use them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SiriKit/structuring-your-code-to-support-app-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Structuring Your Code to Support App Extensions",
+      "type": "topic",
+      "url": "/documentation/SiriKit/structuring-your-code-to-support-app-extensions"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/IntentsUI": {
+      "abstract": [
+        {
+          "text": "Customize content in the interface for Siri and Maps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/IntentsUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "IntentsUI",
+      "type": "topic",
+      "url": "/documentation/intentsui"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/adding-shortcuts-for-wind-down": {
+      "abstract": [
+        {
+          "text": "Reveal your app’s shortcuts inside the Health app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/adding-shortcuts-for-wind-down",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adding Shortcuts for Wind Down",
+      "type": "topic",
+      "url": "/documentation/sirikit/adding-shortcuts-for-wind-down"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app": {
+      "abstract": [
+        {
+          "text": "Add custom intents and parameters to help users interact more quickly and effectively with Siri and the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding User Interactivity with Siri Shortcuts and the Shortcuts App",
+      "type": "topic",
+      "url": "/documentation/sirikit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/booking-rides-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Add Intents extensions to your app to handle requests to book rides using Siri and Maps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/booking-rides-with-sirikit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Booking Rides with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/booking-rides-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/configuring-the-view-controller-for-your-custom-interface": {
+      "abstract": [
+        {
+          "text": "Configure your view controller to replace or augment the default interface in Siri or Maps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/configuring-the-view-controller-for-your-custom-interface",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring the View Controller for Your Custom Interface",
+      "type": "topic",
+      "url": "/documentation/sirikit/configuring-the-view-controller-for-your-custom-interface"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/configuring-your-intents-ui-app-extension-target": {
+      "abstract": [
+        {
+          "text": "Configure your Xcode project to include an Intents UI app extension that you use to customize the Siri and Maps interfaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/configuring-your-intents-ui-app-extension-target",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Your Intents UI App Extension Target",
+      "type": "topic",
+      "url": "/documentation/sirikit/configuring-your-intents-ui-app-extension-target"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/confirming-the-details-of-an-intent": {
+      "abstract": [
+        {
+          "text": "Perform final validation of the intent parameters and verify that your services are ready to fulfill the intent.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/confirming-the-details-of-an-intent",
+      "kind": "article",
+      "role": "article",
+      "title": "Confirming the Details of an Intent",
+      "type": "topic",
+      "url": "/documentation/sirikit/confirming-the-details-of-an-intent"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/creating-an-intents-app-extension": {
+      "abstract": [
+        {
+          "text": "Add and configure an Intents app extension in your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/creating-an-intents-app-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Intents App Extension",
+      "type": "topic",
+      "url": "/documentation/sirikit/creating-an-intents-app-extension"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/defining-relevant-shortcuts-for-the-siri-watch-face": {
+      "abstract": [
+        {
+          "text": "Inform Siri when your app’s shortcuts may be useful to the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/defining-relevant-shortcuts-for-the-siri-watch-face",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining Relevant Shortcuts for the Siri Watch Face",
+      "type": "topic",
+      "url": "/documentation/sirikit/defining-relevant-shortcuts-for-the-siri-watch-face"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/deleting-donated-shortcuts": {
+      "abstract": [
+        {
+          "text": "Remove your donations from Siri.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/deleting-donated-shortcuts",
+      "kind": "article",
+      "role": "article",
+      "title": "Deleting Donated Shortcuts",
+      "type": "topic",
+      "url": "/documentation/sirikit/deleting-donated-shortcuts"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/dispatching-intents-to-handlers": {
+      "abstract": [
+        {
+          "text": "Provide SiriKit with an intent handler capable of handling a specific intent.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/dispatching-intents-to-handlers",
+      "kind": "article",
+      "role": "article",
+      "title": "Dispatching intents to handlers",
+      "type": "topic",
+      "url": "/documentation/sirikit/dispatching-intents-to-handlers"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/displaying-shortcut-information-in-a-siri-watch-face-card": {
+      "abstract": [
+        {
+          "text": "Display and customize watch-specific shortcut information with a default card template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/displaying-shortcut-information-in-a-siri-watch-face-card",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying Shortcut Information in a Siri Watch Face Card",
+      "type": "topic",
+      "url": "/documentation/sirikit/displaying-shortcut-information-in-a-siri-watch-face-card"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/donating-reservations": {
+      "abstract": [
+        {
+          "text": "Inform Siri of reservations made from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/donating-reservations",
+      "kind": "article",
+      "role": "article",
+      "title": "Donating Reservations",
+      "type": "topic",
+      "url": "/documentation/sirikit/donating-reservations"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/donating-shortcuts": {
+      "abstract": [
+        {
+          "text": "Tell Siri about shortcuts to actions that the user performed in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/donating-shortcuts",
+      "kind": "article",
+      "role": "article",
+      "title": "Donating Shortcuts",
+      "type": "topic",
+      "url": "/documentation/sirikit/donating-shortcuts"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/generating-a-list-of-ride-options": {
+      "abstract": [
+        {
+          "text": "Generate ride options for Maps to display to the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/generating-a-list-of-ride-options",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating a List of Ride Options",
+      "type": "topic",
+      "url": "/documentation/sirikit/generating-a-list-of-ride-options"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/handling-an-intent": {
+      "abstract": [
+        {
+          "text": "Fulfill the intent and provide feedback to SiriKit about what you did.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/handling-an-intent",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling an Intent",
+      "type": "topic",
+      "url": "/documentation/sirikit/handling-an-intent"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/handling-payment-requests-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Add an Intent Extension to your app to handle money transfer requests with Siri.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/handling-payment-requests-with-sirikit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Handling Payment Requests with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/handling-payment-requests-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/handling-the-ride-booking-intents": {
+      "abstract": [
+        {
+          "text": "Support the different intent-handling sequences for booking rides with Shortcuts or Maps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/handling-the-ride-booking-intents",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Handling the Ride-Booking Intents",
+      "type": "topic",
+      "url": "/documentation/sirikit/handling-the-ride-booking-intents"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/handling-workout-requests-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Add an Intent Extension to your app that handles requests to control workouts with Siri.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/handling-workout-requests-with-sirikit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Handling Workout Requests with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/handling-workout-requests-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/improving-interactions-between-siri-and-your-messaging-app": {
+      "abstract": [
+        {
+          "text": "Donate app-specific content, use Siri’s contact suggestions, and adopt the latest platform features to create a more consistent messaging experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/improving-interactions-between-siri-and-your-messaging-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving interactions between Siri and your messaging app",
+      "type": "topic",
+      "url": "/documentation/sirikit/improving-interactions-between-siri-and-your-messaging-app"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/improving-siri-media-interactions-and-app-selection": {
+      "abstract": [
+        {
+          "text": "Fine-tune voice controls and improve Siri Suggestions by sharing app capabilities, customized names, and listening habits with the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/improving-siri-media-interactions-and-app-selection",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving Siri Media Interactions and App Selection",
+      "type": "topic",
+      "url": "/documentation/sirikit/improving-siri-media-interactions-and-app-selection"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/integrating-your-app-with-siri-event-suggestions": {
+      "abstract": [
+        {
+          "text": "Donate reservations and provide quick access to event details throughout the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/integrating-your-app-with-siri-event-suggestions",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Integrating Your App with Siri Event Suggestions",
+      "type": "topic",
+      "url": "/documentation/sirikit/integrating-your-app-with-siri-event-suggestions"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/intent-phrases": {
+      "abstract": [
+        {
+          "text": "The keys that you include in your global vocabulary file to show how users engage your app from Siri.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/intent-phrases",
+      "kind": "article",
+      "role": "article",
+      "title": "Intent Phrases",
+      "type": "topic",
+      "url": "/documentation/sirikit/intent-phrases"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/localizing-your-vocabulary-for-chinese-dialects": {
+      "abstract": [
+        {
+          "text": "Apply emphasis markers to your pronunciation tips to assist Siri with Chinese dialects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/localizing-your-vocabulary-for-chinese-dialects",
+      "kind": "article",
+      "role": "article",
+      "title": "Localizing Your Vocabulary for Chinese Dialects",
+      "type": "topic",
+      "url": "/documentation/sirikit/localizing-your-vocabulary-for-chinese-dialects"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/managing-audio-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Control audio playback and handle requests to add media using SiriKit Media Intents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/managing-audio-with-sirikit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Managing Audio with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/managing-audio-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/offering-actions-in-the-shortcuts-app": {
+      "abstract": [
+        {
+          "text": "Suggest shortcuts users may want to add to Siri or combine with other actions in their own shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/offering-actions-in-the-shortcuts-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Offering Actions in the Shortcuts App",
+      "type": "topic",
+      "url": "/documentation/sirikit/offering-actions-in-the-shortcuts-app"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/parameter-vocabularies": {
+      "abstract": [
+        {
+          "text": "The keys you include in your global vocabulary file to describe app-specific terms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/parameter-vocabularies",
+      "kind": "article",
+      "role": "article",
+      "title": "Parameter Vocabularies",
+      "type": "topic",
+      "url": "/documentation/sirikit/parameter-vocabularies"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/providing-hands-free-app-control-with-intents": {
+      "abstract": [
+        {
+          "text": "Resolve, confirm, and handle intents without an extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/providing-hands-free-app-control-with-intents",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Providing Hands-Free App Control with Intents",
+      "type": "topic",
+      "url": "/documentation/sirikit/providing-hands-free-app-control-with-intents"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/providing-live-status-updates": {
+      "abstract": [
+        {
+          "text": "Provide regular updates to Maps about the status of a booked ride.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/providing-live-status-updates",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing Live Status Updates",
+      "type": "topic",
+      "url": "/documentation/sirikit/providing-live-status-updates"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/registering-custom-vocabulary-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Register your app’s custom terminology, and provide sample phrases for how to use your app with Siri.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/registering-custom-vocabulary-with-sirikit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Registering Custom Vocabulary with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/registering-custom-vocabulary-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/requesting-authorization-to-use-siri": {
+      "abstract": [
+        {
+          "text": "Request permission from the user for Siri and Maps to communicate with your app or Intents app extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/requesting-authorization-to-use-siri",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting Authorization to Use Siri",
+      "type": "topic",
+      "url": "/documentation/sirikit/requesting-authorization-to-use-siri"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/resolving-the-parameters-of-an-intent": {
+      "abstract": [
+        {
+          "text": "Validate the parameters of an intent and make sure that you have the information you need to continue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/resolving-the-parameters-of-an-intent",
+      "kind": "article",
+      "role": "article",
+      "title": "Resolving the Parameters of an Intent",
+      "type": "topic",
+      "url": "/documentation/sirikit/resolving-the-parameters-of-an-intent"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-accelerating-app-interactions-with-shortcuts": {
+      "abstract": [
+        {
+          "text": "Make it easy for people to use Siri with your app by providing shortcuts to your app’s actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-accelerating-app-interactions-with-shortcuts",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Soup Chef: Accelerating App Interactions with Shortcuts",
+      "type": "topic",
+      "url": "/documentation/sirikit/soup-chef-accelerating-app-interactions-with-shortcuts"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-with-app-intents-migrating-custom-intents": {
+      "abstract": [
+        {
+          "text": "Integrating App Intents to provide your appʼs actions to Siri and Shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-with-app-intents-migrating-custom-intents",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Soup Chef with App Intents: Migrating custom intents",
+      "type": "topic",
+      "url": "/documentation/sirikit/soup-chef-with-app-intents-migrating-custom-intents"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/specifying-synonyms-for-your-app-name": {
+      "abstract": [
+        {
+          "text": "Provide alternative names for your app that are more familiar or easier for users to speak.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/specifying-synonyms-for-your-app-name",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying Synonyms for Your App Name",
+      "type": "topic",
+      "url": "/documentation/sirikit/specifying-synonyms-for-your-app-name"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/structuring-your-code-to-support-app-extensions": {
+      "abstract": [
+        {
+          "text": "Move your back-end services to a private framework so your app and app extensions can use them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/structuring-your-code-to-support-app-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Structuring Your Code to Support App Extensions",
+      "type": "topic",
+      "url": "/documentation/sirikit/structuring-your-code-to-support-app-extensions"
+    },
+    "media-3849683": {
+      "alt": "A collection of devices, including a MacBook Air, an iPhone, an Apple Watch, and a HomePod mini. The devices display user interactions that SiriKit enables. On the MacBook Air, the Shortcuts app is open with a collection of shortcuts in the All Shortcuts section. The iPhone displays a Siri Suggestion with the Maps icon. The Apple Watch displays the Siri animation and the words “What can I help you with?”",
+      "identifier": "media-3849683",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/06419e94cd4dfe4473c92e9964f7377f/media-3849683@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "Reference the API that compose SiriKit",
+          "type": "text"
+        }
+      ],
+      "anchor": "Frameworks",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents",
+        "doc://com.apple.sirikit/documentation/IntentsUI"
+      ],
+      "title": "Frameworks"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Browse sample code that walks through specific Intents and IntentsUI workflows.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Sample-code",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/adding-shortcuts-for-wind-down",
+        "doc://com.apple.sirikit/documentation/SiriKit/booking-rides-with-sirikit",
+        "doc://com.apple.sirikit/documentation/SiriKit/handling-payment-requests-with-sirikit",
+        "doc://com.apple.sirikit/documentation/SiriKit/handling-workout-requests-with-sirikit",
+        "doc://com.apple.sirikit/documentation/SiriKit/integrating-your-app-with-siri-event-suggestions",
+        "doc://com.apple.sirikit/documentation/SiriKit/managing-audio-with-sirikit",
+        "doc://com.apple.sirikit/documentation/SiriKit/providing-hands-free-app-control-with-intents",
+        "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-accelerating-app-interactions-with-shortcuts",
+        "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-with-app-intents-migrating-custom-intents"
+      ],
+      "title": "Sample code"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Browse articles that cover high-level Intents and IntentsUI tasks.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Articles",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app",
+        "doc://com.apple.sirikit/documentation/SiriKit/defining-relevant-shortcuts-for-the-siri-watch-face",
+        "doc://com.apple.sirikit/documentation/SiriKit/deleting-donated-shortcuts",
+        "doc://com.apple.sirikit/documentation/SiriKit/dispatching-intents-to-handlers",
+        "doc://com.apple.sirikit/documentation/SiriKit/improving-siri-media-interactions-and-app-selection",
+        "doc://com.apple.sirikit/documentation/SiriKit/improving-interactions-between-siri-and-your-messaging-app",
+        "doc://com.apple.sirikit/documentation/SiriKit/registering-custom-vocabulary-with-sirikit",
+        "doc://com.apple.sirikit/documentation/SiriKit/confirming-the-details-of-an-intent",
+        "doc://com.apple.sirikit/documentation/SiriKit/handling-an-intent",
+        "doc://com.apple.sirikit/documentation/SiriKit/resolving-the-parameters-of-an-intent",
+        "doc://com.apple.sirikit/documentation/SiriKit/generating-a-list-of-ride-options",
+        "doc://com.apple.sirikit/documentation/SiriKit/handling-the-ride-booking-intents",
+        "doc://com.apple.sirikit/documentation/SiriKit/displaying-shortcut-information-in-a-siri-watch-face-card",
+        "doc://com.apple.sirikit/documentation/SiriKit/donating-reservations",
+        "doc://com.apple.sirikit/documentation/SiriKit/defining-relevant-shortcuts-for-the-siri-watch-face",
+        "doc://com.apple.sirikit/documentation/SiriKit/specifying-synonyms-for-your-app-name",
+        "doc://com.apple.sirikit/documentation/SiriKit/intent-phrases",
+        "doc://com.apple.sirikit/documentation/SiriKit/localizing-your-vocabulary-for-chinese-dialects",
+        "doc://com.apple.sirikit/documentation/SiriKit/parameter-vocabularies",
+        "doc://com.apple.sirikit/documentation/SiriKit/offering-actions-in-the-shortcuts-app",
+        "doc://com.apple.sirikit/documentation/SiriKit/creating-an-intents-app-extension",
+        "doc://com.apple.sirikit/documentation/SiriKit/requesting-authorization-to-use-siri",
+        "doc://com.apple.sirikit/documentation/SiriKit/structuring-your-code-to-support-app-extensions",
+        "doc://com.apple.sirikit/documentation/SiriKit/providing-live-status-updates",
+        "doc://com.apple.sirikit/documentation/SiriKit/donating-shortcuts",
+        "doc://com.apple.sirikit/documentation/SiriKit/configuring-the-view-controller-for-your-custom-interface",
+        "doc://com.apple.sirikit/documentation/SiriKit/configuring-your-intents-ui-app-extension-target"
+      ],
+      "title": "Articles"
+    }
+  ]
+}

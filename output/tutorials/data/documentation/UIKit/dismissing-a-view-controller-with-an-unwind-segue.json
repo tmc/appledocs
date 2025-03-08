@@ -1,0 +1,592 @@
+{
+  "abstract": [
+    {
+      "text": "Configure an unwind segue in your storyboard file that dynamically chooses the most appropriate view controller to display next.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/resource-management"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+        "doc://com.apple.uikit/documentation/UIKit/showing-and-hiding-view-controllers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/dismissing-a-view-controller-with-an-unwind-segue"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Dismissing a view controller with an unwind segue"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To handle the dismissal of a view controller, create an unwind segue. Unlike the segues that you use to present view controllers, an unwind segue promises the dismissal of the current view controller without promising a specific target for the resulting transition. Instead, UIKit determines the target of an unwind segue programmatically at runtime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UIKit determines the target of an unwind segue at runtime, so you aren’t restricted in how you set up your view controller hierarchies. Consider a scenario where two view controllers present the same child view controller, as shown in the following figure. You could add complicated logic to determine which view controller to display next, but such a solution wouldn’t scale well. Instead, UIKit provides a simple programmatic solution that scales to any number of view controllers with minimal effort.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3375405",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-an-unwind-action-on-a-parent-view-controller",
+          "level": 3,
+          "text": "Define an unwind action on a parent view controller",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The presence of an unwind segue action method tells UIKit that a view controller is a potential destination for an unwind segue. Before configuring any unwind segues in your storyboard, you must add this action method to least one of your view controllers. If no view controller has an unwind action, Xcode prevents you from creating unwind segues. This action method has the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "@IBAction func myUnwindAction(unwindSegue: UIStoryboardSegue)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (IBAction) myUnwindAction:(UIStoryboardSegue*)unwindSegue"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t need to do anything in your unwind segue action methods. The presence of the method is enough to dismiss the current view controller. However, you can use the method to perform relevant tasks during the dismissal process. For example, you might pass data from the dismissed view controller back to the parent that presented it. If you do, you can use the provided ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStoryboardSegue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to retrieve the starting and ending view controllers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Connect-a-triggering-object-to-the-exit-control",
+          "level": 3,
+          "text": "Connect a triggering object to the exit control",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your storyboard, create an unwind segue by right-clicking a triggering object and dragging to the Exit control at the top of your view controller’s scene. You may trigger the segue from any object that supports the target-action design pattern, such as a control or gesture recognizer attached to your view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3376048",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you connect an object to the Exit control, UIKit presents a list of known action methods. Select one of the action methods to complete the unwind segue. You only select the action method, not a specific view controller. To be displayed after the dismissal, a parent view controller must implement the method you select.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user triggers the dismiss action, UIKit searches the current view controller hierarchy for a view controller that implements the designated action method. It looks for the closest view controller, starting with the immediate parent, and walks up the view controller hierarchy until it finds an appropriate target. If it can’t find a view controller that implements the method, the unwind segue fails silently and the current view controller remains onscreen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStoryboard": {
+      "abstract": [
+        {
+          "text": "An encapsulation of the design-time view controller graph represented in an Interface Builder storyboard resource file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStoryboard"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStoryboard",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIStoryboard"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIStoryboard",
+      "type": "topic",
+      "url": "/documentation/uikit/uistoryboard"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStoryboardSegue": {
+      "abstract": [
+        {
+          "text": "An object that prepares for and performs the visual transition between two view controllers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStoryboardSegue"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStoryboardSegue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIStoryboardSegue"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIStoryboardSegue",
+      "type": "topic",
+      "url": "/documentation/uikit/uistoryboardsegue"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStoryboardUnwindSegueSource": {
+      "abstract": [
+        {
+          "text": "An encapsulation of information about an unwind segue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStoryboardUnwindSegueSource"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStoryboardUnwindSegueSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIStoryboardUnwindSegueSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIStoryboardUnwindSegueSource",
+      "type": "topic",
+      "url": "/documentation/uikit/uistoryboardunwindseguesource"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStoryboardViewControllerCreator": {
+      "abstract": [
+        {
+          "text": "A handler block that contains the custom initialization code for a view controller you instantiate from a storyboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UIStoryboardViewControllerCreator"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStoryboardViewControllerCreator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIStoryboardViewControllerCreator",
+      "type": "topic",
+      "url": "/documentation/uikit/uistoryboardviewcontrollercreator"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/customizing-the-behavior-of-segue-based-presentations": {
+      "abstract": [
+        {
+          "text": "Pass data between view controllers during a segue, and programmatically control when segues occur.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/customizing-the-behavior-of-segue-based-presentations",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the behavior of segue-based presentations",
+      "type": "topic",
+      "url": "/documentation/uikit/customizing-the-behavior-of-segue-based-presentations"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/resource-management": {
+      "abstract": [
+        {
+          "text": "Manage the images, strings, storyboards, and nib files that you use to implement your app’s interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/resource-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resource management",
+      "type": "topic",
+      "url": "/documentation/uikit/resource-management"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/showing-and-hiding-view-controllers": {
+      "abstract": [
+        {
+          "text": "Display view controllers using different techniques, and pass data between them during transitions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/showing-and-hiding-view-controllers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Showing and hiding view controllers",
+      "type": "topic",
+      "url": "/documentation/uikit/showing-and-hiding-view-controllers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-controllers": {
+      "abstract": [
+        {
+          "text": "Manage your interface using view controllers and facilitate navigation around your app’s content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View controllers",
+      "type": "topic",
+      "url": "/documentation/uikit/view-controllers"
+    },
+    "media-3375405": {
+      "alt": "An illustration showing the problem of connecting an unwind segue to a specific view controller. There might be multiple targets to choose from. ",
+      "identifier": "media-3375405",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/61b83c9a12a192275987cc892156d382/media-3375405@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/efbff84300c49fa2faaa6abeefa79370/media-3375405~dark@2x.png"
+        }
+      ]
+    },
+    "media-3376048": {
+      "alt": "An illustration showing how to connect a button to the exit control of a view controller to create an unwind segue.",
+      "identifier": "media-3376048",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b11e5fc6be5212414fff10f0d5774de5/media-3376048@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8bb255a9b5d68957ad751ecbf6a194db/media-3376048~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Storyboards",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/customizing-the-behavior-of-segue-based-presentations",
+        "doc://com.apple.uikit/documentation/UIKit/UIStoryboard",
+        "doc://com.apple.uikit/documentation/UIKit/UIStoryboardSegue",
+        "doc://com.apple.uikit/documentation/UIKit/UIStoryboardUnwindSegueSource"
+      ],
+      "title": "Storyboards"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Storyboards",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/customizing-the-behavior-of-segue-based-presentations",
+                "doc://com.apple.uikit/documentation/UIKit/UIStoryboard",
+                "doc://com.apple.uikit/documentation/UIKit/UIStoryboardSegue",
+                "doc://com.apple.uikit/documentation/UIKit/UIStoryboardUnwindSegueSource",
+                "doc://com.apple.uikit/documentation/UIKit/UIStoryboardViewControllerCreator"
+              ],
+              "title": "Storyboards"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStoryboardSegue/title",
+          "value": "UIStoryboardSegue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStoryboardSegue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStoryboardSegue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStoryboardSegue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStoryboardSegue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStoryboard/title",
+          "value": "UIStoryboard"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStoryboard/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStoryboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStoryboard/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStoryboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStoryboardUnwindSegueSource/title",
+          "value": "UIStoryboardUnwindSegueSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStoryboardUnwindSegueSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStoryboardUnwindSegueSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStoryboardUnwindSegueSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStoryboardUnwindSegueSource"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/dismissing-a-view-controller-with-an-unwind-segue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/dismissing-a-view-controller-with-an-unwind-segue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1146 @@
+{
+  "abstract": [
+    {
+      "text": "Avoid unnecessary work in your Metal app by understanding the relationships between resources.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-resource-dependencies"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Analyzing resource dependencies"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Dependencies viewer provides a graphical representation of the structure of your GPU trace and allows you to see the relationships between resources and the encoders that access them.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It also highlights the manual synchronizations you use between encoders, and indicates any unnecessary work by showing you all the unused resources in your frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-dv-overview.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspect-the-graph-at-different-levels-of-detail",
+          "level": 3,
+          "text": "Inspect the graph at different levels of detail",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At the highest level, the Dependencies viewer shows the overall structure of your frame.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "At this level, you can see the graph of command encoders inside command buffers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also see all of the passes in your frame.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each pass includes a thumbnail preview of its work, as well as the number of resources that it consumed or produced.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "At this level, you can see whether data is flowing and whether there’s synchronization between passes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-dv-lod-low.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As you zoom in to the next level, the Dependencies viewer expands the resources for each pass.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Additionally, each resource can have icons above and below it that indicate the consuming and producing actions.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For attachments in a render pass, the icons refer to the load and store actions.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Otherwise, they refer to general resource read-and-write operations.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "At this level, you can also view which resources are introducing data flow or synchronization between passes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-dv-lod-mid.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As you zoom in more, the Dependencies viewer shows larger thumbnails and metadata for the resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-dv-lod-high.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "View-a-resources-consuming-and-producing-actions",
+          "level": 3,
+          "text": "View a resource’s consuming and producing actions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The consuming and producing actions above and below a resource help you understand the resource accesses in a given pass at a quick glance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For textures in a render pass, the actions refer to the load and store actions for each attachment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a multisample render pass, the store action may affect the storing for both the multisample and the resolve textures.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "With ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLStoreAction/storeAndMultisampleResolve",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the multisample texture shows a store action and the resolve texture shows a store action.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "With ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLStoreAction/multisampleResolve",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the multisample texture shows a don’t-care action and the resolve texture shows a store action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Otherwise, the Dependencies viewer annotates the actions with generic read-and-write operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Analyze-the-data-flow-and-synchronization-dependencies",
+          "level": 3,
+          "text": "Analyze the data flow and synchronization dependencies",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Dependencies viewer displays two categories of dependencies between passes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Solid lines depict data flow. A previous pass produced data and a later pass consumes it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dashed lines depict synchronization. There’s no data flow, but there’s a relationship between the two passes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, a compute pass reading from a texture that a previous render encoder wrote has data flow between the two passes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, a render pass that clears an attachment on load has no data dependency on any pass that previously modified the texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, that render pass needs to wait until the previous passes finish modifying the texture — a synchronization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Choose-a-mode-for-viewing-dependencies",
+          "level": 3,
+          "text": "Choose a mode for viewing dependencies",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the Dependencies viewer to choose different modes for visualization, each with a different subset of edges:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All: Shows all edges from synchronization primitives, and tracked and untracked resources.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Synchronzation: Shows dashed synchronization edges from synchronization primitives and tracked resources.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Data Flow: Shows solid data-flow edges from tracked or untracked resources.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Pin-resources-from-the-resource-pile",
+          "level": 3,
+          "text": "Pin resources from the resource pile",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To maintain a compact graph, the Dependencies viewer attempts to keep a few interesting resources visible on the graph and hide the rest in a pile under each pass. Clicking the pile opens a popover of the resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-dv-popover.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can click the button to the right of each resource to pin or unpin it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-more-information-about-a-pass",
+          "level": 3,
+          "text": "Get more information about a pass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Clicking any pass in the Dependencies viewer selects it and displays additional information about the pass in the sidebar.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also determine which resources the pass consumes or produces:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For a resource the pass consumes, the Dependencies viewer suggests the pass that most recently modified the resource.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For a resource the pass produces, the Dependencies viewer suggests the passes that later consume the data in the resource.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Get-more-information-about-a-resource",
+          "level": 3,
+          "text": "Get more information about a resource",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Clicking any resource in the Dependencies viewer selects it and displays additional information about the resource in the sidebar.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also see the passes that last produced, or will later consume, the data in the resource.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you select a resource, the Dependencies viewer highlights any related resources.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, when you select a texture view, it highlights the parent textures.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you select a heap, it highlights the resources from the heap.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Improve-your-Metal-workload-with-Insights",
+          "level": 3,
+          "text": "Improve your Metal workload with Insights",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Click the Insights button in the bottom right corner to open a popover of recommendations in the Dependencies viewer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-dv-insights.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Limit-your-scope-with-filters",
+          "level": 3,
+          "text": "Limit your scope with filters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the filter field at the bottom of the Dependencies viewer to adjust the graph’s filtering criteria.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Type filter terms into the field and the Dependencies viewer displays any related passes that match the filter terms.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In addition, when filtering by a resource, you can find passes that consume or produce the resource.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Search-for-specific-elements",
+          "level": 3,
+          "text": "Search for specific elements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Choose Find > Find to display the search bar above the Dependencies viewer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can type search terms into the search bar’s text field to find matching passes and resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For any search term, you can click it and choose to include or exclude elements that match the term.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The two arrow buttons to the right of the text field let you move to the previous or the next matching element in the Dependencies viewer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-a-visual-timeline": {
+      "abstract": [
+        {
+          "text": "Locate performance issues using the Performance timeline.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-a-visual-timeline",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing Apple GPU performance using a visual timeline",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-apple-gpu-performance-using-a-visual-timeline"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-counter-statistics": {
+      "abstract": [
+        {
+          "text": "Optimize performance by examining counters for individual passes and commands.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-counter-statistics",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing Apple GPU performance using counter statistics",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-apple-gpu-performance-using-counter-statistics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-performance-heatmaps-a17-m3": {
+      "abstract": [
+        {
+          "text": "Gain insights to SIMD group performance by inspecting source code execution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-performance-heatmaps-a17-m3",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing Apple GPU performance with performance heat maps",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-apple-gpu-performance-using-performance-heatmaps-a17-m3"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-shader-cost-graph-a17-m3": {
+      "abstract": [
+        {
+          "text": "Discover potential shader performance issues by examining pipeline states.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-shader-cost-graph-a17-m3",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing Apple GPU performance using the shader cost graph",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-apple-gpu-performance-using-shader-cost-graph-a17-m3"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-memory-usage": {
+      "abstract": [
+        {
+          "text": "Manage your Metal app’s memory usage by inspecting its resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-memory-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing memory usage",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-memory-usage"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-non-Apple-GPU-performance-using-counter-statistics": {
+      "abstract": [
+        {
+          "text": "Optimize performance by examining counters for individual passes and commands.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-non-Apple-GPU-performance-using-counter-statistics",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing non-Apple GPU performance using counter statistics",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-non-apple-gpu-performance-using-counter-statistics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-your-Metal-workload": {
+      "abstract": [
+        {
+          "text": "Investigate your app’s workload, dependencies, performance, and memory impact using the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-your-Metal-workload",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing your Metal workload",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-your-metal-workload"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger": {
+      "abstract": [
+        {
+          "text": "Debug and profile your Metal workload with a GPU trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal debugger",
+      "type": "topic",
+      "url": "/documentation/xcode/metal-debugger"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLStoreAction/multisampleResolve": {
+      "abstract": [
+        {
+          "text": "The GPU resolves the multisampled data to one sample per pixel and stores the data to the resolve texture, discarding the multisample data afterwards.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "multisampleResolve"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLStoreAction/multisampleResolve",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLStoreAction.multisampleResolve",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLStoreAction/multisampleResolve"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLStoreAction/storeAndMultisampleResolve": {
+      "abstract": [
+        {
+          "text": "The GPU stores the multisample data to the multisample texture, resolves the data to a sample per pixel, and stores the data to the resolve texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storeAndMultisampleResolve"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLStoreAction/storeAndMultisampleResolve",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLStoreAction.storeAndMultisampleResolve",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLStoreAction/storeAndMultisampleResolve"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gputools-metal-debugger-dv-insights.png": {
+      "alt": "A screenshot of the Insights popover in the Dependencies viewer.",
+      "identifier": "gputools-metal-debugger-dv-insights.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/011bae9f1c1b1da8470ca05471fb6fc9/gputools-metal-debugger-dv-insights.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a1153313baa692a1e418b19fa7234605/gputools-metal-debugger-dv-insights@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/593e876d373a70a3139c5dbfdc9c81ec/gputools-metal-debugger-dv-insights~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c0abc0c1c1abf32a9c0398d0f46031a0/gputools-metal-debugger-dv-insights~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-dv-lod-high.png": {
+      "alt": "A screenshot of the Metal debugger’s Dependencies viewer showing the dependency graph with a high level of detail.",
+      "identifier": "gputools-metal-debugger-dv-lod-high.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e88487f305a9e713684be6b3ed7ee4da/gputools-metal-debugger-dv-lod-high.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49049b73095e136bdd9de6722645206a/gputools-metal-debugger-dv-lod-high@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/aad61f25f87cec0644c14b7cc1e0f631/gputools-metal-debugger-dv-lod-high~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d047a3323c6ff18de25e90f79f312d4b/gputools-metal-debugger-dv-lod-high~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-dv-lod-low.png": {
+      "alt": "A screenshot of the Metal debugger’s Dependencies viewer showing the dependency graph with a low level of detail.",
+      "identifier": "gputools-metal-debugger-dv-lod-low.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e185921f19f08d095d56793e5f98d714/gputools-metal-debugger-dv-lod-low.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4764d72159e10ae6fbcf431ce96ac97d/gputools-metal-debugger-dv-lod-low@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1dfd7b093fa1b05eb1c44d27be082f8e/gputools-metal-debugger-dv-lod-low~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c9fd4d19c27ca4ed1133e91574748892/gputools-metal-debugger-dv-lod-low~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-dv-lod-mid.png": {
+      "alt": "A screenshot of the Metal debugger’s Dependencies viewer showing the dependency graph with a medium level of detail.",
+      "identifier": "gputools-metal-debugger-dv-lod-mid.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8749d5974194c886c5647661a0b440eb/gputools-metal-debugger-dv-lod-mid.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/48408c4be87ba4cc4eee729d4a9b6e9d/gputools-metal-debugger-dv-lod-mid@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5614457aa1d655fa7454e66d166c65ad/gputools-metal-debugger-dv-lod-mid~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/050d0fb403e098d036a6760aabf787bd/gputools-metal-debugger-dv-lod-mid~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-dv-overview.png": {
+      "alt": "A screenshot of the Dependencies viewer, which includes a dependency graph view, a sidebar, and a control bar.",
+      "identifier": "gputools-metal-debugger-dv-overview.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a18c44349524935ab1b835f186932dc3/gputools-metal-debugger-dv-overview.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9792256b993e2819ad485ff530e40b9d/gputools-metal-debugger-dv-overview@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/68f4395b779834a10b80111ffe38c05c/gputools-metal-debugger-dv-overview~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/15de85a6c9dfaf4c6e807a3b07c18f70/gputools-metal-debugger-dv-overview~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-dv-popover.png": {
+      "alt": "A screenshot of the Resources popover at a pass in the Dependencies viewer.",
+      "identifier": "gputools-metal-debugger-dv-popover.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1ffe6597262d31f4eb20966df3ba6dfe/gputools-metal-debugger-dv-popover.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/40b0ab325d2c90ada3a97cc0734c37b1/gputools-metal-debugger-dv-popover@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f23398866988c312d792a1662c03d056/gputools-metal-debugger-dv-popover~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/551357029e05e1eabd848fce5c4a7c03/gputools-metal-debugger-dv-popover~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Metal-workload-analysis",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-your-Metal-workload",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-memory-usage",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-a-visual-timeline",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-counter-statistics",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-performance-heatmaps-a17-m3",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-shader-cost-graph-a17-m3",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-non-Apple-GPU-performance-using-counter-statistics"
+      ],
+      "title": "Metal workload analysis"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLStoreAction~1multisampleResolve/title",
+          "value": "MTLStoreActionMultisampleResolve"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLStoreAction~1multisampleResolve/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStoreActionMultisampleResolve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLStoreAction~1storeAndMultisampleResolve/title",
+          "value": "MTLStoreActionStoreAndMultisampleResolve"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLStoreAction~1storeAndMultisampleResolve/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStoreActionStoreAndMultisampleResolve"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

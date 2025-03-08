@@ -1,0 +1,1651 @@
+{
+  "abstract": [
+    {
+      "text": "Update your watchOS app project to adopt SwiftUI, WidgetKit, and other modern features.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.technotes/documentation/Technotes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.technotes/documentation/Technotes/tn3157-updating-your-watchOS-project-for-SwiftUI-and-WidgetKit"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "TN3157: Updating your watchOS project for SwiftUI and WidgetKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Since the debut of Apple Watch, watchOS app development has the following important milestones:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In 2015, watchOS 1 was released, together with WatchKit and ClockKit.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In 2020, watchOS 7 was released. WatchKit storyboards were deprecated. New developments use SwiftUI.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In 2022, Xcode 14 was released. It removes the support of creating a new WatchKit storyboard, and introduces single-target watchOS app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In 2023, watchOS 10 was released. ClockKit complications were deprecated, and the replacement is WidgetKit complications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftUI is cross-platform and provides many features unavailable in WatchKit, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/swiftui/timelineview",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/swiftui/tabview",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". WidgetKit complications support Smart Stack in watchOS 10. Making a watchOS app single-target simplifies the project configuration. If you have an existing watchOS app, now is the time to get rid of the deprecated WatchKit storyboards and ClockKit complications, and adopt the modern features.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "The-terminology",
+          "level": 2,
+          "text": "The terminology",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This technote uses the following terminology to refer a watchOS app with different characteristics:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "dependent",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " app relies on its companion iOS app to function.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "independent",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " app works when the paired iPhone isn’t nearby, or when its companion iOS app isn’t installed. It may or may not have a companion iOS app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "dual-target",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " app has a watchOS app target and a WatchKit extension target for its core functionality.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "single-target",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " app has only a watchOS app target for its core functionality.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "watch-only",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " app doesn’t have a companion iOS app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Both single-target and dual-target apps can have other targets. For example, you can add targets to implement widgets or app intents for a single-target or dual-target app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "From-dependent-to-independent",
+          "level": 2,
+          "text": "From dependent to independent",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Watch users expect that the apps to just work, even when they don’t have their iPhones with them. If you have a dependent watchOS app, consider making it independent. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/watchos-apps/creating-independent-watchos-apps#Convert-a-dependent-watchOS-app-to-an-independent-watchOS-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "From-dual-target-to-single-target",
+          "level": 2,
+          "text": "From dual-target to single-target",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your watchOS app is dual-target, convert it to single-target. This simplifies the project configuration and eliminates any confusion about where to embed a resource or apply an entitlement. Single-target watchOS apps work on watchOS 7 and later. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2022/10133/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A single-target watchOS app requires watchOS 9.2 or later to inherit the HealthKit permissions granted to its companion iOS app. If your app uses HealthKit and needs to support earlier versions of watchOS, keep your dual-target app configuration.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To convert a dual-target app to a single target:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a complete back up for your project so you can roll back if something goes wrong.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode’s Project navigator, select the project, then choose Xcode > Editor > Validate Settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the “Project ",
+                      "type": "text"
+                    },
+                    {
+                      "text": " - Upgrade ",
+                      "type": "text"
+                    },
+                    {
+                      "text": " to a single-target watch app” checkbox if unselected, then choose Perform Changes to let Xcode do the conversion.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you use storyboards, go through all the interface controllers, and change the class module to the watchOS app module. To do that, select an interface control,  and choose View > Inspectors > Identity; in the inspector, set the Class field in the Custom Class section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remove the files only relevant to the WatchKit extension, such as the extension’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Clean up your project by re-organizing the groups and files in Xcode’s Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The second step removes the WatchKit extension target and moves its associated source code and resources to the watchOS app target. At the code level, it replaces ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/watchkit/wkextension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/watchkit/wkextensiondelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/watchkit/wkapplication",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/watchkit/wkapplicationdelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It also changes the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the watchOS app target as needed. For example, if your watchOS app has a complication, it moves the complication controller class, which is specified with ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/bundleresources/information_property_list/clkcomplicationprincipalclass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to the watchOS app target, and adds the ",
+              "type": "text"
+            },
+            {
+              "code": "CLKComplicationPrincipalClass",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/bundleresources/information_property_list/clkcomplicationsupportedfamilies",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " entries to the watchOS app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You now have a single-target watchOS app project. Verify that everything works well by running the project on an Apple Watch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "From-WatchKit-storyboards-to-SwiftUI",
+          "level": 2,
+          "text": "From WatchKit storyboards to SwiftUI",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To adopt SwiftUI lifecycle in your watchOS app, start by adding a SwiftUI app (",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/swiftui/app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") struct:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "",
+            "@main",
+            "struct MyWatchApp: App {",
+            "    var body: some Scene {",
+            "        WindowGroup {",
+            "            Text(\"Hello, world!\")",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to run the ",
+              "type": "text"
+            },
+            {
+              "code": "WKApplicationDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods in the SwiftUI lifecycle, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/swiftui/wkapplicationdelegateadaptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to connect the app delegate to the SwiftUI app. Otherwise, remove the delegate class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import WatchKit",
+            "import SwiftUI",
+            "",
+            "//@main",
+            "class MyWatchAppDelegate: NSObject, WKApplicationDelegate {...}",
+            "",
+            "@main",
+            "struct MyWatchApp: App {",
+            "    @WKApplicationDelegateAdaptor var appDelegate: MyWatchAppDelegate",
+            "    var body: some Scene {...}",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you still use ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/watchkit/wkextensiondelegate",
+              "isActive": true,
+              "overridingTitle": "WKExtensionDelegate",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "WKExtensionDelegate",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and need to run the extension delegate methods in the SwiftUI lifecycle, migrate ",
+              "type": "text"
+            },
+            {
+              "code": "WKExtensionDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "WKApplicationDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To migrate your WatchKit storyboard, rewrite the interface with SwiftUI. Alternatively, consider adopting SwiftUI incrementally by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/swiftui/wkhostingcontroller",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to host SwiftUI views in your WatchKit interface controllers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "From-ClockKit-to-WidgetKit-complications",
+          "level": 2,
+          "text": "From ClockKit to WidgetKit complications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To migrate a ClockKit complication to WidgetKit:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a widget to replace the ClockKit complication. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/widgetkit/creating-accessory-widgets-and-watch-complications",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for details.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/clockkit/clkcomplicationwidgetmigrator",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in the complication controller class to migrate the ClockKit complication. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/widgetkit/converting-a-clockkit-app#Migrate-complications-on-a-watch-face",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for details.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When the ClockKit complication doesn’t have a descriptor, the system passes a descriptor with the default identifier (",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/documentation/clockkit/clkdefaultcomplicationidentifier",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ") to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/documentation/clockkit/clkcomplicationwidgetmigrator/3972695-getwidgetconfiguration",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Ignore the descriptor and return a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/documentation/clockkit/clkcomplicationwidgetmigrationconfiguration",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object with the appropriate widget kind.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "From-a-watch-only-app-to-a-watchOS-app-with-a-companion-iOS-app",
+          "level": 2,
+          "text": "From a watch-only app to a watchOS app with a companion iOS app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftUI and WidgetKit are both cross-platform. If you have a watch-only app, you might want to enhance the watchOS app by adding an iOS companion app, and have the iOS app share SwiftUI views and widgets with the watchOS app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "After adding an iOS companion app and publishing it to the App Store, you can’t roll back to a watch-only app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add an iOS companion app to an existing watch-only app project:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a complete back up for your project so you can roll back if something goes wrong.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, select your project in the Project navigator, then add a new iOS app target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the iOS app target from the Targets list, click the Signing & Capabilities tab, then ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/xcode/preparing-your-app-for-distribution/#Assign-the-project-to-a-team",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " from the Team pop-up menu and enter a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/xcode/preparing-your-app-for-distribution/#Set-the-bundle-ID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Be sure that the iOS app’s bundle ID is the prefix of the watchOS app’s bundle ID. For example, if the watchOS app’s bundle ID is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.YourCompany.ProductName.watchkitapp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the iOS app’s bundle ID must be ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.YourCompany.ProductName",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the General tab, then under Frameworks, Libraries, and Embedded Content, add the watchOS app as an embedded content of the iOS app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Confirm that the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/bundleresources/information_property_list/wkcompanionappbundleidentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key in the watchOS app’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is set to the bundle ID of the iOS app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You now have a project that has an independent watchOS app with a companion iOS app. By default, Xcode doesn’t install the iOS app when running the watchOS app. If you’d like to change the behavior, add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/bundleresources/information_property_list/wkrunsindependentlyofcompanionapp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " entry to the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the watchOS app, then set its value to ",
+              "type": "text"
+            },
+            {
+              "code": "NO",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Revision-History",
+          "level": 2,
+          "text": "Revision History",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2023-11-07",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " First published.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.technotes/documentation/Technotes": {
+      "abstract": [
+        {
+          "text": "Learn about specific development topics through these in-depth technical articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Technotes",
+      "type": "topic",
+      "url": "/documentation/technotes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview": {
+      "abstract": [
+        {
+          "text": "Explore the various Wi-Fi APIs available on iOS and their expected use cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3111: iOS Wi-Fi API overview",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3111-ios-wifi-api-overview"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations": {
+      "abstract": [
+        {
+          "text": "Learn techniques to help debug any coordinate space issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3124: Debugging coordinate space issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3124-debugging-coordinate-transformations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store": {
+      "abstract": [
+        {
+          "text": "Learn how to configure your App Clip to prevent it from being unavailable in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3168: Making your App Clip available in the App Store",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3168-making-your-app-clip-available-app-store"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration": {
+      "abstract": [
+        {
+          "text": "Diagnose errors due to invalid Apple Pay merchant identifier configurations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifying the underlying causes of common errors and explore their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3173: Troubleshooting issues with your Apple Pay merchant identifier configuration",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose errors received while presenting the Apple Pay payment sheet on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your website by identifying the underlying causes of common errors and explore",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3174: Diagnosing issues with the Apple Pay payment sheet on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose common errors received while displaying the Apple Pay button on your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "website by identifying the underlying causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3175: Diagnosing issues with displaying the Apple Pay button on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues": {
+      "abstract": [
+        {
+          "text": "Diagnose errors that occur when processing Apple Pay payments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identify common causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3176: Troubleshooting Apple Pay payment processing issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files": {
+      "abstract": [
+        {
+          "text": "Learn how alternate groups collect audio tracks, and how to choose which audio track to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3177: Understanding alternate audio track groups in movie files",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems": {
+      "abstract": [
+        {
+          "text": "Ensure that every Mach-O image has a UUID, and that every distinct Mach-O image has its own unique UUID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3178: Checking for and resolving build UUID problems",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3178-checking-for-and-resolving-build-uuid-problems"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy": {
+      "abstract": [
+        {
+          "text": "Learn how local network privacy affects your software.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3179: Understanding local network privacy",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1": {
+      "abstract": [
+        {
+          "text": "Migrate from version 2 to version 1 of App Store Server Notifications using the Modify an App endpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3180: Reverting to App Store Server Notifications V1",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3180-reverting-app-store-server-notifications-v1"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Identify common configurations that cause unsuccessful privacy manifest validation with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3181: Debugging an invalid privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3181-debugging-invalid-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the tracking domains you use in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3182: Adding privacy tracking keys to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the APIs that can potentially fingerprint devices in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3183: Adding required reason API entries to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the data your app or third-party SDK collects in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3184: Adding data collection details to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest"
+    },
+    "https://developer.apple.com/documentation/bundleresources/information_property_list/clkcomplicationprincipalclass": {
+      "identifier": "https://developer.apple.com/documentation/bundleresources/information_property_list/clkcomplicationprincipalclass",
+      "title": "CLKComplicationPrincipalClass",
+      "titleInlineContent": [
+        {
+          "code": "CLKComplicationPrincipalClass",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/bundleresources/information_property_list/clkcomplicationprincipalclass"
+    },
+    "https://developer.apple.com/documentation/bundleresources/information_property_list/clkcomplicationsupportedfamilies": {
+      "identifier": "https://developer.apple.com/documentation/bundleresources/information_property_list/clkcomplicationsupportedfamilies",
+      "title": "CLKComplicationSupportedFamilies",
+      "titleInlineContent": [
+        {
+          "code": "CLKComplicationSupportedFamilies",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/bundleresources/information_property_list/clkcomplicationsupportedfamilies"
+    },
+    "https://developer.apple.com/documentation/bundleresources/information_property_list/wkcompanionappbundleidentifier": {
+      "identifier": "https://developer.apple.com/documentation/bundleresources/information_property_list/wkcompanionappbundleidentifier",
+      "title": "WKCompanionAppBundleIdentifier",
+      "titleInlineContent": [
+        {
+          "code": "WKCompanionAppBundleIdentifier",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/bundleresources/information_property_list/wkcompanionappbundleidentifier"
+    },
+    "https://developer.apple.com/documentation/bundleresources/information_property_list/wkrunsindependentlyofcompanionapp": {
+      "identifier": "https://developer.apple.com/documentation/bundleresources/information_property_list/wkrunsindependentlyofcompanionapp",
+      "title": "WKRunsIndependentlyOfCompanionApp",
+      "titleInlineContent": [
+        {
+          "code": "WKRunsIndependentlyOfCompanionApp",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/bundleresources/information_property_list/wkrunsindependentlyofcompanionapp"
+    },
+    "https://developer.apple.com/documentation/clockkit/clkcomplicationwidgetmigrationconfiguration": {
+      "identifier": "https://developer.apple.com/documentation/clockkit/clkcomplicationwidgetmigrationconfiguration",
+      "title": "CLKComplicationWidgetMigrationConfiguration",
+      "titleInlineContent": [
+        {
+          "code": "CLKComplicationWidgetMigrationConfiguration",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/clockkit/clkcomplicationwidgetmigrationconfiguration"
+    },
+    "https://developer.apple.com/documentation/clockkit/clkcomplicationwidgetmigrator": {
+      "identifier": "https://developer.apple.com/documentation/clockkit/clkcomplicationwidgetmigrator",
+      "title": "CLKComplicationWidgetMigrator",
+      "titleInlineContent": [
+        {
+          "code": "CLKComplicationWidgetMigrator",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/clockkit/clkcomplicationwidgetmigrator"
+    },
+    "https://developer.apple.com/documentation/clockkit/clkcomplicationwidgetmigrator/3972695-getwidgetconfiguration": {
+      "identifier": "https://developer.apple.com/documentation/clockkit/clkcomplicationwidgetmigrator/3972695-getwidgetconfiguration",
+      "title": "getWidgetConfiguration(from:completionHandler:)",
+      "titleInlineContent": [
+        {
+          "code": "getWidgetConfiguration(from:completionHandler:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/clockkit/clkcomplicationwidgetmigrator/3972695-getwidgetconfiguration"
+    },
+    "https://developer.apple.com/documentation/clockkit/clkdefaultcomplicationidentifier": {
+      "identifier": "https://developer.apple.com/documentation/clockkit/clkdefaultcomplicationidentifier",
+      "title": "CLKDefaultComplicationIdentifier",
+      "titleInlineContent": [
+        {
+          "code": "CLKDefaultComplicationIdentifier",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/clockkit/clkdefaultcomplicationidentifier"
+    },
+    "https://developer.apple.com/documentation/swiftui/app": {
+      "identifier": "https://developer.apple.com/documentation/swiftui/app",
+      "title": "App",
+      "titleInlineContent": [
+        {
+          "code": "App",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/swiftui/app"
+    },
+    "https://developer.apple.com/documentation/swiftui/tabview": {
+      "identifier": "https://developer.apple.com/documentation/swiftui/tabview",
+      "title": "TabView",
+      "titleInlineContent": [
+        {
+          "code": "TabView",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/swiftui/tabview"
+    },
+    "https://developer.apple.com/documentation/swiftui/timelineview": {
+      "identifier": "https://developer.apple.com/documentation/swiftui/timelineview",
+      "title": "TimelineView",
+      "titleInlineContent": [
+        {
+          "code": "TimelineView",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/swiftui/timelineview"
+    },
+    "https://developer.apple.com/documentation/swiftui/wkapplicationdelegateadaptor": {
+      "identifier": "https://developer.apple.com/documentation/swiftui/wkapplicationdelegateadaptor",
+      "title": "WKApplicationDelegateAdaptor",
+      "titleInlineContent": [
+        {
+          "code": "WKApplicationDelegateAdaptor",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/swiftui/wkapplicationdelegateadaptor"
+    },
+    "https://developer.apple.com/documentation/swiftui/wkhostingcontroller": {
+      "identifier": "https://developer.apple.com/documentation/swiftui/wkhostingcontroller",
+      "title": "WKHostingController",
+      "titleInlineContent": [
+        {
+          "code": "WKHostingController",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/swiftui/wkhostingcontroller"
+    },
+    "https://developer.apple.com/documentation/watchkit/wkapplication": {
+      "identifier": "https://developer.apple.com/documentation/watchkit/wkapplication",
+      "title": "WKApplication",
+      "titleInlineContent": [
+        {
+          "code": "WKApplication",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/watchkit/wkapplication"
+    },
+    "https://developer.apple.com/documentation/watchkit/wkapplicationdelegate": {
+      "identifier": "https://developer.apple.com/documentation/watchkit/wkapplicationdelegate",
+      "title": "WKApplicationDelegate",
+      "titleInlineContent": [
+        {
+          "code": "WKApplicationDelegate",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/watchkit/wkapplicationdelegate"
+    },
+    "https://developer.apple.com/documentation/watchkit/wkextension": {
+      "identifier": "https://developer.apple.com/documentation/watchkit/wkextension",
+      "title": "WKExtension",
+      "titleInlineContent": [
+        {
+          "code": "WKExtension",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/watchkit/wkextension"
+    },
+    "https://developer.apple.com/documentation/watchkit/wkextensiondelegate": {
+      "identifier": "https://developer.apple.com/documentation/watchkit/wkextensiondelegate",
+      "title": "WKExtensionDelegate",
+      "titleInlineContent": [
+        {
+          "code": "WKExtensionDelegate",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/watchkit/wkextensiondelegate"
+    },
+    "https://developer.apple.com/documentation/watchos-apps/creating-independent-watchos-apps#Convert-a-dependent-watchOS-app-to-an-independent-watchOS-app": {
+      "identifier": "https://developer.apple.com/documentation/watchos-apps/creating-independent-watchos-apps#Convert-a-dependent-watchOS-app-to-an-independent-watchOS-app",
+      "title": "Creating independent watchOS apps",
+      "titleInlineContent": [
+        {
+          "text": "Creating independent watchOS apps",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/watchos-apps/creating-independent-watchos-apps#Convert-a-dependent-watchOS-app-to-an-independent-watchOS-app"
+    },
+    "https://developer.apple.com/documentation/widgetkit/converting-a-clockkit-app#Migrate-complications-on-a-watch-face": {
+      "identifier": "https://developer.apple.com/documentation/widgetkit/converting-a-clockkit-app#Migrate-complications-on-a-watch-face",
+      "title": "Migrating ClockKit complications to WidgetKit",
+      "titleInlineContent": [
+        {
+          "text": "Migrating ClockKit complications to WidgetKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/widgetkit/converting-a-clockkit-app#Migrate-complications-on-a-watch-face"
+    },
+    "https://developer.apple.com/documentation/widgetkit/creating-accessory-widgets-and-watch-complications": {
+      "identifier": "https://developer.apple.com/documentation/widgetkit/creating-accessory-widgets-and-watch-complications",
+      "title": "Creating accessory widgets and watch complications",
+      "titleInlineContent": [
+        {
+          "text": "Creating accessory widgets and watch complications",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/widgetkit/creating-accessory-widgets-and-watch-complications"
+    },
+    "https://developer.apple.com/documentation/xcode/preparing-your-app-for-distribution/#Assign-the-project-to-a-team": {
+      "identifier": "https://developer.apple.com/documentation/xcode/preparing-your-app-for-distribution/#Assign-the-project-to-a-team",
+      "title": "choose a team",
+      "titleInlineContent": [
+        {
+          "text": "choose a team",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/xcode/preparing-your-app-for-distribution/#Assign-the-project-to-a-team"
+    },
+    "https://developer.apple.com/documentation/xcode/preparing-your-app-for-distribution/#Set-the-bundle-ID": {
+      "identifier": "https://developer.apple.com/documentation/xcode/preparing-your-app-for-distribution/#Set-the-bundle-ID",
+      "title": "bundle ID",
+      "titleInlineContent": [
+        {
+          "text": "bundle ID",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/xcode/preparing-your-app-for-distribution/#Set-the-bundle-ID"
+    },
+    "https://developer.apple.com/videos/play/wwdc2022/10133/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022/10133/",
+      "title": "Build a productivity app for Apple Watch",
+      "titleInlineContent": [
+        {
+          "text": "Build a productivity app for Apple Watch",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/10133/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Latest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+        "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+        "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+        "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+        "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+        "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+        "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+        "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+        "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations"
+      ],
+      "title": "Latest"
+    }
+  ]
+}

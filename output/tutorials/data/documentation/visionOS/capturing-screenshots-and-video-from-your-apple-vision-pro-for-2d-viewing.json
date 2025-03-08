@@ -1,0 +1,847 @@
+{
+  "abstract": [
+    {
+      "text": "Create screenshots and record high-quality video of your visionOS app and its surroundings for app previews.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/capturing-screenshots-and-video-from-your-apple-vision-pro-for-2d-viewing"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Capturing screenshots and video from Apple Vision Pro for 2D viewing"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use screenshots and short videos of your visionOS app to showcase your user interface, highlight functionality, and demonstrate usage. Help people understand what to expect from an immersive experience by recording content from Apple Vision Pro that includes your app and its surroundings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system renders content with spatial effects and optimizations for viewing during immersive experiences. Techniques that improve rendering performance during normal operation — such as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "foveated rendering",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which reduces image quality in the peripheral — don’t translate well to 2D displays. To produce high-resolution content for people to view on 2D displays, the system needs to render without these effects and drop some optimizations. Use Developer Capture in Reality Composer Pro to notify the system to reconfigure rendering, and capture screenshots or high-resolution video, including sound, for up to 60 seconds from Apple Vision Pro.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For guidance on the screenshots and previews you include in your app’s product page, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/visionos/submit/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Pair-your-Apple-Vision-Pro-to-Xcode",
+          "level": 3,
+          "text": "Pair your Apple Vision Pro to Xcode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before capturing screenshots and video from your device, pair it with a Mac that has Xcode and the visionOS SDK installed. For instructions on pairing your device, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/running-your-app-in-simulator-or-on-a-device",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-to-capture-your-app-and-its-surroundings",
+          "level": 3,
+          "text": "Prepare to capture your app and its surroundings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select a well-lit location that’s free from clutter. Avoid including objects that might distract the audience or get in the way of your app‘s windows and 3D content. Include enough detail in the scene to provide context and anchoring points. Avoid material that you don’t have permission to capture, including people, screens, branded products, logos, artwork, and other intellectual property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the version of your app that you intend to share with your audience. Build and install your app using a release configuration. This configuration enables code optimizations for better runtime performance and disables the generation of debugging information. Debug configurations typically disable code optimizations and might include UI you donʼt intend to share. Don’t use them to record video for previews you intend to share. Build schemes manage the build configuration Xcode uses during build actions, for more information see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/xcode/customizing-the-build-schemes-for-a-project",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Plan the tasks you intend to capture ahead of time and keep them short and focused. Launch your app and go to the state where you plan to begin the capture. Reduce unnecessary processing overhead on Apple Vision Pro by quitting other apps and avoiding background tasks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To capture screenshots or video from a device,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "select your device from the capture dialog in Reality Composer Pro:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Launch Reality Composer Pro. Choose Open Developer Tool > Reality Composer Pro from the Xcode menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose File > Developer Capture to bring up the Developer Capture dialog.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the device to capture from the pop-up menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "developer-capture-dialog.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you see the message “Preparing, wait for the device to be ready”. You can click the info button that appears to the right of the pop-up menu for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Capture-screenshots",
+          "level": 3,
+          "text": "Capture screenshots",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin capturing screenshots from Apple Vision Pro, click the button with the still camera icon in the capture dialog. The system begins your capture session:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "developer-capture-time-remaining.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To capture a screenshot immediately, without a countdown, press the spacebar. Click the countdown button to capture a screenshot after a 3 second countdown. Continue to keep relevant content centered and in frame for screenshots. The aspect ratio of screenshots crops content that appears at the sides of an experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The status area of the capture dialog displays the time remaining before the system ends the capture session. Click the stop button from your Mac to end the capture session yourself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Capture-video",
+          "level": 3,
+          "text": "Capture video",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin capturing video from the device, click the video camera button in the Developer Capture dialog. This begins a countdown. When the countdown reaches 0, the capture session begins. As the capture process happens, the video changes because the system reconfigures to render content for viewing in 2D. You might notice reduced responsiveness from the device during the session as it devotes more processing to render and capture the video.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While recording on the device, perform your planned interactions. Keep relevant content centered and in frame. The aspect ratio of the video you capture crops content that appears at the sides of an experience. Keep your head stable, and use slow, steady movement to transition the focus of the device when necessary. When viewing the video you capture in 2D, small head movements appear amplified and might be jarring to the audience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The capture session ends when the elapsed time exceeds 60 seconds. You can click the record button again from your Mac to end the session sooner.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To begin a capture, the device must have a stable connection to your Mac and start at low power and thermal levels to stay below thresholds necessary to achieve consistent frame rates. When capturing multiple sessions, you might need to wait between each session.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Review-the-captured-video-file",
+          "level": 3,
+          "text": "Review the captured video file",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each recording session creates a QuickTime Movie file (",
+              "type": "text"
+            },
+            {
+              "code": ".mov",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") and saves it to the desktop of your Mac. The file includes video captured at 30 FPS using 10-bit HEVC in HDTV Rec. 709 color space with system audio recorded in 32-bit floating-point linear PCM.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Review the video to make sure that it includes all the content you planned and it doesn’t include any unexpected elements. Ensure that the transitions and animations are smooth and frame rates are consistent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use additional video-editing tools to trim, edit, and apply post-processing, such as stabilization, to the video to create a high-quality preview.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "BOT-anist-PageImage-card.png": {
+      "alt": "A screenshot from the Apple Vision Pro simulator with a single floating window. The window contains a robot on the right side, and controls to customize the robots appearance on the left.",
+      "identifier": "BOT-anist-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d9f7d85cd82f76e6fd53df7302f0424a/BOT-anist-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "Diorama-intro.png": {
+      "alt": "A screenshot showing a virtual trail map diorama in a living room setting.",
+      "identifier": "Diorama-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/80d69390976dca0e5d70a493312d475a/Diorama-intro@2x.png"
+        }
+      ]
+    },
+    "Swift-Splash-intro.png": {
+      "alt": "",
+      "identifier": "Swift-Splash-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b5da9880ce266b0858346d694e3a7018/Swift-Splash-intro@2x.png"
+        }
+      ]
+    },
+    "building-an-immersive-media-viewing-experience-PageImage-card.png": {
+      "alt": "A screenshot of destination video's custom studio environment.",
+      "identifier": "building-an-immersive-media-viewing-experience-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bbc286b58cd06b23756a1cb51a493360/building-an-immersive-media-viewing-experience-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b110534afd700b8b77992bd7f4184ae6/building-an-immersive-media-viewing-experience-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "developer-capture-dialog.png": {
+      "alt": "A screenshot of the Developer Capture dialog that includes a camera button and a video button on the left to begin and end screenshot and video capture sessions, respectively; a pop-up menu to select devices on the right; and a status message below the pop-up menu that lists ready next to checkmark in a circle.",
+      "identifier": "developer-capture-dialog.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b492114b52f3506f230772e9fcc6176d/developer-capture-dialog@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77715557a7955abba12561d667301721/developer-capture-dialog~dark@2x.png"
+        }
+      ]
+    },
+    "developer-capture-time-remaining.png": {
+      "alt": "A screenshot of the Developer Capture dialog that includes a stop button on the left to end the capture session, a countdown button to capture a screenshot, an unavailable pop-up menu with your device selected. Below the pop-up menu, a message counting down the time remaining in the current capture session reads: 00:46 Remaining.",
+      "identifier": "developer-capture-time-remaining.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bb46eb086fc77d93fdd674dc0e0ca32b/developer-capture-time-remaining@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bb79f329d4134f368b9f3aa8fe9adbff/developer-capture-time-remaining~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app": {
+      "abstract": [
+        {
+          "text": "Use attachments to place 2D content relative to 3D content in your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Combining 2D and 3D views in an immersive app",
+      "type": "topic",
+      "url": "/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/running-your-app-in-simulator-or-on-a-device": {
+      "abstract": [
+        {
+          "text": "Launch your app in a simulated iOS, iPadOS, tvOS, visionOS, or watchOS device, or on a device connected to a Mac.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/running-your-app-in-simulator-or-on-a-device",
+      "kind": "article",
+      "role": "article",
+      "title": "Running your app in Simulator or on a device",
+      "type": "topic",
+      "url": "/documentation/Xcode/running-your-app-in-simulator-or-on-a-device"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/BOT-anist": {
+      "abstract": [
+        {
+          "text": "Build a multiplatform app that uses windows, volumes, and animations to create a robot botanist’s greenhouse.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/BOT-anist",
+      "images": [
+        {
+          "identifier": "BOT-anist-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "BOT-anist",
+      "type": "topic",
+      "url": "/documentation/visionos/bot-anist"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/building-an-immersive-media-viewing-experience": {
+      "abstract": [
+        {
+          "text": "Add a deeper level of immersion to media playback in your app with RealityKit and Reality Composer Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/building-an-immersive-media-viewing-experience",
+      "images": [
+        {
+          "identifier": "building-an-immersive-media-viewing-experience-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building an immersive media viewing experience",
+      "type": "topic",
+      "url": "/documentation/visionos/building-an-immersive-media-viewing-experience"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro": {
+      "abstract": [
+        {
+          "text": "Design RealityKit scenes for your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing RealityKit content with Reality Composer Pro",
+      "type": "topic",
+      "url": "/documentation/visionos/designing-realitykit-content-with-reality-composer-pro"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/diorama": {
+      "abstract": [
+        {
+          "text": "Design scenes for your visionOS app using Reality Composer Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/diorama",
+      "images": [
+        {
+          "identifier": "Diorama-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Diorama",
+      "type": "topic",
+      "url": "/documentation/visionos/diorama"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment": {
+      "abstract": [
+        {
+          "text": "Create a more immersive experience by adding video reflections in a custom environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment",
+      "images": [
+        {
+          "identifier": "lightspill-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Enabling video reflections in an immersive environment",
+      "type": "topic",
+      "url": "/documentation/visionos/enabling-video-reflections-in-an-immersive-environment"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/implementing-object-tracking-in-your-visionOS-app": {
+      "abstract": [
+        {
+          "text": "Create engaging interactions by training models to recognize and track real-world objects in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/implementing-object-tracking-in-your-visionOS-app",
+      "images": [
+        {
+          "identifier": "implementing-object-tracking-in-your-visionOS-app.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing object tracking in your visionOS app",
+      "type": "topic",
+      "url": "/documentation/visionos/implementing-object-tracking-in-your-visionos-app"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/placing-entities-using-head-and-device-transform": {
+      "abstract": [
+        {
+          "text": "Query and react to changes in the position and rotation of Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/placing-entities-using-head-and-device-transform",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Placing entities using head and device transform",
+      "type": "topic",
+      "url": "/documentation/visionos/placing-entities-using-head-and-device-transform"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/swift-splash": {
+      "abstract": [
+        {
+          "text": "Use RealityKit to create an interactive ride in visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/swift-splash",
+      "images": [
+        {
+          "identifier": "Swift-Splash-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Swift Splash",
+      "type": "topic",
+      "url": "/documentation/visionos/swift-splash"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/understanding-the-realitykit-modular-architecture": {
+      "abstract": [
+        {
+          "text": "Learn how everything fits together in RealityKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/understanding-the-realitykit-modular-architecture",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding the modular architecture of RealityKit",
+      "type": "topic",
+      "url": "/documentation/visionos/understanding-the-realitykit-modular-architecture"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/understanding-transforms": {
+      "abstract": [
+        {
+          "text": "Learn how to use Transforms to move, scale, and rotate entities in RealityKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/understanding-transforms",
+      "kind": "article",
+      "role": "article",
+      "title": "Using transforms to move, scale, and rotate entities",
+      "type": "topic",
+      "url": "/documentation/visionos/understanding-transforms"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "https://developer.apple.com/documentation/xcode/customizing-the-build-schemes-for-a-project": {
+      "identifier": "https://developer.apple.com/documentation/xcode/customizing-the-build-schemes-for-a-project",
+      "title": "Customizing the build schemes for a project",
+      "titleInlineContent": [
+        {
+          "text": "Customizing the build schemes for a project",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/xcode/customizing-the-build-schemes-for-a-project"
+    },
+    "https://developer.apple.com/visionos/submit/": {
+      "identifier": "https://developer.apple.com/visionos/submit/",
+      "title": "Submit your apps to the App Store for Apple Vision Pro",
+      "titleInlineContent": [
+        {
+          "text": "Submit your apps to the App Store for Apple Vision Pro",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/visionos/submit/"
+    },
+    "implementing-object-tracking-in-your-visionOS-app.png": {
+      "alt": "An illustration of a globe within a bounding box.",
+      "identifier": "implementing-object-tracking-in-your-visionOS-app.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49a7917ef036b2daf610527590ce056d/implementing-object-tracking-in-your-visionOS-app@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3e16e39548ccdcc1d5a21b2f18755c7b/implementing-object-tracking-in-your-visionOS-app~dark@2x.png"
+        }
+      ]
+    },
+    "lightspill-PageImage-card.png": {
+      "alt": "A screenshot that shows the app's video player in the Studio environment in visionOS. The screenshot shows the contents of the video player reflecting onto the surrounding environment.",
+      "identifier": "lightspill-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/87e397de07459c756d21eb0c441569f7/lightspill-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "RealityKit-and-Reality-Composer-Pro",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/BOT-anist",
+        "doc://com.apple.visionOS/documentation/visionOS/swift-splash",
+        "doc://com.apple.visionOS/documentation/visionOS/diorama",
+        "doc://com.apple.visionOS/documentation/visionOS/building-an-immersive-media-viewing-experience",
+        "doc://com.apple.visionOS/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment",
+        "doc://com.apple.documentation/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app",
+        "doc://com.apple.visionOS/documentation/visionOS/understanding-the-realitykit-modular-architecture",
+        "doc://com.apple.visionOS/documentation/visionOS/understanding-transforms",
+        "doc://com.apple.visionOS/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro",
+        "doc://com.apple.visionOS/documentation/visionOS/implementing-object-tracking-in-your-visionOS-app",
+        "doc://com.apple.visionOS/documentation/visionOS/placing-entities-using-head-and-device-transform"
+      ],
+      "title": "RealityKit and Reality Composer Pro"
+    }
+  ]
+}

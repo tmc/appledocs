@@ -1,0 +1,2392 @@
+{
+  "abstract": [
+    {
+      "text": "Perform compression or the appropriate kind of decompression to a file based on its path extension.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/compressing-and-decompressing-files-with-stream-compression"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "10.14",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Compressing and Decompressing Files with Stream Compression"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project uses the Compression framework to encode (compress) and decode (decompress) files by dragging them to the app window. The app decompresses files with an extension that matches a supported compression algorithm (that is, ",
+              "type": "text"
+            },
+            {
+              "code": ".lz4",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": ".zlib",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": ".lzma",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": ".lzfse",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), and compresses all other files. The app writes the encoded or decoded result to the temporary directory returned by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/1409211-nstemporarydirectory",
+              "isActive": true,
+              "overridingTitle": "NSTemporaryDirectory",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSTemporaryDirectory",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample implements ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "stream compression",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", where the app calls the encode or decode functions repeatedly to compress or decompress data from a source buffer to a destination buffer. Between calls, the app removes processed data from the source buffer and loads the new data into the destination buffer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "streaming_flowchart_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The advantage of this approach is that by moving the encoding or decoding to a background thread, you’re able to keep your app interactive and update the user with progress of the operation (for example, with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSProgressIndicator",
+              "isActive": true,
+              "overridingTitle": "NSProgressIndicator",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSProgressIndicator",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": "). Stream compression also enables tasks such as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Decoding a compressed stream into a buffer with the ability to grow the buffer and resume decoding if the expanded stream is too large to fit, without repeating any work.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Encoding a stream as pieces of it become available, without ever needing to create a buffer large enough to hold all the uncompressed data at one time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Accept-Dropped-Files",
+          "level": 3,
+          "text": "Accept Dropped Files",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Register the app’s view, ",
+              "type": "text"
+            },
+            {
+              "code": "DragDropCompressView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as a destination for file URLs by adding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView/registerForDraggedTypes(_:)",
+              "isActive": true,
+              "overridingTitle": "registerForDraggedTypes",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "registerForDraggedTypes",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView/viewDidMoveToSuperview()",
+              "isActive": true,
+              "overridingTitle": "viewDidMoveToSuperview",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "viewDidMoveToSuperview",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func viewDidMoveToSuperview() {",
+            "    registerForDraggedTypes([NSPasteboard.PasteboardType.fileURL])",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the user drops a conforming file onto the app, the view calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSDraggingDestination/performDragOperation(_:)",
+              "isActive": true,
+              "overridingTitle": "performDragOperation",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "performDragOperation",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method. Iterate over the dragged items inside ",
+              "type": "text"
+            },
+            {
+              "code": "performDragOperation",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", using ",
+              "type": "text"
+            },
+            {
+              "code": "guard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ensure each item is a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+              "isActive": true,
+              "overridingTitle": "URL",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "URL",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instance:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "sender.enumerateDraggingItems(options: [],",
+            "                              for: nil,",
+            "                              classes: [ NSURL.self ],",
+            "                              searchOptions: [ .urlReadingFileURLsOnly: true ]) { (draggingItem, _, _) in",
+            "    guard",
+            "        let url = draggingItem.item as? URL else {",
+            "            return",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Select-a-Compression-Algorithm",
+          "level": 3,
+          "text": "Select a Compression Algorithm",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If speed and compression ratio are important, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Compression/COMPRESSION_LZFSE",
+              "isActive": true,
+              "overridingTitle": "COMPRESSION_LZFSE",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "COMPRESSION_LZFSE",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let encodeAlgorithm = COMPRESSION_LZFSE"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you require interoperability with non-Apple devices, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Compression/COMPRESSION_ZLIB",
+              "isActive": true,
+              "overridingTitle": "COMPRESSION_ZLIB",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "COMPRESSION_ZLIB",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instead. For more information about other compression algorithms, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Compression/compression_algorithm",
+              "isActive": true,
+              "overridingTitle": "compression_algorithm",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "compression_algorithm",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Distinguish-Between-Compressed-and-Uncompressed-Files",
+          "level": 3,
+          "text": "Distinguish Between Compressed and Uncompressed Files",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the path extension to infer whether a file is already compressed, or if the file needs compressing. To simplify this process, create a failable initializer in an extension to the Compression framework’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Compression/compression_algorithm",
+              "isActive": true,
+              "overridingTitle": "compression_algorithm",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "compression_algorithm",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " structure:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "init?(name: String) {",
+            "    switch name.lowercased() {",
+            "    case \"lz4\":",
+            "        self = COMPRESSION_LZ4",
+            "    case \"zlib\":",
+            "        self = COMPRESSION_ZLIB",
+            "    case \"lzma\":",
+            "        self = COMPRESSION_LZMA",
+            "    case \"lzfse\":",
+            "        self = COMPRESSION_LZFSE",
+            "    default:",
+            "        return nil",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this new initializer to define the ",
+              "type": "text"
+            },
+            {
+              "code": "algorithm",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "operation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " constants:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let algorithm: compression_algorithm",
+            "let operation: compression_stream_operation",
+            "                            ",
+            "if let decodeAlgorithm = compression_algorithm(name: url.pathExtension) {",
+            "    algorithm = decodeAlgorithm",
+            "    operation = COMPRESSION_STREAM_DECODE",
+            "} else {",
+            "    algorithm = self.encodeAlgorithm",
+            "    operation = COMPRESSION_STREAM_ENCODE",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-the-Source-and-Destination-File-Handles",
+          "level": 3,
+          "text": "Define the Source and Destination File Handles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle",
+              "isActive": true,
+              "overridingTitle": "FileHandle",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "FileHandle",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instances to read from the source file and write to the destination file. Use optional binding to define the required file handles:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if",
+            "    let sourceFileHandle = try? FileHandle(forReadingFrom: url),",
+            "    let sourceLength = FileHelper.fileSize(atURL: url),",
+            "    let fileName = url.pathComponents.last,",
+            "    let fileNameDeletingPathExtension = url.deletingPathExtension().pathComponents.last,",
+            "    let destinationFileHandle = FileHandle.makeFileHandle(forWritingToFileNameInTempDirectory:",
+            "        operation == COMPRESSION_STREAM_ENCODE",
+            "            ? fileName + self.encodeAlgorithm.pathExtension",
+            "            : fileNameDeletingPathExtension)",
+            "{"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the optional binding succeeded, the destination file handle points to the source filename with the compression algorithm appended as an extension (for compression), or the source filename with the compression name extension removed (for decompression). For example, the source file ",
+              "type": "text"
+            },
+            {
+              "code": "MyCompressedFile.PDF.lzfse",
+              "type": "codeVoice"
+            },
+            {
+              "text": " would have a destination of ",
+              "type": "text"
+            },
+            {
+              "code": "MyCompressedFile.PDF",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "MyRawFile.PDF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " would have a destination of ",
+              "type": "text"
+            },
+            {
+              "code": "MyRawFile.PDF.lzfse",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pass the source and destination file handles, with the operation and algorithm values to the helper function ",
+              "type": "text"
+            },
+            {
+              "code": "streamingCompression",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Compressor.streamingCompression(operation: operation,",
+            "                                sourceFileHandle: sourceFileHandle,",
+            "                                destinationFileHandle: destinationFileHandle,",
+            "                                algorithm: algorithm) {",
+            "                                    self.progress.completedUnitCount = $0",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-Destination-Buffer",
+          "level": 3,
+          "text": "Create a Destination Buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "streamingCompression",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method iterates over the source data, encoding or decoding data in blocks based on the length defined by ",
+              "type": "text"
+            },
+            {
+              "code": "bufferSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The method writes the result into the destination buffer, and writes the destination buffer data to the destination file handle. The following declares the buffer size and allocates the destination buffer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let bufferSize = 32_768",
+            "let destinationBufferPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: bufferSize)",
+            "defer {",
+            "    destinationBufferPointer.deallocate()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-Compression-Stream",
+          "level": 3,
+          "text": "Create a Compression Stream",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Compression/compression_stream",
+              "isActive": true,
+              "overridingTitle": "compression_stream",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "compression_stream",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " structure defines the source and destination pointers and sizes.  Use the following extension to declare and initialize the compression stream:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let streamPointer = UnsafeMutablePointer<compression_stream>.allocate(capacity: 1)",
+            "var status = compression_stream_init(streamPointer, operation, algorithm)",
+            "guard status != COMPRESSION_STATUS_ERROR else {",
+            "    fatalError(\"Unable to initialize the compression stream.\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you’re finished with the ",
+              "type": "text"
+            },
+            {
+              "code": "compression_stream",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure, it’s important that you free the memory allocated to it with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Compression/compression_stream_destroy(_:)",
+              "isActive": true,
+              "overridingTitle": "compression_stream_destroy",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "compression_stream_destroy",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". Use a defer block to ensure the memory is freed even if the ",
+              "type": "text"
+            },
+            {
+              "code": "streamingCompression",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method exits early:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "defer {",
+            "    compression_stream_destroy(streamPointer)",
+            "    streamPointer.deallocate()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the compression stream inialized, set up the stream by defining its source and destination sizes and destination pointer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "streamPointer.pointee.src_size = 0",
+            "streamPointer.pointee.dst_ptr = destinationBufferPointer",
+            "streamPointer.pointee.dst_size = bufferSize"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Read-the-Source-File-Data-Iteratively",
+          "level": 3,
+          "text": "Read the Source File Data Iteratively",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a ",
+              "type": "text"
+            },
+            {
+              "code": "repeat-while",
+              "type": "codeVoice"
+            },
+            {
+              "text": " loop to manage the read-encode/decode-write process. If the stream’s source size is zero, read a block of data from the source file handle and point the stream’s source pointer to that data. If the read data is shorter than the buffer size, you can infer that you’re reading the last block of the source file and set the stream’s status to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Compression/COMPRESSION_STREAM_FINALIZE",
+              "isActive": true,
+              "overridingTitle": "COMPRESSION_STREAM_FINALIZE",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "COMPRESSION_STREAM_FINALIZE",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var sourceData: Data?",
+            "repeat {",
+            "    var flags = Int32(0)",
+            "    ",
+            "    // If this iteration has consumed all of the source data,",
+            "    // read a new tempData buffer from the input file.",
+            "    if streamPointer.pointee.src_size == 0 {",
+            "        sourceData = sourceFileHandle.readData(ofLength: bufferSize)",
+            "        ",
+            "        streamPointer.pointee.src_size = sourceData!.count",
+            "        if sourceData!.count < bufferSize {",
+            "            flags = Int32(COMPRESSION_STREAM_FINALIZE.rawValue)",
+            "        }",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Compress-or-Decompress-the-Dragged-File",
+          "level": 3,
+          "text": "Compress or Decompress the Dragged File",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Compression/compression_stream_process(_:_:)",
+              "isActive": true,
+              "overridingTitle": "compression_stream_process",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "compression_stream_process",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to encode or decode the current block:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let sourceData = sourceData {",
+            "    let count = sourceData.count",
+            "    ",
+            "    sourceData.withUnsafeBytes {",
+            "        let baseAddress = $0.bindMemory(to: UInt8.self).baseAddress!",
+            "        ",
+            "        streamPointer.pointee.src_ptr = baseAddress.advanced(by: count - streamPointer.pointee.src_size)",
+            "        status = compression_stream_process(streamPointer, flags)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "destinationBufferPointer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " points to the encoded or decoded data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Write-Encoded-or-Decoded-Data-to-a-Destination-File",
+          "level": 3,
+          "text": "Write Encoded or Decoded Data to a Destination File",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Check the status returned by ",
+              "type": "text"
+            },
+            {
+              "code": "compression_stream_process",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", if it’s either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Compression/COMPRESSION_STATUS_OK",
+              "isActive": true,
+              "overridingTitle": "COMPRESSION_STATUS_OK",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "COMPRESSION_STATUS_OK",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Compression/COMPRESSION_STATUS_END",
+              "isActive": true,
+              "overridingTitle": "COMPRESSION_STATUS_END",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "COMPRESSION_STATUS_END",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", you can write the destination data to the destination file handler:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "switch status {",
+            "    case COMPRESSION_STATUS_OK, COMPRESSION_STATUS_END:",
+            "        ",
+            "        // Get the number of bytes put in the destination buffer. This is the difference between",
+            "        // stream.dst_size before the call (here bufferSize), and stream.dst_size after the call.",
+            "        let count = bufferSize - streamPointer.pointee.dst_size",
+            "        ",
+            "        let outputData = Data(bytesNoCopy: destinationBufferPointer,",
+            "                              count: count,",
+            "                              deallocator: .none)",
+            "        ",
+            "        // Write all produced bytes to the output file.",
+            "        destinationFileHandle.write(outputData)",
+            "        ",
+            "        // Reset the stream to receive the next batch of output.",
+            "        streamPointer.pointee.dst_ptr = destinationBufferPointer",
+            "        streamPointer.pointee.dst_size = bufferSize"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This read-encode/decode-write loop continues while ",
+              "type": "text"
+            },
+            {
+              "code": "status",
+              "type": "codeVoice"
+            },
+            {
+              "text": " equals ",
+              "type": "text"
+            },
+            {
+              "code": "COMPRESSION_STATUS_OK",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Close-the-Source-and-Destination-Files",
+          "level": 3,
+          "text": "Close the Source and Destination Files",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you’re finished with the source and destination file handles, close them with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1413393-closefile",
+              "isActive": true,
+              "overridingTitle": "closeFile",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "closeFile",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "sourceFileHandle.closeFile()",
+            "destinationFileHandle.closeFile()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "11ecf5e1a38d/CompressingAndDecompressingFilesWithStreamCompression.zip": {
+      "checksum": "11ecf5e1a38d2da821ebd58693027f2f55d2e53a91b03dd073d7072c1c0221e8e8d10b022c9883ffaaaf5430b9ef4f1c01560cf10c1f6a8b1b9a94818aad9456",
+      "identifier": "11ecf5e1a38d/CompressingAndDecompressingFilesWithStreamCompression.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/11ecf5e1a38d/CompressingAndDecompressingFilesWithStreamCompression.zip"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/compressing-and-decompressing-data-with-buffer-compression": {
+      "abstract": [
+        {
+          "text": "Compress a string, write it to the file system, and decompress the same file using buffer compression.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/compressing-and-decompressing-data-with-buffer-compression",
+      "kind": "article",
+      "role": "article",
+      "title": "Compressing and decompressing data with buffer compression",
+      "type": "topic",
+      "url": "/documentation/accelerate/compressing-and-decompressing-data-with-buffer-compression"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/compressing-and-decompressing-data-with-input-and-output-filters": {
+      "abstract": [
+        {
+          "text": "Compress and decompress streamed or from-memory data, using input and output filters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/compressing-and-decompressing-data-with-input-and-output-filters",
+      "kind": "article",
+      "role": "article",
+      "title": "Compressing and decompressing data with input and output filters",
+      "type": "topic",
+      "url": "/documentation/accelerate/compressing-and-decompressing-data-with-input-and-output-filters"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSDraggingDestination/performDragOperation(_:)": {
+      "abstract": [
+        {
+          "text": "Invoked after the released image has been removed from the screen, signaling the receiver to import the pasteboard data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performDragOperation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "sender"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSDraggingInfo",
+          "text": "NSDraggingInfo"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSDraggingDestination/performDragOperation(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performDragOperation(_:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSDraggingDestination/performDragOperation(_:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSProgressIndicator": {
+      "abstract": [
+        {
+          "text": "An interface that provides visual feedback to the user about the status of an ongoing task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSProgressIndicator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSProgressIndicator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSProgressIndicator",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSProgressIndicator"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSView/registerForDraggedTypes(_:)": {
+      "abstract": [
+        {
+          "text": "Registers the pasteboard types that the view will accept as the destination of an image-dragging session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerForDraggedTypes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "newTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView/registerForDraggedTypes(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerForDraggedTypes(_:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSView/registerForDraggedTypes(_:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSView/viewDidMoveToSuperview()": {
+      "abstract": [
+        {
+          "text": "Informs the view that its superview has changed (possibly to `nil`).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidMoveToSuperview"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView/viewDidMoveToSuperview()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "viewDidMoveToSuperview()",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSView/viewDidMoveToSuperview()"
+    },
+    "doc://com.apple.documentation/documentation/Compression/COMPRESSION_LZFSE": {
+      "abstract": [
+        {
+          "text": "The LZFSE compression algorithm, which is recommended for use on Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "COMPRESSION_LZFSE"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_algorithm",
+          "text": "compression_algorithm"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Compression/COMPRESSION_LZFSE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "COMPRESSION_LZFSE",
+      "type": "topic",
+      "url": "/documentation/Compression/COMPRESSION_LZFSE"
+    },
+    "doc://com.apple.documentation/documentation/Compression/COMPRESSION_STATUS_END": {
+      "abstract": [
+        {
+          "text": "Indicates the stream has read all input from the source, and written all output to the destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "COMPRESSION_STATUS_END"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_status",
+          "text": "compression_status"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Compression/COMPRESSION_STATUS_END",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "COMPRESSION_STATUS_END",
+      "type": "topic",
+      "url": "/documentation/Compression/COMPRESSION_STATUS_END"
+    },
+    "doc://com.apple.documentation/documentation/Compression/COMPRESSION_STATUS_OK": {
+      "abstract": [
+        {
+          "text": "Indicates the stream has consumed all data in the source buffer, or used all space in the destination buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "COMPRESSION_STATUS_OK"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_status",
+          "text": "compression_status"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Compression/COMPRESSION_STATUS_OK",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "COMPRESSION_STATUS_OK",
+      "type": "topic",
+      "url": "/documentation/Compression/COMPRESSION_STATUS_OK"
+    },
+    "doc://com.apple.documentation/documentation/Compression/COMPRESSION_STREAM_FINALIZE": {
+      "abstract": [
+        {
+          "text": "Indicates that the operation will add no further input blocks to the stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "COMPRESSION_STREAM_FINALIZE"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_stream_flags",
+          "text": "compression_stream_flags"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Compression/COMPRESSION_STREAM_FINALIZE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "COMPRESSION_STREAM_FINALIZE",
+      "type": "topic",
+      "url": "/documentation/Compression/COMPRESSION_STREAM_FINALIZE"
+    },
+    "doc://com.apple.documentation/documentation/Compression/COMPRESSION_ZLIB": {
+      "abstract": [
+        {
+          "text": "The zlib compression algorithm, which is recommended for cross-platform compression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "COMPRESSION_ZLIB"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_algorithm",
+          "text": "compression_algorithm"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Compression/COMPRESSION_ZLIB",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "COMPRESSION_ZLIB",
+      "type": "topic",
+      "url": "/documentation/Compression/COMPRESSION_ZLIB"
+    },
+    "doc://com.apple.documentation/documentation/Compression/compression_algorithm": {
+      "abstract": [
+        {
+          "text": "A structure for values that represent compression algorithms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_algorithm"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Compression/compression_algorithm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "compression_algorithm",
+      "type": "topic",
+      "url": "/documentation/Compression/compression_algorithm"
+    },
+    "doc://com.apple.documentation/documentation/Compression/compression_stream": {
+      "abstract": [
+        {
+          "text": "A structure representing a compression stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_stream"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Compression/compression_stream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "compression_stream",
+      "type": "topic",
+      "url": "/documentation/Compression/compression_stream"
+    },
+    "doc://com.apple.documentation/documentation/Compression/compression_stream_destroy(_:)": {
+      "abstract": [
+        {
+          "text": "Frees any memory allocated by stream initialization function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_stream_destroy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "stream"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@compression_stream",
+          "text": "compression_stream"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_status",
+          "text": "compression_status"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Compression/compression_stream_destroy(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "compression_stream_destroy(_:)",
+      "type": "topic",
+      "url": "/documentation/Compression/compression_stream_destroy(_:)"
+    },
+    "doc://com.apple.documentation/documentation/Compression/compression_stream_process(_:_:)": {
+      "abstract": [
+        {
+          "text": "Performs compression or decompression using an initialized compression stream structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_stream_process"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "stream"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@compression_stream",
+          "text": "compression_stream"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_status",
+          "text": "compression_status"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Compression/compression_stream_process(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "compression_stream_process(_:_:)",
+      "type": "topic",
+      "url": "/documentation/Compression/compression_stream_process(_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1409211-nstemporarydirectory": {
+      "abstract": [
+        {
+          "text": "Returns the path of the temporary directory for the current user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTemporaryDirectory"
+        },
+        {
+          "kind": "text",
+          "text": "() -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1409211-nstemporarydirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTemporaryDirectory()",
+      "type": "topic",
+      "url": "/documentation/foundation/1409211-nstemporarydirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle": {
+      "abstract": [
+        {
+          "text": "An object-oriented wrapper for a file descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileHandle",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1413393-closefile": {
+      "abstract": [
+        {
+          "text": "Disallows further access to the represented file or communications channel and signals end of file on communications channels that permit writing.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "closeFile"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1413393-closefile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "closeFile()",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1413393-closefile"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url": {
+      "abstract": [
+        {
+          "text": "A value that identifies the location of a resource, such as an item on a remote server or the path to a local file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL",
+      "type": "topic",
+      "url": "/documentation/foundation/url"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "streaming_flowchart_2x.png": {
+      "alt": "Graphic illustrating the stream compression and decompression workflow ",
+      "identifier": "streaming_flowchart_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/230bff30d84b9eb07ad267e7db7ad30d/streaming_flowchart_2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "11ecf5e1a38d/CompressingAndDecompressingFilesWithStreamCompression.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Compression",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/compressing-and-decompressing-data-with-buffer-compression",
+        "doc://com.apple.accelerate/documentation/Accelerate/compressing-and-decompressing-data-with-input-and-output-filters"
+      ],
+      "title": "Compression"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSDraggingDestination~1performDragOperation(_:)/title",
+          "value": "performDragOperation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSDraggingDestination~1performDragOperation(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "performDragOperation:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)NSDraggingInfo",
+              "text": "id<NSDraggingInfo>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "sender"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Compression~1compression_algorithm/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " { ... } "
+            },
+            {
+              "kind": "identifier",
+              "text": "compression_algorithm"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1filehandle/title",
+          "value": "NSFileHandle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Compression~1compression_stream_process(_:_:)/title",
+          "value": "compression_stream_process"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Compression~1compression_stream_process(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@EA@compression_status",
+              "text": "compression_status"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "compression_stream_process"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@compression_stream",
+              "text": "compression_stream"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "stream"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:I",
+              "text": "int"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "flags"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSProgressIndicator/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSProgressIndicator"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSView",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~11409211-nstemporarydirectory/title",
+          "value": "NSTemporaryDirectory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Compression~1COMPRESSION_LZFSE/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "COMPRESSION_LZFSE"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSView~1viewDidMoveToSuperview()/title",
+          "value": "viewDidMoveToSuperview"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSView~1viewDidMoveToSuperview()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewDidMoveToSuperview"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Compression~1compression_stream/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " { ... } "
+            },
+            {
+              "kind": "identifier",
+              "text": "compression_stream"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1filehandle~11413393-closefile/title",
+          "value": "closeFile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Compression~1COMPRESSION_STATUS_OK/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "COMPRESSION_STATUS_OK"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Compression~1COMPRESSION_ZLIB/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "COMPRESSION_ZLIB"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSView~1registerForDraggedTypes(_:)/title",
+          "value": "registerForDraggedTypes:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSView~1registerForDraggedTypes(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerForDraggedTypes:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<NSString *>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "newTypes"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Compression~1COMPRESSION_STATUS_END/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "COMPRESSION_STATUS_END"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Compression~1compression_stream_destroy(_:)/title",
+          "value": "compression_stream_destroy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Compression~1compression_stream_destroy(_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@EA@compression_status",
+              "text": "compression_status"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "compression_stream_destroy"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@compression_stream",
+              "text": "compression_stream"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "stream"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Compression~1COMPRESSION_STREAM_FINALIZE/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "COMPRESSION_STREAM_FINALIZE"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1333 @@
+{
+  "abstract": [
+    {
+      "text": "Support for fetching part of a file’s content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.fileprovider/documentation/FileProvider"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderPartialContentFetching"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)NSFileProviderPartialContentFetching",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSFileProviderPartialContentFetching"
+      }
+    ],
+    "modules": [
+      {
+        "name": "File Provider"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSFileProviderPartialContentFetching"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.3",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "NSFileProviderPartialContentFetching"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderPartialContentFetching"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adopt this protocol to let the system request only part of a file. Apps that read files provided by your extension can benefit from this feature, either by minimizing the amount of data your file provider needs to download, or by finishing the download quickly, freeing up the reading process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To trigger a partial download, an app must use POSIX read operations to read part of the file. If you clone the entire file, or read the file using file coordination, the system requests the entire file.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, a photo app could read just the metadata from each picture in a large album, without having to completely download all the images. Alternatively, a video streaming app could begin playing the video before reading the whole file, reading chunks of data just before it needs them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider": {
+      "abstract": [
+        {
+          "text": "An extension other apps use to access files and folders managed by your app and synced with a remote storage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "File Provider",
+      "type": "topic",
+      "url": "/documentation/fileprovider"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderCustomAction": {
+      "abstract": [
+        {
+          "text": "Support for custom actions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderCustomAction"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderCustomAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderCustomAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderCustomAction",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovidercustomaction"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderEnumerating": {
+      "abstract": [
+        {
+          "text": "Support for enumerating the file provider’s contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderEnumerating"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderEnumerating",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderEnumerating"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderEnumerating",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileproviderenumerating"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderExtensionActionIdentifier": {
+      "abstract": [
+        {
+          "text": "An identifier for custom actions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderExtensionActionIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderExtensionActionIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderExtensionActionIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderExtensionActionIdentifier",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileproviderextensionactionidentifier"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderFetchContentsOptions": {
+      "abstract": [
+        {
+          "text": "Options for fetching a range of data from a file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderFetchContentsOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderFetchContentsOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderFetchContentsOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderFetchContentsOptions",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileproviderfetchcontentsoptions"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderIncrementalContentFetching": {
+      "abstract": [
+        {
+          "text": "Support for fetching changes to the item’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderIncrementalContentFetching"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderIncrementalContentFetching",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderIncrementalContentFetching"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderIncrementalContentFetching",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileproviderincrementalcontentfetching"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderMaterializationFlags": {
+      "abstract": [
+        {
+          "text": "Flags that provides additional information about the provided content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderMaterializationFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderMaterializationFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderMaterializationFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderMaterializationFlags",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovidermaterializationflags"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderPartialContentFetching": {
+      "abstract": [
+        {
+          "text": "Support for fetching part of a file’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderPartialContentFetching"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderPartialContentFetching",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderPartialContentFetching"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderPartialContentFetching",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileproviderpartialcontentfetching"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderPartialContentFetching/fetchPartialContents(for:version:request:minimalRange:aligningTo:options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Tells the file provider to download the requested item from remote storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchPartialContents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSFileProviderItemIdentifier",
+          "text": "NSFileProviderItemIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "version"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFileProviderItemVersion",
+          "text": "NSFileProviderItemVersion"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFileProviderRequest",
+          "text": "NSFileProviderRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "minimalRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "aligningTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSFileProviderFetchContentsOptions",
+          "text": "NSFileProviderFetchContentsOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSFileProviderItem",
+          "text": "NSFileProviderItem"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSFileProviderMaterializationFlags",
+          "text": "NSFileProviderMaterializationFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderPartialContentFetching/fetchPartialContents(for:version:request:minimalRange:aligningTo:options:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchPartialContentsForItemWithIdentifier:version:request:minimalRange:aligningTo:options:completionHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "fetchPartialContents(for:version:request:minimalRange:aligningTo:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileproviderpartialcontentfetching/fetchpartialcontents(for:version:request:minimalrange:aligningto:options:completionhandler:)"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderPendingSetEnumerator": {
+      "abstract": [
+        {
+          "text": "A protocol for enumerating pending items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderPendingSetEnumerator"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderPendingSetEnumerator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderPendingSetEnumerator"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderPendingSetEnumerator",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileproviderpendingsetenumerator"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderReplicatedExtension": {
+      "abstract": [
+        {
+          "text": "A File Provider extension in which the system replicates the contents on disk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderReplicatedExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderReplicatedExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderReplicatedExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderReplicatedExtension",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileproviderreplicatedextension"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderServicing": {
+      "abstract": [
+        {
+          "text": "Support for providing a custom service source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderServicing"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderServicing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderServicing"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderServicing",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileproviderservicing"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderThumbnailing": {
+      "abstract": [
+        {
+          "text": "Support for item thumbnails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderThumbnailing"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderThumbnailing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderThumbnailing"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderThumbnailing",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileproviderthumbnailing"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "File-Provider-protocols",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderReplicatedExtension",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderEnumerating",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderIncrementalContentFetching",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderServicing",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderCustomAction",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderExtensionActionIdentifier",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderThumbnailing",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderPendingSetEnumerator"
+      ],
+      "title": "File Provider protocols"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Fetching-Ranges-from-a-File",
+      "identifiers": [
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderPartialContentFetching/fetchPartialContents(for:version:request:minimalRange:aligningTo:options:completionHandler:)",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderFetchContentsOptions",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderMaterializationFlags"
+      ],
+      "title": "Fetching Ranges from a File"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.3",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSFileProviderPartialContentFetching"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderPartialContentFetching"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderPartialContentFetching"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.fileprovider/documentation/FileProvider"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Fetching-Ranges-from-a-File",
+              "identifiers": [
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderPartialContentFetching/fetchPartialContents(for:version:request:minimalRange:aligningTo:options:completionHandler:)",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderFetchContentsOptions",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderMaterializationFlags"
+              ],
+              "title": "Fetching Ranges from a File"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "File-Provider-protocols",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderReplicatedExtension",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderEnumerating",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderIncrementalContentFetching",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderServicing",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderCustomAction",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderExtensionActionIdentifier",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderThumbnailing",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderPendingSetEnumerator"
+              ],
+              "title": "File Provider protocols"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSFileProviderPartialContentFetching"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderExtensionActionIdentifier/title",
+          "value": "NSFileProviderExtensionActionIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderExtensionActionIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderExtensionActionIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderExtensionActionIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderExtensionActionIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderReplicatedExtension/title",
+          "value": "NSFileProviderReplicatedExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderReplicatedExtension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderReplicatedExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderReplicatedExtension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderReplicatedExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderPartialContentFetching/title",
+          "value": "NSFileProviderPartialContentFetching"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderPartialContentFetching/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderPartialContentFetching"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderPartialContentFetching/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderPartialContentFetching"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderPartialContentFetching~1fetchPartialContents(for:version:request:minimalRange:aligningTo:options:completionHandler:)/title",
+          "value": "fetchPartialContentsForItemWithIdentifier:version:request:minimalRange:aligningTo:options:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderPartialContentFetching~1fetchPartialContents(for:version:request:minimalRange:aligningTo:options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchPartialContentsForItemWithIdentifier:version:request:minimalRange:aligningTo:options:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderMaterializationFlags/title",
+          "value": "NSFileProviderMaterializationFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderMaterializationFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderMaterializationFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderMaterializationFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderMaterializationFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderIncrementalContentFetching/title",
+          "value": "NSFileProviderIncrementalContentFetching"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderIncrementalContentFetching/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderIncrementalContentFetching"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderIncrementalContentFetching/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderIncrementalContentFetching"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderServicing/title",
+          "value": "NSFileProviderServicing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderServicing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderServicing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderServicing/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderServicing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderEnumerating/title",
+          "value": "NSFileProviderEnumerating"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderEnumerating/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderEnumerating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderEnumerating/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderEnumerating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderThumbnailing/title",
+          "value": "NSFileProviderThumbnailing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderThumbnailing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderThumbnailing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderThumbnailing/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderThumbnailing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderPendingSetEnumerator/title",
+          "value": "NSFileProviderPendingSetEnumerator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderPendingSetEnumerator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderPendingSetEnumerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderPendingSetEnumerator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderPendingSetEnumerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderFetchContentsOptions/title",
+          "value": "NSFileProviderFetchContentsOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderFetchContentsOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderFetchContentsOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderFetchContentsOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderFetchContentsOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderCustomAction/title",
+          "value": "NSFileProviderCustomAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderCustomAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderCustomAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderCustomAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderCustomAction"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/fileprovider/nsfileproviderpartialcontentfetching"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/fileprovider/nsfileproviderpartialcontentfetching"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

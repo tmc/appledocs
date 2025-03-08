@@ -1,0 +1,858 @@
+{
+  "abstract": [
+    {
+      "text": "Provide functionality similar to Apple Push Notification Service when access to the wider internet is unavailable.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkextension/documentation/NetworkExtension"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.networkextension/documentation/NetworkExtension/local-push-connectivity"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Network Extension"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Local push connectivity"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the Local Push Connectivity API to maintain a persistent network connection to a server to alert users to Voice-over-IP (VoIP) calls and other messages. Local Push Connectivity is appropriate for use cases where an iOS device operates on a local, restricted network that doesn’t have access to APNs. The App Push Provider extension functions like a local network replacement for APNs; use it primarily to send small messages and alerts to users.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Local Push Connectivity has two components:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is a programmatic interface for configuring the Local Push Connectivity extension. Your app creates ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instances to indicate on which Wi-Fi networks the extension runs. You also need to set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/delegate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " so the iOS app can handle incoming calls reported by the extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is a type you subclass to create and maintain a persistent network connection to your server. When a user’s iOS device joins a Wi-Fi network that has an SSID matching a configured SSID in your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance, the system launches your app extension and instantiates the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " subclass within that app extension. The framework calls your provider’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider/start(completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", which is your cue to establish a connection to the server. The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " continues to run in the background, as long as the device joins the matching SSID. When your server notifies your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " of an incoming message or call, the provider alerts the user. Create this alert through either a local notification or by calling the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider/reportIncomingCall(userInfo:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method that allows the parent iOS app to trigger ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CallKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To use the Local Push Connectivity API, your app must have the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.networkextension",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " with the ",
+                  "type": "text"
+                },
+                {
+                  "code": "app-push-provider",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " value. Request this entitlement from the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/contact/request/local-push-connectivity",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". After you receive the entitlement, apply it to both your app target and your provider extension target.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Supporting-APNs-and-local-push-connectivity-in-one-app",
+          "level": 3,
+          "text": "Supporting APNs and local push connectivity in one app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app can use both Local Push Connectivity and Apple Push Notification Service. Typically, you use Local Push Connectivity in a restricted network environment, and use APNs in an unrestricted network. Think of Local Push Connectivity as your private network replacement for APNs, and therefore limit your functionality within the push provider extension to delivering local notifications and CallKit alerts to users.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your server determines whether to use Local Push Connectivity or APNs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the server has a viable connection of the type that’s established by the client’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", send the notification over that connection. The push provider extension acknowledges receipt of any message it receives over the connection.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the server doesn’t have an active connection to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", or if the extension fails to acknowledge a message sent by the server, use APNs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.networkextension": {
+      "abstract": [
+        {
+          "text": "The APIs an app can use to customize networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.networkextension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Network Extensions Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.networking.networkextension"
+    },
+    "doc://com.apple.documentation/documentation/CallKit": {
+      "abstract": [
+        {
+          "text": "Display the system-calling UI for your app’s VoIP services, and coordinate your calling services with other apps and the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CallKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CallKit",
+      "type": "topic",
+      "url": "/documentation/CallKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension": {
+      "abstract": [
+        {
+          "text": "Customize and extend core networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network Extension",
+      "type": "topic",
+      "url": "/documentation/networkextension"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager": {
+      "abstract": [
+        {
+          "text": "An object that configures a push provider and manages its life cycle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppPushManager"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppPushManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppPushManager",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushmanager"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/delegate": {
+      "abstract": [
+        {
+          "text": "A delegate that receives incoming call information from the provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NEAppPushDelegate",
+          "text": "NEAppPushDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushmanager/delegate"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider": {
+      "abstract": [
+        {
+          "text": "An object that creates and maintains a persistent network connection to a local push server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppPushProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppPushProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppPushProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider/reportIncomingCall(userInfo:)": {
+      "abstract": [
+        {
+          "text": "Informs the manager about an incoming call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reportIncomingCall"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider/reportIncomingCall(userInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reportIncomingCallWithUserInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "reportIncomingCall(userInfo:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushprovider/reportincomingcall(userinfo:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider/start(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Indicates that the framework has started the provider, and provides a completion handler for subclasses to signal their readiness.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider/start(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "start(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppushprovider/start(completionhandler:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/maintaining-a-reliable-network-connection": {
+      "abstract": [
+        {
+          "text": "Implement your Local Push Connectivity app to ensure delivery of notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/maintaining-a-reliable-network-connection",
+      "kind": "article",
+      "role": "article",
+      "title": "Maintaining a Reliable Network Connection",
+      "type": "topic",
+      "url": "/documentation/networkextension/maintaining-a-reliable-network-connection"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/receiving-voice-and-text-communications-on-a-local-network": {
+      "abstract": [
+        {
+          "text": "Provide voice and text communication on a local network isolated from Apple Push Notification service by adopting Local Push Connectivity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/receiving-voice-and-text-communications-on-a-local-network",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Receiving Voice and Text Communications on a Local Network",
+      "type": "topic",
+      "url": "/documentation/networkextension/receiving-voice-and-text-communications-on-a-local-network"
+    },
+    "https://developer.apple.com/contact/request/local-push-connectivity": {
+      "identifier": "https://developer.apple.com/contact/request/local-push-connectivity",
+      "title": "Entitlement Request Page",
+      "titleInlineContent": [
+        {
+          "text": "Entitlement Request Page",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/request/local-push-connectivity"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/maintaining-a-reliable-network-connection",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/receiving-voice-and-text-communications-on-a-local-network"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushManager",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppPushProvider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/maintaining-a-reliable-network-connection"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager/title",
+          "value": "NEAppPushManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider~1start(completionHandler:)/title",
+          "value": "startWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider~1start(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushManager~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider~1reportIncomingCall(userInfo:)/title",
+          "value": "reportIncomingCallWithUserInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider~1reportIncomingCall(userInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reportIncomingCallWithUserInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider/title",
+          "value": "NEAppPushProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppPushProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppPushProvider"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkextension/local-push-connectivity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/networkextension/local-push-connectivity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

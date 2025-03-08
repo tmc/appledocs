@@ -1,0 +1,505 @@
+{
+  "abstract": [
+    {
+      "text": "Sets the content of the receiver as a string value and, optionally, resolves character references, predefined entities, and user-defined entities as declared in the associated DTD.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/xml_processing_and_modeling",
+        "doc://com.apple.documentation/documentation/foundation/nsxmlnode"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409758-setstringvalue"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1409758,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSXMLNode(im)setStringValue:resolvingEntities:",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSXMLNode"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "setStringValue:resolvingEntities:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "identifier",
+              "text": "setStringValue:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "string"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "resolvingEntities:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "resolve"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A string to assign as the value of the receiver.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "string"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " to resolve character references, predefined entities, and user-defined entities as declared in the associated DTD; ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " otherwise. Namespace and processing-instruction nodes have their entities resolved even if ",
+                  "type": "text"
+                },
+                {
+                  "code": "resolve",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "resolve"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "User-defined entities not declared in the DTD remain in their unresolved form. This method can only be invoked on ",
+              "type": "text"
+            },
+            {
+              "code": "NSXMLNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects that may have content, specifically elements, attributes, namespaces, processing instructions, text, and DTD-declaration nodes. Setting the string value of a node object removes all existing children, including processing instructions and comments. Setting the string value of an element -node object creates a text node as the sole child. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Archives and Serialization",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/xml_processing_and_modeling": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/xml_processing_and_modeling",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "XML Processing and Modeling",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization/xml_processing_and_modeling"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmlnode": {
+      "abstract": [
+        {
+          "text": "The nodes in the abstract, logical tree structure that represents an XML document. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmlnode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSXMLNode",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmlnode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1407508-level": {
+      "abstract": [
+        {
+          "text": "Returns the nesting level of the receiver within the tree hierarchy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1407508-level",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "level",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmlnode/1407508-level"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1408882-kind": {
+      "abstract": [
+        {
+          "text": "Returns the kind of node the receiver is as a constant of type ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmlnodekind",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1408882-kind",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kind",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmlnode/1408882-kind"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409743-index": {
+      "abstract": [
+        {
+          "text": "Returns the index of the receiver identifying its position relative to its sibling nodes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409743-index",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "index",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmlnode/1409743-index"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409756-objectvalue": {
+      "abstract": [
+        {
+          "text": "Returns the object value of the receiver. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409756-objectvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmlnode/1409756-objectvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409758-setstringvalue": {
+      "abstract": [
+        {
+          "text": "Sets the content of the receiver as a string value and, optionally, resolves character references, predefined entities, and user-defined entities as declared in the associated DTD.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setStringValue:resolvingEntities:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409758-setstringvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setStringValue:resolvingEntities:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmlnode/1409758-setstringvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409770-name": {
+      "abstract": [
+        {
+          "text": "Returns the name of the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409770-name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmlnode/1409770-name"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409774-uri": {
+      "abstract": [
+        {
+          "text": "Returns the URI associated with the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409774-uri",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URI",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmlnode/1409774-uri"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409818-stringvalue": {
+      "abstract": [
+        {
+          "text": "Returns the content of the receiver as a string value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409818-stringvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stringValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmlnode/1409818-stringvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1806643-seturi": {
+      "abstract": [
+        {
+          "text": "Sets the URI of the receiver. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1806643-seturi",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setURI:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmlnode/1806643-seturi"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxmlnodekind": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxmlnodekind",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSXMLNodeKind",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxmlnodekind"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/no": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NO",
+      "type": "topic",
+      "url": "/documentation/objectivec/no"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/yes": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "YES",
+      "type": "topic",
+      "url": "/documentation/objectivec/yes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409743-index",
+        "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1408882-kind",
+        "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1407508-level",
+        "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409770-name",
+        "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409756-objectvalue",
+        "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409818-stringvalue",
+        "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1806643-seturi",
+        "doc://com.apple.documentation/documentation/foundation/nsxmlnode/1409774-uri"
+      ],
+      "title": "Managing XML Node Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsxmlnode/1409758-setstringvalue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/xmlnode/1409758-setstringvalue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

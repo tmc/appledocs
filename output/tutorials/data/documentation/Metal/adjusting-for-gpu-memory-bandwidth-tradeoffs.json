@@ -1,0 +1,1080 @@
+{
+  "abstract": [
+    {
+      "text": "Choose a suitable GPU and memory storage mode for tasks based on that GPU’s memory bandwidth on a Mac.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission",
+        "doc://com.apple.metal/documentation/Metal/multi-gpu-systems"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/adjusting-for-gpu-memory-bandwidth-tradeoffs"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adjusting for GPU Memory Bandwidth Tradeoffs"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "GPU memory ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "bandwidth",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a measure of the data transfer speed between a GPU and the system across a bus, such as PCI Express (PCIe) or Thunderbolt. It’s important to consider the bandwidth of each GPU in a system when developing your high-performance Metal apps. A GPU that’s powerful on its own may not be the optimal choice for certain tasks if it has a relatively low bandwidth connection to the system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Consider-How-a-GPU-Connects-to-the-System",
+          "level": 3,
+          "text": "Consider How a GPU Connects to the System",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A GPU’s bandwidth largely depends on the bus that connects it to a system:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "external",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " GPU connects to a system though an external Thunderbolt 3 bus.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "discrete",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " GPU is a built-in GPU that has video memory (separate memory that only the GPU can access) and connects to a system through an internal PCIe bus.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "integrated",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " GPU is a built-in GPU that uses system memory and shares the bus with the CPU.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4085591",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A discrete GPU’s PCIe bus can have 8 or 16 memory lanes — or PCIe x4 or PCIe x16, respectively — depending on the GPU and Mac model. Transferring data between the system and an external GPU can take more time than with a built-in GPU because external GPUs typically have a lower bandwidth connection, such as Thunderbolt 3.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4085592",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, transferring data from one GPU to another can be even more expensive because the system can’t transfer data directly between GPUs. Instead, the process typically requires copying data to system memory before copying it again to the destination GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Select-the-Appropriate-Storage-Mode-for-Your-Resources",
+          "level": 3,
+          "text": "Select the Appropriate Storage Mode for Your Resources",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can minimize the bandwidth costs — the number of data transfers across a bus — by selecting an appropriate storage mode for your app’s resources. For more information about selecting a storage mode for specific GPUs, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/choosing-a-resource-storage-mode-for-apple-gpus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/choosing-a-resource-storage-mode-for-intel-and-amd-gpus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Metal uses a resource’s storage mode to determine which memory location to save it in. The storage mode options for a resource include the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Shared resources reside in system memory and are slow to access for discrete and external GPUs.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/shared",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Private resources reside in video memory and are fast to access for discrete and external GPUs.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/private",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Managed resources reside in both system and video memory (dual copies) and are fast to access for discrete and external GPUs.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/managed",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Discrete and external GPUs have the highest data transfer costs when they access a shared resource because their access to system memory is relatively slow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2960167",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Private resources have the lowest data transfer costs with discrete and external GPUs because their exclusive access to video memory is relatively fast.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2960169",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Managed resources can have modest data transfer costs for discrete and external GPUs. The CPU (and an integrated GPU) have quick access to the copy in system memory, and the other GPUs have quick access to the copy in their video memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4085392",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can keep the copies in sync by efficiently running sparse blit operations (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/synchronizing-a-managed-resource-in-macos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Render-a-Drawable-on-the-Same-GPU-That-Drives-the-Destination-Display",
+          "level": 3,
+          "text": "Render a Drawable on the Same GPU That Drives the Destination Display",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Metal, a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "drawable",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", represented by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDrawable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", is a type that bridges Metal and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Each drawable contains a texture that your apps can render with Metal and then present on a device’s display using Core Animation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Presenting a drawable on a display can have significant bandwidth costs if the drawable belongs to a GPU that doesn’t drive the display. Only one GPU can drive a display, whether it’s built in or external, and the fastest path to present a drawable to a display is to render that drawable with the same GPU that drives the display. Otherwise, the system has to transfer the drawable from the GPU that renders it to the GPU that drives the display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, take a Mac that has both a discrete GPU and an external GPU that’s driving an external display. If your app renders a drawable with the discrete GPU, the system has to transfer the drawable to the external GPU through the Thunderbolt 3 bus to present it on the external display. You app can avoid this transfer by rendering the drawable with the external GPU because it’s also driving the drawable’s destination display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4085391",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, Mac systems with multiple built-in GPUs may need to transfer a drawable that one GPU renders if a different GPU drives the destination display. For example, imagine a MacBook Pro with automatic graphics switching is currently driving the built-in display with the integrated GPU. If your app uses the discrete GPU to render a drawable, the system has to transfer the drawable’s contents to the integrated GPU over the internal PCIe bus. Your app can avoid this transfer by rendering the drawable with the integrated GPU when it’s driving the internal display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4085390",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/QuartzCore": {
+      "abstract": [
+        {
+          "text": "Render, compose, and animate visual elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Animation",
+      "type": "topic",
+      "url": "/documentation/QuartzCore"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDrawable": {
+      "abstract": [
+        {
+          "text": "A displayable resource that can be rendered or written to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDrawable"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDrawable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDrawable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDrawable",
+      "type": "topic",
+      "url": "/documentation/metal/mtldrawable"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStorageMode/managed": {
+      "abstract": [
+        {
+          "text": "The CPU and GPU may maintain separate copies of the resource, and any changes must be explicitly synchronized.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "managed"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/managed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStorageModeManaged"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStorageMode.managed",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoragemode/managed"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStorageMode/private": {
+      "abstract": [
+        {
+          "text": "The resource is only available to the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "`private`"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/private",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStorageModePrivate"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStorageMode.private",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoragemode/private"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStorageMode/shared": {
+      "abstract": [
+        {
+          "text": "The CPU and GPU share access to the resource, allocated in system memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/shared",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStorageModeShared"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStorageMode.shared",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoragemode/shared"
+    },
+    "doc://com.apple.metal/documentation/Metal/assessing-multi-gpu-and-multi-display-setups-on-an-intel-based-mac": {
+      "abstract": [
+        {
+          "text": "Learn the possible GPU and display configurations for a Mac and their limitations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/assessing-multi-gpu-and-multi-display-setups-on-an-intel-based-mac",
+      "kind": "article",
+      "role": "article",
+      "title": "Assessing Multi-GPU and Multi-Display Setups on an Intel-Based Mac",
+      "type": "topic",
+      "url": "/documentation/metal/assessing-multi-gpu-and-multi-display-setups-on-an-intel-based-mac"
+    },
+    "doc://com.apple.metal/documentation/Metal/choosing-a-resource-storage-mode-for-apple-gpus": {
+      "abstract": [
+        {
+          "text": "Select an appropriate storage mode for your textures and buffers on Apple GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/choosing-a-resource-storage-mode-for-apple-gpus",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a Resource Storage Mode for Apple GPUs",
+      "type": "topic",
+      "url": "/documentation/metal/choosing-a-resource-storage-mode-for-apple-gpus"
+    },
+    "doc://com.apple.metal/documentation/Metal/choosing-a-resource-storage-mode-for-intel-and-amd-gpus": {
+      "abstract": [
+        {
+          "text": "Select an appropriate storage mode for your textures and buffers on AMD and Intel GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/choosing-a-resource-storage-mode-for-intel-and-amd-gpus",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a Resource Storage Mode for Intel and AMD GPUs",
+      "type": "topic",
+      "url": "/documentation/metal/choosing-a-resource-storage-mode-for-intel-and-amd-gpus"
+    },
+    "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission": {
+      "abstract": [
+        {
+          "text": "Find any available GPU, submit work to it with command buffers, suspend work, and coordinate between multiple GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GPU Devices and Work Submission",
+      "type": "topic",
+      "url": "/documentation/metal/gpu-devices-and-work-submission"
+    },
+    "doc://com.apple.metal/documentation/Metal/multi-gpu-systems": {
+      "abstract": [
+        {
+          "text": "Locate and work with internal and external GPUs and their displays, video memory, and performance tradeoffs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/multi-gpu-systems",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Multi-GPU Systems",
+      "type": "topic",
+      "url": "/documentation/metal/multi-gpu-systems"
+    },
+    "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-compute-processing": {
+      "abstract": [
+        {
+          "text": "Switch dynamically between multiple GPUs to efficiently execute a compute-intensive simulation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-compute-processing",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Selecting Device Objects for Compute Processing",
+      "type": "topic",
+      "url": "/documentation/metal/selecting-device-objects-for-compute-processing"
+    },
+    "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering": {
+      "abstract": [
+        {
+          "text": "Switch dynamically between multiple GPUs to efficiently render to a display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Selecting Device Objects for Graphics Rendering",
+      "type": "topic",
+      "url": "/documentation/metal/selecting-device-objects-for-graphics-rendering"
+    },
+    "doc://com.apple.metal/documentation/Metal/synchronizing-a-managed-resource-in-macos": {
+      "abstract": [
+        {
+          "text": "Manually synchronize memory for a Metal resource in apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/synchronizing-a-managed-resource-in-macos",
+      "kind": "article",
+      "role": "article",
+      "title": "Synchronizing a Managed Resource in macOS",
+      "type": "topic",
+      "url": "/documentation/metal/synchronizing-a-managed-resource-in-macos"
+    },
+    "media-2960167": {
+      "alt": "A system diagram that doesn’t recommend a setup where a discrete GPU and an external GPU each store a shared resource in system memory instead of in their dedicated video memory (discrete and external memory, respectively) over a direct, fast connection. Both GPUs and the CPU can access system memory, and the other GPU’s resource, through different connections: The discrete GPU connects through an internal PCIe connection, the external GPU connects through an external Thunderbolt 3 connection, and the CPU connects directly to system memory.",
+      "identifier": "media-2960167",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/772df69616d8c10068a9322bf23e903b/media-2960167.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/28a42da176d4d3bb0248d39afaaa00cc/media-2960167@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4f8be91d3033b251e431336eba80f6ea/media-2960167~dark@2x.png"
+        }
+      ]
+    },
+    "media-2960169": {
+      "alt": "A system diagram that recommends a setup where a discrete GPU and an external GPU each store a private resource both in their dedicated video memory (discrete and external memory, respectively) over a direct, fast connection. Both GPUs and the CPU can access system memory through different connections: The discrete GPU connects through an internal PCIe connection, the external GPU connects through an external Thunderbolt 3 connection, and the CPU connects directly to system memory.",
+      "identifier": "media-2960169",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2eda4e00a7e06d8768096c6c061e7ac5/media-2960169.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a48c90fa5d180d5d33e5fd95c8562847/media-2960169@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/03a7d8c895a97e1bc710ce2b7c6c1d51/media-2960169~dark@2x.png"
+        }
+      ]
+    },
+    "media-4085390": {
+      "alt": "A system diagram that shows two possible pathways for a drawable, starting from either the integrated GPU or the discrete GPU. The diagram recommends the pathway that uses the integrated GPU to render a drawable because its the same GPU that’s driving the built-in display. The diagram discourages rendering a drawable with the discrete GPU when the integrated GPU is driving the built-in display because that forces the system to transfer each drawable over the PCIe bus.",
+      "identifier": "media-4085390",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e2b8d38493c37785368e2efd35fa8578/media-4085390@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5d20cfd99b258d862b8caccbd2931da5/media-4085390~dark@2x.png"
+        }
+      ]
+    },
+    "media-4085391": {
+      "alt": "A system diagram that shows two possible pathways for a drawable, starting from either the external GPU or the discrete GPU. The diagram recommends the pathway that uses the external GPU to render a drawable because it’s the same GPU that’s driving the external display. The diagram discourages rendering a drawable with the discrete GPU when the external GPU is driving the display because that forces the system to transfer each drawable over the Thunderbolt 3 bus.",
+      "identifier": "media-4085391",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3c0705eb46bb14d072b6534e22ae1ff0/media-4085391@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4f0128a5b98e9c217f8115157bd23849/media-4085391~dark@2x.png"
+        }
+      ]
+    },
+    "media-4085392": {
+      "alt": "A system diagram that recommends a setup where a discrete GPU and an external GPU each store a managed resource both in its dedicated video memory (discrete and external, respectively) over a direct, fast connection, and in system memory. Both GPUs and the CPU can access system memory through different connections: The discrete GPU connects through an internal PCIe connection, the external GPU connects through an external Thunderbolt 3 connection, and the CPU connects directly to system memory. Each GPU can access the other GPU’s managed resource by using the system memory’s copy of that resource.",
+      "identifier": "media-4085392",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b01c231495f1bdcdf4d0af58141c56e6/media-4085392@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67337c4d5fd190826c5e63e8017906a7/media-4085392~dark@2x.png"
+        }
+      ]
+    },
+    "media-4085591": {
+      "alt": "A system diagram that shows an iMac Pro and its connections to both a built-in discrete GPU and an external GPU. The discrete GPU connects to the iMac through an internal PCIe bus, and the external GPU connects through an external Thunderbolt 3 bus.",
+      "identifier": "media-4085591",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/83c1259137eebf0aa4587150be955e6b/media-4085591@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a79a034a8a816fcd383865d32e3dc955/media-4085591~dark@2x.png"
+        }
+      ]
+    },
+    "media-4085592": {
+      "alt": "A horizontal bar chart that shows the relative bandwidths of Thunderbolt 3 (1x), PCIe with 8 lanes (2x), and PCIe with 16 lanes (4x).",
+      "identifier": "media-4085592",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/94b6398aae2e8085a01a628a2dd31fa3/media-4085592@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4190436aa917bb0f759a95a85f5037a0/media-4085592~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Selecting-GPUs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/assessing-multi-gpu-and-multi-display-setups-on-an-intel-based-mac",
+        "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering",
+        "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-compute-processing"
+      ],
+      "title": "Selecting GPUs"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Selecting-GPUs",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/assessing-multi-gpu-and-multi-display-setups-on-an-intel-based-mac",
+                "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering",
+                "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-compute-processing"
+              ],
+              "title": "Selecting GPUs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1managed/title",
+          "value": "MTLStorageModeManaged"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1managed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStorageModeManaged"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1shared/title",
+          "value": "MTLStorageModeShared"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1shared/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStorageModeShared"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDrawable/title",
+          "value": "MTLDrawable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDrawable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDrawable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDrawable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDrawable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1private/title",
+          "value": "MTLStorageModePrivate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1private/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStorageModePrivate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/adjusting-for-gpu-memory-bandwidth-tradeoffs"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/adjusting-for-gpu-memory-bandwidth-tradeoffs"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

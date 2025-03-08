@@ -1,0 +1,822 @@
+{
+  "abstract": [
+    {
+      "text": "Help users discover your App Clip by using an NFC-integrated or scan-only App Clip Code.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appclip/documentation/AppClip"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appclip/documentation/AppClip/creating-app-clip-codes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Clips"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating App Clip Codes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An App Clip Code is immediately recognizable to users and lets them know an App Clip is available. The App Clip Code offers a fast and secure launch experience for your App Clip that users trust.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3706497",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The visual design of an App Clip Code encodes your App Clip’s ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "invocation URL",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". Optionally, you can embed an NFC tag that also encodes the invocation URL. An App Clip Code with an embedded NFC tag is called an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "NFC-integrated",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " App Clip Code, while a code without an NFC tag is called a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "scan-only",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " App Clip Code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The image at the center of an App Clip Code icon lets users know how to interact with the code. If they discover an NFC-integrated App Clip Code, they hold their device close to the code or scan it with the NFC Tag Reader in Control Center to launch your App Clip. They can also scan an NFC-integrated App Clip Code with the Camera app or the Code Scanner in Control Center. If they discover a scan-only App Clip Code, they scan it with the Camera or the Code Scanner in Control Center to launch your App Clip.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to providing a great launch experience for your App Clip, you can also use an App Clip Code to offer a context-aware augmented reality experience. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appclip/documentation/AppClip/interacting-with-app-clip-codes-in-ar",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Scanning App Clip Codes requires a device that runs iOS 14.3 or later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creating an App Clip Code requires the following tasks:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choosing an invocation URL and configuring an ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "advanced App Clip experience",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://appstoreconnect.apple.com/login",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". To learn more, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appclip/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choosing the type (scan-only or NFC-integrated), colors, and design of your App Clip Code. For design guidance, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/design/human-interface-guidelines/app-clips/overview/app-clip-codes/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Generating App Clip Codes with App Store Connect or with the App Clip Code Generator command-line tool. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appclip/documentation/AppClip/creating-app-clip-codes#Pick-a-tool-to-create-App-Clip-Codes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " below.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Printing App Clip Codes yourself or with the help of a professional printing service — for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://touchless.acc.rrd.com/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". For printing guidance, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/design/human-interface-guidelines/app-clips/overview/printing-guidelines/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appclip/documentation/AppClip/preparing-multiple-app-clip-codes-for-production",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appclip/documentation/AppClip/encoding-a-url-in-an-app-clip-code",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Pick-a-tool-to-create-App-Clip-Codes",
+          "level": 3,
+          "text": "Pick a tool to create App Clip Codes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "App Clip Codes always use the design Apple provides to ensure users instantly recognize them. You can create an App Clip Code by selecting an advanced App Clip experience in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com/login",
+              "isActive": true,
+              "overridingTitle": "App Store Connect",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "App Store Connect",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " or by installing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-clips/resources/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " command-line tool. Both have similar features and it’s up to you to pick the tool that best fits your needs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider using App Store Connect if:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You’ve already created an advanced App Clip experience in App Store Connect.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You prefer an instantaneous preview while you experiment with colors.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You’re comfortable using a tool that offers a more visual interface compared to a command-line tool.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider using the App Clip Code Generator command-line tool if:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You haven’t created an advanced App Clip experience in App Store Connect — for example, during development of your App Clip.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You need to create a lot of App Clip Codes and want to automate their creation with a script.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You’re comfortable using a command-line tool.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appclip/documentation/AppClip/creating-app-clip-codes-with-app-store-connect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appclip/documentation/AppClip/creating-app-clip-codes-with-the-app-clip-code-generator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You must be enrolled in the Apple Developer Program before you can download the App Clip Code Generator. For information about the Apple Developer Program, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/programs/how-it-works/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appclip/documentation/AppClip": {
+      "abstract": [
+        {
+          "text": "Provide people a shortcut to selected content and features of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Clips",
+      "type": "topic",
+      "url": "/documentation/appclip"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip": {
+      "abstract": [
+        {
+          "text": "Review how people launch your App Clip, identify invocation URLs, make use of default App Clip links, and configure experiences in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring the launch experience of your App Clip",
+      "type": "topic",
+      "url": "/documentation/appclip/configuring-the-launch-experience-of-your-app-clip"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/creating-app-clip-codes#Pick-a-tool-to-create-App-Clip-Codes": {
+      "abstract": [],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/creating-app-clip-codes#Pick-a-tool-to-create-App-Clip-Codes",
+      "kind": "section",
+      "title": "Pick a tool to create App Clip Codes",
+      "type": "topic",
+      "url": "/documentation/appclip/creating-app-clip-codes#Pick-a-tool-to-create-App-Clip-Codes"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/creating-app-clip-codes-with-app-store-connect": {
+      "abstract": [
+        {
+          "text": "Select one or more advanced App Clip experiences in App Store Connect and create App Clip Codes for users to scan to launch your App Clip.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/creating-app-clip-codes-with-app-store-connect",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating App Clip Codes with App Store Connect",
+      "type": "topic",
+      "url": "/documentation/appclip/creating-app-clip-codes-with-app-store-connect"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/creating-app-clip-codes-with-the-app-clip-code-generator": {
+      "abstract": [
+        {
+          "text": "Use the App Clip Code Generator command-line tool to verify your code’s colors, get color suggestions, and create App Clip Codes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/creating-app-clip-codes-with-the-app-clip-code-generator",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating App Clip Codes with the App Clip Code Generator",
+      "type": "topic",
+      "url": "/documentation/appclip/creating-app-clip-codes-with-the-app-clip-code-generator"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/encoding-a-url-in-an-app-clip-code": {
+      "abstract": [
+        {
+          "text": "Choose an invocation URL for your App Clip Code that you can encode efficiently.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/encoding-a-url-in-an-app-clip-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Encoding a URL in an App Clip Code",
+      "type": "topic",
+      "url": "/documentation/appclip/encoding-a-url-in-an-app-clip-code"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/interacting-with-app-clip-codes-in-ar": {
+      "abstract": [
+        {
+          "text": "Display content and provide services in an AR experience with App Clip Codes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/interacting-with-app-clip-codes-in-ar",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Interacting with App Clip Codes in AR",
+      "type": "topic",
+      "url": "/documentation/appclip/interacting-with-app-clip-codes-in-ar"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/preparing-multiple-app-clip-codes-for-production": {
+      "abstract": [
+        {
+          "text": "Prepare your App Clip Codes to send to a professional printing service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/preparing-multiple-app-clip-codes-for-production",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing multiple App Clip Codes for production",
+      "type": "topic",
+      "url": "/documentation/appclip/preparing-multiple-app-clip-codes-for-production"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://appstoreconnect.apple.com/login": {
+      "identifier": "https://appstoreconnect.apple.com/login",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com/login"
+    },
+    "https://developer.apple.com/app-clips/resources/": {
+      "identifier": "https://developer.apple.com/app-clips/resources/",
+      "title": "App Clip Code Generator",
+      "titleInlineContent": [
+        {
+          "text": "App Clip Code Generator",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-clips/resources/"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/app-clips/overview/app-clip-codes/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/app-clips/overview/app-clip-codes/",
+      "title": "Human Interface Guidelines > App Clips > App Clip Codes",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines > App Clips > App Clip Codes",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/app-clips/overview/app-clip-codes/"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/app-clips/overview/printing-guidelines/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/app-clips/overview/printing-guidelines/",
+      "title": "Human Interface Guidelines > App Clips > Printing Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines > App Clips > Printing Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/app-clips/overview/printing-guidelines/"
+    },
+    "https://developer.apple.com/programs/how-it-works/": {
+      "identifier": "https://developer.apple.com/programs/how-it-works/",
+      "title": "How the Program Works",
+      "titleInlineContent": [
+        {
+          "text": "How the Program Works",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/programs/how-it-works/"
+    },
+    "https://touchless.acc.rrd.com/": {
+      "identifier": "https://touchless.acc.rrd.com/",
+      "title": "RR Donnelley",
+      "titleInlineContent": [
+        {
+          "text": "RR Donnelley",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://touchless.acc.rrd.com/"
+    },
+    "media-3706497": {
+      "alt": "Illustration of two App Clip Codes that use the badge design: On the left, a white-on-blue App Clip Code with an embedded NFC tag. On the right, a scan-only, white-on-black App Clip Code.",
+      "identifier": "media-3706497",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d128732b4333996b712930a76efbaf5c/media-3706497@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2b8d521493e4621c333868794d08da0c/media-3706497~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-Clip-Codes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appclip/documentation/AppClip/preparing-multiple-app-clip-codes-for-production",
+        "doc://com.apple.appclip/documentation/AppClip/interacting-with-app-clip-codes-in-ar"
+      ],
+      "title": "App Clip Codes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "App-Clip-Codes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appclip/documentation/AppClip/preparing-multiple-app-clip-codes-for-production",
+                "doc://com.apple.appclip/documentation/AppClip/interacting-with-app-clip-codes-in-ar"
+              ],
+              "title": "App Clip Codes"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appclip/creating-app-clip-codes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appclip/creating-app-clip-codes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

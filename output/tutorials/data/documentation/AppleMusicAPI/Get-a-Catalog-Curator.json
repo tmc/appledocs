@@ -1,0 +1,744 @@
+{
+  "abstract": [
+    {
+      "text": "Fetch a curator by using the curator’s identifier.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Apple Music",
+      "versions": [
+        "1.0",
+        "1.2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Catalog-Curator"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:music_api:get:v1-catalog-{}-curators-{}",
+    "modules": [
+      {
+        "name": "Apple Music API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Get a Catalog Curator"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Apple Music"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get a Catalog Curator"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.music.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/catalog/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{storefront}"
+        },
+        {
+          "kind": "path",
+          "text": "/curators/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{id}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The unique identifier for the curator.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An iTunes Store territory, specified by an ISO 3166 alpha-2 country code. The possible values are the ",
+                  "type": "text"
+                },
+                {
+                  "code": "id",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " attributes of ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " objects.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "storefront",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The localization to use, specified by a language tag. The possible values are in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "supportedLanguageTags",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " array belonging to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object specified by ",
+                  "type": "text"
+                },
+                {
+                  "code": "storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Otherwise, the default is ",
+                  "type": "text"
+                },
+                {
+                  "code": "defaultLanguageTag",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "l",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Additional relationships to include in the fetch.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "include",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of attribute extensions to apply to resources in the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "extend",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/CuratorsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:CuratorsResponse",
+              "text": "CuratorsResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an incorrect ",
+                  "type": "text"
+                },
+                {
+                  "code": "Authorization",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:UnauthorizedResponse",
+              "text": "UnauthorizedResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an error occurred on the server.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:ErrorsResponse",
+              "text": "ErrorsResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If successful, the HTTP status code is 200 (OK) and the ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array contains a single ",
+              "type": "text"
+            },
+            {
+              "code": "Curator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. If unsuccessful, the HTTP status code indicates the error and the details are in the ",
+              "type": "text"
+            },
+            {
+              "code": "errors",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "https://api.music.apple.com/v1/catalog/us/curators/1107687517"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"data\": [",
+                    "        {",
+                    "            \"attributes\": {",
+                    "                \"artwork\": {",
+                    "                    \"bgColor\": \"ffffff\",",
+                    "                    \"height\": 1080,",
+                    "                    \"textColor1\": \"000000\",",
+                    "                    \"textColor2\": \"2d2d2d\",",
+                    "                    \"textColor3\": \"333333\",",
+                    "                    \"textColor4\": \"575757\",",
+                    "                    \"url\": \"https://example.mzstatic.com/image/thumb/Features30/v4/8a/d7/80/8ad7800c-06cd-db72-91c7-55ff8bec0346/source/{w}x{h}bb.jpeg\",",
+                    "                    \"width\": 1080",
+                    "                },",
+                    "                \"editorialNotes\": {",
+                    "                    \"short\": \"LargeUp is the global platform for Caribbean music, arts and culture. \",",
+                    "                    \"standard\": \"LargeUp, the global platform for Caribbean music, arts and culture. Since 2009, LargeUp.com has captured the vibrant sounds, styles, flavors, destinations and activities of the islands, spotlighting the best in reggae, dancehall, soca, reggaeton and kompa.\"",
+                    "                },",
+                    "                \"name\": \"LargeUp\",",
+                    "                \"url\": \"https://itunes.apple.com/us/curator/largeup/id1107687517\"",
+                    "            },",
+                    "            \"href\": \"/v1/catalog/us/curators/1107687517\",",
+                    "            \"id\": \"1107687517\",",
+                    "            \"relationships\": {",
+                    "                \"playlists\": {",
+                    "                    \"data\": [],",
+                    "                    \"href\": \"/v1/catalog/us/curators/1107687517/playlists\"",
+                    "                }",
+                    "            },",
+                    "            \"type\": \"curators\"",
+                    "        }",
+                    "    ]",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI": {
+      "abstract": [
+        {
+          "text": "Integrate streaming music with catalog and personal content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music API",
+      "type": "topic",
+      "url": "/documentation/applemusicapi"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Curators": {
+      "abstract": [
+        {
+          "text": "A resource object that represents a curator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Curators"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Curators",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Curators"
+        }
+      ],
+      "role": "symbol",
+      "title": "Curators",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/curators"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/CuratorsResponse": {
+      "abstract": [
+        {
+          "text": "The response to a request for curators.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CuratorsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/CuratorsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CuratorsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "CuratorsResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/curatorsresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that an error occurred while processing the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorsResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/errorsresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-1091z": {
+      "abstract": [
+        {
+          "text": "Fetch a curator’s relationship by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-1091z",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Fetch a relationship on this resource by name"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Catalog Curator's Relationship Directly by Name",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/fetch-a-relationship-on-this-resource-by-name-1091z"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Catalog-Curators": {
+      "abstract": [
+        {
+          "text": "Fetch one or more curators by using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Catalog-Curators",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Multiple Catalog Curators"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Multiple Catalog Curators",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-multiple-catalog-curators"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Catalog-Curator": {
+      "abstract": [
+        {
+          "text": "Fetch a curator by using the curator’s identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Catalog-Curator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a Catalog Curator"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Catalog Curator",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-a-catalog-curator"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that the request’s authorization is missing or invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnauthorizedResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/unauthorizedresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses": {
+      "abstract": [
+        {
+          "text": "Write a request and handle responses from the API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Requests and Responses",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/handling-requests-and-responses"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Curators",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/CuratorsResponse"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Requesting-Catalog-Curators",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-1091z",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Catalog-Curators"
+      ],
+      "title": "Requesting Catalog Curators"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemusicapi/get-a-catalog-curator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

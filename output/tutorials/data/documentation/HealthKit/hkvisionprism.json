@@ -1,0 +1,2136 @@
+{
+  "abstract": [
+    {
+      "text": "Prescription data for eye alignment.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)HKVisionPrism",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "HKVisionPrism"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "HKVisionPrism"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "HKVisionPrism"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HKVisionPrism"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To include prism information in a glasses prescription, start by creating an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// The correction for eye alignment.",
+            "let prismQuantity = HKQuantity(unit: .prismDiopter(), doubleValue: +0.25)",
+            "let angle = HKQuantity(unit: .degreeAngle(), doubleValue: 15.0)",
+            "let prism = HKVisionPrism(amount: prismQuantity,",
+            "                          angle: angle,",
+            "                          eye: .right)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, pass this value to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKGlassesLensSpecification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "’s initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// The prescription for the right eye.",
+            "let glassesRightEye = HKGlassesLensSpecification(sphere: sphere,",
+            "                                                 cylinder: cylinder,",
+            "                                                 axis: axis,",
+            "                                                 addPower: addPower,",
+            "                                                 vertexDistance: vertexDistance,",
+            "                                                 prism: prism,",
+            "                                                 farPupillaryDistance: farDistance,",
+            "                                                 nearPupillaryDistance: nearDistance)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, create the glasses prescription and save it to the HealthKit store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// The glasses prescription.",
+            "let prescription = HKGlassesPrescription(rightEyeSpecification: glassesRightEye,",
+            "                                               leftEyeSpecification: glassesLeftEye,",
+            "                                               dateIssued: dateIssued,",
+            "                                               expirationDate: expirationDate,",
+            "                                               device: HKDevice.local(),",
+            "                                               metadata: nil)",
+            "// Save the sample to the HealthKit store.",
+            "do {",
+            "    try await store.save(prescription)",
+            "} catch {",
+            "    // Handle the error here.",
+            "    fatalError(\"*** An error occurred while saving the prescription sample to the HealthKit store \\(error.localizedDescription) ***\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKContactsLensSpecification": {
+      "abstract": [
+        {
+          "text": "An object that contains the contacts prescription data for one eye.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKContactsLensSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKContactsLensSpecification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKContactsLensSpecification"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKContactsLensSpecification",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkcontactslensspecification"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKContactsPrescription": {
+      "abstract": [
+        {
+          "text": "A sample that store a prescription for contacts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKContactsPrescription"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKContactsPrescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKContactsPrescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKContactsPrescription",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkcontactsprescription"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKGlassesLensSpecification": {
+      "abstract": [
+        {
+          "text": "An object that contains the glasses prescription data for one eye.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKGlassesLensSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKGlassesLensSpecification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKGlassesLensSpecification"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKGlassesLensSpecification",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkglasseslensspecification"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKGlassesPrescription": {
+      "abstract": [
+        {
+          "text": "A sample that stores a prescription for glasses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKGlassesPrescription"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKGlassesPrescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKGlassesPrescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKGlassesPrescription",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkglassesprescription"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKLensSpecification": {
+      "abstract": [
+        {
+          "text": "An abstract superclass for lens specifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKLensSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKLensSpecification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKLensSpecification"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKLensSpecification",
+      "type": "topic",
+      "url": "/documentation/healthkit/hklensspecification"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKPrescriptionType": {
+      "abstract": [
+        {
+          "text": "A type that identifies samples that store a prescription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKPrescriptionType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKPrescriptionType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKPrescriptionType"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKPrescriptionType",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkprescriptiontype"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKPrismBase": {
+      "abstract": [
+        {
+          "text": "The orientation of the prism correction, represented by the location of the prism’s base (the thickest part of the prism).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKPrismBase"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKPrismBase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKPrismBase"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKPrismBase",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkprismbase"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKVisionEye": {
+      "abstract": [
+        {
+          "text": "A value that specifies the eye for a vision prescription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKVisionEye"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKVisionEye",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKVisionEye"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKVisionEye",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkvisioneye"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrescription": {
+      "abstract": [
+        {
+          "text": "A sample that stores a vision prescription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKVisionPrescription"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKVisionPrescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKVisionPrescription",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkvisionprescription"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism": {
+      "abstract": [
+        {
+          "text": "Prescription data for eye alignment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKVisionPrism"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKVisionPrism"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKVisionPrism",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkvisionprism"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/amount": {
+      "abstract": [
+        {
+          "text": "The strength of the correction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "amount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/amount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "amount"
+        }
+      ],
+      "role": "symbol",
+      "title": "amount",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkvisionprism/amount"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/angle": {
+      "abstract": [
+        {
+          "text": "The orientation of the adjustment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "angle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/angle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "angle"
+        }
+      ],
+      "role": "symbol",
+      "title": "angle",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkvisionprism/angle"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/eye": {
+      "abstract": [
+        {
+          "text": "A value indicating which eye the correction applies to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "eye"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKVisionEye",
+          "text": "HKVisionEye"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/eye",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "eye"
+        }
+      ],
+      "role": "symbol",
+      "title": "eye",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkvisionprism/eye"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/horizontalAmount": {
+      "abstract": [
+        {
+          "text": "The strength of the horizontal correction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "horizontalAmount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/horizontalAmount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "horizontalAmount"
+        }
+      ],
+      "role": "symbol",
+      "title": "horizontalAmount",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkvisionprism/horizontalamount"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/horizontalBase": {
+      "abstract": [
+        {
+          "text": "The orientation of the horizontal portion of the correction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "horizontalBase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKPrismBase",
+          "text": "HKPrismBase"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/horizontalBase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "horizontalBase"
+        }
+      ],
+      "role": "symbol",
+      "title": "horizontalBase",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkvisionprism/horizontalbase"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/init(amount:angle:eye:)": {
+      "abstract": [
+        {
+          "text": "Creates a new vision prism object, using a single quantity and an alignment angle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "amount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "angle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "eye"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKVisionEye",
+          "text": "HKVisionEye"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/init(amount:angle:eye:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithAmount:angle:eye:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(amount:angle:eye:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkvisionprism/init(amount:angle:eye:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/init(verticalAmount:verticalBase:horizontalAmount:horizontalBase:eye:)": {
+      "abstract": [
+        {
+          "text": "Creates a new vision prism object that separates the correction strength into horizontal and vertical components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "verticalAmount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "verticalBase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKPrismBase",
+          "text": "HKPrismBase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "horizontalAmount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "horizontalBase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKPrismBase",
+          "text": "HKPrismBase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "eye"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKVisionEye",
+          "text": "HKVisionEye"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/init(verticalAmount:verticalBase:horizontalAmount:horizontalBase:eye:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithVerticalAmount:verticalBase:horizontalAmount:horizontalBase:eye:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(verticalAmount:verticalBase:horizontalAmount:horizontalBase:eye:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkvisionprism/init(verticalamount:verticalbase:horizontalamount:horizontalbase:eye:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/verticalAmount": {
+      "abstract": [
+        {
+          "text": "The strength of the vertical correction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "verticalAmount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/verticalAmount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "verticalAmount"
+        }
+      ],
+      "role": "symbol",
+      "title": "verticalAmount",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkvisionprism/verticalamount"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/verticalBase": {
+      "abstract": [
+        {
+          "text": "The orientation of the vertical portion of the correction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "verticalBase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKPrismBase",
+          "text": "HKPrismBase"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/verticalBase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "verticalBase"
+        }
+      ],
+      "role": "symbol",
+      "title": "verticalBase",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkvisionprism/verticalbase"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Vision-prescriptions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrescription",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKGlassesPrescription",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKContactsPrescription",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKGlassesLensSpecification",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKContactsLensSpecification",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKLensSpecification",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKPrescriptionType"
+      ],
+      "title": "Vision prescriptions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-vision-prism-objects",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/init(amount:angle:eye:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/init(verticalAmount:verticalBase:horizontalAmount:horizontalBase:eye:)"
+      ],
+      "title": "Creating vision prism objects"
+    },
+    {
+      "anchor": "Accessing-lens-specification-data",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/eye",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKVisionEye",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/amount",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/angle",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/horizontalAmount",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/horizontalBase",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/verticalAmount",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/verticalBase",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKPrismBase"
+      ],
+      "title": "Accessing lens specification data"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "HKVisionPrism"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVisionPrism"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVisionPrism"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.healthkit/documentation/HealthKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-vision-prism-objects",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/init(amount:angle:eye:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/init(verticalAmount:verticalBase:horizontalAmount:horizontalBase:eye:)"
+              ],
+              "title": "Creating vision prism objects"
+            },
+            {
+              "anchor": "Accessing-lens-specification-data",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/eye",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKVisionEye",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/amount",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/angle",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/horizontalAmount",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/horizontalBase",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/verticalAmount",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrism/verticalBase",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKPrismBase"
+              ],
+              "title": "Accessing lens specification data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Vision-prescriptions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKVisionPrescription",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKGlassesPrescription",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKContactsPrescription",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKGlassesLensSpecification",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKContactsLensSpecification",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKLensSpecification",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKPrescriptionType"
+              ],
+              "title": "Vision prescriptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "HKVisionPrism"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPrismBase/title",
+          "value": "HKPrismBase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPrismBase/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPrismBase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPrismBase/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPrismBase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism~1angle/title",
+          "value": "angle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism~1angle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "angle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism~1verticalAmount/title",
+          "value": "verticalAmount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism~1verticalAmount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "verticalAmount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKGlassesPrescription/title",
+          "value": "HKGlassesPrescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKGlassesPrescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKGlassesPrescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKGlassesPrescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKGlassesPrescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKGlassesLensSpecification/title",
+          "value": "HKGlassesLensSpecification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKGlassesLensSpecification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKGlassesLensSpecification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKGlassesLensSpecification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKGlassesLensSpecification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism~1amount/title",
+          "value": "amount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism~1amount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "amount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrescription/title",
+          "value": "HKVisionPrescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVisionPrescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVisionPrescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism~1init(amount:angle:eye:)/title",
+          "value": "initWithAmount:angle:eye:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism~1init(amount:angle:eye:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithAmount:angle:eye:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKLensSpecification/title",
+          "value": "HKLensSpecification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKLensSpecification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKLensSpecification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKLensSpecification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKLensSpecification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism~1eye/title",
+          "value": "eye"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism~1eye/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "eye"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism/title",
+          "value": "HKVisionPrism"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVisionPrism"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVisionPrism"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism~1init(verticalAmount:verticalBase:horizontalAmount:horizontalBase:eye:)/title",
+          "value": "initWithVerticalAmount:verticalBase:horizontalAmount:horizontalBase:eye:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism~1init(verticalAmount:verticalBase:horizontalAmount:horizontalBase:eye:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithVerticalAmount:verticalBase:horizontalAmount:horizontalBase:eye:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionEye/title",
+          "value": "HKVisionEye"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionEye/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVisionEye"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionEye/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVisionEye"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism~1verticalBase/title",
+          "value": "verticalBase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism~1verticalBase/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "verticalBase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism~1horizontalAmount/title",
+          "value": "horizontalAmount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism~1horizontalAmount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "horizontalAmount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKContactsPrescription/title",
+          "value": "HKContactsPrescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKContactsPrescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKContactsPrescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKContactsPrescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKContactsPrescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPrescriptionType/title",
+          "value": "HKPrescriptionType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPrescriptionType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPrescriptionType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPrescriptionType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPrescriptionType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKContactsLensSpecification/title",
+          "value": "HKContactsLensSpecification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKContactsLensSpecification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKContactsLensSpecification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKContactsLensSpecification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKContactsLensSpecification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism~1horizontalBase/title",
+          "value": "horizontalBase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVisionPrism~1horizontalBase/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "horizontalBase"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/healthkit/hkvisionprism"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/healthkit/hkvisionprism"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

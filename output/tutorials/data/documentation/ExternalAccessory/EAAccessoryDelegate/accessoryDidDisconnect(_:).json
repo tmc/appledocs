@@ -1,0 +1,752 @@
+{
+  "abstract": [
+    {
+      "text": "Tells the delegate that the specified accessory was disconnected from the device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.externalaccessory/documentation/ExternalAccessory",
+        "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDelegate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDelegate/accessoryDidDisconnect(_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)EAAccessoryDelegate(im)accessoryDidDisconnect:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "accessoryDidDisconnect"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)EAAccessory",
+        "text": "EAAccessory"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "External Accessory"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "accessoryDidDisconnect:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.13",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "accessoryDidDisconnect(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "optional"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "accessoryDidDisconnect"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "accessory"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessory",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)EAAccessory",
+              "text": "EAAccessory"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The accessory that was disconnected.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "accessory"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The accessory manager calls this method as a convenience whenever it receives an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDidDisconnectNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notification. You can use this method to remove any references to the specified accessory object and to stop any services currently using the accessory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because this is a convenience method, your delegate does not also need to register as an observer of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDidDisconnectNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notification. However, if you want your delegate to be notified of newly connected accessories, you should configure it as an observer of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDidConnectNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory": {
+      "abstract": [
+        {
+          "text": "Communicate with accessories that connect to a device with the Apple Lightning connector, or with Bluetooth wireless technology.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "External Accessory",
+      "type": "topic",
+      "url": "/documentation/externalaccessory"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessory": {
+      "abstract": [
+        {
+          "text": "An object that contains information about a single, connected hardware accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EAAccessory"
+        }
+      ],
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EAAccessory"
+        }
+      ],
+      "role": "symbol",
+      "title": "EAAccessory",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/eaaccessory"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that defines an optional method for receiving notifications when the associated accessory object is disconnected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EAAccessoryDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EAAccessoryDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "EAAccessoryDelegate",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/eaaccessorydelegate"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDelegate/accessoryDidDisconnect(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the specified accessory was disconnected from the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryDidDisconnect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EAAccessory",
+          "text": "EAAccessory"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDelegate/accessoryDidDisconnect(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessoryDidDisconnect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessoryDidDisconnect(_:)",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/eaaccessorydelegate/accessorydiddisconnect(_:)"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDidConnectNotification": {
+      "abstract": [
+        {
+          "text": "A notification that the system sends when an accessory becomes connected and available for your application to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "EAAccessoryDidConnectNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDidConnectNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EAAccessoryDidConnectNotification",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/eaaccessorydidconnectnotification"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDidDisconnectNotification": {
+      "abstract": [
+        {
+          "text": "A notification that is posted when an accessory is disconnected and no longer available for your application to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "EAAccessoryDidDisconnectNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDidDisconnectNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EAAccessoryDidDisconnectNotification",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/eaaccessorydiddisconnectnotification"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.13",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "accessoryDidDisconnect:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "accessoryDidDisconnect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.externalaccessory/documentation/ExternalAccessory",
+                "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDelegate"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "accessoryDidDisconnect:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessory",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)EAAccessory",
+                    "text": "EAAccessory"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "accessory"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The accessory that was disconnected.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "accessory"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EAAccessoryDelegate~1accessoryDidDisconnect(_:)/title",
+          "value": "accessoryDidDisconnect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EAAccessoryDelegate~1accessoryDidDisconnect(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "accessoryDidDisconnect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EAAccessory/title",
+          "value": "EAAccessory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EAAccessory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EAAccessory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EAAccessory/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EAAccessory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EAAccessoryDelegate/title",
+          "value": "EAAccessoryDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EAAccessoryDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EAAccessoryDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.externalaccessory~1documentation~1ExternalAccessory~1EAAccessoryDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EAAccessoryDelegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/externalaccessory/eaaccessorydelegate/accessorydiddisconnect(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/externalaccessory/eaaccessorydelegate/accessorydiddisconnect(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1291 @@
+{
+  "abstract": [
+    {
+      "text": "Find information about a specific audio recording when a segment of it’s part of captured sound in the Shazam catalog or your custom catalog.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.shazamkit/documentation/ShazamKit"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "ShazamKit",
+    "modules": [
+      {
+        "name": "ShazamKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "8.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "ShazamKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ShazamKit uses the unique acoustic ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "signature",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " of an audio recording to find a match. This signature captures the time-frequency distribution of the audio signal energy, and is much smaller than the original audio. It’s also a one-way conversion, so it’s not possible to convert the signature back to the recording.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ShazamKit generates a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "reference signature",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " for each searchable full audio recording. A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "catalog",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " stores the reference signatures and their associated metadata, or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "media items",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Searching for a match compares a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "query signature",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which ShazamKit generates for captured audio, with the reference signatures in the catalog. Matches occur when the query signature sufficiently matches a part of a reference signature. Matches can occur even when the captured audio is noisy, such as with a partial recording of background music playing in a restaurant.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The figure below illustrates matching a query signature with the reference signature in the catalog. The information for a match includes the timecode in the reference recording that matches the start of the query.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3807548",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the Shazam app converts the sound stream from a device’s microphone into a query signature and searches for a match in the Shazam music catalog. The match includes the metadata for the reference signature, such as the song title, artist name, and other details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create a custom catalog with your own reference signatures and their associated metadata. For example, the catalog for a virtual learning app might contain reference signatures for teaching videos, and the associated metadata that includes the timecodes for questions. Using ShazamKit, the app identifies the current question by the timecode for the match, and can offer choices for a possible answer. If the student skips forward or backward in the video, the app updates according to the sound of what the student is watching.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit": {
+      "abstract": [
+        {
+          "text": "Find information about a specific audio recording when a segment of it’s part of captured sound in the Shazam catalog or your custom catalog.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ShazamKit",
+      "type": "topic",
+      "url": "/documentation/shazamkit"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHCatalog": {
+      "abstract": [
+        {
+          "text": "An abstract base class for storing reference signatures and their associated metadata.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHCatalog"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHCatalog",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHCatalog"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHCatalog",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shcatalog"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHCustomCatalog": {
+      "abstract": [
+        {
+          "text": "An object for storing the reference signatures for custom audio recordings and their associated metadata.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHCustomCatalog"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHCustomCatalog",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHCustomCatalog"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHCustomCatalog",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shcustomcatalog"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHError": {
+      "abstract": [
+        {
+          "text": "An error type that you create, or the system creates, to indicate problems with a catalog, match attempt, or signature, or when saving to a user’s Shazam library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHError"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHError"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHError",
+      "type": "topic",
+      "url": "/documentation/shazamkit/sherror"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHLibrary": {
+      "abstract": [
+        {
+          "text": "An object that represents a user’s synced Shazam library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHLibrary",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shlibrary"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession": {
+      "abstract": [
+        {
+          "text": "An object that records and matches a recording with captured sound in the Shazam catalog or your custom catalog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHManagedSession"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHManagedSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHManagedSession",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmanagedsession"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatch": {
+      "abstract": [
+        {
+          "text": "An object that represents the catalog media items that match a query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHMatch"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHMatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHMatch",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmatch"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatchedMediaItem": {
+      "abstract": [
+        {
+          "text": "An object that represents the metadata for a matched reference signature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHMatchedMediaItem"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatchedMediaItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHMatchedMediaItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHMatchedMediaItem",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmatchedmediaitem"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem": {
+      "abstract": [
+        {
+          "text": "An object that represents the metadata for a reference signature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHMediaItem"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHMediaItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHMediaItem",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItemProperty/confidence": {
+      "abstract": [
+        {
+          "text": "The value ranges from 0.0 to 1.0, where 1.0 indicates the highest level of confidence.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "confidence"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SHMediaItemProperty",
+          "text": "SHMediaItemProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItemProperty/confidence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHMediaItemConfidence"
+        }
+      ],
+      "role": "symbol",
+      "title": "confidence",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitemproperty/confidence"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaLibrary": {
+      "abstract": [
+        {
+          "text": "An object that represents the user’s Shazam library.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHMediaLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHMediaLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHMediaLibrary",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmedialibrary"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession": {
+      "abstract": [
+        {
+          "text": "An object that matches a specific audio recording when a segment of that recording is part of captured sound in the Shazam catalog or your custom catalog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHSession"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHSession",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shsession"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHSessionDelegate": {
+      "abstract": [
+        {
+          "text": "Methods that the session calls with the result of a match request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHSessionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHSessionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHSessionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shsessiondelegate"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHSignature": {
+      "abstract": [
+        {
+          "text": "An object that contains the opaque data and other information for a signature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHSignature"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHSignature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHSignature"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHSignature",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shsignature"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHSignatureGenerator": {
+      "abstract": [
+        {
+          "text": "An object for converting audio data into a signature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHSignatureGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHSignatureGenerator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHSignatureGenerator"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHSignatureGenerator",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shsignaturegenerator"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SH_EXPORT_WITH_FULL_SDK": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SH_EXPORT_WITH_FULL_SDK"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SH_EXPORT_WITH_FULL_SDK",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SH_EXPORT_WITH_FULL_SDK",
+      "type": "topic",
+      "url": "/documentation/shazamkit/sh_export_with_full_sdk"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/building-a-custom-catalog-and-matching-audio": {
+      "abstract": [
+        {
+          "text": "Display lesson content that’s synchronized to a learning video by matching the audio to a custom reference signature and associated metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/building-a-custom-catalog-and-matching-audio",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a Custom Catalog and Matching Audio",
+      "type": "topic",
+      "url": "/documentation/shazamkit/building-a-custom-catalog-and-matching-audio"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/shazamkit-constants": {
+      "abstract": [],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/shazamkit-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ShazamKit Constants",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shazamkit-constants"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/shazamkit-dance-finder-with-managed-session": {
+      "abstract": [
+        {
+          "text": "Find a video of dance moves for a specific song by matching the audio to a custom catalog, and show a history of recognized songs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/shazamkit-dance-finder-with-managed-session",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "ShazamKit Dance Finder with Managed Session",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shazamkit-dance-finder-with-managed-session"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/shazamkit-enumerations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/shazamkit-enumerations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ShazamKit Enumerations",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shazamkit-enumerations"
+    },
+    "media-3807548": {
+      "alt": "A spectrogram that shows the signature match for a query signature at a specific point in time in a reference signature.",
+      "identifier": "media-3807548",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/685947e963164829076ac3ec0fe3bbc1/media-3807548@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81a9b665b038b581fe2dd56f5d7f6de8/media-3807548~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Match-audio",
+      "identifiers": [
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHSessionDelegate",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatch",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatchedMediaItem",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem"
+      ],
+      "title": "Match audio"
+    },
+    {
+      "anchor": "Create-a-signature-from-audio",
+      "identifiers": [
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHSignature",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHSignatureGenerator"
+      ],
+      "title": "Create a signature from audio"
+    },
+    {
+      "anchor": "Create-a-custom-audio-catalog",
+      "identifiers": [
+        "doc://com.apple.shazamkit/documentation/ShazamKit/building-a-custom-catalog-and-matching-audio",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/shazamkit-dance-finder-with-managed-session",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHCustomCatalog",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHCatalog"
+      ],
+      "title": "Create a custom audio catalog"
+    },
+    {
+      "anchor": "Update-the-users-Shazam-library",
+      "identifiers": [
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHLibrary",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaLibrary"
+      ],
+      "title": "Update the user’s Shazam library"
+    },
+    {
+      "anchor": "Shazam-errors",
+      "identifiers": [
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHError"
+      ],
+      "title": "Shazam errors"
+    },
+    {
+      "anchor": "Reference",
+      "identifiers": [
+        "doc://com.apple.shazamkit/documentation/ShazamKit/shazamkit-enumerations",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/shazamkit-constants"
+      ],
+      "title": "Reference"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Match-audio",
+              "identifiers": [
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHSessionDelegate",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatch",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatchedMediaItem",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem"
+              ],
+              "title": "Match audio"
+            },
+            {
+              "anchor": "Create-a-signature-from-audio",
+              "identifiers": [
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHSignature",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHSignatureGenerator"
+              ],
+              "title": "Create a signature from audio"
+            },
+            {
+              "anchor": "Create-a-custom-audio-catalog",
+              "identifiers": [
+                "doc://com.apple.shazamkit/documentation/ShazamKit/building-a-custom-catalog-and-matching-audio",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/shazamkit-dance-finder-with-managed-session",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHCustomCatalog",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHCatalog"
+              ],
+              "title": "Create a custom audio catalog"
+            },
+            {
+              "anchor": "Update-the-users-Shazam-library",
+              "identifiers": [
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaLibrary"
+              ],
+              "title": "Update the user’s Shazam library"
+            },
+            {
+              "anchor": "Reference",
+              "identifiers": [
+                "doc://com.apple.shazamkit/documentation/ShazamKit/shazamkit-enumerations",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/shazamkit-constants"
+              ],
+              "title": "Reference"
+            },
+            {
+              "anchor": "Variables",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItemProperty/confidence"
+              ],
+              "title": "Variables"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SH_EXPORT_WITH_FULL_SDK"
+              ],
+              "title": "Macros"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem/title",
+          "value": "SHMediaItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMediaItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMediaItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHCustomCatalog/title",
+          "value": "SHCustomCatalog"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHCustomCatalog/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHCustomCatalog"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHCustomCatalog/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHCustomCatalog"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSignature/title",
+          "value": "SHSignature"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSignature/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHSignature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSignature/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHSignature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHCatalog/title",
+          "value": "SHCatalog"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHCatalog/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHCatalog"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHCatalog/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHCatalog"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSession/title",
+          "value": "SHSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMatchedMediaItem/title",
+          "value": "SHMatchedMediaItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMatchedMediaItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMatchedMediaItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMatchedMediaItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMatchedMediaItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSignatureGenerator/title",
+          "value": "SHSignatureGenerator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSignatureGenerator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHSignatureGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSignatureGenerator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHSignatureGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMatch/title",
+          "value": "SHMatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMatch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMatch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItemProperty~1confidence/title",
+          "value": "SHMediaItemConfidence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItemProperty~1confidence/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMediaItemConfidence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSessionDelegate/title",
+          "value": "SHSessionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSessionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHSessionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSessionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHSessionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaLibrary/title",
+          "value": "SHMediaLibrary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaLibrary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMediaLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaLibrary/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMediaLibrary"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/shazamkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/shazamkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

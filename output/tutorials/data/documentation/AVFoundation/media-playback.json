@@ -1,0 +1,3349 @@
+{
+  "abstract": [
+    {
+      "text": "Manage the playback of media assets and interstitial content, independent of how you present that content in your interface.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/media-playback"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Media playback"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use a player to manage the playback and timing of a media asset, for example starting and stopping playback, and seeking to a particular time. A player manages the playback of a single media asset at a time. The framework also provides a queue player that queues media assets to play sequentially.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When you use AVFoundation, Apple may collect metrics to help improve the framework.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to play a media asset. A player item manages the timing and presentation state of an asset played by the player. A player item also contains player item tracks that correspond to the tracks in the asset. You direct the output of a player to a specialized Core Animation layer, a player layer, or a synchronized layer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You must call the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTRegisterProfessionalVideoWorkflowVideoDecoders()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function if your app requires Afterburner accelerated playback and decoding of ProRes and ProRes RAW video files.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Destination-Video-intro.png": {
+      "alt": null,
+      "identifier": "Destination-Video-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/648c665254129674ce04bbc64dbeeb2d/Destination-Video-intro@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetPlaybackAssistant": {
+      "abstract": [
+        {
+          "text": "An object that provides playback information for an asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetPlaybackAssistant"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetPlaybackAssistant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetPlaybackAssistant"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetPlaybackAssistant",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetplaybackassistant"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetPlaybackConfigurationOption": {
+      "abstract": [
+        {
+          "text": "A structure that defines playback configuration options for an asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetPlaybackConfigurationOption"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetPlaybackConfigurationOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetPlaybackConfigurationOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetPlaybackConfigurationOption",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetplaybackconfigurationoption"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDateRangeMetadataGroup": {
+      "abstract": [
+        {
+          "text": "A collection of metadata items that are valid for use within a specific date range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVDateRangeMetadataGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDateRangeMetadataGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVDateRangeMetadataGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDateRangeMetadataGroup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdaterangemetadatagroup"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator": {
+      "abstract": [
+        {
+          "text": "A playback coordinator subclass that coordinates the playback of custom player objects in a connected group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVDelegatingPlaybackCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVDelegatingPlaybackCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDelegatingPlaybackCoordinator",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdelegatingplaybackcoordinator"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaSelection": {
+      "abstract": [
+        {
+          "text": "An object that represents a complete rendition of media selection options on an asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMediaSelection"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaSelection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMediaSelection"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMediaSelection",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmediaselection"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaSelectionGroup": {
+      "abstract": [
+        {
+          "text": "An object that represents a collection of mutually exclusive options for the presentation of media within an asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMediaSelectionGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaSelectionGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMediaSelectionGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMediaSelectionGroup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmediaselectiongroup"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaSelectionOption": {
+      "abstract": [
+        {
+          "text": "An object that represents a specific option for the presentation of media within a group of options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMediaSelectionOption"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaSelectionOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMediaSelectionOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMediaSelectionOption",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmediaselectionoption"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMergedMetrics": {
+      "abstract": [
+        {
+          "text": "An asynchronous stream of metric information from different publishers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMergedMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMergedMetrics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMergedMetrics"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMergedMetrics",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmergedmetrics"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataGroup": {
+      "abstract": [
+        {
+          "text": "A collection of metadata items associated with a timeline segment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMetadataGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMetadataGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMetadataGroup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadatagroup"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetricErrorEvent": {
+      "abstract": [
+        {
+          "text": "An object that represents a metric event when an error occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMetricErrorEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetricErrorEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMetricErrorEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMetricErrorEvent",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetricerrorevent"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetricEvent": {
+      "abstract": [
+        {
+          "text": "A base class that represents a metric event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMetricEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetricEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMetricEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMetricEvent",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetricevent"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetricEventStream": {
+      "abstract": [
+        {
+          "text": "An object that allows clients to add publishers and then subscribe to specific metric event classes from those publishers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AVMetricEventStream"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetricEventStream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVMetricEventStream",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetriceventstream"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetricEventStreamPublisher": {
+      "abstract": [
+        {
+          "text": "A type for objects that publish metric events to the event stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMetricEventStreamPublisher"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetricEventStreamPublisher",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMetricEventStreamPublisher"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMetricEventStreamPublisher",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetriceventstreampublisher"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetricEventStreamSubscriber": {
+      "abstract": [
+        {
+          "text": "A type for objects that receive metric events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AVMetricEventStreamSubscriber"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetricEventStreamSubscriber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVMetricEventStreamSubscriber",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetriceventstreamsubscriber"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetrics": {
+      "abstract": [
+        {
+          "text": "An asynchronous stream of metric information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetrics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMetrics"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMetrics",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetrics"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableDateRangeMetadataGroup": {
+      "abstract": [
+        {
+          "text": "A mutable collection of metadata items that are valid for use within a specific range of dates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMutableDateRangeMetadataGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableDateRangeMetadataGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMutableDateRangeMetadataGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMutableDateRangeMetadataGroup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutabledaterangemetadatagroup"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMediaSelection": {
+      "abstract": [
+        {
+          "text": "A mutable object that represents a complete rendition of media selection options on an asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMutableMediaSelection"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMediaSelection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMutableMediaSelection"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMutableMediaSelection",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemediaselection"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableTimedMetadataGroup": {
+      "abstract": [
+        {
+          "text": "A mutable collection of metadata items that are valid for use during a specific time range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMutableTimedMetadataGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableTimedMetadataGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMutableTimedMetadataGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMutableTimedMetadataGroup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutabletimedmetadatagroup"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlaybackCoordinator": {
+      "abstract": [
+        {
+          "text": "An object that coordinates the playback of players in a connected group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlaybackCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlaybackCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlaybackCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlaybackCoordinator",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplaybackcoordinator"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer": {
+      "abstract": [
+        {
+          "text": "An object that provides the interface to control the player’s transport behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayer",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerInterstitialEvent": {
+      "abstract": [
+        {
+          "text": "An object that provides instructions for how a player presents interstitial content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerInterstitialEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerInterstitialEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerInterstitialEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerInterstitialEvent",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayerinterstitialevent"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerInterstitialEventController": {
+      "abstract": [
+        {
+          "text": "An object that schedules interstitial events for items played by the primary player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerInterstitialEventController"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerInterstitialEventController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerInterstitialEventController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerInterstitialEventController",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayerinterstitialeventcontroller"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerInterstitialEventMonitor": {
+      "abstract": [
+        {
+          "text": "An object that monitors the scheduling and progress of interstitial events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerInterstitialEventMonitor"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerInterstitialEventMonitor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerInterstitialEventMonitor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerInterstitialEventMonitor",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayerinterstitialeventmonitor"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem": {
+      "abstract": [
+        {
+          "text": "An object that models the timing and presentation state of an asset during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItem"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItem",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritem"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemIntegratedTimeline": {
+      "abstract": [
+        {
+          "text": "An object that models the timeline and playback sequence of a primary player item and scheduled interstitial events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemIntegratedTimeline"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemIntegratedTimeline",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemIntegratedTimeline"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItemIntegratedTimeline",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritemintegratedtimeline"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemLegibleOutput": {
+      "abstract": [
+        {
+          "text": "An object that vends attributed strings for media with a legible characteristic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemLegibleOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemLegibleOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemLegibleOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItemLegibleOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritemlegibleoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMediaDataCollector": {
+      "abstract": [
+        {
+          "text": "The abstract base for media data collectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemMediaDataCollector"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMediaDataCollector",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemMediaDataCollector"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItemMediaDataCollector",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritemmediadatacollector"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector": {
+      "abstract": [
+        {
+          "text": "An object used to capture the date range metadata defined for an HTTP Live Streaming asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemMetadataCollector"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemMetadataCollector"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItemMetadataCollector",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritemmetadatacollector"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataOutput": {
+      "abstract": [
+        {
+          "text": "An object that vends collections of metadata items that a player item’s tracks carry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemMetadataOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemMetadataOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItemMetadataOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritemmetadataoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemOutput": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines the common interface to output media data from a player item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItemOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritemoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemOutputPushDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the methods to implement to respond to changes in the media data sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemOutputPushDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemOutputPushDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemOutputPushDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItemOutputPushDelegate",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritemoutputpushdelegate"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemRenderedLegibleOutput": {
+      "abstract": [
+        {
+          "text": "A player item output that vends media with a legible characteristic as rendered pixel buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemRenderedLegibleOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemRenderedLegibleOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemRenderedLegibleOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItemRenderedLegibleOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritemrenderedlegibleoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemTrack": {
+      "abstract": [
+        {
+          "text": "An object that represents the presentation state of an asset track during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemTrack"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemTrack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemTrack"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItemTrack",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritemtrack"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemVideoOutput": {
+      "abstract": [
+        {
+          "text": "An object that outputs video frames from a player item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemVideoOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemVideoOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemVideoOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItemVideoOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritemvideooutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer": {
+      "abstract": [
+        {
+          "text": "An object that presents the visual contents of a player object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerLayer",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayerlayer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLooper": {
+      "abstract": [
+        {
+          "text": "An object that loops media content using a queue player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerLooper"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLooper",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerLooper"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerLooper",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayerlooper"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerMediaSelectionCriteria": {
+      "abstract": [
+        {
+          "text": "An object that specifies the preferred languages and media characteristics for a player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerMediaSelectionCriteria"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerMediaSelectionCriteria",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerMediaSelectionCriteria"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerMediaSelectionCriteria",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayermediaselectioncriteria"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerPlaybackCoordinator": {
+      "abstract": [
+        {
+          "text": "A playback coordinator subclass that coordinates the playback of player objects in a connected group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerPlaybackCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerPlaybackCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerPlaybackCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerPlaybackCoordinator",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayerplaybackcoordinator"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerVideoOutput": {
+      "abstract": [
+        {
+          "text": "An object that receives video data from a player object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerVideoOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerVideoOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerVideoOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerVideoOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayervideooutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVQueuePlayer": {
+      "abstract": [
+        {
+          "text": "An object that plays a sequence of player items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVQueuePlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVQueuePlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVQueuePlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVQueuePlayer",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avqueueplayer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVRenderedCaptionImage": {
+      "abstract": [
+        {
+          "text": "An object that provides a rendered pixel buffer and its position in pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVRenderedCaptionImage"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVRenderedCaptionImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVRenderedCaptionImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVRenderedCaptionImage",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avrenderedcaptionimage"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVSynchronizedLayer": {
+      "abstract": [
+        {
+          "text": "A Core Animation layer that derives its timing from a player item so that you can synchronize layer animations with media playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVSynchronizedLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVSynchronizedLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVSynchronizedLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVSynchronizedLayer",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avsynchronizedlayer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVTimedMetadataGroup": {
+      "abstract": [
+        {
+          "text": "A collection of metadata items that are valid for use during a specific time range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVTimedMetadataGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVTimedMetadataGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVTimedMetadataGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVTimedMetadataGroup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avtimedmetadatagroup"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoOutputSpecification": {
+      "abstract": [
+        {
+          "text": "An object that specifies the pixel buffer attributes and tag collections handled by a player video output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVVideoOutputSpecification"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoOutputSpecification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVVideoOutputSpecification"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVVideoOutputSpecification",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideooutputspecification"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoPerformanceMetrics": {
+      "abstract": [
+        {
+          "text": "An object that provides metrics related to video playback quality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVVideoPerformanceMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoPerformanceMetrics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVVideoPerformanceMetrics"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVVideoPerformanceMetrics",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideoperformancemetrics"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/CMTagCollectionCreateWithVideoOutputPreset": {
+      "abstract": [
+        {
+          "text": "Creates a collection with the required tags to describe the specified video output requirements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CMTagCollectionCreateWithVideoOutputPreset"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/CMTagCollectionCreateWithVideoOutputPreset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTagCollectionCreateWithVideoOutputPreset",
+      "type": "topic",
+      "url": "/documentation/avfoundation/cmtagcollectioncreatewithvideooutputpreset"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/CMTagCollectionVideoOutputPreset": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the type of video content to output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CMTagCollectionVideoOutputPreset"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/CMTagCollectionVideoOutputPreset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTagCollectionVideoOutputPreset",
+      "type": "topic",
+      "url": "/documentation/avfoundation/cmtagcollectionvideooutputpreset"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/configuring-your-app-for-media-playback": {
+      "abstract": [
+        {
+          "text": "Configure apps to enable standard media playback behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/configuring-your-app-for-media-playback",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your app for media playback",
+      "type": "topic",
+      "url": "/documentation/avfoundation/configuring-your-app-for-media-playback"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/controlling-the-transport-behavior-of-a-player": {
+      "abstract": [
+        {
+          "text": "Play, pause, and seek through a media presentation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/controlling-the-transport-behavior-of-a-player",
+      "kind": "article",
+      "role": "article",
+      "title": "Controlling the transport behavior of a player",
+      "type": "topic",
+      "url": "/documentation/avfoundation/controlling-the-transport-behavior-of-a-player"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/metric-event-types": {
+      "abstract": [],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/metric-event-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metric event types",
+      "type": "topic",
+      "url": "/documentation/avfoundation/metric-event-types"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/monitoring-playback-progress-in-your-app": {
+      "abstract": [
+        {
+          "text": "Observe the playback of a media asset to update your app’s user-interface state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/monitoring-playback-progress-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Monitoring playback progress in your app",
+      "type": "topic",
+      "url": "/documentation/avfoundation/monitoring-playback-progress-in-your-app"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/offline-playback-and-storage": {
+      "abstract": [
+        {
+          "text": "Download streamed content to disk to allow offline playback, and define policies to automatically remove downloaded assets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/offline-playback-and-storage",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Offline playback and storage",
+      "type": "topic",
+      "url": "/documentation/avfoundation/offline-playback-and-storage"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/presenting-chapter-markers": {
+      "abstract": [
+        {
+          "text": "Add chapter markers to enable users to quickly navigate your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/presenting-chapter-markers",
+      "kind": "article",
+      "role": "article",
+      "title": "Presenting Chapter Markers",
+      "type": "topic",
+      "url": "/documentation/avfoundation/presenting-chapter-markers"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/providing-an-integrated-view-of-your-timeline-when-playing-hls-interstitials": {
+      "abstract": [
+        {
+          "text": "Go beyond simple ad insertion with point and fill occupancy HLS interstitials.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/providing-an-integrated-view-of-your-timeline-when-playing-hls-interstitials",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Providing an integrated view of your timeline when playing HLS interstitials",
+      "type": "topic",
+      "url": "/documentation/avfoundation/providing-an-integrated-view-of-your-timeline-when-playing-hls-interstitials"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/sample-buffer-playback": {
+      "abstract": [
+        {
+          "text": "Create custom controllers to play and synchronize the timing of sample buffer streams.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/sample-buffer-playback",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sample buffer playback",
+      "type": "topic",
+      "url": "/documentation/avfoundation/sample-buffer-playback"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/selecting-subtitles-and-alternative-audio-tracks": {
+      "abstract": [
+        {
+          "text": "Extend your app’s appeal to users by adding subtitles and alternative audio tracks in their native language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/selecting-subtitles-and-alternative-audio-tracks",
+      "kind": "article",
+      "role": "article",
+      "title": "Selecting Subtitles and Alternative Audio Tracks",
+      "type": "topic",
+      "url": "/documentation/avfoundation/selecting-subtitles-and-alternative-audio-tracks"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/streaming-and-airplay": {
+      "abstract": [
+        {
+          "text": "Stream content wirelessly to other devices using AirPlay, and handle requests involving FairPlay-protected assets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/streaming-and-airplay",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Streaming and AirPlay",
+      "type": "topic",
+      "url": "/documentation/avfoundation/streaming-and-airplay"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/supporting-coordinated-media-playback": {
+      "abstract": [
+        {
+          "text": "Create synchronized media experiences that enable users to watch and listen across devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/supporting-coordinated-media-playback",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Coordinated Media Playback",
+      "type": "topic",
+      "url": "/documentation/avfoundation/supporting-coordinated-media-playback"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/supporting-remote-interactions-in-tvos": {
+      "abstract": [
+        {
+          "text": "Set up your app to support remote commands and events in a variety of scenarios by using the relevant approach.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/supporting-remote-interactions-in-tvos",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting remote interactions in tvOS",
+      "type": "topic",
+      "url": "/documentation/avfoundation/supporting-remote-interactions-in-tvos"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/using-hevc-video-with-alpha": {
+      "abstract": [
+        {
+          "text": "Play, write, and export HEVC video with an alpha channel to add overlay effects to your video processing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/using-hevc-video-with-alpha",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using HEVC Video with Alpha",
+      "type": "topic",
+      "url": "/documentation/avfoundation/using-hevc-video-with-alpha"
+    },
+    "doc://com.apple.documentation/documentation/VideoToolbox/VTRegisterProfessionalVideoWorkflowVideoDecoders()": {
+      "abstract": [
+        {
+          "text": "Loads decoders appropriate for the client’s professional video workflows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTRegisterProfessionalVideoWorkflowVideoDecoders"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTRegisterProfessionalVideoWorkflowVideoDecoders()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VTRegisterProfessionalVideoWorkflowVideoDecoders()",
+      "type": "topic",
+      "url": "/documentation/VideoToolbox/VTRegisterProfessionalVideoWorkflowVideoDecoders()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/destination-video": {
+      "abstract": [
+        {
+          "text": "Leverage SwiftUI to build an immersive media experience in a multiplatform app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/destination-video",
+      "images": [
+        {
+          "identifier": "Destination-Video-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Destination Video",
+      "type": "topic",
+      "url": "/documentation/visionOS/destination-video"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Playback",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/offline-playback-and-storage",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/streaming-and-airplay",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/sample-buffer-playback"
+      ],
+      "title": "Playback"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/configuring-your-app-for-media-playback"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Playback-control",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/controlling-the-transport-behavior-of-a-player",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemTrack",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVQueuePlayer",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLooper"
+      ],
+      "title": "Playback control"
+    },
+    {
+      "anchor": "SharePlay",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/visionOS/destination-video",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/supporting-coordinated-media-playback",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlaybackCoordinator",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerPlaybackCoordinator",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator"
+      ],
+      "title": "SharePlay"
+    },
+    {
+      "anchor": "Presentation",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/monitoring-playback-progress-in-your-app",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/using-hevc-video-with-alpha",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVSynchronizedLayer"
+      ],
+      "title": "Presentation"
+    },
+    {
+      "anchor": "Media-selection",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/selecting-subtitles-and-alternative-audio-tracks",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaSelection",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaSelectionGroup",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaSelectionOption",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMediaSelection",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerMediaSelectionCriteria"
+      ],
+      "title": "Media selection"
+    },
+    {
+      "anchor": "Interstitials",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/providing-an-integrated-view-of-your-timeline-when-playing-hls-interstitials",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerInterstitialEvent",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerInterstitialEventController",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerInterstitialEventMonitor",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemIntegratedTimeline"
+      ],
+      "title": "Interstitials"
+    },
+    {
+      "anchor": "Metrics",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetrics",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMergedMetrics",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoPerformanceMetrics",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetricEventStreamPublisher",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetricEvent",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetricErrorEvent",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/metric-event-types"
+      ],
+      "title": "Metrics"
+    },
+    {
+      "anchor": "Remote-controls",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/supporting-remote-interactions-in-tvos"
+      ],
+      "title": "Remote controls"
+    },
+    {
+      "anchor": "Timed-metadata",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/presenting-chapter-markers",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataGroup",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVTimedMetadataGroup",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableTimedMetadataGroup",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDateRangeMetadataGroup",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableDateRangeMetadataGroup",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMediaDataCollector",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector"
+      ],
+      "title": "Timed metadata"
+    },
+    {
+      "anchor": "Media-output",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerVideoOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoOutputSpecification",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemVideoOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemLegibleOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemRenderedLegibleOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVRenderedCaptionImage",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemOutputPushDelegate"
+      ],
+      "title": "Media output"
+    },
+    {
+      "anchor": "Utilities",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetPlaybackAssistant",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetPlaybackConfigurationOption"
+      ],
+      "title": "Utilities"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/configuring-your-app-for-media-playback"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Playback-control",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/controlling-the-transport-behavior-of-a-player",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemTrack",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVQueuePlayer",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLooper"
+              ],
+              "title": "Playback control"
+            },
+            {
+              "anchor": "SharePlay",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/visionOS/destination-video",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/supporting-coordinated-media-playback",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlaybackCoordinator",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerPlaybackCoordinator",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDelegatingPlaybackCoordinator"
+              ],
+              "title": "SharePlay"
+            },
+            {
+              "anchor": "Presentation",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/monitoring-playback-progress-in-your-app",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/using-hevc-video-with-alpha",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVSynchronizedLayer"
+              ],
+              "title": "Presentation"
+            },
+            {
+              "anchor": "Media-selection",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/selecting-subtitles-and-alternative-audio-tracks",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaSelection",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaSelectionGroup",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaSelectionOption",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMediaSelection",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerMediaSelectionCriteria"
+              ],
+              "title": "Media selection"
+            },
+            {
+              "anchor": "Interstitials",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/providing-an-integrated-view-of-your-timeline-when-playing-hls-interstitials",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerInterstitialEvent",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerInterstitialEventController",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerInterstitialEventMonitor",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemIntegratedTimeline"
+              ],
+              "title": "Interstitials"
+            },
+            {
+              "anchor": "Metrics",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoPerformanceMetrics",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetricEventStream",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetricEventStreamPublisher",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetricEventStreamSubscriber",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetricEvent",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetricErrorEvent",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/metric-event-types"
+              ],
+              "title": "Metrics"
+            },
+            {
+              "anchor": "Remote-controls",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/supporting-remote-interactions-in-tvos"
+              ],
+              "title": "Remote controls"
+            },
+            {
+              "anchor": "Timed-metadata",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/presenting-chapter-markers",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataGroup",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVTimedMetadataGroup",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableTimedMetadataGroup",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDateRangeMetadataGroup",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableDateRangeMetadataGroup",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMediaDataCollector",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector"
+              ],
+              "title": "Timed metadata"
+            },
+            {
+              "anchor": "Media-output",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerVideoOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoOutputSpecification",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/CMTagCollectionCreateWithVideoOutputPreset",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/CMTagCollectionVideoOutputPreset",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemVideoOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemLegibleOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemRenderedLegibleOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVRenderedCaptionImage",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemOutputPushDelegate"
+              ],
+              "title": "Media output"
+            },
+            {
+              "anchor": "Utilities",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetPlaybackAssistant",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetPlaybackConfigurationOption"
+              ],
+              "title": "Utilities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Playback",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/offline-playback-and-storage",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/streaming-and-airplay",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/sample-buffer-playback"
+              ],
+              "title": "Playback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTRegisterProfessionalVideoWorkflowVideoDecoders()/title",
+          "value": "VTRegisterProfessionalVideoWorkflowVideoDecoders"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTRegisterProfessionalVideoWorkflowVideoDecoders()/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "VTRegisterProfessionalVideoWorkflowVideoDecoders"
+            },
+            {
+              "kind": "text",
+              "text": "();"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemLegibleOutput/title",
+          "value": "AVPlayerItemLegibleOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemLegibleOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemLegibleOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemLegibleOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemLegibleOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetricEventStreamPublisher/title",
+          "value": "AVMetricEventStreamPublisher"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetricEventStreamPublisher/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetricEventStreamPublisher"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetricEventStreamPublisher/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetricEventStreamPublisher"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemOutputPushDelegate/title",
+          "value": "AVPlayerItemOutputPushDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemOutputPushDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemOutputPushDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemOutputPushDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemOutputPushDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemIntegratedTimeline/title",
+          "value": "AVPlayerItemIntegratedTimeline"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemIntegratedTimeline/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemIntegratedTimeline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemIntegratedTimeline/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemIntegratedTimeline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerMediaSelectionCriteria/title",
+          "value": "AVPlayerMediaSelectionCriteria"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerMediaSelectionCriteria/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerMediaSelectionCriteria"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerMediaSelectionCriteria/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerMediaSelectionCriteria"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetPlaybackConfigurationOption/title",
+          "value": "AVAssetPlaybackConfigurationOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetPlaybackConfigurationOption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetPlaybackConfigurationOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetPlaybackConfigurationOption/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetPlaybackConfigurationOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemRenderedLegibleOutput/title",
+          "value": "AVPlayerItemRenderedLegibleOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemRenderedLegibleOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemRenderedLegibleOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemRenderedLegibleOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemRenderedLegibleOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinator/title",
+          "value": "AVDelegatingPlaybackCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDelegatingPlaybackCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDelegatingPlaybackCoordinator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDelegatingPlaybackCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVTimedMetadataGroup/title",
+          "value": "AVTimedMetadataGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVTimedMetadataGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVTimedMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVTimedMetadataGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVTimedMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDateRangeMetadataGroup/title",
+          "value": "AVDateRangeMetadataGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDateRangeMetadataGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDateRangeMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDateRangeMetadataGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDateRangeMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLooper/title",
+          "value": "AVPlayerLooper"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLooper/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerLooper"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLooper/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerLooper"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaSelectionGroup/title",
+          "value": "AVMediaSelectionGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaSelectionGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMediaSelectionGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaSelectionGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMediaSelectionGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerInterstitialEventMonitor/title",
+          "value": "AVPlayerInterstitialEventMonitor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerInterstitialEventMonitor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerInterstitialEventMonitor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerInterstitialEventMonitor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerInterstitialEventMonitor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlaybackCoordinator/title",
+          "value": "AVPlaybackCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlaybackCoordinator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlaybackCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlaybackCoordinator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlaybackCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaSelectionOption/title",
+          "value": "AVMediaSelectionOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaSelectionOption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMediaSelectionOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaSelectionOption/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMediaSelectionOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerInterstitialEventController/title",
+          "value": "AVPlayerInterstitialEventController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerInterstitialEventController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerInterstitialEventController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerInterstitialEventController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerInterstitialEventController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetPlaybackAssistant/title",
+          "value": "AVAssetPlaybackAssistant"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetPlaybackAssistant/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetPlaybackAssistant"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetPlaybackAssistant/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetPlaybackAssistant"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableTimedMetadataGroup/title",
+          "value": "AVMutableTimedMetadataGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableTimedMetadataGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableTimedMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableTimedMetadataGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableTimedMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataGroup/title",
+          "value": "AVMetadataGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetricErrorEvent/title",
+          "value": "AVMetricErrorEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetricErrorEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetricErrorEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetricErrorEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetricErrorEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaSelection/title",
+          "value": "AVMediaSelection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaSelection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMediaSelection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaSelection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMediaSelection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/title",
+          "value": "AVPlayerItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLayer/title",
+          "value": "AVPlayerLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer/title",
+          "value": "AVPlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMediaSelection/title",
+          "value": "AVMutableMediaSelection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMediaSelection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableMediaSelection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMediaSelection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableMediaSelection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemTrack/title",
+          "value": "AVPlayerItemTrack"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemTrack/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemTrack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemTrack/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemTrack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVRenderedCaptionImage/title",
+          "value": "AVRenderedCaptionImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVRenderedCaptionImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVRenderedCaptionImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVRenderedCaptionImage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVRenderedCaptionImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoOutputSpecification/title",
+          "value": "AVVideoOutputSpecification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoOutputSpecification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoOutputSpecification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoOutputSpecification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoOutputSpecification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMetadataOutput/title",
+          "value": "AVPlayerItemMetadataOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMetadataOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemMetadataOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMetadataOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemMetadataOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVQueuePlayer/title",
+          "value": "AVQueuePlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVQueuePlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVQueuePlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVQueuePlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVQueuePlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemVideoOutput/title",
+          "value": "AVPlayerItemVideoOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemVideoOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemVideoOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemVideoOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemVideoOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMediaDataCollector/title",
+          "value": "AVPlayerItemMediaDataCollector"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMediaDataCollector/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemMediaDataCollector"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMediaDataCollector/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemMediaDataCollector"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableDateRangeMetadataGroup/title",
+          "value": "AVMutableDateRangeMetadataGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableDateRangeMetadataGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableDateRangeMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableDateRangeMetadataGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableDateRangeMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerInterstitialEvent/title",
+          "value": "AVPlayerInterstitialEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerInterstitialEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerInterstitialEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerInterstitialEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerInterstitialEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMetadataCollector/title",
+          "value": "AVPlayerItemMetadataCollector"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMetadataCollector/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemMetadataCollector"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMetadataCollector/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemMetadataCollector"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoPerformanceMetrics/title",
+          "value": "AVVideoPerformanceMetrics"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoPerformanceMetrics/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoPerformanceMetrics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoPerformanceMetrics/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoPerformanceMetrics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetricEvent/title",
+          "value": "AVMetricEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetricEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetricEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetricEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetricEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerPlaybackCoordinator/title",
+          "value": "AVPlayerPlaybackCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerPlaybackCoordinator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerPlaybackCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerPlaybackCoordinator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerPlaybackCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemOutput/title",
+          "value": "AVPlayerItemOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerVideoOutput/title",
+          "value": "AVPlayerVideoOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerVideoOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerVideoOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerVideoOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerVideoOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSynchronizedLayer/title",
+          "value": "AVSynchronizedLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSynchronizedLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVSynchronizedLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSynchronizedLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVSynchronizedLayer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/media-playback"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/media-playback"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

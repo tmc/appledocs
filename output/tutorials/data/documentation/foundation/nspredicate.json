@@ -1,0 +1,1180 @@
+{
+  "abstract": [
+    {
+      "text": "A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/filters_and_sorting"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nspredicate"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1409325,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSPredicate",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSPredicate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "3.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "3.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSPredicate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSPredicate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Predicates represent logical conditions, which you can use to filter collections of objects. Although it’s common to create predicates directly from instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscomparisonpredicate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscompoundpredicate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you often create predicates from a format string that the class methods parse on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ". Examples of predicate format strings include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Simple comparisons, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "grade == \"7\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "firstName like \"Juan\"",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Case- and diacritic-insensitive lookups, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "name contains[cd] \"stein\"",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Logical operations, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "(firstName like \"Mei\") OR (lastName like \"Chen\")",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Temporal range constraints, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "date between {$YESTERDAY, $TOMORROW}",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Relational conditions, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "group.name like \"work*\"",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Aggregate operations, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@sum.items.price < 1000",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a complete syntax reference, refer to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1725793",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also create predicates that include variables using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate/1407759-evaluate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method so that you can predefine the predicate before substituting concrete values at runtime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1725793": {
+      "identifier": "devLink-1725793",
+      "title": "Predicate Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Predicates/AdditionalChapters/Introduction.html#//apple_ref/doc/uid/TP40001789"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filters_and_sorting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filters_and_sorting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Filters and Sorting",
+      "type": "topic",
+      "url": "/documentation/foundation/filters_and_sorting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscomparisonpredicate": {
+      "abstract": [
+        {
+          "text": "A specialized predicate for comparing expressions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSComparisonPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscomparisonpredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSComparisonPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nscomparisonpredicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscompoundpredicate": {
+      "abstract": [
+        {
+          "text": "A specialized predicate that evaluates logical combinations of other predicates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCompoundPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscompoundpredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompoundPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nscompoundpredicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression": {
+      "abstract": [
+        {
+          "text": "An expression for use in a comparison predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExpression",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate": {
+      "abstract": [
+        {
+          "text": "A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate/1407759-evaluate": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the specified object matches the conditions that the predicate specifies after substituting in the values from a specified variables dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "substitutionVariables"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : Any]?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate/1407759-evaluate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evaluate(with:substitutionVariables:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate/1407759-evaluate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate/1410334-init": {
+      "abstract": [
+        {
+          "text": "Creates a predicate by substituting the values in a specified array into a format string and parsing the result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "argumentArray"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate/1410334-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(format:argumentArray:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate/1410334-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate/1411605-predicateformat": {
+      "abstract": [
+        {
+          "text": "The predicate's format string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate/1411605-predicateformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "predicateFormat",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate/1411605-predicateformat"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate/1413227-withsubstitutionvariables": {
+      "abstract": [
+        {
+          "text": "Returns a copy of the predicate and substitutes the predicates variables with specified values from a specified substitution variables dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "withSubstitutionVariables"
+        },
+        {
+          "kind": "text",
+          "text": "([String : Any]) -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate/1413227-withsubstitutionvariables",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withSubstitutionVariables(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate/1413227-withsubstitutionvariables"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate/1416182-init": {
+      "abstract": [
+        {
+          "text": "Creates a predicate that evaluates using a specified block object and bindings dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "block"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any?, [String : Any]?) -> Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate/1416182-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(block:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate/1416182-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate/1416310-allowevaluation": {
+      "abstract": [
+        {
+          "text": "Forces a securely decoded predicate to allow evaluation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowEvaluation"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate/1416310-allowevaluation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowEvaluation()",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate/1416310-allowevaluation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate/1417329-init": {
+      "abstract": [
+        {
+          "text": "Creates and returns a predicate that always evaluates to a specified Boolean value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate/1417329-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(value:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate/1417329-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate/1417368-init": {
+      "abstract": [
+        {
+          "text": "Creates a predicate by substituting the values in an argument list into a format string and parsing the result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "arguments"
+        },
+        {
+          "kind": "text",
+          "text": ": CVaListPointer)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate/1417368-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(format:arguments:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate/1417368-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate/1417831-init": {
+      "abstract": [
+        {
+          "text": "Creates a predicate with a metadata query string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "fromMetadataQueryString"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate/1417831-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(fromMetadataQueryString:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate/1417831-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate/1417924-evaluate": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the specified object matches the conditions that the predicate specifies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate/1417924-evaluate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evaluate(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate/1417924-evaluate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate/3126726-init": {
+      "abstract": [
+        {
+          "text": "Creates a predicate by substituting the values in an argument list into a format string and parsing the result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": String, any CVarArg...)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate/3126726-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(format:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate/3126726-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate/4162324-init": {
+      "abstract": [
+        {
+          "text": "Creates a predicate by converting an existing predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?<Input>(Predicate<Input>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate/4162324-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate/4162324-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate": {
+      "abstract": [
+        {
+          "text": "A logical condition used to test a set of input values for searching or filtering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Predicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Predicate",
+      "type": "topic",
+      "url": "/documentation/foundation/predicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatebindings": {
+      "abstract": [
+        {
+          "text": "A mapping from a predicates‘s input variables to their values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateBindings"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatebindings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateBindings",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatebindings"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration": {
+      "abstract": [
+        {
+          "text": "A specification of the expected types and key paths found in an archived predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateCodableConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateCodableConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatecodableconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatecodablekeypathproviding": {
+      "abstract": [
+        {
+          "text": "A type that provides the expected key paths found in an archived predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateCodableKeyPathProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodablekeypathproviding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateCodableKeyPathProviding",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatecodablekeypathproviding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateerror": {
+      "abstract": [
+        {
+          "text": "An error thrown while evaluating a predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateError",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpression": {
+      "abstract": [
+        {
+          "text": "A component expression that makes up part of a predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpression",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpression"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions": {
+      "abstract": [
+        {
+          "text": "The expressions that make up a predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateExpressions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/standardpredicateexpression": {
+      "abstract": [
+        {
+          "text": "A component expression that makes up part of a predicate, and that's supported by the standard predicate type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "StandardPredicateExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/standardpredicateexpression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StandardPredicateExpression",
+      "type": "topic",
+      "url": "/documentation/foundation/standardpredicateexpression"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/predicate",
+        "doc://com.apple.documentation/documentation/foundation/predicateerror",
+        "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration",
+        "doc://com.apple.documentation/documentation/foundation/predicatecodablekeypathproviding",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpression",
+        "doc://com.apple.documentation/documentation/foundation/standardpredicateexpression",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions",
+        "doc://com.apple.documentation/documentation/foundation/predicatebindings",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression",
+        "doc://com.apple.documentation/documentation/foundation/nscomparisonpredicate",
+        "doc://com.apple.documentation/documentation/foundation/nscompoundpredicate"
+      ],
+      "title": "Filltering"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1653442",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nspredicate/1410334-init",
+        "doc://com.apple.documentation/documentation/foundation/nspredicate/1417368-init",
+        "doc://com.apple.documentation/documentation/foundation/nspredicate/3126726-init",
+        "doc://com.apple.documentation/documentation/foundation/nspredicate/4162324-init",
+        "doc://com.apple.documentation/documentation/foundation/nspredicate/1413227-withsubstitutionvariables",
+        "doc://com.apple.documentation/documentation/foundation/nspredicate/1417329-init",
+        "doc://com.apple.documentation/documentation/foundation/nspredicate/1416182-init",
+        "doc://com.apple.documentation/documentation/foundation/nspredicate/1417831-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Predicate"
+    },
+    {
+      "anchor": "1653525",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nspredicate/1417924-evaluate",
+        "doc://com.apple.documentation/documentation/foundation/nspredicate/1407759-evaluate",
+        "doc://com.apple.documentation/documentation/foundation/nspredicate/1416310-allowevaluation"
+      ],
+      "kind": "taskGroup",
+      "title": "Evaluating a Predicate"
+    },
+    {
+      "anchor": "1653587",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nspredicate/1411605-predicateformat"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting a String Representation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nspredicate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nspredicate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

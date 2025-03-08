@@ -1,0 +1,1629 @@
+{
+  "abstract": [
+    {
+      "text": "Return your app to its previous state after the system terminates it.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/view-controllers"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+        "doc://com.apple.uikit/documentation/UIKit/responding-to-the-launch-of-your-app"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/preserving-your-app-s-ui-across-launches"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Preserving your app’s UI across launches"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Preserving your app’s user interface helps maintain the illusion that your app is always running. Interruptions can occur frequently on iOS devices, and a prolonged interruption might cause the system to terminate your app to free up resources. However, users don’t know that your app has been terminated and won’t expect the state of your app to change. Instead, they expect your app to be in the same state as when they left it. State preservation and restoration ensures that your app returns to its previous state when it launches again.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At appropriate times, UIKit preserves the state of your app’s views and view controllers to an encrypted file on disk. When your app is terminated and relaunched later, UIKit reconstructs your views and view controllers from the preserved data. The preservation and restoration processes are initiated automatically, but you must also do some specific work to support those processes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable support for state preservation and restoration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Assign restoration identifiers to the view controllers that you want to preserve.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Recreate view controllers, as needed, at restoration time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Encode and decode the custom data that you need to restore your view controller to its previous state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you define your interface entirely in storyboards, UIKit knows how to recreate your view controllers, and does so automatically. If you don’t use storyboards, or if you want more control over the creation and initialization of your view controllers, you can create them yourself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see an example of state preservation and restoration, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/restoring-your-app-s-state",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-state-preservation-and-restoration-for-your-app",
+          "level": 3,
+          "text": "Enable state preservation and restoration for your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You opt-in to state preservation and restoration by implementing your app delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:shouldSaveSecureApplicationState:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:shouldRestoreSecureApplicationState:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods. Both methods return a Boolean value indicating whether the associated process should occur, and in most cases you simply return ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". However, you can return ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " at times when restoring your app’s interface might not be appropriate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When UIKit calls your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:shouldSaveSecureApplicationState:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, you can save data in addition to returning ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You might save data that you intend to use during the restoration process. For example, the following code shows an example that saves the app’s current version number. At restoration time, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:shouldRestoreSecureApplicationState:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method checks the version number in the archive and prevents restoration from occurring if it doesn’t match the expected version.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func application(_ application: UIApplication, ",
+            "            shouldSaveSecureApplicationState coder: NSCoder) -> Bool {",
+            "   // Save the current app version to the archive.",
+            "   coder.encode(11.0, forKey: \"MyAppVersion\")",
+            "        ",
+            "   // Always save state information.",
+            "   return true",
+            "}",
+            "    ",
+            "func application(_ application: UIApplication, ",
+            "            shouldRestoreSecureApplicationState coder: NSCoder) -> Bool {",
+            "   // Restore the state only if the app version matches.",
+            "   let version = coder.decodeFloat(forKey: \"MyAppVersion\")",
+            "   if version == 11.0 {",
+            "      return true",
+            "   }",
+            "    ",
+            "   // Don't restore from old data.    ",
+            "   return false",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you prevent restoration from occurring, you can still configure your app’s interface manually in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of your app delegate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Assign-restoration-identifiers-to-your-view-controllers",
+          "level": 3,
+          "text": "Assign restoration identifiers to your view controllers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You explicitly tell UIKit which view controllers to preserve by assigning restoration identifiers to them. A restoration identifier is a unique string that you assign to the view controller programmatically or in Interface Builder. The name of the view controller class is usually a suitable restoration identifier, but you may use any string. Add that string to the view controller in your storyboard file or assign it to the view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/restorationIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property at runtime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2928946",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At preservation time, UIKit attempts to preserve the root view controllers of your app’s windows. For each root view controller with a restoration identifier, UIKit asks that view controller to encode its custom data in an archive. A container view controller can encode references to its child view controllers as part of its custom data. If it does, and if those view controllers also have restoration identifiers, UIKit attempts to preserve the child view controllers and their contents. This process continues recursively, following the connections from one view controller to the next until all of them are saved or ignored.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You aren’t required to assign a restoration identifier to every view controller. In fact, there are times when you might not want to preserve all of your view controllers. For example, if your app displays a temporary login screen, you might not want that screen preserved. Instead, you’d want to determine at restoration time whether to display it. In that case, you wouldn’t assign a restoration identifier to the view controller for your login screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For detailed information about what gets preserved, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/about-the-ui-preservation-process",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Encode-and-decode-custom-information-for-your-app",
+          "level": 3,
+          "text": "Encode and decode custom information for your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During the preservation process, UIKit calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring/encodeRestorableState(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of each preserved view and view controller. Use this method to preserve the information that you need to return the view or view controller to its current state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Do",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " save details about the visual state of views and controls.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Do",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " save references to child view controllers that you also want to preserve.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Do",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " save information that can be discarded without affecting the user’s data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Don’t",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " include data that’s already in your app’s persistent storage. Instead, include an identifier that you can use to locate that data later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "State preservation isn’t a substitute for saving your app’s data to disk. UIKit can discard state preservation data at its discretion, allowing your app to return to its default state. Use the preservation process to store information about the state of your app’s user interface, such as the currently selected row of a table. Don’t use it to store the data contained in that table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows an example of a view controller with text fields for gathering a first and last name. If one of the text fields contains an unsaved value, the method saves the unsaved value and an identifier for which text field contains that value. In this case, the unsaved value isn’t part of the app’s persistent data; it’s a temporary value that can be discarded if needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func encodeRestorableState(with coder: NSCoder) {",
+            "   super.encodeRestorableState(with: coder)",
+            "        ",
+            "   // Save the user ID so that we can load that user later.",
+            "   coder.encode(userID, forKey: \"UserID\")",
+            "",
+            "   // Write out any temporary data if editing is in progress.",
+            "   if firstNameField!.isFirstResponder {",
+            "      coder.encode(firstNameField?.text, forKey: \"EditedText\")",
+            "      coder.encode(Int32(1), forKey: \"EditField\")",
+            "   }",
+            "   else if lastNameField!.isFirstResponder {",
+            "      coder.encode(lastNameField?.text, forKey: \"EditedText\")",
+            "      coder.encode(Int32(2), forKey: \"EditField\")",
+            "   }",
+            "   else {",
+            "      // No editing was in progress.",
+            "      coder.encode(Int32(0), forKey: \"EditField\")",
+            "   }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about how UIKit preserves your app’s views, view controllers, and state information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/about-the-ui-preservation-process",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-view-controllers-when-asked",
+          "level": 3,
+          "text": "Create view controllers when asked",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If preserved state information is available when your app is launched, the system attempts to restore your app’s interface using the preserved data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "UIKit calls your app delegate’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:shouldRestoreSecureApplicationState:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to determine if restoration should proceed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "UIKit uses your app’s storyboards to recreate your view controllers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "UIKit calls each view controller’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring/decodeRestorableState(with:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to restore its state information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UIKit loads both the view controller and its views from your storyboard initially. After those objects have been loaded and initialized, UIKit begins restoring their state information. Use your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring/decodeRestorableState(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods to return your view controller to its previous state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows the method for decoding the state that was encoded in the previous example. This method restores the view controller’s data from the preserved user ID. If a text field was being edited, this method also restores the in-progress value and makes the corresponding text field the first responder, which displays the keyboard for that text field.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func decodeRestorableState(with coder: NSCoder) {",
+            "   super.decodeRestorableState(with: coder)",
+            "   ",
+            "   // Restore the first name and last name from the user ID.",
+            "   let identifier = coder.decodeObject(forKey: \"UserID\") as! String",
+            "   setUserID(identifier: identifier)",
+            "",
+            "   // Restore an in-progress values that was not saved.",
+            "   let activeField = coder.decodeInteger(forKey: \"EditField\")",
+            "   let editedText = coder.decodeObject(forKey: \"EditedText\") as! ",
+            "                         String?",
+            "",
+            "   switch activeField {",
+            "      case 1:",
+            "         firstNameField?.text = editedText",
+            "         firstNameField?.becomeFirstResponder()",
+            "         break",
+            "            ",
+            "      case 2:",
+            "         lastNameField?.text = editedText",
+            "         lastNameField?.becomeFirstResponder()",
+            "         break",
+            "            ",
+            "     default:",
+            "         break  // Do nothing.",
+            "  }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Defining your view controllers in storyboards is the easiest way to manage state restoration, but it isn’t the only way. For more information about other ways to recreate your view controllers, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/about-the-ui-restoration-process",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/swiftui/restoring_your_app_s_state_with_swiftui": {
+      "abstract": [
+        {
+          "text": "Provide app continuity for users by preserving their current activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swiftui/restoring_your_app_s_state_with_swiftui",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Restoring Your App’s State with SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui/restoring_your_app_s_state_with_swiftui"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the launch process is almost done and the app is almost ready to run.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinishLaunchingWithOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIApplicationLaunchOptionsKey",
+          "text": "LaunchOptionsKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "application:didFinishLaunchingWithOptions:"
+        }
+      ],
+      "role": "symbol",
+      "title": "application(_:didFinishLaunchingWithOptions:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/application(_:didfinishlaunchingwithoptions:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:shouldRestoreSecureApplicationState:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate whether to restore the app’s saved state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shouldRestoreSecureApplicationState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:shouldRestoreSecureApplicationState:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "application:shouldRestoreSecureApplicationState:"
+        }
+      ],
+      "role": "symbol",
+      "title": "application(_:shouldRestoreSecureApplicationState:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/application(_:shouldrestoresecureapplicationstate:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:shouldSaveSecureApplicationState:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate whether to securely preserve the app’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shouldSaveSecureApplicationState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:shouldSaveSecureApplicationState:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "application:shouldSaveSecureApplicationState:"
+        }
+      ],
+      "role": "symbol",
+      "title": "application(_:shouldSaveSecureApplicationState:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/application(_:shouldsavesecureapplicationstate:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIObjectRestoration": {
+      "abstract": [
+        {
+          "text": "The interface that restoration classes use to restore preserved objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIObjectRestoration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIObjectRestoration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIObjectRestoration"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIObjectRestoration",
+      "type": "topic",
+      "url": "/documentation/uikit/uiobjectrestoration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring": {
+      "abstract": [
+        {
+          "text": "Methods for adding objects to your state restoration archives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStateRestoring"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIStateRestoring"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIStateRestoring",
+      "type": "topic",
+      "url": "/documentation/uikit/uistaterestoring"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring/decodeRestorableState(with:)": {
+      "abstract": [
+        {
+          "text": "Decodes and restores state-related information for the object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeRestorableState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring/decodeRestorableState(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "decodeRestorableStateWithCoder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "decodeRestorableState(with:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uistaterestoring/decoderestorablestate(with:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring/encodeRestorableState(with:)": {
+      "abstract": [
+        {
+          "text": "Encodes state-related information for the object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeRestorableState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring/encodeRestorableState(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "encodeRestorableStateWithCoder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "encodeRestorableState(with:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uistaterestoring/encoderestorablestate(with:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/restorationIdentifier": {
+      "abstract": [
+        {
+          "text": "The identifier that determines whether the view controller supports state restoration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restorationIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/restorationIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "restorationIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "restorationIdentifier",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/restorationidentifier"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerRestoration": {
+      "abstract": [
+        {
+          "text": "The methods that objects adopt so that they can act as a restoration class for view controllers during state restoration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerRestoration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerRestoration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerRestoration"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewControllerRestoration",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollerrestoration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/about-the-ui-preservation-process": {
+      "abstract": [
+        {
+          "text": "Learn how to customize the UIKit state preservation process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/about-the-ui-preservation-process",
+      "kind": "article",
+      "role": "article",
+      "title": "About the UI preservation process",
+      "type": "topic",
+      "url": "/documentation/uikit/about-the-ui-preservation-process"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/about-the-ui-restoration-process": {
+      "abstract": [
+        {
+          "text": "Learn how to customize the UIKit state restoration process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/about-the-ui-restoration-process",
+      "kind": "article",
+      "role": "article",
+      "title": "About the UI restoration process",
+      "type": "topic",
+      "url": "/documentation/uikit/about-the-ui-restoration-process"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/app-and-environment": {
+      "abstract": [
+        {
+          "text": "Manage life-cycle events and your app’s UI scenes, and get information about traits and the environment in which your app runs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and environment",
+      "type": "topic",
+      "url": "/documentation/uikit/app-and-environment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/responding-to-the-launch-of-your-app": {
+      "abstract": [
+        {
+          "text": "Initialize your app’s data structures, prepare your app to run, and respond to any launch-time requests from the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/responding-to-the-launch-of-your-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Responding to the launch of your app",
+      "type": "topic",
+      "url": "/documentation/uikit/responding-to-the-launch-of-your-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/restoring-your-app-s-state": {
+      "abstract": [
+        {
+          "text": "Provide continuity for the user by preserving current activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/restoring-your-app-s-state",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Restoring your app’s state",
+      "type": "topic",
+      "url": "/documentation/uikit/restoring-your-app-s-state"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-controllers": {
+      "abstract": [
+        {
+          "text": "Manage your interface using view controllers and facilitate navigation around your app’s content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View controllers",
+      "type": "topic",
+      "url": "/documentation/uikit/view-controllers"
+    },
+    "media-2928946": {
+      "alt": "Screenshot of specifying a restoration identifier in a storyboard file.",
+      "identifier": "media-2928946",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/25397412f3e6dcacf2f7f99ff64bf48e/media-2928946@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Interface-restoration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/restoring-your-app-s-state",
+        "doc://com.apple.documentation/documentation/swiftui/restoring_your_app_s_state_with_swiftui",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerRestoration",
+        "doc://com.apple.uikit/documentation/UIKit/UIObjectRestoration",
+        "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring"
+      ],
+      "title": "Interface restoration"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Process-details",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/about-the-ui-preservation-process",
+        "doc://com.apple.uikit/documentation/UIKit/about-the-ui-restoration-process"
+      ],
+      "title": "Process details"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Process-details",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/about-the-ui-preservation-process",
+                "doc://com.apple.uikit/documentation/UIKit/about-the-ui-restoration-process"
+              ],
+              "title": "Process details"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Interface-restoration",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/restoring-your-app-s-state",
+                "doc://com.apple.documentation/documentation/swiftui/restoring_your_app_s_state_with_swiftui",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerRestoration",
+                "doc://com.apple.uikit/documentation/UIKit/UIObjectRestoration",
+                "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring"
+              ],
+              "title": "Interface restoration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerRestoration/title",
+          "value": "UIViewControllerRestoration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerRestoration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerRestoration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerRestoration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerRestoration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1restorationIdentifier/title",
+          "value": "restorationIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1restorationIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "restorationIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIObjectRestoration/title",
+          "value": "UIObjectRestoration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIObjectRestoration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIObjectRestoration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIObjectRestoration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIObjectRestoration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:shouldRestoreSecureApplicationState:)/title",
+          "value": "application:shouldRestoreSecureApplicationState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:shouldRestoreSecureApplicationState:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:shouldRestoreSecureApplicationState:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didFinishLaunchingWithOptions:)/title",
+          "value": "application:didFinishLaunchingWithOptions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didFinishLaunchingWithOptions:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:didFinishLaunchingWithOptions:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring/title",
+          "value": "UIStateRestoring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStateRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStateRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:shouldSaveSecureApplicationState:)/title",
+          "value": "application:shouldSaveSecureApplicationState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:shouldSaveSecureApplicationState:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:shouldSaveSecureApplicationState:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring~1decodeRestorableState(with:)/title",
+          "value": "decodeRestorableStateWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring~1decodeRestorableState(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "decodeRestorableStateWithCoder:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring~1encodeRestorableState(with:)/title",
+          "value": "encodeRestorableStateWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring~1encodeRestorableState(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "encodeRestorableStateWithCoder:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/preserving-your-app-s-ui-across-launches"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/preserving-your-app-s-ui-across-launches"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

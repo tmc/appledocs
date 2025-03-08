@@ -1,0 +1,753 @@
+{
+  "abstract": [
+    {
+      "text": "Store metadata in QuickTime Movie files.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Metadata_atoms_and_types"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Metadata atoms and types"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metadata can be defined as useful information related to media. This section describes a method of associating metadata with media in a QuickTime file that is extensible and allows for language and country tagging. In addition, it provides a means to store the type of the metadata and associate a name with metadata. This method of storing metadata is supported in both QuickTime 7 and QuickTime X.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This metadata format uses a key–value pair for each type of metadata being stored. Standard keys, with specific formats for the values they indicate, have been defined. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_metadata_keys",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The QuickTime file format also defines user data which, in some limited cases, can be used to store metadata. The method of storing metadata defined in this section provides an extensible and flexible design for handling a wide variety of metadata types.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Data-type",
+          "level": 3,
+          "text": "Data type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The storage type of metadata items is defined via an enumerated list of data types, defined statically; an example might be “plain Unicode text”. See the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Well-known_types",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " table for details of the standard, defined data types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Meaning-or-purpose",
+          "level": 3,
+          "text": "Meaning or purpose",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The meaning of a metadata item identifies what it represents: a copyright notice, the performer’s name, and so on. It uses an extensible namespace allowing for meanings or keys to be added, and then referenced, from metadata items. These keys may be four-character codes, names in reverse-address format (such as “com.apple.quicktime.windowlocation”) or any other key format including native formats from external metadata standards. A key is tagged with its namespace allowing for extension in the future. It is recommended that reverse-address format be used in the general case: this provides an extensible syntax for vendor data or for other organizations or standards bodies.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Data-location",
+          "level": 3,
+          "text": "Data location",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metadata is stored immediately in the corresponding atom structures, by value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Localization",
+          "level": 3,
+          "text": "Localization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A metadata item can be identified as specific to a country or set of countries, to a language or set of languages, or to some combination of languages and countries. This identification allows for a default value (suitable for any language or country not explicitly called out), a single value, or a list of values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Storage-Location-in-a-QuickTime-File",
+          "level": 3,
+          "text": "Storage Location in a QuickTime File",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Within a QuickTime file, metadata can be stored within a movie atom (",
+              "type": "text"
+            },
+            {
+              "code": "‘moov’",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), a track atom (",
+              "type": "text"
+            },
+            {
+              "code": "‘trak’",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") or a media atom (",
+              "type": "text"
+            },
+            {
+              "code": "‘mdia’",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). Only one metadata atom is allowed for each location. If there is user data and metadata stored in the same location, and both declare the same information, for example, declare a copyright notice, the metadata takes precedence.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Metadata-structure",
+          "level": 3,
+          "text": "Metadata structure",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The container for metadata is an atom of type ",
+              "type": "text"
+            },
+            {
+              "code": "‘meta’",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The metadata atom must contain the following subatoms: metadata handler atom (",
+              "type": "text"
+            },
+            {
+              "code": "‘hdlr’",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), metadata item keys atom (",
+              "type": "text"
+            },
+            {
+              "code": "‘keys’",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), and metadata item list atom (",
+              "type": "text"
+            },
+            {
+              "code": "‘ilst’",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). Other optional atoms that may be contained in a metadata atom include the country list atom (",
+              "type": "text"
+            },
+            {
+              "code": "‘ctry’",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), language list atom (",
+              "type": "text"
+            },
+            {
+              "code": "‘lang’",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") and free space atom (",
+              "type": "text"
+            },
+            {
+              "code": "‘free’",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). The country list and language list atoms can be used to store localized data in an efficient manner. The free space atom may be used to reserve space in a metadata atom for later additions to it, or to zero out bytes within a metadata atom after editing and removing elements from it. The free space atom may not occur within any other subatom contained in the metadata atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_D_Metadata_handling": {
+      "abstract": [
+        {
+          "text": "Handling metadata in other file formats.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_D_Metadata_handling",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metadata handling",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/appendix_d_metadata_handling"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Data_ordering": {
+      "abstract": [
+        {
+          "text": "Represent multiple representations of the same information, differing either by language or storage type or by the size or nature of the data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Data_ordering",
+      "kind": "article",
+      "role": "article",
+      "title": "Data ordering",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/data_ordering"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Direction_definition": {
+      "abstract": [
+        {
+          "text": "Define a direction in metadata keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Direction_definition",
+      "kind": "article",
+      "role": "article",
+      "title": "Direction definition",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/direction_definition"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Extensibility": {
+      "abstract": [
+        {
+          "text": "Avoid issues building extensibility into your file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Extensibility",
+      "kind": "article",
+      "role": "article",
+      "title": "Extensibility",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/extensibility"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Locale_indicator": {
+      "abstract": [
+        {
+          "text": "A four-byte value that indicates a locale.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Locale_indicator",
+      "kind": "article",
+      "role": "article",
+      "title": "Locale indicator",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/locale_indicator"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Localization_list_sets": {
+      "abstract": [
+        {
+          "text": "Provide metadata for more than one country or language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Localization_list_sets",
+      "kind": "article",
+      "role": "article",
+      "title": "Localization list sets",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/localization_list_sets"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Location_metadata": {
+      "abstract": [
+        {
+          "text": "Storing the location coordinates, as well as several auxiliary pieces of information about a location, as metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Location_metadata",
+      "kind": "article",
+      "role": "article",
+      "title": "Location metadata",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/location_metadata"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_metadata_keys": {
+      "abstract": [
+        {
+          "text": "Use QuickTime keys to hold data in a Metadata atom.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_metadata_keys",
+      "kind": "article",
+      "role": "article",
+      "title": "QuickTime metadata keys",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/quicktime_metadata_keys"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Type_indicator": {
+      "abstract": [
+        {
+          "text": "Four bytes that indicate a type of data that QuickTime supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Type_indicator",
+      "kind": "article",
+      "role": "article",
+      "title": "Type indicator",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/type_indicator"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Well-known_types": {
+      "abstract": [
+        {
+          "text": "Basic data types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Well-known_types",
+      "kind": "article",
+      "role": "article",
+      "title": "Well-known types",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/well-known_types"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Country_list_atom": {
+      "abstract": [
+        {
+          "text": "An atom that lists items that are suitable for more than one country.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Country_list_atom",
+          "text": "Country list atom ('ctry')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Country_list_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Country list atom ('ctry')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/country_list_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Data_atom": {
+      "abstract": [
+        {
+          "text": "An atom that contains the type and locale specific value of metadata.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Data_atom",
+          "text": "Data atom ('data')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Data_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Data atom ('data')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/data_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Item_information_atom": {
+      "abstract": [
+        {
+          "text": "An atom that contains information about the item, including item-specific flags and item optional identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Item_information_atom",
+          "text": "Item information atom ('itif')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Item_information_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Item information atom ('itif')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/item_information_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Language_list_atom": {
+      "abstract": [
+        {
+          "text": "An atom that lists items that are suitable for more than one language.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Language_list_atom",
+          "text": "Language list atom ('lang')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Language_list_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Language list atom ('lang')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/language_list_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_atom": {
+      "abstract": [
+        {
+          "text": "An atom that is the container for carrying metadata.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_atom",
+          "text": "Metadata atom ('meta')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Metadata atom ('meta')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_handler_atom": {
+      "abstract": [
+        {
+          "text": "An atom that defines the structure used for all types of metadata stored within the metadata atom.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_handler_atom",
+          "text": "Metadata handler atom ('hdlr')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_handler_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Metadata handler atom ('hdlr')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_handler_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_header_atom": {
+      "abstract": [
+        {
+          "text": "An atom that holds the integer value for the next unique item identifier to assign.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_header_atom",
+          "text": "Metadata header atom ('mhdr')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_header_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Metadata header atom ('mhdr')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_header_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_atom": {
+      "abstract": [
+        {
+          "text": "An atom that holds a metadata value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_item_atom",
+          "text": "Metadata item atom"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Metadata item atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_item_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom": {
+      "abstract": [
+        {
+          "text": "An atom that holds a list of the metadata keys that may be present in the metadata atom.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_item_keys_atom",
+          "text": "Metadata item keys atom ('keys')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Metadata item keys atom ('keys')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_item_keys_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_list_atom": {
+      "abstract": [
+        {
+          "text": "An atom that holds a list of actual metadata values that are present in the metadata atom.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_item_list_atom",
+          "text": "Metadata item list atom ('ilst')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_list_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Metadata item list atom ('ilst')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_item_list_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Name_atom": {
+      "abstract": [
+        {
+          "text": "An atom you use to provide a name for a metadata item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Name_atom",
+          "text": "Name atom ('name')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Name_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Name atom ('name')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/name_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Value_atom": {
+      "abstract": [
+        {
+          "text": "An atom that expresses a metadata value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Value_atom",
+          "text": "Value atom"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Value_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Value atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/value_atom"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Metadata-structure",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_handler_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_header_atom"
+      ],
+      "title": "Metadata structure"
+    },
+    {
+      "anchor": "Atoms",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Country_list_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Language_list_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_list_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Value_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Item_information_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Name_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Data_atom"
+      ],
+      "title": "Atoms"
+    },
+    {
+      "anchor": "Types-and-usage",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Extensibility",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Localization_list_sets",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Type_indicator",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Locale_indicator",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Data_ordering",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Well-known_types",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Location_metadata",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_metadata_keys",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Direction_definition",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_D_Metadata_handling"
+      ],
+      "title": "Types and usage"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/metadata_atoms_and_types"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

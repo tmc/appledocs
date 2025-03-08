@@ -1,0 +1,382 @@
+{
+  "abstract": [
+    {
+      "text": "Allow users to sign in to a service without typing a password.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/public-private-key-authentication"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/connecting-to-a-service-with-passkeys"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Authentication Services"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Connecting to a service with passkeys"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC22 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc22/10092/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and WWDC21 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc21/10106/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To build and run this sample:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the sample with Xcode 14 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Shiny project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the project’s target, select your team from the Team drop-down menu in the Signing & Capabilities pane to let Xcode automatically manage your provisioning profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the Associated Domains capability using the “+ Capability” button in the same pane, and specify your domain with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "webcredentials",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " service.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "apple-app-site-association",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (AASA) file is present on your domain in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".well-known",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " directory, and that it contains an entry for this app’s App ID for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "webcredentials",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " service.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AccountManager.swift",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, replace all occurrences of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "example.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with the name of your domain.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "83aaf0818492/ConnectingToAServiceWithPasskeys.zip": {
+      "checksum": "83aaf0818492c14d7ee810b65a40a3f391bce7dd071d80d61b825785a88dd29630ff4f12b98634e32de93d30e3edd7fb01a88c997bad488ec23704ad7214f506",
+      "identifier": "83aaf0818492/ConnectingToAServiceWithPasskeys.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/83aaf0818492/ConnectingToAServiceWithPasskeys.zip"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Make it easy for users to log into apps and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Authentication Services",
+      "type": "topic",
+      "url": "/documentation/authenticationservices"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/passkey-use-in-web-browsers": {
+      "abstract": [
+        {
+          "text": "Register and authenticate website users by using passkeys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/passkey-use-in-web-browsers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Passkey use in web browsers",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/passkey-use-in-web-browsers"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/public-private-key-authentication": {
+      "abstract": [
+        {
+          "text": "Register and authenticate users with passkeys and security keys, without using passwords.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/public-private-key-authentication",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Public-Private Key Authentication",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/public-private-key-authentication"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/wwdc21/10106/": {
+      "identifier": "https://developer.apple.com/wwdc21/10106/",
+      "title": "10106: Move beyond passwords",
+      "titleInlineContent": [
+        {
+          "text": "10106: Move beyond passwords",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc21/10106/"
+    },
+    "https://developer.apple.com/wwdc22/10092/": {
+      "identifier": "https://developer.apple.com/wwdc22/10092/",
+      "title": "10092: Meet passkeys",
+      "titleInlineContent": [
+        {
+          "text": "10092: Meet passkeys",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc22/10092/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "83aaf0818492/ConnectingToAServiceWithPasskeys.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Passkeys",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/public-private-key-authentication",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/passkey-use-in-web-browsers"
+      ],
+      "title": "Passkeys"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/authenticationservices/connecting-to-a-service-with-passkeys"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

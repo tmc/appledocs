@@ -1,0 +1,836 @@
+{
+  "abstract": [
+    {
+      "text": "Leverage automatically generated code to load scenes from Xcode.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-using-generated-code"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Loading Reality Composer files using generated code"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you add Reality Composer to your project, Xcode automatically generates code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to handle many common tasks, such as loading scenes, retrieving objects, and triggering",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "behaviors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you build in Xcode, it converts any Reality Composer file in the current target",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "into a more compact, read-only format called a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Reality",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "file",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which has the extension",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": ".reality",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You can also export Reality files directly from Reality Composer to use,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for example, as downloadable content for your app. Although Xcode accepts both file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "types, you’ll typically use these editable Reality Composer project files during",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "development.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode generates both asynchronous and synchronous load methods. Unless your Reality",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Composer scene is very small, you should use the asynchronous method, which loads",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scenes in the background. Synchronous loading always occurs on the main thread, so",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app may become unresponsive if you use that method to load even moderately complex",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scenes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Load-Reality-files-asynchronously-using-generated-code",
+          "level": 3,
+          "text": "Load Reality files asynchronously using generated code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For every scene in a Reality file, Xcode generates an asynchronous loading method.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This method helps keep your app responsive when loading larger scenes. Xcode bases",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the name of each generated asynchronous loading method on the name of the scene it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "loads and the Reality file that contains it. Instead of returning the loaded object",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "directly, these asynchronous loading methods return the loaded scene through a completion",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "block.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example code loads a scene using the generated asynchronous load function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Experience.loadBoxAsync(completion: { (result) in",
+            "    do {",
+            "        let boxScene = try result.get()",
+            "        // ...",
+            "    } catch {",
+            "        // handle error",
+            "    }",
+            "})"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Load-Reality-files-synchronously-using-generated-code",
+          "level": 3,
+          "text": "Load Reality files synchronously using generated code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode also creates a synchronous loading method for each scene in your Reality Composer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "projects. As with generated asynchronous methods, it bases the name of each generated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method on the name of the scene it loads and the Reality Composer file that contains",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example code synchronously loads a scene called Box from a Reality",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Composer project called Experience:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Load the Box scene synchronously from the Experience Reality file",
+            "do {",
+            "    let boxAnchor = try Experience.loadBox()",
+            "    // ...",
+            "} catch {",
+            "    // handle error",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use RealityKit’s synchronous loading methods from the main thread only.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "RealityKit throws a runtime exception if you attempt to use it from any other thread.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you need to load a scene on a background thread, use asynchronous loading instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Show-the-scene",
+          "level": 3,
+          "text": "Show the scene",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you load the Reality Composer scene, you display it to the user by adding it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the scene anchors of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Reality Composer scenes contain",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "anchoring information, which allows RealityKit to automatically find an appropriate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "surface, object, or image, and anchor your scene to it. For example, RealityKit automatically",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "places a horizontally anchored scene as soon as ARKit detects a flat horizontal surface.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Similarly, it displays a scene with an image anchor when ARKit detects the specified",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "image at the correct size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use automatic anchoring, add the loaded scene to the view’s anchors:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "arView.scene.anchors.append(anchor)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more control, you can also anchor your scene manually. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/taking-control-of-scene-anchoring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Remove-the-scene",
+          "level": 3,
+          "text": "Remove the scene",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To remove the Reality Composer scene so the user can no longer see or interact with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it, remove the object from the view’s anchors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "arView.scene.anchors.remove(anchor)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To remove all content from the view, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ComponentSet/removeAll()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "arView.scene.anchors.removeAll()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ARView": {
+      "abstract": [
+        {
+          "text": "A view that enables you to display an AR experience with RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARView"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARView",
+      "type": "topic",
+      "url": "/documentation/realitykit/arview"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ComponentSet/removeAll()": {
+      "abstract": [
+        {
+          "text": "Removes all components from the collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAll"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ComponentSet/removeAll()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeAll()",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/componentset/removeall()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/adding-elements-to-a-3d-scene": {
+      "abstract": [
+        {
+          "text": "Add assets to your scene from Reality Composer’s library, or import custom assets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/adding-elements-to-a-3d-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding elements to a 3D scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/adding-elements-to-a-3d-scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/adding-procedural-assets-to-a-scene": {
+      "abstract": [
+        {
+          "text": "Create procedurally generated shape primitives to your Reality Composer scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/adding-procedural-assets-to-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding procedural assets to a scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/adding-procedural-assets-to-a-scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/arranging-elements-in-a-scene": {
+      "abstract": [
+        {
+          "text": "Manipulate objects to complete your Reality Composer scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/arranging-elements-in-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Arranging elements in a scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/arranging-elements-in-a-scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/configuring-elements-in-a-scene": {
+      "abstract": [
+        {
+          "text": "Define the appearance and behavior of objects in a scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/configuring-elements-in-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring elements in a scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/configuring-elements-in-a-scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer": {
+      "abstract": [
+        {
+          "text": "Assemble assets into a dynamic 3D composition that you can add to a scene in your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app, or share with AR Quick Look.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating 3D Content with Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-3d-content-with-reality-composer"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-accessibility-of-realitykit-apps": {
+      "abstract": [
+        {
+          "text": "Incorporate assistive technologies in your augmented reality app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-accessibility-of-realitykit-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving the Accessibility of RealityKit Apps",
+      "type": "topic",
+      "url": "/documentation/realitykit/improving-the-accessibility-of-realitykit-apps"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-manually-without-generated-code": {
+      "abstract": [
+        {
+          "text": "Load Reality Composer files that aren’t part of your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-manually-without-generated-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading Reality Composer files manually without generated code",
+      "type": "topic",
+      "url": "/documentation/realitykit/loading-reality-composer-files-manually-without-generated-code"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/manipulating-reality-composer-scenes-from-code": {
+      "abstract": [
+        {
+          "text": "Make programmatic changes to your scenes at runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/manipulating-reality-composer-scenes-from-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Manipulating Reality Composer scenes from code",
+      "type": "topic",
+      "url": "/documentation/realitykit/manipulating-reality-composer-scenes-from-code"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer": {
+      "abstract": [
+        {
+          "text": "A visual editor for RealityKit AR scenes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitykit-reality-composer"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/taking-control-of-scene-anchoring": {
+      "abstract": [
+        {
+          "text": "Create a more interactive user experience by choosing exactly where to anchor Reality",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Composer scenes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/taking-control-of-scene-anchoring",
+      "kind": "article",
+      "role": "article",
+      "title": "Taking Control of Scene Anchoring",
+      "type": "topic",
+      "url": "/documentation/realitykit/taking-control-of-scene-anchoring"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Scene-creation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-manually-without-generated-code",
+        "doc://com.apple.RealityKit/documentation/RealityKit/adding-elements-to-a-3d-scene",
+        "doc://com.apple.RealityKit/documentation/RealityKit/configuring-elements-in-a-scene",
+        "doc://com.apple.RealityKit/documentation/RealityKit/arranging-elements-in-a-scene",
+        "doc://com.apple.RealityKit/documentation/RealityKit/manipulating-reality-composer-scenes-from-code",
+        "doc://com.apple.RealityKit/documentation/RealityKit/adding-procedural-assets-to-a-scene",
+        "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-accessibility-of-realitykit-apps"
+      ],
+      "title": "Scene creation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/loading-reality-composer-files-using-generated-code"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

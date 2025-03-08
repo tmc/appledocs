@@ -1,0 +1,418 @@
+{
+  "abstract": [
+    {
+      "text": "Pick a region-specific geographic location from which to retrieve catalog information, or retrieve information from the user’s personal library.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Apple Music",
+      "versions": [
+        "1.0",
+        "1.2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/storefronts-and-localization"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Music API"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Storefronts and Localization"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Music is a worldwide service that operates in many countries, regions, and languages. Content varies from one geographic region to another, so each request must contain a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "storefront object",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". Storefront defines the desired region and the supported languages for that region. For most requests, you specify the storefront associated with the current user, but you may also specify other storefronts as needed. For example, you might specify a storefront that better matches the user’s preferred language.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each storefront has a default language, and may support one or more additional languages. For example, the United States storefront includes American English as the default language, but also includes Mexican Spanish as an additional supported language. Apple Music automatically localizes responses using the storefront’s default language, but you can localize to a different language using the ",
+              "type": "text"
+            },
+            {
+              "code": "l query",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. The value of that parameter must be one of the values in the ",
+              "type": "text"
+            },
+            {
+              "code": "supportedLanguageTags",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute of the storefront object. For example, the following request asks the US storefront to return an album in the Mexican Spanish (",
+              "type": "text"
+            },
+            {
+              "code": "es-MX",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") localization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET https://api.music.apple.com/v1/catalog/us/albums/310730204?l=es-MX"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI": {
+      "abstract": [
+        {
+          "text": "Integrate streaming music with catalog and personal content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music API",
+      "type": "topic",
+      "url": "/documentation/applemusicapi"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-All-Storefronts": {
+      "abstract": [
+        {
+          "text": "Fetch all the storefronts in alphabetical order.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-All-Storefronts",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get All Storefronts"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get All Storefronts",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-all-storefronts"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Storefronts": {
+      "abstract": [
+        {
+          "text": "Fetch one or more storefronts by using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Storefronts",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Multiple Storefronts"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Multiple Storefronts",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-multiple-storefronts"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Storefront": {
+      "abstract": [
+        {
+          "text": "Fetch a single storefront by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Storefront",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a Storefront"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Storefront",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-a-storefront"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-the-best-supported-language-based-on-the-acceptLanguage": {
+      "abstract": [
+        {
+          "text": "Fetch the best supported language for a storefront from a list.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-the-best-supported-language-based-on-the-acceptLanguage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get the best supported language based on the acceptLanguage"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get the best supported language for a storefront",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-the-best-supported-language-based-on-the-acceptlanguage"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Storefronts": {
+      "abstract": [
+        {
+          "text": "A resource object that represents a storefront, an Apple Music and iTunes Store territory that the content is available in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Storefronts"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Storefronts",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Storefronts"
+        }
+      ],
+      "role": "symbol",
+      "title": "Storefronts",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/storefronts"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/common-objects": {
+      "abstract": [
+        {
+          "text": "Understand the common JSON objects that framework responses contain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/common-objects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Common Objects",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/common-objects"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/fetching-resources-by-page": {
+      "abstract": [
+        {
+          "text": "Use pagination to fetch the next set of objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/fetching-resources-by-page",
+      "kind": "article",
+      "role": "article",
+      "title": "Fetching Resources by Page",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/fetching-resources-by-page"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/generating-developer-tokens": {
+      "abstract": [
+        {
+          "text": "Generate a developer token needed to make requests to Apple Music API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/generating-developer-tokens",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating Developer Tokens",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/generating-developer-tokens"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses": {
+      "abstract": [
+        {
+          "text": "Write a request and handle responses from the API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Requests and Responses",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/handling-requests-and-responses"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-resource-representation-and-relationships": {
+      "abstract": [
+        {
+          "text": "Fetch resources with extended attributes and included relationships and relationship views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-resource-representation-and-relationships",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Resource Representation and Relationships",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/handling-resource-representation-and-relationships"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/managing-content-ratings-alternate-versions-and-equivalencies": {
+      "abstract": [
+        {
+          "text": "Handle multiple and alternate versions of content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/managing-content-ratings-alternate-versions-and-equivalencies",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Content Ratings, Alternate Versions, and Equivalencies",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/managing-content-ratings-alternate-versions-and-equivalencies"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit": {
+      "abstract": [
+        {
+          "text": "Authenticate requests for user data using the Music User Token.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+      "kind": "article",
+      "role": "article",
+      "title": "User Authentication for MusicKit",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/user-authentication-for-musickit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/generating-developer-tokens",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-resource-representation-and-relationships",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/common-objects",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/managing-content-ratings-alternate-versions-and-equivalencies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/fetching-resources-by-page"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Requesting-a-Catalog-Storefront",
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Storefront",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Storefronts",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-All-Storefronts"
+      ],
+      "title": "Requesting a Catalog Storefront"
+    },
+    {
+      "anchor": "Localization",
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-the-best-supported-language-based-on-the-acceptLanguage"
+      ],
+      "title": "Localization"
+    },
+    {
+      "anchor": "Handling-the-Response",
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Storefronts"
+      ],
+      "title": "Handling the Response"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemusicapi/storefronts-and-localization"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

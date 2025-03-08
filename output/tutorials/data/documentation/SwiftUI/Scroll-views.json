@@ -1,0 +1,3427 @@
+{
+  "abstract": [
+    {
+      "text": "Enable people to scroll to content that doesn’t fit in the current display.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scroll-views"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Scroll views"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the content of a view doesn’t fit in the display, you can wrap the view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to enable people to scroll on one or more axes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Configure the scroll view using view modifiers. For example, you can set the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "visibility of the scroll indicators or the availability of scrolling in a given",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dimension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "scroll-views-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can put any view type in a scroll view, but you most often use a scroll",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view for a layout container with too many elements to fit in the display.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For some container views that you put in a scroll view, like lazy stacks,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the container doesn’t load views until they are visible or almost visible.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For others, like regular stacks and grids, the container loads the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content all at once, regardless of the state of scrolling.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Lists",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Tables",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implicitly include a scroll view, so you don’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "need to add scrolling to those container types. However, you can configure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "their implicit scroll views with the same view modifiers that apply to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "explicit scroll views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/scroll-views",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "components-scroll-views-thumbnail.png": {
+      "alt": null,
+      "identifier": "components-scroll-views-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/403c502cbbe7b29131f92c30f8206f0b/components-scroll-views-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f61d8759d0091f8cf7ab6b3e35d4ce5e/components-scroll-views-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyScrollTargetBehavior": {
+      "abstract": [
+        {
+          "text": "A type-erased scroll target behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnyScrollTargetBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyScrollTargetBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnyScrollTargetBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnyScrollTargetBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/anyscrolltargetbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Custom-layout": {
+      "abstract": [
+        {
+          "text": "Place views in custom arrangements and create animated transitions between layout types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Custom-layout",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Custom layout",
+      "type": "topic",
+      "url": "/documentation/swiftui/custom-layout"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/horizontalScrollBounceBehavior": {
+      "abstract": [
+        {
+          "text": "The scroll bounce mode for the horizontal axis of scrollable views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "horizontalScrollBounceBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ScrollBounceBehaviorV",
+          "text": "ScrollBounceBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/horizontalScrollBounceBehavior",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "horizontalScrollBounceBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/horizontalscrollbouncebehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/horizontalScrollIndicatorVisibility": {
+      "abstract": [
+        {
+          "text": "The visibility to apply to scroll indicators of any",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "horizontally scrollable content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "horizontalScrollIndicatorVisibility"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25ScrollIndicatorVisibilityV",
+          "text": "ScrollIndicatorVisibility"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/horizontalScrollIndicatorVisibility",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "horizontalScrollIndicatorVisibility",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/horizontalscrollindicatorvisibility"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/isScrollEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether any scroll views associated",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "with this environment allow scrolling to occur.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isScrollEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/isScrollEnabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isScrollEnabled",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/isscrollenabled"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/scrollDismissesKeyboardMode": {
+      "abstract": [
+        {
+          "text": "The way that scrollable content interacts with the software keyboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollDismissesKeyboardMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI27ScrollDismissesKeyboardModeV",
+          "text": "ScrollDismissesKeyboardMode"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/scrollDismissesKeyboardMode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scrollDismissesKeyboardMode",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/scrolldismisseskeyboardmode"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/verticalScrollBounceBehavior": {
+      "abstract": [
+        {
+          "text": "The scroll bounce mode for the vertical axis of scrollable views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "verticalScrollBounceBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ScrollBounceBehaviorV",
+          "text": "ScrollBounceBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/verticalScrollBounceBehavior",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "verticalScrollBounceBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/verticalscrollbouncebehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/verticalScrollIndicatorVisibility": {
+      "abstract": [
+        {
+          "text": "The visiblity to apply to scroll indicators of any",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "vertically scrollable content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "verticalScrollIndicatorVisibility"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25ScrollIndicatorVisibilityV",
+          "text": "ScrollIndicatorVisibility"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/verticalScrollIndicatorVisibility",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "verticalScrollIndicatorVisibility",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/verticalscrollindicatorvisibility"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments": {
+      "abstract": [
+        {
+          "text": "Make fine adjustments to alignment, spacing, padding, and other layout parameters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layout adjustments",
+      "type": "topic",
+      "url": "/documentation/swiftui/layout-adjustments"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-fundamentals": {
+      "abstract": [
+        {
+          "text": "Arrange views inside built-in layout containers like stacks and grids.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layout fundamentals",
+      "type": "topic",
+      "url": "/documentation/swiftui/layout-fundamentals"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Lists": {
+      "abstract": [
+        {
+          "text": "Display a structured, scrollable column of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Lists",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Lists",
+      "type": "topic",
+      "url": "/documentation/swiftui/lists"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PagingScrollTargetBehavior": {
+      "abstract": [
+        {
+          "text": "The scroll behavior that aligns scroll targets to container-based geometry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PagingScrollTargetBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PagingScrollTargetBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PagingScrollTargetBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "PagingScrollTargetBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/pagingscrolltargetbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollAnchorRole": {
+      "abstract": [
+        {
+          "text": "A type defining the role of a scroll anchor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollAnchorRole"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollAnchorRole",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollAnchorRole"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollAnchorRole",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrollanchorrole"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollBounceBehavior": {
+      "abstract": [
+        {
+          "text": "The ways that a scrollable view can bounce when it reaches the end of its",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollBounceBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollBounceBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollBounceBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollBounceBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrollbouncebehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollContentOffsetAdjustmentBehavior": {
+      "abstract": [
+        {
+          "text": "A type that defines the different kinds of content offset adjusting",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "behaviors a scroll view can have.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollContentOffsetAdjustmentBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollContentOffsetAdjustmentBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollContentOffsetAdjustmentBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollContentOffsetAdjustmentBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrollcontentoffsetadjustmentbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollDismissesKeyboardMode": {
+      "abstract": [
+        {
+          "text": "The ways that scrollable content can interact with the software keyboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollDismissesKeyboardMode"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollDismissesKeyboardMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollDismissesKeyboardMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollDismissesKeyboardMode",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrolldismisseskeyboardmode"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollGeometry": {
+      "abstract": [
+        {
+          "text": "A type that defines the geometry of a scroll view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollGeometry"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollGeometry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollGeometry"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollGeometry",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrollgeometry"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollIndicatorVisibility": {
+      "abstract": [
+        {
+          "text": "The visibility of scroll indicators of a UI element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollIndicatorVisibility"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollIndicatorVisibility",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollIndicatorVisibility"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollIndicatorVisibility",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrollindicatorvisibility"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollInputBehavior": {
+      "abstract": [
+        {
+          "text": "A type that defines whether input should scroll a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollInputBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollInputBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollInputBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollInputBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrollinputbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollInputKind": {
+      "abstract": [
+        {
+          "text": "Inputs used to scroll views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollInputKind"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollInputKind",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollInputKind"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollInputKind",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrollinputkind"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollPhase": {
+      "abstract": [
+        {
+          "text": "A type that describes the state of a scroll gesture of a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "scrollable view like a scroll view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollPhase"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollPhase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollPhase"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollPhase",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrollphase"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollPhaseChangeContext": {
+      "abstract": [
+        {
+          "text": "A type that provides you with more content when the phase of a scroll",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "view changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollPhaseChangeContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollPhaseChangeContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollPhaseChangeContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollPhaseChangeContext",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrollphasechangecontext"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollPosition": {
+      "abstract": [
+        {
+          "text": "A type that defines the semantic position of where a scroll view is",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "scrolled within its content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollPosition"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollPosition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollPosition"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollPosition",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrollposition"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTarget": {
+      "abstract": [
+        {
+          "text": "A type defining the target in which a scroll view should try and scroll to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollTarget"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTarget",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollTarget"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollTarget",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrolltarget"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior": {
+      "abstract": [
+        {
+          "text": "A type that defines the scroll behavior of a scrollable view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollTargetBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollTargetBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollTargetBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrolltargetbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehaviorContext": {
+      "abstract": [
+        {
+          "text": "The context in which a scroll target behavior updates its scroll target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollTargetBehaviorContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehaviorContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollTargetBehaviorContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollTargetBehaviorContext",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrolltargetbehaviorcontext"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTransitionConfiguration": {
+      "abstract": [
+        {
+          "text": "The configuration of a scroll transition that controls how a transition",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "is applied as a view is scrolled through the visible region of a containing",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "scroll view or other container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollTransitionConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTransitionConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollTransitionConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollTransitionConfiguration",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrolltransitionconfiguration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTransitionPhase": {
+      "abstract": [
+        {
+          "text": "The phases that a view transitions between when it scrolls among other views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollTransitionPhase"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTransitionPhase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollTransitionPhase"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollTransitionPhase",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrolltransitionphase"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollView": {
+      "abstract": [
+        {
+          "text": "A scrollable view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollView"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollView",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrollview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollViewProxy": {
+      "abstract": [
+        {
+          "text": "A proxy value that supports programmatic scrolling of the scrollable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "views within a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollViewProxy"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollViewProxy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollViewProxy"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollViewProxy",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrollviewproxy"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollViewReader": {
+      "abstract": [
+        {
+          "text": "A view that provides programmatic scrolling, by working with a proxy",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to scroll to known child views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollViewReader"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollViewReader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollViewReader"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollViewReader",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrollviewreader"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Tables": {
+      "abstract": [
+        {
+          "text": "Display selectable, sortable data arranged in rows and columns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Tables",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Tables",
+      "type": "topic",
+      "url": "/documentation/swiftui/tables"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-groupings": {
+      "abstract": [
+        {
+          "text": "Present views in different kinds of purpose-driven containers, like forms or",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "control groups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-groupings",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View groupings",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-groupings"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/defaultScrollAnchor(_:)": {
+      "abstract": [
+        {
+          "text": "Associates an anchor to control which part of the scroll view’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "content should be rendered by default.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultScrollAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9UnitPointV",
+          "text": "UnitPoint"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/defaultScrollAnchor(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultScrollAnchor(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/defaultscrollanchor(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/defaultScrollAnchor(_:for:)": {
+      "abstract": [
+        {
+          "text": "Associates an anchor to control the position of a scroll view in a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "particular circumstance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultScrollAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9UnitPointV",
+          "text": "UnitPoint"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16ScrollAnchorRoleV",
+          "text": "ScrollAnchorRole"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/defaultScrollAnchor(_:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultScrollAnchor(_:for:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/defaultscrollanchor(_:for:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onScrollGeometryChange(for:of:action:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to be performed when a value, created from a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "scroll geometry, changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onScrollGeometryChange"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14ScrollGeometryV",
+          "text": "ScrollGeometry"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onScrollGeometryChange(for:of:action:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onScrollGeometryChange(for:of:action:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/onscrollgeometrychange(for:of:action:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onScrollPhaseChange(_:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform when the scroll phase of the first scroll",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "view in the hierarchy changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onScrollPhaseChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onScrollPhaseChange(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onScrollPhaseChange(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/onscrollphasechange(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onScrollTargetVisibilityChange(idType:threshold:_:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to be called with information about what views would",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "be considered visible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onScrollTargetVisibilityChange"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "idType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "threshold"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onScrollTargetVisibilityChange(idType:threshold:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onScrollTargetVisibilityChange(idType:threshold:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/onscrolltargetvisibilitychange(idtype:threshold:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onScrollVisibilityChange(threshold:_:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to be called when the view crosses the threshold to be considered on/off screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onScrollVisibilityChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "threshold"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onScrollVisibilityChange(threshold:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onScrollVisibilityChange(threshold:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/onscrollvisibilitychange(threshold:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollBounceBehavior(_:axes:)": {
+      "abstract": [
+        {
+          "text": "Configures the bounce behavior of scrollable views along the specified",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollBounceBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ScrollBounceBehaviorV",
+          "text": "ScrollBounceBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "axes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4AxisO",
+          "text": "Axis"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4AxisO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollBounceBehavior(_:axes:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scrollBounceBehavior(_:axes:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/scrollbouncebehavior(_:axes:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollClipDisabled(_:)": {
+      "abstract": [
+        {
+          "text": "Sets whether a scroll view clips its content to its bounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollClipDisabled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollClipDisabled(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scrollClipDisabled(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/scrollclipdisabled(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollContentBackground(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies the visibility of the background for scrollable views within",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollContentBackground"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10VisibilityO",
+          "text": "Visibility"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollContentBackground(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scrollContentBackground(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/scrollcontentbackground(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollDisabled(_:)": {
+      "abstract": [
+        {
+          "text": "Disables or enables scrolling in scrollable views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollDisabled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollDisabled(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scrollDisabled(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/scrolldisabled(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollDismissesKeyboard(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the behavior in which scrollable content interacts with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the software keyboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollDismissesKeyboard"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI27ScrollDismissesKeyboardModeV",
+          "text": "ScrollDismissesKeyboardMode"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollDismissesKeyboard(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scrollDismissesKeyboard(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/scrolldismisseskeyboard(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollIndicators(_:axes:)": {
+      "abstract": [
+        {
+          "text": "Sets the visibility of scroll indicators within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollIndicators"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25ScrollIndicatorVisibilityV",
+          "text": "ScrollIndicatorVisibility"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "axes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4AxisO",
+          "text": "Axis"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4AxisO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollIndicators(_:axes:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scrollIndicators(_:axes:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/scrollindicators(_:axes:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollIndicatorsFlash(onAppear:)": {
+      "abstract": [
+        {
+          "text": "Flashes the scroll indicators of a scrollable view when it appears.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollIndicatorsFlash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "onAppear"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollIndicatorsFlash(onAppear:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scrollIndicatorsFlash(onAppear:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/scrollindicatorsflash(onappear:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollIndicatorsFlash(trigger:)": {
+      "abstract": [
+        {
+          "text": "Flashes the scroll indicators of scrollable views when a value changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollIndicatorsFlash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "trigger"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollIndicatorsFlash(trigger:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scrollIndicatorsFlash(trigger:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/scrollindicatorsflash(trigger:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollInputBehavior(_:for:)": {
+      "abstract": [
+        {
+          "text": "Enables or disables scrolling in scrollable views when using particular",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "inputs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollInputBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19ScrollInputBehaviorV",
+          "text": "ScrollInputBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15ScrollInputKindV",
+          "text": "ScrollInputKind"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollInputBehavior(_:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scrollInputBehavior(_:for:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/scrollinputbehavior(_:for:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollPosition(_:anchor:)": {
+      "abstract": [
+        {
+          "text": "Associates a binding to a scroll position with a scroll view within this",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollPosition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14ScrollPositionV",
+          "text": "ScrollPosition"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "anchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9UnitPointV",
+          "text": "UnitPoint"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollPosition(_:anchor:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scrollPosition(_:anchor:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/scrollposition(_:anchor:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollPosition(id:anchor:)": {
+      "abstract": [
+        {
+          "text": "Associates a binding to be updated when a scroll view within this",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "view scrolls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollPosition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ")?>, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "anchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9UnitPointV",
+          "text": "UnitPoint"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollPosition(id:anchor:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scrollPosition(id:anchor:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/scrollposition(id:anchor:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTargetBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the scroll behavior of views scrollable in the provided axes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollTargetBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ScrollTargetBehaviorP",
+          "text": "ScrollTargetBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTargetBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scrollTargetBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/scrolltargetbehavior(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTargetLayout(isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Configures the outermost layout as a scroll target layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollTargetLayout"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTargetLayout(isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scrollTargetLayout(isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/scrolltargetlayout(isenabled:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTransition(_:axis:transition:)": {
+      "abstract": [
+        {
+          "text": "Applies the given transition, animating between the phases",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of the transition as this view appears and disappears within the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "visible region of the containing scroll view, or other container",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "specified using the ",
+          "type": "text"
+        },
+        {
+          "code": "coordinateSpace",
+          "type": "codeVoice"
+        },
+        {
+          "text": " parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollTransition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI29ScrollTransitionConfigurationV",
+          "text": "ScrollTransitionConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "axis"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4AxisO",
+          "text": "Axis"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "transition"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17EmptyVisualEffectV",
+          "text": "EmptyVisualEffect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21ScrollTransitionPhaseO",
+          "text": "ScrollTransitionPhase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTransition(_:axis:transition:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scrollTransition(_:axis:transition:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/scrolltransition(_:axis:transition:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTransition(topLeading:bottomTrailing:axis:transition:)": {
+      "abstract": [
+        {
+          "text": "Applies the given transition, animating between the phases",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of the transition as this view appears and disappears within the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "visible region of the containing scroll view, or other container",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "specified using the ",
+          "type": "text"
+        },
+        {
+          "code": "coordinateSpace",
+          "type": "codeVoice"
+        },
+        {
+          "text": " parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollTransition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "topLeading"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI29ScrollTransitionConfigurationV",
+          "text": "ScrollTransitionConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bottomTrailing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI29ScrollTransitionConfigurationV",
+          "text": "ScrollTransitionConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "axis"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4AxisO",
+          "text": "Axis"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "transition"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17EmptyVisualEffectV",
+          "text": "EmptyVisualEffect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21ScrollTransitionPhaseO",
+          "text": "ScrollTransitionPhase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTransition(topLeading:bottomTrailing:axis:transition:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scrollTransition(topLeading:bottomTrailing:axis:transition:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/scrolltransition(topleading:bottomtrailing:axis:transition:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ViewAlignedScrollTargetBehavior": {
+      "abstract": [
+        {
+          "text": "The scroll behavior that aligns scroll targets to view-based geometry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ViewAlignedScrollTargetBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ViewAlignedScrollTargetBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ViewAlignedScrollTargetBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "ViewAlignedScrollTargetBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/viewalignedscrolltargetbehavior"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/scroll-views": {
+      "abstract": [
+        {
+          "text": "A scroll view lets people view content that’s larger than the view’s boundaries by moving the content vertically or horizontally.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/scroll-views",
+      "images": [
+        {
+          "identifier": "components-scroll-views-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Scroll views",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/scroll-views"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "scroll-views-hero": {
+      "alt": null,
+      "identifier": "scroll-views-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fc9311e17b13443bf22043d6155e0e7f/scroll-views-hero@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "View-layout",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-fundamentals",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Custom-layout",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Lists",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Tables",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View-groupings"
+      ],
+      "title": "View layout"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-scroll-view",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollView",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollViewReader",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollViewProxy"
+      ],
+      "title": "Creating a scroll view"
+    },
+    {
+      "anchor": "Managing-scroll-position",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollPosition(_:anchor:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollPosition(id:anchor:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/defaultScrollAnchor(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/defaultScrollAnchor(_:for:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollAnchorRole",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollPosition"
+      ],
+      "title": "Managing scroll position"
+    },
+    {
+      "anchor": "Defining-scroll-targets",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTargetBehavior(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTargetLayout(isEnabled:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTarget",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehaviorContext",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PagingScrollTargetBehavior",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ViewAlignedScrollTargetBehavior",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyScrollTargetBehavior"
+      ],
+      "title": "Defining scroll targets"
+    },
+    {
+      "anchor": "Animating-scroll-transitions",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTransition(_:axis:transition:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollTransition(topLeading:bottomTrailing:axis:transition:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTransitionPhase",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTransitionConfiguration"
+      ],
+      "title": "Animating scroll transitions"
+    },
+    {
+      "anchor": "Responding-to-scroll-view-changes",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onScrollGeometryChange(for:of:action:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onScrollTargetVisibilityChange(idType:threshold:_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onScrollVisibilityChange(threshold:_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onScrollPhaseChange(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollGeometry",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollPhase",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollPhaseChangeContext"
+      ],
+      "title": "Responding to scroll view changes"
+    },
+    {
+      "anchor": "Showing-scroll-indicators",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollIndicatorsFlash(onAppear:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollIndicatorsFlash(trigger:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollIndicators(_:axes:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/horizontalScrollIndicatorVisibility",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/verticalScrollIndicatorVisibility",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollIndicatorVisibility"
+      ],
+      "title": "Showing scroll indicators"
+    },
+    {
+      "anchor": "Managing-content-visibility",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollContentBackground(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollClipDisabled(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollContentOffsetAdjustmentBehavior"
+      ],
+      "title": "Managing content visibility"
+    },
+    {
+      "anchor": "Disabling-scrolling",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollDisabled(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/isScrollEnabled"
+      ],
+      "title": "Disabling scrolling"
+    },
+    {
+      "anchor": "Configuring-scroll-bounce-behavior",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollBounceBehavior(_:axes:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/horizontalScrollBounceBehavior",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/verticalScrollBounceBehavior",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollBounceBehavior"
+      ],
+      "title": "Configuring scroll bounce behavior"
+    },
+    {
+      "anchor": "Interacting-with-a-software-keyboard",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollDismissesKeyboard(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/scrollDismissesKeyboardMode",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollDismissesKeyboardMode"
+      ],
+      "title": "Interacting with a software keyboard"
+    },
+    {
+      "anchor": "Managing-scrolling-for-different-inputs",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/scrollInputBehavior(_:for:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollInputKind",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollInputBehavior"
+      ],
+      "title": "Managing scrolling for different inputs"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/scroll-views"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

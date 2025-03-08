@@ -1,0 +1,1076 @@
+{
+  "abstract": [
+    {
+      "text": "Verify transactions with the App Store on a secure server.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/validating-receipts-with-the-app-store"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Validating receipts with the App Store"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " endpoint is deprecated. To validate receipts on your server, follow the steps in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/validating_receipts_on_the_device",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " on your server. To validate in-app purchases on your server without using receipts, call the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to get Apple-signed transaction and subscription information for your customers, or verify the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppTransaction",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " signed data that your app obtains. You can also get the same signed transaction and subscription information from the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An App Store receipt is a binary encrypted file signed with an Apple certificate. To read the contents of the encrypted file, you need to pass it through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint. The endpoint’s response includes a readable JSON body. Communication with the App Store is structured as JSON dictionaries, as defined in RFC 4627. Binary data is Base64-encoded, as defined in RFC 4648. Validate receipts with the App Store through a secure server. For information on establishing a secure network connection with the App Store, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/preventing-insecure-network-connections",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Don’t call the App Store server ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " endpoint from your app. You can’t build a trusted connection between a user’s device and the App Store directly because you don’t control either end of that connection, which makes it susceptible to a machine-in-the-middle attack.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "anchor": "Fetch-the-receipt-data",
+          "level": 3,
+          "text": "Fetch the receipt data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app receipt is always present in the production environment on devices running macOS, iOS, and iPadOS. The app receipt is also always present in TestFlight on devices running macOS. In the sandbox environment and in StoreKit Testing in Xcode, the app receipt is present only after the tester makes the first in-app purchase. If the app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKReceiptRefreshRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/restoreCompletedTransactions()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the app receipt is present only if the app has at least one in-app purchase.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To retrieve the receipt data from the app on the device, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1407276-appstorereceipturl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to locate the app’s receipt, and encode the data in Base64. Send this Base64-encoded data to your server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Get the receipt if it's available.",
+                    "if let appStoreReceiptURL = Bundle.main.appStoreReceiptURL,",
+                    "    FileManager.default.fileExists(atPath: appStoreReceiptURL.path) {",
+                    "",
+                    "    do {",
+                    "        let receiptData = try Data(contentsOf: appStoreReceiptURL, options: .alwaysMapped)",
+                    "        print(receiptData)",
+                    "",
+                    "        let receiptString = receiptData.base64EncodedString(options: [])",
+                    "",
+                    "        // Read receiptData.",
+                    "    }",
+                    "    catch { print(\"Couldn't read receipt data with error: \" + error.localizedDescription) }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "/* Load the receipt from the app bundle. */",
+                    "NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];",
+                    "NSData *receipt = [NSData dataWithContentsOfURL:receiptURL];",
+                    "",
+                    "if (!receipt) { ",
+                    "    NSLog(@\"no receipt\");",
+                    "    /* No local receipt -- handle the error. */ ",
+                    "} else {",
+                    "    /* Get the receipt in encoded format. */",
+                    "    NSString *encodedReceipt = [receipt base64EncodedStringWithOptions:0];",
+                    "}",
+                    "",
+                    "/* ... Send the receipt data to your server ... */"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Send-the-receipt-data-to-the-App-Store",
+          "level": 3,
+          "text": "Send the receipt data to the App Store",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On your server, create a JSON object with the ",
+              "type": "text"
+            },
+            {
+              "code": "receipt-data",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "password",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "exclude-old-transactions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keys detailed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/requestbody",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Submit this JSON object as the payload of an HTTP POST request. Use the test environment URL ",
+              "type": "text"
+            },
+            {
+              "code": "https://sandbox.itunes.apple.com/verifyReceipt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when testing your app in the sandbox and while your app is in review. Use the production URL ",
+              "type": "text"
+            },
+            {
+              "code": "https://buy.itunes.apple.com/verifyReceipt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when your app is live in the App Store. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Verify your receipt first with the production URL; then verify with the sandbox URL if you receive a ",
+                  "type": "text"
+                },
+                {
+                  "code": "21007",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " status code. This approach ensures you don’t have to switch between URLs while your app is in testing, in review by App Review, or live in the App Store.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Parse-the-response",
+          "level": 3,
+          "text": "Parse the response",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store’s response payload is a JSON object that contains the keys and values detailed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/responsebody",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "in_app",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array contains the non-consumable, non-renewing subscription, and auto-renewable subscription items that the user previously purchased. Check the values in the response for these in-app purchase types to verify transactions as needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For auto-renewable subscription items, parse the response to get information about the currently active subscription period. When you validate the receipt for a subscription, ",
+              "type": "text"
+            },
+            {
+              "code": "latest_receipt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the latest encoded receipt, which is the same as the value for ",
+              "type": "text"
+            },
+            {
+              "code": "receipt-data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the request, and ",
+              "type": "text"
+            },
+            {
+              "code": "latest_receipt_info",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains all the transactions for the subscription, including the initial purchase and subsequent renewals, but not including any restores.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use these values to check whether an auto-renewable subscription has expired. Use these values along with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/expiration_intent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subscription field to get the reason for expiration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppStoreServerAPI": {
+      "abstract": [
+        {
+          "text": "Manage your customers’ App Store transactions from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server API",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerAPI"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2": {
+      "abstract": [
+        {
+          "text": "Specify your secure server’s URL in App Store Connect to receive version 2 notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App Store Server Notifications V2",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2"
+    },
+    "doc://com.apple.documentation/documentation/Security/preventing-insecure-network-connections": {
+      "abstract": [
+        {
+          "text": "Enforce secure network links in your app by relying on App Transport Security.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/preventing-insecure-network-connections",
+      "kind": "article",
+      "role": "article",
+      "title": "Preventing Insecure Network Connections",
+      "type": "topic",
+      "url": "/documentation/Security/preventing-insecure-network-connections"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts": {
+      "abstract": [
+        {
+          "text": "Validate app and In-App Purchase receipts with the App Store.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Receipts",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/expiration_intent": {
+      "abstract": [
+        {
+          "text": "The reason a subscription expires.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "expiration_intent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/expiration_intent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "expiration_intent",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/expiration_intent"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/requestbody": {
+      "abstract": [
+        {
+          "text": "The JSON contents you submit with the request to the App Store.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestBody"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/requestbody",
+      "kind": "article",
+      "role": "symbol",
+      "title": "requestBody",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/requestbody"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/responsebody": {
+      "abstract": [
+        {
+          "text": "The JSON data that returns in the response from the App Store.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "responseBody"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/responsebody",
+      "kind": "article",
+      "role": "symbol",
+      "title": "responseBody",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/responsebody"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/validating_receipts_on_the_device": {
+      "abstract": [
+        {
+          "text": "Verify the contents of app receipts by decoding and parsing the receipt on the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/validating_receipts_on_the_device",
+      "kind": "article",
+      "role": "article",
+      "title": "Validating receipts on the device",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/validating_receipts_on_the_device"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt": {
+      "abstract": [
+        {
+          "text": "Send a receipt to the App Store for verification.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt",
+      "kind": "article",
+      "role": "symbol",
+      "title": "verifyReceipt",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/verifyreceipt"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle": {
+      "abstract": [
+        {
+          "text": "A representation of the code and resources stored in a bundle directory on disk. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bundle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bundle",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1407276-appstorereceipturl": {
+      "abstract": [
+        {
+          "text": "The file URL for the bundle’s App Store receipt.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "appStoreReceiptURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1407276-appstorereceipturl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appStoreReceiptURL",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1407276-appstorereceipturl"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/AppTransaction": {
+      "abstract": [
+        {
+          "text": "Information that represents the customer’s purchase of the app, cryptographically signed by the App Store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppTransaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppTransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppTransaction",
+      "type": "topic",
+      "url": "/documentation/storekit/apptransaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/restoreCompletedTransactions()": {
+      "abstract": [
+        {
+          "text": "Asks the payment queue to restore previously completed purchases.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restoreCompletedTransactions"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/restoreCompletedTransactions()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "restoreCompletedTransactions"
+        }
+      ],
+      "role": "symbol",
+      "title": "restoreCompletedTransactions()",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentqueue/restorecompletedtransactions()"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKReceiptRefreshRequest": {
+      "abstract": [
+        {
+          "text": "A request to the App Store to get the app receipt, which represents the customer’s transactions with your app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKReceiptRefreshRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKReceiptRefreshRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKReceiptRefreshRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKReceiptRefreshRequest",
+      "type": "topic",
+      "url": "/documentation/storekit/skreceiptrefreshrequest"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction": {
+      "abstract": [
+        {
+          "text": "Information that represents the customer’s purchase of a product in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transaction"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Transaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "Transaction",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/choosing-a-receipt-validation-technique": {
+      "abstract": [
+        {
+          "text": "Select the type of receipt validation, on the device or on your server, that works for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/choosing-a-receipt-validation-technique",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a receipt validation technique",
+      "type": "topic",
+      "url": "/documentation/storekit/choosing-a-receipt-validation-technique"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/original-api-for-in-app-purchase"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/appstorereceipts"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Purchase-validation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/choosing-a-receipt-validation-technique",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1407276-appstorereceipturl",
+        "doc://com.apple.storekit/documentation/StoreKit/SKReceiptRefreshRequest"
+      ],
+      "title": "Purchase validation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/appstorereceipts"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Purchase-validation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/choosing-a-receipt-validation-technique",
+                "doc://com.apple.documentation/documentation/foundation/bundle/1407276-appstorereceipturl",
+                "doc://com.apple.storekit/documentation/StoreKit/SKReceiptRefreshRequest"
+              ],
+              "title": "Purchase validation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1restoreCompletedTransactions()/title",
+          "value": "restoreCompletedTransactions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1restoreCompletedTransactions()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "restoreCompletedTransactions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKReceiptRefreshRequest/title",
+          "value": "SKReceiptRefreshRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKReceiptRefreshRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKReceiptRefreshRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKReceiptRefreshRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKReceiptRefreshRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1bundle/title",
+          "value": "NSBundle"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/validating-receipts-with-the-app-store"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/validating-receipts-with-the-app-store"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

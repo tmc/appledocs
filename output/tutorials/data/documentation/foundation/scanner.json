@@ -1,0 +1,1689 @@
+{
+  "abstract": [
+    {
+      "text": "A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/scanner"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1414895,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSScanner",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "Scanner"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "Scanner"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Scanner"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/scanner",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object interprets and converts the characters of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " into number and string values. You assign the scanner’s string when you create the scanner, and the scanner progresses through the characters of that string from beginning to end as you request items. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because of the nature of class clusters, a scanner object isn’t an actual instance of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/scanner",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class, but is one of its private subclasses. Although a scanner object’s class is private, its interface is public, as declared by this abstract superclass, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/scanner",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ". The objects you create using this class are referred to as scanner objects (and when no confusion will result, merely as scanners). ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/scanner",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object to ignore a set of characters as it scans the string, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1410204-characterstobeskipped",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Characters in the skip set are skipped over before the target is scanned. The default set of characters to skip is the whitespace and newline character set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To retrieve the unscanned remainder of the string, use ",
+              "type": "text"
+            },
+            {
+              "code": "scanner.string.substring(from: scanner.scanLocation)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/String": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/swift/string"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatadetector": {
+      "abstract": [
+        {
+          "text": "A specialized regular expression object that matches natural language text for predefined data patterns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDataDetector"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatadetector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDataDetector",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatadetector"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotfound": {
+      "abstract": [
+        {
+          "text": "A value indicating that a requested item couldn’t be found or doesn’t exist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNotFound"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotfound",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotFound",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotfound"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression": {
+      "abstract": [
+        {
+          "text": "An immutable representation of a compiled regular expression that you apply to Unicode strings.  ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRegularExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRegularExpression",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult": {
+      "abstract": [
+        {
+          "text": "An occurrence of textual content found during the analysis of a block of text, such as when matching a regular expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextCheckingResult"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTextCheckingResult",
+      "type": "topic",
+      "url": "/documentation/foundation/nstextcheckingresult"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner": {
+      "abstract": [
+        {
+          "text": "A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Scanner"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Scanner",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1407591-scanstring": {
+      "abstract": [
+        {
+          "text": "Scans a given string, returning an equivalent string object by reference if a match is found.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanString"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1407591-scanstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanString(_:into:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1407591-scanstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1408025-scandecimal": {
+      "abstract": [
+        {
+          "text": "Scans for an ",
+          "type": "text"
+        },
+        {
+          "code": "NSDecimal",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanDecimal"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<Decimal>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1408025-scandecimal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanDecimal(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1408025-scandecimal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1408559-scanunsignedlonglong": {
+      "abstract": [
+        {
+          "text": "Scans for an unsigned long long value from a decimal representation, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanUnsignedLongLong"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<UInt64>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1408559-scanunsignedlonglong",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanUnsignedLongLong(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1408559-scanunsignedlonglong"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1409488-casesensitive": {
+      "abstract": [
+        {
+          "text": "Flag that indicates whether the receiver distinguishes case in the characters it scans.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "caseSensitive"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1409488-casesensitive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "caseSensitive",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1409488-casesensitive"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1409531-locale": {
+      "abstract": [
+        {
+          "text": "The locale to use when scanning.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1409531-locale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "locale",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1409531-locale"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1410204-characterstobeskipped": {
+      "abstract": [
+        {
+          "text": "Character set containing the characters the scanner ignores when looking for a scannable element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "charactersToBeSkipped"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1410204-characterstobeskipped",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "charactersToBeSkipped",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1410204-characterstobeskipped"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1410914-scanint32": {
+      "abstract": [
+        {
+          "text": "Scans for an int value from a decimal representation, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanInt32"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<Int32>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1410914-scanint32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanInt32(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1410914-scanint32"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1411082-scanint": {
+      "abstract": [
+        {
+          "text": "Scans for an NSInteger value from a decimal representation, returning a found value by reference",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanInt"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<Int>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1411082-scanint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanInt(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1411082-scanint"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1411236-scanhexfloat": {
+      "abstract": [
+        {
+          "text": "Scans for a double value from a hexadecimal representation, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanHexFloat"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<Float>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1411236-scanhexfloat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanHexFloat(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1411236-scanhexfloat"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1411677-scanfloat": {
+      "abstract": [
+        {
+          "text": "Scans for a float value, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanFloat"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<Float>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1411677-scanfloat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanFloat(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1411677-scanfloat"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1411780-scanhexdouble": {
+      "abstract": [
+        {
+          "text": "Scans for a double value from a hexadecimal representation, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanHexDouble"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<Double>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1411780-scanhexdouble",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanHexDouble(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1411780-scanhexdouble"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1411971-scanupto": {
+      "abstract": [
+        {
+          "text": "Scans the string until a given string is encountered, accumulating characters into a string that’s returned by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanUpTo"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1411971-scanupto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanUpTo(_:into:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1411971-scanupto"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1412629-scanint64": {
+      "abstract": [
+        {
+          "text": "Scans for a long long value from a decimal representation, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanInt64"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<Int64>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1412629-scanint64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanInt64(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1412629-scanint64"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1412759-scanhexint64": {
+      "abstract": [
+        {
+          "text": "Scans for a long long value from a hexadecimal representation, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanHexInt64"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<UInt64>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1412759-scanhexint64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanHexInt64(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1412759-scanhexint64"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1412801-isatend": {
+      "abstract": [
+        {
+          "text": "Flag that indicates whether the receiver has exhausted all significant characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAtEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1412801-isatend",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isAtEnd",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1412801-isatend"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1413294-scanlocation": {
+      "abstract": [
+        {
+          "text": "The character position at which the receiver will begin its next scanning operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1413294-scanlocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanLocation",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1413294-scanlocation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1413598-scanuptocharacters": {
+      "abstract": [
+        {
+          "text": "Scans the string until a character from a given character set is encountered, accumulating characters into a string that’s returned by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanUpToCharacters"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet, "
+        },
+        {
+          "kind": "identifier",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1413598-scanuptocharacters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanUpToCharacters(from:into:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1413598-scanuptocharacters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1413857-scanhexint32": {
+      "abstract": [
+        {
+          "text": "Scans for an unsigned value from a hexadecimal representation, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanHexInt32"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<UInt32>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1413857-scanhexint32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanHexInt32(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1413857-scanhexint32"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1415577-localizedscanner": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSScanner",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object that scans a given string according to the user’s default locale. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedScanner"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1415577-localizedscanner",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedScanner(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1415577-localizedscanner"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1415922-scandouble": {
+      "abstract": [
+        {
+          "text": "Scans for a double value, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanDouble"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<Double>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1415922-scandouble",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanDouble(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1415922-scandouble"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1417131-init": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSScanner",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object initialized to scan a given string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1417131-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(string:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1417131-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1417575-scancharacters": {
+      "abstract": [
+        {
+          "text": "Scans the string as long as characters from a given character set are encountered, accumulating characters into a string that’s returned by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanCharacters"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet, "
+        },
+        {
+          "kind": "identifier",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1417575-scancharacters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanCharacters(from:into:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1417575-scancharacters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/1418109-string": {
+      "abstract": [
+        {
+          "text": "The string the scanner will scan.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/1418109-string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "string",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/1418109-string"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/3200279-currentindex": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": String.Index"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/3200279-currentindex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentIndex",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/3200279-currentindex"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/3200280-scancharacter": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanCharacter"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Character?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/3200280-scancharacter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanCharacter()",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/3200280-scancharacter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/3200281-scancharacters": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanCharacters"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/3200281-scancharacters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanCharacters(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/3200281-scancharacters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/3200282-scandecimal": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanDecimal"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Decimal?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/3200282-scandecimal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanDecimal()",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/3200282-scandecimal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/3200283-scandouble": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanDouble"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "representation"
+        },
+        {
+          "kind": "text",
+          "text": ": Scanner.NumberRepresentation) -> Double?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/3200283-scandouble",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanDouble(representation:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/3200283-scandouble"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/3200284-scanfloat": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanFloat"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "representation"
+        },
+        {
+          "kind": "text",
+          "text": ": Scanner.NumberRepresentation) -> Float?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/3200284-scanfloat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanFloat(representation:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/3200284-scanfloat"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/3200285-scanint": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanInt"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "representation"
+        },
+        {
+          "kind": "text",
+          "text": ": Scanner.NumberRepresentation) -> Int?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/3200285-scanint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanInt(representation:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/3200285-scanint"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/3200286-scanint32": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanInt32"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "representation"
+        },
+        {
+          "kind": "text",
+          "text": ": Scanner.NumberRepresentation) -> Int32?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/3200286-scanint32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanInt32(representation:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/3200286-scanint32"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/3200287-scanint64": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanInt64"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "representation"
+        },
+        {
+          "kind": "text",
+          "text": ": Scanner.NumberRepresentation) -> Int64?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/3200287-scanint64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanInt64(representation:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/3200287-scanint64"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/3200288-scanstring": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanString"
+        },
+        {
+          "kind": "text",
+          "text": "(String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/3200288-scanstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanString(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/3200288-scanstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/3200289-scanuint64": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanUInt64"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "representation"
+        },
+        {
+          "kind": "text",
+          "text": ": Scanner.NumberRepresentation) -> UInt64?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/3200289-scanuint64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanUInt64(representation:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/3200289-scanuint64"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/3200290-scanuptocharacters": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanUpToCharacters"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/3200290-scanuptocharacters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanUpToCharacters(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/3200290-scanuptocharacters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/3200291-scanuptostring": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanUpToString"
+        },
+        {
+          "kind": "text",
+          "text": "(String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/3200291-scanuptostring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanUpToString(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/3200291-scanuptostring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner/numberrepresentation": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "Scanner.NumberRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner/numberrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Scanner.NumberRepresentation",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner/numberrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/strings_and_text": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strings and Text",
+      "type": "topic",
+      "url": "/documentation/foundation/strings_and_text"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsregularexpression",
+        "doc://com.apple.documentation/documentation/foundation/nsdatadetector",
+        "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult",
+        "doc://com.apple.documentation/documentation/foundation/nsnotfound"
+      ],
+      "title": "Pattern Matching"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1669551",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/scanner/1415577-localizedscanner",
+        "doc://com.apple.documentation/documentation/foundation/scanner/1417131-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Scanner"
+    },
+    {
+      "anchor": "1669589",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/scanner/1418109-string"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting a Scanner’s String"
+    },
+    {
+      "anchor": "1669610",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/scanner/1413294-scanlocation",
+        "doc://com.apple.documentation/documentation/foundation/scanner/1409488-casesensitive",
+        "doc://com.apple.documentation/documentation/foundation/scanner/1410204-characterstobeskipped",
+        "doc://com.apple.documentation/documentation/foundation/scanner/1409531-locale"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring a Scanner"
+    },
+    {
+      "anchor": "1669646",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/scanner/1417575-scancharacters",
+        "doc://com.apple.documentation/documentation/foundation/scanner/1413598-scanuptocharacters",
+        "doc://com.apple.documentation/documentation/foundation/scanner/1407591-scanstring",
+        "doc://com.apple.documentation/documentation/foundation/scanner/1411971-scanupto"
+      ],
+      "kind": "taskGroup",
+      "title": "Scanning Characters and Strings"
+    },
+    {
+      "anchor": "3023109",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/scanner/1408025-scandecimal",
+        "doc://com.apple.documentation/documentation/foundation/scanner/1415922-scandouble",
+        "doc://com.apple.documentation/documentation/foundation/scanner/1411677-scanfloat",
+        "doc://com.apple.documentation/documentation/foundation/scanner/1411780-scanhexdouble",
+        "doc://com.apple.documentation/documentation/foundation/scanner/1411236-scanhexfloat",
+        "doc://com.apple.documentation/documentation/foundation/scanner/1413857-scanhexint32",
+        "doc://com.apple.documentation/documentation/foundation/scanner/1412759-scanhexint64",
+        "doc://com.apple.documentation/documentation/foundation/scanner/1411082-scanint",
+        "doc://com.apple.documentation/documentation/foundation/scanner/1410914-scanint32",
+        "doc://com.apple.documentation/documentation/foundation/scanner/1412629-scanint64",
+        "doc://com.apple.documentation/documentation/foundation/scanner/1408559-scanunsignedlonglong"
+      ],
+      "kind": "taskGroup",
+      "title": "Scanning Numeric Values"
+    },
+    {
+      "anchor": "3023108",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/scanner/1412801-isatend"
+      ],
+      "kind": "taskGroup",
+      "title": "Monitoring Scanner Progress"
+    },
+    {
+      "anchor": "3214392",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/scanner/3200279-currentindex"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "3214393",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/scanner/3200280-scancharacter",
+        "doc://com.apple.documentation/documentation/foundation/scanner/3200281-scancharacters",
+        "doc://com.apple.documentation/documentation/foundation/scanner/3200282-scandecimal",
+        "doc://com.apple.documentation/documentation/foundation/scanner/3200283-scandouble",
+        "doc://com.apple.documentation/documentation/foundation/scanner/3200284-scanfloat",
+        "doc://com.apple.documentation/documentation/foundation/scanner/3200285-scanint",
+        "doc://com.apple.documentation/documentation/foundation/scanner/3200286-scanint32",
+        "doc://com.apple.documentation/documentation/foundation/scanner/3200287-scanint64",
+        "doc://com.apple.documentation/documentation/foundation/scanner/3200288-scanstring",
+        "doc://com.apple.documentation/documentation/foundation/scanner/3200289-scanuint64",
+        "doc://com.apple.documentation/documentation/foundation/scanner/3200290-scanuptocharacters",
+        "doc://com.apple.documentation/documentation/foundation/scanner/3200291-scanuptostring"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "3214394",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/scanner/numberrepresentation"
+      ],
+      "kind": "taskGroup",
+      "title": "Enumerations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsscanner"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/scanner"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

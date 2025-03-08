@@ -1,0 +1,407 @@
+{
+  "abstract": [
+    {
+      "text": "Tells the client that the URL Loading System received an authentication challenge.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration",
+        "doc://com.apple.documentation/documentation/foundation/nsurlprotocol",
+        "doc://com.apple.documentation/documentation/foundation/nsurlprotocolclient"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsurlprotocolclient/1413387-urlprotocol"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1413387,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)NSURLProtocolClient(im)URLProtocol:didReceiveAuthenticationChallenge:",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSURLProtocolClient"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.2",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "required": true,
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "intfm",
+    "title": "URLProtocol:didReceiveAuthenticationChallenge:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "identifier",
+              "text": "URLProtocol:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURLProtocol",
+              "text": "NSURLProtocol"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didReceiveAuthenticationChallenge:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlauthenticationchallenge",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURLAuthenticationChallenge",
+              "text": "NSURLAuthenticationChallenge"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "challenge"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The URL protocol object sending the message.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "protocol"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The authentication challenge that has been received.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "challenge"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The protocol client guarantees that it will answer the request on the same thread that called this method. The client may add a default credential to the challenge it issues to the connection delegate, if ",
+              "type": "text"
+            },
+            {
+              "code": "protocol",
+              "type": "codeVoice"
+            },
+            {
+              "text": " did not provide one.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlauthenticationchallenge": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlauthenticationchallenge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLAuthenticationChallenge",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlauthenticationchallenge"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLProtocol",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocolclient": {
+      "abstract": [
+        {
+          "text": "The interface used by ",
+          "type": "text"
+        },
+        {
+          "text": " subclasses to communicate with the URL Loading System.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocolclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLProtocolClient",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocolclient"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocolclient/1410932-urlprotocol": {
+      "abstract": [
+        {
+          "text": "Tells the client that an authentication challenge has been canceled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLProtocol:didCancelAuthenticationChallenge:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocolclient/1410932-urlprotocol",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "URLProtocol:didCancelAuthenticationChallenge:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocolclient/1410932-urlprotocol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocolclient/1413387-urlprotocol": {
+      "abstract": [
+        {
+          "text": "Tells the client that the URL Loading System received an authentication challenge.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLProtocol:didReceiveAuthenticationChallenge:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocolclient/1413387-urlprotocol",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "URLProtocol:didReceiveAuthenticationChallenge:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocolclient/1413387-urlprotocol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlprotocolclient/1410932-urlprotocol"
+      ],
+      "title": "Handling authentication challenges"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurlprotocolclient/1413387-urlprotocol"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/urlprotocolclient/1413387-urlprotocol"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

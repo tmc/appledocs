@@ -1,0 +1,2410 @@
+{
+  "abstract": [
+    {
+      "text": "A group of one or more bar button items for placement on a navigation bar or shortcuts bar.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UIBarButtonItemGroup",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UIBarButtonItemGroup"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIBarButtonItemGroup"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UIBarButtonItemGroup"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItemGroup"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A group contains one or more bar button items and an optional representative item that’s displayed instead of the individual items under space constraints. You can create any number of groups and configure each group with any number of items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating a group with more than one bar button item, it’s recommended that you also provide a representative item to display. The representative item must be a completely separate bar button item; it must not be one of the items already in the group. UIKit displays the representative item when there isn’t enough room to display all of the group’s items in the bar. Taps in the representative item call that item’s action method. When you don’t specify an action method, UIKit automatically displays the items in the group using a standard interface. To present your own interface, provide a custom action method and use it to display the interface you want.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Support-the-shortcuts-bar",
+          "level": 3,
+          "text": "Support the shortcuts bar",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After configuring a group, assign it to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object associated with one of your app’s responder objects. Your custom items are displayed only in conjunction with the system keyboard. When the keyboard is displayed, UIKit retrieves your custom groups from the text input assistant item and adds the corresponding items to the shortcuts bar. You may specify more than one group before and after the typing suggestions. UIKit tries to display as many items as possible on the shortcuts bar, falling back to the groups’ representative items as needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItem": {
+      "abstract": [
+        {
+          "text": "A specialized button for placement on a toolbar, navigation bar, or shortcuts bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBarButtonItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBarButtonItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBarButtonItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup": {
+      "abstract": [
+        {
+          "text": "A group of one or more bar button items for placement on a navigation bar or shortcuts bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBarButtonItemGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBarButtonItemGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBarButtonItemGroup",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitemgroup"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/alwaysAvailable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the group is always available through the UI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alwaysAvailable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/alwaysAvailable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "alwaysAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "alwaysAvailable",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitemgroup/alwaysavailable"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/barButtonItems": {
+      "abstract": [
+        {
+          "text": "The bar button items to display on the bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "barButtonItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/barButtonItems",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "barButtonItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "barButtonItems",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitemgroup/barbuttonitems"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/fixedGroup(representativeItem:items:)": {
+      "abstract": [
+        {
+          "text": "Creates a fixed group that a person can’t move or remove from the navigation bar during layout customization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fixedGroup"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "representativeItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "items"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItemGroup",
+          "text": "UIBarButtonItemGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/fixedGroup(representativeItem:items:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fixedGroup(representativeItem:items:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitemgroup/fixedgroup(representativeitem:items:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/fixedGroupWithRepresentativeItem:items:": {
+      "abstract": [
+        {
+          "text": "Creates a fixed group that a person can’t move or remove from the navigation bar during layout customization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "fixedGroupWithRepresentativeItem:items:"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/fixedGroupWithRepresentativeItem:items:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fixedGroupWithRepresentativeItem:items:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fixedGroupWithRepresentativeItem:items:",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitemgroup/fixedgroupwithrepresentativeitem:items:"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/init(barButtonItems:representativeItem:)": {
+      "abstract": [
+        {
+          "text": "Creates a fixed group with the specified items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "barButtonItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "representativeItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/init(barButtonItems:representativeItem:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithBarButtonItems:representativeItem:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(barButtonItems:representativeItem:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitemgroup/init(barbuttonitems:representativeitem:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/init(coder:)": {
+      "abstract": [
+        {
+          "text": "Creates a bar button item group from data in an unarchiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/init(coder:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCoder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitemgroup/init(coder:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/isDisplayingRepresentativeItem": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the representative item is showing in place of the group’s items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDisplayingRepresentativeItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/isDisplayingRepresentativeItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "displayingRepresentativeItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "isDisplayingRepresentativeItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitemgroup/isdisplayingrepresentativeitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/isHidden": {
+      "abstract": [
+        {
+          "text": "A Boolean that determines the visibility of the group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isHidden"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/isHidden",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hidden"
+        }
+      ],
+      "role": "symbol",
+      "title": "isHidden",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitemgroup/ishidden"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/menuRepresentation": {
+      "abstract": [
+        {
+          "text": "A menu element that represents the group when it appears in a menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "menuRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIMenuElement",
+          "text": "UIMenuElement"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/menuRepresentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "menuRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "menuRepresentation",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitemgroup/menurepresentation"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/movableGroup(customizationIdentifier:representativeItem:items:)": {
+      "abstract": [
+        {
+          "text": "Creates a movable group that a person can move but can’t remove from the navigation bar during layout customization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "movableGroup"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "customizationIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "representativeItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "items"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItemGroup",
+          "text": "UIBarButtonItemGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/movableGroup(customizationIdentifier:representativeItem:items:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "movableGroup(customizationIdentifier:representativeItem:items:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitemgroup/movablegroup(customizationidentifier:representativeitem:items:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/movableGroupWithCustomizationIdentifier:representativeItem:items:": {
+      "abstract": [
+        {
+          "text": "Creates a movable group that a person can move but can’t remove from the navigation bar during layout customization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "movableGroupWithCustomizationIdentifier:representativeItem:items:"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/movableGroupWithCustomizationIdentifier:representativeItem:items:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "movableGroupWithCustomizationIdentifier:representativeItem:items:"
+        }
+      ],
+      "role": "symbol",
+      "title": "movableGroupWithCustomizationIdentifier:representativeItem:items:",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitemgroup/movablegroupwithcustomizationidentifier:representativeitem:items:"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/optionalGroup(customizationIdentifier:isInDefaultCustomization:representativeItem:items:)": {
+      "abstract": [
+        {
+          "text": "Creates an optional group that a person can move, add to, or remove from the navigation bar during layout customization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "optionalGroup"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "customizationIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isInDefaultCustomization"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "representativeItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "items"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItemGroup",
+          "text": "UIBarButtonItemGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/optionalGroup(customizationIdentifier:isInDefaultCustomization:representativeItem:items:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "optionalGroup(customizationIdentifier:isInDefaultCustomization:representativeItem:items:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitemgroup/optionalgroup(customizationidentifier:isindefaultcustomization:representativeitem:items:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/optionalGroupWithCustomizationIdentifier:inDefaultCustomization:representativeItem:items:": {
+      "abstract": [
+        {
+          "text": "Creates an optional group that a person can move, add to, or remove from the navigation bar during layout customization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "optionalGroupWithCustomizationIdentifier:inDefaultCustomization:representativeItem:items:"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/optionalGroupWithCustomizationIdentifier:inDefaultCustomization:representativeItem:items:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "optionalGroupWithCustomizationIdentifier:inDefaultCustomization:representativeItem:items:"
+        }
+      ],
+      "role": "symbol",
+      "title": "optionalGroupWithCustomizationIdentifier:inDefaultCustomization:representativeItem:items:",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitemgroup/optionalgroupwithcustomizationidentifier:indefaultcustomization:representativeitem:items:"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/representativeItem": {
+      "abstract": [
+        {
+          "text": "The item to display for a group when space is constrained.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "representativeItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/representativeItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "representativeItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "representativeItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitemgroup/representativeitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarItem": {
+      "abstract": [
+        {
+          "text": "An abstract superclass for items that you can add to a bar that appears at the bottom of the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBarItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uibaritem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarPositioning": {
+      "abstract": [
+        {
+          "text": "A set of methods for defining the positioning of bars in iOS apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBarPositioning"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarPositioning",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBarPositioning"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBarPositioning",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarpositioning"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarPositioningDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods that support the positioning of a bar that conforms to the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarPositioning",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBarPositioningDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarPositioningDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBarPositioningDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBarPositioningDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarpositioningdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationBar": {
+      "abstract": [
+        {
+          "text": "Navigational controls that display in a bar along the top of the screen, usually in conjunction with a navigation controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINavigationBar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationBar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UINavigationBar"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationBar",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationbar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchBar": {
+      "abstract": [
+        {
+          "text": "A specialized view for receiving search-related information from the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchBar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchBar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchBar"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchBar",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchbar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBar": {
+      "abstract": [
+        {
+          "text": "A control that displays one or more buttons in a tab bar for selecting between different subtasks, views, or modes in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITabBar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabBar"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabBar",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarItem": {
+      "abstract": [
+        {
+          "text": "An object that describes an item in a tab bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITabBarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabBarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabBarItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbaritem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem": {
+      "abstract": [
+        {
+          "text": "An object that manages custom bar button items that you add to the shortcuts bar above the keyboard on iPad.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextInputAssistantItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputAssistantItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextInputAssistantItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextInputAssistantItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputassistantitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIToolbar": {
+      "abstract": [
+        {
+          "text": "A control that displays one or more buttons along the bottom edge of your interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIToolbar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIToolbar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIToolbar"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIToolbar",
+      "type": "topic",
+      "url": "/documentation/uikit/uitoolbar"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Bars",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIBarItem",
+        "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItem",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationBar",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchBar",
+        "doc://com.apple.uikit/documentation/UIKit/UIToolbar",
+        "doc://com.apple.uikit/documentation/UIKit/UITabBar",
+        "doc://com.apple.uikit/documentation/UIKit/UITabBarItem",
+        "doc://com.apple.uikit/documentation/UIKit/UIBarPositioning",
+        "doc://com.apple.uikit/documentation/UIKit/UIBarPositioningDelegate"
+      ],
+      "title": "Bars"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-group",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/fixedGroup(representativeItem:items:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/movableGroup(customizationIdentifier:representativeItem:items:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/optionalGroup(customizationIdentifier:isInDefaultCustomization:representativeItem:items:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/init(barButtonItems:representativeItem:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/init(coder:)"
+      ],
+      "title": "Creating a group"
+    },
+    {
+      "anchor": "Configuring-the-group",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/barButtonItems",
+        "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/representativeItem",
+        "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/alwaysAvailable"
+      ],
+      "title": "Configuring the group"
+    },
+    {
+      "anchor": "Determining-the-groups-appearance",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/isDisplayingRepresentativeItem",
+        "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/isHidden"
+      ],
+      "title": "Determining the group’s appearance"
+    },
+    {
+      "anchor": "Representing-the-group-in-a-menu",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/menuRepresentation"
+      ],
+      "title": "Representing the group in a menu"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIBarButtonItemGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItemGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItemGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-group",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/fixedGroupWithRepresentativeItem:items:",
+                "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/movableGroupWithCustomizationIdentifier:representativeItem:items:",
+                "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/optionalGroupWithCustomizationIdentifier:inDefaultCustomization:representativeItem:items:",
+                "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/init(barButtonItems:representativeItem:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/init(coder:)"
+              ],
+              "title": "Creating a group"
+            },
+            {
+              "anchor": "Configuring-the-group",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/barButtonItems",
+                "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/representativeItem",
+                "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/alwaysAvailable"
+              ],
+              "title": "Configuring the group"
+            },
+            {
+              "anchor": "Determining-the-groups-appearance",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/isDisplayingRepresentativeItem",
+                "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/isHidden"
+              ],
+              "title": "Determining the group’s appearance"
+            },
+            {
+              "anchor": "Representing-the-group-in-a-menu",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup/menuRepresentation"
+              ],
+              "title": "Representing the group in a menu"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Bars",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIBarItem",
+                "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItem",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationBar",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchBar",
+                "doc://com.apple.uikit/documentation/UIKit/UIToolbar",
+                "doc://com.apple.uikit/documentation/UIKit/UITabBar",
+                "doc://com.apple.uikit/documentation/UIKit/UITabBarItem",
+                "doc://com.apple.uikit/documentation/UIKit/UIBarPositioning",
+                "doc://com.apple.uikit/documentation/UIKit/UIBarPositioningDelegate"
+              ],
+              "title": "Bars"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UIBarButtonItemGroup"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputAssistantItem/title",
+          "value": "UITextInputAssistantItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputAssistantItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputAssistantItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputAssistantItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputAssistantItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup~1alwaysAvailable/title",
+          "value": "alwaysAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup~1alwaysAvailable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "alwaysAvailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItem/title",
+          "value": "UIBarButtonItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarPositioningDelegate/title",
+          "value": "UIBarPositioningDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarPositioningDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarPositioningDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarPositioningDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarPositioningDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarPositioning/title",
+          "value": "UIBarPositioning"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarPositioning/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarPositioning"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarPositioning/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarPositioning"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup~1isHidden/title",
+          "value": "hidden"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup~1isHidden/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hidden"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup~1isDisplayingRepresentativeItem/title",
+          "value": "displayingRepresentativeItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup~1isDisplayingRepresentativeItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "displayingRepresentativeItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchBar/title",
+          "value": "UISearchBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchBar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchBar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup/title",
+          "value": "UIBarButtonItemGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItemGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItemGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarItem/title",
+          "value": "UITabBarItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIToolbar/title",
+          "value": "UIToolbar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIToolbar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIToolbar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIToolbar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIToolbar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarItem/title",
+          "value": "UIBarItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup~1menuRepresentation/title",
+          "value": "menuRepresentation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup~1menuRepresentation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "menuRepresentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup~1init(coder:)/title",
+          "value": "initWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup~1init(coder:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCoder:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBar/title",
+          "value": "UINavigationBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup~1init(barButtonItems:representativeItem:)/title",
+          "value": "initWithBarButtonItems:representativeItem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup~1init(barButtonItems:representativeItem:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithBarButtonItems:representativeItem:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBar/title",
+          "value": "UITabBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup~1representativeItem/title",
+          "value": "representativeItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup~1representativeItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "representativeItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup~1barButtonItems/title",
+          "value": "barButtonItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup~1barButtonItems/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "barButtonItems"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uibarbuttonitemgroup"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uibarbuttonitemgroup"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

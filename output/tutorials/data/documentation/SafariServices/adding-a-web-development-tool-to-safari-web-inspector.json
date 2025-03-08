@@ -1,0 +1,576 @@
+{
+  "abstract": [
+    {
+      "text": "Expand the built-in Safari Web Inspector to include your custom tool, augmenting developers’ options for inspecting, testing, and debugging webpages.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/adding-a-web-development-tool-to-safari-web-inspector"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding a web development tool to Safari Web Inspector"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Safari provides Web Inspector, a set of tools that web developers use to inspect and debug their webpages. These built-in development tools are useful for analyzing basic issues in HTML, CSS, and JavaScript.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Safari 16 or later, you can create a custom web development tool that can inspect and interact with a webpage in a target window. You design the tool’s user interface to meet to your web development approach and needs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, you may build webpages with a custom web framework or architecture, where the built-in web development tools are not sufficient to see how components interact, how state is managed, or how events are processed. Your tool could provide support that specifically addresses the development needs of that custom web framework or architecture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You deliver your tool in a Safari web extension. When a user downloads your extension, your tool appears as a new tab in Web Inspector. For more information about creating a new extension, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/creating-a-safari-web-extension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information about converting an existing web extension that works in another browser, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/converting-a-web-extension-for-safari",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". After you create or convert the extension, configure your Safari web extension manifest so that Safari adds your tool to Web Inspector, and satisfy requirements for Safari user permissions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-web-development-tool-to-your-extension",
+          "level": 3,
+          "text": "Add the web development tool to your extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add an HTML file to your extension that contains the code for your web development tool and user interface, and add any supporting JavaScript files that contain additional code your web development tool uses. For more information on adding files, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/updating-a-safari-web-extension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, in your extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "manifest.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "devtools_page",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key, and specify your tool’s HTML file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add or update the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "permissions",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " entry to include the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "devtools",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " permission.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "{",
+            "    ...",
+            "    \"devtools_page\": \"example_devtool.html\",",
+            "    \"permissions\": \"devtools\"",
+            "    ...",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on development tools’ capabilities and how to build them, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Extending_the_developer_tools",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Satisfy-Safari-user-permission-requirements",
+          "level": 3,
+          "text": "Satisfy Safari user permission requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Safari requires user permission for each target page that the user inspects with your development tool. Optimize your development tool approach to support this requirement:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To tell Safari to add your tool as a tab in Web Inspector, you must create the inspector tab in your extension using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "browser.devtools.panel.create()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Don’t conditionally create the inspector tab after you check permissions; if you do, Safari won’t add a tab for your tool.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let Safari handle permissions with its dialogs; then update your user interface based on permission status.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on requesting permissions in your extension, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/managing-safari-web-extension-permissions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Install and run your extension. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To view your development tool in Safari, choose Develop > Show Web Inspector. For more information on enabling development tools in Safari, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/safari/tools/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/converting-a-web-extension-for-safari": {
+      "abstract": [
+        {
+          "text": "Convert your existing extension to a Safari web extension using Xcode’s command-line tool.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/converting-a-web-extension-for-safari",
+      "kind": "article",
+      "role": "article",
+      "title": "Converting a web extension for Safari",
+      "type": "topic",
+      "url": "/documentation/safariservices/converting-a-web-extension-for-safari"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/creating-a-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Build a Safari web extension in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/creating-a-safari-web-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Safari web extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/creating-a-safari-web-extension"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/creating-safari-web-inspector-extensions": {
+      "abstract": [
+        {
+          "text": "Learn how to make custom Safari Web Inspector extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/creating-safari-web-inspector-extensions",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating Safari Web Inspector extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/creating-safari-web-inspector-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/managing-safari-web-extension-permissions": {
+      "abstract": [
+        {
+          "text": "Respect user privacy by setting appropriate permissions for your Safari web extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/managing-safari-web-extension-permissions",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Safari web extension permissions",
+      "type": "topic",
+      "url": "/documentation/safariservices/managing-safari-web-extension-permissions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Install and update your extension in Safari as you make changes in development.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Running your Safari web extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/running-your-safari-web-extension"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions": {
+      "abstract": [
+        {
+          "text": "Create web extensions that work in Safari and other browsers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari web extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-web-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/updating-a-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Add new features and fix bugs in your Safari web extension using Xcode tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/updating-a-safari-web-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Updating a Safari web extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/updating-a-safari-web-extension"
+    },
+    "https://developer.apple.com/safari/tools/": {
+      "identifier": "https://developer.apple.com/safari/tools/",
+      "title": "Web development tools",
+      "titleInlineContent": [
+        {
+          "text": "Web development tools",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/safari/tools/"
+    },
+    "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Extending_the_developer_tools": {
+      "identifier": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Extending_the_developer_tools",
+      "title": "Extending the developer tools",
+      "titleInlineContent": [
+        {
+          "text": "Extending the developer tools",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Extending_the_developer_tools"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/creating-a-safari-web-extension",
+        "doc://com.apple.safariservices/documentation/SafariServices/converting-a-web-extension-for-safari",
+        "doc://com.apple.safariservices/documentation/SafariServices/updating-a-safari-web-extension",
+        "doc://com.apple.safariservices/documentation/SafariServices/managing-safari-web-extension-permissions",
+        "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Adding-Web-Inspector-tools",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/creating-safari-web-inspector-extensions"
+      ],
+      "title": "Adding Web Inspector tools"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/creating-a-safari-web-extension",
+                "doc://com.apple.safariservices/documentation/SafariServices/converting-a-web-extension-for-safari",
+                "doc://com.apple.safariservices/documentation/SafariServices/updating-a-safari-web-extension",
+                "doc://com.apple.safariservices/documentation/SafariServices/managing-safari-web-extension-permissions",
+                "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Adding-Web-Inspector-tools",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/creating-safari-web-inspector-extensions"
+              ],
+              "title": "Adding Web Inspector tools"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/adding-a-web-development-tool-to-safari-web-inspector"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/adding-a-web-development-tool-to-safari-web-inspector"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

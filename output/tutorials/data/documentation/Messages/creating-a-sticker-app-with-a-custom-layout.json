@@ -1,0 +1,799 @@
+{
+  "abstract": [
+    {
+      "text": "Expand on the Messages sticker app template to create an app with a customized user interface.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.messages/documentation/Messages"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.messages/documentation/Messages/creating-a-sticker-app-with-a-custom-layout"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Messages"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating a Sticker App with a Custom Layout"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode provides a template for creating sticker pack apps, but the template’s presets limit customization. The Stickers sample project demonstrates how to create your own sticker pack app using an application template instead of the Xcode template, and how to customize the app’s layout.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Xcode project consists of two targets:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An iOS application that has no functionality in this sample, but usually contains your main application.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An iMessage Extension target that contains all logic for building and displaying the stickers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the iMessage Extension target first initializes, the ",
+              "type": "text"
+            },
+            {
+              "code": "viewDidAppear",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method of the ",
+              "type": "text"
+            },
+            {
+              "code": "MessagesViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " configures and displays the ",
+              "type": "text"
+            },
+            {
+              "code": "UICollectionView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which contains several sections of stickers, as well as actions to create new ones.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customize-the-Sticker-Layout",
+          "level": 3,
+          "text": "Customize the Sticker Layout",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Stickers app uses a ",
+              "type": "text"
+            },
+            {
+              "code": "UICollectionView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to display its stickers. While the Xcode template only allows for two, three, or four items per row, the sample displays five items per row using a ",
+              "type": "text"
+            },
+            {
+              "code": "UICollectionViewCompositionalLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows an example of a custom layout:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Creates a custom layout using section providers.",
+            "private static func createLayout() -> UICollectionViewLayout {",
+            "    let sectionProvider = { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in",
+            "        let headerFooterSize = NSCollectionLayoutSize(",
+            "            widthDimension: .fractionalWidth(1.0),",
+            "            heightDimension: sectionIndex < 2 ? .absolute(64) : .estimated(44))",
+            "        ",
+            "        switch sectionIndex {",
+            "            // texts",
+            "            case 0:",
+            "                let textSection = MessagesViewController.oneItemSection",
+            "                let textSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(",
+            "                    layoutSize: headerFooterSize, elementKind: TextSupplementaryView.reuseIdentifier, alignment: .topLeading)",
+            "                textSection.boundarySupplementaryItems = [textSectionHeader]",
+            "                return textSection",
+            "            // pictures",
+            "            case 1:",
+            "                let pictureSection = MessagesViewController.twoItemSection",
+            "                let pictureSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(",
+            "                    layoutSize: headerFooterSize, elementKind: PictureSupplementaryView.reuseIdentifier, alignment: .topLeading)",
+            "                pictureSection.boundarySupplementaryItems = [pictureSectionHeader]",
+            "                return pictureSection",
+            "            // animals",
+            "            case 2:",
+            "                let animalSection = MessagesViewController.fiveItemSection",
+            "                let titleSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(",
+            "                    layoutSize: headerFooterSize, elementKind: TitleSupplementaryView.reuseIdentifier, alignment: .topLeading)",
+            "                animalSection.boundarySupplementaryItems = [titleSectionHeader]",
+            "                return animalSection",
+            "            // trees",
+            "            case 3:",
+            "                let treeSection = MessagesViewController.fiveItemSection",
+            "                let titleSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(",
+            "                    layoutSize: headerFooterSize, elementKind: TitleSupplementaryView.reuseIdentifier, alignment: .topLeading)",
+            "                treeSection.boundarySupplementaryItems = [titleSectionHeader]",
+            "                return treeSection",
+            "            // days",
+            "            case 4:",
+            "                let daySection = MessagesViewController.oneItemSection",
+            "                let titleSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(",
+            "                    layoutSize: headerFooterSize, elementKind: TitleSupplementaryView.reuseIdentifier, alignment: .topLeading)",
+            "                daySection.boundarySupplementaryItems = [titleSectionHeader]",
+            "                return daySection",
+            "            default: return nil",
+            "        }",
+            "    }",
+            "    return UICollectionViewCompositionalLayout(sectionProvider: sectionProvider)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Stickers app uses ",
+              "type": "text"
+            },
+            {
+              "code": "UICollectionViewDiffableDataSource",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to populate the ",
+              "type": "text"
+            },
+            {
+              "code": "UICollectionView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The sections are ",
+              "type": "text"
+            },
+            {
+              "code": "String",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values that denote each section and the values are ",
+              "type": "text"
+            },
+            {
+              "code": "MSSticker",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances. The app creates the stickers and applies them to the data source, which displays the stickers to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how the Stickers app populates a data source:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var snapshot = NSDiffableDataSourceSnapshot<SectionType, MSSticker>()",
+            "snapshot.appendSections(SectionType.allCases)",
+            "",
+            "snapshot.appendItems([\"animal-1\", \"animal-2\", \"animal-3\", \"animal-4\"].compactMap({ (name) -> MSSticker? in",
+            "    guard let url = Bundle.main.url(forResource: name, withExtension: \"png\") else {",
+            "        return nil",
+            "    }",
+            "    return try? MSSticker(contentsOfFileURL: url, localizedDescription: name)",
+            "}), toSection: .animals)",
+            "",
+            "snapshot.appendItems([\"tree-1\", \"tree-2\", \"tree-3\", \"tree-4\"].compactMap({ (name) -> MSSticker? in",
+            "    guard let url = Bundle.main.url(forResource: name, withExtension: \"png\") else {",
+            "        return nil",
+            "    }",
+            "    return try? MSSticker(contentsOfFileURL: url, localizedDescription: name)",
+            "}), toSection: .trees)",
+            "",
+            "snapshot.appendItems([\"Happy \" + formatter.string(from: Date())].compactMap({ (name) -> MSSticker? in",
+            "    let label = UILabel()",
+            "    label.text = name",
+            "    guard let image = label.image(),",
+            "          let data = image.pngData(),",
+            "          let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last,",
+            "          let url = URL(string: \"\\(baseURL.appendingPathComponent(\"\\(name).png\"))\"),",
+            "          (try? data.write(to: url)) != nil else {",
+            "        print(\"write failed\")",
+            "        return nil",
+            "    }",
+            "    return try? MSSticker(contentsOfFileURL: url, localizedDescription: name)",
+            "}), toSection: .days)",
+            "",
+            "datasource.apply(snapshot, animatingDifferences: true, completion: nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-Custom-Cell",
+          "level": 3,
+          "text": "Create a Custom Cell",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "UICollectionView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " includes a custom ",
+              "type": "text"
+            },
+            {
+              "code": "UICollectionViewCell",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The cells use a custom ",
+              "type": "text"
+            },
+            {
+              "code": "UIContentConfiguration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to provide an ",
+              "type": "text"
+            },
+            {
+              "code": "MSStickerView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", each of which contains an ",
+              "type": "text"
+            },
+            {
+              "code": "MSSticker",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how to provide data to a custom cell using ",
+              "type": "text"
+            },
+            {
+              "code": "UICollectionView.CellRegistration",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let cellRegistration = UICollectionView.CellRegistration<UICollectionViewCell, MSSticker> { (cell, indexPath, item) in",
+            "    cell.contentConfiguration = CustomContentConfiguration(sticker: item)",
+            "}",
+            "",
+            "datasource = UICollectionViewDiffableDataSource<SectionType, MSSticker>(",
+            "    collectionView: collectionView, cellProvider: { (collectionView, indexPath, item) -> UICollectionViewCell? in",
+            "        return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)",
+            "    }",
+            ")",
+            "",
+            "let titleHeaderRegistration = UICollectionView.SupplementaryRegistration",
+            "<TitleSupplementaryView>(elementKind: TitleSupplementaryView.reuseIdentifier) {",
+            "    (supplementaryView, string, indexPath) in",
+            "    supplementaryView.label.text = SectionType.allCases[indexPath.section].rawValue",
+            "}",
+            "",
+            "let textHeaderRegistration = UICollectionView.SupplementaryRegistration",
+            "<TextSupplementaryView>(elementKind: TextSupplementaryView.reuseIdentifier) {",
+            "    (supplementaryView, string, indexPath) in",
+            "    supplementaryView.field.delegate = self",
+            "}",
+            "",
+            "let pictureHeaderRegistration = UICollectionView.SupplementaryRegistration",
+            "<PictureSupplementaryView>(elementKind: PictureSupplementaryView.reuseIdentifier) {",
+            "    (supplementaryView, string, indexPath) in",
+            "    supplementaryView.button.addTarget(self, action: #selector(self.pickImage), for: .touchDown)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Stickers app creates a cell with a custom ",
+              "type": "text"
+            },
+            {
+              "code": "UIContentConfiguration",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as the following code demonstrates:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set up the internal view and apply the custom configuration.",
+            "init(configuration: CustomContentConfiguration) {",
+            "    super.init(frame: .zero)",
+            "    setupInternalViews()",
+            "    apply(configuration: configuration)",
+            "}",
+            "",
+            "private func setupInternalViews() {",
+            "    stickerView.translatesAutoresizingMaskIntoConstraints = false",
+            "    addSubview(stickerView)",
+            "    NSLayoutConstraint.activate([",
+            "        stickerView.leadingAnchor.constraint(equalTo: leadingAnchor),",
+            "        stickerView.trailingAnchor.constraint(equalTo: trailingAnchor),",
+            "        stickerView.topAnchor.constraint(equalTo: topAnchor),",
+            "        stickerView.bottomAnchor.constraint(equalTo: bottomAnchor)",
+            "    ])",
+            "}",
+            "",
+            "private var appliedConfiguration = CustomContentConfiguration()",
+            "",
+            "// Apply the custom configuration.",
+            "private func apply(configuration: CustomContentConfiguration) {",
+            "    guard appliedConfiguration != configuration else { return }",
+            "    appliedConfiguration = configuration",
+            "    stickerView.sticker = appliedConfiguration.sticker",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.messages/documentation/Messages": {
+      "abstract": [
+        {
+          "text": "Create app extensions that allow users to send text, stickers, media files, and interactive messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Messages",
+      "type": "topic",
+      "url": "/documentation/messages"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationStyle": {
+      "abstract": [
+        {
+          "text": "Presentation styles that describe your iMessage app’s appearance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSMessagesAppPresentationStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSMessagesAppPresentationStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSMessagesAppPresentationStyle",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagesapppresentationstyle"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessagesAppTranscriptPresentation": {
+      "abstract": [
+        {
+          "text": "A protocol that provides support for displaying live messages in the transcript of the Messages app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSMessagesAppTranscriptPresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppTranscriptPresentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSMessagesAppTranscriptPresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSMessagesAppTranscriptPresentation",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagesapptranscriptpresentation"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController": {
+      "abstract": [
+        {
+          "text": "The principal view controller for iMessage apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSMessagesAppViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSMessagesAppViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSMessagesAppViewController",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagesappviewcontroller"
+    },
+    "doc://com.apple.messages/documentation/Messages/icecreambuilder-building-an-imessage-extension": {
+      "abstract": [
+        {
+          "text": "Allow users to collaborate on the design of ice cream sundae stickers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/icecreambuilder-building-an-imessage-extension",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "IceCreamBuilder: Building an iMessage Extension",
+      "type": "topic",
+      "url": "/documentation/messages/icecreambuilder-building-an-imessage-extension"
+    },
+    "f8e004f3708c/CreatingAStickerAppWithACustomLayout.zip": {
+      "checksum": "f8e004f3708ccafdf230dd2593e0561255572832349adc6dcc75748f6d7c9d6bbd9d2a7d724d99c269d0346d71746461e1767320de42ff82275234c1da117ee4",
+      "identifier": "f8e004f3708c/CreatingAStickerAppWithACustomLayout.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/f8e004f3708c/CreatingAStickerAppWithACustomLayout.zip"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "f8e004f3708c/CreatingAStickerAppWithACustomLayout.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Custom-iMessage-app-interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.messages/documentation/Messages/icecreambuilder-building-an-imessage-extension",
+        "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController",
+        "doc://com.apple.messages/documentation/Messages/MSMessagesAppTranscriptPresentation",
+        "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationStyle"
+      ],
+      "title": "Custom iMessage app interface"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Custom-iMessage-app-interface",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.messages/documentation/Messages/icecreambuilder-building-an-imessage-extension",
+                "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController",
+                "doc://com.apple.messages/documentation/Messages/MSMessagesAppTranscriptPresentation",
+                "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationStyle"
+              ],
+              "title": "Custom iMessage app interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController/title",
+          "value": "MSMessagesAppViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessagesAppViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessagesAppViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppTranscriptPresentation/title",
+          "value": "MSMessagesAppTranscriptPresentation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppTranscriptPresentation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessagesAppTranscriptPresentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppTranscriptPresentation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessagesAppTranscriptPresentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppPresentationStyle/title",
+          "value": "MSMessagesAppPresentationStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppPresentationStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessagesAppPresentationStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppPresentationStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessagesAppPresentationStyle"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/messages/creating-a-sticker-app-with-a-custom-layout"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/messages/creating-a-sticker-app-with-a-custom-layout"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2336 @@
+{
+  "abstract": [
+    {
+      "text": "Chart content that represents data using rectangles.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Charts/documentation/Charts"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Charts/documentation/Charts/RectangleMark"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:6Charts13RectangleMarkV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "RectangleMark"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift Charts"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "RectangleMark"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "RectangleMark"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "RectangleMark"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use rectangle mark to map data fields to rectangles. You can use the rectangle mark to create heat map charts or to annotate rectangular areas in a chart.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Heat-Map-with-Rectangle-Marks",
+          "level": 3,
+          "text": "Create a Heat Map with Rectangle Marks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When presenting data about the effectiveness of a machine learning model, you typically organize the data using a confusion matrix which shows the predicted",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "versus the actual results of the model. To create a 2D heat map that represents a machine learning model you use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(x:y:width:height:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example below uses a 2D heat map to visualize a basic confusion matrix with the following layout:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Negative",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Positive",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Negative",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "True Negative",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "False Negative",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Positive",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "False Positive",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "True Positive",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The number of records in each cell, ",
+              "type": "text"
+            },
+            {
+              "code": "num",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",  is represented by the color of its corresponding rectangle.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This is done by applying the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent/foregroundStyle(by:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to the rectangle mark and passing it a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/PlottableValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " constructed with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/PlottableValue/value(_:_:)-13lvv",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " which takes a label and the value to plot, in this case ",
+              "type": "text"
+            },
+            {
+              "code": "num",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A scale from values of ",
+              "type": "text"
+            },
+            {
+              "code": "num",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to color will be automatically generated and used to color the rectangles based on the value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MatrixEntry {",
+            "    var positive: String",
+            "    var negative: String",
+            "    var num: Double",
+            "}",
+            "",
+            "var data: [MatrixEntry] = [",
+            "    MatrixEntry(positive: \"+\", negative: \"+\", num: 125),",
+            "    MatrixEntry(positive: \"+\", negative: \"-\", num: 10),",
+            "    MatrixEntry(positive: \"-\", negative: \"-\", num: 80),",
+            "    MatrixEntry(positive: \"-\", negative: \"+\", num: 1)",
+            "]",
+            "",
+            "var body: some View {",
+            "    Chart(data) {",
+            "        RectangleMark(",
+            "            x: .value(\"Positive\", $0.positive),",
+            "            y: .value(\"Negative\", $0.negative)",
+            "        )",
+            "        .foregroundStyle(by: .value(\"Number\", $0.num))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "RectangleMarkSwift.RectangleMarkHistogramHeatmap2D.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Annotate-a-Rectangular-Area-with-Rectangle-Marks",
+          "level": 3,
+          "text": "Annotate a Rectangular Area with Rectangle Marks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can annotate a specific region in a chart with a rectangle mark by providing the coordinates of one or more rectangles. For example you can annotate point",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "marks with rectangle marks using a shared data source like in the example below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Coord {",
+            "    var x: Double",
+            "    var y: Double",
+            "}",
+            "",
+            "var data: [Coord] = [",
+            "    Coord(x: 5, y: 5),",
+            "    Coord(x: 2.5, y: 2.5),",
+            "    Coord(x: 3, y: 3)",
+            "]",
+            "",
+            "var body: some View {",
+            "    Chart(data) {",
+            "        RectangleMark(",
+            "            xStart: .value(\"Rect Start Width\", $0.x - 0.25),",
+            "            xEnd: .value(\"Rect End Width\", $0.x + 0.25),",
+            "            yStart: .value(\"Rect Start Height\", $0.y - 0.25),",
+            "            yEnd: .value(\"Rect End Height\", $0.y + 0.25)",
+            "        )",
+            "        .opacity(0.2)",
+            "",
+            "        PointMark(",
+            "            x: .value(\"X\", $0.x),",
+            "            y: .value(\"Y\", $0.y)",
+            "        )",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "RectangleMarkSwift.RectangleMarkScatter.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "RectangleMarkSwift.RectangleMarkHistogramHeatmap2D.png": {
+      "alt": "2D heat map chart that represents a simple confusion matrix in a 2x2 grid. The number of records is represented by the color of its corresponding rectangle. Darker colors represent higher values.",
+      "identifier": "RectangleMarkSwift.RectangleMarkHistogramHeatmap2D.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f585a7db900f8c450c88cdcfe7b0a8a9/RectangleMarkSwift.RectangleMarkHistogramHeatmap2D@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/57a02799373e7e71edea0c1ed65d3c11/RectangleMarkSwift.RectangleMarkHistogramHeatmap2D~dark@2x.png"
+        }
+      ]
+    },
+    "RectangleMarkSwift.RectangleMarkScatter.png": {
+      "alt": "Scatter plot chart with a rectangle mark annotation. 3 points on the chart at: (5, 5), (2.5, 2.5), (3, 3) each point mark is highlighted with an opaque rectangle.",
+      "identifier": "RectangleMarkSwift.RectangleMarkScatter.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/25ed6d8c79ed66cfd15feff0a8264741/RectangleMarkSwift.RectangleMarkScatter@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7be19f3474bc71a1f38bc2852a791ed3/RectangleMarkSwift.RectangleMarkScatter~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Charts/documentation/Charts": {
+      "abstract": [
+        {
+          "text": "Construct and customize charts on every Apple platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift Charts",
+      "type": "topic",
+      "url": "/documentation/charts"
+    },
+    "doc://com.apple.Charts/documentation/Charts/AreaMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using the area of one or more regions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AreaMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/AreaMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AreaMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "AreaMark",
+      "type": "topic",
+      "url": "/documentation/charts/areamark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/BarMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using bars.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BarMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/BarMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BarMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "BarMark",
+      "type": "topic",
+      "url": "/documentation/charts/barmark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/ChartContent": {
+      "abstract": [
+        {
+          "text": "A type that represents the content that you draw on a chart.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChartContent"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChartContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ChartContent",
+      "type": "topic",
+      "url": "/documentation/charts/chartcontent"
+    },
+    "doc://com.apple.Charts/documentation/Charts/ChartContent/foregroundStyle(by:)": {
+      "abstract": [
+        {
+          "text": "Represents data using a foreground style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "foregroundStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts12ChartContentP",
+          "text": "ChartContent"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/ChartContent/foregroundStyle(by:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "foregroundStyle(by:)",
+      "type": "topic",
+      "url": "/documentation/charts/chartcontent/foregroundstyle(by:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/LineMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using a sequence of connected line segments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LineMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/LineMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LineMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "LineMark",
+      "type": "topic",
+      "url": "/documentation/charts/linemark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/PlottableValue": {
+      "abstract": [
+        {
+          "text": "Labeled data that you plot in a chart using marks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlottableValue"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/PlottableValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlottableValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlottableValue",
+      "type": "topic",
+      "url": "/documentation/charts/plottablevalue"
+    },
+    "doc://com.apple.Charts/documentation/Charts/PlottableValue/value(_:_:)-13lvv": {
+      "abstract": [
+        {
+          "text": "Creates a parameter value with label and value.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Plottable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/PlottableValue/value(_:_:)-13lvv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "value(_:_:)",
+      "type": "topic",
+      "url": "/documentation/charts/plottablevalue/value(_:_:)-13lvv"
+    },
+    "doc://com.apple.Charts/documentation/Charts/PointMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PointMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/PointMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PointMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "PointMark",
+      "type": "topic",
+      "url": "/documentation/charts/pointmark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/RectangleMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using rectangles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RectangleMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/RectangleMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RectangleMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "RectangleMark",
+      "type": "topic",
+      "url": "/documentation/charts/rectanglemark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(x:y:width:height:)": {
+      "abstract": [
+        {
+          "text": "Creates a rectangle that plots values with x and y.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts13MarkDimensionV",
+          "text": "MarkDimension"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts13MarkDimensionV",
+          "text": "MarkDimension"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(x:y:width:height:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(x:y:width:height:)",
+      "type": "topic",
+      "url": "/documentation/charts/rectanglemark/init(x:y:width:height:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(x:yStart:yEnd:width:)-vh2x": {
+      "abstract": [
+        {
+          "text": "Creates a rectangle mark with an y interval encoding and an x encoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts13MarkDimensionV",
+          "text": "MarkDimension"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(x:yStart:yEnd:width:)-vh2x",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(x:yStart:yEnd:width:)",
+      "type": "topic",
+      "url": "/documentation/charts/rectanglemark/init(x:ystart:yend:width:)-vh2x"
+    },
+    "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(x:yStart:yEnd:width:)-xhqp": {
+      "abstract": [
+        {
+          "text": "Creates a rectangle mark that plots values on x and has a fixed y interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts13MarkDimensionV",
+          "text": "MarkDimension"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(x:yStart:yEnd:width:)-xhqp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(x:yStart:yEnd:width:)",
+      "type": "topic",
+      "url": "/documentation/charts/rectanglemark/init(x:ystart:yend:width:)-xhqp"
+    },
+    "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(xStart:xEnd:y:height:)-27222": {
+      "abstract": [
+        {
+          "text": "Creates a rectangle mark with an x interval encoding and a y encoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "xStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "xEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts13MarkDimensionV",
+          "text": "MarkDimension"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(xStart:xEnd:y:height:)-27222",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(xStart:xEnd:y:height:)",
+      "type": "topic",
+      "url": "/documentation/charts/rectanglemark/init(xstart:xend:y:height:)-27222"
+    },
+    "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(xStart:xEnd:y:height:)-4x46i": {
+      "abstract": [
+        {
+          "text": "Creates a rectangle mark with a fixed x interval and y encoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "xStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "xEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts13MarkDimensionV",
+          "text": "MarkDimension"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(xStart:xEnd:y:height:)-4x46i",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(xStart:xEnd:y:height:)",
+      "type": "topic",
+      "url": "/documentation/charts/rectanglemark/init(xstart:xend:y:height:)-4x46i"
+    },
+    "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(xStart:xEnd:yStart:yEnd:)-1qbzg": {
+      "abstract": [
+        {
+          "text": "Creates a rectangle mark with x and y interval encodings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "xStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "xEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(xStart:xEnd:yStart:yEnd:)-1qbzg",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(xStart:xEnd:yStart:yEnd:)",
+      "type": "topic",
+      "url": "/documentation/charts/rectanglemark/init(xstart:xend:ystart:yend:)-1qbzg"
+    },
+    "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(xStart:xEnd:yStart:yEnd:)-5682c": {
+      "abstract": [
+        {
+          "text": "Creates a rectangle mark with fixed x and y intervals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "xStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "xEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(xStart:xEnd:yStart:yEnd:)-5682c",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(xStart:xEnd:yStart:yEnd:)",
+      "type": "topic",
+      "url": "/documentation/charts/rectanglemark/init(xstart:xend:ystart:yend:)-5682c"
+    },
+    "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(xStart:xEnd:yStart:yEnd:)-5cbgh": {
+      "abstract": [
+        {
+          "text": "Creates a rectangle mark with a y interval encoding and a fixed x interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "xStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "xEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Y"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(xStart:xEnd:yStart:yEnd:)-5cbgh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(xStart:xEnd:yStart:yEnd:)",
+      "type": "topic",
+      "url": "/documentation/charts/rectanglemark/init(xstart:xend:ystart:yend:)-5cbgh"
+    },
+    "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(xStart:xEnd:yStart:yEnd:)-6jeka": {
+      "abstract": [
+        {
+          "text": "Creates a rectangle mark with an x interval encoding and a fixed y interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "xStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "xEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14PlottableValueV",
+          "text": "PlottableValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "X"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(xStart:xEnd:yStart:yEnd:)-6jeka",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(xStart:xEnd:yStart:yEnd:)",
+      "type": "topic",
+      "url": "/documentation/charts/rectanglemark/init(xstart:xend:ystart:yend:)-6jeka"
+    },
+    "doc://com.apple.Charts/documentation/Charts/RuleMark": {
+      "abstract": [
+        {
+          "text": "Chart content that represents data using a single horizontal or vertical rule.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RuleMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/RuleMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RuleMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "RuleMark",
+      "type": "topic",
+      "url": "/documentation/charts/rulemark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/SectorMark": {
+      "abstract": [
+        {
+          "text": "A sector of a pie or donut chart, which shows how individual categories make up a meaningful total.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SectorMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/SectorMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SectorMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "SectorMark",
+      "type": "topic",
+      "url": "/documentation/charts/sectormark"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Charts/documentation/Charts/ChartContent",
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Marks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Charts/documentation/Charts/AreaMark",
+        "doc://com.apple.Charts/documentation/Charts/LineMark",
+        "doc://com.apple.Charts/documentation/Charts/PointMark",
+        "doc://com.apple.Charts/documentation/Charts/RuleMark",
+        "doc://com.apple.Charts/documentation/Charts/BarMark",
+        "doc://com.apple.Charts/documentation/Charts/SectorMark"
+      ],
+      "title": "Marks"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-rectangle-mark",
+      "identifiers": [
+        "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(x:yStart:yEnd:width:)-vh2x",
+        "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(xStart:xEnd:y:height:)-27222",
+        "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(xStart:xEnd:yStart:yEnd:)-1qbzg",
+        "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(x:y:width:height:)"
+      ],
+      "title": "Creating a rectangle mark"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(x:yStart:yEnd:width:)-xhqp",
+        "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(xStart:xEnd:y:height:)-4x46i",
+        "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(xStart:xEnd:yStart:yEnd:)-5682c",
+        "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(xStart:xEnd:yStart:yEnd:)-5cbgh",
+        "doc://com.apple.Charts/documentation/Charts/RectangleMark/init(xStart:xEnd:yStart:yEnd:)-6jeka"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/charts/rectanglemark"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

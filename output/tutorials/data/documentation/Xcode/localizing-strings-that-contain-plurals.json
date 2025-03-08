@@ -1,0 +1,1872 @@
+{
+  "abstract": [
+    {
+      "text": "Use a strings dictionary file to ensure correct localization of strings that contain",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "language plurals.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/localization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/localizing-strings-that-contain-plurals"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Localizing strings that contain plurals"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In Xcode 15 and later, string catalogs are the recommended way to localize strings that contain plurals. In earlier versions of Xcode, use strings and ",
+                  "type": "text"
+                },
+                {
+                  "code": "stringsdict",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " files. For more information about string catalogs, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/localizing-and-varying-text-with-a-string-catalog",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Languages have different grammatical rules for handling plurals of nouns and units.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "So if you localize formatted strings that contain variable amounts, use a ",
+              "type": "text"
+            },
+            {
+              "code": ".stringsdict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file to provide a different translation for each plural form in the language.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if you pass the ",
+              "type": "text"
+            },
+            {
+              "code": "%d home(s) found",
+              "type": "codeVoice"
+            },
+            {
+              "text": " formatted string to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslocalizedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "macro or similar API, such as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure, you can use the a ",
+              "type": "text"
+            },
+            {
+              "code": ".stringsdict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file to return different versions of the string. In English, you can return ",
+              "type": "text"
+            },
+            {
+              "code": "one home found",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "1 home found",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when ",
+              "type": "text"
+            },
+            {
+              "code": "d",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "%d homes found",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when ",
+              "type": "text"
+            },
+            {
+              "code": "d",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is greater",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "than ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For other languages, the ",
+              "type": "text"
+            },
+            {
+              "code": ".stringsdict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file can have more or fewer plural",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variants of a formatted string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode automatically handles ",
+              "type": "text"
+            },
+            {
+              "code": ".stringsdict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files for you when you export and import",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "localizations. However, you need to know the format of a ",
+              "type": "text"
+            },
+            {
+              "code": ".stringsdict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to localize",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it in the development language and other languages if you don’t use a localization",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "service.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-strings-dictionary-file-to-your-project",
+          "level": 3,
+          "text": "Add a strings dictionary file to your project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a ",
+              "type": "text"
+            },
+            {
+              "code": ".stringsdict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to your project, choose File > New > File. In the sheet",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that appears, select the platform, enter ",
+              "type": "text"
+            },
+            {
+              "code": "strings",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the Filter field, select Stringsdict",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "File, and click Next. In the dialog that appears, enter a name for the file, choose",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a location, and click Create.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": ".stringsdict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file is a resource file in your project, but Xcode doesn’t automatically",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "localize it. While the file is in a selected state in the Project navigator, open",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the inspector, and click Localize under Localization. In the dialog that appears,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "choose a language and click Localize. Choose Base to localize the file in all languages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you previously added localizations to your project, select the other localizations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the inspector under Localization. If you select multiple localizations, the ",
+              "type": "text"
+            },
+            {
+              "code": ".stringsdict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file becomes a group in the Project navigator that contains a version for each language.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Later when you add more localizations, be sure to include the ",
+              "type": "text"
+            },
+            {
+              "code": ".stringsdict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when you select resources for the localization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Localize-the-strings-dictionary-file-in-the-development-language",
+          "level": 3,
+          "text": "Localize the strings dictionary file in the development language",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, add the plural rules and variants to the development language version of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": ".stringsdict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Project navigator, select the ",
+              "type": "text"
+            },
+            {
+              "code": ".stringsdict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. If it appears as a group,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "select the development language version of the file (the language appears in parentheses).",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because a ",
+              "type": "text"
+            },
+            {
+              "code": ".stringsdict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file is a property list, it appears in the property editor",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by default. To edit the ",
+              "type": "text"
+            },
+            {
+              "code": ".stringsdict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file using the source editor, Control-click",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it and choose Open As > Source Code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A new ",
+              "type": "text"
+            },
+            {
+              "code": ".stringsdict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file contains a dictionary with plural variants for a single",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "formatted string. For each formatted string in your app that contains a numeric value,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "enter the formatted string as the key and a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "plural variant",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " dictionary as the value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the following key-value pairs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSStringLocalizedFormatKey",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A formatted string that contains variables. To replace the string with a plural rule, precede the variable with the %#@ characters and follow it by the @ character, as in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "%#@homes@",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " where ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "homes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is the variable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "[variable]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A dictionary that specifies the plural variants for a variable in the formatted string.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, enter separate dictionaries for the user-facing formatted strings you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use in your code. If the formatted string contains multiple variables, enter a separate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "subdictionary for each variable. In the following ",
+              "type": "text"
+            },
+            {
+              "code": ".stringsdict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, the formatted",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "strings are: ",
+              "type": "text"
+            },
+            {
+              "code": "%d home(s) found",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "%d service hour(s)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "%d award(s)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<plist version=\"1.0\">",
+            "    <dict>",
+            "        <key>%d home(s) found</key>",
+            "        <dict>",
+            "            <key>NSStringLocalizedFormatKey</key>",
+            "            <string>%#@homes@</string>",
+            "            <key>homes</key>",
+            "            <dict>",
+            "                ...",
+            "            </dict>",
+            "        </dict>",
+            "        <key>%d service hour(s)</key>",
+            "        <dict>",
+            "            …",
+            "        </dict>",
+            "        <key>%d award(s)</key>",
+            "        <dict>",
+            "            …",
+            "        </dict>",
+            "    </dict>",
+            "</plist>"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The variable dictionary for each formatted string determines which string returns",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslocalizedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "macro, or similar API in your code. It contains a key-value pair for each grammatical",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "plural variant in the language, called a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "category",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the following ",
+              "type": "text"
+            },
+            {
+              "code": ".stringsdict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file with English localization contains",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "plural variants for the ",
+              "type": "text"
+            },
+            {
+              "code": "zero",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "one",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "other",
+              "type": "codeVoice"
+            },
+            {
+              "text": " categories. For the ",
+              "type": "text"
+            },
+            {
+              "code": "%d home(s) found",
+              "type": "codeVoice"
+            },
+            {
+              "text": " formatted string, the API returns ",
+              "type": "text"
+            },
+            {
+              "code": "No homes found",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "%d home found ",
+              "type": "codeVoice"
+            },
+            {
+              "text": "for",
+              "type": "text"
+            },
+            {
+              "code": " 1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "%d homes found",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for ",
+              "type": "text"
+            },
+            {
+              "code": "other",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<plist version=\"1.0\">",
+            "    <dict>",
+            "        <key>%d home(s) found</key>",
+            "        <dict>",
+            "            <key>NSStringLocalizedFormatKey</key>",
+            "            <string>%#@homes@</string>",
+            "            <key>homes</key>",
+            "            <dict>",
+            "                <key>NSStringFormatSpecTypeKey</key>",
+            "                <string>NSStringPluralRuleType</string>",
+            "                <key>NSStringFormatValueTypeKey</key>",
+            "                <string>d</string>",
+            "                <key>zero</key>",
+            "                <string>No homes found</string>",
+            "                <key>one</key>",
+            "                <string>%d home found</string>",
+            "                <key>other</key>",
+            "                <string>%d homes found</string>",
+            "            </dict>",
+            "        </dict>",
+            "    </dict>",
+            "</plist>"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A variable dictionary can contain the following key-value pairs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSStringFormatSpecTypeKey",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specifies the type of language rule. The only possible value is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSStringPluralRuleType",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which indicates a language plural variant.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSStringFormatValueTypeKey",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A string format specifier for a number, as in the letter ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "d",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for an integer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "zero, one, two, few, many, other",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The formatted string for the language-specific plural category. Using the format specifier in the string is optional. The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "other",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " category is a requirement.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The meaning of the plural categories is language-dependent, and not all languages",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "have the same categories. For example, the English language only requires the ",
+              "type": "text"
+            },
+            {
+              "code": "one",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "code": "other",
+              "type": "codeVoice"
+            },
+            {
+              "text": " categories to represent plural forms, and ",
+              "type": "text"
+            },
+            {
+              "code": "zero",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is optional. Arabic",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "has different plural forms for the ",
+              "type": "text"
+            },
+            {
+              "code": "zero",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "one",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "two",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "few",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "many",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "other",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "categories. Although Russian also uses the ",
+              "type": "text"
+            },
+            {
+              "code": "many",
+              "type": "codeVoice"
+            },
+            {
+              "text": " category, the rules for which numbers",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are in the ",
+              "type": "text"
+            },
+            {
+              "code": "many",
+              "type": "codeVoice"
+            },
+            {
+              "text": " category aren’t the same as the Arabic rules.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the categories and plural rules for each language, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "http://cldr.unicode.org/index/cldr-spec/plural-rules",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Localize-the-strings-dictionary-file-in-other-languages",
+          "level": 3,
+          "text": "Localize the strings dictionary file in other languages",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you localize the ",
+              "type": "text"
+            },
+            {
+              "code": ".stringsdict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files in the development langauge and add the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "other localizations to your project, you export the localizations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you export localizations, Xcode automatically adds the language-specific categories",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for each formatted string to the exported XLIFF files. Localizers just need to enter",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the translations for each category in the XLIFF file. Then when you import localizations,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode updates the localized ",
+              "type": "text"
+            },
+            {
+              "code": ".stringsdict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files in your project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if you export a Russian localization containing the ",
+              "type": "text"
+            },
+            {
+              "code": "%d home(s) found",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "formatted string in a ",
+              "type": "text"
+            },
+            {
+              "code": ".stringsdict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, Xcode adds the ",
+              "type": "text"
+            },
+            {
+              "code": "one",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "many",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "other",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "categories to the Russian version of the XLIFF file. The localizer inserts the translations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and when you import the localization, the ",
+              "type": "text"
+            },
+            {
+              "code": ".stringsdict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file contains the correct",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variable dictionary key-value pairs for Russian.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<plist version=\"1.0\">",
+            "    <dict>",
+            "       <key>%d home(s) found</key>",
+            "         <dict>",
+            "            <key>NSStringLocalizedFormatKey</key>",
+            "            <string>%#@homes@</string>",
+            "            <key>homes</key>",
+            "            <dict>",
+            "                <key>NSStringFormatSpecTypeKey</key>                ",
+            "                <string>NSStringPluralRuleType</string>",
+            "                <key>NSStringFormatValueTypeKey</key>",
+            "                <string>d</string>",
+            "                <key>one</key>",
+            "                <string>найден %d дом</string>",
+            "                <key>many</key>",
+            "                <string>найдены %d дома</string>",
+            "                <key>other</key>",
+            "                <string>найдены %d домов</string>",
+            "            </dict>",
+            "        </dict>",
+            "    </dict>",
+            "</plist>"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can edit the ",
+              "type": "text"
+            },
+            {
+              "code": ".stringsdict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files in Xcode yourself, but keep in mind that all",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the categories are optional except the ",
+              "type": "text"
+            },
+            {
+              "code": "other",
+              "type": "codeVoice"
+            },
+            {
+              "text": " category. Also the localized text",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "may be grammatically incorrect if you don’t supply a rule for all the language-specific",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "categories. Conversely, if you provide a rule for a category that a language doesn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use, the system ignores it and uses the ",
+              "type": "text"
+            },
+            {
+              "code": "other",
+              "type": "codeVoice"
+            },
+            {
+              "text": " category format string instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Furthermore, using the ",
+              "type": "text"
+            },
+            {
+              "code": "NSStringFormatValueTypeKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " format specifier in the localized",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "formatted strings is optional. For example, the format string for the ",
+              "type": "text"
+            },
+            {
+              "code": "one",
+              "type": "codeVoice"
+            },
+            {
+              "text": " category",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in English can be ",
+              "type": "text"
+            },
+            {
+              "code": "One home found",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", while the ",
+              "type": "text"
+            },
+            {
+              "code": "other",
+              "type": "codeVoice"
+            },
+            {
+              "text": " category can be ",
+              "type": "text"
+            },
+            {
+              "code": "%d homes found",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the format specifier (",
+              "type": "text"
+            },
+            {
+              "code": "%d",
+              "type": "codeVoice"
+            },
+            {
+              "text": ")",
+              "type": "text"
+            },
+            {
+              "code": " ",
+              "type": "codeVoice"
+            },
+            {
+              "text": "or spell out numbers (",
+              "type": "text"
+            },
+            {
+              "code": "one",
+              "type": "codeVoice"
+            },
+            {
+              "text": ")",
+              "type": "text"
+            },
+            {
+              "code": " ",
+              "type": "codeVoice"
+            },
+            {
+              "text": "in the plural",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variants, but don’t use a numeric value (",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") in the string because it may not have",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the correct localization if the user changes regions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-support-for-languages-and-regions": {
+      "abstract": [
+        {
+          "text": "Select the resources that you want to localize for each language and region you support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-support-for-languages-and-regions",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding support for languages and regions",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-support-for-languages-and-regions"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-width-and-device-variants-of-strings": {
+      "abstract": [
+        {
+          "text": "Change a localized string for different interface widths and devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-width-and-device-variants-of-strings",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating width and device variants of strings",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-width-and-device-variants-of-strings"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/exporting-localizations": {
+      "abstract": [
+        {
+          "text": "Provide the localizable files from your project to localizers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/exporting-localizations",
+      "kind": "article",
+      "role": "article",
+      "title": "Exporting localizations",
+      "type": "topic",
+      "url": "/documentation/xcode/exporting-localizations"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/importing-localizations": {
+      "abstract": [
+        {
+          "text": "Import the files that you translate or adapt for a language and region into your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/importing-localizations",
+      "kind": "article",
+      "role": "article",
+      "title": "Importing localizations",
+      "type": "topic",
+      "url": "/documentation/xcode/importing-localizations"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/localization": {
+      "abstract": [
+        {
+          "text": "Expand the market for your app by supporting multiple languages and regions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Localization",
+      "type": "topic",
+      "url": "/documentation/xcode/localization"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/localizing-and-varying-text-with-a-string-catalog": {
+      "abstract": [
+        {
+          "text": "Use a string catalog to translate text, handle plurals, and vary the text your app displays on specific devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localizing-and-varying-text-with-a-string-catalog",
+      "kind": "article",
+      "role": "article",
+      "title": "Localizing and varying text with a string catalog",
+      "type": "topic",
+      "url": "/documentation/xcode/localizing-and-varying-text-with-a-string-catalog"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Text": {
+      "abstract": [
+        {
+          "text": "A view that displays one or more lines of read-only text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Text",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Text"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslocalizedstring": {
+      "abstract": [
+        {
+          "text": "Returns a localized version of a string from the default table, which Xcode autogenerates when exporting localizations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslocalizedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLocalizedString",
+      "type": "topic",
+      "url": "/documentation/foundation/nslocalizedstring"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "http://cldr.unicode.org/index/cldr-spec/plural-rules": {
+      "identifier": "http://cldr.unicode.org/index/cldr-spec/plural-rules",
+      "title": "CLDR Language Plural Rules",
+      "titleInlineContent": [
+        {
+          "text": "CLDR Language Plural",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Rules",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://cldr.unicode.org/index/cldr-spec/plural-rules"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/adding-support-for-languages-and-regions",
+        "doc://com.apple.Xcode/documentation/Xcode/exporting-localizations",
+        "doc://com.apple.Xcode/documentation/Xcode/importing-localizations"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Legacy-localization-techniques",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/creating-width-and-device-variants-of-strings"
+      ],
+      "title": "Legacy localization techniques"
+    }
+  ]
+}

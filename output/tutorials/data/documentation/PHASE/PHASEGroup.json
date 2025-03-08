@@ -1,0 +1,2010 @@
+{
+  "abstract": [
+    {
+      "text": "A container that shares audio parameters with a collection of sounds.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.phase/documentation/PHASE"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.phase/documentation/PHASE/PHASEGroup"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)PHASEGroup",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PHASEGroup"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PHASE"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PHASEGroup"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "PHASEGroup"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHASEGroup"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With all the sounds it contains, a group shares settings like gain, playback rate, mute, and solo. Groups are nonhierarchical and don’t overlap — that is, each sound event associates with only one group.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-Group-Settings-to-Sounds",
+          "level": 3,
+          "text": "Apply Group Settings to Sounds",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can apply settings to the sounds a group contains. For instance, an app can share volume settings with various sound effects and dialogue audio groups. The following example creates a group for background audio, such as environmental sound layers played with ambient music. By interpolating the group’s gain setting, the audio fade applies to every sound in the group.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Allocate an engine and stereo mixer.",
+                    "let stereoLayout = AVAudioChannelLayout(layoutTag: kAudioChannelLayoutTag_Stereo)!",
+                    "let myEngine = PHASEEngine(updateMode: .automatic)",
+                    "let stereoMixer = PHASEChannelMixerDefinition(channelLayout:stereoLayout)",
+                    "",
+                    "// Create a group object.",
+                    "let bgmGroup = PHASEGroup(identifier:\"backgroundMusicGroup\")",
+                    "bgmGroup.register(engine: myEngine)",
+                    "",
+                    "// Create a sound event node definition for background music.",
+                    "let backgroundMusicSampler = PHASESamplerNodeDefinition(soundAssetIdentifier: \"backgroundMusic\", mixerDefinition: stereoMixer)",
+                    "        ",
+                    "// Add the sound node to the group.",
+                    "backgroundMusicSampler.group = myEngine.groups[\"backgroundMusicGroup\"]",
+                    "        ",
+                    "// Set group gain to zero.",
+                    "bgmGroup.gain = 0",
+                    "        ",
+                    "// Create a sound event to play the music.",
+                    "var bgmEvent: PHASESoundEvent?",
+                    "do {",
+                    "    try bgmEvent = PHASESoundEvent(engine: myEngine, assetIdentifier: \"backgroundMusicEventAsset\")",
+                    "} catch {",
+                    "    fatalError(\"Error occurred: \\(error.localizedDescription)\")",
+                    "}",
+                    "        ",
+                    "// Queue the background music to play.",
+                    "bgmEvent?.start() { reason in",
+                    "    print(\"Started. Status: \\(reason)\")",
+                    "}",
+                    "        ",
+                    "// Fade in the music over two seconds.",
+                    "bgmGroup.fadeGain(gain: 1.0, duration: 2.0, curveType: .linear)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Create a group object.",
+                    "PHASEGroup* bgmGroup = [[PHASEGroup alloc] initWithEngine:myEngine uid@\"backgroundMusicGroup\"];",
+                    "",
+                    "// Create a sound event node definition for background music. ",
+                    "PHASESamplerNodeDefinition* backgroundMusicSampler = [[PHASESamplerNodeDefinition alloc] initWithSoundAssetUID:@\"backgroundMusic\" mixerDefinition:mixer];",
+                    "",
+                    "// Add the sound node to the group.",
+                    "backgroundMusicSampler.group = myPHASEEngine.activeGroups[@\"backgroundMusicGroup\"];",
+                    "",
+                    "// Set group gain to zero. ",
+                    "bgmGroup.gain = 0;",
+                    "",
+                    "// Create a sound event to play the music.",
+                    "PHASESoundEvent* bgmEvent = [[PHASESoundEvent alloc] initWithEngine:_objects->mEngine",
+                    "    registeredSoundEventNodeAssetUID:@\"backgroundMusicEventAsset\" outError:nil];",
+                    "",
+                    "// Queue the background music to play.",
+                    "NSError* myError = nil;",
+                    "[bgmEvent startAndReturnError:&myError];",
+                    " ",
+                    "// Fade in the music over two seconds.",
+                    "[bgmGroup fadeGain:1.0 duration:2.0 curveType:PHASECurveTypeLinear];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.phase/documentation/PHASE": {
+      "abstract": [
+        {
+          "text": "Create dynamic audio experiences in your game or app that react to events and cues in the environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PHASE",
+      "type": "topic",
+      "url": "/documentation/phase"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEDucker": {
+      "abstract": [
+        {
+          "text": "An object that manages competing sounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEDucker"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEDucker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEDucker"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEDucker",
+      "type": "topic",
+      "url": "/documentation/phase/phaseducker"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGroup": {
+      "abstract": [
+        {
+          "text": "A container that shares audio parameters with a collection of sounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEGroup",
+      "type": "topic",
+      "url": "/documentation/phase/phasegroup"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGroup/fadeGain(gain:duration:curveType:)": {
+      "abstract": [
+        {
+          "text": "Adjusts the volume of the sounds in a group gradually.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fadeGain"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "gain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "curveType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHASECurveType",
+          "text": "PHASECurveType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroup/fadeGain(gain:duration:curveType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fadeGain:duration:curveType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fadeGain(gain:duration:curveType:)",
+      "type": "topic",
+      "url": "/documentation/phase/phasegroup/fadegain(gain:duration:curvetype:)"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGroup/fadeRate(rate:duration:curveType:)": {
+      "abstract": [
+        {
+          "text": "Adjusts the playback speed of the sounds in a group gradually.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fadeRate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "curveType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHASECurveType",
+          "text": "PHASECurveType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroup/fadeRate(rate:duration:curveType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fadeRate:duration:curveType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fadeRate(rate:duration:curveType:)",
+      "type": "topic",
+      "url": "/documentation/phase/phasegroup/faderate(rate:duration:curvetype:)"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGroup/gain": {
+      "abstract": [
+        {
+          "text": "Modifies the volume of the group’s sounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroup/gain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gain"
+        }
+      ],
+      "role": "symbol",
+      "title": "gain",
+      "type": "topic",
+      "url": "/documentation/phase/phasegroup/gain"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGroup/identifier": {
+      "abstract": [
+        {
+          "text": "A unique name for the group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroup/identifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/phase/phasegroup/identifier"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGroup/init(identifier:)": {
+      "abstract": [
+        {
+          "text": "Creates a group with a unique name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroup/init(identifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(identifier:)",
+      "type": "topic",
+      "url": "/documentation/phase/phasegroup/init(identifier:)"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGroup/isMuted": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app silences the group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMuted"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroup/isMuted",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "muted"
+        }
+      ],
+      "role": "symbol",
+      "title": "isMuted",
+      "type": "topic",
+      "url": "/documentation/phase/phasegroup/ismuted"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGroup/isSoloed": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app silences all groups other than this group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSoloed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroup/isSoloed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "soloed"
+        }
+      ],
+      "role": "symbol",
+      "title": "isSoloed",
+      "type": "topic",
+      "url": "/documentation/phase/phasegroup/issoloed"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGroup/mute()": {
+      "abstract": [
+        {
+          "text": "Silences the group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mute"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroup/mute()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mute"
+        }
+      ],
+      "role": "symbol",
+      "title": "mute()",
+      "type": "topic",
+      "url": "/documentation/phase/phasegroup/mute()"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGroup/rate": {
+      "abstract": [
+        {
+          "text": "The group’s playback speed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroup/rate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rate"
+        }
+      ],
+      "role": "symbol",
+      "title": "rate",
+      "type": "topic",
+      "url": "/documentation/phase/phasegroup/rate"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGroup/register(engine:)": {
+      "abstract": [
+        {
+          "text": "Adds the group to the engine’s dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "register"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "engine"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEEngine",
+          "text": "PHASEEngine"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroup/register(engine:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registerWithEngine:"
+        }
+      ],
+      "role": "symbol",
+      "title": "register(engine:)",
+      "type": "topic",
+      "url": "/documentation/phase/phasegroup/register(engine:)"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGroup/solo()": {
+      "abstract": [
+        {
+          "text": "Silences all other groups.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "solo"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroup/solo()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "solo"
+        }
+      ],
+      "role": "symbol",
+      "title": "solo()",
+      "type": "topic",
+      "url": "/documentation/phase/phasegroup/solo()"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGroup/unmute()": {
+      "abstract": [
+        {
+          "text": "Restores the group’s volume.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unmute"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroup/unmute()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unmute"
+        }
+      ],
+      "role": "symbol",
+      "title": "unmute()",
+      "type": "topic",
+      "url": "/documentation/phase/phasegroup/unmute()"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGroup/unregisterFromEngine()": {
+      "abstract": [
+        {
+          "text": "Removes the group from the engine’s dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unregisterFromEngine"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroup/unregisterFromEngine()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unregisterFromEngine"
+        }
+      ],
+      "role": "symbol",
+      "title": "unregisterFromEngine()",
+      "type": "topic",
+      "url": "/documentation/phase/phasegroup/unregisterfromengine()"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGroup/unsolo()": {
+      "abstract": [
+        {
+          "text": "Restores the other groups’ volume.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unsolo"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroup/unsolo()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unsolo"
+        }
+      ],
+      "role": "symbol",
+      "title": "unsolo()",
+      "type": "topic",
+      "url": "/documentation/phase/phasegroup/unsolo()"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGroupPreset": {
+      "abstract": [
+        {
+          "text": "A collection of settings for groups.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEGroupPreset"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroupPreset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEGroupPreset"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEGroupPreset",
+      "type": "topic",
+      "url": "/documentation/phase/phasegrouppreset"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGroupPresetSetting": {
+      "abstract": [
+        {
+          "text": "Settings for group presets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEGroupPresetSetting"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroupPresetSetting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEGroupPresetSetting"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEGroupPresetSetting",
+      "type": "topic",
+      "url": "/documentation/phase/phasegrouppresetsetting"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sound-Grouping-and-Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEGroupPreset",
+        "doc://com.apple.phase/documentation/PHASE/PHASEGroupPresetSetting",
+        "doc://com.apple.phase/documentation/PHASE/PHASEDucker"
+      ],
+      "title": "Sound Grouping and Management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Group",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEGroup/init(identifier:)"
+      ],
+      "title": "Creating a Group"
+    },
+    {
+      "anchor": "Identifying-the-Group",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEGroup/identifier"
+      ],
+      "title": "Identifying the Group"
+    },
+    {
+      "anchor": "Defining-the-Group",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEGroup/register(engine:)",
+        "doc://com.apple.phase/documentation/PHASE/PHASEGroup/unregisterFromEngine()"
+      ],
+      "title": "Defining the Group"
+    },
+    {
+      "anchor": "Conrolling-Loudness",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEGroup/gain",
+        "doc://com.apple.phase/documentation/PHASE/PHASEGroup/fadeGain(gain:duration:curveType:)"
+      ],
+      "title": "Conrolling Loudness"
+    },
+    {
+      "anchor": "Adjusting-Playback-Speed",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEGroup/rate",
+        "doc://com.apple.phase/documentation/PHASE/PHASEGroup/fadeRate(rate:duration:curveType:)"
+      ],
+      "title": "Adjusting Playback Speed"
+    },
+    {
+      "anchor": "Silencing-Sounds",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEGroup/mute()",
+        "doc://com.apple.phase/documentation/PHASE/PHASEGroup/unmute()",
+        "doc://com.apple.phase/documentation/PHASE/PHASEGroup/isMuted",
+        "doc://com.apple.phase/documentation/PHASE/PHASEGroup/solo()",
+        "doc://com.apple.phase/documentation/PHASE/PHASEGroup/unsolo()",
+        "doc://com.apple.phase/documentation/PHASE/PHASEGroup/isSoloed"
+      ],
+      "title": "Silencing Sounds"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PHASEGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.phase/documentation/PHASE"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Group",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEGroup/init(identifier:)"
+              ],
+              "title": "Creating a Group"
+            },
+            {
+              "anchor": "Identifying-the-Group",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEGroup/identifier"
+              ],
+              "title": "Identifying the Group"
+            },
+            {
+              "anchor": "Defining-the-Group",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEGroup/register(engine:)",
+                "doc://com.apple.phase/documentation/PHASE/PHASEGroup/unregisterFromEngine()"
+              ],
+              "title": "Defining the Group"
+            },
+            {
+              "anchor": "Conrolling-Loudness",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEGroup/gain",
+                "doc://com.apple.phase/documentation/PHASE/PHASEGroup/fadeGain(gain:duration:curveType:)"
+              ],
+              "title": "Conrolling Loudness"
+            },
+            {
+              "anchor": "Adjusting-Playback-Speed",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEGroup/rate",
+                "doc://com.apple.phase/documentation/PHASE/PHASEGroup/fadeRate(rate:duration:curveType:)"
+              ],
+              "title": "Adjusting Playback Speed"
+            },
+            {
+              "anchor": "Silencing-Sounds",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEGroup/mute()",
+                "doc://com.apple.phase/documentation/PHASE/PHASEGroup/unmute()",
+                "doc://com.apple.phase/documentation/PHASE/PHASEGroup/isMuted",
+                "doc://com.apple.phase/documentation/PHASE/PHASEGroup/solo()",
+                "doc://com.apple.phase/documentation/PHASE/PHASEGroup/unsolo()",
+                "doc://com.apple.phase/documentation/PHASE/PHASEGroup/isSoloed"
+              ],
+              "title": "Silencing Sounds"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Sound-Grouping-and-Management",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEGroupPreset",
+                "doc://com.apple.phase/documentation/PHASE/PHASEGroupPresetSetting",
+                "doc://com.apple.phase/documentation/PHASE/PHASEDucker"
+              ],
+              "title": "Sound Grouping and Management"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PHASEGroup"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1unmute()/title",
+          "value": "unmute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1unmute()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unmute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1identifier/title",
+          "value": "identifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1identifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "identifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroupPreset/title",
+          "value": "PHASEGroupPreset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroupPreset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEGroupPreset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroupPreset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEGroupPreset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1fadeGain(gain:duration:curveType:)/title",
+          "value": "fadeGain:duration:curveType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1fadeGain(gain:duration:curveType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fadeGain:duration:curveType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1init(identifier:)/title",
+          "value": "initWithIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1init(identifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1register(engine:)/title",
+          "value": "registerWithEngine:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1register(engine:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerWithEngine:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup/title",
+          "value": "PHASEGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1isSoloed/title",
+          "value": "soloed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1isSoloed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "soloed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroupPresetSetting/title",
+          "value": "PHASEGroupPresetSetting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroupPresetSetting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEGroupPresetSetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroupPresetSetting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEGroupPresetSetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1unregisterFromEngine()/title",
+          "value": "unregisterFromEngine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1unregisterFromEngine()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unregisterFromEngine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1solo()/title",
+          "value": "solo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1solo()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "solo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1unsolo()/title",
+          "value": "unsolo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1unsolo()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unsolo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDucker/title",
+          "value": "PHASEDucker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDucker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEDucker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDucker/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEDucker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1fadeRate(rate:duration:curveType:)/title",
+          "value": "fadeRate:duration:curveType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1fadeRate(rate:duration:curveType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fadeRate:duration:curveType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1isMuted/title",
+          "value": "muted"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1isMuted/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "muted"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1rate/title",
+          "value": "rate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1rate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1mute()/title",
+          "value": "mute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1mute()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1gain/title",
+          "value": "gain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1gain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gain"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/phase/phasegroup"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/phase/phasegroup"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

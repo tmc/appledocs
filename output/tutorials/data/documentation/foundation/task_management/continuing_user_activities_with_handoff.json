@@ -1,0 +1,1307 @@
+{
+  "abstract": [
+    {
+      "text": "Define and manage which of your app’s activities can be continued between devices.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/task_management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/task_management/continuing_user_activities_with_handoff"
+  },
+  "kind": "article",
+  "legacy_identifier": 3108512,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.14",
+        "name": "macOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Continuing User Activities with Handoff"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app searches for Apple Store locations and shows them on a map. The user can choose a store’s map annotation to see its address and mark it as a favorite. As the user changes visible regions or inspects individual stores, the app uses Handoff to share these activities with the user’s other devices. If the user changes devices, they can use Handoff to launch the app and return to what they were doing on the original device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4311655",
+              "metadata": {
+                "anchor": "4311655",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample project builds for both macOS and iOS, so you can run it on a Mac, iPhone, and iPad. The project does not contain a watchOS or tvOS app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4311671",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "HandoffMapViewer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " must be run on actual devices; the iOS version cannot run in Simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure your Mac to run the sample code project, open System Preferences and do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Bluetooth settings, click Turn Bluetooth On.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In iCloud settings, verify that you are signed into iCloud. If you are not, click Sign In and enter your Apple ID and password.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In General settings, select “Allow Handoff between this Mac and your iCloud devices”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure your iOS devices to run the sample code project, open the Settings app and do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Bluetooth settings, tap to turn on Bluetooth.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the user banner at the top of Settings, tap to sign in with your Apple ID if you haven’t already. Then tap to turn on  iCloud.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In General settings, tap to turn on Handoff.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the sample code project so that it can run on your devices, open the ",
+              "type": "text"
+            },
+            {
+              "code": "HandoffMapViewer.xcodeproj",
+              "type": "codeVoice"
+            },
+            {
+              "text": " project in Xcode and do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HandoffMapViewer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " project at the top of the Project Navigator, select the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HandoffMapViewerMac",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " target, select the “General” tab, and change the Bundle Identifier to a unique value, such as one that uses your organization’s name instead of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.example",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "With the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HandoffMapViewer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " project still selected in the Project Navigator, select the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HandoffMapViewerIOS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " target, select the “General” tab, and change the Bundle Identifier to the same value you used in the previous step.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To run the macOS version, build the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HandoffMapViewerMac",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " target, and run it locally, or copy the application file from the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Products",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " folder to another Mac and run it there.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To run the iOS version, build the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HandoffMapViewerIOS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " target and run it on one of your connected iOS devices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "4311672",
+          "level": 3,
+          "text": "Define User Activities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You implement Handoff by determining specific activities that a user can perform in your app, and whose state you can reproduce on a second device. The sample app has two user activities:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Viewing a map region.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Viewing the details of a specific Apple Store and editing its “favorite” value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Be aware that your app usually has other persistence and synchronization strategies in addition to Handoff. For example, the sample app uses an iCloud key-value store to keep track of which stores have been marked as favorites. This way, the favorites data is available to the app if you launch it outside of Handoff, such as from the macOS Dock or the iOS Home screen.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use the app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to tell Handoff which activities your app can continue, by providing an entry with the key name ",
+              "type": "text"
+            },
+            {
+              "code": "NSUserActivityTypes",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The type of this entry is ",
+              "type": "text"
+            },
+            {
+              "code": "Array",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and each member is a ",
+              "type": "text"
+            },
+            {
+              "code": "String",
+              "type": "codeVoice"
+            },
+            {
+              "text": " representing a supported Handoff activity. In the sample app, the macOS and iOS targets include the ",
+              "type": "text"
+            },
+            {
+              "code": "map-viewing",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "store-editing",
+              "type": "codeVoice"
+            },
+            {
+              "text": " activities in their ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>NSUserActivityTypes</key>",
+            "<array>",
+            "  <string>com.example.apple-samplecode.HandoffMapViewer.map-viewing</string>",
+            "  <string>com.example.apple-samplecode.HandoffMapViewer.store-editing</string>",
+            "</array>"
+          ],
+          "metadata": {
+            "anchor": "4311658",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "4311673",
+          "level": 3,
+          "text": "Manage User Activities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At runtime, you represent a user activity with the ",
+              "type": "text"
+            },
+            {
+              "code": "NSUserActivity",
+              "type": "codeVoice"
+            },
+            {
+              "text": "  type. You initialize a user activity object with a string identifier, the same one used earlier in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  This object also has an ",
+              "type": "text"
+            },
+            {
+              "code": "isEligibleForHandoff",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property that exposes the activity to Handoff, and a ",
+              "type": "text"
+            },
+            {
+              "code": "userInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": "  dictionary containing data needed to recreate the app’s state on the receiving device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the sample app, the ",
+              "type": "text"
+            },
+            {
+              "code": "MapViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " manages two ",
+              "type": "text"
+            },
+            {
+              "code": "NSUserActivity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances: one each for the ",
+              "type": "text"
+            },
+            {
+              "code": "map-viewing",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "store-editing",
+              "type": "codeVoice"
+            },
+            {
+              "text": " activities. When the map region changes, it sets the ",
+              "type": "text"
+            },
+            {
+              "code": "userActivity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property (defined in ",
+              "type": "text"
+            },
+            {
+              "code": "NSViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for macOS and ",
+              "type": "text"
+            },
+            {
+              "code": "UIViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for iOS) to the ",
+              "type": "text"
+            },
+            {
+              "code": "map-viewing",
+              "type": "codeVoice"
+            },
+            {
+              "text": " activity. It makes this the current activity, replacing any other activity that may have previously been sent to Handoff, and sets ",
+              "type": "text"
+            },
+            {
+              "code": "needsSave",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", indicating that the activity has new data to send to remote devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "userActivity = mapViewingActivity",
+            "mapViewingActivity.needsSave = true",
+            "mapViewingActivity.becomeCurrent()"
+          ],
+          "metadata": {
+            "anchor": "4311660",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Calling ",
+              "type": "text"
+            },
+            {
+              "code": "needsSave",
+              "type": "codeVoice"
+            },
+            {
+              "text": "  on the view controller’s ",
+              "type": "text"
+            },
+            {
+              "code": "userActivity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " eventually results in a callback to the method ",
+              "type": "text"
+            },
+            {
+              "code": "updateUserActivityState(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", declared in ",
+              "type": "text"
+            },
+            {
+              "code": "UIResponder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on iOS and ",
+              "type": "text"
+            },
+            {
+              "code": "NSResponder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on macOS. This is the app’s opportunity to refresh the activity object’s ",
+              "type": "text"
+            },
+            {
+              "code": "userInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " before Handoff receives the activity. The implementation in the sample app calls a convenience function ",
+              "type": "text"
+            },
+            {
+              "code": "updateViewingRegion(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",  defined in an extension on ",
+              "type": "text"
+            },
+            {
+              "code": "NSUserActivity",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", to encode the map view’s ",
+              "type": "text"
+            },
+            {
+              "code": "MKCoordinateRegion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " into key-value entries in the ",
+              "type": "text"
+            },
+            {
+              "code": "userInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func updateViewingRegion(_ region: MKCoordinateRegion) {",
+            "    let updateDict = [",
+            "        NSUserActivity.regionCenterLatitudeKeyString: region.center.latitude,",
+            "        NSUserActivity.regionCenterLongitudeKeyString: region.center.longitude,",
+            "        NSUserActivity.regionSpanLatitudeKeyString: region.span.latitudeDelta,",
+            "        NSUserActivity.regionSpanLongitudeKeyString: region.span.longitudeDelta]",
+            "    addUserInfoEntries(from: updateDict)",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4311661",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "4311674",
+          "level": 3,
+          "text": "Receive User Activities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you move to another device, macOS or iOS indicates that a Handoff activity is available. macOS displays a Handoff icon at the beginning of the Dock, with a badge indicating the type of source device. On iOS, the Handoff banner appears at the bottom of the screen in the app switcher, showing the app and source device name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you launch the app using the Handoff prompts, the system calls methods in ",
+              "type": "text"
+            },
+            {
+              "code": "UIApplicationDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (iOS) or ",
+              "type": "text"
+            },
+            {
+              "code": "NSApplicationDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (macOS) to provide the Handoff activity. The ",
+              "type": "text"
+            },
+            {
+              "code": "application(_:continue:restorationHandler:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method provides the activity, along with a completion handler that you call with an array of view controllers that can handle the activity.  The implementation in the iOS app delegate just finds and passes the first view controller, an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "MapViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func application(_ application: UIApplication, continue userActivity: NSUserActivity,",
+            "                 restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {",
+            "    guard let topNav = application.keyWindow?.rootViewController as? UINavigationController,",
+            "        let mapVC = topNav.viewControllers.first as? MapViewController else {",
+            "        return false",
+            "    }",
+            "    ",
+            "    mapVC.loadView()",
+            "    restorationHandler([mapVC])",
+            "    return true",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4311663",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The implementation in the macOS app delegate is similar, except that it traverses the key window’s hierarchy, rather than the iOS navigation controller stack:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func application(_ application: NSApplication, continue userActivity: NSUserActivity,",
+            "                 restorationHandler: @escaping ([NSUserActivityRestoring]) -> Void) -> Bool {",
+            "    guard let mapVC = application.keyWindow?.windowController?.contentViewController as? MapViewController else {",
+            "        return false",
+            "    }",
+            "    ",
+            "    mapVC.loadView()",
+            "    restorationHandler([mapVC])",
+            "    return true",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4311664",
+            "title": "Listing 5"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "4311675",
+          "level": 3,
+          "text": "Update the App’s State",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The view controllers receive the ",
+              "type": "text"
+            },
+            {
+              "code": "NSUserActivity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "restoreUserActivityState(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. ",
+              "type": "text"
+            },
+            {
+              "code": "MapViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " inspects the activity to determine whether it is the map-viewing or the store-editing activity, and then updates the UI as needed. The map-viewing activity case resets the map region, by creating a new ",
+              "type": "text"
+            },
+            {
+              "code": "MKCoordinateRegion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the values in the ",
+              "type": "text"
+            },
+            {
+              "code": "userInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func viewingRegion() -> MKCoordinateRegion? {",
+            "    guard let centerLatitude = userInfo?[NSUserActivity.regionCenterLatitudeKeyString] as? CLLocationDegrees,",
+            "        let centerLongitude = userInfo?[NSUserActivity.regionCenterLongitudeKeyString] as? CLLocationDegrees,",
+            "        let spanLatitude = userInfo?[NSUserActivity.regionSpanLatitudeKeyString] as? CLLocationDegrees,",
+            "        let spanLongitude = userInfo?[NSUserActivity.regionSpanLongitudeKeyString] as? CLLocationDegrees else {",
+            "            return nil",
+            "    }",
+            "    return MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: centerLatitude,",
+            "                                                             longitude: centerLongitude),",
+            "                              span: MKCoordinateSpan(latitudeDelta: spanLatitude,",
+            "                                                     longitudeDelta: spanLongitude))",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4311666",
+            "title": "Listing 6"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the case of the store-editing activity, the view controller also retrieves the store’s URL and location coordinates from the ",
+              "type": "text"
+            },
+            {
+              "code": "userInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The app waits until the map adds a ",
+              "type": "text"
+            },
+            {
+              "code": "MKAnnotationView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the store being edited, so it knows where to anchor the popover.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4311676",
+          "level": 3,
+          "text": "Update the Original Device’s State (Optional)",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSUserActivity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class has a ",
+              "type": "text"
+            },
+            {
+              "code": "delegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of type ",
+              "type": "text"
+            },
+            {
+              "code": "NSUserActivityDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This notifies the originating device when you continue an activity on another device. The originating device can use this to clean up its own UI state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the sample app, tapping a pin for an Apple Store shows a popover with details about the store and a switch (iOS) or checkbox (macOS) to mark the store as a favorite. The ",
+              "type": "text"
+            },
+            {
+              "code": "MapViewContoller",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents this activity as the ",
+              "type": "text"
+            },
+            {
+              "code": "storeEditingActivity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property, and sets itself as the activity’s delegate. When you continue editing on a second device, the delegate on the originating device receives a notification that this activity has been continued, and dismisses its own popover.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func userActivityWasContinued(_ userActivity: NSUserActivity) {",
+            "    DispatchQueue.main.async {",
+            "        if let detailVC = self.presentedViewController as? StoreDetailViewController,",
+            "           userActivity.activityType == NSUserActivity.storeEditingActivityType {",
+            "            detailVC.dismiss(animated: true)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4311668",
+            "title": "Listing 7"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Not all apps need to update the state of the originating app. In the sample app, dismissing the popover is meant as a gentle reminder to not make simultaneous edits from two devices. This is neither explicitly prohibited nor supported in the sample.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity": {
+      "abstract": [
+        {
+          "text": "A representation of the state of your app at a moment in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivitydelegate": {
+      "abstract": [
+        {
+          "text": "The interface through which a user activity instance notifies its delegate of updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivitydelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivityDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivitydelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/task_management": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/task_management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Task Management",
+      "type": "topic",
+      "url": "/documentation/foundation/task_management"
+    },
+    "doc://com.apple.documentation/documentation/foundation/task_management/continuing_user_activities_with_handoff": {
+      "abstract": [
+        {
+          "text": "Define and manage which of your app’s activities can be continued between devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/task_management/continuing_user_activities_with_handoff",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Continuing User Activities with Handoff",
+      "type": "topic",
+      "url": "/documentation/foundation/task_management/continuing_user_activities_with_handoff"
+    },
+    "doc://com.apple.documentation/documentation/foundation/task_management/continuing_user_activities_with_handoff#4311658": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/task_management/continuing_user_activities_with_handoff#4311658",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/task_management/continuing_user_activities_with_handoff#4311658"
+    },
+    "doc://com.apple.documentation/documentation/foundation/task_management/continuing_user_activities_with_handoff#4311660": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/task_management/continuing_user_activities_with_handoff#4311660",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/task_management/continuing_user_activities_with_handoff#4311660"
+    },
+    "doc://com.apple.documentation/documentation/foundation/task_management/continuing_user_activities_with_handoff#4311661": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/task_management/continuing_user_activities_with_handoff#4311661",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/foundation/task_management/continuing_user_activities_with_handoff#4311661"
+    },
+    "doc://com.apple.documentation/documentation/foundation/task_management/continuing_user_activities_with_handoff#4311663": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/task_management/continuing_user_activities_with_handoff#4311663",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/foundation/task_management/continuing_user_activities_with_handoff#4311663"
+    },
+    "doc://com.apple.documentation/documentation/foundation/task_management/continuing_user_activities_with_handoff#4311664": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/task_management/continuing_user_activities_with_handoff#4311664",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/foundation/task_management/continuing_user_activities_with_handoff#4311664"
+    },
+    "doc://com.apple.documentation/documentation/foundation/task_management/continuing_user_activities_with_handoff#4311666": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/task_management/continuing_user_activities_with_handoff#4311666",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 6",
+      "type": "section",
+      "url": "/documentation/foundation/task_management/continuing_user_activities_with_handoff#4311666"
+    },
+    "doc://com.apple.documentation/documentation/foundation/task_management/continuing_user_activities_with_handoff#4311668": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/task_management/continuing_user_activities_with_handoff#4311668",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 7",
+      "type": "section",
+      "url": "/documentation/foundation/task_management/continuing_user_activities_with_handoff#4311668"
+    },
+    "doc://com.apple.documentation/documentation/foundation/task_management/implementing_handoff_in_your_app": {
+      "abstract": [
+        {
+          "text": "Create, send, and receive user activities directly.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/task_management/implementing_handoff_in_your_app",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing Handoff in Your App",
+      "type": "topic",
+      "url": "/documentation/foundation/task_management/implementing_handoff_in_your_app"
+    },
+    "doc://com.apple.documentation/documentation/foundation/task_management/increasing_app_usage_with_suggestions_based_on_user_activities": {
+      "abstract": [
+        {
+          "text": "Provide a continuous user experience by capturing information from your app and displaying this information as proactive suggestions across the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/task_management/increasing_app_usage_with_suggestions_based_on_user_activities",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Increasing App Usage with Suggestions Based on User Activities",
+      "type": "topic",
+      "url": "/documentation/foundation/task_management/increasing_app_usage_with_suggestions_based_on_user_activities"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs-assets.developer.apple.com/published/eb057471c1/ContinuingUserActivitiesWithHandoff.zip": {
+      "checksum": "bf4f424878b4013422424304aef0e503c3a1e1772213cf978d655ed2a1623c6b586785dc36c94b9bb8518bb81ac03057ca2f537f005f74c8633937616c2ae8fa",
+      "identifier": "https://docs-assets.developer.apple.com/published/eb057471c1/ContinuingUserActivitiesWithHandoff.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/eb057471c1/ContinuingUserActivitiesWithHandoff.zip"
+    },
+    "link-media-4311655": {
+      "identifier": "link-media-4311655",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/foundation/task_management/continuing_user_activities_with_handoff#4311655"
+    },
+    "media-4311655": {
+      "alt": "Outlines of mobile and desktop devices, showing a specific point of interest on a map.",
+      "identifier": "media-4311655",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/61ed7245f2/rendered2x-1635531460.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/eb057471c1/ContinuingUserActivitiesWithHandoff.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/task_management/increasing_app_usage_with_suggestions_based_on_user_activities",
+        "doc://com.apple.documentation/documentation/foundation/task_management/implementing_handoff_in_your_app",
+        "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+        "doc://com.apple.documentation/documentation/foundation/nsuseractivitydelegate"
+      ],
+      "title": "Activity Sharing"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/task_management/continuing_user_activities_with_handoff"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

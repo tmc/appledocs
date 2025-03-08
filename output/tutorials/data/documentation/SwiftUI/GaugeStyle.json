@@ -1,0 +1,1989 @@
+{
+  "abstract": [
+    {
+      "text": "Defines the implementation of all gauge instances within a view",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "hierarchy.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI10GaugeStyleP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "GaugeStyle"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GaugeStyle"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "GaugeStyle"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GaugeStyle"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the style for all the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Gauge",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances in a view hierarchy,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gaugeStyle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier. For example, you can configure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a gauge to use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/circular",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " style:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Gauge(value: batteryLevel, in: 0...100) {",
+            "    Text(\"Battery Level\")",
+            "}",
+            ".gaugeStyle(.circular)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A type conforming to this protocol inherits ",
+              "type": "text"
+            },
+            {
+              "code": "@preconcurrency @MainActor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "isolation from the protocol if the conformance is included in the type’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "base declaration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyCustomType: Transition {",
+            "    // `@preconcurrency @MainActor` isolation by default",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Isolation to the main actor is the default, but it’s not required. Declare",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the conformance in an extension to opt out of main actor isolation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension MyCustomType: Transition {",
+            "    // `nonisolated` by default",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessoryCircularCapacityGaugeStyle": {
+      "abstract": [
+        {
+          "text": "A gauge style that displays a closed ring that’s partially filled in to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "indicate the gauge’s current value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessoryCircularCapacityGaugeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessoryCircularCapacityGaugeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessoryCircularCapacityGaugeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessoryCircularCapacityGaugeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessorycircularcapacitygaugestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessoryCircularGaugeStyle": {
+      "abstract": [
+        {
+          "text": "A gauge style that displays an open ring with a marker that appears at a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "point along the ring to indicate the gauge’s current value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessoryCircularGaugeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessoryCircularGaugeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessoryCircularGaugeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessoryCircularGaugeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessorycirculargaugestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessoryLinearCapacityGaugeStyle": {
+      "abstract": [
+        {
+          "text": "A gauge style that displays bar that fills from leading to trailing",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "edges as the gauge’s current value increases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessoryLinearCapacityGaugeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessoryLinearCapacityGaugeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessoryLinearCapacityGaugeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessoryLinearCapacityGaugeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessorylinearcapacitygaugestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessoryLinearGaugeStyle": {
+      "abstract": [
+        {
+          "text": "A gauge style that displays bar with a marker that appears at a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "point along the bar to indicate the gauge’s current value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessoryLinearGaugeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessoryLinearGaugeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessoryLinearGaugeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessoryLinearGaugeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessorylineargaugestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CircularGaugeStyle": {
+      "abstract": [
+        {
+          "text": "A gauge style that displays an open ring with a marker that appears at a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "point along the ring to indicate the gauge’s current value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CircularGaugeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CircularGaugeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CircularGaugeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "CircularGaugeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/circulargaugestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DefaultGaugeStyle": {
+      "abstract": [
+        {
+          "text": "The default gauge view style in the current context of the view being",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "styled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DefaultGaugeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DefaultGaugeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DefaultGaugeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "DefaultGaugeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/defaultgaugestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Gauge": {
+      "abstract": [
+        {
+          "text": "A view that shows a value within a range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Gauge"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Gauge",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Gauge"
+        }
+      ],
+      "role": "symbol",
+      "title": "Gauge",
+      "type": "topic",
+      "url": "/documentation/swiftui/gauge"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle": {
+      "abstract": [
+        {
+          "text": "Defines the implementation of all gauge instances within a view",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GaugeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GaugeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "GaugeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/gaugestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/Body": {
+      "abstract": [
+        {
+          "text": "A view representing the body of a gauge.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Body"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/Body",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Body",
+      "type": "topic",
+      "url": "/documentation/swiftui/gaugestyle/body"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/Configuration": {
+      "abstract": [
+        {
+          "text": "The properties of a gauge instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/Configuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "GaugeStyle.Configuration",
+      "type": "topic",
+      "url": "/documentation/swiftui/gaugestyle/configuration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/accessoryCircular": {
+      "abstract": [
+        {
+          "text": "A gauge style that displays an open ring with a marker that appears at a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "point along the ring to indicate the gauge’s current value.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "AccessoryCircularGaugeStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryCircular"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI27AccessoryCircularGaugeStyleV",
+          "text": "AccessoryCircularGaugeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/accessoryCircular",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessoryCircular",
+      "type": "topic",
+      "url": "/documentation/swiftui/gaugestyle/accessorycircular"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/accessoryCircularCapacity": {
+      "abstract": [
+        {
+          "text": "A gauge style that displays a closed ring that’s partially filled in to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "indicate the gauge’s current value.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "AccessoryCircularCapacityGaugeStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryCircularCapacity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI35AccessoryCircularCapacityGaugeStyleV",
+          "text": "AccessoryCircularCapacityGaugeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/accessoryCircularCapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessoryCircularCapacity",
+      "type": "topic",
+      "url": "/documentation/swiftui/gaugestyle/accessorycircularcapacity"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/accessoryLinear": {
+      "abstract": [
+        {
+          "text": "A gauge style that displays bar with a marker that appears at a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "point along the bar to indicate the gauge’s current value.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "AccessoryLinearGaugeStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryLinear"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25AccessoryLinearGaugeStyleV",
+          "text": "AccessoryLinearGaugeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/accessoryLinear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessoryLinear",
+      "type": "topic",
+      "url": "/documentation/swiftui/gaugestyle/accessorylinear"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/accessoryLinearCapacity": {
+      "abstract": [
+        {
+          "text": "A gauge style that displays bar that fills from leading to trailing",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "edges as the gauge’s current value increases.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "AccessoryLinearCapacityGaugeStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryLinearCapacity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI33AccessoryLinearCapacityGaugeStyleV",
+          "text": "AccessoryLinearCapacityGaugeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/accessoryLinearCapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessoryLinearCapacity",
+      "type": "topic",
+      "url": "/documentation/swiftui/gaugestyle/accessorylinearcapacity"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/automatic": {
+      "abstract": [
+        {
+          "text": "The default gauge view style in the current context of the view being",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "styled.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "DefaultGaugeStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automatic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17DefaultGaugeStyleV",
+          "text": "DefaultGaugeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/automatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "automatic",
+      "type": "topic",
+      "url": "/documentation/swiftui/gaugestyle/automatic"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/circular": {
+      "abstract": [
+        {
+          "text": "A gauge style that displays an open ring with a marker that appears at a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "point along the ring to indicate the gauge’s current value.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "CircularGaugeStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "circular"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18CircularGaugeStyleV",
+          "text": "CircularGaugeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/circular",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "circular",
+      "type": "topic",
+      "url": "/documentation/swiftui/gaugestyle/circular"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/linear": {
+      "abstract": [
+        {
+          "text": "A gauge style that displays a bar with a marker that appears at a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "point along the bar to indicate the gauge’s current value.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "LinearGaugeStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "linear"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16LinearGaugeStyleV",
+          "text": "LinearGaugeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/linear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "linear",
+      "type": "topic",
+      "url": "/documentation/swiftui/gaugestyle/linear"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/linearCapacity": {
+      "abstract": [
+        {
+          "text": "A gauge style that displays a bar that fills from leading to trailing",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "edges as the gauge’s current value increases.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "LinearCapacityGaugeStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "linearCapacity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI24LinearCapacityGaugeStyleV",
+          "text": "LinearCapacityGaugeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/linearCapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "linearCapacity",
+      "type": "topic",
+      "url": "/documentation/swiftui/gaugestyle/linearcapacity"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/makeBody(configuration:)": {
+      "abstract": [
+        {
+          "text": "Creates a view representing the body of a gauge.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeBody"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10GaugeStyleP13Configurationa",
+          "text": "Configuration"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10GaugeStyleP4BodyQa",
+          "text": "Body"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/makeBody(configuration:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "makeBody(configuration:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/gaugestyle/makebody(configuration:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyleConfiguration": {
+      "abstract": [
+        {
+          "text": "The properties of a gauge instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GaugeStyleConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyleConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GaugeStyleConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "GaugeStyleConfiguration",
+      "type": "topic",
+      "url": "/documentation/swiftui/gaugestyleconfiguration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LinearCapacityGaugeStyle": {
+      "abstract": [
+        {
+          "text": "A gauge style that displays bar that fills from leading to trailing",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "edges as the gauge’s current value increases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LinearCapacityGaugeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LinearCapacityGaugeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LinearCapacityGaugeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinearCapacityGaugeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/linearcapacitygaugestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LinearGaugeStyle": {
+      "abstract": [
+        {
+          "text": "A gauge style that displays a bar with a marker that appears at a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "point along the bar to indicate the gauge’s current value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LinearGaugeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LinearGaugeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LinearGaugeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinearGaugeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/lineargaugestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ProgressViewStyle": {
+      "abstract": [
+        {
+          "text": "A type that applies standard interaction behavior to all progress views",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "within a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProgressViewStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ProgressViewStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProgressViewStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProgressViewStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/progressviewstyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ProgressViewStyleConfiguration": {
+      "abstract": [
+        {
+          "text": "The properties of a progress view instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProgressViewStyleConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ProgressViewStyleConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProgressViewStyleConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProgressViewStyleConfiguration",
+      "type": "topic",
+      "url": "/documentation/swiftui/progressviewstyleconfiguration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gaugeStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for gauges within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gaugeStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gaugeStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gaugeStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/gaugestyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/progressViewStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for progress views in this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "progressViewStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/progressViewStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "progressViewStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/progressviewstyle(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessoryCircularCapacityGaugeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessoryCircularGaugeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessoryLinearCapacityGaugeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessoryLinearGaugeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CircularGaugeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DefaultGaugeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LinearCapacityGaugeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LinearGaugeStyle"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Styling-indicators",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gaugeStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyleConfiguration",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/progressViewStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ProgressViewStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ProgressViewStyleConfiguration"
+      ],
+      "title": "Styling indicators"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-the-automatic-style",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/automatic"
+      ],
+      "title": "Getting the automatic style"
+    },
+    {
+      "anchor": "Getting-circular-gauge-styles",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/circular",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/accessoryCircular",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/accessoryCircularCapacity"
+      ],
+      "title": "Getting circular gauge styles"
+    },
+    {
+      "anchor": "Getting-linear-gauge-styles",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/linear",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/linearCapacity",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/accessoryLinear",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/accessoryLinearCapacity"
+      ],
+      "title": "Getting linear gauge styles"
+    },
+    {
+      "anchor": "Creating-custom-gauge-styles",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/makeBody(configuration:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/Configuration",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/GaugeStyle/Body"
+      ],
+      "title": "Creating custom gauge styles"
+    },
+    {
+      "anchor": "Supporting-types",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DefaultGaugeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CircularGaugeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessoryCircularGaugeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessoryCircularCapacityGaugeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LinearGaugeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LinearCapacityGaugeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessoryLinearGaugeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessoryLinearCapacityGaugeStyle"
+      ],
+      "title": "Supporting types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/gaugestyle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

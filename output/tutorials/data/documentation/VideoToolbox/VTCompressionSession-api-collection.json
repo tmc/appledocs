@@ -1,0 +1,2459 @@
+{
+  "abstract": [
+    {
+      "text": "An object that compresses video data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSession-api-collection"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Video Toolbox"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "VTCompressionSession"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A compression session supports the compression of a sequence of video frames. Here’s the workflow:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a compression session using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionCreate(allocator:width:height:codecType:encoderSpecification:imageBufferAttributes:compressedDataAllocator:outputCallback:refcon:compressionSessionOut:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optionally, configure the session with your desired ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/compression-properties",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTSessionSetProperty(_:key:value:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTSessionSetProperties(_:propertyDictionary:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Encode video frames using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionEncodeFrame(_:imageBuffer:presentationTimeStamp:duration:frameProperties:sourceFrameRefcon:infoFlagsOut:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and receive the compressed video frames in the session’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionOutputCallback",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To force the completion of some or all pending frames, call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionCompleteFrames(_:untilPresentationTimeStamp:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When you finish with the compression session, call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionInvalidate(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to invalidate it and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to free its memory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease": {
+      "abstract": [
+        {
+          "text": "Releases a Core Foundation object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFRelease",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1521153-cfrelease"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox": {
+      "abstract": [
+        {
+          "text": "Work directly with hardware-accelerated video encoding and decoding capabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Video Toolbox",
+      "type": "topic",
+      "url": "/documentation/videotoolbox"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionOutputCallback": {
+      "abstract": [
+        {
+          "text": "A callback for the system to invoke when it’s finished compressing a frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTCompressionOutputCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionOutputCallback",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTCompressionOutputCallback"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTCompressionOutputCallback",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtcompressionoutputcallback"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSession": {
+      "abstract": [
+        {
+          "text": "A reference to a VideoToolbox compression session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSession"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTCompressionSession",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtcompressionsession"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionBeginPass(_:flags:_:)": {
+      "abstract": [
+        {
+          "text": "Marks the start of a specific compression pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionBeginPass"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTCompressionSessionRef",
+          "text": "VTCompressionSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@VTCompressionSessionOptionFlags",
+          "text": "VTCompressionSessionOptionFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionBeginPass(_:flags:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionBeginPass"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTCompressionSessionBeginPass(_:flags:_:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtcompressionsessionbeginpass(_:flags:_:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionCompleteFrames(_:untilPresentationTimeStamp:)": {
+      "abstract": [
+        {
+          "text": "Forces the compression session to complete the encoding of frames.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionCompleteFrames"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTCompressionSessionRef",
+          "text": "VTCompressionSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "untilPresentationTimeStamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionCompleteFrames(_:untilPresentationTimeStamp:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionCompleteFrames"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTCompressionSessionCompleteFrames(_:untilPresentationTimeStamp:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtcompressionsessioncompleteframes(_:untilpresentationtimestamp:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionCreate(allocator:width:height:codecType:encoderSpecification:imageBufferAttributes:compressedDataAllocator:outputCallback:refcon:compressionSessionOut:)": {
+      "abstract": [
+        {
+          "text": "Creates an object that compresses video frames.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "allocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "codecType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMVideoCodecType",
+          "text": "CMVideoCodecType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "encoderSpecification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "imageBufferAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "compressedDataAllocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputCallback"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTCompressionOutputCallback",
+          "text": "VTCompressionOutputCallback"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "refcon"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "compressionSessionOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTCompressionSessionRef",
+          "text": "VTCompressionSession"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionCreate(allocator:width:height:codecType:encoderSpecification:imageBufferAttributes:compressedDataAllocator:outputCallback:refcon:compressionSessionOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTCompressionSessionCreate(allocator:width:height:codecType:encoderSpecification:imageBufferAttributes:compressedDataAllocator:outputCallback:refcon:compressionSessionOut:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtcompressionsessioncreate(allocator:width:height:codectype:encoderspecification:imagebufferattributes:compresseddataallocator:outputcallback:refcon:compressionsessionout:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionEncodeFrame(_:imageBuffer:presentationTimeStamp:duration:frameProperties:infoFlagsOut:outputHandler:)": {
+      "abstract": [
+        {
+          "text": "Presents frames to the compression session and invokes the output callback when compression is complete.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionEncodeFrame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTCompressionSessionRef",
+          "text": "VTCompressionSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "imageBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVImageBufferRef",
+          "text": "CVImageBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "presentationTimeStamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "frameProperties"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "infoFlagsOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@VTEncodeInfoFlags",
+          "text": "VTEncodeInfoFlags"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTCompressionOutputHandler",
+          "text": "VTCompressionOutputHandler"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionEncodeFrame(_:imageBuffer:presentationTimeStamp:duration:frameProperties:infoFlagsOut:outputHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionEncodeFrameWithOutputHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTCompressionSessionEncodeFrame(_:imageBuffer:presentationTimeStamp:duration:frameProperties:infoFlagsOut:outputHandler:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtcompressionsessionencodeframe(_:imagebuffer:presentationtimestamp:duration:frameproperties:infoflagsout:outputhandler:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionEncodeFrame(_:imageBuffer:presentationTimeStamp:duration:frameProperties:sourceFrameRefcon:infoFlagsOut:)": {
+      "abstract": [
+        {
+          "text": "Presents frames to the compression session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionEncodeFrame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTCompressionSessionRef",
+          "text": "VTCompressionSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "imageBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVImageBufferRef",
+          "text": "CVImageBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "presentationTimeStamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "frameProperties"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceFrameRefcon"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "infoFlagsOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@VTEncodeInfoFlags",
+          "text": "VTEncodeInfoFlags"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionEncodeFrame(_:imageBuffer:presentationTimeStamp:duration:frameProperties:sourceFrameRefcon:infoFlagsOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionEncodeFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTCompressionSessionEncodeFrame(_:imageBuffer:presentationTimeStamp:duration:frameProperties:sourceFrameRefcon:infoFlagsOut:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtcompressionsessionencodeframe(_:imagebuffer:presentationtimestamp:duration:frameproperties:sourceframerefcon:infoflagsout:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionEncodeMultiImageFrame": {
+      "abstract": [
+        {
+          "text": "Passes a multi-image frame to a compression session for encoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionEncodeMultiImageFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionEncodeMultiImageFrame",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VTCompressionSessionEncodeMultiImageFrame",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtcompressionsessionencodemultiimageframe"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionEncodeMultiImageFrame(_:taggedBuffers:presentationTimeStamp:duration:frameProperties:infoFlagsOut:outputHandler:)": {
+      "abstract": [
+        {
+          "text": "Passes a multi-image frame to a compression session for encoding and provides a callback to handle the output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionEncodeMultiImageFrame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTCompressionSessionRef",
+          "text": "VTCompressionSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "taggedBuffers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CoreMedia14CMTaggedBufferV",
+          "text": "CMTaggedBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "presentationTimeStamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "frameProperties"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "infoFlagsOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@VTEncodeInfoFlags",
+          "text": "VTEncodeInfoFlags"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTCompressionOutputHandler",
+          "text": "VTCompressionOutputHandler"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionEncodeMultiImageFrame(_:taggedBuffers:presentationTimeStamp:duration:frameProperties:infoFlagsOut:outputHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VTCompressionSessionEncodeMultiImageFrame(_:taggedBuffers:presentationTimeStamp:duration:frameProperties:infoFlagsOut:outputHandler:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtcompressionsessionencodemultiimageframe(_:taggedbuffers:presentationtimestamp:duration:frameproperties:infoflagsout:outputhandler:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionEncodeMultiImageFrameWithOutputHandler": {
+      "abstract": [
+        {
+          "text": "Passes a multi-image frame to a compression session for encoding and provides a callback to handle the output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionEncodeMultiImageFrameWithOutputHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionEncodeMultiImageFrameWithOutputHandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VTCompressionSessionEncodeMultiImageFrameWithOutputHandler",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtcompressionsessionencodemultiimageframewithoutputhandler"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionEndPass(_:furtherPassesRequestedOut:_:)": {
+      "abstract": [
+        {
+          "text": "Marks the end of a compression pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionEndPass"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTCompressionSessionRef",
+          "text": "VTCompressionSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "furtherPassesRequestedOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Darwin0A7BooleanV",
+          "text": "DarwinBoolean"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionEndPass(_:furtherPassesRequestedOut:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionEndPass"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTCompressionSessionEndPass(_:furtherPassesRequestedOut:_:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtcompressionsessionendpass(_:furtherpassesrequestedout:_:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionGetPixelBufferPool(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a pool that provides ideal source pixel buffers for a compression session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionGetPixelBufferPool"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTCompressionSessionRef",
+          "text": "VTCompressionSession"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferPoolRef",
+          "text": "CVPixelBufferPool"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionGetPixelBufferPool(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionGetPixelBufferPool"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTCompressionSessionGetPixelBufferPool(_:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtcompressionsessiongetpixelbufferpool(_:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionGetTimeRangesForNextPass(_:timeRangeCountOut:timeRangeArrayOut:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the time ranges for the next pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionGetTimeRangesForNextPass"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTCompressionSessionRef",
+          "text": "VTCompressionSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timeRangeCountOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMItemCount",
+          "text": "CMItemCount"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timeRangeArrayOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ">?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionGetTimeRangesForNextPass(_:timeRangeCountOut:timeRangeArrayOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionGetTimeRangesForNextPass"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTCompressionSessionGetTimeRangesForNextPass(_:timeRangeCountOut:timeRangeArrayOut:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtcompressionsessiongettimerangesfornextpass(_:timerangecountout:timerangearrayout:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Retrieves the Core Foundation type identifier for the compression session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTCompressionSessionGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtcompressionsessiongettypeid()"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionInvalidate(_:)": {
+      "abstract": [
+        {
+          "text": "Tears down a compression session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionInvalidate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTCompressionSessionRef",
+          "text": "VTCompressionSession"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionInvalidate(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionInvalidate"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTCompressionSessionInvalidate(_:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtcompressionsessioninvalidate(_:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionPrepareToEncodeFrames(_:)": {
+      "abstract": [
+        {
+          "text": "Enables the encoder to perform any necessary resource allocation before the encoder begins encoding frames (optional).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionPrepareToEncodeFrames"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTCompressionSessionRef",
+          "text": "VTCompressionSession"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionPrepareToEncodeFrames(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSessionPrepareToEncodeFrames"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTCompressionSessionPrepareToEncodeFrames(_:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtcompressionsessionpreparetoencodeframes(_:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTDecompressionSession-api-collection": {
+      "abstract": [
+        {
+          "text": "An object that decompresses video data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTDecompressionSession-api-collection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VTDecompressionSession",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtdecompressionsession-api-collection"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTEncodeInfoFlags": {
+      "abstract": [
+        {
+          "text": "Flags that indicate encoder state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTEncodeInfoFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTEncodeInfoFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTEncodeInfoFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTEncodeInfoFlags",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtencodeinfoflags"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSilo-api-collection": {
+      "abstract": [
+        {
+          "text": "An object that stores sample buffers from a multipass encoding session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSilo-api-collection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VTFrameSilo",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtframesilo-api-collection"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTIsStereoMVHEVCEncodeSupported()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the system supports MV-HEVC encoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTIsStereoMVHEVCEncodeSupported"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTIsStereoMVHEVCEncodeSupported()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTIsStereoMVHEVCEncodeSupported"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTIsStereoMVHEVCEncodeSupported()",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtisstereomvhevcencodesupported()"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTMultiPassStorage-api-collection": {
+      "abstract": [
+        {
+          "text": "An object that stores video encoding metadata from a multipass encoding session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTMultiPassStorage-api-collection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VTMultiPassStorage",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtmultipassstorage-api-collection"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTSessionSetProperties(_:propertyDictionary:)": {
+      "abstract": [
+        {
+          "text": "Sets multiple properties at once.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTSessionSetProperties"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTSessionRef",
+          "text": "VTSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "propertyDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTSessionSetProperties(_:propertyDictionary:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTSessionSetProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTSessionSetProperties(_:propertyDictionary:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtsessionsetproperties(_:propertydictionary:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTSessionSetProperty(_:key:value:)": {
+      "abstract": [
+        {
+          "text": "Sets a property on a VideoToolbox session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTSessionSetProperty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTSessionRef",
+          "text": "VTSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTSessionSetProperty(_:key:value:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTSessionSetProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTSessionSetProperty(_:key:value:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtsessionsetproperty(_:key:value:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/compression-properties": {
+      "abstract": [
+        {
+          "text": "Properties that you use to configure a compression session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/compression-properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Compression Properties",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/compression-properties"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-live-streaming": {
+      "abstract": [
+        {
+          "text": "Configure a compression session to encode video for live streaming.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-live-streaming",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding video for live streaming",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/encoding-video-for-live-streaming"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-low-latency-conferencing": {
+      "abstract": [
+        {
+          "text": "Configure a compression session to optimize encoding for video-conferencing apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-low-latency-conferencing",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding video for low-latency conferencing",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/encoding-video-for-low-latency-conferencing"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-offline-transcoding": {
+      "abstract": [
+        {
+          "text": "Configure a compression session to transcode video in offline workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-offline-transcoding",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding video for offline transcoding",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/encoding-video-for-offline-transcoding"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Compression",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-low-latency-conferencing",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-live-streaming",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-offline-transcoding",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTDecompressionSession-api-collection",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSilo-api-collection",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTMultiPassStorage-api-collection"
+      ],
+      "title": "Compression"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Session",
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionCreate(allocator:width:height:codecType:encoderSpecification:imageBufferAttributes:compressedDataAllocator:outputCallback:refcon:compressionSessionOut:)"
+      ],
+      "title": "Creating a Session"
+    },
+    {
+      "anchor": "Configuring-a-Session",
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/compression-properties"
+      ],
+      "title": "Configuring a Session"
+    },
+    {
+      "anchor": "Encoding-Frames",
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionGetPixelBufferPool(_:)",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionPrepareToEncodeFrames(_:)",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionEncodeFrame(_:imageBuffer:presentationTimeStamp:duration:frameProperties:sourceFrameRefcon:infoFlagsOut:)",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionEncodeFrame(_:imageBuffer:presentationTimeStamp:duration:frameProperties:infoFlagsOut:outputHandler:)",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionCompleteFrames(_:untilPresentationTimeStamp:)"
+      ],
+      "title": "Encoding Frames"
+    },
+    {
+      "anchor": "Encoding-Multi-Image-Frames",
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTIsStereoMVHEVCEncodeSupported()",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionEncodeMultiImageFrame(_:taggedBuffers:presentationTimeStamp:duration:frameProperties:infoFlagsOut:outputHandler:)"
+      ],
+      "title": "Encoding Multi-Image Frames"
+    },
+    {
+      "anchor": "Performing-Multiple-Passes",
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionBeginPass(_:flags:_:)",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionEndPass(_:furtherPassesRequestedOut:_:)",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionGetTimeRangesForNextPass(_:timeRangeCountOut:timeRangeArrayOut:)"
+      ],
+      "title": "Performing Multiple Passes"
+    },
+    {
+      "anchor": "Invalidating-a-Session",
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionInvalidate(_:)"
+      ],
+      "title": "Invalidating a Session"
+    },
+    {
+      "anchor": "Accessing-the-Type-Identifier",
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionGetTypeID()"
+      ],
+      "title": "Accessing the Type Identifier"
+    },
+    {
+      "anchor": "Data-Types",
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSession",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTEncodeInfoFlags"
+      ],
+      "title": "Data Types"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Session",
+              "identifiers": [
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionCreate(allocator:width:height:codecType:encoderSpecification:imageBufferAttributes:compressedDataAllocator:outputCallback:refcon:compressionSessionOut:)"
+              ],
+              "title": "Creating a Session"
+            },
+            {
+              "anchor": "Configuring-a-Session",
+              "identifiers": [
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/compression-properties"
+              ],
+              "title": "Configuring a Session"
+            },
+            {
+              "anchor": "Encoding-Frames",
+              "identifiers": [
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionGetPixelBufferPool(_:)",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionPrepareToEncodeFrames(_:)",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionEncodeFrame(_:imageBuffer:presentationTimeStamp:duration:frameProperties:sourceFrameRefcon:infoFlagsOut:)",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionEncodeFrame(_:imageBuffer:presentationTimeStamp:duration:frameProperties:infoFlagsOut:outputHandler:)",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionCompleteFrames(_:untilPresentationTimeStamp:)"
+              ],
+              "title": "Encoding Frames"
+            },
+            {
+              "anchor": "Encoding-Multi-Image-Frames",
+              "identifiers": [
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTIsStereoMVHEVCEncodeSupported()",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionEncodeMultiImageFrame",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionEncodeMultiImageFrameWithOutputHandler"
+              ],
+              "title": "Encoding Multi-Image Frames"
+            },
+            {
+              "anchor": "Performing-Multiple-Passes",
+              "identifiers": [
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionBeginPass(_:flags:_:)",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionEndPass(_:furtherPassesRequestedOut:_:)",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionGetTimeRangesForNextPass(_:timeRangeCountOut:timeRangeArrayOut:)"
+              ],
+              "title": "Performing Multiple Passes"
+            },
+            {
+              "anchor": "Invalidating-a-Session",
+              "identifiers": [
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionInvalidate(_:)"
+              ],
+              "title": "Invalidating a Session"
+            },
+            {
+              "anchor": "Accessing-the-Type-Identifier",
+              "identifiers": [
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSessionGetTypeID()"
+              ],
+              "title": "Accessing the Type Identifier"
+            },
+            {
+              "anchor": "Data-Types",
+              "identifiers": [
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSession",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTEncodeInfoFlags"
+              ],
+              "title": "Data Types"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Compression",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-low-latency-conferencing",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-live-streaming",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-offline-transcoding",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTDecompressionSession-api-collection",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSilo-api-collection",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTMultiPassStorage-api-collection"
+              ],
+              "title": "Compression"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionOutputCallback/title",
+          "value": "VTCompressionOutputCallback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionOutputCallback/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTCompressionOutputCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionOutputCallback/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTCompressionOutputCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSessionEncodeFrame(_:imageBuffer:presentationTimeStamp:duration:frameProperties:sourceFrameRefcon:infoFlagsOut:)/title",
+          "value": "VTCompressionSessionEncodeFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSessionEncodeFrame(_:imageBuffer:presentationTimeStamp:duration:frameProperties:sourceFrameRefcon:infoFlagsOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTCompressionSessionEncodeFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSessionGetPixelBufferPool(_:)/title",
+          "value": "VTCompressionSessionGetPixelBufferPool"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSessionGetPixelBufferPool(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTCompressionSessionGetPixelBufferPool"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSession/title",
+          "value": "VTCompressionSessionRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTCompressionSessionRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTCompressionSessionRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTEncodeInfoFlags/title",
+          "value": "VTEncodeInfoFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTEncodeInfoFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTEncodeInfoFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTEncodeInfoFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTEncodeInfoFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSessionInvalidate(_:)/title",
+          "value": "VTCompressionSessionInvalidate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSessionInvalidate(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTCompressionSessionInvalidate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSessionCreate(allocator:width:height:codecType:encoderSpecification:imageBufferAttributes:compressedDataAllocator:outputCallback:refcon:compressionSessionOut:)/title",
+          "value": "VTCompressionSessionCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSessionCreate(allocator:width:height:codecType:encoderSpecification:imageBufferAttributes:compressedDataAllocator:outputCallback:refcon:compressionSessionOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTCompressionSessionCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSessionEndPass(_:furtherPassesRequestedOut:_:)/title",
+          "value": "VTCompressionSessionEndPass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSessionEndPass(_:furtherPassesRequestedOut:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTCompressionSessionEndPass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTIsStereoMVHEVCEncodeSupported()/title",
+          "value": "VTIsStereoMVHEVCEncodeSupported"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTIsStereoMVHEVCEncodeSupported()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTIsStereoMVHEVCEncodeSupported"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTSessionSetProperty(_:key:value:)/title",
+          "value": "VTSessionSetProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTSessionSetProperty(_:key:value:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTSessionSetProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSessionPrepareToEncodeFrames(_:)/title",
+          "value": "VTCompressionSessionPrepareToEncodeFrames"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSessionPrepareToEncodeFrames(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTCompressionSessionPrepareToEncodeFrames"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSessionCompleteFrames(_:untilPresentationTimeStamp:)/title",
+          "value": "VTCompressionSessionCompleteFrames"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSessionCompleteFrames(_:untilPresentationTimeStamp:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTCompressionSessionCompleteFrames"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTSessionSetProperties(_:propertyDictionary:)/title",
+          "value": "VTSessionSetProperties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTSessionSetProperties(_:propertyDictionary:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTSessionSetProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSessionGetTimeRangesForNextPass(_:timeRangeCountOut:timeRangeArrayOut:)/title",
+          "value": "VTCompressionSessionGetTimeRangesForNextPass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSessionGetTimeRangesForNextPass(_:timeRangeCountOut:timeRangeArrayOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTCompressionSessionGetTimeRangesForNextPass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSessionEncodeFrame(_:imageBuffer:presentationTimeStamp:duration:frameProperties:infoFlagsOut:outputHandler:)/title",
+          "value": "VTCompressionSessionEncodeFrameWithOutputHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSessionEncodeFrame(_:imageBuffer:presentationTimeStamp:duration:frameProperties:infoFlagsOut:outputHandler:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTCompressionSessionEncodeFrameWithOutputHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSessionGetTypeID()/title",
+          "value": "VTCompressionSessionGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSessionGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTCompressionSessionGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSessionBeginPass(_:flags:_:)/title",
+          "value": "VTCompressionSessionBeginPass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTCompressionSessionBeginPass(_:flags:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTCompressionSessionBeginPass"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/videotoolbox/vtcompressionsession-api-collection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/videotoolbox/vtcompressionsession-api-collection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

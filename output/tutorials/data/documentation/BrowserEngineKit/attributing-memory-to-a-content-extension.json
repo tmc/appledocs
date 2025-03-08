@@ -1,0 +1,678 @@
+{
+  "abstract": [
+    {
+      "text": "Adhere to operating-system limits on GPU memory use.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-resources"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/attributing-memory-to-a-content-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "BrowserEngineKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Attributing memory to a content extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A web browser’s GPU extension is limited to a small total memory allocation.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To allocate large amounts of memory in a GPU extension on behalf of a content extension, attribute the memory to that content extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The GPU and the content extension both need specific memory transfer entitlements to participate in memory attribution.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the content extension, you create a token that identifies the extension to the kernel.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Pass the token to the GPU using your interprocess communication (IPC) channel.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, in the GPU extension, use the token to assign ownership of the memory region to the content process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-the-correct-entitlements",
+          "level": 2,
+          "text": "Use the correct entitlements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To participate in memory attribution, your content extension needs both the web-browser content extension entitlement ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.developer.web-browser-engine.webcontent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.developer.memory.transfer_accept",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your GPU extension needs both the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.developer.web-browser-engine.rendering",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.developer.memory.transfer_send",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the value for each of these entitlements to a string that matches the bundle ID of your browser app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the entitlements web browser extensions use, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/designing-your-browser-architecture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-task-identity-token",
+          "level": 2,
+          "text": "Create a task identity token",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your content extension creates a task identity token that you pass to the GPU extension using your IPC protocol, for example, with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XPC",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The task identity token is an unforgeable value that the operating system uses to identify the process to which it attributes memory in the GPU extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a task identity token:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "task_id_token_t identityToken;",
+            "mach_port_t port = mach_task_self();",
+            "kern_result_t result = task_create_identity_token(port, &identityToken);",
+            "",
+            "if (result == KERN_SUCCESS) {",
+            "  // Send identityToken to the GPU extension.",
+            "} else {",
+            "  // Handle the error.",
+            "}"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Attribute-memory-to-the-content-extension",
+          "level": 2,
+          "text": "Attribute memory to the content extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Receive the task identity token in the GPU extension and use it to attribute memory to the content extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To attribute an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/IOSurface/IOSurfaceRef",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to a content extension, call ",
+              "type": "text"
+            },
+            {
+              "code": "IOSurfaceSetOwnershipIdentity",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "IOSurfaceRef surface = /* Create an IOSurface. */;",
+            "task_id_token_t identityToken = /* Receive the token using your IPC channel. */;",
+            "kern_return_t result = IOSurfaceSetOwnershipIdentity(surface,",
+            "\tidentityToken,",
+            "\tkIOSurfaceMemoryLedgerTagGraphics,",
+            "\t0);",
+            "",
+            "if (result != KERN_SUCCESS) {",
+            "  // Handle the error.",
+            "}"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To attribute a ",
+              "type": "text"
+            },
+            {
+              "code": "MTLResource",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to a content extension, send it a ",
+              "type": "text"
+            },
+            {
+              "code": "setOwnerWithIdentity:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " message:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MTLResource *resource = /* Create a resource. */;",
+            "task_id_token_t identityToken = /* Receive the token using your IPC channel. */;",
+            "kern_return_t result = [resource setOwnerWithIdentity: identityToken];",
+            "",
+            "if (result != KERN_SUCCESS) {",
+            "  // Handle the error.",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Free-the-memory-when-the-content-extension-finishes",
+          "level": 2,
+          "text": "Free the memory when the content extension finishes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the content extension exits, whether normally or due to an error, free the memory that’s attributed to it in your GPU extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use ",
+              "type": "text"
+            },
+            {
+              "code": "libxpc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to implement your IPC protocol, use the connection’s invalidation handler to detect when the content extension exits.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/browserenginekit"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RestrictedSandboxAppliable": {
+      "abstract": [
+        {
+          "text": "A protocol that browser extensions implement to opt into a more restricted sandbox.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RestrictedSandboxAppliable"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RestrictedSandboxAppliable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RestrictedSandboxAppliable"
+        }
+      ],
+      "role": "symbol",
+      "title": "RestrictedSandboxAppliable",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/restrictedsandboxappliable"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RestrictedSandboxRevision": {
+      "abstract": [
+        {
+          "text": "Revisions to the restricted sandbox rules.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RestrictedSandboxRevision"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RestrictedSandboxRevision",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RestrictedSandboxRevision"
+        }
+      ],
+      "role": "symbol",
+      "title": "RestrictedSandboxRevision",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/restrictedsandboxrevision"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/accessing-files-in-browser-extensions": {
+      "abstract": [
+        {
+          "text": "Grant extensions access to files from within your browser app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/accessing-files-in-browser-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing files in browser extensions",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/accessing-files-in-browser-extensions"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/designing-your-browser-architecture": {
+      "abstract": [
+        {
+          "text": "Isolate privileged access to operating system resources and private data from untrusted code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/designing-your-browser-architecture",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing your browser architecture",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/designing-your-browser-architecture"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-resources": {
+      "abstract": [
+        {
+          "text": "Control access to files and memory in browser extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-resources",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Extension resources",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/extension-resources"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/limiting-resource-access-in-content-extensions": {
+      "abstract": [
+        {
+          "text": "Reduce the impact of vulnerabilities in web content extensions by limiting privileges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/limiting-resource-access-in-content-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Limiting resource access in web content extensions",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/limiting-resource-access-in-content-extensions"
+    },
+    "doc://com.apple.documentation/documentation/IOSurface/IOSurfaceRef": {
+      "abstract": [
+        {
+          "text": "Data type representing an IOSurface opaque object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOSurfaceRef"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/IOSurface/IOSurfaceRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOSurfaceRef",
+      "type": "topic",
+      "url": "/documentation/IOSurface/IOSurfaceRef"
+    },
+    "doc://com.apple.documentation/documentation/XPC": {
+      "abstract": [
+        {
+          "text": "Access a low-level interprocess communication mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XPC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XPC",
+      "type": "topic",
+      "url": "/documentation/XPC"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Access-control",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/limiting-resource-access-in-content-extensions",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/accessing-files-in-browser-extensions",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RestrictedSandboxAppliable",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RestrictedSandboxRevision"
+      ],
+      "title": "Access control"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Access-control",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/limiting-resource-access-in-content-extensions",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/accessing-files-in-browser-extensions"
+              ],
+              "title": "Access control"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1IOSurface~1IOSurfaceRef/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@__IOSurface",
+              "text": "__IOSurface"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOSurfaceRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/browserenginekit/attributing-memory-to-a-content-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/browserenginekit/attributing-memory-to-a-content-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

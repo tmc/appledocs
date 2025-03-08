@@ -1,0 +1,912 @@
+{
+  "abstract": [
+    {
+      "text": "Configure a device that manages multiport console communication with the guest system.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.virtualization/documentation/Virtualization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.virtualization/documentation/Virtualization/consoles"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Virtualization"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Consoles"
+  },
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization": {
+      "abstract": [
+        {
+          "text": "Create virtual machines and run macOS and Linux-based operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Virtualization",
+      "type": "topic",
+      "url": "/documentation/virtualization"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZConsoleDevice": {
+      "abstract": [
+        {
+          "text": "A class that represents a console device in a VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZConsoleDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZConsoleDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZConsoleDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZConsoleDevice",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzconsoledevice"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZConsoleDeviceConfiguration": {
+      "abstract": [
+        {
+          "text": "The base class for a console device configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZConsoleDeviceConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZConsoleDeviceConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZConsoleDeviceConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZConsoleDeviceConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzconsoledeviceconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZConsolePortConfiguration": {
+      "abstract": [
+        {
+          "text": "The base class for a console port configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZConsolePortConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZConsolePortConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZConsolePortConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZConsolePortConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzconsoleportconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsoleDevice": {
+      "abstract": [
+        {
+          "text": "A class that represents a Virtio console device in a virtual machine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtioConsoleDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsoleDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtioConsoleDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtioConsoleDevice",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtioconsoledevice"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsoleDeviceConfiguration": {
+      "abstract": [
+        {
+          "text": "A console device that enables communication between the host and the guest using console ports through a Virtio interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtioConsoleDeviceConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsoleDeviceConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtioConsoleDeviceConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtioConsoleDeviceConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtioconsoledeviceconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsolePort": {
+      "abstract": [
+        {
+          "text": "A class that represents a Virtio console port in a VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtioConsolePort"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsolePort",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtioConsolePort"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtioConsolePort",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtioconsoleport"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsolePortArray": {
+      "abstract": [
+        {
+          "text": "A class that represents a collection of Virtio console ports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtioConsolePortArray"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsolePortArray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtioConsolePortArray"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtioConsolePortArray",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtioconsoleportarray"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsolePortConfiguration": {
+      "abstract": [
+        {
+          "text": "A class that represents the configuration options you can set on a Virtio console port.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtioConsolePortConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsolePortConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtioConsolePortConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtioConsolePortConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtioconsoleportconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsolePortConfigurationArray": {
+      "abstract": [
+        {
+          "text": "A class that represents a collection of Virtio console port configurations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtioConsolePortConfigurationArray"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsolePortConfigurationArray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtioConsolePortConfigurationArray"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtioConsolePortConfigurationArray",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtioconsoleportconfigurationarray"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/audio": {
+      "abstract": [
+        {
+          "text": "Configure audio devices that enable the guest operating system to perform audio playback and capture through the host’s audio devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/audio",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio",
+      "type": "topic",
+      "url": "/documentation/virtualization/audio"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/clipboard-sharing": {
+      "abstract": [
+        {
+          "text": "Share the pasteboard between the host and guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/clipboard-sharing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Clipboard sharing",
+      "type": "topic",
+      "url": "/documentation/virtualization/clipboard-sharing"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/graphics": {
+      "abstract": [
+        {
+          "text": "Configure a device for a guest to display its UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/graphics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Graphics",
+      "type": "topic",
+      "url": "/documentation/virtualization/graphics"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/keyboards-and-pointing-devices": {
+      "abstract": [
+        {
+          "text": "Configure devices that connect a mouse and keyboard to the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/keyboards-and-pointing-devices",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keyboards and pointing devices",
+      "type": "topic",
+      "url": "/documentation/virtualization/keyboards-and-pointing-devices"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/memory": {
+      "abstract": [
+        {
+          "text": "Configure a memory balloon device to change the allocated memory for the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/memory",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory",
+      "type": "topic",
+      "url": "/documentation/virtualization/memory"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/network": {
+      "abstract": [
+        {
+          "text": "Configure the devices that connect the guest system to the network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/network",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/virtualization/network"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/randomization": {
+      "abstract": [
+        {
+          "text": "Configure a device for the guest system to use to generate random numbers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/randomization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Randomization",
+      "type": "topic",
+      "url": "/documentation/virtualization/randomization"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/serial-ports": {
+      "abstract": [
+        {
+          "text": "Configure the serial devices that you use to communicate with the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/serial-ports",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Serial ports",
+      "type": "topic",
+      "url": "/documentation/virtualization/serial-ports"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/shared-directories": {
+      "abstract": [
+        {
+          "text": "Configure devices that share directories from the host into the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/shared-directories",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Shared directories",
+      "type": "topic",
+      "url": "/documentation/virtualization/shared-directories"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/sockets": {
+      "abstract": [
+        {
+          "text": "Configure a device that manages port-based communication with the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/sockets",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sockets",
+      "type": "topic",
+      "url": "/documentation/virtualization/sockets"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/storage": {
+      "abstract": [
+        {
+          "text": "Configure the block-storage devices that represent the disks of the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/storage",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Storage",
+      "type": "topic",
+      "url": "/documentation/virtualization/storage"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/usb-devices": {
+      "abstract": [],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/usb-devices",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USB Devices",
+      "type": "topic",
+      "url": "/documentation/virtualization/usb-devices"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Devices",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/audio",
+        "doc://com.apple.virtualization/documentation/Virtualization/graphics",
+        "doc://com.apple.virtualization/documentation/Virtualization/keyboards-and-pointing-devices",
+        "doc://com.apple.virtualization/documentation/Virtualization/memory",
+        "doc://com.apple.virtualization/documentation/Virtualization/network",
+        "doc://com.apple.virtualization/documentation/Virtualization/randomization",
+        "doc://com.apple.virtualization/documentation/Virtualization/serial-ports",
+        "doc://com.apple.virtualization/documentation/Virtualization/shared-directories",
+        "doc://com.apple.virtualization/documentation/Virtualization/sockets",
+        "doc://com.apple.virtualization/documentation/Virtualization/storage",
+        "doc://com.apple.virtualization/documentation/Virtualization/clipboard-sharing",
+        "doc://com.apple.virtualization/documentation/Virtualization/usb-devices"
+      ],
+      "title": "Devices"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configurations",
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/VZConsoleDeviceConfiguration",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZConsolePortConfiguration",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsoleDeviceConfiguration",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsolePortConfiguration",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsolePortConfigurationArray"
+      ],
+      "title": "Configurations"
+    },
+    {
+      "anchor": "Console-ports",
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsolePort",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsolePortArray"
+      ],
+      "title": "Console ports"
+    },
+    {
+      "anchor": "Devices",
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/VZConsoleDevice",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsoleDevice"
+      ],
+      "title": "Devices"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Configurations",
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/VZConsoleDeviceConfiguration",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZConsolePortConfiguration",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsoleDeviceConfiguration",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsolePortConfiguration",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsolePortConfigurationArray"
+              ],
+              "title": "Configurations"
+            },
+            {
+              "anchor": "Console-ports",
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsolePort",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsolePortArray"
+              ],
+              "title": "Console ports"
+            },
+            {
+              "anchor": "Devices",
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/VZConsoleDevice",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsoleDevice"
+              ],
+              "title": "Devices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Devices",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/audio",
+                "doc://com.apple.virtualization/documentation/Virtualization/graphics",
+                "doc://com.apple.virtualization/documentation/Virtualization/keyboards-and-pointing-devices",
+                "doc://com.apple.virtualization/documentation/Virtualization/memory",
+                "doc://com.apple.virtualization/documentation/Virtualization/network",
+                "doc://com.apple.virtualization/documentation/Virtualization/randomization",
+                "doc://com.apple.virtualization/documentation/Virtualization/serial-ports",
+                "doc://com.apple.virtualization/documentation/Virtualization/shared-directories",
+                "doc://com.apple.virtualization/documentation/Virtualization/sockets",
+                "doc://com.apple.virtualization/documentation/Virtualization/storage",
+                "doc://com.apple.virtualization/documentation/Virtualization/clipboard-sharing",
+                "doc://com.apple.virtualization/documentation/Virtualization/usb-devices"
+              ],
+              "title": "Devices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsolePortConfiguration/title",
+          "value": "VZVirtioConsolePortConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsolePortConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioConsolePortConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsolePortConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioConsolePortConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZConsoleDevice/title",
+          "value": "VZConsoleDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZConsoleDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZConsoleDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZConsoleDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZConsoleDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsolePort/title",
+          "value": "VZVirtioConsolePort"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsolePort/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioConsolePort"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsolePort/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioConsolePort"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsolePortConfigurationArray/title",
+          "value": "VZVirtioConsolePortConfigurationArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsolePortConfigurationArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioConsolePortConfigurationArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsolePortConfigurationArray/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioConsolePortConfigurationArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZConsoleDeviceConfiguration/title",
+          "value": "VZConsoleDeviceConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZConsoleDeviceConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZConsoleDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZConsoleDeviceConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZConsoleDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsolePortArray/title",
+          "value": "VZVirtioConsolePortArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsolePortArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioConsolePortArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsolePortArray/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioConsolePortArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsoleDeviceConfiguration/title",
+          "value": "VZVirtioConsoleDeviceConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsoleDeviceConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioConsoleDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsoleDeviceConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioConsoleDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsoleDevice/title",
+          "value": "VZVirtioConsoleDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsoleDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioConsoleDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsoleDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioConsoleDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZConsolePortConfiguration/title",
+          "value": "VZConsolePortConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZConsolePortConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZConsolePortConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZConsolePortConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZConsolePortConfiguration"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/virtualization/consoles"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/virtualization/consoles"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

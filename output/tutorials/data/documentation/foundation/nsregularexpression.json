@@ -1,0 +1,5316 @@
+{
+  "abstract": [
+    {
+      "text": "An immutable representation of a compiled regular expression that you apply to Unicode strings.  ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsregularexpression"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1416747,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSRegularExpression",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSRegularExpression"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.7",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSRegularExpression"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSRegularExpression"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The fundamental matching method for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is a Block iterator method that allows clients to supply a Block object which will be invoked each time the regular expression matches a portion of the target string.  There are additional convenience methods for returning all the matches as an array, the total number of matches, the first match, and the range of the first match.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An individual match is represented by an instance of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, which carries information about the overall matched range (via its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/1415852-range",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property), and the range of each individual capture group (via the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/1416732-range",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method).  For basic ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects, these match results will be of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/checkingtype/1408922-regularexpression",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", but subclasses may use other types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " conforms to the International Components for Unicode (",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-3744474",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ") specification for ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-3744060",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "1660992",
+          "level": 3,
+          "text": "Examples Using NSRegularExpression",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "What follows are a set of graduated examples for using the ",
+              "type": "text"
+            },
+            {
+              "code": "NSRegularExpression",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class. All these examples use the regular expression ",
+              "type": "text"
+            },
+            {
+              "code": "\\\\b(a|b)(c|d)\\\\b",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as their regular expression.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This snippet creates a regular expression to match two-letter words, in which the first letter is “a” or “b” and the second letter is “c” or “d”. Specifying ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/options/1417830-caseinsensitive",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " means that matches will be case-insensitive, so this will match “BC”, “aD”, and so forth, as well as their lower-case equivalents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do {",
+            "    let regex = try NSRegularExpression(pattern: \"\\\\b(a|b)(c|d)\\\\b\", options: .caseInsensitive)",
+            "} catch let error as NSError {",
+            "    print(\"Error creating NSRegularExpression: \\(error)\")",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "2557027",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1414308-numberofmatches",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method provides a simple mechanism for counting the number of matches in a given range of a string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let numberOfMatches = regex.numberOfMatches(in: string, options: [], range: NSRange(location: 0, length: string.utf16.count))",
+            ""
+          ],
+          "metadata": {
+            "anchor": "2557035",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you are interested only in the overall range of the first match, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1411510-rangeoffirstmatch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method provides it for you.  Some regular expressions (though not the example pattern) can successfully match a zero-length range, so the comparison of the resulting range with ",
+              "type": "text"
+            },
+            {
+              "code": "{NSNotFound, 0}",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the most reliable way to determine whether there was a match or not.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example regular expression contains two capture groups, corresponding to the two sets of parentheses, one for the first letter, and one for the second.  If you are interested in more than just the overall matched range, you want to obtain an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object corresponding to a given match.  This object provides information about the overall matched range, via its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/1415852-range",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, and also supplies the capture group ranges, via the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/1416732-range",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.  The first capture group range is given by ",
+              "type": "text"
+            },
+            {
+              "code": "[result rangeAtIndex:1]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the second by ",
+              "type": "text"
+            },
+            {
+              "code": "[result rangeAtIndex:2]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  Sending a result the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/1416732-range",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " message and passing ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is equivalent to ",
+              "type": "text"
+            },
+            {
+              "code": "[result range]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the result returned is non-",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then ",
+              "type": "text"
+            },
+            {
+              "code": "[result range]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " will always be a valid range, so it is not necessary to compare it against ",
+              "type": "text"
+            },
+            {
+              "code": "{NSNotFound, 0}",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  However, for some regular expressions (though not the example pattern) some capture groups may or may not participate in a given match.  If a given capture group does not participate in a given match, then",
+              "type": "text"
+            },
+            {
+              "code": " [result rangeAtIndex:idx]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " will return ",
+              "type": "text"
+            },
+            {
+              "code": "{NSNotFound, 0}",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let rangeOfFirstMatch = regex.rangeOfFirstMatch(in: string, options: [], range: NSRange(location: 0, length: string.utf16.count))",
+            "if rangeOfFirstMatch.location != NSNotFound {",
+            "     let substringForFirstMatch = (string as NSString).substring(with: rangeOfFirstMatch)",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "2557039",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1412446-matches",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns all the matching results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let matches = regex.matches(in: string, options: [], range: NSRange(location: 0, length: string.utf16.count))",
+            " for match in matches {",
+            "     let matchRange = match.range",
+            "     let firstHalfRange = match.range(at: 1)",
+            "     let secondHalfRange = match.range(at: 2)",
+            " }",
+            " "
+          ],
+          "metadata": {
+            "anchor": "4329371",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1409838-firstmatch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method is similar to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1412446-matches",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " but it returns only the first match.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let match = regex.firstMatch(in: string, options: [], range: NSRange(location: 0, length: string.utf16.count)) {",
+            "    let matchRange = match.range",
+            "    let firstHalfRange = match.range(at: 1)",
+            "    let secondHalfRange = match.range(at: 2)",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4329372",
+            "title": "Listing 5"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Block enumeration method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1409687-enumeratematches",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is the most general and flexible of the matching methods of ",
+              "type": "text"
+            },
+            {
+              "code": "NSRegularExpression",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  It allows you to iterate through matches in a string, performing arbitrary actions on each as specified by the code in the Block and to stop partway through if desired.  In the following example case, the iteration is stopped after a certain number of matches have been found. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If neither of the special options ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/matchingoptions/1417028-reportprogress",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/matchingoptions/1418436-reportcompletion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is specified, then the result argument to the Block is guaranteed to be non-",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and as mentioned before, it is guaranteed to have a valid overall range.  See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/matchingoptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the significance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/matchingoptions/1417028-reportprogress",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/matchingoptions/1418436-reportcompletion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var count = 0",
+            "regex.enumerateMatches(in: string, options: [], range: NSRange(location: 0, length: string.utf16.count)) { match, flags, stop in",
+            "     guard let match = match else { return }",
+            "",
+            "     let matchRange = match.range",
+            "     let firstHalfRange = match.range(at: 1)",
+            "     let secondHalfRange = match.range(at: 2)",
+            "     count += 1",
+            "     if count >= 100 {",
+            "         stop = true",
+            "     }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "2557045",
+            "title": "Listing 6"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSRegularExpression",
+              "type": "codeVoice"
+            },
+            {
+              "text": " also provides simple methods for performing find-and-replace operations on a string.  The following example returns a modified copy, but there is a corresponding method for modifying a mutable string in place.  The template specifies what is to be used to replace each match, with ",
+              "type": "text"
+            },
+            {
+              "code": "$0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " representing the contents of the overall matched range, ",
+              "type": "text"
+            },
+            {
+              "code": "$1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " representing the contents of the first capture group, and so on.  In this case, the template reverses the two letters of the word.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let modifiedString = regex.stringByReplacingMatches(in: string, options: [], range: NSRange(location: 0, length: string.utf16.count), withTemplate: \"$2$1\")",
+            " "
+          ],
+          "metadata": {
+            "anchor": "2557047",
+            "title": "Listing 7"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "1661013",
+          "level": 3,
+          "text": "Concurrency and Thread Safety",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSRegularExpression",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is designed to be immutable and thread safe, so that a single instance can be used in matching operations on multiple threads at once.  However, the string on which it is operating should not be mutated during the course of a matching operation, whether from another thread or from within the Block used in the iteration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1661042",
+          "level": 3,
+          "text": "Regular Expression Syntax",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following tables describe the character expressions used by the regular expression to match patterns within a string, the pattern operators that specify how many times a pattern is matched and additional matching restrictions, and the last table specifies flags that can be included in the regular expression pattern that specify search behavior over multiple lines (these flags can also be specified using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/options",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option flags.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1661061",
+          "level": 4,
+          "text": "Regular Expression Metacharacters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#1965589",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " describe the character sequences used to match characters within a string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Regular Expression Metacharacters",
+                "type": "text"
+              }
+            ],
+            "anchor": "1965589",
+            "title": "Table 1"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Character Expression",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\a",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match a BELL, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\\u0007",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\A",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match at the beginning of the input. Differs from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "^",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in that ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\\A",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " will not match after a new line within the input.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\b, outside of a [Set]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match if the current position is a word boundary. Boundaries occur at the transitions between word (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\\w",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") and non-word (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\\W",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") characters, with combining marks ignored. For better word boundaries, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/options/1411838-useunicodewordboundaries",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\b, within a [Set]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match a BACKSPACE, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\\u0008",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\B",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match if the current position is not a word boundary.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\cX",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "control-X",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " character",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\d",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match any character with the Unicode General Category of Nd (Number, Decimal Digit.)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\D",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match any character that is not a decimal digit.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\e",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ESCAPE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\\u001B",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\E",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Terminates a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\\Q ... \\E",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " quoted sequence.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\f",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match a FORM FEED, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\\u000C",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\G",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match if the current position is at the end of the previous match.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\n",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "LINE FEED",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\\u000A",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\N{",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "UNICODE CHARACTER NAME",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match the named character.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\p{",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "UNICODE PROPERTY NAME",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match any character with the specified Unicode Property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\P{",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "UNICODE PROPERTY NAME",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match any character not having the specified Unicode Property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\Q",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Quotes all following characters until ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\\E",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\r",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match a CARRIAGE RETURN, \\u000D.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\s",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match a white space character. White space is defined as [\\t\\n\\f\\r\\p{Z}].",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\S",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match a non-white space character.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\t",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match a HORIZONTAL TABULATION, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\\u0009",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\u",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "hhhh",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match the character with the hex value ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "hhhh",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\U",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "hhhhhhhh",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match the character with the hex value ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "hhhhhhhh",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ". Exactly eight hex digits must be provided, even though the largest Unicode code point is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\\U0010ffff",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\w",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match a word character. Word characters are [\\p{Ll}\\p{Lu}\\p{Lt}\\p{Lo}\\p{Nd}].",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\W",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match a non-word character.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\x{",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "hhhh",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match the character with hex value ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "hhhh",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ". From one to six hex digits may be supplied.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\x",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "hh",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match the character with two digit hex value ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "hh",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\X",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match a Grapheme Cluster.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\Z",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match if the current position is at the end of input, but before the final line terminator, if one exists.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\z",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match if the current position is at the end of input.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Back Reference. Match whatever the ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": "th capturing group matched. ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " must be a number ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "≥ 1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "≤",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " total number of capture groups in the pattern.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "ooo",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match an Octal character.  ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "ooo",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " is from one to three octal digits.  ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0377",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is the largest allowed Octal character.  The leading zero is required; it distinguishes Octal constants from back references.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "[",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "pattern",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": "]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match any one character from the pattern.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ".",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match any character. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/options/1412529-dotmatcheslineseparators",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "s",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " character expression in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#1965592",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "^",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match at the beginning of a line. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/options/1408263-anchorsmatchlines",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\\m",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " character expression in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#1965592",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "$",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match at the end of a line. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/options/1408263-anchorsmatchlines",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "m",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " character expression in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#1965592",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Quotes the following character. Characters that must be quoted to be treated as literals are ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "* ? + [ ( ) { } ^ $ | \\ . /",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "1661082",
+          "level": 4,
+          "text": "Regular Expression Operators",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#1965590",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " defines the regular expression operators.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Regular Expression Operators",
+                "type": "text"
+              }
+            ],
+            "anchor": "1965590",
+            "title": "Table 2"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Operator",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "|",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Alternation. ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "A",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": "|",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "B",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " matches either ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "A",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "B",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "*",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or more times. Match as many times as possible.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "+",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or more times. Match as many times as possible.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "?",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match zero or one times. Prefer one.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "{",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match exactly ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " times.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "{",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": ",}",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match at least ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " times. Match as many times as possible.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "{",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": ",",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "m",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match between ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "m",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " times. Match as many times as possible, but not more than ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "m",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "*?",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or more times. Match as few times as possible.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "+?",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match 1 or more times. Match as few times as possible.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "??",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match zero or one times. Prefer zero.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "{",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": "}?",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match exactly n times.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "{",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": ",}?",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match at least n times, but no more than required for an overall pattern match.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "{",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": ",",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "m",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": "}?",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match between n and m times. Match as few times as possible, but not less than n.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "*+",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match 0 or more times. Match as many times as possible when first encountered. Do not retry with fewer, even if overall match fails (possessive match).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "++",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match 1 or more times (possessive match).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "?+",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match zero or one times (possessive match).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "{",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": "}+",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match exactly ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " times.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "{",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": ",}+",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match at least ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " times (possessive match).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "{",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": ",",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "m",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": "}+",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match between ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "m",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " times (possessive match).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "(",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "...",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": ")",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Capturing parentheses. Range of input that matched the parenthesized subexpression is available after the match.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "(?:",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "...",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": ")",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Non-capturing parentheses. Groups the included pattern, but does not provide capturing of matching text. Somewhat more efficient than capturing parentheses.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "(?>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "...",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": ")",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Atomic-match parentheses. First match of the parenthesized subexpression is the only one tried; if it does not lead to an overall pattern match, back up the search for a match to a position before the \"",
+                      "type": "text"
+                    },
+                    {
+                      "code": "(?>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "\"",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "(?# ... )",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Free-format comment ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "(?# comment )",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "(?= ... )",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Look-ahead assertion. True if the parenthesized pattern matches at the current input position, but does not advance the input position.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "(?! ... )",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Negative look-ahead assertion. True if the parenthesized pattern does not match at the current input position. Does not advance the input position.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "(?<= ... )",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Look-behind assertion. True if the parenthesized pattern matches text preceding the current input position, with the last character of the match being the input character just before the current position. Does not alter the input position. The length of possible strings matched by the look-behind pattern must not be unbounded (no * or + operators.)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "(?<! ... )",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Negative Look-behind assertion. True if the parenthesized pattern does not match text preceding the current input position, with the last character of the match being the input character just before the current position. Does not alter the input position. The length of possible strings matched by the look-behind pattern must not be unbounded (no * or + operators.)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "(?ismwx-ismwx:",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "...",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ")",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Flag settings. Evaluate the parenthesized expression with the specified flags enabled or -disabled. The flags are defined in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#1661132",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "(?ismwx-ismwx)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Flag settings. Change the flag settings. Changes apply to the portion of the pattern following the setting. For example, (?i) changes to a case insensitive match.The flags are defined in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#1661132",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "1661112",
+          "level": 4,
+          "text": "Template Matching Format",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSRegularExpression",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class provides find-and-replace methods for both immutable and mutable strings using the technique of template matching. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#1965591",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " describes the syntax.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Template Matching Format",
+                "type": "text"
+              }
+            ],
+            "anchor": "1965591",
+            "title": "Table 3"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Character",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Descriptions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "$",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The text of capture group n will be substituted for $",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ". ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "n",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " must be ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ">= 0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and not greater than the number of capture groups. A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "$",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " not followed by a digit has no special meaning, and will appear in the substitution text as itself, a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "$",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\\",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Treat the following character as a literal, suppressing any special meaning. Backslash escaping in substitution text is only required for '$' and '\\', but may be used on any other character without bad effects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The replacement string is treated as a template, with ",
+              "type": "text"
+            },
+            {
+              "code": "$0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " being replaced by the contents of the matched range, ",
+              "type": "text"
+            },
+            {
+              "code": "$1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by the contents of the first capture group, and so on.  Additional digits beyond the maximum required to represent the number of capture groups will be treated as ordinary characters, as will a ",
+              "type": "text"
+            },
+            {
+              "code": "$",
+              "type": "codeVoice"
+            },
+            {
+              "text": " not followed by digits.  Backslash will escape both ",
+              "type": "text"
+            },
+            {
+              "code": "$",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "\\",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1661132",
+          "level": 4,
+          "text": "Flag Options",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following flags control various aspects of regular expression matching. These flag values may be specified within the pattern using the ",
+              "type": "text"
+            },
+            {
+              "code": "(?ismx-ismx)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " pattern options.  Equivalent behaviors can be specified for the entire pattern when an ",
+              "type": "text"
+            },
+            {
+              "code": "NSRegularExpression",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is initialized, using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/options",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option flags.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Flag Options",
+                "type": "text"
+              }
+            ],
+            "anchor": "1965592",
+            "title": "Table 4"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Flag (Pattern)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "i",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If set, matching will take place in a case-insensitive manner.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "x",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If set, allow use of white space and #comments within patterns",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "s",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If set, a \"",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "\" in a pattern will match a line terminator in the input text. By default, it will not. Note that a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "carriage-return / line-feed pair",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in text behave as a single line terminator, and will match a single \"",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "\" in a regular expression pattern",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "m",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control the behavior of \"",
+                      "type": "text"
+                    },
+                    {
+                      "code": "^",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "\" and \"",
+                      "type": "text"
+                    },
+                    {
+                      "code": "$",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "\" in a pattern. By default these will only match at the start and end, respectively, of the input text. If this flag is set, \"",
+                      "type": "text"
+                    },
+                    {
+                      "code": "^",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "\" and \"",
+                      "type": "text"
+                    },
+                    {
+                      "code": "$",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "\" will also match at the start and end of each line within the input text.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "w",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Controls the behavior of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\\b",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in a pattern. If set, word boundaries are found according to the definitions of word found in Unicode UAX 29, Text Boundaries. By default, word boundaries are identified by means of a simple classification of characters as either “word” or “non-word”, which approximates traditional regular expression behavior. The results obtained with the two options can be quite different in runs of spaces and other non-word characters.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "1673763",
+          "level": 3,
+          "text": "Performance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSRegularExpression",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implements a nondeterministic finite automaton matching engine. As such, complex regular expression patterns containing multiple ",
+              "type": "text"
+            },
+            {
+              "code": "*",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "+",
+              "type": "codeVoice"
+            },
+            {
+              "text": " operators may result in poor performance when attempting to perform matches — particularly failing to match a given input. For more information, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-1670333",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1661156",
+          "level": 3,
+          "text": "ICU License",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#1965589",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#1965590",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#1965591",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#1965592",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " are reproduced from the ICU User Guide, Copyright (c) 2000 - 2009 IBM and Others, which are licensed under the following terms:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "COPYRIGHT AND PERMISSION NOTICE",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Copyright (c) 1995-2009 International Business Machines Corporation and others. All rights reserved.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, provided that the above copyright notice(s) and this permission notice appear in all copies of the Software and that both the above copyright notice(s) and this permission notice appear in supporting documentation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT OF THIRD PARTY RIGHTS. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR HOLDERS INCLUDED IN THIS NOTICE BE LIABLE FOR ANY CLAIM, OR ANY SPECIAL INDIRECT OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Except as contained in this notice, the name of a copyright holder shall not be used in advertising or otherwise to promote the sale, use or other dealings in this Software without prior written authorization of the copyright holder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All trademarks and registered trademarks mentioned herein are the property of their respective owners. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatadetector": {
+      "abstract": [
+        {
+          "text": "A specialized regular expression object that matches natural language text for predefined data patterns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDataDetector"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatadetector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDataDetector",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatadetector"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotfound": {
+      "abstract": [
+        {
+          "text": "A value indicating that a requested item couldn’t be found or doesn’t exist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNotFound"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotfound",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotFound",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotfound"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression": {
+      "abstract": [
+        {
+          "text": "An immutable representation of a compiled regular expression that you apply to Unicode strings.  ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRegularExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRegularExpression",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression#1661132": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#1661132",
+      "kind": "article",
+      "role": "subsection",
+      "title": "Flag Options",
+      "type": "section",
+      "url": "/documentation/foundation/nsregularexpression#1661132"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression#1965589": {
+      "abstract": [
+        {
+          "text": "Regular Expression Metacharacters",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#1965589",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsregularexpression#1965589"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression#1965590": {
+      "abstract": [
+        {
+          "text": "Regular Expression Operators",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#1965590",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 2",
+      "type": "section",
+      "url": "/documentation/foundation/nsregularexpression#1965590"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression#1965591": {
+      "abstract": [
+        {
+          "text": "Template Matching Format",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#1965591",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 3",
+      "type": "section",
+      "url": "/documentation/foundation/nsregularexpression#1965591"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression#1965592": {
+      "abstract": [
+        {
+          "text": "Flag Options",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#1965592",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 4",
+      "type": "section",
+      "url": "/documentation/foundation/nsregularexpression#1965592"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression#2557027": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#2557027",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsregularexpression#2557027"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression#2557035": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#2557035",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/nsregularexpression#2557035"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression#2557039": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#2557039",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/foundation/nsregularexpression#2557039"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression#2557045": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#2557045",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 6",
+      "type": "section",
+      "url": "/documentation/foundation/nsregularexpression#2557045"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression#2557047": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#2557047",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 7",
+      "type": "section",
+      "url": "/documentation/foundation/nsregularexpression#2557047"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression#4329371": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#4329371",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/foundation/nsregularexpression#4329371"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression#4329372": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression#4329372",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/foundation/nsregularexpression#4329372"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1408265-options": {
+      "abstract": [
+        {
+          "text": "Returns the options used when the regular expression option was created.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRegularExpression.Options"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1408265-options",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "options",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/1408265-options"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1408386-escapedpattern": {
+      "abstract": [
+        {
+          "text": "Returns a string by adding backslash escapes as necessary to protect any characters that would match as pattern metacharacters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "escapedPattern"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1408386-escapedpattern",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "escapedPattern(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/1408386-escapedpattern"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1409687-enumeratematches": {
+      "abstract": [
+        {
+          "text": "Enumerates the string allowing the Block to handle each regular expression match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateMatches"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRegularExpression.MatchingOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange, "
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": (NSTextCheckingResult?, NSRegularExpression.MatchingFlags, UnsafeMutablePointer<ObjCBool>) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1409687-enumeratematches",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerateMatches(in:options:range:using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/1409687-enumeratematches"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1409838-firstmatch": {
+      "abstract": [
+        {
+          "text": "Returns the first match of the regular expression within the specified range of the string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "firstMatch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRegularExpression.MatchingOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange) -> NSTextCheckingResult?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1409838-firstmatch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "firstMatch(in:options:range:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/1409838-firstmatch"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1410085-escapedtemplate": {
+      "abstract": [
+        {
+          "text": "Returns a template string by adding backslash escapes as necessary to protect any characters that would match as pattern metacharacters",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "escapedTemplate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1410085-escapedtemplate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "escapedTemplate(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/1410085-escapedtemplate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1410900-init": {
+      "abstract": [
+        {
+          "text": "Returns an initialized NSRegularExpression instance with the specified regular expression pattern and options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "pattern"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRegularExpression.Options)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1410900-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(pattern:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/1410900-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1411139-replacematches": {
+      "abstract": [
+        {
+          "text": "Replaces regular expression matches within the mutable string using the template string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceMatches"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSMutableString, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRegularExpression.MatchingOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withTemplate"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1411139-replacematches",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replaceMatches(in:options:range:withTemplate:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/1411139-replacematches"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1411510-rangeoffirstmatch": {
+      "abstract": [
+        {
+          "text": "Returns the range of the first match of the regular expression within the specified range of the string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "rangeOfFirstMatch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRegularExpression.MatchingOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange) -> NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1411510-rangeoffirstmatch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rangeOfFirstMatch(in:options:range:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/1411510-rangeoffirstmatch"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1412446-matches": {
+      "abstract": [
+        {
+          "text": "Returns an array containing all the matches of the regular expression in the string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "matches"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRegularExpression.MatchingOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange) -> [NSTextCheckingResult]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1412446-matches",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matches(in:options:range:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/1412446-matches"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1413740-stringbyreplacingmatches": {
+      "abstract": [
+        {
+          "text": "Returns a new string containing matching regular expressions replaced with the template string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringByReplacingMatches"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRegularExpression.MatchingOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withTemplate"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1413740-stringbyreplacingmatches",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stringByReplacingMatches(in:options:range:withTemplate:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/1413740-stringbyreplacingmatches"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1414308-numberofmatches": {
+      "abstract": [
+        {
+          "text": "Returns the number of matches of the regular expression within the specified range of the string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfMatches"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRegularExpression.MatchingOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1414308-numberofmatches",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "numberOfMatches(in:options:range:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/1414308-numberofmatches"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1414859-replacementstring": {
+      "abstract": [
+        {
+          "text": "Used to perform template substitution for a single result for clients implementing their own replace functionality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "replacementString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": NSTextCheckingResult, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "template"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1414859-replacementstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replacementString(for:in:offset:template:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/1414859-replacementstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1414932-pattern": {
+      "abstract": [
+        {
+          "text": "Returns the regular expression pattern.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "pattern"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1414932-pattern",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pattern",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/1414932-pattern"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1415052-numberofcapturegroups": {
+      "abstract": [
+        {
+          "text": "Returns the number of capture groups in the regular expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfCaptureGroups"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1415052-numberofcapturegroups",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "numberOfCaptureGroups",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/1415052-numberofcapturegroups"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1557374-regularexpressionwithpattern": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "regularExpressionWithPattern:options:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1557374-regularexpressionwithpattern",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "regularExpressionWithPattern:options:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/1557374-regularexpressionwithpattern"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/matchingflags": {
+      "abstract": [
+        {
+          "text": "Set by the Block as the matching progresses, completes, or fails. Used by the method ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1409687-enumeratematches",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRegularExpression.MatchingFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/matchingflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRegularExpression.MatchingFlags",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/matchingflags"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/matchingoptions": {
+      "abstract": [
+        {
+          "text": "The matching options constants specify the reporting, completion and matching rules to the expression matching methods. These constants are used by all methods that search for, or replace values, using a regular expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRegularExpression.MatchingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/matchingoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRegularExpression.MatchingOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/matchingoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/matchingoptions/1417028-reportprogress": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/matchingoptions/1417028-reportprogress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reportProgress",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/matchingoptions/1417028-reportprogress"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/matchingoptions/1418436-reportcompletion": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/matchingoptions/1418436-reportcompletion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reportCompletion",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/matchingoptions/1418436-reportcompletion"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/options": {
+      "abstract": [
+        {
+          "text": "These constants define the regular expression options. These constants are used by the property ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1408265-options",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1557374-regularexpressionwithpattern",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1410900-init",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRegularExpression.Options"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/options",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRegularExpression.Options",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/options"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/options/1408263-anchorsmatchlines": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/options/1408263-anchorsmatchlines",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "anchorsMatchLines",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/options/1408263-anchorsmatchlines"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/options/1411838-useunicodewordboundaries": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/options/1411838-useunicodewordboundaries",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "useUnicodeWordBoundaries",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/options/1411838-useunicodewordboundaries"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/options/1412529-dotmatcheslineseparators": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/options/1412529-dotmatcheslineseparators",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dotMatchesLineSeparators",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/options/1412529-dotmatcheslineseparators"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/options/1417830-caseinsensitive": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/options/1417830-caseinsensitive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "caseInsensitive",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/options/1417830-caseinsensitive"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult": {
+      "abstract": [
+        {
+          "text": "An occurrence of textual content found during the analysis of a block of text, such as when matching a regular expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextCheckingResult"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTextCheckingResult",
+      "type": "topic",
+      "url": "/documentation/foundation/nstextcheckingresult"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/1415852-range": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/1415852-range",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "range",
+      "type": "topic",
+      "url": "/documentation/foundation/nstextcheckingresult/1415852-range"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/1416732-range": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/1416732-range",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "range(at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nstextcheckingresult/1416732-range"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/checkingtype/1408922-regularexpression": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/checkingtype/1408922-regularexpression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "regularExpression",
+      "type": "topic",
+      "url": "/documentation/foundation/nstextcheckingresult/checkingtype/1408922-regularexpression"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner": {
+      "abstract": [
+        {
+          "text": "A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Scanner"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Scanner",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner"
+    },
+    "doc://com.apple.documentation/documentation/foundation/strings_and_text": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strings and Text",
+      "type": "topic",
+      "url": "/documentation/foundation/strings_and_text"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-1670333": {
+      "identifier": "link-1670333",
+      "kind": "article",
+      "role": "link",
+      "title": "“Performance Tips” section of the ICU User Guide",
+      "type": "section",
+      "url": "http://userguide.icu-project.org/strings/regexp#TOC-Performance-Tips"
+    },
+    "link-3744060": {
+      "identifier": "link-3744060",
+      "kind": "article",
+      "role": "link",
+      "title": "regular expressions",
+      "type": "topic",
+      "url": "https://unicode-org.github.io/icu/userguide/strings/regexp.html"
+    },
+    "link-3744474": {
+      "identifier": "link-3744474",
+      "kind": "article",
+      "role": "link",
+      "title": "ICU",
+      "type": "topic",
+      "url": "https://unicode-org.github.io/icu/"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/scanner",
+        "doc://com.apple.documentation/documentation/foundation/nsdatadetector",
+        "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult",
+        "doc://com.apple.documentation/documentation/foundation/nsnotfound"
+      ],
+      "title": "Pattern Matching"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1661184",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1410900-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Regular Expressions"
+    },
+    {
+      "anchor": "1661213",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1414932-pattern",
+        "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1408265-options",
+        "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1415052-numberofcapturegroups"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the Regular Expression and Options"
+    },
+    {
+      "anchor": "1661263",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1414308-numberofmatches",
+        "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1409687-enumeratematches",
+        "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1412446-matches",
+        "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1409838-firstmatch",
+        "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1411510-rangeoffirstmatch"
+      ],
+      "kind": "taskGroup",
+      "title": "Searching Strings Using Regular Expressions"
+    },
+    {
+      "anchor": "1661318",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1411139-replacematches",
+        "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1413740-stringbyreplacingmatches"
+      ],
+      "kind": "taskGroup",
+      "title": "Replacing Strings Using Regular Expressions"
+    },
+    {
+      "anchor": "1661355",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1410085-escapedtemplate",
+        "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1408386-escapedpattern"
+      ],
+      "kind": "taskGroup",
+      "title": "Escaping Characters in a String"
+    },
+    {
+      "anchor": "1661390",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1414859-replacementstring"
+      ],
+      "kind": "taskGroup",
+      "title": "Custom Replace Functionality"
+    },
+    {
+      "anchor": "1674026",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsregularexpression/options",
+        "doc://com.apple.documentation/documentation/foundation/nsregularexpression/matchingflags",
+        "doc://com.apple.documentation/documentation/foundation/nsregularexpression/matchingoptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsregularexpression"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsregularexpression"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

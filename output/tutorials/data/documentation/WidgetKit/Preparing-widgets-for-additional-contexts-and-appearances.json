@@ -1,0 +1,2557 @@
+{
+  "abstract": [
+    {
+      "text": "Create widgets that support additional platforms and adapt to their context.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.WidgetKit/documentation/WidgetKit/Preparing-widgets-for-additional-contexts-and-appearances"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WidgetKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Preparing widgets for additional platforms, contexts, and appearances"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Widgets change their appearance to best fit their context. For example, widgets on the Home Screen, Today View, or the macOS Notification Center use full colors and rich images to represent your brand and encourage people to feature your widget on their devices. In contrast, Lock Screen widgets and WidgetKit complications use more restrained colors because they’re smaller, always visible, and support tinted modes for each platform. Since all widgets appear in more than one context, make sure your widgets and their SwiftUI views support all applicable rendering modes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "WidgetKit uses three different rendering modes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Desaturates text, images, and gauges into monochrome and creates a vibrant effect by coloring your content appropriately for the Lock Screen background or the macOS desktop. Note that people can also color the Lock Screen to a colored tint and WidgetKit uses a red tint for widgets that appear on iPhone in StandBy in low-light conditions.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/vibrant",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Doesn’t change the color of your complication’s views in this rendering mode. Use gradients and full-color images, text, and gauges.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/fullColor",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Renders complications in the accented rendering mode when people customize their device to use a tint color or choose certain watch faces. The system divides the widget’s view hierarchy into an accent group and a default group, and then applies a solid color to each group. Use the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/widgetAccentable(_:)",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " view modifier to group views into the accented group. Note that this rendering mode isn’t available in macOS.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/accented",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table shows the rendering modes for each widget you need to support:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Widget size",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/fullColor",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/accented",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/vibrant",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemSmall",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemMedium",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemLarge",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemExtraLarge",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryCircular",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryCorner",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryRectangular",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryInline",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For design guidance, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/design/human-interface-guidelines/complications",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/design/human-interface-guidelines/widgets",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your code, read the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/widgetRenderingMode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " environment variable to create SwiftUI views for each applicable rendering mode, as shown in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var body: some View {",
+            "   ZStack {",
+            "       switch renderingMode {",
+            "       case .fullColor:",
+            "           // Create views for full-color widgets and watch complications.",
+            "       case .accented:",
+            "           // Create views and group applicable views in the accented group.",
+            "           VStack {",
+            "               // ...",
+            "           }",
+            "           .widgetAccentable()",
+            "           // Additional views that you don't group in the accented group.",
+            "       case .vibrant:",
+            "           // Create views for Lock Screen widgets on iPhone and iPad, and for the receded appearance on the Mac desktop.",
+            "   }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Support-Always-On",
+          "level": 3,
+          "text": "Support Always On",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you create accessory widgets and WidgetKit complications, make sure to use SwiftUI’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/isLuminanceReduced",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " environment variable to detect Always On and color your views to look great with reduced luminance. For design guidance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/always-on",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/widgets",
+              "isActive": true,
+              "overridingTitle": "Human Interface Guidelines > Widgets",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Human Interface Guidelines > Widgets",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-your-small-widget-to-support-StandBy",
+          "level": 3,
+          "text": "Update your small widget to support StandBy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On iPhone in StandBy, the Lock Screen shows two widgets side by side on a dark background. WidgetKit uses your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemSmall",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " widget and scales it to fit one half of the screen. To support this appearance:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make the widget’s background removable with a container background, as described below.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Update the widget’s layout to take advantage of the larger appearance and smaller content margins and to make the widget easier to read from a larger distance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Display-the-correct-widget-background-for-each-context",
+          "level": 3,
+          "text": "Display the correct widget background for each context",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Widgets appear differently based on their context, including their background view, for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/vibrant",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " appearance, the system removes the background of your widget or renders it with semi-translucent appearance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In StandBy on iPhone, the system removes the background of your widget.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the Mac desktop, the system removes the background of your widget.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make sure your widget appears correctly, mark your background views as removable for the following widget sizes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemSmall",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemMedium",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemLarge",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemExtraLarge",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryRectangular",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If a widget doesn’t support removable background views or doesn’t explicitly mark a background as nonremovable, the system displays a warning message that overlays the widget during development with Xcode.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To mark your background views as removable:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/containerBackground(_:for:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " modifier to your background views to define the background appearance of your widget and tell WidgetKit that it can remove the view where applicable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Move code that declares any background color or views inside the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "containerBackground(for:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " view modifier and pass ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement/widget",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to it. This makes sure WidgetKit automatically removes the background as needed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code snippet from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample code project defines a ",
+              "type": "text"
+            },
+            {
+              "code": "gameBackground",
+              "type": "codeVoice"
+            },
+            {
+              "text": " color for the widget’s container background to make sure WidgetKit renders it with or without the background color as applicable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var body: some View {",
+            "    switch family {",
+            "    // Logic for additional widget sizes.",
+            "    case .accessoryRectangular:",
+            "        HStack(alignment: .center, spacing: 0) {",
+            "            VStack(alignment: .leading) {",
+            "                Text(entry.hero.name)",
+            "                    .font(.headline)",
+            "                    .widgetAccentable()",
+            "                Text(\"Level \\(entry.hero.level)\")",
+            "                Text(entry.hero.fullHealthDate, style: .timer)",
+            "            }.frame(maxWidth: .infinity, alignment: .leading)",
+            "            Avatar(hero: entry.hero, includeBackground: false)",
+            "        }",
+            "        .containerBackground(for: .widget) {",
+            "            Color.gameBackground",
+            "        }",
+            "\t\t// Logic for additional widget sizes.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Marking background views as removable by defining a background container allows you to use the same layout and views for your widget across contexts. For example, if you support the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "rectangular accessory widget size as shown in the code snippet above, WidgetKit renders it with a rich, full-color background in the Smart Stack on Apple Watch and without a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "background as a watch complication or on the Lock Screen of iPhone and iPad.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On Apple Watch, rectangular widgets in the Smart Stack use a default dark material background. By adding a container background, the widget renders with a background that visually ties it to your app and makes it more recognizable to people.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To detect whether a widget appears with or without a background, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/showsWidgetContainerBackground",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " environment variable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Explicitly-opt-out-of-background-removal",
+          "level": 3,
+          "text": "Explicitly opt out of background removal",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some widgets don’t have distinct foreground content, and background removal can negatively impact their functionality. For example, a widget might display a photo or map that takes up the entirety of the widget’s bounds. Removing the photo or map removes the functionality of the widget. If this case applies to your widget, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WidgetConfiguration/containerBackgroundRemovable(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for your widget configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Marking a background as nonremovable excludes your widget from the widget gallery in contexts that require a removable background; for example, on the iPad Lock Screen and in StandBy.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Set-the-background-color-of-accessory-widgets",
+          "level": 3,
+          "text": "Set the background color of accessory widgets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Depending on your accessory widget or complication, you may need to set a consistent background for your accessory widget. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AccessoryWidgetBackground",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to draw a consistent background for your widget, as shown in the following example. It creates a view that’s similar to the circular Lock Screen widget that the Calendar app offers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ZStack {",
+            "     AccessoryWidgetBackground()",
+            "     VStack {",
+            "        Text(“MON”)",
+            "        Text(“6”)",
+            "         .font(.title)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Indicate-that-a-widget-might-not-fit-a-specific-context",
+          "level": 3,
+          "text": "Indicate that a widget might not fit a specific context",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the system suggests widgets in many contexts, and people can choose widgets in the widget gallery to personalize their system experience. However, a widget might not a good fit for a specific context. For example, a widget that relies on high-resolution photos and background colors for its functionality may not work well on the Lock Screen, where the system applies a vibrant treatment to the widget.  To indicate that a widget doesn’t work well in a specific context, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WidgetConfiguration/disfavoredLocations(_:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and provide the applicable ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetLocation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". As a result, the widget appears in the widget gallery’s “Other” section for the disfavored location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Verify-font-sizes-in-macOS",
+          "level": 3,
+          "text": "Verify font sizes in macOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When people place an iPhone widget on the Mac desktop, the system renders it using iOS font metrics. However, a native Mac app’s widgets use macOS font sizing. If you’re sharing code across your iOS and macOS targets in your Xcode project, make sure to verify font sizing in macOS and adjust it for macOS as needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.WidgetKit/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AccessoryWidgetBackground": {
+      "abstract": [
+        {
+          "text": "An adaptive background view that provides a standard appearance based on the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the widget’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessoryWidgetBackground"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AccessoryWidgetBackground",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessoryWidgetBackground"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessoryWidgetBackground",
+      "type": "topic",
+      "url": "/documentation/widgetkit/accessorywidgetbackground"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-views-for-widgets-Live-Activities-and-watch-complications": {
+      "abstract": [
+        {
+          "text": "Implement glanceable views with WidgetKit and SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-views-for-widgets-Live-Activities-and-watch-complications",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating views for widgets, Live Activities, and watch complications",
+      "type": "topic",
+      "url": "/documentation/widgetkit/creating-views-for-widgets-live-activities-and-watch-complications"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/SwiftUI-Views": {
+      "abstract": [
+        {
+          "text": "Present your app’s content in widgets with SwiftUI views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/SwiftUI-Views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SwiftUI views for widgets",
+      "type": "topic",
+      "url": "/documentation/widgetkit/swiftui-views"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryCircular": {
+      "abstract": [
+        {
+          "text": "A circular widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryCircular"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryCircular",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.accessoryCircular",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/accessorycircular"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryCorner": {
+      "abstract": [
+        {
+          "text": "A widget-based complication in the corner of a watch face in watchOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryCorner"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryCorner",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.accessoryCorner",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/accessorycorner"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryInline": {
+      "abstract": [
+        {
+          "text": "A flat widget that contains a single row of text and an optional image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryInline"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryInline",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.accessoryInline",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/accessoryinline"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryRectangular": {
+      "abstract": [
+        {
+          "text": "A rectangular widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryRectangular"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryRectangular",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.accessoryRectangular",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/accessoryrectangular"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemExtraLarge": {
+      "abstract": [
+        {
+          "text": "An extra-large widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemExtraLarge"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemExtraLarge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.systemExtraLarge",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/systemextralarge"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemLarge": {
+      "abstract": [
+        {
+          "text": "A large widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemLarge"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemLarge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.systemLarge",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/systemlarge"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemMedium": {
+      "abstract": [
+        {
+          "text": "A medium-sized widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemMedium"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemMedium",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.systemMedium",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/systemmedium"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemSmall": {
+      "abstract": [
+        {
+          "text": "A small widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemSmall"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemSmall",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.systemSmall",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/systemsmall"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetLocation": {
+      "abstract": [
+        {
+          "text": "Values that indicate different widget locations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetLocation",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetlocation"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/accented": {
+      "abstract": [
+        {
+          "text": "The system divides the widget’s view hierarchy into an accent group and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a default group, applying a different color to each group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accented"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit0A13RenderingModeV",
+          "text": "WidgetRenderingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/accented",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accented",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetrenderingmode/accented"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/fullColor": {
+      "abstract": [
+        {
+          "text": "The system renders the widget in full color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fullColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit0A13RenderingModeV",
+          "text": "WidgetRenderingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/fullColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fullColor",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetrenderingmode/fullcolor"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/vibrant": {
+      "abstract": [
+        {
+          "text": "The system desaturates the widget, making a monochrome version that it",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "uses to create an adaptive, vibrant effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vibrant"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit0A13RenderingModeV",
+          "text": "WidgetRenderingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/vibrant",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vibrant",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetrenderingmode/vibrant"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations": {
+      "abstract": [
+        {
+          "text": "Offer Live Activities, controls, animate data updates, and add interactivity to widgets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Emoji Rangers: Supporting Live Activities, interactivity, and animations",
+      "type": "topic",
+      "url": "/documentation/widgetkit/emoji-rangers-supporting-live-activities-interactivity-and-animations"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement/widget": {
+      "abstract": [
+        {
+          "text": "The container background placement for a widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "widget"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI28ContainerBackgroundPlacementV",
+          "text": "ContainerBackgroundPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement/widget",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "widget",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ContainerBackgroundPlacement/widget"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/isLuminanceReduced": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the display or environment currently requires reduced luminance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isLuminanceReduced"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/isLuminanceReduced",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isLuminanceReduced",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/isLuminanceReduced"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/showsWidgetContainerBackground": {
+      "abstract": [
+        {
+          "text": "An environment variable that indicates whether the background of a widget appears.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showsWidgetContainerBackground"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/showsWidgetContainerBackground",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "showsWidgetContainerBackground",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/showsWidgetContainerBackground"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/widgetRenderingMode": {
+      "abstract": [
+        {
+          "text": "The widget’s rendering mode, based on where the system is displaying it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "widgetRenderingMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit0A13RenderingModeV",
+          "text": "WidgetRenderingMode"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/widgetRenderingMode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "widgetRenderingMode",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/widgetRenderingMode"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/containerBackground(_:for:)": {
+      "abstract": [
+        {
+          "text": "Sets the container background of the enclosing container using a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "containerBackground"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "container"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI28ContainerBackgroundPlacementV",
+          "text": "ContainerBackgroundPlacement"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10ShapeStyleP",
+          "text": "ShapeStyle"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/containerBackground(_:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containerBackground(_:for:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/containerBackground(_:for:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/widgetAccentable(_:)": {
+      "abstract": [
+        {
+          "text": "Adds the view and all of its subviews to the accented group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "widgetAccentable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "accentable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = true) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/widgetAccentable(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "widgetAccentable(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/widgetAccentable(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/WidgetConfiguration/containerBackgroundRemovable(_:)": {
+      "abstract": [
+        {
+          "text": "A modifier that marks the background of a widget as removable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "containerBackgroundRemovable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "isRemovable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = true) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19WidgetConfigurationP",
+          "text": "WidgetConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WidgetConfiguration/containerBackgroundRemovable(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containerBackgroundRemovable(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/WidgetConfiguration/containerBackgroundRemovable(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/WidgetConfiguration/disfavoredLocations(_:for:)": {
+      "abstract": [
+        {
+          "text": "Sets the disfavored locations for a widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "disfavoredLocations"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "locations"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit0A8LocationV",
+          "text": "WidgetLocation"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "families"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit0A6FamilyO",
+          "text": "WidgetFamily"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19WidgetConfigurationP",
+          "text": "WidgetConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WidgetConfiguration/disfavoredLocations(_:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "disfavoredLocations(_:for:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/WidgetConfiguration/disfavoredLocations(_:for:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/tutorials/SwiftUI": {
+      "abstract": [
+        {
+          "text": "SwiftUI is a modern way to declare user interfaces for any Apple platform. Create beautiful, dynamic apps faster than ever before.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/tutorials/SwiftUI",
+      "kind": "overview",
+      "role": "overview",
+      "title": "Introducing SwiftUI",
+      "type": "topic",
+      "url": "/tutorials/SwiftUI"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/always-on": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/always-on",
+      "title": "Human Interface Guidelines > Always On",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines > Always On",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/always-on"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/complications": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/complications",
+      "title": "Human Interface Guidelines > Complications",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines > Complications",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/complications"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/widgets": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/widgets",
+      "title": "Human Interface Guidelines > Widgets",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines > Widgets",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/widgets"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Presentation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-views-for-widgets-Live-Activities-and-watch-complications",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/SwiftUI-Views",
+        "doc://com.apple.documentation/tutorials/SwiftUI",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/AccessoryWidgetBackground",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetLocation"
+      ],
+      "title": "Presentation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Presentation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-views-for-widgets-Live-Activities-and-watch-complications",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/SwiftUI-Views"
+              ],
+              "title": "Presentation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/widgetkit/preparing-widgets-for-additional-contexts-and-appearances"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/widgetkit/preparing-widgets-for-additional-contexts-and-appearances"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

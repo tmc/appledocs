@@ -1,0 +1,795 @@
+{
+  "abstract": [
+    {
+      "text": "Create a delegate connection to the daemon allowing efficient registration of multiple individual records.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.dnssd/documentation/dnssd",
+        "doc://com.apple.dnssd/documentation/dnssd/dns-service-discovery-c"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceCreateDelegateConnection"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "dnssd"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "DNSServiceCreateDelegateConnection"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "DNSServiceErrorType DNSServiceCreateDelegateConnection (",
+            "   DNSServiceRef *sdRef,",
+            "   int32_t pid,",
+            "   uuid_t uuid",
+            ");"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Parameters",
+          "level": 2,
+          "text": "Parameters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "sdRef",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A pointer to an uninitialized DNSServiceRef. Deallocating the reference (via DNSServiceRefDeallocate()) severs the connection and deregisters all records registered on this connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "pid",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Process ID of the delegate",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "uuid",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UUID of the delegate",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that only one of the two arguments (pid or uuid) can be specified. If pid is zero, uuid will be assumed to be a valid value; otherwise pid will be used.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Return-Value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Returns kDNSServiceErr_NoError on success, otherwise returns an error code indicating the specific failure that occurred (in which case the DNSServiceRef is not initialized). kDNSServiceErr_NotAuth is returned to indicate that the calling process does not have entitlements to use this API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.dnssd/documentation/dnssd": {
+      "abstract": [
+        {
+          "text": "Discover, publish, and resolve network services on a local area or wide area network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "dnssd",
+      "type": "topic",
+      "url": "/documentation/dnssd"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/DNSServiceSetDispatchQueue(_:_:)": {
+      "abstract": [
+        {
+          "text": "Allows you to schedule a DNSServiceRef on a serial dispatch queue for receiving asynchronous callbacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNSServiceSetDispatchQueue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceRef",
+          "text": "DNSServiceRef"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceErrorType",
+          "text": "DNSServiceErrorType"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceSetDispatchQueue(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DNSServiceSetDispatchQueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "DNSServiceSetDispatchQueue(_:_:)",
+      "type": "topic",
+      "url": "/documentation/dnssd/dnsservicesetdispatchqueue(_:_:)"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/TXTRecordContainsKey(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Allows you to determine if a given TXT Record contains a specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TXTRecordContainsKey"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt16V",
+          "text": "UInt16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/TXTRecordContainsKey(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TXTRecordContainsKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "TXTRecordContainsKey(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/dnssd/txtrecordcontainskey(_:_:_:)"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/TXTRecordGetCount(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the number of keys stored in the TXT Record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TXTRecordGetCount"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt16V",
+          "text": "UInt16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt16V",
+          "text": "UInt16"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/TXTRecordGetCount(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TXTRecordGetCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "TXTRecordGetCount(_:_:)",
+      "type": "topic",
+      "url": "/documentation/dnssd/txtrecordgetcount(_:_:)"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/TXTRecordGetItemAtIndex(_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Allows you to retrieve a key name and value pointer, given an index into a TXT Record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TXTRecordGetItemAtIndex"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt16V",
+          "text": "UInt16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt16V",
+          "text": "UInt16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt16V",
+          "text": "UInt16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?>!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceErrorType",
+          "text": "DNSServiceErrorType"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/TXTRecordGetItemAtIndex(_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TXTRecordGetItemAtIndex"
+        }
+      ],
+      "role": "symbol",
+      "title": "TXTRecordGetItemAtIndex(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/dnssd/txtrecordgetitematindex(_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/TXTRecordGetValuePtr(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Allows you to retrieve the value for a given key from a TXT Record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TXTRecordGetValuePtr"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt16V",
+          "text": "UInt16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/TXTRecordGetValuePtr(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TXTRecordGetValuePtr"
+        }
+      ],
+      "role": "symbol",
+      "title": "TXTRecordGetValuePtr(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/dnssd/txtrecordgetvalueptr(_:_:_:_:)"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/dns-service-discovery-c": {
+      "abstract": [
+        {
+          "text": "See the Overview section above for header-level documentation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/dns-service-discovery-c",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "DNS Service Discovery C",
+      "type": "topic",
+      "url": "/documentation/dnssd/dns-service-discovery-c"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "TXT-Record-Parsing-Functions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.dnssd/documentation/dnssd/DNSServiceSetDispatchQueue(_:_:)",
+        "doc://com.apple.dnssd/documentation/dnssd/TXTRecordContainsKey(_:_:_:)",
+        "doc://com.apple.dnssd/documentation/dnssd/TXTRecordGetCount(_:_:)",
+        "doc://com.apple.dnssd/documentation/dnssd/TXTRecordGetItemAtIndex(_:_:_:_:_:_:_:)",
+        "doc://com.apple.dnssd/documentation/dnssd/TXTRecordGetValuePtr(_:_:_:_:)"
+      ],
+      "title": "TXT Record Parsing Functions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "TXT-Record-Parsing-Functions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.dnssd/documentation/dnssd/DNSServiceSetDispatchQueue(_:_:)",
+                "doc://com.apple.dnssd/documentation/dnssd/TXTRecordContainsKey(_:_:_:)",
+                "doc://com.apple.dnssd/documentation/dnssd/TXTRecordGetCount(_:_:)",
+                "doc://com.apple.dnssd/documentation/dnssd/TXTRecordGetItemAtIndex(_:_:_:_:_:_:_:)",
+                "doc://com.apple.dnssd/documentation/dnssd/TXTRecordGetValuePtr(_:_:_:_:)"
+              ],
+              "title": "TXT Record Parsing Functions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1TXTRecordGetItemAtIndex(_:_:_:_:_:_:_:)/title",
+          "value": "TXTRecordGetItemAtIndex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1TXTRecordGetItemAtIndex(_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TXTRecordGetItemAtIndex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1TXTRecordContainsKey(_:_:_:)/title",
+          "value": "TXTRecordContainsKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1TXTRecordContainsKey(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TXTRecordContainsKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1TXTRecordGetCount(_:_:)/title",
+          "value": "TXTRecordGetCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1TXTRecordGetCount(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TXTRecordGetCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1TXTRecordGetValuePtr(_:_:_:_:)/title",
+          "value": "TXTRecordGetValuePtr"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1TXTRecordGetValuePtr(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TXTRecordGetValuePtr"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceSetDispatchQueue(_:_:)/title",
+          "value": "DNSServiceSetDispatchQueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceSetDispatchQueue(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DNSServiceSetDispatchQueue"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/dnssd/dnsservicecreatedelegateconnection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/dnssd/dnsservicecreatedelegateconnection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

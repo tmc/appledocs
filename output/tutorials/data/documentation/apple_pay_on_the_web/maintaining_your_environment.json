@@ -1,0 +1,422 @@
+{
+  "abstract": [
+    {
+      "text": "Prevent interruptions in your Apple Pay service by keeping certificates and domain verification current.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/maintaining_your_environment"
+  },
+  "kind": "article",
+  "legacy_identifier": 2930232,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Pay JS"
+      },
+      {
+        "name": "Payment Request API"
+      },
+      {
+        "name": "Apple Pay JS Button"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Maintaining Your Environment"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To prevent interruptions in your website’s Apple Pay service, your domain verification and the certificates that you set up in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1755707",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " must remain valid. While your merchant ID never expires, certificates and domain verification do expire, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Payment Processing certificate expires every 25 months.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Merchant Identity certificate expires every 25 months.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A registered domain’s verification expires when its SSL certificate expires.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "As the expiration dates for certificates and domain verifications approach, Apple sends an email reminder to the Admin and the Account Holder of the Apple Developer Account. Ensure that your organization continually monitors the inbox of these users so you can renew certificates before they expire to avoid interruptions to your Apple Pay service.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "3179141",
+          "level": 3,
+          "text": "View Expiration Dates and Update Certificates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can view expiration dates and update your certificates on the Apple developer website by following these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sign in to your account — you need to be an Account Holder or Admin.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-3179139",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " page.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Under Identifiers, select Merchant IDs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your domain’s  ID and select Edit. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Certificate expiration dates appear for each of the certificates listed on the page. You can also update the certificates on this page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3179140",
+          "level": 3,
+          "text": "Renew Your Domain Verification",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Domain verification expires on the same date that your domain’s SSL certificate expires. Apple servers check if SSL certificates have been renewed at 30, 15, and 7 days before expiration. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you update the SSL certificate before it expires, Apple detects the renewed certificate and the domain remains verified. No further action is required on your part.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the SSL certificate expires and is not replaced before expiring, you must redo domain verification in your Apple Developer Account. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-3359479",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for additional information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make sure that the Apple servers — listed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server#3179116",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " — can access the URL you used to validate the merchant domain. If the URL is behind a proxy or redirect the Apple servers won’t be able to access it. The URL may be similar to ",
+              "type": "text"
+            },
+            {
+              "code": "https://yourdomain.com/.well-known/apple-developer-merchantid-domain-association",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1755707": {
+      "identifier": "devLink-1755707",
+      "title": "Configuring Your Environment",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/ApplePay_Guide/Configuration.html#//apple_ref/doc/uid/TP40014764-CH2"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Pay on the Web",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/configuring_your_environment": {
+      "abstract": [
+        {
+          "text": "Create your Apple Pay merchant ID and certificates, and verify your domain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/configuring_your_environment",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Your Environment",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/configuring_your_environment"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/maintaining_your_environment": {
+      "abstract": [
+        {
+          "text": "Prevent interruptions in your Apple Pay service by keeping certificates and domain verification current.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/maintaining_your_environment",
+      "kind": "article",
+      "role": "article",
+      "title": "Maintaining Your Environment",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/maintaining_your_environment"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server": {
+      "abstract": [
+        {
+          "text": "Set up your server for secure communications with Apple Pay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up Your Server",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/setting_up_your_server"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server#3179116": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server#3179116",
+      "kind": "article",
+      "role": "subsection",
+      "title": "Allow Apple IP Addresses for Domain Verification",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/setting_up_your_server#3179116"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-3179139": {
+      "identifier": "link-3179139",
+      "kind": "article",
+      "role": "link",
+      "title": "Certificates, Identifiers, and Profiles",
+      "type": "topic",
+      "url": "https://developer.apple.com/account/ios/certificate/"
+    },
+    "link-3359479": {
+      "identifier": "link-3359479",
+      "kind": "article",
+      "role": "link",
+      "title": "Verify a Merchant Domain",
+      "type": "section",
+      "url": "https://help.apple.com/developer-account/#/dev1731126fb"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/configuring_your_environment"
+      ],
+      "title": "Apple Pay setup"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/apple_pay_on_the_web/maintaining_your_environment"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

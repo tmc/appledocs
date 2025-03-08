@@ -1,0 +1,1749 @@
+{
+  "abstract": [
+    {
+      "text": "A layout that provides a custom, interactive view inside the transcript.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.messages/documentation/Messages"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.messages/documentation/Messages/MSMessageLiveLayout"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MSMessageLiveLayout",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MSMessageLiveLayout"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Messages"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MSMessageLiveLayout"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "MSMessageLiveLayout"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MSMessageLiveLayout"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a live layout instance to create custom, interactive messages in the transcript (or input field). An alternative layout is required to represent your message on devices that don’t have your iMessage app installed, or on devices that aren’t running iOS 11 or later. Note: this could be either the receiver’s or the sender’s device; the sender may have a second device that doesn’t have your app installed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the alternative layout when you instantiate your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageLiveLayout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. Use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance. The template layout automatically provides support for devices that do not support iMessage apps (macOS, iOS 9 and earlier, and SMS devices). See below for an example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1. Sending a live message.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let alternateMessageLayout = MSMessageTemplateLayout()",
+            "// Configure the template layout here...",
+            "",
+            "",
+            "let messageLayout = MSMessageLiveLayout(alternateLayout: alternateMessageLayout)",
+            "",
+            "let message = MSMessage()",
+            "message.layout = messageLayout",
+            "",
+            "conversation.send(message) { (errorOrNil) in",
+            "    if let error = errorOrNil {",
+            "        // Handle the error here...",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSMessage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object with a live layout is added to the transcript (or input field), the system instantiates a new instance of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass, with its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/presentationStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property set to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationStyle/transcript",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/selectedMessage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is set to the interactive message just before the controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/willBecomeActive(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method is called. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/selectedMessage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to access the message and display its contents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Messages app renders your controller’s view inside a bubble in the transcript.  Your controller must check its presentation style and display an appropriate user interface for the message. You can define the message’s size by overriding your view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppTranscriptPresentation/contentSizeThatFits(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There can be multiple live messages (from multiple iMessage apps) in the transcript at the same time. This means your app may have multiple instances of its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass running concurrently:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "One instance for each message in the transcript",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "One instance for a message in the input field (when you stage the message by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/insert(_:completionHandler:)-3g248",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "One instance for the app’s main interface if your iMessage app is currently active",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.messages/documentation/Messages": {
+      "abstract": [
+        {
+          "text": "Create app extensions that allow users to send text, stickers, media files, and interactive messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Messages",
+      "type": "topic",
+      "url": "/documentation/messages"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSConversation/insert(_:completionHandler:)-3g248": {
+      "abstract": [
+        {
+          "text": "Inserts a message object into the Messages app’s input field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSMessage",
+          "text": "MSMessage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/insert(_:completionHandler:)-3g248",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertMessage:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "insert(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/messages/msconversation/insert(_:completionhandler:)-3g248"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSConversation/selectedMessage": {
+      "abstract": [
+        {
+          "text": "The message that the user selected in the conversation transcript.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedMessage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSMessage",
+          "text": "MSMessage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/selectedMessage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectedMessage"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectedMessage",
+      "type": "topic",
+      "url": "/documentation/messages/msconversation/selectedmessage"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessage": {
+      "abstract": [
+        {
+          "text": "A custom message object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSMessage"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSMessage"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSMessage",
+      "type": "topic",
+      "url": "/documentation/messages/msmessage"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessageLayout": {
+      "abstract": [
+        {
+          "text": "An abstract base class that defines the appearance of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.messages/documentation/Messages/MSMessage",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " objects in the conversation transcript.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSMessageLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSMessageLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSMessageLayout",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagelayout"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessageLiveLayout": {
+      "abstract": [
+        {
+          "text": "A layout that provides a custom, interactive view inside the transcript.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSMessageLiveLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageLiveLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSMessageLiveLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSMessageLiveLayout",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagelivelayout"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessageLiveLayout/alternateLayout": {
+      "abstract": [
+        {
+          "text": "A template layout to be displayed when the live layout is unavailable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alternateLayout"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSMessageTemplateLayout",
+          "text": "MSMessageTemplateLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageLiveLayout/alternateLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "alternateLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "alternateLayout",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagelivelayout/alternatelayout"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessageLiveLayout/init(alternateLayout:)": {
+      "abstract": [
+        {
+          "text": "Initializes a new live layout using the provided alternate layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "alternateLayout"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSMessageTemplateLayout",
+          "text": "MSMessageTemplateLayout"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageLiveLayout/init(alternateLayout:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithAlternateLayout:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(alternateLayout:)",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagelivelayout/init(alternatelayout:)"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout": {
+      "abstract": [
+        {
+          "text": "A template-based layout for custom messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSMessageTemplateLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSMessageTemplateLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSMessageTemplateLayout",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagetemplatelayout"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationStyle/transcript": {
+      "abstract": [
+        {
+          "text": "The iMessage app is displayed in the Messages app’s transcript or input field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transcript"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationStyle/transcript",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSMessagesAppPresentationStyleTranscript"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSMessagesAppPresentationStyle.transcript",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagesapppresentationstyle/transcript"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessagesAppTranscriptPresentation/contentSizeThatFits(_:)": {
+      "abstract": [
+        {
+          "text": "The size of your messages view, given the provided maximum size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentSizeThatFits"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppTranscriptPresentation/contentSizeThatFits(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentSizeThatFits:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "contentSizeThatFits(_:)",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagesapptranscriptpresentation/contentsizethatfits(_:)"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController": {
+      "abstract": [
+        {
+          "text": "The principal view controller for iMessage apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSMessagesAppViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSMessagesAppViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSMessagesAppViewController",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagesappviewcontroller"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/presentationStyle": {
+      "abstract": [
+        {
+          "text": "The extension’s current presentation style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentationStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MSMessagesAppPresentationStyle",
+          "text": "MSMessagesAppPresentationStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/presentationStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentationStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentationStyle",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagesappviewcontroller/presentationstyle"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/willBecomeActive(with:)": {
+      "abstract": [
+        {
+          "text": "Invoked just before the Messages extension becomes active.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willBecomeActive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSConversation",
+          "text": "MSConversation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/willBecomeActive(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "willBecomeActiveWithConversation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "willBecomeActive(with:)",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagesappviewcontroller/willbecomeactive(with:)"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSSession": {
+      "abstract": [
+        {
+          "text": "A session object used to create and update messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSSession"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSSession",
+      "type": "topic",
+      "url": "/documentation/messages/mssession"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.messages/documentation/Messages/MSMessageLayout"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Interactive-messages",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.messages/documentation/Messages/MSMessage",
+        "doc://com.apple.messages/documentation/Messages/MSSession",
+        "doc://com.apple.messages/documentation/Messages/MSMessageLayout",
+        "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout"
+      ],
+      "title": "Interactive messages"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-Live-Layouts",
+      "identifiers": [
+        "doc://com.apple.messages/documentation/Messages/MSMessageLiveLayout/init(alternateLayout:)"
+      ],
+      "title": "Creating Live Layouts"
+    },
+    {
+      "anchor": "Accessing-Properties",
+      "identifiers": [
+        "doc://com.apple.messages/documentation/Messages/MSMessageLiveLayout/alternateLayout"
+      ],
+      "title": "Accessing Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MSMessageLiveLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessageLiveLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessageLiveLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.messages/documentation/Messages"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-Live-Layouts",
+              "identifiers": [
+                "doc://com.apple.messages/documentation/Messages/MSMessageLiveLayout/init(alternateLayout:)"
+              ],
+              "title": "Creating Live Layouts"
+            },
+            {
+              "anchor": "Accessing-Properties",
+              "identifiers": [
+                "doc://com.apple.messages/documentation/Messages/MSMessageLiveLayout/alternateLayout"
+              ],
+              "title": "Accessing Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.messages/documentation/Messages/MSMessageLayout"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Interactive-messages",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.messages/documentation/Messages/MSMessage",
+                "doc://com.apple.messages/documentation/Messages/MSSession",
+                "doc://com.apple.messages/documentation/Messages/MSMessageLayout",
+                "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout"
+              ],
+              "title": "Interactive messages"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MSMessageLiveLayout"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageLayout",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)MSMessageLayout",
+                    "text": "MSMessageLayout"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageLayout/title",
+          "value": "MSMessageLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessageLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageLayout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessageLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageTemplateLayout/title",
+          "value": "MSMessageTemplateLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageTemplateLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessageTemplateLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageTemplateLayout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessageTemplateLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController~1presentationStyle/title",
+          "value": "presentationStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController~1presentationStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "presentationStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageLiveLayout~1init(alternateLayout:)/title",
+          "value": "initWithAlternateLayout:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageLiveLayout~1init(alternateLayout:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithAlternateLayout:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController~1willBecomeActive(with:)/title",
+          "value": "willBecomeActiveWithConversation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController~1willBecomeActive(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "willBecomeActiveWithConversation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation~1selectedMessage/title",
+          "value": "selectedMessage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation~1selectedMessage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectedMessage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation~1insert(_:completionHandler:)-3g248/title",
+          "value": "insertMessage:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation~1insert(_:completionHandler:)-3g248/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertMessage:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessage/title",
+          "value": "MSMessage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageLiveLayout/title",
+          "value": "MSMessageLiveLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageLiveLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessageLiveLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageLiveLayout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessageLiveLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageLiveLayout~1alternateLayout/title",
+          "value": "alternateLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageLiveLayout~1alternateLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "alternateLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppTranscriptPresentation~1contentSizeThatFits(_:)/title",
+          "value": "contentSizeThatFits:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppTranscriptPresentation~1contentSizeThatFits(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "contentSizeThatFits:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppPresentationStyle~1transcript/title",
+          "value": "MSMessagesAppPresentationStyleTranscript"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppPresentationStyle~1transcript/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessagesAppPresentationStyleTranscript"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSSession/title",
+          "value": "MSSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController/title",
+          "value": "MSMessagesAppViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessagesAppViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessagesAppViewController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/messages/msmessagelivelayout"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/messages/msmessagelivelayout"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

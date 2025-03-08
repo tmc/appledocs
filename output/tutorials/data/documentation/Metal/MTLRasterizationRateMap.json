@@ -1,0 +1,1867 @@
+{
+  "abstract": [
+    {
+      "text": "A compiled read-only object that determines how to apply variable rasterization rates when rendering.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MTLRasterizationRateMap",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MTLRasterizationRateMap"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MTLRasterizationRateMap"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.4",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15.4",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MTLRasterizationRateMap"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLRasterizationRateMap"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.metal/documentation/Metal/rendering-with-a-rasterization-rate-map"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a rasterization rate map to reduce rendering quality in less-important or less-sampled regions of the render target, such as areas affected by blur effects or a far-away cascade of a shadow map.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, a render pass doesn’t have a rasterization rate map, and the viewport coordinate system maps exactly to physical pixels in the targeted textures. If you apply a rasterization rate map to a render pass, the viewport coordinate system becomes a logical coordinate system, and the rate map describes how to map logical coordinates to physical pixels in the render pass’s targets. You can specify different rasterization rates in different regions of the logical coordinate system. When you do, those logical units map to fewer physical pixels, which means you can use smaller render targets and render fewer pixels, saving both memory and processing time. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/rendering-at-different-rasterization-rates",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t implement this protocol yourself; instead, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMapDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, configure it, and then call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRasterizationRateMap(descriptor:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on a device object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To apply a rasterization rate map to a render pass, set the render pass descriptor’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor/rasterizationRateMap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configuring-the-Rate-Map",
+          "level": 3,
+          "text": "Configuring the Rate Map",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A rasterization rate map specifies the size of the viewport coordinate space in logical units and one or more ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "layer maps",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". A layer map partitions the viewport coordinate space into a 2D grid of cells and defines the rasterization rate for each cell. If you aren’t using layered rendering, provide a single layer map; otherwise, provide one layer map for each layer. For more information about layered rendering, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-texture-slices-in-a-draw-command",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can query the physical size requirements for each layer in the render pass by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/physicalSize(layer:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Your render targets must be at least this large.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCoordinate2D": {
+      "abstract": [
+        {
+          "text": "A coordinate in the viewport.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCoordinate2D"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCoordinate2D",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCoordinate2D"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCoordinate2D",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcoordinate2d"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCoordinate2DMake(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new 2D point with the specified coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCoordinate2DMake"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLCoordinate2D",
+          "text": "MTLCoordinate2D"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCoordinate2DMake(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCoordinate2DMake"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCoordinate2DMake(_:_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcoordinate2dmake(_:_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRasterizationRateMap(descriptor:)": {
+      "abstract": [
+        {
+          "text": "Creates a rasterization rate map instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeRasterizationRateMap"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLRasterizationRateMapDescriptor",
+          "text": "MTLRasterizationRateMapDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLRasterizationRateMap",
+          "text": "MTLRasterizationRateMap"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRasterizationRateMap(descriptor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newRasterizationRateMapWithDescriptor:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeRasterizationRateMap(descriptor:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makerasterizationratemap(descriptor:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap": {
+      "abstract": [
+        {
+          "text": "A compiled read-only object that determines how to apply variable rasterization rates when rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRasterizationRateMap"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRasterizationRateMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRasterizationRateMap",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratemap"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/copyParameterData(buffer:offset:)": {
+      "abstract": [
+        {
+          "text": "Copies the parameter data into the provided buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyParameterData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "buffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/copyParameterData(buffer:offset:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "copyParameterDataToBuffer:offset:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "copyParameterData(buffer:offset:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratemap/copyparameterdata(buffer:offset:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/device": {
+      "abstract": [
+        {
+          "text": "The device object that created the rate map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDevice",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/device",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "device"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "device",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratemap/device"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/label": {
+      "abstract": [
+        {
+          "text": "A string that identifies the rate map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/label",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "label"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "label",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratemap/label"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/layerCount": {
+      "abstract": [
+        {
+          "text": "The number of layers in the rate map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layerCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/layerCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layerCount"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "layerCount",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratemap/layercount"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/parameterDataSizeAndAlign": {
+      "abstract": [
+        {
+          "text": "The size and alignment requirements to contain the coordinate transformation information in this rate map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parameterDataSizeAndAlign"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSizeAndAlign",
+          "text": "MTLSizeAndAlign"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/parameterDataSizeAndAlign",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "parameterBufferSizeAndAlign"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "parameterDataSizeAndAlign",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratemap/parameterdatasizeandalign"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/physicalCoordinates(screenCoordinates:layer:)": {
+      "abstract": [
+        {
+          "text": "Converts a point in logical viewport coordinates to the corresponding physical coordinates in a render layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "physicalCoordinates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "screenCoordinates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLCoordinate2D",
+          "text": "MTLCoordinate2D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "layer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLCoordinate2D",
+          "text": "MTLCoordinate2D"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/physicalCoordinates(screenCoordinates:layer:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapScreenToPhysicalCoordinates:forLayer:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "physicalCoordinates(screenCoordinates:layer:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratemap/physicalcoordinates(screencoordinates:layer:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/physicalGranularity": {
+      "abstract": [
+        {
+          "text": "The granularity, in physical pixels, at which the rasterization rate varies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "physicalGranularity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/physicalGranularity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "physicalGranularity"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "physicalGranularity",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratemap/physicalgranularity"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/physicalSize(layer:)": {
+      "abstract": [
+        {
+          "text": "Returns the dimensions, in pixels, of the area in the render target affected by the rasterization rate map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "physicalSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "layer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/physicalSize(layer:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "physicalSizeForLayer:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "physicalSize(layer:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratemap/physicalsize(layer:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/screenCoordinates(physicalCoordinates:layer:)": {
+      "abstract": [
+        {
+          "text": "Converts a point in physical coordinates inside a layer to its corresponding logical viewport coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "screenCoordinates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "physicalCoordinates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLCoordinate2D",
+          "text": "MTLCoordinate2D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "layer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLCoordinate2D",
+          "text": "MTLCoordinate2D"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/screenCoordinates(physicalCoordinates:layer:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapPhysicalToScreenCoordinates:forLayer:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "screenCoordinates(physicalCoordinates:layer:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratemap/screencoordinates(physicalcoordinates:layer:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/screenSize": {
+      "abstract": [
+        {
+          "text": "The logical size, in pixels, of the viewport coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "screenSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLSize",
+          "text": "MTLSize"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/screenSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "screenSize"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "screenSize",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratemap/screensize"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMapDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that you use to configure new rasterization rate maps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRasterizationRateMapDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMapDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRasterizationRateMapDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRasterizationRateMapDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratemapdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor/rasterizationRateMap": {
+      "abstract": [
+        {
+          "text": "The rasterization rate map to use when executing the render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rasterizationRateMap"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLRasterizationRateMap",
+          "text": "MTLRasterizationRateMap"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor/rasterizationRateMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rasterizationRateMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "rasterizationRateMap",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpassdescriptor/rasterizationratemap"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-a-rasterization-rate-map": {
+      "abstract": [
+        {
+          "text": "Define the rasterization rates for each part of your render target.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-rasterization-rate-map",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Rasterization Rate Map",
+      "type": "topic",
+      "url": "/documentation/metal/creating-a-rasterization-rate-map"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-at-different-rasterization-rates": {
+      "abstract": [
+        {
+          "text": "Configure a rasterization rate map to vary rasterization rates depending on the amount of detail needed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-at-different-rasterization-rates",
+      "kind": "article",
+      "role": "article",
+      "title": "Rendering at Different Rasterization Rates",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-at-different-rasterization-rates"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-texture-slices-in-a-draw-command": {
+      "abstract": [
+        {
+          "text": "Select a destination texture slice in your vertex shader.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-texture-slices-in-a-draw-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Rendering to Multiple Texture Slices in a Draw Command",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-to-multiple-texture-slices-in-a-draw-command"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-with-a-rasterization-rate-map": {
+      "abstract": [
+        {
+          "text": "Create offscreen textures to hold intermediate rasterized data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-with-a-rasterization-rate-map",
+      "kind": "article",
+      "role": "article",
+      "title": "Rendering with a Rasterization Rate Map",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-with-a-rasterization-rate-map"
+    },
+    "doc://com.apple.metal/documentation/Metal/scaling-variable-rasterization-rate-content": {
+      "abstract": [
+        {
+          "text": "Use the rate map data to scale the content to fill your destination texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/scaling-variable-rasterization-rate-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Scaling Variable Rasterization Rate Content",
+      "type": "topic",
+      "url": "/documentation/metal/scaling-variable-rasterization-rate-content"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Rasterization-Settings",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/rendering-at-different-rasterization-rates",
+        "doc://com.apple.metal/documentation/Metal/creating-a-rasterization-rate-map",
+        "doc://com.apple.metal/documentation/Metal/rendering-with-a-rasterization-rate-map",
+        "doc://com.apple.metal/documentation/Metal/scaling-variable-rasterization-rate-content",
+        "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMapDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLCoordinate2D",
+        "doc://com.apple.metal/documentation/Metal/MTLCoordinate2DMake(_:_:)"
+      ],
+      "title": "Rasterization Settings"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Identifying-the-Rate-Map",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/device",
+        "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/label"
+      ],
+      "title": "Identifying the Rate Map"
+    },
+    {
+      "anchor": "Inspecting-Geometric-and-Rendering-Properties",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/layerCount",
+        "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/screenSize",
+        "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/physicalSize(layer:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/physicalGranularity"
+      ],
+      "title": "Inspecting Geometric and Rendering Properties"
+    },
+    {
+      "anchor": "Converting-Between-Viewport-and-Physical-Coordinates",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/physicalCoordinates(screenCoordinates:layer:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/screenCoordinates(physicalCoordinates:layer:)"
+      ],
+      "title": "Converting Between Viewport and Physical Coordinates"
+    },
+    {
+      "anchor": "Obtaining-Coordinate-Transformation-Data",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/parameterDataSizeAndAlign",
+        "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/copyParameterData(buffer:offset:)"
+      ],
+      "title": "Obtaining Coordinate Transformation Data"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.4",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15.4",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MTLRasterizationRateMap"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRasterizationRateMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRasterizationRateMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Identifying-the-Rate-Map",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/device",
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/label"
+              ],
+              "title": "Identifying the Rate Map"
+            },
+            {
+              "anchor": "Inspecting-Geometric-and-Rendering-Properties",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/layerCount",
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/screenSize",
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/physicalSize(layer:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/physicalGranularity"
+              ],
+              "title": "Inspecting Geometric and Rendering Properties"
+            },
+            {
+              "anchor": "Converting-Between-Viewport-and-Physical-Coordinates",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/physicalCoordinates(screenCoordinates:layer:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/screenCoordinates(physicalCoordinates:layer:)"
+              ],
+              "title": "Converting Between Viewport and Physical Coordinates"
+            },
+            {
+              "anchor": "Obtaining-Coordinate-Transformation-Data",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/parameterDataSizeAndAlign",
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap/copyParameterData(buffer:offset:)"
+              ],
+              "title": "Obtaining Coordinate Transformation Data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Rasterization-Settings",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/rendering-at-different-rasterization-rates",
+                "doc://com.apple.metal/documentation/Metal/creating-a-rasterization-rate-map",
+                "doc://com.apple.metal/documentation/Metal/rendering-with-a-rasterization-rate-map",
+                "doc://com.apple.metal/documentation/Metal/scaling-variable-rasterization-rate-content",
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMapDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLCoordinate2D",
+                "doc://com.apple.metal/documentation/Metal/MTLCoordinate2DMake(_:_:)"
+              ],
+              "title": "Rasterization Settings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MTLRasterizationRateMap"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCoordinate2D/title",
+          "value": "MTLCoordinate2D"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCoordinate2D/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCoordinate2D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCoordinate2D/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCoordinate2D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCoordinate2DMake(_:_:)/title",
+          "value": "MTLCoordinate2DMake"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCoordinate2DMake(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCoordinate2DMake"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap~1copyParameterData(buffer:offset:)/title",
+          "value": "copyParameterDataToBuffer:offset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap~1copyParameterData(buffer:offset:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "copyParameterDataToBuffer:offset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeRasterizationRateMap(descriptor:)/title",
+          "value": "newRasterizationRateMapWithDescriptor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeRasterizationRateMap(descriptor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newRasterizationRateMapWithDescriptor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap/title",
+          "value": "MTLRasterizationRateMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRasterizationRateMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRasterizationRateMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMapDescriptor/title",
+          "value": "MTLRasterizationRateMapDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMapDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRasterizationRateMapDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMapDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRasterizationRateMapDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap~1label/title",
+          "value": "label"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap~1label/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "label"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap~1parameterDataSizeAndAlign/title",
+          "value": "parameterBufferSizeAndAlign"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap~1parameterDataSizeAndAlign/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "parameterBufferSizeAndAlign"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap~1device/title",
+          "value": "device"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap~1device/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "device"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap~1layerCount/title",
+          "value": "layerCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap~1layerCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "layerCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap~1physicalGranularity/title",
+          "value": "physicalGranularity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap~1physicalGranularity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "physicalGranularity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap~1screenSize/title",
+          "value": "screenSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap~1screenSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "screenSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDescriptor~1rasterizationRateMap/title",
+          "value": "rasterizationRateMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDescriptor~1rasterizationRateMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rasterizationRateMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap~1physicalSize(layer:)/title",
+          "value": "physicalSizeForLayer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap~1physicalSize(layer:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "physicalSizeForLayer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap~1screenCoordinates(physicalCoordinates:layer:)/title",
+          "value": "mapPhysicalToScreenCoordinates:forLayer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap~1screenCoordinates(physicalCoordinates:layer:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapPhysicalToScreenCoordinates:forLayer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap~1physicalCoordinates(screenCoordinates:layer:)/title",
+          "value": "mapScreenToPhysicalCoordinates:forLayer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap~1physicalCoordinates(screenCoordinates:layer:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapScreenToPhysicalCoordinates:forLayer:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtlrasterizationratemap"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtlrasterizationratemap"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

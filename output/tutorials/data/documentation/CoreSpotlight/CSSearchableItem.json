@@ -1,0 +1,2872 @@
+{
+  "abstract": [
+    {
+      "text": "The details of your app-specific content that someone might search",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "for on their devices.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CSSearchableItem",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CSSearchableItem"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Spotlight"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CSSearchableItem"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CSSearchableItem"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CSSearchableItem"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/adding-your-app-s-content-to-spotlight-indexes",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/searching-for-information-in-your-app",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/enable-apple-intelligence-summaries"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "CSSearchableItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uniquely identifies a part of your app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content, and provides the metadata that Spotlight indexes and uses",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to find that content later. As part of indexing your app’s content,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you create searchable items and fill them with details about your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app’s content and where to find it. After indexing the content, you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can then execute queries using the Core Spotlight APIs to find the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "items you indexed. People can also use the system’s Spotlight search",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interface to find your app’s content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create or update content in your app, create a ",
+              "type": "text"
+            },
+            {
+              "code": "CSSearchableItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for that content if you want it to be searchable. A searchable item",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contains identification strings you use to locate that item in your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object with details about",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the item. For the metadata, you typically want to provide values for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet/title",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet/displayName",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet/contentType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attributes at a minimum.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you’re indexing a file on disk, provide a value for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet/contentURL",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "attribute. Fill in as many other attributes as makes sense for the content",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you’re indexing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After creating a searchable item, index it using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object. As you update your app’s content, update your ",
+              "type": "text"
+            },
+            {
+              "code": "CSSearchableItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "objects for that content and index them right away. If you delete content,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "similarly delete the searchable items from the index. Keeping your app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "indexes current ensures that searches return valid information. For more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information on indexing your content, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/adding-your-app-s-content-to-spotlight-indexes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight": {
+      "abstract": [
+        {
+          "text": "Add search capabilities to your app, and index your content so",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "people can find it from Spotlight and Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Spotlight",
+      "type": "topic",
+      "url": "/documentation/corespotlight"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSCustomAttributeKey": {
+      "abstract": [
+        {
+          "text": "A key associated with a custom attribute for a searchable item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSCustomAttributeKey"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSCustomAttributeKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSCustomAttributeKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSCustomAttributeKey",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cscustomattributekey"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSLocalizedString": {
+      "abstract": [
+        {
+          "text": "An object that displays localized text in search results related to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSLocalizedString"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSLocalizedString",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSLocalizedString"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSLocalizedString",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cslocalizedstring"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSPerson": {
+      "abstract": [
+        {
+          "text": "An object that represents a person in the context of search results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSPerson"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSPerson",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSPerson"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSPerson",
+      "type": "topic",
+      "url": "/documentation/corespotlight/csperson"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSQueryContinuationActionType": {
+      "abstract": [
+        {
+          "text": "Indicates that the activity type to continue is a search or query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSQueryContinuationActionType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSQueryContinuationActionType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSQueryContinuationActionType"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSQueryContinuationActionType",
+      "type": "topic",
+      "url": "/documentation/corespotlight/csquerycontinuationactiontype"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchQueryString": {
+      "abstract": [
+        {
+          "text": "Provides the key for the current query in the info dictionary of the user activity object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSSearchQueryString"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchQueryString",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSSearchQueryString"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSSearchQueryString",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchquerystring"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex": {
+      "abstract": [
+        {
+          "text": "An on-device index for your app’s searchable content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSSearchableIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSSearchableIndex"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSSearchableIndex",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem": {
+      "abstract": [
+        {
+          "text": "The details of your app-specific content that someone might search",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for on their devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSSearchableItem"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSSearchableItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSSearchableItem",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitem"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/UpdateListenerOptions-swift.struct": {
+      "abstract": [
+        {
+          "text": "The set of options that contain metadata-associated summarization and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "prioritization of a searchable item.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateListenerOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/UpdateListenerOptions-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateListenerOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSSearchableItem.UpdateListenerOptions",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitem/updatelisteneroptions-swift.struct"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/associateAppEntity(_:priority:)": {
+      "abstract": [
+        {
+          "text": "Associates an app entity with this searchable item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "associateAppEntity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents13IndexedEntityP",
+          "text": "IndexedEntity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "priority"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/associateAppEntity(_:priority:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "associateAppEntity(_:priority:)",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitem/associateappentity(_:priority:)"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/attributeSet": {
+      "abstract": [
+        {
+          "text": "The set of attributes that contain metadata associated with the item in a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributeSet"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CSSearchableItemAttributeSet",
+          "text": "CSSearchableItemAttributeSet"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/attributeSet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attributeSet"
+        }
+      ],
+      "role": "symbol",
+      "title": "attributeSet",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitem/attributeset"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/compare(byRank:)": {
+      "abstract": [
+        {
+          "text": "Compares two items by rank and returns the result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compare"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "byRank"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CSSearchableItem",
+          "text": "CSSearchableItem"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSComparisonResult",
+          "text": "ComparisonResult"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/compare(byRank:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compareByRank:"
+        }
+      ],
+      "role": "symbol",
+      "title": "compare(byRank:)",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitem/compare(byrank:)"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/domainIdentifier": {
+      "abstract": [
+        {
+          "text": "An optional identifier that represents the domain or owner of the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "domainIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/domainIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "domainIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "domainIdentifier",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitem/domainidentifier"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/expirationDate": {
+      "abstract": [
+        {
+          "text": "The date after which the searchable item should no longer exist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "expirationDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/expirationDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "expirationDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "expirationDate",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitem/expirationdate"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/init(appEntity:)": {
+      "abstract": [
+        {
+          "text": "Intializes a new searchable item with the relevant fields populated from the provided app entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "appEntity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents13IndexedEntityP",
+          "text": "IndexedEntity"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/init(appEntity:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(appEntity:)",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitem/init(appentity:)"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/init(appEntity:priority:)": {
+      "abstract": [
+        {
+          "text": "Intializes a new searchable item with the relevant fields populated from the provided app entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "appEntity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "priority"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/init(appEntity:priority:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(appEntity:priority:)",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitem/init(appentity:priority:)"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/init(uniqueIdentifier:domainIdentifier:attributeSet:)": {
+      "abstract": [
+        {
+          "text": "Returns a searchable item associated with the specified identifier, domain identifier, and attribute set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "uniqueIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "domainIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributeSet"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CSSearchableItemAttributeSet",
+          "text": "CSSearchableItemAttributeSet"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/init(uniqueIdentifier:domainIdentifier:attributeSet:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithUniqueIdentifier:domainIdentifier:attributeSet:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(uniqueIdentifier:domainIdentifier:attributeSet:)",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitem/init(uniqueidentifier:domainidentifier:attributeset:)"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/isUpdate": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to treat the item as an",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "update instead of a new item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/isUpdate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "isUpdate",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitem/isupdate"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/uniqueIdentifier": {
+      "abstract": [
+        {
+          "text": "The value that uniquely identifies the searchable item within your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uniqueIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/uniqueIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "uniqueIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "uniqueIdentifier",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitem/uniqueidentifier"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/updateListenerOptions-swift.property": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateListenerOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CSSearchableItem",
+          "text": "CSSearchableItem"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CSSearchableItemUpdateListenerOptions",
+          "text": "UpdateListenerOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/updateListenerOptions-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateListenerOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "updateListenerOptions",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitem/updatelisteneroptions-swift.property"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemActionType": {
+      "abstract": [
+        {
+          "text": "Indicates that the activity type to continue is related to a searchable item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSSearchableItemActionType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemActionType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSSearchableItemActionType"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSSearchableItemActionType",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitemactiontype"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemActivityIdentifier": {
+      "abstract": [
+        {
+          "text": "The key you use to access a searchable item in a user activity object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSSearchableItemActivityIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemActivityIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSSearchableItemActivityIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSSearchableItemActivityIdentifier",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitemactivityidentifier"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet": {
+      "abstract": [
+        {
+          "text": "The detailed metadata for a searchable item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSSearchableItemAttributeSet"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSSearchableItemAttributeSet"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSSearchableItemAttributeSet",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitemattributeset"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet/contentType": {
+      "abstract": [
+        {
+          "text": "The uniform type identifier (UTI) of the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet/contentType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentType"
+        }
+      ],
+      "role": "symbol",
+      "title": "contentType",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitemattributeset/contenttype"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet/contentURL": {
+      "abstract": [
+        {
+          "text": "The file URL of the content to index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet/contentURL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "contentURL",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitemattributeset/contenturl"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet/displayName": {
+      "abstract": [
+        {
+          "text": "A localized string that contains the name of the item, suitable to display in the user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet/displayName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "displayName"
+        }
+      ],
+      "role": "symbol",
+      "title": "displayName",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitemattributeset/displayname"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet/title": {
+      "abstract": [
+        {
+          "text": "The title of the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet/title",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "title"
+        }
+      ],
+      "role": "symbol",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitemattributeset/title"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/adding-your-app-s-content-to-spotlight-indexes": {
+      "abstract": [
+        {
+          "text": "Create a description for your app’s content and add it to a Spotlight",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "index to make it searchable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/adding-your-app-s-content-to-spotlight-indexes",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding your app’s content to Spotlight indexes",
+      "type": "topic",
+      "url": "/documentation/corespotlight/adding-your-app-s-content-to-spotlight-indexes"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/enable-apple-intelligence-summaries": {
+      "abstract": [
+        {
+          "text": "Enable Apple Intelligence to summarize and prioritize app",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "content using Spotlight extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/enable-apple-intelligence-summaries",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling Apple Intelligence summarization and prioritization",
+      "type": "topic",
+      "url": "/documentation/corespotlight/enable-apple-intelligence-summaries"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/searching-for-information-in-your-app": {
+      "abstract": [
+        {
+          "text": "Search for app-specific content and refine search results using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "predicates and filters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/searching-for-information-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Searching for information in your app",
+      "type": "topic",
+      "url": "/documentation/corespotlight/searching-for-information-in-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Searchable-items",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSCustomAttributeKey",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSLocalizedString",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSPerson"
+      ],
+      "title": "Searchable items"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-a-searchable-item",
+      "identifiers": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/init(uniqueIdentifier:domainIdentifier:attributeSet:)"
+      ],
+      "title": "Getting a searchable item"
+    },
+    {
+      "anchor": "Setting-attributes-on-a-searchable-item",
+      "identifiers": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/uniqueIdentifier",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/domainIdentifier",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/attributeSet",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/expirationDate",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/isUpdate"
+      ],
+      "title": "Setting attributes on a searchable item"
+    },
+    {
+      "anchor": "Continuing-a-search-or-activity",
+      "identifiers": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemActionType",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemActivityIdentifier",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSQueryContinuationActionType",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchQueryString"
+      ],
+      "title": "Continuing a search or activity"
+    },
+    {
+      "anchor": "Comparing-items",
+      "identifiers": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/compare(byRank:)"
+      ],
+      "title": "Comparing items"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/UpdateListenerOptions-swift.struct"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/init(appEntity:)",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/init(appEntity:priority:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/updateListenerOptions-swift.property"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/associateAppEntity(_:priority:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CSSearchableItem"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Getting-a-searchable-item",
+              "identifiers": [
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/init(uniqueIdentifier:domainIdentifier:attributeSet:)"
+              ],
+              "title": "Getting a searchable item"
+            },
+            {
+              "anchor": "Setting-attributes-on-a-searchable-item",
+              "identifiers": [
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/uniqueIdentifier",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/domainIdentifier",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/attributeSet",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/expirationDate",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/isUpdate"
+              ],
+              "title": "Setting attributes on a searchable item"
+            },
+            {
+              "anchor": "Continuing-a-search-or-activity",
+              "identifiers": [
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemActionType",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemActivityIdentifier",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSQueryContinuationActionType",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchQueryString"
+              ],
+              "title": "Continuing a search or activity"
+            },
+            {
+              "anchor": "Comparing-items",
+              "identifiers": [
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/compare(byRank:)"
+              ],
+              "title": "Comparing items"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/updateListenerOptions-swift.property"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Searchable-items",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSCustomAttributeKey",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSLocalizedString",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSPerson"
+              ],
+              "title": "Searchable items"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CSSearchableItem"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem~1attributeSet/title",
+          "value": "attributeSet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem~1attributeSet/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "attributeSet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem~1domainIdentifier/title",
+          "value": "domainIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem~1domainIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "domainIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSLocalizedString/title",
+          "value": "CSLocalizedString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSLocalizedString/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSLocalizedString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSLocalizedString/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSLocalizedString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem~1updateListenerOptions-swift.property/title",
+          "value": "updateListenerOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem~1updateListenerOptions-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "updateListenerOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItemAttributeSet~1title/title",
+          "value": "title"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItemAttributeSet~1title/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "title"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItemAttributeSet/title",
+          "value": "CSSearchableItemAttributeSet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItemAttributeSet/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableItemAttributeSet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItemAttributeSet/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableItemAttributeSet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem~1UpdateListenerOptions-swift.struct/title",
+          "value": "CSSearchableItemUpdateListenerOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem~1UpdateListenerOptions-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableItemUpdateListenerOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem~1UpdateListenerOptions-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableItemUpdateListenerOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSPerson/title",
+          "value": "CSPerson"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSPerson/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSPerson"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSPerson/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSPerson"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItemActivityIdentifier/title",
+          "value": "CSSearchableItemActivityIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItemActivityIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableItemActivityIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem~1compare(byRank:)/title",
+          "value": "compareByRank:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem~1compare(byRank:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "compareByRank:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSCustomAttributeKey/title",
+          "value": "CSCustomAttributeKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSCustomAttributeKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSCustomAttributeKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSCustomAttributeKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSCustomAttributeKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItemAttributeSet~1contentURL/title",
+          "value": "contentURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItemAttributeSet~1contentURL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contentURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem/title",
+          "value": "CSSearchableItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItemAttributeSet~1displayName/title",
+          "value": "displayName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItemAttributeSet~1displayName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "displayName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem~1isUpdate/title",
+          "value": "isUpdate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem~1isUpdate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "isUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem~1init(uniqueIdentifier:domainIdentifier:attributeSet:)/title",
+          "value": "initWithUniqueIdentifier:domainIdentifier:attributeSet:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem~1init(uniqueIdentifier:domainIdentifier:attributeSet:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithUniqueIdentifier:domainIdentifier:attributeSet:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex/title",
+          "value": "CSSearchableIndex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableIndex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableIndex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem~1uniqueIdentifier/title",
+          "value": "uniqueIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem~1uniqueIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "uniqueIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchQueryString/title",
+          "value": "CSSearchQueryString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchQueryString/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchQueryString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem~1expirationDate/title",
+          "value": "expirationDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem~1expirationDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "expirationDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItemActionType/title",
+          "value": "CSSearchableItemActionType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItemActionType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableItemActionType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItemAttributeSet~1contentType/title",
+          "value": "contentType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItemAttributeSet~1contentType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contentType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSQueryContinuationActionType/title",
+          "value": "CSQueryContinuationActionType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSQueryContinuationActionType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSQueryContinuationActionType"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corespotlight/cssearchableitem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corespotlight/cssearchableitem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

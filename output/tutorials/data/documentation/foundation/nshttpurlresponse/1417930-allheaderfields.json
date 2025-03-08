@@ -1,0 +1,389 @@
+{
+  "abstract": [
+    {
+      "text": "All HTTP header fields of the response.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/nshttpurlresponse"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nshttpurlresponse/1417930-allheaderfields"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1417930,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSHTTPURLResponse(py)allHeaderFields",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSHTTPURLResponse"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.2",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "allHeaderFields"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": "(readonly, copy) "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSDictionary",
+              "text": "NSDictionary"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "identifier",
+              "text": "allHeaderFields"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The value of this property is a dictionary that contains all the HTTP header fields received as part of the server’s response. By examining this dictionary, clients can see the “raw” header information returned by the HTTP server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The keys in this dictionary are the header field names, as received from the server. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-1670416",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for a list of commonly used HTTP header fields.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "HTTP headers are case insensitive. To simplify your code, URL Loading System canonicalizes certain header field names into their standard form. For example, if the server sends a ",
+              "type": "text"
+            },
+            {
+              "code": "content-length",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header, it’s automatically adjusted to be ",
+              "type": "text"
+            },
+            {
+              "code": "Content-Length",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Objective-C, the returned dictionary of headers is case-preserving during the set operation (unless the key already exists with a different case), and case-insensitive when looking up keys.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if you set the header ",
+              "type": "text"
+            },
+            {
+              "code": "X-foo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and then later set the header ",
+              "type": "text"
+            },
+            {
+              "code": "X-Foo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the dictionary’s key is be ",
+              "type": "text"
+            },
+            {
+              "code": "X-foo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", but the value comes from the ",
+              "type": "text"
+            },
+            {
+              "code": "X-Foo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1817045",
+          "level": 3,
+          "text": "Special considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Prior to OS X v10.7 and iOS 5, canonicalization occurred for all header fields. The case-preserving dictionary was first introduced in OS X v10.7.2 and iOS 5.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshttpurlresponse": {
+      "abstract": [
+        {
+          "text": "The metadata associated with the response to an HTTP protocol URL load request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshttpurlresponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHTTPURLResponse",
+      "type": "topic",
+      "url": "/documentation/foundation/nshttpurlresponse"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshttpurlresponse/1417930-allheaderfields": {
+      "abstract": [
+        {
+          "text": "All HTTP header fields of the response.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshttpurlresponse/1417930-allheaderfields",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allHeaderFields",
+      "type": "topic",
+      "url": "/documentation/foundation/nshttpurlresponse/1417930-allheaderfields"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshttpurlresponse/3240613-valueforhttpheaderfield": {
+      "abstract": [
+        {
+          "text": "Returns the value that corresponds to the given header field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "valueForHTTPHeaderField:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshttpurlresponse/3240613-valueforhttpheaderfield",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "valueForHTTPHeaderField:",
+      "type": "topic",
+      "url": "/documentation/foundation/nshttpurlresponse/3240613-valueforhttpheaderfield"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-1670416": {
+      "identifier": "link-1670416",
+      "kind": "article",
+      "role": "link",
+      "title": "RFC 2616",
+      "type": "topic",
+      "url": "http://www.ietf.org/rfc/rfc2616.txt"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nshttpurlresponse/3240613-valueforhttpheaderfield"
+      ],
+      "title": "Getting HTTP response headers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nshttpurlresponse/1417930-allheaderfields"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/httpurlresponse/1417930-allheaderfields"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

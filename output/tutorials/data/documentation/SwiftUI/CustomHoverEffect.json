@@ -1,0 +1,2477 @@
+{
+  "abstract": [
+    {
+      "text": "A type that represents how a view should change when a pointer hovers",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "over a view, or when someone looks at the view.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI17CustomHoverEffectP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CustomHoverEffect"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CustomHoverEffect"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "CustomHoverEffect"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CustomHoverEffect"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Custom hover effects apply their inactive values when the effect is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "inactive, and their active values when the effect is active. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the following effect causes a view to be partially transparent when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "inactive, but animate to fully opaque when active:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct FadeInHoverEffect: CustomHoverEffect {",
+            "    func body(content: Content) -> some CustomHoverEffect {",
+            "        content.hoverEffect { effect, isActive, proxy in",
+            "            effect.animation(.easeOut) {",
+            "                $0.opacity(isActive ? 1 : 0.5)",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This effect can be applied to a view using the ",
+              "type": "text"
+            },
+            {
+              "code": "hoverEffect(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Color.red",
+            "    .hoverEffect(FadeInHoverEffect())"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Hover effects do not affect a view’s layout, and may be applied to a view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "out-of-process. Therefore an effect’s current phase may not be visible",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "within your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AutomaticHoverEffect": {
+      "abstract": [
+        {
+          "text": "The default hover effect based on the surrounding context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AutomaticHoverEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AutomaticHoverEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AutomaticHoverEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "AutomaticHoverEffect",
+      "type": "topic",
+      "url": "/documentation/swiftui/automatichovereffect"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect": {
+      "abstract": [
+        {
+          "text": "A type that represents how a view should change when a pointer hovers",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "over a view, or when someone looks at the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomHoverEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomHoverEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomHoverEffect",
+      "type": "topic",
+      "url": "/documentation/swiftui/customhovereffect"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/Body": {
+      "abstract": [
+        {
+          "text": "The type of effect representing the body of this effect. When you create",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a custom effect, Swift infers this type from your implementation of the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "required ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/body(content:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Body"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17CustomHoverEffectP",
+          "text": "CustomHoverEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/Body",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Body",
+      "type": "topic",
+      "url": "/documentation/swiftui/customhovereffect/body"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/Content": {
+      "abstract": [
+        {
+          "text": "The content effect type passed to ",
+          "type": "text"
+        },
+        {
+          "code": "body(content:)",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Content"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/Content",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Content"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomHoverEffect.Content",
+      "type": "topic",
+      "url": "/documentation/swiftui/customhovereffect/content"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/automatic": {
+      "abstract": [
+        {
+          "text": "The default hover effect based on the surrounding context.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "AutomaticHoverEffect",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automatic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20AutomaticHoverEffectV",
+          "text": "AutomaticHoverEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/automatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "automatic",
+      "type": "topic",
+      "url": "/documentation/swiftui/customhovereffect/automatic"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/body(content:)": {
+      "abstract": [
+        {
+          "text": "Defines the effect produced by this effect.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17CustomHoverEffectP7Contenta",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17CustomHoverEffectP4BodyQa",
+          "text": "Body"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/body(content:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "body(content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/customhovereffect/body(content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/empty": {
+      "abstract": [
+        {
+          "text": "An effect that applies no changes when hovered.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "EmptyHoverEffect",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "empty"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16EmptyHoverEffectV",
+          "text": "EmptyHoverEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/empty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "empty",
+      "type": "topic",
+      "url": "/documentation/swiftui/customhovereffect/empty"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/highlight": {
+      "abstract": [
+        {
+          "text": "A hover effect that highlights views using a light source to indicate",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "position.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "HighlightHoverEffect",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "highlight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20HighlightHoverEffectV",
+          "text": "HighlightHoverEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/highlight",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "highlight",
+      "type": "topic",
+      "url": "/documentation/swiftui/customhovereffect/highlight"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/hoverEffect(_:in:isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Applies this effect in parallel with the given ",
+          "type": "text"
+        },
+        {
+          "code": "effect",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hoverEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17CustomHoverEffectP",
+          "text": "CustomHoverEffect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16HoverEffectGroupV",
+          "text": "HoverEffectGroup"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17CustomHoverEffectP",
+          "text": "CustomHoverEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/hoverEffect(_:in:isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hoverEffect(_:in:isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/customhovereffect/hovereffect(_:in:isenabled:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/hoverEffect(in:isEnabled:body:)": {
+      "abstract": [
+        {
+          "text": "Applies a hover effect based on the current phase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hoverEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16HoverEffectGroupV",
+          "text": "HoverEffectGroup"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI23EmptyHoverEffectContentV",
+          "text": "EmptyHoverEffectContent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI13GeometryProxyV",
+          "text": "GeometryProxy"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18HoverEffectContentP",
+          "text": "HoverEffectContent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17CustomHoverEffectP",
+          "text": "CustomHoverEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/hoverEffect(in:isEnabled:body:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hoverEffect(in:isEnabled:body:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/customhovereffect/hovereffect(in:isenabled:body:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/hoverEffectDisabled(_:)": {
+      "abstract": [
+        {
+          "text": "Disables this hover effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hoverEffectDisabled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17CustomHoverEffectP",
+          "text": "CustomHoverEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/hoverEffectDisabled(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hoverEffectDisabled(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/customhovereffect/hovereffectdisabled(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/hoverEffectGroup(_:)": {
+      "abstract": [
+        {
+          "text": "Activates this effect as part of an effect group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hoverEffectGroup"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16HoverEffectGroupV",
+          "text": "HoverEffectGroup"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17CustomHoverEffectP",
+          "text": "CustomHoverEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/hoverEffectGroup(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hoverEffectGroup(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/customhovereffect/hovereffectgroup(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/hoverEffectGroup(id:in:behavior:)": {
+      "abstract": [
+        {
+          "text": "Activates this effect as part of an effect group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hoverEffectGroup"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9NamespaceV",
+          "text": "Namespace"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9NamespaceV2IDV",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "behavior"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16HoverEffectGroupV",
+          "text": "HoverEffectGroup"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16HoverEffectGroupV8BehaviorV",
+          "text": "Behavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17CustomHoverEffectP",
+          "text": "CustomHoverEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/hoverEffectGroup(id:in:behavior:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hoverEffectGroup(id:in:behavior:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/customhovereffect/hovereffectgroup(id:in:behavior:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/lift": {
+      "abstract": [
+        {
+          "text": "A hover effect that slides the pointer under the view and disappears as",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the view scales up and gains a shadow.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "LiftHoverEffect",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lift"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15LiftHoverEffectV",
+          "text": "LiftHoverEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/lift",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lift",
+      "type": "topic",
+      "url": "/documentation/swiftui/customhovereffect/lift"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyHoverEffect": {
+      "abstract": [
+        {
+          "text": "A base hover effect used to build additional effects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EmptyHoverEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyHoverEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EmptyHoverEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "EmptyHoverEffect",
+      "type": "topic",
+      "url": "/documentation/swiftui/emptyhovereffect"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyHoverEffectContent": {
+      "abstract": [
+        {
+          "text": "An empty base effect that you use to build other effects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EmptyHoverEffectContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyHoverEffectContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EmptyHoverEffectContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "EmptyHoverEffectContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/emptyhovereffectcontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/HandPointerBehavior": {
+      "abstract": [
+        {
+          "text": "A behavior that can be applied to the hand pointer while the user is",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "interacting with a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HandPointerBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HandPointerBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HandPointerBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "HandPointerBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/handpointerbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/HighlightHoverEffect": {
+      "abstract": [
+        {
+          "text": "A hover effect that highlights views using a light source to indicate",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HighlightHoverEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HighlightHoverEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HighlightHoverEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "HighlightHoverEffect",
+      "type": "topic",
+      "url": "/documentation/swiftui/highlighthovereffect"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/HoverEffect": {
+      "abstract": [
+        {
+          "text": "An effect applied when the pointer hovers over a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HoverEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HoverEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HoverEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "HoverEffect",
+      "type": "topic",
+      "url": "/documentation/swiftui/hovereffect"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/HoverEffectContent": {
+      "abstract": [
+        {
+          "text": "A type that describes the effects of a view for a particular hover",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "effect phase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HoverEffectContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HoverEffectContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HoverEffectContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "HoverEffectContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/hovereffectcontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/HoverEffectGroup": {
+      "abstract": [
+        {
+          "text": "Describes a grouping of effects that activate together.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HoverEffectGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HoverEffectGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HoverEffectGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "HoverEffectGroup",
+      "type": "topic",
+      "url": "/documentation/swiftui/hovereffectgroup"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LiftHoverEffect": {
+      "abstract": [
+        {
+          "text": "A hover effect that slides the pointer under the view and disappears as the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "view scales up and gains a shadow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LiftHoverEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LiftHoverEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LiftHoverEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "LiftHoverEffect",
+      "type": "topic",
+      "url": "/documentation/swiftui/lifthovereffect"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ModifiedContent": {
+      "abstract": [
+        {
+          "text": "A value with a modifier applied to it.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Content",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "CustomHoverEffect",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Modifier",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "CustomHoverEffect",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModifiedContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ModifiedContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModifiedContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModifiedContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/modifiedcontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/handPointerBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the behavior of the hand pointer while the user is interacting with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handPointerBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19HandPointerBehaviorV",
+          "text": "HandPointerBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/handPointerBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handPointerBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/handpointerbehavior(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/hoverEffect(_:)": {
+      "abstract": [
+        {
+          "text": "Applies a hover effect to this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hoverEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11HoverEffectV",
+          "text": "HoverEffect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/hoverEffect(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hoverEffect(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/hovereffect(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/hoverEffect(_:in:isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Applies a hover effect to this view, optionally adding it to a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HoverEffectGroup",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hoverEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17CustomHoverEffectP",
+          "text": "CustomHoverEffect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16HoverEffectGroupV",
+          "text": "HoverEffectGroup"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/hoverEffect(_:in:isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hoverEffect(_:in:isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/hovereffect(_:in:isenabled:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/hoverEffect(in:isEnabled:body:)": {
+      "abstract": [
+        {
+          "text": "Applies a hover effect to this view described by the given closure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hoverEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16HoverEffectGroupV",
+          "text": "HoverEffectGroup"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI23EmptyHoverEffectContentV",
+          "text": "EmptyHoverEffectContent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI13GeometryProxyV",
+          "text": "GeometryProxy"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18HoverEffectContentP",
+          "text": "HoverEffectContent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/hoverEffect(in:isEnabled:body:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hoverEffect(in:isEnabled:body:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/hovereffect(in:isenabled:body:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/hoverEffectGroup()": {
+      "abstract": [
+        {
+          "text": "Adds an implicit ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HoverEffectGroup",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " to all effects defined on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "descendant views, so that all effects added to subviews activate as a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "group whenever this view or any descendant views are hovered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hoverEffectGroup"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/hoverEffectGroup()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hoverEffectGroup()",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/hovereffectgroup()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/hoverEffectGroup(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HoverEffectGroup",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " to all effects defined on descendant views,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and activates the group whenever this view or any descendant views are",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "hovered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hoverEffectGroup"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16HoverEffectGroupV",
+          "text": "HoverEffectGroup"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/hoverEffectGroup(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hoverEffectGroup(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/hovereffectgroup(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/hoverEffectGroup(id:in:behavior:)": {
+      "abstract": [
+        {
+          "text": "Adds a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HoverEffectGroup",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " to all effects defined on descendant views,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and activates the group whenever this view or any descendant views are",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "hovered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hoverEffectGroup"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9NamespaceV",
+          "text": "Namespace"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9NamespaceV2IDV",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "behavior"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16HoverEffectGroupV",
+          "text": "HoverEffectGroup"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16HoverEffectGroupV8BehaviorV",
+          "text": "Behavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/hoverEffectGroup(id:in:behavior:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hoverEffectGroup(id:in:behavior:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/hovereffectgroup(id:in:behavior:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AutomaticHoverEffect",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyHoverEffect",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/HighlightHoverEffect",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/HoverEffect",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LiftHoverEffect",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ModifiedContent"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Changing-view-appearance-for-hover-events",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/hoverEffect(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/HoverEffect",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/hoverEffect(_:in:isEnabled:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/hoverEffect(in:isEnabled:body:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/HoverEffectGroup",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/hoverEffectGroup()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/hoverEffectGroup(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/hoverEffectGroup(id:in:behavior:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/HoverEffectContent",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyHoverEffectContent",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/handPointerBehavior(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/HandPointerBehavior"
+      ],
+      "title": "Changing view appearance for hover events"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-built-in-hover-effects",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/automatic",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/empty",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/highlight",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/lift"
+      ],
+      "title": "Getting built-in hover effects"
+    },
+    {
+      "anchor": "Creating-custom-hover-effects",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/hoverEffect(_:in:isEnabled:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/hoverEffect(in:isEnabled:body:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/hoverEffectGroup(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/hoverEffectGroup(id:in:behavior:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/hoverEffectDisabled(_:)"
+      ],
+      "title": "Creating custom hover effects"
+    },
+    {
+      "anchor": "Supporting-types",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AutomaticHoverEffect",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyHoverEffect",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/HighlightHoverEffect",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LiftHoverEffect"
+      ],
+      "title": "Supporting types"
+    },
+    {
+      "anchor": "Associated-Types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/Body"
+      ],
+      "title": "Associated Types"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/body(content:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomHoverEffect/Content"
+      ],
+      "title": "Type Aliases"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/customhovereffect"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

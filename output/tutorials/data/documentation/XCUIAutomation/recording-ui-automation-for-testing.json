@@ -1,0 +1,588 @@
+{
+  "abstract": [
+    {
+      "text": "Capture and replay interaction sequences to verify your app’s behavior.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/recording-ui-automation-for-testing"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "XCUIAutomation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Recording UI automation for testing"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you write UI tests with XCUIAutomation, you use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to find the elements in your app that your test interacts with. You can write your own element queries, but doing so can be difficult if you aren’t familiar with the UI framework’s element hierarchy. Use UI recording to replicate your app interactions so that Xcode constructs the element queries for you.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-test-class-and-test-method",
+          "level": 3,
+          "text": "Create a test class and test method",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the UI automation test target for your app, create a class that subclasses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTestCase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then add a test method with no parameters, and a name that begins with the word ",
+              "type": "text"
+            },
+            {
+              "code": "test",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information on test methods, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XCTest/defining-test-cases-and-test-methods",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Record-your-interaction-with-your-app",
+          "level": 3,
+          "text": "Record your interaction with your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Move the pointer to the test method in the Xcode editor pane, and click the record button in the debug bar, as the following screenshot shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "record-automation-button.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app isn’t running already, Xcode builds it and launches it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, as you interact with elements in your app, Xcode adds queries to the test that locate those elements, and actions that replicate your interactions with the elements.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you finish interacting with the app, you can stop recording by clicking the stop button in the debug bar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The first time you record a UI test, Xcode prompts you to grant it access to control the computer. In this alert, click Open Settings. Next, in the Accessibility privacy settings, toggle the Xcode Helper switch to the on position.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also record interactions with your app’s settings UI and any alert panels it creates. In these situations, you don’t need to launch your app in the test.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Select-appropriate-element-queries",
+          "level": 3,
+          "text": "Select appropriate element queries",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you interact with elements in your app’s UI while recording UI automation, Xcode adds element queries to the test that locate the elements you interact with.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Multiple element queries can identify the same element; for example, you can identify a button by its title, or by its index in its parent view’s collection of buttons.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For each element query that Xcode adds to your test, it provides a collection of alternative queries that locate the same element.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To choose from multiple queries representing the same UI element, click the disclosure triangle next to the element query, like in the following screenshot:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "choose-element-query.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Choose the query that best represents the meaning of the element in your app. For example, if you’re likely to move a given button when redesigning your app’s UI, but the name of the button never changes, choose a query that locates it by name instead of its index in its parent element.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Verify-the-state-of-your-app",
+          "level": 3,
+          "text": "Verify the state of your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your test method, after the interactions that Xcode recorded, add assertions to verify that your app’s UI is in the expected state following the interactions.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use element queries to find UI elements, and assertion macros from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XCTest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to assert that the elements have the expected properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "A test method that doesn’t contain any assertions passes if it runs to completion without throwing any errors.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Use this to test that recorded interactions in your app are still possible in updated versions, and that the app doesn’t crash when you interact with it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "choose-element-query.png": {
+      "alt": "A screenshot of a UI automation test in Xcode, with a disclosure triangle revealing a menu of alternative element queries to find a given control in the UI.",
+      "identifier": "choose-element-query.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/37cbfb75c391164126059ae318385811/choose-element-query@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f2ecb3a627329825e5a0e651d5d64417/choose-element-query~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/XCTest": {
+      "abstract": [
+        {
+          "text": "Create and run unit tests, performance tests, and UI tests for your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XCTest",
+      "type": "topic",
+      "url": "/documentation/XCTest"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTestCase": {
+      "abstract": [
+        {
+          "text": "The primary class for defining test cases, test methods, and performance tests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTestCase"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTestCase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTestCase",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTestCase"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/defining-test-cases-and-test-methods": {
+      "abstract": [
+        {
+          "text": "Add test cases and test methods to a test target to confirm that your code performs as expected.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/defining-test-cases-and-test-methods",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining Test Cases and Test Methods",
+      "type": "topic",
+      "url": "/documentation/XCTest/defining-test-cases-and-test-methods"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation": {
+      "abstract": [
+        {
+          "text": "Replicate sequences of interactions and make sure that your app’s user interface behaves as intended.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XCUIAutomation",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery": {
+      "abstract": [
+        {
+          "text": "An object that defines the search criteria a test uses to identify UI elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCUIElementQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCUIElementQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCUIElementQuery",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuielementquery"
+    },
+    "record-automation-button.png": {
+      "alt": "A screenshot of the debug bar in Xcode, showing the Record UI Test button.",
+      "identifier": "record-automation-button.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c2c1c4c855439f1d3333cef8f8fd17e7/record-automation-button@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/19260984d0efa66595e10d0be586e3d0/record-automation-button~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery/title",
+          "value": "XCUIElementQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCUIElementQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCUIElementQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1XCTest~1XCTestCase/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "XCTestCase"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)XCTest",
+              "text": "XCTest"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/xcuiautomation/recording-ui-automation-for-testing"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/xcuiautomation/recording-ui-automation-for-testing"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,792 @@
+{
+  "abstract": [
+    {
+      "text": "Identify the trajectory of a thrown object by using Vision.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.vision/documentation/Vision",
+        "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.vision/documentation/Vision/detecting-moving-objects-in-a-video"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Detecting moving objects in a video"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Vision framework provides the ability to detect trajectories of objects in a video. The algorithm looks at the differences between frames of a video and identifies objects that travel along a parabolic path. A single object — like a bouncing ball — may produce multiple trajectories.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code project shows you how to configure a trajectory detection request to analyze sample buffers. It explores how to set up a capture session to analyze a live-capture feed, and an asset reader to analyze a prerecorded video. When the sample app detects a trajectory, it illustrates it by displaying the detected path on the screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about identifying trajectories, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/identifying-trajectories-in-video",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-project-and-prepare-your-environment",
+          "level": 3,
+          "text": "Configure the project and prepare your environment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must run the sample code project on a physical device with an A12 processor or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample’s current configuration looks for a small object moving left to right in a video. Try the sample app by downloading and analyzing ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/sample-code/ml/sample.mov",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of a person tossing a bean bag. For live capture, the sample app requires a stable scene with a fixed camera position and stationary background, so mount your iOS device to a tripod and keep it fixed on the field of view. You need to modify the trajectory request’s configuration based on your conditions when you use your own video.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-trajectory-request",
+          "level": 3,
+          "text": "Create a trajectory request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before the sample app creates a trajectory request, it gets sample buffers based on the selected source — live capture or a prerecorded video — in ",
+              "type": "text"
+            },
+            {
+              "code": "CameraViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". After the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/avfoundation/avcapturesession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/avfoundation/avassetreader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " retrieves a sample buffer, it passes to the ",
+              "type": "text"
+            },
+            {
+              "code": "ContentAnalysisViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The sample app creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnimagerequesthandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to perform the trajectory request with.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let visionHandler = VNImageRequestHandler(cmSampleBuffer: buffer,",
+            "                                          orientation: orientation,",
+            "                                          options: [:])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app sets up a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to define what the sample app looks for. It looks for trajectories after ",
+              "type": "text"
+            },
+            {
+              "code": "1/60",
+              "type": "codeVoice"
+            },
+            {
+              "text": " second of video, and returns trajectories with a length of ",
+              "type": "text"
+            },
+            {
+              "code": "6",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or greater. Generally, developers use a shorter length for real-time apps, and longer lengths to observe finer and longer curves.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "detectTrajectoryRequest = VNDetectTrajectoriesRequest(frameAnalysisSpacing: CMTime(value: 10, timescale: 600),",
+            "                                                      trajectoryLength: 6) { [weak self] (request: VNRequest, error: Error?) -> Void in",
+            "    ",
+            "    guard let results = request.results as? [VNTrajectoryObservation] else {",
+            "        return",
+            "    }",
+            "    ",
+            "    DispatchQueue.main.async {",
+            "        self?.processTrajectoryObservation(results: results)",
+            "    }",
+            "    ",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the sample app creates the ",
+              "type": "text"
+            },
+            {
+              "code": "VNDetectTrajectoriesRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it configures additional options that describe the radius of the object it’s looking for. To improve the efficiency of the analysis, it also specifies the region of interest.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Following optional bounds by checking for the moving average radius",
+            "// of the trajectories the app is looking for.",
+            "detectTrajectoryRequest.objectMinimumNormalizedRadius = 10.0 / Float(1920.0)",
+            "detectTrajectoryRequest.objectMaximumNormalizedRadius = 30.0 / Float(1920.0)",
+            "",
+            "// Help manage the real-time use case to improve the precision versus delay tradeoff.",
+            "detectTrajectoryRequest.targetFrameTime = CMTimeMake(value: 1, timescale: 60)",
+            "",
+            "// The region of interest where the object is moving in the normalized image space.",
+            "detectTrajectoryRequest.regionOfInterest = normalizedFrame"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the sample app configures the trajectory request for the buffer, it processes the list of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vntrajectoryobservation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Process-the-trajectory-observation-results",
+          "level": 3,
+          "text": "Process the trajectory observation results",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app configuration targets the prerecorded video from the configuration section. The ",
+              "type": "text"
+            },
+            {
+              "code": "VNDetectTrajectoriesRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " follows objects moving on a parabolic path, and requires more than a single data point (trajectory length). After a request gathers enough data points to recognize the trajectory — a length of at least 5 — it passes the observation results that contain the trajectory information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first step in processing the results involves filtering the ",
+              "type": "text"
+            },
+            {
+              "code": "VNTrajectoryObservation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " based on the following conditions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The trajectory moves from left to right.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The trajectory starts in the first half of the region of interest.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The trajectory length increases to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "8",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which indicates a throw instead of smaller movements.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The trajectory contains a parabolic equation constant ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "a",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", less than or equal to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and implies there are either straight lines or downward-facing lines.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The trajectory confidence is greater than ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0.9",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the results meet the above conditions, the sample app deems the observation a valid trajectory. The sample app confirms the trajectory and makes any necessary correction to the path. If a left-to-right moving trajectory begins too far from a fixed region, the sample extrapolates it back to the region by using the available quadratic equation coefficients.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for trajectory in results {",
+            "    // Filter the trajectory.",
+            "    if filterParabola(trajectory: trajectory) {",
+            "        // Verify and correct an incomplete path.",
+            "        trajectoryView.points = correctTrajectoryPath(trajectoryToCorrect: trajectory)",
+            "        ",
+            "        // Display a transition.",
+            "        trajectoryView.performTransition(.fadeIn, duration: 0.05)",
+            "        ",
+            "        // Determine the size of the moving object that the app tracks.",
+            "        print(\"The object's moving average radius: \\(trajectory.movingAverageRadius)\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app displays valid trajectories on the screen with particle effects by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/spritekit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNDetectTrajectoriesRequest": {
+      "abstract": [
+        {
+          "text": "A request that detects the trajectories of shapes moving along a parabolic path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNDetectTrajectoriesRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNDetectTrajectoriesRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNDetectTrajectoriesRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNDetectTrajectoriesRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vndetecttrajectoriesrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/identifying-trajectories-in-video": {
+      "abstract": [
+        {
+          "text": "Gain new insights into your video data by using Vision to detect trajectories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/identifying-trajectories-in-video",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying Trajectories in Video",
+      "type": "topic",
+      "url": "/documentation/vision/identifying-trajectories-in-video"
+    },
+    "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api": {
+      "abstract": [],
+      "identifier": "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original Objective-C and Swift API",
+      "type": "topic",
+      "url": "/documentation/vision/original-objective-c-and-swift-api"
+    },
+    "e400315bb1f0/DetectingMovingObjectsInAVideo.zip": {
+      "checksum": "e400315bb1f0a0fd109f37cdbd523b245999f0f969b521bf9eba5393af2b433757df54cc7e898a340d044f8961c3246855d4d65ca086442eee24f53ed597997a",
+      "identifier": "e400315bb1f0/DetectingMovingObjectsInAVideo.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/e400315bb1f0/DetectingMovingObjectsInAVideo.zip"
+    },
+    "https://developer.apple.com/documentation/avfoundation/avassetreader": {
+      "identifier": "https://developer.apple.com/documentation/avfoundation/avassetreader",
+      "title": "AVAssetReader",
+      "titleInlineContent": [
+        {
+          "code": "AVAssetReader",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/avfoundation/avassetreader"
+    },
+    "https://developer.apple.com/documentation/avfoundation/avcapturesession": {
+      "identifier": "https://developer.apple.com/documentation/avfoundation/avcapturesession",
+      "title": "AVCaptureSession",
+      "titleInlineContent": [
+        {
+          "code": "AVCaptureSession",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/avfoundation/avcapturesession"
+    },
+    "https://developer.apple.com/documentation/spritekit": {
+      "identifier": "https://developer.apple.com/documentation/spritekit",
+      "title": "SpriteKit",
+      "titleInlineContent": [
+        {
+          "code": "SpriteKit",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/spritekit"
+    },
+    "https://developer.apple.com/documentation/vision/identifying-trajectories-in-video": {
+      "identifier": "https://developer.apple.com/documentation/vision/identifying-trajectories-in-video",
+      "title": "Identifying Trajectories in Video",
+      "titleInlineContent": [
+        {
+          "code": "Identifying Trajectories in Video",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/identifying-trajectories-in-video"
+    },
+    "https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest": {
+      "identifier": "https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest",
+      "title": "VNDetectTrajectoriesRequest",
+      "titleInlineContent": [
+        {
+          "code": "VNDetectTrajectoriesRequest",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest"
+    },
+    "https://developer.apple.com/documentation/vision/vnimagerequesthandler": {
+      "identifier": "https://developer.apple.com/documentation/vision/vnimagerequesthandler",
+      "title": "VNImageRequestHandler",
+      "titleInlineContent": [
+        {
+          "code": "VNImageRequestHandler",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vnimagerequesthandler"
+    },
+    "https://developer.apple.com/documentation/vision/vntrajectoryobservation": {
+      "identifier": "https://developer.apple.com/documentation/vision/vntrajectoryobservation",
+      "title": "VNTrajectoryObservation",
+      "titleInlineContent": [
+        {
+          "code": "VNTrajectoryObservation",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vntrajectoryobservation"
+    },
+    "https://developer.apple.com/sample-code/ml/sample.mov": {
+      "identifier": "https://developer.apple.com/sample-code/ml/sample.mov",
+      "title": "a prerecorded video",
+      "titleInlineContent": [
+        {
+          "text": "a prerecorded video",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/sample-code/ml/sample.mov"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "e400315bb1f0/DetectingMovingObjectsInAVideo.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Trajectory-detection",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/identifying-trajectories-in-video",
+        "doc://com.apple.vision/documentation/Vision/VNDetectTrajectoriesRequest"
+      ],
+      "title": "Trajectory detection"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Trajectory-detection",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.vision/documentation/Vision/identifying-trajectories-in-video",
+                "doc://com.apple.vision/documentation/Vision/VNDetectTrajectoriesRequest"
+              ],
+              "title": "Trajectory detection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectTrajectoriesRequest/title",
+          "value": "VNDetectTrajectoriesRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectTrajectoriesRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDetectTrajectoriesRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectTrajectoriesRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDetectTrajectoriesRequest"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/vision/detecting-moving-objects-in-a-video"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/vision/detecting-moving-objects-in-a-video"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

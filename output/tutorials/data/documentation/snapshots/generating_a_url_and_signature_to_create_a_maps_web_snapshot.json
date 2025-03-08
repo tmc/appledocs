@@ -1,0 +1,722 @@
+{
+  "abstract": [
+    {
+      "text": "Create a Snapshot URL and generate a signature to validate the request. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/snapshots"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot"
+  },
+  "kind": "article",
+  "legacy_identifier": 3281385,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Maps Web Snapshots"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Generating a URL and Signature to Create a Maps Web Snapshot"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the Maps Web Snapshots service to retrieve static map images using a URL, in which you set the parameters that define the image. Begin by gathering your credentials, then create a snapshot URL using the parameters described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/snapshots/create_a_maps_web_snapshot",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Next, generate a signature by signing the URL string with your credentials. Finally, append the ",
+              "type": "text"
+            },
+            {
+              "code": "signature",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to your Snapshot URL setting its value to the signature that you generated. You can also obtain HTML to show information about a place using ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-4465987",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3290796",
+          "level": 3,
+          "text": "Gather Credentials",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All snapshot URLs must include a signature. To create your signature, gather the required credentials:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your Apple Developer Team ID",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " The Key ID for a key with the MapKit JS service enabled",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " Your private key file (.p8) for the key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t have a MapKit JS key, learn how to obtain one in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To locate your Team ID, sign in to your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-3290797",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and click Membership in the left sidebar.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "3290639",
+          "level": 3,
+          "text": "Create a Snapshot URL and Signature ",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you have your Team ID, Key ID, and private key file, use these credentials to generate a signature for a Maps Web Snapshots URL. You generate the signature using your credentials plus the snapshot URL request path and all query parameters, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/snapshots/create_a_maps_web_snapshot",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the query parameters to describe the characteristics of your map—such as its center, size, language, and so on—construct a snapshot URL. For example, this snapshot URL uses the ",
+              "type": "text"
+            },
+            {
+              "code": "center",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to set the center point of the map image to Apple Park:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "https://snapshot.apple-mapkit.com/api/v1/snapshot?center=apple+park"
+          ],
+          "metadata": {
+            "anchor": "3312808",
+            "title": "Listing 1"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Each query parameter must be URL-encoded. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the ",
+              "type": "text"
+            },
+            {
+              "code": "teamID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "keyID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameters to the URL, setting the values of the parameters to your own Team ID and Key ID. For example: ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "https://snapshot.apple-mapkit.com/api/v1/snapshot?center=apple+park&teamId=<your_team_id>&keyId=<your_key_id>"
+          ],
+          "metadata": {
+            "anchor": "3290637",
+            "title": "Listing 2"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To generate a signature, sign the string with your private key using a ES256 algorithm (also known as ECDSA using P-256 curve and SHA-256 hash algorithm). The signature must be Base64 URL-encoded.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The generated signature allows you to access the exact request path and query parameters used in the signing process. If you modify or reorder the query parameters, you must generate a new signature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3290649",
+          "level": 3,
+          "text": "Append the Signature to a Maps Snapshot URL",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Append the ",
+              "type": "text"
+            },
+            {
+              "code": "signature",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to your snapshots URL, and set the value of this parameter to the signature you generated. The ",
+              "type": "text"
+            },
+            {
+              "code": "signature",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter should always be the final parameter in a snapshots URL, as in this example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "https://snapshot.apple-mapkit.com/api/v1/snapshot?center=apple+park&teamId=<your_team_id>&keyId=<your_key_id>&signature=<your_generated_signature>"
+          ],
+          "metadata": {
+            "anchor": "3312809",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the signature is the not the last query parameter, the request returns",
+              "type": "text"
+            },
+            {
+              "code": " 401 Authorization Error",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3314798",
+          "level": 3,
+          "text": "Generate a Signed URL with Example Code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example script uses JavaScript to do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Read the private key file from the file system.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Define a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sign",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " function that creates a Snapshot URL and generates a signature for it. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Complete the Snapshots URL by appending the generated signature.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sign",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " function to return a signed Snapshot URL for a simple map centered on Apple Park.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "// Required modules.",
+            "const { readFileSync } = require(\"fs\");",
+            "const { sign } = require(\"jwa\")(\"ES256\");",
+            "",
+            "/* Read your private key from the file system. (Never add your private key",
+            " * in code or in source control. Always keep it secure.)",
+            " */ ",
+            "const privateKey = readFileSync(\"[file_system_path]\");",
+            "// Replace the team ID and key ID values with your actual values.",
+            "const teamId = \"[team ID]\";",
+            "const keyId = \"[key ID]\";",
+            "",
+            "// Creates the signature string and returns the full Snapshot request URL including the signature.",
+            "function signRequest(params) {",
+            "    const snapshotPath = `/api/v1/snapshot?${params}`;",
+            "    const completePath = `${snapshotPath}&teamId=${teamId}&keyId=${keyId}`;",
+            "    const signature = sign(completePath, privateKey);",
+            "    // In this example, the jwa module returns the signature as a Base64 URL-encoded string.",
+            "",
+            "    // Append the signature to the end of the request URL, and return.",
+            "    return `${completePath}&signature=${signature}`;",
+            "}",
+            "",
+            "// Call the sign function with a simple map request.",
+            "signRequest(\"center=apple+park\") ",
+            "",
+            "// The return value expected is: \"/api/v1/snapshot?center=apple+park&teamId=[team ID]&keyId=[key ID]&signature=[base64_url_encoded_signature]\""
+          ],
+          "metadata": {
+            "anchor": "3314799",
+            "title": "Listing 4"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key": {
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Maps identifier and a private key",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/creating-a-maps-identifier-and-a-private-key"
+    },
+    "doc://com.apple.documentation/documentation/snapshots": {
+      "identifier": "doc://com.apple.documentation/documentation/snapshots",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Maps Web Snapshots",
+      "type": "topic",
+      "url": "/documentation/snapshots"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/annotation": {
+      "abstract": [
+        {
+          "text": "An object for a Snapshot URL that describes annotation characteristics.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Annotation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/annotation",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "Annotation",
+      "type": "topic",
+      "url": "/documentation/snapshots/annotation"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/create_a_maps_web_snapshot": {
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/create_a_maps_web_snapshot",
+      "kind": "symbol",
+      "role": "restRequestSymbol",
+      "title": "Create a Maps Web Snapshot",
+      "type": "topic",
+      "url": "/documentation/snapshots/create_a_maps_web_snapshot"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot": {
+      "abstract": [
+        {
+          "text": "Create a Snapshot URL and generate a signature to validate the request. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating a URL and Signature to Create a Maps Web Snapshot",
+      "type": "topic",
+      "url": "/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot#3290637": {
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot#3290637",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot#3290637"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot#3312808": {
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot#3312808",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot#3312808"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot#3312809": {
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot#3312809",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot#3312809"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot#3314799": {
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot#3314799",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot#3314799"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/image": {
+      "abstract": [
+        {
+          "text": "A JSON object for a Snapshot URL that describes the characteristics of custom images to use for map annotations.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/image",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "Image",
+      "type": "topic",
+      "url": "/documentation/snapshots/image"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/overlay": {
+      "abstract": [
+        {
+          "text": "A JSON object for a Snapshot URL that describes overlay shape characteristics, including points for the overlay and styles such as width, color, and dash pattern.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Overlay"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/overlay",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "Overlay",
+      "type": "topic",
+      "url": "/documentation/snapshots/overlay"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/overlaystyle": {
+      "abstract": [
+        {
+          "text": "A  JSON object that describes reusable styles for an overlay.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "OverlayStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/overlaystyle",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "OverlayStyle",
+      "type": "topic",
+      "url": "/documentation/snapshots/overlaystyle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-3290797": {
+      "identifier": "link-3290797",
+      "kind": "article",
+      "role": "link",
+      "title": "Apple Developer account",
+      "type": "topic",
+      "url": "https://developer.apple.com/account"
+    },
+    "link-4465987": {
+      "identifier": "link-4465987",
+      "kind": "article",
+      "role": "link",
+      "title": "Create a Map",
+      "type": "topic",
+      "url": "http://developer.apple.com/maps/create-a-map/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/snapshots/annotation",
+        "doc://com.apple.documentation/documentation/snapshots/overlay",
+        "doc://com.apple.documentation/documentation/snapshots/overlaystyle",
+        "doc://com.apple.documentation/documentation/snapshots/image"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

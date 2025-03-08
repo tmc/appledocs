@@ -1,0 +1,833 @@
+{
+  "abstract": [
+    {
+      "text": "Validate your app’s handling of win-back offers that you configure for the testing environment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-xcode"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Testing win-back offers in Xcode"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A win-back offer is an offer for a discount on an auto-renewable subscription to a customer who was previously subscribed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test win-back offers in Xcode, first set up your StoreKit configuration file with auto-renewable subscriptions and win-back offers. Subscribe to an auto-renewable subscription with one or more win-back offers. Then, cancel the subscription and allow it to expire. If the win-back offer’s setting is Eligible, the testing system makes the win-back offer available to redeem immediately after the subscription expires.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Testing win-back offers in Xcode is convenient early in the development process, because it doesn’t rely on any product configurations in App Store Connect. However, you can also test win-back offers in the sandbox environment, which does rely on your App Store Connect configuration. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-the-sandbox-environment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Perform-basic-setup",
+          "level": 3,
+          "text": "Perform basic setup",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can begin testing in Xcode, complete the steps in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", including creating a StoreKit configuration file and enabling StoreKit testing in Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-win-back-offers-for-testing",
+          "level": 3,
+          "text": "Configure win-back offers for testing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by opening the StoreKit configuration editor in Xcode and defining at least one auto-renewable subscription and subscription group. Then follow these steps to configure one or more win-back offers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the left pane, select the subscription under the Auto-Renewable Subscriptions heading.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Under the Win-back Offers heading in the editor, click the Add button (+) to configure a new offer by filling out the offer details as follows, and then clicking Save.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A name to identify the offer in the StoreKit configuration.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Reference name",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An offer ID that’s unique within the subscription group.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Offer identifier",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The payment mode of the offer. For more information, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer/PaymentMode-swift.struct",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Offer type",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The total duration of the offer. The offer’s renewal period matches the subscription’s renewal period.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Duration",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The price, in the same currency as the subscription, for offers that aren’t free.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Price",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Determines whether the system considers the customer eligible for the win-back offer in the test environment. Select Eligible or Not Eligible.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Eligiblity",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The eligibility criteria that determine whether a customer can redeem a win-back offer can have many rules and states. Rather than requiring you to construct all the conditions before you can test win-back offers in your app, the testing UI provides a simplified Eligible or Not Eligible setting that bypasses any other eligibility criteria. Set the value to Eligible to test your app’s response when a customer receives a win-back offer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Run-the-test",
+          "level": 3,
+          "text": "Run the test",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display a win-back offer, run your app in the Xcode environment and follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your app, subscribe to an auto-renewable subscription that has at least one win-back offer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the StoreKit configuration, set the Eligibility setting for the win-back offer to Eligible.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Cancel the subscription. If your app implements subscription management, such as by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppStore/showManageSubscriptions(in:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", cancel the subscription through your app. Otherwise, use the transaction manager in Xcode by choosing Debug > StoreKit > Manage Transactions, selecting the subscription transaction, and turning off the auto-renew option.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Wait for the canceled subscription to expire. The system makes the win-back offer available to redeem as soon as the subscription expires.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your app, open your store. Examine your app’s implementation of the win-back offer. For example, if your app uses ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/storekit-views",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", the eligible offers appear automatically when your app displays a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about using the transaction manager, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/testing-in-app-purchases-with-storeKit-transaction-manager-in-code",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reset-or-rerun-the-test",
+          "level": 3,
+          "text": "Reset or rerun the test",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can rerun the test without resetting any state values. Win-back offers that you set to be Eligible appear as soon as their related subscriptions expire.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode": {
+      "abstract": [
+        {
+          "text": "Prepare your test environment to test in-app purchases with data you configure locally.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up StoreKit Testing in Xcode",
+      "type": "topic",
+      "url": "/documentation/Xcode/setting-up-storekit-testing-in-xcode"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/testing-in-app-purchases-with-storeKit-transaction-manager-in-code": {
+      "abstract": [
+        {
+          "text": "Use the transaction manager within Xcode to test in-app purchases without requiring a connection to App Store servers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/testing-in-app-purchases-with-storeKit-transaction-manager-in-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing in-app purchases with StoreKit transaction manager in Xcode",
+      "type": "topic",
+      "url": "/documentation/Xcode/testing-in-app-purchases-with-storeKit-transaction-manager-in-code"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/AppStore/showManageSubscriptions(in:)": {
+      "abstract": [
+        {
+          "text": "Presents the App Store sheet for managing subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showManageSubscriptions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWindowScene",
+          "text": "UIWindowScene"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppStore/showManageSubscriptions(in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "showManageSubscriptions(in:)",
+      "type": "topic",
+      "url": "/documentation/storekit/appstore/showmanagesubscriptions(in:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer/PaymentMode-swift.struct": {
+      "abstract": [
+        {
+          "text": "The payment modes for subscription offers that apply to a transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentMode"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionOffer/PaymentMode-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.SubscriptionOffer.PaymentMode",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptionoffer/paymentmode-swift.struct"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView": {
+      "abstract": [
+        {
+          "text": "A view that merchandises a collection of auto-renewable subscription options that belong to the same subscription group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreView"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreView"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreView",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstoreview"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/storekit-views": {
+      "abstract": [
+        {
+          "text": "Display a customizable In-App Purchase store using StoreKit views for SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/storekit-views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "StoreKit views",
+      "type": "topic",
+      "url": "/documentation/storekit/storekit-views"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox": {
+      "abstract": [
+        {
+          "text": "Verify your implementation of In-App Purchases by testing your code throughout its development.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing at all stages of development with Xcode and the sandbox",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox": {
+      "abstract": [
+        {
+          "text": "Test your implementation of In-App Purchases using real product information and server-to-server transactions in the sandbox environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing In-App Purchases with sandbox",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-in-app-purchases-with-sandbox"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-refund-requests": {
+      "abstract": [
+        {
+          "text": "Test your app’s implementation of refund requests, and your app’s and server’s handling of approved and declined refunds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-refund-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing refund requests",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-refund-requests"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-the-sandbox-environment": {
+      "abstract": [
+        {
+          "text": "Verify that your app receives and handles win-back offer transactions, including those made outside your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-the-sandbox-environment",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing win-back offers in the sandbox environment",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-win-back-offers-in-the-sandbox-environment"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "In-App-Purchase-Testing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-refund-requests"
+      ],
+      "title": "In-App Purchase Testing"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "In-App-Purchase-Testing",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-refund-requests"
+              ],
+              "title": "In-App Purchase Testing"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/testing-win-back-offers-in-xcode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/testing-win-back-offers-in-xcode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

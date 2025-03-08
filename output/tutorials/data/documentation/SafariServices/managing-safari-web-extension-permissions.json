@@ -1,0 +1,480 @@
+{
+  "abstract": [
+    {
+      "text": "Respect user privacy by setting appropriate permissions for your Safari web extension.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/managing-safari-web-extension-permissions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Managing Safari web extension permissions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Safari web extensions need permission from the user to access and update web pages, and to perform other tasks in Safari. Safari users have an expectation of safety and privacy when browsing and using extensions. Fulfill that expectation by requesting permissions for your Safari web extension that minimize access to user data while allowing your extension to work properly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Request-permissions",
+          "level": 3,
+          "text": "Request permissions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Request permissions for your extension in ",
+              "type": "text"
+            },
+            {
+              "code": "manifest.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". There are a few options to evaluate when you decide how to approach requesting permissions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Declare host patterns, API, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "activeTab",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<all_urls>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " permissions in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "permissions",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "manifest.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to request permission for your Safari web extension to work in matching websites. If your extension uses manifest version 3, declare host patterns in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "host_permissions",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Declare optional permissions in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "optional_permissions",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "manifest.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to request permission for optional features.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "matches",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array for desired URL patterns in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "content_script",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "manifest.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to request permission for your content script to work in matching websites.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use options that request the least access necessary for your extension to function. Prioritize using ",
+              "type": "text"
+            },
+            {
+              "code": "activeTab",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", host permissions, and ",
+              "type": "text"
+            },
+            {
+              "code": "optional_permissions",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; only use ",
+              "type": "text"
+            },
+            {
+              "code": "<all_urls>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if there is no other option.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Grant-and-manage-permissions",
+          "level": 3,
+          "text": "Grant and manage permissions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user visits a page where they haven’t granted access to your Safari web extension, Safari shows a badge next to your extension’s item that indicates the user needs to interact with the extension to grant it permission. In macOS, the user clicks the toolbar button and selects an option to grant permission for a single use, for the day, or for all websites, or to deny permission. In iOS, the user selects the extension’s entry in the More menu, and selects a permission option.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The user may then manage permissions for your extension:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Safari in macOS, the user can choose Safari > Settings and click the Extensions tab to see a summary of permission status for each extension. They can click the app’s name in the menu bar, then choose Settings from the menu. Then they can click the Websites tab and select the extension to see which websites have been configured for the extension, and can change the permission status for a selected website to Ask, Allow, or Deny.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In a web app in macOS, the user can click the app’s name in the menu bar, then choose Settings from the menu. Then they can click the Edit Websites button to check which websites have been configured for the extension, and can change the permission status for a selected website to Ask, Allow, or Deny. When a user enables an extension for a web app, that automatically grants access to the high-level domain for the web app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In iOS, the user can open the Settings app, then choose Safari > Extensions in the General group. Then they can tap an extension to see which websites have been configured for the extension, and can change the permission status for a selected website to Ask, Allow, or Deny.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Safari 17 and later, when you grant access to an extension for a specific web site, that grants the extension access to the site across all profiles, private browsing, and browsing without a profile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "activeTab",
+              "type": "codeVoice"
+            },
+            {
+              "text": " permission to minimize access requests to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/previewing-metadata-using-open-graph": {
+      "abstract": [
+        {
+          "text": "Build a Safari Extension that displays metadata using Open Graph.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/previewing-metadata-using-open-graph",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Previewing Metadata using Open Graph",
+      "type": "topic",
+      "url": "/documentation/safariservices/previewing-metadata-using-open-graph"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions": {
+      "abstract": [
+        {
+          "text": "Create web extensions that work in Safari and other browsers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari web extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-web-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/updating-a-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Add new features and fix bugs in your Safari web extension using Xcode tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/updating-a-safari-web-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Updating a Safari web extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/updating-a-safari-web-extension"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Extension-updates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/updating-a-safari-web-extension",
+        "doc://com.apple.safariservices/documentation/SafariServices/previewing-metadata-using-open-graph"
+      ],
+      "title": "Extension updates"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Extension-updates",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/updating-a-safari-web-extension",
+                "doc://com.apple.safariservices/documentation/SafariServices/previewing-metadata-using-open-graph"
+              ],
+              "title": "Extension updates"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/managing-safari-web-extension-permissions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/managing-safari-web-extension-permissions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

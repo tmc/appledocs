@@ -1,0 +1,1260 @@
+{
+  "abstract": [
+    {
+      "text": "Implement a custom document file format to manage user interactions with files on different cloud storage providers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/view-controllers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/building-a-document-browser-app-for-custom-file-formats"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Building a document browser app for custom file formats"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users can store their documents on cloud storage providers such as iCloud Drive. An app based on the document browser view controller allows users to browse and access their documents no matter where those documents are stored. In addition, the document browser view controller lets users create new documents, and acts as a springboard into your application’s main user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app illustrates how to use the document browser view controller. It registers a custom file format called Particles in the system, and allows the user to create new Particles documents on any of the user’s activated file providers. When the user chooses a document, the app presents an editor view, where the user can modify the document’s contents. When the user completes their modifications, the system saves the file, and the user returns to the document browser view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app also demonstrates proper file handling using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, and builds a Quick Look preview and thumbnail extension for the Particles file format. Finally, this sample illustrates how to customize the appearance of the document browser view controller, the custom browser actions, and the presentation of document view controllers with a custom zoom transition.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and this Particles app require at least iOS 13.2.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode provides a Document Based App template for creating document-based apps. This template comes with everything you need to implement a document-based application from scratch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you have selected the template, the project provides a storyboard, which uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as its entry point. Additionally, the template creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass, Document, which acts as the representation of a document of your application at runtime. The logic to create new documents is already in place. When the user creates a new document, or opens an existing one by tapping a file in the document browser view controller, the system presents a ",
+              "type": "text"
+            },
+            {
+              "code": "DocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which has a reference to a ",
+              "type": "text"
+            },
+            {
+              "code": "Document",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance. This ",
+              "type": "text"
+            },
+            {
+              "code": "DocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " acts as the main user interface to view and modify the contents of a document.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you want to migrate an existing document-based application to use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", make sure to present the document browser view controller full-screen as the first user interface the user sees when launching your application. Make sure to implement the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewControllerDelegate",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " protocol and assign an instance of it to the document browser view controller.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, you can extend the project to fit your needs. Set up a custom file format in the exported Uniform Type Identifiers (UTIs) of your application, or configure one or more existing UTIs in the imported UTIs section. The application’s document types need to be configured as well, so that the document browser view controller can display the correct files to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, provide the document to start with when the user creates a new document; for instance, by copying a file from the application bundle, which represents a blank version of a new document. Hand over the blank file to the document browser view controller via the import handler. In order to provide proper document saving and loading, augment the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass with the logic needed in order to encode and decode the data of a document properly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, you can configure the document browser view controller to show custom browser actions to the user when selecting one or more documents at once, or when long-pressing a document to reveal the menu.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Animate-view-controller-transitions",
+          "level": 3,
+          "text": "Animate view controller transitions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When presenting a document view controller after creating a new document or choosing an existing one, a transition controller can animate the view controller change with an elegant zoom transition.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides a method to obtain a transition controller. The transition controller has a reference to a document, so that its thumbnail can be used as the starting point or end point of the animation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Assign a transitioning delegate object to the document view controller (the view controller that displays the document’s contents). The transitioning delegate needs to conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitioningDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. The system asks the delegate for an animation controller when the system is about to present or dismiss the view controller. The delegate returns a transition controller obtained from the document browser view controller. The transition controller displays the zoom animation when opening or closing documents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-a-custom-file-format",
+          "level": 3,
+          "text": "Configure a custom file format",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample introduces a custom file format called Particles. Particles files use the ",
+              "type": "text"
+            },
+            {
+              "code": ".particles",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension. In order to register the file format, the sample has modifies both the Exported UTIs and the Document Types  in the target’s Info pane.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Exported UTIs section, the sample project defines a Particles document as conforming to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "public.data, public.content",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This entry registers the file format with the system.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Under “Additional exported UTI properties,” the sample project defines the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UTTypeTagSpecification",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " dictionary with a  ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "public.filename-extension",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key and value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "particles",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "  This entry sets ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "particles",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as the document’s extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Document Types section, the sample project also defines the Particles document, enabling support for Particle documents in the app’s document browser.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Because this app created the file format, under “Additional document type properties,” it sets the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "LSHandlerRank",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Owner",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Preview-custom-documents",
+          "level": 3,
+          "text": "Preview custom documents",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample provides two Quick Look extensions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ParticlesPreview",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " extension, which generates preview views.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ParticlesThumbnails",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " extension, which generates thumbnails for files of the newly registered file format.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In order for Quick Look to choose the extensions when dealing with Particles documents, the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file of both extensions are configured with the Particles file format data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-best-practices",
+          "level": 3,
+          "text": "Apply best practices",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Whenever possible, create document-based apps using  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclasses. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides the commonly expected features of a document-based application, such as saving and loading documents, asynchronous reading and writing of data, versioning with conflict detection, and much more. Additionally, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides the automatic coordinated reading and writing needed to avoid problems when accessing a file on disk that could be read or written by other processes at the same time. To access a file manually, use file coordination in order to avoid data loss.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Avoid listing high-level UTIs in the document types configured for an application. Only list the UTIs that the application can actually handle. Otherwise, the document browser view controller may display files of unsupported file formats that are irrelevant to the user in the Recents section, in search results, or other locations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure the document types and the exported and imported UTIs in the application’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file correctly. Dynamic sections such as Recent Documents, collections of tagged documents, and the popover of the application need this information to work properly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, it’s important to know when to use the picker view controller. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentPickerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " are two different view controllers, each with their own purpose. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentPickerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to allow the user to quickly pick an existing file to, for example, insert into the currently opened document, or to export a document to a certain location. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the entry point in the application to let the users create new or choose an existing document.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "25972df8148a/BuildingADocumentBrowserAppForCustomFileFormats.zip": {
+      "checksum": "25972df8148acd3aa7fe3532afa86beea4d8ac922ceb555f43a31a65c438534968b0f504fac184bf1b17194373d3dc97b78b6bab7f6d6673d6e7ccbca6b253cc",
+      "identifier": "25972df8148a/BuildingADocumentBrowserAppForCustomFileFormats.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/25972df8148a/BuildingADocumentBrowserAppForCustomFileFormats.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocument": {
+      "abstract": [
+        {
+          "text": "An abstract base class for managing discrete portions of your app’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocument",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocument"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController": {
+      "abstract": [
+        {
+          "text": "A view controller for browsing and performing actions on documents that you store locally and in the cloud.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentBrowserViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentBrowserViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentBrowserViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewControllerDelegate": {
+      "abstract": [
+        {
+          "text": "The protocol you implement to respond as the user interacts with the document browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentBrowserViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentBrowserViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentBrowserViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontrollerdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentInteractionController": {
+      "abstract": [
+        {
+          "text": "A view controller that previews, opens, or prints files with a file format that your app can’t handle directly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentInteractionController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentInteractionController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentInteractionController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentInteractionController",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentinteractioncontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentPickerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that provides access to documents or destinations outside your app’s sandbox.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentPickerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentPickerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentPickerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentPickerViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentpickerviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages and presents a document stored locally or in the cloud.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitioningDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods that vend objects used to manage a fixed-length or interactive transition between view controllers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerTransitioningDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerTransitioningDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerTransitioningDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewControllerTransitioningDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollertransitioningdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adding-a-document-browser-to-your-app": {
+      "abstract": [
+        {
+          "text": "Give users access to their local or remote documents from within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adding-a-document-browser-to-your-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Adding a document browser to your app",
+      "type": "topic",
+      "url": "/documentation/uikit/adding-a-document-browser-to-your-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/building-a-document-browser-based-app": {
+      "abstract": [
+        {
+          "text": "Use a document browser to provide access to the user’s text files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/building-a-document-browser-based-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a document browser-based app",
+      "type": "topic",
+      "url": "/documentation/uikit/building-a-document-browser-based-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/customizing-a-document-based-app-s-launch-experience": {
+      "abstract": [
+        {
+          "text": "Add unique elements to your app’s document launch scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/customizing-a-document-based-app-s-launch-experience",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing a document-based app’s launch experience",
+      "type": "topic",
+      "url": "/documentation/uikit/customizing-a-document-based-app-s-launch-experience"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/providing-access-to-directories": {
+      "abstract": [
+        {
+          "text": "Use a document picker to access the content of a directory outside your app’s container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/providing-access-to-directories",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing access to directories",
+      "type": "topic",
+      "url": "/documentation/uikit/providing-access-to-directories"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-controllers": {
+      "abstract": [
+        {
+          "text": "Manage your interface using view controllers and facilitate navigation around your app’s content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View controllers",
+      "type": "topic",
+      "url": "/documentation/uikit/view-controllers"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "25972df8148a/BuildingADocumentBrowserAppForCustomFileFormats.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Documents-and-directories",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/customizing-a-document-based-app-s-launch-experience",
+        "doc://com.apple.uikit/documentation/UIKit/adding-a-document-browser-to-your-app",
+        "doc://com.apple.uikit/documentation/UIKit/providing-access-to-directories",
+        "doc://com.apple.uikit/documentation/UIKit/building-a-document-browser-based-app",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentPickerViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentInteractionController"
+      ],
+      "title": "Documents and directories"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Documents-and-directories",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/customizing-a-document-based-app-s-launch-experience",
+                "doc://com.apple.uikit/documentation/UIKit/adding-a-document-browser-to-your-app",
+                "doc://com.apple.uikit/documentation/UIKit/providing-access-to-directories",
+                "doc://com.apple.uikit/documentation/UIKit/building-a-document-browser-based-app",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentPickerViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentInteractionController"
+              ],
+              "title": "Documents and directories"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentInteractionController/title",
+          "value": "UIDocumentInteractionController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentInteractionController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentInteractionController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentInteractionController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentInteractionController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocument/title",
+          "value": "UIDocument"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocument/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocument/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentPickerViewController/title",
+          "value": "UIDocumentPickerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentPickerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentPickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentPickerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentPickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController/title",
+          "value": "UIDocumentBrowserViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewControllerDelegate/title",
+          "value": "UIDocumentBrowserViewControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController/title",
+          "value": "UIDocumentViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitioningDelegate/title",
+          "value": "UIViewControllerTransitioningDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitioningDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerTransitioningDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerTransitioningDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerTransitioningDelegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/building-a-document-browser-app-for-custom-file-formats"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/building-a-document-browser-app-for-custom-file-formats"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

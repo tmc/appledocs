@@ -1,0 +1,4772 @@
+{
+  "abstract": [
+    {
+      "text": "Communicate with hardware using Universal MIDI Packets.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremidi/documentation/CoreMIDI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-services"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core MIDI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "MIDI Services"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MIDI drivers own and control physical MIDI devices, which include hardware such as USB interfaces, MIDI keyboards, and so on. A MIDI device may have multiple logically distinct subcomponents. For example, one device may contain a MIDI synthesizer and a pair of MIDI ports, both addressable over a USB port. Each element of a device is a MIDI entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A MIDI entity can have any number of MIDI endpoints, each of which is a source or destination of a 16-channel MIDI stream. Grouping a device’s endpoints into entities provides the system enough information for an app to make reasonable default assumptions about how to communicate bidirectionally with each entity, as is necessary in MIDI librarian apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core MIDI attaches a collection of properties to each object it manages. Object properties can be:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dynamic characteristics of a device, such as MIDI receive channel and system-exclusive (SysEx) IDs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Determined by user preference; for example, choice of icon, and whether or not the device appears in lists of possible controllers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Static properties that you can’t look up in a database using the device’s manufacturer and model name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Core MIDI framework uses interprocess communication (IPC) to communicate with a server process, the MIDI server. The server process in turn loads the MIDI driver and manages all communication with it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremidi/documentation/CoreMIDI": {
+      "abstract": [
+        {
+          "text": "Communicate with MIDI devices such as hardware keyboards and synthesizers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core MIDI",
+      "type": "topic",
+      "url": "/documentation/coremidi"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIClientCreate(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a MIDI client.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIClientCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDINotifyProc",
+          "text": "MIDINotifyProc"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIClientRef",
+          "text": "MIDIClientRef"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIClientCreate(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIClientCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIClientCreate(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midiclientcreate(_:_:_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIClientCreateWithBlock(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a MIDI client with a callback block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIClientCreateWithBlock"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIClientRef",
+          "text": "MIDIClientRef"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDINotifyBlock",
+          "text": "MIDINotifyBlock"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIClientCreateWithBlock(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIClientCreateWithBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIClientCreateWithBlock(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midiclientcreatewithblock(_:_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIClientDispose(_:)": {
+      "abstract": [
+        {
+          "text": "Disposes of a MIDI client.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIClientDispose"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIClientRef",
+          "text": "MIDIClientRef"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIClientDispose(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIClientDispose"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIClientDispose(_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midiclientdispose(_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIClientRef": {
+      "abstract": [
+        {
+          "text": "An object that maintains per-client state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIClientRef"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIClientRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIClientRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIClientRef",
+      "type": "topic",
+      "url": "/documentation/coremidi/midiclientref"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIDestinationCreateWithProtocol(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a virtual destination in a client.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIDestinationCreateWithProtocol"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIClientRef",
+          "text": "MIDIClientRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MIDIProtocolID",
+          "text": "MIDIProtocolID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIEndpointRef",
+          "text": "MIDIEndpointRef"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIReceiveBlock",
+          "text": "MIDIReceiveBlock"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIDestinationCreateWithProtocol(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIDestinationCreateWithProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIDestinationCreateWithProtocol(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/mididestinationcreatewithprotocol(_:_:_:_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIDeviceGetEntity(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the device’s entity at a specific index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIDeviceGetEntity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIDeviceRef",
+          "text": "MIDIDeviceRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIEntityRef",
+          "text": "MIDIEntityRef"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIDeviceGetEntity(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIDeviceGetEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIDeviceGetEntity(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/mididevicegetentity(_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIDeviceGetNumberOfEntities(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the number of entities in a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIDeviceGetNumberOfEntities"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIDeviceRef",
+          "text": "MIDIDeviceRef"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIDeviceGetNumberOfEntities(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIDeviceGetNumberOfEntities"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIDeviceGetNumberOfEntities(_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/mididevicegetnumberofentities(_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIDeviceRef": {
+      "abstract": [
+        {
+          "text": "A MIDI device that contains entities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIDeviceRef"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIDeviceRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIDeviceRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIDeviceRef",
+      "type": "topic",
+      "url": "/documentation/coremidi/midideviceref"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEndpointDispose(_:)": {
+      "abstract": [
+        {
+          "text": "Disposes of a virtual source or destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIEndpointDispose"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIEndpointRef",
+          "text": "MIDIEndpointRef"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEndpointDispose(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIEndpointDispose"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIEndpointDispose(_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midiendpointdispose(_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEndpointGetEntity(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns an endpoint’s entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIEndpointGetEntity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIEndpointRef",
+          "text": "MIDIEndpointRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIEntityRef",
+          "text": "MIDIEntityRef"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEndpointGetEntity(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIEndpointGetEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIEndpointGetEntity(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midiendpointgetentity(_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEndpointGetRefCons(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns contextual data assigned to an endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIEndpointGetRefCons"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIEndpointRef",
+          "text": "MIDIEndpointRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEndpointGetRefCons(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIEndpointGetRefCons"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIEndpointGetRefCons(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midiendpointgetrefcons(_:_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEndpointRef": {
+      "abstract": [
+        {
+          "text": "A MIDI source or destination an entity owns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIEndpointRef"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEndpointRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIEndpointRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIEndpointRef",
+      "type": "topic",
+      "url": "/documentation/coremidi/midiendpointref"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEndpointSetRefCons(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets contextual data on an endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIEndpointSetRefCons"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIEndpointRef",
+          "text": "MIDIEndpointRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEndpointSetRefCons(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIEndpointSetRefCons"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIEndpointSetRefCons(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midiendpointsetrefcons(_:_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityGetDestination(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns one of an entity’s destinations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIEntityGetDestination"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIEntityRef",
+          "text": "MIDIEntityRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIEndpointRef",
+          "text": "MIDIEndpointRef"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityGetDestination(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIEntityGetDestination"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIEntityGetDestination(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midientitygetdestination(_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityGetDevice(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns an entity’s device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIEntityGetDevice"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIEntityRef",
+          "text": "MIDIEntityRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIDeviceRef",
+          "text": "MIDIDeviceRef"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityGetDevice(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIEntityGetDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIEntityGetDevice(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midientitygetdevice(_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityGetNumberOfDestinations(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the number of destinations in an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIEntityGetNumberOfDestinations"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIEntityRef",
+          "text": "MIDIEntityRef"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityGetNumberOfDestinations(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIEntityGetNumberOfDestinations"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIEntityGetNumberOfDestinations(_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midientitygetnumberofdestinations(_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityGetNumberOfSources(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the number of sources in an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIEntityGetNumberOfSources"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIEntityRef",
+          "text": "MIDIEntityRef"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityGetNumberOfSources(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIEntityGetNumberOfSources"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIEntityGetNumberOfSources(_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midientitygetnumberofsources(_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityGetSource(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns one of an entity’s sources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIEntityGetSource"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIEntityRef",
+          "text": "MIDIEntityRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIEndpointRef",
+          "text": "MIDIEndpointRef"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityGetSource(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIEntityGetSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIEntityGetSource(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midientitygetsource(_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityRef": {
+      "abstract": [
+        {
+          "text": "An entity that a device owns and that contains endpoints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIEntityRef"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIEntityRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIEntityRef",
+      "type": "topic",
+      "url": "/documentation/coremidi/midientityref"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEventList": {
+      "abstract": [
+        {
+          "text": "A variable-length list of MIDI event packets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIEventList"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEventList",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIEventList"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIEventList",
+      "type": "topic",
+      "url": "/documentation/coremidi/midieventlist"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEventListAdd(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Adds an event to an event list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIEventListAdd"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@MIDIEventList",
+          "text": "MIDIEventList"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@MIDIEventPacket",
+          "text": "MIDIEventPacket"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDITimeStamp",
+          "text": "MIDITimeStamp"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@MIDIEventPacket",
+          "text": "MIDIEventPacket"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEventListAdd(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIEventListAdd"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIEventListAdd(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midieventlistadd(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEventListInit(_:_:)": {
+      "abstract": [
+        {
+          "text": "Initializes an event list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIEventListInit"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@MIDIEventList",
+          "text": "MIDIEventList"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MIDIProtocolID",
+          "text": "MIDIProtocolID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@MIDIEventPacket",
+          "text": "MIDIEventPacket"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEventListInit(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIEventListInit"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIEventListInit(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midieventlistinit(_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEventPacket": {
+      "abstract": [
+        {
+          "text": "A series of simultaneous MIDI events in Universal MIDI Packets (UMP) format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIEventPacket"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEventPacket",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIEventPacket"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIEventPacket",
+      "type": "topic",
+      "url": "/documentation/coremidi/midieventpacket"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEventPacketNext(_:)": {
+      "abstract": [
+        {
+          "text": "Advances a packet pointer to the next packet in memory, if the packet is part of an event list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIEventPacketNext"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@MIDIEventPacket",
+          "text": "MIDIEventPacket"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@MIDIEventPacket",
+          "text": "MIDIEventPacket"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEventPacketNext(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIEventPacketNext"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIEventPacketNext(_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midieventpacketnext(_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIFlushOutput(_:)": {
+      "abstract": [
+        {
+          "text": "Cancels all pending events that were previously scheduled to send.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIFlushOutput"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIEndpointRef",
+          "text": "MIDIEndpointRef"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIFlushOutput(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIFlushOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIFlushOutput(_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midiflushoutput(_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetDestination(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a destination in the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIGetDestination"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIEndpointRef",
+          "text": "MIDIEndpointRef"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetDestination(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIGetDestination"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIGetDestination(_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midigetdestination(_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetDevice(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a device from the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIGetDevice"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIDeviceRef",
+          "text": "MIDIDeviceRef"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetDevice(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIGetDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIGetDevice(_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midigetdevice(_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetExternalDevice(_:)": {
+      "abstract": [
+        {
+          "text": "Returns one of the external devices in the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIGetExternalDevice"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIDeviceRef",
+          "text": "MIDIDeviceRef"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetExternalDevice(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIGetExternalDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIGetExternalDevice(_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midigetexternaldevice(_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetNumberOfDestinations()": {
+      "abstract": [
+        {
+          "text": "Returns the number of destinations in the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIGetNumberOfDestinations"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetNumberOfDestinations()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIGetNumberOfDestinations"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIGetNumberOfDestinations()",
+      "type": "topic",
+      "url": "/documentation/coremidi/midigetnumberofdestinations()"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetNumberOfDevices()": {
+      "abstract": [
+        {
+          "text": "Returns the number of devices in the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIGetNumberOfDevices"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetNumberOfDevices()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIGetNumberOfDevices"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIGetNumberOfDevices()",
+      "type": "topic",
+      "url": "/documentation/coremidi/midigetnumberofdevices()"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetNumberOfExternalDevices()": {
+      "abstract": [
+        {
+          "text": "Returns the number of external MIDI devices in the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIGetNumberOfExternalDevices"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetNumberOfExternalDevices()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIGetNumberOfExternalDevices"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIGetNumberOfExternalDevices()",
+      "type": "topic",
+      "url": "/documentation/coremidi/midigetnumberofexternaldevices()"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetNumberOfSources()": {
+      "abstract": [
+        {
+          "text": "Returns the number of sources in the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIGetNumberOfSources"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetNumberOfSources()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIGetNumberOfSources"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIGetNumberOfSources()",
+      "type": "topic",
+      "url": "/documentation/coremidi/midigetnumberofsources()"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetSource(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a source in the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIGetSource"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIEndpointRef",
+          "text": "MIDIEndpointRef"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetSource(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIGetSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIGetSource(_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midigetsource(_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIIOErrorNotification": {
+      "abstract": [
+        {
+          "text": "A general I/O error notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIIOErrorNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIIOErrorNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIIOErrorNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIIOErrorNotification",
+      "type": "topic",
+      "url": "/documentation/coremidi/midiioerrornotification"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIInputPortCreateWithProtocol(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates an input port through which the client may receive incoming MIDI messages from any MIDI source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIInputPortCreateWithProtocol"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIClientRef",
+          "text": "MIDIClientRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MIDIProtocolID",
+          "text": "MIDIProtocolID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIPortRef",
+          "text": "MIDIPortRef"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIReceiveBlock",
+          "text": "MIDIReceiveBlock"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIInputPortCreateWithProtocol(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIInputPortCreateWithProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIInputPortCreateWithProtocol(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midiinputportcreatewithprotocol(_:_:_:_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIObjectFindByUniqueID(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Locates a device, entity, or endpoint by its unique identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIObjectFindByUniqueID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIUniqueID",
+          "text": "MIDIUniqueID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIObjectRef",
+          "text": "MIDIObjectRef"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MIDIObjectType",
+          "text": "MIDIObjectType"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIObjectFindByUniqueID(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIObjectFindByUniqueID"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIObjectFindByUniqueID(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midiobjectfindbyuniqueid(_:_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIObjectRef": {
+      "abstract": [
+        {
+          "text": "The common base class for many of the framework’s objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIObjectRef"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIObjectRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIObjectRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIObjectRef",
+      "type": "topic",
+      "url": "/documentation/coremidi/midiobjectref"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIOutputPortCreate(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates an output port through which a client sends outgoing MIDI messages to any MIDI destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIOutputPortCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIClientRef",
+          "text": "MIDIClientRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIPortRef",
+          "text": "MIDIPortRef"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIOutputPortCreate(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIOutputPortCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIOutputPortCreate(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midioutputportcreate(_:_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPacket": {
+      "abstract": [
+        {
+          "text": "A collection of simultaneous MIDI events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIPacket"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPacket",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIPacket"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIPacket",
+      "type": "topic",
+      "url": "/documentation/coremidi/midipacket"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPacketList": {
+      "abstract": [
+        {
+          "text": "A list of MIDI events the system sends to or receives from an endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIPacketList"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPacketList",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIPacketList"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIPacketList",
+      "type": "topic",
+      "url": "/documentation/coremidi/midipacketlist"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPacketNext(_:)": {
+      "abstract": [
+        {
+          "text": "Advances a MIDI packet pointer to the next packet in a package list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIPacketNext"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@MIDIPacket",
+          "text": "MIDIPacket"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@MIDIPacket",
+          "text": "MIDIPacket"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPacketNext(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIPacketNext"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIPacketNext(_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midipacketnext(_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPortConnectSource(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Makes a connection from a source to a client input port.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIPortConnectSource"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIPortRef",
+          "text": "MIDIPortRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIEndpointRef",
+          "text": "MIDIEndpointRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPortConnectSource(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIPortConnectSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIPortConnectSource(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midiportconnectsource(_:_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPortDisconnectSource(_:_:)": {
+      "abstract": [
+        {
+          "text": "Closes a previously established source-to-input port connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIPortDisconnectSource"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIPortRef",
+          "text": "MIDIPortRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIEndpointRef",
+          "text": "MIDIEndpointRef"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPortDisconnectSource(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIPortDisconnectSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIPortDisconnectSource(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midiportdisconnectsource(_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPortDispose(_:)": {
+      "abstract": [
+        {
+          "text": "Disposes of a MIDI port.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIPortDispose"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIPortRef",
+          "text": "MIDIPortRef"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPortDispose(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIPortDispose"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIPortDispose(_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midiportdispose(_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPortRef": {
+      "abstract": [
+        {
+          "text": "A MIDI connection that a client maintains.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIPortRef"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPortRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIPortRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIPortRef",
+      "type": "topic",
+      "url": "/documentation/coremidi/midiportref"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIReceiveBlock": {
+      "abstract": [
+        {
+          "text": "A block receiving MIDI input that includes the incoming messages and a refCon to identify the source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIReceiveBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIReceiveBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIReceiveBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIReceiveBlock",
+      "type": "topic",
+      "url": "/documentation/coremidi/midireceiveblock"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIReceivedEventList(_:_:)": {
+      "abstract": [
+        {
+          "text": "Distributes incoming MIDI events from a source to its connected client input ports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIReceivedEventList"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIEndpointRef",
+          "text": "MIDIEndpointRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@MIDIEventList",
+          "text": "MIDIEventList"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIReceivedEventList(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIReceivedEventList"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIReceivedEventList(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midireceivedeventlist(_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIRestart()": {
+      "abstract": [
+        {
+          "text": "Stops and restarts MIDI I/O.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIRestart"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIRestart()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIRestart"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIRestart()",
+      "type": "topic",
+      "url": "/documentation/coremidi/midirestart()"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDISendEventList(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sends MIDI events to a destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDISendEventList"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIPortRef",
+          "text": "MIDIPortRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIEndpointRef",
+          "text": "MIDIEndpointRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@MIDIEventList",
+          "text": "MIDIEventList"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDISendEventList(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDISendEventList"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDISendEventList(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midisendeventlist(_:_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDISourceCreateWithProtocol(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a virtual source in a client.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDISourceCreateWithProtocol"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIClientRef",
+          "text": "MIDIClientRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MIDIProtocolID",
+          "text": "MIDIProtocolID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIEndpointRef",
+          "text": "MIDIEndpointRef"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDISourceCreateWithProtocol(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDISourceCreateWithProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDISourceCreateWithProtocol(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midisourcecreatewithprotocol(_:_:_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDISysexSendRequest": {
+      "abstract": [
+        {
+          "text": "A request to asynchronously send a single system-exclusive (SysEx) event to a destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDISysexSendRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDISysexSendRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDISysexSendRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDISysexSendRequest",
+      "type": "topic",
+      "url": "/documentation/coremidi/midisysexsendrequest"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDISysexSendRequestUMP": {
+      "abstract": [
+        {
+          "text": "A request to asynchronously send a single universal MIDI packet (UMP) system-exclusive (SysEx) event to a destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDISysexSendRequestUMP"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDISysexSendRequestUMP",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDISysexSendRequestUMP"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDISysexSendRequestUMP",
+      "type": "topic",
+      "url": "/documentation/coremidi/midisysexsendrequestump"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITimeStamp": {
+      "abstract": [
+        {
+          "text": "The time on the host clock when the event occurred.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDITimeStamp"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITimeStamp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDITimeStamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDITimeStamp",
+      "type": "topic",
+      "url": "/documentation/coremidi/miditimestamp"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/UnsafeMutableMIDIEventListPointer": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableMIDIEventListPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/UnsafeMutableMIDIEventListPointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableMIDIEventListPointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnsafeMutableMIDIEventListPointer",
+      "type": "topic",
+      "url": "/documentation/coremidi/unsafemutablemidieventlistpointer"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/UnsafeMutableMIDIEventPacketPointer": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableMIDIEventPacketPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/UnsafeMutableMIDIEventPacketPointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableMIDIEventPacketPointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnsafeMutableMIDIEventPacketPointer",
+      "type": "topic",
+      "url": "/documentation/coremidi/unsafemutablemidieventpacketpointer"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/UnsafeMutableMIDIPacketListPointer": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableMIDIPacketListPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/UnsafeMutableMIDIPacketListPointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableMIDIPacketListPointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnsafeMutableMIDIPacketListPointer",
+      "type": "topic",
+      "url": "/documentation/coremidi/unsafemutablemidipacketlistpointer"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/UnsafeMutableMIDIPacketPointer": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableMIDIPacketPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/UnsafeMutableMIDIPacketPointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableMIDIPacketPointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnsafeMutableMIDIPacketPointer",
+      "type": "topic",
+      "url": "/documentation/coremidi/unsafemutablemidipacketpointer"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/deprecated-symbols": {
+      "abstract": [
+        {
+          "text": "Review unsupported symbols and their replacements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/deprecated-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated Symbols",
+      "type": "topic",
+      "url": "/documentation/coremidi/deprecated-symbols"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/incorporating-midi-2-into-your-apps": {
+      "abstract": [
+        {
+          "text": "Add precision and improve musical control for your MIDI apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/incorporating-midi-2-into-your-apps",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Incorporating MIDI 2 into your apps",
+      "type": "topic",
+      "url": "/documentation/coremidi/incorporating-midi-2-into-your-apps"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-bluetooth": {
+      "abstract": [
+        {
+          "text": "Connect to Bluetooth Low Energy MIDI peripherals.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-bluetooth",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Bluetooth",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-bluetooth"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-capability-inquiry": {
+      "abstract": [
+        {
+          "text": "Provide support for bidirectional discovery and configuration of devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-capability-inquiry",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Capability Inquiry",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-capability-inquiry"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-drivers": {
+      "abstract": [
+        {
+          "text": "Create driver plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-drivers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Drivers",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-drivers"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-messages": {
+      "abstract": [
+        {
+          "text": "Create and configure messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-messages",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Messages",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-messages"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-networking": {
+      "abstract": [
+        {
+          "text": "Create and manage devices connected over a local network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-networking",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Networking",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-networking"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-object-properties": {
+      "abstract": [
+        {
+          "text": "Configure the properties of MIDI objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-object-properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Object Properties",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-object-properties"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-services-errors": {
+      "abstract": [
+        {
+          "text": "Error codes for Core MIDI operations XX.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-services-errors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Services Errors",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-services-errors"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-system-setup": {
+      "abstract": [
+        {
+          "text": "Configure the global MIDI system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-system-setup",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI System Setup",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-system-setup"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-thru-connection": {
+      "abstract": [
+        {
+          "text": "Create play-through connections between sources and destinations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-thru-connection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Thru Connection",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-thru-connection"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Services",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-system-setup",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-bluetooth",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-messages",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-thru-connection",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-networking",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-drivers",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-capability-inquiry"
+      ],
+      "title": "Services"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "MIDI-object-configuration",
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIObjectFindByUniqueID(_:_:_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIObjectRef",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-object-properties"
+      ],
+      "title": "MIDI object configuration"
+    },
+    {
+      "anchor": "Client-management",
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/incorporating-midi-2-into-your-apps",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIClientCreate(_:_:_:_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIClientCreateWithBlock(_:_:_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIClientDispose(_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIClientRef"
+      ],
+      "title": "Client management"
+    },
+    {
+      "anchor": "Device-lookup",
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetNumberOfDevices()",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetDevice(_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetNumberOfExternalDevices()",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetExternalDevice(_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIDeviceGetNumberOfEntities(_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIDeviceGetEntity(_:_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIDeviceRef"
+      ],
+      "title": "Device lookup"
+    },
+    {
+      "anchor": "Entity-lookup",
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityGetDevice(_:_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityGetNumberOfSources(_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityGetSource(_:_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityGetNumberOfDestinations(_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityGetDestination(_:_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityRef"
+      ],
+      "title": "Entity lookup"
+    },
+    {
+      "anchor": "Port-management",
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIInputPortCreateWithProtocol(_:_:_:_:_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIOutputPortCreate(_:_:_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPortDispose(_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPortConnectSource(_:_:_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPortDisconnectSource(_:_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPortRef",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIReceiveBlock"
+      ],
+      "title": "Port management"
+    },
+    {
+      "anchor": "Endpoint-management",
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEndpointDispose(_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEndpointGetEntity(_:_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEndpointGetRefCons(_:_:_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEndpointSetRefCons(_:_:_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDISourceCreateWithProtocol(_:_:_:_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetSource(_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetNumberOfSources()",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIDestinationCreateWithProtocol(_:_:_:_:_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetDestination(_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetNumberOfDestinations()",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEndpointRef"
+      ],
+      "title": "Endpoint management"
+    },
+    {
+      "anchor": "Event-list-management",
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEventListInit(_:_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEventListAdd(_:_:_:_:_:_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEventPacketNext(_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDISendEventList(_:_:_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIReceivedEventList(_:_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEventList",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEventPacket",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/UnsafeMutableMIDIEventListPointer",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/UnsafeMutableMIDIEventPacketPointer"
+      ],
+      "title": "Event list management"
+    },
+    {
+      "anchor": "Packet-list-management",
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPacketNext(_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPacket",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPacketList",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITimeStamp",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/UnsafeMutableMIDIPacketListPointer",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/UnsafeMutableMIDIPacketPointer"
+      ],
+      "title": "Packet list management"
+    },
+    {
+      "anchor": "IO-management",
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDISysexSendRequest",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDISysexSendRequestUMP",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIFlushOutput(_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIRestart()",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIIOErrorNotification"
+      ],
+      "title": "I/O management"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-services-errors"
+      ],
+      "title": "Errors"
+    },
+    {
+      "anchor": "Deprecated",
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/deprecated-symbols"
+      ],
+      "title": "Deprecated"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "MIDI-object-configuration",
+              "identifiers": [
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIObjectFindByUniqueID(_:_:_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIObjectRef",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-object-properties"
+              ],
+              "title": "MIDI object configuration"
+            },
+            {
+              "anchor": "Client-management",
+              "identifiers": [
+                "doc://com.apple.coremidi/documentation/CoreMIDI/incorporating-midi-2-into-your-apps",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIClientCreate(_:_:_:_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIClientCreateWithBlock(_:_:_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIClientDispose(_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIClientRef"
+              ],
+              "title": "Client management"
+            },
+            {
+              "anchor": "Device-lookup",
+              "identifiers": [
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetNumberOfDevices()",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetDevice(_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetNumberOfExternalDevices()",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetExternalDevice(_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIDeviceGetNumberOfEntities(_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIDeviceGetEntity(_:_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIDeviceRef"
+              ],
+              "title": "Device lookup"
+            },
+            {
+              "anchor": "Entity-lookup",
+              "identifiers": [
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityGetDevice(_:_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityGetNumberOfSources(_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityGetSource(_:_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityGetNumberOfDestinations(_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityGetDestination(_:_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEntityRef"
+              ],
+              "title": "Entity lookup"
+            },
+            {
+              "anchor": "Port-management",
+              "identifiers": [
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIInputPortCreateWithProtocol(_:_:_:_:_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIOutputPortCreate(_:_:_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPortDispose(_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPortConnectSource(_:_:_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPortDisconnectSource(_:_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPortRef",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIReceiveBlock"
+              ],
+              "title": "Port management"
+            },
+            {
+              "anchor": "Endpoint-management",
+              "identifiers": [
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEndpointDispose(_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEndpointGetEntity(_:_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEndpointGetRefCons(_:_:_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEndpointSetRefCons(_:_:_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDISourceCreateWithProtocol(_:_:_:_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetSource(_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetNumberOfSources()",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIDestinationCreateWithProtocol(_:_:_:_:_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetDestination(_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIGetNumberOfDestinations()",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEndpointRef"
+              ],
+              "title": "Endpoint management"
+            },
+            {
+              "anchor": "Event-list-management",
+              "identifiers": [
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEventListInit(_:_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEventListAdd(_:_:_:_:_:_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEventPacketNext(_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDISendEventList(_:_:_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIReceivedEventList(_:_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEventList",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIEventPacket"
+              ],
+              "title": "Event list management"
+            },
+            {
+              "anchor": "Packet-list-management",
+              "identifiers": [
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPacketNext(_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPacket",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIPacketList",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITimeStamp"
+              ],
+              "title": "Packet list management"
+            },
+            {
+              "anchor": "IO-management",
+              "identifiers": [
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDISysexSendRequest",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDISysexSendRequestUMP",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIFlushOutput(_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIRestart()",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIIOErrorNotification"
+              ],
+              "title": "I/O management"
+            },
+            {
+              "anchor": "Errors",
+              "identifiers": [
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-services-errors"
+              ],
+              "title": "Errors"
+            },
+            {
+              "anchor": "Deprecated",
+              "identifiers": [
+                "doc://com.apple.coremidi/documentation/CoreMIDI/deprecated-symbols"
+              ],
+              "title": "Deprecated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Services",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-system-setup",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-bluetooth",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-messages",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-thru-connection",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-networking",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-drivers",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-capability-inquiry"
+              ],
+              "title": "Services"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEntityGetDevice(_:_:)/title",
+          "value": "MIDIEntityGetDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEntityGetDevice(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIEntityGetDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDISysexSendRequest/title",
+          "value": "MIDISysexSendRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDISysexSendRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDISysexSendRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDISysexSendRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDISysexSendRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEntityGetDestination(_:_:)/title",
+          "value": "MIDIEntityGetDestination"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEntityGetDestination(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIEntityGetDestination"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDISourceCreateWithProtocol(_:_:_:_:)/title",
+          "value": "MIDISourceCreateWithProtocol"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDISourceCreateWithProtocol(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDISourceCreateWithProtocol"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEndpointRef/title",
+          "value": "MIDIEndpointRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEndpointRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIEndpointRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEndpointRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIEndpointRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEntityGetNumberOfSources(_:)/title",
+          "value": "MIDIEntityGetNumberOfSources"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEntityGetNumberOfSources(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIEntityGetNumberOfSources"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEventListAdd(_:_:_:_:_:_:)/title",
+          "value": "MIDIEventListAdd"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEventListAdd(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIEventListAdd"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEventPacketNext(_:)/title",
+          "value": "MIDIEventPacketNext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEventPacketNext(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIEventPacketNext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIPacketList/title",
+          "value": "MIDIPacketList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIPacketList/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIPacketList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIPacketList/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIPacketList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIDeviceRef/title",
+          "value": "MIDIDeviceRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIDeviceRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIDeviceRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIDeviceRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIDeviceRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIGetDevice(_:)/title",
+          "value": "MIDIGetDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIGetDevice(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIGetDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIGetNumberOfDevices()/title",
+          "value": "MIDIGetNumberOfDevices"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIGetNumberOfDevices()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIGetNumberOfDevices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEndpointGetEntity(_:_:)/title",
+          "value": "MIDIEndpointGetEntity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEndpointGetEntity(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIEndpointGetEntity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEndpointSetRefCons(_:_:_:)/title",
+          "value": "MIDIEndpointSetRefCons"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEndpointSetRefCons(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIEndpointSetRefCons"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIReceiveBlock/title",
+          "value": "MIDIReceiveBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIReceiveBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIReceiveBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIReceiveBlock/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIReceiveBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIObjectFindByUniqueID(_:_:_:)/title",
+          "value": "MIDIObjectFindByUniqueID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIObjectFindByUniqueID(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIObjectFindByUniqueID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIReceivedEventList(_:_:)/title",
+          "value": "MIDIReceivedEventList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIReceivedEventList(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIReceivedEventList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEndpointDispose(_:)/title",
+          "value": "MIDIEndpointDispose"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEndpointDispose(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIEndpointDispose"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEntityGetNumberOfDestinations(_:)/title",
+          "value": "MIDIEntityGetNumberOfDestinations"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEntityGetNumberOfDestinations(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIEntityGetNumberOfDestinations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIDeviceGetEntity(_:_:)/title",
+          "value": "MIDIDeviceGetEntity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIDeviceGetEntity(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIDeviceGetEntity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIRestart()/title",
+          "value": "MIDIRestart"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIRestart()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIRestart"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEndpointGetRefCons(_:_:_:)/title",
+          "value": "MIDIEndpointGetRefCons"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEndpointGetRefCons(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIEndpointGetRefCons"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIPortDispose(_:)/title",
+          "value": "MIDIPortDispose"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIPortDispose(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIPortDispose"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEventListInit(_:_:)/title",
+          "value": "MIDIEventListInit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEventListInit(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIEventListInit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIPortDisconnectSource(_:_:)/title",
+          "value": "MIDIPortDisconnectSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIPortDisconnectSource(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIPortDisconnectSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIClientRef/title",
+          "value": "MIDIClientRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIClientRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIClientRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIClientRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIClientRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIFlushOutput(_:)/title",
+          "value": "MIDIFlushOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIFlushOutput(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIFlushOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIClientDispose(_:)/title",
+          "value": "MIDIClientDispose"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIClientDispose(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIClientDispose"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIPacket/title",
+          "value": "MIDIPacket"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIPacket/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIPacket"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIPacket/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIPacket"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIPortConnectSource(_:_:_:)/title",
+          "value": "MIDIPortConnectSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIPortConnectSource(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIPortConnectSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIGetNumberOfExternalDevices()/title",
+          "value": "MIDIGetNumberOfExternalDevices"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIGetNumberOfExternalDevices()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIGetNumberOfExternalDevices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDISysexSendRequestUMP/title",
+          "value": "MIDISysexSendRequestUMP"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDISysexSendRequestUMP/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDISysexSendRequestUMP"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDISysexSendRequestUMP/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDISysexSendRequestUMP"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEventList/title",
+          "value": "MIDIEventList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEventList/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIEventList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEventList/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIEventList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIGetNumberOfSources()/title",
+          "value": "MIDIGetNumberOfSources"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIGetNumberOfSources()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIGetNumberOfSources"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIInputPortCreateWithProtocol(_:_:_:_:_:)/title",
+          "value": "MIDIInputPortCreateWithProtocol"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIInputPortCreateWithProtocol(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIInputPortCreateWithProtocol"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIPacketNext(_:)/title",
+          "value": "MIDIPacketNext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIPacketNext(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIPacketNext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIGetSource(_:)/title",
+          "value": "MIDIGetSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIGetSource(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIGetSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIClientCreate(_:_:_:_:)/title",
+          "value": "MIDIClientCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIClientCreate(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIClientCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEntityGetSource(_:_:)/title",
+          "value": "MIDIEntityGetSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEntityGetSource(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIEntityGetSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIObjectRef/title",
+          "value": "MIDIObjectRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIObjectRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIObjectRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIObjectRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIObjectRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIDestinationCreateWithProtocol(_:_:_:_:_:)/title",
+          "value": "MIDIDestinationCreateWithProtocol"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIDestinationCreateWithProtocol(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIDestinationCreateWithProtocol"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEntityRef/title",
+          "value": "MIDIEntityRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEntityRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIEntityRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEntityRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIEntityRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIGetDestination(_:)/title",
+          "value": "MIDIGetDestination"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIGetDestination(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIGetDestination"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIGetExternalDevice(_:)/title",
+          "value": "MIDIGetExternalDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIGetExternalDevice(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIGetExternalDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIIOErrorNotification/title",
+          "value": "MIDIIOErrorNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIIOErrorNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIIOErrorNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIIOErrorNotification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIIOErrorNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIClientCreateWithBlock(_:_:_:)/title",
+          "value": "MIDIClientCreateWithBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIClientCreateWithBlock(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIClientCreateWithBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIOutputPortCreate(_:_:_:)/title",
+          "value": "MIDIOutputPortCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIOutputPortCreate(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIOutputPortCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDITimeStamp/title",
+          "value": "MIDITimeStamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDITimeStamp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDITimeStamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDITimeStamp/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDITimeStamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIGetNumberOfDestinations()/title",
+          "value": "MIDIGetNumberOfDestinations"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIGetNumberOfDestinations()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIGetNumberOfDestinations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIDeviceGetNumberOfEntities(_:)/title",
+          "value": "MIDIDeviceGetNumberOfEntities"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIDeviceGetNumberOfEntities(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIDeviceGetNumberOfEntities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDISendEventList(_:_:_:)/title",
+          "value": "MIDISendEventList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDISendEventList(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDISendEventList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIPortRef/title",
+          "value": "MIDIPortRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIPortRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIPortRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIPortRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIPortRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEventPacket/title",
+          "value": "MIDIEventPacket"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEventPacket/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIEventPacket"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIEventPacket/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIEventPacket"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremidi/midi-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremidi/midi-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

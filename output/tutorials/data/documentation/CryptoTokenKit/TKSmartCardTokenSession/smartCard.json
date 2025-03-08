@@ -1,0 +1,989 @@
+{
+  "abstract": [
+    {
+      "text": "The smart card for the active exclusive session and selected application.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardTokenSession"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardTokenSession/smartCard"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)TKSmartCardTokenSession(py)smartCard",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "smartCard"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)TKSmartCard",
+        "text": "TKSmartCard"
+      }
+    ],
+    "modules": [
+      {
+        "name": "CryptoTokenKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "smartCard"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.12",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "smartCard"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "smartCard"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)TKSmartCard",
+              "text": "TKSmartCard"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This property can only be accessed in the implementation of a ",
+              "type": "text"
+            },
+            {
+              "code": "TKTokenSessionDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol delegate method. If the associated token has a value set for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardToken/aid",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, this property opens an exclusive session to the card, with the application already selected.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You should not call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/beginSession(reply:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/endSession()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the returned value. Instead, the system will take care of beginning the exclusive session and terminating it when the current token request servicing is finished.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can store any kind of information representing state of the card using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/context",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. This property will be automatically set to ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the card is reset or accessed by different ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, such as by another process. You can check the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/context",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property for any previously stored values as a way to avoid costly state restoration before performing an operation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit": {
+      "abstract": [
+        {
+          "text": "Access security tokens and the cryptographic assets they store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CryptoTokenKit",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard": {
+      "abstract": [
+        {
+          "text": "A representation of a smart card.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TKSmartCard"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TKSmartCard"
+        }
+      ],
+      "role": "symbol",
+      "title": "TKSmartCard",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/beginSession(reply:)": {
+      "abstract": [
+        {
+          "text": "Begins a session with the Smart Card.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginSession"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "reply"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/beginSession(reply:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "beginSessionWithReply:"
+        }
+      ],
+      "role": "symbol",
+      "title": "beginSession(reply:)",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard/beginsession(reply:)"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/context": {
+      "abstract": [
+        {
+          "text": "User-specified information. This property is automatically set to ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if the Smart Card is removed or another ",
+          "type": "text"
+        },
+        {
+          "code": "TKSmartCard",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object begins a session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "context"
+        }
+      ],
+      "role": "symbol",
+      "title": "context",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard/context"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/endSession()": {
+      "abstract": [
+        {
+          "text": "Completes any pending transmissions and ends the session to the Smart Card.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endSession"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard/endSession()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "endSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "endSession()",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcard/endsession()"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardToken/aid": {
+      "abstract": [
+        {
+          "text": "The ISO 7816-4 application identifiers of the Smart Card.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "aid"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardToken/aid",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AID"
+        }
+      ],
+      "role": "symbol",
+      "title": "aid",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcardtoken/aid"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardTokenSession": {
+      "abstract": [
+        {
+          "text": "A token session that is based on a smart card token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardTokenSession"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardTokenSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardTokenSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "TKSmartCardTokenSession",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcardtokensession"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardTokenSession/smartCard": {
+      "abstract": [
+        {
+          "text": "The smart card for the active exclusive session and selected application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "smartCard"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)TKSmartCard",
+          "text": "TKSmartCard"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardTokenSession/smartCard",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "smartCard"
+        }
+      ],
+      "role": "symbol",
+      "title": "smartCard",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcardtokensession/smartcard"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.12",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "smartCard"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "smartCard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardTokenSession"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "readonly"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCard",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)TKSmartCard",
+                    "text": "TKSmartCard"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "smartCard"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1context/title",
+          "value": "context"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1context/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "context"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1beginSession(reply:)/title",
+          "value": "beginSessionWithReply:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1beginSession(reply:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginSessionWithReply:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardToken~1aid/title",
+          "value": "AID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardToken~1aid/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1endSession()/title",
+          "value": "endSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard~1endSession()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "endSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardTokenSession~1smartCard/title",
+          "value": "smartCard"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardTokenSession~1smartCard/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "smartCard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardTokenSession/title",
+          "value": "TKSmartCardTokenSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardTokenSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardTokenSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardTokenSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardTokenSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard/title",
+          "value": "TKSmartCard"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCard/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCard"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cryptotokenkit/tksmartcardtokensession/smartcard"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/cryptotokenkit/tksmartcardtokensession/smartcard"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

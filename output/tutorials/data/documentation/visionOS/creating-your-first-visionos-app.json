@@ -1,0 +1,1211 @@
+{
+  "abstract": [
+    {
+      "text": "Build a new visionOS app using SwiftUI and add platform-specific features.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/creating-your-first-visionos-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "Creating-First-visionOS-App-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating your first visionOS app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re new to visionOS, start with a new Xcode project to learn about the platform",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "features, and to familiarize yourself with visionOS content and techniques. When you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "build an app for visionOS, SwiftUI is an excellent choice because it gives you full",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "access to visionOS features. Although you can also use UIKit to build portions of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app, you need to use SwiftUI for many features that are unique to the platform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Developing for visionOS requires a Mac with Apple silicon.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "identifier": "multiple-apps-overview.mp4",
+          "type": "video"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In any SwiftUI app, you place content onscreen using scenes. A scene contains",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the views and controls to display onscreen. Scenes also define the appearance",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of those views and controls when they appear onscreen. In visionOS, you can include",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "both 2D and 3D views in the same scene, and you can present those views in a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "window or as part of the person’s surroundings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "2D-window.png",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Scene with a window",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "2D-and-3D-window.png",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Scene with a window and 3D objects",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start with a new Xcode project and add features to familiarize yourself with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "visionOS content and techniques. Run your app in Simulator to verify your content",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "looks like you expect, and run it on device to see your 3D content come to life.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Organize your content around one or more scenes, which manage your app’s interface.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each scene contains the views and controls you want to display, and the scene type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "determines whether your content adopts a 2D or 3D appearance. SwiftUI adds 3D",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scene types specifically for visionOS, and also adds 3D elements and layout options",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for all scene types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-your-Xcode-project",
+          "level": 3,
+          "text": "Create your Xcode project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a new project in Xcode by choosing File > New > Project. Navigate to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the visionOS section of the template chooser, and choose the App template. When",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "prompted, specify a name for your project along with other options.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating a new visionOS app, you can configure your app’s initial scene types",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from the configuration dialog. To display primarily 2D content in your initial",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scene, choose a Window as your initial scene type. For primarily 3D content,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "choose a Volume. You can also add an immersive scene to place your content in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the person’s surroundings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "xcode-template-options.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Include a Reality Composer Pro project file when you want to create 3D assets",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or scenes to display from your app. Use this project file to build content",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from primitive shapes and existing USDZ assets. You can also use it to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "build and test custom RealityKit animations and behaviors for your content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Modify-the-existing-window",
+          "level": 3,
+          "text": "Modify the existing window",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Build your initial interface using standard SwiftUI views. Views provide the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "basic content for your interface, and you customize the appearance and behavior",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of them using SwiftUI modifiers. For example, the ",
+              "type": "text"
+            },
+            {
+              "code": ".background",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier adds a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "partially transparent tint color behind your content:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@main",
+            "struct MyApp: App {",
+            "    var body: some Scene {",
+            "        WindowGroup {",
+            "            ContentView()",
+            "               .background(.black.opacity(0.8))",
+            "        }",
+            "",
+            "        ImmersiveSpace(id: \"Immersive\") {",
+            "            ImmersiveView()",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about how to create and configure interfaces using SwiftUI,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/tutorials/swiftui",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-events-in-your-views",
+          "level": 3,
+          "text": "Handle events in your views",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many SwiftUI views handle interactions automatically — all you do is provide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code to run when the interactions occur. You can also add SwiftUI",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "gesture recognizers to a view to handle tap, long-press, drag, rotate, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "zoom gestures. The system automatically maps the following types of input",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to your SwiftUI event-handling code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "indirect-input.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Indirect input",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". The person’s eyes indicate the target of an interaction. To start the interaction, the person touches their thumb and forefinger together on one or both hands. Additional finger and hand movements define the gesture type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "direct-input.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Direct input",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". When a person’s finger occupies the same space as an onscreen item, the system reports an interaction. Additional finger and hand movements define the gesture type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "keyboard-input.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Keyboard input",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". People can use a connected mouse, trackpad, or keyboard to interact with items, trigger menu commands, and perform gestures.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about handling interactions in SwiftUI",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "views, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/tutorials/swiftui/handling-user-input",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/tutorials/swiftui",
+              "isActive": true,
+              "overridingTitle": "SwiftUI Essentials",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "SwiftUI Essentials",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " tutorial.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-and-run-your-app",
+          "level": 3,
+          "text": "Build and run your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Build and run your app in Simulator to see how it looks. Simulator for visionOS",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "has a virtual background as the backdrop for your app’s content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use your keyboard and your mouse or trackpad to navigate around the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "environment and interact with your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tap and drag the window bar below your app’s content to reposition the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "window in the environment. Move the pointer over the circle next to the window",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "bar to reveal the window’s close button. Move the cursor to one of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "window’s corners to turn the window bar into a resizing control.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Apps don’t control the placement of windows in the space. The system places",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "each window in its initial position, and updates that position based on",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "further interactions with the app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information about how to interact with your app in Simulator,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/interacting-with-your-app-in-the-visionos-simulator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "2D-and-3D-window.png": {
+      "alt": "A screenshot of the Happy Beam app that shows a 2D window and 3D objects in a room that contains a couch, a lamp, and a plant. The 2D window shows the game’s current score, volume controls, and a pause button. Three 3D cloud objects are positioned at different depths from the player. ",
+      "identifier": "2D-and-3D-window.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6adf1416ed7edab76dc30986f976e45f/2D-and-3D-window@2x.png"
+        }
+      ]
+    },
+    "2D-window.png": {
+      "alt": "A screenshot that shows a 2D window presented in a room that contains a couch and a lamp. The window shows the Destination Video sample app, showing three featured tiles. Each tile contains a poster photo, a title, and descriptive text.",
+      "identifier": "2D-window.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2128a03dea1096ca3ba51b13db64a4af/2D-window@2x.png"
+        }
+      ]
+    },
+    "Creating-First-visionOS-App-PageImage-card.png": {
+      "alt": null,
+      "identifier": "Creating-First-visionOS-App-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fb80ae9e10c0b9bc1ac6bada59f41822/Creating-First-visionOS-App-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/55a700fe9e5586d4615b03928dd787f6/Creating-First-visionOS-App-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "direct-input.png": {
+      "alt": "A photo that shows a virtual 3D keyboard. The person’s right hand is shown tapping the J key.",
+      "identifier": "direct-input.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62fae83577ad55c14f38e0a51739f0f5/direct-input@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/Xcode/interacting-with-your-app-in-the-visionos-simulator": {
+      "abstract": [
+        {
+          "text": "Use your Mac to navigate spaces and control interactions with your visionOS apps in Simulator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/interacting-with-your-app-in-the-visionos-simulator",
+      "kind": "article",
+      "role": "article",
+      "title": "Interacting with your app in the visionOS simulator",
+      "type": "topic",
+      "url": "/documentation/Xcode/interacting-with-your-app-in-the-visionos-simulator"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/adding-3d-content-to-your-app": {
+      "abstract": [
+        {
+          "text": "Add depth and dimension to your visionOS app and discover how",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to incorporate your app’s content into a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/adding-3d-content-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding 3D content to your app",
+      "type": "topic",
+      "url": "/documentation/visionos/adding-3d-content-to-your-app"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/creating-fully-immersive-experiences": {
+      "abstract": [
+        {
+          "text": "Build fully immersive experiences by combining spaces with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "content you create using RealityKit or Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/creating-fully-immersive-experiences",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating fully immersive experiences in your app",
+      "type": "topic",
+      "url": "/documentation/visionos/creating-fully-immersive-experiences"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/drawing-sharp-layer-based-content": {
+      "abstract": [
+        {
+          "text": "Deliver text and vector images at multiple resolutions",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from custom Core Animation layers in visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/drawing-sharp-layer-based-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Drawing sharp layer-based content in visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos/drawing-sharp-layer-based-content"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples": {
+      "abstract": [
+        {
+          "text": "Learn the fundamentals of building apps for visionOS with beginner-friendly sample code projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples",
+      "images": [
+        {
+          "identifier": "introductory-visionOS-samples.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Introductory visionOS samples",
+      "type": "topic",
+      "url": "/documentation/visionos/introductory-visionos-samples"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "https://developer.apple.com/tutorials/swiftui": {
+      "identifier": "https://developer.apple.com/tutorials/swiftui",
+      "title": "SwiftUI Essentials",
+      "titleInlineContent": [
+        {
+          "text": "SwiftUI Essentials",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/tutorials/swiftui"
+    },
+    "https://developer.apple.com/tutorials/swiftui/handling-user-input": {
+      "identifier": "https://developer.apple.com/tutorials/swiftui/handling-user-input",
+      "title": "Handling User Input",
+      "titleInlineContent": [
+        {
+          "text": "Handling User Input",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/tutorials/swiftui/handling-user-input"
+    },
+    "indirect-input.png": {
+      "alt": "A photo that shows controls in the corner of a window and a superimposed top-down view of the person sitting in a chair with their hands over their lap.",
+      "identifier": "indirect-input.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/36b549ead5a549703b625119431fa6be/indirect-input@2x.png"
+        }
+      ]
+    },
+    "introductory-visionOS-samples.png": {
+      "alt": "A translucent window displaying five white, three-dimensional entities in a horizontal row. From left to right, the shapes are a box, a rounded box, a right sphere, a cone, and a cylinder that all top-align.",
+      "identifier": "introductory-visionOS-samples.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d386622a70e5f41179e6a4c98a125c7/introductory-visionOS-samples@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/58fa94f103305452c567401d648dedc5/introductory-visionOS-samples~dark@2x.png"
+        }
+      ]
+    },
+    "keyboard-input.png": {
+      "alt": "A photo that shows the person’s hands typing on a physical keyboard on a table. A virtual suggestion bar is shown floating above the physical keyboard.",
+      "identifier": "keyboard-input.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f94b7c0a6f4e2c59ab5b6d90d99eccc6/keyboard-input@2x.png"
+        }
+      ]
+    },
+    "multiple-apps-overview-poster.png": {
+      "alt": null,
+      "identifier": "multiple-apps-overview-poster.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/29e2a80ca6ad96afd67faa64fbd11014/multiple-apps-overview-poster.png"
+        }
+      ]
+    },
+    "multiple-apps-overview.mp4": {
+      "alt": "A video that shows multiple 2D app scenes presented in a room that contains a couch. The scene in the center shows a window with a list of photo albums. The recents album is selected and a grid of landscape panoramic photos is visible. The video shows how the environment dims after a person selects a panoramic photo. The person then turns their head to the left to focus on a window from the Destination Video app that is partially out of view. The person scrolls horizontally through a list of tiles that show a poster photo, a title, and descriptive text.",
+      "identifier": "multiple-apps-overview.mp4",
+      "poster": "multiple-apps-overview-poster.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/40f2eeb392d88ba3d5475db92289a1e3/multiple-apps-overview.mp4"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "xcode-template-options.png": {
+      "alt": "A screenshot of Xcode’s new project panel where you can select the initial scene type and immersive space options.",
+      "identifier": "xcode-template-options.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f0264311b8746ae62bc82059b514367a/xcode-template-options@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8ce394114263dbab766500aa0ae209a6/xcode-template-options~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-construction",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/adding-3d-content-to-your-app",
+        "doc://com.apple.visionOS/documentation/visionOS/creating-fully-immersive-experiences",
+        "doc://com.apple.visionOS/documentation/visionOS/drawing-sharp-layer-based-content",
+        "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples"
+      ],
+      "title": "App construction"
+    }
+  ]
+}

@@ -1,0 +1,1783 @@
+{
+  "abstract": [
+    {
+      "text": "Annotate an AR experience with virtual sticky notes that you display onscreen over real and virtual objects.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+        "doc://com.apple.arkit/documentation/ARKit/content-anchors"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/creating-screen-annotations-for-objects-in-an-ar-experience"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating screen annotations for objects in an AR experience"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At times, the user may want to annotate real or virtual objects in your AR experience. For example, they might want to place a virtual name plate on paintings at a museum. By fixing annotations to the screen, you enable the user to annotate their AR experience in ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "screen space",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". To demonstrate screen-space annotations, this sample app enables the capability to tap the screen to place one or more virtual sticky notes with text in the real world.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Text displayed in screen space remains readable at all viewing angles and distances. The sample app implements sticky notes using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that’s flush with the screen, which allows the user to quickly define the note’s text using regular touch input. Using UIKit to annotate an AR experience also provides the benefits of localization and accessibility.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample uses RealityKit to anchor virtual content in the real world. RealityKit requires iOS 13. ARKit is not available in iOS Simulator.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display text that’s anchored in world space instead, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/recognizing-and-labeling-arbitrary-objects",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Resolve-the-Users-Tap-to-a-3D-Location",
+          "level": 2,
+          "text": "Resolve the User’s Tap to a 3D Location",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To annotate an object in an AR experience, you first determine where it is in the physical environment. This sample app enables the user to tap the screen to place a sticky note by first adding a tap gesture recognizer to the view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func arViewGestureSetup() {",
+            "    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tappedOnARView))",
+            "    arView.addGestureRecognizer(tapGesture)",
+            "    ",
+            "    let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipedDownOnARView))",
+            "    swipeGesture.direction = .down",
+            "    arView.addGestureRecognizer(swipeGesture)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the input handler is called, you read the tap screen coordinates by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizer/location(in:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let touchLocation = sender.location(in: arView)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get a 3D world position that corresponds to the tap location, cast a ray from the camera’s origin through the touch location to check for intersection with any real-world surfaces along that ray.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let raycastResult = arView.raycast(from: touchLocation, allowing: .estimatedPlane, alignment: .any).first else {",
+            "    messageLabel.displayMessage(\"No surface detected, try getting closer.\", duration: 2.0)",
+            "    return",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If ARKit finds a planar surface where the user tapped, the ray-cast result provides you the 3D intersection point in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARRaycastResult/worldTransform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Anchor-a-sticky-note-in-the-environment",
+          "level": 2,
+          "text": "Anchor a sticky note in the environment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To keep track of a real-world location, you create an anchor positioned there. RealityKit implements an anchor as an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/Entity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " conforming to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/HasAnchoring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Thus, you implement those protocols when designing a sticky note in RealityKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class StickyNoteEntity: Entity, HasAnchoring, HasScreenSpaceView {",
+            "    // ..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create the entity by calling its initializer and passing in the ray-cast result’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARRaycastResult/worldTransform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let note = StickyNoteEntity(frame: frame, worldTransform: raycastResult.worldTransform)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the sticky note entity’s ",
+              "type": "text"
+            },
+            {
+              "code": "init",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function, position the entity at the tap location by setting its transformation matrix to the argument ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARRaycastResult/worldTransform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "init(frame: CGRect, worldTransform: simd_float4x4) {",
+            "    super.init()",
+            "    self.transform.matrix = worldTransform",
+            "    // ..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Let RealityKit know about your entity by adding it to the scene hierarchy. RealityKit then registers an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for your entity with ARKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Add the sticky note to the scene's entity hierarchy.",
+            "arView.scene.addAnchor(note)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-the-sticky-notes-annotation",
+          "level": 2,
+          "text": "Display the sticky note’s annotation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the purposes of this sample app, the sticky note entity has no geometry and thus, no appearance. Its anchor provides a 3D location only, and it’s the sticky note’s screen-space annotation that has an appearance. To display it, you define the sticky note’s annotation. Following RealityKit’s entity-component model, design a component that houses the annotation, which in this case is a view. See ",
+              "type": "text"
+            },
+            {
+              "code": "ScreenSpaceComponent.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ScreenSpaceComponent: Component {",
+            "    var view: StickyNoteView?",
+            "    //..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a prepackaged UI element that renders text for you, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is useful as a screen-space annotation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class StickyNoteView: UIView {",
+            "    var textView: UITextView!",
+            "    // ..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Expose the screen-space component in its own protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "protocol HasScreenSpaceView: Entity {",
+            "    var screenSpaceComponent: ScreenSpaceComponent { get set }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement the protocol in your entity; see ",
+              "type": "text"
+            },
+            {
+              "code": "StickyNoteEntity.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class StickyNoteEntity: Entity, HasAnchoring, HasScreenSpaceView {",
+            "    // ..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display the entity’s annotation, add the sticky-note view to the view hierarchy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Add the sticky note's view to the view hierarchy.",
+            "guard let stickyView = note.view else { return }",
+            "arView.insertSubview(stickyView, belowSubview: trashZone)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To put the annotation in the right place on the screen, ask the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to convert its entity’s world location to a 2D screen point.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let projectedPoint = arView.project(note.position) else { return }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enhance visual accuracy, center the note’s view around the anchor’s projected world location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "setPositionCenter(projectedPoint)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To do that, calculate the midpoint and set the view’s origin.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "view.frame.origin = CGPoint(x: centerPoint.x, y: centerPoint.y)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Update-the-annotations-position",
+          "level": 2,
+          "text": "Update the annotation’s position",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because users move their device during an AR experience, the annotation’s screen position quickly becomes out of sync with its anchor’s world position. To keep the annotation’s screen position accurate, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "‘s ",
+              "type": "text"
+            },
+            {
+              "code": "project",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function every frame, updating the annotation’s position with the result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Updates the screen position of the note based on its visibility",
+            "note.projection = Projection(projectedPoint: projectedPoint, isVisible: isVisible)",
+            "note.updateScreenPosition()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-user-interaction",
+          "level": 2,
+          "text": "Handle user interaction",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A benefit of using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " types for screen annotations is that they simplify user interaction. The sample implements sticky notes using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which enables users to more easily edit their text. The sample implements minimal gesture recognizer code to manage sticky notes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code enables the capability to create a note by tapping the screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@objc",
+            "func tappedOnARView(_ sender: UITapGestureRecognizer) {",
+            "    ",
+            "    // Ignore the tap if the user is editing a sticky note.",
+            "    for note in stickyNotes where note.isEditing { return }",
+            "    ",
+            "    // Create a new sticky note at the tap location.",
+            "    insertNewSticky(sender)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By implementing its own tap gesture recognizer to control editing, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  enables the user to tap an existing note to edit its text. To be notified when the user edits a note, override ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "’s ",
+              "type": "text"
+            },
+            {
+              "code": "textViewDidBeginEditing(_ textView:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " delegate callback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension ViewController: UITextViewDelegate {",
+            "    ",
+            "    // - Tag: TextViewDidBeginEditing",
+            "    func textViewDidBeginEditing(_ textView: UITextView) {",
+            "",
+            "",
+            "        // Get the main view for this sticky note.",
+            "        guard let stickyView = textView.firstSuperViewOfType(StickyNoteView.self) else { return }",
+            "        // ...",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code enables the capability to move a note by panning the screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@objc",
+            "func panOnStickyView(_ sender: UIPanGestureRecognizer) {",
+            "    ",
+            "    guard let stickyView = sender.view as? StickyNoteView else { return }",
+            "    ",
+            "    let panLocation = sender.location(in: arView)",
+            "    ",
+            "    // Ignore the pan if any StickyViews are being edited.",
+            "    for note in stickyNotes where note.isEditing { return }",
+            "    ",
+            "    panStickyNote(sender, stickyView, panLocation)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user pans to reposition a sticky note, you convert the screen touch location to a 3D world position using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView/raycast(from:allowing:alignment:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The user can then reposition the sticky note’s anchor in the real world versus simply moving the annotation to a new arbitrary screen location. If a ray cast from the final screen location in the pan gesture doesn’t produce an intersection with a 3D world location, don’t move the sticky note there.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fileprivate func attemptRepositioning(_ stickyView: StickyNoteView) {",
+            "    // Conducts a ray-cast for feature points using the panned position of the StickyNoteView",
+            "    let point = CGPoint(x: stickyView.frame.midX, y: stickyView.frame.midY)",
+            "    if let result = arView.raycast(from: point, allowing: .estimatedPlane, alignment: .any).first {",
+            "        stickyView.stickyNote.transform.matrix = result.worldTransform",
+            "    } else {",
+            "        messageLabel.displayMessage(\"No surface detected, unable to reposition note.\", duration: 2.0)",
+            "        stickyView.stickyNote.shouldAnimate = true",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following portion of the pan gesture handler enables the capability to remove a sticky note when the user drags it to the text that says “delete” at the top of the screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if stickyView.isInTrashZone {",
+            "    deleteStickyNote(stickyView.stickyNote)",
+            "    // ..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Enhance-the-experience-with-animation",
+          "level": 2,
+          "text": "Enhance the experience with animation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Keeping screen-space annotations to a minimum will maximize the user’s immersion in the AR experience. The sample app makes sticky notes small when the user isn’t editing text, minimizing distractions so they can focus on the real-world environment. But for similar reasons, you should enlarge a sticky note when the user is editing text. To create a seamless transition between editing and nonediting states, animate the sticky note’s size instead of changing it abruptly. See the   ",
+              "type": "text"
+            },
+            {
+              "code": "animateStickyViewToEditingFrame",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func animateStickyViewToEditingFrame(_ stickyView: StickyNoteView, keyboardHeight: Double) {",
+            "    let safeFrame = view.safeAreaLayoutGuide.layoutFrame",
+            "    let height = safeFrame.height - keyboardHeight",
+            "    let inset = height * 0.05",
+            "    let editingFrame = CGRect(origin: safeFrame.origin, size: CGSize(width: safeFrame.width, height: height)).insetBy(dx: inset, dy: inset)",
+            "    UIViewPropertyAnimator(duration: 0.2, curve: .easeIn) {",
+            "        stickyView.frame = editingFrame",
+            "        //..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Bring even more focus to the editing experience by dimming the background and by lighting the sticky note that the user is editing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "stickyView.blurView.effect = UIBlurEffect(style: .light)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To prevent the user from losing track of a sticky note’s real-world location, animate the note smoothly from one position to the next. For example, if an annotation fails to reposition, animate the sticky note back to its original screen position. This increases the user’s ability to track the annotation if they want to try moving it again.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if shouldAnimate {",
+            "    animateTo(projectedPoint)",
+            "    // ..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To animate the note’s movement, you continually set its location using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewPropertyAnimator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func animateTo(_ point: CGPoint) {",
+            "",
+            "    let animator = UIViewPropertyAnimator(duration: 0.3, curve: .linear) {",
+            "        self.setPositionCenter(point)",
+            "    }",
+            "    // ..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "40a3c8cad3c3/CreatingScreenAnnotationsForObjectsInAnARExperience.zip": {
+      "checksum": "40a3c8cad3c3491c6a2ea47acd51c20a2a4f15d4a757bddb512f0a5313ad98955a7fefcfb8fcfd29a82a61e8518097053530627711b545287aaad38bfe13a318",
+      "identifier": "40a3c8cad3c3/CreatingScreenAnnotationsForObjectsInAnARExperience.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/40a3c8cad3c3/CreatingScreenAnnotationsForObjectsInAnARExperience.zip"
+    },
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAnchor": {
+      "abstract": [
+        {
+          "text": "An object that specifies the position and orientation of an item in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/aranchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARRaycastResult/worldTransform": {
+      "abstract": [
+        {
+          "text": "The position, rotation, and scale, of the ray’s intersection with the target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "worldTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_float4x4",
+          "text": "simd_float4x4"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARRaycastResult/worldTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "worldTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "worldTransform",
+      "type": "topic",
+      "url": "/documentation/arkit/arraycastresult/worldtransform"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/content-anchors": {
+      "abstract": [
+        {
+          "text": "Identify items in the physical environment, including planar surfaces, images, physical objects, body positions, and faces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/content-anchors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Content Anchors",
+      "type": "topic",
+      "url": "/documentation/arkit/content-anchors"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/recognizing-and-labeling-arbitrary-objects": {
+      "abstract": [
+        {
+          "text": "Create anchors that track objects you recognize in the camera feed, using a custom optical-recognition algorithm.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/recognizing-and-labeling-arbitrary-objects",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Recognizing and Labeling Arbitrary Objects",
+      "type": "topic",
+      "url": "/documentation/arkit/recognizing-and-labeling-arbitrary-objects"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ARView": {
+      "abstract": [
+        {
+          "text": "A view that enables you to display an AR experience with RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@objc"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARView",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ARView"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ARView/raycast(from:allowing:alignment:)": {
+      "abstract": [
+        {
+          "text": "Performs a ray cast, where a ray is cast into the scene from the center of the camera through a point in the view, and the results are immediately returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "raycast"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "point"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "allowing"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "target"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARRaycastQuery",
+          "text": "ARRaycastQuery"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARRaycastTarget",
+          "text": "Target"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARRaycastQuery",
+          "text": "ARRaycastQuery"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARRaycastTargetAlignment",
+          "text": "TargetAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARRaycastResult",
+          "text": "ARRaycastResult"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView/raycast(from:allowing:alignment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "raycast(from:allowing:alignment:)",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ARView/raycast(from:allowing:alignment:)"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/Entity": {
+      "abstract": [
+        {
+          "text": "An element of a RealityKit scene to which you attach components that provide appearance and behavior characteristics for the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Entity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/Entity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Entity",
+      "type": "topic",
+      "url": "/documentation/RealityKit/Entity"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/HasAnchoring": {
+      "abstract": [
+        {
+          "text": "An interface that enables anchoring of virtual content to a real-world object in an AR scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HasAnchoring"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/HasAnchoring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HasAnchoring",
+      "type": "topic",
+      "url": "/documentation/RealityKit/HasAnchoring"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizer/location(in:)": {
+      "abstract": [
+        {
+          "text": "Returns the point computed as the location in a given view of the gesture represented by the gesture recognizer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "location"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizer/location(in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "location(in:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIGestureRecognizer/location(in:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UITextView": {
+      "abstract": [
+        {
+          "text": "A scrollable, multiline text region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITextView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITextView"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView": {
+      "abstract": [
+        {
+          "text": "An object that manages the content for a rectangular area on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewPropertyAnimator": {
+      "abstract": [
+        {
+          "text": "A class that animates changes to views and allows the dynamic modification of those animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewPropertyAnimator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewPropertyAnimator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIViewPropertyAnimator",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewPropertyAnimator"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "40a3c8cad3c3/CreatingScreenAnnotationsForObjectsInAnARExperience.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Text-Annotations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/recognizing-and-labeling-arbitrary-objects"
+      ],
+      "title": "Text Annotations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Text-Annotations",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/recognizing-and-labeling-arbitrary-objects"
+              ],
+              "title": "Text Annotations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARRaycastResult~1worldTransform/title",
+          "value": "worldTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARRaycastResult~1worldTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "worldTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UITextView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UITextView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIScrollView",
+              "text": "UIScrollView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIGestureRecognizer~1location(in:)/title",
+          "value": "locationInView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIGestureRecognizer~1location(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGPoint",
+              "text": "CGPoint"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationInView:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "view"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIResponder",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewPropertyAnimator/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIViewPropertyAnimator"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/title",
+          "value": "ARAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAnchor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/creating-screen-annotations-for-objects-in-an-ar-experience"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/creating-screen-annotations-for-objects-in-an-ar-experience"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,556 @@
+{
+  "abstract": [
+    {
+      "text": "Share screenshots of your app with localizers to provide context for translation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/localization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/creating-screenshots-of-your-app-for-localizers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating screenshots of your app for localizers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When running UI tests of your localizations, you can generate screenshots to include",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the exported localization folders that you give to localizers. The screenshots",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provide context for the localizable strings and resources in the interface. You can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "generate screenshots from your project’s test plans or Test scheme.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To include the screenshots in the Xcode Localization Catalog (a folder with a ",
+              "type": "text"
+            },
+            {
+              "code": ".xcloc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file extension), see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/exporting-localizations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-test-plan",
+          "level": 3,
+          "text": "Create a test plan",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you add many localizations to your project, test plans are ideal for generating",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "screenshots because you can create a configuration for each. A test plan (a file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with a ",
+              "type": "text"
+            },
+            {
+              "code": ".xctestplan",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file extension) specifies which tests to run and how to run",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "them one or more times.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use an existing test plan or create a new one. To add a test plan, choose",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Product > Test Plan > New Test Plan in Xcode. Enter a name for the test plan and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "click Create.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to convert your project from using schemes to test plans, choose Product > Scheme > Convert Scheme",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to use Test Plans, select “Create Test Plan from scheme”,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "then click Convert. In the next dialog, you can change the name of the test plan,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "then click Save. The test plan appears in the editor area.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-localization-configurations",
+          "level": 3,
+          "text": "Add localization configurations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a configuration for each localization to your test plan. In the Project navigator,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "select the test plan, then click Configurations. On the left, click the Add button",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(+) at the bottom. Select the new configuration that appears and enter a name for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the localization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Edit the configuration file for the localization test. Under Localization, set the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Application Language and Application Region settings to the corresponding language",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and region for the localization. Under UI Testing, switch Localization Screenshots",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from Off to On.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-screenshots-of-your-app-for-localizers-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Run-tests-to-generate-screenshots",
+          "level": 3,
+          "text": "Run tests to generate screenshots",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next time you run your tests (choose Product > Test), Xcode saves the screenshots",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for each localization to disk. In the Test navigator, next to every screenshot, Xcode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "includes a property list (Localizable Strings Info) that maps the strings to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "frame where the string appears in the screenshot. The property list includes the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "string IDs (that appear in the exported XLIFF file) and frame locations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Generate-screenshots-using-schemes",
+          "level": 3,
+          "text": "Generate screenshots using schemes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, if you don’t use test plans, you can make similar edits to the Test",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scheme to generate screenshots. In Xcode, choose Product > Scheme > Edit Scheme,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "click the Test scheme, then click Options. Choose the language and region from the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pop-up menus, then select “Gather screenshots for localization.”",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "creating-screenshots-of-your-app-for-localizers-1": {
+      "alt": "Screenshot of the project editor with a test plan selected in the navigator and a configuration called Right-to-Left selected in the detail area, showing the location of the Application Language and Application Region under Localization.",
+      "identifier": "creating-screenshots-of-your-app-for-localizers-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1539767c41a46cd1bd0afbb817c4c0a8/creating-screenshots-of-your-app-for-localizers-1@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/editing-xliff-and-string-catalog-files": {
+      "abstract": [
+        {
+          "text": "Translate or adapt the localizable files for a language and region that you export",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from your project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/editing-xliff-and-string-catalog-files",
+      "kind": "article",
+      "role": "article",
+      "title": "Editing XLIFF and string catalog files",
+      "type": "topic",
+      "url": "/documentation/xcode/editing-xliff-and-string-catalog-files"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/exporting-localizations": {
+      "abstract": [
+        {
+          "text": "Provide the localizable files from your project to localizers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/exporting-localizations",
+      "kind": "article",
+      "role": "article",
+      "title": "Exporting localizations",
+      "type": "topic",
+      "url": "/documentation/xcode/exporting-localizations"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/importing-localizations": {
+      "abstract": [
+        {
+          "text": "Import the files that you translate or adapt for a language and region into your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/importing-localizations",
+      "kind": "article",
+      "role": "article",
+      "title": "Importing localizations",
+      "type": "topic",
+      "url": "/documentation/xcode/importing-localizations"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/localization": {
+      "abstract": [
+        {
+          "text": "Expand the market for your app by supporting multiple languages and regions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Localization",
+      "type": "topic",
+      "url": "/documentation/xcode/localization"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/locking-views-in-storyboard-and-xib-files": {
+      "abstract": [
+        {
+          "text": "Prevent changes to your Interface Builder files while localizing human-facing strings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/locking-views-in-storyboard-and-xib-files",
+      "kind": "article",
+      "role": "article",
+      "title": "Locking views in storyboard and XIB files",
+      "type": "topic",
+      "url": "/documentation/xcode/locking-views-in-storyboard-and-xib-files"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Translation-and-adaptation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/exporting-localizations",
+        "doc://com.apple.Xcode/documentation/Xcode/editing-xliff-and-string-catalog-files",
+        "doc://com.apple.Xcode/documentation/Xcode/importing-localizations",
+        "doc://com.apple.Xcode/documentation/Xcode/locking-views-in-storyboard-and-xib-files"
+      ],
+      "title": "Translation and adaptation"
+    }
+  ]
+}

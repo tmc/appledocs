@@ -1,0 +1,488 @@
+{
+  "abstract": [
+    {
+      "text": "Start the process of uploading a new version of your software to the notary service.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.notaryapi/documentation/NotaryAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.notaryapi/documentation/NotaryAPI/Submit-Software"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:notaryservice:post:v2-submissions",
+    "modules": [
+      {
+        "name": "Notary API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Submit Software"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0.0",
+        "name": "Notary API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Submit Software"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://appstoreconnect.apple.com/notary/"
+        },
+        {
+          "kind": "path",
+          "text": "v2/submissions"
+        }
+      ]
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/NewSubmissionRequest",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "data:notaryservice:NewSubmissionRequest",
+          "text": "NewSubmissionRequest"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "Information about a new software submission that you want to make.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The service recieved your submission request. The response includes information that you use to upload your software and track the status of your submission.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/NewSubmissionResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:notaryservice:NewSubmissionResponse",
+              "text": "NewSubmissionResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.notaryapi/documentation/NotaryAPI/submitting-software-for-notarization-over-the-web"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this endpoint to tell the notary service about a new software submission that you want to make. Do this when you want to notarize a new version of your software.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You provide an HTTP body that contains a name for the submission, a hash of the software that you plan to submit, and an optional webhook that the service uses to notify you when notarization completes. For the name, use the name of the file that you upload, including the ",
+              "type": "text"
+            },
+            {
+              "code": "dmg",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "zip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension. The service responds with temporary security credentials that you use to submit the software to Amazon S3 and a submission identifier that you use to track the submission’s status.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After uploading your software, you can use the identifier to ask the notary service for the status of your submission using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/Get-Submission-Status",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint. If you lose the identifier, you can get a list of your team’s 100 most recent submissions using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/Get-Previous-Submissions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint. After notarization completes, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/Get-Submission-Log",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to get details about the outcome of notarization. Do this even if notarization succeeds, because the log might contain warnings that you can fix before your next submission.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"notifications\": [",
+                    "    {",
+                    "      \"channel\": \"webhook\",",
+                    "      \"target\": \"https://example.com\"",
+                    "    }",
+                    "  ],",
+                    "  \"sha256\": \"68d561c564ef61f718e99a81b13bcb52af11b7ac9baf538af3ea0c83326fb6a1\",",
+                    "  \"submissionName\": \"OvernightTextEditor_11.6.8.zip\"",
+                    "} "
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"data\": {",
+                    "    \"attributes\": {",
+                    "      \"awsAccessKeyId\": \"ASIAIOSFODNN7EXAMPLE\",",
+                    "      \"awsSecretAccessKey\": \"wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\",",
+                    "      \"awsSessionToken\": \"AQoDYXdzEJr...\",",
+                    "      \"bucket\": \"EXAMPLE-BUCKET\",",
+                    "      \"object\": \"EXAMPLE-KEY-NAME\"",
+                    "    },",
+                    "    \"id\": \"2efe2717-52ef-43a5-96dc-0797e4ca1041\",",
+                    "    \"type\": \"newSubmissions\"",
+                    "  },",
+                    "  \"meta\": {",
+                    "  }",
+                    "} "
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.notaryapi/documentation/NotaryAPI": {
+      "abstract": [
+        {
+          "text": "Submit your macOS software for notarization through a web interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Notary API",
+      "type": "topic",
+      "url": "/documentation/notaryapi"
+    },
+    "doc://com.apple.notaryapi/documentation/NotaryAPI/Get-Previous-Submissions": {
+      "abstract": [
+        {
+          "text": "Fetch a list of your team’s previous notarization submissions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/Get-Previous-Submissions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Previous Submissions"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Previous Submissions",
+      "type": "topic",
+      "url": "/documentation/notaryapi/get-previous-submissions"
+    },
+    "doc://com.apple.notaryapi/documentation/NotaryAPI/Get-Submission-Log": {
+      "abstract": [
+        {
+          "text": "Fetch details about a single completed notarization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/Get-Submission-Log",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Submission Log"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Submission Log",
+      "type": "topic",
+      "url": "/documentation/notaryapi/get-submission-log"
+    },
+    "doc://com.apple.notaryapi/documentation/NotaryAPI/Get-Submission-Status": {
+      "abstract": [
+        {
+          "text": "Fetch the status of a software notarization submission.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/Get-Submission-Status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Submission Status"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Submission Status",
+      "type": "topic",
+      "url": "/documentation/notaryapi/get-submission-status"
+    },
+    "doc://com.apple.notaryapi/documentation/NotaryAPI/NewSubmissionRequest": {
+      "abstract": [
+        {
+          "text": "Data that you provide when starting a submission to the notary service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "NewSubmissionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/NewSubmissionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NewSubmissionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "NewSubmissionRequest",
+      "type": "topic",
+      "url": "/documentation/notaryapi/newsubmissionrequest"
+    },
+    "doc://com.apple.notaryapi/documentation/NotaryAPI/NewSubmissionResponse": {
+      "abstract": [
+        {
+          "text": "The notary service’s response to a software submission.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "NewSubmissionResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/NewSubmissionResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NewSubmissionResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "NewSubmissionResponse",
+      "type": "topic",
+      "url": "/documentation/notaryapi/newsubmissionresponse"
+    },
+    "doc://com.apple.notaryapi/documentation/NotaryAPI/Submit-Software": {
+      "abstract": [
+        {
+          "text": "Start the process of uploading a new version of your software to the notary service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/Submit-Software",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Submit Software"
+        }
+      ],
+      "role": "symbol",
+      "title": "Submit Software",
+      "type": "topic",
+      "url": "/documentation/notaryapi/submit-software"
+    },
+    "doc://com.apple.notaryapi/documentation/NotaryAPI/submitting-software-for-notarization-over-the-web": {
+      "abstract": [
+        {
+          "text": "Eliminate a dependency on macOS in your notarization workflow by interfacing directly with the notary service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/submitting-software-for-notarization-over-the-web",
+      "kind": "article",
+      "role": "article",
+      "title": "Submitting software for notarization over the web",
+      "type": "topic",
+      "url": "/documentation/notaryapi/submitting-software-for-notarization-over-the-web"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Software-submission",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.notaryapi/documentation/NotaryAPI/NewSubmissionRequest",
+        "doc://com.apple.notaryapi/documentation/NotaryAPI/NewSubmissionResponse"
+      ],
+      "title": "Software submission"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/notaryapi/submit-software"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

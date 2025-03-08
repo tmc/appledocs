@@ -1,0 +1,1798 @@
+{
+  "abstract": [
+    {
+      "text": "Implement a lightweight view for Metal rendering that’s customized to your app’s needs.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/onscreen-presentation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/creating-a-custom-metal-view"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating a Custom Metal View"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While MetalKit’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides significant functionality, allowing you to quickly get started writing Metal code, sometimes you want more control over how your Metal content is rendered.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This sample app demonstrates how to create a simple Metal view derived directly from an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to hold the view’s contents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample has targets for iOS, tvOS, and macOS.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "There are significant differences between apps that use UIKit and AppKit.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because of these differences, this sample creates two different classes. The iOS and tvOS versions of the sample use the ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLUIView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class, and the macOS version uses the ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLNSView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Both are derived from a common ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample provides a number of options you can enable when building the app, such as whether to animate the view’s contents or handle updates through system events.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You control these options by changing the preprocessor definitions in the ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLConfig.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// When enabled, rendering occurs on the main application thread.",
+            "// This can make responding to UI events during redraw simpler",
+            "// to manage because UI calls usually must occur on the main thread.",
+            "// When disabled, rendering occurs on a background thread, allowing",
+            "// the UI to respond more quickly in some cases because events can be ",
+            "// processed asynchronously from potentially CPU-intensive rendering code.",
+            "#define RENDER_ON_MAIN_THREAD 1",
+            "",
+            "// When enabled, the view continually animates and renders",
+            "// frames 60 times a second.  When disabled, rendering is event",
+            "// based, occurring when a UI event requests a redraw.",
+            "#define ANIMATION_RENDERING   1",
+            "",
+            "// When enabled, the drawable's size is updated automatically whenever",
+            "// the view is resized. When disabled, you can update the drawable's",
+            "// size explicitly outside the view class.",
+            "#define AUTOMATICALLY_RESIZE  1",
+            "",
+            "// When enabled, the renderer creates a depth target (i.e. depth buffer)",
+            "// and attaches with the render pass descritpr along with the drawable",
+            "// texture for rendering.  This enables the app properly perform depth testing.",
+            "#define CREATE_DEPTH_BUFFER   1"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Configure-the-View-With-a-Metal-Layer",
+          "level": 3,
+          "text": "Configure the View With a Metal Layer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For Metal to render to the view, the view must be backed by a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All views in UIKit are layer backed.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To indicate the type of layer backing, the view implements the ",
+              "type": "text"
+            },
+            {
+              "code": "layerClass",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class method.  To indicate that your view should be backed by a ",
+              "type": "text"
+            },
+            {
+              "code": "CAMetalLayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you must return the ",
+              "type": "text"
+            },
+            {
+              "code": "CAMetalLayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "+ (Class) layerClass",
+            "{",
+            "    return [CAMetalLayer class];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In AppKit, you make the view layer backed by setting the view’s ",
+              "type": "text"
+            },
+            {
+              "code": "wantsLayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "self.wantsLayer = YES;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This triggers a call to the view’s  ",
+              "type": "text"
+            },
+            {
+              "code": "makeBackingLayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, which returns a CAMetalLayer object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (CALayer *)makeBackingLayer",
+            "{",
+            "    return [CAMetalLayer layer];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Render-to-the-View",
+          "level": 3,
+          "text": "Render to the View",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To render to the view, create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that targets a texture provided by the layer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLRenderer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class stores the render pass descriptor in the ",
+              "type": "text"
+            },
+            {
+              "code": "_drawableRenderPassDescriptor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance variable.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Most of the properties of this descriptor are set up automatically when you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "initialize the renderer. The code configures the render pass to clear the contents",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the texture, and to store any rendered contents to the texture when the render",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pass completes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "_drawableRenderDescriptor = [MTLRenderPassDescriptor new];",
+            "_drawableRenderDescriptor.colorAttachments[0].loadAction = MTLLoadActionClear;",
+            "_drawableRenderDescriptor.colorAttachments[0].storeAction = MTLStoreActionStore;",
+            "_drawableRenderDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(0, 1, 1, 1);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You also need to set the texture that the render pass renders into.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each time the app renders a frame, the renderer obtains a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalDrawable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from the Metal layer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The drawable provides a texture for Core Animation to present onscreen.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The renderer updates the render pass descriptor to render to this texture:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "id<CAMetalDrawable> currentDrawable = [metalLayer nextDrawable];",
+            "",
+            "// If the current drawable is nil, skip rendering this frame",
+            "if(!currentDrawable)",
+            "{",
+            "    return;",
+            "}",
+            "",
+            "_drawableRenderDescriptor.colorAttachments[0].texture = currentDrawable.texture;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The rest of the rendering code is similar to that found in other Metal samples. For an explanation of a typical rendering path, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Implement-a-Render-Loop",
+          "level": 3,
+          "text": "Implement a Render Loop",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To animate the view, the sample sets up a display link. The display link calls the view at the specified interval, synchronizing updates to the display’s refresh interval. The view calls the renderer object to render a new frame of animation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "AAPLUIView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CADisplayLink",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "setupCADisplayLinkForScreen",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because you need to know which screen the window is on before creating the display link, you call this method when UIKit calls your view’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/didMoveToWindow()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. UIKit calls this method the first time the view is added to a window and when the view is moved to another screen. The code below stops the render loop and initializes a new display link.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (void)setupCADisplayLinkForScreen:(UIScreen*)screen",
+            "{",
+            "    [self stopRenderLoop];",
+            "",
+            "    _displayLink = [screen displayLinkWithTarget:self selector:@selector(render)];",
+            "",
+            "    _displayLink.paused = self.paused;",
+            "",
+            "    _displayLink.preferredFramesPerSecond = 60;",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "AAPLNSView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/cvdisplaylink-k0k",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead of a ",
+              "type": "text"
+            },
+            {
+              "code": "CADisplayLink",
+              "type": "codeVoice"
+            },
+            {
+              "text": " because ",
+              "type": "text"
+            },
+            {
+              "code": "CADisplayLink",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is not available on macOS.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "CVDisplayLink",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "CADisplayLink",
+              "type": "codeVoice"
+            },
+            {
+              "text": " API look different, but, in principle, have the same goal, which is to allow callbacks in sync with the display.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLNSView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates a ",
+              "type": "text"
+            },
+            {
+              "code": "CVDisplayLink",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "setupCVDisplayLinkForScreen",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.  The ",
+              "type": "text"
+            },
+            {
+              "code": "setupCVDisplayLinkForScreen",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method is called from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView/viewDidMoveToWindow()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which AppKit calls immediately after loading the view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the view is moved to another screen, AppKit also calls ",
+              "type": "text"
+            },
+            {
+              "code": "viewDidMoveToWindow",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and like the previous code for UIKit, the AppKit view must recreate the display link for the new screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (BOOL)setupCVDisplayLinkForScreen:(NSScreen*)screen",
+            "{",
+            "#if RENDER_ON_MAIN_THREAD",
+            "",
+            "    // The CVDisplayLink callback, DispatchRenderLoop, never executes",
+            "    // on the main thread. To execute rendering on the main thread, create",
+            "    // a dispatch source using the main queue (the main thread).",
+            "    // DispatchRenderLoop merges this dispatch source in each call",
+            "    // to execute rendering on the main thread.",
+            "    _displaySource = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, 0, 0, dispatch_get_main_queue());",
+            "    __weak AAPLView* weakSelf = self;",
+            "    dispatch_source_set_event_handler(_displaySource, ^(){",
+            "        @autoreleasepool",
+            "        {",
+            "            [weakSelf render];",
+            "        }",
+            "    });",
+            "    dispatch_resume(_displaySource);",
+            "",
+            "#endif // END RENDER_ON_MAIN_THREAD",
+            "",
+            "    CVReturn cvReturn;",
+            "",
+            "    // Create a display link capable of being used with all active displays",
+            "    cvReturn = CVDisplayLinkCreateWithActiveCGDisplays(&_displayLink);",
+            "",
+            "    if(cvReturn != kCVReturnSuccess)",
+            "    {",
+            "        return NO;",
+            "    }",
+            "",
+            "#if RENDER_ON_MAIN_THREAD",
+            "",
+            "    // Set DispatchRenderLoop as the callback function and",
+            "    // supply _displaySource as the argument to the callback.",
+            "    cvReturn = CVDisplayLinkSetOutputCallback(_displayLink, &DispatchRenderLoop, (__bridge void*)_displaySource);",
+            "",
+            "#else // IF !RENDER_ON_MAIN_THREAD",
+            "",
+            "    // Set DispatchRenderLoop as the callback function and",
+            "    // supply this view as the argument to the callback.",
+            "    cvReturn = CVDisplayLinkSetOutputCallback(_displayLink, &DispatchRenderLoop, (__bridge void*)self);",
+            "",
+            "#endif // END !RENDER_ON_MAIN_THREAD",
+            "",
+            "    if(cvReturn != kCVReturnSuccess)",
+            "    {",
+            "        return NO;",
+            "    }",
+            "",
+            "    // Associate the display link with the display on which the",
+            "    // view resides",
+            "    CGDirectDisplayID viewDisplayID =",
+            "        (CGDirectDisplayID) [self.window.screen.deviceDescription[@\"NSScreenNumber\"] unsignedIntegerValue];;",
+            "",
+            "    cvReturn = CVDisplayLinkSetCurrentCGDisplay(_displayLink, viewDisplayID);",
+            "",
+            "    if(cvReturn != kCVReturnSuccess)",
+            "    {",
+            "        return NO;",
+            "    }",
+            "",
+            "    CVDisplayLinkStart(_displayLink);",
+            "",
+            "    NSNotificationCenter* notificationCenter = [NSNotificationCenter defaultCenter];",
+            "",
+            "    // Register to be notified when the window closes so that you",
+            "    // can stop the display link",
+            "    [notificationCenter addObserver:self",
+            "                           selector:@selector(windowWillClose:)",
+            "                               name:NSWindowWillCloseNotification",
+            "                             object:self.window];",
+            "",
+            "    return YES;",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The macOS version of this code performs a few additional steps. After creating the display link, it sets the callback and a parameter to pass to the callback. If you want rendering to happen on the main thread, it passes a dispatch source object; otherwise, it passes a reference to the view itself. Finally, it tells the display link which display the window is located on, and sets a notification to be called when the window is closed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "ab04df65420c/CreatingACustomMetalView.zip": {
+      "checksum": "ab04df65420ca52654401a54051c00ca1e8f95819e26e8eacd32e2cd06b564a32ddae035afd29dc59de01951e2486d7546e1a6abf0e2e24d86d611bfbe1cf599",
+      "identifier": "ab04df65420c/CreatingACustomMetalView.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/ab04df65420c/CreatingACustomMetalView.zip"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSView"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSView/viewDidMoveToWindow()": {
+      "abstract": [
+        {
+          "text": "Informs the view that it has been added to a new view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidMoveToWindow"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView/viewDidMoveToWindow()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "viewDidMoveToWindow()",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSView/viewDidMoveToWindow()"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/cvdisplaylink-k0k": {
+      "abstract": [
+        {
+          "text": "A high-priority thread that notifies your app when a given display will need each frame.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/cvdisplaylink-k0k",
+      "kind": "article",
+      "role": "article",
+      "title": "CVDisplayLink",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/cvdisplaylink-k0k"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit/MTKView": {
+      "abstract": [
+        {
+          "text": "A specialized view that creates, configures, and displays Metal objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTKView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKView",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKView"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CADisplayLink": {
+      "abstract": [
+        {
+          "text": "A timer object that allows your app to synchronize its drawing to the refresh rate of the display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CADisplayLink"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CADisplayLink",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CADisplayLink",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CADisplayLink"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CAMetalDrawable": {
+      "abstract": [
+        {
+          "text": "A Metal drawable associated with a Core Animation layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMetalDrawable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDrawable",
+          "text": "MTLDrawable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalDrawable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CAMetalDrawable",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CAMetalDrawable"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer": {
+      "abstract": [
+        {
+          "text": "A Core Animation layer that Metal can render into, typically displayed onscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMetalLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CAMetalLayer",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CAMetalLayer"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView": {
+      "abstract": [
+        {
+          "text": "An object that manages the content for a rectangular area on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView/didMoveToWindow()": {
+      "abstract": [
+        {
+          "text": "Tells the view that its window object changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didMoveToWindow"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/didMoveToWindow()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didMoveToWindow()",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView/didMoveToWindow()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor": {
+      "abstract": [
+        {
+          "text": "A group of render targets that hold the results of a render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPassDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpassdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link": {
+      "abstract": [
+        {
+          "text": "Pace rendering with minimal input latency while providing essential information to the operating system for power-efficient rendering, thermal mitigation, and the scheduling of sustainable workloads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Achieving smooth frame rates with Metal’s display link",
+      "type": "topic",
+      "url": "/documentation/metal/achieving-smooth-frame-rates-with-metal-s-display-link"
+    },
+    "doc://com.apple.metal/documentation/Metal/adjusting-the-level-of-detail-using-metal-mesh-shaders": {
+      "abstract": [
+        {
+          "text": "Choose and render meshes with several levels of detail using object and mesh shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/adjusting-the-level-of-detail-using-metal-mesh-shaders",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adjusting the level of detail using Metal mesh shaders",
+      "type": "topic",
+      "url": "/documentation/metal/adjusting-the-level-of-detail-using-metal-mesh-shaders"
+    },
+    "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing": {
+      "abstract": [
+        {
+          "text": "Determine which pixels are visible in a scene by using a depth texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Calculating Primitive Visibility Using Depth Testing",
+      "type": "topic",
+      "url": "/documentation/metal/calculating-primitive-visibility-using-depth-testing"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-a-3d-application-with-hydra-rendering": {
+      "abstract": [
+        {
+          "text": "Build a 3D application that integrates with Hydra and USD.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-3d-application-with-hydra-rendering",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a 3D application with Hydra rendering",
+      "type": "topic",
+      "url": "/documentation/metal/creating-a-3d-application-with-hydra-rendering"
+    },
+    "doc://com.apple.metal/documentation/Metal/culling-occluded-geometry-using-the-visibility-result-buffer": {
+      "abstract": [
+        {
+          "text": "Draw a scene without rendering hidden geometry by checking whether each object in the scene is visible.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/culling-occluded-geometry-using-the-visibility-result-buffer",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Culling occluded geometry using the visibility result buffer",
+      "type": "topic",
+      "url": "/documentation/metal/culling-occluded-geometry-using-the-visibility-result-buffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup": {
+      "abstract": [
+        {
+          "text": "Render into an offscreen texture by creating a custom render pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Customizing Render Pass Setup",
+      "type": "topic",
+      "url": "/documentation/metal/customizing-render-pass-setup"
+    },
+    "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu": {
+      "abstract": [
+        {
+          "text": "Reduce CPU overhead and simplify your command execution by reusing commands.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding Indirect Command Buffers on the CPU",
+      "type": "topic",
+      "url": "/documentation/metal/encoding-indirect-command-buffers-on-the-cpu"
+    },
+    "doc://com.apple.metal/documentation/Metal/implementing-order-independent-transparency-with-image-blocks": {
+      "abstract": [
+        {
+          "text": "Draw overlapping, transparent surfaces in any order by using tile shaders and image blocks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/implementing-order-independent-transparency-with-image-blocks",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing Order-Independent Transparency with Image Blocks",
+      "type": "topic",
+      "url": "/documentation/metal/implementing-order-independent-transparency-with-image-blocks"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-edge-rendering-quality-with-multisample-antialiasing-msaa": {
+      "abstract": [
+        {
+          "text": "Use Metal’s MSAA to enhance the rendering of edges with custom resolve options and immediate and tile-based resolve paths.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-edge-rendering-quality-with-multisample-antialiasing-msaa",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Improving edge-rendering quality with multisample antialiasing (MSAA)",
+      "type": "topic",
+      "url": "/documentation/metal/improving-edge-rendering-quality-with-multisample-antialiasing-msaa"
+    },
+    "doc://com.apple.metal/documentation/Metal/loading-textures-and-models-using-metal-fast-resource-loading": {
+      "abstract": [
+        {
+          "text": "Stream texture and buffer data directly from disk into Metal resources using fast resource loading.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/loading-textures-and-models-using-metal-fast-resource-loading",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Loading textures and models using Metal fast resource loading",
+      "type": "topic",
+      "url": "/documentation/metal/loading-textures-and-models-using-metal-fast-resource-loading"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/onscreen-presentation": {
+      "abstract": [
+        {
+          "text": "Show the output from a GPU’s rendering pass to the user in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/onscreen-presentation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Onscreen Presentation",
+      "type": "topic",
+      "url": "/documentation/metal/onscreen-presentation"
+    },
+    "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering": {
+      "abstract": [
+        {
+          "text": "Switch dynamically between multiple GPUs to efficiently render to a display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Selecting Device Objects for Graphics Rendering",
+      "type": "topic",
+      "url": "/documentation/metal/selecting-device-objects-for-graphics-rendering"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives": {
+      "abstract": [
+        {
+          "text": "Render a simple 2D triangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using a Render Pipeline to Render Primitives",
+      "type": "topic",
+      "url": "/documentation/metal/using-a-render-pipeline-to-render-primitives"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents": {
+      "abstract": [
+        {
+          "text": "Create a MetalKit view and a render pass to draw the view’s contents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using Metal to Draw a View’s Contents",
+      "type": "topic",
+      "url": "/documentation/metal/using-metal-to-draw-a-view's-contents"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "ab04df65420c/CreatingACustomMetalView.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Render-Workflows",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents",
+        "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+        "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering",
+        "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup",
+        "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing",
+        "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu",
+        "doc://com.apple.metal/documentation/Metal/implementing-order-independent-transparency-with-image-blocks",
+        "doc://com.apple.metal/documentation/Metal/loading-textures-and-models-using-metal-fast-resource-loading",
+        "doc://com.apple.metal/documentation/Metal/adjusting-the-level-of-detail-using-metal-mesh-shaders",
+        "doc://com.apple.metal/documentation/Metal/creating-a-3d-application-with-hydra-rendering",
+        "doc://com.apple.metal/documentation/Metal/culling-occluded-geometry-using-the-visibility-result-buffer",
+        "doc://com.apple.metal/documentation/Metal/improving-edge-rendering-quality-with-multisample-antialiasing-msaa",
+        "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link"
+      ],
+      "title": "Render Workflows"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Render-Workflows",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents",
+                "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+                "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering",
+                "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup",
+                "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing",
+                "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu",
+                "doc://com.apple.metal/documentation/Metal/implementing-order-independent-transparency-with-image-blocks",
+                "doc://com.apple.metal/documentation/Metal/loading-textures-and-models-using-metal-fast-resource-loading",
+                "doc://com.apple.metal/documentation/Metal/adjusting-the-level-of-detail-using-metal-mesh-shaders",
+                "doc://com.apple.metal/documentation/Metal/creating-a-3d-application-with-hydra-rendering",
+                "doc://com.apple.metal/documentation/Metal/culling-occluded-geometry-using-the-visibility-result-buffer",
+                "doc://com.apple.metal/documentation/Metal/improving-edge-rendering-quality-with-multisample-antialiasing-msaa",
+                "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link"
+              ],
+              "title": "Render Workflows"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIResponder",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CAMetalDrawable/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CAMetalDrawable"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)MTLDrawable",
+              "text": "MTLDrawable"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CAMetalLayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CAMetalLayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CALayer",
+              "text": "CALayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTKView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSView~1viewDidMoveToWindow()/title",
+          "value": "viewDidMoveToWindow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSView~1viewDidMoveToWindow()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewDidMoveToWindow"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CADisplayLink/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CADisplayLink"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDescriptor/title",
+          "value": "MTLRenderPassDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSResponder",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView~1didMoveToWindow()/title",
+          "value": "didMoveToWindow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView~1didMoveToWindow()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "didMoveToWindow"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/creating-a-custom-metal-view"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/creating-a-custom-metal-view"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

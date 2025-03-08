@@ -1,0 +1,2030 @@
+{
+  "abstract": [
+    {
+      "text": "Speed up OpenGL ES or OpenGL app development. Use math libraries, background texture loading, pre-created shader effects, and a standard view and view controller to implement your rendering loop.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.glkit/documentation/GLKit"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "GLKit",
+    "modules": [
+      {
+        "name": "GLKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "5.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "5.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.8",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "GLKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The GLKit framework provides functions and classes that reduce the effort required to create new shader-based apps or to port existing apps that rely on fixed-function vertex or fragment processing provided by earlier versions of OpenGL ES or OpenGL.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "GLKit-Features",
+          "level": 3,
+          "text": "GLKit Features",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "GLKit provides functionality in four key areas:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Texture loading",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " allows your app to easily load textures from a variety of sources. Textures can even be loaded asynchronously in the background with just a few lines of code. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKTextureLoader",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Math libraries",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " provide commonly used vector, quaternion and matrix operations. These implementations are optimized to provide great performance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Effects",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " provide standard implementations of common shader effects. You configure the effect and the associated vertex data; the effect creates and loads an appropriate shader. GLKit includes three effects: The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class implements a critical subset of the OpenGL ES 1.1 shading and lighting model, the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKReflectionMapEffect",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class extends the base effect to include reflection mapping support, and the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKSkyboxEffect",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class provides an implementation of a skybox effect.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Views and View Controllers",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " provide a standard implementation of an OpenGL ES view and a corresponding view controller. This reduces the amount of code needed to create an iOS app that use OpenGL ES. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On iOS, GLKit requires an OpenGL ES 2.0 context. In macOS, GLKit requires an OpenGL context that supports the OpenGL 3.2 Core Profile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.glkit/documentation/GLKit": {
+      "abstract": [
+        {
+          "text": "Speed up OpenGL ES or OpenGL app development. Use math libraries, background texture loading, pre-created shader effects, and a standard view and view controller to implement your rendering loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GLKit",
+      "type": "topic",
+      "url": "/documentation/glkit"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect": {
+      "abstract": [
+        {
+          "text": "A simple lighting and shading system for use in shader-based OpenGL rendering.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKBaseEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKBaseEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKBaseEffect",
+      "type": "topic",
+      "url": "/documentation/glkit/glkbaseeffect"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectProperty": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for configuration information used in GLKit rendering effects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKEffectProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectProperty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKEffectProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKEffectProperty",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectproperty"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyFog": {
+      "abstract": [
+        {
+          "text": "Fog drawing information for use in GLKit rendering effects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyFog"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyFog",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyFog"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKEffectPropertyFog",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertyfog"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight": {
+      "abstract": [
+        {
+          "text": "Lighting information for use in GLKit rendering effects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyLight"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKEffectPropertyLight",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertylight"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyMaterial": {
+      "abstract": [
+        {
+          "text": "Surface appearance properties for use in GLKit rendering effects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKEffectPropertyMaterial",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertymaterial"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyTexture": {
+      "abstract": [
+        {
+          "text": "Texture drawing parameters for use in GLKit rendering effects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKEffectPropertyTexture",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertytexture"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyTransform": {
+      "abstract": [
+        {
+          "text": "Coordinate transform information for use in GLKit rendering effects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKEffectPropertyTransform",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertytransform"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKMatrixStack": {
+      "abstract": [
+        {
+          "text": "An opaque type that represents a stack of 4 x 4 matrices, providing support for hierarchical transform modeling and similar tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKMatrixStack"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKMatrixStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKMatrixStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKMatrixStack",
+      "type": "topic",
+      "url": "/documentation/glkit/glkmatrixstack"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKMesh": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKMesh"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKMesh",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKMesh"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKMesh",
+      "type": "topic",
+      "url": "/documentation/glkit/glkmesh"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKMeshBuffer": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKMeshBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKMeshBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKMeshBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKMeshBuffer",
+      "type": "topic",
+      "url": "/documentation/glkit/glkmeshbuffer"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKMeshBufferAllocator": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKMeshBufferAllocator"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKMeshBufferAllocator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKMeshBufferAllocator"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKMeshBufferAllocator",
+      "type": "topic",
+      "url": "/documentation/glkit/glkmeshbufferallocator"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKNamedEffect": {
+      "abstract": [
+        {
+          "text": "A standard interface for objects that provide shader-based OpenGL rendering effects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKNamedEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKNamedEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKNamedEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKNamedEffect",
+      "type": "topic",
+      "url": "/documentation/glkit/glknamedeffect"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKReflectionMapEffect": {
+      "abstract": [
+        {
+          "text": "A lighting and shading system that supports reflection mapping for use in shader-based OpenGL rendering.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKReflectionMapEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKReflectionMapEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKReflectionMapEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKReflectionMapEffect",
+      "type": "topic",
+      "url": "/documentation/glkit/glkreflectionmapeffect"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKSkyboxEffect": {
+      "abstract": [
+        {
+          "text": "A simple skybox visual effect for use in shader-based OpenGL rendering.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKSkyboxEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKSkyboxEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKSkyboxEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKSkyboxEffect",
+      "type": "topic",
+      "url": "/documentation/glkit/glkskyboxeffect"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKSubmesh": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKSubmesh"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKSubmesh",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKSubmesh"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKSubmesh",
+      "type": "topic",
+      "url": "/documentation/glkit/glksubmesh"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKTextureInfo": {
+      "abstract": [
+        {
+          "text": "Information about OpenGL textures created by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKTextureLoader",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " class.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKTextureInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKTextureInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKTextureInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKTextureInfo",
+      "type": "topic",
+      "url": "/documentation/glkit/glktextureinfo"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKTextureLoader": {
+      "abstract": [
+        {
+          "text": "A utility class that simplifies loading OpenGL or OpenGL ES texture datas from a variety of image file formats.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKTextureLoader"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKTextureLoader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKTextureLoader"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKTextureLoader",
+      "type": "topic",
+      "url": "/documentation/glkit/glktextureloader"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKView": {
+      "abstract": [
+        {
+          "text": "A default implementation for views that draw their content using OpenGL ES.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKView"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKView"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKView",
+      "type": "topic",
+      "url": "/documentation/glkit/glkview"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages an OpenGL ES rendering loop.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKViewController",
+      "type": "topic",
+      "url": "/documentation/glkit/glkviewcontroller"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKViewControllerDelegate": {
+      "abstract": [
+        {
+          "text": "Rendering loop callback methods for use with a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKViewController",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKViewControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/glkit/glkviewcontrollerdelegate"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKViewDelegate": {
+      "abstract": [
+        {
+          "text": "Drawing callback methods for use with a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKView",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKViewDelegate",
+      "type": "topic",
+      "url": "/documentation/glkit/glkviewdelegate"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLK_EXTERN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GLK_EXTERN"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLK_EXTERN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GLK_EXTERN",
+      "type": "topic",
+      "url": "/documentation/glkit/glk_extern"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLK_INLINE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GLK_INLINE"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLK_INLINE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GLK_INLINE",
+      "type": "topic",
+      "url": "/documentation/glkit/glk_inline"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/OPENGLES_DEPRECATED": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "OPENGLES_DEPRECATED"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/OPENGLES_DEPRECATED",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OPENGLES_DEPRECATED",
+      "type": "topic",
+      "url": "/documentation/glkit/opengles_deprecated"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/OPENGL_DEPRECATED": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "OPENGL_DEPRECATED"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/OPENGL_DEPRECATED",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OPENGL_DEPRECATED",
+      "type": "topic",
+      "url": "/documentation/glkit/opengl_deprecated"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/glkit-constants": {
+      "abstract": [],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/glkit-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GLKit Constants",
+      "type": "topic",
+      "url": "/documentation/glkit/glkit-constants"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/glkit-data-types": {
+      "abstract": [],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/glkit-data-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GLKit Data Types",
+      "type": "topic",
+      "url": "/documentation/glkit/glkit-data-types"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/glkit-effects-constants": {
+      "abstract": [],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/glkit-effects-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GLKit Effects Constants",
+      "type": "topic",
+      "url": "/documentation/glkit/glkit-effects-constants"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/glkit-enumerations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/glkit-enumerations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GLKit Enumerations",
+      "type": "topic",
+      "url": "/documentation/glkit/glkit-enumerations"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/glkit-functions": {
+      "abstract": [],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/glkit-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GLKit Functions",
+      "type": "topic",
+      "url": "/documentation/glkit/glkit-functions"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/glkit-math-utilities": {
+      "abstract": [],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/glkit-math-utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GLKit Math Utilities",
+      "type": "topic",
+      "url": "/documentation/glkit/glkit-math-utilities"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/glkit-structures": {
+      "abstract": [],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/glkit-structures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GLKit Structures",
+      "type": "topic",
+      "url": "/documentation/glkit/glkit-structures"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/glkmatrix3-pcl": {
+      "abstract": [],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/glkmatrix3-pcl",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GLKMatrix3",
+      "type": "topic",
+      "url": "/documentation/glkit/glkmatrix3-pcl"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/glkmatrix4-pce": {
+      "abstract": [],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/glkmatrix4-pce",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GLKMatrix4",
+      "type": "topic",
+      "url": "/documentation/glkit/glkmatrix4-pce"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/glkquaternion-pc6": {
+      "abstract": [],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/glkquaternion-pc6",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GLKQuaternion",
+      "type": "topic",
+      "url": "/documentation/glkit/glkquaternion-pc6"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/glkvector2-pbj": {
+      "abstract": [],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/glkvector2-pbj",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GLKVector2",
+      "type": "topic",
+      "url": "/documentation/glkit/glkvector2-pbj"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/glkvector3-pbt": {
+      "abstract": [],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/glkvector3-pbt",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GLKVector3",
+      "type": "topic",
+      "url": "/documentation/glkit/glkvector3-pbt"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/glkvector4-pbk": {
+      "abstract": [],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/glkvector4-pbk",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GLKVector4",
+      "type": "topic",
+      "url": "/documentation/glkit/glkvector4-pbk"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/struct_(unnamed)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": ""
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/struct_(unnamed)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "struct (unnamed)"
+        }
+      ],
+      "role": "symbol",
+      "title": "struct (unnamed)",
+      "type": "topic",
+      "url": "/documentation/glkit/struct_(unnamed)"
+    },
+    "https://developer.apple.com/library/archive/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008793": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008793",
+      "title": "OpenGL ES Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "OpenGL ES Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008793"
+    },
+    "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/OpenGL-MacProgGuide/opengl_intro/opengl_intro.html#//apple_ref/doc/uid/TP40001987": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/OpenGL-MacProgGuide/opengl_intro/opengl_intro.html#//apple_ref/doc/uid/TP40001987",
+      "title": "OpenGL Programming Guide for Mac",
+      "titleInlineContent": [
+        {
+          "text": "OpenGL Programming Guide for Mac",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/OpenGL-MacProgGuide/opengl_intro/opengl_intro.html#//apple_ref/doc/uid/TP40001987"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/OpenGL-MacProgGuide/opengl_intro/opengl_intro.html#//apple_ref/doc/uid/TP40001987",
+        "https://developer.apple.com/library/archive/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008793"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Texture-Loading",
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKTextureInfo",
+        "doc://com.apple.glkit/documentation/GLKit/GLKTextureLoader"
+      ],
+      "title": "Texture Loading"
+    },
+    {
+      "anchor": "OpenGL-ES-View-Rendering",
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKView",
+        "doc://com.apple.glkit/documentation/GLKit/GLKViewDelegate",
+        "doc://com.apple.glkit/documentation/GLKit/GLKViewController",
+        "doc://com.apple.glkit/documentation/GLKit/GLKViewControllerDelegate"
+      ],
+      "title": "OpenGL ES View Rendering"
+    },
+    {
+      "anchor": "Mesh-Data-Management",
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKMesh",
+        "doc://com.apple.glkit/documentation/GLKit/GLKMeshBuffer",
+        "doc://com.apple.glkit/documentation/GLKit/GLKMeshBufferAllocator",
+        "doc://com.apple.glkit/documentation/GLKit/GLKSubmesh"
+      ],
+      "title": "Mesh Data Management"
+    },
+    {
+      "anchor": "Shader-Based-Rendering-Effects",
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKNamedEffect",
+        "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect",
+        "doc://com.apple.glkit/documentation/GLKit/GLKReflectionMapEffect",
+        "doc://com.apple.glkit/documentation/GLKit/GLKSkyboxEffect"
+      ],
+      "title": "Shader-Based Rendering Effects"
+    },
+    {
+      "anchor": "Rendering-Effect-Parameters",
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectProperty",
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyFog",
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight",
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyTexture",
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyMaterial",
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyTransform",
+        "doc://com.apple.glkit/documentation/GLKit/glkit-effects-constants"
+      ],
+      "title": "Rendering Effect Parameters"
+    },
+    {
+      "anchor": "Math-Utilties",
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKMatrixStack",
+        "doc://com.apple.glkit/documentation/GLKit/glkmatrix3-pcl",
+        "doc://com.apple.glkit/documentation/GLKit/glkmatrix4-pce",
+        "doc://com.apple.glkit/documentation/GLKit/glkvector2-pbj",
+        "doc://com.apple.glkit/documentation/GLKit/glkvector3-pbt",
+        "doc://com.apple.glkit/documentation/GLKit/glkvector4-pbk",
+        "doc://com.apple.glkit/documentation/GLKit/glkquaternion-pc6",
+        "doc://com.apple.glkit/documentation/GLKit/glkit-math-utilities"
+      ],
+      "title": "Math Utilties"
+    },
+    {
+      "anchor": "Reference",
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/glkit-structures",
+        "doc://com.apple.glkit/documentation/GLKit/glkit-enumerations",
+        "doc://com.apple.glkit/documentation/GLKit/glkit-constants",
+        "doc://com.apple.glkit/documentation/GLKit/glkit-functions",
+        "doc://com.apple.glkit/documentation/GLKit/glkit-data-types"
+      ],
+      "title": "Reference"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Texture-Loading",
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKTextureInfo",
+                "doc://com.apple.glkit/documentation/GLKit/GLKTextureLoader"
+              ],
+              "title": "Texture Loading"
+            },
+            {
+              "anchor": "OpenGL-ES-View-Rendering",
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKView",
+                "doc://com.apple.glkit/documentation/GLKit/GLKViewDelegate",
+                "doc://com.apple.glkit/documentation/GLKit/GLKViewController",
+                "doc://com.apple.glkit/documentation/GLKit/GLKViewControllerDelegate"
+              ],
+              "title": "OpenGL ES View Rendering"
+            },
+            {
+              "anchor": "Mesh-Data-Management",
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKMesh",
+                "doc://com.apple.glkit/documentation/GLKit/GLKMeshBuffer",
+                "doc://com.apple.glkit/documentation/GLKit/GLKMeshBufferAllocator",
+                "doc://com.apple.glkit/documentation/GLKit/GLKSubmesh"
+              ],
+              "title": "Mesh Data Management"
+            },
+            {
+              "anchor": "Shader-Based-Rendering-Effects",
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKNamedEffect",
+                "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect",
+                "doc://com.apple.glkit/documentation/GLKit/GLKReflectionMapEffect",
+                "doc://com.apple.glkit/documentation/GLKit/GLKSkyboxEffect"
+              ],
+              "title": "Shader-Based Rendering Effects"
+            },
+            {
+              "anchor": "Rendering-Effect-Parameters",
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectProperty",
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyFog",
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight",
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyTexture",
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyMaterial",
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyTransform",
+                "doc://com.apple.glkit/documentation/GLKit/glkit-effects-constants"
+              ],
+              "title": "Rendering Effect Parameters"
+            },
+            {
+              "anchor": "Math-Utilties",
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKMatrixStack",
+                "doc://com.apple.glkit/documentation/GLKit/glkmatrix3-pcl",
+                "doc://com.apple.glkit/documentation/GLKit/glkmatrix4-pce",
+                "doc://com.apple.glkit/documentation/GLKit/glkvector2-pbj",
+                "doc://com.apple.glkit/documentation/GLKit/glkvector3-pbt",
+                "doc://com.apple.glkit/documentation/GLKit/glkvector4-pbk",
+                "doc://com.apple.glkit/documentation/GLKit/glkquaternion-pc6",
+                "doc://com.apple.glkit/documentation/GLKit/glkit-math-utilities"
+              ],
+              "title": "Math Utilties"
+            },
+            {
+              "anchor": "Reference",
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/glkit-structures",
+                "doc://com.apple.glkit/documentation/GLKit/glkit-enumerations",
+                "doc://com.apple.glkit/documentation/GLKit/glkit-constants",
+                "doc://com.apple.glkit/documentation/GLKit/glkit-functions",
+                "doc://com.apple.glkit/documentation/GLKit/glkit-data-types"
+              ],
+              "title": "Reference"
+            },
+            {
+              "anchor": "Structures",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/struct_(unnamed)"
+              ],
+              "title": "Structures"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLK_EXTERN",
+                "doc://com.apple.glkit/documentation/GLKit/GLK_INLINE",
+                "doc://com.apple.glkit/documentation/GLKit/OPENGLES_DEPRECATED",
+                "doc://com.apple.glkit/documentation/GLKit/OPENGL_DEPRECATED"
+              ],
+              "title": "Macros"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/OpenGL-MacProgGuide/opengl_intro/opengl_intro.html#//apple_ref/doc/uid/TP40001987",
+                "https://developer.apple.com/library/archive/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008793"
+              ],
+              "title": "Related Documentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKView/title",
+          "value": "GLKView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyTexture/title",
+          "value": "GLKEffectPropertyTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyTexture/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyMaterial/title",
+          "value": "GLKEffectPropertyMaterial"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyMaterial/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyMaterial"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyMaterial/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyMaterial"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectProperty/title",
+          "value": "GLKEffectProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectProperty/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectProperty/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKMeshBufferAllocator/title",
+          "value": "GLKMeshBufferAllocator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKMeshBufferAllocator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKMeshBufferAllocator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKMeshBufferAllocator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKMeshBufferAllocator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyTransform/title",
+          "value": "GLKEffectPropertyTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyTransform/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyFog/title",
+          "value": "GLKEffectPropertyFog"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyFog/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyFog"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyFog/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyFog"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKViewControllerDelegate/title",
+          "value": "GLKViewControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKViewControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKViewControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKReflectionMapEffect/title",
+          "value": "GLKReflectionMapEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKReflectionMapEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKReflectionMapEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKReflectionMapEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKReflectionMapEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKSubmesh/title",
+          "value": "GLKSubmesh"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKSubmesh/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKSubmesh"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKSubmesh/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKSubmesh"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKMeshBuffer/title",
+          "value": "GLKMeshBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKMeshBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKMeshBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKMeshBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKMeshBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKMesh/title",
+          "value": "GLKMesh"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKMesh/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKMesh"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKMesh/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKMesh"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKNamedEffect/title",
+          "value": "GLKNamedEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKNamedEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKNamedEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKNamedEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKNamedEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKViewController/title",
+          "value": "GLKViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight/title",
+          "value": "GLKEffectPropertyLight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKMatrixStack/title",
+          "value": "GLKMatrixStackRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKMatrixStack/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKMatrixStackRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKMatrixStack/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKMatrixStackRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect/title",
+          "value": "GLKBaseEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKBaseEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKBaseEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKViewDelegate/title",
+          "value": "GLKViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKTextureLoader/title",
+          "value": "GLKTextureLoader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKTextureLoader/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKTextureLoader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKTextureLoader/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKTextureLoader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKSkyboxEffect/title",
+          "value": "GLKSkyboxEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKSkyboxEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKSkyboxEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKSkyboxEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKSkyboxEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKTextureInfo/title",
+          "value": "GLKTextureInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKTextureInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKTextureInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKTextureInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKTextureInfo"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/glkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/glkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

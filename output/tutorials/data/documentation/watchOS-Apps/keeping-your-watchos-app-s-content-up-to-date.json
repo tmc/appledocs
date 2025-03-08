@@ -1,0 +1,1567 @@
+{
+  "abstract": [
+    {
+      "text": "Ensure that your app’s content is relevant and up to date.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/keeping-your-watchos-app-s-content-up-to-date"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Keeping your watchOS content up to date"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A watchOS app rarely runs in isolation; it needs data from the outside world. You",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can access data directly from a web service, CloudKit, or other online resources.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also share data from a paired iPhone, although this can’t be your app’s primary",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "way of accessing data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because Apple Watch has several ways to connect to the internet, it’s important",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to test all of your app’s networking code over all possible routes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Access-data-directly",
+          "level": 3,
+          "text": "Access data directly",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your watchOS app can connect directly to web services and other online sources. When",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "making these requests, the system can send data through a paired iPhone as a proxy,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "over a known Wi-Fi network, or over the watch’s own cellular connection (see Test Your Update Code with Different Configurations below).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Always use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object to make network requests; however, the type of session varies depending on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app’s needs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your app is running in the foreground, use a default or ephemeral session to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "avoid any delays to your request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your app is running in the background (or about to become inactive), use a background",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "session to ensure the request completes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Default and ephemeral sessions minimize any possible delays between making the request",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and receiving the response. These sessions are ideal for small exchanges of data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when the user actively interacts with the app. You can also use them to update your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app’s content whenever the app becomes active. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/making-default-and-ephemeral-requests",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Background sessions, on the other hand, guarantee that your app eventually receives",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a response, even if your app becomes inactive or terminates. However, the system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "may delay or defer background sessions based on available resources. For more information,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/making-background-requests",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about using URL sessions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-CloudKit-to-store-data-in-the-cloud",
+          "level": 3,
+          "text": "Use CloudKit to store data in the cloud",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CloudKit lets you save data in an iCloud container, sharing that data across all",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the user’s iCloud-connected devices. For example, you could use CloudKit to share",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app’s settings or sync the user’s current location in a long-form audio file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "CloudKit also lets you create cloud-based apps without having to set up and manage",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your own servers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CloudKit offers the following advantages:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Users can access CloudKit data based on their Apple ID without requiring in-app",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "sign-in.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "CloudKit is ubiquitous; it’s available as a native framework on all of Apple’s",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "platforms. Additionally, the web frameworks give users access to CloudKit on the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "web or on platforms that don’t have a native framework.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "CloudKit requests use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "This means watchOS automatically selects the best route when making the request (proxied",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "through a paired iPhone, over Wi-Fi, or over a cellular connection).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CloudKit includes support for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKSubscription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and notifications in watchOS 6 and later, letting your watchOS app respond to changes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from other devices. This makes CloudKit a potential replacement for Watch Connectivity",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for independent apps. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Share-data-with-the-paired-iPhone",
+          "level": 3,
+          "text": "Share data with the paired iPhone",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While your watchOS app can schedule periodic background tasks to update its information,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "these tasks are strictly limited — both in the number of times your app can wake per",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "day, and in the amount of time it can run when it wakes. Additionally, your app isn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "guaranteed to receive background execution time. The system gives priority to apps with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a complication in the active watch face and apps in the dock.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "keeping-your-watchos-app-s-content-up-to-date-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "keeping-your-watchos-app-s-content-up-to-date-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your watchOS app has a companion iOS app installed, you can take advantage of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it to update your watchOS app from its companion. For example, if the user’s iPhone",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and Apple Watch can communicate with each other, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "framework to opportunistically send updates from iOS to watchOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, WatchConnectivity isn’t always available. In watchOS 6 and later, users",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "may not install the iOS companion for their independent watchOS apps. Also, with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the release of the Apple Watch Series 3 (GPS + Cellular), even dependent apps are likely",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to be away from the paired iPhone for extended periods. It’s vital that your app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "continue to provide useful information even when it can’t connect with its companion,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so you can’t rely on WatchConnectivity as your only means of updating the watchOS",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app. Instead, use the WatchConnectivity framework as an opportunistic optimization,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "rather than the primary means of supplying fresh data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on using background refresh tasks, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKApplicationRefreshBackgroundTask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more on the WatchConnectivity framework, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-your-update-code-with-different-configurations",
+          "level": 3,
+          "text": "Test your update code with different configurations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your watchOS app connects to CloudKit or interacts with online resources using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a URL session request, the system can route the request in one of three ways. While",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "developing your app, make sure to test your network requests over all three routes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system can route the request by:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Proxy through iPhone",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Connecting to a known network",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Connecting using cellular data",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, the watch attempts to proxy the request through a paired iPhone. The watch",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "communicates with the phone over Bluetooth, sharing the phone’s connection to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "internet. When connected to a paired iPhone, the control center shows a green iPhone",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "icon in the upper-left corner.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "keeping-your-watchos-app-s-content-up-to-date-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the watch can’t connect to a paired iPhone but can connect to a known Wi-Fi network",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(a network that the user has previously logged into with their phone), then it sends",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the request using the Wi-Fi network. When connected to a known network, the control",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "center shows the Wi-Fi network in the upper-left corner.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "keeping-your-watchos-app-s-content-up-to-date-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, if the watch can’t connect to either a paired iPhone or a known Wi-Fi network,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it sends the request using its cellular connection. This route is only available",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on Apple Watch Series 3 (GPS + Cellular). When using a cellular connection, the control",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "center shows the cell connection’s signal strength as green dots in the upper-left",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "corner.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "keeping-your-watchos-app-s-content-up-to-date-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppIntents/ActionButtonArticle": {
+      "abstract": [
+        {
+          "text": "Use App Intents to register actions for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/ActionButtonArticle",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to the Action button on Apple Watch Ultra",
+      "type": "topic",
+      "url": "/documentation/AppIntents/ActionButtonArticle"
+    },
+    "doc://com.apple.documentation/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/CloudKit"
+    },
+    "doc://com.apple.documentation/documentation/CloudKit/CKSubscription": {
+      "abstract": [
+        {
+          "text": "An abstract base class for subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKSubscription"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKSubscription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSubscription",
+      "type": "topic",
+      "url": "/documentation/CloudKit/CKSubscription"
+    },
+    "doc://com.apple.documentation/documentation/WatchConnectivity": {
+      "abstract": [
+        {
+          "text": "Implement two-way communication between an iOS app and its paired watchOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Watch Connectivity",
+      "type": "topic",
+      "url": "/documentation/WatchConnectivity"
+    },
+    "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession": {
+      "abstract": [
+        {
+          "text": "The object that initiates communication between a WatchKit extension and its companion iOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WCSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WCSession",
+      "type": "topic",
+      "url": "/documentation/WatchConnectivity/WCSession"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKApplicationRefreshBackgroundTask": {
+      "abstract": [
+        {
+          "text": "A task that updates your app’s state in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKApplicationRefreshBackgroundTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKApplicationRefreshBackgroundTask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKApplicationRefreshBackgroundTask",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKApplicationRefreshBackgroundTask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "abstract": [
+        {
+          "text": "Interact with URLs and communicate with servers using standard Internet protocols. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "article",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration object that defines behavior and policies for a URL session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSessionConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontask": {
+      "abstract": [
+        {
+          "text": "A task, like downloading a specific resource, performed in a URL session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSessionTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionTask",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontask"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that combine complications, notifications, and Siri to create",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a personal experience on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps",
+      "images": [
+        {
+          "identifier": "watchOSApps-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "watchOS apps",
+      "type": "topic",
+      "url": "/documentation/watchos-apps"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/authenticating-users-on-apple-watch": {
+      "abstract": [
+        {
+          "text": "Create an account sign-up and sign-in strategy for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/authenticating-users-on-apple-watch",
+      "kind": "article",
+      "role": "article",
+      "title": "Authenticating users on Apple Watch",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/authenticating-users-on-apple-watch"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/creating-independent-watchos-apps": {
+      "abstract": [
+        {
+          "text": "Set up a watchOS app that installs and runs without a companion iOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/creating-independent-watchos-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating independent watchOS apps",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/creating-independent-watchos-apps"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/enabling-double-tap": {
+      "abstract": [
+        {
+          "text": "Customize your app’s response to the double-tap gesture on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/enabling-double-tap",
+      "images": [
+        {
+          "identifier": "enabling-double-tap-on-watch-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling the double-tap gesture on Apple Watch",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/enabling-double-tap"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/making-background-requests": {
+      "abstract": [
+        {
+          "text": "Send requests from your app when it’s running in the background.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/making-background-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Making background requests",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/making-background-requests"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/making-default-and-ephemeral-requests": {
+      "abstract": [
+        {
+          "text": "Send requests from your app when it’s running in the foreground.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/making-default-and-ephemeral-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Making default and ephemeral requests",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/making-default-and-ephemeral-requests"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-up-a-watchos-project": {
+      "abstract": [
+        {
+          "text": "Create a new watchOS project or add a watch target to an existing iOS project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-up-a-watchos-project",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Setting up a watchOS project",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/setting-up-a-watchos-project"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/updating-watchos-apps-with-timelines": {
+      "abstract": [
+        {
+          "text": "Seamlessly schedule updates to your user interface, even while it’s inactive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/updating-watchos-apps-with-timelines",
+      "kind": "article",
+      "role": "article",
+      "title": "Updating watchOS apps with timelines",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/updating-watchos-apps-with-timelines"
+    },
+    "enabling-double-tap-on-watch-PageImage-card.png": {
+      "alt": "A stylistic representation of the double tap gesture on Apple Watch.",
+      "identifier": "enabling-double-tap-on-watch-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/31d5e805205ce0e598c55fdb76989025/enabling-double-tap-on-watch-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/235637bc0a7bc531746ce17b9ed199b3/enabling-double-tap-on-watch-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "keeping-your-watchos-app-s-content-up-to-date-1": {
+      "alt": "A figure showing a watch face with several active complications.",
+      "identifier": "keeping-your-watchos-app-s-content-up-to-date-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/68e164e2c82901f6cd8f0991f28b842f/keeping-your-watchos-app-s-content-up-to-date-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/765786b98aece3861bb8c00cd46d2114/keeping-your-watchos-app-s-content-up-to-date-1~dark@2x.png"
+        }
+      ]
+    },
+    "keeping-your-watchos-app-s-content-up-to-date-2": {
+      "alt": "A figure showing a watch face with apps in the dock.",
+      "identifier": "keeping-your-watchos-app-s-content-up-to-date-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/390dd10a4f948500ab0b2152f08e90d5/keeping-your-watchos-app-s-content-up-to-date-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6c338bc1412b68c352837b2ce06b3f7e/keeping-your-watchos-app-s-content-up-to-date-2~dark@2x.png"
+        }
+      ]
+    },
+    "keeping-your-watchos-app-s-content-up-to-date-3": {
+      "alt": "Screenshot showing the Apple Watch control center when the watch is connected to a paired iPhone.",
+      "identifier": "keeping-your-watchos-app-s-content-up-to-date-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/22f60abdfafa52920494f3cbda866f03/keeping-your-watchos-app-s-content-up-to-date-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/83154df531336f4d48a745a72c45fe3f/keeping-your-watchos-app-s-content-up-to-date-3~dark@2x.png"
+        }
+      ]
+    },
+    "keeping-your-watchos-app-s-content-up-to-date-4": {
+      "alt": "Screenshot showing the Apple Watch control center when the watch is connected to a known Wi-Fi network. ",
+      "identifier": "keeping-your-watchos-app-s-content-up-to-date-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f5eca770b00dc58313ed06a6dee429b3/keeping-your-watchos-app-s-content-up-to-date-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1760f084448dfbdf2188472737629d0f/keeping-your-watchos-app-s-content-up-to-date-4~dark@2x.png"
+        }
+      ]
+    },
+    "keeping-your-watchos-app-s-content-up-to-date-5": {
+      "alt": "Screenshot showing the Apple Watch control center when the watch is using a cellular connection. ",
+      "identifier": "keeping-your-watchos-app-s-content-up-to-date-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/139aad009b4fec2d49e69c5c0b7002f3/keeping-your-watchos-app-s-content-up-to-date-5@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4ee3c40682d9e9f530726e76eb9034c4/keeping-your-watchos-app-s-content-up-to-date-5~dark@2x.png"
+        }
+      ]
+    },
+    "watchOSApps-PageImage-card.png": {
+      "alt": "A stylized representation of Apple Watch.",
+      "identifier": "watchOSApps-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5e043ca96ec9c9e5579649124c448c35/watchOSApps-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2e82e5f258fb084d7b684889cabbe515/watchOSApps-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/making-default-and-ephemeral-requests",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/making-background-requests",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/urlsession",
+        "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontask"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "App-experience",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-up-a-watchos-project",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/creating-independent-watchos-apps",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/updating-watchos-apps-with-timelines",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/authenticating-users-on-apple-watch",
+        "doc://com.apple.documentation/documentation/AppIntents/ActionButtonArticle",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/enabling-double-tap"
+      ],
+      "title": "App experience"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsessionconfiguration/title",
+          "value": "NSURLSessionConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchConnectivity~1WCSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WCSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsessiontask/title",
+          "value": "NSURLSessionTask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CloudKit~1CKSubscription/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CKSubscription"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKApplicationRefreshBackgroundTask/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKApplicationRefreshBackgroundTask"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)WKRefreshBackgroundTask",
+              "text": "WKRefreshBackgroundTask"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

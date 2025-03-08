@@ -1,0 +1,713 @@
+{
+  "abstract": [
+    {
+      "text": "Manipulates a pool of commands which inherit from IOCommand.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iocommandpool"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1560743,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOCommandPool",
+    "modules": [
+      {
+        "name": "DriverKit"
+      },
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "24.4",
+        "introducedAt": "21.0",
+        "name": "DriverKit"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.6",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOCommandPool"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "DriverKit",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOCommandPool"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/osobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSObject",
+              "text": "OSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The IOCommandPool class is used to manipulate a pool of commands which inherit from IOCommand. It includes a factory method to create a pool of a certain size. Once the factory method is invoked, the semaphore is set to zero. The caller must then put commands in the pool by creating the command (via the controller's factory method or a memory allocation) and calling the returnCommand method with the newly created command as its argument.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/driverkit/iocommandpool/3758242-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iocommandpool/3758242-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/driverkit/iocommandpool/3758242-init"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iocommandpool/3758243-initwithqueue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iocommandpool/3758243-initwithqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithQueue",
+      "type": "topic",
+      "url": "/documentation/driverkit/iocommandpool/3758243-initwithqueue"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iocommandpool/3758244-withqueue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iocommandpool/3758244-withqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withQueue",
+      "type": "topic",
+      "url": "/documentation/driverkit/iocommandpool/3758244-withqueue"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osobject": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/driverkit/osobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommand": {
+      "abstract": [
+        {
+          "text": "This class is an abstract class which represents an I/O command.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate": {
+      "abstract": [
+        {
+          "text": "Single-threaded work-loop client request mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOCommandGate",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool": {
+      "abstract": [
+        {
+          "text": "Manipulates a pool of commands which inherit from IOCommand.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOCommandPool",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560738-gatedreturncommand": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "gatedReturnCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560738-gatedreturncommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gatedReturnCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool/1560738-gatedreturncommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560739-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560739-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool/1560739-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560740-returncommand": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "returnCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560740-returncommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "returnCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool/1560740-returncommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560741-getcommand": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560741-getcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool/1560741-getcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560742-gatedgetcommand": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "gatedGetCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560742-gatedgetcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gatedGetCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool/1560742-gatedgetcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560744-initwithworkloop": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithWorkLoop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560744-initwithworkloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithWorkLoop",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool/1560744-initwithworkloop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560745-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560745-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool/1560745-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560746-withworkloop": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withWorkLoop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560746-withworkloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withWorkLoop",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool/1560746-withworkloop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560747-commandpool": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "commandPool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560747-commandpool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commandPool",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool/1560747-commandpool"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560748-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560748-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool/1560748-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811017-commandpool": {
+      "abstract": [
+        {
+          "text": "Should never be used, obsolete. See IOCommandPool::withWorkLoop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811017-commandpool",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "commandPool",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool/1811017-commandpool"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811028-gatedgetcommand": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811028-gatedgetcommand",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "gatedGetCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool/1811028-gatedgetcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811045-gatedreturncommand": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811045-gatedreturncommand",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "gatedReturnCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool/1811045-gatedreturncommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811062-getcommand": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811062-getcommand",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool/1811062-getcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811075-init": {
+      "abstract": [
+        {
+          "text": "Should never be used, obsolete. See initWithWorkLoop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811075-init",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool/1811075-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811086-initwithworkloop": {
+      "abstract": [
+        {
+          "text": "Primary initializer for an IOCommandPool object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811086-initwithworkloop",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithWorkLoop",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool/1811086-initwithworkloop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811102-returncommand": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811102-returncommand",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "returnCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool/1811102-returncommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811120-withworkloop": {
+      "abstract": [
+        {
+          "text": "Should never be used, obsolete. See IOCommandPool::withWorkLoop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811120-withworkloop",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withWorkLoop(IOService *, IOWorkLoop *, UInt32)",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool/1811120-withworkloop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811136-withworkloop": {
+      "abstract": [
+        {
+          "text": "Primary factory method for the IOCommandPool class",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811136-withworkloop",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withWorkLoop(IOWorkLoop *)",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool/1811136-withworkloop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool/kiocommandpooldefaultsize": {
+      "abstract": [
+        {
+          "text": "The default size of any command pool.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool/kiocommandpooldefaultsize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "kIOCommandPoolDefaultSize",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool/kiocommandpooldefaultsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool/reserved": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool/reserved",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "reserved",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool/reserved"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodispatchsource": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodispatchsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODispatchSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iodispatchsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource": {
+      "abstract": [
+        {
+          "text": "Abstract class for all work-loop event sources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOEventSource",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workflow and Control",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/workflow_and_control"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ExpansionData",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/expansiondata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/osobject",
+        "doc://com.apple.documentation/documentation/kernel/osobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate",
+        "doc://com.apple.documentation/documentation/kernel/iocommand",
+        "doc://com.apple.documentation/documentation/kernel/iodispatchsource",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource"
+      ],
+      "title": "Base Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1819359",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811017-commandpool",
+        "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811028-gatedgetcommand",
+        "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811045-gatedreturncommand",
+        "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811062-getcommand",
+        "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811075-init",
+        "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811086-initwithworkloop",
+        "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811102-returncommand",
+        "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811120-withworkloop",
+        "doc://com.apple.documentation/documentation/kernel/iocommandpool/1811136-withworkloop"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1819380",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iocommandpool/kiocommandpooldefaultsize"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "1819383",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata"
+      ],
+      "kind": "taskGroup",
+      "title": "DataTypes"
+    },
+    {
+      "anchor": "1819386",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iocommandpool/reserved"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Variables"
+    },
+    {
+      "anchor": "2859938",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560748-free",
+        "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560742-gatedgetcommand",
+        "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560738-gatedreturncommand",
+        "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560741-getcommand",
+        "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560745-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560739-init",
+        "doc://com.apple.documentation/documentation/driverkit/iocommandpool/3758242-init",
+        "doc://com.apple.documentation/documentation/driverkit/iocommandpool/3758243-initwithqueue",
+        "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560744-initwithworkloop",
+        "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560740-returncommand"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2859939",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560747-commandpool",
+        "doc://com.apple.documentation/documentation/driverkit/iocommandpool/3758244-withqueue",
+        "doc://com.apple.documentation/documentation/kernel/iocommandpool/1560746-withworkloop"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iocommandpool",
+        "documentation/driverkit/iocommandpool"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

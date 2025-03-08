@@ -1,0 +1,1209 @@
+{
+  "abstract": [
+    {
+      "text": "Observe audio session notifications to ensure that your app responds appropriately to route changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfaudio/documentation/AVFAudio"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfaudio/documentation/AVFAudio/responding-to-audio-route-changes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFAudio"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Responding to audio route changes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An important responsibility of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is managing audio route changes. A route change occurs when the system adds or removes an audio input or output. Route changes occur for several reasons, including a user plugging in a pair of headphones, connecting a Bluetooth LE headset, or unplugging a USB audio interface. When these changes occur, the audio session reroutes audio signals accordingly and broadcasts a notification containing the details of the change to any registered observers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An important behavior related to route changes occurs when a user plugs in or removes a pair of headphones (see Playing audio in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/human-interface-guidelines",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). When users connect a pair of wired or wireless headphones, they’re implicitly indicating that audio playback should continue, but privately. They expect an app that’s currently playing media to continue playing without pause. However, when users ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "disconnect",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " their headphones, they don’t want to automatically share what they’re listening to with others. Applications should respect this implicit privacy request and automatically pause playback when users disconnect their headphones.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " monitors your app’s audio session and responds appropriately to route changes. When users connect headphones, playback continues as expected. When they disconnect their headphones, playback is automatically paused. To observe this player behavior, key-value observe the player’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer/rate",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property so that you can update your user interface as the player pauses playback.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Observe-route-changes",
+          "level": 3,
+          "text": "Observe route changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can directly observe route change notifications posted by the audio session. This might be useful if you want the system to notify you when a user connects headphones so you can present an icon or message in the player interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To observe audio route changes, begin by registering to observe notifications of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/routeChangeNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func setupNotifications() {",
+            "    // Get the default notification center instance.",
+            "    let nc = NotificationCenter.default",
+            "    nc.addObserver(self,",
+            "                   selector: #selector(handleRouteChange),",
+            "                   name: AVAudioSession.routeChangeNotification,",
+            "                   object: nil)",
+            "}",
+            "",
+            "@objc func handleRouteChange(notification: Notification) {",
+            "    // To be implemented.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Respond-to-route-changes",
+          "level": 3,
+          "text": "Respond to route changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The posted ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object contains a populated user-information dictionary providing the details of the route change. Determine the reason for this change by retrieving the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/RouteChangeReason",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value from the dictionary. When a user connects a new device, the reason is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/RouteChangeReason/newDeviceAvailable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and when a user removes a device, the reason is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/RouteChangeReason/oldDeviceUnavailable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a new device becomes available, you ask the audio session for its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/currentRoute",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine where the audio output is currently routed. This query returns an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionRouteDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that lists all of the audio session’s inputs and outputs. When the user removes a device, you retrieve the route description for the previous route from the user-information dictionary. In both cases, you query the route description for its outputs, which returns an array of port description objects providing the details of the audio output routes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@objc func handleRouteChange(notification: Notification) {",
+            "    guard let userInfo = notification.userInfo,",
+            "        let reasonValue = userInfo[AVAudioSessionRouteChangeReasonKey] as? UInt,",
+            "        let reason = AVAudioSession.RouteChangeReason(rawValue: reasonValue) else {",
+            "            return",
+            "    }",
+            "    ",
+            "    // Switch over the route change reason.",
+            "    switch reason {",
+            "",
+            "    case .newDeviceAvailable: // New device found.",
+            "        let session = AVAudioSession.sharedInstance()",
+            "        headphonesConnected = hasHeadphones(in: session.currentRoute)",
+            "    ",
+            "    case .oldDeviceUnavailable: // Old device removed.",
+            "        if let previousRoute =",
+            "            userInfo[AVAudioSessionRouteChangePreviousRouteKey] as? AVAudioSessionRouteDescription {",
+            "            headphonesConnected = hasHeadphones(in: previousRoute)",
+            "        }",
+            "    ",
+            "    default: ()",
+            "    }",
+            "}",
+            "",
+            "func hasHeadphones(in routeDescription: AVAudioSessionRouteDescription) -> Bool {",
+            "    // Filter the outputs to only those with a port type of headphones.",
+            "    return !routeDescription.outputs.filter({$0.portType == .headphones}).isEmpty",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfaudio/documentation/AVFAudio": {
+      "abstract": [
+        {
+          "text": "Play, record, and process audio; configure your app’s system audio behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFAudio",
+      "type": "topic",
+      "url": "/documentation/avfaudio"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication": {
+      "abstract": [
+        {
+          "text": "An object that manages one or more audio sessions that belong to an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioApplication",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioapplication"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter": {
+      "abstract": [
+        {
+          "text": "An object for configuring macOS apps to participate in AirPods Automatic Switching.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioRoutingArbiter"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioRoutingArbiter"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioRoutingArbiter",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioroutingarbiter"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession": {
+      "abstract": [
+        {
+          "text": "An object that communicates to the system how you intend to use audio in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSession"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSession",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/RouteChangeReason": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the reason for an audio route change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RouteChangeReason"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/RouteChangeReason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RouteChangeReason"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSession.RouteChangeReason",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/routechangereason"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/RouteChangeReason/newDeviceAvailable": {
+      "abstract": [
+        {
+          "text": "A value that indicates a user action, such as plugging in a headset, has made a preferred audio route available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "newDeviceAvailable"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/RouteChangeReason/newDeviceAvailable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSessionRouteChangeReasonNewDeviceAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSession.RouteChangeReason.newDeviceAvailable",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/routechangereason/newdeviceavailable"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/RouteChangeReason/oldDeviceUnavailable": {
+      "abstract": [
+        {
+          "text": "A value that indicates that the previous audio output path is no longer available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "oldDeviceUnavailable"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/RouteChangeReason/oldDeviceUnavailable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSessionRouteChangeReasonOldDeviceUnavailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSession.RouteChangeReason.oldDeviceUnavailable",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/routechangereason/olddeviceunavailable"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/currentRoute": {
+      "abstract": [
+        {
+          "text": "A description of the current audio route’s input and output ports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentRoute"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioSessionRouteDescription",
+          "text": "AVAudioSessionRouteDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/currentRoute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentRoute"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentRoute",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/currentroute"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/routeChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification the system posts when its audio route changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "routeChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/routeChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSessionRouteChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "routeChangeNotification",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/routechangenotification"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionRouteDescription": {
+      "abstract": [
+        {
+          "text": "An object that describes the input and output ports associated with a session’s audio route.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSessionRouteDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionRouteDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSessionRouteDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSessionRouteDescription",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosessionroutedescription"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/Adding-synthesized-speech-to-calls": {
+      "abstract": [
+        {
+          "text": "Provide a more accessible experience by adding your app’s audio to a call.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/Adding-synthesized-speech-to-calls",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adding synthesized speech to calls",
+      "type": "topic",
+      "url": "/documentation/avfaudio/adding-synthesized-speech-to-calls"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/capturing-stereo-audio-from-built-in-microphones": {
+      "abstract": [
+        {
+          "text": "Configure an iOS device’s built-in microphones to add stereo recording capabilities to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/capturing-stereo-audio-from-built-in-microphones",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Capturing stereo audio from built-In microphones",
+      "type": "topic",
+      "url": "/documentation/avfaudio/capturing-stereo-audio-from-built-in-microphones"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/handling-audio-interruptions": {
+      "abstract": [
+        {
+          "text": "Observe audio session notifications to ensure that your app responds appropriately to interruptions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/handling-audio-interruptions",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling audio interruptions",
+      "type": "topic",
+      "url": "/documentation/avfaudio/handling-audio-interruptions"
+    },
+    "doc://com.apple.documentation/design/human-interface-guidelines": {
+      "abstract": [
+        {
+          "text": "The HIG contains guidance and best practices that can help you design a great experience for any Apple platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/human-interface-guidelines",
+      "images": [
+        {
+          "identifier": "human-interface-guidelines-page-image-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Human Interface Guidelines",
+      "type": "topic",
+      "url": "/design/human-interface-guidelines"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer": {
+      "abstract": [
+        {
+          "text": "An object that provides the interface to control the player’s transport behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayer",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayer"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer/rate": {
+      "abstract": [
+        {
+          "text": "The current playback rate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer/rate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rate",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayer/rate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notification": {
+      "abstract": [
+        {
+          "text": "A container for information broadcast through a notification center to all registered observers. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Notification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Notification",
+      "type": "topic",
+      "url": "/documentation/foundation/notification"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "human-interface-guidelines-page-image-card.png": {
+      "alt": null,
+      "identifier": "human-interface-guidelines-page-image-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7d9e16f23525f7c0d971b55e8bf3f25e/human-interface-guidelines-page-image-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c9a7050750e8b3d2e4cbcf9128a2c9ef/human-interface-guidelines-page-image-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "System-audio",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/handling-audio-interruptions",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/Adding-synthesized-speech-to-calls",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/capturing-stereo-audio-from-built-in-microphones",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter"
+      ],
+      "title": "System audio"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "System-audio",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/handling-audio-interruptions",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/Adding-synthesized-speech-to-calls",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/capturing-stereo-audio-from-built-in-microphones",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter"
+              ],
+              "title": "System audio"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVPlayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioRoutingArbiter/title",
+          "value": "AVAudioRoutingArbiter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioRoutingArbiter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioRoutingArbiter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioRoutingArbiter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioRoutingArbiter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1RouteChangeReason~1newDeviceAvailable/title",
+          "value": "AVAudioSessionRouteChangeReasonNewDeviceAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1RouteChangeReason~1newDeviceAvailable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionRouteChangeReasonNewDeviceAvailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1RouteChangeReason/title",
+          "value": "AVAudioSessionRouteChangeReason"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1RouteChangeReason/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionRouteChangeReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1RouteChangeReason/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionRouteChangeReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1routeChangeNotification/title",
+          "value": "AVAudioSessionRouteChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1routeChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionRouteChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1RouteChangeReason~1oldDeviceUnavailable/title",
+          "value": "AVAudioSessionRouteChangeReasonOldDeviceUnavailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1RouteChangeReason~1oldDeviceUnavailable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionRouteChangeReasonOldDeviceUnavailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1currentRoute/title",
+          "value": "currentRoute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1currentRoute/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentRoute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioApplication/title",
+          "value": "AVAudioApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioApplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayer~1rate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:f",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "rate"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSessionRouteDescription/title",
+          "value": "AVAudioSessionRouteDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSessionRouteDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionRouteDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSessionRouteDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionRouteDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession/title",
+          "value": "AVAudioSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSession"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfaudio/responding-to-audio-route-changes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfaudio/responding-to-audio-route-changes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

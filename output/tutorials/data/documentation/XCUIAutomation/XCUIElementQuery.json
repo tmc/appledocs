@@ -1,0 +1,2556 @@
+{
+  "abstract": [
+    {
+      "text": "An object that defines the search criteria a test uses to identify UI elements.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)XCUIElementQuery",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "XCUIElementQuery"
+      }
+    ],
+    "modules": [
+      {
+        "name": "XCUIAutomation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "XCUIElementQuery"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.3",
+        "name": "Xcode",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "XCUIElementQuery"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "XCUIElementQuery"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/recording-ui-automation-for-testing"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use element queries to find UI elements in your app that you interact with in the tests, to test for the presence of expected elements, or to discover elements to test their values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, this test uses an element query to find the “Add Book” button, and after clicking the button, checks that there’s one button in an outline view cell titled “Untitled Book”.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the test can’t find the “Add Book” button, or there isn’t one “Untitled Book” cell, then the test fails.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@MainActor",
+            "func testClickingAddCreatesAnUntitledBook() throws {",
+            "    let app = XCUIApplication()",
+            "    app.launch()",
+            "    let list = app.windows[\"Reading Journal\"]",
+            "    list.toolbars.children(matching: .button)[\"Add Book\"].click()",
+            "    XCTAssertEqual(list.outlines[\"Sidebar\"].cells.containing(.button, identifier:\"Untitled Book\").count, 1)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation": {
+      "abstract": [
+        {
+          "text": "Replicate sequences of interactions and make sure that your app’s user interface behaves as intended.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XCUIAutomation",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery": {
+      "abstract": [
+        {
+          "text": "An object that defines the search criteria a test uses to identify UI elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCUIElementQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCUIElementQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCUIElementQuery",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuielementquery"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/allElementsBoundByAccessibilityElement": {
+      "abstract": [
+        {
+          "text": "Immediately evaluates the query and returns an array of elements bound to the resulting accessibility elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allElementsBoundByAccessibilityElement"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCUIElement",
+          "text": "XCUIElement"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/allElementsBoundByAccessibilityElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allElementsBoundByAccessibilityElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "allElementsBoundByAccessibilityElement",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuielementquery/allelementsboundbyaccessibilityelement"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/allElementsBoundByIndex": {
+      "abstract": [
+        {
+          "text": "Immediately evaluates the query and returns an array of elements bound by the index of each result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allElementsBoundByIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCUIElement",
+          "text": "XCUIElement"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/allElementsBoundByIndex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allElementsBoundByIndex"
+        }
+      ],
+      "role": "symbol",
+      "title": "allElementsBoundByIndex",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuielementquery/allelementsboundbyindex"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/children(matching:)": {
+      "abstract": [
+        {
+          "text": "Returns a new query that matches all direct children of the requested type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "children"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCUIElement",
+          "text": "XCUIElement"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@XCUIElementType",
+          "text": "ElementType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCUIElementQuery",
+          "text": "XCUIElementQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/children(matching:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "childrenMatchingType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "children(matching:)",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuielementquery/children(matching:)"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/containing(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new query that matches elements containing a descendant that meets the logical conditions of the provided predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "containing"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCUIElementQuery",
+          "text": "XCUIElementQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/containing(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "containingPredicate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "containing(_:)",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuielementquery/containing(_:)"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/containing(_:identifier:)": {
+      "abstract": [
+        {
+          "text": "Returns a new query that matches elements that contain a descendant of the requested type and an identifying property that matches a provided identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "containing"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCUIElement",
+          "text": "XCUIElement"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@XCUIElementType",
+          "text": "ElementType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCUIElementQuery",
+          "text": "XCUIElementQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/containing(_:identifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "containingType:identifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "containing(_:identifier:)",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuielementquery/containing(_:identifier:)"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/count": {
+      "abstract": [
+        {
+          "text": "Evaluates the query and returns the number of elements that match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/count",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "count"
+        }
+      ],
+      "role": "symbol",
+      "title": "count",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuielementquery/count"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/debugDescription": {
+      "abstract": [
+        {
+          "text": "Provides debugging information about the query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "debugDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/debugDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "debugDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "debugDescription",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuielementquery/debugdescription"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/descendants(matching:)": {
+      "abstract": [
+        {
+          "text": "Returns a new query that matches all descendants of the requested type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "descendants"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCUIElement",
+          "text": "XCUIElement"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@XCUIElementType",
+          "text": "ElementType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCUIElementQuery",
+          "text": "XCUIElementQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/descendants(matching:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "descendantsMatchingType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "descendants(matching:)",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuielementquery/descendants(matching:)"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/element": {
+      "abstract": [
+        {
+          "text": "The query’s single matching element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "element"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCUIElement",
+          "text": "XCUIElement"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/element",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "element"
+        }
+      ],
+      "role": "symbol",
+      "title": "element",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuielementquery/element"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/element(at:)": {
+      "abstract": [
+        {
+          "text": "Returns an element that resolves to the index into the query’s result set.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "element"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCUIElement",
+          "text": "XCUIElement"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/element(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "elementAtIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "element(at:)",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuielementquery/element(at:)"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/element(boundBy:)": {
+      "abstract": [
+        {
+          "text": "Uses an index into the query’s results to determine which underlying accessibility element to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "element"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "boundBy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCUIElement",
+          "text": "XCUIElement"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/element(boundBy:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "elementBoundByIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "element(boundBy:)",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuielementquery/element(boundby:)"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/element(matching:)": {
+      "abstract": [
+        {
+          "text": "Matches the predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "element"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCUIElement",
+          "text": "XCUIElement"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/element(matching:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "elementMatchingPredicate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "element(matching:)",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuielementquery/element(matching:)"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/element(matching:identifier:)": {
+      "abstract": [
+        {
+          "text": "Matches the provided element type and identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "element"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCUIElement",
+          "text": "XCUIElement"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@XCUIElementType",
+          "text": "ElementType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCUIElement",
+          "text": "XCUIElement"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/element(matching:identifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "elementMatchingType:identifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "element(matching:identifier:)",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuielementquery/element(matching:identifier:)"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/matching(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new query that matches elements that meet the logical conditions of the provided predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCUIElementQuery",
+          "text": "XCUIElementQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/matching(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matchingPredicate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "matching(_:)",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuielementquery/matching(_:)"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/matching(_:identifier:)": {
+      "abstract": [
+        {
+          "text": "Returns a new query that matches elements of the requested type and have an identifying property that matches a provided identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCUIElement",
+          "text": "XCUIElement"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@XCUIElementType",
+          "text": "ElementType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCUIElementQuery",
+          "text": "XCUIElementQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/matching(_:identifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matchingType:identifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "matching(_:identifier:)",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuielementquery/matching(_:identifier:)"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/matching(identifier:)": {
+      "abstract": [
+        {
+          "text": "Returns a new query that matches elements that have an identifying property that matches a provided identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCUIElementQuery",
+          "text": "XCUIElementQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/matching(identifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matchingIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "matching(identifier:)",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuielementquery/matching(identifier:)"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/subscript(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a descendant element that matches a provided identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCUIElement",
+          "text": "XCUIElement"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/subscript(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "objectForKeyedSubscript:"
+        }
+      ],
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuielementquery/subscript(_:)"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementTypeQueryProvider": {
+      "abstract": [
+        {
+          "text": "A type that provides ready-made queries for locating descendant UI elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCUIElementTypeQueryProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementTypeQueryProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCUIElementTypeQueryProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCUIElementTypeQueryProvider",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuielementtypequeryprovider"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIIdentifierCloseWindow": {
+      "abstract": [
+        {
+          "text": "The identifier for a window’s close button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCUIIdentifierCloseWindow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIIdentifierCloseWindow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCUIIdentifierCloseWindow"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCUIIdentifierCloseWindow",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuiidentifierclosewindow"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIIdentifierFullScreenWindow": {
+      "abstract": [
+        {
+          "text": "The identifier for a window’s full-screen button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCUIIdentifierFullScreenWindow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIIdentifierFullScreenWindow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCUIIdentifierFullScreenWindow"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCUIIdentifierFullScreenWindow",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuiidentifierfullscreenwindow"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIIdentifierMinimizeWindow": {
+      "abstract": [
+        {
+          "text": "The identifier for a window’s minimize button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCUIIdentifierMinimizeWindow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIIdentifierMinimizeWindow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCUIIdentifierMinimizeWindow"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCUIIdentifierMinimizeWindow",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuiidentifierminimizewindow"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIIdentifierZoomWindow": {
+      "abstract": [
+        {
+          "text": "The identifier for a window’s zoom button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCUIIdentifierZoomWindow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIIdentifierZoomWindow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCUIIdentifierZoomWindow"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCUIIdentifierZoomWindow",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/xcuiidentifierzoomwindow"
+    },
+    "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/recording-ui-automation-for-testing": {
+      "abstract": [
+        {
+          "text": "Capture and replay interaction sequences to verify your app’s behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/recording-ui-automation-for-testing",
+      "kind": "article",
+      "role": "article",
+      "title": "Recording UI automation for testing",
+      "type": "topic",
+      "url": "/documentation/xcuiautomation/recording-ui-automation-for-testing"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementTypeQueryProvider"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "UI-element-queries",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementTypeQueryProvider"
+      ],
+      "title": "UI element queries"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-new-queries",
+      "identifiers": [
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/children(matching:)",
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/descendants(matching:)",
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/containing(_:)",
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/containing(_:identifier:)",
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/matching(identifier:)",
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/matching(_:)",
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/matching(_:identifier:)"
+      ],
+      "title": "Creating new queries"
+    },
+    {
+      "anchor": "Accessing-matched-elements",
+      "identifiers": [
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/allElementsBoundByAccessibilityElement",
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/allElementsBoundByIndex",
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/count",
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/element",
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/element(boundBy:)",
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/element(matching:)",
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/element(matching:identifier:)",
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/subscript(_:)",
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/element(at:)"
+      ],
+      "title": "Accessing matched elements"
+    },
+    {
+      "anchor": "Debugging-element-queries",
+      "identifiers": [
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/debugDescription"
+      ],
+      "title": "Debugging element queries"
+    },
+    {
+      "anchor": "Identifying-window-buttons",
+      "identifiers": [
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIIdentifierCloseWindow",
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIIdentifierFullScreenWindow",
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIIdentifierMinimizeWindow",
+        "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIIdentifierZoomWindow"
+      ],
+      "title": "Identifying window buttons"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.3",
+              "name": "Xcode",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "XCUIElementQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCUIElementQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCUIElementQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-new-queries",
+              "identifiers": [
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/children(matching:)",
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/descendants(matching:)",
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/containing(_:)",
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/containing(_:identifier:)",
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/matching(identifier:)",
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/matching(_:)",
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/matching(_:identifier:)"
+              ],
+              "title": "Creating new queries"
+            },
+            {
+              "anchor": "Accessing-matched-elements",
+              "identifiers": [
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/allElementsBoundByAccessibilityElement",
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/allElementsBoundByIndex",
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/count",
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/element",
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/element(boundBy:)",
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/element(matching:)",
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/element(matching:identifier:)",
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/subscript(_:)",
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/element(at:)"
+              ],
+              "title": "Accessing matched elements"
+            },
+            {
+              "anchor": "Debugging-element-queries",
+              "identifiers": [
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementQuery/debugDescription"
+              ],
+              "title": "Debugging element queries"
+            },
+            {
+              "anchor": "Identifying-window-buttons",
+              "identifiers": [
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIIdentifierCloseWindow",
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIIdentifierFullScreenWindow",
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIIdentifierMinimizeWindow",
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIIdentifierZoomWindow"
+              ],
+              "title": "Identifying window buttons"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementTypeQueryProvider"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "UI-element-queries",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.xcuiautomation/documentation/XCUIAutomation/XCUIElementTypeQueryProvider"
+              ],
+              "title": "UI element queries"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "XCUIElementQuery"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1element(matching:identifier:)/title",
+          "value": "elementMatchingType:identifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1element(matching:identifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "elementMatchingType:identifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIIdentifierZoomWindow/title",
+          "value": "XCUIIdentifierZoomWindow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIIdentifierZoomWindow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCUIIdentifierZoomWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1matching(identifier:)/title",
+          "value": "matchingIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1matching(identifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "matchingIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1debugDescription/title",
+          "value": "debugDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1debugDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "debugDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1containing(_:identifier:)/title",
+          "value": "containingType:identifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1containing(_:identifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "containingType:identifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1count/title",
+          "value": "count"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1count/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "count"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery/title",
+          "value": "XCUIElementQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCUIElementQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCUIElementQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1element(at:)/title",
+          "value": "elementAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1element(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "elementAtIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1element/title",
+          "value": "element"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1element/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "element"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1element(matching:)/title",
+          "value": "elementMatchingPredicate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1element(matching:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "elementMatchingPredicate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1allElementsBoundByAccessibilityElement/title",
+          "value": "allElementsBoundByAccessibilityElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1allElementsBoundByAccessibilityElement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allElementsBoundByAccessibilityElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1matching(_:identifier:)/title",
+          "value": "matchingType:identifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1matching(_:identifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "matchingType:identifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1subscript(_:)/title",
+          "value": "objectForKeyedSubscript:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1subscript(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "objectForKeyedSubscript:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1allElementsBoundByIndex/title",
+          "value": "allElementsBoundByIndex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1allElementsBoundByIndex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allElementsBoundByIndex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIIdentifierMinimizeWindow/title",
+          "value": "XCUIIdentifierMinimizeWindow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIIdentifierMinimizeWindow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCUIIdentifierMinimizeWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1children(matching:)/title",
+          "value": "childrenMatchingType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1children(matching:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "childrenMatchingType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1containing(_:)/title",
+          "value": "containingPredicate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1containing(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "containingPredicate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1descendants(matching:)/title",
+          "value": "descendantsMatchingType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1descendants(matching:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "descendantsMatchingType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1element(boundBy:)/title",
+          "value": "elementBoundByIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1element(boundBy:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "elementBoundByIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIIdentifierCloseWindow/title",
+          "value": "XCUIIdentifierCloseWindow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIIdentifierCloseWindow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCUIIdentifierCloseWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1matching(_:)/title",
+          "value": "matchingPredicate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementQuery~1matching(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "matchingPredicate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIIdentifierFullScreenWindow/title",
+          "value": "XCUIIdentifierFullScreenWindow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIIdentifierFullScreenWindow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCUIIdentifierFullScreenWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementTypeQueryProvider/title",
+          "value": "XCUIElementTypeQueryProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementTypeQueryProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCUIElementTypeQueryProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xcuiautomation~1documentation~1XCUIAutomation~1XCUIElementTypeQueryProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCUIElementTypeQueryProvider"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/xcuiautomation/xcuielementquery"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/xcuiautomation/xcuielementquery"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

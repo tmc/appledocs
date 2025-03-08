@@ -1,0 +1,1969 @@
+{
+  "abstract": [
+    {
+      "text": "Identify and fix problematic shaders in your app using the shader debugger.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Debugging the shaders within a draw command or compute dispatch"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you notice any visual artifacts while running your app, such as missing geometry or invalid pixels,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can use the shader debugger to investigate problematic shaders.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Step through your shader source code and inspect variable values until you discover the problem.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, just edit the shader source and reload the shader to verify your fix.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Include source code when you capture a Metal workload because the shader debugger needs it to function correctly.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/Building-your-project-with-embedded-shader-sources",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Debug-your-shader",
+          "level": 3,
+          "text": "Debug your shader",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin debugging a shader, select the draw command or compute dispatch of interest in the Debug navigator. Then, click the Shader Debugger button in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "debug bar to begin debugging any of the associated shaders for the currently bound pipeline state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sdp-bug-menu.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The shader debugger opens a dialog that includes a tab for each shader type in use so you can easily select the shader region of interest.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, if your draw command has a vertex and fragment shader, the dialog includes Vertex and Fragment tabs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Vertex tab shows the geometry of your draw command.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can immediately start debugging your vertex shader by clicking the Debug button on the bottom right because the shader debugger automatically selects the first vertex.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-geometry-of-a-draw-command",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sdp-bug-vertex.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The dialog includes tabs for Mesh and Object, if applicable, instead of the Vertex tab when a draw command uses a mesh-based pipeline state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Mesh and Object tabs show the geometry of your draw command.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can immediately start debugging your mesh or object shaders by clicking the Debug button on the bottom right because the shader debugger automatically selects the first mesh grid and its first mesh.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sdp-mesh-default-debug.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can set the threadgroup position that produced a mesh in the thread selector by clicking the Mesh tab and selecting a mesh in the table or the geometry view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also set the thread position that produced a vertex in a mesh by choosing Thread Position for Vertex and selecting a vertex in the table or the geometry view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Alternatively, you can set the thread position that produced a primitive or an index in a mesh by choosing Thread Position for Primitive or Index.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sdp-mesh-debug-info.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can set the threadgroup position that produced a mesh grid in the thread selector by clicking the Object tab and selecting a mesh grid in the table or the geometry view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sdp-object-debug-info.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-geometry-of-a-draw-command",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Fragment tab shows the first attachment of your draw command, and hides other attachments by default.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can immediately start debugging your fragment shader by clicking the Debug button on the bottom right because the shader debugger automatically selects a pixel within a debuggable region.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Alternatively, you can select a different pixel, change the visible attachments, and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-attachments-of-a-draw-command",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sdp-bug-fragment.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you select a compute dispatch rather than a draw command, you can immediately start debugging your compute shader by clicking the Debug button on the bottom right because the shader debugger automatically selects the first threadgroup.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sdp-bug-compute.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also expand the Functions to Debug option to select a subset of functions within your shader source.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Using a subset of functions can dramatically decrease the amount of the shader debugger’s initial processing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sdp-bug-compute-expanded.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also select a subset of functions in the Vertex, Mesh, Object, and Fragment tabs by clicking Debug while holding down the Option key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Step-through-your-shader-code",
+          "level": 3,
+          "text": "Step through your shader code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you click the Debug button, the shader debugger displays the shader source in the Shader editor (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            },
+            {
+              "text": "\n",
+              "type": "text"
+            },
+            {
+              "text": "The call tree on the left shows each executed line in your shader.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The values of the variables appear to the right of each shader line of source code in the Shader editor.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, in the screenshot below, you can see that the ",
+              "type": "text"
+            },
+            {
+              "code": "in",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable has a value containing ",
+              "type": "text"
+            },
+            {
+              "code": "721.5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "815.5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sdp-debug.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your shader is producing incorrect results, you can examine the value of variables on each line until you see an unexpected value that indicates the cause of the problem.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the call tree to quickly inspect your shader:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sdp-call-list-1.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you select a line in the call tree, its corresponding line of source code in the Shader editor to the right appears with a green highlight.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This line is also referred to as the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "location of the playhead",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use your keyboard arrow keys in the call tree to advance the playhead through your code one line at a time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As you step through the call tree, the playhead follows along in the source code in the Shader editor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Arrow key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Stepping direction",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Down Arrow",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Steps forward",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Up Arrow",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Steps backward",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Right Arrow",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Steps in",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Left Arrow",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Steps out",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can change the playhead location by clicking any line in the Shader editor, and the shader debugger moves to the corresponding function in the call tree.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sdp-call-list-2.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Iterate-through-loops",
+          "level": 3,
+          "text": "Iterate through loops",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike a traditional CPU debugger, the shader debugger shows the value of all variables at the same time, with no need to step to the next line.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you decide not to use the call tree to iterate through loops, you can switch the visible loop iteration directly within the Shader editor.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Click the Loop Iteration tab on the right above the loop, just before the variables sidebar.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you select a different iteration, the variables within the sidebar update to reflect their values during that iteration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sdp-loop2.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspect-variable-values",
+          "level": 3,
+          "text": "Inspect variable values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To inspect the value of a variable, move the pointer over it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, in the screenshot below, hovering over ",
+              "type": "text"
+            },
+            {
+              "code": "linearSampler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " shows the sampler properties in a popover.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sdp-hover.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can toggle the Preview button in the variables sidebar to show the value inline with the source.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This is useful if you want to compare the values of multiple variables simultaneously.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sdp-preview.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a variable has nested properties, you can disclose them in a cascading fashion.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sdp-variable-expand.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This enables you to dive in to an object’s data by showing you more than the Shader editor can fit in the right sidebar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the selected pixel or thread, the shader debugger also shows the variable values for nearby pixels, or other threads within the threadgroup, in what is known as the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "region of interest",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you expand a variable preview, the shader debugger shows the values of variables for all pixels or threads within the region of interest.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The region of interest appears in the Attachments viewer as a fluorescent orange square (see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-attachments-of-a-draw-command",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "), and in the Geometry viewer as an orange vertex (see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-geometry-of-a-draw-command",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ").",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this rendering to visually check that the variable is the value you expect.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For graphical data, the visualization can be easier to verify than numerical data alone.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Move the pointer over a pixel or thread to see the variable value for it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, you can click the pixel or thread to select it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Shader editor automatically changes the variables in the variables sidebar to reflect their values during the execution of the shader when using the newly selected pixel or thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sdp-value-inspect.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the preview, the mask shows the pixels or threads within the region of interest that executed the line of code.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Consider the example below, where the fragment shader branches depending on the vertex in-position.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the mask, the pixels within the region of interest that passed the condition appear with a white color, and pixels that didn’t pass the condition appear with a black color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sdp-mask.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-your-shader",
+          "level": 3,
+          "text": "Update your shader",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After changing a shader, you can update the captured frame with the new source code by clicking the Reload Shaders button in the debug bar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-se-reload.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After updating the captured frame, the shader debugger does the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Updates variable views to show their new values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Redraws attachments in the assistant editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Maintains your place in the captured frame, which provides an interactive environment to enhance your shader development and debugging.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Changes to your shader source only exist within the shader debugger.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Your original source code doesn’t change.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your shader results look correct after reloading the shader, make sure that you copy your changes to your original shader source code.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your shader is producing correct results, but taking a long time to run, consider profiling your Metal workload and inspecting the shader source in the Shader editor.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-GPU-counters": {
+      "abstract": [
+        {
+          "text": "Identify issues within your frame capture by examining performance counters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-GPU-counters",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing draw command and compute dispatch performance with GPU counters",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-draw-command-and-compute-dispatch-performance-with-gpu-counters"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics": {
+      "abstract": [
+        {
+          "text": "Identify issues within your frame capture by examining pipeline statistics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing draw command and compute dispatch performance with pipeline statistics",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Building-your-project-with-embedded-shader-sources": {
+      "abstract": [
+        {
+          "text": "Prepare to debug your project’s shaders by including source code in the build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Building-your-project-with-embedded-shader-sources",
+      "kind": "article",
+      "role": "article",
+      "title": "Building your project with embedded shader sources",
+      "type": "topic",
+      "url": "/documentation/xcode/building-your-project-with-embedded-shader-sources"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders": {
+      "abstract": [
+        {
+          "text": "Improve your app’s shader performance by examining and editing your shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting shaders",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-shaders"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-attachments-of-a-draw-command": {
+      "abstract": [
+        {
+          "text": "Discover attachment issues by inspecting individual pixels and samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-attachments-of-a-draw-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting the attachments of a draw command",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-the-attachments-of-a-draw-command"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command": {
+      "abstract": [
+        {
+          "text": "Discover issues by examining the bound resources at any point in an encoder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting the bound resources for a command",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-the-bound-resources-for-a-command"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-geometry-of-a-draw-command": {
+      "abstract": [
+        {
+          "text": "Find problems in your app’s vertex, object, or mesh function by examining the current geometry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-geometry-of-a-draw-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting the geometry of a draw command",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-the-geometry-of-a-draw-command"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger": {
+      "abstract": [
+        {
+          "text": "Debug and profile your Metal workload with a GPU trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal debugger",
+      "type": "topic",
+      "url": "/documentation/xcode/metal-debugger"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gputools-metal-debugger-sdp-bug-compute-expanded.png": {
+      "alt": "A screenshot of the Region of Interest dialog with the Functions to Debug section expanded.",
+      "identifier": "gputools-metal-debugger-sdp-bug-compute-expanded.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/59438a0876ec2a63022a1ee2ced72263/gputools-metal-debugger-sdp-bug-compute-expanded.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/51fe4621b3e9661ef1132540ef636ede/gputools-metal-debugger-sdp-bug-compute-expanded@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d54928ef331f530fb0a0a4e5eff6e6eb/gputools-metal-debugger-sdp-bug-compute-expanded~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5d3c31cf4cbf7574b9ac9581e591347b/gputools-metal-debugger-sdp-bug-compute-expanded~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sdp-bug-compute.png": {
+      "alt": "A screenshot of the Region of Interest dialog with the Debug button highlighted.",
+      "identifier": "gputools-metal-debugger-sdp-bug-compute.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ad18e6387ffdbcd2d97a6e613c7f1717/gputools-metal-debugger-sdp-bug-compute.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5c1f451cfa89939037c66a063a4726bc/gputools-metal-debugger-sdp-bug-compute@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/183e941dadb2b613f79b3e32255d228a/gputools-metal-debugger-sdp-bug-compute~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bdada71d4806e0c833e3af1086bce9c6/gputools-metal-debugger-sdp-bug-compute~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sdp-bug-fragment.png": {
+      "alt": "A screenshot of the Region of Interest dialog with the Debug button highlighted.",
+      "identifier": "gputools-metal-debugger-sdp-bug-fragment.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/09b611624dda283a11f26686fbfbb06b/gputools-metal-debugger-sdp-bug-fragment.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6940c8b36e83d00209d9e5a53a5f1ffc/gputools-metal-debugger-sdp-bug-fragment@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1880b8b8bb039ec856c0b02c7aa3f85b/gputools-metal-debugger-sdp-bug-fragment~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/58fcfce0e3b778846ceb0a2e6de4efe3/gputools-metal-debugger-sdp-bug-fragment~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sdp-bug-menu.png": {
+      "alt": "A screenshot of the Bound Resources viewer highlighting the Shader Debugger button in the debug bar.",
+      "identifier": "gputools-metal-debugger-sdp-bug-menu.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8e13dfc3d9ac0e62ef0af3df17ece56a/gputools-metal-debugger-sdp-bug-menu.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a1c3a4fcc9c960e384fa6f8337190f41/gputools-metal-debugger-sdp-bug-menu@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bb8b9a74e699df5ae03848523a9e052a/gputools-metal-debugger-sdp-bug-menu~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/10427baf1e1cb40cf51e30470946612f/gputools-metal-debugger-sdp-bug-menu~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sdp-bug-vertex.png": {
+      "alt": "A screenshot of the Region of Interest dialog with the Debug button highlighted.",
+      "identifier": "gputools-metal-debugger-sdp-bug-vertex.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/99980b598b1bb7c8a3dd1292180d76fe/gputools-metal-debugger-sdp-bug-vertex.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2151fed0474d7992a640ea6602f0411a/gputools-metal-debugger-sdp-bug-vertex@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/40497e1f9878a9fe3a5ad9d9dc377065/gputools-metal-debugger-sdp-bug-vertex~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e83a46c62615312f1c2c8f1ee4de8378/gputools-metal-debugger-sdp-bug-vertex~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sdp-call-list-1.png": {
+      "alt": "A screenshot of the shader debugger with an active shader debugging session. The top-level function in the call tree is selected and its corresponding line of source code in the Shader editor to the right is highlighted.",
+      "identifier": "gputools-metal-debugger-sdp-call-list-1.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f70e96c694d986d99598956c3db92085/gputools-metal-debugger-sdp-call-list-1.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4b99fb78e5fa873cc7026dd81b38adae/gputools-metal-debugger-sdp-call-list-1@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b86c33eb14c98b823c4711ade1ff1b7d/gputools-metal-debugger-sdp-call-list-1~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bbd383e6f3396595956c338f289372c0/gputools-metal-debugger-sdp-call-list-1~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sdp-call-list-2.png": {
+      "alt": "A screenshot of the shader debugger with an active shader debugging session. A line of code is selected in the call tree.",
+      "identifier": "gputools-metal-debugger-sdp-call-list-2.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/56f6dc5f755ff3d2c01a661d916ecaf8/gputools-metal-debugger-sdp-call-list-2.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2c170ba1f25ea79a9257f88dda7770d6/gputools-metal-debugger-sdp-call-list-2@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/94f2cc44bfb69d14e0bf10f7d67d70d6/gputools-metal-debugger-sdp-call-list-2~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/324a0b75beb66c12cee1c0a5cdb1e29b/gputools-metal-debugger-sdp-call-list-2~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sdp-debug.png": {
+      "alt": "A screenshot of the shader debugger showing the Shader editor and the Attachments viewer side by side. On the left, the Debug navigator displays the region of interest and the call tree.",
+      "identifier": "gputools-metal-debugger-sdp-debug.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/43bfdc92b0f1de61fe3c2564b9cbeeac/gputools-metal-debugger-sdp-debug.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/39a534a281d2c1a6fba72fbb3703942b/gputools-metal-debugger-sdp-debug@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bd2e6e508eddd1c420318be5ef3aaadd/gputools-metal-debugger-sdp-debug~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4b3b6b2cccdb2c5ef08f064bde08d14d/gputools-metal-debugger-sdp-debug~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sdp-hover.png": {
+      "alt": "A screenshot of the value inspection popover that appears when the pointer hovers over a sampler variable.",
+      "identifier": "gputools-metal-debugger-sdp-hover.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7333b61aec0b348b694da30c79ca1bad/gputools-metal-debugger-sdp-hover.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62ccb0966d4073e69f2168f29989414c/gputools-metal-debugger-sdp-hover@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d64187f8776901f6f27c7e707372d5e0/gputools-metal-debugger-sdp-hover~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/718c8eca04da9f1fcfe1949ea344796c/gputools-metal-debugger-sdp-hover~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sdp-loop2.png": {
+      "alt": "A screenshot of the shader debugger with an active shader debugging session. The Loop Iteration Selection menu is open, with iteration 5 selected.",
+      "identifier": "gputools-metal-debugger-sdp-loop2.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2671218cc2e3dc2bc79e70c69736d1ee/gputools-metal-debugger-sdp-loop2.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c127f2ad614d4faf4a2d8e8e31ca56f8/gputools-metal-debugger-sdp-loop2@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/714514e5e3647340cd82e6d72426f9cf/gputools-metal-debugger-sdp-loop2~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e7a8975851b901f35693c76fbd4a18c5/gputools-metal-debugger-sdp-loop2~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sdp-mask.png": {
+      "alt": "A screenshot of the inline variable inspection view.",
+      "identifier": "gputools-metal-debugger-sdp-mask.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1503307ce202275d4b21ca524a5ca51e/gputools-metal-debugger-sdp-mask.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6519f13cb773184bfc2023740165e809/gputools-metal-debugger-sdp-mask@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d389ab5a8000a9599bdbbaab3d1cce6e/gputools-metal-debugger-sdp-mask~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5e5994e5f663851d0c108eaa968ec3f1/gputools-metal-debugger-sdp-mask~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sdp-mesh-debug-info.png": {
+      "alt": "A screenshot of the Mesh tab in the Metal debugger that highlights a dialog in the lower right corner that shows the details of a specific mesh in a scene a person selects. At the top of the dialog, its Thread Position of dropdown menu is set to Vertex. The dialog’s detailed information includes fields for thread position in grid, thread position in threadgroup, and threadgroup position in grid.",
+      "identifier": "gputools-metal-debugger-sdp-mesh-debug-info.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a444d0cdbfc175a0095136a5a5988b2f/gputools-metal-debugger-sdp-mesh-debug-info.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c7ae60aca4e4a5e1022519a529d7269f/gputools-metal-debugger-sdp-mesh-debug-info@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1185108d986c2c881357d90bffcf659e/gputools-metal-debugger-sdp-mesh-debug-info~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9ab2f438508048e27120ce6065948988/gputools-metal-debugger-sdp-mesh-debug-info~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sdp-mesh-default-debug.png": {
+      "alt": "A screenshot of the Region of Interest dialog with the Debug button highlighted.",
+      "identifier": "gputools-metal-debugger-sdp-mesh-default-debug.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9cc9ca92c50e64a971b3771627a7b949/gputools-metal-debugger-sdp-mesh-default-debug.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/70a71f19829273e128700fa80990a8f3/gputools-metal-debugger-sdp-mesh-default-debug@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/af7a9c8c447ace000119ea7fd3243ace/gputools-metal-debugger-sdp-mesh-default-debug~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d95a7eed932fd0d2bb5f999c02763855/gputools-metal-debugger-sdp-mesh-default-debug~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sdp-object-debug-info.png": {
+      "alt": "A screenshot of the Object tab in the Metal debugger that highlights a dialog in the lower right corner that shows the details of a specific mesh grid in a scene a person selects. The dialog’s detailed information includes fields for thread position in grid, thread position in threadgroup, and threadgroup position in grid.",
+      "identifier": "gputools-metal-debugger-sdp-object-debug-info.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/04ba1de934827a55ec3c0e1032bf0e3a/gputools-metal-debugger-sdp-object-debug-info.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/48eb94bba27ae619cd0a050b45d023fb/gputools-metal-debugger-sdp-object-debug-info@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c7e029a1179d3f6193a5a7261e6621d5/gputools-metal-debugger-sdp-object-debug-info~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/80c7b77eb20be662d94d50cafdbeaa59/gputools-metal-debugger-sdp-object-debug-info~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sdp-preview.png": {
+      "alt": "A screenshot of the inline variable inspection view.",
+      "identifier": "gputools-metal-debugger-sdp-preview.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2aca905c937de0f989cb7aeea319c3bd/gputools-metal-debugger-sdp-preview.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8acacfb6b1e02a245bd8b5adcc9c843e/gputools-metal-debugger-sdp-preview@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1b3741ea8b72b8923bf3fb1d5c02b2a/gputools-metal-debugger-sdp-preview~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/925ffe0a7cbab74937354da3b067d357/gputools-metal-debugger-sdp-preview~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sdp-value-inspect.png": {
+      "alt": "A screenshot of the value inspector when the pointer is hovering over a pixel.",
+      "identifier": "gputools-metal-debugger-sdp-value-inspect.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/064eac86fd73719f3001cedaa66a0da9/gputools-metal-debugger-sdp-value-inspect.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3c1e9c009717c340f9119d284ba518fc/gputools-metal-debugger-sdp-value-inspect@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d83660496ce3025229b8d88ef5d1f6c5/gputools-metal-debugger-sdp-value-inspect~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/659eded8935e4ac106161f3faef60070/gputools-metal-debugger-sdp-value-inspect~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sdp-variable-expand.png": {
+      "alt": "A screenshot showing the hierarchy of a variable’s nested properties.",
+      "identifier": "gputools-metal-debugger-sdp-variable-expand.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a558ca28612c719e0e70047b4e44e795/gputools-metal-debugger-sdp-variable-expand.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d7708abf0114168511a807e1fa9fd8ce/gputools-metal-debugger-sdp-variable-expand@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cff5469c3d16fc1017aeae6b3bf74ed9/gputools-metal-debugger-sdp-variable-expand~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9b90e075bde78d8346104ca478f29e3b/gputools-metal-debugger-sdp-variable-expand~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-se-reload.png": {
+      "alt": "A screenshot of the Reload Shaders button in the debug bar.",
+      "identifier": "gputools-metal-debugger-se-reload.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/50af276811335fc3cc1ffe15b561edc3/gputools-metal-debugger-se-reload.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3772f6e2fc52fa9d8f2252a384c418df/gputools-metal-debugger-se-reload@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4bb25bae36e5e645e1445f378330973e/gputools-metal-debugger-se-reload~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fe4b2bdb9a88deac665c9169874d9959/gputools-metal-debugger-se-reload~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Metal-command-analysis",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-geometry-of-a-draw-command",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-attachments-of-a-draw-command",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-GPU-counters",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics"
+      ],
+      "title": "Metal command analysis"
+    }
+  ]
+}

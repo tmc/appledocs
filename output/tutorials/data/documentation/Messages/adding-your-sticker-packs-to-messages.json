@@ -1,0 +1,668 @@
+{
+  "abstract": [
+    {
+      "text": "Drag and drop your sticker pack into the Stickers asset catalog to let people access your stickers from Messages.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.messages/documentation/Messages"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.messages/documentation/Messages/adding-your-sticker-packs-to-messages"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Messages"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding your sticker packs to Messages"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sticker packs provide static sets of ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "stickers",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", images that users can send inline as messages or peel off and attach to message bubbles in the transcript. Sticker packs don’t require any code. You add stickers by dragging image files into the Sticker Pack folder inside the Stickers asset catalog. People can use your stickers across the system outside of messages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Valid image files meet the following specifications:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The image is a PNG, APNG, GIF, JPEG, HEIC, or HEICS file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The file is less than 500 KB.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the best results, use images that are between 100 x 100 and 206 x 206 points.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Always provide @3x images (300 x 300 pixels to 618 x 618 pixels). The system generates the @2x and @1x versions by downscaling the @3x images at runtime.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Messages supports three sticker sizes, which the system displays in a grid-based browser. In the Xcode Attributes inspector, pick one of the following sizes for your sticker pack:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Small. 100 x 100 points @3x (300 x 300 pixels).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Medium. 136 x 136 points @3x (408 x 408 pixels).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Large. 206 x 206 points @3x (618 x 618 pixels).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For optimal quality and performance, provide sticker images of the size you choose. For more information on creating animated stickers, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/support/stickers/motion/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information on submitting Sticker packs to the App Store, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store/sticker-submissions/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-sticker-availability",
+          "level": 3,
+          "text": "Specify sticker availability",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can either restrict your sticker pack to just Messages, or make it available throughout the system. To specify which apps your sticker pack is available in, update your ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. Add the ",
+              "type": "text"
+            },
+            {
+              "code": "NSStickerSharingLevel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key inside your Messages extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. The value for this key is the string ",
+              "type": "text"
+            },
+            {
+              "code": "{OS}",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Messages checks for the presence of the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key when your app launches outside of Messages. If you add this key to your app, your sticker pack doesn’t appear in the list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.messages/documentation/Messages": {
+      "abstract": [
+        {
+          "text": "Create app extensions that allow users to send text, stickers, media files, and interactive messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Messages",
+      "type": "topic",
+      "url": "/documentation/messages"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSStickerBrowserView": {
+      "abstract": [
+        {
+          "text": "A browser view that displays a dynamically generated list of stickers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSStickerBrowserView"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSStickerBrowserView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSStickerBrowserView"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSStickerBrowserView",
+      "type": "topic",
+      "url": "/documentation/messages/msstickerbrowserview"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that provides dynamic content to the standard sticker browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSStickerBrowserViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSStickerBrowserViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSStickerBrowserViewController",
+      "type": "topic",
+      "url": "/documentation/messages/msstickerbrowserviewcontroller"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSStickerSize": {
+      "abstract": [
+        {
+          "text": "The size of the stickers in the browser view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSStickerSize"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSStickerSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSStickerSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSStickerSize",
+      "type": "topic",
+      "url": "/documentation/messages/msstickersize"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSStickerView": {
+      "abstract": [
+        {
+          "text": "A view for displaying a sticker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSStickerView"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSStickerView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSStickerView"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSStickerView",
+      "type": "topic",
+      "url": "/documentation/messages/msstickerview"
+    },
+    "doc://com.apple.messages/documentation/Messages/adding-sticker-packs-and-imessage-apps-to-the-system-stickers-app-messages-camera-and-facetime": {
+      "abstract": [
+        {
+          "text": "Enable your Sticker pack or iMessage app in the media context.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/adding-sticker-packs-and-imessage-apps-to-the-system-stickers-app-messages-camera-and-facetime",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Sticker packs and iMessage apps to the system Stickers app, Messages camera, and FaceTime",
+      "type": "topic",
+      "url": "/documentation/messages/adding-sticker-packs-and-imessage-apps-to-the-system-stickers-app-messages-camera-and-facetime"
+    },
+    "https://developer.apple.com/app-store/sticker-submissions/": {
+      "identifier": "https://developer.apple.com/app-store/sticker-submissions/",
+      "title": "Preparing Sticker Submissions",
+      "titleInlineContent": [
+        {
+          "text": "Preparing Sticker Submissions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/sticker-submissions/"
+    },
+    "https://developer.apple.com/support/stickers/motion/": {
+      "identifier": "https://developer.apple.com/support/stickers/motion/",
+      "title": "Creating Stickers with Motion",
+      "titleInlineContent": [
+        {
+          "text": "Creating Stickers with Motion",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/stickers/motion/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Custom-sticker-packs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.messages/documentation/Messages/adding-sticker-packs-and-imessage-apps-to-the-system-stickers-app-messages-camera-and-facetime",
+        "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewController",
+        "doc://com.apple.messages/documentation/Messages/MSStickerBrowserView",
+        "doc://com.apple.messages/documentation/Messages/MSStickerView",
+        "doc://com.apple.messages/documentation/Messages/MSStickerSize"
+      ],
+      "title": "Custom sticker packs"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Custom-sticker-packs",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.messages/documentation/Messages/adding-sticker-packs-and-imessage-apps-to-the-system-stickers-app-messages-camera-and-facetime",
+                "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewController",
+                "doc://com.apple.messages/documentation/Messages/MSStickerBrowserView",
+                "doc://com.apple.messages/documentation/Messages/MSStickerView",
+                "doc://com.apple.messages/documentation/Messages/MSStickerSize"
+              ],
+              "title": "Custom sticker packs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerSize/title",
+          "value": "MSStickerSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerSize/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerView/title",
+          "value": "MSStickerView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserViewController/title",
+          "value": "MSStickerBrowserViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerBrowserViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerBrowserViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserView/title",
+          "value": "MSStickerBrowserView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerBrowserView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerBrowserView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/messages/adding-your-sticker-packs-to-messages"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/messages/adding-your-sticker-packs-to-messages"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

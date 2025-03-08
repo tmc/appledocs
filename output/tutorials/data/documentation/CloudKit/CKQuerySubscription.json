@@ -1,0 +1,2251 @@
+{
+  "abstract": [
+    {
+      "text": "A subscription that generates push notifications when CloudKit modifies records that match a predicate.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cloudkit/documentation/CloudKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CKQuerySubscription",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CKQuerySubscription"
+      }
+    ],
+    "modules": [
+      {
+        "name": "CloudKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CKQuerySubscription"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.12",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CKQuerySubscription"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CKQuerySubscription"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Subscriptions track the creation, modification, and deletion of records in a database, and are fundamental in keeping data on the user’s device up to date. A subscription applies only to the user that creates it. When a subscription registers a change, such as CloudKit saving a new record, it sends push notifications to the user’s devices to inform your app about the change. You can then fetch the changes and cache them on-device. When appropriate, the server excludes the device where the change originates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You don’t need to explicitly enable push notifications for your App ID to receive subscription notifications. Xcode automatically adds the entitlement when you enable the CloudKit capability. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/enabling-cloudkit-in-your-app",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". To use silent push notifications, add the Background Modes capability in your Xcode project and then select the “Background fetch” and “Remote notifications” options.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Query subscriptions execute whenever a change occurs in a database that matches the predicate and options you specify. You scope a query subscription to an individual record type that you provide during initialization. You can set the subscription’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/zoneID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to further specialize the subscription to a specific record zone in the database. This limits the scope of the subscription to only track changes in that record zone and reduces the number of notifications it generates. For more information about defining CloudKit-compatible predicates, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Only public and private databases support query subscriptions. If you attempt to save a database subscription in the shared database, CloudKit returns an error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create any subscriptions on your app’s first launch. After you initialize a subscription, save it to the server using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKModifySubscriptionsOperation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When the operation completes, record that state on-device (in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", for example). You can then check that state on subsequent launches to prevent unnecessary trips to the server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the notification the subscription generates, set the subscription’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSubscription/notificationInfo-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Because the system coalesces notifications, don’t rely on them for specific changes. CloudKit can omit data to keep the payload size under the APNs size limit. Consider notifications an indication of remote changes and use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQueryOperation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to fetch the changed records. Create the operation with an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that you configure with the same record type and predicate as the subscription. If you limit the subscription to a specific record zone, set the operation’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQueryOperation/zoneID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to that record zone’s ID. Because ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQueryOperation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " doesn’t employ server change tokens, dispose of any records you cache on-device and use the query’s results instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows how to create a query subscription in the user’s private database, configure the notifications it generates — in this case, silent push notifications — and then save that subscription to the server:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Only proceed if the subscription doesn't already exist.",
+            "if([[NSUserDefaults standardUserDefaults]",
+            "    boolForKey:@\"didCreateQuerySubscription\"] == NO) {",
+            "        ",
+            "// Define a predicate that matches records with a tags field",
+            "// that contains the word 'Swift'.",
+            "NSPredicate *predicate = [NSPredicate predicateWithFormat:",
+            "                          @\"tags CONTAINS 'Swift'\"];",
+            "        ",
+            "// Create a subscription and scope it to the 'FeedItem' record type.",
+            "// Provide a unique identifier for the subscription and declare the",
+            "// circumstances for invoking it.",
+            "CKQuerySubscriptionOptions options = ",
+            "    CKQuerySubscriptionOptionsFiresOnRecordCreation;",
+            "CKQuerySubscription *subscription = [[CKQuerySubscription alloc]",
+            "                                     initWithRecordType:@\"FeedItem\"",
+            "                                     predicate:predicate",
+            "                                     subscriptionID:@\"tagged-feed-changes\"",
+            "                                     options:options];",
+            "        ",
+            "// Further specialize the subscription to only evaluate",
+            "// records in a specific record zone",
+            "subscription.zoneID = recordZone.zoneID;",
+            "        ",
+            "// Configure the notification so that the system delivers it silently",
+            "// and, therefore, doesn't require permission from the user.",
+            "CKNotificationInfo *notificationInfo = [CKNotificationInfo new];",
+            "notificationInfo.shouldSendContentAvailable = YES;",
+            "subscription.notificationInfo = notificationInfo;",
+            "        ",
+            "// Create an operation that saves the subscription to the server.",
+            "CKModifySubscriptionsOperation *operation =",
+            "    [[CKModifySubscriptionsOperation alloc]",
+            "     initWithSubscriptionsToSave:@[subscription]",
+            "     subscriptionIDsToDelete:NULL];",
+            "",
+            "operation.modifySubscriptionsCompletionBlock =",
+            "    ^(NSArray *subscriptions, NSArray *deleted, NSError *error) {",
+            "    if (error) {",
+            "        // Handle the error.",
+            "    } else {",
+            "        // Record that the system successfully creates the subscription",
+            "        // to prevent unnecessary trips to the server in later launches.",
+            "        [[NSUserDefaults standardUserDefaults]",
+            "         setBool:YES forKey:@\"didCreateQuerySubscription\"];",
+            "    }",
+            "};",
+            "        ",
+            "// Set an appropriate QoS and add the operation to the private",
+            "// database's operation queue to execute it.",
+            "operation.qualityOfService = NSQualityOfServiceUtility;",
+            "[CKContainer.defaultContainer.privateCloudDatabase addOperation:operation];"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cloudkit/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/cloudkit"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKModifySubscriptionsOperation": {
+      "abstract": [
+        {
+          "text": "An operation for modifying one or more subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKModifySubscriptionsOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKModifySubscriptionsOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKModifySubscriptionsOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKModifySubscriptionsOperation",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckmodifysubscriptionsoperation"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery": {
+      "abstract": [
+        {
+          "text": "A query that describes the criteria to apply when searching for records in a database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKQuery",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquery"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQueryNotification": {
+      "abstract": [
+        {
+          "text": "A notification that triggers when a record that matches the subscription’s predicate changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKQueryNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQueryNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKQueryNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKQueryNotification",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquerynotification"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQueryOperation": {
+      "abstract": [
+        {
+          "text": "An operation for executing queries in a database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKQueryOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQueryOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKQueryOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKQueryOperation",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckqueryoperation"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQueryOperation/zoneID": {
+      "abstract": [
+        {
+          "text": "The ID of the record zone that contains the records to search.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zoneID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecordZone",
+          "text": "CKRecordZone"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecordZoneID",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQueryOperation/zoneID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "zoneID"
+        }
+      ],
+      "role": "symbol",
+      "title": "zoneID",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckqueryoperation/zoneid"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription": {
+      "abstract": [
+        {
+          "text": "A subscription that generates push notifications when CloudKit modifies records that match a predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKQuerySubscription"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKQuerySubscription"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKQuerySubscription",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquerysubscription"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/Options": {
+      "abstract": [
+        {
+          "text": "Configuration options for a query subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/Options",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Options"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKQuerySubscription.Options",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquerysubscription/options"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/init(coder:)": {
+      "abstract": [
+        {
+          "text": "Creates a query-based subscription from a serialized instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/init(coder:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCoder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquerysubscription/init(coder:)"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/init(recordType:predicate:options:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "recordType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So8CKRecordC8CloudKitE10RecordTypea",
+          "text": "RecordType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKQuerySubscription",
+          "text": "CKQuerySubscription"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKQuerySubscriptionOptions",
+          "text": "Options"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/init(recordType:predicate:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(recordType:predicate:options:)",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquerysubscription/init(recordtype:predicate:options:)"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/init(recordType:predicate:subscriptionID:options:)": {
+      "abstract": [
+        {
+          "text": "Creates a named query-based subscription that queries records of a specific type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "recordType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So8CKRecordC8CloudKitE10RecordTypea",
+          "text": "RecordType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "subscriptionID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKSubscription",
+          "text": "CKSubscription"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So14CKSubscriptionC8CloudKitE2IDa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKQuerySubscription",
+          "text": "CKQuerySubscription"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKQuerySubscriptionOptions",
+          "text": "Options"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/init(recordType:predicate:subscriptionID:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(recordType:predicate:subscriptionID:options:)",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquerysubscription/init(recordtype:predicate:subscriptionid:options:)"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/initWithRecordType:predicate:options:": {
+      "abstract": [
+        {
+          "text": "Creates a query-based subscription that queries records of a specific type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithRecordType:predicate:options:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/initWithRecordType:predicate:options:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithRecordType:predicate:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithRecordType:predicate:options:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquerysubscription/initwithrecordtype:predicate:options:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/initWithRecordType:predicate:subscriptionID:options:": {
+      "abstract": [
+        {
+          "text": "Creates a named query-based subscription that queries records of a specific type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithRecordType:predicate:subscriptionID:options:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/initWithRecordType:predicate:subscriptionID:options:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithRecordType:predicate:subscriptionID:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithRecordType:predicate:subscriptionID:options:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquerysubscription/initwithrecordtype:predicate:subscriptionid:options:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/predicate": {
+      "abstract": [
+        {
+          "text": "The matching criteria to apply to records.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/predicate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicate"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicate",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquerysubscription/predicate"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/querySubscriptionOptions": {
+      "abstract": [
+        {
+          "text": "Options that define the behavior of the subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "querySubscriptionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKQuerySubscription",
+          "text": "CKQuerySubscription"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKQuerySubscriptionOptions",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/querySubscriptionOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "querySubscriptionOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "querySubscriptionOptions",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquerysubscription/querysubscriptionoptions"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/recordType-4qgdo": {
+      "abstract": [
+        {
+          "text": "The type of record that the subscription queries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recordType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So8CKRecordC8CloudKitE10RecordTypea",
+          "text": "RecordType"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/recordType-4qgdo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "recordType",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquerysubscription/recordtype-4qgdo"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/recordType-5l3zs": {
+      "abstract": [
+        {
+          "text": "The type of record that the subscription queries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "recordType"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/recordType-5l3zs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "recordType",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquerysubscription/recordtype-5l3zs"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/zoneID": {
+      "abstract": [
+        {
+          "text": "The ID of the record zone that the subscription queries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zoneID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecordZone",
+          "text": "CKRecordZone"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecordZoneID",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/zoneID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "zoneID"
+        }
+      ],
+      "role": "symbol",
+      "title": "zoneID",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquerysubscription/zoneid"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSubscription": {
+      "abstract": [
+        {
+          "text": "An abstract base class for subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKSubscription"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSubscription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKSubscription"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKSubscription",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksubscription"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSubscription/notificationInfo-swift.property": {
+      "abstract": [
+        {
+          "text": "The configuration for a subscription’s push notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notificationInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKSubscription",
+          "text": "CKSubscription"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKNotificationInfo",
+          "text": "NotificationInfo"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSubscription/notificationInfo-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "notificationInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "notificationInfo",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksubscription/notificationinfo-swift.property"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/enabling-cloudkit-in-your-app": {
+      "abstract": [
+        {
+          "text": "Configure your app to store data in iCloud using CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/enabling-cloudkit-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling CloudKit in Your App",
+      "type": "topic",
+      "url": "/documentation/cloudkit/enabling-cloudkit-in-your-app"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults": {
+      "abstract": [
+        {
+          "text": "An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserDefaults"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserDefaults",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSubscription"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Predicate-Driven-Changes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKQueryNotification"
+      ],
+      "title": "Predicate-Driven Changes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Subscription",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/init(recordType:predicate:subscriptionID:options:)",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/init(coder:)"
+      ],
+      "title": "Creating a Subscription"
+    },
+    {
+      "anchor": "Accessing-the-Subscription-Search-Parameters",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/predicate",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/querySubscriptionOptions",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/Options"
+      ],
+      "title": "Accessing the Subscription Search Parameters"
+    },
+    {
+      "anchor": "Accessing-the-Subscription-Metadata",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/recordType-4qgdo",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/zoneID"
+      ],
+      "title": "Accessing the Subscription Metadata"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/init(recordType:predicate:options:)"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.12",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CKQuerySubscription"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKQuerySubscription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKQuerySubscription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.cloudkit/documentation/CloudKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Subscription",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/initWithRecordType:predicate:options:",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/initWithRecordType:predicate:subscriptionID:options:",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/init(coder:)"
+              ],
+              "title": "Creating a Subscription"
+            },
+            {
+              "anchor": "Accessing-the-Subscription-Search-Parameters",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/predicate",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/querySubscriptionOptions",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/Options"
+              ],
+              "title": "Accessing the Subscription Search Parameters"
+            },
+            {
+              "anchor": "Accessing-the-Subscription-Metadata",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/recordType-5l3zs",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKQuerySubscription/zoneID"
+              ],
+              "title": "Accessing the Subscription Metadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKSubscription"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Predicate-Driven-Changes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKQueryNotification"
+              ],
+              "title": "Predicate-Driven Changes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CKQuerySubscription"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSubscription",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)CKSubscription",
+                    "text": "CKSubscription"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKSubscription~1notificationInfo-swift.property/title",
+          "value": "notificationInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKSubscription~1notificationInfo-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "notificationInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQueryOperation~1zoneID/title",
+          "value": "zoneID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQueryOperation~1zoneID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "zoneID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuerySubscription~1querySubscriptionOptions/title",
+          "value": "querySubscriptionOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuerySubscription~1querySubscriptionOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "querySubscriptionOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQueryNotification/title",
+          "value": "CKQueryNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQueryNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKQueryNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQueryNotification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKQueryNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuerySubscription~1predicate/title",
+          "value": "predicate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuerySubscription~1predicate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "predicate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuerySubscription~1Options/title",
+          "value": "CKQuerySubscriptionOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuerySubscription~1Options/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKQuerySubscriptionOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuerySubscription~1Options/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKQuerySubscriptionOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuerySubscription/title",
+          "value": "CKQuerySubscription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuerySubscription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKQuerySubscription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuerySubscription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKQuerySubscription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1userdefaults/title",
+          "value": "NSUserDefaults"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKSubscription/title",
+          "value": "CKSubscription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKSubscription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKSubscription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKSubscription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKSubscription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKModifySubscriptionsOperation/title",
+          "value": "CKModifySubscriptionsOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKModifySubscriptionsOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKModifySubscriptionsOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKModifySubscriptionsOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKModifySubscriptionsOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuerySubscription~1init(coder:)/title",
+          "value": "initWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuerySubscription~1init(coder:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCoder:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuery/title",
+          "value": "CKQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQueryOperation/title",
+          "value": "CKQueryOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQueryOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKQueryOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQueryOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKQueryOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuerySubscription~1zoneID/title",
+          "value": "zoneID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuerySubscription~1zoneID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "zoneID"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cloudkit/ckquerysubscription"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/cloudkit/ckquerysubscription"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

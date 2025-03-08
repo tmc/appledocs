@@ -1,0 +1,2427 @@
+{
+  "abstract": [
+    {
+      "text": "Manage digital certificates.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/certificates"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Certificates"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A digital certificate is a collection of data used to securely distribute the public half of a public/private key pair. Figure 1 shows the parts of a typical X.509 certificate that make this possible. Along with structural information, the certificate contains name and contact information for both its issuer and its owner (or subject), plus the owner’s public key. A date range indicates when the certificate is valid. Certificate extensions provide additional information and conditions, like acceptable uses for the public key. When assembling the certificate, to vouch for its integrity, the issuer digitally signs it using the issuer’s own identity (private key and certificate).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2904073",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To evaluate a certificate, you first verify its signature using the specified algorithm and the issuer’s public key, which you obtain from the issuer’s publicly available certificate. A valid signature confirms that the certificate under evaluation, known as the leaf certificate, is unaltered. But in order to trust this result, you must also trust the issuer’s certificate. You use a similar procedure to test this certificate, and the one that guarantees that certificate, and the next, and so on in a chain back to a trusted root authority whose certificate, known as the anchor, which you trust implicitly. The public key included in the leaf certificate is then considered trustworthy. You can be assured that it has come unaltered from the certificate’s owner who controls the corresponding private key. This allows you to securely use the public key to engage in asymmetric cryptography with the certificate’s owner.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more details about how certificates work, read ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/CryptographyConcepts/CryptographyConcepts.html#//apple_ref/doc/uid/TP40011172-CH8-CHDBIGCE",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011172",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/OpaqueSecCertificateRef": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "OpaqueSecCertificateRef"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/OpaqueSecCertificateRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OpaqueSecCertificateRef",
+      "type": "topic",
+      "url": "/documentation/security/opaqueseccertificateref"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificate": {
+      "abstract": [
+        {
+          "text": "An abstract Core Foundation-type object representing an X.509 certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificate"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCertificate",
+      "type": "topic",
+      "url": "/documentation/security/seccertificate"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateAddToKeychain(_:_:)": {
+      "abstract": [
+        {
+          "text": "Adds a certificate to a keychain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificateAddToKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCertificateRef",
+          "text": "SecCertificate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainRef",
+          "text": "SecKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateAddToKeychain(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateAddToKeychain"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCertificateAddToKeychain(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccertificateaddtokeychain(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateCopyCommonName(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the common name of the subject of a certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyCommonName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCertificateRef",
+          "text": "SecCertificate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateCopyCommonName(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyCommonName"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCertificateCopyCommonName(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccertificatecopycommonname(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateCopyData(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a DER representation of a certificate given a certificate object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCertificateRef",
+          "text": "SecCertificate"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateCopyData(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyData"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCertificateCopyData(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccertificatecopydata(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateCopyEmailAddresses(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the email addresses for the subject of a certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyEmailAddresses"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCertificateRef",
+          "text": "SecCertificate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateCopyEmailAddresses(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyEmailAddresses"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCertificateCopyEmailAddresses(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccertificatecopyemailaddresses(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateCopyKey(_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the public key for a given certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyKey"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCertificateRef",
+          "text": "SecCertificate"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateCopyKey(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCertificateCopyKey(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccertificatecopykey(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateCopyLongDescription(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a copy of the long description of a certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyLongDescription"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCertificateRef",
+          "text": "SecCertificate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateCopyLongDescription(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyLongDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCertificateCopyLongDescription(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccertificatecopylongdescription(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateCopyNormalizedIssuerContent(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a normalized copy of the distinguished name (DN) of the issuer of a certificate.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyNormalizedIssuerContent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCertificateRef",
+          "text": "SecCertificate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateCopyNormalizedIssuerContent(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyNormalizedIssuerContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCertificateCopyNormalizedIssuerContent(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccertificatecopynormalizedissuercontent(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateCopyNormalizedIssuerSequence(_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the normalized issuer sequence from a certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyNormalizedIssuerSequence"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCertificateRef",
+          "text": "SecCertificate"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateCopyNormalizedIssuerSequence(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyNormalizedIssuerSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCertificateCopyNormalizedIssuerSequence(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccertificatecopynormalizedissuersequence(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateCopyNormalizedSubjectContent(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a normalized copy of the distinguished name (DN) of the subject of a certificate.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyNormalizedSubjectContent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCertificateRef",
+          "text": "SecCertificate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateCopyNormalizedSubjectContent(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyNormalizedSubjectContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCertificateCopyNormalizedSubjectContent(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccertificatecopynormalizedsubjectcontent(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateCopyNormalizedSubjectSequence(_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the normalized subject sequence from a certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyNormalizedSubjectSequence"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCertificateRef",
+          "text": "SecCertificate"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateCopyNormalizedSubjectSequence(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyNormalizedSubjectSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCertificateCopyNormalizedSubjectSequence(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccertificatecopynormalizedsubjectsequence(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateCopyPreference": {
+      "abstract": [
+        {
+          "text": "Retrieves the preferred certificate for the specified name and key use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyPreference"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateCopyPreference",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecCertificateCopyPreference",
+      "type": "topic",
+      "url": "/documentation/security/seccertificatecopypreference"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateCopyPreferred(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the preferred certificate for the specified name and key usage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyPreferred"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCertificateRef",
+          "text": "SecCertificate"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateCopyPreferred(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyPreferred"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCertificateCopyPreferred(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccertificatecopypreferred(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateCopyPublicKey(_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the public key from a certificate.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyPublicKey"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCertificateRef",
+          "text": "SecCertificate"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateCopyPublicKey(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyPublicKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCertificateCopyPublicKey(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccertificatecopypublickey(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateCopySerialNumber(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a copy of a certificate’s serial number.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopySerialNumber"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCertificateRef",
+          "text": "SecCertificate"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateCopySerialNumber(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopySerialNumber"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCertificateCopySerialNumber(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccertificatecopyserialnumber(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateCopySerialNumberData(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the certificate’s serial number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopySerialNumberData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCertificateRef",
+          "text": "SecCertificate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateCopySerialNumberData(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopySerialNumberData"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCertificateCopySerialNumberData(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccertificatecopyserialnumberdata(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateCopyShortDescription(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a copy of the short description of a certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyShortDescription"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCertificateRef",
+          "text": "SecCertificate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateCopyShortDescription(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyShortDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCertificateCopyShortDescription(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccertificatecopyshortdescription(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateCopySubjectSummary(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a human-readable summary of a certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopySubjectSummary"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCertificateRef",
+          "text": "SecCertificate"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateCopySubjectSummary(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopySubjectSummary"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCertificateCopySubjectSummary(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccertificatecopysubjectsummary(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateCopyValues(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a dictionary that represents a certificate’s contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyValues"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCertificateRef",
+          "text": "SecCertificate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateCopyValues(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCopyValues"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCertificateCopyValues(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccertificatecopyvalues(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateCreateFromData": {
+      "abstract": [
+        {
+          "text": "Creates a certificate object based on the specified data, type, and encoding.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCreateFromData"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateCreateFromData",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecCertificateCreateFromData",
+      "type": "topic",
+      "url": "/documentation/security/seccertificatecreatefromdata"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateCreateWithData(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a certificate object from a DER representation of a certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCreateWithData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCertificateRef",
+          "text": "SecCertificate"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateCreateWithData(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateCreateWithData"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCertificateCreateWithData(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccertificatecreatewithdata(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateGetAlgorithmID": {
+      "abstract": [
+        {
+          "text": "Retrieves the algorithm identifier for a certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateGetAlgorithmID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateGetAlgorithmID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecCertificateGetAlgorithmID",
+      "type": "topic",
+      "url": "/documentation/security/seccertificategetalgorithmid"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateGetCLHandle": {
+      "abstract": [
+        {
+          "text": "Retrieves the certificate library handle from a certificate object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateGetCLHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateGetCLHandle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecCertificateGetCLHandle",
+      "type": "topic",
+      "url": "/documentation/security/seccertificategetclhandle"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateGetData": {
+      "abstract": [
+        {
+          "text": "Retrieves the data for a certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateGetData"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateGetData",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecCertificateGetData",
+      "type": "topic",
+      "url": "/documentation/security/seccertificategetdata"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateGetIssuer": {
+      "abstract": [
+        {
+          "text": "Unsupported.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateGetIssuer"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateGetIssuer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecCertificateGetIssuer",
+      "type": "topic",
+      "url": "/documentation/security/seccertificategetissuer"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateGetSubject": {
+      "abstract": [
+        {
+          "text": "Unsupported.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateGetSubject"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateGetSubject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecCertificateGetSubject",
+      "type": "topic",
+      "url": "/documentation/security/seccertificategetsubject"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateGetType": {
+      "abstract": [
+        {
+          "text": "Retrieves the type of a specified certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateGetType"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateGetType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecCertificateGetType",
+      "type": "topic",
+      "url": "/documentation/security/seccertificategettype"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the unique identifier of the opaque type to which a certificate object belongs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificateGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCertificateGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/security/seccertificategettypeid()"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateSetPreference": {
+      "abstract": [
+        {
+          "text": "Sets the preferred certificate for a specified name, key use, and date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateSetPreference"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateSetPreference",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecCertificateSetPreference",
+      "type": "topic",
+      "url": "/documentation/security/seccertificatesetpreference"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificateSetPreferred(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the certificate that should be preferred for the specified name and key use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificateSetPreferred"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCertificateRef",
+          "text": "SecCertificate"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificateSetPreferred(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificateSetPreferred"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCertificateSetPreferred(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccertificatesetpreferred(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/certificate-item-attribute-constants": {
+      "abstract": [
+        {
+          "text": "Use these four character values to indicate certificate item attributes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificate-item-attribute-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificate Item Attribute Constants",
+      "type": "topic",
+      "url": "/documentation/security/certificate-item-attribute-constants"
+    },
+    "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services": {
+      "abstract": [
+        {
+          "text": "Establish trust using certificates and cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificate, Key, and Trust Services",
+      "type": "topic",
+      "url": "/documentation/security/certificate-key-and-trust-services"
+    },
+    "doc://com.apple.security/documentation/Security/certificate-oids": {
+      "abstract": [
+        {
+          "text": "Use OIDs as keys in the dictionary representing certificate values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificate-oids",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificate OIDs",
+      "type": "topic",
+      "url": "/documentation/security/certificate-oids"
+    },
+    "doc://com.apple.security/documentation/Security/certificate-property-keys": {
+      "abstract": [
+        {
+          "text": "Recognize the dictionary keys that taken together define a certificate property.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificate-property-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificate Property Keys",
+      "type": "topic",
+      "url": "/documentation/security/certificate-property-keys"
+    },
+    "doc://com.apple.security/documentation/Security/certificate-property-type-values": {
+      "abstract": [
+        {
+          "text": "Recognize the possible certificate property types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificate-property-type-values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificate Property Type Values",
+      "type": "topic",
+      "url": "/documentation/security/certificate-property-type-values"
+    },
+    "doc://com.apple.security/documentation/Security/examining-a-certificate": {
+      "abstract": [
+        {
+          "text": "Learn how to retrieve properties from a certificate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/examining-a-certificate",
+      "kind": "article",
+      "role": "article",
+      "title": "Examining a Certificate",
+      "type": "topic",
+      "url": "/documentation/security/examining-a-certificate"
+    },
+    "doc://com.apple.security/documentation/Security/getting-a-certificate": {
+      "abstract": [
+        {
+          "text": "Obtain a certificate from an identity, from DER-encoded data, or from the keychain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/getting-a-certificate",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting a Certificate",
+      "type": "topic",
+      "url": "/documentation/security/getting-a-certificate"
+    },
+    "doc://com.apple.security/documentation/Security/getting-certificate-values": {
+      "abstract": [
+        {
+          "text": "Obtain all the values associated with a certificate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/getting-certificate-values",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting Certificate Values",
+      "type": "topic",
+      "url": "/documentation/security/getting-certificate-values"
+    },
+    "doc://com.apple.security/documentation/Security/storing-a-certificate-in-the-keychain": {
+      "abstract": [
+        {
+          "text": "Store a certificate in the keychain for safekeeping.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/storing-a-certificate-in-the-keychain",
+      "kind": "article",
+      "role": "article",
+      "title": "Storing a Certificate in the Keychain",
+      "type": "topic",
+      "url": "/documentation/security/storing-a-certificate-in-the-keychain"
+    },
+    "doc://com.apple.security/documentation/Security/storing-a-der-encoded-x-509-certificate": {
+      "abstract": [
+        {
+          "text": "Import and export a certificate from a file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/storing-a-der-encoded-x-509-certificate",
+      "kind": "article",
+      "role": "article",
+      "title": "Storing a DER-Encoded X.509 Certificate",
+      "type": "topic",
+      "url": "/documentation/security/storing-a-der-encoded-x-509-certificate"
+    },
+    "https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/CryptographyConcepts/CryptographyConcepts.html#//apple_ref/doc/uid/TP40011172-CH8-CHDBIGCE": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/CryptographyConcepts/CryptographyConcepts.html#//apple_ref/doc/uid/TP40011172-CH8-CHDBIGCE",
+      "title": "Digital Certificates",
+      "titleInlineContent": [
+        {
+          "text": "Digital Certificates",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/CryptographyConcepts/CryptographyConcepts.html#//apple_ref/doc/uid/TP40011172-CH8-CHDBIGCE"
+    },
+    "https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011172": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011172",
+      "title": "Cryptographic Services Guide",
+      "titleInlineContent": [
+        {
+          "text": "Cryptographic Services Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011172"
+    },
+    "media-2904073": {
+      "alt": "Diagram showing the components of an X.509 certificate, including the version and serial number, the subject and issuer, the validity dates, the public key, the signature, and the extensions.",
+      "identifier": "media-2904073",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/76dd13909e46b298fd2d4de9bca4f6a0/media-2904073@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/getting-a-certificate",
+        "doc://com.apple.security/documentation/Security/storing-a-certificate-in-the-keychain",
+        "doc://com.apple.security/documentation/Security/SecCertificate",
+        "doc://com.apple.security/documentation/Security/SecCertificateGetTypeID()"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Import-and-Export",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/storing-a-der-encoded-x-509-certificate",
+        "doc://com.apple.security/documentation/Security/SecCertificateCreateWithData(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecCertificateCopyData(_:)"
+      ],
+      "title": "Import and Export"
+    },
+    {
+      "anchor": "Certificate-Components",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/examining-a-certificate",
+        "doc://com.apple.security/documentation/Security/SecCertificateCopySubjectSummary(_:)",
+        "doc://com.apple.security/documentation/Security/SecCertificateCopyCommonName(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecCertificateCopyEmailAddresses(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecCertificateCopyNormalizedIssuerSequence(_:)",
+        "doc://com.apple.security/documentation/Security/SecCertificateCopyNormalizedSubjectSequence(_:)",
+        "doc://com.apple.security/documentation/Security/SecCertificateCopySerialNumberData(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecCertificateCopyKey(_:)",
+        "doc://com.apple.security/documentation/Security/SecCertificateCopyShortDescription(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecCertificateCopyLongDescription(_:_:_:)"
+      ],
+      "title": "Certificate Components"
+    },
+    {
+      "anchor": "Detailed-Certificate-Information",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/getting-certificate-values",
+        "doc://com.apple.security/documentation/Security/SecCertificateCopyValues(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/certificate-oids",
+        "doc://com.apple.security/documentation/Security/certificate-property-keys",
+        "doc://com.apple.security/documentation/Security/certificate-property-type-values",
+        "doc://com.apple.security/documentation/Security/certificate-item-attribute-constants"
+      ],
+      "title": "Detailed Certificate Information"
+    },
+    {
+      "anchor": "Certificate-Names",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecCertificateSetPreferred(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecCertificateCopyPreferred(_:_:)"
+      ],
+      "title": "Certificate Names"
+    },
+    {
+      "anchor": "Legacy-Symbols",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecCertificateAddToKeychain(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecCertificateCopyNormalizedIssuerContent(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecCertificateCopyNormalizedSubjectContent(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecCertificateCopySerialNumber(_:)",
+        "doc://com.apple.security/documentation/Security/SecCertificateCopyPublicKey(_:)"
+      ],
+      "title": "Legacy Symbols"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/getting-a-certificate",
+                "doc://com.apple.security/documentation/Security/storing-a-certificate-in-the-keychain",
+                "doc://com.apple.security/documentation/Security/SecCertificate",
+                "doc://com.apple.security/documentation/Security/SecCertificateGetTypeID()"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Import-and-Export",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/storing-a-der-encoded-x-509-certificate",
+                "doc://com.apple.security/documentation/Security/SecCertificateCreateWithData(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecCertificateCopyData(_:)"
+              ],
+              "title": "Import and Export"
+            },
+            {
+              "anchor": "Certificate-Components",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/examining-a-certificate",
+                "doc://com.apple.security/documentation/Security/SecCertificateCopySubjectSummary(_:)",
+                "doc://com.apple.security/documentation/Security/SecCertificateCopyCommonName(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecCertificateCopyEmailAddresses(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecCertificateCopyNormalizedIssuerSequence(_:)",
+                "doc://com.apple.security/documentation/Security/SecCertificateCopyNormalizedSubjectSequence(_:)",
+                "doc://com.apple.security/documentation/Security/SecCertificateCopySerialNumberData(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecCertificateCopyKey(_:)",
+                "doc://com.apple.security/documentation/Security/SecCertificateCopyShortDescription(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecCertificateCopyLongDescription(_:_:_:)"
+              ],
+              "title": "Certificate Components"
+            },
+            {
+              "anchor": "Detailed-Certificate-Information",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/getting-certificate-values",
+                "doc://com.apple.security/documentation/Security/SecCertificateCopyValues(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/certificate-oids",
+                "doc://com.apple.security/documentation/Security/certificate-property-keys",
+                "doc://com.apple.security/documentation/Security/certificate-property-type-values",
+                "doc://com.apple.security/documentation/Security/certificate-item-attribute-constants"
+              ],
+              "title": "Detailed Certificate Information"
+            },
+            {
+              "anchor": "Certificate-Names",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecCertificateSetPreferred(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecCertificateCopyPreferred(_:_:)"
+              ],
+              "title": "Certificate Names"
+            },
+            {
+              "anchor": "Legacy-Symbols",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/OpaqueSecCertificateRef",
+                "doc://com.apple.security/documentation/Security/SecCertificateAddToKeychain(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecCertificateCopyNormalizedIssuerContent(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecCertificateCopyNormalizedSubjectContent(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecCertificateCreateFromData",
+                "doc://com.apple.security/documentation/Security/SecCertificateCopyPreference",
+                "doc://com.apple.security/documentation/Security/SecCertificateGetAlgorithmID",
+                "doc://com.apple.security/documentation/Security/SecCertificateGetCLHandle",
+                "doc://com.apple.security/documentation/Security/SecCertificateGetData",
+                "doc://com.apple.security/documentation/Security/SecCertificateGetIssuer",
+                "doc://com.apple.security/documentation/Security/SecCertificateGetSubject",
+                "doc://com.apple.security/documentation/Security/SecCertificateGetType",
+                "doc://com.apple.security/documentation/Security/SecCertificateSetPreference",
+                "doc://com.apple.security/documentation/Security/SecCertificateCopySerialNumber(_:)",
+                "doc://com.apple.security/documentation/Security/SecCertificateCopyPublicKey(_:)"
+              ],
+              "title": "Legacy Symbols"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopySerialNumber(_:)/title",
+          "value": "SecCertificateCopySerialNumber"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopySerialNumber(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateCopySerialNumber"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyLongDescription(_:_:_:)/title",
+          "value": "SecCertificateCopyLongDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyLongDescription(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateCopyLongDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyNormalizedIssuerSequence(_:)/title",
+          "value": "SecCertificateCopyNormalizedIssuerSequence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyNormalizedIssuerSequence(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateCopyNormalizedIssuerSequence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyPublicKey(_:)/title",
+          "value": "SecCertificateCopyPublicKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyPublicKey(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateCopyPublicKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyNormalizedIssuerContent(_:_:)/title",
+          "value": "SecCertificateCopyNormalizedIssuerContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyNormalizedIssuerContent(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateCopyNormalizedIssuerContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyEmailAddresses(_:_:)/title",
+          "value": "SecCertificateCopyEmailAddresses"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyEmailAddresses(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateCopyEmailAddresses"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCreateWithData(_:_:)/title",
+          "value": "SecCertificateCreateWithData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCreateWithData(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateCreateWithData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyShortDescription(_:_:_:)/title",
+          "value": "SecCertificateCopyShortDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyShortDescription(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateCopyShortDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyKey(_:)/title",
+          "value": "SecCertificateCopyKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyKey(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateCopyKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyCommonName(_:_:)/title",
+          "value": "SecCertificateCopyCommonName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyCommonName(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateCopyCommonName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateGetTypeID()/title",
+          "value": "SecCertificateGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopySubjectSummary(_:)/title",
+          "value": "SecCertificateCopySubjectSummary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopySubjectSummary(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateCopySubjectSummary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificate/title",
+          "value": "SecCertificateRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyPreferred(_:_:)/title",
+          "value": "SecCertificateCopyPreferred"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyPreferred(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateCopyPreferred"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyData(_:)/title",
+          "value": "SecCertificateCopyData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyData(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateCopyData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyValues(_:_:_:)/title",
+          "value": "SecCertificateCopyValues"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyValues(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateCopyValues"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyNormalizedSubjectSequence(_:)/title",
+          "value": "SecCertificateCopyNormalizedSubjectSequence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyNormalizedSubjectSequence(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateCopyNormalizedSubjectSequence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateAddToKeychain(_:_:)/title",
+          "value": "SecCertificateAddToKeychain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateAddToKeychain(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateAddToKeychain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateSetPreferred(_:_:_:)/title",
+          "value": "SecCertificateSetPreferred"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateSetPreferred(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateSetPreferred"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyNormalizedSubjectContent(_:_:)/title",
+          "value": "SecCertificateCopyNormalizedSubjectContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopyNormalizedSubjectContent(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateCopyNormalizedSubjectContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopySerialNumberData(_:_:)/title",
+          "value": "SecCertificateCopySerialNumberData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificateCopySerialNumberData(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateCopySerialNumberData"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/certificates"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/certificates"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

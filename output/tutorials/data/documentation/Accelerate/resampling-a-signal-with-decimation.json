@@ -1,0 +1,907 @@
+{
+  "abstract": [
+    {
+      "text": "Reduce the sample rate of a signal by specifying a decimation factor and applying a custom antialiasing filter.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/finite-impulse-response-filters"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/resampling-a-signal-with-decimation"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Resampling a signal with decimation"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "vDSP provides functions for decimating a signal. A decimated signal has a lower sample rate compared to its original. Decimation can be advantageous when, for example, you are transmitting a signal, creating a visual representation of a large dataset, or reducing the memory overhead when processing data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following pair of images, the original signal on the left contains 1024 samples. After decimation by a factor of two, the result on the right contains 512 samples.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3123032",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-input-signal",
+          "level": 3,
+          "text": "Create the input signal",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates an array and populates it with a composite sine wave:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let inputLength = 1024",
+            "let inputSignal = (0 ..< inputLength).map {",
+            "    let x = Float($0)",
+            "    return sin(x * 0.007) + sin(x * 0.03)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image shows a visualization of the values in ",
+              "type": "text"
+            },
+            {
+              "code": "inputSignal",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3122882",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "vDSP provides the single-precision function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/downsample(_:decimationFactor:filter:)-40d8o",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the double-precision function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/downsample(_:decimationFactor:filter:)-1o8it",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to decimate the elements in an array. These function wrap ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_desamp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_desampD",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", respectively.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-the-antialiasing-filter",
+          "level": 3,
+          "text": "Define the antialiasing filter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vDSP decimation functions accept a filter that controls how adjacent samples combine. Each decimated value is the sum of the combined original values multiplied by the corresponding filter value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates a filter that contains ",
+              "type": "text"
+            },
+            {
+              "code": "[0.5, 0.5]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let filterLength = 2",
+            "let filter = [Float](repeating: 1 / Float(filterLength),",
+            "                     count: filterLength)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resulting filter averages pairs of adjacent values in the original signal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the most complete result, set the filter length to the same value as the decimation factor, which indicates how much the original signal is decimated. For example, consider an input signal containing 18 values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let originalSignal: [Float] = [10, 15, 20, 25, 50, 25, 20, 15, 10,",
+            "                               10, 15, 20, 25, 50, 25, 20, 15, 10]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following images visualize the original and decimated signals and illustrate the effects of different antialiasing filters. The graph below visualizes the signal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3122893",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A filter that contains a single value ",
+              "type": "text"
+            },
+            {
+              "code": "[1.0]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " combined with a decimation factor of ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " will sample only the even values of the original signal. The decimation functions return a result that misses the second ",
+              "type": "text"
+            },
+            {
+              "code": "50",
+              "type": "codeVoice"
+            },
+            {
+              "text": " at position ",
+              "type": "text"
+            },
+            {
+              "code": "13",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3122895",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, a filter with two values, ",
+              "type": "text"
+            },
+            {
+              "code": "[0.5, 0.5]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " considers all values in the original signal, as illustrated below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3122894",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Perform-the-Decimation",
+          "level": 3,
+          "text": "Perform the Decimation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/downsample(_:decimationFactor:filter:)-40d8o",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function performs the decimation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// The output signal contains `(source.count - filter.count) / decimationFactor + 1`",
+            "// elements.",
+            "let outputSignal = vDSP.downsample(inputSignal,",
+            "                                   decimationFactor: decimationFactor,",
+            "                                   filter: filter)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "outputSignal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3122887",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/controlling-vdsp-operations-with-stride": {
+      "abstract": [
+        {
+          "text": "Operate selectively on the elements of a vector at regular intervals.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/controlling-vdsp-operations-with-stride",
+      "kind": "article",
+      "role": "article",
+      "title": "Controlling vDSP operations with stride",
+      "type": "topic",
+      "url": "/documentation/accelerate/controlling-vdsp-operations-with-stride"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/finite-impulse-response-filters": {
+      "abstract": [
+        {
+          "text": "Perform finite impulse response filtering with decimation and antialiasing on vectors of real or complex values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/finite-impulse-response-filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Finite impulse response filters",
+      "type": "topic",
+      "url": "/documentation/accelerate/finite-impulse-response-filters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/using-linear-interpolation-to-construct-new-data-points": {
+      "abstract": [
+        {
+          "text": "Fill the gaps in arrays of numerical data using linear interpolation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/using-linear-interpolation-to-construct-new-data-points",
+      "kind": "article",
+      "role": "article",
+      "title": "Using linear interpolation to construct new data points",
+      "type": "topic",
+      "url": "/documentation/accelerate/using-linear-interpolation-to-construct-new-data-points"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/using-vdsp-for-vector-based-arithmetic": {
+      "abstract": [
+        {
+          "text": "Increase the performance of common mathematical tasks with vDSP vector-vector and vector-scalar operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/using-vdsp-for-vector-based-arithmetic",
+      "kind": "article",
+      "role": "article",
+      "title": "Using vDSP for vector-based arithmetic",
+      "type": "topic",
+      "url": "/documentation/accelerate/using-vdsp-for-vector-based-arithmetic"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/downsample(_:decimationFactor:filter:)-1o8it": {
+      "abstract": [
+        {
+          "text": "Returns the downsampled double-precision vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "downsample"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "decimationFactor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "filter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/downsample(_:decimationFactor:filter:)-1o8it",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "downsample(_:decimationFactor:filter:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/downsample(_:decimationfactor:filter:)-1o8it"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/downsample(_:decimationFactor:filter:)-40d8o": {
+      "abstract": [
+        {
+          "text": "Returns the downsampled single-precision vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "downsample"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "decimationFactor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "filter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/downsample(_:decimationFactor:filter:)-40d8o",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "downsample(_:decimationFactor:filter:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/downsample(_:decimationfactor:filter:)-40d8o"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_desamp": {
+      "abstract": [
+        {
+          "text": "Performs single-precision FIR filtering with decimation and antialiasing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_desamp"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_desamp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_desamp",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_desamp"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_desampD": {
+      "abstract": [
+        {
+          "text": "Performs double-precision FIR filtering with decimation and antialiasing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_desampD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_desampD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_desampD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_desampd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library": {
+      "abstract": [
+        {
+          "text": "Perform basic arithmetic operations and common digital signal processing (DSP) routines on large vectors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vDSP",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp-library"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3122882": {
+      "alt": "A line graph showing the original signal as a composite sine wave.",
+      "identifier": "media-3122882",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5a9989cc916da8e5bffc0abf9783c63e/media-3122882@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5a9989cc916da8e5bffc0abf9783c63e/media-3122882~dark@2x.png"
+        }
+      ]
+    },
+    "media-3122887": {
+      "alt": "Diagram showing the decimated signal as a composite sine wave that is half the width of the original signal.",
+      "identifier": "media-3122887",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/45a2e86d0dfde9ed4a44839999f3be64/media-3122887@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/45a2e86d0dfde9ed4a44839999f3be64/media-3122887~dark@2x.png"
+        }
+      ]
+    },
+    "media-3122893": {
+      "alt": "A line graph showing eighteen points that are joined by lines. The lines form two peaks.",
+      "identifier": "media-3122893",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/425307266170fc8ad1522c480a5419c7/media-3122893@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/425307266170fc8ad1522c480a5419c7/media-3122893~dark@2x.png"
+        }
+      ]
+    },
+    "media-3122894": {
+      "alt": "Diagram showing nine points that are joined by lines. The lines form two fully-formed peaks.",
+      "identifier": "media-3122894",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3c0d9503f5944e2dcd47664e4f8ed157/media-3122894@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3c0d9503f5944e2dcd47664e4f8ed157/media-3122894~dark@2x.png"
+        }
+      ]
+    },
+    "media-3122895": {
+      "alt": "Diagram showing nine points that are joined by lines. The lines form two peaks, but the peak on the right is truncated.",
+      "identifier": "media-3122895",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3ea2758cd04e40861c0ef9f16bff78df/media-3122895@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3ea2758cd04e40861c0ef9f16bff78df/media-3122895~dark@2x.png"
+        }
+      ]
+    },
+    "media-3123032": {
+      "alt": "Diagram showing two signals. The original signal is on the left. The decimated signal, on the right, has the same shape, but is half the width.",
+      "identifier": "media-3123032",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/88c6aff1a721e1dba492922b19e4077a/media-3123032@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Signal-Processing-Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/controlling-vdsp-operations-with-stride",
+        "doc://com.apple.accelerate/documentation/Accelerate/using-linear-interpolation-to-construct-new-data-points",
+        "doc://com.apple.accelerate/documentation/Accelerate/using-vdsp-for-vector-based-arithmetic",
+        "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library"
+      ],
+      "title": "Signal Processing Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

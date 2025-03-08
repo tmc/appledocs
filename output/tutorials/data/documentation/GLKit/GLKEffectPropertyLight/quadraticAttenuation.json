@@ -1,0 +1,810 @@
+{
+  "abstract": [
+    {
+      "text": "A quadratic factor applied to the attenuation of a point light or spotlight.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.glkit/documentation/GLKit",
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/quadraticAttenuation"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)GLKEffectPropertyLight(py)quadraticAttenuation",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "quadraticAttenuation"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@GLfloat",
+        "text": "GLfloat"
+      }
+    ],
+    "modules": [
+      {
+        "name": "GLKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "quadraticAttenuation"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "12.0",
+        "introducedAt": "5.0",
+        "message": "OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "12.0",
+        "introducedAt": "5.0",
+        "message": "OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.14",
+        "introducedAt": "10.8",
+        "message": "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "12.0",
+        "introducedAt": "9.0",
+        "message": "OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)",
+        "name": "tvOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "quadraticAttenuation"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "macOS",
+            "tvOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "quadraticAttenuation"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@GLfloat",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@GLfloat",
+              "text": "GLfloat"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The distance attenuation factor is calculated as ",
+              "type": "text"
+            },
+            {
+              "code": "1.0 / (k0 + k1 * d + k2 * d * d)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", where ",
+              "type": "text"
+            },
+            {
+              "code": "d",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents the distance from the light to the point being lit. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/quadraticAttenuation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is represented in this calculation as ",
+              "type": "text"
+            },
+            {
+              "code": "k2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The default value is ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.glkit/documentation/GLKit": {
+      "abstract": [
+        {
+          "text": "Speed up OpenGL ES or OpenGL app development. Use math libraries, background texture loading, pre-created shader effects, and a standard view and view controller to implement your rendering loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GLKit",
+      "type": "topic",
+      "url": "/documentation/glkit"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight": {
+      "abstract": [
+        {
+          "text": "Lighting information for use in GLKit rendering effects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyLight"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKEffectPropertyLight",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertylight"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/constantAttenuation": {
+      "abstract": [
+        {
+          "text": "A constant factor applied to the attenuation of a point light or spotlight.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "constantAttenuation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@GLfloat",
+          "text": "GLfloat"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/constantAttenuation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "constantAttenuation"
+        }
+      ],
+      "role": "symbol",
+      "title": "constantAttenuation",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertylight/constantattenuation"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/linearAttenuation": {
+      "abstract": [
+        {
+          "text": "A linear factor applied to the attenuation of a point light or spotlight.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "linearAttenuation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@GLfloat",
+          "text": "GLfloat"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/linearAttenuation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "linearAttenuation"
+        }
+      ],
+      "role": "symbol",
+      "title": "linearAttenuation",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertylight/linearattenuation"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/quadraticAttenuation": {
+      "abstract": [
+        {
+          "text": "A quadratic factor applied to the attenuation of a point light or spotlight.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "quadraticAttenuation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@GLfloat",
+          "text": "GLfloat"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/quadraticAttenuation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "quadraticAttenuation"
+        }
+      ],
+      "role": "symbol",
+      "title": "quadraticAttenuation",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertylight/quadraticattenuation"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@GLfloat": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLfloat"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@GLfloat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GLfloat",
+      "type": "topic",
+      "url": "/documentation/OpenGLES/GLfloat"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-Lighting-Attenuation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/constantAttenuation",
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/linearAttenuation"
+      ],
+      "title": "Configuring Lighting Attenuation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "12.0",
+              "introducedAt": "5.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "12.0",
+              "introducedAt": "5.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "10.14",
+              "introducedAt": "10.8",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "12.0",
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "quadraticAttenuation"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "quadraticAttenuation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.glkit/documentation/GLKit",
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configuring-Lighting-Attenuation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/constantAttenuation",
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/linearAttenuation"
+              ],
+              "title": "Configuring Lighting Attenuation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "macOS",
+                  "tvOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nonatomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "assign"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@GLfloat",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@GLfloat",
+                    "text": "GLfloat"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "quadraticAttenuation"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight/title",
+          "value": "GLKEffectPropertyLight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@GLfloat/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:f",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GLfloat"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1constantAttenuation/title",
+          "value": "constantAttenuation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1constantAttenuation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "constantAttenuation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1quadraticAttenuation/title",
+          "value": "quadraticAttenuation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1quadraticAttenuation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "quadraticAttenuation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1linearAttenuation/title",
+          "value": "linearAttenuation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1linearAttenuation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "linearAttenuation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/glkit/glkeffectpropertylight/quadraticattenuation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/glkit/glkeffectpropertylight/quadraticattenuation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

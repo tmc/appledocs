@@ -1,0 +1,804 @@
+{
+  "abstract": [
+    {
+      "text": "A value provided in the SwiftUI environment that views can use to",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "authenticate a user through a web service.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/webAuthenticationSession"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "SwiftUI",
+    "externalID": "s:7SwiftUI17EnvironmentValuesV024_AuthenticationServices_aB0E03webE7SessionAD03WebeH0Vvp",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "webAuthenticationSession"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:31_AuthenticationServices_SwiftUI03WebA7SessionV",
+        "text": "WebAuthenticationSession"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AuthenticationServices",
+        "relatedModules": [
+          "SwiftUI"
+        ]
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.3",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.4",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.4",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "webAuthenticationSession"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "webAuthenticationSession"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:31_AuthenticationServices_SwiftUI03WebA7SessionV",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:31_AuthenticationServices_SwiftUI03WebA7SessionV",
+              "text": "WebAuthenticationSession"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, you can start a web authentication session when the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "user taps a button:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct WebAuthenticationSessionExample: View {",
+            "    @Environment(\\.webAuthenticationSession) private var webAuthenticationSession",
+            "",
+            "    var body: some View {",
+            "        Button(\"Sign In\") {",
+            "            Task {",
+            "                do {",
+            "                    let urlWithToken = try await webAuthenticationSession.authenticate(",
+            "                        using: URL(string: \"https://www.example.com\")!,",
+            "                        callbackURLScheme: \"x-example-app\")",
+            "                    try await signIn(using: urlWithToken) // defined elsewhere",
+            "                } catch {",
+            "                    // code to handle authentication errors",
+            "                }",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "code": "WebAuthenticationSession/BrowserSession/ephemeral",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to request that the browser doesn’t share cookies or other browsing data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "between the authentication session and the user’s normal browser session.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Whether the request is honored depends on the user’s default web browser.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Safari always honors the request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let urlWithToken = try await webAuthenticationSession.authenticate(",
+            "    using: URL(string: \"https://www.example.com\")!,",
+            "    callbackURLScheme: \"x-example-app\",",
+            "    preferredBrowserSession: .ephemeral)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the user authenticates, the authentication provider redirects the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "browser to a URL that uses the callback scheme. The browser detects the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "redirect, dismisses itself, and the complete URL will be returned. Inspect",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the URL to determine the outcome of the authentication:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let queryItems = URLComponents(string: urlWithToken.absoluteString)?.queryItems",
+            "let token = queryItems?.first(where: { $0.name == \"token\" })?.value"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The above example looks for a token stored as a query parameter. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specific parsing that you have to do depends on how the authentication",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provider structures the callback URL.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues": {
+      "abstract": [
+        {
+          "text": "A collection of environment values propagated through a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnvironmentValues"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EnvironmentValues"
+        }
+      ],
+      "role": "symbol",
+      "title": "EnvironmentValues",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/authorizationController": {
+      "abstract": [
+        {
+          "text": "A value provided in the SwiftUI environment that views can use",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to perform authorization requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:31_AuthenticationServices_SwiftUI23AuthorizationControllerV",
+          "text": "AuthorizationController"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/authorizationController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "authorizationController",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/authorizationcontroller"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/webAuthenticationSession": {
+      "abstract": [
+        {
+          "text": "A value provided in the SwiftUI environment that views can use to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "authenticate a user through a web service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "webAuthenticationSession"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:31_AuthenticationServices_SwiftUI03WebA7SessionV",
+          "text": "WebAuthenticationSession"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/webAuthenticationSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "webAuthenticationSession",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/webauthenticationsession"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/signInWithAppleButtonStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style used for displaying the control",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "(see ",
+          "type": "text"
+        },
+        {
+          "code": "SignInWithAppleButton.Style",
+          "type": "codeVoice"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "signInWithAppleButtonStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:31_AuthenticationServices_SwiftUI21SignInWithAppleButtonV",
+          "text": "SignInWithAppleButton"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:31_AuthenticationServices_SwiftUI21SignInWithAppleButtonV5StyleV",
+          "text": "Style"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/signInWithAppleButtonStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "signInWithAppleButtonStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/signinwithapplebuttonstyle(_:)"
+    },
+    "doc://com.apple.documentation/documentation/AuthenticationServices/SignInWithAppleButton": {
+      "abstract": [
+        {
+          "text": "The view that creates the Sign in with Apple button for display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SignInWithAppleButton"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/SignInWithAppleButton",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SignInWithAppleButton",
+      "type": "topic",
+      "url": "/documentation/AuthenticationServices/SignInWithAppleButton"
+    },
+    "doc://com.apple.documentation/documentation/LocalAuthentication/LocalAuthenticationView": {
+      "abstract": [
+        {
+          "text": "A SwiftUI view that displays an authentication interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalAuthenticationView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LocalAuthenticationView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LocalAuthenticationView",
+      "type": "topic",
+      "url": "/documentation/LocalAuthentication/LocalAuthenticationView"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:31_AuthenticationServices_SwiftUI03WebA7SessionV": {
+      "abstract": [
+        {
+          "text": "A SwiftUI environment value that views use to authenticate someone using a web service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WebAuthenticationSession"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:31_AuthenticationServices_SwiftUI03WebA7SessionV",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WebAuthenticationSession",
+      "type": "topic",
+      "url": "/documentation/AuthenticationServices/WebAuthenticationSession"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Authorizing-and-authenticating",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/LocalAuthentication/LocalAuthenticationView",
+        "doc://com.apple.documentation/documentation/AuthenticationServices/SignInWithAppleButton",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/signInWithAppleButtonStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/authorizationController"
+      ],
+      "title": "Authorizing and authenticating"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/environmentvalues/webauthenticationsession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

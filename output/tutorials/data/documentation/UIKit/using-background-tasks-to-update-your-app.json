@@ -1,0 +1,1373 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your app to perform tasks in the background to make efficient use of processing time and power.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+        "doc://com.apple.uikit/documentation/UIKit/scenes",
+        "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-background"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/windows-and-screens",
+        "doc://com.apple.uikit/documentation/UIKit/scenes",
+        "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-background"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+        "doc://com.apple.uikit/documentation/UIKit/multitasking-on-ipad",
+        "doc://com.apple.uikit/documentation/UIKit/scenes",
+        "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-background"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/using-background-tasks-to-update-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using background tasks to update your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "task",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a standalone activity that an app performs, often on a recurring basis. Examples of tasks include performing maintenance on a database, refining a machine learning model, or updating displayed data. You can configure your app to launch and run tasks in the background to take advantage of processing time when the device isn’t used.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To schedule a task to run in the background, enable the background modes in Xcode, identify the specific tasks that you need, and then register the tasks with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BackgroundTasks/BGTaskScheduler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-and-schedule-background-tasks",
+          "level": 3,
+          "text": "Enable and schedule background tasks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure your app to allow background tasks, enable the background capabilities that you need, and then create a list of unique identifiers for each task.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two types of background tasks: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BackgroundTasks/BGAppRefreshTask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BackgroundTasks/BGProcessingTask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BackgroundTasks/BGAppRefreshTask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is for short-duration tasks that expect quick results, such as downloading a stock quote. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BackgroundTasks/BGProcessingTask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is for tasks that might be time-consuming, such as downloading a large file or synchronizing data. Your app can use one or both of these.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add the capabilities:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the project editor and select the desired target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Signing & Capabilities.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Expand the Background Modes section. If the target doesn’t have a Background Modes section, click + Capability, and then select Background Modes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you’re using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BackgroundTasks/BGAppRefreshTask",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", select “Background fetch.”",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you’re using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BackgroundTasks/BGProcessingTask",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", select “Background processing.”",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3262152",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You control which tasks run in the background by registering a list of permitted task identifiers. To create this list, add the identifiers to the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the project navigator and select your target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Info and expand Custom iOS Target Properties.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a new item to the list and choose “Permitted background task scheduler identifiers,” which corresponds to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/BGTaskSchedulerPermittedIdentifiers",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the string for each authorized task identifier as a separate item in the array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3262151",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 13 and later, adding a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/BGTaskSchedulerPermittedIdentifiers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " disables the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:performFetchWithCompletionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/setMinimumBackgroundFetchInterval(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Register-schedule-and-run-tasks",
+          "level": 3,
+          "text": "Register, schedule, and run tasks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each task, provide the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BackgroundTasks/BGTaskScheduler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object with a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "launch handler",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " — a small block of code that runs the task — and a unique identifier. Register all of the tasks before the end of the app launch sequence. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/about-the-app-launch-sequence",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "An extension can schedule a task, but your main app must register the task. The system launches the app to run the task.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3399760",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code registers a handler, ",
+              "type": "text"
+            },
+            {
+              "code": "handleAppRefresh(task:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", that’s called when the system runs a task request with the identifier ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.apple-samplecode.ColorFeed.refresh",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "BGTaskScheduler.shared.register(forTaskWithIdentifier: \"com.example.apple-samplecode.ColorFeed.refresh\", using: nil) { task in",
+            "     self.handleAppRefresh(task: task as! BGAppRefreshTask)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To submit a task request for the system to launch your app in the background at a later time, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BackgroundTasks/BGTaskScheduler/submit(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When you resubmit a task, the new submission replaces the previous submission.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code below schedules a refresh task request for the task identifier ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.apple-samplecode.ColorFeed.refresh",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that you previously registered.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func scheduleAppRefresh() {",
+            "   let request = BGAppRefreshTaskRequest(identifier: \"com.example.apple-samplecode.ColorFeed.refresh\")",
+            "   // Fetch no earlier than 15 minutes from now.",
+            "   request.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)",
+            "        ",
+            "   do {",
+            "      try BGTaskScheduler.shared.submit(request)",
+            "   } catch {",
+            "      print(\"Could not schedule app refresh: \\(error)\")",
+            "   }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system opens your app in the background, it calls the launch handler to run the task.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your task provides an expiration handler that the system calls if it needs to terminate your task. You also add code to inform the system if the task completes successfully.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func handleAppRefresh(task: BGAppRefreshTask) {",
+            "   // Schedule a new refresh task.",
+            "   scheduleAppRefresh()",
+            "",
+            "   // Create an operation that performs the main part of the background task.",
+            "   let operation = RefreshAppContentsOperation()",
+            "   ",
+            "   // Provide the background task with an expiration handler that cancels the operation.",
+            "   task.expirationHandler = {",
+            "      operation.cancel()",
+            "   }",
+            "",
+            "   // Inform the system that the background task is complete",
+            "   // when the operation completes.",
+            "   operation.completionBlock = {",
+            "      task.setTaskCompleted(success: !operation.isCancelled)",
+            "   }",
+            "",
+            "   // Start the operation.",
+            "   operationQueue.addOperation(operation)",
+            " }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BackgroundTasks/BGAppRefreshTask": {
+      "abstract": [
+        {
+          "text": "An object representing a short task typically used to refresh content that’s run while the app is in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BGAppRefreshTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BackgroundTasks/BGAppRefreshTask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BGAppRefreshTask",
+      "type": "topic",
+      "url": "/documentation/BackgroundTasks/BGAppRefreshTask"
+    },
+    "doc://com.apple.documentation/documentation/BackgroundTasks/BGProcessingTask": {
+      "abstract": [
+        {
+          "text": "A time-consuming processing task that runs while the app is in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BGProcessingTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BackgroundTasks/BGProcessingTask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BGProcessingTask",
+      "type": "topic",
+      "url": "/documentation/BackgroundTasks/BGProcessingTask"
+    },
+    "doc://com.apple.documentation/documentation/BackgroundTasks/BGTaskScheduler": {
+      "abstract": [
+        {
+          "text": "A class for scheduling task requests that launch your app in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BGTaskScheduler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BackgroundTasks/BGTaskScheduler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BGTaskScheduler",
+      "type": "topic",
+      "url": "/documentation/BackgroundTasks/BGTaskScheduler"
+    },
+    "doc://com.apple.documentation/documentation/BackgroundTasks/BGTaskScheduler/submit(_:)": {
+      "abstract": [
+        {
+          "text": "Submit a previously registered background task for execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "submit"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "taskRequest"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)BGTaskRequest",
+          "text": "BGTaskRequest"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BackgroundTasks/BGTaskScheduler/submit(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "submit(_:)",
+      "type": "topic",
+      "url": "/documentation/BackgroundTasks/BGTaskScheduler/submit(_:)"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/BGTaskSchedulerPermittedIdentifiers": {
+      "abstract": [
+        {
+          "text": "An array of strings containing developer-specified task identifiers in reverse URL notation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/BGTaskSchedulerPermittedIdentifiers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BGTaskSchedulerPermittedIdentifiers",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/BGTaskSchedulerPermittedIdentifiers"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplication/setMinimumBackgroundFetchInterval(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies the minimum amount of time that must elapse between background fetch operations.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMinimumBackgroundFetchInterval"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/setMinimumBackgroundFetchInterval(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setMinimumBackgroundFetchInterval:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setMinimumBackgroundFetchInterval(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplication/setminimumbackgroundfetchinterval(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:performFetchWithCompletionHandler:)": {
+      "abstract": [
+        {
+          "text": "Tells the app that it can begin a fetch operation if it has data to download.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "performFetchWithCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIBackgroundFetchResult",
+          "text": "UIBackgroundFetchResult"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:performFetchWithCompletionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "application:performFetchWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "application(_:performFetchWithCompletionHandler:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/application(_:performfetchwithcompletionhandler:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/about-the-app-launch-sequence": {
+      "abstract": [
+        {
+          "text": "Learn the order in which the system executes your code at app launch time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/about-the-app-launch-sequence",
+      "kind": "article",
+      "role": "article",
+      "title": "About the app launch sequence",
+      "type": "topic",
+      "url": "/documentation/uikit/about-the-app-launch-sequence"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/about-the-background-execution-sequence": {
+      "abstract": [
+        {
+          "text": "Learn the order in which your custom code is executed when your app moves to the background.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/about-the-background-execution-sequence",
+      "kind": "article",
+      "role": "article",
+      "title": "About the background execution sequence",
+      "type": "topic",
+      "url": "/documentation/uikit/about-the-background-execution-sequence"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/app-and-environment": {
+      "abstract": [
+        {
+          "text": "Manage life-cycle events and your app’s UI scenes, and get information about traits and the environment in which your app runs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and environment",
+      "type": "topic",
+      "url": "/documentation/uikit/app-and-environment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/extending-your-app-s-background-execution-time": {
+      "abstract": [
+        {
+          "text": "Ensure that critical tasks finish when your app moves to the background.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/extending-your-app-s-background-execution-time",
+      "kind": "article",
+      "role": "article",
+      "title": "Extending your app’s background execution time",
+      "type": "topic",
+      "url": "/documentation/uikit/extending-your-app-s-background-execution-time"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/multitasking-on-ipad": {
+      "abstract": [
+        {
+          "text": "Implement multitasking APIs to seamlessly integrate your app with iPadOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/multitasking-on-ipad",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Multitasking on iPad",
+      "type": "topic",
+      "url": "/documentation/uikit/multitasking-on-ipad"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-background": {
+      "abstract": [
+        {
+          "text": "Prepare your app to be suspended.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-background",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preparing your UI to run in the background",
+      "type": "topic",
+      "url": "/documentation/uikit/preparing-your-ui-to-run-in-the-background"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/scenes": {
+      "abstract": [
+        {
+          "text": "Manage multiple instances of your app’s UI simultaneously, and direct resources to the appropriate instance of your UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/scenes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scenes",
+      "type": "topic",
+      "url": "/documentation/uikit/scenes"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/windows-and-screens": {
+      "abstract": [
+        {
+          "text": "Provide a container for your view hierarchies and other content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/windows-and-screens",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Windows and screens",
+      "type": "topic",
+      "url": "/documentation/uikit/windows-and-screens"
+    },
+    "media-3262151": {
+      "alt": "Illustration showing the Custom iOS Target Properties editor of the Info pane. A box is drawn around the example entries in the “Permitted background task schedule identifiers” array, which shows two identifiers. Item 0 is refresh, item 1 is .db_cleaning.",
+      "identifier": "media-3262151",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fe1d997e7daf93effe445d88d4c1da7d/media-3262151@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/996a46089395f8b831a9024cab22bd80/media-3262151~dark@2x.png"
+        }
+      ]
+    },
+    "media-3262152": {
+      "alt": "The Xcode project editor showing the Background Modes capabilities editor of the Signing & Capabilities pane. A text callout points to the “+ Capability” button at the top-left above the editors and another callout identifies the two background mode checkbox items.",
+      "identifier": "media-3262152",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e4e79f1275f29c97f978794931fcae53/media-3262152@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f4d310a7e1f8b67dcf9c569b20436394/media-3262152~dark@2x.png"
+        }
+      ]
+    },
+    "media-3399760": {
+      "alt": "Flow diagram showing when a task object is run. The flow starts with app launch, after which the task is scheduled, run, and completed.",
+      "identifier": "media-3399760",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/067ce635a06a72f812bdbe72b3f5dd3b/media-3399760@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f27ec3cf361be75579d0a67b29190d38/media-3399760~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Background-execution",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/extending-your-app-s-background-execution-time",
+        "doc://com.apple.uikit/documentation/UIKit/about-the-background-execution-sequence"
+      ],
+      "title": "Background execution"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Background-execution",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/extending-your-app-s-background-execution-time",
+                "doc://com.apple.uikit/documentation/UIKit/about-the-background-execution-sequence"
+              ],
+              "title": "Background execution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication~1setMinimumBackgroundFetchInterval(_:)/title",
+          "value": "setMinimumBackgroundFetchInterval:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication~1setMinimumBackgroundFetchInterval(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setMinimumBackgroundFetchInterval:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1BackgroundTasks~1BGProcessingTask/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "BGProcessingTask"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)BGTask",
+              "text": "BGTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1BackgroundTasks~1BGTaskScheduler/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "BGTaskScheduler"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:performFetchWithCompletionHandler:)/title",
+          "value": "application:performFetchWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:performFetchWithCompletionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:performFetchWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1BackgroundTasks~1BGTaskScheduler~1submit(_:)/title",
+          "value": "submitTaskRequest:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1BackgroundTasks~1BGTaskScheduler~1submit(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "submitTaskRequest:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)BGTaskRequest",
+              "text": "BGTaskRequest"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "taskRequest"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "error:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1BackgroundTasks~1BGAppRefreshTask/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "BGAppRefreshTask"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)BGTask",
+              "text": "BGTask"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/using-background-tasks-to-update-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/using-background-tasks-to-update-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

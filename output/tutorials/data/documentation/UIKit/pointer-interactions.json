@@ -1,0 +1,1948 @@
+{
+  "abstract": [
+    {
+      "text": "Support pointer interactions in your custom controls and views.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/pointer-interactions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Pointer interactions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iPadOS 13.4 introduces dynamic pointer effects and behaviors that enhance the experience of using an external input device, like a trackpad or mouse, with iPad. As people use an input device, iPadOS automatically adapts the pointer to the current context, providing rich visual feedback and just the right level of precision needed to enhance productivity and simplify common tasks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " automatically handles pointer interactions if you’re using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIButton",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISegmentedControl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you use custom views to display your content, you must define pointer effects and styles yourself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/inputs/pointing-devices/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-custom-pointer-styles",
+          "level": 3,
+          "text": "Specify custom pointer styles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a custom pointer style effect to a view:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPointerInteraction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify the pointer interaction’s delegate (an object that conforms to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPointerInteractionDelegate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the interaction to the view’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/interactions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPointerInteractionDelegate/pointerInteraction(_:styleFor:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " delegate method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Return ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPointerStyle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " from that delegate method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example uses a custom helper method, which you typically call within a view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewDidLoad()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func customPointerInteraction(on view: UIView, pointerInteractionDelegate: UIPointerInteractionDelegate) {",
+            "    let pointerInteraction = UIPointerInteraction(delegate: pointerInteractionDelegate)",
+            "    view.addInteraction(pointerInteraction)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPointerInteractionDelegate/pointerInteraction(_:styleFor:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method is called when the pointer enters the view’s region. The following example shows an interaction that applies a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPointerLiftEffect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " effect by returning a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPointerStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func pointerInteraction(_ interaction: UIPointerInteraction, styleFor region: UIPointerRegion) -> UIPointerStyle? {",
+            "    var pointerStyle: UIPointerStyle? = nil",
+            "",
+            "    if let interactionView = interaction.view {",
+            "        let targetedPreview = UITargetedPreview(view: interactionView)",
+            "        pointerStyle = UIPointerStyle(effect: UIPointerEffect.lift(targetedPreview))",
+            "    }",
+            "    return pointerStyle",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-interaction-animations",
+          "level": 3,
+          "text": "Add interaction animations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Including animations can be helpful in pointer interactions, especially when views contain elements that interfere with pointer effects. For example, hiding the separator bars in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISegmentedControl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when the pointer enters the control allows the active segment effect to appear visually uncluttered.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example performs a simple animation to change the alpha value of the view when the pointer enters and exits the region:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func pointerInteraction(_ interaction: UIPointerInteraction, willEnter region: UIPointerRegion, animator: UIPointerInteractionAnimating) {",
+            "    if let interactionView = interaction.view {",
+            "        animator.addAnimations {",
+            "            interactionView.alpha = 0.5",
+            "        }",
+            "    }",
+            "}",
+            "",
+            "func pointerInteraction(_ interaction: UIPointerInteraction, willExit region: UIPointerRegion, animator: UIPointerInteractionAnimating) {",
+            "    if let interactionView = interaction.view {",
+            "        animator.addAnimations {",
+            "            interactionView.alpha = 1.0",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Distinguish-pointing-device-input-events",
+          "level": 3,
+          "text": "Distinguish pointing device input events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to distinguish between pointing device touch events and touch events from other sources, like the user’s fingers or Apple Pencil, you can enable the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSupportsIndirectInputEvents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. With this key enabled, your app can respond to specific gestures targeted at touches of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch/TouchType/indirectPointer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSupportsIndirectInputEvents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSupportsIndirectInputEvents": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating that the app generally supports indirect input mechanisms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSupportsIndirectInputEvents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIApplicationSupportsIndirectInputEvents",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIApplicationSupportsIndirectInputEvents"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBandSelectionInteraction": {
+      "abstract": [
+        {
+          "text": "An object that tracks the selection of multiple items using pointer-based input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBandSelectionInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBandSelectionInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBandSelectionInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBandSelectionInteraction",
+      "type": "topic",
+      "url": "/documentation/uikit/uibandselectioninteraction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBandSelectionInteraction/State-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that indicate whether a band selection interaction object is inactive or currently tracking an interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBandSelectionInteraction/State-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBandSelectionInteraction.State",
+      "type": "topic",
+      "url": "/documentation/uikit/uibandselectioninteraction/state-swift.enum"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItem": {
+      "abstract": [
+        {
+          "text": "A specialized button for placement on a toolbar, navigation bar, or shortcuts bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBarButtonItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBarButtonItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBarButtonItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIButton": {
+      "abstract": [
+        {
+          "text": "A control that executes your custom code in response to user interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIButton"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIButton",
+      "type": "topic",
+      "url": "/documentation/uikit/uibutton"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPointerAccessory": {
+      "abstract": [
+        {
+          "text": "Constants that describe accessories to display alongside the primary pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPointerAccessory"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPointerAccessory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPointerAccessory"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPointerAccessory",
+      "type": "topic",
+      "url": "/documentation/uikit/uipointeraccessory"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPointerEffect-c.class": {
+      "abstract": [
+        {
+          "text": "An effect that alters a view’s appearance when a pointer enters the current region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UIPointerEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPointerEffect-c.class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPointerEffect",
+      "type": "topic",
+      "url": "/documentation/uikit/uipointereffect-c.class"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPointerEffect-swift.enum": {
+      "abstract": [
+        {
+          "text": "An effect that alters a view’s appearance when a pointer enters the current region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPointerEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPointerEffect-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPointerEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPointerEffect",
+      "type": "topic",
+      "url": "/documentation/uikit/uipointereffect-swift.enum"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPointerInteraction": {
+      "abstract": [
+        {
+          "text": "An interaction that enables support for effects on a view or customizes the pointer’s appearance within a region of an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPointerInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPointerInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPointerInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPointerInteraction",
+      "type": "topic",
+      "url": "/documentation/uikit/uipointerinteraction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPointerInteractionAnimating": {
+      "abstract": [
+        {
+          "text": "An interface for modifying an interaction animation in coordination with the pointer effect animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPointerInteractionAnimating"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPointerInteractionAnimating",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPointerInteractionAnimating"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPointerInteractionAnimating",
+      "type": "topic",
+      "url": "/documentation/uikit/uipointerinteractionanimating"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPointerInteractionDelegate": {
+      "abstract": [
+        {
+          "text": "An interface for handling pointer movements within the interaction’s view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPointerInteractionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPointerInteractionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPointerInteractionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPointerInteractionDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uipointerinteractiondelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPointerInteractionDelegate/pointerInteraction(_:styleFor:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate for a pointer style after an interaction receives a new region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pointerInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPointerInteraction",
+          "text": "UIPointerInteraction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "styleFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPointerRegion",
+          "text": "UIPointerRegion"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPointerStyle",
+          "text": "UIPointerStyle"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPointerInteractionDelegate/pointerInteraction(_:styleFor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pointerInteraction:styleForRegion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "pointerInteraction(_:styleFor:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uipointerinteractiondelegate/pointerinteraction(_:stylefor:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPointerLiftEffect": {
+      "abstract": [
+        {
+          "text": "An effect where the pointer slides under the given view and disappears as the view scales up and gains a shadow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UIPointerLiftEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPointerLiftEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPointerLiftEffect",
+      "type": "topic",
+      "url": "/documentation/uikit/uipointerlifteffect"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPointerLockState": {
+      "abstract": [
+        {
+          "text": "An object that contains information about a scene’s pointer lock state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPointerLockState"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPointerLockState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPointerLockState"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPointerLockState",
+      "type": "topic",
+      "url": "/documentation/uikit/uipointerlockstate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPointerRegion": {
+      "abstract": [
+        {
+          "text": "A rectangular region that interacts with pointer movements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPointerRegion"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPointerRegion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPointerRegion"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPointerRegion",
+      "type": "topic",
+      "url": "/documentation/uikit/uipointerregion"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPointerRegionRequest": {
+      "abstract": [
+        {
+          "text": "An object to describe the pointer’s location in the interaction’s view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPointerRegionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPointerRegionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPointerRegionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPointerRegionRequest",
+      "type": "topic",
+      "url": "/documentation/uikit/uipointerregionrequest"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPointerShape-c.class": {
+      "abstract": [
+        {
+          "text": "An object that defines the shape of custom pointers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UIPointerShape"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPointerShape-c.class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPointerShape",
+      "type": "topic",
+      "url": "/documentation/uikit/uipointershape-c.class"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPointerShape-swift.enum": {
+      "abstract": [
+        {
+          "text": "An object that defines the shape of custom pointers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPointerShape"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPointerShape-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPointerShape"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPointerShape",
+      "type": "topic",
+      "url": "/documentation/uikit/uipointershape-swift.enum"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPointerStyle": {
+      "abstract": [
+        {
+          "text": "An object that defines the pointer shape and effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPointerStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPointerStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPointerStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPointerStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uipointerstyle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISegmentedControl": {
+      "abstract": [
+        {
+          "text": "A horizontal control that consists of multiple segments, each segment functioning as a discrete button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISegmentedControl"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISegmentedControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISegmentedControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISegmentedControl",
+      "type": "topic",
+      "url": "/documentation/uikit/uisegmentedcontrol"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITouch/TouchType/indirectPointer": {
+      "abstract": [
+        {
+          "text": "A touch resulting from a button-based, indirect input device that describes the input sequence from button press to button release.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "indirectPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch/TouchType/indirectPointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITouchTypeIndirectPointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITouch.TouchType.indirectPointer",
+      "type": "topic",
+      "url": "/documentation/uikit/uitouch/touchtype/indirectpointer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/interactions": {
+      "abstract": [
+        {
+          "text": "The array of interactions for the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interactions"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIInteraction",
+          "text": "UIInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/interactions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "interactions"
+        }
+      ],
+      "role": "symbol",
+      "title": "interactions",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/interactions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewDidLoad()": {
+      "abstract": [
+        {
+          "text": "Called after the controller’s view is loaded into memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidLoad"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewDidLoad()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewDidLoad"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewDidLoad()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/viewdidload()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/accessibility-for-uikit": {
+      "abstract": [
+        {
+          "text": "Make your UIKit apps accessible to everyone who uses iOS and tvOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/accessibility-for-uikit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessibility for UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit/accessibility-for-uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions": {
+      "abstract": [
+        {
+          "text": "Handle user interactions like double tap and squeeze on Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pencil interactions",
+      "type": "topic",
+      "url": "/documentation/uikit/apple-pencil-interactions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/drag-and-drop": {
+      "abstract": [
+        {
+          "text": "Bring drag and drop to your app by using interaction APIs with your views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/drag-and-drop",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Drag and drop",
+      "type": "topic",
+      "url": "/documentation/uikit/drag-and-drop"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/enhancing-your-ipad-app-with-pointer-interactions": {
+      "abstract": [
+        {
+          "text": "Provide a great user experience with pointing devices, by incorporating pointer content effects and shape customizations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/enhancing-your-ipad-app-with-pointer-interactions",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Enhancing your iPad app with pointer interactions",
+      "type": "topic",
+      "url": "/documentation/uikit/enhancing-your-ipad-app-with-pointer-interactions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation": {
+      "abstract": [
+        {
+          "text": "Navigate the interface of your UIKit app using a remote, game controller, or keyboard.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Focus-based navigation",
+      "type": "topic",
+      "url": "/documentation/uikit/focus-based-navigation"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/integrating-pointer-interactions-into-your-ipad-app": {
+      "abstract": [
+        {
+          "text": "Support touch interactions in your iPad app by adding pointer interactions to your views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/integrating-pointer-interactions-into-your-ipad-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Integrating pointer interactions into your iPad app",
+      "type": "topic",
+      "url": "/documentation/uikit/integrating-pointer-interactions-into-your-ipad-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts": {
+      "abstract": [
+        {
+          "text": "Simplify interactions with your app using menu systems, contextual menus, Home Screen quick actions, and keyboard shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Menus and shortcuts",
+      "type": "topic",
+      "url": "/documentation/uikit/menus-and-shortcuts"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures": {
+      "abstract": [
+        {
+          "text": "Encapsulate your app’s event-handling logic in gesture recognizers so that you can reuse that code throughout your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Touches, presses, and gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/touches-presses-and-gestures"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/inputs/pointing-devices/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/inputs/pointing-devices/",
+      "title": "Human Interface Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/inputs/pointing-devices/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-interactions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts",
+        "doc://com.apple.uikit/documentation/UIKit/drag-and-drop",
+        "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions",
+        "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation",
+        "doc://com.apple.uikit/documentation/UIKit/accessibility-for-uikit"
+      ],
+      "title": "User interactions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIPointerInteraction",
+        "doc://com.apple.uikit/documentation/UIKit/UIPointerInteractionDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/integrating-pointer-interactions-into-your-ipad-app",
+        "doc://com.apple.uikit/documentation/UIKit/enhancing-your-ipad-app-with-pointer-interactions"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Interaction-animations",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIPointerInteractionAnimating"
+      ],
+      "title": "Interaction animations"
+    },
+    {
+      "anchor": "Pointer-styles",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIPointerStyle",
+        "doc://com.apple.uikit/documentation/UIKit/UIPointerShape-swift.enum",
+        "doc://com.apple.uikit/documentation/UIKit/UIPointerEffect-swift.enum",
+        "doc://com.apple.uikit/documentation/UIKit/UIPointerAccessory"
+      ],
+      "title": "Pointer styles"
+    },
+    {
+      "anchor": "Pointer-region",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIPointerRegion",
+        "doc://com.apple.uikit/documentation/UIKit/UIPointerRegionRequest"
+      ],
+      "title": "Pointer region"
+    },
+    {
+      "anchor": "Lock-state",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIPointerLockState"
+      ],
+      "title": "Lock state"
+    },
+    {
+      "anchor": "Band-selection",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIBandSelectionInteraction",
+        "doc://com.apple.uikit/documentation/UIKit/UIBandSelectionInteraction/State-swift.enum"
+      ],
+      "title": "Band selection"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIPointerInteraction",
+                "doc://com.apple.uikit/documentation/UIKit/UIPointerInteractionDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/integrating-pointer-interactions-into-your-ipad-app",
+                "doc://com.apple.uikit/documentation/UIKit/enhancing-your-ipad-app-with-pointer-interactions"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Interaction-animations",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIPointerInteractionAnimating"
+              ],
+              "title": "Interaction animations"
+            },
+            {
+              "anchor": "Pointer-styles",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIPointerStyle",
+                "doc://com.apple.uikit/documentation/UIKit/UIPointerShape-c.class",
+                "doc://com.apple.uikit/documentation/UIKit/UIPointerEffect-c.class",
+                "doc://com.apple.uikit/documentation/UIKit/UIPointerAccessory"
+              ],
+              "title": "Pointer styles"
+            },
+            {
+              "anchor": "Pointer-region",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIPointerRegion",
+                "doc://com.apple.uikit/documentation/UIKit/UIPointerRegionRequest"
+              ],
+              "title": "Pointer region"
+            },
+            {
+              "anchor": "Lock-state",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIPointerLockState"
+              ],
+              "title": "Lock state"
+            },
+            {
+              "anchor": "Band-selection",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIBandSelectionInteraction",
+                "doc://com.apple.uikit/documentation/UIKit/UIBandSelectionInteraction/State-swift.enum"
+              ],
+              "title": "Band selection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "User-interactions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+                "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts",
+                "doc://com.apple.uikit/documentation/UIKit/drag-and-drop",
+                "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions",
+                "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation",
+                "doc://com.apple.uikit/documentation/UIKit/accessibility-for-uikit"
+              ],
+              "title": "User interactions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISegmentedControl/title",
+          "value": "UISegmentedControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISegmentedControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISegmentedControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISegmentedControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISegmentedControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIButton/title",
+          "value": "UIButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerAccessory/title",
+          "value": "UIPointerAccessory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerAccessory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPointerAccessory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerAccessory/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPointerAccessory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerInteractionAnimating/title",
+          "value": "UIPointerInteractionAnimating"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerInteractionAnimating/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPointerInteractionAnimating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerInteractionAnimating/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPointerInteractionAnimating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1viewDidLoad()/title",
+          "value": "viewDidLoad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1viewDidLoad()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewDidLoad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerStyle/title",
+          "value": "UIPointerStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPointerStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPointerStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerRegionRequest/title",
+          "value": "UIPointerRegionRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerRegionRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPointerRegionRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerRegionRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPointerRegionRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBandSelectionInteraction~1State-swift.enum/title",
+          "value": "UIBandSelectionInteractionState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBandSelectionInteraction~1State-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBandSelectionInteractionState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBandSelectionInteraction~1State-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBandSelectionInteractionState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBandSelectionInteraction/title",
+          "value": "UIBandSelectionInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBandSelectionInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBandSelectionInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBandSelectionInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBandSelectionInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch~1TouchType~1indirectPointer/title",
+          "value": "UITouchTypeIndirectPointer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch~1TouchType~1indirectPointer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITouchTypeIndirectPointer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerLockState/title",
+          "value": "UIPointerLockState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerLockState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPointerLockState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerLockState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPointerLockState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerRegion/title",
+          "value": "UIPointerRegion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerRegion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPointerRegion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerRegion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPointerRegion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerInteractionDelegate~1pointerInteraction(_:styleFor:)/title",
+          "value": "pointerInteraction:styleForRegion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerInteractionDelegate~1pointerInteraction(_:styleFor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pointerInteraction:styleForRegion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItem/title",
+          "value": "UIBarButtonItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1interactions/title",
+          "value": "interactions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1interactions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "interactions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerInteraction/title",
+          "value": "UIPointerInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPointerInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPointerInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerInteractionDelegate/title",
+          "value": "UIPointerInteractionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerInteractionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPointerInteractionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPointerInteractionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPointerInteractionDelegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/pointer-interactions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/pointer-interactions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

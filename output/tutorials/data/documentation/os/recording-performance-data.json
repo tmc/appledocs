@@ -1,0 +1,911 @@
+{
+  "abstract": [
+    {
+      "text": "Add signposts to record interesting time-based events.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.os/documentation/os",
+        "doc://com.apple.os/documentation/os/logging"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.os/documentation/os/recording-performance-data"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "os"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Recording Performance Data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users notice when an app’s performance degrades, which makes performance tuning a critical part of app development. If your app performs several tasks and leverages concurrency, it can often be difficult to visualize which tasks are executing and how long each one takes to complete.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Signposts allow you to measure your app’s tasks using the same subsystems and categories that you use for logging. After adding signposts to your app using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OSSignposter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you use Xcode’s Instruments app to record your app’s behavior as you perform the tasks to measure, and Instruments displays that data in a timeline. If you have complex workloads, you can create an instrument that presents a custom representation of your app’s signpost data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Disambiguate-Each-Instance-of-a-Task",
+          "level": 3,
+          "text": "Disambiguate Each Instance of a Task",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When emitting signposts, you need to be able to disambiguate between separate invocations of the same measured code. For example, if your app requests data from a remote server and you’re measuring those requests, you need to be able to identify each individual request, especially if several requests are executing concurrently. To do this, associate a signpost ID with each set of related signposts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The easiest way to create a signpost ID is to call your signposter’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OSSignposter/makeSignpostID()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, which creates a unique identifier within the scope of that signposter. The following example shows how to create a signpost ID that you can use to track a specific request:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a signposter that uses the default subsystem and category.",
+            "let signposter = OSSignposter()",
+            "        ",
+            "// Generate a signpost ID to associate with a signposted interval.",
+            "let signpostID = signposter.makeSignpostID()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, use one of the system-defined signpost IDs or derive one from an instance of one of your app’s objects. Each of these approaches has its own caveats. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OSSignpostID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Emit-Signposted-Intervals-and-Events",
+          "level": 3,
+          "text": "Emit Signposted Intervals and Events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you generate a signpost ID, emit signposts for the tasks you want to measure. To begin a signposted interval, use the signposter’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OSSignposter/beginInterval(_:id:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Store the interval state the method returns, and then pass it to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OSSignposter/endInterval(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to finish the interval. Interval state contains the signpost ID, which the signposter uses to pair the two calls and to enforce a number of runtime assertions. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OSSignposter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides alternative versions of these two methods that allow you to capture a message that Instruments displays, as well as methods to measure the execution of a specific closure. To mark a single point of interest in time, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OSSignposter/emitEvent(_:id:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example creates a signposted interval that measures the amount of time it takes to process a server request. It also emits a notable event during that process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func processRequest(_ request: URLRequest, signposter: OSSignposter) {",
+            "    // Generate a signpost ID to associate with the signposted interval.",
+            "    let signpostID = signposter.makeSignpostID()",
+            "        ",
+            "    // Begin a signposted interval and store the interval state.",
+            "    let state = signposter.beginInterval(\"processRequest\", id: signpostID)",
+            "        ",
+            "    let data = fetchData(from: request)",
+            "        ",
+            "    // Emit an event to mark a specific point of interest.",
+            "    signposter.emitEvent(\"Fetch complete.\", id: signpostID)",
+            "    processData(data)",
+            "        ",
+            "    // End the signposted interval using the stored interval state.",
+            "    signposter.endInterval(\"processRequest\", state)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Review-Signposts-in-Instruments",
+          "level": 3,
+          "text": "Review Signposts in Instruments",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To record and view your signposts, open your project in Xcode and choose Product > Profile to launch Instruments. Select the Blank profiling template and then click the Add button (+) to open the Instrument library. Double-click the os_signposts instrument to add it to your session. Then click the Record button and perform the tasks in your app that you want to measure. The os_signpost instrument displays separate rows for each subsystem and category combination, and the table below the timeline provides detailed information for each signpost that Instruments captures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3854076",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app generates a significant amount of signpost data, it may be difficult to analyze that data using the standard instrument. Consider building a custom instrument to do the analysis on your behalf. Identify the specific behaviors of your app and create a set of rules to detect and display the corresponding data. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2018/410/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.os/documentation/os": {
+      "abstract": [
+        {
+          "text": "Coordinate the scheduling and synchronization of your app’s tasks, and log information to the console to diagnose issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "os",
+      "type": "topic",
+      "url": "/documentation/os"
+    },
+    "doc://com.apple.os/documentation/os/OSSignpostID": {
+      "abstract": [
+        {
+          "text": "An identifier that disambiguates signposted intervals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSSignpostID"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignpostID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSSignpostID"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSSignpostID",
+      "type": "topic",
+      "url": "/documentation/os/ossignpostid"
+    },
+    "doc://com.apple.os/documentation/os/OSSignpostType": {
+      "abstract": [
+        {
+          "text": "The different kinds of signpost.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSSignpostType"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignpostType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSSignpostType"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSSignpostType",
+      "type": "topic",
+      "url": "/documentation/os/ossignposttype"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter": {
+      "abstract": [
+        {
+          "text": "An object for measuring task performance using the unified logging system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSSignposter"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSSignposter"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSSignposter",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/beginInterval(_:id:)": {
+      "abstract": [
+        {
+          "text": "Begins a signposted interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginInterval"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSSignpostIDV",
+          "text": "OSSignpostID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os23OSSignpostIntervalStateC",
+          "text": "OSSignpostIntervalState"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/beginInterval(_:id:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginInterval(_:id:)",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/begininterval(_:id:)"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/emitEvent(_:id:)": {
+      "abstract": [
+        {
+          "text": "Marks a point of interest in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "emitEvent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSSignpostIDV",
+          "text": "OSSignpostID"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/emitEvent(_:id:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "emitEvent(_:id:)",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/emitevent(_:id:)"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/endInterval(_:_:)": {
+      "abstract": [
+        {
+          "text": "Ends the signposted interval that corresponds to the specified name and state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endInterval"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os23OSSignpostIntervalStateC",
+          "text": "OSSignpostIntervalState"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/endInterval(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endInterval(_:_:)",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/endinterval(_:_:)"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/makeSignpostID()": {
+      "abstract": [
+        {
+          "text": "Returns an identifier that’s unique within the scope of the signposter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeSignpostID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSSignpostIDV",
+          "text": "OSSignpostID"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/makeSignpostID()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeSignpostID()",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/makesignpostid()"
+    },
+    "doc://com.apple.os/documentation/os/legacy-signpost-symbols": {
+      "abstract": [
+        {
+          "text": "Migrate your code away from using these legacy symbols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/legacy-signpost-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Legacy Signpost Symbols",
+      "type": "topic",
+      "url": "/documentation/os/legacy-signpost-symbols"
+    },
+    "doc://com.apple.os/documentation/os/logging": {
+      "abstract": [
+        {
+          "text": "Capture telemetry from your app for debugging and performance analysis using the unified logging system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/logging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Logging",
+      "type": "topic",
+      "url": "/documentation/os/logging"
+    },
+    "doc://com.apple.os/documentation/os/os_signpost_emit_with_type": {
+      "abstract": [
+        {
+          "text": "Logs a point of interest in your code as a time interval or as an event for debugging performance in Instruments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_signpost_emit_with_type"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_signpost_emit_with_type",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_signpost_emit_with_type",
+      "type": "topic",
+      "url": "/documentation/os/os_signpost_emit_with_type"
+    },
+    "doc://com.apple.os/documentation/os/os_signpost_event_emit": {
+      "abstract": [
+        {
+          "text": "Marks a point of interest in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_signpost_event_emit"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_signpost_event_emit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_signpost_event_emit",
+      "type": "topic",
+      "url": "/documentation/os/os_signpost_event_emit"
+    },
+    "doc://com.apple.os/documentation/os/os_signpost_id_t": {
+      "abstract": [
+        {
+          "text": "An identifier you use to distinguish between signposts that have the same name and destination log.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "os_signpost_id_t"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_signpost_id_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "os_signpost_id_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "os_signpost_id_t",
+      "type": "topic",
+      "url": "/documentation/os/os_signpost_id_t"
+    },
+    "doc://com.apple.os/documentation/os/os_signpost_interval_begin": {
+      "abstract": [
+        {
+          "text": "Marks the start of a time interval in your code using a signpost.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_signpost_interval_begin"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_signpost_interval_begin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_signpost_interval_begin",
+      "type": "topic",
+      "url": "/documentation/os/os_signpost_interval_begin"
+    },
+    "doc://com.apple.os/documentation/os/os_signpost_interval_end": {
+      "abstract": [
+        {
+          "text": "Marks the end of a time interval in your code using a signpost.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_signpost_interval_end"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_signpost_interval_end",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_signpost_interval_end",
+      "type": "topic",
+      "url": "/documentation/os/os_signpost_interval_end"
+    },
+    "https://developer.apple.com/videos/play/wwdc2018/410/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2018/410/",
+      "title": "Creating Custom Instruments",
+      "titleInlineContent": [
+        {
+          "text": "Creating Custom Instruments",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2018/410/"
+    },
+    "media-3854076": {
+      "alt": "A screenshot of the Instruments app that shows a number of captured signposts. The upper pane displays the signposts in a timeline, and the lower pane is a table that lists individual signposts and their corresponding metadata.",
+      "identifier": "media-3854076",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2ae4fce259d625a63eadf1927479a993/media-3854076@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ab27f26b8312d8fb6b2d2a6b8abdba27/media-3854076~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Measure-Events",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSSignposter",
+        "doc://com.apple.os/documentation/os/legacy-signpost-symbols",
+        "doc://com.apple.os/documentation/os/OSSignpostType",
+        "doc://com.apple.os/documentation/os/os_signpost_id_t"
+      ],
+      "title": "Measure Events"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Measure-Events",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.os/documentation/os/legacy-signpost-symbols",
+                "doc://com.apple.os/documentation/os/os_signpost_emit_with_type",
+                "doc://com.apple.os/documentation/os/OSSignpostType",
+                "doc://com.apple.os/documentation/os/os_signpost_interval_begin",
+                "doc://com.apple.os/documentation/os/os_signpost_interval_end",
+                "doc://com.apple.os/documentation/os/os_signpost_event_emit",
+                "doc://com.apple.os/documentation/os/os_signpost_id_t"
+              ],
+              "title": "Measure Events"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1OSSignpostType/title",
+          "value": "os_signpost_type_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1OSSignpostType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "os_signpost_type_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1OSSignpostType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "os_signpost_type_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1os_signpost_id_t/title",
+          "value": "os_signpost_id_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1os_signpost_id_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "os_signpost_id_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1os_signpost_id_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "os_signpost_id_t"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/os/recording-performance-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/os/recording-performance-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

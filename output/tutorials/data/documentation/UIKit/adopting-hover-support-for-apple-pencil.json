@@ -1,0 +1,1947 @@
+{
+  "abstract": [
+    {
+      "text": "Enhance user feedback for your iPadOS app with a hover preview for",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "Apple Pencil input.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/adopting-hover-support-for-apple-pencil"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.1",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.1",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Adopting hover support for Apple Pencil"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows how to add support for hover gestures with Apple Pencil.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app is a simple drawing tool that allows a person to draw strokes on a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "blank canvas. When a person hovers the Apple Pencil slightly above the drawing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "canvas, the app uses hover gestures to render a visual preview of where the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Apple Pencil touches down to draw a stroke on the canvas.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although the sample app’s basic functionality is available in Simulator,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "running the project with physical devices is recommended to demonstrate the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "full capabilities of the hardware. Run this project with the following devices:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iPad Pro 11-inch (4th generation) or iPad Pro 12.9-inch (6th generation) running iPadOS 16.1 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple Pencil (2nd generation)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the sample code project:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Connect Apple Pencil with the iPad Pro, as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://support.apple.com/en-us/HT205236",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Connect the iPad Pro to your Mac with a hardware cable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the sample code project in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Scheme menu, choose the connected iPad Pro.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run the app, and use Apple Pencil to interact with the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Create-a-gesture-recognizer-for-drawing",
+          "level": 3,
+          "text": "Create a gesture recognizer for drawing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample project uses a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "long-press gesture recognizer",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which reacts when a person presses and holds a touch for a minimum period of time,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to draw strokes with Apple Pencil.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app implements the ",
+              "type": "text"
+            },
+            {
+              "code": "DrawGestureRecognizer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subclass, which extends the capabilities of its superclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UILongPressGestureRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to track the ",
+              "type": "text"
+            },
+            {
+              "code": "currentTouch",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "currentEvent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". These additional properties provide the information necessary to implement high-fidelity drawing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class DrawGestureRecognizer: UILongPressGestureRecognizer {",
+            "    ",
+            "    weak var currentTouch: UITouch?",
+            "    weak var currentEvent: UIEvent?",
+            "    ",
+            "    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {",
+            "        super.touchesBegan(touches, with: event)",
+            "        currentTouch = touches.first",
+            "        currentEvent = event",
+            "    }",
+            "    ",
+            "    override func reset() {",
+            "        super.reset()",
+            "        currentTouch = nil",
+            "        currentEvent = nil",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The drawing implementation is in the ",
+              "type": "text"
+            },
+            {
+              "code": "drawGesture(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "During the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/changed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "state of the draw gesture, this method attempts to retrieve additional touches",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "associated with the main touch ",
+              "type": "text"
+            },
+            {
+              "code": "currentTouch",
+              "type": "codeVoice"
+            },
+            {
+              "text": " through",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEvent/coalescedTouches(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This extra touch data creates a smoother drawing experience with lower latency",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and higher precision.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "case .changed:",
+            "    if let drawGR = drawGestureRecognizer,",
+            "       let currentTouch = drawGR.currentTouch,",
+            "       let currentEvent = drawGR.currentEvent,",
+            "       let touches = currentEvent.coalescedTouches(for: currentTouch) {",
+            "        for touch in touches {",
+            "            let point = touch.preciseLocation(in: self)",
+            "            updatePath(point: point)",
+            "        }",
+            "    } else {",
+            "        updatePath(point: point)",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To render the strokes on the canvas,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the sample calls ",
+              "type": "text"
+            },
+            {
+              "code": "updatePath(point: CGPoint)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which updates the Bezier path associated with the current stroke",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and renders the visual output to a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAShapeLayer",
+              "isActive": true,
+              "overridingTitle": "CAShapeLayer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CAShapeLayer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-gesture-recognizer-for-hover-preview",
+          "level": 3,
+          "text": "Create a gesture recognizer for hover preview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample project uses a hover gesture recognizer to generate a visual preview",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the stroke before Apple Pencil touches down on the iPad screen.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "hover gesture recognizer",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " reacts when a pointer from a pointing device",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as Apple Pencil moves over a user-interface element.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When a person hovers the Apple Pencil a short distance above the iPad screen,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the app generates a preview.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample project creates an instance of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIHoverGestureRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to handle the hover gesture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let hoverGesture = UIHoverGestureRecognizer(target: self, action: #selector(hoverGesture(_:)))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The hover preview implementation is in the ",
+              "type": "text"
+            },
+            {
+              "code": "hoverGesture(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This method waits for the draw gesture to end before starting hover preview",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "rendering. This delay ensures that drawing and previewing don’t occur at the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "same time to create overlapping visual effects in the UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard !isDrawing else { return }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Update-the-hover-preview",
+          "level": 3,
+          "text": "Update the hover preview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample changes the opacity, or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "alpha",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", of the hover preview effect",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "according to the distance the Apple Pencil hovers above the iPad screen.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When Apple Pencil is farther from the screen, the preview alpha is lower,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which makes the visual effect more subtle.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When Apple Pencil is closer to the screen, the preview alpha is higher,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which makes the visual effect more prominent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample calculates the preview alpha value in the ",
+              "type": "text"
+            },
+            {
+              "code": "hoverGesture(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using the following values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIHoverGestureRecognizer/zOffset",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "—A property of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIHoverGestureRecognizer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " that reports the current, normalized distance between the Apple Pencil and the iPad screen.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "maxPreviewZOffset",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "—A constant that represents the maximum distance between the Apple Pencil and the iPad screen. The sample uses the maximum distance ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " because ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "zOffset",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is normalized.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "fadeZOffset",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "—A constant that represents the threshold distance at which the preview alpha switches between fully opaque and partially opaque, causing the visual preview effect to begin fading out.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "previewAlpha = 1.0 - max(zOffset - fadeZOffset, 0.0) / (maxPreviewZOffset - fadeZOffset)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This line of code calculates the preview alpha. When Apple Pencil is closer to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the screen than ",
+              "type": "text"
+            },
+            {
+              "code": "fadeZOffset",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the preview alpha is ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which makes the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "visual effect fully opaque. As Apple Pencil moves farther away than ",
+              "type": "text"
+            },
+            {
+              "code": "fadeZOffset",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the alpha begins to decrease and eventually reaches ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which causes the visual preview to fade and disappear.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-different-behaviors-for-input-types",
+          "level": 3,
+          "text": "Configure different behaviors for input types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, hover gestures work with pointing devices such as trackpads",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as well as Apple Pencil. For example, running the sample code project on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an iPad with a connected trackpad",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "renders a hover preview when the pointer passes over the drawing canvas.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, this sample provides a different hover experience for Apple Pencil than",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for a trackpad, so the default behavior might be unsuitable for trackpad input.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To restrict the hover preview to Apple Pencil input only and disable it for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "trackpad, uncomment the following line of code and run the app again:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// hoverGesture.allowedTouchTypes = [ UITouch.TouchType.pencil.rawValue as NSNumber ]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "adc8da922f3a/AdoptingHoverSupportForApplePencil.zip": {
+      "checksum": "adc8da922f3ac105a9920dbd12cbc94419c1be9b9af486d27fb9ede0465013d28102ee213acada50af153c3e435bcc11ef9ac38292730f78ca4e23f45e313c3a",
+      "identifier": "adc8da922f3a/AdoptingHoverSupportForApplePencil.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/adc8da922f3a/AdoptingHoverSupportForApplePencil.zip"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CAShapeLayer": {
+      "abstract": [
+        {
+          "text": "A layer that draws a cubic Bezier spline in its coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAShapeLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAShapeLayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CAShapeLayer",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CAShapeLayer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIEvent/coalescedTouches(for:)": {
+      "abstract": [
+        {
+          "text": "Returns all of the touches associated with the specified main touch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "coalescedTouches"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITouch",
+          "text": "UITouch"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITouch",
+          "text": "UITouch"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEvent/coalescedTouches(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "coalescedTouchesForTouch:"
+        }
+      ],
+      "role": "symbol",
+      "title": "coalescedTouches(for:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uievent/coalescedtouches(for:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/changed": {
+      "abstract": [
+        {
+          "text": "The gesture recognizer has received touches recognized as a change to a continuous gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "changed"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/changed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerStateChanged"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGestureRecognizer.State.changed",
+      "type": "topic",
+      "url": "/documentation/uikit/uigesturerecognizer/state-swift.enum/changed"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIHoverGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets pointer movement over a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIHoverGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIHoverGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIHoverGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIHoverGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uihovergesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIHoverGestureRecognizer/zOffset": {
+      "abstract": [
+        {
+          "text": "A value that represents the normalized distance between the screen and a hovering pointing device, such as Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIHoverGestureRecognizer/zOffset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "zOffset"
+        }
+      ],
+      "role": "symbol",
+      "title": "zOffset",
+      "type": "topic",
+      "url": "/documentation/uikit/uihovergesturerecognizer/zoffset"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILongPressGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets long-press gestures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILongPressGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILongPressGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UILongPressGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UILongPressGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uilongpressgesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets panning gestures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPanGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPanGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPanGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uipangesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPinchGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets pinching gestures involving two touches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPinchGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPinchGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPinchGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPinchGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uipinchgesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIRotationGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets rotation gestures involving two touches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIRotationGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIRotationGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIRotationGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIRotationGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uirotationgesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScreenEdgePanGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets panning gestures that start near an edge of the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIScreenEdgePanGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreenEdgePanGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIScreenEdgePanGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIScreenEdgePanGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscreenedgepangesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISwipeGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A discrete gesture recognizer that interprets swiping gestures in one or more directions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISwipeGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwipeGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISwipeGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISwipeGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uiswipegesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITapGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A discrete gesture recognizer that interprets single or multiple taps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITapGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITapGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITapGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITapGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uitapgesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/coordinating-multiple-gesture-recognizers": {
+      "abstract": [
+        {
+          "text": "Discover how to use multiple gesture recognizers on the same view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/coordinating-multiple-gesture-recognizers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Coordinating multiple gesture recognizers",
+      "type": "topic",
+      "url": "/documentation/uikit/coordinating-multiple-gesture-recognizers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-uikit-gestures": {
+      "abstract": [
+        {
+          "text": "Use gesture recognizers to simplify touch handling and create a consistent user experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-uikit-gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Handling UIKit gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-uikit-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/supporting-gesture-interaction-in-your-apps": {
+      "abstract": [
+        {
+          "text": "Enrich your app’s user experience by supporting standard and custom gesture interaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/supporting-gesture-interaction-in-your-apps",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting gesture interaction in your apps",
+      "type": "topic",
+      "url": "/documentation/uikit/supporting-gesture-interaction-in-your-apps"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures": {
+      "abstract": [
+        {
+          "text": "Encapsulate your app’s event-handling logic in gesture recognizers so that you can reuse that code throughout your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Touches, presses, and gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/touches-presses-and-gestures"
+    },
+    "https://support.apple.com/en-us/HT205236": {
+      "identifier": "https://support.apple.com/en-us/HT205236",
+      "title": "Connect Apple Pencil with your iPad",
+      "titleInlineContent": [
+        {
+          "text": "Connect Apple Pencil with your iPad",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/HT205236"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "adc8da922f3a/AdoptingHoverSupportForApplePencil.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Standard-gestures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/handling-uikit-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/coordinating-multiple-gesture-recognizers",
+        "doc://com.apple.uikit/documentation/UIKit/supporting-gesture-interaction-in-your-apps",
+        "doc://com.apple.uikit/documentation/UIKit/UIHoverGestureRecognizer",
+        "doc://com.apple.uikit/documentation/UIKit/UILongPressGestureRecognizer",
+        "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer",
+        "doc://com.apple.uikit/documentation/UIKit/UIPinchGestureRecognizer",
+        "doc://com.apple.uikit/documentation/UIKit/UIRotationGestureRecognizer",
+        "doc://com.apple.uikit/documentation/UIKit/UIScreenEdgePanGestureRecognizer",
+        "doc://com.apple.uikit/documentation/UIKit/UISwipeGestureRecognizer",
+        "doc://com.apple.uikit/documentation/UIKit/UITapGestureRecognizer"
+      ],
+      "title": "Standard gestures"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Standard-gestures",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/handling-uikit-gestures",
+                "doc://com.apple.uikit/documentation/UIKit/coordinating-multiple-gesture-recognizers",
+                "doc://com.apple.uikit/documentation/UIKit/supporting-gesture-interaction-in-your-apps",
+                "doc://com.apple.uikit/documentation/UIKit/UIHoverGestureRecognizer",
+                "doc://com.apple.uikit/documentation/UIKit/UILongPressGestureRecognizer",
+                "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer",
+                "doc://com.apple.uikit/documentation/UIKit/UIPinchGestureRecognizer",
+                "doc://com.apple.uikit/documentation/UIKit/UIRotationGestureRecognizer",
+                "doc://com.apple.uikit/documentation/UIKit/UIScreenEdgePanGestureRecognizer",
+                "doc://com.apple.uikit/documentation/UIKit/UISwipeGestureRecognizer",
+                "doc://com.apple.uikit/documentation/UIKit/UITapGestureRecognizer"
+              ],
+              "title": "Standard gestures"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1State-swift.enum~1changed/title",
+          "value": "UIGestureRecognizerStateChanged"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1State-swift.enum~1changed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGestureRecognizerStateChanged"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRotationGestureRecognizer/title",
+          "value": "UIRotationGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRotationGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIRotationGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRotationGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIRotationGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITapGestureRecognizer/title",
+          "value": "UITapGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITapGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITapGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITapGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITapGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIHoverGestureRecognizer/title",
+          "value": "UIHoverGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIHoverGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIHoverGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIHoverGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIHoverGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPinchGestureRecognizer/title",
+          "value": "UIPinchGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPinchGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPinchGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPinchGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPinchGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent~1coalescedTouches(for:)/title",
+          "value": "coalescedTouchesForTouch:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent~1coalescedTouches(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "coalescedTouchesForTouch:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPanGestureRecognizer/title",
+          "value": "UIPanGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPanGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPanGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPanGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPanGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CAShapeLayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CAShapeLayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CALayer",
+              "text": "CALayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILongPressGestureRecognizer/title",
+          "value": "UILongPressGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILongPressGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILongPressGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILongPressGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILongPressGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreenEdgePanGestureRecognizer/title",
+          "value": "UIScreenEdgePanGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreenEdgePanGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScreenEdgePanGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreenEdgePanGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScreenEdgePanGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwipeGestureRecognizer/title",
+          "value": "UISwipeGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwipeGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISwipeGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwipeGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISwipeGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIHoverGestureRecognizer~1zOffset/title",
+          "value": "zOffset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIHoverGestureRecognizer~1zOffset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "zOffset"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/adopting-hover-support-for-apple-pencil"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/adopting-hover-support-for-apple-pencil"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

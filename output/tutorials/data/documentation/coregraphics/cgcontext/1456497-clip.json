@@ -1,0 +1,679 @@
+{
+  "abstract": [
+    {
+      "text": "Maps a mask into the specified rectangle and intersects it with the current clipping area of the graphics context.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coregraphics",
+        "doc://com.apple.documentation/documentation/coregraphics/cgcontext"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coregraphics/cgcontext/1456497-clip"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1456497,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@CGContextClipToMask",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "clip"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "identifier",
+        "text": "to"
+      },
+      {
+        "kind": "text",
+        "text": ": CGRect, "
+      },
+      {
+        "kind": "identifier",
+        "text": "mask"
+      },
+      {
+        "kind": "text",
+        "text": ": CGImage)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Graphics"
+      }
+    ],
+    "parent": {
+      "title": "CGContext"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "clip(to:mask:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "clip"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "to"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "rect"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGRect",
+              "text": "CGRect"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "mask"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGImageRef",
+              "text": "CGImage"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The rectangle to map the ",
+                  "type": "text"
+                },
+                {
+                  "code": "mask",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter to.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "rect"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An image or an image mask. If ",
+                  "type": "text"
+                },
+                {
+                  "code": "mask",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is an image, then it must be in the DeviceGray color space, may not have an alpha component, and may not be masked by an image mask or masking color.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "mask"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ",
+              "type": "text"
+            },
+            {
+              "code": "mask",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is an image mask, then Core Graphics clips in a manner identical to the behavior seen with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454845-cgcontextdrawimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function —the mask indicates an area to be left unchanged when drawing. The source samples of the image mask determine which points of the clipping area are changed, acting as an \"inverse alpha\" value. If the value of a source sample in the image mask is ",
+              "type": "text"
+            },
+            {
+              "code": "S",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then the corresponding point in the current clipping area is multiplied by an alpha value of (",
+              "type": "text"
+            },
+            {
+              "code": "1–S",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). For example, if ",
+              "type": "text"
+            },
+            {
+              "code": "S",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " then the point in the clipping area becomes transparent. If ",
+              "type": "text"
+            },
+            {
+              "code": "S",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the point in the clipping area is unchanged.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ",
+              "type": "text"
+            },
+            {
+              "code": "mask",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is an image, then ",
+              "type": "text"
+            },
+            {
+              "code": "mask",
+              "type": "codeVoice"
+            },
+            {
+              "text": " acts like an alpha mask and is blended with the current clipping area. The source samples of mask determine which points of the clipping area are changed. If the value of the source sample in mask is ",
+              "type": "text"
+            },
+            {
+              "code": "S",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then the corresponding point in the current clipping area is multiplied by an alpha of ",
+              "type": "text"
+            },
+            {
+              "code": "S",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, if ",
+              "type": "text"
+            },
+            {
+              "code": "S",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then the point in the clipping area becomes transparent. If ",
+              "type": "text"
+            },
+            {
+              "code": "S",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the point in the clipping area is unchanged.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/cgrect": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRect",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgrect"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Graphics",
+      "type": "topic",
+      "url": "/documentation/coregraphics"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1454845-cgcontextdrawimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454845-cgcontextdrawimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draw(in:image:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1454845-cgcontextdrawimage"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgcontext": {
+      "abstract": [
+        {
+          "text": "A Quartz 2D drawing environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGContext",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcontext"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgcontext/1454716-clip": {
+      "abstract": [
+        {
+          "text": "Sets the clipping path to the intersection of the current clipping path with the area defined by the specified rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "clip"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcontext/1454716-clip",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clip(to:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcontext/1454716-clip"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgcontext/1455387-boundingboxofclippath": {
+      "abstract": [
+        {
+          "text": "Returns the bounding box of a clipping path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "boundingBoxOfClipPath"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcontext/1455387-boundingboxofclippath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "boundingBoxOfClipPath",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcontext/1455387-boundingboxofclippath"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgcontext/1456497-clip": {
+      "abstract": [
+        {
+          "text": "Maps a mask into the specified rectangle and intersects it with the current clipping area of the graphics context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "clip"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect, "
+        },
+        {
+          "kind": "identifier",
+          "text": "mask"
+        },
+        {
+          "kind": "text",
+          "text": ": CGImage)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcontext/1456497-clip",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clip(to:mask:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcontext/1456497-clip"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgcontext/2427135-clip": {
+      "abstract": [
+        {
+          "text": "Sets the clipping path to the intersection of the current clipping path with the region defined by an array of rectangles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "clip"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": [CGRect])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcontext/2427135-clip",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clip(to:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcontext/2427135-clip"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgcontext/2427152-clip": {
+      "abstract": [
+        {
+          "text": "Modifies the current clipping path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "clip"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": CGPathFillRule)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcontext/2427152-clip",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clip(using:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcontext/2427152-clip"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImage",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgimage"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/cgcontext/2427152-clip",
+        "doc://com.apple.documentation/documentation/coregraphics/cgcontext/1454716-clip",
+        "doc://com.apple.documentation/documentation/coregraphics/cgcontext/2427135-clip",
+        "doc://com.apple.documentation/documentation/coregraphics/cgcontext/1455387-boundingboxofclippath"
+      ],
+      "title": "Working with the Current Clipping Path"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coregraphics/1456497-cgcontextcliptomask"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coregraphics/cgcontext/1456497-clip"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

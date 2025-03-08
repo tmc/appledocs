@@ -1,0 +1,2262 @@
+{
+  "abstract": [
+    {
+      "text": "Find a suitable alternative to handle your app’s web content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.webkit/documentation/WebKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.webkit/documentation/WebKit/replacing-uiwebview-in-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WebKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Replacing UIWebView in your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app is using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIWebView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you need to replace it with another Apple technology, because this class is now deprecated. Choose among several technologies, based on your app’s functionality and the degree of configurability you need. This article explores some alternatives and specifically the configuration and architectural changes of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WKWebView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Consider-alternative-technologies",
+          "level": 3,
+          "text": "Consider alternative technologies",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before beginning a migration away from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIWebView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", consider whether it can be replaced with other tools. Apple has a variety of technologies that can replace a web view to accomplish similar functionality, and possibly a richer feature set with less code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need an in-app web browser and don’t need deep customization of that experience, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a good choice. It handles all the features you’d need to implement in a basic browser and more.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to authenticate your users, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASWebAuthenticationSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to display maps or map tiles, consider using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-to-WKWebView",
+          "level": 3,
+          "text": "Update to WKWebView",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need a high degree of configurability or are using web content in ways unrelated to browsing, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WKWebView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WKWebView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " isn’t a drop-in replacement for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIWebView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It has a different architecture that requires rethinking how you use web views, as well as code changes to implement its functionality. You may not be able to implement some features in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WKWebView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Implement-delegates-for-functionality",
+          "level": 3,
+          "text": "Implement delegates for functionality",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WKWebView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " uses various delegates to implement functionality that’s similar to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIWebViewDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The table below shows the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIWebViewDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods and their ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WKWebView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " equivalents in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " column.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "UIWebViewDelegate",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "WKNavigationDelegate",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/uikit/uiwebviewdelegate/1617947-webviewdidstartload",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate/webView(_:didStartProvisionalNavigation:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/uikit/uiwebviewdelegate/1617969-webviewdidfinishload",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate/webView(_:didFinish:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/uikit/uiwebviewdelegate/1617970-webview",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate/webView(_:didFailProvisionalNavigation:withError:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate/webView(_:didFail:withError:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/uikit/uiwebviewdelegate/1617945-webview",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate/webView(_:decidePolicyFor:decisionHandler:)-2ni62",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate/webView(_:decidePolicyFor:decisionHandler:)-19mn2",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnectiondelegate/1417135-connection",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate/webView(_:didReceive:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate/webView(_:decidePolicyFor:decisionHandler:)-2ni62",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function doesn’t return a Boolean as its ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/UIKit/UIWebView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " counterpart did; it uses the ",
+                  "type": "text"
+                },
+                {
+                  "code": "decisionHandler",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to return an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.webkit/documentation/WebKit/WKNavigationActionPolicy/allow",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.webkit/documentation/WebKit/WKNavigationActionPolicy/cancel",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " value.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Plan-for-architectural-changes",
+          "level": 3,
+          "text": "Plan for architectural changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "One major architectural difference between ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIWebView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WKWebView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is that the methods of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WKWebView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " tend to be asynchronous, while the methods of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIWebView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " were synchronous.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This difference requires code and architecture changes in your app. Another major change relates to creating single sign on (SSO) functionality. Cookie restrictions across the entire ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WKWebView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " landscape, mean SSO functionality in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WKWebView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " isn’t supported for third-party cookies and clients should use a token-based authentication system like OAuth for SSO. Third-party cookies are cookies for a domain other than the domain for which the context was loaded. APIs in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework are specifically built to do this.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Make it easy for users to log into apps and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Authentication Services",
+      "type": "topic",
+      "url": "/documentation/AuthenticationServices"
+    },
+    "doc://com.apple.documentation/documentation/AuthenticationServices/ASWebAuthenticationSession": {
+      "abstract": [
+        {
+          "text": "A session that an app uses to authenticate a user through a web service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASWebAuthenticationSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASWebAuthenticationSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ASWebAuthenticationSession",
+      "type": "topic",
+      "url": "/documentation/AuthenticationServices/ASWebAuthenticationSession"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKMapView": {
+      "abstract": [
+        {
+          "text": "An embeddable map interface, similar to the one that the Maps app provides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMapView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKMapView",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKMapView"
+    },
+    "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController": {
+      "abstract": [
+        {
+          "text": "An object that provides a visible standard interface for browsing the web.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SFSafariViewController",
+      "type": "topic",
+      "url": "/documentation/SafariServices/SFSafariViewController"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIWebView": {
+      "abstract": [
+        {
+          "text": "A view that embeds web content in your app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIWebView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIWebView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIWebView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIWebView"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIWebViewDelegate": {
+      "abstract": [
+        {
+          "text": "The `UIWebViewDelegate` protocol defines methods that a delegate of a [`UIWebView`](doc://com.apple.uikit/documentation/UIKit/UIWebView) object can optionally implement to intervene when web content is loaded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIWebViewDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIWebViewDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIWebViewDelegate",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIWebViewDelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnectiondelegate/1417135-connection": {
+      "abstract": [
+        {
+          "text": "Sent when a connection must authenticate a challenge in order to download its request.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "connection"
+        },
+        {
+          "kind": "text",
+          "text": "(NSURLConnection, "
+        },
+        {
+          "kind": "identifier",
+          "text": "didReceive"
+        },
+        {
+          "kind": "text",
+          "text": ": URLAuthenticationChallenge)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnectiondelegate/1417135-connection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "connection(_:didReceive:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnectiondelegate/1417135-connection"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/uikit/uiwebviewdelegate/1617945-webview": {
+      "abstract": [
+        {
+          "text": "Sent before a web view begins loading a frame.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "webView"
+        },
+        {
+          "kind": "text",
+          "text": "(UIWebView, "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldStartLoadWith"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest, "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationType"
+        },
+        {
+          "kind": "text",
+          "text": ": UIWebView.NavigationType) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/uikit/uiwebviewdelegate/1617945-webview",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "webView(_:shouldStartLoadWith:navigationType:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwebviewdelegate/1617945-webview"
+    },
+    "doc://com.apple.documentation/documentation/uikit/uiwebviewdelegate/1617947-webviewdidstartload": {
+      "abstract": [
+        {
+          "text": "Sent after a web view starts loading a frame.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "webViewDidStartLoad"
+        },
+        {
+          "kind": "text",
+          "text": "(UIWebView)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/uikit/uiwebviewdelegate/1617947-webviewdidstartload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "webViewDidStartLoad(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwebviewdelegate/1617947-webviewdidstartload"
+    },
+    "doc://com.apple.documentation/documentation/uikit/uiwebviewdelegate/1617969-webviewdidfinishload": {
+      "abstract": [
+        {
+          "text": "Sent after a web view finishes loading a frame.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "webViewDidFinishLoad"
+        },
+        {
+          "kind": "text",
+          "text": "(UIWebView)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/uikit/uiwebviewdelegate/1617969-webviewdidfinishload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "webViewDidFinishLoad(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwebviewdelegate/1617969-webviewdidfinishload"
+    },
+    "doc://com.apple.documentation/documentation/uikit/uiwebviewdelegate/1617970-webview": {
+      "abstract": [
+        {
+          "text": "Sent if a web view failed to load a frame.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "webView"
+        },
+        {
+          "kind": "text",
+          "text": "(UIWebView, "
+        },
+        {
+          "kind": "identifier",
+          "text": "didFailLoadWithError"
+        },
+        {
+          "kind": "text",
+          "text": ": any Error)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/uikit/uiwebviewdelegate/1617970-webview",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "webView(_:didFailLoadWithError:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwebviewdelegate/1617970-webview"
+    },
+    "doc://com.apple.webkit/documentation/WebKit": {
+      "abstract": [
+        {
+          "text": "Integrate web content seamlessly into your app, and customize content interactions to meet your app’s needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WebKit",
+      "type": "topic",
+      "url": "/documentation/webkit"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKNavigationActionPolicy/allow": {
+      "abstract": [
+        {
+          "text": "Allow the navigation to continue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allow"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKNavigationActionPolicy/allow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKNavigationActionPolicyAllow"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKNavigationActionPolicy.allow",
+      "type": "topic",
+      "url": "/documentation/webkit/wknavigationactionpolicy/allow"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKNavigationActionPolicy/cancel": {
+      "abstract": [
+        {
+          "text": "Cancel the navigation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKNavigationActionPolicy/cancel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKNavigationActionPolicyCancel"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKNavigationActionPolicy.cancel",
+      "type": "topic",
+      "url": "/documentation/webkit/wknavigationactionpolicy/cancel"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate": {
+      "abstract": [
+        {
+          "text": "Methods for accepting or rejecting navigation changes, and for tracking the progress of navigation requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKNavigationDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKNavigationDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKNavigationDelegate",
+      "type": "topic",
+      "url": "/documentation/webkit/wknavigationdelegate"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate/webView(_:decidePolicyFor:decisionHandler:)-19mn2": {
+      "abstract": [
+        {
+          "text": "Asks the delegate for permission to navigate to new content after the response to the navigation request is known.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "webView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKWebView",
+          "text": "WKWebView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "decidePolicyFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKNavigationResponse",
+          "text": "WKNavigationResponse"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "decisionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@WKNavigationResponsePolicy",
+          "text": "WKNavigationResponsePolicy"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate/webView(_:decidePolicyFor:decisionHandler:)-19mn2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "webView:decidePolicyForNavigationResponse:decisionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "webView(_:decidePolicyFor:decisionHandler:)",
+      "type": "topic",
+      "url": "/documentation/webkit/wknavigationdelegate/webview(_:decidepolicyfor:decisionhandler:)-19mn2"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate/webView(_:decidePolicyFor:decisionHandler:)-2ni62": {
+      "abstract": [
+        {
+          "text": "Asks the delegate for permission to navigate to new content based on the specified action information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "webView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKWebView",
+          "text": "WKWebView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "decidePolicyFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKNavigationAction",
+          "text": "WKNavigationAction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "decisionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@WKNavigationActionPolicy",
+          "text": "WKNavigationActionPolicy"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate/webView(_:decidePolicyFor:decisionHandler:)-2ni62",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "webView:decidePolicyForNavigationAction:decisionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "webView(_:decidePolicyFor:decisionHandler:)",
+      "type": "topic",
+      "url": "/documentation/webkit/wknavigationdelegate/webview(_:decidepolicyfor:decisionhandler:)-2ni62"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate/webView(_:didFail:withError:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that an error occurred during navigation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "webView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKWebView",
+          "text": "WKWebView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFail"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKNavigation",
+          "text": "WKNavigation"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withError"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate/webView(_:didFail:withError:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "webView:didFailNavigation:withError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "webView(_:didFail:withError:)",
+      "type": "topic",
+      "url": "/documentation/webkit/wknavigationdelegate/webview(_:didfail:witherror:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate/webView(_:didFailProvisionalNavigation:withError:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that an error occurred during the early navigation process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "webView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKWebView",
+          "text": "WKWebView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFailProvisionalNavigation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKNavigation",
+          "text": "WKNavigation"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withError"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate/webView(_:didFailProvisionalNavigation:withError:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "webView:didFailProvisionalNavigation:withError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "webView(_:didFailProvisionalNavigation:withError:)",
+      "type": "topic",
+      "url": "/documentation/webkit/wknavigationdelegate/webview(_:didfailprovisionalnavigation:witherror:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate/webView(_:didFinish:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that navigation is complete.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "webView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKWebView",
+          "text": "WKWebView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinish"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKNavigation",
+          "text": "WKNavigation"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate/webView(_:didFinish:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "webView:didFinishNavigation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "webView(_:didFinish:)",
+      "type": "topic",
+      "url": "/documentation/webkit/wknavigationdelegate/webview(_:didfinish:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate/webView(_:didReceive:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to respond to an authentication challenge.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "webView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKWebView",
+          "text": "WKWebView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didReceive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSURLAuthenticationChallenge",
+          "text": "URLAuthenticationChallenge"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSURLSession",
+          "text": "URLSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSURLSessionAuthChallengeDisposition",
+          "text": "AuthChallengeDisposition"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSURLCredential",
+          "text": "URLCredential"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate/webView(_:didReceive:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "webView:didReceiveAuthenticationChallenge:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "webView(_:didReceive:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/webkit/wknavigationdelegate/webview(_:didreceive:completionhandler:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate/webView(_:didStartProvisionalNavigation:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that navigation from the main frame has started.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "webView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKWebView",
+          "text": "WKWebView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didStartProvisionalNavigation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKNavigation",
+          "text": "WKNavigation"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKNavigationDelegate/webView(_:didStartProvisionalNavigation:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "webView:didStartProvisionalNavigation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "webView(_:didStartProvisionalNavigation:)",
+      "type": "topic",
+      "url": "/documentation/webkit/wknavigationdelegate/webview(_:didstartprovisionalnavigation:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKUIDelegate": {
+      "abstract": [
+        {
+          "text": "The methods for presenting native user interface elements on behalf of a webpage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKUIDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKUIDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKUIDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKUIDelegate",
+      "type": "topic",
+      "url": "/documentation/webkit/wkuidelegate"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKWebView": {
+      "abstract": [
+        {
+          "text": "An object that displays interactive web content, such as for an in-app browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKWebView"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKWebView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKWebView"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKWebView",
+      "type": "topic",
+      "url": "/documentation/webkit/wkwebview"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/viewing-desktop-or-mobile-web-content-using-a-web-view": {
+      "abstract": [
+        {
+          "text": "Implement a simple iPad web browser that can view either the desktop or mobile version of a website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/viewing-desktop-or-mobile-web-content-using-a-web-view",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Viewing Desktop or Mobile Web Content Using a Web View",
+      "type": "topic",
+      "url": "/documentation/webkit/viewing-desktop-or-mobile-web-content-using-a-web-view"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Web-view",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/viewing-desktop-or-mobile-web-content-using-a-web-view",
+        "doc://com.apple.webkit/documentation/WebKit/WKWebView",
+        "doc://com.apple.webkit/documentation/WebKit/WKUIDelegate"
+      ],
+      "title": "Web view"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Web-view",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/WKWebView",
+                "doc://com.apple.webkit/documentation/WebKit/WKUIDelegate"
+              ],
+              "title": "Web view"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKNavigationDelegate~1webView(_:didStartProvisionalNavigation:)/title",
+          "value": "webView:didStartProvisionalNavigation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKNavigationDelegate~1webView(_:didStartProvisionalNavigation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "webView:didStartProvisionalNavigation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIWebView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIWebView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SafariServices~1SFSafariViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SFSafariViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKNavigationActionPolicy~1allow/title",
+          "value": "WKNavigationActionPolicyAllow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKNavigationActionPolicy~1allow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKNavigationActionPolicyAllow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKNavigationDelegate~1webView(_:decidePolicyFor:decisionHandler:)-19mn2/title",
+          "value": "webView:decidePolicyForNavigationResponse:decisionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKNavigationDelegate~1webView(_:decidePolicyFor:decisionHandler:)-19mn2/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "webView:decidePolicyForNavigationResponse:decisionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKUIDelegate/title",
+          "value": "WKUIDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKUIDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKUIDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKUIDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKUIDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKNavigationDelegate/title",
+          "value": "WKNavigationDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKNavigationDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKNavigationDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKNavigationDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKNavigationDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1uikit~1uiwebviewdelegate~11617970-webview/title",
+          "value": "webView:didFailLoadWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1uikit~1uiwebviewdelegate~11617947-webviewdidstartload/title",
+          "value": "webViewDidStartLoad:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKNavigationActionPolicy~1cancel/title",
+          "value": "WKNavigationActionPolicyCancel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKNavigationActionPolicy~1cancel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKNavigationActionPolicyCancel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKWebView/title",
+          "value": "WKWebView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKWebView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKWebView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKWebView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKWebView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKNavigationDelegate~1webView(_:didReceive:completionHandler:)/title",
+          "value": "webView:didReceiveAuthenticationChallenge:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKNavigationDelegate~1webView(_:didReceive:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "webView:didReceiveAuthenticationChallenge:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIWebViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIWebViewDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1uikit~1uiwebviewdelegate~11617945-webview/title",
+          "value": "webView:shouldStartLoadWithRequest:navigationType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKNavigationDelegate~1webView(_:didFailProvisionalNavigation:withError:)/title",
+          "value": "webView:didFailProvisionalNavigation:withError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKNavigationDelegate~1webView(_:didFailProvisionalNavigation:withError:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "webView:didFailProvisionalNavigation:withError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKNavigationDelegate~1webView(_:didFinish:)/title",
+          "value": "webView:didFinishNavigation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKNavigationDelegate~1webView(_:didFinish:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "webView:didFinishNavigation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASWebAuthenticationSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ASWebAuthenticationSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsurlconnectiondelegate~11417135-connection/title",
+          "value": "connection:didReceiveAuthenticationChallenge:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKNavigationDelegate~1webView(_:decidePolicyFor:decisionHandler:)-2ni62/title",
+          "value": "webView:decidePolicyForNavigationAction:decisionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKNavigationDelegate~1webView(_:decidePolicyFor:decisionHandler:)-2ni62/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "webView:decidePolicyForNavigationAction:decisionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKMapView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKMapView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1uikit~1uiwebviewdelegate~11617969-webviewdidfinishload/title",
+          "value": "webViewDidFinishLoad:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKNavigationDelegate~1webView(_:didFail:withError:)/title",
+          "value": "webView:didFailNavigation:withError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKNavigationDelegate~1webView(_:didFail:withError:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "webView:didFailNavigation:withError:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/webkit/replacing-uiwebview-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/webkit/replacing-uiwebview-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

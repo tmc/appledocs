@@ -1,0 +1,2112 @@
+{
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstore-gb2"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "System Configuration"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "SCDynamicStore"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "SCDynamicStore",
+              "type": "codeVoice"
+            },
+            {
+              "text": " programming interface provides access to the key-value pairs in the dynamic store of a running system. The dynamic store contains, among other items, a copy of the configuration settings for the currently active set (which is sometimes refered to as the location) and information about the current network state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The functions in the ",
+              "type": "text"
+            },
+            {
+              "code": "SCDynamicStore",
+              "type": "codeVoice"
+            },
+            {
+              "text": " programming interface allow you to find key-value pairs, add or remove key-value pairs, add or change values, and request notifications. Note that these functions follow Core Foundation function-name conventions. A function that has “Create” or “Copy” in its name returns a reference you must release with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use these functions, you must first establish a dynamic store session using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCreate(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. When you are finished with the session, use ",
+              "type": "text"
+            },
+            {
+              "code": "CFRelease",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to close it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease": {
+      "abstract": [
+        {
+          "text": "Releases a Core Foundation object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFRelease",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1521153-cfrelease"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration": {
+      "abstract": [
+        {
+          "text": "Allow applications to access a device’s network configuration settings. Determine the reachability of the device, such as whether Wi-Fi or cell connectivity are active.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "System Configuration",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStore": {
+      "abstract": [
+        {
+          "text": "The handle to an open dynamic store session with the system configuration daemon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStore"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCDynamicStore",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstore"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreAddTemporaryValue(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Temporarily adds the specified key-value pair to the dynamic store, if no such key already exists.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreAddTemporaryValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCDynamicStoreRef",
+          "text": "SCDynamicStore"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFPropertyListRef",
+          "text": "CFPropertyList"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreAddTemporaryValue(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreAddTemporaryValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCDynamicStoreAddTemporaryValue(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstoreaddtemporaryvalue(_:_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreAddValue(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Adds the specified key-value pair to the dynamic store, if no such key already exists.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreAddValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCDynamicStoreRef",
+          "text": "SCDynamicStore"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFPropertyListRef",
+          "text": "CFPropertyList"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreAddValue(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreAddValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCDynamicStoreAddValue(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstoreaddvalue(_:_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCallBack": {
+      "abstract": [
+        {
+          "text": "Callback used when notification of changes made to the dynamic store is delivered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreCallBack"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCallBack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreCallBack"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCDynamicStoreCallBack",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstorecallback"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreContext": {
+      "abstract": [
+        {
+          "text": "Structure containing user-specified data and callbacks for a dynamic store session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreContext"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCDynamicStoreContext",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstorecontext"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCopyKeyList(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the keys that represent the current dynamic store entries that match the specified pattern.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreCopyKeyList"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCDynamicStoreRef",
+          "text": "SCDynamicStore"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCopyKeyList(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreCopyKeyList"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCDynamicStoreCopyKeyList(_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstorecopykeylist(_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCopyMultiple(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the key-value pairs that match the specified keys and key patterns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreCopyMultiple"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCDynamicStoreRef",
+          "text": "SCDynamicStore"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCopyMultiple(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreCopyMultiple"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCDynamicStoreCopyMultiple(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstorecopymultiple(_:_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCopyNotifiedKeys(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the keys that have changed since the last call to this function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreCopyNotifiedKeys"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCDynamicStoreRef",
+          "text": "SCDynamicStore"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCopyNotifiedKeys(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreCopyNotifiedKeys"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCDynamicStoreCopyNotifiedKeys(_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstorecopynotifiedkeys(_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCopyValue(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the value associated with the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreCopyValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCDynamicStoreRef",
+          "text": "SCDynamicStore"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFPropertyListRef",
+          "text": "CFPropertyList"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCopyValue(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreCopyValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCDynamicStoreCopyValue(_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstorecopyvalue(_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCreate(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new session used to interact with the dynamic store maintained by the System Configuration server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCDynamicStoreCallBack",
+          "text": "SCDynamicStoreCallBack"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SCDynamicStoreContext",
+          "text": "SCDynamicStoreContext"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCDynamicStoreRef",
+          "text": "SCDynamicStore"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCreate(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCDynamicStoreCreate(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstorecreate(_:_:_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCreateRunLoopSource(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a run loop source object that can be added to the application’s run loop.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreCreateRunLoopSource"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCDynamicStoreRef",
+          "text": "SCDynamicStore"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFIndex",
+          "text": "CFIndex"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFRunLoopSourceRef",
+          "text": "CFRunLoopSource"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCreateRunLoopSource(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreCreateRunLoopSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCDynamicStoreCreateRunLoopSource(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstorecreaterunloopsource(_:_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCreateWithOptions(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new session used to interact with the dynamic store maintained by the System Configuration server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreCreateWithOptions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCDynamicStoreCallBack",
+          "text": "SCDynamicStoreCallBack"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SCDynamicStoreContext",
+          "text": "SCDynamicStoreContext"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCDynamicStoreRef",
+          "text": "SCDynamicStore"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCreateWithOptions(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreCreateWithOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCDynamicStoreCreateWithOptions(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstorecreatewithoptions(_:_:_:_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the type identifier of all ",
+          "type": "text"
+        },
+        {
+          "code": "SCDynamicStore",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instances.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCDynamicStoreGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstoregettypeid()"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreNotifyValue(_:_:)": {
+      "abstract": [
+        {
+          "text": "Causes a notification to be delivered for the specified key in the dynamic store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreNotifyValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCDynamicStoreRef",
+          "text": "SCDynamicStore"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreNotifyValue(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreNotifyValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCDynamicStoreNotifyValue(_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstorenotifyvalue(_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreRemoveValue(_:_:)": {
+      "abstract": [
+        {
+          "text": "Removes the value of the specified key from the dynamic store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreRemoveValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCDynamicStoreRef",
+          "text": "SCDynamicStore"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreRemoveValue(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreRemoveValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCDynamicStoreRemoveValue(_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstoreremovevalue(_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreSetDispatchQueue(_:_:)": {
+      "abstract": [
+        {
+          "text": "Initiates notifications for the notification keys, using the specified dispatch queue for the callback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreSetDispatchQueue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCDynamicStoreRef",
+          "text": "SCDynamicStore"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreSetDispatchQueue(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreSetDispatchQueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCDynamicStoreSetDispatchQueue(_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstoresetdispatchqueue(_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreSetMultiple(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Updates multiple values in the dynamic store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreSetMultiple"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCDynamicStoreRef",
+          "text": "SCDynamicStore"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreSetMultiple(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreSetMultiple"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCDynamicStoreSetMultiple(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstoresetmultiple(_:_:_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreSetNotificationKeys(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Specifies a set of keys and key patterns that should be monitored for changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreSetNotificationKeys"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCDynamicStoreRef",
+          "text": "SCDynamicStore"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreSetNotificationKeys(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreSetNotificationKeys"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCDynamicStoreSetNotificationKeys(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstoresetnotificationkeys(_:_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreSetValue(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Adds or replaces a value in the dynamic store for the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreSetValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCDynamicStoreRef",
+          "text": "SCDynamicStore"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFPropertyListRef",
+          "text": "CFPropertyList"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreSetValue(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreSetValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCDynamicStoreSetValue(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstoresetvalue(_:_:_:)"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/dhcpclientpreferences": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/dhcpclientpreferences",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "DHCPClientPreferences",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/dhcpclientpreferences"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/dynamic-store-options-keys": {
+      "abstract": [
+        {
+          "text": "Keys that indicate the options for a dynamic store session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/dynamic-store-options-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dynamic Store Options Keys",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/dynamic-store-options-keys"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorecopydhcpinfo-apicollection": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorecopydhcpinfo-apicollection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCDynamicStoreCopyDHCPInfo",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstorecopydhcpinfo-apicollection"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorecopyspecific": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorecopyspecific",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCDynamicStoreCopySpecific",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstorecopyspecific"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorekey": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorekey",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCDynamicStoreKey",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstorekey"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetwork": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetwork",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCNetwork",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetwork"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkconfiguration": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkconfiguration",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCNetworkConfiguration",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconfiguration"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkconnection-g7e": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkconnection-g7e",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCNetworkConnection",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconnection-g7e"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkreachability-g7d": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkreachability-g7d",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCNetworkReachability",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkreachability-g7d"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferences-ft8": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferences-ft8",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCPreferences",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scpreferences-ft8"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencespath": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencespath",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCPreferencesPath",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scpreferencespath"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencessetspecific": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencessetspecific",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCPreferencesSetSpecific",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scpreferencessetspecific"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scschemadefinitions": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scschemadefinitions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCSchemaDefinitions",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scschemadefinitions"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/system-configuration": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/system-configuration",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "System Configuration",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/system-configuration"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-constants": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SystemConfiguration Constants",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/systemconfiguration-constants"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-data-types": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-data-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SystemConfiguration Data Types",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/systemconfiguration-data-types"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-enumerations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-enumerations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SystemConfiguration Enumerations",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/systemconfiguration-enumerations"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-functions": {
+      "abstract": [],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SystemConfiguration Functions",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/systemconfiguration-functions"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Reference",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorecopyspecific",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorekey",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetwork",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkconfiguration",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkconnection-g7e",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkreachability-g7d",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferences-ft8",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencespath",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencessetspecific",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scschemadefinitions",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/system-configuration",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-enumerations",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-constants",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-functions",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-data-types"
+      ],
+      "title": "Reference"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Dynamic-Store-Session",
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCreateWithOptions(_:_:_:_:_:)",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCreate(_:_:_:_:)"
+      ],
+      "title": "Creating a Dynamic Store Session"
+    },
+    {
+      "anchor": "Adding-or-Updating-Keys-and-Values",
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreAddTemporaryValue(_:_:_:)",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreAddValue(_:_:_:)",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreSetMultiple(_:_:_:_:)",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreSetValue(_:_:_:)"
+      ],
+      "title": "Adding or Updating Keys and Values"
+    },
+    {
+      "anchor": "Getting-Keys-and-Values",
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCopyKeyList(_:_:)",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCopyMultiple(_:_:_:)",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCopyNotifiedKeys(_:)",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCopyValue(_:_:)"
+      ],
+      "title": "Getting Keys and Values"
+    },
+    {
+      "anchor": "Monitoring-Keys-and-Values",
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreNotifyValue(_:_:)",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreSetNotificationKeys(_:_:_:)",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreSetDispatchQueue(_:_:)"
+      ],
+      "title": "Monitoring Keys and Values"
+    },
+    {
+      "anchor": "Removing-Keys-and-Values",
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreRemoveValue(_:_:)"
+      ],
+      "title": "Removing Keys and Values"
+    },
+    {
+      "anchor": "Creating-a-Run-Loop-Source",
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCreateRunLoopSource(_:_:_:)"
+      ],
+      "title": "Creating a Run Loop Source"
+    },
+    {
+      "anchor": "Getting-Information-About-the-Dynamic-Store",
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreGetTypeID()"
+      ],
+      "title": "Getting Information About the Dynamic Store"
+    },
+    {
+      "anchor": "Data-Types",
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCallBack",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreContext",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStore"
+      ],
+      "title": "Data Types"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/dynamic-store-options-keys"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Dynamic-Store-Session",
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCreateWithOptions(_:_:_:_:_:)",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCreate(_:_:_:_:)"
+              ],
+              "title": "Creating a Dynamic Store Session"
+            },
+            {
+              "anchor": "Adding-or-Updating-Keys-and-Values",
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreAddTemporaryValue(_:_:_:)",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreAddValue(_:_:_:)",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreSetMultiple(_:_:_:_:)",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreSetValue(_:_:_:)"
+              ],
+              "title": "Adding or Updating Keys and Values"
+            },
+            {
+              "anchor": "Getting-Keys-and-Values",
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCopyKeyList(_:_:)",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCopyMultiple(_:_:_:)",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCopyNotifiedKeys(_:)",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCopyValue(_:_:)"
+              ],
+              "title": "Getting Keys and Values"
+            },
+            {
+              "anchor": "Monitoring-Keys-and-Values",
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreNotifyValue(_:_:)",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreSetNotificationKeys(_:_:_:)",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreSetDispatchQueue(_:_:)"
+              ],
+              "title": "Monitoring Keys and Values"
+            },
+            {
+              "anchor": "Removing-Keys-and-Values",
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreRemoveValue(_:_:)"
+              ],
+              "title": "Removing Keys and Values"
+            },
+            {
+              "anchor": "Creating-a-Run-Loop-Source",
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCreateRunLoopSource(_:_:_:)"
+              ],
+              "title": "Creating a Run Loop Source"
+            },
+            {
+              "anchor": "Getting-Information-About-the-Dynamic-Store",
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreGetTypeID()"
+              ],
+              "title": "Getting Information About the Dynamic Store"
+            },
+            {
+              "anchor": "Data-Types",
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCallBack",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreContext",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStore"
+              ],
+              "title": "Data Types"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/dynamic-store-options-keys"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Reference",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/dhcpclientpreferences",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorecopydhcpinfo-apicollection",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorecopyspecific",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scdynamicstorekey",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetwork",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkconfiguration",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkconnection-g7e",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scnetworkreachability-g7d",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferences-ft8",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencespath",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scpreferencessetspecific",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/scschemadefinitions",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/system-configuration",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-enumerations",
+                "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/systemconfiguration-constants"
+              ],
+              "title": "Reference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreCreate(_:_:_:_:)/title",
+          "value": "SCDynamicStoreCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreCreate(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreSetValue(_:_:_:)/title",
+          "value": "SCDynamicStoreSetValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreSetValue(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreSetValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreAddTemporaryValue(_:_:_:)/title",
+          "value": "SCDynamicStoreAddTemporaryValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreAddTemporaryValue(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreAddTemporaryValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreCallBack/title",
+          "value": "SCDynamicStoreCallBack"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreCallBack/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreCallBack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreCallBack/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreCallBack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreCopyNotifiedKeys(_:)/title",
+          "value": "SCDynamicStoreCopyNotifiedKeys"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreCopyNotifiedKeys(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreCopyNotifiedKeys"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreCopyMultiple(_:_:_:)/title",
+          "value": "SCDynamicStoreCopyMultiple"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreCopyMultiple(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreCopyMultiple"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreAddValue(_:_:_:)/title",
+          "value": "SCDynamicStoreAddValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreAddValue(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreAddValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreCopyValue(_:_:)/title",
+          "value": "SCDynamicStoreCopyValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreCopyValue(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreCopyValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreCopyKeyList(_:_:)/title",
+          "value": "SCDynamicStoreCopyKeyList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreCopyKeyList(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreCopyKeyList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStore/title",
+          "value": "SCDynamicStoreRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStore/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreCreateRunLoopSource(_:_:_:)/title",
+          "value": "SCDynamicStoreCreateRunLoopSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreCreateRunLoopSource(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreCreateRunLoopSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreGetTypeID()/title",
+          "value": "SCDynamicStoreGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreSetNotificationKeys(_:_:_:)/title",
+          "value": "SCDynamicStoreSetNotificationKeys"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreSetNotificationKeys(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreSetNotificationKeys"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreSetMultiple(_:_:_:_:)/title",
+          "value": "SCDynamicStoreSetMultiple"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreSetMultiple(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreSetMultiple"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreNotifyValue(_:_:)/title",
+          "value": "SCDynamicStoreNotifyValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreNotifyValue(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreNotifyValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreContext/title",
+          "value": "SCDynamicStoreContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreRemoveValue(_:_:)/title",
+          "value": "SCDynamicStoreRemoveValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreRemoveValue(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreRemoveValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreSetDispatchQueue(_:_:)/title",
+          "value": "SCDynamicStoreSetDispatchQueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreSetDispatchQueue(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreSetDispatchQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreCreateWithOptions(_:_:_:_:_:)/title",
+          "value": "SCDynamicStoreCreateWithOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStoreCreateWithOptions(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreCreateWithOptions"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/systemconfiguration/scdynamicstore-gb2"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/systemconfiguration/scdynamicstore-gb2"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

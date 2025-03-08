@@ -1,0 +1,455 @@
+{
+  "abstract": [
+    {
+      "text": "Optimize the performance of real-time audio threads that run in sync with the I/O thread by adding them to the audio device workgroup.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-parallel-real-time-threads-to-audio-workgroups"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding Parallel Real-Time Threads to Audio Workgroups"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app creates one or more auxiliary real-time threads that run in sync with the audio server I/O thread, join them to its audio workgroup. Doing so informs the system that these threads are rendering to the same deadline, which helps it optimize performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-Your-Threads-to-the-Audio-Device-Workgroup",
+          "level": 3,
+          "text": "Add Your Threads to the Audio Device Workgroup",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Begin by retrieving the audio device’s workgroup, so you can join your threads to it. Retrieve it from the I/O Audio Unit (AUHAL or AURemoteIO) using either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_OSWorkgroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property for AUv2, or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/osWorkgroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property for AUv3. In macOS, you can also get it directly from the audio device by using the HAL API. Then, in your real-time thread, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/os/3649707-os_workgroup_join",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to join it to the workgroup, and call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/os/3649708-os_workgroup_leave",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when you’ve finished your work, as shown in the example below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#import <AudioToolbox/AudioToolbox.h>",
+            " ",
+            "// Get the workgroup from the AUHal.",
+            "os_workgroup_t _Nonnull workgroup = auHal.osWorkgroup;",
+            "",
+            "// An opaque join token that the client needs to pass to join and leave a workgroup.",
+            "os_workgroup_join_token_s joinToken;",
+            "",
+            "void realtimeThreadFunction(os_workgroup_t workgroup) {",
+            "    ",
+            "    // Join this thread to the workgroup.",
+            "    const int result = os_workgroup_join(workgroup, &joinToken);",
+            "    if (result == 0) {",
+            "        // Success.",
+            "    }",
+            "    else if (result == EALREADY) {",
+            "        // The thread is already part of a workgroup that can't be",
+            "        // nested in the the specified workgroup.",
+            "        return;",
+            "    }",
+            "    else if (result == EINVAL) {",
+            "        // The workgroup has been canceled.",
+            "        return;",
+            "    }",
+            "    ",
+            "    // Work cycle.",
+            "    while (threadShouldRun) {",
+            "        // Typically, wait on a semaphore.",
+            "        waitForWork();",
+            "        // The controlling thread signaled this thread to stop.",
+            "        if (threadShouldRun) {",
+            "            performCustomAudioDSPWorkUnit();",
+            "            // Typically, signal a semaphore.",
+            "            signalWorkComplete();",
+            "        }",
+            "    }",
+            "    ",
+            "    // Before exiting the thread, leave the workgroup.",
+            "    os_workgroup_leave(workgroup, &joinToken);",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit": {
+      "abstract": [
+        {
+          "text": "A class that defines a host’s interface to an audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnit"
+        }
+      ],
+      "role": "symbol",
+      "title": "AUAudioUnit",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/osWorkgroup": {
+      "abstract": [
+        {
+          "text": "The workgroup associated with the audio device underlying this Audio Unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "osWorkgroup"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit/osWorkgroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "osWorkgroup",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit/osworkgroup"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-asynchronous-real-time-threads-to-audio-workgroups": {
+      "abstract": [
+        {
+          "text": "Optimize system performance by adding real-time audio threads that run asynchronously to the I/O thread to custom audio workgroups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-asynchronous-real-time-threads-to-audio-workgroups",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Asynchronous Real-Time Threads to Audio Workgroups",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/adding-asynchronous-real-time-threads-to-audio-workgroups"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups": {
+      "abstract": [
+        {
+          "text": "If your Audio Unit plug-in creates auxiliary real-time rendering threads, add them to the host app’s audio workgroup so the system can schedule them appropriately.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Audio Unit Auxiliary Real-Time Threads to Audio Workgroups",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_OSWorkgroup": {
+      "abstract": [
+        {
+          "text": "The workgroup associated with the audio device underlying this Audio Unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "kAudioOutputUnitProperty_OSWorkgroup"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_OSWorkgroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAudioOutputUnitProperty_OSWorkgroup",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiooutputunitproperty_osworkgroup"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/understanding-audio-workgroups": {
+      "abstract": [
+        {
+          "text": "Learn how to optimize real-time rendering performance with the Audio Workgroups API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/understanding-audio-workgroups",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding Audio Workgroups",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/understanding-audio-workgroups"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management": {
+      "abstract": [
+        {
+          "text": "Coordinate the activity of custom real-time audio threads with those of the system and other processes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workgroup Management",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/workgroup-management"
+    },
+    "doc://com.apple.documentation/documentation/os/3649707-os_workgroup_join": {
+      "abstract": [
+        {
+          "text": "Adds the current thread to the specified workgroup. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os/3649707-os_workgroup_join",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_join",
+      "type": "topic",
+      "url": "/documentation/os/3649707-os_workgroup_join"
+    },
+    "doc://com.apple.documentation/documentation/os/3649708-os_workgroup_leave": {
+      "abstract": [
+        {
+          "text": "Removes the current thread from the workgroup it previously joined. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os/3649708-os_workgroup_leave",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_leave",
+      "type": "topic",
+      "url": "/documentation/os/3649708-os_workgroup_leave"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/understanding-audio-workgroups",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-asynchronous-real-time-threads-to-audio-workgroups",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/understanding-audio-workgroups",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-asynchronous-real-time-threads-to-audio-workgroups",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit/title",
+          "value": "AUAudioUnit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnit"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/adding-parallel-real-time-threads-to-audio-workgroups"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/adding-parallel-real-time-threads-to-audio-workgroups"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

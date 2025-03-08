@@ -1,0 +1,787 @@
+{
+  "abstract": [
+    {
+      "text": "Single-threaded work-loop client request mechanism.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iocommandgate"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1393478,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOCommandGate",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOCommandGate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOCommandGate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOEventSource",
+              "text": "IOEventSource"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An IOCommandGate instance is an extremely lightweight mechanism that executes an action on the driver's work-loop. 'On the work-loop' is actually a lie but the work-loop single threaded semantic is maintained for this event source. Using the work-loop gate rather than execution by the workloop. The command gate tests for a potential self dead lock by checking if the runCommand request is made from the work-loop's thread, it doesn't check for a mutual dead lock though where a pair of work loop's dead lock each other.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The IOCommandGate is a lighter weight version of the IOCommandQueue and should be used in preference. Generally use a command queue whenever you need a client to submit a request to a work loop. A typical command gate action would check if the hardware is active, if so it will add the request to a pending queue internal to the device or the device's family. Otherwise if the hardware is inactive then this request can be acted upon immediately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CAUTION: The runAction, runCommand, and attemptCommand functions cannot be called from an interrupt context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommand": {
+      "abstract": [
+        {
+          "text": "This class is an abstract class which represents an I/O command.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate": {
+      "abstract": [
+        {
+          "text": "Single-threaded work-loop client request mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOCommandGate",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573816-runaction": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "runAction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573816-runaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "runAction",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1573816-runaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573817-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573817-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1573817-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573818-commandsleep": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "commandSleep"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573818-commandsleep",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commandSleep",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1573818-commandsleep"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573819-commandgate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "commandGate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573819-commandgate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commandGate",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1573819-commandgate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573820-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573820-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1573820-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573821-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573821-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1573821-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573822-enable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573822-enable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enable",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1573822-enable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573823-attemptaction": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "attemptAction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573823-attemptaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attemptAction",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1573823-attemptaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573824-runcommand": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "runCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573824-runcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "runCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1573824-runcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573825-attemptcommand": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "attemptCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573825-attemptcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attemptCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1573825-attemptcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573826-commandwakeup": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "commandWakeup"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573826-commandwakeup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commandWakeup",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1573826-commandwakeup"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573827-setworkloop": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setWorkLoop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573827-setworkloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setWorkLoop",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1573827-setworkloop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573828-disable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "disable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573828-disable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "disable",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1573828-disable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811105-attemptaction": {
+      "abstract": [
+        {
+          "text": "Single thread a call to an action with the target work-loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811105-attemptaction",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "attemptAction",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1811105-attemptaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811141-attemptcommand": {
+      "abstract": [
+        {
+          "text": "Single thread a command with the target work-loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811141-attemptcommand",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "attemptCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1811141-attemptcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811293-commandgate": {
+      "abstract": [
+        {
+          "text": "Factory method to create and initialise an IOCommandGate, See $link init.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811293-commandgate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "commandGate",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1811293-commandgate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811482-commandsleep": {
+      "abstract": [
+        {
+          "text": "Put a thread that is currently holding the command gate to sleep.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811482-commandsleep",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "commandSleep(void *, AbsoluteTime, UInt32)",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1811482-commandsleep"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811498-commandsleep": {
+      "abstract": [
+        {
+          "text": "Put a thread that is currently holding the command gate to sleep.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811498-commandsleep",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "commandSleep(void *, UInt32)",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1811498-commandsleep"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811517-commandwakeup": {
+      "abstract": [
+        {
+          "text": "Wakeup one or more threads that are asleep on an event.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811517-commandwakeup",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "commandWakeup",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1811517-commandwakeup"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811531-disable": {
+      "abstract": [
+        {
+          "text": "Disable the command gate",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811531-disable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "disable",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1811531-disable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811547-enable": {
+      "abstract": [
+        {
+          "text": "Enable command gate, this will unblock any blocked Commands and Actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811547-enable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "enable",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1811547-enable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811560-init": {
+      "abstract": [
+        {
+          "text": "Class initialiser.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811560-init",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1811560-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811576-runaction": {
+      "abstract": [
+        {
+          "text": "Single thread a call to an action with the target work-loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811576-runaction",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "runAction",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1811576-runaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811585-runcommand": {
+      "abstract": [
+        {
+          "text": "Single thread a command with the target work-loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811585-runcommand",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "runCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1811585-runcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/2967266-runactionblock": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "runActionBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/2967266-runactionblock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "runActionBlock",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/2967266-runactionblock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/3516447-commandsleep": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "commandSleep"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/3516447-commandsleep",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commandSleep",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/3516447-commandsleep"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/reserved": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/reserved",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "reserved",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/reserved"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool": {
+      "abstract": [
+        {
+          "text": "Manipulates a pool of commands which inherit from IOCommand.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOCommandPool",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodispatchsource": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodispatchsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODispatchSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iodispatchsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource": {
+      "abstract": [
+        {
+          "text": "Abstract class for all work-loop event sources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOEventSource",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workflow and Control",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/workflow_and_control"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ExpansionData",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/expansiondata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioworkloop/action": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioworkloop/action",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "Action",
+      "type": "topic",
+      "url": "/documentation/kernel/ioworkloop/action"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iocommandpool",
+        "doc://com.apple.documentation/documentation/kernel/iocommand",
+        "doc://com.apple.documentation/documentation/kernel/iodispatchsource",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource"
+      ],
+      "title": "Base Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1819589",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811105-attemptaction",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811141-attemptcommand",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811293-commandgate",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811482-commandsleep",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811498-commandsleep",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811517-commandwakeup",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811531-disable",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811547-enable",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811560-init",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811576-runaction",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1811585-runcommand"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1819592",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioworkloop/action"
+      ],
+      "kind": "taskGroup",
+      "title": "Callbacks"
+    },
+    {
+      "anchor": "1819593",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata"
+      ],
+      "kind": "taskGroup",
+      "title": "DataTypes"
+    },
+    {
+      "anchor": "1819594",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/reserved"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Variables"
+    },
+    {
+      "anchor": "3516970",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573823-attemptaction",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573825-attemptcommand",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573818-commandsleep",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/3516447-commandsleep",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573826-commandwakeup",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573828-disable",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573822-enable",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573821-free",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573820-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573817-init",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573816-runaction",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/2967266-runactionblock",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573824-runcommand",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573827-setworkloop"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "3516971",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573819-commandgate"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iocommandgate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

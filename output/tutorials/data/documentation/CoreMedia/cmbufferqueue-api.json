@@ -1,0 +1,4092 @@
+{
+  "abstract": [
+    {
+      "text": "A queue of timed buffers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremedia/documentation/CoreMedia"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremedia/documentation/CoreMedia/cmbufferqueue-api"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Media"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "CMBufferQueue APIs"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Buffer queues are Core Foundation objects that implement a queue of timed buffers. The buffers can be of any Core Foundation-based type (",
+              "type": "text"
+            },
+            {
+              "code": "CFTypeRef",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), but must have a concept of duration. When you create a buffer queue, you pass a set of callbacks, one of which is a required callback that returns the duration of the Core Foundation-based buffer object. The system invokes these callbacks synchronously on the thread that called the API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Buffer queues support reading and writing data from different threads in a producer-consumer model. While this model typically has two threads (a producer and a consumer), a buffer queue can service any number of threads to enqueue and dequeue buffers. The system makes all operations atomic by use of a single mutex (one mutex per created queue object).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, a ",
+              "type": "text"
+            },
+            {
+              "code": "CMBufferQueue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a FIFO queue, but you can change that order by providing a comparison callback. For example, you might create a buffer queue where you enqueue buffers in decode order, and dequeue them in presentation order, by providing a comparison callback that sorts by presentation timestamp.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A buffer queue retains its enqueued buffers. When you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueDequeue(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the system retains the buffer on behalf of the app, and the queue releases it. The retain count remains the same, but the app takes ownership of the buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you provide a buffer-readiness callback, an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "CMBufferQueue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can check for buffer readiness when calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueDequeueIfDataReady(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. If you don’t provide that callback, the system assumes all buffers are ready, and there’s no difference between ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueDequeue(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueDequeueIfDataReady(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Buffer queues also provide the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueIsEmpty(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueTestTrigger(_:triggerToken:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " functions that, with the help of optional callbacks, get decode and presentation timestamps from a buffer. The system returns a value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTime/invalid",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if you don’t provide these callbacks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can set an end-of-data marker on a buffer queue, which causes further enqueues to fail. After the queue has dequeued all buffers, the queue is permanently empty (“at end of data”) until you call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueReset(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "function. Reset empties the queue and undoes the end-of-data marking.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can interrogate the current status of a buffer queue. For example, you can test for emptiness (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueCreate(allocator:capacity:callbacks:queueOut:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), current queue duration (",
+              "type": "text"
+            },
+            {
+              "code": "Inspecting Buffer Queues",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), and end-of-data status (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueContainsEndOfData(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueIsAtEndOfData(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can install trigger callbacks by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueInstallTriggerHandler(_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to get notifications of various queue state transitions, such as when the duration becomes less than a second. You can inspect a buffer queue during trigger callback, but you can’t modify it. You can test trigger conditions explicitly as well. You can invoke trigger callbacks from any buffer queue API that modifies the total duration of the queue, such as enqueuing, dequeuing, or resetting the queue. The system invokes trigger callbacks synchronously on the thread that called the API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can’t modify the state of the queue from within a trigger callback. The operation fails, returning a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/kCMBufferQueueError_CannotModifyQueueFromTriggerCallback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " error. Attempting to enqueue a buffer when the queue is full, or dequeue from an empty queue, immediately returns an error (or a ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " buffer).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Install triggers to observe the queue’s fullness rather than repeatedly polling the queue to get this state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremedia/documentation/CoreMedia": {
+      "abstract": [
+        {
+          "text": "Represent time-based audio-visual assets with essential data types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Media",
+      "type": "topic",
+      "url": "/documentation/coremedia"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferCallbacks": {
+      "abstract": [
+        {
+          "text": "A structure that stores the callbacks that perform buffer operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferCallbacks"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferCallbacks",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferCallbacks"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferCallbacks",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbuffercallbacks"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferHandlers": {
+      "abstract": [
+        {
+          "text": "A structure that stores the handlers that perform buffer operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferHandlers"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferHandlers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMBufferHandlers",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferhandlers"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueue": {
+      "abstract": [
+        {
+          "text": "A reference to a buffer queue instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueue",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueue"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueCallForEachBuffer(_:callback:refcon:)": {
+      "abstract": [
+        {
+          "text": "Calls a function for every buffer in a queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueCallForEachBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "callback"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferRef",
+          "text": "CMBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "refcon"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueCallForEachBuffer(_:callback:refcon:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueCallForEachBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueCallForEachBuffer(_:callback:refcon:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuecallforeachbuffer(_:callback:refcon:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueContainsEndOfData(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a buffer queue has its end-of-data marker set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueContainsEndOfData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueContainsEndOfData(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueContainsEndOfData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueContainsEndOfData(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuecontainsendofdata(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueCreate(allocator:capacity:callbacks:queueOut:)": {
+      "abstract": [
+        {
+          "text": "Creates a buffer queue with callbacks to inspect buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "allocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "capacity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMItemCount",
+          "text": "CMItemCount"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "callbacks"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMBufferCallbacks",
+          "text": "CMBufferCallbacks"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "queueOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueCreate(allocator:capacity:callbacks:queueOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueCreate(allocator:capacity:callbacks:queueOut:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuecreate(allocator:capacity:callbacks:queueout:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueCreateWithHandlers(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a buffer queue with handlers to inspect buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueCreateWithHandlers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMItemCount",
+          "text": "CMItemCount"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueCreateWithHandlers(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueCreateWithHandlers"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueCreateWithHandlers(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuecreatewithhandlers(_:_:_:_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueDequeue(_:)": {
+      "abstract": [
+        {
+          "text": "Dequeues a buffer from a queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueDequeue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferRef",
+          "text": "CMBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueDequeue(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueDequeueAndRetain"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueDequeue(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuedequeue(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueDequeueIfDataReady(_:)": {
+      "abstract": [
+        {
+          "text": "Dequeues a buffer from a queue, if it’s ready.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueDequeueIfDataReady"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferRef",
+          "text": "CMBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueDequeueIfDataReady(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueDequeueIfDataReadyAndRetain"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueDequeueIfDataReady(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuedequeueifdataready(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueEnqueue(_:buffer:)": {
+      "abstract": [
+        {
+          "text": "Enqueues a buffer onto a queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueEnqueue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "buffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferRef",
+          "text": "CMBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueEnqueue(_:buffer:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueEnqueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueEnqueue(_:buffer:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueueenqueue(_:buffer:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetBufferCount(_:)": {
+      "abstract": [
+        {
+          "text": "Gets the number of buffers in the queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetBufferCount"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMItemCount",
+          "text": "CMItemCount"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetBufferCount(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetBufferCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueGetBufferCount(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuegetbuffercount(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetCallbacksForSampleBuffersSortedByOutputPTS()": {
+      "abstract": [
+        {
+          "text": "Returns a pointer to a structure that contains callbacks to sort sample buffers by output presentation timestamp.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetCallbacksForSampleBuffersSortedByOutputPTS"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMBufferCallbacks",
+          "text": "CMBufferCallbacks"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetCallbacksForSampleBuffersSortedByOutputPTS()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetCallbacksForSampleBuffersSortedByOutputPTS"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueGetCallbacksForSampleBuffersSortedByOutputPTS()",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuegetcallbacksforsamplebufferssortedbyoutputpts()"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetCallbacksForUnsortedSampleBuffers()": {
+      "abstract": [
+        {
+          "text": "Returns a pointer to a callback structure for unsorted sample buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetCallbacksForUnsortedSampleBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMBufferCallbacks",
+          "text": "CMBufferCallbacks"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetCallbacksForUnsortedSampleBuffers()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetCallbacksForUnsortedSampleBuffers"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueGetCallbacksForUnsortedSampleBuffers()",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuegetcallbacksforunsortedsamplebuffers()"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetDuration(_:)": {
+      "abstract": [
+        {
+          "text": "Gets the duration of a buffer queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetDuration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetDuration(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetDuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueGetDuration(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuegetduration(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetEndPresentationTimeStamp(_:)": {
+      "abstract": [
+        {
+          "text": "Gets the greatest end presentation timestamp of a buffer queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetEndPresentationTimeStamp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetEndPresentationTimeStamp(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetEndPresentationTimeStamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueGetEndPresentationTimeStamp(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuegetendpresentationtimestamp(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetFirstDecodeTimeStamp(_:)": {
+      "abstract": [
+        {
+          "text": "Gets the decode timestamp of the first buffer in a buffer queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetFirstDecodeTimeStamp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetFirstDecodeTimeStamp(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetFirstDecodeTimeStamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueGetFirstDecodeTimeStamp(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuegetfirstdecodetimestamp(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetFirstPresentationTimeStamp(_:)": {
+      "abstract": [
+        {
+          "text": "Gets the presentation timestamp of the first buffer in a buffer queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetFirstPresentationTimeStamp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetFirstPresentationTimeStamp(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetFirstPresentationTimeStamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueGetFirstPresentationTimeStamp(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuegetfirstpresentationtimestamp(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetHead(_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the next buffer from a queue, but doesn’t remove it.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetHead"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferRef",
+          "text": "CMBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetHead(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetHead"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueGetHead(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuegethead(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetMaxPresentationTimeStamp(_:)": {
+      "abstract": [
+        {
+          "text": "Gets the greatest presentation timestamp of a buffer queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetMaxPresentationTimeStamp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetMaxPresentationTimeStamp(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetMaxPresentationTimeStamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueGetMaxPresentationTimeStamp(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuegetmaxpresentationtimestamp(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetMinDecodeTimeStamp(_:)": {
+      "abstract": [
+        {
+          "text": "Gets the earliest decode timestamp of a buffer queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetMinDecodeTimeStamp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetMinDecodeTimeStamp(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetMinDecodeTimeStamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueGetMinDecodeTimeStamp(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuegetmindecodetimestamp(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetMinPresentationTimeStamp(_:)": {
+      "abstract": [
+        {
+          "text": "Gets the earliest presentation timestamp of a buffer queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetMinPresentationTimeStamp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetMinPresentationTimeStamp(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetMinPresentationTimeStamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueGetMinPresentationTimeStamp(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuegetminpresentationtimestamp(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetTotalSize(_:)": {
+      "abstract": [
+        {
+          "text": "Gets the total size of all sample buffers of a buffer queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetTotalSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetTotalSize(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetTotalSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueGetTotalSize(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuegettotalsize(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the type identifier of buffer queue objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuegettypeid()"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueInstallTrigger(_:callback:refcon:condition:time:triggerTokenOut:)": {
+      "abstract": [
+        {
+          "text": "Installs a trigger with a callback on a buffer queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueInstallTrigger"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "callback"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueTriggerCallback",
+          "text": "CMBufferQueueTriggerCallback"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "refcon"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "condition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueTriggerCondition",
+          "text": "CMBufferQueueTriggerCondition"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "time"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "triggerTokenOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueTriggerToken",
+          "text": "CMBufferQueueTriggerToken"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueInstallTrigger(_:callback:refcon:condition:time:triggerTokenOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueInstallTrigger"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueInstallTrigger(_:callback:refcon:condition:time:triggerTokenOut:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueueinstalltrigger(_:callback:refcon:condition:time:triggertokenout:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueInstallTriggerHandler(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Installs a trigger with a handler on a buffer queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueInstallTriggerHandler"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueTriggerCondition",
+          "text": "CMBufferQueueTriggerCondition"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueTriggerToken",
+          "text": "CMBufferQueueTriggerToken"
+        },
+        {
+          "kind": "text",
+          "text": "?>?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueTriggerHandler",
+          "text": "CMBufferQueueTriggerHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueInstallTriggerHandler(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueInstallTriggerHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueInstallTriggerHandler(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueueinstalltriggerhandler(_:_:_:_:_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueInstallTriggerHandlerWithIntegerThreshold(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Installs a trigger with a handler and threshold on a buffer queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueInstallTriggerHandlerWithIntegerThreshold"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueTriggerCondition",
+          "text": "CMBufferQueueTriggerCondition"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMItemCount",
+          "text": "CMItemCount"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueTriggerToken",
+          "text": "CMBufferQueueTriggerToken"
+        },
+        {
+          "kind": "text",
+          "text": "?>?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueTriggerHandler",
+          "text": "CMBufferQueueTriggerHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueInstallTriggerHandlerWithIntegerThreshold(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueInstallTriggerHandlerWithIntegerThreshold"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueInstallTriggerHandlerWithIntegerThreshold(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueueinstalltriggerhandlerwithintegerthreshold(_:_:_:_:_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueInstallTriggerWithIntegerThreshold(_:callback:refcon:condition:threshold:triggerTokenOut:)": {
+      "abstract": [
+        {
+          "text": "Installs a trigger with a callback and threshold on a buffer queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueInstallTriggerWithIntegerThreshold"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "callback"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueTriggerCallback",
+          "text": "CMBufferQueueTriggerCallback"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "refcon"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "condition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueTriggerCondition",
+          "text": "CMBufferQueueTriggerCondition"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "threshold"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMItemCount",
+          "text": "CMItemCount"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "triggerTokenOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueTriggerToken",
+          "text": "CMBufferQueueTriggerToken"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueInstallTriggerWithIntegerThreshold(_:callback:refcon:condition:threshold:triggerTokenOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueInstallTriggerWithIntegerThreshold"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueInstallTriggerWithIntegerThreshold(_:callback:refcon:condition:threshold:triggerTokenOut:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueueinstalltriggerwithintegerthreshold(_:callback:refcon:condition:threshold:triggertokenout:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueIsAtEndOfData(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a buffer queue has its end-of-data marker set, and is now empty.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueIsAtEndOfData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueIsAtEndOfData(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueIsAtEndOfData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueIsAtEndOfData(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueueisatendofdata(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueIsEmpty(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a buffer queue is empty.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueIsEmpty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueIsEmpty(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueIsEmpty"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueIsEmpty(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueueisempty(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueMarkEndOfData(_:)": {
+      "abstract": [
+        {
+          "text": "Sets a marker to indicate this queue doesn’t allow enqueuing new buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueMarkEndOfData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueMarkEndOfData(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueMarkEndOfData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueMarkEndOfData(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuemarkendofdata(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueRemoveTrigger(_:triggerToken:)": {
+      "abstract": [
+        {
+          "text": "Removes a previously installed trigger from a buffer queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueRemoveTrigger"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "triggerToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueTriggerToken",
+          "text": "CMBufferQueueTriggerToken"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueRemoveTrigger(_:triggerToken:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueRemoveTrigger"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueRemoveTrigger(_:triggerToken:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueueremovetrigger(_:triggertoken:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueReset(_:)": {
+      "abstract": [
+        {
+          "text": "Resets a buffer queue, which allows it to enqueue new buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueReset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueReset(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueReset"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueReset(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuereset(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueResetWithCallback(_:callback:refcon:)": {
+      "abstract": [
+        {
+          "text": "A callback that invokes a function for every buffer in a queue and then resets the queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueResetWithCallback"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "callback"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferRef",
+          "text": "CMBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "refcon"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueResetWithCallback(_:callback:refcon:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueResetWithCallback"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueResetWithCallback(_:callback:refcon:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueueresetwithcallback(_:callback:refcon:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueSetValidationCallback(_:callback:refcon:)": {
+      "abstract": [
+        {
+          "text": "A validation callback for the queue to call before enqueuing buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueSetValidationCallback"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "callback"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferValidationCallback",
+          "text": "CMBufferValidationCallback"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "refcon"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueSetValidationCallback(_:callback:refcon:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueSetValidationCallback"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueSetValidationCallback(_:callback:refcon:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuesetvalidationcallback(_:callback:refcon:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueSetValidationHandler(_:_:)": {
+      "abstract": [
+        {
+          "text": "A validation handler for the queue to call before enqueuing buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueSetValidationHandler"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferValidationHandler",
+          "text": "CMBufferValidationHandler"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueSetValidationHandler(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueSetValidationHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueSetValidationHandler(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuesetvalidationhandler(_:_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueTestTrigger(_:triggerToken:)": {
+      "abstract": [
+        {
+          "text": "Tests whether the trigger condition is true for the specified buffer queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueTestTrigger"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueRef",
+          "text": "CMBufferQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "triggerToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBufferQueueTriggerToken",
+          "text": "CMBufferQueueTriggerToken"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueTestTrigger(_:triggerToken:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueTestTrigger"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueTestTrigger(_:triggerToken:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuetesttrigger(_:triggertoken:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueTriggerCallback": {
+      "abstract": [
+        {
+          "text": "A callback for the system to invoke when a trigger condition becomes true.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueTriggerCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueTriggerCallback",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueTriggerCallback"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueTriggerCallback",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuetriggercallback"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueTriggerCondition": {
+      "abstract": [
+        {
+          "text": "A type to specify conditions to associate with a buffer queue trigger.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueTriggerCondition"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueTriggerCondition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueTriggerCondition"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueTriggerCondition",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuetriggercondition"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueTriggerHandler": {
+      "abstract": [
+        {
+          "text": "A type alias for a trigger handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueTriggerHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueTriggerHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueTriggerHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueTriggerHandler",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuetriggerhandler"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueTriggerToken": {
+      "abstract": [
+        {
+          "text": "A type alias for a trigger token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueTriggerToken"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueTriggerToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferQueueTriggerToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferQueueTriggerToken",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueuetriggertoken"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferValidationCallback": {
+      "abstract": [
+        {
+          "text": "A type alias for a callback that tests whether a buffer is in a valid state to add to a queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferValidationCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferValidationCallback",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferValidationCallback"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferValidationCallback",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbuffervalidationcallback"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferValidationHandler": {
+      "abstract": [
+        {
+          "text": "A type alias for a handler that tests whether a buffer is in a valid state to add to a queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBufferValidationHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferValidationHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBufferValidationHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBufferValidationHandler",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbuffervalidationhandler"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTime/invalid": {
+      "abstract": [
+        {
+          "text": "A value that represents an invalid time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalid"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTime/invalid",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCMTimeInvalid"
+        }
+      ],
+      "role": "symbol",
+      "title": "invalid",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtime/invalid"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/buffer-queue-errors": {
+      "abstract": [
+        {
+          "text": "Error codes that framework operations produce.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/buffer-queue-errors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Buffer Queue Error Codes",
+      "type": "topic",
+      "url": "/documentation/coremedia/buffer-queue-errors"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/buffer-trigger-conditions": {
+      "abstract": [
+        {
+          "text": "The trigger conditions the framework supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/buffer-trigger-conditions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Buffer Trigger Conditions",
+      "type": "topic",
+      "url": "/documentation/coremedia/buffer-trigger-conditions"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/cmmemorypool-api": {
+      "abstract": [
+        {
+          "text": "An object that optimizes memory allocation when working with large blocks of memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/cmmemorypool-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CMMemoryPool APIs",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmmemorypool-api"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/cmsimplequeue-api": {
+      "abstract": [
+        {
+          "text": "A simple, lockless FIFO queue of elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/cmsimplequeue-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CMSimpleQueue APIs",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsimplequeue-api"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/kCMBufferQueueError_CannotModifyQueueFromTriggerCallback": {
+      "abstract": [
+        {
+          "text": "A trigger callback attempted to modify a queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCMBufferQueueError_CannotModifyQueueFromTriggerCallback"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/kCMBufferQueueError_CannotModifyQueueFromTriggerCallback",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCMBufferQueueError_CannotModifyQueueFromTriggerCallback"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCMBufferQueueError_CannotModifyQueueFromTriggerCallback",
+      "type": "topic",
+      "url": "/documentation/coremedia/kcmbufferqueueerror_cannotmodifyqueuefromtriggercallback"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Queues",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/cmsimplequeue-api",
+        "doc://com.apple.coremedia/documentation/CoreMedia/cmmemorypool-api"
+      ],
+      "title": "Queues"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Queue",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueCreateWithHandlers(_:_:_:_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueCreate(allocator:capacity:callbacks:queueOut:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferCallbacks"
+      ],
+      "title": "Creating a Queue"
+    },
+    {
+      "anchor": "Managing-a-Queue",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueEnqueue(_:buffer:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueCallForEachBuffer(_:callback:refcon:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueDequeue(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueDequeueIfDataReady(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueMarkEndOfData(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueReset(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueResetWithCallback(_:callback:refcon:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueRemoveTrigger(_:triggerToken:)"
+      ],
+      "title": "Managing a Queue"
+    },
+    {
+      "anchor": "Managing-Triggers",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueInstallTriggerHandler(_:_:_:_:_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueInstallTriggerHandlerWithIntegerThreshold(_:_:_:_:_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueTriggerHandler",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueTriggerToken",
+        "doc://com.apple.coremedia/documentation/CoreMedia/buffer-trigger-conditions",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueTestTrigger(_:triggerToken:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueInstallTrigger(_:callback:refcon:condition:time:triggerTokenOut:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueInstallTriggerWithIntegerThreshold(_:callback:refcon:condition:threshold:triggerTokenOut:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueTriggerCallback",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueTriggerCondition"
+      ],
+      "title": "Managing Triggers"
+    },
+    {
+      "anchor": "Inspecting-Duration-and-Timing",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetDuration(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetMinDecodeTimeStamp(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetFirstDecodeTimeStamp(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetMinPresentationTimeStamp(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetFirstPresentationTimeStamp(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetEndPresentationTimeStamp(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetMaxPresentationTimeStamp(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetCallbacksForSampleBuffersSortedByOutputPTS()",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetCallbacksForUnsortedSampleBuffers()"
+      ],
+      "title": "Inspecting Duration and Timing"
+    },
+    {
+      "anchor": "Inspecting-a-Queue",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueIsEmpty(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetBufferCount(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetTotalSize(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetHead(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueContainsEndOfData(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueIsAtEndOfData(_:)"
+      ],
+      "title": "Inspecting a Queue"
+    },
+    {
+      "anchor": "Validating-a-Queue",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueSetValidationHandler(_:_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferValidationHandler",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueSetValidationCallback(_:callback:refcon:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferValidationCallback"
+      ],
+      "title": "Validating a Queue"
+    },
+    {
+      "anchor": "Accessing-the-Type-Identifier",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetTypeID()"
+      ],
+      "title": "Accessing the Type Identifier"
+    },
+    {
+      "anchor": "Data-Types",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueue"
+      ],
+      "title": "Data Types"
+    },
+    {
+      "anchor": "Error-Codes",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/buffer-queue-errors"
+      ],
+      "title": "Error Codes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Queue",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueCreateWithHandlers(_:_:_:_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferHandlers",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueCreate(allocator:capacity:callbacks:queueOut:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferCallbacks"
+              ],
+              "title": "Creating a Queue"
+            },
+            {
+              "anchor": "Managing-a-Queue",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueEnqueue(_:buffer:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueCallForEachBuffer(_:callback:refcon:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueDequeue(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueDequeueIfDataReady(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueMarkEndOfData(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueReset(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueResetWithCallback(_:callback:refcon:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueRemoveTrigger(_:triggerToken:)"
+              ],
+              "title": "Managing a Queue"
+            },
+            {
+              "anchor": "Managing-Triggers",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueInstallTriggerHandler(_:_:_:_:_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueInstallTriggerHandlerWithIntegerThreshold(_:_:_:_:_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueTriggerHandler",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueTriggerToken",
+                "doc://com.apple.coremedia/documentation/CoreMedia/buffer-trigger-conditions",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueTestTrigger(_:triggerToken:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueInstallTrigger(_:callback:refcon:condition:time:triggerTokenOut:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueInstallTriggerWithIntegerThreshold(_:callback:refcon:condition:threshold:triggerTokenOut:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueTriggerCallback",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueTriggerCondition"
+              ],
+              "title": "Managing Triggers"
+            },
+            {
+              "anchor": "Inspecting-Duration-and-Timing",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetDuration(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetMinDecodeTimeStamp(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetFirstDecodeTimeStamp(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetMinPresentationTimeStamp(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetFirstPresentationTimeStamp(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetEndPresentationTimeStamp(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetMaxPresentationTimeStamp(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetCallbacksForSampleBuffersSortedByOutputPTS()",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetCallbacksForUnsortedSampleBuffers()"
+              ],
+              "title": "Inspecting Duration and Timing"
+            },
+            {
+              "anchor": "Inspecting-a-Queue",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueIsEmpty(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetBufferCount(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetTotalSize(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetHead(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueContainsEndOfData(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueIsAtEndOfData(_:)"
+              ],
+              "title": "Inspecting a Queue"
+            },
+            {
+              "anchor": "Validating-a-Queue",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueSetValidationHandler(_:_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferValidationHandler",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueSetValidationCallback(_:callback:refcon:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferValidationCallback"
+              ],
+              "title": "Validating a Queue"
+            },
+            {
+              "anchor": "Accessing-the-Type-Identifier",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueueGetTypeID()"
+              ],
+              "title": "Accessing the Type Identifier"
+            },
+            {
+              "anchor": "Data-Types",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBufferQueue"
+              ],
+              "title": "Data Types"
+            },
+            {
+              "anchor": "Error-Codes",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/buffer-queue-errors"
+              ],
+              "title": "Error Codes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Queues",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/cmsimplequeue-api",
+                "doc://com.apple.coremedia/documentation/CoreMedia/cmmemorypool-api"
+              ],
+              "title": "Queues"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueCallForEachBuffer(_:callback:refcon:)/title",
+          "value": "CMBufferQueueCallForEachBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueCallForEachBuffer(_:callback:refcon:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueCallForEachBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueSetValidationCallback(_:callback:refcon:)/title",
+          "value": "CMBufferQueueSetValidationCallback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueSetValidationCallback(_:callback:refcon:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueSetValidationCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueIsAtEndOfData(_:)/title",
+          "value": "CMBufferQueueIsAtEndOfData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueIsAtEndOfData(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueIsAtEndOfData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueRemoveTrigger(_:triggerToken:)/title",
+          "value": "CMBufferQueueRemoveTrigger"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueRemoveTrigger(_:triggerToken:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueRemoveTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1kCMBufferQueueError_CannotModifyQueueFromTriggerCallback/title",
+          "value": "kCMBufferQueueError_CannotModifyQueueFromTriggerCallback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1kCMBufferQueueError_CannotModifyQueueFromTriggerCallback/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCMBufferQueueError_CannotModifyQueueFromTriggerCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetMinDecodeTimeStamp(_:)/title",
+          "value": "CMBufferQueueGetMinDecodeTimeStamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetMinDecodeTimeStamp(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueGetMinDecodeTimeStamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTime~1invalid/title",
+          "value": "kCMTimeInvalid"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTime~1invalid/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCMTimeInvalid"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueInstallTriggerHandler(_:_:_:_:_:)/title",
+          "value": "CMBufferQueueInstallTriggerHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueInstallTriggerHandler(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueInstallTriggerHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueSetValidationHandler(_:_:)/title",
+          "value": "CMBufferQueueSetValidationHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueSetValidationHandler(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueSetValidationHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueTestTrigger(_:triggerToken:)/title",
+          "value": "CMBufferQueueTestTrigger"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueTestTrigger(_:triggerToken:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueTestTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueTriggerCallback/title",
+          "value": "CMBufferQueueTriggerCallback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueTriggerCallback/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueTriggerCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueTriggerCallback/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueTriggerCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueContainsEndOfData(_:)/title",
+          "value": "CMBufferQueueContainsEndOfData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueContainsEndOfData(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueContainsEndOfData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueCreate(allocator:capacity:callbacks:queueOut:)/title",
+          "value": "CMBufferQueueCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueCreate(allocator:capacity:callbacks:queueOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetBufferCount(_:)/title",
+          "value": "CMBufferQueueGetBufferCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetBufferCount(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueGetBufferCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetHead(_:)/title",
+          "value": "CMBufferQueueGetHead"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetHead(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueGetHead"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueDequeueIfDataReady(_:)/title",
+          "value": "CMBufferQueueDequeueIfDataReadyAndRetain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueDequeueIfDataReady(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueDequeueIfDataReadyAndRetain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetFirstPresentationTimeStamp(_:)/title",
+          "value": "CMBufferQueueGetFirstPresentationTimeStamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetFirstPresentationTimeStamp(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueGetFirstPresentationTimeStamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferValidationCallback/title",
+          "value": "CMBufferValidationCallback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferValidationCallback/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferValidationCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferValidationCallback/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferValidationCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetFirstDecodeTimeStamp(_:)/title",
+          "value": "CMBufferQueueGetFirstDecodeTimeStamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetFirstDecodeTimeStamp(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueGetFirstDecodeTimeStamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetEndPresentationTimeStamp(_:)/title",
+          "value": "CMBufferQueueGetEndPresentationTimeStamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetEndPresentationTimeStamp(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueGetEndPresentationTimeStamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetDuration(_:)/title",
+          "value": "CMBufferQueueGetDuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetDuration(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueGetDuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetCallbacksForSampleBuffersSortedByOutputPTS()/title",
+          "value": "CMBufferQueueGetCallbacksForSampleBuffersSortedByOutputPTS"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetCallbacksForSampleBuffersSortedByOutputPTS()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueGetCallbacksForSampleBuffersSortedByOutputPTS"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferValidationHandler/title",
+          "value": "CMBufferValidationHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferValidationHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferValidationHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferValidationHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferValidationHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueIsEmpty(_:)/title",
+          "value": "CMBufferQueueIsEmpty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueIsEmpty(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueIsEmpty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueDequeue(_:)/title",
+          "value": "CMBufferQueueDequeueAndRetain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueDequeue(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueDequeueAndRetain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueReset(_:)/title",
+          "value": "CMBufferQueueReset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueReset(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueReset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueTriggerHandler/title",
+          "value": "CMBufferQueueTriggerHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueTriggerHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueTriggerHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueTriggerHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueTriggerHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetTotalSize(_:)/title",
+          "value": "CMBufferQueueGetTotalSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetTotalSize(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueGetTotalSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueInstallTrigger(_:callback:refcon:condition:time:triggerTokenOut:)/title",
+          "value": "CMBufferQueueInstallTrigger"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueInstallTrigger(_:callback:refcon:condition:time:triggerTokenOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueInstallTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueCreateWithHandlers(_:_:_:_:)/title",
+          "value": "CMBufferQueueCreateWithHandlers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueCreateWithHandlers(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueCreateWithHandlers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueTriggerToken/title",
+          "value": "CMBufferQueueTriggerToken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueTriggerToken/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueTriggerToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueTriggerToken/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueTriggerToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueInstallTriggerHandlerWithIntegerThreshold(_:_:_:_:_:)/title",
+          "value": "CMBufferQueueInstallTriggerHandlerWithIntegerThreshold"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueInstallTriggerHandlerWithIntegerThreshold(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueInstallTriggerHandlerWithIntegerThreshold"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetCallbacksForUnsortedSampleBuffers()/title",
+          "value": "CMBufferQueueGetCallbacksForUnsortedSampleBuffers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetCallbacksForUnsortedSampleBuffers()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueGetCallbacksForUnsortedSampleBuffers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueEnqueue(_:buffer:)/title",
+          "value": "CMBufferQueueEnqueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueEnqueue(_:buffer:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueEnqueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueInstallTriggerWithIntegerThreshold(_:callback:refcon:condition:threshold:triggerTokenOut:)/title",
+          "value": "CMBufferQueueInstallTriggerWithIntegerThreshold"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueInstallTriggerWithIntegerThreshold(_:callback:refcon:condition:threshold:triggerTokenOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueInstallTriggerWithIntegerThreshold"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueResetWithCallback(_:callback:refcon:)/title",
+          "value": "CMBufferQueueResetWithCallback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueResetWithCallback(_:callback:refcon:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueResetWithCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueTriggerCondition/title",
+          "value": "CMBufferQueueTriggerCondition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueTriggerCondition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueTriggerCondition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueTriggerCondition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueTriggerCondition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferCallbacks/title",
+          "value": "CMBufferCallbacks"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferCallbacks/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferCallbacks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferCallbacks/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferCallbacks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetMinPresentationTimeStamp(_:)/title",
+          "value": "CMBufferQueueGetMinPresentationTimeStamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetMinPresentationTimeStamp(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueGetMinPresentationTimeStamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetTypeID()/title",
+          "value": "CMBufferQueueGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetMaxPresentationTimeStamp(_:)/title",
+          "value": "CMBufferQueueGetMaxPresentationTimeStamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueGetMaxPresentationTimeStamp(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueGetMaxPresentationTimeStamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueMarkEndOfData(_:)/title",
+          "value": "CMBufferQueueMarkEndOfData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueueMarkEndOfData(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueMarkEndOfData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueue/title",
+          "value": "CMBufferQueueRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBufferQueue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBufferQueueRef"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremedia/cmbufferqueue-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremedia/cmbufferqueue-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

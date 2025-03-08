@@ -1,0 +1,283 @@
+{
+  "abstract": [
+    {
+      "text": "A 32-bit field that provides additional information about a particular component.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager",
+        "doc://com.apple.documentation/documentation/coreservices/componentdescription"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coreservices/componentdescription/1516652-componentflags"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1516652,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@ComponentDescription@FI@componentFlags",
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "parent": {
+      "title": "ComponentDescription"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "structp",
+    "title": "componentFlags"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "UInt32"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "componentFlags"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The high-order 8 bits are reserved for definition by the Component Manager. If you are developing an application, you should usually set these bits to ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The low-order 24 bits are specific to each component type. These flags can be used to indicate the presence of features or capabilities in a given component.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you are developing an application that uses components, you can use these flags to further narrow the search criteria applied by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1516552-findnextcomponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1516515-countcomponents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. If you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/componentdescription/1516652-componentflags",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " field in a component search, you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/componentdescription/1516402-componentflagsmask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " field to indicate which flags are to be considered in the search.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you are developing a component, you can use these flags to indicate any special capabilities or features of your component. You may use all 24 bits, as appropriate to its component type. You must set all unused bits to ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516515-countcomponents": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516515-countcomponents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CountComponents",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516515-countcomponents"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516552-findnextcomponent": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516552-findnextcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FindNextComponent",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516552-findnextcomponent"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Component Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/component_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentdescription": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentdescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ComponentDescription",
+      "type": "topic",
+      "url": "/documentation/coreservices/componentdescription"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentdescription/1516402-componentflagsmask": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentdescription/1516402-componentflagsmask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "componentFlagsMask",
+      "type": "topic",
+      "url": "/documentation/coreservices/componentdescription/1516402-componentflagsmask"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentdescription/1516652-componentflags": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentdescription/1516652-componentflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "componentFlags",
+      "type": "topic",
+      "url": "/documentation/coreservices/componentdescription/1516652-componentflags"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/componentdescription/1516652-componentflags"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

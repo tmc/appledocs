@@ -1,0 +1,921 @@
+{
+  "abstract": [
+    {
+      "text": "Learn about adding contextual menu items and toolbar items to a Safari app extension with information property list keys.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/using-contextual-menu-and-toolbar-item-keys"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using contextual menu and toolbar item keys"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Contextual menu items and toolbar items give you ways to add more menu options and entry points to your Safari app extension. You define and adjust these items using information property list keys.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-context-menu-items",
+          "level": 3,
+          "text": "Add context menu items",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "SFSafariContextMenu",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key lets your app extension add items to the context menu that appears in webpages. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/macos/menus/contextual-menus/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for design guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3027377",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The key’s value must be an array, and must contain one dictionary with two subkeys for each menu item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Subkey",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Text",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required. A string that specifies the text to display for the context menu item.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Command",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required. A string that the context menu item sends when it activates. It contains the name of the command you want to send to your app extension when the user selects your item.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if you add two contextual menu items, your ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file might look like the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>SFSafariContextMenu</key>",
+            "<array>",
+            "\t<dict>",
+            "\t\t<key>Text</key>",
+            "\t\t<string>Search for selected text in MyApplication.</string>",
+            "\t\t<key>Command</key>",
+            "\t\t<string>Search</string>",
+            "\t</dict>",
+            "\t<dict>",
+            "\t\t<key>Text</key>",
+            "\t\t<string>Add an entry for selected text in MyApplication.</string>",
+            "\t\t<key>Command</key>",
+            "\t\t<string>Add</string>",
+            "\t</dict>",
+            "</array>"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-a-toolbar-item",
+          "level": 3,
+          "text": "Add a toolbar item",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "SFSafariToolbarItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary adds a toolbar item to Safari windows. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/macos/windows-and-views/toolbars/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for design guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3027375",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each app extension can have only one toolbar item. The value for this key is a dictionary that describes the toolbar item. There are four required keys for the toolbar item dictionary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Subkey",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Identifier",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required. A string identifier for the toolbar item. This doesn’t display to the user.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Label",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required. A string that appears in the overflow menu, in the Customize palette, and on hover.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Image",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required. A string specifying the filename of a scalable PDF image. The image must be transparent. Add the image file to your extension’s Xcode target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Action",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required. A string specifying the command to send when the user clicks the toolbar item. Available actions are ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Command",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (to send a command to the app extension) and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Popover",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (to display a popover window). This action determines which methods you need to implement to handle button events.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example dictionary in XML:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<dict>",
+            "\t<key>Action</key>",
+            "\t<string>Command</string>",
+            "\t<key>Identifier</key>",
+            "\t<string>Button</string>",
+            "\t<key>Image</key>",
+            "\t<string>Toolbar.pdf</string>",
+            "\t<key>Label</key>",
+            "\t<string>My Item</string>",
+            "</dict>"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "Image",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to provide an image for the toolbar button. Safari may resize or recolor the toolbar button image when drawing it to the screen. Make your image a template image and follow the guidelines for toolbar items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Buttons on the Safari toolbar are largely transparent, allowing them to fill with the appropriate gradient for the current macOS user interface. You don’t need to draw the button itself.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionViewController": {
+      "abstract": [
+        {
+          "text": "The view controller for a popover associated with your app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSafariExtensionViewController",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafariextensionviewcontroller"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariToolbarItem": {
+      "abstract": [
+        {
+          "text": "A proxy for a Safari app extension toolbar item in a Safari window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariToolbarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariToolbarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSafariToolbarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSafariToolbarItem",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafaritoolbaritem"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-a-toolbar-item": {
+      "abstract": [
+        {
+          "text": "Customize a toolbar item for your Safari app extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-a-toolbar-item",
+      "kind": "article",
+      "role": "article",
+      "title": "Adjusting settings for a toolbar item",
+      "type": "topic",
+      "url": "/documentation/safariservices/adjusting-settings-for-a-toolbar-item"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-contextual-menu-items": {
+      "abstract": [
+        {
+          "text": "Customize contextual menu items for your Safari app extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-contextual-menu-items",
+      "kind": "article",
+      "role": "article",
+      "title": "Adjusting settings for contextual menu items",
+      "type": "topic",
+      "url": "/documentation/safariservices/adjusting-settings-for-contextual-menu-items"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys": {
+      "abstract": [
+        {
+          "text": "Specify keys in your information property list file that provide information about your Safari app extension, UI, and permissions to the operating system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari app extension information property list keys",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-app-extension-information-property-list-keys"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions": {
+      "abstract": [
+        {
+          "text": "Learn how Safari app extensions extend the web-browsing experience in Safari by leveraging web technologies and native code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari app extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-app-extensions"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/macos/menus/contextual-menus/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/macos/menus/contextual-menus/",
+      "title": "Context menus",
+      "titleInlineContent": [
+        {
+          "text": "Context menus",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/macos/menus/contextual-menus/"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/macos/windows-and-views/toolbars/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/macos/windows-and-views/toolbars/",
+      "title": "Toolbars",
+      "titleInlineContent": [
+        {
+          "text": "Toolbars",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/macos/windows-and-views/toolbars/"
+    },
+    "media-3027375": {
+      "alt": "A screenshot of a partial Safari toolbar. It shows standard toolbar items, as well as an app extension toolbar item that looks like a lightning bolt inside a circle. ",
+      "identifier": "media-3027375",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/21e2316c9ce5a406ca193a4330baa8aa/media-3027375@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9d2283b7e61ead1bf434c28cf1c8eb5b/media-3027375~dark@2x.png"
+        }
+      ]
+    },
+    "media-3027377": {
+      "alt": "A screenshot of a context menu in Safari. It’s a vertical menu containing five options, including Reload Page and Inspect Element. ",
+      "identifier": "media-3027377",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c35ab9d49f9e8e49de2b754599fe084e/media-3027377@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fa6f8ee8692c9b1f64f4543e664e3812/media-3027377~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Contextual-menu-and-toolbar-items",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-a-toolbar-item",
+        "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-contextual-menu-items",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFSafariToolbarItem",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionViewController"
+      ],
+      "title": "Contextual menu and toolbar items"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Contextual-menu-and-toolbar-items",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-a-toolbar-item",
+                "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-contextual-menu-items",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFSafariToolbarItem",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionViewController"
+              ],
+              "title": "Contextual menu and toolbar items"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionViewController/title",
+          "value": "SFSafariExtensionViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariToolbarItem/title",
+          "value": "SFSafariToolbarItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariToolbarItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariToolbarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariToolbarItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariToolbarItem"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/using-contextual-menu-and-toolbar-item-keys"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/using-contextual-menu-and-toolbar-item-keys"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1166 @@
+{
+  "abstract": [
+    {
+      "text": "Broadcast iBeacon signals from an iOS device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corelocation/documentation/CoreLocation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corelocation/documentation/CoreLocation/turning-an-ios-device-into-an-ibeacon-device"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Location"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Turning an iOS device into an iBeacon device"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any iOS device that supports sharing data using Bluetooth low energy can be turned into an iBeacon. Apps that use their underlying iOS device as an iBeacon must run in the foreground. As a result, use this feature for point-of-sale apps or for apps that are meant to run in the foreground anyway. For other types of iBeacon implementations, use dedicated beacon hardware from third-party manufacturers. To use an iOS device as an iBeacon, you do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Obtain or generate a 128-bit UUID for your device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLBeaconRegion",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object containing the UUID value along with appropriate major and minor values for your beacon.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Advertise the beacon information using the Core Bluetooth framework.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Get-a-UUID-for-your-device",
+          "level": 3,
+          "text": "Get a UUID for your device",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The primary way to identify an iBeacon is from its UUID. When deploying one or more beacons, you assign a UUID to each one that conveys the beacon’s purpose to clients. The exact purpose of a beacon is something you define. For example, a department store chain might use the same UUID for all of its deployed beacons, or each store might be assigned a different UUID. Because detection involves using region monitoring to look for beacons with specific UUIDs, using fewer UUIDs is easier to manage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a new UUID for your iBeacon deployment, use the ",
+              "type": "text"
+            },
+            {
+              "code": "uuidgen",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command-line tool. Open Terminal and type ",
+              "type": "text"
+            },
+            {
+              "code": "uuidgen",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on the command line and press Return. This tool generates a unique 128-bit value and formats it as an ASCII string that is punctuated by hyphens, as shown in Listing 1.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1. Generating a UUID from the command line",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "$ uuidgen",
+            "39ED98FF-2900-441A-802F-9C398FC199D2 "
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Configure-the-beacon-region",
+          "level": 3,
+          "text": "Configure the beacon region",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLBeaconRegion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to configure your beacon’s identity. You use the beacon region to generate a dictionary of information that you can advertise later over Bluetooth. Listing 2 shows how to create a beacon region object and fill it with information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 2. Configuring your beacon’s identity",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func createBeaconRegion() -> CLBeaconRegion? {",
+            "    let proximityUUID = UUID(uuidString:",
+            "                \"39ED98FF-2900-441A-802F-9C398FC199D2\")",
+            "    let major : CLBeaconMajorValue = 100",
+            "    let minor : CLBeaconMinorValue = 1",
+            "    let beaconID = \"com.example.myDeviceRegion\"",
+            "        ",
+            "    return CLBeaconRegion(proximityUUID: proximityUUID!, ",
+            "                major: major, minor: minor, identifier: beaconID)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The UUID, major, and minor values are specific to your iBeacon implementation. You decide the meaning of these values and decide how apps that detect your beacons interpret those values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Advertise-your-beacon-over-bluetooth",
+          "level": 3,
+          "text": "Advertise your beacon over bluetooth",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To broadcast your beacon’s identity from an iOS device, use the Core Bluetooth framework to configure the iOS device as a Bluetooth peripheral. When configured as a peripheral, your iOS device broadcasts its beacon information out to other devices using the Bluetooth hardware. Other devices use that information to perform ranging and detect their proximity to your iOS device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the Core Bluetooth framework to your Xcode project. In your code, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheralManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and call its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheralManager/startAdvertising(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to begin broadcasting your beacon data. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheralManager/startAdvertising(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method takes a dictionary parameter that contains your beacon information. Call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLBeaconRegion/peripheralData(withMeasuredPower:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLBeaconRegion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that you created previously to get a dictionary containing the data associated with your beacon.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 3. Advertising your device over Bluetooth",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func advertiseDevice(region : CLBeaconRegion) {",
+            "    let peripheral = CBPeripheralManager(delegate: self, queue: nil)",
+            "    let peripheralData = region.peripheralData(withMeasuredPower: nil)",
+            "        ",
+            "    peripheral.startAdvertising(((peripheralData as NSDictionary) as! [String : Any]))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLBeaconRegion/peripheralData(withMeasuredPower:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to obtain your data dictionary, you typically pass ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to specify the default received signal strength indicator (RSSI) value associated with the iOS device. This parameter represents the signal strength (in decibels) measured from one meter away from the device. You can specify custom values if you need to calibrate the device for better ranging performance in certain environments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a peripheral manager object, it calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheralManagerDelegate/peripheralManagerDidUpdateState(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of its delegate object. You must implement this delegate method to ensure that Bluetooth low energy is supported and available to use on the iOS device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "After advertising your app as a beacon, your app must continue running in the foreground to broadcast the needed Bluetooth signals. If the user quits the app, the system stops advertising the device as a peripheral over Bluetooth.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During ranging, there may be a brief period in which Core Location creates two ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLBeacon",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects for the same iOS device. This behavior occurs because iOS changes the device’s Bluetooth identifier periodically to protect the user’s privacy, and one beacon represents the old identifier and one beacon represents the new identifier. Within 2 seconds of the identifier change, the beacon with the old identifier has its proximity property set to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLProximity/unknown",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Within 10 seconds, the beacon with the old identifier is no longer reported.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corelocation/documentation/CoreLocation": {
+      "abstract": [
+        {
+          "text": "Obtain the geographic location and orientation of a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Location",
+      "type": "topic",
+      "url": "/documentation/corelocation"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLBeacon": {
+      "abstract": [
+        {
+          "text": "Information about an observed iBeacon device and its relative distance to a person’s device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLBeacon"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLBeacon",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLBeacon"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLBeacon",
+      "type": "topic",
+      "url": "/documentation/corelocation/clbeacon"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLBeaconIdentityCondition": {
+      "abstract": [
+        {
+          "text": "A condition that describes the identity characteristics of a beacon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CLBeaconIdentityCondition"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLBeaconIdentityCondition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLBeaconIdentityCondition",
+      "type": "topic",
+      "url": "/documentation/corelocation/clbeaconidentitycondition"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLBeaconRegion": {
+      "abstract": [
+        {
+          "text": "A region for detecting the presence of iBeacon devices.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLBeaconRegion"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLBeaconRegion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLBeaconRegion"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLBeaconRegion",
+      "type": "topic",
+      "url": "/documentation/corelocation/clbeaconregion"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLBeaconRegion/peripheralData(withMeasuredPower:)": {
+      "abstract": [
+        {
+          "text": "Retrieves data that you can use to advertise the current device as a beacon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "peripheralData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withMeasuredPower"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSMutableDictionary",
+          "text": "NSMutableDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLBeaconRegion/peripheralData(withMeasuredPower:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "peripheralDataWithMeasuredPower:"
+        }
+      ],
+      "role": "symbol",
+      "title": "peripheralData(withMeasuredPower:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/clbeaconregion/peripheraldata(withmeasuredpower:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLCircularGeographicCondition": {
+      "abstract": [
+        {
+          "text": "A circular geographic condition that a center point and radius define.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CLCircularGeographicCondition"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLCircularGeographicCondition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLCircularGeographicCondition",
+      "type": "topic",
+      "url": "/documentation/corelocation/clcirculargeographiccondition"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLCondition-c.class": {
+      "abstract": [
+        {
+          "text": "The abstract base class that all other conditions derive from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CLCondition"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLCondition-c.class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLCondition",
+      "type": "topic",
+      "url": "/documentation/corelocation/clcondition-c.class"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLCondition-swift.protocol": {
+      "abstract": [
+        {
+          "text": "The abstract base class for all other monitor conditions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLCondition"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLCondition-swift.protocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLCondition"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLCondition",
+      "type": "topic",
+      "url": "/documentation/corelocation/clcondition-swift.protocol"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLProximity/unknown": {
+      "abstract": [
+        {
+          "text": "The proximity of the beacon could not be determined.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unknown"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLProximity/unknown",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLProximityUnknown"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLProximity.unknown",
+      "type": "topic",
+      "url": "/documentation/corelocation/clproximity/unknown"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/determining-the-proximity-to-an-ibeacon-device": {
+      "abstract": [
+        {
+          "text": "Detect beacons and determine the relative distance to them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/determining-the-proximity-to-an-ibeacon-device",
+      "kind": "article",
+      "role": "article",
+      "title": "Determining the proximity to an iBeacon device",
+      "type": "topic",
+      "url": "/documentation/corelocation/determining-the-proximity-to-an-ibeacon-device"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/ranging-for-beacons": {
+      "abstract": [
+        {
+          "text": "Configure a device to act as a beacon and to detect surrounding beacons.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/ranging-for-beacons",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Ranging for Beacons",
+      "type": "topic",
+      "url": "/documentation/corelocation/ranging-for-beacons"
+    },
+    "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheralManager": {
+      "abstract": [
+        {
+          "text": "An object that manages and advertises peripheral services exposed by this app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBPeripheralManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheralManager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CBPeripheralManager",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth/CBPeripheralManager"
+    },
+    "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheralManager/startAdvertising(_:)": {
+      "abstract": [
+        {
+          "text": "Advertises peripheral manager data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startAdvertising"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "advertisementData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheralManager/startAdvertising(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startAdvertising(_:)",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth/CBPeripheralManager/startAdvertising(_:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheralManagerDelegate/peripheralManagerDidUpdateState(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate the peripheral manager’s state updated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "peripheralManagerDidUpdateState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "peripheral"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBPeripheralManager",
+          "text": "CBPeripheralManager"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheralManagerDelegate/peripheralManagerDidUpdateState(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "peripheralManagerDidUpdateState(_:)",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth/CBPeripheralManagerDelegate/peripheralManagerDidUpdateState(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "iBeacon",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/ranging-for-beacons",
+        "doc://com.apple.corelocation/documentation/CoreLocation/determining-the-proximity-to-an-ibeacon-device",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLBeacon",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLCondition-swift.protocol"
+      ],
+      "title": "iBeacon"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "iBeacon",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corelocation/documentation/CoreLocation/ranging-for-beacons",
+                "doc://com.apple.corelocation/documentation/CoreLocation/determining-the-proximity-to-an-ibeacon-device",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLBeacon",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLCondition-c.class",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLBeaconIdentityCondition",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLCircularGeographicCondition"
+              ],
+              "title": "iBeacon"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLProximity~1unknown/title",
+          "value": "CLProximityUnknown"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLProximity~1unknown/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLProximityUnknown"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLBeaconRegion~1peripheralData(withMeasuredPower:)/title",
+          "value": "peripheralDataWithMeasuredPower:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLBeaconRegion~1peripheralData(withMeasuredPower:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "peripheralDataWithMeasuredPower:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLBeacon/title",
+          "value": "CLBeacon"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLBeacon/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLBeacon"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLBeacon/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLBeacon"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBPeripheralManager/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CBPeripheralManager"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CBManager",
+              "text": "CBManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBPeripheralManagerDelegate~1peripheralManagerDidUpdateState(_:)/title",
+          "value": "peripheralManagerDidUpdateState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBPeripheralManagerDelegate~1peripheralManagerDidUpdateState(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "peripheralManagerDidUpdateState:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CBPeripheralManager",
+              "text": "CBPeripheralManager"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "peripheral"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLBeaconRegion/title",
+          "value": "CLBeaconRegion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLBeaconRegion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLBeaconRegion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLBeaconRegion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLBeaconRegion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBPeripheralManager~1startAdvertising(_:)/title",
+          "value": "startAdvertising:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBPeripheralManager~1startAdvertising(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "startAdvertising:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "advertisementData"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corelocation/turning-an-ios-device-into-an-ibeacon-device"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corelocation/turning-an-ios-device-into-an-ibeacon-device"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

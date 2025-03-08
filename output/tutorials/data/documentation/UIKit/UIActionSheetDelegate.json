@@ -1,0 +1,1741 @@
+{
+  "abstract": [
+    {
+      "text": "The interface for the delegate of an action sheet object.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAlertController",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)UIActionSheetDelegate",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UIActionSheetDelegate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIActionSheetDelegate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "UIActionSheetDelegate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIActionSheetDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The delegate implements the button actions and any other custom behavior. Some of the methods defined in this protocol are optional.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you add your own buttons or customize the behavior of an action sheet, implement a delegate conforming to this protocol to handle the corresponding delegate messages. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActionSheet/delegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the action sheet object to specify one of your application objects as the delegate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you add your own buttons to an action sheet, the delegate must implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/actionSheet(_:clickedButtonAt:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " message to respond when those buttons are clicked; otherwise, your custom buttons do nothing. The action sheet is automatically dismissed after the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/actionSheet(_:clickedButtonAt:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method is invoked.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Optionally, you can implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/actionSheetCancel(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to take the appropriate action when the system cancels your action sheet. If the delegate does not implement this method, the default behavior is to simulate the user clicking the cancel button and closing the view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also optionally augment the behavior of presenting and dismissing action sheets using the methods in Customizing behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccelerometerDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for receiving acceleration-related data from the system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccelerometerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccelerometerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccelerometerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAccelerometerDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccelerometerdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActionSheet/delegate": {
+      "abstract": [
+        {
+          "text": "The receiver’s delegate or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if it doesn’t have a delegate.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIActionSheetDelegate",
+          "text": "UIActionSheetDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActionSheet/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactionsheet/delegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for the delegate of an action sheet object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActionSheetDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActionSheetDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActionSheetDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactionsheetdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/actionSheet(_:clickedButtonAt:)": {
+      "abstract": [
+        {
+          "text": "Sent to the delegate when the user clicks a button on an action sheet.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "actionSheet"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIActionSheet",
+          "text": "UIActionSheet"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "clickedButtonAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/actionSheet(_:clickedButtonAt:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "actionSheet:clickedButtonAtIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "actionSheet(_:clickedButtonAt:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactionsheetdelegate/actionsheet(_:clickedbuttonat:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/actionSheet(_:didDismissWithButtonIndex:)": {
+      "abstract": [
+        {
+          "text": "Sent to the delegate after an action sheet is dismissed from the screen.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "actionSheet"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIActionSheet",
+          "text": "UIActionSheet"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didDismissWithButtonIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/actionSheet(_:didDismissWithButtonIndex:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "actionSheet:didDismissWithButtonIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "actionSheet(_:didDismissWithButtonIndex:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactionsheetdelegate/actionsheet(_:diddismisswithbuttonindex:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/actionSheet(_:willDismissWithButtonIndex:)": {
+      "abstract": [
+        {
+          "text": "Sent to the delegate before an action sheet is dismissed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "actionSheet"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIActionSheet",
+          "text": "UIActionSheet"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "willDismissWithButtonIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/actionSheet(_:willDismissWithButtonIndex:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "actionSheet:willDismissWithButtonIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "actionSheet(_:willDismissWithButtonIndex:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactionsheetdelegate/actionsheet(_:willdismisswithbuttonindex:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/actionSheetCancel(_:)": {
+      "abstract": [
+        {
+          "text": "Sent to the delegate before an action sheet is canceled.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "actionSheetCancel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIActionSheet",
+          "text": "UIActionSheet"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/actionSheetCancel(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "actionSheetCancel:"
+        }
+      ],
+      "role": "symbol",
+      "title": "actionSheetCancel(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactionsheetdelegate/actionsheetcancel(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/didPresent(_:)": {
+      "abstract": [
+        {
+          "text": "Sent to the delegate after an action sheet is presented to the user.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didPresent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIActionSheet",
+          "text": "UIActionSheet"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/didPresent(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didPresentActionSheet:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didPresent(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactionsheetdelegate/didpresent(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/willPresent(_:)": {
+      "abstract": [
+        {
+          "text": "Sent to the delegate before an action sheet is presented to the user.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willPresent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIActionSheet",
+          "text": "UIActionSheet"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/willPresent(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "willPresentActionSheet:"
+        }
+      ],
+      "role": "symbol",
+      "title": "willPresent(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactionsheetdelegate/willpresent(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAlertController": {
+      "abstract": [
+        {
+          "text": "An object that displays an alert message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAlertController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAlertController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAlertController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAlertController",
+      "type": "topic",
+      "url": "/documentation/uikit/uialertcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAlertViewDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for the delegate of an alert view object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAlertViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAlertViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAlertViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAlertViewDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uialertviewdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentInteractionController": {
+      "abstract": [
+        {
+          "text": "A view controller that previews, opens, or prints files with a file format that your app can’t handle directly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentInteractionController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentInteractionController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentInteractionController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentInteractionController",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentinteractioncontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPopoverControllerDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for the delegate of a popover controller object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPopoverControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPopoverControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPopoverControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPopoverControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uipopovercontrollerdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchDisplayDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for the delegate of a search display controller.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchDisplayDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchDisplayDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchDisplayDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchDisplayDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchdisplaydelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing": {
+      "abstract": [
+        {
+          "text": "A set of methods that define the interface for configuring a previewing view controller on devices that support 3D Touch.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerPreviewing"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerPreviewing"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewControllerPreviewing",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollerpreviewing"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewingDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods used by the delegate to respond, with a preview view controller and a commit view controller, to the user pressing a view object on the screen of a device that supports 3D Touch.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerPreviewingDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewingDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerPreviewingDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewControllerPreviewingDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollerpreviewingdelegate"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentInteractionController"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Deprecated-protocols",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIAccelerometerDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UIAlertViewDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UIPopoverControllerDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchDisplayDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewingDelegate"
+      ],
+      "title": "Deprecated protocols"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Responding-to-actions",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/actionSheet(_:clickedButtonAt:)"
+      ],
+      "title": "Responding to actions"
+    },
+    {
+      "anchor": "Customizing-behavior",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/willPresent(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/didPresent(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/actionSheet(_:willDismissWithButtonIndex:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/actionSheet(_:didDismissWithButtonIndex:)"
+      ],
+      "title": "Customizing behavior"
+    },
+    {
+      "anchor": "Canceling",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/actionSheetCancel(_:)"
+      ],
+      "title": "Canceling"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIActionSheetDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActionSheetDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActionSheetDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Responding-to-actions",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/actionSheet(_:clickedButtonAt:)"
+              ],
+              "title": "Responding to actions"
+            },
+            {
+              "anchor": "Customizing-behavior",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/willPresent(_:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/didPresent(_:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/actionSheet(_:willDismissWithButtonIndex:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/actionSheet(_:didDismissWithButtonIndex:)"
+              ],
+              "title": "Customizing behavior"
+            },
+            {
+              "anchor": "Canceling",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate/actionSheetCancel(_:)"
+              ],
+              "title": "Canceling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentInteractionController"
+              ],
+              "kind": "relationships",
+              "title": "Conforming Types",
+              "type": "conformingTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Deprecated-protocols",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIAccelerometerDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UIAlertViewDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UIPopoverControllerDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchDisplayDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewingDelegate"
+              ],
+              "title": "Deprecated protocols"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UIActionSheetDelegate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAlertController",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchDisplayDelegate/title",
+          "value": "UISearchDisplayDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchDisplayDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchDisplayDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchDisplayDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchDisplayDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheetDelegate/title",
+          "value": "UIActionSheetDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheetDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActionSheetDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheetDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActionSheetDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheet~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheet~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheetDelegate~1actionSheetCancel(_:)/title",
+          "value": "actionSheetCancel:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheetDelegate~1actionSheetCancel(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "actionSheetCancel:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheetDelegate~1actionSheet(_:willDismissWithButtonIndex:)/title",
+          "value": "actionSheet:willDismissWithButtonIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheetDelegate~1actionSheet(_:willDismissWithButtonIndex:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "actionSheet:willDismissWithButtonIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheetDelegate~1didPresent(_:)/title",
+          "value": "didPresentActionSheet:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheetDelegate~1didPresent(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didPresentActionSheet:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewingDelegate/title",
+          "value": "UIViewControllerPreviewingDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewingDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerPreviewingDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewingDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerPreviewingDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentInteractionController/title",
+          "value": "UIDocumentInteractionController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentInteractionController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentInteractionController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentInteractionController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentInteractionController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccelerometerDelegate/title",
+          "value": "UIAccelerometerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccelerometerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccelerometerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccelerometerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccelerometerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertController/title",
+          "value": "UIAlertController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAlertController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAlertController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheetDelegate~1actionSheet(_:clickedButtonAt:)/title",
+          "value": "actionSheet:clickedButtonAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheetDelegate~1actionSheet(_:clickedButtonAt:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "actionSheet:clickedButtonAtIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPopoverControllerDelegate/title",
+          "value": "UIPopoverControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPopoverControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPopoverControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPopoverControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPopoverControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertViewDelegate/title",
+          "value": "UIAlertViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAlertViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAlertViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheetDelegate~1willPresent(_:)/title",
+          "value": "willPresentActionSheet:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheetDelegate~1willPresent(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "willPresentActionSheet:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewing/title",
+          "value": "UIViewControllerPreviewing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerPreviewing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewing/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerPreviewing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheetDelegate~1actionSheet(_:didDismissWithButtonIndex:)/title",
+          "value": "actionSheet:didDismissWithButtonIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheetDelegate~1actionSheet(_:didDismissWithButtonIndex:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "actionSheet:didDismissWithButtonIndex:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uiactionsheetdelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uiactionsheetdelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

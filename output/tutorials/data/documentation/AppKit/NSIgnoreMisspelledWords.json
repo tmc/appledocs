@@ -1,0 +1,917 @@
+{
+  "abstract": [
+    {
+      "text": "A protocol that enables the Ignore button in the Spelling panel to function properly.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSIgnoreMisspelledWords"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)NSIgnoreMisspelledWords",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSIgnoreMisspelledWords"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSIgnoreMisspelledWords"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "NSIgnoreMisspelledWords"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSIgnoreMisspelledWords"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Ignore button allows the user to accept a word that the spelling checker believes is misspelled. In order for this action to update the “ignored words” list for the document being checked, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSIgnoreMisspelledWords",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol must be implemented.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This protocol is necessary because a list of ignored words is useful only if it pertains to the entire document being checked, but the spelling checker (that is, an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpellChecker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object) does not check the entire document for spelling at once. The spelling checker returns as soon as it finds a misspelled word. Thus, it checks only a subset of the document at any one time. The user usually wants to check the entire document, so usually several spelling checks are run in succession until no misspelled words are found. This protocol allows the list of ignored words to be maintained per document, even though the spelling checks are not run per document.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSIgnoreMisspelledWords",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol specifies a  method, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSIgnoreMisspelledWords/ignoreSpelling(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which should be implemented like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (void)ignoreSpelling:(id)sender {",
+            "    [[NSSpellChecker sharedSpellChecker] ignoreWord:[[sender selectedCell] stringValue]",
+            "                                        inSpellDocumentWithTag: myDocumentTag];",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The second argument to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpellChecker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpellChecker/ignoreWord(_:inSpellDocumentWithTag:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a tag that the spell checker can use to distinguish the documents being checked. When the spell checker can distinguish the various documents, it can append new ignored words to the appropriate list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make the ignored words feature useful, the application must store a document’s ignored words list with the document. See the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpellChecker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class description for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSChangeSpelling": {
+      "abstract": [
+        {
+          "text": "A protocol that responder objects can implement to correct a misspelled word.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSChangeSpelling"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSChangeSpelling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSChangeSpelling"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSChangeSpelling",
+      "type": "topic",
+      "url": "/documentation/appkit/nschangespelling"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSIgnoreMisspelledWords": {
+      "abstract": [
+        {
+          "text": "A protocol that enables the Ignore button in the Spelling panel to function properly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSIgnoreMisspelledWords"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSIgnoreMisspelledWords",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSIgnoreMisspelledWords"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSIgnoreMisspelledWords",
+      "type": "topic",
+      "url": "/documentation/appkit/nsignoremisspelledwords"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSIgnoreMisspelledWords/ignoreSpelling(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ignoreSpelling"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSIgnoreMisspelledWords/ignoreSpelling(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ignoreSpelling:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "ignoreSpelling(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsignoremisspelledwords/ignorespelling(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpellChecker": {
+      "abstract": [
+        {
+          "text": "An interface to the Cocoa spell-checking service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSpellChecker"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpellChecker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSpellChecker"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSpellChecker",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspellchecker"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpellChecker/ignoreWord(_:inSpellDocumentWithTag:)": {
+      "abstract": [
+        {
+          "text": "Instructs the spell checker to ignore all future occurrences of ",
+          "type": "text"
+        },
+        {
+          "code": "wordToIgnore",
+          "type": "codeVoice"
+        },
+        {
+          "text": " in the document identified by ",
+          "type": "text"
+        },
+        {
+          "code": "tag",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ignoreWord"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inSpellDocumentWithTag"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpellChecker/ignoreWord(_:inSpellDocumentWithTag:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ignoreWord:inSpellDocumentWithTag:"
+        }
+      ],
+      "role": "symbol",
+      "title": "ignoreWord(_:inSpellDocumentWithTag:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspellchecker/ignoreword(_:inspelldocumentwithtag:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSText": {
+      "abstract": [
+        {
+          "text": "The most general programmatic interface for objects that manage text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSText"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSText",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSText"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSText",
+      "type": "topic",
+      "url": "/documentation/appkit/nstext"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextView": {
+      "abstract": [
+        {
+          "text": "A view that draws text and handles user interactions with that text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextView",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextview"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSText",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextView"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Spell-checking",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSpellChecker",
+        "doc://com.apple.appkit/documentation/AppKit/NSChangeSpelling"
+      ],
+      "title": "Spell-checking"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Ignoring-spellings",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSIgnoreMisspelledWords/ignoreSpelling(_:)"
+      ],
+      "title": "Ignoring spellings"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSIgnoreMisspelledWords"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSIgnoreMisspelledWords"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSIgnoreMisspelledWords"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Ignoring-spellings",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSIgnoreMisspelledWords/ignoreSpelling(_:)"
+              ],
+              "title": "Ignoring spellings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSText"
+              ],
+              "kind": "relationships",
+              "title": "Conforming Types",
+              "type": "conformingTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Spell-checking",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSpellChecker",
+                "doc://com.apple.appkit/documentation/AppKit/NSChangeSpelling"
+              ],
+              "title": "Spell-checking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSIgnoreMisspelledWords"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSChangeSpelling/title",
+          "value": "NSChangeSpelling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSChangeSpelling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSChangeSpelling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSChangeSpelling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSChangeSpelling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSIgnoreMisspelledWords/title",
+          "value": "NSIgnoreMisspelledWords"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSIgnoreMisspelledWords/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSIgnoreMisspelledWords"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSIgnoreMisspelledWords/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSIgnoreMisspelledWords"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpellChecker~1ignoreWord(_:inSpellDocumentWithTag:)/title",
+          "value": "ignoreWord:inSpellDocumentWithTag:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpellChecker~1ignoreWord(_:inSpellDocumentWithTag:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "ignoreWord:inSpellDocumentWithTag:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpellChecker/title",
+          "value": "NSSpellChecker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpellChecker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpellChecker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpellChecker/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpellChecker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSText/title",
+          "value": "NSText"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSText/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSText/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSIgnoreMisspelledWords~1ignoreSpelling(_:)/title",
+          "value": "ignoreSpelling:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSIgnoreMisspelledWords~1ignoreSpelling(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "ignoreSpelling:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/title",
+          "value": "NSTextView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsignoremisspelledwords"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsignoremisspelledwords"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,981 @@
+{
+  "abstract": [
+    {
+      "text": "Provide the same interactive playback of Live Photos as in the iOS Photos app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.photokit/documentation/PhotoKit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.photokit/documentation/PhotoKit",
+        "doc://com.apple.photokit/documentation/PhotosUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.photokit/documentation/PhotoKit/displaying-live-photos"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "PhotosUI"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Displaying Live Photos"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHLivePhotoView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides a way to display Live Photos—pictures, taken on compatible hardware, that include motion and sound from the moments just before and after their capture. A Live Photo view provides the same interactive playback features found in the Photos app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS and tvOS, you can fetch Live Photo objects to display in a Live Photo view with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHLivePhoto",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class in the Photos framework. In macOS, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHLivePhoto",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides access to Live Photos being edited in a photo editing extension for the Photos app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display Live Photo content on the web, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/LivePhotosKitJS",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Control-Live-Photo-Playback",
+          "level": 3,
+          "text": "Control Live Photo Playback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After obtaining a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHLivePhoto",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, use a Live Photo view to display the photo and control playback of its motion and sound content. In iOS and tvOS, you can obtain Live Photos from the user’s photo library using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImagePickerController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHAsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHImageManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " classes, or by creating one from asset resources exported from a photo library. In macOS, Live Photos are available only when editing Live Photo content in a photo editing extension that runs in the Photos app—see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHContentEditingInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to access Live Photos in an editing session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For guidance on how to integrate Live Photos with your app’s user experience, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/MobileHIG/LivePhotos.html#//apple_ref/doc/uid/TP40006556-CH74",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/ios/human-interface-guidelines/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, a Live Photo view uses its own gesture recognizer to allow the user to play the motion and sound content of a Live Photo with the same interactions and visual effects seen in the Photos app. To customize this gesture recognizer—for example, to install it on a different view for proper event handling in your app’s view hierarchy—use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHLivePhotoView/playbackGestureRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Typically, an app doesn’t need to directly control Live Photo playback. In some situations, however, it can be useful to briefly animate the view to indicate to the user that a picture is a Live Photo. To do this, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHLivePhotoView/startPlayback(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHLivePhotoViewPlaybackStyle/hint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/LivePhotosKitJS": {
+      "abstract": [
+        {
+          "text": "Play Live Photos on the web.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LivePhotosKitJS",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "LivePhotosKit JS",
+      "type": "topic",
+      "url": "/documentation/LivePhotosKitJS"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIImagePickerController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages the system interfaces for taking pictures, recording movies, and choosing items from the user’s media library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImagePickerController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIImagePickerController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIImagePickerController"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit": {
+      "abstract": [
+        {
+          "text": "Work with image and video assets that the Photos app manages, including those from iCloud Photos and Live Photos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "PhotoKit",
+      "type": "topic",
+      "url": "/documentation/photokit"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/creating-photo-editing-extensions": {
+      "abstract": [
+        {
+          "text": "Provide custom functionality in the Photos app by bundling an app extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/creating-photo-editing-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Photo Editing Extensions",
+      "type": "topic",
+      "url": "/documentation/photokit/creating-photo-editing-extensions"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app": {
+      "abstract": [
+        {
+          "text": "Adopt the latest privacy enhancements to deliver advanced user-privacy controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Delivering an Enhanced Privacy Experience in Your Photos App",
+      "type": "topic",
+      "url": "/documentation/photokit/delivering-an-enhanced-privacy-experience-in-your-photos-app"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/fetching-objects-and-requesting-changes": {
+      "abstract": [
+        {
+          "text": "Get assets, asset collections, and collection lists matching a specified query.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/fetching-objects-and-requesting-changes",
+      "kind": "article",
+      "role": "article",
+      "title": "Fetching Objects and Requesting Changes",
+      "type": "topic",
+      "url": "/documentation/photokit/fetching-objects-and-requesting-changes"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/loading-and-caching-assets-and-thumbnails": {
+      "abstract": [
+        {
+          "text": "Request image, video, or Live Photos content, and cache for quick reuse.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/loading-and-caching-assets-and-thumbnails",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading and Caching Assets and Thumbnails",
+      "type": "topic",
+      "url": "/documentation/photokit/loading-and-caching-assets-and-thumbnails"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAsset": {
+      "abstract": [
+        {
+          "text": "A representation of an image, video, or Live Photo in the Photos library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHAsset",
+      "type": "topic",
+      "url": "/documentation/photos/phasset"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHContentEditingInput": {
+      "abstract": [
+        {
+          "text": "A container that provides information about and access to the image, video, or Live Photo content of an asset to be edited.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHContentEditingInput"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHContentEditingInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHContentEditingInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHContentEditingInput",
+      "type": "topic",
+      "url": "/documentation/photos/phcontenteditinginput"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHImageManager": {
+      "abstract": [
+        {
+          "text": "An object that facilitates retrieving or generating preview thumbnails and asset data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHImageManager"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHImageManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHImageManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHImageManager",
+      "type": "topic",
+      "url": "/documentation/photos/phimagemanager"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHLivePhoto": {
+      "abstract": [
+        {
+          "text": "A displayable representation of a Live Photo—a picture that includes motion and sound from the moments just before and after its capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHLivePhoto"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHLivePhoto",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHLivePhoto"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHLivePhoto",
+      "type": "topic",
+      "url": "/documentation/photos/phlivephoto"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI": {
+      "abstract": [
+        {
+          "text": "Present a person’s photo library using a picker interface, display Live Photos, or extend the Photos app with custom functionality.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PhotosUI",
+      "type": "topic",
+      "url": "/documentation/photosui"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHLivePhotoView": {
+      "abstract": [
+        {
+          "text": "A view that displays a Live Photo—a picture that also includes motion and sound from the moments just before and after its capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHLivePhotoView"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHLivePhotoView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHLivePhotoView"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHLivePhotoView",
+      "type": "topic",
+      "url": "/documentation/photosui/phlivephotoview"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHLivePhotoView/playbackGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A gesture recognizer that controls playback of the Live Photo in the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playbackGestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIGestureRecognizer",
+          "text": "UIGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHLivePhotoView/playbackGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playbackGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "playbackGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/photosui/phlivephotoview/playbackgesturerecognizer"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHLivePhotoView/startPlayback(with:)": {
+      "abstract": [
+        {
+          "text": "Begins playback of Live Photo content in the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startPlayback"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHLivePhotoViewPlaybackStyle",
+          "text": "PHLivePhotoViewPlaybackStyle"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHLivePhotoView/startPlayback(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startPlaybackWithStyle:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startPlayback(with:)",
+      "type": "topic",
+      "url": "/documentation/photosui/phlivephotoview/startplayback(with:)"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHLivePhotoViewPlaybackStyle/hint": {
+      "abstract": [
+        {
+          "text": "Plays back only a brief section of the motion content of the Live Photo, without sound.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hint"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHLivePhotoViewPlaybackStyle/hint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHLivePhotoViewPlaybackStyleHint"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHLivePhotoViewPlaybackStyle.hint",
+      "type": "topic",
+      "url": "/documentation/photosui/phlivephotoviewplaybackstyle/hint"
+    },
+    "https://developer.apple.com/ios/human-interface-guidelines/": {
+      "identifier": "https://developer.apple.com/ios/human-interface-guidelines/",
+      "title": "iOS Human Interface Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "iOS Human Interface Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/ios/human-interface-guidelines/"
+    },
+    "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/MobileHIG/LivePhotos.html#//apple_ref/doc/uid/TP40006556-CH74": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/MobileHIG/LivePhotos.html#//apple_ref/doc/uid/TP40006556-CH74",
+      "title": "Live Photos",
+      "titleInlineContent": [
+        {
+          "text": "Live Photos",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/MobileHIG/LivePhotos.html#//apple_ref/doc/uid/TP40006556-CH74"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Articles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app",
+        "doc://com.apple.photokit/documentation/PhotoKit/fetching-objects-and-requesting-changes",
+        "doc://com.apple.photokit/documentation/PhotoKit/loading-and-caching-assets-and-thumbnails",
+        "doc://com.apple.photokit/documentation/PhotoKit/creating-photo-editing-extensions"
+      ],
+      "title": "Articles"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHImageManager/title",
+          "value": "PHImageManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHImageManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHImageManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHImageManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHImageManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHLivePhotoViewPlaybackStyle~1hint/title",
+          "value": "PHLivePhotoViewPlaybackStyleHint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHLivePhotoViewPlaybackStyle~1hint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHLivePhotoViewPlaybackStyleHint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhoto/title",
+          "value": "PHLivePhoto"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhoto/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHLivePhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhoto/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHLivePhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHContentEditingInput/title",
+          "value": "PHContentEditingInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHContentEditingInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHContentEditingInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHContentEditingInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHContentEditingInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAsset/title",
+          "value": "PHAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImagePickerController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UINavigationController",
+              "text": "UINavigationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHLivePhotoView/title",
+          "value": "PHLivePhotoView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHLivePhotoView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHLivePhotoView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHLivePhotoView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHLivePhotoView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHLivePhotoView~1playbackGestureRecognizer/title",
+          "value": "playbackGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHLivePhotoView~1playbackGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "playbackGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHLivePhotoView~1startPlayback(with:)/title",
+          "value": "startPlaybackWithStyle:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHLivePhotoView~1startPlayback(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startPlaybackWithStyle:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

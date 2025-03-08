@@ -1,0 +1,419 @@
+{
+  "abstract": [
+    {
+      "text": "Create a folder with a manifest that describes the chapter’s name and page order.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/structuring-content-for-swift-playgrounds"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-chapter-to-a-playground-book"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding a Chapter to a Playground Book"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use chapters to group the pages of a playground book by topic.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Chapter-Folder",
+          "level": 3,
+          "text": "Create a Chapter Folder",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a new folder in the Chapters folder inside your playground book’s Contents",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "folder. The new chapter’s folder name must end with the suffix .playgroundchapter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Xcode, create a property list file called ",
+              "type": "text"
+            },
+            {
+              "code": "Manifest.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the new chapter’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "folder. Choose File > New > File, then choose the Property List template from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "iOS > Resources.  Use the manifest property list to list the chapter’s name and the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "order of its pages, which can include both playground pages (.playgroundpage) and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "cutscene pages (.cutscenepage).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image shows the example chapter, “First Chapter,” which contains two",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "adding-a-chapter-to-a-playground-book-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Name-the-Chapter",
+          "level": 3,
+          "text": "Name the Chapter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Choose a name for your new chapter by adding a ",
+              "type": "text"
+            },
+            {
+              "code": "Name",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to the ",
+              "type": "text"
+            },
+            {
+              "code": "Manifest.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property list. This name is displayed to learners in the table of contents for your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "book in Swift Playgrounds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Arrange-Pages-in-the-Chapter",
+          "level": 3,
+          "text": "Arrange Pages in the Chapter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pages in your playground book must be placed in a chapter. The page folders you place",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "within chapter folders determine which pages go into which chapters. You choose the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "order",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " of pages in a chapter by adding a ",
+              "type": "text"
+            },
+            {
+              "code": "Pages",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to the chapter’s ",
+              "type": "text"
+            },
+            {
+              "code": "Manifest.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file. The ",
+              "type": "text"
+            },
+            {
+              "code": "Pages",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key is an ordered array of page folder names. Add the names of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a chapter’s pages in the order in which you want those pages to appear in the chapter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "adding-a-chapter-to-a-playground-book-1": {
+      "alt": "Screenshot showing the Xcode property list editor, which is displaying the “Name” and “Pages” property list keys of a chapter manifest.",
+      "identifier": "adding-a-chapter-to-a-playground-book-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/34e5faf902cb04340cbd6bba25d23be8/adding-a-chapter-to-a-playground-book-1@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-cutscene-to-a-playground-book": {
+      "abstract": [
+        {
+          "text": "Create a subfolder, a manifest file, and cutscene metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-cutscene-to-a-playground-book",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Cutscene to a Playground Book",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/adding-a-cutscene-to-a-playground-book"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-page-to-a-playground-book": {
+      "abstract": [
+        {
+          "text": "Create a subfolder, a manifest file, and a content file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-page-to-a-playground-book",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Page to a Playground Book",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/adding-a-page-to-a-playground-book"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books": {
+      "abstract": [
+        {
+          "text": "Create interactive Playground Book based learning experiences for the Swift Playgrounds app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Playground Books",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/playground-books"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/sharing-resources-in-a-playground-book": {
+      "abstract": [
+        {
+          "text": "Reuse common assets throughout a book to reduce its size.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/sharing-resources-in-a-playground-book",
+      "kind": "article",
+      "role": "article",
+      "title": "Sharing Resources in a Playground Book",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/sharing-resources-in-a-playground-book"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/structuring-content-for-swift-playgrounds": {
+      "abstract": [
+        {
+          "text": "Add content to a playground book by creating new folders and property lists.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/structuring-content-for-swift-playgrounds",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Structuring Content for Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/structuring-content-for-swift-playgrounds"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/using-modules-to-share-code-in-a-playground-book": {
+      "abstract": [
+        {
+          "text": "In Swift Playgrounds 3.0 and later, make code available across multiple chapters to teach the value of reusable code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/using-modules-to-share-code-in-a-playground-book",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Modules to Share Code in a Playground Book",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/using-modules-to-share-code-in-a-playground-book"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds": {
+      "abstract": [
+        {
+          "text": "Learn to write apps, repurpose sample code, create, and share learning experiences in Swift Playgrounds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+      "kind": "article",
+      "role": "collection",
+      "title": "Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Book-Structure",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-page-to-a-playground-book",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-cutscene-to-a-playground-book",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/using-modules-to-share-code-in-a-playground-book",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/sharing-resources-in-a-playground-book"
+      ],
+      "title": "Book Structure"
+    }
+  ]
+}

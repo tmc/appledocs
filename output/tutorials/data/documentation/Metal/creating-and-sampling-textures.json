@@ -1,0 +1,1887 @@
+{
+  "abstract": [
+    {
+      "text": "Load image data into a texture and apply it to a quadrangle.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/textures"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/creating-and-sampling-textures"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.12",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating and Sampling Textures"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use textures to draw and process images in Metal.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A texture is a structured collection of texture elements, often called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "texels",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "pixels",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The exact configuration of these texture elements depends on the type of texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This sample uses a texture structured as a 2D array of elements, each of which contains color data, to hold an image.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The texture is drawn onto geometric primitives through a process called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "texture mapping",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". The fragment function generates colors for each fragment by sampling the texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Textures are managed by ",
+              "type": "text"
+            },
+            {
+              "code": "MTLTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "MTLTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object defines the texture’s format, including the size and layout of elements, the number of elements in the texture, and how those elements are organized.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Once created, a texture’s format and organization never change.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, you can change the contents of the texture, either by rendering to it or copying data into it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Metal framework doesn’t provide an API to directly load image data from a file to a texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Metal itself only allocates texture resources and provides methods that copy data to and from the texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Metal apps rely on custom code or other frameworks, like MetalKit, Image I/O, UIKit, or AppKit, to handle image files. For example, you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKTextureLoader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to perform simple texture loading. This sample shows how to write a custom texture loader.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Xcode project contains schemes for running the sample on macOS, iOS, or tvOS devices. The default scheme is macOS, which runs the sample as is on your Mac.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Load-and-Format-Image-Data",
+          "level": 3,
+          "text": "Load and Format Image Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create a texture or update its contents manually, a process that’s covered in the next few sections.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You might do this for multiple reasons:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You have image data stored in a custom format.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You have textures whose contents need to be generated at runtime.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You are streaming texture data from a server or otherwise need to dynamically update a texture’s contents.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the sample, the ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class loads and parses image data from TGA files.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The class converts pixel data from the TGA file into a pixel format that Metal understands.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample uses the image’s metadata to create a new Metal texture and copies the pixel data into the texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "AAPLImage",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " class isn’t the focal point of this sample, so it isn’t discussed in detail. The class demonstrates basic image loading operations but doesn’t use or depend on the Metal framework. Its sole purpose is to facilitate loading image data and converting it into a Metal pixel format. You might create a similar class if you need to load an image that’s in a custom format.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metal requires all textures to be formatted with a specific ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The pixel format describes the layout of pixel data in the texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This sample uses the ",
+              "type": "text"
+            },
+            {
+              "code": "MTLPixelFormat/bgra8Unorm",
+              "type": "codeVoice"
+            },
+            {
+              "text": " pixel format, which uses 32 bits per pixel, arranged into 8 bits per component, in blue, green, red, and alpha order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "1-BGRA8UnormBitLayout",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can populate a Metal texture, you must format the image data into the texture’s pixel format.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "TGA files can provide pixel data either in a 32-bit-per-pixel format or a 24-bit-per-pixel format. TGA files that use 32 bits per pixel are already arranged in this format, so you just copy the pixel data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To convert a 24-bit-per-pixel BGR image, copy the red, green, and blue channels and set the alpha channel to 255, indicating a fully opaque pixel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Initialize a source pointer with the source image data that's in BGR form",
+            "uint8_t *srcImageData = ((uint8_t*)fileData.bytes +",
+            "                         sizeof(TGAHeader) +",
+            "                         tgaInfo->IDSize);",
+            "",
+            "// Initialize a destination pointer to which you'll store the converted BGRA",
+            "// image data",
+            "uint8_t *dstImageData = mutableData.mutableBytes;",
+            "",
+            "// For every row of the image",
+            "for(NSUInteger y = 0; y < _height; y++)",
+            "{",
+            "    // If bit 5 of the descriptor is not set, flip vertically",
+            "    // to transform the data to Metal's top-left texture origin",
+            "    NSUInteger srcRow = (tgaInfo->topOrigin) ? y : _height - 1 - y;",
+            "",
+            "    // For every column of the current row",
+            "    for(NSUInteger x = 0; x < _width; x++)",
+            "    {",
+            "        // If bit 4 of the descriptor is set, flip horizontally",
+            "        // to transform the data to Metal's top-left texture origin",
+            "        NSUInteger srcColumn = (tgaInfo->rightOrigin) ? _width - 1 - x : x;",
+            "",
+            "        // Calculate the index for the first byte of the pixel you're",
+            "        // converting in both the source and destination images",
+            "        NSUInteger srcPixelIndex = srcBytesPerPixel * (srcRow * _width + srcColumn);",
+            "        NSUInteger dstPixelIndex = 4 * (y * _width + x);",
+            "",
+            "        // Copy BGR channels from the source to the destination",
+            "        // Set the alpha channel of the destination pixel to 255",
+            "        dstImageData[dstPixelIndex + 0] = srcImageData[srcPixelIndex + 0];",
+            "        dstImageData[dstPixelIndex + 1] = srcImageData[srcPixelIndex + 1];",
+            "        dstImageData[dstPixelIndex + 2] = srcImageData[srcPixelIndex + 2];",
+            "",
+            "        if(tgaInfo->bitsPerPixel == 32)",
+            "        {",
+            "            dstImageData[dstPixelIndex + 3] =  srcImageData[srcPixelIndex + 3];",
+            "        }",
+            "        else",
+            "        {",
+            "            dstImageData[dstPixelIndex + 3] = 255;",
+            "        }",
+            "    }",
+            "}",
+            "_data = mutableData;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-Texture-from-a-Texture-Descriptor",
+          "level": 3,
+          "text": "Create a Texture from a Texture Descriptor",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to configure properties like texture dimensions and pixel format for an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeTexture(descriptor:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to create a texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MTLTextureDescriptor *textureDescriptor = [[MTLTextureDescriptor alloc] init];",
+            "",
+            "// Indicate that each pixel has a blue, green, red, and alpha channel, where each channel is",
+            "// an 8-bit unsigned normalized value (i.e. 0 maps to 0.0 and 255 maps to 1.0)",
+            "textureDescriptor.pixelFormat = MTLPixelFormatBGRA8Unorm;",
+            "",
+            "// Set the pixel dimensions of the texture",
+            "textureDescriptor.width = image.width;",
+            "textureDescriptor.height = image.height;",
+            "",
+            "// Create the texture from the device by using the descriptor",
+            "id<MTLTexture> texture = [_device newTextureWithDescriptor:textureDescriptor];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metal creates an ",
+              "type": "text"
+            },
+            {
+              "code": "MTLTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object and allocates memory for the texture data. This memory is uninitialized when the texture is created, so the next step is to copy your data into the texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Copy-the-Image-Data-into-the-Texture",
+          "level": 3,
+          "text": "Copy the Image Data into the Texture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metal manages memory for textures and doesn’t provide you direct access to it. So you can’t get a pointer to the texture data in memory and copy the pixels yourself. Instead, you call methods on an ",
+              "type": "text"
+            },
+            {
+              "code": "MTLTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to copy data from memory you can access into the texture and vice versa.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this sample, the ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object allocated memory for the image data, so you’ll tell the texture object to copy this data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a ",
+              "type": "text"
+            },
+            {
+              "code": "MTLRegion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure to identify which part of the texture you want to update.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This sample populates the entire texture with image data; so create a region that covers the entire texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MTLRegion region = {",
+            "    { 0, 0, 0 },                   // MTLOrigin",
+            "    {image.width, image.height, 1} // MTLSize",
+            "};"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Image data is typically organized in rows, and you need to tell Metal the offset between rows in the source image.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The image loading code creates image data in a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "tightly packed",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " format, so the data of subsequent pixel rows immediately follows the previous row.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Calculate the offset between rows to be the exact length (in bytes) of a row — the number of bytes per pixel multiplied by the image width.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSUInteger bytesPerRow = 4 * image.width;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture/replace(region:mipmapLevel:withBytes:bytesPerRow:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on the texture to copy pixel data from the ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object into the texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[texture replaceRegion:region",
+            "            mipmapLevel:0",
+            "              withBytes:image.data.bytes",
+            "            bytesPerRow:bytesPerRow];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Map-the-Texture-Onto-a-Geometric-Primitive",
+          "level": 3,
+          "text": "Map the Texture Onto a Geometric Primitive",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can’t render a texture on its own; you must map it onto geometric primitives (in this example, a pair of triangles) that are output by the vertex stage and turned into fragments by the rasterizer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each fragment needs to know which part of the texture should be applied to it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You define this mapping with ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "texture coordinates",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ": floating-point positions that map locations on a texture image to locations on the geometric surface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For 2D textures, normalized texture coordinates are values from 0.0 to 1.0 in both x and y directions.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A value of (0.0, 0.0) specifies the texel at the first byte of the texture data (the top-left corner of the image).",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A value of (1.0, 1.0) specifies the texel at the last byte of the texture data (the bottom-right corner of the image).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "2-MetalTextureCoordinates",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a field to the vertex format to hold texture coordinates:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typedef struct",
+            "{",
+            "    // Positions in pixel space. A value of 100 indicates 100 pixels from the origin/center.",
+            "    vector_float2 position;",
+            "",
+            "    // 2D texture coordinate",
+            "    vector_float2 textureCoordinate;",
+            "} AAPLVertex;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the vertex data, map the quad’s corners to the texture’s corners:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static const AAPLVertex quadVertices[] =",
+            "{",
+            "    // Pixel positions, Texture coordinates",
+            "    { {  250,  -250 },  { 1.f, 1.f } },",
+            "    { { -250,  -250 },  { 0.f, 1.f } },",
+            "    { { -250,   250 },  { 0.f, 0.f } },",
+            "",
+            "    { {  250,  -250 },  { 1.f, 1.f } },",
+            "    { { -250,   250 },  { 0.f, 0.f } },",
+            "    { {  250,   250 },  { 1.f, 0.f } },",
+            "};"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To send the texture coordinates to the fragment shader, add a ",
+              "type": "text"
+            },
+            {
+              "code": "textureCoordinate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value to the ",
+              "type": "text"
+            },
+            {
+              "code": "RasterizerData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data structure:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct RasterizerData",
+            "{",
+            "    // The [[position]] attribute qualifier of this member indicates this value is",
+            "    // the clip space position of the vertex when this structure is returned from",
+            "    // the vertex shader",
+            "    float4 position [[position]];",
+            "",
+            "    // Since this member does not have a special attribute qualifier, the rasterizer",
+            "    // will interpolate its value with values of other vertices making up the triangle",
+            "    // and pass that interpolated value to the fragment shader for each fragment in",
+            "    // that triangle.",
+            "    float2 textureCoordinate;",
+            "",
+            "};"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the vertex shader, pass the texture coordinates to the rasterizer stage by writing them into the ",
+              "type": "text"
+            },
+            {
+              "code": "textureCoordinate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The rasterizer stage interpolates these coordinates across the quad’s triangle fragments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "out.textureCoordinate = vertexArray[vertexID].textureCoordinate;"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Calculate-a-Color-from-a-Location-in-the-Texture",
+          "level": 3,
+          "text": "Calculate a Color from a Location in the Texture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You sample a texture to calculate a color from a location in the texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To sample the texture data, the fragment function needs the texture coordinates and a reference to the texture to sample. In addition to the arguments passed in from the rasterizer stage, pass in a ",
+              "type": "text"
+            },
+            {
+              "code": "colorTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument with a ",
+              "type": "text"
+            },
+            {
+              "code": "texture2d",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type and the ",
+              "type": "text"
+            },
+            {
+              "code": "[[texture(index)]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute qualifier.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This argument is a reference to the ",
+              "type": "text"
+            },
+            {
+              "code": "MTLTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to be sampled.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fragment float4",
+            "samplingShader(RasterizerData in [[stage_in]],",
+            "               texture2d<half> colorTexture [[ texture(AAPLTextureIndexBaseColor) ]])"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the built-in texture ",
+              "type": "text"
+            },
+            {
+              "code": "sample()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to sample texel data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "sample()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function takes two arguments: a sampler (",
+              "type": "text"
+            },
+            {
+              "code": "textureSampler",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") that describes how you want to sample the texture, and texture coordinates (",
+              "type": "text"
+            },
+            {
+              "code": "in.textureCoordinate",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") that describe the position in the texture to sample.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "sample()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function fetches one or more pixels from the texture and returns a color calculated from those pixels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the area being rendered to isn’t the same size as the texture, the sampler can use different algorithms to calculate exactly what texel color the ",
+              "type": "text"
+            },
+            {
+              "code": "sample()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function should return.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Set the ",
+              "type": "text"
+            },
+            {
+              "code": "mag_filter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " mode to specify how the sampler should calculate the returned color when the area is larger than the size of the texture, and the ",
+              "type": "text"
+            },
+            {
+              "code": "min_filter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " mode to specify how the sampler should calculate the returned color when the area is smaller than the size of the texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Setting a ",
+              "type": "text"
+            },
+            {
+              "code": "linear",
+              "type": "codeVoice"
+            },
+            {
+              "text": " mode for both filters makes the sampler average the color of pixels surrounding the given texture coordinate, resulting in a smoother output image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "constexpr sampler textureSampler (mag_filter::linear,",
+            "                                  min_filter::linear);",
+            "",
+            "// Sample the texture to obtain a color",
+            "const half4 colorSample = colorTexture.sample(textureSampler, in.textureCoordinate);"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Try increasing or decreasing the size of the quad to see how filtering works.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Encode-the-Draw-Parameters",
+          "level": 3,
+          "text": "Encode the Draw Parameters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The process for encoding and submitting drawing commands is the same as that shown in Using a Render Pipeline to Render Primitives, so the complete code is not shown below.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The difference in this sample is that the fragment shader has an additional parameter. When you encode the command’s arguments, set the fragment function’s texture argument.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This sample uses the ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLTextureIndexBaseColor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " index to identify the texture in both Objective-C and Metal Shading Language code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[renderEncoder setFragmentTexture:_texture",
+            "                          atIndex:AAPLTextureIndexBaseColor];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "1-BGRA8UnormBitLayout": {
+      "alt": "Bit Layout of the BGRA8Unorm Pixel Format",
+      "identifier": "1-BGRA8UnormBitLayout",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c3d70e8002863ea924bf136c372c5bcf/1-BGRA8UnormBitLayout.png"
+        }
+      ]
+    },
+    "2-MetalTextureCoordinates": {
+      "alt": "Visualizing Texture Coordinates",
+      "identifier": "2-MetalTextureCoordinates",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a0dac218926802ccbb16373b9fb7c978/2-MetalTextureCoordinates.png"
+        }
+      ]
+    },
+    "2c30e7618ade/CreatingAndSamplingTextures.zip": {
+      "checksum": "2c30e7618aded5954733080ebcb6b1774cd3ca268269745c957d062c8d45688a99728524463afa6558dcdb949053d045ceffd77b39f40fef0534f9b2274b499e",
+      "identifier": "2c30e7618ade/CreatingAndSamplingTextures.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/2c30e7618ade/CreatingAndSamplingTextures.zip"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit/MTKTextureLoader": {
+      "abstract": [
+        {
+          "text": "An object that creates textures from existing data in common image formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTKTextureLoader"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKTextureLoader",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKTextureLoader",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKTextureLoader"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeTexture(descriptor:)": {
+      "abstract": [
+        {
+          "text": "Creates a new texture instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeTexture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLTextureDescriptor",
+          "text": "MTLTextureDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeTexture(descriptor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newTextureWithDescriptor:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeTexture(descriptor:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/maketexture(descriptor:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat": {
+      "abstract": [
+        {
+          "text": "The data formats that describe the organization and characteristics of individual pixels in a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPixelFormat",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTexture": {
+      "abstract": [
+        {
+          "text": "A resource that holds formatted image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLTexture",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTexture/replace(region:mipmapLevel:withBytes:bytesPerRow:)": {
+      "abstract": [
+        {
+          "text": "Copies a block of pixels into a section of texture slice 0.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replace"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "region"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLRegion",
+          "text": "MTLRegion"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mipmapLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withBytes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bytesPerRow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture/replace(region:mipmapLevel:withBytes:bytesPerRow:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "replaceRegion:mipmapLevel:withBytes:bytesPerRow:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "replace(region:mipmapLevel:withBytes:bytesPerRow:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture/replace(region:mipmaplevel:withbytes:bytesperrow:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that you use to configure new Metal texture objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTextureDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTextureDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLTextureDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/processing-a-texture-in-a-compute-function": {
+      "abstract": [
+        {
+          "text": "Perform parallel calculations on structured data by placing the data in textures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/processing-a-texture-in-a-compute-function",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Processing a Texture in a Compute Function",
+      "type": "topic",
+      "url": "/documentation/metal/processing-a-texture-in-a-compute-function"
+    },
+    "doc://com.apple.metal/documentation/Metal/reading-pixel-data-from-a-drawable-texture": {
+      "abstract": [
+        {
+          "text": "Access texture data from the CPU by copying it to a buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/reading-pixel-data-from-a-drawable-texture",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Reading Pixel Data from a Drawable Texture",
+      "type": "topic",
+      "url": "/documentation/metal/reading-pixel-data-from-a-drawable-texture"
+    },
+    "doc://com.apple.metal/documentation/Metal/streaming-large-images-with-metal-sparse-textures": {
+      "abstract": [
+        {
+          "text": "Limit texture memory usage for large textures by loading or unloading image detail on the basis of MIP and tile region.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/streaming-large-images-with-metal-sparse-textures",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Streaming large images with Metal sparse textures",
+      "type": "topic",
+      "url": "/documentation/metal/streaming-large-images-with-metal-sparse-textures"
+    },
+    "doc://com.apple.metal/documentation/Metal/textures": {
+      "abstract": [
+        {
+          "text": "Create and manage typed data your app uses to exchange information with its shader functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/textures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Textures",
+      "type": "topic",
+      "url": "/documentation/metal/textures"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "2c30e7618ade/CreatingAndSamplingTextures.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Textures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/processing-a-texture-in-a-compute-function",
+        "doc://com.apple.metal/documentation/Metal/reading-pixel-data-from-a-drawable-texture",
+        "doc://com.apple.metal/documentation/Metal/streaming-large-images-with-metal-sparse-textures"
+      ],
+      "title": "Textures"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Textures",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/processing-a-texture-in-a-compute-function",
+                "doc://com.apple.metal/documentation/Metal/reading-pixel-data-from-a-drawable-texture",
+                "doc://com.apple.metal/documentation/Metal/streaming-large-images-with-metal-sparse-textures"
+              ],
+              "title": "Textures"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKTextureLoader/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTKTextureLoader"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor/title",
+          "value": "MTLTextureDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture/title",
+          "value": "MTLTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeTexture(descriptor:)/title",
+          "value": "newTextureWithDescriptor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeTexture(descriptor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newTextureWithDescriptor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat/title",
+          "value": "MTLPixelFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture~1replace(region:mipmapLevel:withBytes:bytesPerRow:)/title",
+          "value": "replaceRegion:mipmapLevel:withBytes:bytesPerRow:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture~1replace(region:mipmapLevel:withBytes:bytesPerRow:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "replaceRegion:mipmapLevel:withBytes:bytesPerRow:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/creating-and-sampling-textures"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/creating-and-sampling-textures"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2587 @@
+{
+  "abstract": [
+    {
+      "text": "A static byte buffer that bridges to ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": "; use ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+      "isActive": false,
+      "type": "reference"
+    },
+    {
+      "text": " when you need reference semantics or other Foundation-specific behavior.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+        "doc://com.apple.documentation/documentation/foundation/data"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsdata"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1409562,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSData",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSData"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSData"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSData"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "devLink-1697737",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " and its mutable subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provide data objects, or object-oriented wrappers for byte buffers. Data objects let simple allocated buffers (that is, data with no embedded pointers) take on the behavior of Foundation objects. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The size of the data is subject to a theoretical limit of about 8 exabytes (1 EB = 10¹⁸ bytes; in practice, the limit should not be a factor).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "devLink-1697737",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "toll-free bridged",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " with its Core Foundation counterpart, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1745091",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information on toll-free bridging.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Swift overlay to the Foundation framework provides the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure, which bridges to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " class and its mutable subclass ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledata",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". For more information about value types, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1752769",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1752686",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "1651282",
+          "level": 3,
+          "text": "Writing Data Atomically",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "devLink-1697737",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " provides methods for atomically saving their contents to a file, which guarantee that the data is either saved in its entirety, or it fails completely. An atomic write first writes the data to a temporary file and then, only if this write succeeds, moves the temporary file to its final location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although atomic write operations minimize the risk of data loss due to corrupt or partially written files, they may not be appropriate when writing to a temporary directory, the user’s home directory or other publicly accessible directories. When you work with a publicly accessible file, treat that file as an untrusted and potentially dangerous resource. An attacker may compromise or corrupt these files. The attacker can also replace the files with hard or symbolic links, causing your write operations to overwrite or corrupt other system resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Avoid using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1415134-write",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method (and the related methods) when working inside a publicly accessible directory. Instead, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with an existing file descriptor to securely write the file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1728053",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1727741",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1697737": {
+      "identifier": "devLink-1697737",
+      "title": "NSData",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/PropertyLists/OldStylePlists/OldStylePLists.html#//apple_ref/doc/uid/20001012-47169"
+    },
+    "devLink-1727741": {
+      "identifier": "devLink-1727741",
+      "title": "Secure Coding Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/SecureCodingGuide/Introduction.html#//apple_ref/doc/uid/TP40002415"
+    },
+    "devLink-1728053": {
+      "identifier": "devLink-1728053",
+      "title": "Securing File Operations",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/SecureCodingGuide/Articles/RaceConditions.html#//apple_ref/doc/uid/TP40002585-SW9"
+    },
+    "devLink-1745091": {
+      "identifier": "devLink-1745091",
+      "title": "Toll-Free Bridging",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2"
+    },
+    "devLink-1752686": {
+      "identifier": "devLink-1752686",
+      "title": "Using Swift with Cocoa and Objective-C (Swift 4.1)",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216"
+    },
+    "devLink-1752769": {
+      "identifier": "devLink-1752769",
+      "title": "Working with Cocoa Frameworks",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordValueProtocol": {
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordValueProtocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKRecordValueProtocol",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordvalueprotocol"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdata": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFData",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Data",
+      "type": "topic",
+      "url": "/documentation/foundation/data"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data/referencetype": {
+      "abstract": [
+        {
+          "text": "An alias for this value type's equivalent reference type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "Data.ReferenceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data/referencetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Data.ReferenceType",
+      "type": "topic",
+      "url": "/documentation/foundation/data/referencetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dataprotocol": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dataprotocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DataProtocol",
+      "type": "topic",
+      "url": "/documentation/foundation/dataprotocol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileHandle",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscompressionerrormaximum": {
+      "abstract": [
+        {
+          "text": "The end of the range of error codes reserved for compression errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCompressionErrorMaximum"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscompressionerrormaximum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompressionErrorMaximum",
+      "type": "topic",
+      "url": "/documentation/foundation/nscompressionerrormaximum"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscompressionerrorminimum": {
+      "abstract": [
+        {
+          "text": "The start of the range of error codes reserved for compression errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCompressionErrorMinimum"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscompressionerrorminimum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompressionErrorMinimum",
+      "type": "topic",
+      "url": "/documentation/foundation/nscompressionerrorminimum"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscompressionfailederror": {
+      "abstract": [
+        {
+          "text": "An error code value that indicates a failure to compress data using the provided algorithm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCompressionFailedError"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscompressionfailederror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompressionFailedError",
+      "type": "topic",
+      "url": "/documentation/foundation/nscompressionfailederror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata": {
+      "abstract": [
+        {
+          "text": "A static byte buffer that bridges to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": "; use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1407224-getbytes": {
+      "abstract": [
+        {
+          "text": "Copies a range of bytes from the data object into a given buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "getBytes"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutableRawPointer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1407224-getbytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBytes(_:range:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1407224-getbytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1407864-init": {
+      "abstract": [
+        {
+          "text": "Creates a data object from the data at the provided file URL using specific reading options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSData.ReadingOptions)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1407864-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOf:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1407864-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1408033-write": {
+      "abstract": [
+        {
+          "text": "Writes the data object's bytes to the file specified by a given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "toFile"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "atomically"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1408033-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(toFile:atomically:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1408033-write"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1408400-enumeratebytes": {
+      "abstract": [
+        {
+          "text": "Enumerates each range of bytes in the data object using a block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateBytes"
+        },
+        {
+          "kind": "text",
+          "text": "((UnsafeRawPointer, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1408400-enumeratebytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerateBytes(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1408400-enumeratebytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1408672-init": {
+      "abstract": [
+        {
+          "text": "Initializes a data object with the content of the file at a given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsOfFile"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1408672-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOfFile:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1408672-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1409012-datawithcontentsofmappedfile": {
+      "abstract": [
+        {
+          "text": "Creates a data object from the mapped file at a given path.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataWithContentsOfMappedFile"
+        },
+        {
+          "kind": "text",
+          "text": "(String) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1409012-datawithcontentsofmappedfile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dataWithContentsOfMappedFile(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1409012-datawithcontentsofmappedfile"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1409330-isequal": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether this data object is the same as another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqual"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": Data) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1409330-isequal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqual(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1409330-isequal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1409454-init": {
+      "abstract": [
+        {
+          "text": "Initializes a data object filled with a given number of bytes of data from a given buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "bytesNoCopy"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1409454-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(bytesNoCopy:length:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1409454-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1410081-init": {
+      "abstract": [
+        {
+          "text": "Initializes a data object with the given Base64 encoded string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "base64Encoded"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSData.Base64DecodingOptions)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1410081-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(base64Encoded:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1410081-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1410128-subdata": {
+      "abstract": [
+        {
+          "text": "Returns a new data object containing the data object's bytes that fall within the limits specified by a given range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "subdata"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange) -> Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1410128-subdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subdata(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1410128-subdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1410391-range": {
+      "abstract": [
+        {
+          "text": "Finds and returns the range of the first occurrence of the given data, within the given range, subject to given options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": Data, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSData.SearchOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange) -> NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1410391-range",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "range(of:options:in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1410391-range"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1410595-write": {
+      "abstract": [
+        {
+          "text": "Writes the data object's bytes to the location specified by a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSData.WritingOptions)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1410595-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(to:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1410595-write"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1410616-bytes": {
+      "abstract": [
+        {
+          "text": "A pointer to the data object's contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "bytes"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1410616-bytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bytes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1410616-bytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1411145-init": {
+      "abstract": [
+        {
+          "text": "Initializes a data object with the content of the file at a given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsOfFile"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSData.ReadingOptions)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1411145-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOfFile:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1411145-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1411450-getbytes": {
+      "abstract": [
+        {
+          "text": "Copies a number of bytes from the start of the data object into a given buffer. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "getBytes"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutableRawPointer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1411450-getbytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBytes(_:length:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1411450-getbytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1412579-description": {
+      "abstract": [
+        {
+          "text": "A string that contains a hexadecimal representation of the data object’s contents in a property list format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1412579-description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1412579-description"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1412739-base64encodeddata": {
+      "abstract": [
+        {
+          "text": "Creates a Base64, UTF-8 encoded data object from the string using the given options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "base64EncodedData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSData.Base64EncodingOptions) -> Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1412739-base64encodeddata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "base64EncodedData(options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1412739-base64encodeddata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1412793-init": {
+      "abstract": [
+        {
+          "text": "Initializes a data object filled with a given number of bytes copied from a given buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "bytes"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeRawPointer?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1412793-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(bytes:length:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1412793-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1413302-init": {
+      "abstract": [
+        {
+          "text": "Initializes a data object with the contents of the mapped file specified by a given path.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsOfMappedFile"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1413302-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOfMappedFile:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1413302-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1413546-base64encodedstring": {
+      "abstract": [
+        {
+          "text": "Creates a Base64 encoded string from the string using the given options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "base64EncodedString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSData.Base64EncodingOptions) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1413546-base64encodedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "base64EncodedString(options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1413546-base64encodedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1413892-init": {
+      "abstract": [
+        {
+          "text": "Creates a data object from the data at the specified file URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1413892-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOf:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1413892-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1414800-write": {
+      "abstract": [
+        {
+          "text": "Writes the data object’s bytes to the file specified by a given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "toFile"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSData.WritingOptions)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1414800-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(toFile:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1414800-write"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1415134-write": {
+      "abstract": [
+        {
+          "text": "Writes the data object's bytes to the location specified by a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "atomically"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1415134-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(to:atomically:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1415134-write"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1416020-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated data object by adding the given number of bytes from the given buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "bytesNoCopy"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "freeWhenDone"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1416020-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(bytesNoCopy:length:freeWhenDone:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1416020-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1416532-getbytes": {
+      "abstract": [
+        {
+          "text": "Copies a data object’s contents into a given buffer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "getBytes"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutableRawPointer)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1416532-getbytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBytes(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1416532-getbytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1416769-length": {
+      "abstract": [
+        {
+          "text": "The number of bytes contained by the data object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1416769-length",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "length",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1416769-length"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1417055-init": {
+      "abstract": [
+        {
+          "text": "Initializes a data object with the contents of another data object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": Data)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1417055-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(data:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1417055-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1417337-init": {
+      "abstract": [
+        {
+          "text": "Initializes a data object filled with a given number of bytes of data from a given buffer, with a custom deallocator block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "bytesNoCopy"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "deallocator"
+        },
+        {
+          "kind": "text",
+          "text": ": ((UnsafeMutableRawPointer, Int) -> Void)?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1417337-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(bytesNoCopy:length:deallocator:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1417337-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1417833-init": {
+      "abstract": [
+        {
+          "text": "Initializes a data object with the given Base64 encoded data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "base64Encoded"
+        },
+        {
+          "kind": "text",
+          "text": ": Data, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSData.Base64DecodingOptions)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1417833-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(base64Encoded:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1417833-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1547237-init": {
+      "abstract": [
+        {
+          "text": "Initializes a data object initialized with the given Base64 encoded string.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "base64Encoding"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1547237-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(base64Encoding:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1547237-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/1547242-base64encoding": {
+      "abstract": [
+        {
+          "text": "Initializes a Base64 encoded string from the string.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "base64Encoding"
+        },
+        {
+          "kind": "text",
+          "text": "() -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/1547242-base64encoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "base64Encoding()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/1547242-base64encoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/3139188-endindex": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "endIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/3139188-endindex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endIndex",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/3139188-endindex"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/3139189-firstrange": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "firstRange"
+        },
+        {
+          "kind": "text",
+          "text": "<D, R>("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": D, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": R) -> Range<Int>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/3139189-firstrange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "firstRange(of:in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/3139189-firstrange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/3139190-lastrange": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "lastRange"
+        },
+        {
+          "kind": "text",
+          "text": "<D, R>("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": D, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": R) -> Range<Int>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/3139190-lastrange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lastRange(of:in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/3139190-lastrange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/3139191-regions": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "regions"
+        },
+        {
+          "kind": "text",
+          "text": ": [Data]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/3139191-regions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "regions",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/3139191-regions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/3139192-startindex": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "startIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/3139192-startindex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startIndex",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/3139192-startindex"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/3139193-subscript": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "(Int) -> UInt8"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/3139193-subscript",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/3139193-subscript"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/3174960-compressed": {
+      "abstract": [
+        {
+          "text": "Returns a new data object by compressing the data object’s bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "compressed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": NSData.CompressionAlgorithm) -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/3174960-compressed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "compressed(using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/3174960-compressed"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/3174961-decompressed": {
+      "abstract": [
+        {
+          "text": "Returns a new data object by decompressing data object’s bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decompressed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": NSData.CompressionAlgorithm) -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/3174961-decompressed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decompressed(using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/3174961-decompressed"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/base64decodingoptions": {
+      "abstract": [
+        {
+          "text": "Options to modify the decoding algorithm used to decode Base64 encoded data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSData.Base64DecodingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/base64decodingoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData.Base64DecodingOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/base64decodingoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/base64encodingoptions": {
+      "abstract": [
+        {
+          "text": "Options for methods used to Base64 encode data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSData.Base64EncodingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/base64encodingoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData.Base64EncodingOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/base64encodingoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/compressionalgorithm": {
+      "abstract": [
+        {
+          "text": "An algorithm that indicates how to compress or decompress data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSData.CompressionAlgorithm"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/compressionalgorithm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData.CompressionAlgorithm",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/compressionalgorithm"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/element": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSData.Element"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/element",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData.Element",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/element"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/index": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSData.Index"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/index",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData.Index",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/index"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/indices": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSData.Indices"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/indices",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData.Indices",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/indices"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/iterator": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSData.Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/iterator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData.Iterator",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/iterator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/readingoptions": {
+      "abstract": [
+        {
+          "text": "Options for methods used to read data objects. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSData.ReadingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/readingoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData.ReadingOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/readingoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/regions": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSData.Regions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/regions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData.Regions",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/regions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/searchoptions": {
+      "abstract": [
+        {
+          "text": "Options for method used to search data objects. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSData.SearchOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/searchoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData.SearchOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/searchoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/subsequence": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSData.SubSequence"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/subsequence",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData.SubSequence",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/subsequence"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/writingoptions": {
+      "abstract": [
+        {
+          "text": "Options for methods used to write data objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSData.WritingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/writingoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData.WritingOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/writingoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdecompressionfailederror": {
+      "abstract": [
+        {
+          "text": "An error code value that indicates a failure to decompress data using the provided algorithm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDecompressionFailedError"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecompressionfailederror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDecompressionFailedError",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdecompressionfailederror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutabledata": {
+      "abstract": [
+        {
+          "text": "A dynamic byte buffer that bridges to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": "; use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledata",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutabledata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Numbers, Data, and Basic Values",
+      "type": "topic",
+      "url": "/documentation/foundation/numbers_data_and_basic_values"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordValueProtocol",
+        "doc://com.apple.documentation/documentation/foundation/dataprotocol",
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutabledata",
+        "doc://com.apple.documentation/documentation/foundation/data/referencetype"
+      ],
+      "title": "Using Reference Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1651300",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1412793-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1409454-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1417337-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1416020-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1417055-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Data"
+    },
+    {
+      "anchor": "2891373",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1408672-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1411145-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1413892-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1407864-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/readingoptions",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1413302-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1409012-datawithcontentsofmappedfile"
+      ],
+      "kind": "taskGroup",
+      "title": "Reading Data from a File"
+    },
+    {
+      "anchor": "1651722",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1408033-write",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1414800-write",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1415134-write",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1410595-write",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/writingoptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Writing Data to a File"
+    },
+    {
+      "anchor": "1651648",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1417833-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1547237-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1410081-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1412739-base64encodeddata",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1413546-base64encodedstring",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1547242-base64encoding",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/base64encodingoptions",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/base64decodingoptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Encoding and Decoding Base64 Representations"
+    },
+    {
+      "anchor": "1651555",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1410616-bytes",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1408400-enumeratebytes",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1416532-getbytes",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1411450-getbytes",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1407224-getbytes"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Underlying Bytes"
+    },
+    {
+      "anchor": "2891395",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1410128-subdata",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1410391-range",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/searchoptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Finding Data"
+    },
+    {
+      "anchor": "1651689",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1409330-isequal",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1416769-length"
+      ],
+      "kind": "taskGroup",
+      "title": "Testing Data"
+    },
+    {
+      "anchor": "2891372",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdata/1412579-description"
+      ],
+      "kind": "taskGroup",
+      "title": "Describing Data"
+    },
+    {
+      "anchor": "3638512",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdata/3174960-compressed",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/3174961-decompressed",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/compressionalgorithm",
+        "doc://com.apple.documentation/documentation/foundation/nscompressionerrormaximum",
+        "doc://com.apple.documentation/documentation/foundation/nscompressionerrorminimum",
+        "doc://com.apple.documentation/documentation/foundation/nscompressionfailederror",
+        "doc://com.apple.documentation/documentation/foundation/nsdecompressionfailederror"
+      ],
+      "kind": "taskGroup",
+      "title": "Compressing and Decompressing Data"
+    },
+    {
+      "anchor": "3358609",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdata/element",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/index",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/indices",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/iterator",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/regions",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/subsequence"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "3153366",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdata/3139188-endindex",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/3139191-regions",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/3139192-startindex"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "3153367",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdata/3139189-firstrange",
+        "doc://com.apple.documentation/documentation/foundation/nsdata/3139190-lastrange"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "3153368",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdata/3139193-subscript"
+      ],
+      "kind": "taskGroup",
+      "title": "Subscripts"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsdata"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsdata"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

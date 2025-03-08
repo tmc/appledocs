@@ -1,0 +1,1082 @@
+{
+  "abstract": [
+    {
+      "text": "Begins an audio transmission with the channel identifer you specify.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.pushtotalk/documentation/PushToTalk",
+        "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/requestBeginTransmitting(channelUUID:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)PTChannelManager(im)requestBeginTransmittingWithChannelUUID:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "requestBeginTransmitting"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "channelUUID"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:10Foundation4UUIDV",
+        "text": "UUID"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Push to Talk"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "requestBeginTransmittingWithChannelUUID:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "requestBeginTransmitting(channelUUID:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestBeginTransmitting"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "channelUUID"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:10Foundation4UUIDV",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation4UUIDV",
+              "text": "UUID"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The channel identifier.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "channelUUID"
+        }
+      ]
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.pushtotalk/documentation/PushToTalk/creating-a-push-to-talk-app"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can only begin a transmission when in the foreground, or following a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " event, such as when a wireless accessory button triggers a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " characteristic change. The user may also begin a transmission by using the Push to Talk system user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If successful, you receive a callback from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:channelUUID:didBeginTransmittingFrom:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "code": "PTChannelTransmitRequestSource.programmaticRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; otherwise, you receive a failure reason through ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:failedToBeginTransmittingInChannel:error:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/CoreBluetooth": {
+      "abstract": [
+        {
+          "text": "Communicate with Bluetooth low energy and BR/EDR (“Classic”) Devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Bluetooth",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk": {
+      "abstract": [
+        {
+          "text": "Display the system user interface for your app’s Push to Talk services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Push to Talk",
+      "type": "topic",
+      "url": "/documentation/pushtotalk"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager": {
+      "abstract": [
+        {
+          "text": "An object that represents a push-to-talk channel manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PTChannelManager"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PTChannelManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "PTChannelManager",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelmanager"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/requestBeginTransmitting(channelUUID:)": {
+      "abstract": [
+        {
+          "text": "Begins an audio transmission with the channel identifer you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestBeginTransmitting"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "channelUUID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/requestBeginTransmitting(channelUUID:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestBeginTransmittingWithChannelUUID:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestBeginTransmitting(channelUUID:)",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelmanager/requestbegintransmitting(channeluuid:)"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/setAccessoryButtonEventsEnabled(_:channelUUID:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Maps supported accessory button events to actions that begin and end transmission.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAccessoryButtonEventsEnabled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "channelUUID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/setAccessoryButtonEventsEnabled(_:channelUUID:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setAccessoryButtonEventsEnabled:forChannelUUID:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setAccessoryButtonEventsEnabled(_:channelUUID:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelmanager/setaccessorybuttoneventsenabled(_:channeluuid:completionhandler:)"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/stopTransmitting(channelUUID:)": {
+      "abstract": [
+        {
+          "text": "Stops an audio transmission with the channel identifer you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopTransmitting"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "channelUUID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/stopTransmitting(channelUUID:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopTransmittingWithChannelUUID:"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopTransmitting(channelUUID:)",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelmanager/stoptransmitting(channeluuid:)"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:channelUUID:didBeginTransmittingFrom:)": {
+      "abstract": [
+        {
+          "text": "Tells the observer that transmission began.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "channelManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PTChannelManager",
+          "text": "PTChannelManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "channelUUID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didBeginTransmittingFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PTChannelTransmitRequestSource",
+          "text": "PTChannelTransmitRequestSource"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:channelUUID:didBeginTransmittingFrom:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "channelManager:channelUUID:didBeginTransmittingFromSource:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "channelManager(_:channelUUID:didBeginTransmittingFrom:)",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelmanagerdelegate/channelmanager(_:channeluuid:didbegintransmittingfrom:)"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:failedToBeginTransmittingInChannel:error:)": {
+      "abstract": [
+        {
+          "text": "Tells the observer that transmission failed to begin.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "channelManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PTChannelManager",
+          "text": "PTChannelManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "failedToBeginTransmittingInChannel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManagerDelegate/channelManager(_:failedToBeginTransmittingInChannel:error:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "channelManager:failedToBeginTransmittingInChannelWithUUID:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "channelManager(_:failedToBeginTransmittingInChannel:error:)",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/ptchannelmanagerdelegate/channelmanager(_:failedtobegintransmittinginchannel:error:)"
+    },
+    "doc://com.apple.pushtotalk/documentation/PushToTalk/creating-a-push-to-talk-app": {
+      "abstract": [
+        {
+          "text": "Build a walkie-talkie style app with system user interface controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pushtotalk/documentation/PushToTalk/creating-a-push-to-talk-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Push to Talk app",
+      "type": "topic",
+      "url": "/documentation/pushtotalk/creating-a-push-to-talk-app"
+    },
+    "doc://com.externally.resolved.symbol/s:10Foundation4UUIDV": {
+      "abstract": [
+        {
+          "text": "A universally unique value to identify types, interfaces, and other items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "UUID"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10Foundation4UUIDV",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UUID",
+      "type": "topic",
+      "url": "/documentation/foundation/uuid"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Starting-and-stopping-transmission",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/stopTransmitting(channelUUID:)",
+        "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/setAccessoryButtonEventsEnabled(_:channelUUID:completionHandler:)"
+      ],
+      "title": "Starting and stopping transmission"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "requestBeginTransmittingWithChannelUUID:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestBeginTransmittingWithChannelUUID:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.pushtotalk/documentation/PushToTalk",
+                "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Starting-and-stopping-transmission",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/stopTransmitting(channelUUID:)",
+                "doc://com.apple.pushtotalk/documentation/PushToTalk/PTChannelManager/setAccessoryButtonEventsEnabled(_:channelUUID:completionHandler:)"
+              ],
+              "title": "Starting and stopping transmission"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "requestBeginTransmittingWithChannelUUID:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSUUID",
+                    "text": "NSUUID"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "channelUUID"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The channel identifier.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "channelUUID"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager~1setAccessoryButtonEventsEnabled(_:channelUUID:completionHandler:)/title",
+          "value": "setAccessoryButtonEventsEnabled:forChannelUUID:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager~1setAccessoryButtonEventsEnabled(_:channelUUID:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setAccessoryButtonEventsEnabled:forChannelUUID:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManagerDelegate~1channelManager(_:channelUUID:didBeginTransmittingFrom:)/title",
+          "value": "channelManager:channelUUID:didBeginTransmittingFromSource:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManagerDelegate~1channelManager(_:channelUUID:didBeginTransmittingFrom:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "channelManager:channelUUID:didBeginTransmittingFromSource:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManagerDelegate~1channelManager(_:failedToBeginTransmittingInChannel:error:)/title",
+          "value": "channelManager:failedToBeginTransmittingInChannelWithUUID:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManagerDelegate~1channelManager(_:failedToBeginTransmittingInChannel:error:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "channelManager:failedToBeginTransmittingInChannelWithUUID:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager~1requestBeginTransmitting(channelUUID:)/title",
+          "value": "requestBeginTransmittingWithChannelUUID:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager~1requestBeginTransmitting(channelUUID:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestBeginTransmittingWithChannelUUID:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager/title",
+          "value": "PTChannelManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PTChannelManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PTChannelManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager~1stopTransmitting(channelUUID:)/title",
+          "value": "stopTransmittingWithChannelUUID:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushtotalk~1documentation~1PushToTalk~1PTChannelManager~1stopTransmitting(channelUUID:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopTransmittingWithChannelUUID:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/pushtotalk/ptchannelmanager/requestbegintransmitting(channeluuid:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/pushtotalk/ptchannelmanager/requestbegintransmitting(channeluuid:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

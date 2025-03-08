@@ -1,0 +1,944 @@
+{
+  "abstract": [
+    {
+      "text": "Record the user’s preference for a specific media item or a broader category of media.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "SiriKit Cloud Media",
+      "versions": [
+        "1.1.0",
+        "1.1.1"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateMediaAffinity"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:sirikit_media_api:post:intent-updateMediaAffinity",
+    "modules": [
+      {
+        "name": "SiriKit Cloud Media"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "updateMediaAffinity"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0.2",
+        "name": "SiriKit Cloud Media"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Process an Update Media Affinity Intent"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://cloudextension-testservice.local/api/"
+        },
+        {
+          "kind": "path",
+          "text": "intent/updateMediaAffinity"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The client’s current user interface language. Respond with localized content for this language, if available.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Accept-Language",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "minimum",
+              "value": "1"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An approximate deadline, in seconds, for processing this real-time user request. The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Session",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object provides the exact deadline for handling an intent.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Request-Timeout",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "uint32"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "maximumLength",
+              "value": "250"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "/AppleCloudExtension/([0-9]+\\.[0-9]+\\.[0-9]+) *.*/"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The extension protocol running on the client. This is an RFC 7231-compliant string that contains the product name ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AppleCloudExtension",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " and the SiriKit Extension library version running on the client.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "User-Agent",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "minimum",
+              "value": "1"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of previous requests from the client. The client omits this header on the first attempt.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "x-applecloudextension-retry-count",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "uint32"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "minimumLength",
+              "value": "1"
+            },
+            {
+              "kind": "maximumLength",
+              "value": "128"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A constant session identifier to include in each request and response. Respond to each request with the session ID the client sends in that request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "x-applecloudextension-session-id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "header",
+      "title": "Header Parameters"
+    },
+    {
+      "bodyContentType": [
+        {
+          "kind": "text",
+          "text": "["
+        },
+        {
+          "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntentHandlingInvocation",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "data:sirikit_media_api:UpdateMediaAffinityIntentHandlingInvocation",
+          "text": "UpdateMediaAffinityIntentHandlingInvocation"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "An array of requests to process intents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request succeeds.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntentHandlingInvocationResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:sirikit_media_api:UpdateMediaAffinityIntentHandlingInvocationResponse",
+              "text": "UpdateMediaAffinityIntentHandlingInvocationResponse"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia": {
+      "abstract": [
+        {
+          "text": "Stream music directly to HomePod speakers from your media service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SiriKit Cloud Media",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/MediaAffinityType": {
+      "abstract": [
+        {
+          "text": "A preference or dislike for a media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "MediaAffinityType"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/MediaAffinityType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MediaAffinityType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MediaAffinityType",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/mediaaffinitytype"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/MediaAffinityTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A media affinity that matches an update media affinity intent, or information about why your service can’t determine the media affinity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MediaAffinityTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/MediaAffinityTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MediaAffinityTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "MediaAffinityTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/mediaaffinitytyperesolutionresult"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueActivityReportEvent": {
+      "abstract": [
+        {
+          "text": "An event that occurs during content playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "QueueActivityReportEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueActivityReportEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QueueActivityReportEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "QueueActivityReportEvent",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/queueactivityreportevent"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Session": {
+      "abstract": [
+        {
+          "text": "Information the client provides about a sequence of requests and responses to process an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Session"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Session",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Session"
+        }
+      ],
+      "role": "symbol",
+      "title": "Session",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/session"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityRequest": {
+      "abstract": [
+        {
+          "text": "A report of the client’s current playback state and recent user interaction, and an opportunity for your service to modify the client’s playback queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateActivityRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateActivityRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdateActivityRequest",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updateactivityrequest"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityResponse": {
+      "abstract": [
+        {
+          "text": "Updates to the client’s queue and user activity in response to a report of playback progress.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateActivityResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateActivityResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdateActivityResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updateactivityresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntent": {
+      "abstract": [
+        {
+          "text": "An object that describes a user’s stated preference regarding media items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateMediaAffinityIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateMediaAffinityIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdateMediaAffinityIntent",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updatemediaaffinityintent"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntentHandlingHandleInvocationResponse": {
+      "abstract": [
+        {
+          "text": "Your service’s response to a request to handle a fully resolved update media affinity intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateMediaAffinityIntentHandlingHandleInvocationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntentHandlingHandleInvocationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateMediaAffinityIntentHandlingHandleInvocationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdateMediaAffinityIntentHandlingHandleInvocationResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updatemediaaffinityintenthandlinghandleinvocationresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntentHandlingInvocation": {
+      "abstract": [
+        {
+          "text": "A request to process an update media affinity intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateMediaAffinityIntentHandlingInvocation"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntentHandlingInvocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateMediaAffinityIntentHandlingInvocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdateMediaAffinityIntentHandlingInvocation",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updatemediaaffinityintenthandlinginvocation"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntentHandlingInvocationResponse": {
+      "abstract": [
+        {
+          "text": "The service’s response to a request to process an update media affinity intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateMediaAffinityIntentHandlingInvocationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntentHandlingInvocationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateMediaAffinityIntentHandlingInvocationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdateMediaAffinityIntentHandlingInvocationResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updatemediaaffinityintenthandlinginvocationresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntentHandlingResolveAffinityTypeInvocationResponse": {
+      "abstract": [
+        {
+          "text": "Your service’s response to a request that expresses a preference or dislike for a media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateMediaAffinityIntentHandlingResolveAffinityTypeInvocationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntentHandlingResolveAffinityTypeInvocationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateMediaAffinityIntentHandlingResolveAffinityTypeInvocationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdateMediaAffinityIntentHandlingResolveAffinityTypeInvocationResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updatemediaaffinityintenthandlingresolveaffinitytypeinvocationresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntentHandlingResolveMediaItemsInvocationResponse": {
+      "abstract": [
+        {
+          "text": "Your service’s response to a request to resolve media items in an update media affinity intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateMediaAffinityIntentHandlingResolveMediaItemsInvocationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntentHandlingResolveMediaItemsInvocationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateMediaAffinityIntentHandlingResolveMediaItemsInvocationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdateMediaAffinityIntentHandlingResolveMediaItemsInvocationResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updatemediaaffinityintenthandlingresolvemediaitemsinvocationresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntentResponse": {
+      "abstract": [
+        {
+          "text": "A structure that contains a response code indicating how your service handles an update media affinity intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateMediaAffinityIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateMediaAffinityIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdateMediaAffinityIntentResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updatemediaaffinityintentresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntentResponseCode": {
+      "abstract": [
+        {
+          "text": "Codes your service can return when handling an update media affinity intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateMediaAffinityIntentResponseCode"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntentResponseCode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateMediaAffinityIntentResponseCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdateMediaAffinityIntentResponseCode",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updatemediaaffinityintentresponsecode"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityMediaItemResolutionResult": {
+      "abstract": [
+        {
+          "text": "A media item that matches an update media affinity intent, or information about why your service can’t provide a media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateMediaAffinityMediaItemResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityMediaItemResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateMediaAffinityMediaItemResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdateMediaAffinityMediaItemResolutionResult",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updatemediaaffinitymediaitemresolutionresult"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityMediaItemUnsupportedReason": {
+      "abstract": [
+        {
+          "text": "Reasons the media service can’t update information about the media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateMediaAffinityMediaItemUnsupportedReason"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityMediaItemUnsupportedReason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateMediaAffinityMediaItemUnsupportedReason"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdateMediaAffinityMediaItemUnsupportedReason",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updatemediaaffinitymediaitemunsupportedreason"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateActivity": {
+      "abstract": [
+        {
+          "text": "Monitor progress through the playback queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Report Playback Progress and Activity",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updateactivity"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateMediaAffinity": {
+      "abstract": [
+        {
+          "text": "Record the user’s preference for a specific media item or a broader category of media.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateMediaAffinity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateMediaAffinity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Process an Update Media Affinity Intent",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updatemediaaffinity"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Playback-Events",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueActivityReportEvent",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateActivity",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityRequest",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityResponse"
+      ],
+      "title": "Playback Events"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Processing-an-Update-Media-Affinity-Intent",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntent",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntentHandlingInvocation",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntentHandlingInvocationResponse"
+      ],
+      "title": "Processing an Update Media Affinity Intent"
+    },
+    {
+      "anchor": "Identifying-the-Intended-Media-Items",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntentHandlingResolveMediaItemsInvocationResponse",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityMediaItemResolutionResult",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityMediaItemUnsupportedReason"
+      ],
+      "title": "Identifying the Intended Media Items"
+    },
+    {
+      "anchor": "Discerning-Like-or-Dislike",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/MediaAffinityType",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntentHandlingResolveAffinityTypeInvocationResponse",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/MediaAffinityTypeResolutionResult"
+      ],
+      "title": "Discerning Like or Dislike"
+    },
+    {
+      "anchor": "Handling-an-Update-Media-Affinity-Intent",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntentHandlingHandleInvocationResponse",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntentResponse",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateMediaAffinityIntentResponseCode"
+      ],
+      "title": "Handling an Update Media Affinity Intent"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/sirikitcloudmedia/updatemediaaffinity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

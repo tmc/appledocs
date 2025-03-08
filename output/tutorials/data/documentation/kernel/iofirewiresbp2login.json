@@ -1,0 +1,3321 @@
+{
+  "abstract": [
+    {
+      "text": "Supplies the login maintenance and Normal Command ORB execution portions of the API.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/firewire"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1457288,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOFireWireSBP2Login",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOFireWireSBP2Login"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOFireWireSBP2Login"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSObject",
+              "text": "OSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Supplies APIs for login maintenance and command execution. Drivers can use this object to create IOFireWireSBP2ORB objects and execute them. Solicited and unsolicited status callback routines can be registered and the SBP2 services will notify the driver when the appropriate status arrives. This class also handles login maintenance. Supplies APIs for logging in and logging out and attempts to reconnect to the LUN after bus resets. The base FireWire services deliver bus reset notification via the IOKit message routine. The SBP2 services build on this behavior and deliver reconnectFailed and reconnectComplete through the message routine as well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2fetchagentwritecallback": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2fetchagentwritecallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2FetchAgentWriteCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2fetchagentwritecallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2logincallback": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2logincallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LoginCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2logincallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2logincompleteparams": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2logincompleteparams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LoginCompleteParams",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2logincompleteparams"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2logincompleteparamsptr": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2logincompleteparamsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LoginCompleteParamsPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2logincompleteparamsptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2loginresponse": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2loginresponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LoginResponse",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2loginresponse"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2loginresponseptr": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2loginresponseptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LoginResponsePtr",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2loginresponseptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcallback": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LogoutCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2logoutcallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcompleteparams": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcompleteparams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LogoutCompleteParams",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2logoutcompleteparams"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcompleteparamsptr": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcompleteparamsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LogoutCompleteParamsPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2logoutcompleteparamsptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2managementcallback": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2managementcallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2ManagementCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2managementcallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2notifycallback": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2notifycallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2NotifyCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2notifycallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2notifyparams": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2notifyparams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2NotifyParams",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2notifyparams"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2notifyparamsptr": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2notifyparamsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2NotifyParamsPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2notifyparamsptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2reconnectparams": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2reconnectparams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2ReconnectParams",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2reconnectparams"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2reconnectparamsptr": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2reconnectparamsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2ReconnectParamsPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2reconnectparamsptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2statusblock": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2statusblock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2StatusBlock",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2statusblock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2statuscallback": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2statuscallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2StatusCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2statuscallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/firewire": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/firewire",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FireWire",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/firewire"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login": {
+      "abstract": [
+        {
+          "text": "Supplies the login maintenance and Normal Command ORB execution portions of the API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireSBP2Login",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572106-setaddressloforloginorbandrespon": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAddressLoForLoginORBAndResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572106-setaddressloforloginorbandrespon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAddressLoForLoginORBAndResponse",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572106-setaddressloforloginorbandrespon"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572107-setorbisappended": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setORBIsAppended"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572107-setorbisappended",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setORBIsAppended",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572107-setorbisappended"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572109-isfetchagentwriteinprogress": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isFetchAgentWriteInProgress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572109-isfetchagentwriteinprogress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isFetchAgentWriteInProgress",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572109-isfetchagentwriteinprogress"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572110-setreconnecttime": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setReconnectTime"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572110-setreconnecttime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setReconnectTime",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572110-setreconnecttime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572111-reconnectretrytimeout": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "reconnectRetryTimeout"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572111-reconnectretrytimeout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reconnectRetryTimeout",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572111-reconnectretrytimeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572112-reconnecttimeout": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "reconnectTimeout"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572112-reconnecttimeout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reconnectTimeout",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572112-reconnecttimeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572113-getfirewireunit": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getFireWireUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572113-getfirewireunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getFireWireUnit",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572113-getfirewireunit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572115-setfetchagentwritecompletion": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFetchAgentWriteCompletion"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572115-setfetchagentwritecompletion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setFetchAgentWriteCompletion",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572115-setfetchagentwritecompletion"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572117-setlogincompletion": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setLoginCompletion"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572117-setlogincompletion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setLoginCompletion",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572117-setlogincompletion"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572118-getmaxcommandblocksize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMaxCommandBlockSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572118-getmaxcommandblocksize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMaxCommandBlockSize",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572118-getmaxcommandblocksize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572119-setloginflags": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setLoginFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572119-setloginflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setLoginFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572119-setloginflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572123-prepareorbforexecution": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareORBForExecution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572123-prepareorbforexecution",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepareORBForExecution",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572123-prepareorbforexecution"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572125-release": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "release"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572125-release",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "release",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572125-release"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572126-setbusytimeoutregistervalue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBusyTimeoutRegisterValue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572126-setbusytimeoutregistervalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setBusyTimeoutRegisterValue",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572126-setbusytimeoutregistervalue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572127-initwithlun": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithLUN"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572127-initwithlun",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithLUN",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572127-initwithlun"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572129-getrefcon": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getRefCon"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572129-getrefcon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getRefCon",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572129-getrefcon"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572132-getardmmax": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getARDMMax"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572132-getardmmax",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getARDMMax",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572132-getardmmax"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572135-setrefcon": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setRefCon"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572135-setrefcon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setRefCon",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572135-setrefcon"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572136-getloginid": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getLoginID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572136-getloginid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getLoginID",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572136-getloginid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572137-allocateresources": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocateResources"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572137-allocateresources",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocateResources",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572137-allocateresources"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572138-executesetbusytimeout": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeSetBusyTimeout"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572138-executesetbusytimeout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeSetBusyTimeout",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572138-executesetbusytimeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572140-restartreconnect": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "restartReconnect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572140-restartreconnect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "restartReconnect",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572140-restartreconnect"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572142-staticexecuteaddorb": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "staticExecuteAddORB"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572142-staticexecuteaddorb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "staticExecuteAddORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572142-staticexecuteaddorb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572143-reconnecttimeoutstatic": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "reconnectTimeoutStatic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572143-reconnecttimeoutstatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reconnectTimeoutStatic",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572143-reconnecttimeoutstatic"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572144-statusblockwritestatic": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "statusBlockWriteStatic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572144-statusblockwritestatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "statusBlockWriteStatic",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572144-statusblockwritestatic"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572145-setmaxpayloadsize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMaxPayloadSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572145-setmaxpayloadsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setMaxPayloadSize",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572145-setmaxpayloadsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572146-stoploginretrytimer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopLoginRetryTimer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572146-stoploginretrytimer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stopLoginRetryTimer",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572146-stoploginretrytimer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572147-logintimeoutstatic": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "loginTimeoutStatic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572147-logintimeoutstatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loginTimeoutStatic",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572147-logintimeoutstatic"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572148-setbusytimeoutcompletestatic": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBusyTimeoutCompleteStatic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572148-setbusytimeoutcompletestatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setBusyTimeoutCompleteStatic",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572148-setbusytimeoutcompletestatic"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572151-staticexecuteorb": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "staticExecuteORB"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572151-staticexecuteorb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "staticExecuteORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572151-staticexecuteorb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572154-initialexecutelogin": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initialExecuteLogin"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572154-initialexecutelogin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initialExecuteLogin",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572154-initialexecutelogin"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572157-isorbtimerset": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isORBTimerSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572157-isorbtimerset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isORBTimerSet",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572157-isorbtimerset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572158-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572158-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572158-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572160-unsolicitedstatusenablecomplete": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "unsolicitedStatusEnableComplete"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572160-unsolicitedstatusenablecomplete",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unsolicitedStatusEnableComplete",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572160-unsolicitedstatusenablecomplete"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572162-logouttimeout": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "logoutTimeout"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572162-logouttimeout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "logoutTimeout",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572162-logouttimeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572163-reconnectwritecomplete": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "reconnectWriteComplete"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572163-reconnectwritecomplete",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reconnectWriteComplete",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572163-reconnectwritecomplete"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572165-isconnected": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isConnected"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572165-isconnected",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isConnected",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572165-isconnected"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572166-executeunsolicitedstatusenable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeUnsolicitedStatusEnable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572166-executeunsolicitedstatusenable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeUnsolicitedStatusEnable",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572166-executeunsolicitedstatusenable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572168-fetchagentretrytimer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchAgentRetryTimer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572168-fetchagentretrytimer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fetchAgentRetryTimer",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572168-fetchagentretrytimer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572169-executelogout": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeLogout"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572169-executelogout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeLogout",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572169-executelogout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572170-stopfetchagentretrytimer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopFetchAgentRetryTimer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572170-stopfetchagentretrytimer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stopFetchAgentRetryTimer",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572170-stopfetchagentretrytimer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572171-loginretrytimeout": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "loginRetryTimeout"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572171-loginretrytimeout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loginRetryTimeout",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572171-loginretrytimeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572172-submitlogin": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "submitLogin"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572172-submitlogin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "submitLogin",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572172-submitlogin"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572173-getreconnecttime": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getReconnectTime"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572173-getreconnecttime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getReconnectTime",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572173-getreconnecttime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572174-loginwritecompletestatic": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "loginWriteCompleteStatic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572174-loginwritecompletestatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loginWriteCompleteStatic",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572174-loginwritecompletestatic"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572176-initorbwithlogin": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initORBWithLogin"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572176-initorbwithlogin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initORBWithLogin",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572176-initorbwithlogin"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572177-doorbellcompletestatic": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "doorbellCompleteStatic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572177-doorbellcompletestatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "doorbellCompleteStatic",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572177-doorbellcompletestatic"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572178-reconnectwritecompletestatic": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "reconnectWriteCompleteStatic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572178-reconnectwritecompletestatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reconnectWriteCompleteStatic",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572178-reconnectwritecompletestatic"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572180-cancelorbtimer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancelORBTimer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572180-cancelorbtimer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cancelORBTimer",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572180-cancelorbtimer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572181-executedoorbell": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeDoorbell"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572181-executedoorbell",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeDoorbell",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572181-executedoorbell"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572182-completelogout": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "completeLogout"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572182-completelogout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "completeLogout",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572182-completelogout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572184-addorb": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addORB"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572184-addorb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572184-addorb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572185-logoutwritecompletestatic": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "logoutWriteCompleteStatic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572185-logoutwritecompletestatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "logoutWriteCompleteStatic",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572185-logoutwritecompletestatic"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572186-staticexecutefetchagentreset": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "staticExecuteFetchAgentReset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572186-staticexecutefetchagentreset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "staticExecuteFetchAgentReset",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572186-staticexecutefetchagentreset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572188-setbusytimeoutcomplete": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBusyTimeoutComplete"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572188-setbusytimeoutcomplete",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setBusyTimeoutComplete",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572188-setbusytimeoutcomplete"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572189-getunitinformation": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getUnitInformation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572189-getunitinformation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getUnitInformation",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572189-getunitinformation"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572190-getmaxpayloadsize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMaxPayloadSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572190-getmaxpayloadsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMaxPayloadSize",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572190-getmaxpayloadsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572191-setunsolicitedstatusnotifyproc": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setUnsolicitedStatusNotifyProc"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572191-setunsolicitedstatusnotifyproc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setUnsolicitedStatusNotifyProc",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572191-setunsolicitedstatusnotifyproc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572192-ringdoorbell": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ringDoorbell"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572192-ringdoorbell",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ringDoorbell",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572192-ringdoorbell"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572193-submitfetchagentreset": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "submitFetchAgentReset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572193-submitfetchagentreset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "submitFetchAgentReset",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572193-submitfetchagentreset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572194-statusblockwrite": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "statusBlockWrite"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572194-statusblockwrite",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "statusBlockWrite",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572194-statusblockwrite"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572195-setloginretrycountanddelaytime": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setLoginRetryCountAndDelayTime"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572195-setloginretrycountanddelaytime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setLoginRetryCountAndDelayTime",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572195-setloginretrycountanddelaytime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572196-startloginretrytimer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "startLoginRetryTimer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572196-startloginretrytimer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startLoginRetryTimer",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572196-startloginretrytimer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572197-createorb": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "createORB"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572197-createorb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572197-createorb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572198-unsolicitedstatusenablecompletes": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "unsolicitedStatusEnableCompleteStatic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572198-unsolicitedstatusenablecompletes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unsolicitedStatusEnableCompleteStatic",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572198-unsolicitedstatusenablecompletes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572199-executeremoveorb": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeRemoveORB"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572199-executeremoveorb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeRemoveORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572199-executeremoveorb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572200-abortlogin": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "abortLogin"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572200-abortlogin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "abortLogin",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572200-abortlogin"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572201-fetchagentresetcompletestatic": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchAgentResetCompleteStatic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572201-fetchagentresetcompletestatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fetchAgentResetCompleteStatic",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572201-fetchagentresetcompletestatic"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572203-removelogin": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeLogin"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572203-removelogin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeLogin",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572203-removelogin"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572205-gettarget": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTarget"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572205-gettarget",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getTarget",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572205-gettarget"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572206-fetchagentwritecompletestatic": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchAgentWriteCompleteStatic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572206-fetchagentwritecompletestatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fetchAgentWriteCompleteStatic",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572206-fetchagentwritecompletestatic"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572208-loginretrytimeoutstatic": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "loginRetryTimeoutStatic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572208-loginretrytimeoutstatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loginRetryTimeoutStatic",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572208-loginretrytimeoutstatic"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572209-reconnectstatusblockwritestatic": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "reconnectStatusBlockWriteStatic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572209-reconnectstatusblockwritestatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reconnectStatusBlockWriteStatic",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572209-reconnectstatusblockwritestatic"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572210-reconnectretrytimeoutstatic": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "reconnectRetryTimeoutStatic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572210-reconnectretrytimeoutstatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reconnectRetryTimeoutStatic",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572210-reconnectretrytimeoutstatic"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572214-setstatusnotifyproc": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setStatusNotifyProc"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572214-setstatusnotifyproc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setStatusNotifyProc",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572214-setstatusnotifyproc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572215-appendorb": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendORB"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572215-appendorb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572215-appendorb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572216-logoutwritecomplete": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "logoutWriteComplete"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572216-logoutwritecomplete",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "logoutWriteComplete",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572216-logoutwritecomplete"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572217-isorbappended": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isORBAppended"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572217-isorbappended",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isORBAppended",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572217-isorbappended"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572219-executeaddorb": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeAddORB"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572219-executeaddorb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeAddORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572219-executeaddorb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572221-startreconnectretrytimer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "startReconnectRetryTimer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572221-startreconnectretrytimer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startReconnectRetryTimer",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572221-startreconnectretrytimer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572222-suspendednotify": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "suspendedNotify"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572222-suspendednotify",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "suspendedNotify",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572222-suspendednotify"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572223-loginwritecomplete": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "loginWriteComplete"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572223-loginwritecomplete",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loginWriteComplete",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572223-loginwritecomplete"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572224-processloginwrite": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "processLoginWrite"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572224-processloginwrite",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "processLoginWrite",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572224-processloginwrite"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572226-getloginflags": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getLoginFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572226-getloginflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getLoginFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572226-getloginflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572227-enableunsolicitedstatus": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enableUnsolicitedStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572227-enableunsolicitedstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enableUnsolicitedStatus",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572227-enableunsolicitedstatus"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572228-clearalltasksinset": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "clearAllTasksInSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572228-clearalltasksinset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clearAllTasksInSet",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572228-clearalltasksinset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572229-startfetchagentretrytimer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "startFetchAgentRetryTimer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572229-startfetchagentretrytimer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startFetchAgentRetryTimer",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572229-startfetchagentretrytimer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572231-setlogingeneration": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setLoginGeneration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572231-setlogingeneration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setLoginGeneration",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572231-setlogingeneration"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572232-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572232-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572232-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572233-sendreconnectnotification": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendReconnectNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572233-sendreconnectnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendReconnectNotification",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572233-sendreconnectnotification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572235-executefetchagentreset": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeFetchAgentReset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572235-executefetchagentreset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeFetchAgentReset",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572235-executefetchagentreset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572236-staticexecutedoorbell": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "staticExecuteDoorbell"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572236-staticexecutedoorbell",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "staticExecuteDoorbell",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572236-staticexecutedoorbell"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572237-setpassword": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPassword"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572237-setpassword",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPassword",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572237-setpassword"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572238-clearlogingeneration": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "clearLoginGeneration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572238-clearlogingeneration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clearLoginGeneration",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572238-clearlogingeneration"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572239-sendtimeoutnotification": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendTimeoutNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572239-sendtimeoutnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendTimeoutNotification",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572239-sendtimeoutnotification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572240-submitlogout": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "submitLogout"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572240-submitlogout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "submitLogout",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572240-submitlogout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572244-getunsolicitedstatusnotifyproc": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getUnsolicitedStatusNotifyProc"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572244-getunsolicitedstatusnotifyproc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getUnsolicitedStatusNotifyProc",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572244-getunsolicitedstatusnotifyproc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572247-setfetchagentresetcompletion": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFetchAgentResetCompletion"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572247-setfetchagentresetcompletion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setFetchAgentResetCompletion",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572247-setfetchagentresetcompletion"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572248-executelogin": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeLogin"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572248-executelogin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeLogin",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572248-executelogin"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572249-logouttimeoutstatic": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "logoutTimeoutStatic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572249-logouttimeoutstatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "logoutTimeoutStatic",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572249-logouttimeoutstatic"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572250-terminatenotify": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "terminateNotify"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572250-terminatenotify",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "terminateNotify",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572250-terminatenotify"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572251-setnextorbaddress": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setNextORBAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572251-setnextorbaddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setNextORBAddress",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572251-setnextorbaddress"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572252-doreconnect": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "doReconnect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572252-doreconnect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "doReconnect",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572252-doreconnect"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572253-appendorbimmediate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendORBImmediate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572253-appendorbimmediate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendORBImmediate",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572253-appendorbimmediate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572254-fetchagentwritecomplete": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchAgentWriteComplete"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572254-fetchagentwritecomplete",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fetchAgentWriteComplete",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572254-fetchagentwritecomplete"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572255-fetchagentretrytimerstatic": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchAgentRetryTimerStatic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572255-fetchagentretrytimerstatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fetchAgentRetryTimerStatic",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572255-fetchagentretrytimerstatic"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572256-setlogoutcompletion": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setLogoutCompletion"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572256-setlogoutcompletion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setLogoutCompletion",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572256-setlogoutcompletion"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572257-staticexecutelogin": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "staticExecuteLogin"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572257-staticexecutelogin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "staticExecuteLogin",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572257-staticexecutelogin"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572259-completelogin": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "completeLogin"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572259-completelogin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "completeLogin",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572259-completelogin"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572260-resumenotify": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "resumeNotify"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572260-resumenotify",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resumeNotify",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572260-resumenotify"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572261-staticexecutelogout": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "staticExecuteLogout"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572261-staticexecutelogout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "staticExecuteLogout",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572261-staticexecutelogout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572262-staticexecuteunsolicitedstatusen": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "staticExecuteUnsolicitedStatusEnable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572262-staticexecuteunsolicitedstatusen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "staticExecuteUnsolicitedStatusEnable",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572262-staticexecuteunsolicitedstatusen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572263-staticexecuteremoveorb": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "staticExecuteRemoveORB"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572263-staticexecuteremoveorb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "staticExecuteRemoveORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572263-staticexecuteremoveorb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572264-removeorb": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeORB"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572264-removeorb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572264-removeorb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572265-reconnectstatusblockwrite": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "reconnectStatusBlockWrite"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572265-reconnectstatusblockwrite",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reconnectStatusBlockWrite",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572265-reconnectstatusblockwrite"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572266-submitorb": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "submitORB"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572266-submitorb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "submitORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572266-submitorb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572267-stopreconnectretrytimer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopReconnectRetryTimer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572267-stopreconnectretrytimer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stopReconnectRetryTimer",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572267-stopreconnectretrytimer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572268-fetchagentresetcomplete": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchAgentResetComplete"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572268-fetchagentresetcomplete",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fetchAgentResetComplete",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572268-fetchagentresetcomplete"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572271-getfirewirelun": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getFireWireLUN"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572271-getfirewirelun",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getFireWireLUN",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572271-getfirewirelun"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572272-sendreconnectnotificationwithsta": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendReconnectNotificationWithStatusBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572272-sendreconnectnotificationwithsta",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendReconnectNotificationWithStatusBlock",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572272-sendreconnectnotificationwithsta"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572277-startreconnecttimer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "startReconnectTimer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572277-startreconnecttimer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startReconnectTimer",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572277-startreconnecttimer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572278-logintimeout": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "loginTimeout"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572278-logintimeout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loginTimeout",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572278-logintimeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572280-getstatusnotifyproc": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getStatusNotifyProc"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572280-getstatusnotifyproc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getStatusNotifyProc",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572280-getstatusnotifyproc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572282-executeorb": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeORB"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572282-executeorb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572282-executeorb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572286-startorbtimer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "startORBTimer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572286-startorbtimer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startORBTimer",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572286-startorbtimer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572287-doorbellcomplete": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "doorbellComplete"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572287-doorbellcomplete",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "doorbellComplete",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572287-doorbellcomplete"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572288-isphysicalaccessenabled": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPhysicalAccessEnabled"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572288-isphysicalaccessenabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isPhysicalAccessEnabled",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1572288-isphysicalaccessenabled"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813411-createorb": {
+      "abstract": [
+        {
+          "text": "Creates a new IOFireWireSBP2ORB for this login.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813411-createorb",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "createORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813411-createorb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813441-enableunsolicitedstatus": {
+      "abstract": [
+        {
+          "text": "Enables unsolicited status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813441-enableunsolicitedstatus",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "enableUnsolicitedStatus",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813441-enableunsolicitedstatus"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813479-getloginflags": {
+      "abstract": [
+        {
+          "text": "Returns the currently set login flags.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813479-getloginflags",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getLoginFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813479-getloginflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813507-getloginid": {
+      "abstract": [
+        {
+          "text": "Returns the current login ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813507-getloginid",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getLoginID",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813507-getloginid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813539-getmaxcommandblocksize": {
+      "abstract": [
+        {
+          "text": "Returns the maximum command block size.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813539-getmaxcommandblocksize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getMaxCommandBlockSize",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813539-getmaxcommandblocksize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813578-getmaxpayloadsize": {
+      "abstract": [
+        {
+          "text": "Returns the currently set maximum payload size.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813578-getmaxpayloadsize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getMaxPayloadSize",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813578-getmaxpayloadsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813610-getreconnecttime": {
+      "abstract": [
+        {
+          "text": "Returns the currently set reconnect time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813610-getreconnecttime",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getReconnectTime",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813610-getreconnecttime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813628-getrefcon": {
+      "abstract": [
+        {
+          "text": "Returns the refCon set with setRefCon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813628-getrefcon",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getRefCon",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813628-getrefcon"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813642-getstatusnotifyproc": {
+      "abstract": [
+        {
+          "text": "Returns the callback to be called on normal command status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813642-getstatusnotifyproc",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getStatusNotifyProc",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813642-getstatusnotifyproc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813655-getunsolicitedstatusnotifyproc": {
+      "abstract": [
+        {
+          "text": "Returns the callback to be called on unsolicited status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813655-getunsolicitedstatusnotifyproc",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getUnsolicitedStatusNotifyProc",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813655-getunsolicitedstatusnotifyproc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813662-release": {
+      "abstract": [
+        {
+          "text": "Primary implementation of the release mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813662-release",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "release",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813662-release"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813671-ringdoorbell": {
+      "abstract": [
+        {
+          "text": "Rings the doorbell on the LUN.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813671-ringdoorbell",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ringDoorbell",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813671-ringdoorbell"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813679-setbusytimeoutregistervalue": {
+      "abstract": [
+        {
+          "text": "Sets the value to be written to the BUSY_TIMEOUT register.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813679-setbusytimeoutregistervalue",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setBusyTimeoutRegisterValue",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813679-setbusytimeoutregistervalue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813686-setfetchagentresetcompletion": {
+      "abstract": [
+        {
+          "text": "Sets the callback to be called when a fetch agent reset completes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813686-setfetchagentresetcompletion",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setFetchAgentResetCompletion",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813686-setfetchagentresetcompletion"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813693-setfetchagentwritecompletion": {
+      "abstract": [
+        {
+          "text": "Sets the callback to be called when the fetch agent write completes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813693-setfetchagentwritecompletion",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setFetchAgentWriteCompletion",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813693-setfetchagentwritecompletion"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813704-setlogincompletion": {
+      "abstract": [
+        {
+          "text": "Sets the callback to be called when a login attempt is complete.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813704-setlogincompletion",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setLoginCompletion",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813704-setlogincompletion"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813712-setloginflags": {
+      "abstract": [
+        {
+          "text": "Sets login configuration flags.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813712-setloginflags",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setLoginFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813712-setloginflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813721-setloginretrycountanddelaytime": {
+      "abstract": [
+        {
+          "text": "Sets login retry behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813721-setloginretrycountanddelaytime",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setLoginRetryCountAndDelayTime",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813721-setloginretrycountanddelaytime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813730-setlogoutcompletion": {
+      "abstract": [
+        {
+          "text": "Sets the callback to be called when a logout attempt is complete.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813730-setlogoutcompletion",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setLogoutCompletion",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813730-setlogoutcompletion"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813735-setmaxpayloadsize": {
+      "abstract": [
+        {
+          "text": "Sets the maximum data transfer length for a normal command ORB.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813735-setmaxpayloadsize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setMaxPayloadSize",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813735-setmaxpayloadsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813740-setpassword": {
+      "abstract": [
+        {
+          "text": "Sets the login password.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813740-setpassword",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setPassword(IOMemoryDescriptor *)",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813740-setpassword"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813743-setpassword": {
+      "abstract": [
+        {
+          "text": "Sets the login password.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813743-setpassword",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setPassword(void *, UInt32)",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813743-setpassword"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813747-setreconnecttime": {
+      "abstract": [
+        {
+          "text": "Sets the desired reconnect duration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813747-setreconnecttime",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setReconnectTime",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813747-setreconnecttime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813752-setrefcon": {
+      "abstract": [
+        {
+          "text": "Sets the login refCon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813752-setrefcon",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setRefCon",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813752-setrefcon"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813755-setstatusnotifyproc": {
+      "abstract": [
+        {
+          "text": "Sets the callback to be called on normal command status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813755-setstatusnotifyproc",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setStatusNotifyProc",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813755-setstatusnotifyproc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813759-setunsolicitedstatusnotifyproc": {
+      "abstract": [
+        {
+          "text": "Sets the callback to be called on normal command status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813759-setunsolicitedstatusnotifyproc",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setUnsolicitedStatusNotifyProc",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813759-setunsolicitedstatusnotifyproc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813764-submitfetchagentreset": {
+      "abstract": [
+        {
+          "text": "Resets the LUN's fetch agent.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813764-submitfetchagentreset",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "submitFetchAgentReset",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813764-submitfetchagentreset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813766-submitlogin": {
+      "abstract": [
+        {
+          "text": "Attempts to login to the LUN.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813766-submitlogin",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "submitLogin",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813766-submitlogin"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813770-submitlogout": {
+      "abstract": [
+        {
+          "text": "Attempts to logout of the LUN.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813770-submitlogout",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "submitLogout",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813770-submitlogout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813772-submitorb": {
+      "abstract": [
+        {
+          "text": "Submits the given orb",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813772-submitorb",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "submitORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/1813772-submitorb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/3516724-fetchagentwritecomplete": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchAgentWriteComplete"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/3516724-fetchagentwritecomplete",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fetchAgentWriteComplete",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/3516724-fetchagentwritecomplete"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/3516725-setpassword": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPassword"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/3516725-setpassword",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPassword",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login/3516725-setpassword"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2managementorb": {
+      "abstract": [
+        {
+          "text": "Supplies non login related management ORBs. Management ORBs can be executed independent of a login, if necessary. Management ORBs are created using the IOFireWireSBP2LUN interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2managementorb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireSBP2ManagementORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2managementorb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb": {
+      "abstract": [
+        {
+          "text": "Represents an SBP2 normal command ORB. Supplies the APIs for configuring normal command ORBs. This includes setting the command block and writing the page tables for I/O. The ORBs are executed using the submitORB method in IOFireWireSBP2Login.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireSBP2ORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2managementorb",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2fetchagentwritecallback",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2logincallback",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2logincompleteparams",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2logincompleteparamsptr",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2loginresponse",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2loginresponseptr",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcallback",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcompleteparams",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcompleteparamsptr",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2managementcallback",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2notifycallback",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2notifyparams",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2notifyparamsptr",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2reconnectparams",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2reconnectparamsptr",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2statusblock",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2statuscallback"
+      ],
+      "title": "Serial Bus Protocol 2"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1675126",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813411-createorb",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813441-enableunsolicitedstatus",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813479-getloginflags",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813507-getloginid",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813539-getmaxcommandblocksize",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813578-getmaxpayloadsize",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813610-getreconnecttime",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813628-getrefcon",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813642-getstatusnotifyproc",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813655-getunsolicitedstatusnotifyproc",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813662-release",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813671-ringdoorbell",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813679-setbusytimeoutregistervalue",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813686-setfetchagentresetcompletion",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813693-setfetchagentwritecompletion",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813704-setlogincompletion",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813712-setloginflags",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813721-setloginretrycountanddelaytime",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813730-setlogoutcompletion",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813735-setmaxpayloadsize",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813740-setpassword",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813743-setpassword",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813747-setreconnecttime",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813752-setrefcon",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813755-setstatusnotifyproc",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813759-setunsolicitedstatusnotifyproc",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813764-submitfetchagentreset",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813766-submitlogin",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813770-submitlogout",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1813772-submitorb"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "2860348",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572200-abortlogin",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572184-addorb",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572137-allocateresources",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572215-appendorb",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572253-appendorbimmediate",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572180-cancelorbtimer",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572228-clearalltasksinset",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572238-clearlogingeneration",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572259-completelogin",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572182-completelogout",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572197-createorb",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572252-doreconnect",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572287-doorbellcomplete",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572227-enableunsolicitedstatus",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572219-executeaddorb",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572181-executedoorbell",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572235-executefetchagentreset",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572248-executelogin",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572169-executelogout",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572282-executeorb",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572199-executeremoveorb",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572138-executesetbusytimeout",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572166-executeunsolicitedstatusenable",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572268-fetchagentresetcomplete",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572168-fetchagentretrytimer",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572254-fetchagentwritecomplete",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/3516724-fetchagentwritecomplete",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572232-free",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572132-getardmmax",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572271-getfirewirelun",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572113-getfirewireunit",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572226-getloginflags",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572136-getloginid",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572118-getmaxcommandblocksize",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572190-getmaxpayloadsize",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572158-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572173-getreconnecttime",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572129-getrefcon",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572280-getstatusnotifyproc",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572205-gettarget",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572189-getunitinformation",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572244-getunsolicitedstatusnotifyproc",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572176-initorbwithlogin",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572127-initwithlun",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572154-initialexecutelogin",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572165-isconnected",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572109-isfetchagentwriteinprogress",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572217-isorbappended",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572157-isorbtimerset",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572288-isphysicalaccessenabled",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572171-loginretrytimeout",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572278-logintimeout",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572223-loginwritecomplete",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572162-logouttimeout",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572216-logoutwritecomplete",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572123-prepareorbforexecution",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572224-processloginwrite",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572111-reconnectretrytimeout",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572265-reconnectstatusblockwrite",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572112-reconnecttimeout",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572163-reconnectwritecomplete",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572125-release",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572203-removelogin",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572264-removeorb",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572140-restartreconnect",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572260-resumenotify",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572192-ringdoorbell",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572233-sendreconnectnotification",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572272-sendreconnectnotificationwithsta",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572239-sendtimeoutnotification",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572106-setaddressloforloginorbandrespon",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572188-setbusytimeoutcomplete",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572126-setbusytimeoutregistervalue",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572247-setfetchagentresetcompletion",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572115-setfetchagentwritecompletion",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572117-setlogincompletion",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572119-setloginflags",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572231-setlogingeneration",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572195-setloginretrycountanddelaytime",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572256-setlogoutcompletion",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572145-setmaxpayloadsize",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572251-setnextorbaddress",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572107-setorbisappended",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572237-setpassword",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/3516725-setpassword",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572110-setreconnecttime",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572135-setrefcon",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572214-setstatusnotifyproc",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572191-setunsolicitedstatusnotifyproc",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572229-startfetchagentretrytimer",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572196-startloginretrytimer",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572286-startorbtimer",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572221-startreconnectretrytimer",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572277-startreconnecttimer",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572194-statusblockwrite",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572170-stopfetchagentretrytimer",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572146-stoploginretrytimer",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572267-stopreconnectretrytimer",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572193-submitfetchagentreset",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572172-submitlogin",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572240-submitlogout",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572266-submitorb",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572222-suspendednotify",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572250-terminatenotify",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572160-unsolicitedstatusenablecomplete"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2860349",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572177-doorbellcompletestatic",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572201-fetchagentresetcompletestatic",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572255-fetchagentretrytimerstatic",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572206-fetchagentwritecompletestatic",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572208-loginretrytimeoutstatic",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572147-logintimeoutstatic",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572174-loginwritecompletestatic",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572249-logouttimeoutstatic",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572185-logoutwritecompletestatic",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572210-reconnectretrytimeoutstatic",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572209-reconnectstatusblockwritestatic",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572143-reconnecttimeoutstatic",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572178-reconnectwritecompletestatic",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572148-setbusytimeoutcompletestatic",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572142-staticexecuteaddorb",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572236-staticexecutedoorbell",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572186-staticexecutefetchagentreset",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572257-staticexecutelogin",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572261-staticexecutelogout",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572151-staticexecuteorb",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572263-staticexecuteremoveorb",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572262-staticexecuteunsolicitedstatusen",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572144-statusblockwritestatic",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login/1572198-unsolicitedstatusenablecompletes"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iofirewiresbp2login"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

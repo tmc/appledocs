@@ -1,0 +1,837 @@
+{
+  "abstract": [
+    {
+      "text": "Expand the market for your app by supporting multiple languages and regions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/localization"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "collectionGroup",
+    "title": "Localization"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Localization is the process of translating and adapting your app into multiple languages",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and regions. Localize your app to provide access for users who speak a variety of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "languages, and who download from different App Store territories.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "internationalize",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " your code with APIs that automatically format and translate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "strings correctly for the language and region. Then add support for content that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "includes plural nouns and verbs by following language plural rules to increase the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "accuracy of your translations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Translate-and-adapt-your-app",
+          "level": 3,
+          "text": "Translate and adapt your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Xcode, localization refers specifically to the set of resources for a specific",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "language and region that you support.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You add a localization to your project and select the resources you want to include",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for that language and region. Export the localization and send the files to ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "localizers",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "who translate the user-facing text and adapt resources for particular cultures and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "regions. Finally, you import the localized files and test the app in that language",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and region directly in Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you release a localized version of your app, you can also localize the App Store",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information in App Store Connect for the specific territories where you offer your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For other localization tips, tools, and resources, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/localization/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In Xcode 15 and later, string catalogs are the recommended way to localize strings. In earlier versions of Xcode, use strings and ",
+                  "type": "text"
+                },
+                {
+                  "code": "stringsdict",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " files. For more information about string catalogs, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/localizing-and-varying-text-with-a-string-catalog",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-resources-to-localizations": {
+      "abstract": [
+        {
+          "text": "Include more resources in the localizations you add to your project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-resources-to-localizations",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding resources to localizations",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-resources-to-localizations"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-support-for-languages-and-regions": {
+      "abstract": [
+        {
+          "text": "Select the resources that you want to localize for each language and region you support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-support-for-languages-and-regions",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding support for languages and regions",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-support-for-languages-and-regions"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/asset-management": {
+      "abstract": [
+        {
+          "text": "Add images, strings, data files, and other resources to your projects, and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "manage how you load them at runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/asset-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Asset management",
+      "type": "topic",
+      "url": "/documentation/xcode/asset-management"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/choosing-localization-regions-and-scripts": {
+      "abstract": [
+        {
+          "text": "Add a language-only localization or localizations specific to regional variants and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "scripts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/choosing-localization-regions-and-scripts",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing localization regions and scripts",
+      "type": "topic",
+      "url": "/documentation/xcode/choosing-localization-regions-and-scripts"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-screenshots-of-your-app-for-localizers": {
+      "abstract": [
+        {
+          "text": "Share screenshots of your app with localizers to provide context for translation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-screenshots-of-your-app-for-localizers",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating screenshots of your app for localizers",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-screenshots-of-your-app-for-localizers"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-width-and-device-variants-of-strings": {
+      "abstract": [
+        {
+          "text": "Change a localized string for different interface widths and devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-width-and-device-variants-of-strings",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating width and device variants of strings",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-width-and-device-variants-of-strings"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/editing-xliff-and-string-catalog-files": {
+      "abstract": [
+        {
+          "text": "Translate or adapt the localizable files for a language and region that you export",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from your project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/editing-xliff-and-string-catalog-files",
+      "kind": "article",
+      "role": "article",
+      "title": "Editing XLIFF and string catalog files",
+      "type": "topic",
+      "url": "/documentation/xcode/editing-xliff-and-string-catalog-files"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/exporting-localizations": {
+      "abstract": [
+        {
+          "text": "Provide the localizable files from your project to localizers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/exporting-localizations",
+      "kind": "article",
+      "role": "article",
+      "title": "Exporting localizations",
+      "type": "topic",
+      "url": "/documentation/xcode/exporting-localizations"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/importing-localizations": {
+      "abstract": [
+        {
+          "text": "Import the files that you translate or adapt for a language and region into your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/importing-localizations",
+      "kind": "article",
+      "role": "article",
+      "title": "Importing localizations",
+      "type": "topic",
+      "url": "/documentation/xcode/importing-localizations"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/localizing-and-varying-text-with-a-string-catalog": {
+      "abstract": [
+        {
+          "text": "Use a string catalog to translate text, handle plurals, and vary the text your app displays on specific devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localizing-and-varying-text-with-a-string-catalog",
+      "kind": "article",
+      "role": "article",
+      "title": "Localizing and varying text with a string catalog",
+      "type": "topic",
+      "url": "/documentation/xcode/localizing-and-varying-text-with-a-string-catalog"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/localizing-assets-in-a-catalog": {
+      "abstract": [
+        {
+          "text": "Use asset catalogs to localize colors, images, symbols, watch complications, and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localizing-assets-in-a-catalog",
+      "kind": "article",
+      "role": "article",
+      "title": "Localizing assets in a catalog",
+      "type": "topic",
+      "url": "/documentation/xcode/localizing-assets-in-a-catalog"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/localizing-strings-that-contain-plurals": {
+      "abstract": [
+        {
+          "text": "Use a strings dictionary file to ensure correct localization of strings that contain",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "language plurals.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localizing-strings-that-contain-plurals",
+      "kind": "article",
+      "role": "article",
+      "title": "Localizing strings that contain plurals",
+      "type": "topic",
+      "url": "/documentation/xcode/localizing-strings-that-contain-plurals"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/locking-views-in-storyboard-and-xib-files": {
+      "abstract": [
+        {
+          "text": "Prevent changes to your Interface Builder files while localizing human-facing strings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/locking-views-in-storyboard-and-xib-files",
+      "kind": "article",
+      "role": "article",
+      "title": "Locking views in storyboard and XIB files",
+      "type": "topic",
+      "url": "/documentation/xcode/locking-views-in-storyboard-and-xib-files"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/preparing-dates-numbers-with-formatters": {
+      "abstract": [
+        {
+          "text": "Ensure that dates, currencies, and numbers display correctly across multiple languages and locales by using formatters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/preparing-dates-numbers-with-formatters",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing dates, currencies, and numbers for translation",
+      "type": "topic",
+      "url": "/documentation/xcode/preparing-dates-numbers-with-formatters"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/preparing-your-apps-text-for-translation": {
+      "abstract": [
+        {
+          "text": "Make your app’s text translatable by leveraging the localization APIs in the Foundation framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/preparing-your-apps-text-for-translation",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your app’s text for translation",
+      "type": "topic",
+      "url": "/documentation/xcode/preparing-your-apps-text-for-translation"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/preparing-your-interface-for-localization": {
+      "abstract": [
+        {
+          "text": "Find text in your app that needs translation and verify that your interface adapts",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to translated text.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/preparing-your-interface-for-localization",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your interface for localization",
+      "type": "topic",
+      "url": "/documentation/xcode/preparing-your-interface-for-localization"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/previewing-localizations": {
+      "abstract": [
+        {
+          "text": "Test localizations in the SwiftUI preview or the Interface Builder preview.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/previewing-localizations",
+      "kind": "article",
+      "role": "article",
+      "title": "Previewing localizations",
+      "type": "topic",
+      "url": "/documentation/xcode/previewing-localizations"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/supporting-multiple-languages-in-your-app": {
+      "abstract": [
+        {
+          "text": "Internationalize your app’s strings, images, and other resource types to prepare for the translation process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/supporting-multiple-languages-in-your-app",
+      "images": [
+        {
+          "identifier": "supporting-multiple-languages-in-your-app-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting multiple languages in your app",
+      "type": "topic",
+      "url": "/documentation/xcode/supporting-multiple-languages-in-your-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/testing-localizations-when-running-your-app": {
+      "abstract": [
+        {
+          "text": "Run your app in each language and region you support to thoroughly test your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/testing-localizations-when-running-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing localizations when running your app",
+      "type": "topic",
+      "url": "/documentation/xcode/testing-localizations-when-running-your-app"
+    },
+    "doc://com.apple.documentation/documentation/Accessibility/accessibility-inspector": {
+      "abstract": [
+        {
+          "text": "Reveal how your app represents itself to people using accessibility features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accessibility/accessibility-inspector",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessibility Inspector",
+      "type": "topic",
+      "url": "/documentation/Accessibility/accessibility-inspector"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Preparing-views-for-localization": {
+      "abstract": [
+        {
+          "text": "Specify hints and add strings to localize your SwiftUI views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Preparing-views-for-localization",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing views for localization",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Preparing-views-for-localization"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/xcode/autosizing_views_for_localization_in_ios": {
+      "abstract": [
+        {
+          "text": "Add auto layout constraints to your app to achieve localizable views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/xcode/autosizing_views_for_localization_in_ios",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Autosizing Views for Localization in iOS",
+      "type": "topic",
+      "url": "/documentation/xcode/autosizing_views_for_localization_in_ios"
+    },
+    "doc://com.apple.documentation/documentation/xcode/localization-friendly_layouts_in_macos": {
+      "abstract": [
+        {
+          "text": "This project demonstrates localization-friendly auto layout constraints. It uses `NSGridView` as a container view to achieve localized layouts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/xcode/localization-friendly_layouts_in_macos",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Localization-Friendly Layouts in macOS",
+      "type": "topic",
+      "url": "/documentation/xcode/localization-friendly_layouts_in_macos"
+    },
+    "https://developer.apple.com/localization/": {
+      "identifier": "https://developer.apple.com/localization/",
+      "title": "Expanding Your App to New Markets",
+      "titleInlineContent": [
+        {
+          "text": "Expanding Your App to New",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Markets",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/localization/"
+    },
+    "supporting-multiple-languages-in-your-app-PageImage-card.png": {
+      "alt": "Two iPhones displayed side-by-side. The iPhone on the left displays the word Hello in English. The iPhone on the right displays the Chinese word for Hello in the display.",
+      "identifier": "supporting-multiple-languages-in-your-app-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6435d4bd1a0089892c22e32a0af69482/supporting-multiple-languages-in-your-app-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b83ed8b6f3e89b9c97aae4e676aef5b6/supporting-multiple-languages-in-your-app-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/asset-management",
+        "doc://com.apple.documentation/documentation/Accessibility/accessibility-inspector"
+      ],
+      "title": "Interface"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/supporting-multiple-languages-in-your-app",
+        "doc://com.apple.Xcode/documentation/Xcode/localizing-and-varying-text-with-a-string-catalog"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Strings-and-text",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/preparing-your-interface-for-localization",
+        "doc://com.apple.Xcode/documentation/Xcode/preparing-your-apps-text-for-translation",
+        "doc://com.apple.Xcode/documentation/Xcode/preparing-dates-numbers-with-formatters"
+      ],
+      "title": "Strings and text"
+    },
+    {
+      "anchor": "Layouts-and-views",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/SwiftUI/Preparing-views-for-localization",
+        "doc://com.apple.documentation/documentation/xcode/autosizing_views_for_localization_in_ios",
+        "doc://com.apple.documentation/documentation/xcode/localization-friendly_layouts_in_macos"
+      ],
+      "title": "Layouts and views"
+    },
+    {
+      "anchor": "Languages-and-regions",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/adding-support-for-languages-and-regions",
+        "doc://com.apple.Xcode/documentation/Xcode/choosing-localization-regions-and-scripts"
+      ],
+      "title": "Languages and regions"
+    },
+    {
+      "anchor": "Resources-and-assets",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/adding-resources-to-localizations",
+        "doc://com.apple.Xcode/documentation/Xcode/localizing-assets-in-a-catalog"
+      ],
+      "title": "Resources and assets"
+    },
+    {
+      "anchor": "Translation-and-adaptation",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/creating-screenshots-of-your-app-for-localizers",
+        "doc://com.apple.Xcode/documentation/Xcode/exporting-localizations",
+        "doc://com.apple.Xcode/documentation/Xcode/editing-xliff-and-string-catalog-files",
+        "doc://com.apple.Xcode/documentation/Xcode/importing-localizations",
+        "doc://com.apple.Xcode/documentation/Xcode/locking-views-in-storyboard-and-xib-files"
+      ],
+      "title": "Translation and adaptation"
+    },
+    {
+      "anchor": "Testing",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/previewing-localizations",
+        "doc://com.apple.Xcode/documentation/Xcode/testing-localizations-when-running-your-app"
+      ],
+      "title": "Testing"
+    },
+    {
+      "anchor": "Legacy-localization-techniques",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/localizing-strings-that-contain-plurals",
+        "doc://com.apple.Xcode/documentation/Xcode/creating-width-and-device-variants-of-strings"
+      ],
+      "title": "Legacy localization techniques"
+    }
+  ]
+}

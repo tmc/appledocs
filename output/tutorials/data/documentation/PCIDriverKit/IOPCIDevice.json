@@ -1,0 +1,1298 @@
+{
+  "abstract": [
+    {
+      "text": "A DriverKit provider object that manages access to your custom PCI hardware.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOPCIDevice",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "IOPCIDevice"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PCIDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "IOPCIDevice"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "DriverKit"
+      },
+      {
+        "beta": false,
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "IOPCIDevice"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOPCIDevice"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an ",
+              "type": "text"
+            },
+            {
+              "code": "IOPCIDevice",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to enable or manage the custom features of your PCI hardware. You don’t create instances of this class directly. Instead, the system creates an ",
+              "type": "text"
+            },
+            {
+              "code": "IOPCIDevice",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object and passes it to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass of your custom driver. Use the methods of this object to read and write your hardware’s configuration settings. You can also use it to read and write any custom data in your device’s memory-mapped I/O.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The endpoint driver is responsible for enabling the Memory Space Enable and Bus Master Enable settings each time it configures the PCI device. When a crash occurs, or when the system unloads your driver, the system disables these features.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/driverkit/ioservice": {
+      "abstract": [
+        {
+          "text": "The base class for managing the setup and registration of your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1640325-interrupt_types": {
+      "abstract": [
+        {
+          "text": "Interrupt types that the device supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1640325-interrupt_types",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Interrupt Types",
+      "type": "topic",
+      "url": "/documentation/kernel/1640325-interrupt_types"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop device drivers for Peripheral Component Interconnect (PCI) accessories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PCIDriverKit",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice": {
+      "abstract": [
+        {
+          "text": "A DriverKit provider object that manages access to your custom PCI hardware.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOPCIDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOPCIDevice",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ClientCrashed": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ClientCrashed"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ClientCrashed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ClientCrashed",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/clientcrashed"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/Close": {
+      "abstract": [
+        {
+          "text": "Closes the session to the PCI device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Close"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/Close",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Close",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/close"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ConfigurationRead16": {
+      "abstract": [
+        {
+          "text": "Reads a 16-bit data value synchronously from the device’s configuration space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ConfigurationRead16"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ConfigurationRead16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConfigurationRead16",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/configurationread16"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ConfigurationRead32": {
+      "abstract": [
+        {
+          "text": "Reads a 32-bit data value synchronously from the device’s configuration space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ConfigurationRead32"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ConfigurationRead32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConfigurationRead32",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/configurationread32"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ConfigurationRead8": {
+      "abstract": [
+        {
+          "text": "Reads an 8-bit data value synchronously from the device’s configuration space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ConfigurationRead8"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ConfigurationRead8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConfigurationRead8",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/configurationread8"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ConfigurationWrite16": {
+      "abstract": [
+        {
+          "text": "Writes an 16-bit data value to the device’s configuration space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ConfigurationWrite16"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ConfigurationWrite16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConfigurationWrite16",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/configurationwrite16"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ConfigurationWrite32": {
+      "abstract": [
+        {
+          "text": "Writes an 32-bit data value to the device’s configuration space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ConfigurationWrite32"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ConfigurationWrite32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConfigurationWrite32",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/configurationwrite32"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ConfigurationWrite8": {
+      "abstract": [
+        {
+          "text": "Writes an 8-bit data value to the device’s configuration space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ConfigurationWrite8"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ConfigurationWrite8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConfigurationWrite8",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/configurationwrite8"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ConfigureInterrupts": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ConfigureInterrupts"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ConfigureInterrupts",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConfigureInterrupts",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/configureinterrupts"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/EnablePCIPowerManagement": {
+      "abstract": [
+        {
+          "text": "Configures the device’s PCI bus power management capabilities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "EnablePCIPowerManagement"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/EnablePCIPowerManagement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EnablePCIPowerManagement",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/enablepcipowermanagement"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/FindPCICapability": {
+      "abstract": [
+        {
+          "text": "Search the configuration space for a PCI capability register.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "FindPCICapability"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/FindPCICapability",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FindPCICapability",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/findpcicapability"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/GetBARInfo": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetBARInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/GetBARInfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetBARInfo",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/getbarinfo"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/GetBusDeviceFunction": {
+      "abstract": [
+        {
+          "text": "Returns the device’s bus, device, and function numbers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetBusDeviceFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/GetBusDeviceFunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetBusDeviceFunction",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/getbusdevicefunction"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/GetLinkSpeed": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetLinkSpeed"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/GetLinkSpeed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetLinkSpeed",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/getlinkspeed"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/HasPCIPowerManagement": {
+      "abstract": [
+        {
+          "text": "Determines whether the device has the specified PCI bus power management capabilities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "HasPCIPowerManagement"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/HasPCIPowerManagement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HasPCIPowerManagement",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/haspcipowermanagement"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead16-50bq8": {
+      "abstract": [
+        {
+          "text": "Reads a 16-bit value synchronously from the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MemoryRead16"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead16-50bq8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryRead16",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memoryread16-50bq8"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead16-9qkdh": {
+      "abstract": [
+        {
+          "text": "Reads a 16-bit value synchronously from the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MemoryRead16"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead16-9qkdh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryRead16",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memoryread16-9qkdh"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead32-60hg9": {
+      "abstract": [
+        {
+          "text": "Reads a 32-bit value synchronously from the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MemoryRead32"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead32-60hg9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryRead32",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memoryread32-60hg9"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead32-84jap": {
+      "abstract": [
+        {
+          "text": "Reads a 32-bit value synchronously from the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MemoryRead32"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead32-84jap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryRead32",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memoryread32-84jap"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead64-37uob": {
+      "abstract": [
+        {
+          "text": "Reads a 64-bit value synchronously from the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MemoryRead64"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead64-37uob",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryRead64",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memoryread64-37uob"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead64-9ntrf": {
+      "abstract": [
+        {
+          "text": "Reads a 64-bit value synchronously from the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MemoryRead64"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead64-9ntrf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryRead64",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memoryread64-9ntrf"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead8-1edw0": {
+      "abstract": [
+        {
+          "text": "Reads a 8-bit value synchronously from the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MemoryRead8"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead8-1edw0",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryRead8",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memoryread8-1edw0"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead8-7b2zp": {
+      "abstract": [
+        {
+          "text": "Reads a 8-bit value synchronously from the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MemoryRead8"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead8-7b2zp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryRead8",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memoryread8-7b2zp"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite16-534yk": {
+      "abstract": [
+        {
+          "text": "Writes an 16-bit value to the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MemoryWrite16"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite16-534yk",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryWrite16",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memorywrite16-534yk"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite16-8k6ch": {
+      "abstract": [
+        {
+          "text": "Writes an 16-bit value to the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MemoryWrite16"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite16-8k6ch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryWrite16",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memorywrite16-8k6ch"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite32-4pmh": {
+      "abstract": [
+        {
+          "text": "Writes an 32-bit value to the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MemoryWrite32"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite32-4pmh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryWrite32",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memorywrite32-4pmh"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite32-ow7r": {
+      "abstract": [
+        {
+          "text": "Writes an 32-bit value to the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MemoryWrite32"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite32-ow7r",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryWrite32",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memorywrite32-ow7r"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite64-8qyob": {
+      "abstract": [
+        {
+          "text": "Writes an 64-bit value to the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MemoryWrite64"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite64-8qyob",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryWrite64",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memorywrite64-8qyob"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite64-nvpu": {
+      "abstract": [
+        {
+          "text": "Writes an 64-bit value to the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MemoryWrite64"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite64-nvpu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryWrite64",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memorywrite64-nvpu"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite8-1uey6": {
+      "abstract": [
+        {
+          "text": "Writes an 8-bit value to the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MemoryWrite8"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite8-1uey6",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryWrite8",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memorywrite8-1uey6"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite8-fzh6": {
+      "abstract": [
+        {
+          "text": "Writes an 8-bit value to the PCI device’s aperture at the specified memory index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MemoryWrite8"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite8-fzh6",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MemoryWrite8",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/memorywrite8-fzh6"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/Open": {
+      "abstract": [
+        {
+          "text": "Opens a session to the PCI device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Open"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/Open",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Open",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/open"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/Reset": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Reset"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/Reset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Reset",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/reset"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/RestoreDeviceState": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "RestoreDeviceState"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/RestoreDeviceState",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RestoreDeviceState",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/restoredevicestate"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/SaveDeviceState": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SaveDeviceState"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/SaveDeviceState",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SaveDeviceState",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/savedevicestate"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/SetASPMState": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetASPMState"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/SetASPMState",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetASPMState",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/setaspmstate"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/SetLinkSpeed": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetLinkSpeed"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/SetLinkSpeed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetLinkSpeed",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/setlinkspeed"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/SetProperties": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/SetProperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetProperties",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/setproperties"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/free": {
+      "abstract": [
+        {
+          "text": "Performs any final cleanup for the object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/free"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/init": {
+      "abstract": [
+        {
+          "text": "Initializes the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice/init"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/bridge-header-offsets-enum": {
+      "abstract": [
+        {
+          "text": "Constants that specify offsets to distinct registers in a memory range.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/bridge-header-offsets-enum",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Bridge Header Offsets",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/bridge-header-offsets-enum"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/command-register-bits-enum": {
+      "abstract": [
+        {
+          "text": "Constants that you use to access specific bits of the command register.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/command-register-bits-enum",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Command Register Bits",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/command-register-bits-enum"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/configuration-data-offsets-enum": {
+      "abstract": [
+        {
+          "text": "Constants for the offsets that you use to read and write configuration registers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/configuration-data-offsets-enum",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Configuration Data Offsets",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/configuration-data-offsets-enum"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/correctable-error-bits-enum": {
+      "abstract": [
+        {
+          "text": "Constants for the bits in the correctable error status register.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/correctable-error-bits-enum",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Correctable Error Bits",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/correctable-error-bits-enum"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/creating-custom-pcie-drivers-for-thunderbolt-devices": {
+      "abstract": [
+        {
+          "text": "Create a DriverKit extension to support your Thunderbolt device’s custom features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/creating-custom-pcie-drivers-for-thunderbolt-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Custom PCIe Drivers for Thunderbolt Devices",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/creating-custom-pcie-drivers-for-thunderbolt-devices"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/pci-capabilities-enum": {
+      "abstract": [
+        {
+          "text": "Constants that you use to get the capabilities of the PCI device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/pci-capabilities-enum",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "PCI Capabilities",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/pci-capabilities-enum"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/power-management-capabilities-enum": {
+      "abstract": [
+        {
+          "text": "Constants you use to get and set the state of the device’s power management features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/power-management-capabilities-enum",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Power Management Capabilities",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/power-management-capabilities-enum"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/power-management-control-status-register-enum": {
+      "abstract": [
+        {
+          "text": "Constants you use when checking bits in the power management register.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/power-management-control-status-register-enum",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Power Management Control/Status Register",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/power-management-control-status-register-enum"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/slot-capabilities-enum": {
+      "abstract": [
+        {
+          "text": "Constants that you use to get the slot-related capabilities of the PCI device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/slot-capabilities-enum",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Slot Capabilities",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/slot-capabilities-enum"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/status-register-bits-enum": {
+      "abstract": [
+        {
+          "text": "Constants that you use to access specific bits of the status register.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/status-register-bits-enum",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Status Register Bits",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/status-register-bits-enum"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/uncorrectable-error-bits-enum": {
+      "abstract": [
+        {
+          "text": "Constants for the bits in the uncorrectable error status register.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/uncorrectable-error-bits-enum",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Uncorrectable Error Bits",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/uncorrectable-error-bits-enum"
+    },
+    "doc://com.externally.resolved.symbol/c:@S@IOService": {
+      "abstract": [
+        {
+          "text": "The base class for managing the setup and registration of your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@S@IOService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:@S@IOService"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Device-Interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/creating-custom-pcie-drivers-for-thunderbolt-devices"
+      ],
+      "title": "Device Interface"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Running-the-Service",
+      "identifiers": [
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/init",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/Open",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/Close",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/free"
+      ],
+      "title": "Running the Service"
+    },
+    {
+      "anchor": "Reading-and-Writing-Configuration-Data",
+      "identifiers": [
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ConfigurationRead8",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ConfigurationRead16",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ConfigurationRead32",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ConfigurationWrite8",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ConfigurationWrite16",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ConfigurationWrite32",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/configuration-data-offsets-enum",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/bridge-header-offsets-enum",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/command-register-bits-enum",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/status-register-bits-enum"
+      ],
+      "title": "Reading and Writing Configuration Data"
+    },
+    {
+      "anchor": "Reading-and-Writing-Memory-Locations",
+      "identifiers": [
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead8-1edw0",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead8-7b2zp",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead16-9qkdh",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead16-50bq8",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead32-60hg9",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead32-84jap",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead64-9ntrf",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryRead64-37uob",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite8-1uey6",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite8-fzh6",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite16-8k6ch",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite16-534yk",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite32-4pmh",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite32-ow7r",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite64-8qyob",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/MemoryWrite64-nvpu"
+      ],
+      "title": "Reading and Writing Memory Locations"
+    },
+    {
+      "anchor": "Getting-Device-Information",
+      "identifiers": [
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/FindPCICapability",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/GetBusDeviceFunction",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/pci-capabilities-enum",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/slot-capabilities-enum"
+      ],
+      "title": "Getting Device Information"
+    },
+    {
+      "anchor": "Managing-Interrupts",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1640325-interrupt_types"
+      ],
+      "title": "Managing Interrupts"
+    },
+    {
+      "anchor": "Managing-Power",
+      "identifiers": [
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/HasPCIPowerManagement",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/EnablePCIPowerManagement",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/power-management-capabilities-enum",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/power-management-control-status-register-enum"
+      ],
+      "title": "Managing Power"
+    },
+    {
+      "anchor": "Getting-Error-Codes",
+      "identifiers": [
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/correctable-error-bits-enum",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/uncorrectable-error-bits-enum"
+      ],
+      "title": "Getting Error Codes"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ClientCrashed",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/ConfigureInterrupts",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/GetBARInfo",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/GetLinkSpeed",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/Reset",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/RestoreDeviceState",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/SaveDeviceState",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/SetASPMState",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/SetLinkSpeed",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice/SetProperties"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/pcidriverkit/iopcidevice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

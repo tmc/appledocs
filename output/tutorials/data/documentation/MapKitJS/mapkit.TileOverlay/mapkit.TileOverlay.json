@@ -1,0 +1,578 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a tile overlay with a URL template and style options.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "MapKit JS",
+      "versions": [
+        "5.0",
+        "5.78.1"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.TileOverlay"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.TileOverlay/mapkit.TileOverlay"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "instctr/mapkit.TileOverlay/mapkit.TileOverlay",
+    "modules": [
+      {
+        "name": "MapKit JS"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "5.0",
+        "name": "MapKit JS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Initializer",
+    "symbolKind": "init",
+    "title": "mapkit.TileOverlay"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: MapKit JS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "new"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "text",
+              "text": "mapkit.TileOverlay"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "\t"
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "string|function"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "text",
+              "text": "urlTemplate"
+            },
+            {
+              "kind": "text",
+              "text": ","
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "\t"
+            },
+            {
+              "kind": "keyword",
+              "text": "optional"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/TileOverlayConstructorOptions",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "struct/TileOverlayConstructorOptions",
+              "text": "TileOverlayConstructorOptions"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "text",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.TileOverlay/urlTemplate",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " can be in the format of a template URL string or a function that returns a URL string from a set of tile parameters. MapKit JS requests new tiles when the map zooms or pans, the display changes, or the custom ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.TileOverlay/data",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " properties change.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "The template string must be in the format: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "https://myserver/tile?x={x}&y={y}&z={z}&scale={scale}",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". MapKit JS replaces the ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "x",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ", ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "y",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ", ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "z",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ", and ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "scale",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " values depending on the displayed map region and screen resolution, then loads an image from that URL. You can also add custom values to the template string. For example, a template string could look like: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "https://{subdomain}.customtileserver.com/{z}/{x}/{y}?lang={lang}",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". In this case, you must define ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "TileOverlay.data.subdomain",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " and ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "TileOverlay.data.lang",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " for the placeholders to populate. Also, note that not all parameters are necessary in a template string. The ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "scale",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " parameter is absent in this example.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "You can provide a callback function instead of the template string. When MapKit JS needs to request new tiles, it invokes the ",
+                          "type": "text"
+                        },
+                        {
+                          "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.TileOverlay/urlTemplate",
+                          "isActive": true,
+                          "type": "reference"
+                        },
+                        {
+                          "text": " callback with the parameters ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "x",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ", ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "y",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ", ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "z",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ", ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "scale",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ", and ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "data",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The callback function must return a URL for the provided parameters. If the return value is anything but a nonempty string, MapKit JS doesn’t load any tiles for the requested region.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            }
+          ],
+          "name": "urlTemplate"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An optional object literal of properties for initializing the tile overlay. These properties include ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/TileOverlayConstructorOptions/minimumZ",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/TileOverlayConstructorOptions/maximumZ",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/TileOverlayConstructorOptions/opacity",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/TileOverlayConstructorOptions/data",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "options"
+        }
+      ]
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS": {
+      "abstract": [
+        {
+          "text": "Embed interactive Apple Maps on your website, annotate points of interest, and perform georelated searches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MapKit JS",
+      "type": "topic",
+      "url": "/documentation/mapkitjs"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/TileOverlayConstructorOptions": {
+      "abstract": [
+        {
+          "text": "Attributes for initializing a tile overlay, including minimum and maximum zoom, opacity, and custom data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/TileOverlayConstructorOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TileOverlayConstructorOptions",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/tileoverlayconstructoroptions"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/TileOverlayConstructorOptions/data": {
+      "abstract": [
+        {
+          "text": "Custom data for populating the URL template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/TileOverlayConstructorOptions/data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "data",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/tileoverlayconstructoroptions/data"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/TileOverlayConstructorOptions/maximumZ": {
+      "abstract": [
+        {
+          "text": "The maximum zoom level of the overlay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/TileOverlayConstructorOptions/maximumZ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maximumZ",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/tileoverlayconstructoroptions/maximumz"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/TileOverlayConstructorOptions/minimumZ": {
+      "abstract": [
+        {
+          "text": "The minimum zoom level of the overlay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/TileOverlayConstructorOptions/minimumZ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "minimumZ",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/tileoverlayconstructoroptions/minimumz"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/TileOverlayConstructorOptions/opacity": {
+      "abstract": [
+        {
+          "text": "The opacity level of the overlay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/TileOverlayConstructorOptions/opacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "opacity",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/tileoverlayconstructoroptions/opacity"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.TileOverlay": {
+      "abstract": [
+        {
+          "text": "An overlay that covers an area of the map with bitmapped tiles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.TileOverlay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.TileOverlay",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.tileoverlay"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.TileOverlay/data": {
+      "abstract": [
+        {
+          "text": "A dictionary of custom properties to use with the URL template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.TileOverlay/data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "data",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.tileoverlay/data"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.TileOverlay/mapkit.TileOverlay": {
+      "abstract": [
+        {
+          "text": "Creates a tile overlay with a URL template and style options.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.TileOverlay/mapkit.TileOverlay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.TileOverlay",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.tileoverlay/mapkit.tileoverlay"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.TileOverlay/urlTemplate": {
+      "abstract": [
+        {
+          "text": "A string, or callback function that returns a string, with a URL that provides the requested tile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.TileOverlay/urlTemplate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlTemplate",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.tileoverlay/urltemplate"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-a-tile-overlay",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/TileOverlayConstructorOptions"
+      ],
+      "title": "Creating a tile overlay"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mapkitjs/mapkit.tileoverlay/mapkit.tileoverlay"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

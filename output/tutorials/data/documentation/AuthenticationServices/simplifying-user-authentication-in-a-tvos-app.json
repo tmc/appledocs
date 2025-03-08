@@ -1,0 +1,568 @@
+{
+  "abstract": [
+    {
+      "text": "Build a fluid sign-in experience for your tvOS apps using AuthenticationServices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/simplifying-user-authentication-in-a-tvos-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Authentication Services"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Simplifying User Authentication in a tvOS App"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC21 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc21/10279/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the sample code project, perform the following steps in Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add your Apple ID account and assign the target to a team so Xcode can enable the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Associated Domains",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " capability with your provisioning profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configure your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains",
+                      "isActive": true,
+                      "overridingTitle": "web credentials domain",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "web credentials domain",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Associated Domains",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " capability and your website’s associated domains file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set up an Apple TV running tvOS 15 and an iPhone or iPad running iOS 15 or iPadOS 15.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the same Apple ID to both devices. Alternatively, you may ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://support.apple.com/en-us/HT208088",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " the iPhone or iPad with the Apple TV.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the Apple TV as the run destination in the scheme pop-up menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the toolbar, click Run, or choose Product > Run.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "93a90a8799b4/SimplifyingUserAuthenticationInATvOSApp.zip": {
+      "checksum": "93a90a8799b48f45e7420fc8f57295ecd61f8d045f9a8fefa7993087ece2109b11f7e9d2993a6b23dd04088a6280fc5013d20b35982e35a445d87cef9b5f1f15",
+      "identifier": "93a90a8799b4/SimplifyingUserAuthenticationInATvOSApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/93a90a8799b4/SimplifyingUserAuthenticationInATvOSApp.zip"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Make it easy for users to log into apps and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Authentication Services",
+      "type": "topic",
+      "url": "/documentation/authenticationservices"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential": {
+      "abstract": [
+        {
+          "text": "A credential that results from a successful Apple ID authentication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationAppleIDCredential"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationAppleIDCredential"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationAppleIDCredential",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationappleidcredential"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider": {
+      "abstract": [
+        {
+          "text": "A mechanism for generating requests to authenticate users based on their Apple ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationAppleIDProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationAppleIDProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationAppleIDProvider",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationappleidprovider"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/SignInWithAppleButton": {
+      "abstract": [
+        {
+          "text": "The view that creates the Sign in with Apple button for display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SignInWithAppleButton"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/SignInWithAppleButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SignInWithAppleButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "SignInWithAppleButton",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/signinwithapplebutton"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/implementing-user-authentication-with-sign-in-with-apple": {
+      "abstract": [
+        {
+          "text": "Provide a way for users of your app to set up an account and start using your services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/implementing-user-authentication-with-sign-in-with-apple",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing User Authentication with Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/implementing-user-authentication-with-sign-in-with-apple"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.applesignin": {
+      "abstract": [
+        {
+          "text": "An entitlement that lets your app use Sign in with Apple.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.applesignin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sign in with Apple Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.applesignin"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains": {
+      "abstract": [
+        {
+          "text": "Connect your app and a website to provide both a native app and a browser experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting associated domains",
+      "type": "topic",
+      "url": "/documentation/Xcode/supporting-associated-domains"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/wwdc21/10279/": {
+      "identifier": "https://developer.apple.com/wwdc21/10279/",
+      "title": "10279: Simplify sign in for your tvOS apps",
+      "titleInlineContent": [
+        {
+          "text": "10279: Simplify sign in for your tvOS apps",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc21/10279/"
+    },
+    "https://support.apple.com/en-us/HT208088": {
+      "identifier": "https://support.apple.com/en-us/HT208088",
+      "title": "pair",
+      "titleInlineContent": [
+        {
+          "text": "pair",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/HT208088"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "93a90a8799b4/SimplifyingUserAuthenticationInATvOSApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sign-In-with-Apple",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/implementing-user-authentication-with-sign-in-with-apple",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/SignInWithAppleButton",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.applesignin",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential"
+      ],
+      "title": "Sign In with Apple"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Sign-In-with-Apple",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/implementing-user-authentication-with-sign-in-with-apple",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.applesignin",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential"
+              ],
+              "title": "Sign In with Apple"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider/title",
+          "value": "ASAuthorizationAppleIDProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDCredential/title",
+          "value": "ASAuthorizationAppleIDCredential"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDCredential/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDCredential"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDCredential/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDCredential"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/authenticationservices/simplifying-user-authentication-in-a-tvos-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/authenticationservices/simplifying-user-authentication-in-a-tvos-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

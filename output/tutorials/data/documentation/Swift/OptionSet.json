@@ -1,0 +1,1059 @@
+{
+  "abstract": [
+    {
+      "text": "A type that presents a mathematical set interface to a bit set.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/OptionSet"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:s9OptionSetP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "OptionSet"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "OptionSet"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "OptionSet"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "OptionSet"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/RawRepresentable",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SY",
+              "text": "RawRepresentable"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/SetAlgebra",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s10SetAlgebraP",
+              "text": "SetAlgebra"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use the ",
+              "type": "text"
+            },
+            {
+              "code": "OptionSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol to represent bitset types, where",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "individual bits represent members of a set. Adopting this protocol in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your custom types lets you perform set-related operations such as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "membership tests, unions, and intersections on those types. What’s more,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when implemented using specific criteria, adoption of this protocol",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "requires no extra work on your part.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating an option set, include a ",
+              "type": "text"
+            },
+            {
+              "code": "rawValue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property in your type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "declaration. For your type to automatically receive default implementations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for set-related operations, the ",
+              "type": "text"
+            },
+            {
+              "code": "rawValue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property must be of a type that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "conforms to the ",
+              "type": "text"
+            },
+            {
+              "code": "FixedWidthInteger",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol, such as ",
+              "type": "text"
+            },
+            {
+              "code": "Int",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "UInt8",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Next, create unique options as static properties of your custom type using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "unique powers of two (1, 2, 4, 8, 16, and so forth) for each individual",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property’s raw value so that each property can be represented by a single",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "bit of the type’s raw value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, consider a custom type called ",
+              "type": "text"
+            },
+            {
+              "code": "ShippingOptions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that is an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "option set of the possible ways to ship a customer’s purchase.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "ShippingOptions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " includes a ",
+              "type": "text"
+            },
+            {
+              "code": "rawValue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of type ",
+              "type": "text"
+            },
+            {
+              "code": "Int",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that stores",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the bit mask of available shipping options. The static members ",
+              "type": "text"
+            },
+            {
+              "code": "nextDay",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "secondDay",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "priority",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "standard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are unique, individual options.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ShippingOptions: OptionSet {",
+            "    let rawValue: Int",
+            "",
+            "    static let nextDay    = ShippingOptions(rawValue: 1 << 0)",
+            "    static let secondDay  = ShippingOptions(rawValue: 1 << 1)",
+            "    static let priority   = ShippingOptions(rawValue: 1 << 2)",
+            "    static let standard   = ShippingOptions(rawValue: 1 << 3)",
+            "",
+            "    static let express: ShippingOptions = [.nextDay, .secondDay]",
+            "    static let all: ShippingOptions = [.express, .priority, .standard]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Declare additional preconfigured option set values as static properties",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "initialized with an array literal containing other option values. In the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, because the ",
+              "type": "text"
+            },
+            {
+              "code": "express",
+              "type": "codeVoice"
+            },
+            {
+              "text": " static property is assigned an array",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "literal with the ",
+              "type": "text"
+            },
+            {
+              "code": "nextDay",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "secondDay",
+              "type": "codeVoice"
+            },
+            {
+              "text": " options, it will contain those",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "two elements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Using-an-Option-Set-Type",
+          "level": 1,
+          "text": "Using an Option Set Type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you need to create an instance of an option set, assign one of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type’s static members to your variable or constant. Alternatively, to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "create an option set instance with multiple members, assign an array",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "literal with multiple static members of the option set. To create an empty",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance, assign an empty array literal to your variable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let singleOption: ShippingOptions = .priority",
+            "let multipleOptions: ShippingOptions = [.nextDay, .secondDay, .priority]",
+            "let noOptions: ShippingOptions = []"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use set-related operations to check for membership and to add or remove",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "members from an instance of your custom option set type. The following",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example shows how you can determine free shipping options based on a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "customer’s purchase price:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let purchasePrice = 87.55",
+            "",
+            "var freeOptions: ShippingOptions = []",
+            "if purchasePrice > 50 {",
+            "    freeOptions.insert(.priority)",
+            "}",
+            "",
+            "if freeOptions.contains(.priority) {",
+            "    print(\"You've earned free priority shipping!\")",
+            "} else {",
+            "    print(\"Add more to your cart for free priority shipping!\")",
+            "}",
+            "// Prints \"You've earned free priority shipping!\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Equatable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Equatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/swift/equatable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ExpressibleByArrayLiteral": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized using an array literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByArrayLiteral"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ExpressibleByArrayLiteral",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByArrayLiteral"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExpressibleByArrayLiteral",
+      "type": "topic",
+      "url": "/documentation/swift/expressiblebyarrayliteral"
+    },
+    "doc://com.apple.Swift/documentation/Swift/OptionSet": {
+      "abstract": [
+        {
+          "text": "A type that presents a mathematical set interface to a bit set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OptionSet"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/OptionSet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OptionSet"
+        }
+      ],
+      "role": "symbol",
+      "title": "OptionSet",
+      "type": "topic",
+      "url": "/documentation/swift/optionset"
+    },
+    "doc://com.apple.Swift/documentation/Swift/OptionSet/Element": {
+      "abstract": [
+        {
+          "text": "The element type of the option set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/OptionSet/Element",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Element",
+      "type": "topic",
+      "url": "/documentation/swift/optionset/element"
+    },
+    "doc://com.apple.Swift/documentation/Swift/OptionSet/init(rawValue:)": {
+      "abstract": [
+        {
+          "text": "Creates a new option set from the given raw value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rawValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SY8RawValueQa",
+          "text": "RawValue"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/OptionSet/init(rawValue:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "init(rawValue:)",
+      "type": "topic",
+      "url": "/documentation/swift/optionset/init(rawvalue:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RawRepresentable": {
+      "abstract": [
+        {
+          "text": "A type that can be converted to and from an associated raw value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RawRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RawRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RawRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "RawRepresentable",
+      "type": "topic",
+      "url": "/documentation/swift/rawrepresentable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Set": {
+      "abstract": [
+        {
+          "text": "An unordered collection of unique elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Set"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Set",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Set"
+        }
+      ],
+      "role": "symbol",
+      "title": "Set",
+      "type": "topic",
+      "url": "/documentation/swift/set"
+    },
+    "doc://com.apple.Swift/documentation/Swift/SetAlgebra": {
+      "abstract": [
+        {
+          "text": "A type that provides mathematical set operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetAlgebra"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/SetAlgebra",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SetAlgebra"
+        }
+      ],
+      "role": "symbol",
+      "title": "SetAlgebra",
+      "type": "topic",
+      "url": "/documentation/swift/setalgebra"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Equatable",
+        "doc://com.apple.Swift/documentation/Swift/ExpressibleByArrayLiteral",
+        "doc://com.apple.Swift/documentation/Swift/RawRepresentable",
+        "doc://com.apple.Swift/documentation/Swift/SetAlgebra"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sets",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Set"
+      ],
+      "title": "Sets"
+    }
+  ],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "When creating your own option set, implement this initializer with a fixed-width",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "integer, like ",
+          "type": "text"
+        },
+        {
+          "code": "Int",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", as the ",
+          "type": "text"
+        },
+        {
+          "code": "RawValue",
+          "type": "codeVoice"
+        },
+        {
+          "text": " type.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Required-Initializer",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/OptionSet/init(rawValue:)"
+      ],
+      "title": "Required Initializer"
+    },
+    {
+      "anchor": "Element",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/OptionSet/Element"
+      ],
+      "title": "Element"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/optionset"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

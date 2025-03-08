@@ -1,0 +1,2869 @@
+{
+  "abstract": [
+    {
+      "text": "Create a version of your Metal app that runs on both Apple silicon and Intel-based",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "Mac computers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Apple-Silicon/documentation/apple-silicon"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/porting-your-metal-code-to-apple-silicon"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Porting Your Metal Code to Apple Silicon"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "How you port a Metal app to a Mac with Apple silicon depends on whether your project",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "supports Apple family GPUs. If your project supports iOS or tvOS, it also supports",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Apple family GPUs. If your codebase is macOS-only, you may find situations where",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Apple family GPUs behave differently from the GPUs in Intel-based Macs. This article",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "describes how to port your app so it works across GPU families.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you port your app, test run it under Rosetta translation. When you run an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app linked against macOS 10.15 or earlier under Rosetta translation, Metal supports",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "backward compatibility through software workarounds for common programming errors;",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "these workarounds trade some GPU performance for behavior that’s more consistent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with Intel-based Macs. To expedite fixing your app, this article describes common",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "porting issues that you may encounter. For some issues, Metal doesn’t automatically",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "apply a workaround because the performance penalty is too large. If you expect your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app to run under translation, fix these issues first.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re ready to port your app, turn on Metal diagnostic tools in Xcode to search",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for problems in your code. After you fix these problems, recompile your app using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode 12, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/building-a-universal-macos-binary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Then, address",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the list of porting issues described in this article to ensure that your code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "accounts for these. Once your app runs correctly, analyze its performance and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "adjust your rendering strategy to take advantage of Apple family GPUs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-and-Correct-Potential-Porting-Issues",
+          "level": 3,
+          "text": "Identify and Correct Potential Porting Issues",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode can help validate whether your app uses Metal correctly. Although Xcode can’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "find every problem, fixing common problems before porting your app makes the porting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "process easier. Once you start porting your app, use Xcode to verify code changes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and understand how your code runs on Apple family GPUs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use API validation to find common Metal framework programming errors. When API",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "validation is on, Xcode stops in the debugger when you incorrectly call the Metal",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "API. For more information, see",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "doc://com.apple.documentation/documentation/metal/diagnosing_metal_programming_issues_early",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use shader validation to recompile your shaders with additional debugging added.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For example, shader validation stops in the debugger with an out-of-bounds error",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "if you attempt to access memory outside your buffers. For more information, see",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "doc://com.apple.documentation/documentation/metal/diagnosing_metal_programming_issues_early",
+                      "type": "text"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Capture a GPU trace using Metal Debugger to analyze a set of related Metal calls,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "such as all commands used to render a single frame of animation. Metal Debugger collects",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "data from Metal API calls, analyzes the resulting GPU trace, and provides suggestions",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to fix errors or improve performance. For example, modern game engines require dozens",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of passes and thousands of GPU commands to render complex scenes. Metal Debugger",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "can find dependencies between passes and uncover places where you incorrectly generate",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "or store data. Not all of Metal Debugger’s suggestions are problems you must fix.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "You decide whether or not to act on each suggestion. For more infiormation, see",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "doc://com.apple.documentation/documentation/metal/frame_capture_debugging_tools",
+                      "type": "text"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Test-for-GPU-Features-Your-App-Uses",
+          "level": 3,
+          "text": "Test for GPU Features Your App Uses",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metal collects sets of GPU features into ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "GPU families",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", so you can test for a group",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of features using a single query. When capabilities vary and features aren’t common",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "enough to be part of a specific family, Metal provides additional queries to get",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "detailed information about a GPU. You might need to test multiple GPU families, as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "well as specific Metal device object properties, to learn the capabilities of a GPU.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use that data to decide at runtime which strategy your app uses to leverage the GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Previously, Apple GPUs and Mac GPUs belonged to distinct families, and each GPU only",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "supported one family, so unless you designed a cross-platform app, you only checked",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for members of a single family. The GPU in a Mac with Apple silicon is a member of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "both GPU families, and supports both Mac family 2 and Apple family feature sets.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Now, to support both Apple silicon and Intel-based Mac computers, test for both families",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your app. Use a Mac family test to determine the major feature set that the computer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "supports. Test for an Apple GPU family where you can take advantage of features supported",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "only on an Apple family GPU, or to apply optimizations specific to tile-based rendering.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When a device object has a specific method or property to determine whether a feature",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is available, use that method or property instead of testing for GPU families.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Always use availability methods and properties to determine features, and don’t rely",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on the GPU name or other hardcoded information. GPU names may change on future hardware,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLDevice/name",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property of the device object is an unreliable indicator of the feature set.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Similarly, hard coding values for specific GPUs rather than using device queries",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can cause your app to crash, or prevent your app from taking advantage of new",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "features.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/detecting-gpu-features-and-metal-software-versions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For a list of specific queries, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-Load-and-Store-Actions-on-Your-Render-Passes",
+          "level": 3,
+          "text": "Set Load and Store Actions on Your Render Passes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every render target in a render pass has a load and store action that indicates what",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you expect the texture contents to be at the start and end of the render pass, respectively.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you compile your app for macOS 11, you must choose the correct load and store",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "actions for your render targets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On Intel-based Macs, setting these actions incorrectly often has no effect, because",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the GPUs in those systems render directly to memory, and don’t have dedicated stages",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that copy texture data between memory and the GPU. It’s possible that you may have",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "these actions incorrectly configured in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple-family GPUs use tile memory inside the GPU to temporarily hold texture contents",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "during the render pass. The load action determines whether the GPU copies a textureʼs",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "existing contents into tile memory, and the store action determines whether it stores",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the tile contents back to memory. If you set either action to ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "don’t care",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", Apple",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "family GPUs skip these memory operations to improve performance. If you do this unintentionally,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you’ll see visual artifacts in your rendered content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If your app is linked against macOS 10.15 or earlier, is running under Rosetta",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "translation, and you set a load action to",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Metal/MTLLoadAction/dontCare",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", Metal",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "forces the GPU to load the contents into tile memory, trading performance for behavior",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "more consistent with Intel-based Macs.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on load and store actions, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/setting-load-and-store-actions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-Vertex-Shader-Positions-Invariant",
+          "level": 3,
+          "text": "Make Vertex Shader Positions Invariant",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many rendering techniques require multiple render passes, where earlier passes generate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data that’s consumed by later render passes. Each pass uses a different vertex shader",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to perform its specific calculations. Such techniques often rely on different vertex",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "shaders calculating vertex positions the same way. For example, an early pass might",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "write depth values to a depth texture, and a later pass might test the positions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it calculates against data stored in the depth texture. If the two shaders calculate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the position data differently, those tests might fail.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app uses such a rendering technique, add the ",
+              "type": "text"
+            },
+            {
+              "code": "invariant",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "position output of every vertex shader used in the rendering technique, as shown",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the code below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typedef struct{",
+            "    float4 position [[position, invariant]];",
+            "    float4 color;",
+            "…",
+            "} RasterizerData;"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, compile the shaders with the ",
+              "type": "text"
+            },
+            {
+              "code": "preserve-invariance",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag set. If you instead",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "compile shaders at runtime, specify the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCompileOptions/preserveInvariance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "option when creating your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLLibrary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. Metal",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "compiles these shaders more conservatively, ensuring that the GPU calculates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "positions marked with the ",
+              "type": "text"
+            },
+            {
+              "code": "invariant",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute the same way.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Metal compiles vertex shaders, the compiler optimizes the shader for performance,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "rather than strictly enforcing consistency and precision across different shaders.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The compiler may emit different instruction sequences or merge floating-point operations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "together, which can slightly change how the GPU calculates each result; this compiler",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "behavior depends on the complete source code in each shader. The compiler for Apple",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "family GPUs applies optimizations aggressively, so mark the position outputs as invariant,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or you may see visual artifacts in places that you don’t typically see on other GPUs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If your app is linked against macOS 10.15 or earlier and is running under",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Rosetta translation, Metal compiles vertex positions as if the ",
+                  "type": "text"
+                },
+                {
+                  "code": "invariant",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " keyword",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "were present, trading performance for behavior more consistent with Intel-based Macs.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Bind-Textures-Once-For-Write-Access",
+          "level": 3,
+          "text": "Bind Textures Once For Write Access",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metal doesn’t permit you to bind the same texture to multiple arguments of a shader",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "if any those arguments can write to the texture (",
+              "type": "text"
+            },
+            {
+              "code": "access::write",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "access:: read_write",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you need both read and write access, you must bind the texture to a single argument",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the ",
+              "type": "text"
+            },
+            {
+              "code": "access::read_write",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keyword, and synchronize access to the texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, if you assign a depth texture to a render pass and update its contents",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "within that render pass, you can’t bind the same texture as a shader input during",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the same render pass to read from the depth texture. If you do, you’ll see inconsistent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "results across different GPUs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To detect code that incorrectly binds textures, turn on Metal API validation in Xcode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and run your app. Revise that code to perform the work in separate render passes,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so updates to textures are complete before you read from them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If your app is linked against macOS 10.15 or earlier and is running under",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Rosetta translation, Metal takes snapshots of depth data before a render pass, redirecting",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "any memory reads to the snapshot. This behavior comes with a cost in performance.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Check-Depth-and-Stencil-Texture-Formats",
+          "level": 3,
+          "text": "Check Depth and Stencil Texture Formats",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Only some Mac family GPUs support combined depth and stencil formats. To test whether",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a particular device supports this format, read the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLDevice/isDepth24Stencil8PixelFormatSupported",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property on the MTLDevice.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Keep-Memory-Accesses-Within-Memory-Boundaries",
+          "level": 3,
+          "text": "Keep Memory Accesses Within Memory Boundaries",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you access device or threadgroup memory in a shader, you must stay within the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "bounds of the memory you’re accessing. For example, when you access data in a buffer,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can’t access memory before the start or past the end of the buffer. Metal doesn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "define a specific GPU behavior when you access memory outside these boundaries, so",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "if your app incorrectly accesses memory, you may see different behavior when you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "run your app on Apple family GPUs. An Apple family GPU can treat an incorrect memory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "access as a hardware fault, terminating the command buffer that caused the exception.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test for memory access errors, turn on shader validation in Xcode and run your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app. For more information, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/metal/diagnosing_metal_programming_issues_early",
+              "type": "text"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-the-SIMD-Group-Size-at-Runtime",
+          "level": 3,
+          "text": "Determine the SIMD Group Size at Runtime",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a compute shader, the SIMD group size, also called the thread execution width,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is the number of threads that run together on the GPU. Metal Shading Language specifies",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "some operations that are specific to SIMD groups, while other operations apply to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the larger threadgroups; to implement some shaders efficiently, you need to know",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the SIMD group size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The size of a SIMD group varies between different GPUs, particularly Mac GPUs. Don’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "assume the size of SIMD groups. At runtime, after you create a compute pipeline state",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object, read its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputePipelineState/threadExecutionWidth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property to get the SIMD group size for that compute pipeline. To get the SIMD group size",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your shader, declare an argument with the ",
+              "type": "text"
+            },
+            {
+              "code": "threads_per_simdgroup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute, instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Synchronize-Memory-Operations-in-Shaders",
+          "level": 3,
+          "text": "Synchronize Memory Operations in Shaders",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "GPUs execute memory accesses on different threads in an unpredictable order. If a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "shader reads and writes the same memory locations, and you need the GPU to execute",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "those actions in a specific order, you must include barriers between the memory operations.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Metal requires barriers even in cases where the threadgroup size is the same as SIMD",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "group size. Apple GPUs aggressively optimize memory operations to improve performance;",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "if you don’t have proper synchronization in your shaders, you may corrupt memory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or get incorrect results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call the ",
+              "type": "text"
+            },
+            {
+              "code": "threadgroup_barrier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function in your shader to force all threads in a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "threadgroup to reach that function call before allowing any threads to continue past",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it. Specify a flag parameter to determine how the GPU synchronizes memory operations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that your shader previously submitted. For example, the following call prevents threads",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in a threadgroup from moving past the barrier until all device memory accesses from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the threadgroup have completed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "threadgroup_barrier(mem_device);",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you only need to synchronize threads in a SIMD group, instead use the ",
+              "type": "text"
+            },
+            {
+              "code": "simdgroup_barrier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "function. The following call prevents threads in each SIMD group from moving past",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the barrier until all previous threadgroup memory accesses made by the SIMD group",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "have completed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "simd_barrier(mem_threadgroup);",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see section 6.8.1 of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Synchronize-Concurrent-Compute-Dispatches",
+          "level": 3,
+          "text": "Synchronize Concurrent Compute Dispatches",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you configure a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for concurrent dispatch, Metal doesn’t perform any automatic synchronization",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "between commands that the encoder encodes. Apple family GPUs can aggressively",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "execute commands at the same time, so if you aren’t correctly synchronizing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "commands, the GPU may run commands in the wrong order, which can corrupt memory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or cause a fault.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on how to synchronize concurrent commands, see ",
+              "type": "text"
+            },
+            {
+              "code": "memoryBarrier(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Synchronize-Untracked-Heaps",
+          "level": 3,
+          "text": "Synchronize Untracked Heaps",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you use an untracked heap, Metal doesn’t track resource dependencies or synchronize",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "commands that access resources on that heap. Apple family GPUs take advantage of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this behavior to improve performance, so if you aren’t synchronizing commands correctly,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the GPU may run commands in the wrong order, which can corrupt memory or cause a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "fault.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on how to use heaps or fences to synchronize commands, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/resource-synchronization",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Profile-Your-App",
+          "level": 3,
+          "text": "Profile Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you’ve got your app running correctly, profile and tune its performance for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Apple GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you design an app to run on Apple GPUs, it’s a good practice to do more work",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in each render pass. Small render passes that render just a few primitives can be",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "inefficient because the GPU must repeatedly copy pixel data between tile memory and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system memory. Coalesce multiple logical rendering passes into a single Metal rendering",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pass if a series of sequential render passes share a common set of render targets,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so the GPU only needs to copy the data once.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Coalescing render passes is possible on Apple family GPUs where it might not on other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "GPUs, such as when writing a deferred renderer or when performing a series of post-processing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "effects to the same texture. In these cases, use programmable blending inside your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "fragment shaders to blend new pixel data with the current pixel data. The pixel data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "stays in tile memory until the end of the render pass. Apple GPUs also support tile",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "shading  to directly process pixel data stored in the tile using a compute shader",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that runs as part of a render pass. The combination of programmable blending and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tile shading mean you can perform complex render operations while copying data between",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the GPU and system memory as little as possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For examples of these techniques, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-objective-c",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/rendering-a-scene-with-forward-plus-lighting-using-tile-shaders",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/building-a-universal-macos-binary": {
+      "abstract": [
+        {
+          "text": "Create macOS apps and other executables that run natively on both Apple silicon and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Intel-based Mac computers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/building-a-universal-macos-binary",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a Universal macOS Binary",
+      "type": "topic",
+      "url": "/documentation/apple-silicon/building-a-universal-macos-binary"
+    },
+    "doc://com.apple.Apple-Silicon/documentation/apple-silicon": {
+      "abstract": [
+        {
+          "text": "Get the resources you need to create software for Macs with Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Apple-Silicon/documentation/apple-silicon",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple Silicon",
+      "type": "topic",
+      "url": "/documentation/apple-silicon"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLCompileOptions/preserveInvariance": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the compiler compiles vertex shaders conservatively to generate consistent position calculations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preserveInvariance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCompileOptions/preserveInvariance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preserveInvariance",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLCompileOptions/preserveInvariance"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An interface for dispatching commands to encode in a compute pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLComputeCommandEncoder"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCommandEncoder",
+          "text": "MTLCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLComputeCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLComputeCommandEncoder"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLComputePipelineState/threadExecutionWidth": {
+      "abstract": [
+        {
+          "text": "The number of threads that the GPU executes simultaneously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "threadExecutionWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputePipelineState/threadExecutionWidth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "threadExecutionWidth",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLComputePipelineState/threadExecutionWidth"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLDevice"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLDevice/isDepth24Stencil8PixelFormatSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a device supports a packed depth-and-stencil pixel format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDepth24Stencil8PixelFormatSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLDevice/isDepth24Stencil8PixelFormatSupported",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isDepth24Stencil8PixelFormatSupported",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLDevice/isDepth24Stencil8PixelFormatSupported"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLDevice/name": {
+      "abstract": [
+        {
+          "text": "The full name of the GPU device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLDevice/name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLDevice/name"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLLibrary": {
+      "abstract": [
+        {
+          "text": "A collection of Metal shader functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLLibrary"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLLibrary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLLibrary",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLLibrary"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLLoadAction/dontCare": {
+      "abstract": [
+        {
+          "text": "The GPU has permission to discard the existing contents of the attachment at the start of the render pass, replacing them with arbitrary data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dontCare"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLLoadAction/dontCare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLLoadAction.dontCare",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLLoadAction/dontCare"
+    },
+    "doc://com.apple.documentation/documentation/Metal/detecting-gpu-features-and-metal-software-versions": {
+      "abstract": [
+        {
+          "text": "Use the device object’s properties to determine how you perform tasks in Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/detecting-gpu-features-and-metal-software-versions",
+      "kind": "article",
+      "role": "article",
+      "title": "Detecting GPU Features and Metal Software Versions",
+      "type": "topic",
+      "url": "/documentation/Metal/detecting-gpu-features-and-metal-software-versions"
+    },
+    "doc://com.apple.documentation/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-objective-c": {
+      "abstract": [
+        {
+          "text": "Avoid expensive lighting calculations by implementing a deferred lighting renderer optimized for immediate mode and tile-based deferred renderer GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-objective-c",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering a Scene with Deferred Lighting in Objective-C",
+      "type": "topic",
+      "url": "/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-objective-c"
+    },
+    "doc://com.apple.documentation/documentation/Metal/rendering-a-scene-with-forward-plus-lighting-using-tile-shaders": {
+      "abstract": [
+        {
+          "text": "Implement a forward plus renderer using the latest features on Apple GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/rendering-a-scene-with-forward-plus-lighting-using-tile-shaders",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering a Scene with Forward Plus Lighting Using Tile Shaders",
+      "type": "topic",
+      "url": "/documentation/Metal/rendering-a-scene-with-forward-plus-lighting-using-tile-shaders"
+    },
+    "doc://com.apple.documentation/documentation/Metal/resource-synchronization": {
+      "abstract": [
+        {
+          "text": "Coordinate the contents of data buffers, textures, and other resources that CPUs and GPUs share access to.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/resource-synchronization",
+      "kind": "article",
+      "role": "article",
+      "title": "Resource Synchronization",
+      "type": "topic",
+      "url": "/documentation/Metal/resource-synchronization"
+    },
+    "doc://com.apple.documentation/documentation/Metal/setting-load-and-store-actions": {
+      "abstract": [
+        {
+          "text": "Set actions that define how a render pass loads and stores a render target.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/setting-load-and-store-actions",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Load and Store Actions",
+      "type": "topic",
+      "url": "/documentation/Metal/setting-load-and-store-actions"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf": {
+      "identifier": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf",
+      "title": "Metal Shading Language Specification",
+      "titleInlineContent": [
+        {
+          "text": "Metal Shading Language Specification",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLLibrary/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLLibrary"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLComputeCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLComputeCommandEncoder"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)MTLCommandEncoder",
+              "text": "MTLCommandEncoder"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLCompileOptions~1preserveInvariance/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readwrite"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "preserveInvariance"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLDevice~1isDepth24Stencil8PixelFormatSupported/title",
+          "value": "depth24Stencil8PixelFormatSupported"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLDevice~1isDepth24Stencil8PixelFormatSupported/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "getter"
+            },
+            {
+              "kind": "text",
+              "text": "="
+            },
+            {
+              "kind": "identifier",
+              "text": "isDepth24Stencil8PixelFormatSupported"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "depth24Stencil8PixelFormatSupported"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLComputePipelineState~1threadExecutionWidth/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "threadExecutionWidth"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLDevice~1name/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "name"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLLoadAction~1dontCare/title",
+          "value": "MTLLoadActionDontCare"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLLoadAction~1dontCare/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLLoadActionDontCare"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

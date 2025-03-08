@@ -1,0 +1,2746 @@
+{
+  "abstract": [
+    {
+      "text": "Describe the properties that you associate with audio sessions and audio routes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-session-support"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Audio Session Support"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "AudioSession",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " API has been completely deprecated in iOS 7.0. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for the Objective-C implementation of these functions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Audio Session Services lets you specify the intended audio behavior for your iOS app. For example, you can specify whether you intend for your app’s audio to silence other apps or to mix with their audio. You also use this API to specify your app’s behavior when it is interrupted, such as by a phone call. When the system knows your intentions, it configures the audio hardware in the device to satisfy those intentions, as possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These functions apply only to iOS. They do not apply to macOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618357-audio-session-activation-flags": {
+      "abstract": [
+        {
+          "text": "Flags that provide additional information about your app’s audio intentions upon session activation or deactivation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618357-audio-session-activation-flags",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Session Activation Flags",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1618357-audio-session-activation-flags"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618372-audio-session-category-route-ove": {
+      "abstract": [
+        {
+          "text": "Specifies whether the default audio route for the ",
+          "type": "text"
+        },
+        {
+          "code": "PlayAndRecord",
+          "type": "codeVoice"
+        },
+        {
+          "text": " category should be overridden.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618372-audio-session-category-route-ove",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Session Category Route Overrides",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1618372-audio-session-category-route-ove"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618373-audio-session-errors": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618373-audio-session-errors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Session Errors",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1618373-audio-session-errors"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618380-audio-route-change-reasons": {
+      "abstract": [
+        {
+          "text": "Identifiers for the various reasons that an audio route can change while your app is running.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618380-audio-route-change-reasons",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Route Change Reasons",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1618380-audio-route-change-reasons"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618387-audio-session-interruption-types": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618387-audio-session-interruption-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Session Interruption Types",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1618387-audio-session-interruption-types"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618405-audio-session-modes": {
+      "abstract": [
+        {
+          "text": "Mode identifiers for audio sessions, used as values for the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionProperty_Mode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618405-audio-session-modes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Session Modes",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1618405-audio-session-modes"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618425-audio-session-interruption-state": {
+      "abstract": [
+        {
+          "text": "Identifiers used with the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioSessionInterruptionListener",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " callback function in iOS to indicate that an audio interruption has started or stopped.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618425-audio-session-interruption-state",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Session Interruption States",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1618425-audio-session-interruption-state"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618427-audio-session-categories": {
+      "abstract": [
+        {
+          "text": "Category identifiers for audio sessions, used as values for the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionProperty_AudioCategory",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618427-audio-session-categories",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Session Categories",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1618427-audio-session-categories"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618455-audio-session-property-identifie": {
+      "abstract": [
+        {
+          "text": "Property identifiers used with Audio Session Services in iOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618455-audio-session-property-identifie",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Session Property Identifiers",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1618455-audio-session-property-identifie"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioSessionInterruptionListener": {
+      "abstract": [
+        {
+          "text": "Invoked when an audio interruption in iOS begins or ends.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioSessionInterruptionListener"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioSessionInterruptionListener",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioSessionInterruptionListener"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioSessionInterruptionListener",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiosessioninterruptionlistener"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioSessionInterruptionType": {
+      "abstract": [
+        {
+          "text": "Values that indicate the nature of the interruption that ended.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioSessionInterruptionType"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioSessionInterruptionType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioSessionInterruptionType"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioSessionInterruptionType",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiosessioninterruptiontype"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/alternative-audio-route-change-reason-dictionary-key": {
+      "abstract": [
+        {
+          "text": "An alternate key for obtaining information about the reason for an audio route change.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/alternative-audio-route-change-reason-dictionary-key",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Alternative Audio Route Change Reason Dictionary Key",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/alternative-audio-route-change-reason-dictionary-key"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/analyzing-audio-performance-with-instruments": {
+      "abstract": [
+        {
+          "text": "Ensure a smooth and immersive audio experience in your apps using Audio System Trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/analyzing-audio-performance-with-instruments",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing audio performance with Instruments",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/analyzing-audio-performance-with-instruments"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-codec": {
+      "abstract": [
+        {
+          "text": "Translate audio data from one format to another.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-codec",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Codec",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-codec"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-converter-services": {
+      "abstract": [
+        {
+          "text": "Convert between linear PCM audio formats, and between linear PCM and compressed formats.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-converter-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Converter Services",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-converter-services"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-input-routes": {
+      "abstract": [
+        {
+          "text": "Strings that identify the various audio input sources for a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-input-routes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Input Routes",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-input-routes"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-output-routes": {
+      "abstract": [
+        {
+          "text": "The various audio output destinations available for an iOS device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-output-routes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Output Routes",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-output-routes"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-change-dictionary-keys": {
+      "abstract": [
+        {
+          "text": "Keys for obtaining information about an audio hardware route change.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-change-dictionary-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Route Change Dictionary Keys",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-route-change-dictionary-keys"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-description-dictionary-keys": {
+      "abstract": [
+        {
+          "text": "Keys for the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionProperty_AudioRouteDescription",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " dictionary.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-description-dictionary-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Route Description Dictionary Keys",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-route-description-dictionary-keys"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-type-key": {
+      "abstract": [
+        {
+          "text": "The one key for an audio route input or output dictionary.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-type-key",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Route Type Key",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-route-type-key"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-toolbox-debugging": {
+      "abstract": [
+        {
+          "text": "Obtain the internal state of Core Audio objects during the development and debugging of your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-toolbox-debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Toolbox Debugging",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-toolbox-debugging"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/clock-utilities": {
+      "abstract": [
+        {
+          "text": "Manage time-related information associated with audio playback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/clock-utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Clock Utilities",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/clock-utilities"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionInputRoute_BluetoothHFP": {
+      "abstract": [
+        {
+          "text": "A microphone that is part of a Bluetooth Hands-Free Profile (HFP) device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionInputRoute_BluetoothHFP"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionInputRoute_BluetoothHFP",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionInputRoute_BluetoothHFP"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionInputRoute_BluetoothHFP",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessioninputroute_bluetoothhfp"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionInputRoute_BuiltInMic": {
+      "abstract": [
+        {
+          "text": "A built-in microphone input.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionInputRoute_BuiltInMic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionInputRoute_BuiltInMic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionInputRoute_BuiltInMic"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionInputRoute_BuiltInMic",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessioninputroute_builtinmic"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionInputRoute_HeadsetMic": {
+      "abstract": [
+        {
+          "text": "A microphone that is part of a headset.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionInputRoute_HeadsetMic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionInputRoute_HeadsetMic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionInputRoute_HeadsetMic"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionInputRoute_HeadsetMic",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessioninputroute_headsetmic"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionInputRoute_LineIn": {
+      "abstract": [
+        {
+          "text": "A line in input",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionInputRoute_LineIn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionInputRoute_LineIn",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionInputRoute_LineIn"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionInputRoute_LineIn",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessioninputroute_linein"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionInputRoute_USBAudio": {
+      "abstract": [
+        {
+          "text": "A Universal Serial Bus (USB) input, accessed through the device 30-pin connector.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionInputRoute_USBAudio"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionInputRoute_USBAudio",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionInputRoute_USBAudio"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionInputRoute_USBAudio",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessioninputroute_usbaudio"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_AirPlay": {
+      "abstract": [
+        {
+          "text": "An output on an AirPlay device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionOutputRoute_AirPlay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_AirPlay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionOutputRoute_AirPlay"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionOutputRoute_AirPlay",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionoutputroute_airplay"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_BluetoothA2DP": {
+      "abstract": [
+        {
+          "text": "Speakers in a Bluetooth A2DP device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionOutputRoute_BluetoothA2DP"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_BluetoothA2DP",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionOutputRoute_BluetoothA2DP"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionOutputRoute_BluetoothA2DP",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionoutputroute_bluetootha2dp"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_BluetoothHFP": {
+      "abstract": [
+        {
+          "text": "Speakers that are part of a Bluetooth Hands-Free Profile (HFP) accessory.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionOutputRoute_BluetoothHFP"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_BluetoothHFP",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionOutputRoute_BluetoothHFP"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionOutputRoute_BluetoothHFP",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionoutputroute_bluetoothhfp"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_BuiltInReceiver": {
+      "abstract": [
+        {
+          "text": "The built-in speaker you hold to your ear when on a phone call.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionOutputRoute_BuiltInReceiver"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_BuiltInReceiver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionOutputRoute_BuiltInReceiver"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionOutputRoute_BuiltInReceiver",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionoutputroute_builtinreceiver"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_BuiltInSpeaker": {
+      "abstract": [
+        {
+          "text": "The primary built-in speaker.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionOutputRoute_BuiltInSpeaker"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_BuiltInSpeaker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionOutputRoute_BuiltInSpeaker"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionOutputRoute_BuiltInSpeaker",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionoutputroute_builtinspeaker"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_HDMI": {
+      "abstract": [
+        {
+          "text": "An output available through the HDMI interface.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionOutputRoute_HDMI"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_HDMI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionOutputRoute_HDMI"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionOutputRoute_HDMI",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionoutputroute_hdmi"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_Headphones": {
+      "abstract": [
+        {
+          "text": "Speakers in headphones or in a headset.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionOutputRoute_Headphones"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_Headphones",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionOutputRoute_Headphones"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionOutputRoute_Headphones",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionoutputroute_headphones"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_LineOut": {
+      "abstract": [
+        {
+          "text": "Analog line-level output.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionOutputRoute_LineOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_LineOut",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionOutputRoute_LineOut"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionOutputRoute_LineOut",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionoutputroute_lineout"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_USBAudio": {
+      "abstract": [
+        {
+          "text": "Speaker(s) in a Universal Serial Bus (USB) accessory, accessed through the device 30-pin connector.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionOutputRoute_USBAudio"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_USBAudio",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionOutputRoute_USBAudio"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionOutputRoute_USBAudio",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionoutputroute_usbaudio"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionProperty_AudioCategory": {
+      "abstract": [
+        {
+          "text": "The category for the audio session. A read/write ",
+          "type": "text"
+        },
+        {
+          "code": "UInt32",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionProperty_AudioCategory"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionProperty_AudioCategory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionProperty_AudioCategory"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionProperty_AudioCategory",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionproperty_audiocategory"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionProperty_AudioRouteDescription": {
+      "abstract": [
+        {
+          "text": "Information about an audio route.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionProperty_AudioRouteDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionProperty_AudioRouteDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionProperty_AudioRouteDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionProperty_AudioRouteDescription",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionproperty_audioroutedescription"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionProperty_InputSources": {
+      "abstract": [
+        {
+          "text": "Details on the available audio input sources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionProperty_InputSources"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionProperty_InputSources",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionProperty_InputSources"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionProperty_InputSources",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionproperty_inputsources"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionProperty_Mode": {
+      "abstract": [
+        {
+          "text": "A read/write ",
+          "type": "text"
+        },
+        {
+          "code": "UIInt32",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value that specifies the audio session mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionProperty_Mode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionProperty_Mode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionProperty_Mode"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionProperty_Mode",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionproperty_mode"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionProperty_OutputDestinations": {
+      "abstract": [
+        {
+          "text": "Details on the available audio output destinations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionProperty_OutputDestinations"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionProperty_OutputDestinations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSessionProperty_OutputDestinations"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSessionProperty_OutputDestinations",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosessionproperty_outputdestinations"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_AudioRouteChangeKey_CurrentRouteDescription": {
+      "abstract": [
+        {
+          "text": "Describes the current audio route.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSession_AudioRouteChangeKey_CurrentRouteDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_AudioRouteChangeKey_CurrentRouteDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSession_AudioRouteChangeKey_CurrentRouteDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSession_AudioRouteChangeKey_CurrentRouteDescription",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosession_audioroutechangekey_currentroutedescription"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_AudioRouteChangeKey_PreviousRouteDescription": {
+      "abstract": [
+        {
+          "text": "Describes the previous audio route.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSession_AudioRouteChangeKey_PreviousRouteDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_AudioRouteChangeKey_PreviousRouteDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSession_AudioRouteChangeKey_PreviousRouteDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSession_AudioRouteChangeKey_PreviousRouteDescription",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosession_audioroutechangekey_previousroutedescription"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_AudioRouteKey_Inputs": {
+      "abstract": [
+        {
+          "text": "An object containing details about audio input used in the current audio route.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSession_AudioRouteKey_Inputs"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_AudioRouteKey_Inputs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSession_AudioRouteKey_Inputs"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSession_AudioRouteKey_Inputs",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosession_audioroutekey_inputs"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_AudioRouteKey_Outputs": {
+      "abstract": [
+        {
+          "text": "An object containing details about the audio output used in the current audio route.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSession_AudioRouteKey_Outputs"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_AudioRouteKey_Outputs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSession_AudioRouteKey_Outputs"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSession_AudioRouteKey_Outputs",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosession_audioroutekey_outputs"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_AudioRouteKey_Type": {
+      "abstract": [
+        {
+          "text": "Audio routes input or output dictionary.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSession_AudioRouteKey_Type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_AudioRouteKey_Type",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSession_AudioRouteKey_Type"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSession_AudioRouteKey_Type",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosession_audioroutekey_type"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_InputSourceKey_Description": {
+      "abstract": [
+        {
+          "text": "Audio input source description.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSession_InputSourceKey_Description"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_InputSourceKey_Description",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSession_InputSourceKey_Description"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSession_InputSourceKey_Description",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosession_inputsourcekey_description"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_InputSourceKey_ID": {
+      "abstract": [
+        {
+          "text": "An audio input source.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSession_InputSourceKey_ID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_InputSourceKey_ID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSession_InputSourceKey_ID"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSession_InputSourceKey_ID",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosession_inputsourcekey_id"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_OutputDestinationKey_Description": {
+      "abstract": [
+        {
+          "text": "The audio output destination.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSession_OutputDestinationKey_Description"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_OutputDestinationKey_Description",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSession_OutputDestinationKey_Description"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSession_OutputDestinationKey_Description",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosession_outputdestinationkey_description"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_OutputDestinationKey_ID": {
+      "abstract": [
+        {
+          "text": "The output destination.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSession_OutputDestinationKey_ID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_OutputDestinationKey_ID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSession_OutputDestinationKey_ID"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSession_OutputDestinationKey_ID",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosession_outputdestinationkey_id"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_RouteChangeKey_Reason": {
+      "abstract": [
+        {
+          "text": "The reason for the audio route change.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioSession_RouteChangeKey_Reason"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_RouteChangeKey_Reason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioSession_RouteChangeKey_Reason"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioSession_RouteChangeKey_Reason",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiosession_routechangekey_reason"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/usb-accessory-audio-destination-dictionary-keys": {
+      "abstract": [
+        {
+          "text": "Keys for the dictionaries in the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionProperty_OutputDestinations",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " array.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/usb-accessory-audio-destination-dictionary-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USB Accessory Audio Destination Dictionary Keys",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/usb-accessory-audio-destination-dictionary-keys"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/usb-accessory-audio-source-dictionary-keys": {
+      "abstract": [
+        {
+          "text": "Keys for the dictionaries in the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionProperty_InputSources",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " array.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/usb-accessory-audio-source-dictionary-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USB Accessory Audio Source Dictionary Keys",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/usb-accessory-audio-source-dictionary-keys"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management": {
+      "abstract": [
+        {
+          "text": "Coordinate the activity of custom real-time audio threads with those of the system and other processes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workgroup Management",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/workgroup-management"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession": {
+      "abstract": [
+        {
+          "text": "An object that communicates to the system how you intend to use audio in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioSession",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioSession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Utilities",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/analyzing-audio-performance-with-instruments",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-converter-services",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-toolbox-debugging",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-codec",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/clock-utilities"
+      ],
+      "title": "Utilities"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Audio-Session-Support",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618455-audio-session-property-identifie",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618427-audio-session-categories",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618405-audio-session-modes",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618372-audio-session-category-route-ove",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618357-audio-session-activation-flags",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618425-audio-session-interruption-state",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioSessionInterruptionType"
+      ],
+      "title": "Audio Session Support"
+    },
+    {
+      "anchor": "Audio-Routes",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618380-audio-route-change-reasons",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-description-dictionary-keys",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-type-key",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-input-routes",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-output-routes",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-change-dictionary-keys",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/alternative-audio-route-change-reason-dictionary-key"
+      ],
+      "title": "Audio Routes"
+    },
+    {
+      "anchor": "USB-Accessories",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/usb-accessory-audio-source-dictionary-keys",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/usb-accessory-audio-destination-dictionary-keys"
+      ],
+      "title": "USB Accessories"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionInputRoute_BluetoothHFP",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionInputRoute_BuiltInMic",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionInputRoute_HeadsetMic",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionInputRoute_LineIn",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionInputRoute_USBAudio",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_AirPlay",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_BluetoothA2DP",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_BluetoothHFP",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_BuiltInReceiver",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_BuiltInSpeaker",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_HDMI",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_Headphones",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_LineOut",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_USBAudio",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_AudioRouteChangeKey_CurrentRouteDescription",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_AudioRouteChangeKey_PreviousRouteDescription",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_AudioRouteKey_Inputs",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_AudioRouteKey_Outputs",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_AudioRouteKey_Type",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_InputSourceKey_Description",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_InputSourceKey_ID",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_OutputDestinationKey_Description",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_OutputDestinationKey_ID",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_RouteChangeKey_Reason"
+      ],
+      "title": "Constants"
+    },
+    {
+      "anchor": "Enumerations",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618387-audio-session-interruption-types"
+      ],
+      "title": "Enumerations"
+    },
+    {
+      "anchor": "Result-Codes",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618373-audio-session-errors"
+      ],
+      "title": "Result Codes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Audio-Session-Support",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618455-audio-session-property-identifie",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618427-audio-session-categories",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618405-audio-session-modes",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618372-audio-session-category-route-ove",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618357-audio-session-activation-flags",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618425-audio-session-interruption-state",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioSessionInterruptionType"
+              ],
+              "title": "Audio Session Support"
+            },
+            {
+              "anchor": "Audio-Routes",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618380-audio-route-change-reasons",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-description-dictionary-keys",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-type-key",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-input-routes",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-output-routes",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-route-change-dictionary-keys",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/alternative-audio-route-change-reason-dictionary-key"
+              ],
+              "title": "Audio Routes"
+            },
+            {
+              "anchor": "USB-Accessories",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/usb-accessory-audio-source-dictionary-keys",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/usb-accessory-audio-destination-dictionary-keys"
+              ],
+              "title": "USB Accessories"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionInputRoute_BluetoothHFP",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionInputRoute_BuiltInMic",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionInputRoute_HeadsetMic",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionInputRoute_LineIn",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionInputRoute_USBAudio",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_AirPlay",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_BluetoothA2DP",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_BluetoothHFP",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_BuiltInReceiver",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_BuiltInSpeaker",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_HDMI",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_Headphones",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_LineOut",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSessionOutputRoute_USBAudio",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_AudioRouteChangeKey_CurrentRouteDescription",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_AudioRouteChangeKey_PreviousRouteDescription",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_AudioRouteKey_Inputs",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_AudioRouteKey_Outputs",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_AudioRouteKey_Type",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_InputSourceKey_Description",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_InputSourceKey_ID",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_OutputDestinationKey_Description",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_OutputDestinationKey_ID",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioSession_RouteChangeKey_Reason"
+              ],
+              "title": "Constants"
+            },
+            {
+              "anchor": "Enumerations",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618387-audio-session-interruption-types"
+              ],
+              "title": "Enumerations"
+            },
+            {
+              "anchor": "Result-Codes",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618373-audio-session-errors"
+              ],
+              "title": "Result Codes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Utilities",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/analyzing-audio-performance-with-instruments",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-converter-services",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-toolbox-debugging",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-codec",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/clock-utilities"
+              ],
+              "title": "Utilities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionOutputRoute_BluetoothA2DP/title",
+          "value": "kAudioSessionOutputRoute_BluetoothA2DP"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionOutputRoute_BluetoothA2DP/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionOutputRoute_BluetoothA2DP"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSession_InputSourceKey_ID/title",
+          "value": "kAudioSession_InputSourceKey_ID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSession_InputSourceKey_ID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSession_InputSourceKey_ID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSession_AudioRouteChangeKey_CurrentRouteDescription/title",
+          "value": "kAudioSession_AudioRouteChangeKey_CurrentRouteDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSession_AudioRouteChangeKey_CurrentRouteDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSession_AudioRouteChangeKey_CurrentRouteDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionOutputRoute_BuiltInReceiver/title",
+          "value": "kAudioSessionOutputRoute_BuiltInReceiver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionOutputRoute_BuiltInReceiver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionOutputRoute_BuiltInReceiver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionProperty_OutputDestinations/title",
+          "value": "kAudioSessionProperty_OutputDestinations"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionProperty_OutputDestinations/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionProperty_OutputDestinations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionOutputRoute_Headphones/title",
+          "value": "kAudioSessionOutputRoute_Headphones"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionOutputRoute_Headphones/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionOutputRoute_Headphones"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionInputRoute_LineIn/title",
+          "value": "kAudioSessionInputRoute_LineIn"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionInputRoute_LineIn/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionInputRoute_LineIn"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSession_AudioRouteKey_Type/title",
+          "value": "kAudioSession_AudioRouteKey_Type"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSession_AudioRouteKey_Type/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSession_AudioRouteKey_Type"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionOutputRoute_LineOut/title",
+          "value": "kAudioSessionOutputRoute_LineOut"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionOutputRoute_LineOut/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionOutputRoute_LineOut"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionOutputRoute_HDMI/title",
+          "value": "kAudioSessionOutputRoute_HDMI"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionOutputRoute_HDMI/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionOutputRoute_HDMI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSession_AudioRouteKey_Outputs/title",
+          "value": "kAudioSession_AudioRouteKey_Outputs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSession_AudioRouteKey_Outputs/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSession_AudioRouteKey_Outputs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionOutputRoute_USBAudio/title",
+          "value": "kAudioSessionOutputRoute_USBAudio"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionOutputRoute_USBAudio/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionOutputRoute_USBAudio"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSession_AudioRouteChangeKey_PreviousRouteDescription/title",
+          "value": "kAudioSession_AudioRouteChangeKey_PreviousRouteDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSession_AudioRouteChangeKey_PreviousRouteDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSession_AudioRouteChangeKey_PreviousRouteDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionInputRoute_BuiltInMic/title",
+          "value": "kAudioSessionInputRoute_BuiltInMic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionInputRoute_BuiltInMic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionInputRoute_BuiltInMic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioSessionInterruptionType/title",
+          "value": "AudioSessionInterruptionType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioSessionInterruptionType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioSessionInterruptionType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioSessionInterruptionType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioSessionInterruptionType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionInputRoute_HeadsetMic/title",
+          "value": "kAudioSessionInputRoute_HeadsetMic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionInputRoute_HeadsetMic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionInputRoute_HeadsetMic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionProperty_Mode/title",
+          "value": "kAudioSessionProperty_Mode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionProperty_Mode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionProperty_Mode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionOutputRoute_AirPlay/title",
+          "value": "kAudioSessionOutputRoute_AirPlay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionOutputRoute_AirPlay/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionOutputRoute_AirPlay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionOutputRoute_BluetoothHFP/title",
+          "value": "kAudioSessionOutputRoute_BluetoothHFP"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionOutputRoute_BluetoothHFP/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionOutputRoute_BluetoothHFP"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSession_AudioRouteKey_Inputs/title",
+          "value": "kAudioSession_AudioRouteKey_Inputs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSession_AudioRouteKey_Inputs/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSession_AudioRouteKey_Inputs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionOutputRoute_BuiltInSpeaker/title",
+          "value": "kAudioSessionOutputRoute_BuiltInSpeaker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionOutputRoute_BuiltInSpeaker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionOutputRoute_BuiltInSpeaker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionInputRoute_USBAudio/title",
+          "value": "kAudioSessionInputRoute_USBAudio"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionInputRoute_USBAudio/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionInputRoute_USBAudio"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionProperty_AudioRouteDescription/title",
+          "value": "kAudioSessionProperty_AudioRouteDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionProperty_AudioRouteDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionProperty_AudioRouteDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSession_OutputDestinationKey_ID/title",
+          "value": "kAudioSession_OutputDestinationKey_ID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSession_OutputDestinationKey_ID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSession_OutputDestinationKey_ID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionProperty_InputSources/title",
+          "value": "kAudioSessionProperty_InputSources"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionProperty_InputSources/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionProperty_InputSources"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSession_RouteChangeKey_Reason/title",
+          "value": "kAudioSession_RouteChangeKey_Reason"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSession_RouteChangeKey_Reason/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSession_RouteChangeKey_Reason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSession_OutputDestinationKey_Description/title",
+          "value": "kAudioSession_OutputDestinationKey_Description"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSession_OutputDestinationKey_Description/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSession_OutputDestinationKey_Description"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionInputRoute_BluetoothHFP/title",
+          "value": "kAudioSessionInputRoute_BluetoothHFP"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionInputRoute_BluetoothHFP/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionInputRoute_BluetoothHFP"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionProperty_AudioCategory/title",
+          "value": "kAudioSessionProperty_AudioCategory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSessionProperty_AudioCategory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSessionProperty_AudioCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSession_InputSourceKey_Description/title",
+          "value": "kAudioSession_InputSourceKey_Description"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioSession_InputSourceKey_Description/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioSession_InputSourceKey_Description"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioSessionInterruptionListener/title",
+          "value": "AudioSessionInterruptionListener"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioSessionInterruptionListener/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioSessionInterruptionListener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioSessionInterruptionListener/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioSessionInterruptionListener"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/audio-session-support"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/audio-session-support"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

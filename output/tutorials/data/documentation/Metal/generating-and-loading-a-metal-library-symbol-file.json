@@ -1,0 +1,809 @@
+{
+  "abstract": [
+    {
+      "text": "Debug your Metal shaders from your production apps by creating companion symbol files at compile time and loading them at debug time.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/shader-libraries",
+        "doc://com.apple.metal/documentation/Metal/metal-libraries"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/generating-and-loading-a-metal-library-symbol-file"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Generating and Loading a Metal Library Symbol File"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With Xcode 13 or later, you can generate a separate symbol file for each Metal library built for a project. Each symbol file is a companion file that stores useful debugging information for the Metal library it represents. By separating each Metal library from its symbols, you can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build and deploy a Metal library without source code — a requirement for apps on the App Store.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Debug that same Metal library at a later time by loading its companion symbol file in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Avoid building each library twice — once for release and then again for debugging.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to learn how to debug your Metal shaders.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Generate-a-Symbol-File-with-a-Single-Command",
+          "level": 3,
+          "text": "Generate a Symbol File with a Single Command",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Generate a Metal library’s symbol file in a single command by running the Metal compiler with the ",
+              "type": "text"
+            },
+            {
+              "code": "-frecord-sources=flat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun -sdk macosx metal -frecord-sources=flat Shadow.metal PointLights.metal DirectionalLight.metal"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This example uses the ",
+                  "type": "text"
+                },
+                {
+                  "code": "macosx",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " SDK, but you can use any SDK your app targets.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "-frecord-sources=flat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option, which replaces the deprecated ",
+              "type": "text"
+            },
+            {
+              "code": "-MO=<value>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option, tells the Metal compiler to create two files:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "default.metallib",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the compiled Metal library",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "default.metallibsym",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the library’s companion symbol file",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Generate-a-Symbol-File-with-Multiple-Commands",
+          "level": 3,
+          "text": "Generate a Symbol File with Multiple Commands",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also generate a Metal library’s symbol file with multiple commands, which may be more appropriate for your workflow than the single-command technique. For those scenarios, you can generate each Metal library and its companion symbol file by following these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Compile each Metal source file to a Metal AIR (Apple Intermediate Representation) file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Generate a Metal library with the source by linking its AIR files.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Separate the library’s source and save it as a companion symbol file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, compile each Metal source file to a Metal AIR file by passing the -c option to the compiler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun -sdk macosx metal -c -frecord-sources Shadow.metal",
+            "% xcrun -sdk macosx metal -c -frecord-sources PointLights.metal",
+            "% xcrun -sdk macosx metal -c -frecord-sources DirectionalLight.metal"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "-frecord-sources",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option tells the Metal compiler to embed the symbols in the AIR output file for that command. However, this command doesn’t create a separate symbols file at this time, which is why the ",
+              "type": "text"
+            },
+            {
+              "code": "-frecord-sources",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option doesn’t include the ",
+              "type": "text"
+            },
+            {
+              "code": "=flat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " suffix.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, generate a Metal library by linking the AIR files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun -sdk macosx metal -frecord-sources -o LightsAndShadow.metallib Shadow.air PointLights.air DirectionalLight.air"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Separate the sources from the library and create a companion symbol file by running the ",
+              "type": "text"
+            },
+            {
+              "code": "metal-dsymutil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun -sdk macosx metal-dsymutil -flat -remove-source LightsAndShadow.metallib"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "-remove-source",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option modifies the Metal library file by removing its embedded source information. At the same time, the command’s ",
+              "type": "text"
+            },
+            {
+              "code": "-flat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option saves that source and other symbol information to a symbol file. After the command finishes execution, the directory contains both the modified Metal library and its new companion symbol file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "LightsAndShadow.metallib",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "LightsAndShadow.metallibsym",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The Metal command-line tools for Windows use the same options and arguments as their macOS counterparts.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Load-a-Symbol-File-in-Xcode",
+          "level": 3,
+          "text": "Load a Symbol File in Xcode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As you debug a shader, Xcode automatically presents a prompt when it doesn’t have access to a shader library’s source code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3871026",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Click the Import Sources button and select the shader’s companion symbol file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3871032",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add your shader library’s companion symbol file by clicking the Add button (+) and locating the file. Select a directory to tell Xcode to find all companion symbol files that match any Metal libraries in the current Metal debugging capture. The dialog reflects each library’s symbol file in a list as you add them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3871030",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Click Done when you finish adding your companion symbol files. Xcode imports the shader source and profiling information from each companion symbol file for the Metal library it represents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can load your Metal library’s companion symbol file before you begin debugging by choosing Debug > Import Metallib Debug Info.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch": {
+      "abstract": [
+        {
+          "text": "Identify and fix problematic shaders in your app using the shader debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging the shaders within a draw command or compute dispatch",
+      "type": "topic",
+      "url": "/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/building-a-shader-library-by-precompiling-source-files": {
+      "abstract": [
+        {
+          "text": "Create a shader library that you can add to an Xcode project with the Metal compiler tools in a command-line environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/building-a-shader-library-by-precompiling-source-files",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a Shader Library by Precompiling Source Files",
+      "type": "topic",
+      "url": "/documentation/metal/building-a-shader-library-by-precompiling-source-files"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-libraries": {
+      "abstract": [
+        {
+          "text": "Compile and manage Metal libraries from the command line.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-libraries",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Libraries",
+      "type": "topic",
+      "url": "/documentation/metal/metal-libraries"
+    },
+    "doc://com.apple.metal/documentation/Metal/minimizing-the-binary-size-of-a-shader-library": {
+      "abstract": [
+        {
+          "text": "Reduce the storage footprint of your shaders, and potentially reduce their compile time, by selecting the Metal compiler’s size optimization option.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/minimizing-the-binary-size-of-a-shader-library",
+      "kind": "article",
+      "role": "article",
+      "title": "Minimizing the Binary Size of a Shader Library",
+      "type": "topic",
+      "url": "/documentation/metal/minimizing-the-binary-size-of-a-shader-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/shader-libraries": {
+      "abstract": [
+        {
+          "text": "Manage and load your app’s Metal shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/shader-libraries",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Shader Libraries",
+      "type": "topic",
+      "url": "/documentation/metal/shader-libraries"
+    },
+    "media-3871026": {
+      "alt": "A screenshot of a Metal debugger dialog that Xcode shows when the debugger doesn’t have shader sources. The dialog has two buttons, ‘Import Sources’ and ‘OK’.",
+      "identifier": "media-3871026",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d7206fa0645dbc0a8f325b70455daa67/media-3871026@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cbb6b438ba5e6aa8e48f1e2230f36812/media-3871026~dark@2x.png"
+        }
+      ]
+    },
+    "media-3871030": {
+      "alt": "A screenshot of the Metal Debugger’s Import dialog that shows one entry in its list of search paths in the upper half, and one Metal library in the lower half. The library shows ‘default dot metal l-i-b s-y-m’ in its ‘Debug Info’ column.",
+      "identifier": "media-3871030",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/47c36dbda3c6f19e6e32eb26a510c2f8/media-3871030@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ba797f919fa670bdc58d821c24e045c1/media-3871030~dark@2x.png"
+        }
+      ]
+    },
+    "media-3871032": {
+      "alt": "A screenshot of the Metal Debugger’s Import dialog that shows an empty list of search paths in the upper half, and one Metal library in the lower half. The library shows ‘No source’ in its ‘Debug Info’ column.",
+      "identifier": "media-3871032",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/63d2ecd8bd74debb3f9af7e6ee8c336f/media-3871032@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9dc0ebc612adf49515f815e9d8e17c83/media-3871032~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Working-with-Metal-Intermediate-Representation-Libraries",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/building-a-shader-library-by-precompiling-source-files",
+        "doc://com.apple.metal/documentation/Metal/minimizing-the-binary-size-of-a-shader-library"
+      ],
+      "title": "Working with Metal Intermediate Representation Libraries"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Working-with-Metal-Intermediate-Representation-Libraries",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/building-a-shader-library-by-precompiling-source-files",
+                "doc://com.apple.metal/documentation/Metal/minimizing-the-binary-size-of-a-shader-library"
+              ],
+              "title": "Working with Metal Intermediate Representation Libraries"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/generating-and-loading-a-metal-library-symbol-file"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/generating-and-loading-a-metal-library-symbol-file"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

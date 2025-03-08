@@ -1,0 +1,2664 @@
+{
+  "abstract": [
+    {
+      "text": "Abstract class that manages the connection between an IONetworkController and the data link interface layer.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/network"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1502910,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IONetworkInterface",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.6",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IONetworkInterface"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IONetworkInterface"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOService",
+              "text": "IOService"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An IONetworkInterface object manages the connection between an IONetworkController and the data link interface layer (DLIL). All interactions between the controller and DLIL must go through an interface object. Any data structures that are required by DLIL for a particular interface type shall be allocated and mantained by the interface object. IONetworkInterface is an abstract class that must be extended by a concrete subclass to specialize for a particular network type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although most drivers will allocate a single interface object, it is possible for multiple interfaces to be attached to a single controller. This controller driver will be responsible for arbitrating access among its multiple interface clients.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "IONetworkInterface also maintains a dictionary of IONetworkData objects containing statistics structures. Controller drivers can ask for a particular data object by name and update the statistics counters within directly. This dictionary is added to the interface's property table and is visible outside of the kernel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/network": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/network",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/network"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkcontroller": {
+      "abstract": [
+        {
+          "text": "Implements the framework for a generic network controller.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkcontroller",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IONetworkController",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkcontroller"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface": {
+      "abstract": [
+        {
+          "text": "Abstract class that manages the connection between an IONetworkController and the data link interface layer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IONetworkInterface",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502887-initifnetparams": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initIfnetParams"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502887-initifnetparams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initIfnetParams",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502887-initifnetparams"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502889-setextendedflags": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setExtendedFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502889-setextendedflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setExtendedFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502889-setextendedflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502892-initifnet": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initIfnet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502892-initifnet",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initIfnet",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502892-initifnet"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502898-syncsiocsifmedia": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "syncSIOCSIFMEDIA"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502898-syncsiocsifmedia",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "syncSIOCSIFMEDIA",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502898-syncsiocsifmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502900-removenetworkdata": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeNetworkData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502900-removenetworkdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeNetworkData",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502900-removenetworkdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502902-setextraflags": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setExtraFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502902-setextraflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setExtraFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502902-setextraflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502904-getparameter": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getParameter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502904-getparameter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getParameter",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502904-getparameter"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502906-inputpacket": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputPacket"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502906-inputpacket",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputPacket",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502906-inputpacket"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502908-setmediaaddresslength": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMediaAddressLength"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502908-setmediaaddresslength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setMediaAddressLength",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502908-setmediaaddresslength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502913-addnetworkdata": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addNetworkData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502913-addnetworkdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addNetworkData",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502913-addnetworkdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502914-getinterfacestate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getInterfaceState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502914-getinterfacestate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getInterfaceState",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502914-getinterfacestate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502916-serializeproperties": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "serializeProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502916-serializeproperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "serializeProperties",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502916-serializeproperties"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502917-handleclientclose": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleClientClose"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502917-handleclientclose",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleClientClose",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502917-handleclientclose"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502919-detachfromdatalinklayer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "detachFromDataLinkLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502919-detachfromdatalinklayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detachFromDataLinkLayer",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502919-detachfromdatalinklayer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502921-getmediaheaderlength": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMediaHeaderLength"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502921-getmediaheaderlength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMediaHeaderLength",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502921-getmediaheaderlength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502923-lock": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "lock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502923-lock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lock",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502923-lock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502927-newuserclient": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "newUserClient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502927-newuserclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "newUserClient",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502927-newuserclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502929-getmaxtransferunit": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMaxTransferUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502929-getmaxtransferunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMaxTransferUnit",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502929-getmaxtransferunit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502930-if_output": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "if_output"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502930-if_output",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "if_output",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502930-if_output"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502932-notifydriver": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "notifyDriver"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502932-notifydriver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "notifyDriver",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502932-notifydriver"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502933-drainoutputqueue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "drainOutputQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502933-drainoutputqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "drainOutputQueue",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502933-drainoutputqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502935-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502935-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502935-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502940-powerstatewillchangeto": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "powerStateWillChangeTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502940-powerstatewillchangeto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "powerStateWillChangeTo",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502940-powerstatewillchangeto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502942-isprimaryinterface": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPrimaryInterface"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502942-isprimaryinterface",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isPrimaryInterface",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502942-isprimaryinterface"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502944-syncsiocsifmtu": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "syncSIOCSIFMTU"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502944-syncsiocsifmtu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "syncSIOCSIFMTU",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502944-syncsiocsifmtu"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502947-controllerdidchangepowerstate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "controllerDidChangePowerState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502947-controllerdidchangepowerstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "controllerDidChangePowerState",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502947-controllerdidchangepowerstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502950-if_start_precheck": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "if_start_precheck"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502950-if_start_precheck",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "if_start_precheck",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502950-if_start_precheck"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502952-setmaxtransferunit": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMaxTransferUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502952-setmaxtransferunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setMaxTransferUnit",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502952-setmaxtransferunit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502954-pushinputqueue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "pushInputQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502954-pushinputqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pushInputQueue",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502954-pushinputqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502958-syncsiocgifmedia": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "syncSIOCGIFMEDIA"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502958-syncsiocgifmedia",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "syncSIOCGIFMEDIA",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502958-syncsiocgifmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502960-inputevent": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502960-inputevent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputEvent",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502960-inputevent"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502966-setinterfacetype": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setInterfaceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502966-setinterfacetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setInterfaceType",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502966-setinterfacetype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502968-controllerwillchangepowerstate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "controllerWillChangePowerState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502968-controllerwillchangepowerstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "controllerWillChangePowerState",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502968-controllerwillchangepowerstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502975-debuggerregistered": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "debuggerRegistered"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502975-debuggerregistered",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "debuggerRegistered",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502975-debuggerregistered"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502979-handleclose": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleClose"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502979-handleclose",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleClose",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502979-handleclose"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502986-setinterfacestate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setInterfaceState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502986-setinterfacestate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setInterfaceState",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502986-setinterfacestate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502990-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502990-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502990-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502992-feedpacketoutputtap": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "feedPacketOutputTap"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502992-feedpacketoutputtap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "feedPacketOutputTap",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502992-feedpacketoutputtap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502993-performgatedcommand": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "performGatedCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502993-performgatedcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performGatedCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502993-performgatedcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502995-if_set_bpf_tap": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "if_set_bpf_tap"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502995-if_set_bpf_tap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "if_set_bpf_tap",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502995-if_set_bpf_tap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502997-unlock": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "unlock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502997-unlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unlock",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502997-unlock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502999-pushinputpacket": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "pushInputPacket"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502999-pushinputpacket",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pushInputPacket",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1502999-pushinputpacket"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503001-getnameprefix": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNamePrefix"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503001-getnameprefix",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getNamePrefix",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503001-getnameprefix"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503003-if_input_poll": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "if_input_poll"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503003-if_input_poll",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "if_input_poll",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503003-if_input_poll"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503007-flushinputqueue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "flushInputQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503007-flushinputqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "flushInputQueue",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503007-flushinputqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503013-controllerwillclose": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "controllerWillClose"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503013-controllerwillclose",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "controllerWillClose",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503013-controllerwillclose"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503015-if_ioctl": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "if_ioctl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503015-if_ioctl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "if_ioctl",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503015-if_ioctl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503017-isregistered": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isRegistered"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503017-isregistered",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isRegistered",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503017-isregistered"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503023-requestterminate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestTerminate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503023-requestterminate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestTerminate",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503023-requestterminate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503025-handleopen": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleOpen"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503025-handleopen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503025-handleopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503027-getextraflags": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getExtraFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503027-getextraflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getExtraFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503027-getextraflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503029-getnetworkdata": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNetworkData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503029-getnetworkdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getNetworkData",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503029-getnetworkdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503030-if_input_poll_gated": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "if_input_poll_gated"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503030-if_input_poll_gated",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "if_input_poll_gated",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503030-if_input_poll_gated"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503032-powerchangehandler": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "powerChangeHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503032-powerchangehandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "powerChangeHandler",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503032-powerchangehandler"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503034-powerstatedidchangeto": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "powerStateDidChangeTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503034-powerstatedidchangeto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "powerStateDidChangeTo",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503034-powerstatedidchangeto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503035-setunitnumber": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setUnitNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503035-setunitnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setUnitNumber",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503035-setunitnumber"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503039-handleclientopen": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleClientOpen"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503039-handleclientopen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleClientOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503039-handleclientopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503041-if_start": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "if_start"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503041-if_start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "if_start",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503041-if_start"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503042-controllerdidopen": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "controllerDidOpen"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503042-controllerdidopen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "controllerDidOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503042-controllerdidopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503043-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503043-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503043-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503045-performcommand": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "performCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503045-performcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503045-performcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503049-getifnet": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getIfnet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503049-getifnet",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getIfnet",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503049-getifnet"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503051-handleisopen": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleIsOpen"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503051-handleisopen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleIsOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503051-handleisopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503053-getflags": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503053-getflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503053-getflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503057-getunitnumber": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getUnitNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503057-getunitnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getUnitNumber",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503057-getunitnumber"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503059-if_start_gated": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "if_start_gated"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503059-if_start_gated",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "if_start_gated",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503059-if_start_gated"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503061-getinterfacetype": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getInterfaceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503061-getinterfacetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getInterfaceType",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503061-getinterfacetype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503064-getmediaaddresslength": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMediaAddressLength"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503064-getmediaaddresslength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMediaAddressLength",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503064-getmediaaddresslength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503066-willterminate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "willTerminate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503066-willterminate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "willTerminate",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503066-willterminate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503069-clearinputqueue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "clearInputQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503069-clearinputqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clearInputQueue",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503069-clearinputqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503071-attachtodatalinklayer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "attachToDataLinkLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503071-attachtodatalinklayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attachToDataLinkLayer",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503071-attachtodatalinklayer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503073-if_detach": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "if_detach"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503073-if_detach",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "if_detach",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503073-if_detach"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503075-getcontroller": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503075-getcontroller",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getController",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503075-getcontroller"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503076-setmediaheaderlength": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMediaHeaderLength"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503076-setmediaheaderlength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setMediaHeaderLength",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503076-setmediaheaderlength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503080-configureoutputstartdelay": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "configureOutputStartDelay"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503080-configureoutputstartdelay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configureOutputStartDelay",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503080-configureoutputstartdelay"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503083-haltoutputthread": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "haltOutputThread"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503083-haltoutputthread",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "haltOutputThread",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503083-haltoutputthread"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503084-setflags": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503084-setflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503084-setflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503085-feedpacketinputtap": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "feedPacketInputTap"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503085-feedpacketinputtap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "feedPacketInputTap",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503085-feedpacketinputtap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503086-message": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "message"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503086-message",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "message",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1503086-message"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810235-addnetworkdata": {
+      "abstract": [
+        {
+          "text": "Adds an ",
+          "type": "text"
+        },
+        {
+          "code": "IONetworkData",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object to the interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810235-addnetworkdata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "addNetworkData",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810235-addnetworkdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810250-attachtodatalinklayer": {
+      "abstract": [
+        {
+          "text": "Attach the network interface to the BSD data link layer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810250-attachtodatalinklayer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "attachToDataLinkLayer",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810250-attachtodatalinklayer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810266-clearinputqueue": {
+      "abstract": [
+        {
+          "text": "Discards all packets in the input queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810266-clearinputqueue",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "clearInputQueue",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810266-clearinputqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810277-controllerdidchangepowerstate": {
+      "abstract": [
+        {
+          "text": "Handles a notification that the network controller servicing this interface object has transitioned to a new power state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810277-controllerdidchangepowerstate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "controllerDidChangePowerState",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810277-controllerdidchangepowerstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810292-controllerdidopen": {
+      "abstract": [
+        {
+          "text": "Sends a notification that the interface has opened the network controller.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810292-controllerdidopen",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "controllerDidOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810292-controllerdidopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810306-controllerwillchangepowerstate": {
+      "abstract": [
+        {
+          "text": "Handles a notification that the network controller servicing this interface object will transition to a new power state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810306-controllerwillchangepowerstate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "controllerWillChangePowerState",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810306-controllerwillchangepowerstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810322-controllerwillclose": {
+      "abstract": [
+        {
+          "text": "Sends a notification that the interface will close the network controller.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810322-controllerwillclose",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "controllerWillClose",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810322-controllerwillclose"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810336-debuggerregistered": {
+      "abstract": [
+        {
+          "text": "Tells the ",
+          "type": "text"
+        },
+        {
+          "code": "IONetworkData",
+          "type": "codeVoice"
+        },
+        {
+          "text": " that this interface will be used by the debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810336-debuggerregistered",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "debuggerRegistered",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810336-debuggerregistered"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810351-detachfromdatalinklayer": {
+      "abstract": [
+        {
+          "text": "Detach the network interface from the BSD data link layer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810351-detachfromdatalinklayer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "detachFromDataLinkLayer",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810351-detachfromdatalinklayer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810364-feedpacketinputtap": {
+      "abstract": [
+        {
+          "text": "Feed received packets to the BPF",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810364-feedpacketinputtap",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "feedPacketInputTap",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810364-feedpacketinputtap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810380-feedpacketoutputtap": {
+      "abstract": [
+        {
+          "text": "Feed output packets to the BPF",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810380-feedpacketoutputtap",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "feedPacketOutputTap",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810380-feedpacketoutputtap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810398-flushinputqueue": {
+      "abstract": [
+        {
+          "text": "Submit all packets held in the input queue to the network stack.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810398-flushinputqueue",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "flushInputQueue",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810398-flushinputqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810410-free": {
+      "abstract": [
+        {
+          "text": "Frees the ",
+          "type": "text"
+        },
+        {
+          "code": "IONetworkInterface",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810410-free",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810410-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810426-getcontroller": {
+      "abstract": [
+        {
+          "text": "Gets the ",
+          "type": "text"
+        },
+        {
+          "code": "IONetworkController",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object that created this interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810426-getcontroller",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getController",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810426-getcontroller"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810443-getextraflags": {
+      "abstract": [
+        {
+          "text": "Gets the current interface eflags.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810443-getextraflags",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getExtraFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810443-getextraflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810460-getflags": {
+      "abstract": [
+        {
+          "text": "Gets the current interface flags.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810460-getflags",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810460-getflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810471-getifnet": {
+      "abstract": [
+        {
+          "text": "Returns the ",
+          "type": "text"
+        },
+        {
+          "code": "ifnet_t",
+          "type": "codeVoice"
+        },
+        {
+          "text": " allocated by the interface object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810471-getifnet",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getIfnet",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810471-getifnet"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810480-getinterfacestate": {
+      "abstract": [
+        {
+          "text": "Reports the current state of the interface object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810480-getinterfacestate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getInterfaceState",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810480-getinterfacestate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810498-getinterfacetype": {
+      "abstract": [
+        {
+          "text": "Gets the interface type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810498-getinterfacetype",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getInterfaceType",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810498-getinterfacetype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810513-getmaxtransferunit": {
+      "abstract": [
+        {
+          "text": "Gets the maximum transfer unit for this interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810513-getmaxtransferunit",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getMaxTransferUnit",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810513-getmaxtransferunit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810531-getmediaaddresslength": {
+      "abstract": [
+        {
+          "text": "Gets the size of the media (MAC-layer) address.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810531-getmediaaddresslength",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getMediaAddressLength",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810531-getmediaaddresslength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810551-getmediaheaderlength": {
+      "abstract": [
+        {
+          "text": "Gets the size of the media header.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810551-getmediaheaderlength",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getMediaHeaderLength",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810551-getmediaheaderlength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810563-getnameprefix": {
+      "abstract": [
+        {
+          "text": "Returns the BSD name prefix as a C-string.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810563-getnameprefix",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getNamePrefix",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810563-getnameprefix"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810574-getnetworkdata": {
+      "abstract": [
+        {
+          "text": "Gets an ",
+          "type": "text"
+        },
+        {
+          "code": "IONetworkData",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object from the interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810574-getnetworkdata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getNetworkData(const char *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810574-getnetworkdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810596-getnetworkdata": {
+      "abstract": [
+        {
+          "text": "Gets an ",
+          "type": "text"
+        },
+        {
+          "code": "IONetworkData",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object from the interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810596-getnetworkdata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getNetworkData(const OSSymbol *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810596-getnetworkdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810607-getunitnumber": {
+      "abstract": [
+        {
+          "text": "Gets the unit number assigned to this interface object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810607-getunitnumber",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getUnitNumber",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810607-getunitnumber"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810628-handleclientclose": {
+      "abstract": [
+        {
+          "text": "Handles a client close on the interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810628-handleclientclose",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleClientClose",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810628-handleclientclose"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810645-handleclientopen": {
+      "abstract": [
+        {
+          "text": "Handles a client open on the interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810645-handleclientopen",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleClientOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810645-handleclientopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810663-init": {
+      "abstract": [
+        {
+          "text": "Initializes the ",
+          "type": "text"
+        },
+        {
+          "code": "IONetworkInterface",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810663-init",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810663-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810678-initifnetparams": {
+      "abstract": [
+        {
+          "text": "Allows a subclass to provide ifnet initialization parameters specific to an interface type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810678-initifnetparams",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initIfnetParams",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810678-initifnetparams"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810692-inputevent": {
+      "abstract": [
+        {
+          "text": "Sends an event to the network stack.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810692-inputevent",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "inputEvent",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810692-inputevent"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810712-inputpacket": {
+      "abstract": [
+        {
+          "text": "For drivers to submit a received packet to the network stack.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810712-inputpacket",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "inputPacket",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810712-inputpacket"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810743-isprimaryinterface": {
+      "abstract": [
+        {
+          "text": "Queries whether the interface is the primary network interface on the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810743-isprimaryinterface",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isPrimaryInterface",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810743-isprimaryinterface"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810763-isregistered": {
+      "abstract": [
+        {
+          "text": "Queries if the interface has attached to the BSD network stack.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810763-isregistered",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isRegistered",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810763-isregistered"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810783-lock": {
+      "abstract": [
+        {
+          "text": "Acquires a recursive lock owned by the interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810783-lock",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "lock",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810783-lock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810800-performcommand": {
+      "abstract": [
+        {
+          "text": "Handles an ioctl command sent to the network interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810800-performcommand",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "performCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810800-performcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810818-powerstatedidchangeto": {
+      "abstract": [
+        {
+          "text": "Handles a post-change power interest notification from the network controller.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810818-powerstatedidchangeto",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "powerStateDidChangeTo",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810818-powerstatedidchangeto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810839-powerstatewillchangeto": {
+      "abstract": [
+        {
+          "text": "Handles a pre-change power interest notification from the network controller.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810839-powerstatewillchangeto",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "powerStateWillChangeTo",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810839-powerstatewillchangeto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810858-registeroutputhandler": {
+      "abstract": [
+        {
+          "text": "Registers a target/action to handle outbound packets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810858-registeroutputhandler",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "registerOutputHandler",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810858-registeroutputhandler"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810886-removenetworkdata": {
+      "abstract": [
+        {
+          "text": "Removes an ",
+          "type": "text"
+        },
+        {
+          "code": "IONetworkData",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object from the interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810886-removenetworkdata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "removeNetworkData(const char *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810886-removenetworkdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810904-removenetworkdata": {
+      "abstract": [
+        {
+          "text": "Removes an ",
+          "type": "text"
+        },
+        {
+          "code": "IONetworkData",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object from the interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810904-removenetworkdata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "removeNetworkData(const OSSymbol *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810904-removenetworkdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810924-setflags": {
+      "abstract": [
+        {
+          "text": "Performs a read-modify-write operation on the current interface flags value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810924-setflags",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810924-setflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810944-setinterfacestate": {
+      "abstract": [
+        {
+          "text": "Updates the interface object state flags.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810944-setinterfacestate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setInterfaceState",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810944-setinterfacestate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810958-setinterfacetype": {
+      "abstract": [
+        {
+          "text": "Sets the interface type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810958-setinterfacetype",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setInterfaceType",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810958-setinterfacetype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810979-setmaxtransferunit": {
+      "abstract": [
+        {
+          "text": "Sets the maximum transfer unit for this interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810979-setmaxtransferunit",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setMaxTransferUnit",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810979-setmaxtransferunit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810991-setmediaaddresslength": {
+      "abstract": [
+        {
+          "text": "Sets the size of the media (MAC-layer) address.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810991-setmediaaddresslength",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setMediaAddressLength",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1810991-setmediaaddresslength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1811003-setmediaheaderlength": {
+      "abstract": [
+        {
+          "text": "Sets the size of the media header.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1811003-setmediaheaderlength",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setMediaHeaderLength",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1811003-setmediaheaderlength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1811014-setunitnumber": {
+      "abstract": [
+        {
+          "text": "Assigns an unique unit number to this interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1811014-setunitnumber",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setUnitNumber",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1811014-setunitnumber"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1811026-unlock": {
+      "abstract": [
+        {
+          "text": "Releases the recursive lock owned by the interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1811026-unlock",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "unlock",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/1811026-unlock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/2919941-handlenetworkinputevent": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleNetworkInputEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/2919941-handlenetworkinputevent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleNetworkInputEvent",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/2919941-handlenetworkinputevent"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/3516614-getnetworkdata": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNetworkData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/3516614-getnetworkdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getNetworkData",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/3516614-getnetworkdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/3516615-removenetworkdata": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeNetworkData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/3516615-removenetworkdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeNetworkData",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/3516615-removenetworkdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/4395251-fetchdriveroutputstats": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchDriverOutputStats"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/4395251-fetchdriveroutputstats",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fetchDriverOutputStats",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/4395251-fetchdriveroutputstats"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/inputoptionqueuepacket": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/inputoptionqueuepacket",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "InputOptionQueuePacket",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkinterface/inputoptionqueuepacket"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ionetworkcontroller"
+      ],
+      "title": "Interfaces"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1674878",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810235-addnetworkdata",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810250-attachtodatalinklayer",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810266-clearinputqueue",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810277-controllerdidchangepowerstate",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810292-controllerdidopen",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810306-controllerwillchangepowerstate",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810322-controllerwillclose",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810336-debuggerregistered",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810351-detachfromdatalinklayer",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810364-feedpacketinputtap",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810380-feedpacketoutputtap",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810398-flushinputqueue",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810410-free",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810426-getcontroller",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810443-getextraflags",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810460-getflags",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810471-getifnet",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810480-getinterfacestate",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810498-getinterfacetype",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810513-getmaxtransferunit",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810531-getmediaaddresslength",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810551-getmediaheaderlength",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810563-getnameprefix",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810574-getnetworkdata",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810596-getnetworkdata",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810607-getunitnumber",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810628-handleclientclose",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810645-handleclientopen",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810663-init",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810678-initifnetparams",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810692-inputevent",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810712-inputpacket",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810743-isprimaryinterface",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810763-isregistered",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810783-lock",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810800-performcommand",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810818-powerstatedidchangeto",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810839-powerstatewillchangeto",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810858-registeroutputhandler",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810886-removenetworkdata",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810904-removenetworkdata",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810924-setflags",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810944-setinterfacestate",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810958-setinterfacetype",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810979-setmaxtransferunit",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1810991-setmediaaddresslength",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1811003-setmediaheaderlength",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1811014-setunitnumber",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1811026-unlock"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1675260",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/inputoptionqueuepacket"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "2857007",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502913-addnetworkdata",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503071-attachtodatalinklayer",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503069-clearinputqueue",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503080-configureoutputstartdelay",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502947-controllerdidchangepowerstate",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503042-controllerdidopen",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502968-controllerwillchangepowerstate",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503013-controllerwillclose",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502975-debuggerregistered",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502919-detachfromdatalinklayer",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502933-drainoutputqueue",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503085-feedpacketinputtap",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502992-feedpacketoutputtap",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/4395251-fetchdriveroutputstats",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503007-flushinputqueue",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502935-free",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503075-getcontroller",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503027-getextraflags",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503053-getflags",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503049-getifnet",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502914-getinterfacestate",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503061-getinterfacetype",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502929-getmaxtransferunit",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503064-getmediaaddresslength",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502921-getmediaheaderlength",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503043-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503001-getnameprefix",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503029-getnetworkdata",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/3516614-getnetworkdata",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502904-getparameter",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503057-getunitnumber",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503083-haltoutputthread",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502917-handleclientclose",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503039-handleclientopen",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502979-handleclose",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503051-handleisopen",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503025-handleopen",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502950-if_start_precheck",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502990-init",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502892-initifnet",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502887-initifnetparams",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502960-inputevent",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502906-inputpacket",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502942-isprimaryinterface",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503017-isregistered",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502923-lock",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503086-message",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502927-newuserclient",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502932-notifydriver",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503045-performcommand",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503034-powerstatedidchangeto",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502940-powerstatewillchangeto",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502999-pushinputpacket",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502954-pushinputqueue",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502900-removenetworkdata",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/3516615-removenetworkdata",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503023-requestterminate",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502916-serializeproperties",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502889-setextendedflags",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502902-setextraflags",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503084-setflags",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502986-setinterfacestate",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502966-setinterfacetype",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502952-setmaxtransferunit",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502908-setmediaaddresslength",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503076-setmediaheaderlength",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503035-setunitnumber",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502958-syncsiocgifmedia",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502898-syncsiocsifmedia",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502944-syncsiocsifmtu",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502997-unlock",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503066-willterminate"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2857008",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/2919941-handlenetworkinputevent",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503073-if_detach",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503003-if_input_poll",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503030-if_input_poll_gated",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503015-if_ioctl",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502930-if_output",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502995-if_set_bpf_tap",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503041-if_start",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503059-if_start_gated",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1502993-performgatedcommand",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkinterface/1503032-powerchangehandler"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/ionetworkinterface"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1082 @@
+{
+  "abstract": [
+    {
+      "text": "Review your app’s data design and update it to conform with 64-bit architecture.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+        "doc://com.apple.uikit/documentation/UIKit/updating-your-app-from-32-bit-to-64-bit-architecture"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/updating-data-structures"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Updating data structures"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you move your app to a 64-bit architecture, revisit the structures in your code. Examine C structures that have 32-bit representations. The 64-bit runtime aligns the contents of structures differently, so you need to pay particular attention to structures that store data to a file or transmit it across a network. These structures could be utilized by devices with architectures of different sizes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Code that doesn’t use explicitly sized types can cause problems for other developers who review your code. Explicitly sized type declarations clarify data-size expectations and eliminate assumptions about architectures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Inconsistency between type declarations in a function and their use in code cause inconsistent behaviors at runtime. You need to ensure that data you pass to functions or capture as a return value are the same type as the declared parameter type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Align-64-bit-integer-types",
+          "level": 3,
+          "text": "Align 64-bit integer types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a result of the increased size of the 64-bit architecture, the alignment of all 64-bit integer types in the runtime changes from 4 bytes to 8 bytes. Even if you specify each integer type explicitly, the two structures may still not be identical in both runtimes. This is important to know if you have data that was created by the 32-bit version of your app that you need to read in the 64-bit version.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following code, the alignment changes even though the fields are declared with explicit integer types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct bar {",
+            "    int32_t foo0;",
+            "    int32_t foo1;",
+            "    int32_t foo2;",
+            "    int64_t bar;",
+            "};"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When this code is compiled with a 32-bit compiler, the field ",
+              "type": "text"
+            },
+            {
+              "code": "bar",
+              "type": "codeVoice"
+            },
+            {
+              "text": " begins 12 bytes from the start of the structure. When the same code is compiled with a 64-bit compiler, the field ",
+              "type": "text"
+            },
+            {
+              "code": "bar",
+              "type": "codeVoice"
+            },
+            {
+              "text": " begins 16 bytes from the start of the structure. Four bytes of padding are added after ",
+              "type": "text"
+            },
+            {
+              "code": "foo2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " so that ",
+              "type": "text"
+            },
+            {
+              "code": "bar",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is aligned to an 8-byte boundary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3109112",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re defining a new data structure, organize the elements with the largest alignment values first and the smallest values last. This organization eliminates the need for most padding bytes. If you’re working with an existing structure that includes misaligned 64-bit integers, you can use a pragma to force the proper alignment. The following code shows the same data structure, but here it’s forced to use the 32-bit alignment rules.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#pragma pack(4)",
+            "struct bar {",
+            "    int32_t foo0;",
+            "    int32_t foo1;",
+            "    int32_t foo2;",
+            "    int64_t bar;",
+            "};",
+            "#pragma options align=reset"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this option sparingly because there’s a performance penalty for misaligned accesses. You might use this option, for example, to maintain backward compatibility with data structures that were deployed in the 32-bit version of your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-explicit-integer-data-types",
+          "level": 3,
+          "text": "Use explicit integer data types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The C99 standard provides built-in data types that are guaranteed to be a specific size, regardless of the underlying hardware architecture. The following table lists the C99 types and defined ranges of values for each.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Defined range",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "int16_t",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-32,768 to 32,767",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "int32_t",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-2,147,483,648 to 2,147,483,647",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "int64_t",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "uint8_t",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "0 to 255",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "uint16_t",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "0 to 65,535",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "uint32_t",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "0 to 4,294,967,295",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "uint64_t",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "0 to 18,446,744,073,709,551,615",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Avoid types such as ",
+              "type": "text"
+            },
+            {
+              "code": "short",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "int",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "unsigned int",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Instead, use types that are guaranteed to be a specific size, regardless of the underlying hardware architecture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Choosing a fixed-width type also avoids allocating a variable whose range is much larger than you need, and saves memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Keep-data-types-consistent",
+          "level": 3,
+          "text": "Keep data types consistent",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Inconsistent use of data types in your code can truncate results of computation and provide incorrect results. Even though the compiler warns you of many problems that result from inconsistent data types, it’s also useful to see a few variations of these patterns so that you can recognize them in your code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When calling a function, always match the variable that receives the results to the function’s return type. If the return type is a larger integer than the receiving variable, the value is truncated. The following code shows a simple pattern that exhibits this problem.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "long PerformCalculation(void);",
+            "",
+            "int  x = PerformCalculation(); // Incorrect.",
+            "",
+            "long y = PerformCalculation(); // Correct."
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "PerformCalculation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function returns a long integer. In the 32-bit runtime, both ",
+              "type": "text"
+            },
+            {
+              "code": "int",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "long",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are 32 bits, so the assignment to an ",
+              "type": "text"
+            },
+            {
+              "code": "int",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type works, even though the code is incorrect. In the 64-bit runtime, the upper 32 bits of the result are lost when the assignment is made. Instead, the result should be assigned to a long integer; this approach works consistently in both runtimes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The same problem occurs when you pass in a value as a parameter. Here, the input parameter is truncated when executed in the 64-bit runtime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "int PerformAnotherCalculation(int input);",
+            "",
+            "long i = LONG_MAX;",
+            "",
+            "int x = PerformCalculation(i);"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following code, the return value is also truncated in the 64-bit runtime, because the value returned exceeds the range of the function’s return type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "int ReturnMax()",
+            "{",
+            "    return LONG_MAX;",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All of these examples result from code that assumes that ",
+              "type": "text"
+            },
+            {
+              "code": "int",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "long",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are identical. The ANSI C standard doesn’t make this assumption, and it’s explicitly incorrect when working in the 64-bit runtime. By default, if you modernized your project as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/updating-your-app-from-32-bit-to-64-bit-architecture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "code": "-Wshorten-64-to-32",
+              "type": "codeVoice"
+            },
+            {
+              "text": " compiler option was automatically enabled, so the compiler automatically warns you about many cases where a value is truncated. If you didn’t modernize your project, you should explicitly enable that compiler option. Optionally, you may want to include the ",
+              "type": "text"
+            },
+            {
+              "code": "-Wconversion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option, which is more verbose, but finds more potential errors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Choose-an-appropriate-data-type-for-enumerated-values",
+          "level": 3,
+          "text": "Choose an appropriate data type for enumerated values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the LLVM compiler, enumerated types can define the size of the enumeration, so some enumerated types may be larger than you expect. The solution, as in all other cases, is to make no assumptions about a data type’s size. Instead, assign any enumerated values to a variable with the proper data type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Look-for-common-type-conversion-problems",
+          "level": 3,
+          "text": "Look for common type-conversion problems",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSInteger",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type is used throughout the system for declaring numeric types. It’s a 32-bit integer in the 32-bit runtime and a 64-bit integer in the 64-bit runtime. Never make the assumption that an ",
+              "type": "text"
+            },
+            {
+              "code": "NSInteger",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type is the same size as an ",
+              "type": "text"
+            },
+            {
+              "code": "int",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type. Here are a few cases in your code to look for:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Converting to or from an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Encoding and decoding data using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/library/archive/releasenotes/MacOSX/WhatsNewInOSX/Articles/MacOSX10_11.html#//apple_ref/doc/uid/TP40016227-SW42",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class. In particular, if you encode an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSInteger",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " on a 64-bit device and later decode it on a 32-bit device, the decode method throws an exception if the value exceeds the range of a 32-bit integer. You may want to use an explicit integer type instead.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Working with constants defined in the framework as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSInteger",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Of particular note is the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSNotFound",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " constant. In the 64-bit runtime, its value is larger than the maximum range of an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "int",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " type, so truncating its value often causes errors in your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t assume the size of ",
+              "type": "text"
+            },
+            {
+              "code": "CGFloat",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". As a result of the conversion, the ",
+              "type": "text"
+            },
+            {
+              "code": "CGFloat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type changes to a 64-bit floating-point number. As with the ",
+              "type": "text"
+            },
+            {
+              "code": "NSInteger",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type, you can’t assume that ",
+              "type": "text"
+            },
+            {
+              "code": "CGFloat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a ",
+              "type": "text"
+            },
+            {
+              "code": "float",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or a ",
+              "type": "text"
+            },
+            {
+              "code": "double",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", so use it consistently. The following code shows an example that uses Core Foundation to create a ",
+              "type": "text"
+            },
+            {
+              "code": "CFNumber:",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Incorrect.",
+            "CGFloat value = 200.0;",
+            "CFNumberCreate(kCFAllocatorDefault, kCFNumberFloatType, &value);",
+            "",
+            "// Correct.",
+            "CGFloat value = 200.0;",
+            "CFNumberCreate(kCFAllocatorDefault, kCFNumberCGFloatType, &value);"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first part of the code assumes that a ",
+              "type": "text"
+            },
+            {
+              "code": "CGFloat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the same size as a ",
+              "type": "text"
+            },
+            {
+              "code": "float",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which is incorrect. The second part of the code correctly specifies ",
+              "type": "text"
+            },
+            {
+              "code": "kCFNumberCGFloatType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the type to create.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsnumber": {
+      "abstract": [
+        {
+          "text": "An object wrapper for primitive scalar numeric values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumber"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/app-and-environment": {
+      "abstract": [
+        {
+          "text": "Manage life-cycle events and your app’s UI scenes, and get information about traits and the environment in which your app runs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and environment",
+      "type": "topic",
+      "url": "/documentation/uikit/app-and-environment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/auditing-pointer-usage": {
+      "abstract": [
+        {
+          "text": "Ensure that the pointers in your code are safe for the 64-bit runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/auditing-pointer-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Auditing pointer usage",
+      "type": "topic",
+      "url": "/documentation/uikit/auditing-pointer-usage"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/managing-functions-and-function-pointers": {
+      "abstract": [
+        {
+          "text": "Ensure that your code correctly handles functions, function pointers, and Objective-C messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/managing-functions-and-function-pointers",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing functions and function pointers",
+      "type": "topic",
+      "url": "/documentation/uikit/managing-functions-and-function-pointers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/updating-your-app-from-32-bit-to-64-bit-architecture": {
+      "abstract": [
+        {
+          "text": "Ensure that your app behaves as expected by adapting it to support later versions of the operating system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/updating-your-app-from-32-bit-to-64-bit-architecture",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Updating your app from 32-bit to 64-bit architecture",
+      "type": "topic",
+      "url": "/documentation/uikit/updating-your-app-from-32-bit-to-64-bit-architecture"
+    },
+    "https://developer.apple.com/library/archive/releasenotes/MacOSX/WhatsNewInOSX/Articles/MacOSX10_11.html#//apple_ref/doc/uid/TP40016227-SW42": {
+      "identifier": "https://developer.apple.com/library/archive/releasenotes/MacOSX/WhatsNewInOSX/Articles/MacOSX10_11.html#//apple_ref/doc/uid/TP40016227-SW42",
+      "title": "NSCoder",
+      "titleInlineContent": [
+        {
+          "text": "NSCoder",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/releasenotes/MacOSX/WhatsNewInOSX/Articles/MacOSX10_11.html#//apple_ref/doc/uid/TP40016227-SW42"
+    },
+    "media-3109112": {
+      "alt": "Alignment between 32-bit and 64-bit representations of the same structure.",
+      "identifier": "media-3109112",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9a3a801f885b898f629d35054e0f73fe/media-3109112@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Memory-and-pointer-access",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/auditing-pointer-usage",
+        "doc://com.apple.uikit/documentation/UIKit/managing-functions-and-function-pointers"
+      ],
+      "title": "Memory and pointer access"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Memory-and-pointer-access",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/auditing-pointer-usage",
+                "doc://com.apple.uikit/documentation/UIKit/managing-functions-and-function-pointers"
+              ],
+              "title": "Memory and pointer access"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/updating-data-structures"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/updating-data-structures"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

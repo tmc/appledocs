@@ -1,0 +1,2947 @@
+{
+  "abstract": [
+    {
+      "text": "A ",
+      "type": "text"
+    },
+    {
+      "code": "WebFrame",
+      "type": "codeVoice"
+    },
+    {
+      "text": " object encapsulates the data displayed in a ",
+      "type": "text"
+    },
+    {
+      "code": "WebFrameView",
+      "type": "codeVoice"
+    },
+    {
+      "text": " object. There is one ",
+      "type": "text"
+    },
+    {
+      "code": "WebFrame",
+      "type": "codeVoice"
+    },
+    {
+      "text": " object per frame displayed in a ",
+      "type": "text"
+    },
+    {
+      "code": "WebView",
+      "type": "codeVoice"
+    },
+    {
+      "text": ". An entire webpage is represented by a hierarchy of ",
+      "type": "text"
+    },
+    {
+      "code": "WebFrame",
+      "type": "codeVoice"
+    },
+    {
+      "text": " objects in which the root object is called the ",
+      "type": "text"
+    },
+    {
+      "inlineContent": [
+        {
+          "text": "main frame",
+          "type": "text"
+        }
+      ],
+      "type": "strong"
+    },
+    {
+      "text": ".",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.webkit/documentation/WebKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.webkit/documentation/WebKit/WebFrame"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)WebFrame",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "WebFrame"
+      }
+    ],
+    "modules": [
+      {
+        "name": "WebKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "WebFrame"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.14",
+        "introducedAt": "10.3",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "WebFrame"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WebFrame"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each ",
+              "type": "text"
+            },
+            {
+              "code": "WebFrame",
+              "type": "codeVoice"
+            },
+            {
+              "text": " also has a ",
+              "type": "text"
+            },
+            {
+              "code": "WebDataSource",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object that manages the loading of frame content. You use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/load(_:)-47p2s",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to initiate an asynchronous client request which will create a provisional data source. The provisional data source will transition to a committed data source once any data has been received.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are some special, predefined, frame names that you can use when referring to or finding a ",
+              "type": "text"
+            },
+            {
+              "code": "WebFrame",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Some of the predefined frame names are: “_self”, “_current”, “_parent”, and “_top.” See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/findNamed(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for a description of their meaning. Frame names may also be specified in the HTML source, or set by clients.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, the group name is an arbitrary identifier used to group related frames. For example, JavaScript running in a frame can access any other frame in the same group. It’s up to the application how it chooses to scope related frames.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.webkit/documentation/WebKit": {
+      "abstract": [
+        {
+          "text": "Integrate web content seamlessly into your app, and customize content interactions to meet your app’s needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WebKit",
+      "type": "topic",
+      "url": "/documentation/webkit"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebDataSource": {
+      "abstract": [
+        {
+          "code": "WebDataSource",
+          "type": "codeVoice"
+        },
+        {
+          "text": " encapsulates the web content to be displayed in a web frame view. A ",
+          "type": "text"
+        },
+        {
+          "code": "WebDataSource",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object has a representation object, conforming to the ",
+          "type": "text"
+        },
+        {
+          "code": "WebDocumentRepresentation",
+          "type": "codeVoice"
+        },
+        {
+          "text": " protocol, that holds the data in an appropriate format depending on the MIME type. You can extend WebKit to support new MIME types by implementing your own view and representation classes, and specifying the mapping between them using the  ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.webkit/documentation/WebKit/WebView/registerClass(_:representationClass:forMIMEType:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "WebView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class method.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WebDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WebDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "WebDataSource",
+      "type": "topic",
+      "url": "/documentation/webkit/webdatasource"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebDocumentView": {
+      "abstract": [
+        {
+          "text": "This protocol is adopted by the document view of a ",
+          "type": "text"
+        },
+        {
+          "code": "WebFrameView",
+          "type": "codeVoice"
+        },
+        {
+          "text": ". You can extend WebKit to support additional MIME types by implementing your own document view and document representation classes to render data for specific MIME types. You register those classes using the WebFrame ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.webkit/documentation/WebKit/WebView/registerClass(_:representationClass:forMIMEType:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method. Classes that adopt this protocol are expected to be subclasses of ",
+          "type": "text"
+        },
+        {
+          "code": "NSView",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WebDocumentView"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebDocumentView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WebDocumentView"
+        }
+      ],
+      "role": "symbol",
+      "title": "WebDocumentView",
+      "type": "topic",
+      "url": "/documentation/webkit/webdocumentview"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "code": "WebFrame",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object encapsulates the data displayed in a ",
+          "type": "text"
+        },
+        {
+          "code": "WebFrameView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object. There is one ",
+          "type": "text"
+        },
+        {
+          "code": "WebFrame",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object per frame displayed in a ",
+          "type": "text"
+        },
+        {
+          "code": "WebView",
+          "type": "codeVoice"
+        },
+        {
+          "text": ". An entire webpage is represented by a hierarchy of ",
+          "type": "text"
+        },
+        {
+          "code": "WebFrame",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects in which the root object is called the ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "main frame",
+              "type": "text"
+            }
+          ],
+          "type": "strong"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WebFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WebFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "WebFrame",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame/childFrames": {
+      "abstract": [
+        {
+          "text": "The frames of the web frame’s immediate children.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "childFrames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/childFrames",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "childFrames"
+        }
+      ],
+      "role": "symbol",
+      "title": "childFrames",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe/childframes"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame/dataSource": {
+      "abstract": [
+        {
+          "text": "The committed data source.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataSource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WebDataSource",
+          "text": "WebDataSource"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/dataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "dataSource",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe/datasource"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame/domDocument": {
+      "abstract": [
+        {
+          "text": "The web frame’s DOM document.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "domDocument"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)DOMDocument",
+          "text": "DOMDocument"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/domDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DOMDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "domDocument",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe/domdocument"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame/findNamed(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a web frame that matches the given name.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "findNamed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WebFrame",
+          "text": "WebFrame"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/findNamed(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "findFrameNamed:"
+        }
+      ],
+      "role": "symbol",
+      "title": "findNamed(_:)",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe/findnamed(_:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame/frameElement": {
+      "abstract": [
+        {
+          "text": "The web view’s DOM frame element.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frameElement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)DOMHTMLElement",
+          "text": "DOMHTMLElement"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/frameElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "frameElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "frameElement",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe/frameelement"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame/frameView": {
+      "abstract": [
+        {
+          "text": "The web frame’s view object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frameView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WebFrameView",
+          "text": "WebFrameView"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/frameView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "frameView"
+        }
+      ],
+      "role": "symbol",
+      "title": "frameView",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe/frameview"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame/globalContext": {
+      "abstract": [
+        {
+          "text": "The global JavaScript execution context for bridging between the WebKit and JavaScriptCore C API.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "globalContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@JSGlobalContextRef",
+          "text": "JSGlobalContextRef"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/globalContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "globalContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "globalContext",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe/globalcontext"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame/init(name:webFrameView:webView:)": {
+      "abstract": [
+        {
+          "text": "Initializes the receiver with a frame name, web frame view, and controlling web view.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "!("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "webFrameView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WebFrameView",
+          "text": "WebFrameView"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "webView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WebView",
+          "text": "WebView"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/init(name:webFrameView:webView:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithName:webFrameView:webView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(name:webFrameView:webView:)",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe/init(name:webframeview:webview:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame/javaScriptContext": {
+      "abstract": [
+        {
+          "text": "The frame’s global JavaScript execution context.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "javaScriptContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)JSContext",
+          "text": "JSContext"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/javaScriptContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "javaScriptContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "javaScriptContext",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe/javascriptcontext"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame/load(_:)-47p2s": {
+      "abstract": [
+        {
+          "text": "Connects to a given URL by initiating an asynchronous client request.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "load"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation10URLRequestV",
+          "text": "URLRequest"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/load(_:)-47p2s",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadRequest:"
+        }
+      ],
+      "role": "symbol",
+      "title": "load(_:)",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe/load(_:)-47p2s"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame/load(_:)-6wkx6": {
+      "abstract": [
+        {
+          "text": "Loads an archive into the web frame.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "load"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WebArchive",
+          "text": "WebArchive"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/load(_:)-6wkx6",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadArchive:"
+        }
+      ],
+      "role": "symbol",
+      "title": "load(_:)",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe/load(_:)-6wkx6"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame/load(_:mimeType:textEncodingName:baseURL:)": {
+      "abstract": [
+        {
+          "text": "Sets the main page contents, MIME type, content encoding, and base URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "load"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mimeType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "textEncodingName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "baseURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/load(_:mimeType:textEncodingName:baseURL:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadData:MIMEType:textEncodingName:baseURL:"
+        }
+      ],
+      "role": "symbol",
+      "title": "load(_:mimeType:textEncodingName:baseURL:)",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe/load(_:mimetype:textencodingname:baseurl:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame/loadAlternateHTMLString(_:baseURL:forUnreachableURL:)": {
+      "abstract": [
+        {
+          "text": "Loads alternate content for a frame whose URL is unreachable.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadAlternateHTMLString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "baseURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forUnreachableURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/loadAlternateHTMLString(_:baseURL:forUnreachableURL:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadAlternateHTMLString:baseURL:forUnreachableURL:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadAlternateHTMLString(_:baseURL:forUnreachableURL:)",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe/loadalternatehtmlstring(_:baseurl:forunreachableurl:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame/loadHTMLString(_:baseURL:)": {
+      "abstract": [
+        {
+          "text": "Sets the main page contents and base URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadHTMLString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "baseURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/loadHTMLString(_:baseURL:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadHTMLString:baseURL:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadHTMLString(_:baseURL:)",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe/loadhtmlstring(_:baseurl:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame/name": {
+      "abstract": [
+        {
+          "text": "The web frame’s name.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/name",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "name"
+        }
+      ],
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe/name"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame/parent": {
+      "abstract": [
+        {
+          "text": "The web frame’s parent web frame.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WebFrame",
+          "text": "WebFrame"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/parent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "parentFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "parent",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe/parent"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame/provisionalDataSource": {
+      "abstract": [
+        {
+          "text": "The provisional data source, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if either a load request is not in progress or a load request has completed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "provisionalDataSource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WebDataSource",
+          "text": "WebDataSource"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/provisionalDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "provisionalDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "provisionalDataSource",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe/provisionaldatasource"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame/reload()": {
+      "abstract": [
+        {
+          "text": "Reloads the initial request passed as an argument to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/load(_:)-47p2s",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reload"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/reload()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reload"
+        }
+      ],
+      "role": "symbol",
+      "title": "reload()",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe/reload()"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame/reloadFromOrigin()": {
+      "abstract": [
+        {
+          "text": "Performs an end-to-end revalidation using cache-validating conditionals if possible.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadFromOrigin"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/reloadFromOrigin()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reloadFromOrigin"
+        }
+      ],
+      "role": "symbol",
+      "title": "reloadFromOrigin()",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe/reloadfromorigin()"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame/stopLoading()": {
+      "abstract": [
+        {
+          "text": "Stops any pending loads on the receiver’s data source, and those of its children.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopLoading"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/stopLoading()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopLoading"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopLoading()",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe/stoploading()"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame/webView": {
+      "abstract": [
+        {
+          "text": "The view object that manages the web frame.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "webView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WebView",
+          "text": "WebView"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/webView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "webView"
+        }
+      ],
+      "role": "symbol",
+      "title": "webView",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe/webview"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrame/windowObject": {
+      "abstract": [
+        {
+          "text": "The JavaScript window object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowObject"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WebScriptObject",
+          "text": "WebScriptObject"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrame/windowObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "windowObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "windowObject",
+      "type": "topic",
+      "url": "/documentation/webkit/webframe/windowobject"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrameLoadDelegate": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WebFrameLoadDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrameLoadDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WebFrameLoadDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "WebFrameLoadDelegate",
+      "type": "topic",
+      "url": "/documentation/webkit/webframeloaddelegate"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebFrameView": {
+      "abstract": [
+        {
+          "code": "WebFrameView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects and their subviews display the web content contained in a frame. You never create instances of ",
+          "type": "text"
+        },
+        {
+          "code": "WebFrameView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " directly—",
+          "type": "text"
+        },
+        {
+          "code": "WebView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects create and manage a hierarchy of ",
+          "type": "text"
+        },
+        {
+          "code": "WebFrameView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects, one for each frame. ",
+          "type": "text"
+        },
+        {
+          "code": "WebFrameView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects use a scroll view whose document view conforms to the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.webkit/documentation/WebKit/WebDocumentView",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " protocol.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WebFrameView"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebFrameView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WebFrameView"
+        }
+      ],
+      "role": "symbol",
+      "title": "WebFrameView",
+      "type": "topic",
+      "url": "/documentation/webkit/webframeview"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebView/registerClass(_:representationClass:forMIMEType:)": {
+      "abstract": [
+        {
+          "text": "Specifies the view and representation objects to be used for specific MIME types.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerClass"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "representationClass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forMIMEType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebView/registerClass(_:representationClass:forMIMEType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registerViewClass:representationClass:forMIMEType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "registerClass(_:representationClass:forMIMEType:)",
+      "type": "topic",
+      "url": "/documentation/webkit/webview/registerclass(_:representationclass:formimetype:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DisplayWebContent/DisplayWebContent.html#//apple_ref/doc/uid/10000164i": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DisplayWebContent/DisplayWebContent.html#//apple_ref/doc/uid/10000164i",
+      "title": "WebKit Objective-C Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "WebKit Objective-C Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DisplayWebContent/DisplayWebContent.html#//apple_ref/doc/uid/10000164i"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DisplayWebContent/DisplayWebContent.html#//apple_ref/doc/uid/10000164i"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Working-with-Frames-Legacy",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/WebDataSource",
+        "doc://com.apple.webkit/documentation/WebKit/WebFrameView",
+        "doc://com.apple.webkit/documentation/WebKit/WebFrameLoadDelegate"
+      ],
+      "title": "Working with Frames (Legacy)"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializing-Frames",
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/WebFrame/init(name:webFrameView:webView:)"
+      ],
+      "title": "Initializing Frames"
+    },
+    {
+      "anchor": "Loading-Content",
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/WebFrame/load(_:)-47p2s",
+        "doc://com.apple.webkit/documentation/WebKit/WebFrame/reload()",
+        "doc://com.apple.webkit/documentation/WebKit/WebFrame/reloadFromOrigin()",
+        "doc://com.apple.webkit/documentation/WebKit/WebFrame/stopLoading()",
+        "doc://com.apple.webkit/documentation/WebKit/WebFrame/loadAlternateHTMLString(_:baseURL:forUnreachableURL:)",
+        "doc://com.apple.webkit/documentation/WebKit/WebFrame/loadHTMLString(_:baseURL:)",
+        "doc://com.apple.webkit/documentation/WebKit/WebFrame/load(_:mimeType:textEncodingName:baseURL:)",
+        "doc://com.apple.webkit/documentation/WebKit/WebFrame/load(_:)-6wkx6"
+      ],
+      "title": "Loading Content"
+    },
+    {
+      "anchor": "Getting-the-Data-Source",
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/WebFrame/dataSource",
+        "doc://com.apple.webkit/documentation/WebKit/WebFrame/provisionalDataSource"
+      ],
+      "title": "Getting the Data Source"
+    },
+    {
+      "anchor": "Getting-Related-Frames-and-Views",
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/WebFrame/parent",
+        "doc://com.apple.webkit/documentation/WebKit/WebFrame/childFrames",
+        "doc://com.apple.webkit/documentation/WebKit/WebFrame/frameView",
+        "doc://com.apple.webkit/documentation/WebKit/WebFrame/webView"
+      ],
+      "title": "Getting Related Frames and Views"
+    },
+    {
+      "anchor": "Finding-Frames",
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/WebFrame/findNamed(_:)",
+        "doc://com.apple.webkit/documentation/WebKit/WebFrame/name"
+      ],
+      "title": "Finding Frames"
+    },
+    {
+      "anchor": "Getting-DOM-Objects",
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/WebFrame/domDocument",
+        "doc://com.apple.webkit/documentation/WebKit/WebFrame/frameElement",
+        "doc://com.apple.webkit/documentation/WebKit/WebFrame/globalContext",
+        "doc://com.apple.webkit/documentation/WebKit/WebFrame/javaScriptContext",
+        "doc://com.apple.webkit/documentation/WebKit/WebFrame/windowObject"
+      ],
+      "title": "Getting DOM Objects"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "10.14",
+              "introducedAt": "10.3",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "WebFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.webkit/documentation/WebKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializing-Frames",
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/WebFrame/init(name:webFrameView:webView:)"
+              ],
+              "title": "Initializing Frames"
+            },
+            {
+              "anchor": "Loading-Content",
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/WebFrame/load(_:)-47p2s",
+                "doc://com.apple.webkit/documentation/WebKit/WebFrame/reload()",
+                "doc://com.apple.webkit/documentation/WebKit/WebFrame/reloadFromOrigin()",
+                "doc://com.apple.webkit/documentation/WebKit/WebFrame/stopLoading()",
+                "doc://com.apple.webkit/documentation/WebKit/WebFrame/loadAlternateHTMLString(_:baseURL:forUnreachableURL:)",
+                "doc://com.apple.webkit/documentation/WebKit/WebFrame/loadHTMLString(_:baseURL:)",
+                "doc://com.apple.webkit/documentation/WebKit/WebFrame/load(_:mimeType:textEncodingName:baseURL:)",
+                "doc://com.apple.webkit/documentation/WebKit/WebFrame/load(_:)-6wkx6"
+              ],
+              "title": "Loading Content"
+            },
+            {
+              "anchor": "Getting-the-Data-Source",
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/WebFrame/dataSource",
+                "doc://com.apple.webkit/documentation/WebKit/WebFrame/provisionalDataSource"
+              ],
+              "title": "Getting the Data Source"
+            },
+            {
+              "anchor": "Getting-Related-Frames-and-Views",
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/WebFrame/parent",
+                "doc://com.apple.webkit/documentation/WebKit/WebFrame/childFrames",
+                "doc://com.apple.webkit/documentation/WebKit/WebFrame/frameView",
+                "doc://com.apple.webkit/documentation/WebKit/WebFrame/webView"
+              ],
+              "title": "Getting Related Frames and Views"
+            },
+            {
+              "anchor": "Finding-Frames",
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/WebFrame/findNamed(_:)",
+                "doc://com.apple.webkit/documentation/WebKit/WebFrame/name"
+              ],
+              "title": "Finding Frames"
+            },
+            {
+              "anchor": "Getting-DOM-Objects",
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/WebFrame/domDocument",
+                "doc://com.apple.webkit/documentation/WebKit/WebFrame/frameElement",
+                "doc://com.apple.webkit/documentation/WebKit/WebFrame/globalContext",
+                "doc://com.apple.webkit/documentation/WebKit/WebFrame/javaScriptContext",
+                "doc://com.apple.webkit/documentation/WebKit/WebFrame/windowObject"
+              ],
+              "title": "Getting DOM Objects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DisplayWebContent/DisplayWebContent.html#//apple_ref/doc/uid/10000164i"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Working-with-Frames-Legacy",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/WebDataSource",
+                "doc://com.apple.webkit/documentation/WebKit/WebFrameView",
+                "doc://com.apple.webkit/documentation/WebKit/WebFrameLoadDelegate"
+              ],
+              "title": "Working with Frames (Legacy)"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "WebFrame"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1reloadFromOrigin()/title",
+          "value": "reloadFromOrigin"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1reloadFromOrigin()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reloadFromOrigin"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1reload()/title",
+          "value": "reload"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1reload()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reload"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1globalContext/title",
+          "value": "globalContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1globalContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "globalContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebView~1registerClass(_:representationClass:forMIMEType:)/title",
+          "value": "registerViewClass:representationClass:forMIMEType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebView~1registerClass(_:representationClass:forMIMEType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerViewClass:representationClass:forMIMEType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1findNamed(_:)/title",
+          "value": "findFrameNamed:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1findNamed(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "findFrameNamed:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1load(_:)-47p2s/title",
+          "value": "loadRequest:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1load(_:)-47p2s/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadRequest:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1parent/title",
+          "value": "parentFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1parent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "parentFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1load(_:)-6wkx6/title",
+          "value": "loadArchive:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1load(_:)-6wkx6/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadArchive:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1childFrames/title",
+          "value": "childFrames"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1childFrames/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "childFrames"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrameView/title",
+          "value": "WebFrameView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrameView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebFrameView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrameView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebFrameView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1windowObject/title",
+          "value": "windowObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1windowObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "windowObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1domDocument/title",
+          "value": "DOMDocument"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1domDocument/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DOMDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1load(_:mimeType:textEncodingName:baseURL:)/title",
+          "value": "loadData:MIMEType:textEncodingName:baseURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1load(_:mimeType:textEncodingName:baseURL:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadData:MIMEType:textEncodingName:baseURL:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1javaScriptContext/title",
+          "value": "javaScriptContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1javaScriptContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "javaScriptContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1frameView/title",
+          "value": "frameView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1frameView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "frameView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1name/title",
+          "value": "name"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1name/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "name"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1webView/title",
+          "value": "webView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1webView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "webView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1init(name:webFrameView:webView:)/title",
+          "value": "initWithName:webFrameView:webView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1init(name:webFrameView:webView:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithName:webFrameView:webView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrameLoadDelegate/title",
+          "value": "WebFrameLoadDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrameLoadDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebFrameLoadDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrameLoadDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebFrameLoadDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1stopLoading()/title",
+          "value": "stopLoading"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1stopLoading()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopLoading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1dataSource/title",
+          "value": "dataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1dataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebDocumentView/title",
+          "value": "WebDocumentView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebDocumentView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebDocumentView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebDocumentView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebDocumentView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1loadAlternateHTMLString(_:baseURL:forUnreachableURL:)/title",
+          "value": "loadAlternateHTMLString:baseURL:forUnreachableURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1loadAlternateHTMLString(_:baseURL:forUnreachableURL:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadAlternateHTMLString:baseURL:forUnreachableURL:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1loadHTMLString(_:baseURL:)/title",
+          "value": "loadHTMLString:baseURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1loadHTMLString(_:baseURL:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadHTMLString:baseURL:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame/title",
+          "value": "WebFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebDataSource/title",
+          "value": "WebDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WebDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1provisionalDataSource/title",
+          "value": "provisionalDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1provisionalDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "provisionalDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1frameElement/title",
+          "value": "frameElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WebFrame~1frameElement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "frameElement"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/webkit/webframe"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/webkit/webframe"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

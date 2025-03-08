@@ -1,0 +1,571 @@
+{
+  "abstract": [
+    {
+      "text": "Appends the preferred path extension for the type you specify.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+        "doc://com.apple.documentation/documentation/foundation/url"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/url/3585029-appendpathextension"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3585029,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation3URLV22UniformTypeIdentifiersE19appendPathExtension3foryAD6UTTypeV_tF",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "appendPathExtension"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "identifier",
+        "text": "for"
+      },
+      {
+        "kind": "text",
+        "text": ": UTType)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Uniform Type Identifiers"
+      }
+    ],
+    "parent": {
+      "title": "URL"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "14.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "7.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "12.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "structm",
+    "title": "appendPathExtension(for:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "mutating"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "appendPathExtension"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "for"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "contentType"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTType-swift.struct",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:22UniformTypeIdentifiers6UTTypeV",
+              "text": "UTType"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A uniform type identifier.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "contentType"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this method when you want to mix partial input from a user or other source, and need to produce a complete filename suitable for that input. For example, if you download a file from the internet and know its MIME type, you can use this method to ensure the URL has the correct filename extension where you save the file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If ",
+              "type": "text"
+            },
+            {
+              "code": "partialName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " already has a path extension, and that path extension is valid for file system objects of type ",
+              "type": "text"
+            },
+            {
+              "code": "contentType",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the function doesn’t add an extension before appending it to the URL. For example, if the inputs are ",
+              "type": "text"
+            },
+            {
+              "code": "puppy.jpg",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTType-swift.struct/jpeg",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", respectively, the function returns a URL with an appended path component of ",
+              "type": "text"
+            },
+            {
+              "code": "puppy.jpg",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". However, if the inputs are ",
+              "type": "text"
+            },
+            {
+              "code": "puppy.jpg",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTType-swift.struct/plainText",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", respectively, the function returns a URL with an appended path component of ",
+              "type": "text"
+            },
+            {
+              "code": "puppy.jpg.txt",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If you want to replace any existing path extension, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780400-deletepathextension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method first.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the function can’t append the path component, it returns an unchanged URL.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": " For more information about types, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Numbers, Data, and Basic Values",
+      "type": "topic",
+      "url": "/documentation/foundation/numbers_data_and_basic_values"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url": {
+      "abstract": [
+        {
+          "text": "A value that identifies the location of a resource, such as an item on a remote server or the path to a local file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL",
+      "type": "topic",
+      "url": "/documentation/foundation/url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1779923-appendpathextension": {
+      "abstract": [
+        {
+          "text": "Appends the specified path extension to self.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendPathExtension"
+        },
+        {
+          "kind": "text",
+          "text": "(String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1779923-appendpathextension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendPathExtension(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1779923-appendpathextension"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780122-appendingpathextension": {
+      "abstract": [
+        {
+          "text": "Returns a URL by appending the specified path extension to self.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendingPathExtension"
+        },
+        {
+          "kind": "text",
+          "text": "(String) -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780122-appendingpathextension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendingPathExtension(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780122-appendingpathextension"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780400-deletepathextension": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780400-deletepathextension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deletePathExtension()",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780400-deletepathextension"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3585029-appendpathextension": {
+      "abstract": [
+        {
+          "text": "Appends the preferred path extension for the type you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendPathExtension"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": UTType)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3585029-appendpathextension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendPathExtension(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3585029-appendpathextension"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3585030-appendingpathextension": {
+      "abstract": [
+        {
+          "text": "Returns a URL by appending the preferred path extension for the type you specify to the URL’s last path component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendingPathExtension"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": UTType) -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3585030-appendingpathextension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendingPathExtension(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3585030-appendingpathextension"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers": {
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers",
+      "kind": "article",
+      "role": "collection",
+      "title": "Uniform Type Identifiers",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTType-swift.struct": {
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTType-swift.struct",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTType",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers/uttype-swift.struct"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTType-swift.struct/jpeg": {
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTType-swift.struct/jpeg",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "jpeg",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers/uttype-swift.struct/jpeg"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTType-swift.struct/plainText": {
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTType-swift.struct/plainText",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "plainText",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers/uttype-swift.struct/plaintext"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url/1779923-appendpathextension",
+        "doc://com.apple.documentation/documentation/foundation/url/1780122-appendingpathextension",
+        "doc://com.apple.documentation/documentation/foundation/url/3585030-appendingpathextension"
+      ],
+      "title": "Adding a path extension"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/url/3585029-appendpathextension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

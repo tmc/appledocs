@@ -1,0 +1,361 @@
+{
+  "abstract": [
+    {
+      "text": "Attributes for task status.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/iokit",
+        "doc://com.apple.documentation/documentation/iokit/scsitask_h_user-space"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/iokit/scsitaskstatus"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1534762,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@SCSITaskStatus",
+    "modules": [
+      {
+        "name": "IOKit"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "SCSITaskStatus"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " SCSITaskStatus : "
+            },
+            {
+              "kind": "keyword",
+              "text": "unsigned"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "int"
+            },
+            {
+              "kind": "text",
+              "text": " {"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "    ..."
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "} "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCSITaskStatus"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Task Status represents the completion status of the task which provides the SCSI Application Layer with additional information about how to procede in handling a completed task.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The SCSI Architecture Model specification only defines task status values for when a task completes with a service response of either TASK_COMPLETED or LINK_COMMAND_COMPLETE.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Since additional information will aid in error recovery when a task fails to be completed by a device due to a service response of kSCSIServiceResponse_SERVICE_DELIVERY_OR_TARGET_FAILURE, additional values have been defined that can be returned by the SCSI Protocol Layer to inform the SCSI Application Layer of the cause of the delivery failure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Task Status can only be modified by the SCSI Protocol Layer. The SCSI Application Layer can only read the status",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/iokit": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "IOKit",
+      "type": "topic",
+      "url": "/documentation/iokit"
+    },
+    "doc://com.apple.documentation/documentation/iokit/scsitask_h_user-space": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/scsitask_h_user-space",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SCSITask.h User-Space",
+      "type": "topic",
+      "url": "/documentation/iokit/scsitask_h_user-space"
+    },
+    "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_aca_active": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_aca_active",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSCSITaskStatus_ACA_ACTIVE",
+      "type": "topic",
+      "url": "/documentation/iokit/scsitaskstatus/kscsitaskstatus_aca_active"
+    },
+    "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_busy": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_busy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSCSITaskStatus_BUSY",
+      "type": "topic",
+      "url": "/documentation/iokit/scsitaskstatus/kscsitaskstatus_busy"
+    },
+    "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_check_condition": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_check_condition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSCSITaskStatus_CHECK_CONDITION",
+      "type": "topic",
+      "url": "/documentation/iokit/scsitaskstatus/kscsitaskstatus_check_condition"
+    },
+    "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_condition_met": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_condition_met",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSCSITaskStatus_CONDITION_MET",
+      "type": "topic",
+      "url": "/documentation/iokit/scsitaskstatus/kscsitaskstatus_condition_met"
+    },
+    "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_deliveryfailure": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_deliveryfailure",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSCSITaskStatus_DeliveryFailure",
+      "type": "topic",
+      "url": "/documentation/iokit/scsitaskstatus/kscsitaskstatus_deliveryfailure"
+    },
+    "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_devicenotpresent": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_devicenotpresent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSCSITaskStatus_DeviceNotPresent",
+      "type": "topic",
+      "url": "/documentation/iokit/scsitaskstatus/kscsitaskstatus_devicenotpresent"
+    },
+    "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_devicenotresponding": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_devicenotresponding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSCSITaskStatus_DeviceNotResponding",
+      "type": "topic",
+      "url": "/documentation/iokit/scsitaskstatus/kscsitaskstatus_devicenotresponding"
+    },
+    "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_good": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_good",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSCSITaskStatus_GOOD",
+      "type": "topic",
+      "url": "/documentation/iokit/scsitaskstatus/kscsitaskstatus_good"
+    },
+    "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_intermediate": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_intermediate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSCSITaskStatus_INTERMEDIATE",
+      "type": "topic",
+      "url": "/documentation/iokit/scsitaskstatus/kscsitaskstatus_intermediate"
+    },
+    "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_intermediate_condition_met": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_intermediate_condition_met",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSCSITaskStatus_INTERMEDIATE_CONDITION_MET",
+      "type": "topic",
+      "url": "/documentation/iokit/scsitaskstatus/kscsitaskstatus_intermediate_condition_met"
+    },
+    "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_no_status": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_no_status",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSCSITaskStatus_No_Status",
+      "type": "topic",
+      "url": "/documentation/iokit/scsitaskstatus/kscsitaskstatus_no_status"
+    },
+    "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_protocoltimeoutoccurred": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_protocoltimeoutoccurred",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSCSITaskStatus_ProtocolTimeoutOccurred",
+      "type": "topic",
+      "url": "/documentation/iokit/scsitaskstatus/kscsitaskstatus_protocoltimeoutoccurred"
+    },
+    "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_reservation_conflict": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_reservation_conflict",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSCSITaskStatus_RESERVATION_CONFLICT",
+      "type": "topic",
+      "url": "/documentation/iokit/scsitaskstatus/kscsitaskstatus_reservation_conflict"
+    },
+    "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_task_set_full": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_task_set_full",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSCSITaskStatus_TASK_SET_FULL",
+      "type": "topic",
+      "url": "/documentation/iokit/scsitaskstatus/kscsitaskstatus_task_set_full"
+    },
+    "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_tasktimeoutoccurred": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_tasktimeoutoccurred",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSCSITaskStatus_TaskTimeoutOccurred",
+      "type": "topic",
+      "url": "/documentation/iokit/scsitaskstatus/kscsitaskstatus_tasktimeoutoccurred"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1594189",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_good",
+        "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_check_condition",
+        "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_condition_met",
+        "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_busy",
+        "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_intermediate",
+        "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_intermediate_condition_met",
+        "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_reservation_conflict",
+        "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_task_set_full",
+        "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_aca_active",
+        "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_tasktimeoutoccurred",
+        "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_protocoltimeoutoccurred",
+        "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_devicenotresponding",
+        "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_devicenotpresent",
+        "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_deliveryfailure",
+        "doc://com.apple.documentation/documentation/iokit/scsitaskstatus/kscsitaskstatus_no_status"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/iokit/scsitaskstatus"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

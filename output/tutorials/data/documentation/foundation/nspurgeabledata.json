@@ -1,0 +1,430 @@
+{
+  "abstract": [
+    {
+      "text": "A mutable data object containing bytes that can be discarded when they're no longer needed.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/collections"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nspurgeabledata"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1412913,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSPurgeableData",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSPurgeableData"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.6",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSPurgeableData"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSPurgeableData"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledata",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSMutableData",
+              "text": "NSMutableData"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nspurgeabledata",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects inherit their creation methods from their superclass, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " while providing a default implementation of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nspurgeabledata",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects begin \"accessed” to ensure that they are not instantly discarded. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1412187-begincontentaccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method marks the object’s bytes as “accessed,” thus protecting them from being discarded, and must be called before accessing the object, or else an exception will be raised. This method returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " if the bytes have not been discarded and if they have been successfully marked as “accessed”. Any method that directly or indirectly accesses these bytes or their length when they are not “accessed” will raise an exception. When you are done with the data, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1407535-endcontentaccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to allow them to be discarded in order to quickly free up memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may use these objects by themselves, and do not necessarily have to use them in conjunction with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscache",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to get the purging behavior. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscache",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class incorporates a caching mechanism with some auto-removal policies to ensure that its memory footprint does not get too large.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nspurgeabledata",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects should not be used as keys in hashing-based collections, because the value of the bytes pointer can change after every mutation of the data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/collections": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/collections",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collections",
+      "type": "topic",
+      "url": "/documentation/foundation/collections"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscache": {
+      "abstract": [
+        {
+          "text": "A mutable collection you use to temporarily store transient key-value pairs that are subject to eviction when resources are low.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCache"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscache",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCache",
+      "type": "topic",
+      "url": "/documentation/foundation/nscache"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDiscardableContent",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdiscardablecontent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1407535-endcontentaccess": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1407535-endcontentaccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endContentAccess()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdiscardablecontent/1407535-endcontentaccess"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1412187-begincontentaccess": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1412187-begincontentaccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginContentAccess()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdiscardablecontent/1412187-begincontentaccess"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutabledata": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutabledata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspurgeabledata": {
+      "abstract": [
+        {
+          "text": "A mutable data object containing bytes that can be discarded when they're no longer needed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPurgeableData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspurgeabledata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPurgeableData",
+      "type": "topic",
+      "url": "/documentation/foundation/nspurgeabledata"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutabledata"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscache"
+      ],
+      "title": "Purgeable Collections"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nspurgeabledata"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nspurgeabledata"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

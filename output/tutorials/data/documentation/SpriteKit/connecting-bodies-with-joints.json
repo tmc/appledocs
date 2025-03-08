@@ -1,0 +1,785 @@
+{
+  "abstract": [
+    {
+      "text": "Add joints to nodes in your scene.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJoint"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/connecting-bodies-with-joints"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Connecting Bodies with Joints"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although you can make a lot of interesting games that use the physics systems already described, you can take your designs further by connecting physics bodies using joints. When the scene simulates the physics, it takes these joints into account when calculating how forces affect the bodies. The following illustration shows the types of joints you can use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2975408",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You add or remove joints using the physics world. When you create a joint, the points that connect the joint are always specified in the scene’s coordinate system. This may require you to first convert from node coordinates to scene coordinates before creating the joint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-Joint-to-Nodes-in-Your-Scene",
+          "level": 3,
+          "text": "Add a Joint to Nodes in Your Scene",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a physics joint in your app, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create two physics bodies.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attach the physics bodies to a pair of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects in the scene.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a joint object using one of the types shown above.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If necessary, configure the joint object’s properties to define how the joint should operate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Retrieve the scene’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsWorld",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call the physics world’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsWorld/add(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The anchor arguments passed to physics joint initializers are always in the parent scene’s coordinate space. You can use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/convert(_:to:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method to calculate a node’s position in scene coordinates if that node is not an immediate child of the scene.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code pins two nodes, ",
+              "type": "text"
+            },
+            {
+              "code": "pin",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "piston",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", together using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointPin",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " joint. In this example, the node ",
+              "type": "text"
+            },
+            {
+              "code": "pin",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a child of ",
+              "type": "text"
+            },
+            {
+              "code": "connectingRod",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Because it is not an immediate child of the scene, its coordinates are converted to scene coordinates for use in initializing the joint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let pinPosition = connectingRod.convert(pin.position,",
+            "                                         to: scene)",
+            "let pinJoint = SKPhysicsJointPin.joint(withBodyA: pin.physicsBody!,",
+            "                                        bodyB: piston.physicsBody!,",
+            "                                        anchor: pinPosition)",
+            "scene.physicsWorld.add(pinJoint)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode": {
+      "abstract": [
+        {
+          "text": "The base class of all SpriteKit nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/convert(_:to:)": {
+      "abstract": [
+        {
+          "text": "Converts a point in this node’s coordinate system to the coordinate system of another node in the node tree.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/convert(_:to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertPoint:toNode:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convert(_:to:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/convert(_:to:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJoint": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for objects that connect physics bodies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsJoint"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsJoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPhysicsJoint",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsjoint"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointPin": {
+      "abstract": [
+        {
+          "text": "A joint that pins together two physics bodies, allowing independent rotation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsJointPin"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointPin",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsJointPin"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPhysicsJointPin",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsjointpin"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsWorld": {
+      "abstract": [
+        {
+          "text": "The driver of the physics engine in a scene; it exposes the ability for you to configure and query the physics system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsWorld"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsWorld",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsWorld"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPhysicsWorld",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsworld"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsWorld/add(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a joint to the physics world.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKPhysicsJoint",
+          "text": "SKPhysicsJoint"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsWorld/add(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addJoint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "add(_:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsworld/add(_:)"
+    },
+    "media-2975408": {
+      "alt": "Physics joints",
+      "identifier": "media-2975408",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/65b02ce268194270c8f520b815c754a1/media-2975408@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/title",
+          "value": "SKNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsWorld/title",
+          "value": "SKPhysicsWorld"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsWorld/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsWorld"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsWorld/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsWorld"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointPin/title",
+          "value": "SKPhysicsJointPin"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointPin/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsJointPin"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointPin/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsJointPin"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsWorld~1add(_:)/title",
+          "value": "addJoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsWorld~1add(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addJoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1convert(_:to:)/title",
+          "value": "convertPoint:toNode:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1convert(_:to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertPoint:toNode:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJoint/title",
+          "value": "SKPhysicsJoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsJoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJoint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsJoint"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/connecting-bodies-with-joints"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/connecting-bodies-with-joints"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

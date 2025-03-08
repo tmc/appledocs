@@ -1,0 +1,886 @@
+{
+  "abstract": [
+    {
+      "text": "Use brief taps on the screen to implement button-like interactions with your content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/handling-uikit-gestures"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/handling-tap-gestures"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Handling tap gestures"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tap gestures detect one or more fingers touching the screen briefly. The fingers involved in these gestures must not move significantly from the initial touch points, and you can configure the number of times the fingers must touch the screen. For example, you might configure tap gesture recognizers to detect single taps, double taps, or triple taps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can attach a gesture recognizer in one of these ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Programmatically. Call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/addGestureRecognizer(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of your view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Interface Builder. Drag the appropriate object from the library and drop it onto your view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3004402",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITapGestureRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object provides event handling capabilities similar to those of a button — it detects a tap in its view and reports that tap to your action method. Tap gestures are discrete, so your action method is called only when the tap gesture is recognized successfully. You can configure a tap gesture recognizer to require any number of taps — for example, single taps or double taps — before your action method is called.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows an action method that responds to a successful tap in a view by animating that view to a new location. Always check the gesture recognizer’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/state-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property before taking any actions, even for a discrete gesture recognizer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBAction func tapPiece(_ gestureRecognizer : UITapGestureRecognizer ) {",
+            "   guard gestureRecognizer.view != nil else { return }",
+            "        ",
+            "   if gestureRecognizer.state == .ended {      // Move the view down and to the right when tapped.",
+            "      let animator = UIViewPropertyAnimator(duration: 0.2, curve: .easeInOut, animations: {",
+            "         gestureRecognizer.view!.center.x += 100",
+            "         gestureRecognizer.view!.center.y += 100",
+            "      })",
+            "      animator.startAnimation()",
+            "   }}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the code for your tap gesture recognizer isn’t called, check to see if the following conditions are true, and make corrections as needed:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/isUserInteractionEnabled",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property of the view is set to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Image views and labels set this property to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " by default.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The number of taps was equal to the number specified in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITapGestureRecognizer/numberOfTapsRequired",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The number of fingers was equal to the number specified in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITapGestureRecognizer/numberOfTouchesRequired",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/state-swift.property": {
+      "abstract": [
+        {
+          "text": "The current state of the gesture recognizer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIGestureRecognizer",
+          "text": "UIGestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIGestureRecognizerState",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/state-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "state"
+        }
+      ],
+      "role": "symbol",
+      "title": "state",
+      "type": "topic",
+      "url": "/documentation/uikit/uigesturerecognizer/state-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITapGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A discrete gesture recognizer that interprets single or multiple taps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITapGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITapGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITapGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITapGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uitapgesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITapGestureRecognizer/numberOfTapsRequired": {
+      "abstract": [
+        {
+          "text": "The number of taps necessary for gesture recognition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfTapsRequired"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITapGestureRecognizer/numberOfTapsRequired",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "numberOfTapsRequired"
+        }
+      ],
+      "role": "symbol",
+      "title": "numberOfTapsRequired",
+      "type": "topic",
+      "url": "/documentation/uikit/uitapgesturerecognizer/numberoftapsrequired"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITapGestureRecognizer/numberOfTouchesRequired": {
+      "abstract": [
+        {
+          "text": "The number of fingers that the user must tap for gesture recognition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfTouchesRequired"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITapGestureRecognizer/numberOfTouchesRequired",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "numberOfTouchesRequired"
+        }
+      ],
+      "role": "symbol",
+      "title": "numberOfTouchesRequired",
+      "type": "topic",
+      "url": "/documentation/uikit/uitapgesturerecognizer/numberoftouchesrequired"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/addGestureRecognizer(_:)": {
+      "abstract": [
+        {
+          "text": "Attaches a gesture recognizer to the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addGestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIGestureRecognizer",
+          "text": "UIGestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/addGestureRecognizer(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addGestureRecognizer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addGestureRecognizer(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/addgesturerecognizer(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/isUserInteractionEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether user events are ignored and removed from the event queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isUserInteractionEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/isUserInteractionEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userInteractionEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isUserInteractionEnabled",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/isuserinteractionenabled"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-long-press-gestures": {
+      "abstract": [
+        {
+          "text": "Detect extended duration taps on the screen, and use them to reveal contextually relevant content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-long-press-gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling long-press gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-long-press-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-pan-gestures": {
+      "abstract": [
+        {
+          "text": "Trace the movement of fingers around the screen, and apply that movement to your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-pan-gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling pan gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-pan-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-pinch-gestures": {
+      "abstract": [
+        {
+          "text": "Track the distance between two fingers and use that information to scale or zoom your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-pinch-gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling pinch gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-pinch-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-rotation-gestures": {
+      "abstract": [
+        {
+          "text": "Measure the relative rotation of two fingers on the screen, and use that motion to rotate your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-rotation-gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling rotation gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-rotation-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-swipe-gestures": {
+      "abstract": [
+        {
+          "text": "Detect a horizontal or vertical swipe motion on the screen, and use it to trigger navigation through your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-swipe-gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling swipe gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-swipe-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-uikit-gestures": {
+      "abstract": [
+        {
+          "text": "Use gesture recognizers to simplify touch handling and create a consistent user experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-uikit-gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Handling UIKit gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-uikit-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures": {
+      "abstract": [
+        {
+          "text": "Encapsulate your app’s event-handling logic in gesture recognizers so that you can reuse that code throughout your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Touches, presses, and gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/touches-presses-and-gestures"
+    },
+    "media-3004402": {
+      "alt": "A diagram showing a single-finger tap gesture",
+      "identifier": "media-3004402",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/036f7d602568a88e8e03f3a5ef12b610/media-3004402@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Gestures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/handling-long-press-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/handling-pan-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/handling-swipe-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/handling-pinch-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/handling-rotation-gestures"
+      ],
+      "title": "Gestures"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Gestures",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/handling-long-press-gestures",
+                "doc://com.apple.uikit/documentation/UIKit/handling-pan-gestures",
+                "doc://com.apple.uikit/documentation/UIKit/handling-swipe-gestures",
+                "doc://com.apple.uikit/documentation/UIKit/handling-pinch-gestures",
+                "doc://com.apple.uikit/documentation/UIKit/handling-rotation-gestures"
+              ],
+              "title": "Gestures"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITapGestureRecognizer/title",
+          "value": "UITapGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITapGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITapGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITapGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITapGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1isUserInteractionEnabled/title",
+          "value": "userInteractionEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1isUserInteractionEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userInteractionEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITapGestureRecognizer~1numberOfTapsRequired/title",
+          "value": "numberOfTapsRequired"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITapGestureRecognizer~1numberOfTapsRequired/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "numberOfTapsRequired"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITapGestureRecognizer~1numberOfTouchesRequired/title",
+          "value": "numberOfTouchesRequired"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITapGestureRecognizer~1numberOfTouchesRequired/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "numberOfTouchesRequired"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1state-swift.property/title",
+          "value": "state"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1state-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "state"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1addGestureRecognizer(_:)/title",
+          "value": "addGestureRecognizer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1addGestureRecognizer(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addGestureRecognizer:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/handling-tap-gestures"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/handling-tap-gestures"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

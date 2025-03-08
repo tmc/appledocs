@@ -1,0 +1,779 @@
+{
+  "abstract": [
+    {
+      "text": "Register and authenticate website users by using passkeys.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/passkey-use-in-web-browsers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Authentication Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Passkey use in web browsers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your browser app uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to display web content, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WebKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " automatically handles ",
+              "type": "text"
+            },
+            {
+              "code": "WebAuthentication",
+              "type": "codeVoice"
+            },
+            {
+              "text": " challenges in web pages and requests credentials from the person using the browser. If your browser app uses an alternative web browser engine—for example, an alternate browser engine for iPhone that you write using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BrowserEngineKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "—when the website makes a ",
+              "type": "text"
+            },
+            {
+              "code": "WebAuthentication",
+              "type": "codeVoice"
+            },
+            {
+              "text": " challenge, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to discover and use credentials to respond to the challenge.  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " works with passkeys stored on the keychain or managed by third-party credential managers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The person using your browser chooses whether to let your app access their passkeys. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine whether you browser app has access, and to request access if it has no access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Make it easy for users to log into apps and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Authentication Services",
+      "type": "topic",
+      "url": "/documentation/authenticationservices"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController": {
+      "abstract": [
+        {
+          "text": "A controller that manages authorization requests that a provider creates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationController"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationController",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationcontroller"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserExternallyAuthenticatableRequest": {
+      "abstract": [
+        {
+          "text": "An authorization request for which a web browser can retrieve credentials.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationWebBrowserExternallyAuthenticatableRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserExternallyAuthenticatableRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationWebBrowserExternallyAuthenticatableRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationWebBrowserExternallyAuthenticatableRequest",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationwebbrowserexternallyauthenticatablerequest"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest": {
+      "abstract": [
+        {
+          "text": "An interface you use to respond to authentication challenges in a web browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationwebbrowserplatformpublickeycredentialassertionrequest"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider-19bq": {
+      "abstract": [
+        {
+          "text": "A mechanism you use to provide public key credential requests to a browser app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider-19bq",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationwebbrowserplatformpublickeycredentialprovider-19bq"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider-1c8cl": {
+      "abstract": [
+        {
+          "text": "A protocol for creating passkey requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider-1c8cl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationwebbrowserplatformpublickeycredentialprovider-1c8cl"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest": {
+      "abstract": [
+        {
+          "text": "An interface you use to respond to passkey-creation challenges in a web browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationwebbrowserplatformpublickeycredentialregistrationrequest"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager": {
+      "abstract": [
+        {
+          "text": "A class that you use to request access to a person’s passkeys in a web browser, and that reports on the access status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationWebBrowserPublicKeyCredentialManager"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationWebBrowserPublicKeyCredentialManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationWebBrowserPublicKeyCredentialManager",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationwebbrowserpublickeycredentialmanager"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authenticating-people-by-using-passkeys-in-browser-apps": {
+      "abstract": [
+        {
+          "text": "Provide a secure and convenient alternative to passwords.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authenticating-people-by-using-passkeys-in-browser-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Authenticating people by using passkeys in browser apps",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/authenticating-people-by-using-passkeys-in-browser-apps"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/connecting-to-a-service-with-passkeys": {
+      "abstract": [
+        {
+          "text": "Allow users to sign in to a service without typing a password.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/connecting-to-a-service-with-passkeys",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Connecting to a service with passkeys",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/connecting-to-a-service-with-passkeys"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/public-private-key-authentication": {
+      "abstract": [
+        {
+          "text": "Register and authenticate users with passkeys and security keys, without using passwords.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/public-private-key-authentication",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Public-Private Key Authentication",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/public-private-key-authentication"
+    },
+    "doc://com.apple.documentation/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/BrowserEngineKit"
+    },
+    "doc://com.apple.documentation/documentation/WebKit": {
+      "abstract": [
+        {
+          "text": "Integrate web content seamlessly into your app, and customize content interactions to meet your app’s needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WebKit",
+      "type": "topic",
+      "url": "/documentation/WebKit"
+    },
+    "doc://com.apple.documentation/documentation/WebKit/WKWebView": {
+      "abstract": [
+        {
+          "text": "An object that displays interactive web content, such as for an in-app browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKWebView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKWebView",
+      "type": "topic",
+      "url": "/documentation/WebKit/WKWebView"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Passkeys",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/public-private-key-authentication",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/connecting-to-a-service-with-passkeys"
+      ],
+      "title": "Passkeys"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Website-authorization",
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authenticating-people-by-using-passkeys-in-browser-apps",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager"
+      ],
+      "title": "Website authorization"
+    },
+    {
+      "anchor": "Website-authentication-requests",
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserExternallyAuthenticatableRequest",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest"
+      ],
+      "title": "Website authentication requests"
+    },
+    {
+      "anchor": "Website-credential-providers",
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider-19bq"
+      ],
+      "title": "Website credential providers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Website-authorization",
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authenticating-people-by-using-passkeys-in-browser-apps",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager"
+              ],
+              "title": "Website authorization"
+            },
+            {
+              "anchor": "Website-authentication-requests",
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserExternallyAuthenticatableRequest",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest"
+              ],
+              "title": "Website authentication requests"
+            },
+            {
+              "anchor": "Website-credential-providers",
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider-1c8cl"
+              ],
+              "title": "Website credential providers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Passkeys",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/public-private-key-authentication"
+              ],
+              "title": "Passkeys"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserExternallyAuthenticatableRequest/title",
+          "value": "ASAuthorizationWebBrowserExternallyAuthenticatableRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserExternallyAuthenticatableRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationWebBrowserExternallyAuthenticatableRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserExternallyAuthenticatableRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationWebBrowserExternallyAuthenticatableRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserPublicKeyCredentialManager/title",
+          "value": "ASAuthorizationWebBrowserPublicKeyCredentialManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserPublicKeyCredentialManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationWebBrowserPublicKeyCredentialManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserPublicKeyCredentialManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationWebBrowserPublicKeyCredentialManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationController/title",
+          "value": "ASAuthorizationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKWebView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKWebView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSView",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest/title",
+          "value": "ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest/title",
+          "value": "ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/authenticationservices/passkey-use-in-web-browsers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/authenticationservices/passkey-use-in-web-browsers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

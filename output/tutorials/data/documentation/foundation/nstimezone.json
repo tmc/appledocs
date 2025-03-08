@@ -1,0 +1,1564 @@
+{
+  "abstract": [
+    {
+      "text": "Information about local time conventions that bridges to ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/timezone",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": "; use ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone",
+      "isActive": false,
+      "type": "reference"
+    },
+    {
+      "text": " when you need reference semantics or other Foundation-specific behavior. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+        "doc://com.apple.documentation/documentation/foundation/timezone"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nstimezone"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1387240,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSTimeZone",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSTimeZone"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSTimeZone"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTimeZone"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Time zones represent the standard time policies for a geopolitical region. Time zones have identifiers like “America/Los_Angeles” and can also be identified by abbreviations, such as PST for Pacific Standard Time. You can create time zone objects by ID with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387215-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and by abbreviation with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387248-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Time zone database entries such as “America/Los_Angeles” are IDs, not names. An example of a time zone name is “Pacific Daylight Time”. Although many ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " symbols include the word “name”, they actually refer to IDs.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Time zones can also represent a temporal offset—either plus or minus—from Greenwich Mean Time (GMT). For example, the temporal offset of Pacific Standard Time is 8 hours behind Greenwich Mean Time (GMT-8). You can create time zone objects with a temporal offset by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387199-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You typically work with system time zones rather than creating time zones by identifier or by offset. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387231-system",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class property returns the time zone currently used by the system, if known. This value is cached once the property is accessed and doesn't reflect any system time zone changes until you call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387189-resetsystemtimezone",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387209-local",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class property returns an autoupdating proxy object that always returns the current time zone used by the system. You can also set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387244-default",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class property to make your app run as if it were in a different time zone than the system. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can't use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " APIs to change the time zone of the device or of other apps.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "toll-free bridged",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " with its Core Foundation counterpart, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cftimezone",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1745091",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information on toll-free bridging.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Swift overlay to the Foundation framework provides the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/timezone",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure, which bridges to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " class. For more information about value types, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1752769",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1752686",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1745091": {
+      "identifier": "devLink-1745091",
+      "title": "Toll-Free Bridging",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2"
+    },
+    "devLink-1752686": {
+      "identifier": "devLink-1752686",
+      "title": "Using Swift with Cocoa and Objective-C (Swift 4.1)",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216"
+    },
+    "devLink-1752769": {
+      "identifier": "devLink-1752769",
+      "title": "Working with Cocoa Frameworks",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cftimezone": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cftimezone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFTimeZone",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cftimezone"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dates_and_times": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dates and Times",
+      "type": "topic",
+      "url": "/documentation/foundation/dates_and_times"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1387256-nssystemtimezonedidchange": {
+      "abstract": [
+        {
+          "text": "A notification posted when the time zone changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSystemTimeZoneDidChange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1387256-nssystemtimezonedidchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSystemTimeZoneDidChange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1387256-nssystemtimezonedidchange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone": {
+      "abstract": [
+        {
+          "text": "Information about local time conventions that bridges to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/timezone",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": "; use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTimeZone"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTimeZone",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387183-nextdaylightsavingtimetransition": {
+      "abstract": [
+        {
+          "text": "The date of the next daylight saving time transition for the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "nextDaylightSavingTimeTransition"
+        },
+        {
+          "kind": "text",
+          "text": ": Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387183-nextdaylightsavingtimetransition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nextDaylightSavingTimeTransition",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387183-nextdaylightsavingtimetransition"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387187-timezonedataversion": {
+      "abstract": [
+        {
+          "text": "Returns the time zone data version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeZoneDataVersion"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387187-timezonedataversion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeZoneDataVersion",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387187-timezonedataversion"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387189-resetsystemtimezone": {
+      "abstract": [
+        {
+          "text": "Clears any time zone value cached for the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387231-system",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "resetSystemTimeZone"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387189-resetsystemtimezone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resetSystemTimeZone()",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387189-resetsystemtimezone"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387191-isdaylightsavingtime": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the receiver is currently using daylight saving time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDaylightSavingTime"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387191-isdaylightsavingtime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isDaylightSavingTime",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387191-isdaylightsavingtime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387193-localizedname": {
+      "abstract": [
+        {
+          "text": "Returns the localized name of the time zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedName"
+        },
+        {
+          "kind": "text",
+          "text": "(NSTimeZone.NameStyle, "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale?) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387193-localizedname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedName(_:locale:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387193-localizedname"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387195-abbreviation": {
+      "abstract": [
+        {
+          "text": "The abbreviation for the receiver, such as “EDT” (Eastern Daylight Time).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "abbreviation"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387195-abbreviation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "abbreviation",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387195-abbreviation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387199-init": {
+      "abstract": [
+        {
+          "text": "Returns a time zone object offset from Greenwich Mean Time by a given number of seconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forSecondsFromGMT"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387199-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forSecondsFromGMT:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387199-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387201-isdaylightsavingtime": {
+      "abstract": [
+        {
+          "text": "Indicates whether the receiver uses daylight saving time on a given date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDaylightSavingTime"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": Date) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387201-isdaylightsavingtime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isDaylightSavingTime(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387201-isdaylightsavingtime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387207-daylightsavingtimeoffset": {
+      "abstract": [
+        {
+          "text": "Returns the daylight saving time offset for a given date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "daylightSavingTimeOffset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": Date) -> TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387207-daylightsavingtimeoffset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "daylightSavingTimeOffset(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387207-daylightsavingtimeoffset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387209-local": {
+      "abstract": [
+        {
+          "text": "An object that tracks the current system time zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "local"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeZone"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387209-local",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "local",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387209-local"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387211-isequal": {
+      "abstract": [
+        {
+          "text": "Indicates whether the receiver has the same name and data as the specified time zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqual"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeZone) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387211-isequal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqual(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387211-isequal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387213-data": {
+      "abstract": [
+        {
+          "text": "The data that stores the information used by the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387213-data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "data",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387213-data"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387215-init": {
+      "abstract": [
+        {
+          "text": "Returns a time zone initialized with a given identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387215-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(name:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387215-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387217-description": {
+      "abstract": [
+        {
+          "text": "A textual description of the time zone including the name, abbreviation, offset from GMT, and whether or not daylight saving time is currently in effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387217-description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387217-description"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387221-secondsfromgmt": {
+      "abstract": [
+        {
+          "text": "The current difference in seconds between the receiver and Greenwich Mean Time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "secondsFromGMT"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387221-secondsfromgmt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "secondsFromGMT",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387221-secondsfromgmt"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387223-knowntimezonenames": {
+      "abstract": [
+        {
+          "text": "Returns an array of strings listing the IDs of all the time zones known to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "knownTimeZoneNames"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387223-knowntimezonenames",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "knownTimeZoneNames",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387223-knowntimezonenames"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387231-system": {
+      "abstract": [
+        {
+          "text": "The time zone currently used by the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "system"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeZone"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387231-system",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "system",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387231-system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387233-name": {
+      "abstract": [
+        {
+          "text": "The geopolitical region ID that identifies the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387233-name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387233-name"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387235-daylightsavingtimeoffset": {
+      "abstract": [
+        {
+          "text": "The current daylight saving time offset of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "daylightSavingTimeOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387235-daylightsavingtimeoffset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "daylightSavingTimeOffset",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387235-daylightsavingtimeoffset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387237-abbreviation": {
+      "abstract": [
+        {
+          "text": "Returns the abbreviation for the receiver at a given date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "abbreviation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": Date) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387237-abbreviation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "abbreviation(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387237-abbreviation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387242-secondsfromgmt": {
+      "abstract": [
+        {
+          "text": "Returns the difference in seconds between the receiver and Greenwich Mean Time at a given date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "secondsFromGMT"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": Date) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387242-secondsfromgmt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "secondsFromGMT(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387242-secondsfromgmt"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387244-default": {
+      "abstract": [
+        {
+          "text": "The default time zone for the current app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "`default`"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeZone"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387244-default",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "default",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387244-default"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387248-init": {
+      "abstract": [
+        {
+          "text": "Returns the time zone object identified by a given abbreviation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "abbreviation"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387248-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(abbreviation:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387248-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387250-init": {
+      "abstract": [
+        {
+          "text": "Initializes a time zone with a given identifier and time zone data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": Data?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387250-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(name:data:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387250-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387254-nextdaylightsavingtimetransition": {
+      "abstract": [
+        {
+          "text": "Returns the next daylight saving time transition after a given date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "nextDaylightSavingTimeTransition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": ": Date) -> Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387254-nextdaylightsavingtimetransition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nextDaylightSavingTimeTransition(after:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387254-nextdaylightsavingtimetransition"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387258-abbreviationdictionary": {
+      "abstract": [
+        {
+          "text": "Returns a dictionary holding the mappings of time zone abbreviations to time zone names.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "abbreviationDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387258-abbreviationdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "abbreviationDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387258-abbreviationdictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/namestyle": {
+      "abstract": [
+        {
+          "text": "Constants you use to specify a style when presenting time zone names.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTimeZone.NameStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/namestyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTimeZone.NameStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/namestyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/timezone": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/timezone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TimeZone",
+      "type": "topic",
+      "url": "/documentation/foundation/timezone"
+    },
+    "doc://com.apple.documentation/documentation/foundation/timezone/referencetype": {
+      "abstract": [
+        {
+          "text": "An alias for this value type's equivalent reference type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimeZone.ReferenceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/timezone/referencetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TimeZone.ReferenceType",
+      "type": "topic",
+      "url": "/documentation/foundation/timezone/referencetype"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/timezone/referencetype"
+      ],
+      "title": "Using Reference Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1667553",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387209-local",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387231-system",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387189-resetsystemtimezone",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387244-default"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with System Time Zones"
+    },
+    {
+      "anchor": "1667443",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387215-init",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387250-init",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387248-init",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387199-init",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387223-knowntimezonenames",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387258-abbreviationdictionary"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Time Zones"
+    },
+    {
+      "anchor": "1667695",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387233-name",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387195-abbreviation",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387237-abbreviation",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387221-secondsfromgmt",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387242-secondsfromgmt",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387213-data",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387187-timezonedataversion",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/namestyle"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Time Zone Information"
+    },
+    {
+      "anchor": "1667895",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387191-isdaylightsavingtime",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387201-isdaylightsavingtime",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387235-daylightsavingtimeoffset",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387207-daylightsavingtimeoffset",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387183-nextdaylightsavingtimetransition",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387254-nextdaylightsavingtimetransition"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Daylight Savings"
+    },
+    {
+      "anchor": "1667792",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387211-isequal"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing Time Zones"
+    },
+    {
+      "anchor": "1667825",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387193-localizedname",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387217-description"
+      ],
+      "kind": "taskGroup",
+      "title": "Describing Time Zones"
+    },
+    {
+      "anchor": "1679441",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1387256-nssystemtimezonedidchange"
+      ],
+      "kind": "taskGroup",
+      "title": "Recognizing Notifications"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nstimezone"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nstimezone"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

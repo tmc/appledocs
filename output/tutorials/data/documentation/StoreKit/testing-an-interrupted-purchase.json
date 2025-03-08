@@ -1,0 +1,921 @@
+{
+  "abstract": [
+    {
+      "text": "Verify that your app handles an interrupted purchase by inspecting and invoking payment transactions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/testing-an-interrupted-purchase"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Testing an interrupted purchase"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An interrupted purchase is a transaction that requires the user to perform some action outside of your app before completing their transaction. For example, the user may need to update their payment method or accept new terms and conditions before continuing with their transaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In sandbox testing, you can simulate an interrupted purchase by turning on the interrupted purchase feature in App Store Connect for a tester Sandbox Apple ID. This interrupts all purchase attempts by that Sandbox Apple ID until you agree to the updated terms and conditions on the iOS device, or until you turn off the feature in App Store Connect. To learn how to set up interrupted purchase testing, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/manage-sandbox-apple-id-settings#enable-interrupted-purchases-for-a-sandbox-apple-id",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-up-testing",
+          "level": 3,
+          "text": "Set up testing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable interrupted purchases for the Sandbox Apple ID, log in to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com/login",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From Users and Access, open the Users and Access Panel in the sidebar, under the Sandbox header, select Testers. On the right, you can view your Sandbox Apple IDs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select a Sandbox Apple ID to use for testing interrupted purchases. If it’s already enabled, you’ll see a checkmark under the Interrupted Purchases column.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the dialog that appears, select Interrupt Purchases for This Tester.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Begin-testing",
+          "level": 3,
+          "text": "Begin testing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After setting up interrupted purchase testing in App Store Connect, use the following steps to test your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the test device, sign in with the Sandbox Apple ID that has interrupted purchases enabled.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your app, select Buy or Subscribe to make an in-app purchase.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Observe that the system displays a payment sheet.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, verify that the payment queue receives a new transaction in the state ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionState/purchasing",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the device, authenticate the payment sheet.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, observe that the payment fails. The payment queue receives an updated transaction in the state ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionState/failed",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check that your code calls ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/finishTransaction(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to remove it from the queue.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the device, observe that the system displays Terms & Conditions, interrupting the purchase (because you configured the sandbox environment to do so).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the device, tap to agree to the Terms & Conditions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, verify that the payment queue receives a new transaction in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionState/purchased",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " state for the same ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPayment/productIdentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and in the same quantity as the failed transaction.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, validate the receipt. Check that your app provides the service or the product, and calls ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/finishTransaction(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the device, the user should observe a successful purchase.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Conclude-testing",
+          "level": 3,
+          "text": "Conclude testing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Sandbox Apple ID continues to experience interrupted purchases until you disable it in App Store Connect, or until the user agrees to the terms and conditions on the device. To disable interrupted purchases in App Store Connect, deselect Interrupt Purchases for This Tester. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/manage-sandbox-apple-id-settings#enable-interrupted-purchases-for-a-sandbox-apple-id",
+              "isActive": true,
+              "overridingTitle": "Enable interrupted purchases for a Sandbox Apple ID",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Enable interrupted purchases for a Sandbox Apple ID",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPayment/productIdentifier": {
+      "abstract": [
+        {
+          "text": "A string used to identify a product that can be purchased from within your app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "productIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPayment/productIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "productIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "productIdentifier",
+      "type": "topic",
+      "url": "/documentation/storekit/skpayment/productidentifier"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/finishTransaction(_:)": {
+      "abstract": [
+        {
+          "text": "Notifies the App Store that the app finished processing the transaction.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "finishTransaction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKPaymentTransaction",
+          "text": "SKPaymentTransaction"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/finishTransaction(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "finishTransaction:"
+        }
+      ],
+      "role": "symbol",
+      "title": "finishTransaction(_:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentqueue/finishtransaction(_:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionState/failed": {
+      "abstract": [
+        {
+          "text": "A failed transaction.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "failed"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionState/failed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPaymentTransactionStateFailed"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPaymentTransactionState.failed",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymenttransactionstate/failed"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionState/purchased": {
+      "abstract": [
+        {
+          "text": "A successfully processed transaction.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "purchased"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionState/purchased",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPaymentTransactionStatePurchased"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPaymentTransactionState.purchased",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymenttransactionstate/purchased"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionState/purchasing": {
+      "abstract": [
+        {
+          "text": "A transaction that is being processed by the App Store.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "purchasing"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionState/purchasing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPaymentTransactionStatePurchasing"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPaymentTransactionState.purchasing",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymenttransactionstate/purchasing"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/original-api-for-in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-a-payment-request": {
+      "abstract": [
+        {
+          "text": "Verify that requests for payment function properly in the sandbox environment by inspecting the calls to the payment transaction observer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-a-payment-request",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing a payment request",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-a-payment-request"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases": {
+      "abstract": [
+        {
+          "text": "Verify that your app handles failed subscription renewals that are in the billing retry or billing grace period states, as well as failed In-App Purchases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing failing subscription renewals and In-App Purchases",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-failing-subscription-renewals-and-in-app-purchases"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox": {
+      "abstract": [
+        {
+          "text": "Test your implementation of In-App Purchases using real product information and server-to-server transactions in the sandbox environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing In-App Purchases with sandbox",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-in-app-purchases-with-sandbox"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-purchases-made-outside-your-app": {
+      "abstract": [
+        {
+          "text": "Verify that your app receives and handles transactions that occur outside your app, such as subscription purchases, renewals, and offer and promo code redemptions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-purchases-made-outside-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing purchases made outside your app",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-purchases-made-outside-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-the-sandbox-environment": {
+      "abstract": [
+        {
+          "text": "Verify that your app receives and handles win-back offer transactions, including those made outside your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-the-sandbox-environment",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing win-back offers in the sandbox environment",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-win-back-offers-in-the-sandbox-environment"
+    },
+    "https://appstoreconnect.apple.com/login": {
+      "identifier": "https://appstoreconnect.apple.com/login",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com/login"
+    },
+    "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/manage-sandbox-apple-id-settings#enable-interrupted-purchases-for-a-sandbox-apple-id": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/manage-sandbox-apple-id-settings#enable-interrupted-purchases-for-a-sandbox-apple-id",
+      "title": "Enable interrupted purchases for a Sandbox Apple ID",
+      "titleInlineContent": [
+        {
+          "text": "Enable interrupted purchases for a Sandbox Apple ID",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/manage-sandbox-apple-id-settings#enable-interrupted-purchases-for-a-sandbox-apple-id"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Payment-transactions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/testing-purchases-made-outside-your-app",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-the-sandbox-environment",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-a-payment-request"
+      ],
+      "title": "Payment transactions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Payment-transactions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/testing-purchases-made-outside-your-app",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-the-sandbox-environment",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-a-payment-request"
+              ],
+              "title": "Payment transactions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPayment~1productIdentifier/title",
+          "value": "productIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPayment~1productIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "productIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionState~1failed/title",
+          "value": "SKPaymentTransactionStateFailed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionState~1failed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentTransactionStateFailed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1finishTransaction(_:)/title",
+          "value": "finishTransaction:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1finishTransaction(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "finishTransaction:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionState~1purchasing/title",
+          "value": "SKPaymentTransactionStatePurchasing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionState~1purchasing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentTransactionStatePurchasing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionState~1purchased/title",
+          "value": "SKPaymentTransactionStatePurchased"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionState~1purchased/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentTransactionStatePurchased"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/testing-an-interrupted-purchase"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/testing-an-interrupted-purchase"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

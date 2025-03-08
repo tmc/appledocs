@@ -1,0 +1,675 @@
+{
+  "abstract": [
+    {
+      "text": "Develop device drivers in macOS and iPadOS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.bundleresources/documentation/BundleResources",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.bundleresources/documentation/BundleResources/driverkit"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Bundle Resources"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "DriverKit"
+  },
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources": {
+      "abstract": [
+        {
+          "text": "Resources located in an app, framework, or plugin bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Bundle Resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements": {
+      "abstract": [
+        {
+          "text": "Key-value pairs that grant an executable permission to use a service or technology.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements",
+      "kind": "symbol",
+      "name": "Entitlements",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Entitlements"
+        }
+      ],
+      "role": "symbol",
+      "title": "Entitlements",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether your extension has permission to run as a user-space driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.driverkit"
+        }
+      ],
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.allow-any-userclient-access": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether a macOS driver accepts user client connections from any application.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.allow-any-userclient-access",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.allow-any-userclient-access",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.driverkit.allow-any-userclient-access"
+        }
+      ],
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.allow-any-userclient-access",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.allow-any-userclient-access"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.allow-third-party-userclients": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an iPadOS driver accepts calls from third-party user clients.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "DriverKit Allow Third Party User Clients",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.allow-third-party-userclients",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.allow-third-party-userclients",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.driverkit.allow-third-party-userclients"
+        }
+      ],
+      "role": "symbol",
+      "title": "DriverKit Allow Third Party User Clients",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.allow-third-party-userclients"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.communicates-with-drivers": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an iPadOS app can communicate with drivers.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Communicates with Drivers",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.communicates-with-drivers",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.communicates-with-drivers",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.driverkit.communicates-with-drivers"
+        }
+      ],
+      "role": "symbol",
+      "title": "Communicates with Drivers",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.communicates-with-drivers"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.audio": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the device supports audio functionality.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "DriverKit Audio Family",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.audio",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.family.audio",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.driverkit.family.audio"
+        }
+      ],
+      "role": "symbol",
+      "title": "DriverKit Audio Family",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.family.audio"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.block-storage-device": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to match the driver against block storage devices that use custom drivers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.block-storage-device",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.family.block-storage-device",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.driverkit.family.block-storage-device"
+        }
+      ],
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.family.block-storage-device",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.family.block-storage-device"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.midi": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to match the driver against devices that support MIDI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.midi",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.family.midi",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.driverkit.family.midi"
+        }
+      ],
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.family.midi",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.family.midi"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.networking": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to match the driver against devices that communicate using networking protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.networking",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.family.networking",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.driverkit.family.networking"
+        }
+      ],
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.family.networking",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.family.networking"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.scsicontroller": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to match the driver against devices with SCSI controllers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.scsicontroller",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.family.scsicontroller",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.driverkit.family.scsicontroller"
+        }
+      ],
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.family.scsicontroller",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.family.scsicontroller"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.serial": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to match the driver against devices with serial communication interfaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.serial",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.family.serial",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.driverkit.family.serial"
+        }
+      ],
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.family.serial",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.family.serial"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci": {
+      "abstract": [
+        {
+          "text": "An array of PCI device descriptors that your custom driver supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.transport.pci",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.driverkit.transport.pci"
+        }
+      ],
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.transport.pci",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.transport.pci"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.usb": {
+      "abstract": [
+        {
+          "text": "An array of dictionaries that identify the USB devices the driver supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.usb",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.transport.usb",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.driverkit.transport.usb"
+        }
+      ],
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.transport.usb",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.transport.usb"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.userclient-access": {
+      "abstract": [
+        {
+          "text": "An array of strings that represent macOS driver extensions that may communicate with other DriverKit services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.userclient-access",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.userclient-access",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.driverkit.userclient-access"
+        }
+      ],
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.userclient-access",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.userclient-access"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/system-extensions": {
+      "abstract": [
+        {
+          "text": "Extend the capabilities of macOS from user space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/system-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "System Extensions",
+      "type": "topic",
+      "url": "/documentation/bundleresources/system-extensions"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "System",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/system-extensions"
+      ],
+      "title": "System"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "DriverKit-family-entitlements",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.audio",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.block-storage-device",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.midi",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.networking",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.scsicontroller",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.serial",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.usb"
+      ],
+      "title": "DriverKit family entitlements"
+    },
+    {
+      "anchor": "User-client-entitlements",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.userclient-access",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.allow-any-userclient-access",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.communicates-with-drivers",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.allow-third-party-userclients"
+      ],
+      "title": "User client entitlements"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "DriverKit-family-entitlements",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.audio",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.block-storage-device",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.midi",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.networking",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.scsicontroller",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.serial",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.usb"
+              ],
+              "title": "DriverKit family entitlements"
+            },
+            {
+              "anchor": "User-client-entitlements",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.userclient-access",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.allow-any-userclient-access",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.communicates-with-drivers",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.allow-third-party-userclients"
+              ],
+              "title": "User client entitlements"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "System",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/system-extensions"
+              ],
+              "title": "System"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.family.block-storage-device/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.driverkit.family.block-storage-device"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.driverkit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.family.midi/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.driverkit.family.midi"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.allow-any-userclient-access/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.driverkit.allow-any-userclient-access"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.transport.pci/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.driverkit.transport.pci"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.allow-third-party-userclients/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.driverkit.allow-third-party-userclients"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.family.scsicontroller/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.driverkit.family.scsicontroller"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.family.networking/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.driverkit.family.networking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.userclient-access/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.driverkit.userclient-access"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.family.audio/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.driverkit.family.audio"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.family.serial/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.driverkit.family.serial"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.transport.usb/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.driverkit.transport.usb"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements/title",
+          "value": "Entitlements"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Entitlements"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.driverkit.communicates-with-drivers/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.driverkit.communicates-with-drivers"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/bundleresources/driverkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/bundleresources/driverkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

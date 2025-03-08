@@ -1,0 +1,1045 @@
+{
+  "abstract": [
+    {
+      "text": "Display content options with document view controllers and fetch and populate content with TVMLKit JS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.tvmlkit/documentation/TVMLKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.tvmlkit/documentation/TVMLKit/implementing-a-hybrid-tv-app-with-tvmlkit"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "TVMLKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Implementing a Hybrid TV App with TVMLKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This hybrid app consists of a server built with TVMLKit JS and a client built with TVMLKit. The app uses native TVMLKit Swift code to take content from the server and build the user interface on screen, and uses TVMLKit JS to provide the requested data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Traditionally, hybrid tvOS apps depend on TVMLKit JS to initialize view controllers, push view controllers to the navigation stack, and handle events, such as a selection or play event. This app demonstrates the stateless JavaScript design pattern, in which native TVMLKit, instead of TVMLKit JS, takes on these tasks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the TV content resides in JavaScript in the server, the app uses ",
+              "type": "text"
+            },
+            {
+              "code": "TVDocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects to allow TVMLKit to communicate with TVMLKit JS. TVMLKit JS is responsible for fetching data and populating the native UI. Building your app with the stateless model is useful if you want to use the functionalities provided by Swift or if you are more familiar with native development.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample relies on a running server containing JavaScript files, image assets, and templates that specify the app’s content. The app takes the content from the server and builds the user interface on screen. Before running the app, start the server as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Finder, navigate to this project’s folder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Terminal, enter ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "cd",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", followed by a space.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag the Server folder from inside the Finder window into your Terminal window. Execute the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "cd",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command in terminal to change the directory to the Server folder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Terminal, enter ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ruby -run -ehttpd . -p9001",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to start the server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build and run the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Create-and-Display-a-Document-View-Controller",
+          "level": 3,
+          "text": "Create and Display a Document View Controller",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "XML files provide the structure of a TVMLKit app. The files contain TVML elements such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/TVML/button",
+              "isActive": true,
+              "overridingTitle": "buttons",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "buttons",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/TVML/lockup",
+              "isActive": true,
+              "overridingTitle": "lockups",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "lockups",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", and lay out the elements on screen. In this app, the templates folder in the server directory contains two XML files: Index.xml, and ProductSingle.xml. These files contain the structure of the two primary views used in this app. Index.xml is responsible for providing the structure of the initial page, which consists of a grid of items to select. When the user selects an item from the main page, the ProductSingle.xml file displays the content for the selected item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At launch time, create a ",
+              "type": "text"
+            },
+            {
+              "code": "TVApplicationController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object in the ",
+              "type": "text"
+            },
+            {
+              "code": "application(_:didFinishLaunching:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. That object provides the infrastructure your app needs to display content. You then use the app controller’s delegate method to specify the initial page’s content by creating a new ",
+              "type": "text"
+            },
+            {
+              "code": "TVDocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "TVDocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": "‘s initializer accepts a context dictionary, which provides TVMLKit JS with a route to the new document’s data. It then pushes the ",
+              "type": "text"
+            },
+            {
+              "code": "TVDocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " onto the app controller’s navigation stack. TVMLKit apps use this navigation controller to manage navigation between pages. When this method returns, TVMLKit builds the app’s UI from the Index.xml file. It then queries your server for the data needed to fill that structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func appController(_ appController: TVApplicationController, didFinishLaunching options: [String: Any]?) {",
+            "    // Specify the context for the initial document request.",
+            "    let contextDictionary = [\"url\": \"templates/Index.xml\"]",
+            "    // This URL is sent over to application.js and is part of the request in App.onDocumentRequest",
+            "    let documentController = TVDocumentViewController(context: contextDictionary, for: appController)",
+            "    documentController.delegate = self",
+            "    // Push it onto the navigation stack to start the loading of the document.",
+            "    appController.navigationController.pushViewController(documentController, animated: false)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about how to build the structure of your app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/TVML",
+              "isActive": true,
+              "overridingTitle": "TVML",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "TVML",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Fetch-and-Populate-TV-Content",
+          "level": 3,
+          "text": "Fetch and Populate TV Content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The structure of the interface is empty until the TVMLKit JS provides the data for the TV content. When you create a ",
+              "type": "text"
+            },
+            {
+              "code": "TVDocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object in  ",
+              "type": "text"
+            },
+            {
+              "code": "appController(_:didFinishLaunching:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", TVMLKit determines that it needs data, which causes TVMLKit JS to trigger the ",
+              "type": "text"
+            },
+            {
+              "code": "onDocumentRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " event in ",
+              "type": "text"
+            },
+            {
+              "code": "application.js",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This event creates a new ",
+              "type": "text"
+            },
+            {
+              "code": "DocumentLoader",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, which grabs data from a ",
+              "type": "text"
+            },
+            {
+              "code": "documentProcessor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " based on the URL of the request. The URL of the request used is the context used to construct the ",
+              "type": "text"
+            },
+            {
+              "code": "TVDocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object (templates/Index.xml).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "App.onDocumentRequest = (request, response) => {",
+            "    if (request.requestType == \"document\") {",
+            "        // Setup a document load to update the link.",
+            "        new DocumentLoader(gHostController.getRemoteURL(request.url)).load((document, errorStr) => {",
+            "            let processor = documentProcessor[request.url];",
+            "            if (processor != null) {",
+            "                processor(request, document);",
+            "            }",
+            "            response.document = document;",
+            "            response.close(errorStr ? { 'errorStr' : errorStr } : null);",
+            "        });",
+            "    }",
+            "    else {",
+            "        response.close();",
+            "    }",
+            "};"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "documentProcessor",
+              "type": "codeVoice"
+            },
+            {
+              "text": "‘s ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable contains a dictionary of URLs mapped to JSON content. This JSON content includes an artwork URL, background URL, URL path, and other metadata. The app uses this JSON to fill in the UI structure from Index.xml with presentable content, including the images and titles associated with each lockup. To insert the data into the TVML template, the processor retrieves the initial template’s top level stack template, and sets its ",
+              "type": "text"
+            },
+            {
+              "code": "dataItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the JSON data. This inserts the JSON into the template and maps the JSON content to the right variables.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let documentProcessor = {",
+            "    \"templates/Index.xml\": (request, document) => {",
+            "        let data = {",
+            "            movies : [",
+            "                {",
+            "                    artworkURL : gHostController.getRemoteURL('resources/images/square_1.jpg'),",
+            "                    backgroundURL : gHostController.getRemoteURL('resources/images/product_bg_1.jpg'),",
+            "                    logoURL : gHostController.getRemoteURL('resources/images/product_logo.png'),",
+            "                    title : \"Movie Title\",",
+            "                    theme : \"dark\",",
+            "                    url : \"templates/ProductSingle.xml\"",
+            "                },",
+            "                ...",
+            "            ]",
+            "        };",
+            "        // Set on the template element.",
+            "        let templateElement = document.getElementsByTagName('stackTemplate').item(0);",
+            "        templateElement.dataItem = data;",
+            "    },",
+            "    \"templates/ProductSingle.xml\": (request, document) => {",
+            "        let extraInfo = request;",
+            "        // Set data on the template element.",
+            "        let templateElement = document.getElementsByTagName('stackTemplate').item(0);",
+            "        templateElement.dataItem = extraInfo;",
+            "    }",
+            "}",
+            ""
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the processor passes its movies into the section’s binding attribute, populating four sections with the four movie elements. The sample fills in the image binding with the ",
+              "type": "text"
+            },
+            {
+              "code": "{artworkURL}",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the data, as well as the ",
+              "type": "text"
+            },
+            {
+              "code": "{title}",
+              "type": "codeVoice"
+            },
+            {
+              "text": " binding’s text content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<section binding=\"items:{movies};\">",
+            "    <prototypes>",
+            "        <lockup useBrowser=\"false\">",
+            "            <img binding=\"@src:{artworkURL};\" contentsMode=\"aspectFill\" width=\"410\" height=\"231\"/>",
+            "            <title binding=\"textContent:{title};\" class=\"hidden_text\"/>",
+            "        </lockup>",
+            "    </prototypes>                   ",
+            "</section>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-Selection-Events",
+          "level": 3,
+          "text": "Handle Selection Events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app triggers a selection event when the user selects a lockup. Because this app follows the stateless JavaScript model, you handle that selection event natively in the ",
+              "type": "text"
+            },
+            {
+              "code": "documentViewController(_:handleEvent:with:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you trigger the ",
+              "type": "text"
+            },
+            {
+              "code": "select",
+              "type": "codeVoice"
+            },
+            {
+              "text": " event on a lockup with the ",
+              "type": "text"
+            },
+            {
+              "code": "useBrowser",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute set to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the app creates and pushes a ",
+              "type": "text"
+            },
+            {
+              "code": "TVBrowserViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the top of the navigation stack. When you trigger the ",
+              "type": "text"
+            },
+            {
+              "code": "select",
+              "type": "codeVoice"
+            },
+            {
+              "text": " event on a lockup with the ",
+              "type": "text"
+            },
+            {
+              "code": "useBrowser",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute set to ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the app pushes a standard document conforming to the ProductSingle.xml template to the top of the navigation stack. After the app pushes the appropriate view, it will set the ",
+              "type": "text"
+            },
+            {
+              "code": "handled",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and return it. This signals that the app natively handled the event, and that it needs no more work on the JavaScript end.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if event == .select {",
+            "    if let useBrowser = element.attributes![\"useBrowser\"], useBrowser == \"true\" {",
+            "        // Handle the select event that might lead to loading documents in a browser.",
+            "        let superParent: TVViewElement? = element.parent?.parent?.name == \"shelf\" ? element.parent?.parent : nil",
+            "        if let shelfElement = superParent, let browserController = TVBrowserViewController(viewElement: shelfElement) {",
+            "            browserController.dataSource = self",
+            "            appController.navigationController.pushViewController(browserController, animated: true)",
+            "            handled = true",
+            "        }",
+            "    } else {",
+            "        let documentController = TVDocumentViewController(context: element.elementData, for: appController)",
+            "        documentController.delegate = self",
+            "        appController.navigationController.pushViewController(documentController, animated: true)",
+            "        handled = true",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When TVMLKit determines that there are unpopulated views that need data, TVMLKit triggers the ",
+              "type": "text"
+            },
+            {
+              "code": "onDocumentRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " event to request data for that document. The app references a ",
+              "type": "text"
+            },
+            {
+              "code": "documentProcessor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " again, except this time it presents data that corresponds to the ProductSingle.xml template instead of the Index.xml template. This is because the URL from the lockup points to templates/ProductSingle.xml. The new data populated into the ProductSingle template presents a full screen view with the selected image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about the different ",
+              "type": "text"
+            },
+            {
+              "code": "TVDocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " events, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/TVMLKit/TVDocumentViewController/Event",
+              "isActive": true,
+              "overridingTitle": "TVDocumentViewController.Event",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "TVDocumentViewController.Event",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "5ea6a203c148/ImplementingAHybridTVAppWithTVMLKit.zip": {
+      "checksum": "5ea6a203c1480a00bcca3c45133996821f00bab7bfca98e273eaf0721ba4de0000a31d071663148855b884e25cb4147fb625da8105969de1f0c6a85ec0a0b2d8",
+      "identifier": "5ea6a203c148/ImplementingAHybridTVAppWithTVMLKit.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/5ea6a203c148/ImplementingAHybridTVAppWithTVMLKit.zip"
+    },
+    "doc://com.apple.documentation/documentation/TVML": {
+      "abstract": [
+        {
+          "text": "Use Apple TV Markup Language to create individual pages inside of a client-server app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/TVML",
+      "kind": "article",
+      "role": "collection",
+      "title": "TVML",
+      "type": "topic",
+      "url": "/documentation/TVML"
+    },
+    "doc://com.apple.documentation/documentation/TVML/button": {
+      "abstract": [
+        {
+          "text": "Displays a button icon the user can click to initiate an action.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/TVML/button",
+      "kind": "article",
+      "role": "article",
+      "title": "button",
+      "type": "topic",
+      "url": "/documentation/TVML/button"
+    },
+    "doc://com.apple.documentation/documentation/TVML/lockup": {
+      "abstract": [
+        {
+          "text": "Contains several elements that are treated as a single element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/TVML/lockup",
+      "kind": "article",
+      "role": "article",
+      "title": "lockup",
+      "type": "topic",
+      "url": "/documentation/TVML/lockup"
+    },
+    "doc://com.apple.documentation/documentation/TVMLKit/TVDocumentViewController/Event": {
+      "abstract": [
+        {
+          "text": "Events that can be triggered on the document view controller.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Event"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/TVMLKit/TVDocumentViewController/Event",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TVDocumentViewController.Event",
+      "type": "topic",
+      "url": "/documentation/TVMLKit/TVDocumentViewController/Event"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.tvmlkit/documentation/TVMLKit": {
+      "abstract": [
+        {
+          "text": "Create client-server apps by incorporating JavaScript and TVML files in your binary app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.tvmlkit/documentation/TVMLKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TVMLKit",
+      "type": "topic",
+      "url": "/documentation/tvmlkit"
+    },
+    "doc://com.apple.tvmlkit/documentation/TVMLKit/TVApplicationController": {
+      "abstract": [
+        {
+          "text": "An object that bridges the UI, navigation stack, storage, and event handling from JavaScript.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TVApplicationController"
+        }
+      ],
+      "identifier": "doc://com.apple.tvmlkit/documentation/TVMLKit/TVApplicationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TVApplicationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "TVApplicationController",
+      "type": "topic",
+      "url": "/documentation/tvmlkit/tvapplicationcontroller"
+    },
+    "doc://com.apple.tvmlkit/documentation/TVMLKit/TVApplicationControllerContext": {
+      "abstract": [
+        {
+          "text": "Launch information provided to the TV application controller.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TVApplicationControllerContext"
+        }
+      ],
+      "identifier": "doc://com.apple.tvmlkit/documentation/TVMLKit/TVApplicationControllerContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TVApplicationControllerContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "TVApplicationControllerContext",
+      "type": "topic",
+      "url": "/documentation/tvmlkit/tvapplicationcontrollercontext"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "5ea6a203c148/ImplementingAHybridTVAppWithTVMLKit.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "JavaScript-Environment",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.tvmlkit/documentation/TVMLKit/TVApplicationController",
+        "doc://com.apple.tvmlkit/documentation/TVMLKit/TVApplicationControllerContext"
+      ],
+      "title": "JavaScript Environment"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1TVMLKit~1TVDocumentViewController~1Event/title",
+          "value": "TVDocumentEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1TVMLKit~1TVDocumentViewController~1Event/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "TVDocumentEvent"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVApplicationController/title",
+          "value": "TVApplicationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVApplicationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVApplicationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVApplicationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVApplicationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVApplicationControllerContext/title",
+          "value": "TVApplicationControllerContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVApplicationControllerContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVApplicationControllerContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVApplicationControllerContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVApplicationControllerContext"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/tvmlkit/implementing-a-hybrid-tv-app-with-tvmlkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

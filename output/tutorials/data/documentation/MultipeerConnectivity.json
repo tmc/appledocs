@@ -1,0 +1,2502 @@
+{
+  "abstract": [
+    {
+      "text": "Support peer-to-peer connectivity and the discovery of nearby devices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "MultipeerConnectivity",
+    "modules": [
+      {
+        "name": "Multipeer Connectivity"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "7.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "7.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.10",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Multipeer Connectivity"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Multipeer Connectivity framework supports the discovery of services provided by nearby devices and supports communicating with those services through message-based data, streaming data, and resources (such as files). In iOS, the framework uses infrastructure Wi-Fi networks, peer-to-peer Wi-Fi, and Bluetooth personal area networks for the underlying transport. In macOS and tvOS, it uses infrastructure Wi-Fi, peer-to-peer Wi-Fi, and Ethernet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Apps that use the local network must provide a usage string in their ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " with the key ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocalNetworkUsageDescription",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Apps that use Bonjour must also declare the services they browse, using the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSBonjourServices",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " key.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Architecture",
+          "level": 3,
+          "text": "Architecture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When working with the Multipeer Connectivity framework, your app must interact with several types of objects:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Session objects (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") support communication between connected peer devices. Your app creates a session and adds peers to it when peers accept an invitation to connect, and it creates a session when invited to connect by another peer. Session objects maintain a set of peer ID objects that represent the peers connected to the session.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Advertiser objects (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") tell nearby peers that your app is willing to join sessions of a specified type. An advertiser object uses a single local peer object to provide information that identifies the device and its user to other nearby devices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Advertiser assistant objects (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCAdvertiserAssistant",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") provide the same functionality as advertiser objects, but also provide a standard user interface that allows the user to accept invitations. If you wish to provide your own user interface, or if you wish to exercise additional programmatic control over which invitations are displayed, use an advertiser object directly.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Browser objects (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceBrowser",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") let your app search programmatically for nearby devices with apps that support sessions of a particular type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Browser view controller objects (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCBrowserViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") provide a standard user interface that allows the user to choose nearby peers to add to a session.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Peer IDs (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCPeerID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") uniquely identify an app running on a device to nearby peers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Discovery-Phase-and-Session-Phase",
+          "level": 3,
+          "text": "Discovery Phase and Session Phase",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This framework is used in two phases: the discovery phase and the session phase.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the discovery phase, your app uses an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceBrowser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to browse for nearby peers, optionally using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCBrowserViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to display a user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app also uses an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object or an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCAdvertiserAssistant",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to tell nearby peers that it is available, so that apps on other nearby devices can invite it to a session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During the discovery phase, your app has limited communication with and knowledge of other peers; it has access to the ",
+              "type": "text"
+            },
+            {
+              "code": "discoveryInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data that other nearby clients provide, and any context data that other peers provide when inviting it to join a session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the user chooses which peers to add to a session, the app invites those peers to join the session. Apps running on the nearby devices can choose whether to accept or reject the invitation, and can ask their users for permission.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the peer accepts the invitation, the browser establishes a connection with the advertiser and the session phase begins. In this phase, your app can perform direct communication to one or more peers within the session. The framework notifies your app through delegate callbacks when peers join the session and when they leave the session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the app moves into the background, the framework stops advertising and browsing and disconnects any open sessions. Upon returning to the foreground, the framework automatically resumes advertising and browsing, but the developer must reestablish any closed sessions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSViewController/dismiss(_:)-91my5": {
+      "abstract": [
+        {
+          "text": "Dismisses a presented view controller, using the same animator that presented it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dismiss"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "viewController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSViewController/dismiss(_:)-91my5",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dismiss(_:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSViewController/dismiss(_:)-91my5"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSViewController/presentAsSheet(_:)": {
+      "abstract": [
+        {
+          "text": "Presents another view controller as a sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentAsSheet"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "viewController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSViewController/presentAsSheet(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentAsSheet(_:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSViewController/presentAsSheet(_:)"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSBonjourServices": {
+      "abstract": [
+        {
+          "text": "Bonjour service types browsed by the app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSBonjourServices",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBonjourServices",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSBonjourServices"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocalNetworkUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the local network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSLocalNetworkUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLocalNetworkUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSLocalNetworkUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/dismiss(animated:completion:)": {
+      "abstract": [
+        {
+          "text": "Dismisses the view controller that was presented modally by the view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dismiss"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "flag"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/dismiss(animated:completion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dismiss(animated:completion:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/dismiss(animated:completion:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/performSegue(withIdentifier:sender:)": {
+      "abstract": [
+        {
+          "text": "Initiates the segue with the specified identifier from the current view controller’s storyboard file.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performSegue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sender"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/performSegue(withIdentifier:sender:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performSegue(withIdentifier:sender:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/performSegue(withIdentifier:sender:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/prepare(for:sender:)": {
+      "abstract": [
+        {
+          "text": "Notifies the view controller that a segue is about to be performed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepare"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "segue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIStoryboardSegue",
+          "text": "UIStoryboardSegue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sender"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/prepare(for:sender:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepare(for:sender:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/prepare(for:sender:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/present(_:animated:completion:)": {
+      "abstract": [
+        {
+          "text": "Presents a view controller modally.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "present"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "viewControllerToPresent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "flag"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/present(_:animated:completion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "present(_:animated:completion:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/present(_:animated:completion:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity": {
+      "abstract": [
+        {
+          "text": "Support peer-to-peer connectivity and the discovery of nearby devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Multipeer Connectivity",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCAdvertiserAssistant": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "MCAdvertiserAssistant",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is a convenience class that handles advertising, presents incoming invitations to the user, and handles users’ responses. Use this class to provide a user interface for handling invitations when your app does not require programmatic control over the invitation process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCAdvertiserAssistant"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCAdvertiserAssistant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MCAdvertiserAssistant"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCAdvertiserAssistant",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcadvertiserassistant"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCAdvertiserAssistantDelegate": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "MCAdvertiserAssistantDelegate",
+          "type": "codeVoice"
+        },
+        {
+          "text": " protocol describes the methods that the delegate object for an ",
+          "type": "text"
+        },
+        {
+          "code": "MCAdvertiserAssistant",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instance can implement to handle advertising-related events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCAdvertiserAssistantDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCAdvertiserAssistantDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MCAdvertiserAssistantDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCAdvertiserAssistantDelegate",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcadvertiserassistantdelegate"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCBrowserViewController": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "MCBrowserViewController",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class presents nearby devices to the user and enables the user to invite nearby devices to a session. To use this class in iOS or tvOS, call methods from the underlying ",
+          "type": "text"
+        },
+        {
+          "code": "UIViewController",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class (",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/prepare(for:sender:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/performSegue(withIdentifier:sender:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " for storyboards or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/present(_:animated:completion:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/dismiss(animated:completion:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " for nib-based views) to present and dismiss the view controller. In macOS, use the comparable ",
+          "type": "text"
+        },
+        {
+          "code": "NSViewController",
+          "type": "codeVoice"
+        },
+        {
+          "text": " methods ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/AppKit/NSViewController/presentAsSheet(_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/AppKit/NSViewController/dismiss(_:)-91my5",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCBrowserViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCBrowserViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MCBrowserViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCBrowserViewController",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcbrowserviewcontroller"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCBrowserViewControllerDelegate": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "MCBrowserViewControllerDelegate",
+          "type": "codeVoice"
+        },
+        {
+          "text": " protocol defines the methods that your delegate object can implement to handle events related to the ",
+          "type": "text"
+        },
+        {
+          "code": "MCBrowserViewController",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCBrowserViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCBrowserViewControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MCBrowserViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCBrowserViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcbrowserviewcontrollerdelegate"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCError"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MCError"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCError",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcerror"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "MCNearbyServiceAdvertiser",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class publishes an advertisement for a specific service that your app provides through the Multipeer Connectivity framework and notifies its delegate about invitations from nearby peers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCNearbyServiceAdvertiser"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MCNearbyServiceAdvertiser"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCNearbyServiceAdvertiser",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcnearbyserviceadvertiser"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiserDelegate": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "MCNearbyServiceAdvertiserDelegate",
+          "type": "codeVoice"
+        },
+        {
+          "text": " protocol describes the methods that the delegate object for an ",
+          "type": "text"
+        },
+        {
+          "code": "MCNearbyServiceAdvertiser",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instance can implement for handling events from the ",
+          "type": "text"
+        },
+        {
+          "code": "MCNearbyServiceAdvertiser",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCNearbyServiceAdvertiserDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiserDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MCNearbyServiceAdvertiserDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCNearbyServiceAdvertiserDelegate",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcnearbyserviceadvertiserdelegate"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceBrowser": {
+      "abstract": [
+        {
+          "text": "Searches (by service type) for services offered by nearby devices using infrastructure Wi-Fi, peer-to-peer Wi-Fi, and Bluetooth (in iOS) or Ethernet (in macOS and tvOS), and provides the ability to easily invite those devices to a Multipeer Connectivity session (",
+          "type": "text"
+        },
+        {
+          "code": "MCSession",
+          "type": "codeVoice"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCNearbyServiceBrowser"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceBrowser",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MCNearbyServiceBrowser"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCNearbyServiceBrowser",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcnearbyservicebrowser"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceBrowserDelegate": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "MCNearbyServiceBrowserDelegate",
+          "type": "codeVoice"
+        },
+        {
+          "text": " protocol defines methods that a ",
+          "type": "text"
+        },
+        {
+          "code": "MCNearbyServiceBrowser",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object’s delegate can implement to handle browser-related events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCNearbyServiceBrowserDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceBrowserDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MCNearbyServiceBrowserDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCNearbyServiceBrowserDelegate",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcnearbyservicebrowserdelegate"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCPeerID": {
+      "abstract": [
+        {
+          "text": "An  ",
+          "type": "text"
+        },
+        {
+          "code": "MCPeerID",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object represents a peer in a multipeer session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCPeerID"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCPeerID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MCPeerID"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCPeerID",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcpeerid"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession": {
+      "abstract": [
+        {
+          "text": "An ",
+          "type": "text"
+        },
+        {
+          "code": "MCSession",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object enables and manages communication among all peers in a Multipeer Connectivity session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCSession"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MCSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCSession",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsession"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionDelegate": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "MCSessionDelegate",
+          "type": "codeVoice"
+        },
+        {
+          "text": " protocol defines methods that a delegate of the ",
+          "type": "text"
+        },
+        {
+          "code": "MCSession",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class can implement to handle session-related events. For more information, see ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCSessionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MCSessionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "MCSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mcsessiondelegate"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MC_EXTERN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MC_EXTERN"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MC_EXTERN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MC_EXTERN",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mc_extern"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MC_EXTERN_CLASS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MC_EXTERN_CLASS"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MC_EXTERN_CLASS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MC_EXTERN_CLASS",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mc_extern_class"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MC_EXTERN_WEAK": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MC_EXTERN_WEAK"
+        }
+      ],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MC_EXTERN_WEAK",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MC_EXTERN_WEAK",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/mc_extern_weak"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/multipeerconnectivity_constants": {
+      "abstract": [],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/multipeerconnectivity_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MultipeerConnectivity Constants",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/multipeerconnectivity_constants"
+    },
+    "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/multipeerconnectivity_enumerations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/multipeerconnectivity_enumerations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MultipeerConnectivity Enumerations",
+      "type": "topic",
+      "url": "/documentation/multipeerconnectivity/multipeerconnectivity_enumerations"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Classes",
+      "identifiers": [
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCAdvertiserAssistant",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCBrowserViewController",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceBrowser",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCPeerID",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession"
+      ],
+      "title": "Classes"
+    },
+    {
+      "anchor": "Protocols",
+      "identifiers": [
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCAdvertiserAssistantDelegate",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCBrowserViewControllerDelegate",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiserDelegate",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceBrowserDelegate",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionDelegate"
+      ],
+      "title": "Protocols"
+    },
+    {
+      "anchor": "Structures",
+      "identifiers": [
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCError"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Reference",
+      "identifiers": [
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/multipeerconnectivity_enumerations",
+        "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/multipeerconnectivity_constants"
+      ],
+      "title": "Reference"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Classes",
+              "identifiers": [
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCAdvertiserAssistant",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCBrowserViewController",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceBrowser",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCPeerID",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession"
+              ],
+              "title": "Classes"
+            },
+            {
+              "anchor": "Protocols",
+              "identifiers": [
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCAdvertiserAssistantDelegate",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCBrowserViewControllerDelegate",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiserDelegate",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCNearbyServiceBrowserDelegate",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSessionDelegate"
+              ],
+              "title": "Protocols"
+            },
+            {
+              "anchor": "Reference",
+              "identifiers": [
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/multipeerconnectivity_enumerations",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/multipeerconnectivity_constants"
+              ],
+              "title": "Reference"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MC_EXTERN",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MC_EXTERN_CLASS",
+                "doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MC_EXTERN_WEAK"
+              ],
+              "title": "Macros"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCAdvertiserAssistant/title",
+          "value": "MCAdvertiserAssistant"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCAdvertiserAssistant/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCAdvertiserAssistant"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCAdvertiserAssistant/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCAdvertiserAssistant"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession/title",
+          "value": "MCSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCPeerID/title",
+          "value": "MCPeerID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCPeerID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCPeerID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCPeerID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCPeerID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCNearbyServiceAdvertiserDelegate/title",
+          "value": "MCNearbyServiceAdvertiserDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCNearbyServiceAdvertiserDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCNearbyServiceAdvertiserDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCNearbyServiceAdvertiserDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCNearbyServiceAdvertiserDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCNearbyServiceBrowserDelegate/title",
+          "value": "MCNearbyServiceBrowserDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCNearbyServiceBrowserDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCNearbyServiceBrowserDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCNearbyServiceBrowserDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCNearbyServiceBrowserDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSessionDelegate/title",
+          "value": "MCSessionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSessionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCSessionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCSessionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCSessionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCNearbyServiceAdvertiser/title",
+          "value": "MCNearbyServiceAdvertiser"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCNearbyServiceAdvertiser/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCNearbyServiceAdvertiser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCNearbyServiceAdvertiser/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCNearbyServiceAdvertiser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSViewController~1presentAsSheet(_:)/title",
+          "value": "presentViewControllerAsSheet:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSViewController~1presentAsSheet(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentViewControllerAsSheet:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSViewController",
+              "text": "NSViewController"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "viewController"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCNearbyServiceBrowser/title",
+          "value": "MCNearbyServiceBrowser"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCNearbyServiceBrowser/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCNearbyServiceBrowser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCNearbyServiceBrowser/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCNearbyServiceBrowser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1present(_:animated:completion:)/title",
+          "value": "presentViewController:animated:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1present(_:animated:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentViewController:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "viewControllerToPresent"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "animated:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "flag"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completion:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)()) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completion"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCBrowserViewController/title",
+          "value": "MCBrowserViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCBrowserViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCBrowserViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCBrowserViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCBrowserViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1dismiss(animated:completion:)/title",
+          "value": "dismissViewControllerAnimated:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1dismiss(animated:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "dismissViewControllerAnimated:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "flag"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completion:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)()) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completion"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCAdvertiserAssistantDelegate/title",
+          "value": "MCAdvertiserAssistantDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCAdvertiserAssistantDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCAdvertiserAssistantDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCAdvertiserAssistantDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCAdvertiserAssistantDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1prepare(for:sender:)/title",
+          "value": "prepareForSegue:sender:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1prepare(for:sender:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "prepareForSegue:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIStoryboardSegue",
+              "text": "UIStoryboardSegue"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "segue"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "sender:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "id"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "sender"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSViewController~1dismiss(_:)-91my5/title",
+          "value": "dismissViewController:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSViewController~1dismiss(_:)-91my5/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "dismissViewController:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSViewController",
+              "text": "NSViewController"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "viewController"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCBrowserViewControllerDelegate/title",
+          "value": "MCBrowserViewControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCBrowserViewControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCBrowserViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.multipeerconnectivity~1documentation~1MultipeerConnectivity~1MCBrowserViewControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MCBrowserViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1performSegue(withIdentifier:sender:)/title",
+          "value": "performSegueWithIdentifier:sender:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1performSegue(withIdentifier:sender:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "performSegueWithIdentifier:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "identifier"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "sender:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "id"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "sender"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/multipeerconnectivity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/multipeerconnectivity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

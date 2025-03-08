@@ -1,0 +1,2828 @@
+{
+  "abstract": [
+    {
+      "text": "An object the system uses to move blocks of memory through a processing system.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremedia/documentation/CoreMedia"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremedia/documentation/CoreMedia/cmblockbuffer-api"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Media"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "CMBlockBuffer APIs"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A block buffer is a ",
+              "type": "text"
+            },
+            {
+              "code": "CFType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object that represents a contiguous range of data offsets (from zero to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferGetDataLength(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") across a possibly noncontiguous memory region. The memory region contains memory blocks and buffer references. The buffer references can in turn refer to additional regions. ",
+              "type": "text"
+            },
+            {
+              "code": "CMBlockBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMAttachmentBearerProtocol",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to propagate attachments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremedia/documentation/CoreMedia": {
+      "abstract": [
+        {
+          "text": "Represent time-based audio-visual assets with essential data types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Media",
+      "type": "topic",
+      "url": "/documentation/coremedia"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMAttachmentBearerProtocol": {
+      "abstract": [
+        {
+          "text": "A protocol for objects that can carry attachments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMAttachmentBearerProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMAttachmentBearerProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAttachmentBearerProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMAttachmentBearerProtocol",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmattachmentbearerprotocol"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBuffer": {
+      "abstract": [
+        {
+          "text": "A reference to a block buffer instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBlockBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBlockBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBlockBuffer",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmblockbuffer"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferAccessDataBytes(_:atOffset:length:temporaryBlock:returnedPointerOut:)": {
+      "abstract": [
+        {
+          "text": "Accesses potentially noncontiguous data in a block buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferAccessDataBytes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferRef",
+          "text": "CMBlockBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "atOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "temporaryBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "returnedPointerOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferAccessDataBytes(_:atOffset:length:temporaryBlock:returnedPointerOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferAccessDataBytes"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBlockBufferAccessDataBytes(_:atOffset:length:temporaryBlock:returnedPointerOut:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmblockbufferaccessdatabytes(_:atoffset:length:temporaryblock:returnedpointerout:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferAppendBufferReference(_:targetBBuf:offsetToData:dataLength:flags:)": {
+      "abstract": [
+        {
+          "text": "Adds a reference to an existing block buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferAppendBufferReference"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferRef",
+          "text": "CMBlockBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "targetBBuf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferRef",
+          "text": "CMBlockBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsetToData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dataLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferFlags",
+          "text": "CMBlockBufferFlags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferAppendBufferReference(_:targetBBuf:offsetToData:dataLength:flags:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferAppendBufferReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBlockBufferAppendBufferReference(_:targetBBuf:offsetToData:dataLength:flags:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmblockbufferappendbufferreference(_:targetbbuf:offsettodata:datalength:flags:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferAppendMemoryBlock(_:memoryBlock:length:blockAllocator:customBlockSource:offsetToData:dataLength:flags:)": {
+      "abstract": [
+        {
+          "text": "Adds a memory block to an existing block buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferAppendMemoryBlock"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferRef",
+          "text": "CMBlockBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "memoryBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blockAllocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "customBlockSource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMBlockBufferCustomBlockSource",
+          "text": "CMBlockBufferCustomBlockSource"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsetToData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dataLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferFlags",
+          "text": "CMBlockBufferFlags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferAppendMemoryBlock(_:memoryBlock:length:blockAllocator:customBlockSource:offsetToData:dataLength:flags:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferAppendMemoryBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBlockBufferAppendMemoryBlock(_:memoryBlock:length:blockAllocator:customBlockSource:offsetToData:dataLength:flags:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmblockbufferappendmemoryblock(_:memoryblock:length:blockallocator:customblocksource:offsettodata:datalength:flags:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferAssureBlockMemory(_:)": {
+      "abstract": [
+        {
+          "text": "Assures that the system allocates memory for all memory blocks in a block buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferAssureBlockMemory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferRef",
+          "text": "CMBlockBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferAssureBlockMemory(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferAssureBlockMemory"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBlockBufferAssureBlockMemory(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmblockbufferassureblockmemory(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCopyDataBytes(_:atOffset:dataLength:destination:)": {
+      "abstract": [
+        {
+          "text": "Copies bytes from a block buffer into a provided memory area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferCopyDataBytes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferRef",
+          "text": "CMBlockBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "atOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dataLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCopyDataBytes(_:atOffset:dataLength:destination:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferCopyDataBytes"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBlockBufferCopyDataBytes(_:atOffset:dataLength:destination:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmblockbuffercopydatabytes(_:atoffset:datalength:destination:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCreateContiguous(allocator:sourceBuffer:blockAllocator:customBlockSource:offsetToData:dataLength:flags:blockBufferOut:)": {
+      "abstract": [
+        {
+          "text": "Creates a block buffer that contains a contiguous copy of, or reference to, the data specified by the parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferCreateContiguous"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "allocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferRef",
+          "text": "CMBlockBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blockAllocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "customBlockSource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMBlockBufferCustomBlockSource",
+          "text": "CMBlockBufferCustomBlockSource"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsetToData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dataLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferFlags",
+          "text": "CMBlockBufferFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blockBufferOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferRef",
+          "text": "CMBlockBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCreateContiguous(allocator:sourceBuffer:blockAllocator:customBlockSource:offsetToData:dataLength:flags:blockBufferOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferCreateContiguous"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBlockBufferCreateContiguous(allocator:sourceBuffer:blockAllocator:customBlockSource:offsetToData:dataLength:flags:blockBufferOut:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmblockbuffercreatecontiguous(allocator:sourcebuffer:blockallocator:customblocksource:offsettodata:datalength:flags:blockbufferout:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCreateEmpty(allocator:capacity:flags:blockBufferOut:)": {
+      "abstract": [
+        {
+          "text": "Creates an empty block buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferCreateEmpty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "allocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "capacity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferFlags",
+          "text": "CMBlockBufferFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blockBufferOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferRef",
+          "text": "CMBlockBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCreateEmpty(allocator:capacity:flags:blockBufferOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferCreateEmpty"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBlockBufferCreateEmpty(allocator:capacity:flags:blockBufferOut:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmblockbuffercreateempty(allocator:capacity:flags:blockbufferout:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCreateWithBufferReference(allocator:referenceBuffer:offsetToData:dataLength:flags:blockBufferOut:)": {
+      "abstract": [
+        {
+          "text": "Creates a block buffer that refers to another block buffer object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferCreateWithBufferReference"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "allocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "referenceBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferRef",
+          "text": "CMBlockBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsetToData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dataLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferFlags",
+          "text": "CMBlockBufferFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blockBufferOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferRef",
+          "text": "CMBlockBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCreateWithBufferReference(allocator:referenceBuffer:offsetToData:dataLength:flags:blockBufferOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferCreateWithBufferReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBlockBufferCreateWithBufferReference(allocator:referenceBuffer:offsetToData:dataLength:flags:blockBufferOut:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmblockbuffercreatewithbufferreference(allocator:referencebuffer:offsettodata:datalength:flags:blockbufferout:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCreateWithMemoryBlock(allocator:memoryBlock:blockLength:blockAllocator:customBlockSource:offsetToData:dataLength:flags:blockBufferOut:)": {
+      "abstract": [
+        {
+          "text": "Creates a block buffer that’s backed by a memory block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferCreateWithMemoryBlock"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "allocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "memoryBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blockLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blockAllocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "customBlockSource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMBlockBufferCustomBlockSource",
+          "text": "CMBlockBufferCustomBlockSource"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsetToData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dataLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferFlags",
+          "text": "CMBlockBufferFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blockBufferOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferRef",
+          "text": "CMBlockBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCreateWithMemoryBlock(allocator:memoryBlock:blockLength:blockAllocator:customBlockSource:offsetToData:dataLength:flags:blockBufferOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferCreateWithMemoryBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBlockBufferCreateWithMemoryBlock(allocator:memoryBlock:blockLength:blockAllocator:customBlockSource:offsetToData:dataLength:flags:blockBufferOut:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmblockbuffercreatewithmemoryblock(allocator:memoryblock:blocklength:blockallocator:customblocksource:offsettodata:datalength:flags:blockbufferout:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCustomBlockSource": {
+      "abstract": [
+        {
+          "text": "A structure to support custom memory allocation and deallocation for a block used in a block buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferCustomBlockSource"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCustomBlockSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferCustomBlockSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBlockBufferCustomBlockSource",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmblockbuffercustomblocksource"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferFillDataBytes(with:blockBuffer:offsetIntoDestination:dataLength:)": {
+      "abstract": [
+        {
+          "text": "Fills the destination buffer with the specified data byte.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferFillDataBytes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blockBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferRef",
+          "text": "CMBlockBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsetIntoDestination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dataLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferFillDataBytes(with:blockBuffer:offsetIntoDestination:dataLength:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferFillDataBytes"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBlockBufferFillDataBytes(with:blockBuffer:offsetIntoDestination:dataLength:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmblockbufferfilldatabytes(with:blockbuffer:offsetintodestination:datalength:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferFlags": {
+      "abstract": [
+        {
+          "text": "A type for flags that control behaviors and features of block buffer APIs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBlockBufferFlags",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmblockbufferflags"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferGetDataLength(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the total length of data that’s accessible by a block buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferGetDataLength"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferRef",
+          "text": "CMBlockBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferGetDataLength(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferGetDataLength"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBlockBufferGetDataLength(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmblockbuffergetdatalength(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferGetDataPointer(_:atOffset:lengthAtOffsetOut:totalLengthOut:dataPointerOut:)": {
+      "abstract": [
+        {
+          "text": "Gains access to the data represented by a block buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferGetDataPointer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferRef",
+          "text": "CMBlockBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "atOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lengthAtOffsetOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "totalLengthOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dataPointerOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferGetDataPointer(_:atOffset:lengthAtOffsetOut:totalLengthOut:dataPointerOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferGetDataPointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBlockBufferGetDataPointer(_:atOffset:lengthAtOffsetOut:totalLengthOut:dataPointerOut:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmblockbuffergetdatapointer(_:atoffset:lengthatoffsetout:totallengthout:datapointerout:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the type identifier for block buffer objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBlockBufferGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmblockbuffergettypeid()"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferIsEmpty(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the buffer is empty.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferIsEmpty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferRef",
+          "text": "CMBlockBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferIsEmpty(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferIsEmpty"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBlockBufferIsEmpty(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmblockbufferisempty(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferIsRangeContiguous(_:atOffset:length:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the specified range within a block buffer is contiguous.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferIsRangeContiguous"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferRef",
+          "text": "CMBlockBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "atOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferIsRangeContiguous(_:atOffset:length:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferIsRangeContiguous"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBlockBufferIsRangeContiguous(_:atOffset:length:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmblockbufferisrangecontiguous(_:atoffset:length:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferProtocol": {
+      "abstract": [
+        {
+          "text": "A protocol for objects that operate on a range of a block buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBlockBufferProtocol",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmblockbufferprotocol"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferReplaceDataBytes(with:blockBuffer:offsetIntoDestination:dataLength:)": {
+      "abstract": [
+        {
+          "text": "Copies bytes from a given memory block into a block buffer replacing bytes in the underlying data blocks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferReplaceDataBytes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blockBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMBlockBufferRef",
+          "text": "CMBlockBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsetIntoDestination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dataLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferReplaceDataBytes(with:blockBuffer:offsetIntoDestination:dataLength:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMBlockBufferReplaceDataBytes"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMBlockBufferReplaceDataBytes(with:blockBuffer:offsetIntoDestination:dataLength:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmblockbufferreplacedatabytes(with:blockbuffer:offsetintodestination:datalength:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTaggedBuffer": {
+      "abstract": [
+        {
+          "text": "An instance of a media buffer containing metadata tags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTaggedBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTaggedBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTaggedBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTaggedBuffer",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtaggedbuffer"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/block-buffer-error-codes": {
+      "abstract": [
+        {
+          "text": "Error codes that framework operations produce.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/block-buffer-error-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Block Buffer Error Codes",
+      "type": "topic",
+      "url": "/documentation/coremedia/block-buffer-error-codes"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/block-buffer-flags": {
+      "abstract": [
+        {
+          "text": "An enumeration of flags that control behaviors and features of block buffer APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/block-buffer-flags",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Block Buffer Flags",
+      "type": "topic",
+      "url": "/documentation/coremedia/block-buffer-flags"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/cmattachment-api": {
+      "abstract": [
+        {
+          "text": "Add supporting metadata to sample buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/cmattachment-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CMAttachment APIs",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmattachment-api"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/cmformatdescription-api": {
+      "abstract": [
+        {
+          "text": "A media format descriptor that describes the samples in a sample buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/cmformatdescription-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CMFormatDescription APIs",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmformatdescription-api"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/cmsamplebuffer-api": {
+      "abstract": [
+        {
+          "text": "An object that contains zero or more media samples of a uniform media type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/cmsamplebuffer-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CMSampleBuffer APIs",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsamplebuffer-api"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/cmtaggedbuffergroup": {
+      "abstract": [
+        {
+          "text": "Objective-C types and interfaces for working with Core Media tagged buffer groups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/cmtaggedbuffergroup",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CMTaggedBufferGroup APIs",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtaggedbuffergroup"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/custom-block-source-version": {
+      "abstract": [
+        {
+          "text": "A custom block source version identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/custom-block-source-version",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Custom Block Source Version",
+      "type": "topic",
+      "url": "/documentation/coremedia/custom-block-source-version"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sample-Processing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/cmsamplebuffer-api",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTaggedBuffer",
+        "doc://com.apple.coremedia/documentation/CoreMedia/cmtaggedbuffergroup",
+        "doc://com.apple.coremedia/documentation/CoreMedia/cmformatdescription-api",
+        "doc://com.apple.coremedia/documentation/CoreMedia/cmattachment-api"
+      ],
+      "title": "Sample Processing"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Block-Buffer",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCreateEmpty(allocator:capacity:flags:blockBufferOut:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCreateWithMemoryBlock(allocator:memoryBlock:blockLength:blockAllocator:customBlockSource:offsetToData:dataLength:flags:blockBufferOut:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCreateWithBufferReference(allocator:referenceBuffer:offsetToData:dataLength:flags:blockBufferOut:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCreateContiguous(allocator:sourceBuffer:blockAllocator:customBlockSource:offsetToData:dataLength:flags:blockBufferOut:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferFlags",
+        "doc://com.apple.coremedia/documentation/CoreMedia/block-buffer-flags",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCustomBlockSource",
+        "doc://com.apple.coremedia/documentation/CoreMedia/custom-block-source-version"
+      ],
+      "title": "Creating a Block Buffer"
+    },
+    {
+      "anchor": "Modifying-a-Block-Buffer",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferAppendMemoryBlock(_:memoryBlock:length:blockAllocator:customBlockSource:offsetToData:dataLength:flags:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferAppendBufferReference(_:targetBBuf:offsetToData:dataLength:flags:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferAssureBlockMemory(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferAccessDataBytes(_:atOffset:length:temporaryBlock:returnedPointerOut:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCopyDataBytes(_:atOffset:dataLength:destination:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferReplaceDataBytes(with:blockBuffer:offsetIntoDestination:dataLength:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferFillDataBytes(with:blockBuffer:offsetIntoDestination:dataLength:)"
+      ],
+      "title": "Modifying a Block Buffer"
+    },
+    {
+      "anchor": "Inspecting-a-Block-Buffer",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferGetDataPointer(_:atOffset:lengthAtOffsetOut:totalLengthOut:dataPointerOut:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferGetDataLength(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferIsRangeContiguous(_:atOffset:length:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferIsEmpty(_:)"
+      ],
+      "title": "Inspecting a Block Buffer"
+    },
+    {
+      "anchor": "Accessing-the-Type-Identifier",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferGetTypeID()"
+      ],
+      "title": "Accessing the Type Identifier"
+    },
+    {
+      "anchor": "Data-Types",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBuffer",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferProtocol"
+      ],
+      "title": "Data Types"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/block-buffer-error-codes"
+      ],
+      "title": "Errors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Block-Buffer",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCreateEmpty(allocator:capacity:flags:blockBufferOut:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCreateWithMemoryBlock(allocator:memoryBlock:blockLength:blockAllocator:customBlockSource:offsetToData:dataLength:flags:blockBufferOut:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCreateWithBufferReference(allocator:referenceBuffer:offsetToData:dataLength:flags:blockBufferOut:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCreateContiguous(allocator:sourceBuffer:blockAllocator:customBlockSource:offsetToData:dataLength:flags:blockBufferOut:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferFlags",
+                "doc://com.apple.coremedia/documentation/CoreMedia/block-buffer-flags",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCustomBlockSource",
+                "doc://com.apple.coremedia/documentation/CoreMedia/custom-block-source-version"
+              ],
+              "title": "Creating a Block Buffer"
+            },
+            {
+              "anchor": "Modifying-a-Block-Buffer",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferAppendMemoryBlock(_:memoryBlock:length:blockAllocator:customBlockSource:offsetToData:dataLength:flags:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferAppendBufferReference(_:targetBBuf:offsetToData:dataLength:flags:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferAssureBlockMemory(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferAccessDataBytes(_:atOffset:length:temporaryBlock:returnedPointerOut:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferCopyDataBytes(_:atOffset:dataLength:destination:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferReplaceDataBytes(with:blockBuffer:offsetIntoDestination:dataLength:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferFillDataBytes(with:blockBuffer:offsetIntoDestination:dataLength:)"
+              ],
+              "title": "Modifying a Block Buffer"
+            },
+            {
+              "anchor": "Inspecting-a-Block-Buffer",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferGetDataPointer(_:atOffset:lengthAtOffsetOut:totalLengthOut:dataPointerOut:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferGetDataLength(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferIsRangeContiguous(_:atOffset:length:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferIsEmpty(_:)"
+              ],
+              "title": "Inspecting a Block Buffer"
+            },
+            {
+              "anchor": "Accessing-the-Type-Identifier",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBufferGetTypeID()"
+              ],
+              "title": "Accessing the Type Identifier"
+            },
+            {
+              "anchor": "Data-Types",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMBlockBuffer"
+              ],
+              "title": "Data Types"
+            },
+            {
+              "anchor": "Errors",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/block-buffer-error-codes"
+              ],
+              "title": "Errors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Sample-Processing",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/cmsamplebuffer-api",
+                "doc://com.apple.coremedia/documentation/CoreMedia/cmtaggedbuffergroup",
+                "doc://com.apple.coremedia/documentation/CoreMedia/cmformatdescription-api",
+                "doc://com.apple.coremedia/documentation/CoreMedia/cmattachment-api"
+              ],
+              "title": "Sample Processing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferCustomBlockSource/title",
+          "value": "CMBlockBufferCustomBlockSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferCustomBlockSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferCustomBlockSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferCustomBlockSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferCustomBlockSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferAssureBlockMemory(_:)/title",
+          "value": "CMBlockBufferAssureBlockMemory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferAssureBlockMemory(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferAssureBlockMemory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferAppendBufferReference(_:targetBBuf:offsetToData:dataLength:flags:)/title",
+          "value": "CMBlockBufferAppendBufferReference"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferAppendBufferReference(_:targetBBuf:offsetToData:dataLength:flags:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferAppendBufferReference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferGetTypeID()/title",
+          "value": "CMBlockBufferGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferAppendMemoryBlock(_:memoryBlock:length:blockAllocator:customBlockSource:offsetToData:dataLength:flags:)/title",
+          "value": "CMBlockBufferAppendMemoryBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferAppendMemoryBlock(_:memoryBlock:length:blockAllocator:customBlockSource:offsetToData:dataLength:flags:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferAppendMemoryBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferGetDataPointer(_:atOffset:lengthAtOffsetOut:totalLengthOut:dataPointerOut:)/title",
+          "value": "CMBlockBufferGetDataPointer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferGetDataPointer(_:atOffset:lengthAtOffsetOut:totalLengthOut:dataPointerOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferGetDataPointer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferCreateWithBufferReference(allocator:referenceBuffer:offsetToData:dataLength:flags:blockBufferOut:)/title",
+          "value": "CMBlockBufferCreateWithBufferReference"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferCreateWithBufferReference(allocator:referenceBuffer:offsetToData:dataLength:flags:blockBufferOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferCreateWithBufferReference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferReplaceDataBytes(with:blockBuffer:offsetIntoDestination:dataLength:)/title",
+          "value": "CMBlockBufferReplaceDataBytes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferReplaceDataBytes(with:blockBuffer:offsetIntoDestination:dataLength:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferReplaceDataBytes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferCreateWithMemoryBlock(allocator:memoryBlock:blockLength:blockAllocator:customBlockSource:offsetToData:dataLength:flags:blockBufferOut:)/title",
+          "value": "CMBlockBufferCreateWithMemoryBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferCreateWithMemoryBlock(allocator:memoryBlock:blockLength:blockAllocator:customBlockSource:offsetToData:dataLength:flags:blockBufferOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferCreateWithMemoryBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferCopyDataBytes(_:atOffset:dataLength:destination:)/title",
+          "value": "CMBlockBufferCopyDataBytes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferCopyDataBytes(_:atOffset:dataLength:destination:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferCopyDataBytes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferCreateContiguous(allocator:sourceBuffer:blockAllocator:customBlockSource:offsetToData:dataLength:flags:blockBufferOut:)/title",
+          "value": "CMBlockBufferCreateContiguous"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferCreateContiguous(allocator:sourceBuffer:blockAllocator:customBlockSource:offsetToData:dataLength:flags:blockBufferOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferCreateContiguous"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBuffer/title",
+          "value": "CMBlockBufferRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferCreateEmpty(allocator:capacity:flags:blockBufferOut:)/title",
+          "value": "CMBlockBufferCreateEmpty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferCreateEmpty(allocator:capacity:flags:blockBufferOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferCreateEmpty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferFlags/title",
+          "value": "CMBlockBufferFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferIsRangeContiguous(_:atOffset:length:)/title",
+          "value": "CMBlockBufferIsRangeContiguous"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferIsRangeContiguous(_:atOffset:length:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferIsRangeContiguous"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferIsEmpty(_:)/title",
+          "value": "CMBlockBufferIsEmpty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferIsEmpty(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferIsEmpty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferAccessDataBytes(_:atOffset:length:temporaryBlock:returnedPointerOut:)/title",
+          "value": "CMBlockBufferAccessDataBytes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferAccessDataBytes(_:atOffset:length:temporaryBlock:returnedPointerOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferAccessDataBytes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferFillDataBytes(with:blockBuffer:offsetIntoDestination:dataLength:)/title",
+          "value": "CMBlockBufferFillDataBytes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferFillDataBytes(with:blockBuffer:offsetIntoDestination:dataLength:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferFillDataBytes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferGetDataLength(_:)/title",
+          "value": "CMBlockBufferGetDataLength"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMBlockBufferGetDataLength(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMBlockBufferGetDataLength"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremedia/cmblockbuffer-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremedia/cmblockbuffer-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

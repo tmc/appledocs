@@ -1,0 +1,3773 @@
+{
+  "abstract": [
+    {
+      "text": "An object that represents a connection from a capture input to a capture output.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVCaptureConnection",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AVCaptureConnection"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AVCaptureConnection"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.7",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AVCaptureConnection"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureConnection"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Capture inputs have one or more input ports (instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureInput/Port",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Capture outputs can accept data from one or more sources (for example, an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureMovieFileOutput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object accepts both video and audio data).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add an ",
+              "type": "text"
+            },
+            {
+              "code": "AVCaptureConnection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance to a session using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/addConnection(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method only if the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/canAddConnection(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/addInput(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/addOutput(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, the session forms connections automatically between all compatible inputs and outputs. You only need to add connections manually when adding an input or output with no connections. You can also use connections to enable or disable the flow of data from a given input or to a given output.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "building-a-camera-app-PageImage-card.png": {
+      "alt": "An illustration of a DLSR camera.",
+      "identifier": "building-a-camera-app-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/960411afd1a832784abd2a9293ada4c4/building-a-camera-app-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0d739ff6cce86d4349988da7f8417e7d/building-a-camera-app-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection": {
+      "abstract": [
+        {
+          "text": "An object that represents a connection from a capture input to a capture output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureConnection"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureConnection",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/activeVideoStabilizationMode": {
+      "abstract": [
+        {
+          "text": "The connection’s current stabilization mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeVideoStabilizationMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVCaptureVideoStabilizationMode",
+          "text": "AVCaptureVideoStabilizationMode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/activeVideoStabilizationMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activeVideoStabilizationMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "activeVideoStabilizationMode",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/activevideostabilizationmode"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/audioChannels": {
+      "abstract": [
+        {
+          "text": "An array of audio channels that the connection provides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "audioChannels"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureAudioChannel",
+          "text": "AVCaptureAudioChannel"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/audioChannels",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "audioChannels"
+        }
+      ],
+      "role": "symbol",
+      "title": "audioChannels",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/audiochannels"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/automaticallyAdjustsVideoMirroring": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether you can enable mirroring based on a session’s configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automaticallyAdjustsVideoMirroring"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/automaticallyAdjustsVideoMirroring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "automaticallyAdjustsVideoMirroring"
+        }
+      ],
+      "role": "symbol",
+      "title": "automaticallyAdjustsVideoMirroring",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/automaticallyadjustsvideomirroring"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/connectionWithInputPort:videoPreviewLayer:": {
+      "abstract": [
+        {
+          "text": "Returns a capture connection that represents a connection between an input port and a video preview layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "connectionWithInputPort:videoPreviewLayer:"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/connectionWithInputPort:videoPreviewLayer:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "connectionWithInputPort:videoPreviewLayer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "connectionWithInputPort:videoPreviewLayer:",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/connectionwithinputport:videopreviewlayer:"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/connectionWithInputPorts:output:": {
+      "abstract": [
+        {
+          "text": "Returns a capture connection that represents a connection between multiple input ports and an output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "connectionWithInputPorts:output:"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/connectionWithInputPorts:output:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "connectionWithInputPorts:output:"
+        }
+      ],
+      "role": "symbol",
+      "title": "connectionWithInputPorts:output:",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/connectionwithinputports:output:"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/enablesVideoStabilizationWhenAvailable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the system enables video stabilization when it’s available.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enablesVideoStabilizationWhenAvailable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/enablesVideoStabilizationWhenAvailable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enablesVideoStabilizationWhenAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "enablesVideoStabilizationWhenAvailable",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/enablesvideostabilizationwhenavailable"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/init(inputPort:videoPreviewLayer:)": {
+      "abstract": [
+        {
+          "text": "Creates a capture connection that represents a connection between an input port and a video preview layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputPort"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureInput",
+          "text": "AVCaptureInput"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureInputPort",
+          "text": "Port"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "videoPreviewLayer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureVideoPreviewLayer",
+          "text": "AVCaptureVideoPreviewLayer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/init(inputPort:videoPreviewLayer:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithInputPort:videoPreviewLayer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(inputPort:videoPreviewLayer:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/init(inputport:videopreviewlayer:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/init(inputPorts:output:)": {
+      "abstract": [
+        {
+          "text": "Creates a capture connection that represents a connection between multiple input ports and an output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputPorts"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureInput",
+          "text": "AVCaptureInput"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureInputPort",
+          "text": "Port"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureOutput",
+          "text": "AVCaptureOutput"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/init(inputPorts:output:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithInputPorts:output:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(inputPorts:output:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/init(inputports:output:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/inputPorts": {
+      "abstract": [
+        {
+          "text": "An array of the connection’s input ports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputPorts"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureInput",
+          "text": "AVCaptureInput"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureInputPort",
+          "text": "Port"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/inputPorts",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inputPorts"
+        }
+      ],
+      "role": "symbol",
+      "title": "inputPorts",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/inputports"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isActive": {
+      "abstract": [
+        {
+          "text": "Indicates whether the connection is active.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isActive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isActive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "active"
+        }
+      ],
+      "role": "symbol",
+      "title": "isActive",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/isactive"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isCameraIntrinsicMatrixDeliveryEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the connection can configure the capture pipeline to deliver camera intrinsics information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCameraIntrinsicMatrixDeliveryEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isCameraIntrinsicMatrixDeliveryEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cameraIntrinsicMatrixDeliveryEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isCameraIntrinsicMatrixDeliveryEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/iscameraintrinsicmatrixdeliveryenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isCameraIntrinsicMatrixDeliverySupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the capture connection currently supports delivering camera intrinsics information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCameraIntrinsicMatrixDeliverySupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isCameraIntrinsicMatrixDeliverySupported",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cameraIntrinsicMatrixDeliverySupported"
+        }
+      ],
+      "role": "symbol",
+      "title": "isCameraIntrinsicMatrixDeliverySupported",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/iscameraintrinsicmatrixdeliverysupported"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isEnabled": {
+      "abstract": [
+        {
+          "text": "Turns the connection on and off.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/isenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoFieldModeSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the connection supports setting a video field mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isVideoFieldModeSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoFieldModeSupported",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsVideoFieldMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "isVideoFieldModeSupported",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/isvideofieldmodesupported"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoMaxFrameDurationSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the connection supports a maximum frame duration.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isVideoMaxFrameDurationSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoMaxFrameDurationSupported",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsVideoMaxFrameDuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "isVideoMaxFrameDurationSupported",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/isvideomaxframedurationsupported"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoMinFrameDurationSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the connection supports a minimum frame duration.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isVideoMinFrameDurationSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoMinFrameDurationSupported",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsVideoMinFrameDuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "isVideoMinFrameDurationSupported",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/isvideominframedurationsupported"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoMirrored": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the connection horizontally flips the video flowing through it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isVideoMirrored"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoMirrored",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoMirrored"
+        }
+      ],
+      "role": "symbol",
+      "title": "isVideoMirrored",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/isvideomirrored"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoMirroringSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the connection supports video mirroring.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isVideoMirroringSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoMirroringSupported",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsVideoMirroring"
+        }
+      ],
+      "role": "symbol",
+      "title": "isVideoMirroringSupported",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/isvideomirroringsupported"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoOrientationSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the connection supports changing the orientation of the video.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isVideoOrientationSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoOrientationSupported",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsVideoOrientation"
+        }
+      ],
+      "role": "symbol",
+      "title": "isVideoOrientationSupported",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/isvideoorientationsupported"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoRotationAngleSupported(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the connection supports a rotation angle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isVideoRotationAngleSupported"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoRotationAngleSupported(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isVideoRotationAngleSupported:"
+        }
+      ],
+      "role": "symbol",
+      "title": "isVideoRotationAngleSupported(_:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/isvideorotationanglesupported(_:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoStabilizationEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether video stabilization is active for the connection.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isVideoStabilizationEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoStabilizationEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoStabilizationEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isVideoStabilizationEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/isvideostabilizationenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoStabilizationSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether this connection supports video stabilization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isVideoStabilizationSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoStabilizationSupported",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsVideoStabilization"
+        }
+      ],
+      "role": "symbol",
+      "title": "isVideoStabilizationSupported",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/isvideostabilizationsupported"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/output": {
+      "abstract": [
+        {
+          "text": "The connection’s output port, if applicable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureOutput",
+          "text": "AVCaptureOutput"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/output",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "output"
+        }
+      ],
+      "role": "symbol",
+      "title": "output",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/output"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/preferredVideoStabilizationMode": {
+      "abstract": [
+        {
+          "text": "The stabilization mode that’s the most appropriate for a video connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredVideoStabilizationMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVCaptureVideoStabilizationMode",
+          "text": "AVCaptureVideoStabilizationMode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/preferredVideoStabilizationMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredVideoStabilizationMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredVideoStabilizationMode",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/preferredvideostabilizationmode"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoFieldMode": {
+      "abstract": [
+        {
+          "text": "A setting that tells the connection how to interlace video flowing through it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoFieldMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVVideoFieldMode",
+          "text": "AVVideoFieldMode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoFieldMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoFieldMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "videoFieldMode",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/videofieldmode"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoMaxFrameDuration": {
+      "abstract": [
+        {
+          "text": "The largest time interval the connection can apply between consecutive video frames.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoMaxFrameDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoMaxFrameDuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoMaxFrameDuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "videoMaxFrameDuration",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/videomaxframeduration"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoMaxScaleAndCropFactor": {
+      "abstract": [
+        {
+          "text": "The connection’s maximum video scale and crop factor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoMaxScaleAndCropFactor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoMaxScaleAndCropFactor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoMaxScaleAndCropFactor"
+        }
+      ],
+      "role": "symbol",
+      "title": "videoMaxScaleAndCropFactor",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/videomaxscaleandcropfactor"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoMinFrameDuration": {
+      "abstract": [
+        {
+          "text": "The smallest time interval the connection can apply between consecutive video frames.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoMinFrameDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoMinFrameDuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoMinFrameDuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "videoMinFrameDuration",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/videominframeduration"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoOrientation": {
+      "abstract": [
+        {
+          "text": "An orientation that tells the connection how to rotate a video flowing through it.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoOrientation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVCaptureVideoOrientation",
+          "text": "AVCaptureVideoOrientation"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoOrientation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoOrientation"
+        }
+      ],
+      "role": "symbol",
+      "title": "videoOrientation",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/videoorientation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoPreviewLayer": {
+      "abstract": [
+        {
+          "text": "The video preview layer associated with the connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoPreviewLayer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureVideoPreviewLayer",
+          "text": "AVCaptureVideoPreviewLayer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoPreviewLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoPreviewLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "videoPreviewLayer",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/videopreviewlayer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoRotationAngle": {
+      "abstract": [
+        {
+          "text": "A rotation angle the connection applies to a video flowing through it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoRotationAngle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoRotationAngle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoRotationAngle"
+        }
+      ],
+      "role": "symbol",
+      "title": "videoRotationAngle",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/videorotationangle"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoScaleAndCropFactor": {
+      "abstract": [
+        {
+          "text": "The current scale and crop factor the video output uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoScaleAndCropFactor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoScaleAndCropFactor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoScaleAndCropFactor"
+        }
+      ],
+      "role": "symbol",
+      "title": "videoScaleAndCropFactor",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/videoscaleandcropfactor"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureInput": {
+      "abstract": [
+        {
+          "text": "An abstract superclass for objects that provide input data to a capture session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureInput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureInput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureinput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureInput/Port": {
+      "abstract": [
+        {
+          "text": "An object that represents a stream of data that a capture input provides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Port"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureInput/Port",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Port"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureInput.Port",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureinput/port"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureMovieFileOutput": {
+      "abstract": [
+        {
+          "text": "A capture output that records video and audio to a QuickTime movie file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureMovieFileOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureMovieFileOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureMovieFileOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureMovieFileOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturemoviefileoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureMultiCamSession": {
+      "abstract": [
+        {
+          "text": "A capture session that supports simultaneous capture from multiple inputs of the same media type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureMultiCamSession"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureMultiCamSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureMultiCamSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureMultiCamSession",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturemulticamsession"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureOutput": {
+      "abstract": [
+        {
+          "text": "An abstract superclass for objects that provide media output destinations for a capture session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession": {
+      "abstract": [
+        {
+          "text": "An object that configures capture behavior and coordinates the flow of data from input devices to capture outputs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureSession"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureSession",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturesession"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/addConnection(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a connection to the capture session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addConnection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureConnection",
+          "text": "AVCaptureConnection"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/addConnection(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addConnection:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addConnection(_:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturesession/addconnection(_:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/addInput(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a capture input to the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addInput"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureInput",
+          "text": "AVCaptureInput"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/addInput(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addInput:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addInput(_:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturesession/addinput(_:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/addOutput(_:)": {
+      "abstract": [
+        {
+          "text": "Adds an output to the capture session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addOutput"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureOutput",
+          "text": "AVCaptureOutput"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/addOutput(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addOutput:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addOutput(_:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturesession/addoutput(_:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/canAddConnection(_:)": {
+      "abstract": [
+        {
+          "text": "Determines whether a you can add a connection to a capture session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canAddConnection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureConnection",
+          "text": "AVCaptureConnection"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/canAddConnection(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canAddConnection:"
+        }
+      ],
+      "role": "symbol",
+      "title": "canAddConnection(_:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturesession/canaddconnection(_:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoOrientation": {
+      "abstract": [
+        {
+          "text": "Constants indicating video orientation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureVideoOrientation"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoOrientation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureVideoOrientation"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureVideoOrientation",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturevideoorientation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoFieldMode": {
+      "abstract": [
+        {
+          "text": "Constants that indicate which interlacing modes the connection applies to video flowing through it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVVideoFieldMode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoFieldMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVVideoFieldMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVVideoFieldMode",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideofieldmode"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/avcam-building-a-camera-app": {
+      "abstract": [
+        {
+          "text": "Capture photos and record video using the front and rear iPhone and iPad cameras.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/avcam-building-a-camera-app",
+      "images": [
+        {
+          "identifier": "building-a-camera-app-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "AVCam: Building a camera app",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcam-building-a-camera-app"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/avcambarcode-detecting-barcodes-and-faces": {
+      "abstract": [
+        {
+          "text": "Identify machine readable codes or faces by using the camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/avcambarcode-detecting-barcodes-and-faces",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "AVCamBarcode: Detecting Barcodes and Faces",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcambarcode-detecting-barcodes-and-faces"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/avmulticampip-capturing-from-multiple-cameras": {
+      "abstract": [
+        {
+          "text": "Simultaneously record the output from the front and back cameras into a single movie file by using a multi-camera capture session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/avmulticampip-capturing-from-multiple-cameras",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "AVMultiCamPiP: Capturing from Multiple Cameras",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmulticampip-capturing-from-multiple-cameras"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/setting-up-a-capture-session": {
+      "abstract": [
+        {
+          "text": "Configure input devices, output media, preview views, and basic settings before capturing photos or video.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/setting-up-a-capture-session",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up a Capture Session",
+      "type": "topic",
+      "url": "/documentation/avfoundation/setting-up-a-capture-session"
+    },
+    "doc://com.apple.documentation/documentation/AVKit/accessing-the-camera-while-multitasking-on-ipad": {
+      "abstract": [
+        {
+          "text": "Operate the camera in Split View, Slide Over, Picture in Picture, and Stage Manager modes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVKit/accessing-the-camera-while-multitasking-on-ipad",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing the camera while multitasking on iPad",
+      "type": "topic",
+      "url": "/documentation/AVKit/accessing-the-camera-while-multitasking-on-ipad"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Capture-sessions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/setting-up-a-capture-session",
+        "doc://com.apple.documentation/documentation/AVKit/accessing-the-camera-while-multitasking-on-ipad",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/avcam-building-a-camera-app",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/avmulticampip-capturing-from-multiple-cameras",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/avcambarcode-detecting-barcodes-and-faces",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureMultiCamSession",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureInput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureOutput"
+      ],
+      "title": "Capture sessions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-connection",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/init(inputPorts:output:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/init(inputPort:videoPreviewLayer:)"
+      ],
+      "title": "Creating a connection"
+    },
+    {
+      "anchor": "Enabling-a-connection",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isEnabled",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isActive"
+      ],
+      "title": "Enabling a connection"
+    },
+    {
+      "anchor": "Inspecting-a-connection",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/inputPorts",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/output",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoPreviewLayer",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/audioChannels"
+      ],
+      "title": "Inspecting a connection"
+    },
+    {
+      "anchor": "Rotating-a-video",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoRotationAngleSupported(_:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoRotationAngle"
+      ],
+      "title": "Rotating a video"
+    },
+    {
+      "anchor": "Mirroring-a-video",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoMirroringSupported",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoMirrored",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/automaticallyAdjustsVideoMirroring"
+      ],
+      "title": "Mirroring a video"
+    },
+    {
+      "anchor": "Stabilizing-video",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoStabilizationSupported",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/activeVideoStabilizationMode",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/preferredVideoStabilizationMode"
+      ],
+      "title": "Stabilizing video"
+    },
+    {
+      "anchor": "Delivering-camera-calibration-settings",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isCameraIntrinsicMatrixDeliverySupported",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isCameraIntrinsicMatrixDeliveryEnabled"
+      ],
+      "title": "Delivering camera calibration settings"
+    },
+    {
+      "anchor": "Configuring-a-videos-frame-rate",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoMinFrameDurationSupported",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoMinFrameDuration",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoMaxFrameDurationSupported",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoMaxFrameDuration"
+      ],
+      "title": "Configuring a video’s frame rate"
+    },
+    {
+      "anchor": "Scaling-a-video",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoMaxScaleAndCropFactor",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoScaleAndCropFactor"
+      ],
+      "title": "Scaling a video"
+    },
+    {
+      "anchor": "Interlacing-video",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoFieldModeSupported",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoFieldMode",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoFieldMode"
+      ],
+      "title": "Interlacing video"
+    },
+    {
+      "anchor": "Deprecated",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoStabilizationEnabled",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/enablesVideoStabilizationWhenAvailable",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoOrientationSupported",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoOrientation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoOrientation"
+      ],
+      "title": "Deprecated"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.7",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AVCaptureConnection"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureConnection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureConnection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfoundation/documentation/AVFoundation"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-connection",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/init(inputPorts:output:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/connectionWithInputPorts:output:",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/init(inputPort:videoPreviewLayer:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/connectionWithInputPort:videoPreviewLayer:"
+              ],
+              "title": "Creating a connection"
+            },
+            {
+              "anchor": "Enabling-a-connection",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isEnabled",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isActive"
+              ],
+              "title": "Enabling a connection"
+            },
+            {
+              "anchor": "Inspecting-a-connection",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/inputPorts",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/output",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoPreviewLayer",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/audioChannels"
+              ],
+              "title": "Inspecting a connection"
+            },
+            {
+              "anchor": "Rotating-a-video",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoRotationAngleSupported(_:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoRotationAngle"
+              ],
+              "title": "Rotating a video"
+            },
+            {
+              "anchor": "Mirroring-a-video",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoMirroringSupported",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoMirrored",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/automaticallyAdjustsVideoMirroring"
+              ],
+              "title": "Mirroring a video"
+            },
+            {
+              "anchor": "Stabilizing-video",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoStabilizationSupported",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/activeVideoStabilizationMode",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/preferredVideoStabilizationMode"
+              ],
+              "title": "Stabilizing video"
+            },
+            {
+              "anchor": "Delivering-camera-calibration-settings",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isCameraIntrinsicMatrixDeliverySupported",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isCameraIntrinsicMatrixDeliveryEnabled"
+              ],
+              "title": "Delivering camera calibration settings"
+            },
+            {
+              "anchor": "Configuring-a-videos-frame-rate",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoMinFrameDurationSupported",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoMinFrameDuration",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoMaxFrameDurationSupported",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoMaxFrameDuration"
+              ],
+              "title": "Configuring a video’s frame rate"
+            },
+            {
+              "anchor": "Scaling-a-video",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoMaxScaleAndCropFactor",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoScaleAndCropFactor"
+              ],
+              "title": "Scaling a video"
+            },
+            {
+              "anchor": "Interlacing-video",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoFieldModeSupported",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoFieldMode",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoFieldMode"
+              ],
+              "title": "Interlacing video"
+            },
+            {
+              "anchor": "Deprecated",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoStabilizationEnabled",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/enablesVideoStabilizationWhenAvailable",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/isVideoOrientationSupported",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoOrientation",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoOrientation"
+              ],
+              "title": "Deprecated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Capture-sessions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/setting-up-a-capture-session",
+                "doc://com.apple.documentation/documentation/AVKit/accessing-the-camera-while-multitasking-on-ipad",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/avcam-building-a-camera-app",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/avmulticampip-capturing-from-multiple-cameras",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/avcambarcode-detecting-barcodes-and-faces",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureMultiCamSession",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureInput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureOutput"
+              ],
+              "title": "Capture sessions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AVCaptureConnection"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1audioChannels/title",
+          "value": "audioChannels"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1audioChannels/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "audioChannels"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1output/title",
+          "value": "output"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1output/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "output"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1videoOrientation/title",
+          "value": "videoOrientation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1videoOrientation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "videoOrientation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1videoScaleAndCropFactor/title",
+          "value": "videoScaleAndCropFactor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1videoScaleAndCropFactor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "videoScaleAndCropFactor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isVideoMinFrameDurationSupported/title",
+          "value": "supportsVideoMinFrameDuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isVideoMinFrameDurationSupported/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supportsVideoMinFrameDuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isCameraIntrinsicMatrixDeliverySupported/title",
+          "value": "cameraIntrinsicMatrixDeliverySupported"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isCameraIntrinsicMatrixDeliverySupported/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cameraIntrinsicMatrixDeliverySupported"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isCameraIntrinsicMatrixDeliveryEnabled/title",
+          "value": "cameraIntrinsicMatrixDeliveryEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isCameraIntrinsicMatrixDeliveryEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cameraIntrinsicMatrixDeliveryEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureOutput/title",
+          "value": "AVCaptureOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1videoPreviewLayer/title",
+          "value": "videoPreviewLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1videoPreviewLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "videoPreviewLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isActive/title",
+          "value": "active"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isActive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "active"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1videoMinFrameDuration/title",
+          "value": "videoMinFrameDuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1videoMinFrameDuration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "videoMinFrameDuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1enablesVideoStabilizationWhenAvailable/title",
+          "value": "enablesVideoStabilizationWhenAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1enablesVideoStabilizationWhenAvailable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "enablesVideoStabilizationWhenAvailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isVideoMirrored/title",
+          "value": "videoMirrored"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isVideoMirrored/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "videoMirrored"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isVideoStabilizationEnabled/title",
+          "value": "videoStabilizationEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isVideoStabilizationEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "videoStabilizationEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession/title",
+          "value": "AVCaptureSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1videoMaxFrameDuration/title",
+          "value": "videoMaxFrameDuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1videoMaxFrameDuration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "videoMaxFrameDuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1preferredVideoStabilizationMode/title",
+          "value": "preferredVideoStabilizationMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1preferredVideoStabilizationMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredVideoStabilizationMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isVideoStabilizationSupported/title",
+          "value": "supportsVideoStabilization"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isVideoStabilizationSupported/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supportsVideoStabilization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1init(inputPort:videoPreviewLayer:)/title",
+          "value": "initWithInputPort:videoPreviewLayer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1init(inputPort:videoPreviewLayer:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithInputPort:videoPreviewLayer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureVideoOrientation/title",
+          "value": "AVCaptureVideoOrientation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureVideoOrientation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureVideoOrientation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureVideoOrientation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureVideoOrientation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureMultiCamSession/title",
+          "value": "AVCaptureMultiCamSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureMultiCamSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureMultiCamSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureMultiCamSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureMultiCamSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession~1canAddConnection(_:)/title",
+          "value": "canAddConnection:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession~1canAddConnection(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "canAddConnection:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isVideoMaxFrameDurationSupported/title",
+          "value": "supportsVideoMaxFrameDuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isVideoMaxFrameDurationSupported/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supportsVideoMaxFrameDuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureInput/title",
+          "value": "AVCaptureInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession~1addInput(_:)/title",
+          "value": "addInput:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession~1addInput(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addInput:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1inputPorts/title",
+          "value": "inputPorts"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1inputPorts/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inputPorts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isEnabled/title",
+          "value": "enabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "enabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isVideoRotationAngleSupported(_:)/title",
+          "value": "isVideoRotationAngleSupported:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isVideoRotationAngleSupported(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "isVideoRotationAngleSupported:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1automaticallyAdjustsVideoMirroring/title",
+          "value": "automaticallyAdjustsVideoMirroring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1automaticallyAdjustsVideoMirroring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "automaticallyAdjustsVideoMirroring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession~1addConnection(_:)/title",
+          "value": "addConnection:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession~1addConnection(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addConnection:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection/title",
+          "value": "AVCaptureConnection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureConnection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureConnection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1videoFieldMode/title",
+          "value": "videoFieldMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1videoFieldMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "videoFieldMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoFieldMode/title",
+          "value": "AVVideoFieldMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoFieldMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoFieldMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoFieldMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoFieldMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession~1addOutput(_:)/title",
+          "value": "addOutput:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession~1addOutput(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addOutput:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isVideoOrientationSupported/title",
+          "value": "supportsVideoOrientation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isVideoOrientationSupported/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supportsVideoOrientation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureMovieFileOutput/title",
+          "value": "AVCaptureMovieFileOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureMovieFileOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureMovieFileOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureMovieFileOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureMovieFileOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1videoMaxScaleAndCropFactor/title",
+          "value": "videoMaxScaleAndCropFactor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1videoMaxScaleAndCropFactor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "videoMaxScaleAndCropFactor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isVideoFieldModeSupported/title",
+          "value": "supportsVideoFieldMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isVideoFieldModeSupported/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supportsVideoFieldMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1init(inputPorts:output:)/title",
+          "value": "initWithInputPorts:output:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1init(inputPorts:output:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithInputPorts:output:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isVideoMirroringSupported/title",
+          "value": "supportsVideoMirroring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1isVideoMirroringSupported/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supportsVideoMirroring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureInput~1Port/title",
+          "value": "AVCaptureInputPort"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureInput~1Port/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureInputPort"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureInput~1Port/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureInputPort"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1activeVideoStabilizationMode/title",
+          "value": "activeVideoStabilizationMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1activeVideoStabilizationMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activeVideoStabilizationMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1videoRotationAngle/title",
+          "value": "videoRotationAngle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1videoRotationAngle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "videoRotationAngle"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/avcaptureconnection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/avcaptureconnection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

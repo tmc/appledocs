@@ -1,0 +1,2164 @@
+{
+  "abstract": [
+    {
+      "text": "Perform advanced real-time and offline audio processing, implement 3D spatialization, and work with MIDI and samplers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfaudio/documentation/AVFAudio"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfaudio/documentation/AVFAudio/audio-engine"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFAudio"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Audio Engine"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The audio engine provides a powerful, feature-rich API to simplify audio generation, processing, and input/output tasks. The engine contains a group of nodes that connect to form an audio signal processing chain. These nodes perform a variety of tasks on a signal before rendering to an output destination.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Audio Engine helps you achieve simple, as well as complex, audio processing tasks. With Audio Engine, your apps can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Play audio using files and buffers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Capture audio at any point during the processing chain",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add built-in effects like reverb, delay, distortion, and your custom effects",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Perform stereo and 3D mixing",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide MIDI playback and control over sampler instruments",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfaudio/documentation/AVFAudio": {
+      "abstract": [
+        {
+          "text": "Play, record, and process audio; configure your app’s system audio behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFAudio",
+      "type": "topic",
+      "url": "/documentation/avfaudio"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DAngularOrientation": {
+      "abstract": [
+        {
+          "text": "A structure that represents the angular orientation of the listener in 3D space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudio3DAngularOrientation"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DAngularOrientation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudio3DAngularOrientation"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudio3DAngularOrientation",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudio3dangularorientation"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DMixing": {
+      "abstract": [
+        {
+          "text": "A collection of properties that define 3D mixing properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudio3DMixing"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DMixing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudio3DMixing"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudio3DMixing",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudio3dmixing"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DMixingPointSourceInHeadMode": {
+      "abstract": [
+        {
+          "text": "The in-head modes for a point source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudio3DMixingPointSourceInHeadMode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DMixingPointSourceInHeadMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudio3DMixingPointSourceInHeadMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudio3DMixingPointSourceInHeadMode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudio3dmixingpointsourceinheadmode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DMixingRenderingAlgorithm": {
+      "abstract": [
+        {
+          "text": "The types of rendering algorithms available per input bus of the environment node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudio3DMixingRenderingAlgorithm"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DMixingRenderingAlgorithm",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudio3DMixingRenderingAlgorithm"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudio3DMixingRenderingAlgorithm",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudio3dmixingrenderingalgorithm"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DMixingSourceMode": {
+      "abstract": [
+        {
+          "text": "The source modes for the input bus of the audio environment node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudio3DMixingSourceMode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DMixingSourceMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudio3DMixingSourceMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudio3DMixingSourceMode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudio3dmixingsourcemode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DPoint": {
+      "abstract": [
+        {
+          "text": "A structure that represents a point in 3D space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudio3DPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DPoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudio3DPoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudio3DPoint",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudio3dpoint"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DVector": {
+      "abstract": [
+        {
+          "text": "A structure that represents a vector in 3D space, in degrees.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudio3DVector"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DVector",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudio3DVector"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudio3DVector",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudio3dvector"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DVectorOrientation": {
+      "abstract": [
+        {
+          "text": "A structure that represents two orthogonal vectors that describe the orientation of the listener in 3D space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudio3DVectorOrientation"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DVectorOrientation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudio3DVectorOrientation"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudio3DVectorOrientation",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudio3dvectororientation"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioBuffer": {
+      "abstract": [
+        {
+          "text": "An object that represents a buffer of audio data with a format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioBuffer",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiobuffer"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter": {
+      "abstract": [
+        {
+          "text": "An object that converts streams of audio between formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioConverter"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioConverter"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioConverter",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine": {
+      "abstract": [
+        {
+          "text": "An object that manages a graph of audio nodes, controls playback, and configures real-time rendering constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioEngine"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioEngine",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioengine"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEnvironmentDistanceAttenuationParameters": {
+      "abstract": [
+        {
+          "text": "An object that specifies the amount of attenuation distance, the gradual loss in audio intensity, and other characteristics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioEnvironmentDistanceAttenuationParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEnvironmentDistanceAttenuationParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioEnvironmentDistanceAttenuationParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioEnvironmentDistanceAttenuationParameters",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioenvironmentdistanceattenuationparameters"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEnvironmentNode": {
+      "abstract": [
+        {
+          "text": "An object that simulates a 3D audio environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioEnvironmentNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEnvironmentNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioEnvironmentNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioEnvironmentNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioenvironmentnode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEnvironmentOutputType": {
+      "abstract": [
+        {
+          "text": "The output types for using with the automatic 3D mixing rendering algorithm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioEnvironmentOutputType"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEnvironmentOutputType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioEnvironmentOutputType"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioEnvironmentOutputType",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioenvironmentoutputtype"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEnvironmentReverbParameters": {
+      "abstract": [
+        {
+          "text": "A class that encapsulates the parameters that you use to control the reverb of the environment node class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioEnvironmentReverbParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEnvironmentReverbParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioEnvironmentReverbParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioEnvironmentReverbParameters",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioenvironmentreverbparameters"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile": {
+      "abstract": [
+        {
+          "text": "An object that represents an audio file that the system can open for reading or writing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioFile"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioFile"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioFile",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiofile"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioIONode": {
+      "abstract": [
+        {
+          "text": "An object that performs audio input or output in the engine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioIONode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioIONode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioIONode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioIONode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioionode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode": {
+      "abstract": [
+        {
+          "text": "An object that connects to the system’s audio input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioInputNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioInputNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioInputNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioinputnode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixerNode": {
+      "abstract": [
+        {
+          "text": "An object that takes any number of inputs and converts them into a single output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioMixerNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixerNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioMixerNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioMixerNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiomixernode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixing": {
+      "abstract": [
+        {
+          "text": "A collection of properties that are applicable to the input bus of a mixer node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioMixing"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioMixing"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioMixing",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiomixing"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode": {
+      "abstract": [
+        {
+          "text": "An object you use for audio generation, processing, or an I/O block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudionode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioOutputNode": {
+      "abstract": [
+        {
+          "text": "An object that connects to the system’s audio output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioOutputNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioOutputNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioOutputNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioOutputNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiooutputnode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioPlayerNode": {
+      "abstract": [
+        {
+          "text": "An object for scheduling the playback of buffers or segments of audio files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioPlayerNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioPlayerNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioPlayerNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioPlayerNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioplayernode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSequencer": {
+      "abstract": [
+        {
+          "text": "An object that plays audio from a collection of MIDI events the system organizes into music tracks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSequencer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSequencer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSequencer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSequencer",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosequencer"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSinkNode": {
+      "abstract": [
+        {
+          "text": "An object that receives audio data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSinkNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSinkNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSinkNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSinkNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosinknode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSourceNode": {
+      "abstract": [
+        {
+          "text": "An object that supplies audio data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSourceNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSourceNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSourceNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSourceNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosourcenode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioTime": {
+      "abstract": [
+        {
+          "text": "An object you use to represent a moment in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioTime"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioTime",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiotime"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioUnitSampler": {
+      "abstract": [
+        {
+          "text": "An object that you configure with one or more instrument samples, based on Apple’s Sampler audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioUnitSampler"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioUnitSampler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioUnitSampler"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioUnitSampler",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiounitsampler"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/audio-settings": {
+      "abstract": [
+        {
+          "text": "Configure audio processing settings using standard key and value constants.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/audio-settings",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio settings",
+      "type": "topic",
+      "url": "/documentation/avfaudio/audio-settings"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/audio-units": {
+      "abstract": [
+        {
+          "text": "The data type for a plug-in component that provides audio processing or audio data generation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/audio-units",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Units",
+      "type": "topic",
+      "url": "/documentation/avfaudio/audio-units"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/building-a-signal-generator": {
+      "abstract": [
+        {
+          "text": "Use an audio source node and a custom render callback to generate audio signals.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/building-a-signal-generator",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a signal generator",
+      "type": "topic",
+      "url": "/documentation/avfaudio/building-a-signal-generator"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/creating-custom-audio-effects": {
+      "abstract": [
+        {
+          "text": "Add custom audio-effect processing to apps like Logic Pro X and GarageBand by creating Audio Unit (AU) plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/creating-custom-audio-effects",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating custom audio effects",
+      "type": "topic",
+      "url": "/documentation/avfaudio/creating-custom-audio-effects"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/performing-offline-audio-processing": {
+      "abstract": [
+        {
+          "text": "Add offline audio processing features to your app by enabling offline manual rendering mode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/performing-offline-audio-processing",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Performing offline audio processing",
+      "type": "topic",
+      "url": "/documentation/avfaudio/performing-offline-audio-processing"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/playing-custom-audio-with-your-own-player": {
+      "abstract": [
+        {
+          "text": "Construct an audio player to play your custom audio data, and optionally take advantage of the advanced features of AirPlay 2.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/playing-custom-audio-with-your-own-player",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Playing custom audio with your own player",
+      "type": "topic",
+      "url": "/documentation/avfaudio/playing-custom-audio-with-your-own-player"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/using-voice-processing": {
+      "abstract": [
+        {
+          "text": "Add voice-processing capabilities to your app by using audio engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/using-voice-processing",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using voice processing",
+      "type": "topic",
+      "url": "/documentation/avfaudio/using-voice-processing"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Nodes",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioOutputNode",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioIONode"
+      ],
+      "title": "Nodes"
+    },
+    {
+      "anchor": "Playback",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/playing-custom-audio-with-your-own-player",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/using-voice-processing",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioPlayerNode"
+      ],
+      "title": "Playback"
+    },
+    {
+      "anchor": "MIDI",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSequencer",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioUnitSampler"
+      ],
+      "title": "MIDI"
+    },
+    {
+      "anchor": "Mixing",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixerNode",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixing"
+      ],
+      "title": "Mixing"
+    },
+    {
+      "anchor": "Effects",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/creating-custom-audio-effects",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/audio-units"
+      ],
+      "title": "Effects"
+    },
+    {
+      "anchor": "Rendering",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/building-a-signal-generator",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/performing-offline-audio-processing",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSourceNode",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSinkNode"
+      ],
+      "title": "Rendering"
+    },
+    {
+      "anchor": "Conversion",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter"
+      ],
+      "title": "Conversion"
+    },
+    {
+      "anchor": "Spatial-audio",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEnvironmentNode",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEnvironmentDistanceAttenuationParameters",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEnvironmentReverbParameters",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DMixing",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DPoint",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DVectorOrientation",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DAngularOrientation",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DMixingSourceMode",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DMixingRenderingAlgorithm",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEnvironmentOutputType",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DMixingPointSourceInHeadMode",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DVector"
+      ],
+      "title": "Spatial audio"
+    },
+    {
+      "anchor": "Supporting-data-types",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioBuffer",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioTime",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/audio-settings"
+      ],
+      "title": "Supporting data types"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Nodes",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioOutputNode",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioIONode"
+              ],
+              "title": "Nodes"
+            },
+            {
+              "anchor": "Playback",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/playing-custom-audio-with-your-own-player",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/using-voice-processing",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioPlayerNode"
+              ],
+              "title": "Playback"
+            },
+            {
+              "anchor": "MIDI",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSequencer",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioUnitSampler"
+              ],
+              "title": "MIDI"
+            },
+            {
+              "anchor": "Mixing",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixerNode",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixing"
+              ],
+              "title": "Mixing"
+            },
+            {
+              "anchor": "Effects",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/creating-custom-audio-effects",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/audio-units"
+              ],
+              "title": "Effects"
+            },
+            {
+              "anchor": "Rendering",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/building-a-signal-generator",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/performing-offline-audio-processing",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSourceNode",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSinkNode"
+              ],
+              "title": "Rendering"
+            },
+            {
+              "anchor": "Conversion",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter"
+              ],
+              "title": "Conversion"
+            },
+            {
+              "anchor": "Spatial-audio",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEnvironmentNode",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEnvironmentDistanceAttenuationParameters",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEnvironmentReverbParameters",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DMixing",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DPoint",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DVectorOrientation",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DAngularOrientation",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DMixingSourceMode",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DMixingRenderingAlgorithm",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEnvironmentOutputType",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DMixingPointSourceInHeadMode",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudio3DVector"
+              ],
+              "title": "Spatial audio"
+            },
+            {
+              "anchor": "Supporting-data-types",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioBuffer",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioTime",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/audio-settings"
+              ],
+              "title": "Supporting data types"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioMixing/title",
+          "value": "AVAudioMixing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioMixing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioMixing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioMixing/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioMixing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEngine/title",
+          "value": "AVAudioEngine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEngine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioEngine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEngine/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioEngine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioBuffer/title",
+          "value": "AVAudioBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DMixing/title",
+          "value": "AVAudio3DMixing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DMixing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudio3DMixing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DMixing/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudio3DMixing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DAngularOrientation/title",
+          "value": "AVAudio3DAngularOrientation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DAngularOrientation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudio3DAngularOrientation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DAngularOrientation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudio3DAngularOrientation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEnvironmentNode/title",
+          "value": "AVAudioEnvironmentNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEnvironmentNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioEnvironmentNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEnvironmentNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioEnvironmentNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioMixerNode/title",
+          "value": "AVAudioMixerNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioMixerNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioMixerNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioMixerNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioMixerNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEnvironmentDistanceAttenuationParameters/title",
+          "value": "AVAudioEnvironmentDistanceAttenuationParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEnvironmentDistanceAttenuationParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioEnvironmentDistanceAttenuationParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEnvironmentDistanceAttenuationParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioEnvironmentDistanceAttenuationParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DPoint/title",
+          "value": "AVAudio3DPoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DPoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudio3DPoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DPoint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudio3DPoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DMixingRenderingAlgorithm/title",
+          "value": "AVAudio3DMixingRenderingAlgorithm"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DMixingRenderingAlgorithm/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudio3DMixingRenderingAlgorithm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DMixingRenderingAlgorithm/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudio3DMixingRenderingAlgorithm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSinkNode/title",
+          "value": "AVAudioSinkNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSinkNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSinkNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSinkNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSinkNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioOutputNode/title",
+          "value": "AVAudioOutputNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioOutputNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioOutputNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioOutputNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioOutputNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioUnitSampler/title",
+          "value": "AVAudioUnitSampler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioUnitSampler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioUnitSampler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioUnitSampler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioUnitSampler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode/title",
+          "value": "AVAudioNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSourceNode/title",
+          "value": "AVAudioSourceNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSourceNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSourceNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSourceNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSourceNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEnvironmentReverbParameters/title",
+          "value": "AVAudioEnvironmentReverbParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEnvironmentReverbParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioEnvironmentReverbParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEnvironmentReverbParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioEnvironmentReverbParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioTime/title",
+          "value": "AVAudioTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioTime/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEnvironmentOutputType/title",
+          "value": "AVAudioEnvironmentOutputType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEnvironmentOutputType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioEnvironmentOutputType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEnvironmentOutputType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioEnvironmentOutputType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter/title",
+          "value": "AVAudioConverter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioConverter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioConverter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioInputNode/title",
+          "value": "AVAudioInputNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioInputNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioInputNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioInputNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioInputNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSequencer/title",
+          "value": "AVAudioSequencer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSequencer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSequencer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSequencer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSequencer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DVectorOrientation/title",
+          "value": "AVAudio3DVectorOrientation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DVectorOrientation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudio3DVectorOrientation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DVectorOrientation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudio3DVectorOrientation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DVector/title",
+          "value": "AVAudio3DVector"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DVector/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudio3DVector"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DVector/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudio3DVector"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioPlayerNode/title",
+          "value": "AVAudioPlayerNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioPlayerNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioPlayerNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioPlayerNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioPlayerNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioIONode/title",
+          "value": "AVAudioIONode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioIONode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioIONode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioIONode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioIONode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile/title",
+          "value": "AVAudioFile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioFile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioFile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DMixingPointSourceInHeadMode/title",
+          "value": "AVAudio3DMixingPointSourceInHeadMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DMixingPointSourceInHeadMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudio3DMixingPointSourceInHeadMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DMixingPointSourceInHeadMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudio3DMixingPointSourceInHeadMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DMixingSourceMode/title",
+          "value": "AVAudio3DMixingSourceMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DMixingSourceMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudio3DMixingSourceMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudio3DMixingSourceMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudio3DMixingSourceMode"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfaudio/audio-engine"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfaudio/audio-engine"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

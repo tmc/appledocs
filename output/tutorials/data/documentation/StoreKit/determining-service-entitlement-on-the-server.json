@@ -1,0 +1,683 @@
+{
+  "abstract": [
+    {
+      "text": "Identify a customer’s entitlement to your service, offers, and messaging by analyzing a validated receipt and the state of their subscription.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/determining-service-entitlement-on-the-server"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Determining service entitlement on the server"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This sample code project is associated with WWDC22 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc22/110404/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "It’s also associated with WWDC 2020 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc20/10671/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app provides a subscription service, you receive data in the form of in-app receipts and App Store server notifications that provide a subscription’s state. After reading this data, your app determines whether to allow or restrict the user’s access to service, products, offers, and messages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This server-side sample code project analyzes a receipt to help the app determine entitlement by systematically examining all potential subscription states that affect service entitlement, such as offers periods and billing states. The output from this sample’s REST API endpoints is a response that indicates whether the app can enable service or needs to perform other steps to retain or communicate with customers. You can extend this code and customize the response based on your own business logic.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample code contains two endpoints:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "URL: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "localhost:3000/simulate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — Use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/simulate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for testing using real or artificial receipts. This endpoint requires no special configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "URL: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "localhost:3000/entitle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — Use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/entitle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with real Base64-encoded receipts. This endpoint requires additional configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Follow these steps to run the sample code project:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Install the latest stable version of Node.js.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the Terminal app (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/Applications/Utilities",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Navigate to the sample code ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/Sample",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " directory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Terminal, enter ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "npm install",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and press Return. Make sure it completes successfully.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Terminal, copy the example environment file: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "cp env.example",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Terminal, enter ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "npm start",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and press Return to start the server. The server runs in your Terminal window. To stop the server, press Control-C while in Terminal.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Terminal, choose Shell > New Windows > New Window with Profile to open a second Teminal window to use to send the requests.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Send-a-request-using-sample-receipt-data",
+          "level": 3,
+          "text": "Send a request using sample receipt data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The requests to the service entitlement engine take JSON data from a receipt. The data must be in the same JSON format that you receive by calling the ",
+              "type": "text"
+            },
+            {
+              "code": "/verifyReceipt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint when you pass it a valid receipt. The example file ",
+              "type": "text"
+            },
+            {
+              "code": "flatJSONExample",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "Source/Example",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory contains sample receipt data in the correct format for the requests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the request, switch to the second Terminal window and type the following ",
+              "type": "text"
+            },
+            {
+              "code": "curl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command. Replace the ",
+              "type": "text"
+            },
+            {
+              "code": "<FLAT JSON DATA>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "code": "flatJSONExample",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "curl -XPOST -H \"Content-type: application/json\" -d '<FLAT JSON DATA>' 'localhost:3000/simulate'"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the mocked JSON receipt data is in the correct format, the response contains the analyzed data the entitlement engine produces based on the receipt data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have real receipt data, replace the ",
+              "type": "text"
+            },
+            {
+              "code": "<FLAT JSON DATA>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the command with your receipt data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Receive-the-sample-response",
+          "level": 3,
+          "text": "Receive the sample response",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The response contains the result of the engine’s analysis of the receipt data. Use it to determine whether a customer has the necessary entitlements to service, offers, or other messaging. The response object contains an array of subscription objects organized by product ID, each containing fields that provide insights for that subscription.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example response shows a customer who was previously subscribed and then resubscribed. The customer is in state 5, which indicates an active subscription with autorenew still in an enabled state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"products\": [",
+            "        {",
+            "            \"product_id\": \"com.example.monthly\",",
+            "            \"entitlementCode\": 5,",
+            "            \"expiration\": 1599391591000,",
+            "            \"totalRenewals\": 7,",
+            "            \"groupID\": \"13472270\",",
+            "            \"originalTransactions\": [",
+            "                {",
+            "                    \"originalTX\": \"190000625698817\",",
+            "                    \"start\": 1564455960000,",
+            "                    \"expiration\": 1599391591000,",
+            "                    \"renewals\": 7",
+            "                }",
+            "            ],",
+            "            \"trialConsumed\": true",
+            "        }",
+            "    ],",
+            "    \"trialConsumedForGroup\": [",
+            "        \"13472270\"",
+            "    ]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this case, the sample app issues an offer for a yearly subscription to the customer because they’re in state ",
+              "type": "text"
+            },
+            {
+              "code": "5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and they have a history of seven total renewals.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "8334bfef2b2e/DeterminingServiceEntitlementOnTheServer.zip": {
+      "checksum": "8334bfef2b2e14baeb7654becc69115479adb3267de8dd7d140c601f294c98b9131239f3c01d981cb8e53e07d3fbc926fe9ac86d685a9c42493c295660451f78",
+      "identifier": "8334bfef2b2e/DeterminingServiceEntitlementOnTheServer.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/8334bfef2b2e/DeterminingServiceEntitlementOnTheServer.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/original-api-for-in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers": {
+      "abstract": [
+        {
+          "text": "Offer customers additional time-based content and services through purchases they make within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Subscriptions and offers",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptions-and-offers"
+    },
+    "https://developer.apple.com/wwdc20/10671/": {
+      "identifier": "https://developer.apple.com/wwdc20/10671/",
+      "title": "10671: Architecting for Subscriptions",
+      "titleInlineContent": [
+        {
+          "text": "10671: Architecting for Subscriptions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc20/10671/"
+    },
+    "https://developer.apple.com/wwdc22/110404/": {
+      "identifier": "https://developer.apple.com/wwdc22/110404/",
+      "title": "110404: Implement proactive in-app purchase restore",
+      "titleInlineContent": [
+        {
+          "text": "110404: Implement proactive in-app purchase restore",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc22/110404/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "8334bfef2b2e/DeterminingServiceEntitlementOnTheServer.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/determining-service-entitlement-on-the-server"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/determining-service-entitlement-on-the-server"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

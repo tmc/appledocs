@@ -1,0 +1,4448 @@
+{
+  "abstract": [
+    {
+      "text": "Leverage WidgetKit’s API to create watchOS complications using SwiftUI.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.WidgetKit/documentation/WidgetKit/Converting-A-ClockKit-App"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WidgetKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Migrating ClockKit complications to WidgetKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With watchOS 9 and later, you can create complications for your watchOS app using SwiftUI views in WidgetKit. WidgetKit provides a modern API for creating and updating glanceable elements — making it an ideal fit for watchOS complications. Because WidgetKit’s design is inspired by ClockKit, if you’ve already designed ClockKit complications for your app, the process feels familiar. Similarly, if you’re already using widgets for iOS, you can quickly set up WidgetKit complications for a watchOS app. In many cases, you can use the same code to display WidgetKit complications in watchOS and widgets on the Lock Screen on iPhone. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-accessory-widgets-and-watch-complications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-WidgetKit-to-your-project",
+          "level": 3,
+          "text": "Add WidgetKit to your project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To convert ClockKit complications to WidgetKit, start by adding a WidgetKit extension to your watchOS project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "add-widgetkit-watchos",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, select the project icon in the Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the “Add a target” button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the watchOS tab, select the Widget Extension template and click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Give the new target a name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your app dynamically creates the set of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationDescriptor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects to support multiple complication types, enable the Include Configuration App Intent option. If you don’t plan to configure your complications using app intents, you can disable this option.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Finish.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode creates a new target containing Swift files for the widget, an asset catalog, and an ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file for the extension. The WidgetKit template provides you with structures that adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Widget",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocols. It also includes a starting implementation for your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if you enabled Include Configuration App Intent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "configurable-complication-extension",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "After you add a WidgetKit extension to your project, the system tries to use it to generate complications for your watchOS app. As soon as your WidgetKit extension begins providing widget-based complications, the system disables your app’s ClockKit complications. It no longer wakes your app to call your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationDataSource",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object’s methods to request timeline entries. However, the system may still wake your data source to call ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationWidgetMigrator/getWidgetConfiguration(from:completionHandler:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", while migrating complications from ClockKit to WidgetKit.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-your-timeline-provider",
+          "level": 3,
+          "text": "Configure your timeline provider",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The template creates a ",
+              "type": "text"
+            },
+            {
+              "code": "Provider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure that adopts the ",
+              "type": "text"
+            },
+            {
+              "code": "TimelineProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "AppIntentTimelineProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol, and provides a default implementation for the protocol’s methods. WidgetKit calls these methods to get the data needed to create the widget view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "WidgetKit’s daily budget for reloading the timeline works differently than ClockKit’s. Your widget-based complication receives up to 75 updates per day, based on how often they’re viewed. If you have a complication on the Apple Watch face, it’s always considered viewed, so your budget tends towards the higher end of that range.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In each of the protocol methods, your app needs to create and return one or more ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Returns a single entry for your complication’s placeholder. By default, the system redacts all the content in the placeholder’s widget.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/placeholder(in:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Returns a single timeline entry for your app.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/getSnapshot(in:completion:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Returns an array of timeline entries. WidgetKit uses this timeline to automatically update your complication over time.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/getTimeline(in:completion:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The template provides a timeline entry that contains the date when the system should display it. Add any extra properties that you need for your complications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct CoffeeTrackerEntry: TimelineEntry {",
+            "    let date: Date",
+            "    let mgCaffeine: Double",
+            "    let totalCups: Double",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, begin updating the timeline provider’s methods. For the placeholder, the system automatically redacts all of the widget’s content, unless you explicitly mark items with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/unredacted()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier in your complication’s SwiftUI view. As a result, you may want to provide generic data that fills out the redacted version.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func placeholder(in context: Context) -> SimpleEntry {",
+            "    ",
+            "    // Show a complication with generic data.",
+            "    CoffeeTrackerEntry(date: Date(),",
+            "                       mgCaffeine: 250.0,",
+            "                       totalCups: 2.0)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system can display the placeholder when the watch is locked, when it’s in Always On mode, and when it can’t otherwise display a live version of your complication.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the snapshot, return a single entry. In general, you want to return the current state of your app. However, the system also uses the snapshot when displaying your complication in the complication picker. When returning your snapshot entry, be sure to check the ",
+              "type": "text"
+            },
+            {
+              "code": "context",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProviderContext/isPreview",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. This property indicates whether the snapshot will be used in the complication picker. If this is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", provide generic data that shows your app’s typical appearance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func getSnapshot(in context: Context, completion: @escaping (CoffeeTrackerEntry) -> Void) {",
+            "    ",
+            "    if context.isPreview {",
+            "        // Show a complication with generic data.",
+            "        let entry = CoffeeTrackerEntry(date: Date(),",
+            "                    mgCaffeine: 250.0,",
+            "                    totalCups: 2.0)",
+            "        ",
+            "        completion(entry)",
+            "        return",
+            "    }",
+            "    ",
+            "    Task {",
+            "        ",
+            "        let date = Date()",
+            "        ",
+            "        // Get the current data from the model.",
+            "        let mgCaffeine = await data.mgCaffeine(atDate: date)",
+            "        let totalCups = await data.totalCupsToday",
+            "        ",
+            "        // Create the entry.",
+            "        let entry = CoffeeTrackerEntry(date: date,",
+            "                                mgCaffeine: mgCaffeine,",
+            "                                totalCups: totalCups)",
+            "        ",
+            "        // Pass the entry to the completion handler.",
+            "        completion(entry)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the timeline, create an array of entries, and then create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Timeline",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance from that array. You can also select a reload policy for the timeline. By default, the system reloads the timeline when you reach its end. However, in the example below, the system only reloads the timeline when you explicitly request it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {",
+            "    Task {",
+            "",
+            "        // Create an array to hold the events.",
+            "        var entries: [CoffeeTrackerEntry] = []",
+            "        ",
+            "        // The total number of cups consumed only changes when the user actively adds a drink,",
+            "        // so it remains constant in this timeline.",
+            "        let totalCups = await data.totalCupsToday",
+            "",
+            "        // Generate a timeline covering every 5 minutes for the next 24 hours.",
+            "        let currentDate = Date()",
+            "        for minuteOffset in stride(from: 0, to: 60 * 24, by: 5) {",
+            "            let entryDate = Calendar.current.date(byAdding: .minute, value: minuteOffset, to: currentDate)!",
+            "            ",
+            "            // Get the projected data for the specified date.",
+            "            let mgCaffeine = await data.mgCaffeine(atDate: entryDate)",
+            "            ",
+            "            // Create the entry.",
+            "            let entry = CoffeeTrackerEntry(date: entryDate,",
+            "                                           mgCaffeine: mgCaffeine,",
+            "                                           totalCups: totalCups)",
+            "            ",
+            "            // Add the event to the array.",
+            "            entries.append(entry)",
+            "        }",
+            "",
+            "        // Create the timeline and pass it to the completion handler.",
+            "        // Because the caffeine dose drops to 0.0 mg after 24 hours,",
+            "        // there's no need to reload this timeline unless the user adds",
+            "        // a new drink. Setting the reload policy to .never.",
+            "        let timeline = Timeline(entries: entries, policy: .never)",
+            "        ",
+            "        // Pass the timeline to the completion handler.",
+            "        completion(timeline)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-a-Configurable-Widget",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Support-multiple-complications",
+          "level": 3,
+          "text": "Support multiple complications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app provides a static set of widgets, you can define multiple widgets using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WidgetBundle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. For example, the code listing below provides three complications: one that displays the user’s current caffeine dose, one that provides the total number of cups of coffee for the day, and one that provides both. Each widget can then support a different subset of the available families.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@main",
+            "struct CoffeeTrackerWidgets: WidgetBundle {",
+            "   var body: some Widget {",
+            "       CaffeineComplication()",
+            "       CupsComplication()",
+            "       CaffeineAndCupsComplication()",
+            "   }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, if you need to dynamically configure a set of complications, provide a custom app intent. For example, a weather app may let people install complications for any cities in their favorites list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "WidgetKit uses app intents for customizable properties, the same method that Siri Suggestions and Siri Shortcuts use to customize those interactions. In iOS, the app intents describe elements that the user can customize. For WidgetKit complications in watchOS, these intents aren’t user configurable. Instead, they represent items that your app can dynamically configure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To customize the widgets, implement your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider/recommendations()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to return an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentRecommendation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func recommendations() -> [AppIntentRecommendation<ConfigurationAppIntent>] {",
+            "    var recommendations = [AppIntentRecommendation<ConfigurationAppIntent>]()",
+            "    ",
+            "    for cityID in favoriteCityIDs {",
+            "        let intent = ConfigurationAppIntent()",
+            "        intent.cityID = cityID",
+            "        recommendations.append(AppIntentRecommendation(intent: intent, description: cityName(id: cityID)))",
+            "    }",
+            "",
+            "    return recommendations",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-a-Configurable-Widget",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Design-the-complication-using-SwiftUI",
+          "level": 3,
+          "text": "Design the complication using SwiftUI",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use SwiftUI static views, such as text, shapes, or images, to create your complication’s content. You can also add render effects like blurs and gradients, but keep in mind that complications only have one or two frames in which to render the effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because complications show a snapshot of the app’s data at a particular point in time, they don’t support features like animation. Additionally, if the user touches your complication, the system launches your app instead of passing the touch event to the SwiftUI views, so a complication can’t use interactive elements like buttons or switches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by updating your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Widget",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct CaffeineComplication: Widget {",
+            "    ",
+            "    // Create a unique string to identify the complication.",
+            "    let kind: String = \"com.example.caffeine-complication\"",
+            "",
+            "    var body: some WidgetConfiguration {",
+            "        StaticConfiguration(kind: kind, provider: Provider()) { entry in",
+            "            CoffeeTrackerComplicationsEntryView(entry: entry)",
+            "        }",
+            "        .configurationDisplayName(\"Coffee Tracker\")",
+            "        .description(\"Shows the current caffeine dose in your system.\")",
+            "        .supportedFamilies([.accessoryCorner, .accessoryCircular, .accessoryInline])",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The body of the widget contains either a static or intent configuration, depending on whether your app uses custom app intent definitions. Use the configuration to set items like the complication’s display name and the supported families. The configuration also takes a closure that returns a SwiftUI view for the specified entry.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "WidgetKit reduces the number of families you need to support. In some cases, a WidgetKit accessory family covers more than one ClockKit family, which reduces the number of supported families from 12 to 4.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ClockKit family",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "WidgetKit family",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/graphicRectangular",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryRectangular",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/graphicCorner",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryCorner",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/graphicCircular",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/graphicBezel",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/graphicExtraLarge",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryCircular",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/utilitarianSmallFlat",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/utilitarianLarge",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryInline",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "watchOS 9 and later no longer shows families like ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/circularSmall",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/modularSmall",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/modularLarge",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " on watch faces.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/widgetFamily",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " environment value to determine the complication’s family. You can provide a different SwiftUI view for each family. You can also get the family from the context passed to your timeline provider’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/getTimeline(in:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/getSnapshot(in:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/placeholder(in:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct CaffeineComplicationView: View {",
+            "    ",
+            "    // Get the widget's family.",
+            "    @Environment(\\.widgetFamily) private var family",
+            "    ",
+            "    var entry: Provider.Entry",
+            "    ",
+            "    var body: some View {",
+            "        switch family {",
+            "        case .accessoryCircular:",
+            "            MyCircularComplication(mgCaffeine: entry.mgCaffeine,",
+            "                                   totalCups: entry.totalCups)",
+            "            ",
+            "        case .accessoryCorner:",
+            "            MyCornerComplication(mgCaffeine: entry.mgCaffeine,",
+            "                                 totalCups: entry.totalCups)",
+            "            ",
+            "        case .accessoryInline:",
+            "            MyInlineComplication(mgCaffeine: entry.mgCaffeine,",
+            "                                 totalCups: entry.totalCups)",
+            "            ",
+            "        default:",
+            "            Image(\"AppIcon\")",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, check the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " environmental value to determine whether your complication is rendered in full color or using accent colors. Modify your design to best suit the current rendering mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyCircularComplication: View {",
+            "    // Get the rendering mode.",
+            "    @Environment(\\.widgetRenderingMode) var renderingMode",
+            "    ",
+            "    var mgCaffeine: Double",
+            "    var totalCups: Double",
+            "    let maxMG = 500.0",
+            "    ",
+            "    var body: some View {",
+            "        Gauge( value: min(mgCaffeine, maxMG), in: 0.0...maxMG ) {",
+            "            Text(\"mg\")",
+            "        } currentValueLabel: {",
+            "            if renderingMode == .fullColor {",
+            "                // Add a foreground color to the label.",
+            "                Text(mgCaffeine.formatted(myFloatFormatter))",
+            "                    .foregroundStyle(.doseColor(for: mgCaffeine))",
+            "            }",
+            "            else {",
+            "                // Otherwise, use the default text color.",
+            "                Text(mgCaffeine.formatted(myFloatFormatter))",
+            "            }",
+            "        }",
+            "        .gaugeStyle(",
+            "            // Add a gradient to the gauge.",
+            "            CircularGaugeStyle(tint: Gradient(stops: myStops)))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/accented",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " mode, you can explicitly partition your view into an accented group and the default group by adding the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/widgetAccentable(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier to part of your complication’s view hierarchy. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-accessory-widgets-and-watch-complications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-views-for-widgets-Live-Activities-and-watch-complications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When designing your WidgetKit complications, build your complication views so that they can adapt to different sizes. For example, you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ViewThatFits",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to provide a set of different-sized views, letting the system pick the best fit for the current context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add a standard background to your complication by adding a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AccessoryWidgetBackground",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ZStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " behind your widget’s content, and you can also add additional information to circular and corner complications using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/widgetLabel(label:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Use the widget label to add gauges, progress views, or text along the inside curve of the corner view, or to add an image and text along the bezel of the Infograph watch face.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, consider how Always On affects your complications. You may need to redact sensitive information, or adjust the widget’s appearance for reduced luminance. You can explicitly redact sensitive information using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/privacySensitive(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier. If you do, the system displays the redacted version of your view during Always On. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/watchOS-Apps/designing-your-app-for-the-always-on-state",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you don’t use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/privacySensitive(_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " view modifier anywhere in your view hierarchy, the system displays a placeholder instead of a live complication. By default, the placeholder redacts all of your complication’s content.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Migrate-complications-on-a-watch-face",
+          "level": 2,
+          "text": "Migrate complications on a watch face",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When users upgrade your app, you need to transition them from the old ClockKit complications to your new WidgetKit complications. Start by implementing your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationDataSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationDataSource/widgetMigrator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Use your implementation to return an instance that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationWidgetMigrator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, update your data source so that it conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationWidgetMigrator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class ComplicationController: NSObject, CLKComplicationDataSource, CLKComplicationWidgetMigrator {",
+            "   // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, have the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationDataSource/widgetMigrator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property return ",
+              "type": "text"
+            },
+            {
+              "code": "self",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var widgetMigrator: CLKComplicationWidgetMigrator {",
+            "    self",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationWidgetMigrator/getWidgetConfiguration(from:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. This method determines the best WidgetKit configuration for the given complication descriptor. The following example uses the Swift async version of the method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func widgetConfiguration(from complicationDescriptor: CLKComplicationDescriptor) async -> CLKComplicationWidgetMigrationConfiguration? {",
+            "    ",
+            "    switch complicationDescriptor.identifier {",
+            "    case caffeineDoseIdentifier:",
+            "        return CLKComplicationStaticWidgetMigrationConfiguration(",
+            "            kind: \"com.example.Caffeine-Complication\",",
+            "            extensionBundleIdentifier: \"com.example.apple-samplecode.Coffee-Tracker.watchkitapp.watchkitextension.CoffeeTracker-Complications\")",
+            "",
+            "    case cupTotalIdentifier:",
+            "        return CLKComplicationStaticWidgetMigrationConfiguration(",
+            "            kind: \"com.example.CupTotal-Complication\",",
+            "            extensionBundleIdentifier: \"com.example.apple-samplecode.Coffee-Tracker.watchkitapp.watchkitextension.CoffeeTracker-Complications\")",
+            "",
+            "    case cupAndCaffeineIdentifier:",
+            "        return CLKComplicationStaticWidgetMigrationConfiguration(",
+            "            kind: \"com.example.CupAndCaffeine-Complication\",",
+            "            extensionBundleIdentifier: \"com.example.apple-samplecode.Coffee-Tracker.watchkitapp.watchkitextension.CoffeeTracker-Complications\")",
+            "",
+            "    default:",
+            "        return nil",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Backyard-Birds-intro.png": {
+      "alt": null,
+      "identifier": "Backyard-Birds-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/308516255a4b167225a334a5a55a1ff3/Backyard-Birds-intro@2x.png"
+        }
+      ]
+    },
+    "add-widgetkit-watchos": {
+      "alt": "A screenshot showing the Widget Extension selected.",
+      "identifier": "add-widgetkit-watchos",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dd1b7749ddedf297c74e9186fac6b9d8/add-widgetkit-watchos@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/171788827802af4df5076464d299ffc5/add-widgetkit-watchos~dark@2x.png"
+        }
+      ]
+    },
+    "configurable-complication-extension": {
+      "alt": "A screenshot of a Widget Extension that contains support for custom app intent definitions: an intent timeline provider and custom app intent.",
+      "identifier": "configurable-complication-extension",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6a46262ff41eede6a9a280b8917e0884/configurable-complication-extension@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1adf31a9f993de036b858318b6bba31f/configurable-complication-extension~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AccessoryWidgetBackground": {
+      "abstract": [
+        {
+          "text": "An adaptive background view that provides a standard appearance based on the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the widget’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessoryWidgetBackground"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AccessoryWidgetBackground",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessoryWidgetBackground"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessoryWidgetBackground",
+      "type": "topic",
+      "url": "/documentation/widgetkit/accessorywidgetbackground"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentRecommendation": {
+      "abstract": [
+        {
+          "text": "An object that describes a recommended intent configuration for a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "user-customizable widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntentRecommendation"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentRecommendation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntentRecommendation"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntentRecommendation",
+      "type": "topic",
+      "url": "/documentation/widgetkit/appintentrecommendation"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider": {
+      "abstract": [
+        {
+          "text": "A type that advises WidgetKit when to update a user-configurable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "widget’s display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntentTimelineProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntentTimelineProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntentTimelineProvider",
+      "type": "topic",
+      "url": "/documentation/widgetkit/appintenttimelineprovider"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider/recommendations()": {
+      "abstract": [
+        {
+          "text": "Returns a set of intent recommendations you use to offer pre-configured",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "widgets on platforms that don’t offer a dedicated user interface for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "customizing widget intents.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recommendations"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit23AppIntentRecommendationV",
+          "text": "AppIntentRecommendation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit25AppIntentTimelineProviderP0D0Qa",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider/recommendations()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "recommendations()",
+      "type": "topic",
+      "url": "/documentation/widgetkit/appintenttimelineprovider/recommendations()"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension": {
+      "abstract": [
+        {
+          "text": "Display your app’s content in a convenient, informative widget on various devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a widget extension",
+      "type": "topic",
+      "url": "/documentation/widgetkit/creating-a-widget-extension"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-accessory-widgets-and-watch-complications": {
+      "abstract": [
+        {
+          "text": "Support accessory widgets that appear on the Lock Screen and as complications on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-accessory-widgets-and-watch-complications",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating accessory widgets and watch complications",
+      "type": "topic",
+      "url": "/documentation/widgetkit/creating-accessory-widgets-and-watch-complications"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-views-for-widgets-Live-Activities-and-watch-complications": {
+      "abstract": [
+        {
+          "text": "Implement glanceable views with WidgetKit and SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-views-for-widgets-Live-Activities-and-watch-complications",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating views for widgets, Live Activities, and watch complications",
+      "type": "topic",
+      "url": "/documentation/widgetkit/creating-views-for-widgets-live-activities-and-watch-complications"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date": {
+      "abstract": [
+        {
+          "text": "Plan your widget’s timeline to show timely, relevant information using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "dynamic views, and update the timeline when things change.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date",
+      "kind": "article",
+      "role": "article",
+      "title": "Keeping a widget up to date",
+      "type": "topic",
+      "url": "/documentation/widgetkit/keeping-a-widget-up-to-date"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-a-Configurable-Widget": {
+      "abstract": [
+        {
+          "text": "Give people the option to customize their widgets by adding a custom app intent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to your project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-a-Configurable-Widget",
+      "kind": "article",
+      "role": "article",
+      "title": "Making a configurable widget",
+      "type": "topic",
+      "url": "/documentation/widgetkit/making-a-configurable-widget"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/StaticConfiguration": {
+      "abstract": [
+        {
+          "text": "An object describing the content of a widget that has no user-configurable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StaticConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/StaticConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StaticConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "StaticConfiguration",
+      "type": "topic",
+      "url": "/documentation/widgetkit/staticconfiguration"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Supporting-additional-widget-sizes": {
+      "abstract": [
+        {
+          "text": "Offer widgets in additional contexts by adding support for various widget sizes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Supporting-additional-widget-sizes",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting additional widget sizes",
+      "type": "topic",
+      "url": "/documentation/widgetkit/supporting-additional-widget-sizes"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Timeline": {
+      "abstract": [
+        {
+          "text": "An object that specifies a date for WidgetKit to update a widget’s view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Timeline"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Timeline",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Timeline"
+        }
+      ],
+      "role": "symbol",
+      "title": "Timeline",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timeline"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntry": {
+      "abstract": [
+        {
+          "text": "A type that specifies the date to display a widget, and, optionally,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "indicates the current relevance of the widget’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimelineEntry"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimelineEntry"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimelineEntry",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineentry"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider": {
+      "abstract": [
+        {
+          "text": "A type that advises WidgetKit when to update a widget’s display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimelineProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimelineProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimelineProvider",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineprovider"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/getSnapshot(in:completion:)": {
+      "abstract": [
+        {
+          "text": "Provides a timeline entry that represents the current time and state of a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getSnapshot"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit16TimelineProviderP7Contexta",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit16TimelineProviderP5EntryQa",
+          "text": "Entry"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/getSnapshot(in:completion:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "getSnapshot(in:completion:)",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineprovider/getsnapshot(in:completion:)"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/getTimeline(in:completion:)": {
+      "abstract": [
+        {
+          "text": "Provides an array of timeline entries for the current time and,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "optionally, any future times to update a widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTimeline"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit16TimelineProviderP7Contexta",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit8TimelineV",
+          "text": "Timeline"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit16TimelineProviderP5EntryQa",
+          "text": "Entry"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/getTimeline(in:completion:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "getTimeline(in:completion:)",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineprovider/gettimeline(in:completion:)"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/placeholder(in:)": {
+      "abstract": [
+        {
+          "text": "Provides a timeline entry representing a placeholder version of the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "placeholder"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit16TimelineProviderP7Contexta",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit16TimelineProviderP5EntryQa",
+          "text": "Entry"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/placeholder(in:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "placeholder(in:)",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineprovider/placeholder(in:)"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProviderContext/isPreview": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates when the widget appears in the widget gallery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPreview"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProviderContext/isPreview",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isPreview",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineprovidercontext/ispreview"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetAccentedRenderingMode": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the rendering mode for an ",
+          "type": "text"
+        },
+        {
+          "code": "Image",
+          "type": "codeVoice"
+        },
+        {
+          "text": " in when displayed in a widget",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/accented",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetAccentedRenderingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetAccentedRenderingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetAccentedRenderingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetAccentedRenderingMode",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetaccentedrenderingmode"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily": {
+      "abstract": [
+        {
+          "text": "Values that define the widget’s size and shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetFamily"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetFamily"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetFamily",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryCircular": {
+      "abstract": [
+        {
+          "text": "A circular widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryCircular"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryCircular",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.accessoryCircular",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/accessorycircular"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryCorner": {
+      "abstract": [
+        {
+          "text": "A widget-based complication in the corner of a watch face in watchOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryCorner"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryCorner",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.accessoryCorner",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/accessorycorner"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryInline": {
+      "abstract": [
+        {
+          "text": "A flat widget that contains a single row of text and an optional image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryInline"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryInline",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.accessoryInline",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/accessoryinline"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryRectangular": {
+      "abstract": [
+        {
+          "text": "A rectangular widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryRectangular"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryRectangular",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.accessoryRectangular",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/accessoryrectangular"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the rendering mode for a widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetRenderingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetRenderingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetRenderingMode",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetrenderingmode"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/accented": {
+      "abstract": [
+        {
+          "text": "The system divides the widget’s view hierarchy into an accent group and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a default group, applying a different color to each group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accented"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit0A13RenderingModeV",
+          "text": "WidgetRenderingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/accented",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accented",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetrenderingmode/accented"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations": {
+      "abstract": [
+        {
+          "text": "Offer Live Activities, controls, animate data updates, and add interactivity to widgets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Emoji Rangers: Supporting Live Activities, interactivity, and animations",
+      "type": "topic",
+      "url": "/documentation/widgetkit/emoji-rangers-supporting-live-activities-interactivity-and-animations"
+    },
+    "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationDataSource": {
+      "abstract": [
+        {
+          "text": "A protocol that provides ClockKit with information about your complication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationDataSource"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationDataSource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLKComplicationDataSource",
+      "type": "topic",
+      "url": "/documentation/ClockKit/CLKComplicationDataSource"
+    },
+    "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationDataSource/widgetMigrator": {
+      "abstract": [
+        {
+          "text": "A migrator that maps ClockKit complications to their WidgetKit replacements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "widgetMigrator"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)CLKComplicationWidgetMigrator",
+          "text": "CLKComplicationWidgetMigrator"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationDataSource/widgetMigrator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "widgetMigrator",
+      "type": "topic",
+      "url": "/documentation/ClockKit/CLKComplicationDataSource/widgetMigrator"
+    },
+    "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationDescriptor": {
+      "abstract": [
+        {
+          "text": "A descriptor that defines a complication and the families that it supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationDescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLKComplicationDescriptor",
+      "type": "topic",
+      "url": "/documentation/ClockKit/CLKComplicationDescriptor"
+    },
+    "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/circularSmall": {
+      "abstract": [
+        {
+          "text": "A small circular area that ClockKit displays on the Color watch face.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "circularSmall"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/circularSmall",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLKComplicationFamily.circularSmall",
+      "type": "topic",
+      "url": "/documentation/ClockKit/CLKComplicationFamily/circularSmall"
+    },
+    "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/graphicBezel": {
+      "abstract": [
+        {
+          "text": "A circular area with optional curved text that ClockKit displays along the bezel of the Infograph watch face.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "graphicBezel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/graphicBezel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLKComplicationFamily.graphicBezel",
+      "type": "topic",
+      "url": "/documentation/ClockKit/CLKComplicationFamily/graphicBezel"
+    },
+    "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/graphicCircular": {
+      "abstract": [
+        {
+          "text": "A circular area that ClockKit displays on the Infograph and Infograph Modular watch faces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "graphicCircular"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/graphicCircular",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLKComplicationFamily.graphicCircular",
+      "type": "topic",
+      "url": "/documentation/ClockKit/CLKComplicationFamily/graphicCircular"
+    },
+    "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/graphicCorner": {
+      "abstract": [
+        {
+          "text": "A curved area that fills the corners in the Infograph watch face.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "graphicCorner"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/graphicCorner",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLKComplicationFamily.graphicCorner",
+      "type": "topic",
+      "url": "/documentation/ClockKit/CLKComplicationFamily/graphicCorner"
+    },
+    "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/graphicExtraLarge": {
+      "abstract": [
+        {
+          "text": "A large square area that ClockKit displays on the X-Large watch face.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "graphicExtraLarge"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/graphicExtraLarge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLKComplicationFamily.graphicExtraLarge",
+      "type": "topic",
+      "url": "/documentation/ClockKit/CLKComplicationFamily/graphicExtraLarge"
+    },
+    "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/graphicRectangular": {
+      "abstract": [
+        {
+          "text": "A large rectangular area that ClockKit displays in the center of the Infograph Modular watch face.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "graphicRectangular"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/graphicRectangular",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLKComplicationFamily.graphicRectangular",
+      "type": "topic",
+      "url": "/documentation/ClockKit/CLKComplicationFamily/graphicRectangular"
+    },
+    "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/modularLarge": {
+      "abstract": [
+        {
+          "text": "A large rectangular area that ClockKit displays on the Modular watch face.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modularLarge"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/modularLarge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLKComplicationFamily.modularLarge",
+      "type": "topic",
+      "url": "/documentation/ClockKit/CLKComplicationFamily/modularLarge"
+    },
+    "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/modularSmall": {
+      "abstract": [
+        {
+          "text": "A small square area that ClockKit displays on the Modular watch face.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modularSmall"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/modularSmall",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLKComplicationFamily.modularSmall",
+      "type": "topic",
+      "url": "/documentation/ClockKit/CLKComplicationFamily/modularSmall"
+    },
+    "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/utilitarianLarge": {
+      "abstract": [
+        {
+          "text": "A large rectangular area that spans the width of the screen in the Utility and Mickey watch faces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "utilitarianLarge"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/utilitarianLarge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLKComplicationFamily.utilitarianLarge",
+      "type": "topic",
+      "url": "/documentation/ClockKit/CLKComplicationFamily/utilitarianLarge"
+    },
+    "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/utilitarianSmallFlat": {
+      "abstract": [
+        {
+          "text": "A small rectangular area that ClockKit Displays on the Photos, Motion, and Timelapse watch faces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "utilitarianSmallFlat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationFamily/utilitarianSmallFlat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLKComplicationFamily.utilitarianSmallFlat",
+      "type": "topic",
+      "url": "/documentation/ClockKit/CLKComplicationFamily/utilitarianSmallFlat"
+    },
+    "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationWidgetMigrator": {
+      "abstract": [
+        {
+          "text": "A protocol that maps ClockKit complications to their WidgetKit replacements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationWidgetMigrator"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationWidgetMigrator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLKComplicationWidgetMigrator",
+      "type": "topic",
+      "url": "/documentation/ClockKit/CLKComplicationWidgetMigrator"
+    },
+    "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationWidgetMigrator/getWidgetConfiguration(from:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Returns a configuration object that defines the WidgetKit replacement for the provided ClockKit complication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getWidgetConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "complicationDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplicationDescriptor",
+          "text": "CLKComplicationDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplicationWidgetMigrationConfiguration",
+          "text": "CLKComplicationWidgetMigrationConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationWidgetMigrator/getWidgetConfiguration(from:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getWidgetConfiguration(from:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/ClockKit/CLKComplicationWidgetMigrator/getWidgetConfiguration(from:completionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample": {
+      "abstract": [
+        {
+          "text": "Create an app with persistent data, interactive widgets, and an all new in-app purchase experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample",
+      "images": [
+        {
+          "identifier": "Backyard-Birds-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Backyard Birds: Building an app with SwiftData and widgets",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Backyard-birds-sample"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/widgetFamily": {
+      "abstract": [
+        {
+          "text": "The template of the widget — small, medium, or large.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "widgetFamily"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit0A6FamilyO",
+          "text": "WidgetFamily"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/widgetFamily",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "widgetFamily",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/widgetFamily"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/privacySensitive(_:)": {
+      "abstract": [
+        {
+          "text": "Marks the view as containing sensitive, private user data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "privacySensitive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "sensitive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = true) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/privacySensitive(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "privacySensitive(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/privacySensitive(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/unredacted()": {
+      "abstract": [
+        {
+          "text": "Removes any reason to apply a redaction to this view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unredacted"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/unredacted()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unredacted()",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/unredacted()"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/widgetAccentable(_:)": {
+      "abstract": [
+        {
+          "text": "Adds the view and all of its subviews to the accented group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "widgetAccentable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "accentable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = true) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/widgetAccentable(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "widgetAccentable(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/widgetAccentable(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/widgetLabel(label:)": {
+      "abstract": [
+        {
+          "text": "Creates a label for displaying additional content outside an accessory family widget’s main SwiftUI view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "widgetLabel"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI11ViewBuilderV",
+          "text": "ViewBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "externalParam",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/widgetLabel(label:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "widgetLabel(label:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/widgetLabel(label:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ViewThatFits": {
+      "abstract": [
+        {
+          "text": "A view that adapts to the available space by providing the first child view that fits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ViewThatFits"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ViewThatFits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ViewThatFits",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ViewThatFits"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Widget": {
+      "abstract": [
+        {
+          "text": "The configuration and content of a widget to display on the Home screen or in Notification Center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Widget"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Widget",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Widget",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Widget"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/WidgetBundle": {
+      "abstract": [
+        {
+          "text": "A container used to expose multiple widgets from a single widget extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetBundle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WidgetBundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetBundle",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/WidgetBundle"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ZStack": {
+      "abstract": [
+        {
+          "text": "A view that overlays its subviews, aligning them in both axes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ZStack"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ZStack",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ZStack",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ZStack"
+    },
+    "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui": {
+      "abstract": [
+        {
+          "text": "Create a shared codebase to build a multiplatform app that offers widgets and an App Clip.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Fruta: Building a Feature-Rich App with SwiftUI",
+      "type": "topic",
+      "url": "/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/watchOS-Apps/designing-your-app-for-the-always-on-state": {
+      "abstract": [
+        {
+          "text": "Customize your watchOS app’s user interface for continuous display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/watchOS-Apps/designing-your-app-for-the-always-on-state",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing your app for the Always On state",
+      "type": "topic",
+      "url": "/documentation/watchOS-Apps/designing-your-app-for-the-always-on-state"
+    },
+    "doc://com.apple.documentation/documentation/widgetkit/building_widgets_using_widgetkit_and_swiftui": {
+      "abstract": [
+        {
+          "text": "Create widgets to show your app’s content on the Home screen, with custom intents for user-customizable settings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/widgetkit/building_widgets_using_widgetkit_and_swiftui",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building Widgets Using WidgetKit and SwiftUI",
+      "type": "topic",
+      "url": "/documentation/widgetkit/building_widgets_using_widgetkit_and_swiftui"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Widget-creation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Supporting-additional-widget-sizes",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-accessory-widgets-and-watch-complications",
+        "doc://com.apple.documentation/documentation/widgetkit/building_widgets_using_widgetkit_and_swiftui",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+        "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample",
+        "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui",
+        "doc://com.apple.documentation/documentation/SwiftUI/Widget",
+        "doc://com.apple.documentation/documentation/SwiftUI/WidgetBundle",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/StaticConfiguration",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetAccentedRenderingMode"
+      ],
+      "title": "Widget creation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Widget-creation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Supporting-additional-widget-sizes",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-accessory-widgets-and-watch-complications",
+                "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample"
+              ],
+              "title": "Widget creation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationFamily~1graphicCorner/title",
+          "value": "CLKComplicationFamilyGraphicCorner"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationFamily~1graphicCorner/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationFamilyGraphicCorner"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationFamily~1utilitarianLarge/title",
+          "value": "CLKComplicationFamilyUtilitarianLarge"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationFamily~1utilitarianLarge/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationFamilyUtilitarianLarge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationFamily~1graphicExtraLarge/title",
+          "value": "CLKComplicationFamilyGraphicExtraLarge"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationFamily~1graphicExtraLarge/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationFamilyGraphicExtraLarge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationFamily~1modularLarge/title",
+          "value": "CLKComplicationFamilyModularLarge"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationFamily~1modularLarge/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationFamilyModularLarge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationFamily~1graphicCircular/title",
+          "value": "CLKComplicationFamilyGraphicCircular"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationFamily~1graphicCircular/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationFamilyGraphicCircular"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationDescriptor/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationFamily~1circularSmall/title",
+          "value": "CLKComplicationFamilyCircularSmall"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationFamily~1circularSmall/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationFamilyCircularSmall"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationDataSource/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationDataSource"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationFamily~1graphicBezel/title",
+          "value": "CLKComplicationFamilyGraphicBezel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationFamily~1graphicBezel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationFamilyGraphicBezel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationFamily~1utilitarianSmallFlat/title",
+          "value": "CLKComplicationFamilyUtilitarianSmallFlat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationFamily~1utilitarianSmallFlat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationFamilyUtilitarianSmallFlat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationFamily~1graphicRectangular/title",
+          "value": "CLKComplicationFamilyGraphicRectangular"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationFamily~1graphicRectangular/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationFamilyGraphicRectangular"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationWidgetMigrator/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationWidgetMigrator"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationDataSource~1widgetMigrator/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)CLKComplicationWidgetMigrator",
+              "text": "id<CLKComplicationWidgetMigrator>"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "widgetMigrator"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationFamily~1modularSmall/title",
+          "value": "CLKComplicationFamilyModularSmall"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationFamily~1modularSmall/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationFamilyModularSmall"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationWidgetMigrator~1getWidgetConfiguration(from:completionHandler:)/title",
+          "value": "getWidgetConfigurationFrom:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationWidgetMigrator~1getWidgetConfiguration(from:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "getWidgetConfigurationFrom:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CLKComplicationDescriptor",
+              "text": "CLKComplicationDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "complicationDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CLKComplicationWidgetMigrationConfiguration",
+              "text": "CLKComplicationWidgetMigrationConfiguration"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": ""
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/widgetkit/converting-a-clockkit-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/widgetkit/converting-a-clockkit-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,662 @@
+{
+  "abstract": [
+    {
+      "text": "Review crashes for your App Store apps based on app version and device type.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devpubs.analytics-reports/documentation/analytics-reports"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-crashes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "App Crashes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this report to understand crashes for your App Store apps by app version and device type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Territories: Worldwide",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Platforms: iOS, iPadOS, macOS, tvOS, visionOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Availability:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Daily: Every day",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Weekly: Every Friday for the previous week (Monday to Sunday).",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Monthly: On the fifth day of the following month.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Completeness: Within five days. Weekly and monthly reports are complete by default.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "History: On request, data is available beginning on January 1, 2024.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Privacy:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Includes app crashes data from users who have opted to share their data with Apple and developers. Data is provided only when events exist from at least five users for the respective report.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Analytics Reports framework delivers new portions of report content as instances. Each instance can contain one or more batches of data, to accommodate late-arriving events, or in rare cases, data corrections.  To learn more, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/data-completeness-corrections",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Report-Fields",
+          "level": 2,
+          "text": "Report Fields",
+          "type": "heading"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Report Field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Data Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Date",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Date on which the event occurred. For weekly and monthly instances, this column represents the first day of the week and month, respectively.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "date",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App Name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of the app provided  by you during app setup in App Store Connect.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "string",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App Apple Identifier",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app’s Apple ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "integer",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App Version",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The version of the app associated with the crash.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "string",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device on which the event occurred.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "string",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Platform Version",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The OS version of the device on which the event occurred.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "string",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Crashes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The total number of crashes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "integer",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Unique Devices",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number of unique devices  where app crashed",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "integer",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-clip-usage": {
+      "abstract": [
+        {
+          "text": "Analyze how users engage with your App Clips.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-clip-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "App Clip Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-clip-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-installs": {
+      "abstract": [
+        {
+          "text": "Analyze details on the number of times users install and delete your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-installs",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Installations and Deletions",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-installs"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-sessions": {
+      "abstract": [
+        {
+          "text": "Analyze how often people open your App Store apps, and the average session duration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-sessions",
+      "kind": "article",
+      "role": "article",
+      "title": "App Sessions",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-sessions"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/carplay-app-usage": {
+      "abstract": [
+        {
+          "text": "Review how people use CarPlay in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/carplay-app-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "CarPlay App Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/carplay-app-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/data-completeness-corrections": {
+      "abstract": [
+        {
+          "text": "Understand how the Analytics Reports API provides complete data sets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/data-completeness-corrections",
+      "kind": "article",
+      "role": "article",
+      "title": "Data Completeness and Corrections",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/data-completeness-corrections"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/analytics-reports": {
+      "abstract": [
+        {
+          "text": "A list of app development reports, their field descriptions, and glossaries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/analytics-reports",
+      "kind": "article",
+      "role": "collection",
+      "title": "Analytics Reports",
+      "type": "topic",
+      "url": "/documentation/analytics-reports"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-Usage",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-clip-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-installs",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-sessions",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/carplay-app-usage"
+      ],
+      "title": "App Usage"
+    }
+  ]
+}

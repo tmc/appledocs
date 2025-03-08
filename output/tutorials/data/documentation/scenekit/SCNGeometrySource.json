@@ -1,0 +1,2439 @@
+{
+  "abstract": [
+    {
+      "text": "A container for vertex data forming part of the definition for a three-dimensional object, or geometry.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.scenekit/documentation/SceneKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SCNGeometrySource",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SCNGeometrySource"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SceneKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SCNGeometrySource"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SCNGeometrySource"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCNGeometrySource"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use geometry sources together with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects to define custom ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects or to inspect the data that composes an existing geometry.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create a custom geometry using a three-step process:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create one or more ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects containing vertex data. Each geometry source defines an attribute, or semantic, of the vertices it describes. You must provide at least one geometry source, using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/Semantic-swift.struct/vertex",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " semantic, to create a custom geometry; typically you also provide geometry sources for surface normals and texture coordinates.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create at least one ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object, containing an array of indices identifying vertices in the geometry sources and describing the drawing primitive that SceneKit uses to connect the vertices when rendering the geometry.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance from the geometry sources and geometry elements.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Interleaving-Vertex-Data",
+          "level": 3,
+          "text": "Interleaving Vertex Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because most geometries use more than one geometry source and the GPU typically uses data from multiple sources together, you can achieve better rendering performance for custom geometries by interleaving the vertex data for multiple semantics in the same array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To do this, first create an array where each element contains values for multiple semantics for the same vertex. Next, create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object from that array, and create each geometry source from that data using the ",
+              "type": "text"
+            },
+            {
+              "code": "offset",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "stride",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameters to specify where the values for each semantic can be found in the array. To make specifying the sizes and locations of vectors more convenient, you can define your own data structure for vertices and use the ",
+              "type": "text"
+            },
+            {
+              "code": "sizeof",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (and, in Objective-C, ",
+              "type": "text"
+            },
+            {
+              "code": "offsetof",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") functions, as shown in Listing 1.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1. Creating multiple geometry sources from interleaved data",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typedef struct {",
+            "    float x, y, z;    // position",
+            "    float nx, ny, nz; // normal",
+            "    float s, t;       // texture coordinates",
+            "} MyVertex;",
+            " ",
+            "MyVertex vertices[VERTEX_COUNT] = { /* ... vertex data ... */ };",
+            "NSData *data = [NSData dataWithBytes:vertices length:sizeof(vertices)];",
+            "SCNGeometrySource *vertexSource, *normalSource, *tcoordSource;",
+            " ",
+            "vertexSource = [SCNGeometrySource geometrySourceWithData:data",
+            "                                                semantic:SCNGeometrySourceSemanticVertex",
+            "                                             vectorCount:VERTEX_COUNT",
+            "                                         floatComponents:YES",
+            "                                     componentsPerVector:3 // x, y, z",
+            "                                       bytesPerComponent:sizeof(float)",
+            "                                              dataOffset:offsetof(MyVertex, x)",
+            "                                              dataStride:sizeof(MyVertex)];",
+            " ",
+            "normalSource = [SCNGeometrySource geometrySourceWithData:data",
+            "                                                semantic:SCNGeometrySourceSemanticNormal",
+            "                                             vectorCount:VERTEX_COUNT",
+            "                                         floatComponents:YES",
+            "                                     componentsPerVector:3 // nx, ny, nz",
+            "                                       bytesPerComponent:sizeof(float)",
+            "                                              dataOffset:offsetof(MyVertex, nx)",
+            "                                              dataStride:sizeof(MyVertex)];",
+            " ",
+            "tcoordSource = [SCNGeometrySource geometrySourceWithData:data",
+            "                                                semantic:SCNGeometrySourceSemanticTexcoord",
+            "                                             vectorCount:VERTEX_COUNT",
+            "                                         floatComponents:YES",
+            "                                     componentsPerVector:2 // s, t",
+            "                                       bytesPerComponent:sizeof(float)",
+            "                                              dataOffset:offsetof(MyVertex, s)",
+            "                                              dataStride:sizeof(MyVertex)];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsdata": {
+      "abstract": [
+        {
+          "text": "A static byte buffer that bridges to ; use  when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit": {
+      "abstract": [
+        {
+          "text": "Create 3D games and add 3D content to apps using high-level scene descriptions, and easily add animations, physics simulation, particle effects, and realistic physically based rendering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SceneKit",
+      "type": "topic",
+      "url": "/documentation/scenekit"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry": {
+      "abstract": [
+        {
+          "text": "A three-dimensional shape (also called a model or mesh) that can be displayed in a scene, with attached materials that define its appearance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNGeometry"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNGeometry"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNGeometry",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometry"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement": {
+      "abstract": [
+        {
+          "text": "A container for index data describing how vertices connect to define a three-dimensional object, or geometry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNGeometryElement"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNGeometryElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNGeometryElement",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometryelement"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource": {
+      "abstract": [
+        {
+          "text": "A container for vertex data forming part of the definition for a three-dimensional object, or geometry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNGeometrySource"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNGeometrySource"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNGeometrySource",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometrysource"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/Semantic-swift.struct": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Semantic"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/Semantic-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Semantic"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNGeometrySource.Semantic",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometrysource/semantic-swift.struct"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/Semantic-swift.struct/vertex": {
+      "abstract": [
+        {
+          "text": "The semantic for vertex position data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vertex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNGeometrySource",
+          "text": "SCNGeometrySource"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNGeometrySourceSemantic",
+          "text": "Semantic"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/Semantic-swift.struct/vertex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNGeometrySourceSemanticVertex"
+        }
+      ],
+      "role": "symbol",
+      "title": "vertex",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometrysource/semantic-swift.struct/vertex"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/bytesPerComponent": {
+      "abstract": [
+        {
+          "text": "The size, in bytes, of each vector component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bytesPerComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/bytesPerComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bytesPerComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "bytesPerComponent",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometrysource/bytespercomponent"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/componentsPerVector": {
+      "abstract": [
+        {
+          "text": "The number of scalar components in each vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "componentsPerVector"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/componentsPerVector",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "componentsPerVector"
+        }
+      ],
+      "role": "symbol",
+      "title": "componentsPerVector",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometrysource/componentspervector"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/data": {
+      "abstract": [
+        {
+          "text": "The data for the geometry source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/data",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "data"
+        }
+      ],
+      "role": "symbol",
+      "title": "data",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometrysource/data"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/dataOffset": {
+      "abstract": [
+        {
+          "text": "The offset, in bytes, from the beginning of the data to the first vector component to be used in the geometry source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/dataOffset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dataOffset"
+        }
+      ],
+      "role": "symbol",
+      "title": "dataOffset",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometrysource/dataoffset"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/dataStride": {
+      "abstract": [
+        {
+          "text": "The number of bytes from a vector to the next one in the data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataStride"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/dataStride",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dataStride"
+        }
+      ],
+      "role": "symbol",
+      "title": "dataStride",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometrysource/datastride"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/geometrySourceWithNormals:count:": {
+      "abstract": [
+        {
+          "text": "Creates a geometry source from an array of normal vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "geometrySourceWithNormals:count:"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/geometrySourceWithNormals:count:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "geometrySourceWithNormals:count:"
+        }
+      ],
+      "role": "symbol",
+      "title": "geometrySourceWithNormals:count:",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometrysource/geometrysourcewithnormals:count:"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/geometrySourceWithTextureCoordinates:count:": {
+      "abstract": [
+        {
+          "text": "Creates a geometry source from an array of texture coordinate points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "geometrySourceWithTextureCoordinates:count:"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/geometrySourceWithTextureCoordinates:count:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "geometrySourceWithTextureCoordinates:count:"
+        }
+      ],
+      "role": "symbol",
+      "title": "geometrySourceWithTextureCoordinates:count:",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometrysource/geometrysourcewithtexturecoordinates:count:"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/geometrySourceWithVertices:count:": {
+      "abstract": [
+        {
+          "text": "Creates a geometry source from an array of vertex positions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "geometrySourceWithVertices:count:"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/geometrySourceWithVertices:count:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "geometrySourceWithVertices:count:"
+        }
+      ],
+      "role": "symbol",
+      "title": "geometrySourceWithVertices:count:",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometrysource/geometrysourcewithvertices:count:"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/init(buffer:vertexFormat:semantic:vertexCount:dataOffset:dataStride:)": {
+      "abstract": [
+        {
+          "text": "Creates a geometry source whose vertex data resides in the specified Metal buffer, allowing modification through a Metal compute shader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "buffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "vertexFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLVertexFormat",
+          "text": "MTLVertexFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "semantic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNGeometrySource",
+          "text": "SCNGeometrySource"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNGeometrySourceSemantic",
+          "text": "Semantic"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "vertexCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dataOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dataStride"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/init(buffer:vertexFormat:semantic:vertexCount:dataOffset:dataStride:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "geometrySourceWithBuffer:vertexFormat:semantic:vertexCount:dataOffset:dataStride:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(buffer:vertexFormat:semantic:vertexCount:dataOffset:dataStride:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometrysource/init(buffer:vertexformat:semantic:vertexcount:dataoffset:datastride:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/init(data:semantic:vectorCount:usesFloatComponents:componentsPerVector:bytesPerComponent:dataOffset:dataStride:)": {
+      "abstract": [
+        {
+          "text": "Creates a geometry source from the specified data and options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "semantic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNGeometrySource",
+          "text": "SCNGeometrySource"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNGeometrySourceSemantic",
+          "text": "Semantic"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "vectorCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "usesFloatComponents"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "componentsPerVector"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bytesPerComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dataOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dataStride"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/init(data:semantic:vectorCount:usesFloatComponents:componentsPerVector:bytesPerComponent:dataOffset:dataStride:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "geometrySourceWithData:semantic:vectorCount:floatComponents:componentsPerVector:bytesPerComponent:dataOffset:dataStride:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(data:semantic:vectorCount:usesFloatComponents:componentsPerVector:bytesPerComponent:dataOffset:dataStride:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometrysource/init(data:semantic:vectorcount:usesfloatcomponents:componentspervector:bytespercomponent:dataoffset:datastride:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/init(normals:)": {
+      "abstract": [
+        {
+          "text": "Creates a geometry source from an array of normal vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "normals"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SCNVector3",
+          "text": "SCNVector3"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/init(normals:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(normals:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometrysource/init(normals:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/init(textureCoordinates:)": {
+      "abstract": [
+        {
+          "text": "Creates a geometry source from an array of texture coordinate points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "textureCoordinates"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/init(textureCoordinates:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(textureCoordinates:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometrysource/init(texturecoordinates:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/init(vertices:)": {
+      "abstract": [
+        {
+          "text": "Creates a geometry source from an array of vertex positions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "vertices"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SCNVector3",
+          "text": "SCNVector3"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/init(vertices:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(vertices:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometrysource/init(vertices:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/semantic-swift.property": {
+      "abstract": [
+        {
+          "text": "The semantic value (or attribute) the geometry source describes for each vertex.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "semantic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNGeometrySource",
+          "text": "SCNGeometrySource"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNGeometrySourceSemantic",
+          "text": "Semantic"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/semantic-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "semantic"
+        }
+      ],
+      "role": "symbol",
+      "title": "semantic",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometrysource/semantic-swift.property"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/usesFloatComponents": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether vector components are floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "usesFloatComponents"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/usesFloatComponents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "floatComponents"
+        }
+      ],
+      "role": "symbol",
+      "title": "usesFloatComponents",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometrysource/usesfloatcomponents"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/vectorCount": {
+      "abstract": [
+        {
+          "text": "The number of vectors in the data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vectorCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/vectorCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vectorCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "vectorCount",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometrysource/vectorcount"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/built-in-geometry-types": {
+      "abstract": [
+        {
+          "text": "Basic shapes—such as spheres, boxes, and planes—and features for generating 3D objects from 2D text and Bézier curves.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/built-in-geometry-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Built-in Geometry Types",
+      "type": "topic",
+      "url": "/documentation/scenekit/built-in-geometry-types"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Geometry",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement",
+        "doc://com.apple.scenekit/documentation/SceneKit/built-in-geometry-types"
+      ],
+      "title": "Geometry"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-Geometry-Sources",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/init(data:semantic:vectorCount:usesFloatComponents:componentsPerVector:bytesPerComponent:dataOffset:dataStride:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/init(vertices:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/init(normals:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/init(textureCoordinates:)"
+      ],
+      "title": "Creating Geometry Sources"
+    },
+    {
+      "anchor": "Inspecting-a-Geometry-Source",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/data",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/semantic-swift.property",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/vectorCount",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/usesFloatComponents",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/componentsPerVector",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/bytesPerComponent",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/dataOffset",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/dataStride"
+      ],
+      "title": "Inspecting a Geometry Source"
+    },
+    {
+      "anchor": "Creating-GPU-Mutable-Geometry-Sources",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/init(buffer:vertexFormat:semantic:vertexCount:dataOffset:dataStride:)"
+      ],
+      "title": "Creating GPU-Mutable Geometry Sources"
+    },
+    {
+      "anchor": "Geometry-Source-Semantics",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/Semantic-swift.struct"
+      ],
+      "title": "Geometry Source Semantics"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SCNGeometrySource"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometrySource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometrySource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.scenekit/documentation/SceneKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-Geometry-Sources",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/init(data:semantic:vectorCount:usesFloatComponents:componentsPerVector:bytesPerComponent:dataOffset:dataStride:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/geometrySourceWithVertices:count:",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/geometrySourceWithNormals:count:",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/geometrySourceWithTextureCoordinates:count:"
+              ],
+              "title": "Creating Geometry Sources"
+            },
+            {
+              "anchor": "Inspecting-a-Geometry-Source",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/data",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/semantic-swift.property",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/vectorCount",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/usesFloatComponents",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/componentsPerVector",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/bytesPerComponent",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/dataOffset",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/dataStride"
+              ],
+              "title": "Inspecting a Geometry Source"
+            },
+            {
+              "anchor": "Creating-GPU-Mutable-Geometry-Sources",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/init(buffer:vertexFormat:semantic:vertexCount:dataOffset:dataStride:)"
+              ],
+              "title": "Creating GPU-Mutable Geometry Sources"
+            },
+            {
+              "anchor": "Geometry-Source-Semantics",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/Semantic-swift.struct"
+              ],
+              "title": "Geometry Source Semantics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Geometry",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement",
+                "doc://com.apple.scenekit/documentation/SceneKit/built-in-geometry-types"
+              ],
+              "title": "Geometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SCNGeometrySource"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1usesFloatComponents/title",
+          "value": "floatComponents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1usesFloatComponents/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "floatComponents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1init(data:semantic:vectorCount:usesFloatComponents:componentsPerVector:bytesPerComponent:dataOffset:dataStride:)/title",
+          "value": "geometrySourceWithData:semantic:vectorCount:floatComponents:componentsPerVector:bytesPerComponent:dataOffset:dataStride:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1init(data:semantic:vectorCount:usesFloatComponents:componentsPerVector:bytesPerComponent:dataOffset:dataStride:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "geometrySourceWithData:semantic:vectorCount:floatComponents:componentsPerVector:bytesPerComponent:dataOffset:dataStride:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1init(buffer:vertexFormat:semantic:vertexCount:dataOffset:dataStride:)/title",
+          "value": "geometrySourceWithBuffer:vertexFormat:semantic:vertexCount:dataOffset:dataStride:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1init(buffer:vertexFormat:semantic:vertexCount:dataOffset:dataStride:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "geometrySourceWithBuffer:vertexFormat:semantic:vertexCount:dataOffset:dataStride:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1semantic-swift.property/title",
+          "value": "semantic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1semantic-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "semantic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsdata/abstract",
+          "value": [
+            {
+              "text": "A static byte buffer in memory.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometry/title",
+          "value": "SCNGeometry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement/title",
+          "value": "SCNGeometryElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometryElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometryElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1dataOffset/title",
+          "value": "dataOffset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1dataOffset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dataOffset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1data/title",
+          "value": "data"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1data/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1Semantic-swift.struct/title",
+          "value": "SCNGeometrySourceSemantic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1Semantic-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometrySourceSemantic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1Semantic-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometrySourceSemantic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1vectorCount/title",
+          "value": "vectorCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1vectorCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vectorCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource/title",
+          "value": "SCNGeometrySource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometrySource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometrySource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1bytesPerComponent/title",
+          "value": "bytesPerComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1bytesPerComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bytesPerComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1Semantic-swift.struct~1vertex/title",
+          "value": "SCNGeometrySourceSemanticVertex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1Semantic-swift.struct~1vertex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometrySourceSemanticVertex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1dataStride/title",
+          "value": "dataStride"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1dataStride/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dataStride"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1componentsPerVector/title",
+          "value": "componentsPerVector"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource~1componentsPerVector/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "componentsPerVector"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/scenekit/scngeometrysource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/scenekit/scngeometrysource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

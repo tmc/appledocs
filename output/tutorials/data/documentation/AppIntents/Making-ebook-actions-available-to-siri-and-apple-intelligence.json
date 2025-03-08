@@ -1,0 +1,981 @@
+{
+  "abstract": [
+    {
+      "text": "Create app intents and entities to integrate your app’s ebook and audiobook functionality with Siri and Apple Intelligence.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppIntents/documentation/AppIntents",
+        "doc://com.apple.AppIntents/documentation/AppIntents/app-intent-domains"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppIntents/documentation/AppIntents",
+        "doc://com.apple.AppIntents/documentation/AppIntents/app-intents",
+        "doc://com.apple.AppIntents/documentation/AppIntents/app-intent-domains"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AppIntents/documentation/AppIntents/Making-ebook-actions-available-to-siri-and-apple-intelligence"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Intents"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Making ebook actions available to Siri and Apple Intelligence"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To integrate your app’s ebook and audiobook capabilities with Siri and Apple Intelligence, you use Swift macros that generate additional",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "properties and add protocol conformance for your app intent, app entity, and app enumeration implementation that Apple Intelligence needs. For example, if your app allows a person to open an ebook, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantIntent(schema:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro and provide the assistant schema",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that consists of the ",
+              "type": "text"
+            },
+            {
+              "code": ".books",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domain and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BooksIntent/openBook",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " schema:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@AssistantIntent(schema: .books.openBook)",
+            "struct OpenBookIntent: OpenIntent {",
+            "    var target: BookEntity",
+            "    ",
+            "    func perform() async throws -> some IntentResult {",
+            "        .result()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about assistant schemas, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-actions-with-siri-and-apple-intelligence",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For a list of available app intents in the ",
+              "type": "text"
+            },
+            {
+              "code": ".books",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domain, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BooksIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-sure-your-entity-meets-requirements",
+          "level": 3,
+          "text": "Make sure your entity meets requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use app entities to describe custom data types, annotate the app entity implementation with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEntity(schema:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "macro. This makes sure Siri and Apple Intelligence can understand your data. For example, the intent in the previous section uses ",
+              "type": "text"
+            },
+            {
+              "code": "BookEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following code snippet shows how the ",
+              "type": "text"
+            },
+            {
+              "code": "BookEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implementation uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEntity(schema:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@AssistantEntity(schema: .books.book)",
+            "struct BookEntity {",
+            "    struct Query: EntityStringQuery {",
+            "        func entities(for identifiers: [BookEntity.ID]) async throws -> [BookEntity] { [] }",
+            "        func entities(matching string: String) async throws -> [BookEntity] { [] }",
+            "    }",
+            "",
+            "    static var defaultQuery = Query()",
+            "    var displayRepresentation: DisplayRepresentation { \"Provide a display representation.\" }",
+            "    ",
+            "    let id = UUID()",
+            "    ",
+            "    var title: String?",
+            "    var seriesTitle: String?",
+            "    var author: String?",
+            "    var genre: String?",
+            "    var purchaseDate: Date?",
+            "    var contentType: BookContentType?",
+            "    var url: URL?",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The assistant schema for the ",
+              "type": "text"
+            },
+            {
+              "code": "BookEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " consists of the ",
+              "type": "text"
+            },
+            {
+              "code": ".books",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domain and the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BooksEntity/book",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " schema.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a list of available app entity schemas in the ",
+              "type": "text"
+            },
+            {
+              "code": ".books",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domain, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BooksEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-sure-your-enumeration-meets-requirements",
+          "level": 3,
+          "text": "Make sure your enumeration meets requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make sure Siri and Apple Intelligence understand custom static types for your intent parameters,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "annotate app enumerations with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEnum(schema:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro. Then, pass the ",
+              "type": "text"
+            },
+            {
+              "code": ".books",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domain",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and a schema to it. The following example uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BooksEnum/contentType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " schema:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@AssistantEnum(schema: .books.contentType)",
+            "enum BookContentType: String, AppEnum {",
+            "    case book",
+            "    case pdf",
+            "",
+            "    static var caseDisplayRepresentations: [BookContentType: AppIntents.DisplayRepresentation] = [:]",
+            "",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a list of available app enumeration schemas in the ",
+              "type": "text"
+            },
+            {
+              "code": ".books",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domain, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BooksEnum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "app-intents-PageImage-card.png": {
+      "alt": "[A hero image of an App Intents framework icon.]",
+      "identifier": "app-intents-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f45fa3b20a1dca9bc37dc1052bdd8f0b/app-intents-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8bc71c773b4be518f0665536bee92d34/app-intents-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents": {
+      "abstract": [
+        {
+          "text": "Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and enhanced action capabilities of Siri, powered by Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/appintents"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEntity(schema:)": {
+      "abstract": [
+        {
+          "text": "A Swift macro you use to make sure your app entity conforms to an assistant schema.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssistantEntity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "schema"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEntity(schema:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AssistantEntity(schema:)",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantentity(schema:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEnum(schema:)": {
+      "abstract": [
+        {
+          "text": "A Swift macro you use to make sure your app enum conforms to an assistant schema.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssistantEnum"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "schema"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEnum(schema:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AssistantEnum(schema:)",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantenum(schema:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantIntent(schema:)": {
+      "abstract": [
+        {
+          "text": "A Swift macro you use to make sure your app intent conforms to an assistant schema.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssistantIntent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "schema"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantIntent(schema:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AssistantIntent(schema:)",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantintent(schema:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BooksEntity": {
+      "abstract": [
+        {
+          "text": "Assistant schema conformance for app entities that describe ebooks or audiobooks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BooksEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BooksEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BooksEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssistantSchemas.BooksEntity",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantschemas/booksentity"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BooksEntity/book": {
+      "abstract": [
+        {
+          "text": "The app entity describes an ebook.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "book"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents16AssistantSchemasO",
+          "text": "AssistantSchemas"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents16AssistantSchemasO6EntityP",
+          "text": "Entity"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BooksEntity/book",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "book",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantschemas/booksentity/book"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BooksEnum": {
+      "abstract": [
+        {
+          "text": "Assistant schema conformance for types you use to describe ebooks or audiobooks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BooksEnum"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BooksEnum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BooksEnum"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssistantSchemas.BooksEnum",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantschemas/booksenum"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BooksEnum/contentType": {
+      "abstract": [
+        {
+          "text": "The content type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents16AssistantSchemasO",
+          "text": "AssistantSchemas"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents16AssistantSchemasO4EnumP",
+          "text": "Enum"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BooksEnum/contentType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentType",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantschemas/booksenum/contenttype"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BooksIntent": {
+      "abstract": [
+        {
+          "text": "Assistant schema conformance for app intents that offer ebook and audiobook functionality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BooksIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BooksIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BooksIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssistantSchemas.BooksIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantschemas/booksintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BooksIntent/openBook": {
+      "abstract": [
+        {
+          "text": "The app intent conforms to the schema for opening an ebook.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openBook"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents16AssistantSchemasO",
+          "text": "AssistantSchemas"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents16AssistantSchemasO6IntentP",
+          "text": "Intent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BooksIntent/openBook",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "openBook",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantschemas/booksintent/openbook"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-actions-with-siri-and-apple-intelligence": {
+      "abstract": [
+        {
+          "text": "Create app intents, entities, and enumerations that conform to assistant schemas to tap into the enhanced action capabilities of Siri and Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-actions-with-siri-and-apple-intelligence",
+      "images": [
+        {
+          "identifier": "app-intents-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Integrating actions with Siri and Apple Intelligence",
+      "type": "topic",
+      "url": "/documentation/appintents/integrating-actions-with-siri-and-apple-intelligence"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/app-intent-domains": {
+      "abstract": [
+        {
+          "text": "Make your app’s actions and content available to Siri and Apple Intelligence with assistant schemas.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/app-intent-domains",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App intent domains",
+      "type": "topic",
+      "url": "/documentation/appintents/app-intent-domains"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/app-intents": {
+      "abstract": [
+        {
+          "text": "Define the custom actions your app exposes to the system, and incorporate",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "support for existing SiriKit intents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/app-intents",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App intents",
+      "type": "topic",
+      "url": "/documentation/appintents/app-intents"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Books",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BooksIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BooksEntity",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BooksEnum"
+      ],
+      "title": "Books"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appintents/making-ebook-actions-available-to-siri-and-apple-intelligence"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

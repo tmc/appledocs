@@ -1,0 +1,783 @@
+{
+  "abstract": [
+    {
+      "text": "Access Swift types and declarations from within your Objective-C codebase.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift",
+        "doc://com.apple.Swift/documentation/Swift/imported-c-and-objective-c-apis"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/importing-swift-into-objective-c"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Importing Swift into Objective-C"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can work with types declared in Swift from within the Objective-C code in your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "project by importing an Xcode-generated header file. This file is an Objective-C",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "header that declares the Swift interfaces in your target, and you can think of it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as an umbrella header for your Swift code. You don’t need to do anything special",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to create the generated header—just import it to use its contents in your Objective-C",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The header’s name is generated from your product module name, followed by ",
+              "type": "text"
+            },
+            {
+              "code": "\"-Swift.h\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "By default, this name is the same as your product name, with any nonalphanumeric",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "characters replaced with an underscore (",
+              "type": "text"
+            },
+            {
+              "code": "_",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). If the name begins with a number, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "first digit is replaced with an underscore.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "importing-swift-into-objective-c-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The process for importing Swift declarations into Objective-C code differs slightly",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "depending on whether you’re writing an app or a framework. Both processes are described",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Import-Code-Within-an-App-Target",
+          "level": 3,
+          "text": "Import Code Within an App Target",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re building an app target, you can import your Swift code into any Objective-C",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": ".m",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file within that same target using this syntax and substituting the appropriate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "name:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#import \"ProductModuleName-Swift.h\""
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the generated header contains interfaces for Swift declarations marked",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the ",
+              "type": "text"
+            },
+            {
+              "code": "public",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "open",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier. If your app target has an Objective-C bridging",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "header, the generated header also includes interfaces marked with the ",
+              "type": "text"
+            },
+            {
+              "code": "internal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier. Declarations marked with the ",
+              "type": "text"
+            },
+            {
+              "code": "private",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "fileprivate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier don’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "appear in the generated header, and aren’t exposed to the Objective-C runtime unless",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "they are explicitly marked with a ",
+              "type": "text"
+            },
+            {
+              "code": "@IBAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "@IBOutlet",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "@objc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Inside unit test targets, you can access imported internal declarations as if they",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "were public by prepending ",
+              "type": "text"
+            },
+            {
+              "code": "@testable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the product module import statement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Swift interfaces in the generated header include references to all of the Objective-C",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "types used in them, so make sure to import the Objective-C headers for those types",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "first.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When building an app target, you can provide a custom name for the product module",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by changing the Product Module Name build setting. Xcode uses this name when naming",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the generated header file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Import-Code-Within-a-Framework-Target",
+          "level": 3,
+          "text": "Import Code Within a Framework Target",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To import a set of Swift files in the same framework target as your Objective-C code,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "import the Xcode-generated header for your Swift code into any Objective-C ",
+              "type": "text"
+            },
+            {
+              "code": ".m",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "where you want to use your Swift code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the generated header is part of the framework’s public interface, only declarations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "marked with the ",
+              "type": "text"
+            },
+            {
+              "code": "public",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "open",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier appear in the generated header for a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "framework target. Methods and properties that are marked with the ",
+              "type": "text"
+            },
+            {
+              "code": "internal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and declared within a class that inherits from an Objective-C class are accessible",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the Objective-C runtime. However, they’re inaccessible at compile time and don’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "appear in the generated header for a framework target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Import Swift code into Objective-C within the same framework:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Under Build Settings, in Packaging, make sure the Defines Module setting for that",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "framework target is set to Yes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Import the Swift code from that framework target into any Objective-C ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".m",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "within that target using this syntax and substituting the appropriate names:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "#import <ProductName/ProductModuleName-Swift.h>"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Include-Swift-Classes-in-Objective-C-Headers-Using-Forward-Declarations",
+          "level": 3,
+          "text": "Include Swift Classes in Objective-C Headers Using Forward Declarations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When declarations in an Objective-C header file refer to a Swift class or protocol",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that comes from the same target, importing the generated header creates a cyclical",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "reference. To avoid this, use a forward declaration of the Swift class or protocol",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to reference it in an Objective-C interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// MyObjcClass.h",
+            "@class MySwiftClass;",
+            "@protocol MySwiftProtocol;",
+            "",
+            "@interface MyObjcClass : NSObject",
+            "- (MySwiftClass *)returnSwiftClassInstance;",
+            "- (id <MySwiftProtocol>)returnInstanceAdoptingSwiftProtocol;",
+            "// ...",
+            "@end"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Forward declarations of Swift classes and protocols can be used only as types for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method and property declarations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/imported-c-and-objective-c-apis": {
+      "abstract": [
+        {
+          "text": "Use native Swift syntax to interoperate with types and functions in C and Objective-C.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/imported-c-and-objective-c-apis",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Imported C and Objective-C APIs",
+      "type": "topic",
+      "url": "/documentation/swift/imported-c-and-objective-c-apis"
+    },
+    "doc://com.apple.Swift/documentation/Swift/importing-objective-c-into-swift": {
+      "abstract": [
+        {
+          "text": "Access classes and other declarations from your Objective-C code in Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/importing-objective-c-into-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Importing Objective-C into Swift",
+      "type": "topic",
+      "url": "/documentation/swift/importing-objective-c-into-swift"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "importing-swift-into-objective-c-1": {
+      "alt": "Diagram showing the steps to import Swift declarations into Objective-C code. Use forward declarations to declare Swift classes used in an Objective-C header file, and #import statements to import the Xcode-generated header into Objective-C .m files.",
+      "identifier": "importing-swift-into-objective-c-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/686f6a812f41d58d69bfe64e17b04291/importing-swift-into-objective-c-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/682a1a24553758d64baa4c4469d8a349/importing-swift-into-objective-c-1~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Swift-and-Objective-C-in-the-Same-Project",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/importing-objective-c-into-swift"
+      ],
+      "title": "Swift and Objective-C in the Same Project"
+    }
+  ]
+}

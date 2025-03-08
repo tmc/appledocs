@@ -1,0 +1,1991 @@
+{
+  "abstract": [
+    {
+      "text": "Add the required capabilities and define a compatible schema to enable",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "SwiftData to automatically sync your app’s model data using iCloud.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftData/documentation/SwiftData"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftData/documentation/SwiftData/Syncing-model-data-across-a-persons-devices"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftData"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Syncing model data across a person’s devices"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People who use your app to create content expect that content to be available",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on all of their devices. SwiftData makes it possible to synchronize content",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by abstracting away the associated complexities. To adopt the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "framework’s automatic sync functionality, add two Xcode capabilities",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to your app. The system operates with a set of predictable behaviors, such as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Entitlements.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to infer the CloudKit configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftData uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreData/NSPersistentCloudKitContainer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "class from Core Data to handle CloudKit synchronization. For more information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "about how your models become instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKRecord",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreData/reading-cloudkit-records-for-core-data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-iCloud-and-Background-Modes-capabilities",
+          "level": 3,
+          "text": "Add the iCloud and Background Modes capabilities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftData requires two separate capabilities to perform automatic iCloud sync:",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the iCloud capability, which lets you configure CloudKit, and the Background",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Modes capability, which lets your app receive remote notifications from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "CloudKit that contain information about new changes on the server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The iCloud capability requires an active Apple Developer account with admin permissions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add the iCloud and Background Modes capabilities:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Follow the steps in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-icloud-services",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to add the iCloud capability to your Xcode project, enable CloudKit, and create",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "or choose an existing ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "container",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " — an object that CloudKit uses to isolate",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "your app’s databases on the iCloud servers and manage their access and",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "operations.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Follow the steps in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-background-execution-modes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to add the Background Modes capability, enabling the Remote notifications",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "option. The system delivers remote notifications silently to your app, allowing",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "SwiftData to process the changes they describe and keep your local model data",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in sync with the iCloud servers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Define-a-CloudKit-compatible-schema",
+          "level": 3,
+          "text": "Define a CloudKit compatible schema",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A model layer described using macros in SwiftData will, in many cases, generate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a schema already compatible with CloudKit. However, the SwiftData framework",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "does include a small number of features that CloudKit doesn’t support natively,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as unique constraints and nonoptional relationships. It’s important you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "consider these limitations as you design your app’s model layer (or adapt an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "existing one) to ensure it remains compatible with CloudKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SwiftData macro",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "CloudKit schema limitation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "@Attribute",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The framework synchronizes changes concurrently and at opportune times, which means CloudKit is unable to enforce the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Attribute/Option/unique",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property option.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "@Relationship",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The iCloud servers don’t guarantee atomic processing of relationship changes, so CloudKit requires all relationships to be optional. SwiftData automatically sets the inverse of a relationship if it can reliably infer that inverse from your schema. Otherwise, explicitly set the inverse before saving because CloudKit processes changes in an indeterminate order. The framework doesn’t immediately synchronize changes, meaning CloudKit is unable to support the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Relationship/DeleteRule-swift.enum/deny",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " delete rule.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You manually initialize your app’s CloudKit schema during development — as the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "following section describes — but you need to promote that schema to production",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "before releasing your app. CloudKit schemas are additive only, which means",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you’re unable to delete model types or change existing model attributes after",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you promote a schema to production.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Initialize-the-CloudKit-development-schema",
+          "level": 3,
+          "text": "Initialize the CloudKit development schema",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you define a model layer that’s compatible with CloudKit, use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "existing integration from Core Data with CloudKit to initialize a copy of that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "model layer on the iCloud servers. For example, you might do this during app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "launch by adding the necessary code to the ",
+              "type": "text"
+            },
+            {
+              "code": "init()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function of the type in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app that adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/App",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol from SwiftUI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Follow these steps to ensure proper CloudKit schema initialization:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an instance of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelConfiguration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", which provides some basic information about the app’s SwiftData stack.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the configuration’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelConfiguration/url",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to create an instance of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreData/NSPersistentStoreDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", enabling SwiftData and Core Data to reference the same store on disk.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configure the store description with your app’s CloudKit container identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Request Core Data load the store synchronously, to guarantee that the load finishes before you attempt to initialize the CloudKit schema.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a managed object model that contains the same model types as the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ModelConfiguration",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreData/NSPersistentCloudKitContainer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to load the store from the description and to initialize the CloudKit schema.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Unload the persistent store before creating an instance of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to avoid both frameworks attempting to sync data to CloudKit.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "let config = ModelConfiguration()",
+            "",
+            "do {",
+            "#if DEBUG",
+            "    // Use an autorelease pool to make sure Swift deallocates the persistent ",
+            "    // container before setting up the SwiftData stack.",
+            "    try autoreleasepool {",
+            "        let desc = NSPersistentStoreDescription(url: config.url)",
+            "        let opts = NSPersistentCloudKitContainerOptions(containerIdentifier: \"iCloud.com.example.Trips\")",
+            "        desc.cloudKitContainerOptions = opts",
+            "        // Load the store synchronously so it completes before initializing the ",
+            "        // CloudKit schema.",
+            "        desc.shouldAddStoreAsynchronously = false",
+            "        if let mom = NSManagedObjectModel.makeManagedObjectModel(for: [Trip.self, Accommodation.self]) {",
+            "            let container = NSPersistentCloudKitContainer(name: \"Trips\", managedObjectModel: mom)",
+            "            container.persistentStoreDescriptions = [desc]",
+            "            container.loadPersistentStores {_, err in",
+            "                if let err {",
+            "                    fatalError(err.localizedDescription)",
+            "                }",
+            "            }",
+            "            // Initialize the CloudKit schema after the store finishes loading.",
+            "            try container.initializeCloudKitSchema()",
+            "            // Remove and unload the store from the persistent container.",
+            "            if let store = container.persistentStoreCoordinator.persistentStores.first {",
+            "                try container.persistentStoreCoordinator.remove(store)",
+            "            }",
+            "        }",
+            "    }",
+            "#endif",
+            "    modelContainer = try ModelContainer(for: Trip.self, Accommodation.self,",
+            "                                        configurations: config)",
+            "} catch {",
+            "    fatalError(error.localizedDescription)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure that schema initialization runs only in nonproduction builds, wrap",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your code with the ",
+              "type": "text"
+            },
+            {
+              "code": "#if",
+              "type": "codeVoice"
+            },
+            {
+              "text": " compiler directive and specify the ",
+              "type": "text"
+            },
+            {
+              "code": "DEBUG",
+              "type": "codeVoice"
+            },
+            {
+              "text": " compiler",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "flag.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Go to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://icloud.developer.apple.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to verify the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "initialized schema. If you’re unable to see your schema’s record types or data,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you may need to enable querying support. For more information, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit/inspecting-and-editing-an-icloud-container-s-schema#3404860",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-SwiftData-to-use-an-existing-CloudKit-container",
+          "level": 3,
+          "text": "Configure SwiftData to use an existing CloudKit container",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, SwiftData inspects your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Entitlements.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "determine which CloudKit container to use, and selects the first identifier it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "finds in that file. If your app uses multiple CloudKit containers, you may need",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to configure SwiftData to use a specific identifier instead of relying on the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "default behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For apps already using a production CloudKit schema, specify only",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "containers that SwiftData or Core Data have managed previously. All other",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "CloudKit containers are incompatible.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To opt out of automatic container discovery in SwiftData, create an instance of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and use the initializer’s ",
+              "type": "text"
+            },
+            {
+              "code": "cloudKitDatabase",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parameter to specify your preferred identifier:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let config = ModelConfiguration(cloudKitDatabase: .private(\"iCloud.com.example.Trips\"))",
+            "let modelContainer = try ModelContainer(for: Trip.self, Accommodation.self,",
+            "                                        configurations: config)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Disable-automatic-sync-in-apps-already-using-CloudKit",
+          "level": 3,
+          "text": "Disable automatic sync in apps already using CloudKit",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftData uses CloudKit to provide automatic iCloud sync and therefore requires",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the same Xcode-managed capabilities as those found in traditional CloudKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "apps. This sharing of capabilities may lead to issues in apps already using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "CloudKit, because SwiftData assumes the presence of those capabilities as an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "indication that it handles sync. For example, automatic sync isn’t possible if",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "there are incompatibilities between a SwiftData schema and an existing CloudKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "schema.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In such scenarios, opt out of automatic iCloud sync by creating an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and explicitly pass",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelConfiguration/CloudKitDatabase-swift.struct/none",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "code": "cloudKitDatabase",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let config = ModelConfiguration(cloudKitDatabase: .none)",
+            "let modelContainer = try ModelContainer(for: Trip.self, Accommodation.self,",
+            "                                        configurations: config)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specifying ",
+              "type": "text"
+            },
+            {
+              "code": "none",
+              "type": "codeVoice"
+            },
+            {
+              "text": " overrides any automatically discovered identifiers and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "disables SwiftData’s automatic iCloud sync.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.SwiftData/documentation/SwiftData": {
+      "abstract": [
+        {
+          "text": "Write your model code declaratively to add managed persistence and efficient",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "model fetching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData",
+      "images": [
+        {
+          "identifier": "swiftData-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftData",
+      "type": "topic",
+      "url": "/documentation/swiftdata"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ConcurrencySupport": {
+      "abstract": [
+        {
+          "text": "Types you use to access model attributes and perform storage-related tasks in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a safe and isolated way.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ConcurrencySupport",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Concurrency support",
+      "type": "topic",
+      "url": "/documentation/swiftdata/concurrencysupport"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Deleting-persistent-data-from-your-app": {
+      "abstract": [
+        {
+          "text": "Explore different ways to use SwiftData to delete persistent data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Deleting-persistent-data-from-your-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Deleting persistent data from your app",
+      "type": "topic",
+      "url": "/documentation/swiftdata/deleting-persistent-data-from-your-app"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Fetching-and-filtering-time-based-model-changes": {
+      "abstract": [
+        {
+          "text": "Track all inserts, updates, and deletes that occur in a data store and process",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "them as a series of chronological transactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Fetching-and-filtering-time-based-model-changes",
+      "images": [
+        {
+          "identifier": "fetching-and-filtering-time-based-models-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Fetching and filtering time-based model changes",
+      "type": "topic",
+      "url": "/documentation/swiftdata/fetching-and-filtering-time-based-model-changes"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelConfiguration": {
+      "abstract": [
+        {
+          "text": "A type that describes the configuration of an app’s schema or specific group of models.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelConfiguration",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelconfiguration"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelConfiguration/CloudKitDatabase-swift.struct/none": {
+      "abstract": [
+        {
+          "text": "Disables managed CloudKit sync.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "none"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData18ModelConfigurationV",
+          "text": "ModelConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData18ModelConfigurationV16CloudKitDatabaseV",
+          "text": "CloudKitDatabase"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelConfiguration/CloudKitDatabase-swift.struct/none",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "none",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelconfiguration/cloudkitdatabase-swift.struct/none"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelConfiguration/url": {
+      "abstract": [
+        {
+          "text": "The on-disk location of the schema’s persistent storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelConfiguration/url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelconfiguration/url"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer": {
+      "abstract": [
+        {
+          "text": "An object that manages an app’s schema and model storage configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelContainer",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontainer"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext": {
+      "abstract": [
+        {
+          "text": "An object that enables you to fetch, insert, and delete models, and save any",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "changes to disk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelContext",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontext"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Reverting-data-changes-using-the-undo-manager": {
+      "abstract": [
+        {
+          "text": "Automatically record data change operations that people perform in your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "SwiftUI app, and let them undo and redo those changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Reverting-data-changes-using-the-undo-manager",
+      "kind": "article",
+      "role": "article",
+      "title": "Reverting data changes using the undo manager",
+      "type": "topic",
+      "url": "/documentation/swiftdata/reverting-data-changes-using-the-undo-manager"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Attribute/Option/unique": {
+      "abstract": [
+        {
+          "text": "Ensures the property’s value is unique across all models of the same type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unique"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC",
+          "text": "Schema"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC9AttributeC",
+          "text": "Attribute"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC9AttributeC6OptionV",
+          "text": "Option"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Attribute/Option/unique",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unique",
+      "type": "topic",
+      "url": "/documentation/swiftdata/schema/attribute/option/unique"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Relationship/DeleteRule-swift.enum/deny": {
+      "abstract": [
+        {
+          "text": "A rule that prevents the deletion of a model because it contains one or more references to other",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "models.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deny"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Relationship/DeleteRule-swift.enum/deny",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Schema.Relationship.DeleteRule.deny",
+      "type": "topic",
+      "url": "/documentation/swiftdata/schema/relationship/deleterule-swift.enum/deny"
+    },
+    "doc://com.apple.documentation/documentation/CloudKit/CKRecord": {
+      "abstract": [
+        {
+          "text": "A collection of key-value pairs that store your app’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKRecord"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKRecord",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKRecord",
+      "type": "topic",
+      "url": "/documentation/CloudKit/CKRecord"
+    },
+    "doc://com.apple.documentation/documentation/CloudKit/inspecting-and-editing-an-icloud-container-s-schema#3404860": {
+      "abstract": [
+        {
+          "text": "Review and edit the schema for your app’s container using the CloudKit Database app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit/inspecting-and-editing-an-icloud-container-s-schema#3404860",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting and Editing an iCloud Container’s Schema",
+      "type": "topic",
+      "url": "/documentation/CloudKit/inspecting-and-editing-an-icloud-container-s-schema"
+    },
+    "doc://com.apple.documentation/documentation/CoreData/NSPersistentCloudKitContainer": {
+      "abstract": [
+        {
+          "text": "A container that encapsulates the Core Data stack in your app, and mirrors select persistent stores to a CloudKit private database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPersistentCloudKitContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreData/NSPersistentCloudKitContainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPersistentCloudKitContainer",
+      "type": "topic",
+      "url": "/documentation/CoreData/NSPersistentCloudKitContainer"
+    },
+    "doc://com.apple.documentation/documentation/CoreData/NSPersistentStoreDescription": {
+      "abstract": [
+        {
+          "text": "A description object used to create and load a persistent store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPersistentStoreDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreData/NSPersistentStoreDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPersistentStoreDescription",
+      "type": "topic",
+      "url": "/documentation/CoreData/NSPersistentStoreDescription"
+    },
+    "doc://com.apple.documentation/documentation/CoreData/reading-cloudkit-records-for-core-data": {
+      "abstract": [
+        {
+          "text": "Access CloudKit records created from Core Data managed objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreData/reading-cloudkit-records-for-core-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Reading CloudKit Records for Core Data",
+      "type": "topic",
+      "url": "/documentation/CoreData/reading-cloudkit-records-for-core-data"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/App": {
+      "abstract": [
+        {
+          "text": "A type that represents the structure and behavior of an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "App"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/App",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/App"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/configuring-background-execution-modes": {
+      "abstract": [
+        {
+          "text": "Indicate the background services your app requires to continue executing in the background in iOS, iPadOS, tvOS, visionOS, and watchOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-background-execution-modes",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring background execution modes",
+      "type": "topic",
+      "url": "/documentation/Xcode/configuring-background-execution-modes"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/configuring-icloud-services": {
+      "abstract": [
+        {
+          "text": "Share user or app data among multiple instances of your app running on different devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-icloud-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring iCloud services",
+      "type": "topic",
+      "url": "/documentation/Xcode/configuring-icloud-services"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "fetching-and-filtering-time-based-models-PageImage-card.png": {
+      "alt": "A light blue Swift logo above a background of clock icons and binary ones and zeros.",
+      "identifier": "fetching-and-filtering-time-based-models-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/075a7852ebc042773b65c445265171ee/fetching-and-filtering-time-based-models-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/511dbb1cea4900702d613a33524b1ff9/fetching-and-filtering-time-based-models-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "https://icloud.developer.apple.com": {
+      "identifier": "https://icloud.developer.apple.com",
+      "title": "CloudKit Console",
+      "titleInlineContent": [
+        {
+          "text": "CloudKit Console",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://icloud.developer.apple.com"
+    },
+    "swiftData-PageImage-card.png": {
+      "alt": "A gray and white Swift logo on a swirly blue background.",
+      "identifier": "swiftData-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f347b5f4b93bb57bf95423987e9a6c9/swiftData-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f0a5e8a43bc94c93e07c48dc59f884ed/swiftData-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Model-life-cycle",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer",
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Fetching-and-filtering-time-based-model-changes",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Deleting-persistent-data-from-your-app",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Reverting-data-changes-using-the-undo-manager",
+        "doc://com.apple.SwiftData/documentation/SwiftData/ConcurrencySupport"
+      ],
+      "title": "Model life cycle"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreData~1NSPersistentStoreDescription/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSPersistentStoreDescription"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CloudKit~1CKRecord/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CKRecord"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreData~1NSPersistentCloudKitContainer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSPersistentCloudKitContainer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSPersistentContainer",
+              "text": "NSPersistentContainer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftdata/syncing-model-data-across-a-persons-devices"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2008 @@
+{
+  "abstract": [
+    {
+      "text": "Persist data in your app intuitively with the Swift native persistence framework.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coredata/documentation/CoreData"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coredata/documentation/CoreData/adopting-swiftdata-for-a-core-data-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Data"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Adopting SwiftData for a Core Data app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample project is designed to help you understand how to adopt SwiftData in an existing Core Data app. The SampleTrips app fetches and displays all upcoming trips from the store, and allows people to create or remove trips, and to add, update, or remove information from the itinerary for each trip. There are three versions of this app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Core Data version that demonstrates Core Data best practices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A SwiftData version that shows the complete app conversion from Core Data to SwiftData.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A coexistence version, where the sample app uses Core Data, and adds a widget extension that uses SwiftData. This version covers a scenario where you might want to adopt SwiftData incrementally, or for certain portions of your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Open the sample code project in Xcode. Before building it, do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the developer team for all targets to your team so Xcode automatically manages the provisioning profile. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://help.apple.com/xcode/mac/current/#/dev23aab79b4",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Replace the App Group container identifier — ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "group.com.example.apple-samplecode.SampleTrips",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — with one specific to your team for the entire project. The identifier points to an App Group container that the app and widget use to share data. You can search for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "group.com.example.apple-samplecode.SampleTrips",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " using the Find navigator in Xcode, and then change all of the occurrences (except those in this ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "README",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file). For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-app-groups",
+                      "isActive": true,
+                      "overridingTitle": "Configuring App Groups",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Configuring App Groups",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Adopt-SwiftData",
+          "level": 3,
+          "text": "Adopt SwiftData",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The SwiftData sample sets up the schema with Swift types that conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftData/PersistentModel",
+              "isActive": true,
+              "overridingTitle": "PersistentModel",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "PersistentModel",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " protocol, which captures information about the app’s types, including properties and relationships. Each model file corresponds to an individual entity, with identical entity names, properties, and relationships as its Core Data counterpart.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each model file in this sample uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftData/Model()",
+              "isActive": true,
+              "overridingTitle": "Model()",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Model()",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " macro to add necessary conformances for the ",
+              "type": "text"
+            },
+            {
+              "code": "PersistentModel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Observation/Observable",
+              "isActive": true,
+              "overridingTitle": "Observable",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Observable",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " protocols:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Model class Trip {",
+            "    #Index<Trip>([\\.name], [\\.startDate], [\\.endDate], [\\.name, \\.startDate, \\.endDate])",
+            "    #Unique<Trip>([\\.name, \\.startDate, \\.endDate])",
+            "    ",
+            "    @Attribute(.preserveValueOnDeletion)",
+            "    var name: String",
+            "    var destination: String",
+            "    ",
+            "    @Attribute(.preserveValueOnDeletion)",
+            "    var startDate: Date",
+            "    ",
+            "    @Attribute(.preserveValueOnDeletion)",
+            "    var endDate: Date",
+            "",
+            "    @Relationship(deleteRule: .cascade, inverse: \\BucketListItem.trip)",
+            "    var bucketList: [BucketListItem] = [BucketListItem]()",
+            "    ",
+            "    @Relationship(deleteRule: .cascade, inverse: \\LivingAccommodation.trip)",
+            "    var livingAccommodation: LivingAccommodation?"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, the app sets up the container using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftData/ModelContainer",
+              "isActive": true,
+              "overridingTitle": "ModelContainer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "ModelContainer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to ensure that all views access the same ",
+              "type": "text"
+            },
+            {
+              "code": "ModelContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".modelContainer(modelContainer)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Setting up the ",
+              "type": "text"
+            },
+            {
+              "code": "ModelContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " also creates and set a default ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftData/ModelContext",
+              "isActive": true,
+              "overridingTitle": "ModelContext",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "ModelContext",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " in the environment. The app can access the ",
+              "type": "text"
+            },
+            {
+              "code": "ModelContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from any scene or view using an environment property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Environment(\\.modelContext) private var modelContext"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-persisted-data-object",
+          "level": 3,
+          "text": "Create a persisted data object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This app creates a new instance of a trip and inserts it into the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftData/ModelContext",
+              "isActive": true,
+              "overridingTitle": "ModelContext",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "ModelContext",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " for persistence:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let newTrip = Trip(name: name, destination: destination, startDate: startDate, endDate: endDate)",
+            "modelContext.insert(newTrip)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Persist-data",
+          "level": 3,
+          "text": "Persist data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app uses the SwiftData implicit save feature to persist data. This implicit save occurs on UI life cycle events and on a timer after the context changes. For more information about enabling autosave, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftData/ModelContext/autosaveEnabled",
+              "isActive": true,
+              "overridingTitle": "autosaveEnabled",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "autosaveEnabled",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftData/ModelContext/delete(_:)",
+              "isActive": true,
+              "overridingTitle": "delete(_:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "delete(_:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftData/ModelContext",
+              "isActive": true,
+              "overridingTitle": "ModelContext",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "ModelContext",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " with the instance to delete.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "modelContext.delete(trip)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Fetch-persisted-data",
+          "level": 3,
+          "text": "Fetch persisted data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app fetches the complete list of upcoming trips by wrapping an array of trips in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftData/Query",
+              "isActive": true,
+              "overridingTitle": "Query",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Query",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", which fetches ",
+              "type": "text"
+            },
+            {
+              "code": "Trip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects from the container.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Query(sort: \\Trip.startDate, order: .forward)",
+            "var trips: [Trip]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample also fetches data by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftData/ModelContext/fetch(_:)",
+              "isActive": true,
+              "overridingTitle": "fetch(_:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "fetch(_:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftData/ModelContext",
+              "isActive": true,
+              "overridingTitle": "ModelContext",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "ModelContext",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and passing in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftData/FetchDescriptor",
+              "isActive": true,
+              "overridingTitle": "FetchDescriptor",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "FetchDescriptor",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " that specifies both the entity to retrieve data from as well as a corresponding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/predicate",
+              "isActive": true,
+              "overridingTitle": "Predicate",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Predicate",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " specifying the conditions for the object to fetch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var descriptor = FetchDescriptor<BucketListItem>()",
+            "let tripName = trip.name",
+            "descriptor.predicate = #Predicate { item in",
+            "    item.title.contains(searchText) && tripName == item.trip?.name",
+            "}",
+            "let filteredList = try? modelContext.fetch(descriptor)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Coexistence-between-Core-Data-and-SwiftData",
+          "level": 3,
+          "text": "Coexistence between Core Data and SwiftData",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The coexistence version of the app has two persistence stacks: a Core Data persistence stack for the host app, and a SwiftData persistence stack for the widget extension. Both stacks write to the same store file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Namespace-models",
+          "level": 3,
+          "text": "Namespace models",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The namespaces in the coexistence sample use the pre-existing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreData/NSManagedObject",
+              "isActive": true,
+              "overridingTitle": "NSManagedObject",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSManagedObject",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": "-based entity subclasses such that they don’t collide with the SwiftData classes. Note that this consideration refers to the class name, not the entity name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class CDTrip: NSManagedObject {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample then refers to the entity as ",
+              "type": "text"
+            },
+            {
+              "code": "CDTrip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when accessing it in the Core Data host app. For instance, when adding a new ",
+              "type": "text"
+            },
+            {
+              "code": "Trip",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let newTrip = CDTrip(context: viewContext)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Share-the-same-store-file",
+          "level": 3,
+          "text": "Share the same store file",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample ensures that both the Core Data and SwiftData persistent stacks write to the same store file by setting the persistent store URL for the container description:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let description = container.persistentStoreDescriptions.first {",
+            "    description.url = url"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, the coexistence sample must set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreData/NSPersistentHistoryTrackingKey",
+              "isActive": true,
+              "overridingTitle": "NSPersistentHistoryTrackingKey",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSPersistentHistoryTrackingKey",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". Although SwiftData enables persistent history tracking automatically, Core Data does not, so the app enables persistent history manually.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, SwiftData behaves in the following way when determining where it persists data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It persists data store to the app’s Application Support directory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "This sample app uses App Groups to access shared containers and share data between the SwiftData widget extension and the Core Data host app. For an app that has the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.application-groups",
+                      "isActive": true,
+                      "overridingTitle": "App Groups Entitlement",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "App Groups Entitlement",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", it persists the data store to the root directory of the app group container. For apps that evolve from a version that doesn’t have any app group container to a version that has one, SwiftData copies the existing store to the app group container.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this sample, the main app and widget share the same store via an app group container, and the store is located in the default location in the app group container. To ensure SwiftData accesses the same store, the main app and widget both share the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftData/ModelContainer",
+              "isActive": true,
+              "overridingTitle": "ModelContainer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "ModelContainer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Detect-relevant-changes-by-consuming-the-SwiftData-history",
+          "level": 3,
+          "text": "Detect relevant changes by consuming the SwiftData history",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the SwiftData version, people can confirm the living accommodation for the current trip by tapping the Accommodation button in the widget. The widget then updates ",
+              "type": "text"
+            },
+            {
+              "code": "LivingAccommodation.isConfirmed",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in SwiftData, and the main app, when entering the foreground, detects the changes and annotates the trip with a blue dot to indicate that it has unread changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are multiple options for the main app to detect the changes from the widget:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Adding a key value pair to the shared ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UserDefaults",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1409957-init",
+                      "isActive": true,
+                      "overridingTitle": "init(suiteName:)",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "init(suiteName:)",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for the widget and the main app to share the changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Adding a new attribute in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Trip",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " so the widget can mark the trip as “unread” when changing the living accommodation status.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Consuming the history of the store, which SwiftData generates by default, and picking up the relevant changes from there.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first option introduces a new storage, and hence needs to maintain the consistency between SwiftData and the shared ",
+              "type": "text"
+            },
+            {
+              "code": "UserDefaults",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The second option is easier to implement, but introduces and maintains a new attribute, which is redundant and consumes extra storage space; for real-world apps that manage more complicated changes and have larger data set, that may not be the favorite approach.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample chooses to detect the changes with the third option. To do so, it sets up a ",
+              "type": "text"
+            },
+            {
+              "code": "HistoryDescriptor<DefaultHistoryTransaction>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with a history token (",
+              "type": "text"
+            },
+            {
+              "code": "DefaultHistoryToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") and calls ",
+              "type": "text"
+            },
+            {
+              "code": "fetchHistory(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to retrieve the history transactions (",
+              "type": "text"
+            },
+            {
+              "code": "DefaultHistoryTransaction",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") after the token, as shown in the following code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func findTransactions(after historyToken: DefaultHistoryToken?, author: String) -> [DefaultHistoryTransaction] {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After getting the transactions, it uses the following code to find the trips that have living accommodation changes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func findTrips(in transactions: [DefaultHistoryTransaction]) -> (Set<Trip>, DefaultHistoryToken?) {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "422cc6ab6968/AdoptingSwiftDataForACoreDataApp.zip": {
+      "checksum": "422cc6ab69683177f70de197e58c3fcc31b32d58540c50c8470495a2a1d1ee40450c028dcb320a1aea8ce7c6b85fc3083aac7786f6af5b3dc441c9d4bb07722f",
+      "identifier": "422cc6ab6968/AdoptingSwiftDataForACoreDataApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/422cc6ab6968/AdoptingSwiftDataForACoreDataApp.zip"
+    },
+    "doc://com.apple.coredata/documentation/CoreData": {
+      "abstract": [
+        {
+          "text": "Persist or cache data on a single device, or sync data to multiple devices with CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Data",
+      "type": "topic",
+      "url": "/documentation/coredata"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.application-groups": {
+      "abstract": [
+        {
+          "text": "A list of identifiers specifying the groups your app belongs to.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.application-groups",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App Groups Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.application-groups"
+    },
+    "doc://com.apple.documentation/documentation/CoreData/NSManagedObject": {
+      "abstract": [
+        {
+          "text": "The base class that all Core Data model objects inherit from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSManagedObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreData/NSManagedObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSManagedObject",
+      "type": "topic",
+      "url": "/documentation/CoreData/NSManagedObject"
+    },
+    "doc://com.apple.documentation/documentation/CoreData/NSPersistentHistoryTrackingKey": {
+      "abstract": [
+        {
+          "text": "The key you use to enable persistent history tracking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPersistentHistoryTrackingKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreData/NSPersistentHistoryTrackingKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPersistentHistoryTrackingKey",
+      "type": "topic",
+      "url": "/documentation/CoreData/NSPersistentHistoryTrackingKey"
+    },
+    "doc://com.apple.documentation/documentation/Observation/Observable": {
+      "abstract": [
+        {
+          "text": "A type that emits notifications to observers when underlying data changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Observable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Observation/Observable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Observable",
+      "type": "topic",
+      "url": "/documentation/Observation/Observable"
+    },
+    "doc://com.apple.documentation/documentation/SwiftData/FetchDescriptor": {
+      "abstract": [
+        {
+          "text": "A type that describes the criteria, sort order, and any additional configuration to use when performing a fetch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FetchDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData15PersistentModelP",
+          "text": "PersistentModel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftData/FetchDescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FetchDescriptor",
+      "type": "topic",
+      "url": "/documentation/SwiftData/FetchDescriptor"
+    },
+    "doc://com.apple.documentation/documentation/SwiftData/Model()": {
+      "abstract": [
+        {
+          "text": "Converts a Swift class into a stored model that’s managed by SwiftData.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@attached"
+        },
+        {
+          "kind": "text",
+          "text": "(member, names: named(_$backingData), named(persistentBackingData), named(schemaMetadata), named(init), named(_$observationRegistrar), named(_SwiftDataNoType), named(access), named(withMutation)) "
+        },
+        {
+          "kind": "attribute",
+          "text": "@attached"
+        },
+        {
+          "kind": "text",
+          "text": "(memberAttribute) "
+        },
+        {
+          "kind": "attribute",
+          "text": "@attached"
+        },
+        {
+          "kind": "text",
+          "text": "(extension, conformances: "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Observation10ObservableP",
+          "text": "Observable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData15PersistentModelP",
+          "text": "PersistentModel"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Model"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftData/Model()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Model()",
+      "type": "topic",
+      "url": "/documentation/SwiftData/Model()"
+    },
+    "doc://com.apple.documentation/documentation/SwiftData/ModelContainer": {
+      "abstract": [
+        {
+          "text": "An object that manages an app’s schema and model storage configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftData/ModelContainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ModelContainer",
+      "type": "topic",
+      "url": "/documentation/SwiftData/ModelContainer"
+    },
+    "doc://com.apple.documentation/documentation/SwiftData/ModelContext": {
+      "abstract": [
+        {
+          "text": "An object that enables you to fetch, insert, and delete models, and save any changes to disk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftData/ModelContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ModelContext",
+      "type": "topic",
+      "url": "/documentation/SwiftData/ModelContext"
+    },
+    "doc://com.apple.documentation/documentation/SwiftData/ModelContext/autosaveEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the context should automatically save any pending changes when certain events occur.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autosaveEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftData/ModelContext/autosaveEnabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "autosaveEnabled",
+      "type": "topic",
+      "url": "/documentation/SwiftData/ModelContext/autosaveEnabled"
+    },
+    "doc://com.apple.documentation/documentation/SwiftData/ModelContext/delete(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the specified model from the persistent storage during the next save operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delete"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "model"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData15PersistentModelP",
+          "text": "PersistentModel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftData/ModelContext/delete(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delete(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftData/ModelContext/delete(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftData/ModelContext/fetch(_:)": {
+      "abstract": [
+        {
+          "text": "Returns an array of typed models that match the criteria of the specified fetch descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetch"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData15FetchDescriptorV",
+          "text": "FetchDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "] "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData15PersistentModelP",
+          "text": "PersistentModel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftData/ModelContext/fetch(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fetch(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftData/ModelContext/fetch(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftData/PersistentModel": {
+      "abstract": [
+        {
+          "text": "An interface that enables SwiftData to manage a Swift class as a stored model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PersistentModel"
+        },
+        {
+          "kind": "text",
+          "text": " : AnyObject, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Observation10ObservableP",
+          "text": "Observable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP",
+          "text": "Identifiable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftData/PersistentModel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PersistentModel",
+      "type": "topic",
+      "url": "/documentation/SwiftData/PersistentModel"
+    },
+    "doc://com.apple.documentation/documentation/SwiftData/Query": {
+      "abstract": [
+        {
+          "text": "A type that fetches models using the specified criteria, and manages those models so they remain in sync with the underlying data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Query"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData15PersistentModelP",
+          "text": "PersistentModel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftData/Query",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Query",
+      "type": "topic",
+      "url": "/documentation/SwiftData/Query"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/configuring-app-groups": {
+      "abstract": [
+        {
+          "text": "Enable communication and data sharing between multiple installed apps created by the same developer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-app-groups",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring app groups",
+      "type": "topic",
+      "url": "/documentation/Xcode/configuring-app-groups"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate": {
+      "abstract": [
+        {
+          "text": "A logical condition used to test a set of input values for searching or filtering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Predicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Predicate",
+      "type": "topic",
+      "url": "/documentation/foundation/predicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1409957-init": {
+      "abstract": [
+        {
+          "text": "Creates a user defaults object initialized with the defaults for the specified database name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "suiteName"
+        },
+        {
+          "kind": "text",
+          "text": ": String?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1409957-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(suiteName:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1409957-init"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev23aab79b4": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev23aab79b4",
+      "title": "Assign a project to a team",
+      "titleInlineContent": [
+        {
+          "text": "Assign a project to a team",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev23aab79b4"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "422cc6ab6968/AdoptingSwiftDataForACoreDataApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreData~1NSPersistentHistoryTrackingKey/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSPersistentHistoryTrackingKey"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1userdefaults~11409957-init/title",
+          "value": "initWithSuiteName:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreData~1NSManagedObject/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSManagedObject"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coredata/adopting-swiftdata-for-a-core-data-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

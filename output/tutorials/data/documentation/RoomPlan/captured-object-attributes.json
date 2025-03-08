@@ -1,0 +1,1111 @@
+{
+  "abstract": [
+    {
+      "text": "Determine details about the objects and surfaces that the framework identifies in a scan.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RoomPlan/documentation/RoomPlan/captured-object-attributes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RoomPlan"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Captured Object Attributes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Object",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " contains attributes that the framework observes during a scan that convey details about the object. For example, an object of category ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Object/Category-swift.enum/chair",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " may contain the attributes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/ChairType/stool",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/ChairLegType/star",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which describes the framework’s observations of the chair during the scan. An object exposes these details through its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Object/attributes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By reading the attribute information the framework sets on objects, your app can provide more informed utility with a scanned room, such as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A filtered list of product selections in a furniture catalog that matches just the categories and attributes of the present objects in the room.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A more accurate visual representation, for example when rendering a virtual reality experience, by substituting the default object bounding boxes with detailed 3D models that your app chooses.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you export a scan result to USDZ, for example, with ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/export(to:metadataURL:modelProvider:exportOptions:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", objects output as bounding boxes. To substitute the boxes with detailed 3D models based on object attributes, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/ModelProvider",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RoomPlan/documentation/RoomPlan": {
+      "abstract": [
+        {
+          "text": "Create a 3D model of a room by interactively guiding people to scan their physical environment using a device’s camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RoomPlan",
+      "type": "topic",
+      "url": "/documentation/roomplan"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedElementCategory": {
+      "abstract": [
+        {
+          "text": "The category of the particular object or surface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CapturedElementCategory"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedElementCategory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CapturedElementCategory"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedElementCategory",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedelementcategory"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom": {
+      "abstract": [
+        {
+          "text": "A structure that provides the key details of a scanned room.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CapturedRoom"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CapturedRoom"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedRoom",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/ModelProvider": {
+      "abstract": [
+        {
+          "text": "A structure that assigns detailed 3D models to captured objects for an export.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/ModelProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedRoom.ModelProvider",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/modelprovider"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Object": {
+      "abstract": [
+        {
+          "text": "A 3D area in a room that the framework identifies as an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Object"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Object",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Object"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedRoom.Object",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/object"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Object/Category-swift.enum/chair": {
+      "abstract": [
+        {
+          "text": "A category for an object that represents a chair.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "chair"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Object/Category-swift.enum/chair",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CapturedRoom.Object.Category.chair",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/object/category-swift.enum/chair"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Object/attributes": {
+      "abstract": [
+        {
+          "text": "A collection of details that describe a particular object in the room.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA9AttributeP",
+          "text": "CapturedRoomAttribute"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Object/attributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributes",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/object/attributes"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/export(to:metadataURL:modelProvider:exportOptions:)": {
+      "abstract": [
+        {
+          "text": "Produces a 3D asset from the captured room with the given metadata output URL and model provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "export"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "metadataURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "modelProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA0V",
+          "text": "CapturedRoom"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA0V13ModelProviderV",
+          "text": "ModelProvider"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "exportOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA0V",
+          "text": "CapturedRoom"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA0V16USDExportOptionsV",
+          "text": "USDExportOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/export(to:metadataURL:modelProvider:exportOptions:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "export(to:metadataURL:modelProvider:exportOptions:)",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/export(to:metadataurl:modelprovider:exportoptions:)"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoomAttribute": {
+      "abstract": [
+        {
+          "text": "Details about an object in the room that the framework observes during a scan.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CapturedRoomAttribute"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoomAttribute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CapturedRoomAttribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedRoomAttribute",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroomattribute"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoomData": {
+      "abstract": [
+        {
+          "text": "An opaque object that holds the raw results of a scan.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CapturedRoomData"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoomData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CapturedRoomData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedRoomData",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroomdata"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedStructure": {
+      "abstract": [
+        {
+          "text": "An object that holds the results of the merger of multiple capture sessions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CapturedStructure"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedStructure",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CapturedStructure"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedStructure",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedstructure"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/ChairArmType": {
+      "abstract": [
+        {
+          "text": "Types of armchair the framework identifies in a captured room.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChairArmType"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/ChairArmType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChairArmType"
+        }
+      ],
+      "role": "symbol",
+      "title": "ChairArmType",
+      "type": "topic",
+      "url": "/documentation/roomplan/chairarmtype"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/ChairBackType": {
+      "abstract": [
+        {
+          "text": "Types of chair back the framework identifies in a captured room.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChairBackType"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/ChairBackType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChairBackType"
+        }
+      ],
+      "role": "symbol",
+      "title": "ChairBackType",
+      "type": "topic",
+      "url": "/documentation/roomplan/chairbacktype"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/ChairLegType": {
+      "abstract": [
+        {
+          "text": "Types of chair legs the framework identifies in a captured room.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChairLegType"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/ChairLegType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChairLegType"
+        }
+      ],
+      "role": "symbol",
+      "title": "ChairLegType",
+      "type": "topic",
+      "url": "/documentation/roomplan/chairlegtype"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/ChairLegType/star": {
+      "abstract": [
+        {
+          "text": "A chair that rests on a bar that rises from a base, such as an office chair.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "star"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/ChairLegType/star",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ChairLegType.star",
+      "type": "topic",
+      "url": "/documentation/roomplan/chairlegtype/star"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/ChairType": {
+      "abstract": [
+        {
+          "text": "Types of chair that the framework identifies in a captured room.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChairType"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/ChairType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChairType"
+        }
+      ],
+      "role": "symbol",
+      "title": "ChairType",
+      "type": "topic",
+      "url": "/documentation/roomplan/chairtype"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/ChairType/stool": {
+      "abstract": [
+        {
+          "text": "A type of chair that resembles a stool.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stool"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/ChairType/stool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ChairType.stool",
+      "type": "topic",
+      "url": "/documentation/roomplan/chairtype/stool"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/SofaType": {
+      "abstract": [
+        {
+          "text": "Types of sofa the framework identifies in a captured room.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SofaType"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/SofaType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SofaType"
+        }
+      ],
+      "role": "symbol",
+      "title": "SofaType",
+      "type": "topic",
+      "url": "/documentation/roomplan/sofatype"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/StorageType": {
+      "abstract": [
+        {
+          "text": "Types of storage area that the framework identifies in a captured room.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StorageType"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/StorageType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StorageType"
+        }
+      ],
+      "role": "symbol",
+      "title": "StorageType",
+      "type": "topic",
+      "url": "/documentation/roomplan/storagetype"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/TableShapeType": {
+      "abstract": [
+        {
+          "text": "Different table shapes that the framework identifies in a captured room.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableShapeType"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/TableShapeType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableShapeType"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableShapeType",
+      "type": "topic",
+      "url": "/documentation/roomplan/tableshapetype"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/TableType": {
+      "abstract": [
+        {
+          "text": "Types of table the framework identifies in a captured room.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableType"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/TableType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableType"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableType",
+      "type": "topic",
+      "url": "/documentation/roomplan/tabletype"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/merging-multiple-scans-into-a-single-structure": {
+      "abstract": [
+        {
+          "text": "Export a 3D model that consists of multiple rooms captured in the same physical vicinity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/merging-multiple-scans-into-a-single-structure",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Merging multiple scans into a single structure",
+      "type": "topic",
+      "url": "/documentation/roomplan/merging-multiple-scans-into-a-single-structure"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/scanning-the-rooms-of-a-single-structure": {
+      "abstract": [
+        {
+          "text": "Create an AR experience that enables people to scan a building that contains multiple rooms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/scanning-the-rooms-of-a-single-structure",
+      "kind": "article",
+      "role": "article",
+      "title": "Scanning the rooms of a single structure",
+      "type": "topic",
+      "url": "/documentation/roomplan/scanning-the-rooms-of-a-single-structure"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Captured-Data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/merging-multiple-scans-into-a-single-structure",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/scanning-the-rooms-of-a-single-structure",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedStructure",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoomData"
+      ],
+      "title": "Captured Data"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Accessing-object-details",
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoomAttribute",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedElementCategory"
+      ],
+      "title": "Accessing object details"
+    },
+    {
+      "anchor": "Describing-chairs",
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/ChairType",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/ChairArmType",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/ChairLegType",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/ChairBackType"
+      ],
+      "title": "Describing chairs"
+    },
+    {
+      "anchor": "Describing-sofas",
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/SofaType"
+      ],
+      "title": "Describing sofas"
+    },
+    {
+      "anchor": "Describing-closets",
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/StorageType"
+      ],
+      "title": "Describing closets"
+    },
+    {
+      "anchor": "Describing-tables",
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/TableType",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/TableShapeType"
+      ],
+      "title": "Describing tables"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Captured-Data",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.RoomPlan/documentation/RoomPlan/scanning-the-rooms-of-a-single-structure"
+              ],
+              "title": "Captured Data"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/roomplan/captured-object-attributes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/roomplan/captured-object-attributes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
